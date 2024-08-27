@@ -710,9 +710,10 @@ int main(int narg, char** argv)
 Expected output
 
 ```
-hello world, x = 2
+hello
 handle wait
-x = 3
+x = 2
+world, x = 3
 ```
 
 
@@ -744,7 +745,7 @@ ID of the task being executed.
 ##### Example
 
 ```{.c}
-#include "timer.h"
+#include "ffrt.h"
 
 int main(int narg, char** argv)
 {
@@ -755,8 +756,9 @@ int main(int narg, char** argv)
 
     ffrt::submit([=]() {
     ffrt_qos_t taskQos = ffrt_this_task_get_qos();
+    ffrt_timer_cb cb;
     ffrt_timer_start(taskQos, timeout1, data, cb, false);
-    usleep(200);
+    ffrt_usleep(200);
     }, {}, {});
     ffrt::wait();
     return 0;
@@ -895,8 +897,6 @@ using namespace std;
 
 template<class T>
 struct Function {
-    template<class CT>
-    Function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
     ffrt_function_header_t header;
     T closure;
 };
@@ -912,7 +912,7 @@ template<class T>
 void DestroyFunctionWrapper(void* t)
 {
     auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
-    f->closure = nullptr;
+    f = nullptr;
 }
 
 template<class T>
@@ -921,8 +921,10 @@ static inline ffrt_function_header_t* create_function_wrapper(T&& func,
 {
     using function_type = Function<std::decay_t<T>>;
     auto p = ffrt_alloc_auto_managed_function_storage_base(kind);
-    auto f =
-        new (p)function_type({ ExecFunctionWrapper<T>, DestroyFunctionWrapper<T>, { 0 } }, std::forward<T>(func));
+    auto f = new (p)function_type;
+    f->header.exec = ExecFunctionWrapper<T>;
+    f->header.destroy = DestroyFunctionWrapper<T>;
+    f->closure = std::forward<T>(func);
     return reinterpret_cast<ffrt_function_header_t*>(f);
 }
 
@@ -931,8 +933,9 @@ int main(int narg, char** argv)
     ffrt_queue_attr_t queue_attr;
     (void)ffrt_queue_attr_init(&queue_attr);
     ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
-
-    ffrt_queue_submit(queue_handle, create_function_wrapper([]() {printf("Task done.\n");}, ffrt_function_kind_queue), nullptr);
+    std::function<void()>&& queueFunc = [] () {printf("Task done.\n");};
+    ffrt_function_header_t* queueFunc_t = create_function_wrapper((queueFunc), ffrt_function_kind_queue);
+    ffrt_queue_submit(queue_handle, queueFunc_t, nullptr);
 
     ffrt_queue_attr_destroy(&queue_attr);
     ffrt_queue_destroy(queue_handle);
@@ -962,7 +965,15 @@ The main thread queue is obtained for the FFRT thread to communicate with the ma
 
 ##### Example
 ```{.c}
-#include "queue.h"
+/**
+This use case needs to be tested in HarmonyOS.
+*/
+#include "ffrt.h"
+
+inline void OnePlusForTest(void* data)
+{
+    *(int*)data += 1;
+}
 
 int main(int narg, char** argv)
 {
@@ -975,8 +986,7 @@ int main(int narg, char** argv)
     std::function<void()>&& basicFunc = [&result]() {
         OnePlusForTest(static_cast<void*>(&result));
         OnePlusForTest(static_cast<void*>(&result));
-        EXPECT_EQ(result, 2);
-        usleep(3000);
+        ffrt_usleep(3000);
     };
     
     ffrt::task_handle handle = serialQueue->submit_h(
@@ -990,12 +1000,6 @@ int main(int narg, char** argv)
     serialQueue->wait(handle);
     return 0;
 }
-```
-
-Expected output
-
-```
-result=1
 ```
 
 #### ffrt_get_current_queue
@@ -1021,7 +1025,15 @@ The ArkTS Worker thread queue is obtained for the FFRT thread to communicate wit
 
 ##### Example
 ```{.c}
-#include "queue.h"
+/**
+This use case needs to be tested in HarmonyOS.
+*/
+#include "ffrt.h"
+
+inline void OnePlusForTest(void* data)
+{
+    *(int*)data += 1;
+}
 
 int main(int narg, char** argv)
 {
@@ -1034,8 +1046,7 @@ int main(int narg, char** argv)
     std::function<void()>&& basicFunc = [&result]() {
         OnePlusForTest(static_cast<void*>(&result));
         OnePlusForTest(static_cast<void*>(&result));
-        EXPECT_EQ(result, 3);
-        usleep(3000);
+        ffrt_usleep(3000);
     };
     
     ffrt::task_handle handle = serialQueue->submit_h(
@@ -1049,12 +1060,6 @@ int main(int narg, char** argv)
     serialQueue->wait(handle);
     return 0;
 }
-```
-
-Expected output
-
-```
-result=1
 ```
 
 
@@ -1091,6 +1096,8 @@ If the concurrency is set to a large value, for example, 100, the actual concurr
 
 ##### Example
 ```{.c}
+#include "ffrt.h"
+
 int main(int narg, char** argv)
 {
     ffrt_queue_attr_t queue_attr;
@@ -1099,6 +1106,7 @@ int main(int narg, char** argv)
     ffrt_queue_attr_set_max_concurrency(&queue_attr, concurrency);
     concurrency = ffrt_queue_attr_get_max_concurrency(&queue_attr);
     ffrt_queue_attr_destroy(&queue_attr);
+    printf("concurrency=%lu\n", concurrency);
     return 0;
 }
 ```
@@ -1133,6 +1141,8 @@ N/A
 
 ##### Example
 ```{.c}
+#include "ffrt.h"
+
 int main(int narg, char** argv)
 {
     ffrt_queue_attr_t queue_attr;
@@ -1141,6 +1151,7 @@ int main(int narg, char** argv)
     ffrt_queue_attr_set_max_concurrency(&queue_attr, concurrency);
     concurrency = ffrt_queue_attr_get_max_concurrency(&queue_attr);
     ffrt_queue_attr_destroy(&queue_attr);
+    printf("concurrency=%lu\n", concurrency);
     return 0;
 }
 ```
@@ -1187,14 +1198,17 @@ N/A
 
 ##### Example
 ```{.c}
+#include "ffrt.h"
+
 int main(int narg, char** argv)
 {
     ffrt_task_attr_t task_attr;
     (void)ffrt_task_attr_init(&task_attr);
-    uint64_t priority = 3;
+    ffrt_queue_priority_t priority = ffrt_queue_priority_idle;
     ffrt_task_attr_set_queue_priority(&task_attr, priority);
     priority = ffrt_task_attr_get_queue_priority(&task_attr);
     ffrt_task_attr_destroy(&task_attr);
+    printf("priority=%d\n", priority);
     return 0;
 }
 ```
@@ -1229,14 +1243,17 @@ N/A
 
 ##### Example
 ```{.c}
+#include "ffrt.h"
+
 int main(int narg, char** argv)
 {
     ffrt_task_attr_t task_attr;
     (void)ffrt_task_attr_init(&task_attr);
-    uint64_t priority = 3;
+    ffrt_queue_priority_t priority = ffrt_queue_priority_idle;
     ffrt_task_attr_set_queue_priority(&task_attr, priority);
     priority = ffrt_task_attr_get_queue_priority(&task_attr);
     ffrt_task_attr_destroy(&task_attr);
+    printf("priority=%d\n", priority);
     return 0;
 }
 ```
@@ -1366,7 +1383,7 @@ static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t aft
     ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
 }
 
-void ffrt_mutex_task()
+void ffrt_mutex_task(void *)
 {
     int sum = 0;
     ffrt_mutex_t mtx;
@@ -1380,7 +1397,7 @@ void ffrt_mutex_task()
     }
     ffrt_mutex_destroy(&mtx);
     ffrt_wait();
-    printf("sum = %d", sum);
+    printf("sum = %d\n", sum);
 }
 
 int main(int narg, char** argv)
@@ -1486,7 +1503,7 @@ void func1(void* arg)
     if (ret != ffrt_success) {
         printf("error\n");
     }
-    printf("a = %d", *(t->a));
+    printf("a = %d\n", *(t->a));
 }
 
 void func2(void* arg)
@@ -1551,7 +1568,7 @@ static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t aft
     ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
 }
 
-void ffrt_cv_task()
+void ffrt_cv_task(void *)
 {
     ffrt_cond_t cond;
     int ret = ffrt_cond_init(&cond, NULL);
@@ -1621,9 +1638,11 @@ N/A
 
 void func(void* arg)
 {
-    printf("Time: %s", ctime(&(time_t){time(NULL)}));
-    ffrt_usleep(2000000); // Suspend for 2 seconds
-    printf("Time: %s", ctime(&(time_t){time(NULL)}));
+    time_t current_time = time(NULL);
+    printf("Time: %s", ctime(&current_time));
+    ffrt_usleep(2000000);
+    current_time = time(NULL);
+    printf("Time: %s", ctime(&current_time));
 }
 
 typedef struct {
@@ -1676,6 +1695,13 @@ int main(int narg, char** argv)
     ffrt_wait();
     return 0;
 }
+```
+
+An output case：
+
+```
+Time: Tue Aug 13 15:45:30 2024
+Time: Tue Aug 13 15:45:32 2024
 ```
 
 #### ffrt_yield
@@ -1751,6 +1777,9 @@ N/A
 
 ##### Example
 ```{.c}
+#include <stdint.h>
+#include <unistd.h>
+#include "ffrt.h"
 
 static void testfun(void *data)
 {
@@ -1768,6 +1797,7 @@ int main(int narg, char** argv)
     int handle = ffrt_timer_start(ffrt_qos_default, timeout, data, cb, false);
     usleep(300000);
     ffrt_timer_stop(ffrt_qos_default, handle);
+    printf("data: %d\n", x);
     return 0;
 }
 ```
@@ -1775,7 +1805,7 @@ int main(int narg, char** argv)
 Expected output
 
 ```
-data=1 in the callback function testfun
+data: 1
 ```
 
 #### ffrt_timer_stop
@@ -1806,6 +1836,9 @@ N/A
 
 ##### Example
 ```{.c}
+#include <stdint.h>
+#include <unistd.h>
+#include "ffrt.h"
 
 static void testfun(void *data)
 {
@@ -1823,6 +1856,7 @@ int main(int narg, char** argv)
     int handle = ffrt_timer_start(ffrt_qos_default, timeout, data, cb, false);
     usleep(300000);
     ffrt_timer_stop(ffrt_qos_default, handle);
+    printf("data: %d\n", x);
     return 0;
 }
 ```
@@ -1830,7 +1864,7 @@ int main(int narg, char** argv)
 Expected output
 
 ```
-data=1 in the callback function testfun
+data: 1
 ```
 
 ### ffrt looper
@@ -1863,6 +1897,11 @@ N/A
 
 ##### Example
 ```{.c}
+#include <stdint.h>
+#include <unistd.h>
+#include <stdio.h>
+#include "c/loop.h"
+
 int main(int narg, char** argv)
 {
     ffrt_queue_attr_t queue_attr;
@@ -1870,6 +1909,10 @@ int main(int narg, char** argv)
     ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
 
     auto loop = ffrt_loop_create(queue_handle);
+
+    if (loop != NULL) {
+        printf("loop is not null.\n");
+    }
 
     int ret = ffrt_loop_destroy(loop);
 
@@ -1882,7 +1925,7 @@ int main(int narg, char** argv)
 Expected output
 
 ```
-A non-null loop object
+loop is not null.
 ```
 
 #### ffrt_loop_destory
@@ -1909,6 +1952,11 @@ N/A
 
 ##### Example
 ```{.c}
+#include <stdint.h>
+#include <unistd.h>
+#include <stdio.h>
+#include "c/loop.h"
+
 int main(int narg, char** argv)
 {
     ffrt_queue_attr_t queue_attr;
@@ -1919,6 +1967,10 @@ int main(int narg, char** argv)
 
     int ret = ffrt_loop_destroy(loop);
 
+    if (ret == 0) {
+        printf("loop normal destruction.");
+    }
+
     ffrt_queue_attr_destroy(&queue_attr);
     ffrt_queue_destroy(queue_handle);
     return 0;
@@ -1928,7 +1980,7 @@ int main(int narg, char** argv)
 Expected output
 
 ```
-**0** if the loop object is destroyed.
+loop normal destruction.
 ```
 
 #### ffrt_loop_run
@@ -1955,9 +2007,17 @@ N/A
 
 ##### Example
 ```{.c}
+#include <pthread.h>
+#include <unistd.h>
+#include <stdio.h>
+#include "c/loop.h"
+
 void* ThreadFunc(void* p)
 {
     int ret = ffrt_loop_run(p);
+    if (ret == 0) {
+        printf("loop normal operation.");
+    }
     return nullptr;
 }
 int main(int narg, char** argv)
@@ -1982,7 +2042,7 @@ int main(int narg, char** argv)
 Expected output
 
 ```
-**0** if the loop object is started normally.
+loop normal operation.
 ```
 
 #### ffrt_loop_stop
@@ -2009,6 +2069,11 @@ N/A
 
 ##### Example
 ```{.c}
+#include <pthread.h>
+#include <unistd.h>
+#include <stdio.h>
+#include "c/loop.h"
+
 void* ThreadFunc(void* p)
 {
     int ret = ffrt_loop_run(p);
@@ -2083,6 +2148,15 @@ N/A
 
 ##### Example
 ```{.c}
+#include <pthread.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <functional>
+#include <sys/epoll.h>
+#include <sys/eventfd.h>
+#include "c/loop.h"
+#include "ffrt.h"
+
 void* ThreadFunc(void* p)
 {
     int ret = ffrt_loop_run(p);
@@ -2096,6 +2170,13 @@ static void testfun(void* data)
 
 static void (*cb)(void*) = testfun;
 
+void testCallBack(void *data, unsigned int events) {}
+
+struct TestData {
+    int fd;
+    uint64_t expected;
+};
+
 int main(int narg, char** argv)
 {
     ffrt_queue_attr_t queue_attr;
@@ -2104,8 +2185,8 @@ int main(int narg, char** argv)
 
     auto loop = ffrt_loop_create(queue_handle);
     int result1 = 0;
-    std::function<void()> &&basicFunc1 = [&result1]() {result += 10;};
-    ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle, create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
+    std::function<void()> &&basicFunc1 = [&result1]() {result1 += 10;};
+    ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle, ffrt::create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
     
     pthread_t thread;
     pthread_create(&thread, 0, ThreadFunc, loop);
@@ -2117,11 +2198,14 @@ int main(int narg, char** argv)
     uint64_t timeout2 = 10;
     uint64_t expected = 0xabacadae;
     
-    int testFd = evetfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
+    int testFd = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
     struct TestData testData {.fd = testFd, .expected = expected};
     ffrt_timer_t timeHandle = ffrt_loop_timer_start(loop, timeout1, data, cb, false);
     
-    ffrt_loop_epoll_ctl(loop, EPOLL_CTL_ADD, testFd, EPOLLIN, (void*)(&testData), testCallBack);
+    int ret = ffrt_loop_epoll_ctl(loop, EPOLL_CTL_ADD, testFd, EPOLLIN, (void*)(&testData), testCallBack);
+    if (ret == 0) {
+        printf("ffrt_loop_epoll_ctl if the operation is successful.\n");
+    }
     ssize_t n = write(testFd, &expected, sizeof(uint64_t));
     usleep(25000);
     ffrt_loop_epoll_ctl(loop, EPOLL_CTL_DEL, testFd, 0, nullptr, nullptr);
@@ -2129,7 +2213,7 @@ int main(int narg, char** argv)
     ffrt_loop_stop(loop);
     pthread_join(thread, nullptr);
     ffrt_loop_timer_stop(loop, timeHandle);
-    int ret = ffrt_loop_destroy(loop);
+    ret = ffrt_loop_destroy(loop);
 
     ffrt_queue_attr_destroy(&queue_attr);
     ffrt_queue_destroy(queue_handle);
@@ -2275,8 +2359,6 @@ libffrt.z.so
     // Method 1: Use the template. C++ is supported.
     template<class T>
     struct Function {
-        template<class CT>
-        Function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
         ffrt_function_header_t header;
         T closure;
     };
@@ -2301,8 +2383,10 @@ libffrt.z.so
     {
         using function_type = Function<std::decay_t<T>>;
         auto p = ffrt_alloc_auto_managed_function_storage_base(kind);
-        auto f =
-            new (p)function_type({ ExecFunctionWrapper<T>, DestroyFunctionWrapper<T>, { 0 } }, std::forward<T>(func));
+        auto f = new (p)function_type;
+        f->header.exec = ExecFunctionWrapper<T>;
+        f->header.destroy = DestroyFunctionWrapper<T>;
+        f->closure = std::forward<T>(func);
         return reinterpret_cast<ffrt_function_header_t*>(f);
     }
 

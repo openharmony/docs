@@ -26,7 +26,7 @@ Obtains the **UIContext** instance.
 **Example**
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
+import { UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -46,6 +46,8 @@ struct MyComponent {
 getUniqueId(): number
 
 Obtains the unique ID of this component. This unique ID is assigned by the system to each component. If this API is called before the component is built, an invalid value **-1** is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -90,7 +92,7 @@ Queries the **NavDestination** information of this custom component.
 **Example**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI'
 
 @Component
 export struct NavDestinationExample {
@@ -103,7 +105,7 @@ export struct NavDestinationExample {
 
 @Component
 struct MyComponent {
-  navDesInfo: observer.NavDestinationInfo | undefined
+  navDesInfo: uiObserver.NavDestinationInfo | undefined
 
   aboutToAppear() {
     // this refers to the custom node MyComponent and searches for the nearest parent node of the NavDestination type from this node upwards.
@@ -123,6 +125,8 @@ queryNavigationInfo(): NavigationInfo | undefined
 
 Queries the **Navigation** information of this custom component.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -135,7 +139,7 @@ Queries the **Navigation** information of this custom component.
 
 ```ts
 // index.ets
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -177,6 +181,8 @@ queryRouterPageInfo(): RouterPageInfo | undefined;
 
 Obtains a **RouterPageInfo** instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
@@ -188,13 +194,13 @@ Obtains a **RouterPageInfo** instance.
 **Example**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+import { uiObserver } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct MyComponent {
   aboutToAppear() {
-    let info: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+    let info: uiObserver.RouterPageInfo | undefined = this.queryRouterPageInfo();
   }
 
   build() {
@@ -202,4 +208,3 @@ struct MyComponent {
   }
 }
 ```
-<!--no_check-->

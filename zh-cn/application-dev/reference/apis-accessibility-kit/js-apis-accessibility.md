@@ -14,15 +14,17 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 ## AbilityState
 
+type AbilityState = 'enable' | 'disable' | 'install'
+
 辅助应用状态类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称      | 描述       |
+| 类型      | 说明       |
 | ------- | -------- |
-| enable  | 辅助应用已启用。 |
-| disable | 辅助应用已禁用。 |
-| install | 辅助应用已安装。 |
+| 'enable'  | 表示辅助应用已启用。 |
+| 'disable'  | 辅助应用已禁用。 |
+| 'install'  | 辅助应用已安装。 |
 
 ## AbilityType
 
@@ -62,65 +64,77 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 ## Action
 
+type Action = 'accessibilityFocus' | 'clearAccessibilityFocus' | 'focus' | 'clearFocus' | 'clearSelection' |
+  'click' | 'longClick' | 'cut' | 'copy' | 'paste' | 'select' | 'setText' | 'delete' |
+  'scrollForward' | 'scrollBackward' | 'setSelection' | 'setCursorPosition' | 'home' |
+  'back' | 'recentTask' | 'notificationCenter' | 'controlCenter' | 'common'
+
 应用所支持的目标动作，需要配置参数的目标动作已在描述中标明。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称                      | 描述                 |
+| 类型                      | 说明                 |
 | ----------------------- |--------------------|
-| click                   | 表示点击操作。            |
-| longClick               | 表示长按操作。            |
-| scrollForward           | 表示向前滚动操作。 |
-| scrollBackward          | 表示向后滚动操作。 |
-| focus                   | 表示获得焦点操作。 |
-| clearFocus              | 表示清除焦点操作。 |
-| clearSelection          | 表示清除选择操作。当前版本暂不支持。 |
-| accessibilityFocus      | 表示获得无障碍焦点操作。       |
-| clearAccessibilityFocus | 表示清除无障碍焦点操作。       |
-| cut                     | 表示剪切操作。   |
-| copy                    | 表示复制操作。   |
-| paste                   | 表示粘贴操作。   |
-| select                  | 表示选择操作。   |
-| setText                 | 表示设置文本操作，需配置参数setText。 |
-| delete                  | 表示删除操作。当前版本暂不支持。   |
-| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd、selectTextInForWard。   |
-| common<sup>12+</sup>            | 表示没有特定操作，用于主动聚焦、主动播报等场景。   |
-| home<sup>12+</sup>                | 表示返回桌面操作。   |
-| back<sup>12+</sup>                | 表示返回上一级操作。   |
-| recentTask<sup>12+</sup>          | 表示打开最近任务操作。   |
-| notificationCenter<sup>12+</sup>  | 表示打开通知栏操作。   |
-| controlCenter<sup>12+</sup>       | 表示打开控制中心操作。   |
-| setCursorPosition<sup>12+</sup>   | 表示设置光标位置操作，需配置参数offset。   |
+| 'click'                   | 表示点击操作。            |
+| 'longClick'               | 表示长按操作。            |
+| 'scrollForward'           | 表示向前滚动操作。 |
+| 'scrollBackward'          | 表示向后滚动操作。 |
+| 'focus'                   | 表示获得焦点操作。 |
+| 'clearFocus'              | 表示清除焦点操作。 |
+| 'clearSelection'          | 表示清除选择操作。当前版本暂不支持。 |
+| 'accessibilityFocus'      | 表示获得无障碍焦点操作。       |
+| 'clearAccessibilityFocus'      | 表示清除无障碍焦点操作。       |
+| 'cut'                     | 表示剪切操作。   |
+| 'copy'                    | 表示复制操作。   |
+| 'paste'                   | 表示粘贴操作。   |
+| 'select'                  | 表示选择操作。   |
+| 'setCursorPosition'                 | 表示设置文本操作，需配置参数setText。 |
+| 'delete'                  | 表示删除操作。当前版本暂不支持。   |
+| 'setSelection'            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd、selectTextInForWard。   |
+| 'common'            | 表示没有特定操作，用于主动聚焦、主动播报等场景。   |
+| 'home'                | 表示返回桌面操作。   |
+| 'back'                | 表示返回上一级操作。   |
+| 'recentTask'          | 表示打开最近任务操作。   |
+| 'notificationCenter'      | 表示打开通知栏操作。   |
+| 'controlCenter'       | 表示打开控制中心操作。   |
+| 'setCursorPosition'     | 表示设置光标位置操作，需配置参数offset。   |
 
 ## Capability
+
+type Capability = 'retrieve' | 'touchGuide' | 'keyEventObserver' | 'zoom' | 'gesture'
 
 辅助应用能力类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称               | 描述                    |
+| 类型               | 说明                    |
 | ---------------- |-----------------------|
-| retrieve         | 具有检索窗口内容的能力。          |
-| touchGuide       | 具有触摸探索模式的能力。          |
-| keyEventObserver | 具有过滤按键事件的能力。          |
-| zoom             | 具有控制显示放大的能力。当前版本暂不支持。 |
-| gesture          | 具有执行手势动作的能力。          |
+| 'retrieve'         | 具有检索窗口内容的能力。          |
+| 'touchGuide'       | 具有触摸探索模式的能力。          |
+| 'keyEventObserver' | 具有过滤按键事件的能力。          |
+| 'zoom'             | 具有控制显示放大的能力，当前版本暂不支持。 |
+| 'gesture'          | 具有执行手势动作的能力。          |
 
 ## CaptionsFontEdgeType<sup>8+</sup>
+
+type CaptionsFontEdgeType = 'none' | 'raised' | 'depressed' | 'uniform' | 'dropShadow'
 
 字幕字体边缘类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Hearing
 
-| 名称         | 描述    |
+| 类型         | 说明    |
 | ---------- | ----- |
-| none       | 无效果。  |
-| raised     | 凸起效果。 |
-| depressed  | 凹陷效果。 |
-| uniform    | 轮廓效果。 |
-| dropShadow | 阴影效果。 |
+| 'none'       | 表示无效果。  |
+| 'raised'     | 表示凸起效果。 |
+| 'depressed'  | 表示凹陷效果。 |
+| 'uniform'    | 表示轮廓效果。 |
+| 'dropShadow' | 表示阴影效果。 |
 
 ## CaptionsFontFamily<sup>8+</sup>
+
+type CaptionsFontFamily = 'default' | 'monospacedSerif' | 'serif' | 'monospacedSansSerif' |
+  'sansSerif' | 'casual' | 'cursive' | 'smallCapitals'
 
 字幕字体。
 
@@ -128,14 +142,14 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 | 名称                  | 描述                |
 | ------------------- | ----------------- |
-| default             | 默认字体。             |
-| monospacedSerif     | 等宽 Serif 字体。      |
-| serif               | Serif 字体。         |
-| monospacedSansSerif | 等宽 Sans Serif 字体。 |
-| sansSerif           | Sans Serif 字体。    |
-| casual              | 非正式字体。            |
-| cursive             | 手写字体。             |
-| smallCapitals       | 小型大写字母字体。         |
+| 'default'             | 表示默认字体。             |
+| 'monospacedSerif'         | 表示等宽 Serif 字体。      |
+| 'serif'               | 表示Serif 字体。         |
+| 'monospacedSansSerif'        | 表示等宽 Sans Serif 字体。 |
+| 'sansSerif'           | 表示Sans Serif 字体。    |
+| 'casual'              | 表示非正式字体。            |
+| 'cursive'             | 表示手写字体。             |
+| 'smallCapitals'       | 表示小型大写字母字体。         |
 
 ## CaptionsStyle<sup>8+</sup>
 
@@ -192,7 +206,7 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -230,7 +244,7 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -269,7 +283,7 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -308,7 +322,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -402,54 +416,63 @@ constructor(type: EventType, bundleName: string, triggerAction: Action)
 
 ## EventType
 
+type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
+'click' | 'longClick' | 'focus' | 'select' | 'hoverEnter' | 'hoverExit' |
+'textUpdate' | 'textSelectionUpdate' | 'scroll' | 'requestFocusForAccessibility' |
+'announceForAccessibility'
+
 无障碍事件类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称                      | 描述                     |
+| 类型                      | 说明                     |
 | ----------------------- |------------------------|
-| accessibilityFocus      | 描述获得无障碍焦点的事件。          |
-| accessibilityFocusClear | 描述清除无障碍焦点的事件。          |
-| click                   | 描述点击组件的事件。             |
-| longClick               | 描述长按组件的事件。             |
-| select                  | 描述选择组件的事件。    |
-| hoverEnter              | 描述悬停进入组件的事件。  |
-| hoverExit               | 描述悬停离开组件的事件。  |
-| focus                   | 描述组件获得焦点的事件。当前版本暂不支持。  |
-| textUpdate              | 描述组件文本已更改的事件。 |
-| textSelectionUpdate     | 描述选定文本已更改的事件。当前版本暂不支持。 |
-| scroll                  | 描述滚动视图的事件。    |
-| requestFocusForAccessibility<sup>12+</sup>     | 描述主动聚焦的事件。 |
-| announceForAccessibility<sup>12+</sup>         | 描述主动播报的事件。 |
+| 'accessibilityFocus'      | 表示获得无障碍焦点的事件。          |
+| 'accessibilityFocusClear' | 表示清除无障碍焦点的事件。          |
+| 'click'                   | 表示点击组件的事件。             |
+| 'longClick'               | 表示长按组件的事件。             |
+| 'select'                  | 表示选择组件的事件。    |
+| 'hoverEnter'              | 表示悬停进入组件的事件。  |
+| 'hoverExit'               | 表示悬停离开组件的事件。  |
+| 'focus'                   | 表示组件获得焦点的事件，当前版本暂不支持。  |
+| 'textUpdate'              | 表示组件文本已更改的事件。 |
+| 'textSelectionUpdate'     | 表示选定文本已更改的事件，当前版本暂不支持。 |
+| 'scroll'                  | 表示滚动视图的事件。    |
+| 'requestFocusForAccessibility'     | 表示主动聚焦的事件。 |
+| 'announceForAccessibility'         | 表示主动播报的事件。 |
 
 
 ## TextMoveUnit
+
+type TextMoveUnit = 'char' | 'word' | 'line' | 'page' | 'paragraph'
 
 文本无障碍导航移动粒度。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称        | 描述              |
+| 类型        | 说明              |
 | --------- | --------------- |
-| char      | 以字符为移动粒度遍历节点文本。 |
-| word      | 以词为移动粒度遍历节点文本。  |
-| line      | 以行为移动粒度遍历节点文本。  |
-| page      | 以页为移动粒度遍历节点文本。  |
-| paragraph | 以段落为移动粒度遍历节点文本。 |
+| 'char'      | 表示以字符为移动粒度遍历节点文本。 |
+| 'word'      | 表示以词为移动粒度遍历节点文本。  |
+| 'line'      | 表示以行为移动粒度遍历节点文本。  |
+| 'page'      | 表示以页为移动粒度遍历节点文本。  |
+| 'paragraph' | 表示以段落为移动粒度遍历节点文本。 |
 
 ## WindowUpdateType
+
+type WindowUpdateType = 'add' | 'remove' | 'bounds' | 'active' | 'focus'
 
 窗口变化类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称     | 描述                 |
+| 类型     | 说明                 |
 | ------ | ------------------ |
-| add    | 添加窗口的窗口变化事件。       |
-| remove | 一个窗口被删除的窗口变化事件。    |
-| bounds | 窗口边界已更改的窗口变化事件。    |
-| active | 窗口变为活动或不活动的窗口变化事件。 |
-| focus  | 窗口焦点发生变化的窗口变化事件。   |
+| 'add'    | 表示添加窗口的窗口变化事件，值固定为'add'字符串。       |
+| 'remove' | 表示一个窗口被删除的窗口变化事件，值固定为'remove'字符串。    |
+| 'bounds' | 表示窗口边界已更改的窗口变化事件，值固定为'bounds'字符串。    |
+| 'active' | 表示窗口变为活动或不活动的窗口变化事件，值固定为'active'字符串。 |
+| 'focus'  | 表示窗口焦点发生变化的窗口变化事件，值固定为'focus'字符串。   |
 
 ## accessibility.getAbilityLists<sup>(deprecated)</sup>
 
@@ -559,7 +582,7 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState)
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -599,7 +622,7 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -706,7 +729,7 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -739,7 +762,7 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -772,7 +795,7 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -805,7 +828,7 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1113,7 +1136,7 @@ sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1155,7 +1178,7 @@ sendAccessibilityEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): v
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 

@@ -3,12 +3,13 @@
 - [ArkWeb简介](web-component-overview.md)
 - [Web组件的生命周期](web-event-sequence.md)
 - 设置基本属性和事件
-  - [默认UserAgent定义](web-default-userAgent.md)
+  - [设置UserAgent](web-default-userAgent.md)
   - [管理Cookie及数据存储](web-cookie-and-data-storage-mgmt.md)
   - [设置深色模式](web-set-dark-mode.md)
   - [在新窗口中打开页面](web-open-in-new-window.md)
   - [管理位置权限](web-geolocation-permission.md)
   - [使用隐私模式](web-incognito-mode.md)
+  - [使用运动和方向传感器](web-sensor.md)
 - 在应用中使用前端页面JavaScript
   - [应用侧调用前端页面函数](web-in-app-frontend-page-function-invoking.md)
   - [前端页面调用应用侧函数](web-in-page-app-function-invoking.md)
@@ -16,6 +17,7 @@
   - [应用侧与前端页面的相互调用(C/C++)](arkweb-ndk-jsbridge.md)
 - 管理网页交互
   - [Web组件嵌套滚动](web-nested-scrolling.md)
+  - [Web页面显示内容滚动](web-content-scrolling.md)
 - 管理Web组件的网络安全与隐私
   - [解决Web组件本地资源跨域问题](web-cross-origin.md)
   - [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)
@@ -38,6 +40,7 @@
 - 处理网页内容
   - [使用Web组件打印前端页面](web-print.md)
   - [使用Web组件的PDF文档预览能力](web-pdf-preview.md)
+  - [网页中安全区域计算和避让适配](web-safe-area-insets.md)
 - [同层渲染绘制Video和Button组件](web-same-layer.md)
 - Web调试维测
   - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)

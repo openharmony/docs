@@ -51,7 +51,8 @@
        let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg');
        // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制
        let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-       context.resourceManager.getMediaContent($r('app.media.icon').id, 0)
+       // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
+       context.resourceManager.getMediaContent($r('app.media.startIcon').id, 0)
          .then(async value => {
            let media = value.buffer;
            // 写到媒体库文件中
@@ -72,7 +73,8 @@
      build() {
        Row() {
          Column({ space: 10 }) {
-           Image($r('app.media.icon'))
+           // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
+           Image($r('app.media.startIcon'))
              .height(400)
              .width('100%')
    

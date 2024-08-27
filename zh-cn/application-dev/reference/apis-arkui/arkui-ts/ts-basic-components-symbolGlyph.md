@@ -14,11 +14,15 @@
 
 SymbolGlyph(value?: Resource)
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [Resource](ts-types.md#resource)| 否 | SymbolGlyph组件的资源名,如 $r('sys.symbol.ohos_wifi')。 |
 
@@ -36,14 +40,16 @@ fontColor(value: Array&lt;ResourceColor&gt;)
 
 设置SymbolGlyph组件颜色。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                                | 必填 | 说明                                                         |
-| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名 | 类型 | 必填 | 说明  |
+| ------ | ---- | ---- | ----- |
 | value  | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 是   | SymbolGlyph组件颜色。<br/> 默认值：不同渲染策略下默认值不同。 |
 
 ### fontSize
@@ -54,14 +60,16 @@ fontSize(value: number | string | Resource)
 
 组件的图标显示大小由fontSize控制，设置width或height后，其他通用属性仅对组件的占位大小生效。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                           |
-| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
+| 参数名 | 类型 | 必填 | 说明  |
+| ------ | ---- | ---- | ----- |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | SymbolGlyph组件大小。<br/>默认值：系统默认值。 |
 
 ### fontWeight
@@ -72,14 +80,16 @@ fontWeight(value: number | FontWeight | string)
 
 sys.symbol.ohos_lungs图标不支持设置fontWeight。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                |
-| ------ | ------------------------------------------------------------ | ---- | --------------------------------------------------- |
+| 参数名 | 类型 | 必填 | 说明  |
+| ------ | ---- | ---- | ----- |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight) | 是   | SymbolGlyph组件粗细。<br/>默认值：FontWeight.Normal |
 
 ### renderingStrategy
@@ -88,14 +98,16 @@ renderingStrategy(value: SymbolRenderingStrategy)
 
 设置SymbolGlyph组件渲染策略。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名 | 类型 | 必填 | 说明  |
+| ------ | ---- | ---- | ----- |
 | value  | [SymbolRenderingStrategy](#symbolrenderingstrategy11枚举说明) | 是   | SymbolGlyph组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE |
 
 不同渲染策略效果可参考以下示意图。
@@ -108,14 +120,16 @@ effectStrategy(value: SymbolEffectStrategy)
 
 设置SymbolGlyph组件动效策略。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名 | 类型 | 必填 | 说明  |
+| ------ | ---- | ---- | ----- |
 | value  | [SymbolEffectStrategy](#symboleffectstrategy11枚举说明) | 是   | SymbolGlyph组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE |
 
 ### symbolEffect<sup>12+</sup>
@@ -124,16 +138,18 @@ symbolEffect(symbolEffect: SymbolEffect, isActive?: boolean)
 
 设置SymbolGlyph组件动效策略及播放状态。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名 | 类型 | 必填 | 说明  |
+| ------ | ---- | ---- | ----- |
 | symbolEffect  | [SymbolEffect](#symboleffect12对象说明) | 是   | SymbolGlyph组件动效策略。<br/>默认值：[SymbolEffect](#symboleffect12对象说明) |
-| isActive  |boolean | 否   | SymbolGlyph组件动效播放状态。<br/>默认值：false |
+| isActive  | boolean | 否   | SymbolGlyph组件动效播放状态。<br/>默认值：false |
 
 ### symbolEffect<sup>12+</sup>
 
@@ -141,14 +157,16 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 
 设置SymbolGlyph组件动效策略及播放触发器。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名       | 类型                                                         | 必填 | 说明                                                         |
-| ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名 | 类型 | 必填 | 说明  |
+| ------ | ---- | ---- | ----- |
 | symbolEffect | [SymbolEffect](#symboleffect12对象说明) | 是   | SymbolGlyph组件动效策略。<br/>默认值：[SymbolEffect](#symboleffect12对象说明) |
 | triggerValue | number | 否   | SymbolGlyph组件动效播放触发器，在数值变更时触发动效。<br/>如果首次不希望触发动效，设置-1。 |
 
@@ -172,6 +190,12 @@ constructor()
 
 SymbolEffect的构造函数，无动效。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## ScaleSymbolEffect<sup>12+</sup>对象说明
 
 ScaleSymbolEffect继承自父类SymbolEffect。
@@ -184,8 +208,8 @@ ScaleSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称      |   参数类型       |  必填  |       描述        |
-| --------- | --------------- | ----- | ----------------- |
+| 名称 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | scope     | [EffectScope](#effectscope12枚举说明)  |  否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
 | direction | [EffectDirection](#effectdirection12枚举说明) |  否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
@@ -203,8 +227,8 @@ ScaleSymbolEffect的构造函数，缩放动效。
 
 **参数：**
 
-| 参数名    | 参数类型              | 必填 | 参数描述                                    |
-| --------- | --------------------- | ---- | ------------------------------------------- |
+| 参数名 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
 | direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
@@ -220,8 +244,8 @@ HierarchicalSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称      |   参数类型       |  必填  |       描述        |
-| --------- | --------------- | ----- | ----------------- |
+| 名称 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
 
 ### constructor<sup>12+</sup>
@@ -238,8 +262,8 @@ HierarchicalSymbolEffect的构造函数，层级动效。
 
 **参数：**
 
-| 参数名    | 参数类型              | 必填 | 参数描述                                    |
-| --------- | --------------------- | ---- | ------------------------------------------- |
+| 参数名 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
 
 ## AppearSymbolEffect<sup>12+</sup>对象说明
@@ -254,8 +278,8 @@ AppearSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称      |   参数类型       |  必填  |       描述        |
-| --------- | --------------- | ----- | ----------------- |
+| 名称 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
@@ -272,8 +296,8 @@ AppearSymbolEffect的构造函数，出现动效。
 
 **参数：**
 
-| 参数名    | 参数类型              | 必填 | 参数描述                                    |
-| --------- | --------------------- | ---- | ------------------------------------------- |
+| 参数名 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ## DisappearSymbolEffect<sup>12+</sup>对象说明
@@ -288,8 +312,8 @@ DisappearSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称      |   参数类型       |  必填  |       描述        |
-| --------- | --------------- | ----- | ----------------- |
+| 名称 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
@@ -306,8 +330,8 @@ DisappearSymbolEffect的构造函数，消失动效。
 
 **参数：**
 
-| 参数名    | 参数类型              | 必填 | 参数描述                                    |
-| --------- | --------------------- | ---- | ------------------------------------------- |
+| 参数名 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ## BounceSymbolEffect<sup>12+</sup>对象说明
@@ -322,8 +346,8 @@ BounceSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称      |   参数类型       |  必填  |       描述        |
-| --------- | --------------- | ----- | ----------------- |
+| 名称 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
 | direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
@@ -341,8 +365,8 @@ BounceSymbolEffect的构造函数，弹跳动效。
 
 **参数：**
 
-| 参数名    | 参数类型              | 必填 | 参数描述                                    |
-| --------- | --------------------- | ---- | ------------------------------------------- |
+| 参数名 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
 | direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
@@ -358,8 +382,8 @@ ReplaceSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
-| 名称      |   参数类型       |  必填  |       描述        |
-| --------- | --------------- | ----- | ----------------- |
+| 名称 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
@@ -376,8 +400,8 @@ ReplaceSymbolEffect的构造函数，替换动效。
 
 **参数：**
 
-| 参数名    | 参数类型              | 必填 | 参数描述                                    |
-| --------- | --------------------- | ---- | ------------------------------------------- |
+| 参数名 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
 | scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ## PulseSymbolEffect<sup>12+</sup>对象说明
@@ -387,6 +411,12 @@ ReplaceSymbolEffect的构造函数，替换动效。
 constructor()
 
 PulseSymbolEffect的构造函数，脉冲动效。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## EffectDirection<sup>12+</sup>枚举说明
 
@@ -430,6 +460,8 @@ PulseSymbolEffect的构造函数，脉冲动效。
 ## SymbolEffectStrategy<sup>11+</sup>枚举说明
 
 动效类型的枚举值。设置动效后启动即生效，无需触发。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

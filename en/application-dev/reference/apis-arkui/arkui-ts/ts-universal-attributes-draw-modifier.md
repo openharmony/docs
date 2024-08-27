@@ -12,6 +12,8 @@ drawModifier(modifier: DrawModifier | undefined)
 
 Creates a drawing modifier.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Supported components:**
@@ -36,6 +38,8 @@ drawFront?(drawContext: DrawContext): void
 
 Draws the foreground. This method can be overloaded for custom foreground drawing.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -50,6 +54,8 @@ drawContent?(drawContext: DrawContext): void
 
 Draws the content. This method can be overloaded for custom content drawing. The overloaded method will replace the original content drawing function of the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -63,6 +69,8 @@ Draws the content. This method can be overloaded for custom content drawing. The
 drawBehind?(drawContext: DrawContext): void
 
 Draws the background. This method can be overloaded for custom background drawing.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -79,13 +87,15 @@ invalidate(): void
 
 Triggers redrawing of the bound component. No overloading is allowed or needed.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## Example
 ```ts
 // xxx.ets
-import drawing from '@ohos.graphics.drawing';
-import animator, { AnimatorResult } from '@ohos.animator';
+import { drawing } from '@kit.ArkGraphics2D';
+import { Animator, AnimatorResult } from '@kit.ArkUI';
 
 class MyFullDrawModifier extends DrawModifier {
   public scaleX: number = 1;
@@ -158,8 +168,8 @@ class MyFrontDrawModifier extends DrawModifier {
     brush.setColor({
       alpha: 255,
       red: 0,
-      green: 255,
-      blue: 0
+      green: 0,
+      blue: 255
     });
     context.canvas.attachBrush(brush);
     const halfWidth = context.size.width / 2;
@@ -180,7 +190,7 @@ struct DrawModifierExample {
 
   create() {
     let self = this;
-    this.drawAnimator = animator.create({
+    this.drawAnimator = Animator.create({
       duration: 1000,
       easing: 'ease',
       delay: 0,

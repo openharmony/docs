@@ -10,6 +10,7 @@
     - [避免开发过程中的冗余操作](avoiding-redundant-operations.md)
     - [使用AOT进行性能优化](performance-optimization-using-aot.md)
     - [高负载场景下线程优先级设置防止关键线程被打断](qos-protect-critical-threads.md)
+    - [延迟加载Lazy-Import使用指导](Lazy-Import-Instructions.md)
   - 减少卡顿丢帧
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [组件复用使用指导](component-recycle.md)
@@ -49,6 +50,8 @@
     - [使用ArkUI的FrameNode扩展实现动态布局类框架](imperative_dynamic_layouts.md)
     - [在线短视频流畅切换](performance-quick-switch-short-video.md)
     - [合理使用缓存提升性能](reasonable_using_cache_improve_performance.md)
+    - [滑动白块问题解决指导](resolve_sliding_white_blocks.md)
+    - [相机分段式拍照性能提升实践](performance-camera-shot2see.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
@@ -60,3 +63,4 @@
     - [Web性能问题分析案例](web-analyse.md)
     - [应用性能问题分析指导](application-performance-guide.md)
     - [页面布局检查器ArkUI Inspector](arkUI-inspector.md)
+    - [跨线程序列化耗时点分析](cross-thread-serialization-time-consumption-analysis.md)

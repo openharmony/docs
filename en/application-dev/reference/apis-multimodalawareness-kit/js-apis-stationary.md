@@ -32,10 +32,10 @@ Enumerates the device status types.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
-| Name| Description|
-| -------- | -------- |
-| still | Absolutely still.|
-| relativeStill | Relatively still.|
+| Name       | Type  | Readable  | Writable  | Description     |
+| --------- | ------ | ---- | ---- | ------- |
+| still    | string | Yes| No| Absolutely still.|
+| relativeStill | string | Yes| No| Relatively still.|
 
 ## ActivityEvent
 

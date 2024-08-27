@@ -46,6 +46,18 @@ WithTheme(options: WithThemeOptions)
 
 ![resources_dark](figures/resources_dark.png)
 
+dark.json数据示例：
+  ```ts
+    {
+      "color": [
+        {
+          "name": "start_window_background",
+          "value": "#FFFFFF"
+        }
+      ]
+    }
+  ```
+
 ```ts
 // 指定局部深浅色模式
 @Entry

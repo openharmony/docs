@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.SwipeRefresher (Swipe Refresher)
+# SwipeRefresher
 
 
 The swipe refresher is a component used to obtain and load content, typically with a pull-down gesture.
@@ -13,7 +13,7 @@ The swipe refresher is a component used to obtain and load content, typically wi
 ## Modules to Import
 
 ```
-import { SwipeRefresher } from '@ohos.arkui.advanced.SwipeRefresher'
+import { SwipeRefresher } from '@kit.ArkUI'
 ```
 
 
@@ -31,21 +31,23 @@ SwipeRefresher ({content?: string, isLoading: boolean})
 
 **Decorator**: @Component
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type| Mandatory| Decorator| Description| 
+| Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| content | string | No| \@Prop | Text displayed when the content is loaded.| 
-| isLoading | boolean | If yes, | \@Prop | Whether content is being loaded.<br> The value **true** means that content is being loaded, and **false** means the opposite.| 
+| content | string | No| \@Prop | Text displayed when the content is loaded.|
+| isLoading | boolean | If yes, | \@Prop | Whether content is being loaded.<br> The value **true** means that content is being loaded, and **false** means the opposite.|
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
 ```ts
-import { SwipeRefresher } from '@ohos.arkui.advanced.SwipeRefresher';
+import { SwipeRefresher } from '@kit.ArkUI';
 
 @Entry
 @Component

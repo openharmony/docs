@@ -142,6 +142,7 @@
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
@@ -159,9 +160,9 @@ export class AVTranscoderDemo {
   setAVTranscoderCallback() {
     if (this.avTranscoder != undefined) {
       // 转码完成回调函数
-      this.avTranscoder.on('complete', () => {
+      this.avTranscoder.on('complete', async () => {
         console.log(`AVTranscoder is completed`);
-        await releaseTranscoderingProcess();
+        await this.releaseTranscoderingProcess();
       })
       // 错误上报回调函数
       this.avTranscoder.on('error', (err: BusinessError) => {
@@ -219,7 +220,7 @@ export class AVTranscoderDemo {
     await this.startTranscoderingProcess(); // 开始转码
     await this.pauseTranscoderingProcess(); //暂停转码
     await this.resumeTranscoderingProcess(); // 恢复转码
-    await this.releaseTranscoderingProgress(); // 释放转码
+    await this.releaseTranscoderingProcess(); // 释放转码
   }
 }
 ```

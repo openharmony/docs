@@ -1527,7 +1527,7 @@ http协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-|  名称  |  类型  |   说明     |
-| ------------------  | -- | ----------- |
-| publicKeyHash       | string | 字符串类型的证书PIN码。 |
-| hashAlgorithm        | 'SHA-256' | 加密算法，当前仅支持该算法。 |
+|  名称  |  类型  |  必填  |说明     |
+| ------------------  |---- |-- | ----------- |
+| publicKeyHash       | string | 是 |字符串类型的证书PIN码。 |
+| hashAlgorithm        | 'SHA-256' |  是  |加密算法，当前仅支持该算法。 |

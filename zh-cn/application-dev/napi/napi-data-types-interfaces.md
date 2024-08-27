@@ -52,7 +52,7 @@ typedef struct {
 
 ### napi_value
 
-在C++代码中，表示一个JavaScript值。
+napi_value是一个C的结构体指针，表示一个JavaScript对象的引用。napi_value持有了JS对象，同时，napi_value受handle_scope管理，scope中napi_value持有的JS对象不会被释放；出scope后，napi_value将失效，不再持有对应的JS对象。
 
 ### napi_env
 
@@ -319,8 +319,8 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | -------- | -------- |
 | napi_open_handle_scope | 创建一个上下文环境使用。需要使用napi_close_handle_scope进行关闭。 |
 | napi_close_handle_scope | 关闭传入的上下文环境，关闭后，全部在其中声明的引用都将被关闭。 |
-| napi_open_escapable_handle_scope | 创建出一个可逃逸的handel scope，可将范围内声明的值返回到父作用域。需要使用napi_close_escapable_handle_scope进行关闭。 |
-| napi_close_escapable_handle_scope | 关闭传入的可逃逸的handel scope。 |
+| napi_open_escapable_handle_scope | 创建出一个可逃逸的handle scope，可将范围内声明的值返回到父作用域。需要使用napi_close_escapable_handle_scope进行关闭。 |
+| napi_close_escapable_handle_scope | 关闭传入的可逃逸的handle scope。 |
 | napi_escape_handle | 提升传入的JS Object的生命周期到其父作用域。 |
 | napi_create_reference | 为Object创建一个reference，以延长其生命周期。调用者需要自己管理reference生命周期。 |
 | napi_delete_reference | 删除传入的reference。 |

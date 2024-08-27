@@ -17,6 +17,9 @@
 ## LayoutManager<sup>12+</sup>
 
 Implements a **LayoutManager** object.
+> **NOTE**
+>
+> After the text content is changed, you must wait for the layout to be completed before you can obtain the most up-to-date layout information.
 
 ### Objects to Import
 The following uses the **\<Text>** component as an example.
@@ -164,7 +167,7 @@ Checks whether this **TextMenuItemId** object is the same as another **TextMenuI
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| content | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Menu name.|
+| content | [ResourceStr](ts-types.md#resourcestr) | Yes  | Menu name.|
 | icon | [ResourceStr](ts-types.md#resourcestr) | No  | Menu icon.<br>Online images are not supported.|
 | id | [TextMenuItemId](#textmenuitemid12) | Yes  | Menu ID.|
 
@@ -188,13 +191,13 @@ Creates a menu with the specified menu items.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| menuItems | Array<[TextMenuItem](#textmenuitem)> | Yes  | Menu items.|
+| menuItems | Array\<[TextMenuItem](#textmenuitem)> | Yes  | Menu items.<br>**NOTE**<br>Changes to the name of the default menu item do not take effect.|
 
 **Return value**
 
 | Type             |       Description      |
 | ------- | --------------------------------- | 
-| Array\<[TextMenuItem](#textmenuitem)> | Menu items set.|
+| Array\<[TextMenuItem](#textmenuitem)> | Menu items set.<br>**NOTE**<br>The icon of the default menu item is not returned.|
 
 ### onMenuItemClick
 
@@ -211,10 +214,108 @@ Called when the specified menu item is clicked.
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | menuItem | [TextMenuItem](#textmenuitem) | Yes  | Menu item.|
-| range | [TextRange](ts-universal-attributes-text-style.md#textrange12) | Yes  | Selected text.|
+| range | [TextRange](#textrange12) | Yes  | Selected text.|
 
 **Return value**
 
 | Type             |       Description      |
 | ------- | --------------------------------- | 
 | boolean | Execution logic of the menu item.<br>Returns **true** if the default system logic is intercepted and only the custom logic is executed.<br>Returns **false** if the custom logic is executed before the default system logic.|
+
+## TextRange<sup>12+</sup>
+
+Defines the text range.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Name| Type| Mandatory| Description|
+| -- | -- | -- | -- |
+| start | number | No| Start index.|
+| end | number | No| End index.|
+
+## EditableTextOnChangeCallback<sup>12+</sup>
+
+type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) => void
+
+Invoked when the input in the text box changes.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -- | -- | -- | -- |
+| value | string | Yes| Text displayed in the text box.|
+| previewText | [PreviewText](#previewtext12) | No| Information about the preview text, including its start position and text content.|
+
+## TextDataDetectorType<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Description                                  |
+| ----- | -------------------------------------- |
+| PHONE_NUMBER  | Phone number.|
+| URL | URL.|
+| EMAIL | Email address.|
+| ADDRESS | Address.|
+| DATE_TIME | Time.|
+
+## TextDeleteDirection<sup>12+</sup>
+
+Defines the direction for deleting text.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Value  | Description                              |
+| ------- | ---- | ---------------------------------- |
+| BACKWARD | 0    | Backward delete.|
+| FORWARD    | 1    | Forward delete.|
+
+## InsertValue<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                                   | Mandatory| Description                                                        |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| insertOffset  | number | Yes  | Position of the inserted text.|
+| insertValue  | string | Yes  | Content of the inserted text.|
+
+## DeleteValue<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                                   | Mandatory| Description                                                        |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| deleteOffset  | number | Yes  | Position of the deleted text.|
+| direction  | [TextDeleteDirection](#textdeletedirection12) | Yes  | Direction for deleting the text.|
+| deleteValue  | string | Yes  | Content of the deleted text.|
+
+## TextDataDetectorConfig<sup>11+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type | Mandatory| Description |
+| ------ | -------- | ---- | ------------------------------------------- |
+| types   | [TextDataDetectorType[]](ts-text-common.md#textdatadetectortype11) | Yes  | Entity types for text recognition. Values **null** and **[]** indicate that all types of entities can be recognized.|
+| onDetectResultUpdate   | (result: string) => void | No  | Callback invoked when text recognition succeeds.<br>- **result**: text recognition result, in JSON format.|
+
+## PreviewText<sup>12+</sup>
+
+Preview text.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Type                                            | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| offset | number | Yes  | Start position of the preview text.|
+| value    | string         | Yes  | Content of the preview text.        |

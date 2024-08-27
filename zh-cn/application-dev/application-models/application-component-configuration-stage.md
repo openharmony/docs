@@ -7,31 +7,21 @@
 应用需要在工程的AppScope目录下的[app.json5配置文件](../quick-start/app-configuration-file.md)中配置bundleName标签，该标签用于标识应用的唯一性。推荐采用反域名形式命名（如com.example.demo，建议第一级为域名后缀com，第二级为厂商/个人名，第三级为应用名，也可以多级）。
 
 ## 图标和标签配置
-图标和标签通常一起配置，可以分为应用图标、应用标签和入口图标、入口标签，分别对应[app.json5配置文件](../quick-start/app-configuration-file.md)和[module.json5配置文件](../quick-start/module-configuration-file.md)中的icon和label标签。
+图标和标签通常一起配置，对应[app.json5配置文件](../quick-start/app-configuration-file.md)和[module.json5配置文件](../quick-start/module-configuration-file.md)中的icon和label标签。
 
-如果应用配置了入口图标和入口标签，则应用图标和应用标签会被覆盖，最终展示入口图标和入口标签。
+### app.json5配置文件的图标和标签配置
 
-如果应用未配置入口图标和入口标签，则赋值为应用图标和应用标签，最终展示应用图标和应用标签。
+#### 应用场景
 
-应用图标和标签通常用于标识整个应用，可以在标识应用的界面使用该类型图标和标签。比如：
-* 设置应用中，需要展示应用列表时
-* 在隐私管理中，需要展示应用申请的权限时
-* 在状态栏显示通知消息时
+用于在应用界面内展示当前应用，例如：
+* 设置应用中，展示应用列表
+* 在隐私管理中，展示应用申请的权限
 
+**图1** app.json5配置文件的图标和标签
 
-入口图标和标签是应用安装完成后可以在设备桌面上显示出来的，如下图所示。入口图标是以[UIAbility](uiability-overview.md)为粒度，仅支持同一个应用存在一个入口图标和入口标签(当存在多个入口Ability时，仅entry类型HAP中的mainElement会生效)，点击后进入对应的UIAbility界面。比如：
-* 桌面上需要显示图标时
-* 最近任务列表中显示时
+![application-component-configuration-stage-app](figures/application-component-configuration-stage-app.png)
 
-**图1** 图标和标签
-
-![application-component-configuration-stage](figures/application-component-configuration-stage.png)
-
-### 应用图标和标签配置
-
-应用图标需要在工程的AppScope目录下的[app.json5配置文件](../quick-start/app-configuration-file.md)中配置icon标签。应用图标需配置为图片的资源索引，配置完成后，该图片即为应用的图标。
-
-应用标签需要在工程的AppScope模块下的[app.json5配置文件](../quick-start/app-configuration-file.md)中配置label标签。标识应用对用户显示的名称，需要配置为字符串资源的索引。
+#### 配置示例
 
 ```json
 {
@@ -43,11 +33,21 @@
 }
 ```
 
-### 入口图标和标签配置
-#### 入口图标和标签配置方式
-Stage模型支持对组件配置入口图标和入口标签。入口图标和入口标签会显示在桌面上。
+### module.json5配置文件的图标和标签配置
 
-入口图标需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置，在abilities标签下面有icon标签。例如希望在桌面上显示该UIAbility的图标，则需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"ohos.want.action.home"。仅支持同一个应用存在一个入口图标和入口标签，当存在多个入口Ability时，仅entry类型HAP中的mainElement会生效。
+#### 应用场景
+应用安装完成后在设备桌面上显示出来的图标和标签，应用场景如下：
+* 桌面上需要显示图标时
+* 最近任务列表中显示时
+
+**图2** module.json5配置文件的图标和标签
+
+![application-component-configuration-stage-module](figures/application-component-configuration-stage-module.png)
+
+
+#### 配置示例
+
+如果需要在桌面显示UIAbility图标，除了需要配置icon与label字段，还需要在skills标签下面的entities中添加"entity.system.home"、actions中添加"ohos.want.action.home"。
 
 ```json
 {
@@ -72,33 +72,21 @@ Stage模型支持对组件配置入口图标和入口标签。入口图标和入
   }
 }
 ```
-#### 入口图标和标签管控规则
-系统对无图标应用实施严格管控，防止一些恶意应用故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户终端设备的安全。
+#### 管控规则
+系统对无图标应用实施严格管控，防止一些恶意应用故意配置无桌面应用图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户终端设备的安全。
 
-如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权<!--Del-->，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。详细的入口图标及入口标签的显示规则如下。
+如果预置应用确需隐藏桌面应用图标，需要配置AllowAppDesktopIconHide应用特权<!--Del-->，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。申请该特权后，应用不会在桌面上显示。
 
+除预置应用外，其他应用不支持隐藏桌面图标，图标显示规则如下：
 * HAP中包含UIAbility
-  * 在module.json5配置文件的abilities标签中设置了入口图标
-    * 该应用没有隐藏图标的特权
-      * 系统将使用该UIAbility配置的icon作为入口图标，并显示在桌面上。用户点击该图标，页面跳转到该UIAbility首页。
-      * 系统将使用该UIAbility配置的label作为入口标签，并显示在桌面上，如果没有配置label，系统将使用app.json5中的label作为入口标签，并显示在桌面上。
-    * 该应用具有隐藏图标的特权
-      * 桌面应用查询时不返回应用信息，不会在桌面上显示对应的入口图标和标签。
-  * 在module.json5配置文件的abilities标签中未设置入口图标
-    * 该应用没有隐藏图标的特权
-      * 系统将使用app.json5中的icon作为入口图标，并显示在桌面上。用户点击该图标，页面跳转到应用管理中对应的应用详情页面，如下图所示。
-      * 系统将使用app.json5中的label作为入口标签，并显示在桌面上。
-    * 该应用具有隐藏图标的特权
-        * 桌面应用查询时不返回应用信息，不会在桌面上显示对应的入口图标和标签。
+  * 如果在module.json5配置文件的abilities标签中设置了桌面应用图标，系统将使用该UIAbility配置的icon和label作为桌面应用图标和标签。用户点击该图标，页面跳转到该UIAbility首页。如果没有配置label，系统将使用app.json5中的label作为桌面应用标签。
 
-* HAP中不包含UIAbility
-  * 该应用没有隐藏图标的特权
-    * 系统将使用app.json5中的icon作为入口图标，并显示在桌面上。用户点击该图标，页面跳转到应用管理中对应的应用详情页面，如下图所示。
-    * 系统将使用app.json5中的label作为入口标签，并显示在桌面上。
-  * 该应用具有隐藏图标的特权
-    * 桌面应用查询时不返回应用信息，不会在桌面上显示对应的入口图标和标签。
+  * 如果在module.json5配置文件的abilities标签中未设置桌面应用图标，系统将使用app.json5中的icon和label作为桌面应用图标。用户点击该图标，页面跳转到应用管理中对应的应用详情页面。
 
-  **图2** 应用的详情页示意图
+* HAP中不包含UIAbility，系统将使用app.json5中的icon和label作为桌面应用图标和标签。用户点击该图标，页面跳转到应用管理中对应的应用详情页面。
+
+
+  **图3** 应用的详情页示意图
 
   ![应用的详情页例图](figures/application_details.jpg)
 

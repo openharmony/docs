@@ -568,7 +568,7 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(): Promise\<void\>
 
-杀死应用所在的进程。使用Promise异步回调。仅支持主线程调用。
+终止应用所在的进程。使用Promise异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -602,11 +602,57 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
+## ApplicationContext.killAllProcesses<sup>13+</sup>
+
+killAllProcesses(clearPageStack: boolean): Promise\<void\>
+
+终止应用所在的进程。使用Promise异步回调。仅支持主线程调用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| clearPageStack | boolean | 是 | 表示是否清除页面堆栈。true表示清除，false表示不清除。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000011 | The context does not exist. |
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+let isClearPageStack = false;
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    applicationContext.killAllProcesses(isClearPageStack);
+  }
+}
+```
+
 ## ApplicationContext.killAllProcesses
 
 killAllProcesses(callback: AsyncCallback\<void\>)
 
-杀死应用所在的进程。使用callback异步回调。仅支持主线程调用。
+终止应用所在的进程。使用callback异步回调。仅支持主线程调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -616,7 +662,7 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<void\>   | 是   | 回调函数。当杀死应用所在的进程成功，err为undefined，否则为错误对象。 |
+| callback    | AsyncCallback\<void\>   | 是   | 回调函数。当终止应用所在的进程成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -873,7 +919,7 @@ getCurrentAppCloneIndex(): number
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
-| 16000071 | App clone is not supported. |
+| 16000071 | The MultiAppMode is not {@link APP_CLONE}. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -966,6 +1012,7 @@ setSupportedProcessCache(isSupported : boolean): void
 >
 > - 该接口仅表示应用自身是否为缓存后快速启动做好了准备，还需综合其他条件来判断最终是否为应用启用快速启动。
 > - 该接口设置的缓存支持状态对单个应用进程实例生效，不同进程实例互不影响。应用进程实例销毁后，已设置的状态不保留，可以重新设置。
+> - 如果需要支持缓存后快速启动，则需要在同一进程中所有[AbilityStage](../../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)的`onCreate()`生命周期中调用该接口、且入参均配置为“true”。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -990,11 +1037,11 @@ setSupportedProcessCache(isSupported : boolean): void
 **示例：**
 
 ```ts
-import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class MyAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+class MyAbilityStage extends AbilityStage {
+  onCreate() {
     let applicationContext = this.context.getApplicationContext();
     try {
       applicationContext.setSupportedProcessCache(true);

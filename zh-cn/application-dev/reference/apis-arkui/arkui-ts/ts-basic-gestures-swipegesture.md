@@ -9,7 +9,7 @@
 
 ## 接口
 
-SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
+SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: number })
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

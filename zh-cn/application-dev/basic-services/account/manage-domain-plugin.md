@@ -77,7 +77,7 @@ OEM厂商可以采用插件方式定制化域账号管理能力，系统提供�
          message: "mock_message"
        };
        let domainStr: string = '';
-       if (options.domain != undefine) {
+       if (options.domain != undefined) {
         domainStr = options.domain
        }
        let accountInfo: osAccount.DomainAccountInfo = {

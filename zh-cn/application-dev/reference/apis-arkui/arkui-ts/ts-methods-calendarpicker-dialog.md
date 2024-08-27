@@ -28,7 +28,9 @@ static show(options?: CalendarDialogOptions)
 
 继承自[CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions对象说明)。
 
-| 名称       | 类型                                            | 必填 | 描述                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型                                            | 必填 | 说明                                                        |
 | ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | onAccept   | (value: Date) => void                           | 否   | 点击弹窗中的“确定”按钮时触发该回调。<br/>value：选中的日期值。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onCancel   | () => void                                      | 否   | 点击弹窗中的“取消”按钮时触发该回调。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |

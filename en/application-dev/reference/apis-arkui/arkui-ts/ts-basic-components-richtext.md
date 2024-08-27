@@ -1,6 +1,24 @@
 # RichText
 
-The **\<RichText>** component parses and displays HTML text.
+The **RichText** component parses and displays HTML text.
+
+- Applicable scenarios:
+
+  The **RichText** component is suitable for loading and displaying segments of HTML strings in scenarios where extensive customization of the display effect is not required. The component supports only a limited set of universal attributes and events. For details, see [Attributes](#attributes) and [Events](#events).
+
+  The underlying layer of the **RichText** component uses the **Web** component to provide basic capabilities, including but not limited to HTML page parsing and rendering. Therefore, the use of the **RichText** component needs to follow **Web** component constraints. Common typical constraints are as follows:
+
+  The default viewport size of a mobile device is 980 px, which can ensure that most web pages can be viewed correctly on mobile devices. If the width of the **RichText** component is lower than this value, the HTML inside the content may generate a scrollable page wrapped by the **RichText** component. If you want to replace the default value, add the following tags to **content**:
+
+  ```html
+  <meta name="viewport" content="width=device-width">
+  ```
+
+- Inapplicable scenarios:
+
+  The **RichText** component is not suitable for scenarios where there is a need for extensive customization of the display effect of the HTML string. For example, the **RichText** component does not allow for changing the background color, font color, font size, or content by setting attributes and events. Under such scenarios, the [Web](../../apis-arkweb/ts-basic-components-web.md) component is recommended.
+
+  The **RichText** component can be memory-intensive. If it is reused in scenarios such as lists where multiple instances are created, slow scrolling or rendering may result. Under such scenarios, you may want to use the [RichEditor](../arkui-ts/ts-basic-components-richeditor.md#richeditor) component.
 
 >  **NOTE**
 >
@@ -16,6 +34,8 @@ Not supported
 
 RichText(content:string)
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
 | Name| Type| Mandatory | Description|
@@ -25,15 +45,25 @@ RichText(content:string)
 
 ## Events
 
+### onStart
 
-| Name| Description|
-| -------- | -------- |
-| onStart(callback: () => void)    | Triggered when web page loading starts.  |
-| onComplete(callback: () => void) | Triggered when web page loading is completed.|
+onStart(callback: () => void)
+
+Triggered when web page loading starts.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onComplete
+
+onComplete(callback: () => void)
+
+Triggered when web page loading is completed.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## Attributes
 
-Among the [universal attributes](ts-universal-attributes-size.md), only the **width**, **height**, **size**, and **layoutWeight** attributes are supported.
+Among the [universal attributes](ts-universal-attributes-size.md), only the **width**, **height**, **size**, and **layoutWeight** attributes are supported.  
 
 ## Supported Tags
 
@@ -52,21 +82,9 @@ Among the [universal attributes](ts-universal-attributes-size.md), only the **wi
 | style | Defines the inline style of an element and is placed inside the tag. Use quotation marks (') to separate the styling text and use semicolons (;) to separate styles, for example, **style='width: 500px;height: 500px;border: 1px solid;margin: 0 auto;'**.| \<h1 style='color:blue;text-align:center'>This is a heading\</h1>\<p style='color:green'>This is text\</p> |
 | \<script>\</script> | Embeds or references a client-side script, such as JavaScript.| \<script>document.write("Hello World!")\</script> |
 
-## Precautions
-
-The underlying layer of the **\<RichText>** component uses the **\<Web>** component to provide basic capabilities, including but not limited to HTML page parsing and rendering. However, the **\<Web>** component is resources consuming. In scenarios where the **\<RichText>** component is repeatedly used, for example, when it is repeatedly used in a list, frame freezing or slow response may occur.
-
-The **\<RichText>** component complies with the constraints of the **\<Web>** component. A typical scenario is as follows:
-
-The default viewport size of a mobile device is 980 px. This default value ensures that most web pages can be browsed properly on the mobile device. If the width of the **\<RichText>** component is less than this value, the HTML content specified by **content** may generate a scrollable page that is wrapped by the **\<RichText>** component. If you want to replace the default value, add the following tags to **content**:
-
-```html
-<meta name="viewport" content="width=device-width">
-```
-
 ## Example
 
-You can preview how this component looks on a real device, but not in the DevEco Studio Previewer.
+You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
 ```ts
 // xxx.ets

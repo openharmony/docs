@@ -3541,6 +3541,18 @@ Allows a system application or system ability to receive fusion service messages
 
 **Valid since**: 12
 
+### ohos.permission.ACCESS_FUSION_MANAGER
+
+Allows a system ability or system application to access the fusion service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.PUBLISH_LOCATION_EVENT
 
 Allows an application to publish common events related to location management.
@@ -3649,6 +3661,30 @@ Allows an application to connect to an automobile head unit.
 
 **Valid since**：12
 
+### ohos.permission.MANAGE_NET_FIREWALL
+
+Allows a system application to configure network firewall rules.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
+### ohos.permission.GET_NET_FIREWALL
+
+Allows a system application to obtain network firewall rules and firewall interception records.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
 ### ohos.permission.ACCESS_IDM_WIDGET
 
 Allows a system application to access the widget for credential enrollment.
@@ -3660,6 +3696,18 @@ Allows a system application to access the widget for credential enrollment.
 **Enable via ACL**：true
 
 **Valid since**：12
+
+### ohos.permission.ACCESS_DISTRIBUTED_MODEM
+
+Allows a system service to access distributed modems.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
 
 ## system_grant Permissions (Unavailable via ACL)
 

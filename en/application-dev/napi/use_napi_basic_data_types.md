@@ -1,6 +1,6 @@
 # Creating Basic Data Types Using Node-API
 
-## Overview
+## Introduction
 
 The JavaScript (JS) Number type is a double-precision 64-bit binary IEEE 754 value. Only integers in the range of -2^53+1 to 2^53-1 (inclusive) can be represented without loss of precision. Integers out of this range must be handled by Node-API interfaces for BigInt.
 

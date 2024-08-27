@@ -1,7 +1,7 @@
-# @ohos.arkui.advanced.ToolBar (Toolbar)
+# ToolBar
 
 
-The **\<Toolbar>** component is used to host a set of action options related to the current screen, displayed at the bottom of the screen. It can display five child components. When there are six or more child components, the first four are displayed and the others are moved to the **More** option on the toolbar.
+The **Toolbar** component is used to host a set of action options related to the current screen, displayed at the bottom of the screen. It can display five child components. When there are six or more child components, the first four are displayed and the others are moved to the **More** option on the toolbar.
 
 
 > **NOTE**
@@ -12,7 +12,7 @@ The **\<Toolbar>** component is used to host a set of action options related to 
 ## Modules to Import
 
 ```
-import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
+import { ToolBar, ToolBarOptions, toolBarModifier, ItemState } from '@kit.ArkUI'
 ```
 
 
@@ -25,38 +25,135 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 ## ToolBar
 
-Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsController})
+Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsController, dividerModifier: DividerModifier, toolBarModifier: ToolBarModifier})
 
 **Decorator**: @Component
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name| Type| Mandatory| Decorator      | Description                 | 
-| -------- | -------- | -------- |-------------|---------------------|
-| toolBarList | [ToolBarOptions](#toolbaroptions) | Yes| @ObjectLink | Toolbar list.             | 
-| activateIndex | number | No| @Prop       | Index of the active option.<br>Default value: **1**| 
-| controller | [TabsController](ts-container-tabs.md#tabscontroller) | Yes| -           | Style of the filter.          | 
-
+| Name                           | Type                                                     | Mandatory | Decorator      | Description                                                                                                  |
+|-------------------------------|-----------------------------------------------------------|-----|-------------|------------------------------------------------------------------------------------------------------|
+| toolBarList                   | [ToolBarOptions](#toolbaroptions)                         | Yes  | @ObjectLink | Toolbar list.                                                                                              |
+| activateIndex                 | number                                                    | No  | @Prop       | Index of the active option.<br>Default value: **-1**                                                                                 |
+| controller                    | [TabsController](ts-container-tabs.md#tabscontroller)     | Yes  | -           | Toolbar controller.                                                                                         |
+| dividerModifier<sup>13+</sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | No  | @Prop       | Modifier for the toolbar header divider, which can be used to customize the divider's height, color, and other attributes.<br>**Atomic service API**: This API can be used in atomic services since API version 13.                        |
+| toolBarModifier<sup>13+</sup> | [ToolBarModifier](#toolbarmodifier13) | No  | @Prop       | Modifier for the toolbar, which can be used to set the toolbar's height, background color, padding (which only takes effect when there are fewer than five toolbar items), and whether to display the pressed state.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## ToolBarOptions
 
-| Name| Type| Mandatory| Description| 
-| -------- | -------- | -------- | -------- |
-| content | [ResourceStr](ts-types.md#resourcestr) | Yes| Text of the toolbar option.| 
-| action | () =&gt; void | No| Click event of the toolbar option.| 
-| icon | [Resource](ts-types.md#resource) | No| Icon of the toolbar option.| 
-| state | [ItemState](#itemstate) | No| Status of the toolbar option.<br>Default value: **ENABLE**| 
+Inherits from **Array<[ToolBarOption](#toolbaroption)>**.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+## ToolBarOption
+
+| Name                                | Type                                                       | Mandatory| Description                                                                                                          |
+|------------------------------------|-----------------------------------------------------------| -------- |--------------------------------------------------------------------------------------------------------------|
+| content                            | [ResourceStr](ts-types.md#resourcestr)                    | Yes| Text of the toolbar option.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                               |
+| action                             | () =&gt; void                                   | No| Click event of the toolbar option.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                              |
+| icon                               | [Resource](ts-types.md#resource)                          | No| Icon of the toolbar option.<br>If **toolBarSymbolOptions** has input parameters, **icon** is ineffective.<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
+| state                              | [ItemState](#itemstate)                                   | No| State of the toolbar option.<br>Default value: **ENABLE**<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                |
+| iconColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | No| Icon fill color of the toolbar option.<br>Default value: **$r('sys.color.icon_primary')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.     |
+| activatedIconColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | No| Icon fill color of the toolbar option in the activated state.<br>Default value: **$r('sys.color.icon_emphasize')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| textColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | No| Font color of the toolbar option.<br>Default value: **$r('sys.color.font_primary')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.       |
+| activatedTextColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | No| Font color of the toolbar option in the activated state.<br>Default value: **$r('sys.color.font_emphasize')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| toolBarSymbolOptions<sup>13+</sup> | [ToolBarSymbolGlyphOptions](#toolbarsymbolglyphoptions13) | No| Icon symbol options of the toolbar option.<br>**Atomic service API**: This API can be used in atomic services since API version 13.                                    |
+
+## ToolBarModifier<sup>13+</sup>
+Provides APIs for setting the toolbar's height (**height**), background color (**backgroundColor**), left and right padding (**padding**, which only takes effect when there are fewer than five items), and whether to display the pressed state (**stateEffect**).
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+### backgroundColor
+
+backgroundColor?(backgroundColor: ResourceColor): ToolBarModifier
+
+Sets the background color of the toolbar. By overriding this API, you can implement custom drawing for the background color of the toolbar.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                  | Mandatory| Description                                                              |
+| ------- | ------------------------------------------------------ | ---- |------------------------------------------------------------------|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Toolbar background color<br>Default value: **$r('sys.color.ohos_id_color_toolbar_bg')**|
+
+### padding
+
+padding(padding: LengthMetrics): ToolBarModifier
+
+Sets the left and right padding of the toolbar. By overriding this API, you can implement custom drawing for the left and right padding of the toolbar.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type    | Mandatory| Description                                                                                 |
+| ------- |--------| ---- |-------------------------------------------------------------------------------------|
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | Yes  | Left and right padding of the toolbar, which is effective only when there are fewer than five items.<br>By default, the padding is 24 vp when there are fewer than five items and 0 when there are five or more items.|
+
+### height
+
+height(height: LengthMetrics): ToolBarModifier
+
+Sets the height of the toolbar. By overriding this API, you can implement custom drawing for the height of the toolbar, which does not include the height of the divider.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description                                |
+| ------- |---------------------------------| ---- |------------------------------------|
+| height | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | Yes  | Height of the toolbar.<br>The default height of the toolbar is 56 vp, which does not include the divider.|
+
+### stateEffect
+
+stateEffect(stateEffect: boolean): ToolBarModifier
+
+Sets whether to display the pressed state effect.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                            | Mandatory| Description                                                      |
+| ------- |--------------------------------| ---- |----------------------------------------------------------|
+| stateEffect | boolean | Yes  | Whether to display the pressed state effect on the toolbar.<br>The value **true** means to display the pressed state effect on the toolbar, and **false** means the opposite.<br>Default value: **true**|
 
 ## ItemState
 
-| Name| Value| Description| 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| ENABLE | 1 | The toolbar option is enabled.| 
-| DISABLE | 2 | The toolbar option is disabled.| 
-| ACTIVATE | 3 | The toolbar option is activated.| 
+| ENABLE | 1 | The toolbar option is enabled.|
+| DISABLE | 2 | The toolbar option is disabled.|
+| ACTIVATE | 3 | The toolbar option is activated.|
+
+## ToolBarSymbolGlyphOptions<sup>13+</sup>
+
+Defines the icon symbol options.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type      | Mandatory| Description                                                                                      |
+| ------ | ---------- | ---- |------------------------------------------------------------------------------------------|
+| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Icon symbol of the toolbar option in normal state.<br>Default value: **fontColor: $r('sys.color.icon_primary'), fontSize: 24vp** |
+| activated| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Icon symbol of the toolbar option in activated state.<br>Default value: **fontColor: $r('sys.color.icon_emphasize'), fontSize: 24vp**|
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.
@@ -64,13 +161,7 @@ The [universal events](ts-universal-events-click.md) are supported.
 ## Example
 
 ```ts
-import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
-
-enum ItemState {
-  ENABLE = 1,
-  DISABLE = 2,
-  ACTIVATE = 3
-}
+import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -132,4 +223,87 @@ struct Index {
 }
 ```
 
-![en-us_image_0000001658655445](figures/en-us_image_0000001658655445.png)
+![en-us_image_toolbar_example01](figures/en-us_image_toolbar_example01.png)
+
+```ts
+import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State toolbarList: ToolBarOptions = new ToolBarOptions();
+  @State toolBarModifier: ToolBarModifier =
+  new ToolBarModifier().height(LengthMetrics.vp(52)).backgroundColor(Color.Transparent).stateEffect(false);
+  @State dividerModifier: DividerModifier = new DividerModifier().height(0);
+
+  aboutToAppear() {
+    this.toolbarList.push({
+      content: 'Long long long long long long long long text',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+      state: ItemState.ACTIVATE,
+      toolBarSymbolOptions: {
+        normal: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Green]),
+        activated: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]),
+      },
+      activatedTextColor: $r('sys.color.font_primary'),
+    })
+    this.toolbarList.push({
+      content: 'Copy',
+      icon: $r('sys.media.ohos_ic_public_copy'),
+      action: () => {
+      },
+      state:ItemState.DISABLE,
+      iconColor: '#ff18cb53',
+      activatedIconColor: '#ffec5d5d',
+      activatedTextColor: '#ffec5d5d',
+    })
+    this.toolbarList.push({
+      content: 'Paste',
+      icon: $r('sys.media.ohos_ic_public_paste'),
+      action: () => {
+      },
+      state:ItemState.ACTIVATE,
+      textColor: '#ff18cb53',
+    })
+    this.toolbarList.push({
+      content: 'All',
+      icon: $r('sys.media.ohos_ic_public_select_all'),
+      action: () => {
+      },
+      state:ItemState.ACTIVATE,
+    })
+    this.toolbarList.push({
+      content: 'Share',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+    })
+    this.toolbarList.push({
+      content: 'Share',
+      icon: $r('sys.media.ohos_ic_public_share'),
+      action: () => {
+      },
+    })
+  }
+  build() {
+    Row() {
+      Stack() {
+        Column() {
+          ToolBar({
+            toolBarModifier: this.toolBarModifier,
+            dividerModifier: this.dividerModifier,
+            activateIndex: 0,
+            toolBarList: this.toolbarList,
+          })
+            .height(52)
+        }
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+  }
+}
+```
+
+![en-us_image_toolbar_example02](figures/en-us_image_toolbar_example02.png)

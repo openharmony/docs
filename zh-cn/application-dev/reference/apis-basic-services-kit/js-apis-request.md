@@ -43,6 +43,9 @@ import { request } from '@kit.BasicServicesKit';
 | ERROR_OFFLINE<sup>9+</sup> | number |   9   | 网络未连接。 |
 | ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | 网络类型不匹配。 |
 
+> **说明：**
+>
+> API version 12及以下版本，只支持串行的尝试连接域名相关ip，且不支持单个ip的连接时间控制，如果DNS返回的首个ip是阻塞的，可能握手超时造成ERROR_UNKNOWN错误。
 
 ### 下载任务暂停原因
 下载相关[getTaskInfo<sup>9+</sup>](#gettaskinfo9)返回值的pausedReason字段取值。
@@ -801,7 +804,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | filename | string | 是 | multipart提交时，请求头中的文件名。 |
 | name | string | 是 | multipart提交时，表单项目的名称，缺省为file。 |
-| uri | string | 是 | 文件的本地存储路径。<br/>仅支持"internal"协议类型，"internal://cache/"为应用的私有目录，是必填字段，示例：<br/>internal://cache/path/to/file.txt |
+| uri | string | 是 | 文件的本地存储路径。<br/>仅支持"internal"协议类型，仅支持"internal://cache/"，即调用方（即传入的context）对应的缓存路径context.cacheDir。<br/>示例：internal://cache/path/to/file.txt |
 | type | string | 是 | 文件的内容类型，默认根据文件名或路径的后缀获取。 |
 
 
@@ -1049,10 +1052,10 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
   回调函数的参数：
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| receivedSize | number | 是 | 当前下载的进度，单位为B。 |
-| totalSize | number | 是 | 下载文件的总大小，单位为B。 |
+| 参数名 | 类型 | 必填 | 说明                                                                      |
+| -------- | -------- | -------- |-------------------------------------------------------------------------|
+| receivedSize | number | 是 | 当前下载的进度，单位为B。                                                           |
+| totalSize | number | 是 | 下载文件的总大小，单位为B。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
 
 **错误码：**
 
@@ -2303,11 +2306,11 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址，其最大长度为2048个字符。 |
-| header | Object | 否 | 添加要包含在下载请求中的HTTPS标志头。<br/>开发者可以通过header的X-TLS-Version参数指定需要使用的TLS版本(如果不指定，则默认使用CURL_SSLVERSION_TLSv1_2版本，指定则使用指定版本。)<br/>CURL_SSLVERSION_TLSv1_0<br/>CURL_SSLVERSION_TLSv1_1<br/>CURL_SSLVERSION_TLSv1_2<br/>CURL_SSLVERSION_TLSv1_3<br/>通过header的X-Cipher-List参数指定需要使用的密码套件(如果不指定，则默认使用安全密码套件，指定则使用指定密码套件。)<br/>-1.2允许使用的密码套件白名单：<br/>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DSS_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_AES_128_GCM_SHA256,<br/>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_CCM,<br/>TLS_DHE_RSA_WITH_AES_256_CCM,TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_PSK_WITH_AES_256_CCM,TLS_DHE_PSK_WITH_AES_128_CCM,<br/>TLS_DHE_PSK_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_AES_128_CCM,<br/>TLS_ECDHE_ECDSA_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256<br/>-1.3允许使用的密码套件白名单：<br/>TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,TLS_AES_128_CCM_SHA256<br/>-1.3新增国密算法套：<br/>TLS_SM4_GCM_SM3,TLS_SM4_CCM_SM3 |
+| header | Object | 否 | 添加要包含在下载请求中的HTTPS标志头。|
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载(默认使用false)。Wi-Fi为非计费网络，数据流量为计费网络。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载(默认使用false)。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |
-| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;FA模型下使用[context](../apis-ability-kit/js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径。<br/>-&nbsp;Stage模型下使用[AbilityContext](../apis-ability-kit/js-apis-inner-application-context.md) 类获取文件路径。|
+| filePath<sup>7+</sup> | string | 否 | 设置下载路径。默认为调用方（即传入的context）对应的缓存路径。默认文件名从url的最后一个"/"后截取。<br/>-&nbsp;FA模型下使用[context](../apis-ability-kit/js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径。<br/>-&nbsp;Stage模型下使用[AbilityContext](../apis-ability-kit/js-apis-inner-application-context.md) 类获取文件路径。|
 | networkType | number | 否 | 设置允许下载的网络类型(默认使用NETWORK_MOBILE&NETWORK_WIFI)。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载任务名称。 |
 | background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态(默认使用false)。 |
@@ -2399,7 +2402,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| path | string | 是 | 文件路径：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>-用户公共文件，如"file://media/Photo/path/to/file.img"。仅支持前端任务。 |
+| path | string | 是 | 文件路径：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，internal为调用方（即传入的context）对应路径，"internal://cache"对应context.cacheDir。如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>-用户公共文件，如"file://media/Photo/path/to/file.img"。仅支持前端任务。 |
 | mimeType | string | 否 | 文件的mimetype通过文件名获取。 |
 | filename | string | 否 | 文件名，默认值通过路径获取。 |
 | extras | object | 否 | 文件信息的附加内容。 |
@@ -2434,7 +2437,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | method | string | 否 | 上传或下载的HTTP标准方法，包括GET、POST和PUT，不区分大小写。<br/>-上传时，使用PUT或POST，默认值为PUT。<br/>-下载时，使用GET或POST，默认值为GET。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | headers | object | 否 | 添加要包含在任务中的HTTP协议标志头。<br/>-对于上传请求，默认的Content-Type为"multipart/form-data"。<br/>-对于下载请求，默认的Content-Type为"application/json"。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | -下载时，data为字符串类型，通常使用json(object将被转换为json文本)，默认为空。<br/>-上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;，默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| saveas | string | 否 | 保存下载文件的路径，包括如下几种：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>默认为相对路径，即下载至调用方当前缓存路径下。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| saveas | string | 否 | 保存下载文件的路径，包括如下几种：<br/>-相对路径，位于调用方的缓存路径下，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"。<br/>-internal协议路径，支持"internal://"及其子路径，internal为调用方（即传入的context）对应路径，"internal://cache"对应context.cacheDir。如"internal://cache/path/to/file.txt"。<br/>-应用沙箱目录，只支持到base及其子目录下，如"/data/storage/el1/base/path/to/file.txt"。<br/>-file协议路径，必须匹配应用包名，只支持到base及其子目录下，如"file://com.example.test/data/storage/el2/base/file.txt"。<br/>默认为调用方（即传入的context）对应的缓存路径。默认文件名从url的最后一个"/"后截取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | network | [Network](#network10) | 否 | 网络选项，当前支持无线网络WIFI和蜂窝数据网络CELLULAR，默认为ANY（WIFI或CELLULAR）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | metered | boolean | 否 | 是否允许在按流量计费的网络中工作，默认为false。<br/>-true：是 <br/>-false：否<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | roaming | boolean | 否 | 是否允许在漫游网络中工作，默认为true。<br/>-true：是 <br/>-false：否<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -2478,13 +2481,13 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| state | [State](#state10) | 是 | 任务当前的状态。 |
-| index | number | 是 | 任务中当前正在处理的文件索引。 |
-| processed | number | 是 | 任务中当前文件的已处理数据大小，单位为B。|
-| sizes | Array&lt;number&gt; | 是 | 任务中文件的大小，单位为B。 |
-| extras | object | 否 | 交互的额外内容，例如来自服务器的响应的header和body。 |
+| 名称 | 类型 | 必填 | 说明                                                                  |
+| -------- | -------- | -------- |---------------------------------------------------------------------|
+| state | [State](#state10) | 是 | 任务当前的状态。                                                            |
+| index | number | 是 | 任务中当前正在处理的文件索引。                                                     |
+| processed | number | 是 | 任务中当前文件的已处理数据大小，单位为B。                                               |
+| sizes | Array&lt;number&gt; | 是 | 任务中文件的大小，单位为B。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，sizes 为 -1。 |
+| extras | object | 否 | 交互的额外内容，例如来自服务器的响应的header和body。                                     |
 
 
 ## Faults<sup>10+</sup>  
@@ -2495,19 +2498,22 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
-| 名称 | 值 |说明 |
-| -------- | -------- |-------- |
-| OTHERS | 0xFF |表示其他故障。 |
-| DISCONNECTED | 0x00 |表示网络断开连接。 |
-| TIMEOUT | 0x10 |表示任务超时。 |
-| PROTOCOL | 0x20 |表示协议错误，例如:服务器内部错误（500）、无法处理的数据区间（416）等。 |
-| PARAM<sup>12+</sup> | 0x30 |表示参数错误，例如url格式错误等。 |
-| FSIO | 0x40 |表示文件系统io错误，例如打开/查找/读取/写入/关闭。 |
-| DNS<sup>12+</sup> | 0x50 |表示DNS解析错误。 |
-| TCP/UDP<sup>12+</sup> | 0x60 |表示TCP/UDP连接错误。 |
-| SSL<sup>12+</sup> | 0x70 |表示SSL连接错误，例如证书错误、证书校验失败错误等。 |
-| REDIRECT<sup>12+</sup> | 0x80 |表示重定向错误。 |
+| 名称 | 值 | 说明                                                                             |
+| -------- | -------- |--------------------------------------------------------------------------------|
+| OTHERS | 0xFF | 表示其他故障。                                                                        |
+| DISCONNECTED | 0x00 | 表示网络断开连接。                                                                      |
+| TIMEOUT | 0x10 | 表示任务超时。                                                                        |
+| PROTOCOL | 0x20 | 表示协议错误，例如:服务器内部错误（500）、无法处理的数据区间（416）等。                                        |
+| PARAM<sup>12+</sup> | 0x30 | 表示参数错误，例如url格式错误等。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
+| FSIO | 0x40 | 表示文件系统io错误，例如打开/查找/读取/写入/关闭。                                                   |
+| DNS<sup>12+</sup> | 0x50 | 表示DNS解析错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| TCP<sup>12+</sup> | 0x60 | 表示TCP连接错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
+| SSL<sup>12+</sup> | 0x70 | 表示SSL连接错误，例如证书错误、证书校验失败错误等。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| REDIRECT<sup>12+</sup> | 0x80 | 表示重定向错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
 
+> **说明：**
+>
+> API version 12及以下版本，只支持串行的尝试连接域名相关ip，且不支持单个ip的连接时间控制，如果DNS返回的首个ip是阻塞的，可能握手超时造成TIMEOUT错误。
 
 ## Filter<sup>10+</sup>
 过滤条件。
@@ -2545,7 +2551,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | mtime | number | 是 | 任务状态改变时的Unix时间戳（毫秒），由当前设备的系统生成。|
 | retry | boolean | 是 | 任务的重试开关，仅应用于后台任务。 |
 | tries | number | 是 | 任务的尝试次数。 |
-| faults | [Faults](#faults10) | 是 | 任务的失败原因。<br/>-OTHERS表示其他故障。<br/>-DISCONNECT表示网络断开连接。<br/>-TIMEOUT表示任务超时。<br/>-PROTOCOL表示协议错误。<br/>-FSIO表示文件系统io错误。|
+| faults | [Faults](#faults10) | 是 | 任务的失败原因。|
 | reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
 | extras | object | 否 | 任务的额外部分。|
 
@@ -2604,7 +2610,6 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -2656,7 +2661,6 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('completed')<sup>10+</sup>
 
@@ -2682,7 +2686,6 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -2734,7 +2737,6 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('failed')<sup>10+</sup>
 
@@ -2760,7 +2762,6 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -2812,7 +2813,6 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('pause')<sup>11+</sup>
 
@@ -3136,7 +3136,6 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -3196,7 +3195,6 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('completed')<sup>10+</sup>
 
@@ -3222,7 +3220,6 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -3282,7 +3279,6 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('failed')<sup>10+</sup>
 
@@ -3308,7 +3304,6 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
-  | 21900005 | task mode error. |
 
 **示例：**
 
@@ -3368,7 +3363,6 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('pause')<sup>11+</sup>
 
@@ -3852,7 +3846,7 @@ start(): Promise&lt;void&gt;
 
 pause(callback: AsyncCallback&lt;void&gt;): void
 
-暂停任务，可以暂停正在等待/正在运行/正在重试的后台任务。使用callback异步回调。
+暂停任务，可以暂停正在等待/正在运行/正在重试的任务。使用callback异步回调。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -3869,7 +3863,6 @@ pause(callback: AsyncCallback&lt;void&gt;): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **示例：**
@@ -3915,15 +3908,11 @@ pause(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-> **说明：**
->
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
-
 ### pause<sup>10+</sup>
 
 pause(): Promise&lt;void&gt;
 
-暂停任务，可以暂停正在等待/正在运行/正在重试的后台任务。使用Promise异步回调。
+暂停任务，可以暂停正在等待/正在运行/正在重试的任务。使用Promise异步回调。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -3940,7 +3929,6 @@ pause(): Promise&lt;void&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **示例：**
@@ -3984,15 +3972,11 @@ pause(): Promise&lt;void&gt;
   });
   ```
 
-> **说明：**
->
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
-
 ### resume<sup>10+</sup>
 
 resume(callback: AsyncCallback&lt;void&gt;): void
 
-重新启动任务，可以恢复暂停的后台任务。使用callback异步回调。
+重新启动任务，可以恢复暂停的任务。使用callback异步回调。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -4012,7 +3996,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   | -------- | -------- |
   | 201 | Permission denied. |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **示例：**
@@ -4060,16 +4043,11 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-> **说明：**
->
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
-
-
 ### resume<sup>10+</sup>
 
 resume(): Promise&lt;void&gt;
 
-重新启动任务，可以恢复暂停的后台任务。使用Promise异步回调。
+重新启动任务，可以恢复暂停的任务。使用Promise异步回调。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -4089,7 +4067,6 @@ resume(): Promise&lt;void&gt;
   | -------- | -------- |
   | 201 | Permission denied. |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **示例：**
@@ -4134,11 +4111,6 @@ resume(): Promise&lt;void&gt;
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
-
-> **说明：**
->
-> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
-
 
 ### stop<sup>10+</sup>
 

@@ -540,6 +540,10 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+    return;
+  }
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
     if (error) {
       console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
@@ -589,6 +593,10 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
+
   connection.setAppNet(netHandle).then(() => {
     console.log("success");
   }).catch((error: BusinessError) => {
@@ -737,6 +745,9 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
     if (error) {
       console.error(`Failed to get connection properties. Code:${error.code}, message:${error.message}`);
@@ -785,6 +796,10 @@ getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
+
   connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
   })
@@ -827,9 +842,20 @@ getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
 
 ```ts
 import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let netHandle = connection.getDefaultNetSync();
-let connectionproperties = connection.getConnectionPropertiesSync(netHandle);
+let netHandle: connection.NetHandle;
+let connectionproperties: connection.ConnectionProperties;
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
+  netHandle = connection.getDefaultNetSync();
+  connectionproperties = connection.getConnectionPropertiesSync(netHandle);
+  console.info("Succeeded to get connectionproperties: " + JSON.stringify(connectionproperties));
+});
+
 ```
 
 ## connection.getNetCapabilities
@@ -868,6 +894,9 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
     if (error) {
       console.error(`Failed to get net capabilities. Code:${error.code}, message:${error.message}`);
@@ -918,8 +947,11 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
-    console.info("Succeeded to get data: " + JSON.stringify(data));
+      console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -962,9 +994,20 @@ getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 
 ```ts
 import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let netHandle = connection.getDefaultNetSync();
-let getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
+let netHandle: connection.NetHandle;
+let getNetCapabilitiesSync: connection.NetCapabilities;
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
+  netHandle = connection.getDefaultNetSync();
+  getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
+  console.info("Succeeded to get net capabilities sync: " + JSON.stringify(getNetCapabilitiesSync));
+});
+
 ```
 
 ## connection.isDefaultNetMetered<sup>9+</sup>
@@ -1617,12 +1660,13 @@ clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 2100001 | Invalid parameter value.                |
+| 错误码ID| 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100001 | Invalid parameter value.          |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 
 **示例：**
 
@@ -2074,7 +2118,10 @@ interface Data {
   remoteInfo: socket.SocketRemoteInfo
 }
 
-connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
   let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
@@ -2089,6 +2136,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
           console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+          return;
         } else {
           console.info(JSON.stringify(data));
         }
@@ -2111,13 +2159,14 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
         if (error) {
           console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+          return;
         } else {
           console.info(JSON.stringify(data));
         }
       });
     });
   }
-});
+})
 ```
 
 ### bindSocket<sup>9+</sup>
@@ -2161,6 +2210,9 @@ interface Data {
 }
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
   let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
@@ -2185,20 +2237,20 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     udp.bind({address:"192.168.xxx.xxx",
               port:8080,
               family:1} as socket.NetAddress, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
-      return;
-    }
-    udp.on('message', (data: Data) => {
-      console.info("Succeeded to get data: " + JSON.stringify(data));
+      if (error) {
+        console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
+        return;
+      }
+      udp.on('message', (data: Data) => {
+        console.info("Succeeded to get data: " + JSON.stringify(data));
+      });
+      netHandle.bindSocket(udp).then(() => {
+        console.info("bind socket success");
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+      });
     });
-    netHandle.bindSocket(udp).then(() => {
-      console.info("bind socket success");
-    }).catch((error: BusinessError) => {
-      console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
-    });
-  });
-}
+  }
 });
 ```
 
@@ -2236,6 +2288,9 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
   let host = "xxxx";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
     if (error) {
@@ -2285,6 +2340,9 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
   let host = "xxxx";
   netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
@@ -2326,6 +2384,9 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
   let host = "xxxx";
   netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
     if (error) {
@@ -2375,6 +2436,9 @@ getAddressByName(host: string): Promise\<NetAddress>
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // 当前无默认网络时，获取的netHandler的netid为0,属于异常情况，需要额外处理
+  }
   let host = "xxxx";
   netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
@@ -2394,8 +2458,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的连通性被网络管理成功验证，该能力由网络管理模块设置。<br>请注意，对于新完成连接的网络，由于网络正在进行连通性验证，此值可能无法反映真实的验证结果。对此，您可以通过NET_CAPABILITY_CHECKING_CONNECTIVITY<sup>12+</sup>检查网络是否正在检测连通性。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NET_CAPABILITY_CHECKING_CONNECTIVITY<sup>12+</sup> | 31   | 表示网络管理正在检验当前网络的连通性，此值会在网络连接时设置，直到连通性检测结束后不再设置，当此值存在时，NET_CAPABILITY_VALIDATED的值可能不准确。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## NetBearType
 
@@ -2407,6 +2472,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | ----------------------- | ---- | ---------- |
 | BEARER_CELLULAR | 0    | 蜂窝网络。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | BEARER_WIFI     | 1    | Wi-Fi网络。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| BEARER_BLUETOOTH<sup>12+</sup> | 2    | 蓝牙网络。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | BEARER_ETHERNET | 3    | 以太网网络。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | BEARER_VPN<sup>12+</sup>| 4    | VPN网络。   |
 
@@ -2435,7 +2501,32 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | 名称                     | 类型                                | 必填  | 说明                                                         |
 | ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  是  | 存储数据网络的传输能力和承载类型。                                |
-| bearerPrivateIdentifier | string                              |  否  |  网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
+| bearerPrivateIdentifier | string                              |  否  |  网络标识符，蜂窝网络的标识符是"slot0"（对应SIM卡1）、"slot1"（对应SIM卡2）。从API12开始可以通过传递注册的WLAN热点信息表示应用希望激活的指定的WLAN网络。 |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+import { wifiManager } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let config: wifiManager.WifiDeviceConfig = {
+  ssid: "TEST",
+  preSharedKey: "**********",
+  securityType: wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
+};
+// 通过wifiManager.addCandidateConfig获取注册WLAN的networkId
+let networkId: number = await wifiManager.addCandidateConfig(config);
+let netConnectionWlan = connection.createNetConnection({
+  netCapabilities: {
+    bearerTypes: [connection.NetBearType.BEARER_WIFI]
+  },
+  bearerPrivateIdentifier: `${networkId}`
+});
+netConnectionWlan.register((error: BusinessError) => {
+  console.log(JSON.stringify(error));
+});
+```
 
 ## NetCapabilityInfo<sup>10+</sup>
 
@@ -2533,10 +2624,12 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 网络地址。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-| ------- | ------ | -- |------------------------------ |
-| address | string | 是 |地址。 |
-| family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 |
-| port    | number | 否 |端口，取值范围\[0, 65535]。 |
+|  名称   | 类型   |必填|                                        说明                                                 |
+| ------- | ------ | -- |------------------------------------------------------------------------------------------- |
+| address | string | 是 |地址。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
+| family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| port    | number | 否 |端口，取值范围\[0, 65535]。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |

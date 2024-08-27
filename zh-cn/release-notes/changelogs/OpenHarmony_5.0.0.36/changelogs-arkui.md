@@ -375,3 +375,60 @@ Window#setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, ca
 **适配指导**
 
 不涉及
+
+## cl.arkui.8  Toast弹窗UX样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规格变更
+
+**变更影响**
+
+该变更为不兼容变更。
+
+- API version 11及之前，Toast弹窗背景色为深黑色、字色为白色，最大高度没有限制，界面语超长没有截断。<br/>
+
+- API version 12及之后，Toast弹窗在常规亮色显示风格下toast透明模糊背景、字色黑色，暗色显示风格下透明模糊背景、字色白色。<br/>
+Toast的最大高度 =（屏幕高度-信号栏-导航条）*0.65，最大宽度：基于屏幕宽度-2侧margin，根据容器自适应，最大到400vp不再变化。<br/>
+界面语超长逐级缩小字号至12fp，超出截断。
+
+- API version 11及之前对比API version 12及之后属性变更如下
+
+ | 属性名 | 变更前 | 变更后 |
+|---------|---------|---------|
+| 背景色 | bg_color | COMPONENT_ULTRA_THICK |
+| 圆角 | toast_border_radius | corner_radius_level9 |
+| padding-left | toast_padding_horizontal | padding_level8 |
+| padding-top | toast_padding_vertical | padding_level4 |
+| padding-right | toast_padding_horizontal | padding_level8 |
+| padding-bottom | toast_padding_vertical | padding_level4 |
+| 字体大小 | text_font_size | Body_M |
+| 字体颜色 | text_color | font_primary |
+| 字重 | toast_text_font_weight | font_weight_regular |
+
+示例如下：
+如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/toast_api11.png)  |  ![](figures/toast_api12.png)  |
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.36 版本开始。
+
+**变更的接口/组件**
+
+promptAction.showToast
+
+**适配指导**
+
+UX默认行为变更，无需适配。可以通过[promptAction](../../../application-dev/reference/apis-arkui/js-apis-promptAction.md)中ShowToastOptions接口自定义Toast背景色、字色等。

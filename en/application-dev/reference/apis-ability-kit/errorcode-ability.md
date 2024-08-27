@@ -754,6 +754,47 @@ This error code is reported when an invalid value of **appCloneIndex** is passed
 
 Check whether the constraints of **appCloneIndex** are met.
 
+## 16000074 Caller Corresponding to requestCode Does Not Exist When the Result Is Returned
+
+**Error Message**
+
+The caller does not exist.
+
+**Description**
+
+This error code is reported when the **backTocallerAbilityResult** API attempts to return the result to the caller but fails to find the caller based on **requestCode**.
+
+**Possible Causes**
+
+1. **requestCode** is not obtained from the **CALLER_REQUEST_CODE** field in **want**.
+
+2. The caller corresponding to **requestCode** has been destroyed or the result has been returned.
+
+**Solution**
+
+1. Check whether **requestCode** is obtained from **CALLER_REQUEST_CODE** in **want**.
+
+2. Check whether the caller has been destroyed or the result has been returned.
+
+## 16000075 Caller Cannot Be Started When the Result Is Returned
+
+**Error Message**
+
+Not support back to caller.
+
+**Description**
+
+This error code is reported when the **backToCallerAbilityWithResult** API fails to return the result to the caller.
+
+**Possible Causes**
+
+The link feature is not configured for the application or the configuration is not approved by the system.
+
+**Solution**
+
+1. Ensure that the **linkFeature** field is configured in the **module.json5** file of the application.
+2. Ensure that the **linkFeature** field value of the application is correct, the functionality it describes matches the actual capability of the application link, and the configuration has been approved by the system.
+
 ## 16000100 Failed to Call AbilityMonitor APIs to Listen for Ability Lifecycle Changes
 
 **Error Message**
@@ -1276,6 +1317,61 @@ The value of **bundleName**, **userId**, or **appIndex** is incorrect, leading t
 
 Pass in correct values for **bundleName**, **userId**, and **appIndex**.
 
+## 29600001 Internal Error During Image Editing
+
+**Error Message**
+
+Internal error.
+
+**Description**
+
+This error code is reported when an internal error such as memory allocation or multithreaded processing exception occurs during image saving.
+
+**Possible Causes**
+
+Common kernel errors such as memory application and multi-thread processing errors occur. The possible causes are as follows: The internal object is empty, and the processing times out.
+
+**Solution**
+
+1. Ensure sufficient system memory. Ensure that the system version used by the device is normal.
+2. Restart the device.
+
+## 29600002 Internal Error During Image Editing
+
+**Error Message**
+
+Image input error.
+
+**Description**
+
+This error code is reported when the image URI does not exist or the image cannot be parsed.
+
+**Possible Causes**
+
+The URI does not exist or the URI does not point to an image file.
+
+**Solution**
+
+Check whether the file exists and whether the file type is image.
+
+## 29600002 Image Too Large
+
+**Error Message**
+
+Image too big.
+
+**Description**
+
+The image is too large.
+
+**Possible Causes**
+
+This error code is reported when the size of the image exceeds 50 MB.
+
+**Solution**
+
+1. Limit the size of the edited image to less than 50 MB.
+2. Verify the image size in advance.
 ## 16300007 Download and Installation Task Information of the Atomic Service Does Not Exist
 
 **Error Message**

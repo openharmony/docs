@@ -33,7 +33,7 @@
 | onDragEnter | 当拖拽活动的拖拽点进入组件范围内时触发，只有该组件监听了[onDrop](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)事件时，此回调才会被触发。|
 | onDragMove| 拖拽点在组件范围内移动时触发；只有该组件监听了onDrop事件时，此回调才会被触发。<br>在此过程中可通过[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)中的setResult方法影响系统部分场景下的外观<br>1. 设置DragResult.DROP\_ENABLED；<br>2. 设置DragResult.DROP\_DISABLED。|
 | onDragLeave | 拖拽点离开组件范围时触发；只有该组件监听了onDrop事件时，此回调才会被触发。<br>针对以下两种情况默认不会发送onDragLeave事件：<br>1. 父组件移动到子组件；<br>2. 目标组件与当前组件布局有重叠；<br>API version 12开始可通过[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md)中的[setDragEventStrictReportingEnabled](../reference/apis-arkui/js-apis-arkui-UIContext.md#setdrageventstrictreportingenabled12)方法严格触发onDragLeave事件。|
-| onDrop | 当用户在组件范围内释放时触发，需在此回调中通过DragEvent中的setResult方法设置拖拽结果，否则在拖出方组件的onDragEnd方法中通过getRresult方法只能拿到默认的处理结果DragResult.DRAG\_FAILED。<br>该回调也是开发者干预系统默认拖入处理行为的地方，系统会优先执行开发者的onDrop回调，通过在回调中执行setResult方法来告知系统该如何处理所拖拽的数据；<br>1. 设置 DragResult.DRAG\_SUCCESSFUL，数据完全由开发者自己处理，系统不进行处理；<br>2. 设置DragResult.DRAG\_FAILED，数据不再由系统继续处理；<br>3. 设置DragResult.DRAG\_CANCELED，系统也不需要进行数据处理；<br>4. 设置DragResult.DROP\_ENABLED或DragResult.DROP\_DISABLED会被忽略，同设置DragResult.DRAG\_FAILED；|
+| onDrop | 当用户在组件范围内释放时触发，需在此回调中通过DragEvent中的setResult方法设置拖拽结果，否则在拖出方组件的onDragEnd方法中通过getResult方法只能拿到默认的处理结果DragResult.DRAG\_FAILED。<br>该回调也是开发者干预系统默认拖入处理行为的地方，系统会优先执行开发者的onDrop回调，通过在回调中执行setResult方法来告知系统该如何处理所拖拽的数据；<br>1. 设置 DragResult.DRAG\_SUCCESSFUL，数据完全由开发者自己处理，系统不进行处理；<br>2. 设置DragResult.DRAG\_FAILED，数据不再由系统继续处理；<br>3. 设置DragResult.DRAG\_CANCELED，系统也不需要进行数据处理；<br>4. 设置DragResult.DROP\_ENABLED或DragResult.DROP\_DISABLED会被忽略，同设置DragResult.DRAG\_FAILED；|
 | onDragEnd | 当用户释放拖拽时，拖拽活动结束，发起拖出动作的组件会触发该回调。|
 | onPreDrag | 绑定此事件的组件，当触发拖拽发起前的不同阶段时，触发回调。<br>开发者可以使用该方法监听[PreDragStatus](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#predragstatus12枚举说明)中的枚举在发起拖拽前的不同阶段准备数据。<br>1. ACTION\_DETECTING\_STATUS：拖拽手势启动阶段。(按下50ms时触发)；<br>2. READY\_TO\_TRIGGER\_DRAG\_ACTION：拖拽准备完成，可发起拖拽阶段。(按下500ms时触发)；<br>3. PREVIEW\_LIFT\_STARTED：拖拽浮起动效发起阶段。(按下800ms时触发)；<br>4. PREVIEW\_LIFT\_FINISHED：拖拽浮起动效结束阶段。(浮起动效完全结束时触发)；<br>5. PREVIEW\_LANDING\_STARTED：拖拽落回动效发起阶段。(落回动效发起时触发)；<br>6. PREVIEW\_LANDING\_FINISHED：拖拽落回动效结束阶段。(落回动效结束时触发)；<br>7. ACTION\_CANCELED\_BEFORE\_DRAG：拖拽浮起落位动效中断。(已满足READY\_TO\_TRIGGER\_DRAG\_ACTION状态后，未达到动效阶段，手指抬手时触发)。 |
 
@@ -102,7 +102,7 @@
     })
     ```
    
-   * 具体pixmap的生成可以调用[componentSnapshot](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilder)函数；
+   * 具体pixmap的生成可以调用[componentSnapshot.createFromBuilder](../reference/apis-arkui/js-apis-arkui-componentSnapshot.md#componentsnapshotcreatefrombuilder)函数；
 
       ```ts
       @Builder

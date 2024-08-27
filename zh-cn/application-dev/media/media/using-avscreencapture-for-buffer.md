@@ -58,8 +58,8 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     };
 
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720,
-        .videoFrameHeight = 1080,
+        .videoFrameWidth = 768,
+        .videoFrameHeight = 1280,
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -233,7 +233,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig
     OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720, .videoFrameHeight = 1080, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
+        .videoFrameWidth = 768, .videoFrameHeight = 1280, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
     OH_AudioInfo audioinfo = {
         .micCapInfo = miccapinfo,
     };
@@ -259,6 +259,14 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
 
     // mic开关设置
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
+
+    // 可选 豁免隐私窗口 需传递应用豁免子窗口和主窗口ID，传空数组取消豁免隐私窗口
+	// std::vector<int> windowIdsSkipPrivacy = {};
+    // OH_AVScreenCapture_SkipPrivacyMode(capture, &windowIdsSkipPrivacy[0],
+    //     static_cast<int32_t>(windowIdsSkipPrivacy.size()));
+
+    // 可选 调整录屏分辨率 需在启动后调用，分辨率有范围限制 可参考avcodec编解码能力
+    // OH_AVScreenCapture_ResizeCanvas(capture, 768, 1280);
 
     sleep(10); // 录制10s
     // 结束录屏

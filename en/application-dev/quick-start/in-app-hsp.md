@@ -7,7 +7,7 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 > 
 > Integrated HSP: a type of HSP that is not coupled with any specific application bundle name during the build and release processes and whose bundle name can be automatically replaced by the toolchain with the host application bundle name.
 
-## When to Use
+## Use Scenarios
 - By storing code and resource files shared by multiple HAPs/HSPs in one place, the HSP significantly improves the reusability and maintainability of the code and resource files. Better yet, because only one copy of the HSP code and resource files is retained during building and packaging, the size of the application package is effectively controlled.
 
 - The HSP is loaded on demand during application running, which helps improve application performance.
@@ -24,7 +24,7 @@ A Harmony Shared Package (HSP) is a dynamic shared package that can contain code
 
 
 ## Creating an HSP
-Create an HSP module in DevEco Studio. For details, see <!--RP1-->[Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/hsp-0000001521396322-V2#section7717162312546)<!--RP1End-->. In this example, an HSP module named **library** is created. The basic project directory structure is as follows:
+Create an HSP module in DevEco Studio. For details, see <!--RP1-->[Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/hsp-0000001521396322-V2#section7717162312546)<!--RP1End-->. In this example, an HSP module **library** is created. The basic project directory structure is as follows:
 ```
 MyApplication
 ├── library
@@ -75,7 +75,7 @@ export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
 ### Exporting TS Classes and Methods
 Use **export** to export TS classes and methods. The sample code is as follows:
 ```ts
-// library/src/main/ets/utils/test.ts
+// library/src/main/ets/utils/test.ets
 export class Log {
   static info(msg: string): void {
     console.info(msg);
@@ -98,7 +98,7 @@ export { Log, add, minus } from './src/main/ets/utils/test';
 ### Exporting Native Methods
 The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** API in the **liblibrary.so** file is exported.
 ```ts
-// library/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeMulti(a: number, b: number): number {
@@ -140,7 +140,7 @@ When resources in an HSP need to be exported for cross-package access, it is rec
 
 The implementation is as follows:
 
-The implementation is as follows:  
+Encapsulate the resources that need to be published into a resource management class. 
 ```ts
 // library/src/main/ets/ResManager.ets
 export class ResManager{
@@ -163,7 +163,7 @@ export { ResManager } from './src/main/ets/ResManager';
 
 ## Using an HSP
 
-You can reference APIs in an HSP and and implement page redirection in the HSP through page routing.
+You can reference APIs in an HSP and implement page redirection in the HSP through page routing.
 
 ### Referencing APIs
 To use APIs in the HSP, first configure the dependency on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module). For details, see <!--RP2-->[Referencing an HSP](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/hsp-0000001521396322-V2#section6161154819195)<!--RP2End-->.
@@ -448,38 +448,81 @@ The **url** parameter in the **router.back** method is described as follows:
     ```
 
 ## Integrated HSP
+The integrated HSP is an intermediate build product of the intra-app HSP. It aims to solve the strong coupling between the bundle name and signature of the user.
+> **NOTE**
+> The HSP can be used only by projects with the same bundle name, but the integrated HSP can be used by projects with different bundle names.
 
-### Configuring an HSP as an Integrated HSP
-To specify the HSP to be built as an integrated HSP, open the module-level **build-profile.json5** file and set **integratedHsp** to **true**.
+#### Development Instructions
+1. Project Configuration for creators: Normalized OHMUrl format should be used in the integrated HSP. Modify the project-level build configuration file **build-profile.json5** and set **useNormalizedOHMUrl** to **true** to enable the normalized OHMUrl format.
 
-```
-{
-  "apiType": "stageMode",
-  "buildOption": {
-    "arkOptions": {
-      "integratedHsp": true
-    }
-  }
-}
-```
-
-### Using the Normalized OHMUrl Format
-To configure the project to use the normalized OHMUrl format, open the project-level **build-profile.json5** file and set **useNormalizedOHMUrl** to **true**.
-
-```
-{
-  "app": {
-    "products": {
-      "name": "default",
-      "signingConfig": "default",
-      "compatibleSdkVersion": "5.0.0(12)",
-      "runtimeOS": "HarmonyOS",
-      "buildOption": {
-        "strictMode": {
-          "useNormalizedOHMUrl": true
+    ```json
+    // created_party_project/build-profile.json5
+    {
+      "app": {
+        "products": {
+          "name": "default",
+          "signingConfig": "default",
+          "compatibleSdkVersion": "5.0.0(12)",
+          "runtimeOS": "HarmonyOS",
+          "buildOption": {
+            "strictMode": {
+              "useNormalizedOHMUrl": true
+            }
+          }
         }
       }
     }
-  }
-}
-```
+    ```
+2. Module Configuration for creators: Modify the module-level build configuration file **build-profile.json5** and set **integratedHsp** to **true** to specify the HSP module to be built as the integrated HSP module.
+
+    ```json
+    // created_party_project/library/build-profile.json5
+    {
+      "apiType": "stageMode",
+      "buildOption": {
+        "arkOptions": {
+          "integratedHsp": true
+        }
+      }
+    }
+    ```
+
+3. Packing Configuration for creators (.tgz Package)
+
+    3.1 Configure project signature information. For details, see [Application/Service Signature](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5).
+
+    3.2 Configure the release mode.
+
+    ![](./figures/ide-release-setting.png)
+
+    3.3 Select the **library** directory in **Build** -> **Make Module 'library'**.
+
+4. Project Dependency Configuration for users: Add dependencies to the **oh-package.json5** configuration file in the main module.
+
+    ```json
+    // user_project/entry/oh-package.json5
+      "dependencies": {
+        "hsp": "./lib/library-default.tgz"
+      }
+    ```
+
+5. Project Configuration for users: Normalized OHMUrl format should be used in the integrated HSP. Modify the project-level build configuration file **build-profile.json5** and set **useNormalizedOHMUrl** to **true** to enable the normalized OHMUrl format.
+
+    ```json
+    // user_project/build-profile.json5
+    {
+      "app": {
+        "products": {
+          "name": "default",
+          "signingConfig": "default",
+          "compatibleSdkVersion": "5.0.0(12)",
+          "runtimeOS": "HarmonyOS",
+          "buildOption": {
+            "strictMode": {
+              "useNormalizedOHMUrl": true
+            }
+          }
+        }
+      }
+    }
+    ```

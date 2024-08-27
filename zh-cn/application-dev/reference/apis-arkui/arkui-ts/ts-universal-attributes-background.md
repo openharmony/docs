@@ -80,7 +80,7 @@ backgroundImageSize(value: SizeOptions | ImageSize)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions对象说明)&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 是   | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>**说明：** <br/>设置为小于0的值时，按值为0显示。当设置了height未设置width时，width根据图片原始宽高比进行调整。 |
+| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions对象说明)&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 是   | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>**说明：** <br/>width和height均设置为小于或等于0的值时，按值为0显示。当width和height中只有一个值未设置或者设置为小于等于0的值时，另一个会根据图片原始宽高比进行调整。 |
 
 ## backgroundImagePosition
 
@@ -169,12 +169,12 @@ backgroundEffect(options: BackgroundEffectOptions)
 | radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。  |
 | saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 50]。     |
 | brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 2]。 |
-| color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
+| color        | [ResourceColor](ts-types.md#resourcecolor)         |   否   |   颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
-| policy          | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：FOLLOWS_WINDOW_ACTIVE_STATE <br/> |
-| inactiveColor | ResourceColor | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。<br/> |
-| type | [BlurType](ts-appendix-enums.md#blurtype13) | 否    | 模糊类型。<br/> 默认值：WITHIN_WINDOW<br/> |
+| policy<sup>13+</sup>    | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：FOLLOWS_WINDOW_ACTIVE_STATE  |
+| inactiveColor<sup>13+</sup>  | ResourceColor | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
+| type<sup>13+</sup>  | [BlurType](ts-appendix-enums.md#blurtype13) | 否    | 模糊类型。<br/> 默认值：WITHIN_WINDOW |
 
 ## backgroundImageResizable<sup>12+</sup>
 
@@ -204,9 +204,9 @@ backgroundImageResizable(value: ResizableOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| policy          | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：FOLLOWS_WINDOW_ACTIVE_STATE <br/> |
-| inactiveColor | ResourceColor | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。<br/> |
-| type | [BlurType](ts-appendix-enums.md#blurtype13) | 否    | 模糊类型。<br/> 默认值：WITHIN_WINDOW<br/> |
+| policy<sup>13+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：FOLLOWS_WINDOW_ACTIVE_STATE |
+| inactiveColor<sup>13+</sup>  | ResourceColor | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
+| type<sup>13+</sup>  | [BlurType](ts-appendix-enums.md#blurtype13) | 否    | 模糊类型。<br/> 默认值：WITHIN_WINDOW |
 
 
 ## backgroundBrightness<sup>12+</sup> 

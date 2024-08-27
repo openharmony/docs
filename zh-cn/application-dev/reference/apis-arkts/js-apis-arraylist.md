@@ -103,7 +103,7 @@ let arrayList1: ArrayList<number> = new ArrayList();
 let result2 = arrayList.add(1);
 let b = [1, 2, 3];
 let result3 = arrayList.add(b);
-let c : C1 = {name: "Dylon", age: "13"}
+let c : C1 = {name: "Dylan", age: "13"}
 let result4 = arrayList.add(c);
 let result5 = arrayList.add(false);
 ```
@@ -123,7 +123,7 @@ insert(element: T, index: number): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | element | T | 是 | 被插入的元素。 |
-| index | number | 是 | 被插入的位置索引。 |
+| index | number | 是 | 被插入的位置索引。需要小于等于int32_max即2147483647。 |
 
 **错误码：**
 
@@ -284,7 +284,7 @@ removeByIndex(index: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定元素的下标值。 |
+| index | number | 是 | 指定元素的下标值。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -763,7 +763,7 @@ let result: boolean = arrayList.isEmpty();
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 元素的位置索引。 |
+| index | number | 是 | 元素的位置索引。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 

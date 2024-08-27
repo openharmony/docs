@@ -1,26 +1,29 @@
 # ListItemGroup
 
-The **\<ListItemGroup>** component is used to display list item groups. It must be used with the **[\<List>](ts-container-list.md)** component and, if not otherwise specified, takes up the entire width of the **\<List>**.
+The **ListItemGroup** component is used to display list item groups. It must be used with the [List](ts-container-list.md) component and, if not otherwise specified, takes up the entire width of the **List**.
 
 > **NOTE**
 >
 > - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
-> - This component can be used only as a child of [\<List>](ts-container-list.md).
-
-## Usage Guidelines
-
-If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Vertical**, the **height** attribute of the **\<ListItemGroup>** component is fixed at the sum of the component's header height, footer height, and total height of the list items. If the **listDirection** attribute of the parent **\<List>** component is set to **Axis.Horizontal**, the **width** attribute of the **\<ListItemGroup>** component is fixed at the sum of the component's header width, footer width, and total width of the list items.
-
-The list items in the **\<ListItemGroup>** component cannot be edited or dragged. That is, their **editable** attribute does not take effect.
+> - This component can be used only as a child of [List](ts-container-list.md).
+> - The **ListItemGroup** component does not support the universal attribute [aspectRatio](ts-universal-attributes-layout-constraints.md).
+> - If the parent**List** component of **ListItemGroup** has its **listDirection** attribute set to **Axis.Vertical**, the [universal attribute height](ts-universal-attributes-size.md) is not effective. is fixed at the sum of the component's header height, footer height, and total height of the list items.
+> - If the parent**List** component of **ListItemGroup** has its **listDirection** attribute set to **Axis.Horizontal**, the [universal attribute width](ts-universal-attributes-size.md) is not effective. is fixed at the sum of the component's header width, footer width, and total width of the list items.
+> - The list items in the **ListItemGroup** component cannot be edited or dragged. That is, their **editable** attribute does not take effect.
+> - The **ListItemGroup** does not respond to the **direction** attribute for setting its layout direction; instead, it aligns with the layout direction of its parent **List** component.
 
 ## Child Components
 
-This component supports the **[\<ListItem>](ts-container-listitem.md)** child component.
+This component supports the [ListItem](ts-container-listitem.md) child component.
 
 
 ## APIs
 
 ListItemGroup(options?: ListItemGroupOptions)
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -30,29 +33,30 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 ## ListItemGroupOptions
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name             | Type                                           | Mandatory| Description                                                    |
 | ------------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | header              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Header of the list item group.<br>**NOTE**<br>One child component, or no child component at all, can be placed inside.              |
 | footer              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Footer of the list item group.<br>**NOTE**<br>One child component, or no child component at all, can be placed inside.              |
-| space               | number \| string                          | No  | Spacing between list items. This parameter is valid only between list items, but not between the header and list item or between the footer and list item.|
-| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemGroupStyle.CARD**, the default card style is applied, but only when **ListItemStyle.CARD** is set for [\<ListItem>](ts-container-listitem.md).<br>In the default card style, list items can be in focus, hover, press, selected, or disable style depending on their state.<br>**NOTE**<br>In the default card style, the parent **\<List>** component has its **listDirection** attribute fixed at **Axis.Vertical** and its **alignListItem** attribute defaulted at **ListItemAlign.Center**; the **header** and **footer** parameters cannot be set for the list item group.<br>If **ListItemGroupStyle.CARD** is set and **ListItemStyle.CARD** is not, only some card styles and functions are available.|
+| space               | number \| string                          | No  | Spacing between list items. This parameter is valid only between list items, but not between the header and list item or between the footer and list item.<br>Default value: **0**<br>Unit: vp |
+| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>When **ListItemGroupStyle.CARD** is used, you are advised to pair it with **ListItemStyle.CARD** from [ListItem](ts-container-listitem.md) to apply the default card style.<br>In the card style, the default specifications for the **ListItemGroup** are as follows: horizontal margin of 12 vp on both left and right sides, and vertical as well as horizontal padding of 4 vp.<br>In the default card style, list items can be in focus, hover, press, selected, or disable style depending on their state.<br>**NOTE**<br>In the card style, by default, the list runs along the vertical axis, that is, **listDirection** is at **Axis.Vertical**. If **listDirection** is set to **Axis.Horizontal**, a disordered display may result. The **alignListItem** attribute of the list is set to **ListItemAlign.Center** by default, which aligns the list items in the center.|
 
 ## Attributes
 
 ### divider
 
-divider(<br>
-    value: {<br>
-      strokeWidth: Length;<br>
-      color?: ResourceColor;<br>
-      startMargin?: Length;<br>
-      endMargin?: Length;<br>
-    } | null,<br>
-  )
+divider(value: {strokeWidth: Length; color?: ResourceColor; startMargin?: Length; endMargin?: Length;} | null,)
 
 Sets the style of the divider for the list items. By default, there is no divider.
 
 **strokeWidth**, **startMargin**, and **endMargin** cannot be set in percentage.
+
+When a list item has [polymorphic styles](ts-universal-attributes-polymorphic-style.md) applied, the dividers above and below the pressed child component are not rendered.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -60,22 +64,35 @@ Sets the style of the divider for the list items. By default, there is no divide
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: [Length](ts-types.md#length),<br>endMargin?: [Length](ts-types.md#length)<br>} \| null | Yes  | Style of the divider for the list items.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start edge of the list.<br>- **endMargin**: distance between the divider and the end edge of the list.|
+| value  | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?:[ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: [Length](ts-types.md#length),<br>endMargin?: [Length](ts-types.md#length)<br>} \| null | Yes  | Style of the divider for the list items.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br> Default value: **0x08000000**<br>- **startMargin**: distance between the divider and the start edge of the list.<br>Default value: **0**, in vp<br>- **endMargin**: distance between the divider and the end edge of the list.<br>Default value: **0**, in vp|
+
+### childrenMainSize<sup>12+</sup>
+
+childrenMainSize(value: ChildrenMainSize)
+
+Sets the size information of the child components of a **ListItemGroup** component along the main axis.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                           |
+| ---------- | ------ | ---- | ------------------------------- |
+| value | [ChildrenMainSize](ts-container-scrollable-common.md#childrenmainsize12) | Yes  | Size information of all list items along the main axis, provided through a **ChildrenMainSize** object to the **ListItemGroup** component.<br>1. The provided size along the main axis must be consistent with the actual size of the child components on the main axis.<br>2. For the setting to take effect, this attribute must be used together with the **childrenMainSize** attribute of the **List** component.<br>3. Any changes in size or additions/removals of child components must be communicated to the **ListItemGroup** component through the **ChildrenMainSize** object method. |
 
 ## ListItemGroupStyle<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value | Description              |
 | ---- | ---- | ------------------ |
 | NONE | 0 | No style.          |
 | CARD | 1 | Default card style.|
 
-> **NOTE**
->
-> The **\<ListItemGroup>** component does not support the universal attribute [aspectRatio](ts-universal-attributes-layout-constraints.md).
->
-> If the main axis of **\<ListItemGroup>** runs in the vertical direction, the [height](ts-universal-attributes-size.md) setting does not take effect.
->
-> If the main axis of **\<ListItemGroup>** runs in the horizontal direction, the [width](ts-universal-attributes-size.md) setting does not take effect.
 
 
 ## Example
