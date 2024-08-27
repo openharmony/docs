@@ -11,7 +11,7 @@
 
 - 音视频录制（[AVRecorder](#avrecorder9)<sup>9+</sup>）
 
-- 音视频转码（[AVTranscoder](#avtranscoder12)<sup>12+</sup>）
+- 视频转码（[AVTranscoder](#avtranscoder12)<sup>12+</sup>）
 
 - 获取音视频元数据（[AVMetadataExtractor](#avmetadataextractor11)<sup>11+</sup>）
 
@@ -209,11 +209,11 @@ media.createAVRecorder().then((recorder: media.AVRecorder) => {
 
 createAVTranscoder(): Promise\<AVTrancoder>
 
-异步方式创建音视频转码实例，通过Promise获取返回值。
+异步方式创建视频转码实例，通过Promise获取返回值。
 
 > **说明：**
 
-> 可创建的音视频转码实例不能超过2个。
+> 可创建的视频转码实例不能超过2个。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -221,7 +221,7 @@ createAVTranscoder(): Promise\<AVTrancoder>
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVTrancoder](#avtranscoder12)> | Promise对象。异步返回AVtranscoder实例，失败时返回null。可用于音视频转码。 |
+| Promise\<[AVTrancoder](#avtranscoder12)> | Promise对象。异步返回AVtranscoder实例，失败时返回null。可用于视频转码。 |
 
 **错误码：**
 
@@ -4466,9 +4466,9 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 ## AVTranscoder<sup>12+</sup>
 
-音视频转码管理类，用于音视频媒体转码。在调用AVTranscoder的方法前，需要先通过createAVTranscoder()构建一个AVTranscoder实例。
+视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过createAVTranscoder()构建一个AVTranscoder实例。
 
-音视频转码demo可参考：[音视频转码开发指导](../../media/media/using-avtranscoder-for-transcodering.md)
+视频转码demo可参考：[视频转码开发指导](../../media/media/using-avtranscoder-for-transcodering.md)
 
 ### 属性
 
@@ -4476,8 +4476,8 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 名称    | 类型                                 | 只读 | 可选 | 说明               |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  否  | 否   | 源媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVTranscoder 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致音视频转码数据获取异常。 |
-| fdDst<sup>12+</sup>                               | number                 |  否  | 否   | 目标媒体文件描述，通过该属性设置数据输出。在创建AVTranscoder实例后，必须设置fdSrc和fdDst属性。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVTranscoder 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致音视频转码数据获取异常。 |
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  否  | 否   | 源媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVTranscoder 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致视频转码数据获取异常。 |
+| fdDst<sup>12+</sup>                               | number                 |  否  | 否   | 目标媒体文件描述，通过该属性设置数据输出。在创建AVTranscoder实例后，必须设置fdSrc和fdDst属性。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVTranscoder 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致视频转码数据获取异常。 |
 
 ### prepare<sup>12+</sup>
 
@@ -4491,13 +4491,13 @@ prepare(config: AVTranscoderConfig): Promise<\void>
 
 | 参数名 | 类型                                   | 可选 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVTranscoderConfig](#avtranscoderconfig12) | 否   | 配置音视频转码的相关参数。 |
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | 否   | 配置视频转码的相关参数。 |
 
 **返回值：**
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| Promise\<void> | 异步音视频转码prepare方法的Promise返回值。 |
+| Promise\<void> | 异步视频转码prepare方法的Promise返回值。 |
 
 **错误码：**
 
@@ -4688,9 +4688,9 @@ avTranscoder.cancel().then(() => {
 
 release(): Promise\<void>
 
-异步方式释放音视频转码资源。通过Promise获取返回值。
+异步方式释放视频转码资源。通过Promise获取返回值。
 
-释放音视频转码资源之后，该AVTranscoder实例不能再进行任何操作。
+释放视频转码资源之后，该AVTranscoder实例不能再进行任何操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -4698,7 +4698,7 @@ release(): Promise\<void>
 
 | 类型           | 说明                                        |
 | -------------- | ------------------------------------------- |
-| Promise\<void> | 异步释放音视频转码资源方法的Promise返回值。 |
+| Promise\<void> | 异步释放视频转码资源方法的Promise返回值。 |
 
 **错误码：**
 
@@ -4876,7 +4876,7 @@ avTranscoder.off('complete');
 
 ## AVTranscoderConfig<sup>12+</sup>
 
-表示音视频转码的参数设置。
+表示视频转码的参数设置。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
