@@ -151,6 +151,10 @@ listener.off('change', onPortrait) // 去取消注册回调
 
 ### 示例
 
+> **说明：**
+>
+> 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMediaQuery](js-apis-arkui-UIContext.md#getmediaquery)方法获取当前UI上下文关联的[MediaQuery](js-apis-arkui-UIContext.md#mediaquery)对象。
+
 ```ts
 import { mediaquery } from '@kit.ArkUI';
 
@@ -159,7 +163,7 @@ import { mediaquery } from '@kit.ArkUI';
 struct MediaQueryExample {
   @State color: string = '#DB7093'
   @State text: string = 'Portrait'
-  listener = mediaquery.matchMediaSync('(orientation: landscape)')
+  listener = mediaquery.matchMediaSync('(orientation: landscape)') // 建议使用 this.getUIContext().getMediaQuery().matchMediaSync()接口
 
   onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) {

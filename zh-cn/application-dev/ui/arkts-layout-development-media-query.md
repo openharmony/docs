@@ -3,7 +3,7 @@
 
 ## 概述
 
-[媒体查询](../reference/../reference/apis-arkui/js-apis-mediaquery.md)作为响应式设计的核心，在移动设备上应用十分广泛。媒体查询可根据不同设备类型或同设备不同状态修改应用的样式。媒体查询常用于下面两种场景：
+[媒体查询](../reference/apis-arkui/js-apis-mediaquery.md)作为响应式设计的核心，在移动设备上应用十分广泛。媒体查询可根据不同设备类型或同设备不同状态修改应用的样式。媒体查询常用于下面两种场景：
 
 1. 针对设备和应用的属性信息（比如显示区域、深浅色、分辨率），设计出相匹配的布局。
 
@@ -157,7 +157,7 @@ struct MediaQueryExample {
   @State text: string = 'Portrait';
   @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   // 当设备横屏时条件成立
-  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
+  listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)');
 
   // 当满足媒体查询条件时，触发回调
   onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
