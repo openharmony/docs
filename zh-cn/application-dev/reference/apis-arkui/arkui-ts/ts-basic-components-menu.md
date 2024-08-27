@@ -164,7 +164,7 @@ subMenuExpandingMode(mode: SubMenuExpandingMode)
 | ------ | ---------------------------- | ---- |--------------|
 | mode  | [SubMenuExpandingMode](#submenuexpandingmode12枚举说明) | 是   | Menu子菜单展开样式。<br/>默认值：SubMenuExpandingMode.SIDE_EXPAND  |
 
-## subMenuExpandingMode<sup>12+</sup>枚举说明
+## SubMenuExpandingMode<sup>12+</sup>枚举说明
 
 Menu子菜单展开样式枚举。
 
