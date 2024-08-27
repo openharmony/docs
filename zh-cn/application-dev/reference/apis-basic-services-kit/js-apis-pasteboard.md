@@ -2478,7 +2478,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| patterns | [Array&lt;Pattern&gt;>](#pattern13) | 是 | 	用户希望检测的模式。 |
+| patterns | [Array&lt;Pattern&gt;](#pattern13) | 是 | 	用户希望检测的模式。 |
 
 **返回值：**
 
