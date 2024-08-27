@@ -140,9 +140,9 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // 处理状态变更
     }
-    if (stateCode == OH_SCREEN_CAPTURE_STATE_ ||
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL ||
         stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
-        // 通话中断状态处理
+        // 录屏中断状态处理
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // 处理状态变更
