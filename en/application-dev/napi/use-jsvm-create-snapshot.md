@@ -1,4 +1,4 @@
-# Working with VM Snapshots Using JSVM-API 
+# Working with VM Snapshots Using JSVM-API
 
 ## Introduction
 
@@ -8,14 +8,14 @@ A JavaScript virtual machine (JSVM) snapshot records the state of a JSVM at a pa
 
 - VM startup snapshot: a snapshot of the VM status at a specific time, including all internal status and data of the VM. The snapshot can be used to quickly restore the VM to the state it was when the snapshot was created.
 
-  It helps simplify complex programming tasks and shorten the creation time of a JS context, making the application more efficient and stable. 
+It helps simplify complex programming tasks and shorten the creation time of a JS context, making the application more efficient and stable. 
 
 ## Available APIs
 
 | API                      | Description                      |
 |----------------------------|-------------------------------|
 | OH_JSVM_CreateSnapshot     | Creates a VM startup snapshot.       |
-
+|OH_JSVM_CreateEnvFromSnapshot| Creates an environment based on the start snapshot of a VM.|
 ## Example
 
 If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to the snapshot-related APIs.

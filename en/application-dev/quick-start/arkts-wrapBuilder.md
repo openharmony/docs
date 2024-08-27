@@ -26,26 +26,20 @@ declare class WrappedBuilder< Args extends Object[]> {
 ```
 
 
->**NOTE**
->
->The template parameter **Args extends Object[]** is a parameter list of the builder function to be wrapped.
+>**NOTE**<br>The template parameter **Args extends Object[]** is a parameter list of the builder function to be wrapped.
 
-Example
+Example:
 
 ```ts
 let builderVar: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder)
 let builderArr: WrappedBuilder<[string, number]>[] = [wrapBuilder(MyBuilder)] // An array is acceptable.
 ```
 
-
-
 ## Constraints
 
 **wrapBuilder** only accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument.
 
 Of the **WrappedBuilder** object it returns, the **builder** attribute method can be used only inside the struct.
-
-
 
 ## Use Scenario 1
 
@@ -121,7 +115,37 @@ struct Index {
 }
 ```
 
+## Use Scenario 3
 
+If parameters are passed in by reference, the UI re-rendering is triggered.
+
+```ts
+class Tmp {
+  paramA2: string = 'hello';
+}
+
+@Builder function overBuilder(param: Tmp) {
+  Column(){
+    Text(`wrapBuildervalue:${param.paramA2}`)
+  }
+}
+
+const wBuilder: WrappedBuilder<[Tmp]> = wrapBuilder(overBuilder);
+
+@Entry
+@Component
+struct Parent{
+  @State label: Tmp = new Tmp();
+  build(){
+    Column(){
+      wBuilder.builder({paramA2: this.label.paramA2})
+      Button('Click me').onClick(() => {
+        this.label.paramA2 = 'ArkUI';
+      })
+    }
+  }
+}
+```
 
 ## Incorrect Usage
 

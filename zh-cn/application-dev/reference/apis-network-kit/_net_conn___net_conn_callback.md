@@ -20,7 +20,7 @@
 | [onConnetionProperties](#onconnetionproperties) | 网络连接属性变更回调。 |
 | [onNetLost](#onnetlost) | 网络断开回调。 |
 | [onNetUnavailable](#onnetunavailable) | 网络不可用回调，在指定的超时时间内网络未激活时触发该回调，如果未设置超时时间则不会触发该回调。 |
-| [onNetBlockStatusChange](#onnetblockstatuschange) | 网络阻塞状态变更回调。 |
+
 
 ## 结构体成员变量说明
 
@@ -116,24 +116,3 @@ typedef void (*OH_NetConn_NetUnavailable)(void)
 **描述**
 
 网络不可用回调，在指定的超时时间内网络未激活时触发该回调，如果未设置超时时间则不会触发该回调。
-
-### onNetBlockStatusChange
-
-```
-typedef void (*OH_NetConn_NetBlockStatusChange)(NetConn_NetHandle *netHandle, bool blocked)
-```
-
-**描述**
-
-网络阻塞状态变更回调。
-
-**说明**
-
-回调结束后参数内存会自动释放，不应保存参数指针。
-
-**参数:**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| netHandle | 网络句柄 |
-| blocked | 指示网络是否将被阻塞的标志 |

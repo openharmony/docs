@@ -18,29 +18,17 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 ```json
 {
   "module": {
+    // ...
     "abilities": [
       {
-        "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ets",
-        "icon": "$media:icon",
-        "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
+        // ...
         "skills": [
           {
-            "entities": [
-              // entities须包含"entity.system.browsable"
-              "entity.system.browsable"
-            ],
-            "actions": [
-              // actions须包含"ohos.want.action.viewData"
-              "ohos.want.action.viewData"
-            ],
             "uris": [
               {
-                // scheme可以自定义
-                "scheme": "http",
-                // host须配置关联的域名
+                // scheme必选，可以自定义，以link为例，需要替换为实际的scheme
+                "scheme": "link",
+                // host必选，配置待匹配的域名
                 "host": "www.example.com",
                 // path可选，为了避免匹配到多个应用，建议配置该字段
                 "path": "path1"
@@ -85,7 +73,7 @@ struct Index {
       .margin({ bottom: '12vp' })
       .onClick(() => {
         let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-        let link: string = "http://www.example.com";
+        let link: string = "link://www.example.com";
         let openLinkOptions: OpenLinkOptions = {
           appLinkingOnly: false
         };
@@ -107,7 +95,7 @@ struct Index {
 
 ### 使用startAbility实现应用跳转
 
-startAbility接口是将应用链接放入want中，通过调用[隐式want匹配](explicit-implicit-want-mappings.md#隐式want匹配原理)的方法触发应用跳转。通过startAbility接口启动时，还需要自己传入待匹配的action和entity。
+[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口是将应用链接放入want中，通过调用[隐式want匹配](explicit-implicit-want-mappings.md#隐式want匹配原理)的方法触发应用跳转。通过[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口启动时，还需要自己传入待匹配的action和entity。
 
 
 示例代码如下：
@@ -132,7 +120,7 @@ struct Index {
       .onClick(() => {
         let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
         let want: Want = {
-            uri: "https://www.example.com"
+            uri: "link://www.example.com"
         };
 
         try {

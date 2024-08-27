@@ -1,16 +1,14 @@
-# Intra-Device Interaction Between UIAbility Components
+# Starting UIAbility in the Same Application
 
 
-UIAbility is the minimum unit that can be scheduled by the system. Redirection between functional modules in a device involves starting of specific UIAbility components, which belong to the same or a different application (for example, starting UIAbility of a third-party payment application).
+UIAbility is the minimum unit that can be scheduled by the system. Redirection between functional modules in a device involves starting of specific UIAbility components, which belong to the same or a different application (for example, starting the UIAbility of a third-party payment application).
 
 
-This topic describes the UIAbility interaction modes in the following scenarios.<!--Del--> For details about cross-device application component interaction, see [Inter-Device Application Component Interaction (Hopping)](inter-device-interaction-hop-overview.md).<!--DelEnd-->
+This topic describes how to start the UIAbility component that belongs to the same application. For details about component redirection between applications, see [Application Redirection](link-between-apps-overview.md). <!--Del-->For details about cross-device application component interaction, see [Inter-Device Application Component Interaction (Hopping)](inter-device-interaction-hop-overview.md).<!--DelEnd-->
 
 
 - [Starting UIAbility in the Same Application](#starting-uiability-in-the-same-application)
 - [Starting UIAbility in the Same Application and Obtaining the Return Result](#starting-uiability-in-the-same-application-and-obtaining-the-return-result)
-- [Starting UIAbility of Another Application](#starting-uiability-of-another-application)
-- [Starting UIAbility of Another Application and Obtaining the Return Result](#starting-uiability-of-another-application-and-obtaining-the-return-result)
 - [Starting a Specified Page of UIAbility](#starting-a-specified-page-of-uiability)
 <!--Del-->
 - [Starting UIAbility with Window Mode Specified (for System Applications Only)](#starting-uiability-with-window-mode-specified-for-system-applications-only)
@@ -92,9 +90,9 @@ Assume that your application has two UIAbility components: EntryAbility and Func
     }
     ```
 
-   > **NOTE**
-   >
-   > In FuncAbility started, you can obtain the PID and bundle name of the UIAbility through **parameters** in the passed **want** parameter.
+    > **NOTE**
+    >
+    > In FuncAbility started, you can obtain the PID and bundle name of the UIAbility through **parameters** in the passed **want** parameter.
 
 3. To stop the **UIAbility** instance after the FuncAbility service is not needed, call [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) in FuncAbility.
 
@@ -128,9 +126,9 @@ Assume that your application has two UIAbility components: EntryAbility and Func
     }
     ```
 
-   > **NOTE**
-   >
-   > When [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called to stop the **UIAbility** instance, the snapshot of the instance is retained by default. That is, the mission corresponding to the instance is still displayed in Recents. If you do not want to retain the snapshot, set **removeMissionAfterTerminate** under the [abilities](../quick-start/module-configuration-file.md#abilities) tag to **true** in the [module.json5 file](../quick-start/module-configuration-file.md) of the corresponding UIAbility.
+    > **NOTE**
+    >
+    > When [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called to stop the **UIAbility** instance, the snapshot of the instance is retained by default. That is, the mission corresponding to the instance is still displayed in Recents. If you do not want to retain the snapshot, set **removeMissionAfterTerminate** under the [abilities](../quick-start/module-configuration-file.md#abilities) tag to **true** in the [module.json5 file](../quick-start/module-configuration-file.md) of the corresponding UIAbility.
 
 4. To stop all UIAbility instances of the application, call [killAllProcesses()](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses) of [ApplicationContext](../reference/apis-ability-kit/js-apis-inner-application-applicationContext.md).
 
@@ -284,347 +282,6 @@ When starting FuncAbility from EntryAbility, you may want the result to be retur
                   abilityName: 'FuncAbilityA',
                   parameters: {
                     // Custom information.
-                    info: 'From UIAbilityComponentsInteractive of EntryAbility',
-                  }
-                };
-                context.startAbilityForResult(want).then((data) => {
-                  if (data?.resultCode === RESULT_CODE) {
-                    // Parse the information returned by the target UIAbility.
-                    let info = data.want?.parameters?.info;
-                    hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
-                    if (info !== null) {
-                      promptAction.showToast({
-                        message: JSON.stringify(info)
-                      });
-                    }
-                  }
-                  hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
-                }).catch((err: BusinessError) => {
-                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
-                });
-              })
-            }
-            //...
-          }
-          //...
-        }
-        //...
-      }
-    }
-    ```
-
-
-
-## Starting UIAbility of Another Application
-
-> **NOTE**
-> 
-> In API version 11 and earlier, you can use the explicit Want to start the UIAbility of another application.
-> Since API version 12, the explicit Want launch mode is no longer supported for inter-application redirection. You must use **openLink** to start the UIAbility of another application. For details, see [Switching from Explicit Want Redirection to Linking Redirection](uiability-startup-adjust.md).
-
-Generally, the user only needs to perform a general operation (for example, selecting a document application to view the document content) to start the UIAbility of another application. In this case, the [implicit Want launch mode](want-overview.md#types-of-want) is recommended. In this mode, the system identifies a matched UIAbility and starts it based on the **want** parameter of the initiator UIAbility.
-
-There are two ways to start **UIAbility**: [explicit and implicit](want-overview.md).
-
-- Explicit Want launch is used to start a determined UIAbility component of an application. You need to set **bundleName** and **abilityName** of the target application in the **want** parameter.
-
-- Implicit Want launch is used to start a UIAbility based on the matching conditions. That is, the UIAbility to start is not determined (the **abilityName** parameter is not specified). When [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, the **want** parameter specifies a series of parameters such as **entities** and **actions**. **entities** provides category information of the target UIAbility, such as the browser or video player. **actions** specifies the common operations to perform, such as viewing and sharing. Then the system analyzes the **want** parameter to find the right UIAbility to start. If you are not sure about whether the target application is installed and what **bundleName** and **abilityName** of the target application are, consider using implicit Want launch.
-
-The following example describes how to start the UIAbility of another application through implicit Want.
-
-1. Install multiple document applications on your device. In the [module.json5 file](../quick-start/module-configuration-file.md) of each UIAbility component, configure **entities** and **actions** under **skills**.
-
-    ```json
-    {
-      "module": {
-        "abilities": [
-          {
-            ...
-            "skills": [
-              {
-                "entities": [
-                  ...
-                  "entity.system.default"
-                ],
-                "actions": [
-                  ...
-                  "ohos.want.action.viewData"
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    }
-    ```
-
-2. Include **entities** and **actions** of the initiator UIAbility's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. After the system identifies the UIAbility instances that match the **entities** and **actions** information, a dialog box is displayed, showing the list of matching UIAbility instances for users to select. For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
-
-    ```ts
-    import { common, Want } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { BusinessError } from '@kit.BasicServicesKit';
-
-    const TAG: string = '[Page_UIAbilityComponentsInteractive]';
-    const DOMAIN_NUMBER: number = 0xFF00;
-
-    @Entry
-    @Component
-    struct Page_UIAbilityComponentsInteractive {
-      build() {
-        Column() {
-          //...
-          List({ initialIndex: 0 }) {
-            ListItem() {
-              Row() {
-                //...
-              }
-              .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-                let want: Want = {
-                  deviceId: '', // An empty deviceId indicates the local device.
-                  // Uncomment the line below if you want to implicitly query data only in the specific bundle.
-                  // bundleName: 'com.samples.stagemodelabilityinteraction',
-                  action: 'ohos.want.action.viewData',
-                  // entities can be omitted.
-                  entities: ['entity.system.default']
-                };
-                // context is the UIAbilityContext of the initiator UIAbility.
-                context.startAbility(want).then(() => {
-                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting FuncAbility.');
-                }).catch((err: BusinessError) => {
-                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start FuncAbility. Code is ${err.code}, message is ${err.message}`);
-                });
-              })
-            }
-            //...
-          }
-          //...
-        }
-        //...
-      }
-    }
-    ```
-
-   The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select the application to use.
-   
-   ![](figures/uiability-intra-device-interaction.png)
-
-3. To stop the **UIAbility** instance when the document application is not in use, call [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).
-
-    ```ts
-    import { common } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
-
-    const DOMAIN_NUMBER: number = 0xFF00;
-    const TAG: string = '[Page_FromStageModel]';
-
-    @Entry
-    @Component
-    struct Page_FromStageModel {
-      build() {
-        Column() {
-          //...
-          Button($r('app.string.FuncAbilityB'))
-            .onClick(() => {
-              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-              // context is the UIAbilityContext of the UIAbility instance to stop.
-              context.terminateSelf((err) => {
-                if (err.code) {
-                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
-                  return;
-                }
-              });
-            })
-        }
-        //...
-      }
-    }
-    ```
-
-
-
-## Starting UIAbility of Another Application and Obtaining the Return Result
-
-> **NOTE**
-> 
-> In API version 11 and earlier, you can use the explicit Want to start the UIAbility of another application.
-> Since API version 12, the explicit Want launch mode is no longer supported for inter-application redirection. You must use **openLink** to start the UIAbility of another application. For details, see [Switching from Explicit Want Redirection to Linking Redirection](uiability-startup-adjust.md).
-
-If you want to obtain the return result when using implicit Want to start the UIAbility of another application, use [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult). An example scenario is that your application needs to start a third-party payment application and obtain the payment result.
-
-1. In the [module.json5 file](../quick-start/module-configuration-file.md) of the UIAbility corresponding to the payment application, set **entities** and **actions** under **skills**.
-
-   ```json
-   {
-     "module": {
-       "abilities": [
-         {
-           ...
-           "skills": [
-             {
-               "entities": [
-                 ...
-                 "entity.system.default"
-               ],
-               "actions": [
-                 ...
-                 "ohos.want.action.editData"
-               ]
-             }
-           ]
-         }
-       ]
-     }
-   }
-   ```
-
-2. Call [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start the UIAbility of the payment application. Include **entities** and **actions** of the initiator UIAbility's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. Use **data** in the asynchronous callback to receive the information returned to the initiator UIAbility after the payment UIAbility stops itself. After the system identifies the UIAbility instances that match the **entities** and **actions** information, a dialog box is displayed, showing the list of matching UIAbility instances for users to select.
-
-    ```ts
-    import { common, Want } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
-    import { BusinessError } from '@kit.BasicServicesKit';
-
-    const TAG: string = '[Page_UIAbilityComponentsInteractive]';
-    const DOMAIN_NUMBER: number = 0xFF00;
-
-    @Entry
-    @Component
-    struct Page_UIAbilityComponentsInteractive {
-      build() {
-        Column() {
-          //...
-          List({ initialIndex: 0 }) {
-            ListItem() {
-              Row() {
-                //...
-              }
-              .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-                const RESULT_CODE: number = 1001;
-
-                let want: Want = {
-                  deviceId: '', // An empty deviceId indicates the local device.
-                  bundleName: '', // bundleName is optional for implicit matching.
-                  moduleName: '', // moduleName is optional.
-                  abilityName: '', // If abilityName is left blank, implicit matching is used.
-                  action: 'ohos.want.action.editData',
-                  parameters: {
-                    // Custom information.
-                    info: 'From UIAbilityComponentsInteractive of EntryAbility',
-                  }
-                };
-                context.startAbilityForResult(want).then((data) => {
-                  if (data?.resultCode === RESULT_CODE) {
-                    // Parse the information returned by the target UIAbility.
-                    let info = data.want?.parameters?.info;
-                    hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
-                    if (info !== null) {
-                      promptAction.showToast({
-                        message: JSON.stringify(info)
-                      });
-                    }
-                  }
-                  hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
-                }).catch((err: BusinessError) => {
-                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
-                });
-              })
-            }
-            //...
-          }
-          //...
-        }
-        //...
-      }
-    }
-    ```
-
-3. After the payment is finished, call [terminateSelfWithResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop the payment UIAbility and return the **abilityResult** parameter.
-
-    ```ts
-    import { common } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
-
-    const TAG: string = '[Page_FuncAbilityA]';
-    const DOMAIN_NUMBER: number = 0xFF00;
-
-    @Entry
-    @Component
-    struct Page_FuncAbilityA {
-      build() {
-        Column() {
-          //...
-          List({ initialIndex: 0 }) {
-            ListItem() {
-              Row() {
-                //...
-              }
-              .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-                const RESULT_CODE: number = 1001;
-                let abilityResult: common.AbilityResult = {
-                  resultCode: RESULT_CODE,
-                  want: {
-                    bundleName: 'com.samples.stagemodelabilitydevelop',
-                    moduleName: 'entry', // moduleName is optional.
-                    abilityName: 'FuncAbilityB',
-                    parameters: {
-                      info: 'From the Index page of FuncAbility',
-                    },
-                  },
-                };
-                context.terminateSelfWithResult(abilityResult, (err) => {
-                  if (err.code) {
-                    hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self with result. Code is ${err.code}, message is ${err.message}`);
-                    return;
-                  }
-                });
-              })
-            }
-            //...
-          }
-          //...
-        }
-        //...
-      }
-    }
-    ```
-
-4. Receive the information returned by the payment application in the callback of the [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) method. The value of **RESULT_CODE** must be the same as that returned by [terminateSelfWithResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult).
-
-    ```ts
-    import { common, Want } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
-    import { BusinessError } from '@kit.BasicServicesKit';
-
-    const TAG: string = '[Page_UIAbilityComponentsInteractive]';
-    const DOMAIN_NUMBER: number = 0xFF00;
-
-    @Entry
-    @Component
-    struct Page_UIAbilityComponentsInteractive {
-      build() {
-        Column() {
-          //...
-          List({ initialIndex: 0 }) {
-            ListItem() {
-              Row() {
-                //...
-              }
-              .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-                const RESULT_CODE: number = 1001;
-                let want: Want = {
-                  deviceId: '', // An empty deviceId indicates the local device.
-                  bundleName: '', // bundleName is optional for implicit matching.
-                  moduleName: '', // moduleName is optional.
-                  abilityName: '', // If abilityName is left blank, implicit matching is used.
-                  action: 'ohos.want.action.editData',
-                  parameters: { // Custom information.
                     info: 'From UIAbilityComponentsInteractive of EntryAbility',
                   }
                 };
@@ -828,7 +485,7 @@ The development procedure is as follows:
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import type { Router, UIContext } from '@kit.ArkUI';
     import type { BusinessError } from '@kit.BasicServicesKit';
-      
+   
     const DOMAIN_NUMBER: number = 0xFF00;
     const TAG: string = '[EntryAbility]';
 
@@ -1023,128 +680,128 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 3. Define the agreed parcelable data.
 
    The data formats sent and received by the CallerAbility and CalleeAbility must be consistent. In the following example, the data formats are number and string.
-   
-   
-       ```ts
-       import { rpc } from '@kit.IPCKit';
-       
-       class MyParcelable {
-         num: number = 0;
-         str: string = '';
-       
-         constructor(num: number, string: string) {
-           this.num = num;
-           this.str = string;
-         }
-       
-         mySequenceable(num: number, string: string): void {
-           this.num = num;
-           this.str = string;
-         }
-       
-         marshalling(messageSequence: rpc.MessageSequence): boolean {
-           messageSequence.writeInt(this.num);
-           messageSequence.writeString(this.str);
-           return true;
-         }
-       
-         unmarshalling(messageSequence: rpc.MessageSequence): boolean {
-           this.num = messageSequence.readInt();
-           this.str = messageSequence.readString();
-           return true;
-         }
-       }
-       ```
-   
+
+
+    ```ts
+    import { rpc } from '@kit.IPCKit';
+
+    class MyParcelable {
+      num: number = 0;
+      str: string = '';
+
+      constructor(num: number, string: string) {
+        this.num = num;
+        this.str = string;
+      }
+
+      mySequenceable(num: number, string: string): void {
+        this.num = num;
+        this.str = string;
+      }
+
+      marshalling(messageSequence: rpc.MessageSequence): boolean {
+        messageSequence.writeInt(this.num);
+        messageSequence.writeString(this.str);
+        return true;
+      }
+
+      unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+        this.num = messageSequence.readInt();
+        this.str = messageSequence.readString();
+        return true;
+      }
+    }
+    ```
+
 4. Implement **Callee.on** and **Callee.off**.
 
    The time to register a listener for the CalleeAbility depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the UIAbility and deregistered in **onDestroy**. After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
-   
-   
-          ```ts
-          import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
-          import { hilog } from '@kit.PerformanceAnalysisKit';
-          import { rpc } from '@kit.IPCKit';
-          
-          const MSG_SEND_METHOD: string = 'CallSendMsg';
-          const DOMAIN_NUMBER: number = 0xFF00;
-          const TAG: string = '[CalleeAbility]';
-          
-          class MyParcelable {
-            num: number = 0;
-            str: string = '';
-          
-            constructor(num: number, string: string) {
-              this.num = num;
-              this.str = string;
-            }
-          
-            mySequenceable(num: number, string: string): void {
-              this.num = num;
-              this.str = string;
-            }
-          
-            marshalling(messageSequence: rpc.MessageSequence): boolean {
-              messageSequence.writeInt(this.num);
-              messageSequence.writeString(this.str);
-              return true;
-            }
-          
-            unmarshalling(messageSequence: rpc.MessageSequence): boolean {
-              this.num = messageSequence.readInt();
-              this.str = messageSequence.readString();
-              return true;
-            }
+
+
+    ```ts
+    import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { rpc } from '@kit.IPCKit';
+
+    const MSG_SEND_METHOD: string = 'CallSendMsg';
+    const DOMAIN_NUMBER: number = 0xFF00;
+    const TAG: string = '[CalleeAbility]';
+
+    class MyParcelable {
+      num: number = 0;
+      str: string = '';
+
+      constructor(num: number, string: string) {
+        this.num = num;
+        this.str = string;
+      }
+
+      mySequenceable(num: number, string: string): void {
+        this.num = num;
+        this.str = string;
+      }
+
+      marshalling(messageSequence: rpc.MessageSequence): boolean {
+        messageSequence.writeInt(this.num);
+        messageSequence.writeString(this.str);
+        return true;
+      }
+
+      unmarshalling(messageSequence: rpc.MessageSequence): boolean {
+        this.num = messageSequence.readInt();
+        this.str = messageSequence.readString();
+        return true;
+      }
+    }
+
+    function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
+      hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'CalleeSortFunc called');
+
+      // Obtain the parcelable data sent by the CallerAbility.
+      let receivedData: MyParcelable = new MyParcelable(0, '');
+      data.readParcelable(receivedData);
+      hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `receiveData[${receivedData.num}, ${receivedData.str}]`);
+      let num: number = receivedData.num;
+
+      // Process the data.
+      // Return the parcelable data result to the CallerAbility.
+      return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
+    }
+
+    export default class CalleeAbility extends UIAbility {
+      caller: Caller | undefined;
+
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        try {
+          this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
+        } catch (error) {
+          hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
+        }
+      }
+
+      releaseCall(): void {
+        try {
+          if (this.caller) {
+            this.caller.release();
+            this.caller = undefined;
           }
-          
-          function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
-            hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'CalleeSortFunc called');
-          
-            // Obtain the parcelable data sent by the CallerAbility.
-            let receivedData: MyParcelable = new MyParcelable(0, '');
-            data.readParcelable(receivedData);
-            hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `receiveData[${receivedData.num}, ${receivedData.str}]`);
-            let num: number = receivedData.num;
-          
-            // Process the data.
-            // Return the parcelable data result to the CallerAbility.
-            return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
-          }
-          
-          export default class CalleeAbility extends UIAbility {
-            caller: Caller | undefined;
-          
-            onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-              try {
-                this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
-              } catch (error) {
-                hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
-              }
-            }
-          
-            releaseCall(): void {
-              try {
-                if (this.caller) {
-                  this.caller.release();
-                  this.caller = undefined;
-                }
-                hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'caller release succeed');
-              } catch (error) {
-                hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `caller release failed with ${error}`);
-              }
-            }
-          
-            onDestroy(): void {
-              try {
-                this.callee.off(MSG_SEND_METHOD);
-                hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Callee OnDestroy');
-                this.releaseCall();
-              } catch (error) {
-                hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
-              }
-            }
-          }
-          ```
+          hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'caller release succeed');
+        } catch (error) {
+          hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `caller release failed with ${error}`);
+        }
+      }
+
+      onDestroy(): void {
+        try {
+          this.callee.off(MSG_SEND_METHOD);
+          hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Callee OnDestroy');
+          this.releaseCall();
+        } catch (error) {
+          hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
+        }
+      }
+    }
+    ```
 
 
 ### Accessing the CalleeAbility
@@ -1158,88 +815,87 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 2. Obtain the caller interface.
 
    The **UIAbilityContext** attribute implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **UIAbilityContext**, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** listener of the CallerAbility. You need to implement processing based on service requirements.
-   
-   
-       ```ts
-       import { common, Want, Caller } from '@kit.AbilityKit';
-       import { hilog } from '@kit.PerformanceAnalysisKit';
-       import { promptAction } from '@kit.ArkUI';
-       import { BusinessError } from '@kit.BasicServicesKit';
-       
-       const TAG: string = '[Page_UIAbilityComponentsInteractive]';
-       const DOMAIN_NUMBER: number = 0xFF00;
-       
-       @Entry
-       @Component
-       struct Page_UIAbilityComponentsInteractive {
-         caller: Caller | undefined = undefined;
-       
-         // Register the onRelease() listener of the CallerAbility.
-         private regOnRelease(caller: Caller): void {
-           hilog.info(DOMAIN_NUMBER, TAG, `caller is ${caller}`);
-           try {
-             caller.on('release', (msg: string) => {
-               hilog.info(DOMAIN_NUMBER, TAG, `caller onRelease is called ${msg}`);
-             })
-             hilog.info(DOMAIN_NUMBER, TAG, 'succeeded in registering on release.');
-           } catch (err) {
-             let code = (err as BusinessError).code;
-             let message = (err as BusinessError).message;
-             hilog.error(DOMAIN_NUMBER, TAG, `Failed to caller register on release. Code is ${code}, message is ${message}`);
-           }
-         };
-       
-         build() {
-           Column() {
-             // ...
-             List({ initialIndex: 0 }) {
-               // ...
-               ListItem() {
-                 Row() {
-                   // ...
-                 }
-                 .onClick(() => {
-                   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-                   let want: Want = {
-                     bundleName: 'com.samples.stagemodelabilityinteraction',
-                     abilityName: 'CalleeAbility',
-                     parameters: {
-                       // Custom information.
-                       info: 'CallSendMsg'
-                     }
-                   };
-                   context.startAbilityByCall(want).then((caller: Caller) => {
-                     hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in starting ability.Code is ${caller}`);
-                     if (caller === undefined) {
-                       hilog.info(DOMAIN_NUMBER, TAG, 'get caller failed');
-                       return;
-                     }
-                     else {
-                       hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
-                       this.regOnRelease(caller);
-                       promptAction.showToast({
-                         message: $r('app.string.CallerSuccess')
-                       });
-                       try {
-                         caller.release();
-                       } catch (releaseErr) {
-                         console.log('Caller.release catch error, error.code: ' + JSON.stringify(releaseErr.code) +
-                           ' error.message: ' + JSON.stringify(releaseErr.message));
-                       }
-                     }
-                   }).catch((err: BusinessError) => {
-                     hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
-                   });
-                 })
-               }
-               // ...
-             }
-             // ...
-           }
-           // ...
-         }
-       }
-       ```
 
+
+    ```ts
+    import { common, Want, Caller } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+
+    @Entry
+    @Component
+    struct Page_UIAbilityComponentsInteractive {
+      caller: Caller | undefined = undefined;
+
+      // Register the onRelease() listener of the CallerAbility.
+      private regOnRelease(caller: Caller): void {
+        hilog.info(DOMAIN_NUMBER, TAG, `caller is ${caller}`);
+        try {
+          caller.on('release', (msg: string) => {
+            hilog.info(DOMAIN_NUMBER, TAG, `caller onRelease is called ${msg}`);
+          })
+          hilog.info(DOMAIN_NUMBER, TAG, 'succeeded in registering on release.');
+        } catch (err) {
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to caller register on release. Code is ${code}, message is ${message}`);
+        }
+      };
+
+      build() {
+        Column() {
+          // ...
+          List({ initialIndex: 0 }) {
+            // ...
+            ListItem() {
+              Row() {
+                // ...
+              }
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let want: Want = {
+                  bundleName: 'com.samples.stagemodelabilityinteraction',
+                  abilityName: 'CalleeAbility',
+                  parameters: {
+                    // Custom information.
+                    info: 'CallSendMsg'
+                  }
+                };
+                context.startAbilityByCall(want).then((caller: Caller) => {
+                  hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in starting ability.Code is ${caller}`);
+                  if (caller === undefined) {
+                    hilog.info(DOMAIN_NUMBER, TAG, 'get caller failed');
+                    return;
+                  }
+                  else {
+                    hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
+                    this.regOnRelease(caller);
+                    promptAction.showToast({
+                      message: $r('app.string.CallerSuccess')
+                    });
+                    try {
+                      caller.release();
+                    } catch (releaseErr) {
+                      console.log('Caller.release catch error, error.code: ' + JSON.stringify(releaseErr.code) +
+                        ' error.message: ' + JSON.stringify(releaseErr.message));
+                    }
+                  }
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+                });
+              })
+            }
+            // ...
+          }
+          // ...
+        }
+        // ...
+      }
+    }
+    ```
 <!--DelEnd-->
 

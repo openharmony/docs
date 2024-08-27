@@ -21,7 +21,7 @@ Network connection callbacks.
 | [onConnetionProperties](#onconnetionproperties) | Callback for network connection properties changed. |
 | [onNetLost](#onnetlost) | Callback for network lost. |
 | [onNetUnavailable](#onnetunavailable) | Callback for network unavailable, this function invoked while network can not be available in given timeout. |
-| [onNetBlockStatusChange](#onnetblockstatuschange) | Callback for network blocked status changed. |
+
 
 ## Member Variable Description
 
@@ -117,24 +117,3 @@ typedef void (*OH_NetConn_NetUnavailable)(void)
 **Description**
 
 Callback for network unavailable, this function invoked while network can not be available in given timeout.
-
-### onNetBlockStatusChange
-
-```
-typedef void (*OH_NetConn_NetBlockStatusChange)(NetConn_NetHandle *netHandle, bool blocked)
-```
-
-**Description**
-
-Callback for network blocked status changed.
-
-**Information**
-
-After the callback ends, the memory of the parameters will be automatically released, and the parameter pointers should not be saved.
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| netHandle | Network ID. |
-| blocked | The flag used to indicate whether the network will be blocked. |
