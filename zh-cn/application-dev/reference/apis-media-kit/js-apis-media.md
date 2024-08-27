@@ -767,6 +767,50 @@ let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight:
 player.setMediaSource(mediaSource, playStrategy);
 ```
 
+### setPlaybackStrategy<sup>12+</sup>
+
+setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
+
+设置播放策略，只能在initialized状态下调用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| strategy | [PlaybackStrategy](#playbackstrategy12) | 是   | 播放策略。 |
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit';
+
+let player = await media.createAVPlayer();
+let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
+player.fdSrc = fileDescriptor
+let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3,
+  preferredHdr: false, mutedMediaType: media.MediaType.MEDIA_TYPE_AUD};
+player.setPlaybackStrategy(playStrategy);
+```
+
 ### prepare<sup>9+</sup>
 
 prepare(callback: AsyncCallback\<void>): void
@@ -838,6 +882,51 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
+}, (err: BusinessError) => {
+  console.error('Failed to prepare,error message is :' + err.message)
+})
+```
+
+### setMediaMuted<sup>12+</sup>
+
+setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
+
+设置音频静音/取消音频静音。只能在prepared/playing/paused/completed状态下调用。仅支持设置mediaType为音频格式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| mediaType | [MediaType](#mediatype8) | 是   | 播放策略。 |
+| mediaType | boolean | 是   | 是否静音播放。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 准备播放的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ----------------------------------------- |
+| 401 | The parameter check failed. Return by promise. |
+| 5400102 | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.prepare().then(() => {
+  console.info('Succeeded in preparing');
+  avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true)
 }, (err: BusinessError) => {
   console.error('Failed to prepare,error message is :' + err.message)
 })
@@ -7445,6 +7534,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。 |
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。 |
+| mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
