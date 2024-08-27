@@ -1,4 +1,4 @@
-# 泛Sensor子系统变更说明
+# SensorService Kit变更说明
 
 ## cl.sensors.1 vibrator VibratePreset的count属性由必选变更为可选
 
@@ -8,7 +8,7 @@
 
 **变更原因**
 
-VibratePreset中的效果振动次数参数count作为必选参数对于开发者使用不便，即使设为1也必须要填写。
+VibratePreset中的振动次数参数count作为必选参数，即使设为1也必须要填写，对于开发者使用不便。
 
 **变更影响**
 
@@ -16,7 +16,19 @@ VibratePreset中的效果振动次数参数count作为必选参数对于开发�
 
 变更前：VibratePreset中的属性count为必选属性，必须设置。
 
+interface VibratePreset {
+    type: 'preset';
+    effectId: string;
+    count: number;
+}
+
 变更后：VibratePreset中的属性count变更为可选属性，默认值为1。
+
+interface VibratePreset {
+    type: 'preset';
+    effectId: string;
+    count?: number;
+}
 
 **起始API Level**
 
@@ -32,4 +44,17 @@ VibratePreset中的效果振动次数参数count作为必选参数对于开发�
 
 **适配指导**
 
-VibratePreset中的效果振动次数属性count变更为可选参数，如果开发者对改属性的类型存在依赖，需进行适配。
+VibratePreset中的效果振动次数属性count变更为可选参数，如果开发者对改属性的类型存在依赖，需进行适配。比如，
+变更前：count的类型为number。
+interface VibratePreset {
+    type: 'preset';
+    effectId: string;
+    count: number;
+}
+
+变更后：count的类型为number | undefined。
+interface VibratePreset {
+    type: 'preset';
+    effectId: string;
+    count?: number;
+}
