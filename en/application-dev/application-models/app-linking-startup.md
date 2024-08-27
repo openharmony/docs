@@ -148,17 +148,17 @@ The **openLink** API provides two methods for starting the target application.
 
   - Method 1: Open the application only in App Linking mode.
     
-    In this mode, **appLinkingOnly** is set to **true**. If a matching application is found, that application is directly opened. If no application matches, an exception is thrown. 
+    In this mode, **appLinkingOnly** is set to **true**. If a matching application is found, that application is directly opened. If no application matches, an exception is thrown.
     
   - Method 2: Open the application preferentially in App Linking mode.
 
-     In this mode, **appLinkingOnly** is set to **false** or uses the default value. App Linking is preferentially used to start the target application. If a matching application is found, that application is directly opened. If no application matches, the system attempts to open the application in Deep Linking mode.
+    In this mode, **appLinkingOnly** is set to **false** or uses the default value. App Linking is preferentially used to start the target application. If a matching application is found, that application is directly opened. If no application matches, the system attempts to open the application in Deep Linking mode.
 
 This section describes method 1, in order to check whether the App Linking configuration is correct. The following is an example.
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -193,20 +193,20 @@ If the target application is started, the App Linking configuration of the targe
 
    Ensure that the value of **host** is the domain name of the application.
 
-1. What should I do when the developer website server is incorrectly configured?
+2. What should I do when the developer website server is incorrectly configured?
 
    * Check the JSON configuration of the server and ensure that the value of **appIdentifier** is correct.
    * Check whether the **applinking.json** file is stored in the correct directory (**.well-known**). Use a browser to access the JSON file address https://*your.domain.name*/.well-known/applinking.json and ensure that the file is accessible.
 
-1. What should I do when the system has not verified the domain name?
+3. What should I do when the system has not verified the domain name?
 
    After installing the application on the device, wait for at least 20 seconds to ensure that asynchronous verification is complete.
 
-1. What is the mapping between applications and domain names?
+4. What is the mapping between applications and domain names?
 
    They are in a many-to-many relationship. An application can be associated with multiple domain names, and a domain name can be associated with multiple applications.
 
-1. If a domain name is associated with multiple applications, which application will be started by domain name?
+5. If a domain name is associated with multiple applications, which application will be started by domain name?
 
    You can configure the **applinking.json** file to associate a domain name with multiple applications. If the **uris** field in the **module.json5** file of each application is set to the same value, the system displays a dialog box for users to select the application to start.
    

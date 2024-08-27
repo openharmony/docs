@@ -22,9 +22,9 @@ import { InsightIntentExecutor } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [InsightIntentContext](js-apis-app-ability-insightIntentContext.md) | No| Yes| InsightIntent call execution context.|
+| context | [InsightIntentContext](js-apis-app-ability-insightIntentContext.md) | No| No| InsightIntent call execution context.|
 
 ## InsightIntentExecutor.onExecuteInUIAbilityForegroundMode
 

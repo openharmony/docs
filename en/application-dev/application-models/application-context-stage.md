@@ -26,10 +26,10 @@
       }
     }
     ```
-    
+     
      > **NOTE**
      >
-     > For details about how to obtain the context of a **UIAbility** instance on the page, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+     > For details about how to obtain the context of a **UIAbility** instance on the page, see [Obtaining the Context of UIAbility](./uiability-usage.md#obtaining-the-context-of-uiability).
   - Scenario-specific [ExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-extensionContext.md): For example, ServiceExtensionContext, inherited from ExtensionContext, provides APIs related to background services.
     
     ```ts
@@ -114,27 +114,38 @@ The application file paths obtained by the preceding contexts are different.
     private context = getContext(this) as common.UIAbilityContext;
 
     build() {
-      //...
-      Button()
-        .onClick(() => {
-          let applicationContext = this.context.getApplicationContext();
-          let cacheDir = applicationContext.cacheDir;
-          let tempDir = applicationContext.tempDir;
-          let filesDir = applicationContext.filesDir;
-          let databaseDir = applicationContext.databaseDir;
-          let bundleCodeDir = applicationContext.bundleCodeDir;
-          let distributedFilesDir = applicationContext.distributedFilesDir;
-          let preferencesDir = applicationContext.preferencesDir;
-          let cloudFileDir = applicationContext.cloudFileDir;
-          // Obtain the application file path.
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-            message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let applicationContext = this.context.getApplicationContext();
+              let cacheDir = applicationContext.cacheDir;
+              let tempDir = applicationContext.tempDir;
+              let filesDir = applicationContext.filesDir;
+              let databaseDir = applicationContext.databaseDir;
+              let bundleCodeDir = applicationContext.bundleCodeDir;
+              let distributedFilesDir = applicationContext.distributedFilesDir;
+              let preferencesDir = applicationContext.preferencesDir;
+              let cloudFileDir = applicationContext.cloudFileDir;
+              // Obtain the application file path.
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -168,26 +179,37 @@ The application file paths obtained by the preceding contexts are different.
     private context = getContext(this) as common.UIAbilityContext;
 
     build() {
-      //...
-      Button()
-        .onClick(() => {
-          let cacheDir = this.context.cacheDir;
-          let tempDir = this.context.tempDir;
-          let filesDir = this.context.filesDir;
-          let databaseDir = this.context.databaseDir;
-          let bundleCodeDir = this.context.bundleCodeDir;
-          let distributedFilesDir = this.context.distributedFilesDir;
-          let preferencesDir = this.context.preferencesDir;
-          let cloudFileDir = this.context.cloudFileDir;
-          // Obtain the application file path.
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-              message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let cacheDir = this.context.cacheDir;
+              let tempDir = this.context.tempDir;
+              let filesDir = this.context.filesDir;
+              let databaseDir = this.context.databaseDir;
+              let bundleCodeDir = this.context.bundleCodeDir;
+              let distributedFilesDir = this.context.distributedFilesDir;
+              let preferencesDir = this.context.preferencesDir;
+              let cloudFileDir = this.context.cloudFileDir;
+              // Obtain the application file path.
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -245,13 +267,13 @@ struct Page_Context {
       Button()
         .onClick(() => {
           // Before storing common information, switch the encryption level to EL1.
-          if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
-            this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
+          if (this.context.area === contextConstant.AreaMode.EL2) { // »ñÈ¡area
+            this.context.area = contextConstant.AreaMode.EL1; // ÐÞ¸Äarea
             promptAction.showToast({
               message: 'SwitchToEL1'
             });
           }
-          // Store sensitive information.
+          // Store common information.
         })
     }
   }
@@ -262,7 +284,7 @@ struct Page_Context {
 ### Obtaining the Context of Other Modules in the Current Application
 
 Call **createModuleContext(moduleName:string)** to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
-
+  
   ```ts
   import { common } from '@kit.AbilityKit';
   import { promptAction } from '@kit.ArkUI';
@@ -301,7 +323,7 @@ In the DFX statistics scenario of an application, if you need to collect statist
 import { AbilityConstant, AbilityLifecycleCallback, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
-import  { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[LifecycleAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -363,9 +385,10 @@ export default class LifecycleAbility extends UIAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
-    };
+    }
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
+
   //...
   onDestroy(): void {
     // Obtain the application context.
@@ -377,7 +400,7 @@ export default class LifecycleAbility extends UIAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
-    };
+    }
   }
 }
 ```

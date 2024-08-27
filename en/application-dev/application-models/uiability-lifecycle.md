@@ -62,24 +62,25 @@ export default class EntryAbility extends UIAbility {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // Switch to the foreground.
-            console.info('windowStage foreground.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage foreground.');
             break;
           case window.WindowStageEventType.ACTIVE: // Gain focus.
-            console.info('windowStage active.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage active.');
             break;
           case window.WindowStageEventType.INACTIVE: // Lose focus.
-            console.info('windowStage inactive.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage inactive.');
             break;
           case window.WindowStageEventType.HIDDEN: // Switch to the background.
-            console.info('windowStage background.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage background.');
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      console.error('Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
+      hilog.error(DOMAIN_NUMBER, TAG, 'Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
     }
+    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
     // Set the page to be loaded.
     windowStage.loadContent('pages/Index', (err, data) => {
       // ...
@@ -129,7 +130,6 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ### WindowStageWillDestroy
-
 The **onWindowStageWillDestroy()** callback is invoked before the window stage is destroyed. In this case, the window stage can still be used.
 
 ```ts

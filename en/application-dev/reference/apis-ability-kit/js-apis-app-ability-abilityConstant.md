@@ -20,11 +20,11 @@ Defines the parameters for starting an ability. The parameter values are automat
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#abilityconstantlaunchreason)| No| Yes| Ability launch reason, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | No| Yes| Reason for the last exit, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| lastExitMessage<sup>12+</sup> | string | No| Yes| Reason for the last exit.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| launchReason | [LaunchReason](#abilityconstantlaunchreason)| No| No| Ability launch reason, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | No| No| Reason for the last exit, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lastExitMessage<sup>12+</sup> | string | No| No| Reason for the last exit.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## AbilityConstant.LaunchReason
 

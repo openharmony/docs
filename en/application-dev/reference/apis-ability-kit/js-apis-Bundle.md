@@ -19,7 +19,7 @@ import bundle from '@ohos.bundle';
 | ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about a specified bundle. |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all bundles.    |
 
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## bundle.getApplicationInfo<sup>deprecated<sup>
 

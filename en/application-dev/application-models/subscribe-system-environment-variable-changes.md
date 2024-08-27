@@ -19,76 +19,88 @@ You can subscribe to system environment variable changes in the following ways:
 
 1. Call **ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)** to subscribe to changes in system environment variables. The code snippet below is used to subscribe to system language changes on a page.
 
-     ```ts
-     import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
-     import { hilog } from '@kit.PerformanceAnalysisKit';
-     import { BusinessError } from '@kit.BasicServicesKit';
-   
-     const TAG: string = '[CollaborateAbility]';
-     const DOMAIN_NUMBER: number = 0xFF00;
-   
-     @Entry
-     @Component
-     struct Index {
-       private context = getContext(this) as common.UIAbilityContext;
-       private callbackId: number = 0; // ID of the subscription for system environment variable changes.
-   
-       subscribeConfigurationUpdate(): void {
-         let systemLanguage: string | undefined = this.context.config.language; // Obtain the system language in use.
-   
-         // 1. Obtain an ApplicationContext object.
-         let applicationContext = this.context.getApplicationContext();
-   
-         // 2. Subscribe to system environment variable changes through ApplicationContext.
-         let environmentCallback: EnvironmentCallback = {
-           onConfigurationUpdated(newConfig: Configuration) {
-             hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
-             if (this.systemLanguage !== newConfig.language) {
-               hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
-               systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
-             }
-           },
-           onMemoryLevel(level) {
-             hilog.info(DOMAIN_NUMBER, TAG, `onMemoryLevel level: ${level}`);
-           }
-         }
-         try {
-           this.callbackId = applicationContext.on('environment', environmentCallback);
-         } catch (err) {
-           let code = (err as BusinessError).code;
-           let message = (err as BusinessError).message;
-           hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
-         };
-       }
-   
-       // Page display.
-       build() {
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    const TAG: string = '[CollaborateAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+
+    @Entry
+    @Component
+    struct Index {
+      private context = getContext(this) as common.UIAbilityContext;
+      private callbackId: number = 0; // ID of the subscription for system environment variable changes.
+
+      subscribeConfigurationUpdate(): void {
+        let systemLanguage: string | undefined = this.context.config.language; // Obtain the system language in use.
+
+        // 1. Obtain an ApplicationContext object.
+        let applicationContext = this.context.getApplicationContext();
+
+        // 2. Subscribe to system environment variable changes through ApplicationContext.
+        let environmentCallback: EnvironmentCallback = {
+          onConfigurationUpdated(newConfig: Configuration) {
+            hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
+            if (this.systemLanguage !== newConfig.language) {
+              hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
+              systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
+            }
+          },
+          onMemoryLevel(level) {
+            hilog.info(DOMAIN_NUMBER, TAG, `onMemoryLevel level: ${level}`);
+          }
+        }
+        try {
+          this.callbackId = applicationContext.on('environment', environmentCallback);
+        } catch (err) {
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
+        }
+      }
+
+      // Page display.
+      build() {
+        //...
+      }
+    }
+    ```
 
 2. Call **ApplicationContext.off(type: 'environment', callbackId: number)** to release the resources.
 
-     ```ts
-     import { common } from '@kit.AbilityKit';
-   
-     @Entry
-     @Component
-     struct Index {
-       private context = getContext(this) as common.UIAbilityContext;
-       private callbackId: number = 0; // ID of the subscription for system environment variable changes.
-   
-       unsubscribeConfigurationUpdate() {
-         let applicationContext = this.context.getApplicationContext();
-           applicationContext.off('environment', this.callbackId);
-         }
-       // Page display.
-       build() {
-         //...
-       }
-     }
-     ```
+    ```ts
+    import { common } from '@kit.AbilityKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    const TAG: string = '[CollaborateAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+
+    @Entry
+    @Component
+    struct Index {
+      private context = getContext(this) as common.UIAbilityContext;
+      private callbackId: number = 0; // ID of the subscription for system environment variable changes.
+
+      unsubscribeConfigurationUpdate() {
+        let applicationContext = this.context.getApplicationContext();
+        try {
+          applicationContext.off('environment', this.callbackId);
+        } catch (err) {
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
+        }
+      }
+
+      // Page display.
+      build() {
+        //...
+      }
+    }
+    ```
 
 ## Using AbilityStage for Subscription
 
@@ -162,7 +174,6 @@ export default class EntryAbility extends UIAbility {
       systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
     }
   }
-
   // ...
 }
 ```

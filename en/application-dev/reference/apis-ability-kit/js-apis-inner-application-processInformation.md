@@ -4,7 +4,7 @@ The **ProcessInformation** module defines the running information of a process.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 
 ## Modules to Import
 
@@ -16,14 +16,14 @@ import { appManager } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Type | Read-Only | Mandatory | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | No | Yes | Process ID. |
-| uid | number | No | Yes | User ID. |
-| processName | string | No | Yes | Process name. |
-| bundleNames | Array&lt;string&gt; | No | Yes | Names of all running bundles in the process. |
-| state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10)| No | Yes | Running status of the process.|
-| bundleType<sup>12+</sup> | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype) | No | Yes | Type of the bundle running in the process. |
+| pid | number | No| No| Process ID. |
+| uid | number | No| No| User ID. |
+| processName | string | No| No| Process name. |
+| bundleNames | Array&lt;string&gt; | No| No| Names of all running bundles in the process. |
+| state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10)| No| No| Running status of the process. |
+| bundleType<sup>12+</sup> | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype) | No| No| Type of the bundle running in the process. |
 
 ## How to Use
 
