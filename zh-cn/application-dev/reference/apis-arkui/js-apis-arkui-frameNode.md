@@ -2655,6 +2655,47 @@ createNode(context: UIContext, nodeType: 'TextArea'): TextArea
 typeNode.createNode(uiContext, 'TextArea');
 ```
 
+### SymbolGlyph<sup>13+</sup>
+type SymbolGlyph = TypedFrameNode&lt;SymbolGlyphInterface, SymbolGlyphAttribute&gt;
+
+SymbolGlyph类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;SymbolGlyphInterface, SymbolGlyphAttribute&gt; | 提供SymbolGlyph类型FrameNode节点。<br/>**说明：**<br/> SymbolGlyphInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为SymbolGlyph组件的构造函数类型。 <br/> SymbolGlyphAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回SymbolGlyph组件的属性设置对象。 |
+
+### createNode('SymbolGlyph')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
+
+创建SymbolGlyph类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'SymbolGlyph' | 是 | 创建SymbolGlyph类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [SymbolGlyph](#symbolglyph13) | SymbolGlyph类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'SymbolGlyph');
+```
+
 ## NodeAdapter<sup>12+</sup>
 
 NodeAdapter提供FrameNode的数据懒加载能力。
