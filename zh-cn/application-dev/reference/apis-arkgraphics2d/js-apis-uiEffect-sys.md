@@ -204,6 +204,17 @@ let blender : uiEffect.BrightnessBlender =
 visualEffect.backgroundColorBlender(blender)
 ```
 
+## Blender
+混合器类型，用于描述混合效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+| 类型                          | 说明                                               |
+| ----------------------------- | ------------------------------------------------- |
+| [BrightnessBlender](#visualeffect) | 具有提亮效果的混合器。 |
+
 ## BrightnessBlender
 提亮混合器，用于将提亮效果添加到指定的组件上。在调用BrightnessBlender前，需要先通过[createBrightnessBlender](#uieffectcreatebrightnessblender)创建一个BrightnessBlender实例。
 
