@@ -2488,7 +2488,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 **错误码：**
 
-入参错误会导致promise对象创建失败，需要从外部捕获。
+除了参数个数错误和数据类型错误外，传入数组中含有不支持的Pattern枚举值也会导致401错误。401错误会导致promise对象创建失败，需要从外部捕获。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
