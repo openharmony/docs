@@ -6,12 +6,15 @@ The menu bound to a component through [bindContextMenu](./ts-universal-attribute
 >
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-
 ## ContextMenu.close
 
-|Name|Description|
-|----|---|
-| close() | Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu8) on a page.|
+static close()
+
+Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu8) on a page.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 ## Example

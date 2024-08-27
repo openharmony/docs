@@ -1,6 +1,6 @@
 # Hyperlink
 
-The **\<Hyperlink>** component implements a link from a location in the component to another location.
+The **Hyperlink** component implements a link from a location in the component to another location.
 
 >  **NOTE**
 >
@@ -13,11 +13,15 @@ If Internet access is required, you need to apply for the **ohos.permission.INTE
 
 ## Child Components
 
-This component can contain the [\<Image>](ts-basic-components-image.md) child component.
+This component can contain the [Image](ts-basic-components-image.md) child component.
 
 ## APIs
 
 Hyperlink(address: string | Resource, content?: string | Resource)
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -35,6 +39,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 color(value: Color | number | string | Resource)
 
 Sets the color of the hyperlink text.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

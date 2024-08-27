@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ProgressButton (Download Button with Progress Indicator)
+# ProgressButton
 
 
 The download button with progress indicator is a component that shows the download progress.
@@ -12,7 +12,7 @@ The download button with progress indicator is a component that shows the downlo
 ## Modules to Import
 
 ```
-import { ProgressButton } from '@ohos.arkui.advanced.ProgressButton'
+import { ProgressButton } from '@kit.ArkUI'
 ```
 
 ## Attributes
@@ -44,7 +44,8 @@ The [universal events](ts-universal-events-click.md) are supported.
 ## Example
 
 ```ts
-import { ProgressButton } from '@ohos.arkui.advanced.ProgressButton'
+import { ProgressButton } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
@@ -61,7 +62,7 @@ struct Index {
   @State isEnd: boolean = false
   build() {
     Column({space: 20}) {
-      Text ('Download button with progress indicator')
+      Text('Download button with progress indicator')
       Button(this.buttonText)
         .fontSize($r('sys.float.ohos_id_text_size_button3'))
         .fontWeight(FontWeight.Medium)

@@ -1,7 +1,7 @@
-# @ohos.arkui.advanced.ToolBar (Toolbar)
+# ToolBar
 
 
-The **\<Toolbar>** component is used to host a set of action options related to the current screen, displayed at the bottom of the screen. It can display five child components. When there are six or more child components, the first four are displayed and the others are moved to the **More** option on the toolbar.
+The **Toolbar** component is used to host a set of action options related to the current screen, displayed at the bottom of the screen. It can display five child components. When there are six or more child components, the first four are displayed and the others are moved to the **More** option on the toolbar.
 
 
 > **NOTE**
@@ -12,7 +12,7 @@ The **\<Toolbar>** component is used to host a set of action options related to 
 ## Modules to Import
 
 ```
-import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
+import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
 ```
 
 
@@ -29,6 +29,8 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **Decorator**: @Component
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -39,8 +41,15 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | activateIndex | number | No| @Prop       | Index of the active option.<br>Default value: **1**| 
 | controller | [TabsController](ts-container-tabs.md#tabscontroller) | Yes| -           | Style of the filter.          | 
 
-
 ## ToolBarOptions
+
+Inherits from **Array<[ToolBarOption](#toolbaroption)>**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+## ToolBarOption
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
@@ -49,8 +58,9 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | icon | [Resource](ts-types.md#resource) | No| Icon of the toolbar option.| 
 | state | [ItemState](#itemstate) | No| Status of the toolbar option.<br>Default value: **ENABLE**| 
 
-
 ## ItemState
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Value| Description| 
 | -------- | -------- | -------- |
@@ -64,7 +74,7 @@ The [universal events](ts-universal-events-click.md) are supported.
 ## Example
 
 ```ts
-import { ToolBar, ToolBarOptions } from '@ohos.arkui.advanced.ToolBar'
+import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
 
 enum ItemState {
   ENABLE = 1,
