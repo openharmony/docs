@@ -2472,6 +2472,40 @@ async Demo() {
 }
 ```
 
+### setTransferDetached<sup>12+<sup>
+
+setTransferDetached(detached: boolean): void
+
+pixelmap在跨线程传输时，断开原线程的引用。适用于需立即释放pixelmap的场景。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型               | 必填 | 说明                          |
+| ------- | ------------------ | ---- | ----------------------------- |
+| detached | boolean   | 是   | 是否断开原线程引用                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  if (pixelMap != undefined) {
+    pixelMap.setTransferDetached(true);
+  }
+}
+```
+
 ### marshalling<sup>10+</sup>
 
 marshalling(sequence: rpc.MessageSequence): void
