@@ -240,9 +240,11 @@
       <!--DelEnd-->
 - C API
   - 模块
+    - [AbilityAccessControl](_ability_access_control.md)
     - [Bundle](_bundle.md)
     - [ChildProcess](c-apis-ability-childprocess.md)
   - 头文件
+    - [ability_access_control.h](ability__access__control_8h.md)
     - [native_interface_bundle.h](native__interface__bundle.md)
     - [native_child_process.h](native__child__process_8h.md)
   - 结构体
