@@ -2451,10 +2451,10 @@ try {
     console.error('Failed to set UnifiedData. Cause:' + err.message);
 };  
 ```
-### Pattern<sup>12+</sup>
+### Pattern<sup>13+</sup>
 剪贴板可以检测的特定模式。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2464,7 +2464,7 @@ try {
 | NUMBER                        | 1   | 表示数字类型的模式。                                                    |
 | EMAIL_ADDRESS | 2   | 表示邮箱地址类型的模式。 |
 
-### detectPatterns<sup>12+</sup>
+### detectPatterns<sup>13+</sup>
 
 detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&gt;
 
@@ -2472,13 +2472,13 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| patterns | [Array&lt;Pattern&gt;>](#pattern12) | 是 | 	用户希望检测的模式。 |
+| patterns | [Array&lt;Pattern&gt;>](#pattern13) | 是 | 	用户希望检测的模式。 |
 
 **返回值：**
 
@@ -2488,7 +2488,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。入参错误会导致promise对象创建失败。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
