@@ -4305,7 +4305,7 @@
 
 **权限级别**：system_core
 
-**授权方式**：user_grant
+**授权方式**：system_grant
 
 **ACL使能**：true
 
