@@ -445,7 +445,7 @@ Scroll滚动前触发的回调。
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | xOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
 | yOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               | 
+| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               |
 | scrollSource | [ScrollSource](ts-appendix-enums.md#scrollsource12枚举说明) | 是 | 当前滚动操作的来源。 |
 
 **返回值：** 
@@ -682,6 +682,45 @@ getItemRect(index: number): RectResult
 | 类型       | 说明       |
 | -------------------  | -------- |
 | [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
+### getItemIndex<sup>13+</sup>
+
+getItemIndex(x: number, y: number): number
+
+通过坐标获取子组件的索引。
+
+>  **说明：**
+>
+>  支持List、Grid、WaterFlow组件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填   | 说明              |
+| ----- | ------ | ---- | ----------------- |
+| x | number | 是    | x轴坐标，单位为vp。 |
+| y | number | 是 | y轴坐标，单位为vp。 |
+
+> **说明：**
+>
+> 非法值返回的索引为-1。
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+| number | 返回子组件的索引，单位：vp。 |
 
 **错误码**：
 
@@ -1123,3 +1162,72 @@ struct ScrollExample {
 ```
 
 ![ScrollEdgeAtVelocity](figures/ScrollEdgeAtVelocity.gif)
+### 示例7
+该示例展示了如何获得List组件的子组件索引
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListExample {
+  private arr: number[] = []
+  private scroller: ListScroller = new ListScroller()
+  @State listSpace: number = 10
+  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100)
+  @State listIndex: number = -1
+  @State mess:string = "null"
+  @State itemBackgroundColorArr: boolean[] = [false]
+  aboutToAppear(){
+    // 初始化数据源。
+    for (let i = 0; i < 10; i++) {
+      this.arr.push(i)
+    }
+    this.listChildrenSize.splice(0, 5, [100, 100, 100, 100, 100])
+  }
+  build() {
+    Column() {
+      List({ space: this.listSpace, initialIndex: 4, scroller: this.scroller }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('item-' + item)
+              .height( item < 5 ? 100 : this.listChildrenSize.childDefaultSize)
+              .width('90%')
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor( this.itemBackgroundColorArr[item] ? 0x68B4FF: 0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .backgroundColor(Color.Gray)
+      .layoutWeight(1)
+      .scrollBar(BarState.On)
+      .childrenMainSize(this.listChildrenSize)
+      .alignListItem(ListItemAlign.Center)
+      .gesture(
+        PanGesture()
+          .onActionUpdate((event: GestureEvent) => {
+            if (event.fingerList[0] != undefined && event.fingerList[0].localX != undefined && event.fingerList[0].localY != undefined) {
+              this.listIndex = this.scroller.getItemIndex(event.fingerList[0].localX, event.fingerList[0].localY)
+              this.itemBackgroundColorArr[this.listIndex] = true;
+            }
+          })
+      )
+      .gesture(
+        TapGesture({ count: 1 })
+          .onAction((event: GestureEvent) => {
+            if (event) {
+              this.itemBackgroundColorArr.splice(0,this.itemBackgroundColorArr.length);
+            }
+          })
+      )
+
+      Text('您当前位置Item索引为：'+ this.listIndex)
+        .fontColor(Color.Red)
+        .height(50)
+    }
+  }
+}
+```
+
+![ScrollEdgeAtVelocity](figures/getItemIndex_list.gif)
