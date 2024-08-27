@@ -1964,7 +1964,7 @@ forceDisplayScrollBar(enabled: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController()
 
     build() {
       Column() {
