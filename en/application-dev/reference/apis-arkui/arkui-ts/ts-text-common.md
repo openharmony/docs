@@ -1,4 +1,4 @@
-# Common Text Component APIs
+# Text Component Common APIs
 
 >**NOTE**
 >

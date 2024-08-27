@@ -45,7 +45,7 @@ Defines the type and style parameters of the counter.
 | Name       | Type      | Mandatory       | Description                           |
 | ----------- | ---------- | ------| --------------------------------- |
 | type | [CounterType](#countertype) | Yes  | Type of the current counter.|
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Auto**|
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | No| Layout direction.<br>Default value: **Direction.Auto**|
 | numberOptions | [NumberStyleOptions](#numberstyleoptions) | No   | Parameters of the number style counter.|
 | inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | No| Parameters of the inline number style counter.|
 | dateOptions | [DateStyleOptions](#datestyleoptions) | No| Parameters of the inline date style counter.|
