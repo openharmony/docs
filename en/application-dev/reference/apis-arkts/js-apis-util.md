@@ -22,28 +22,28 @@ Formats a string by replacing the placeholders in it.
 
 **Parameters**
 
-| Name | Type    | Mandatory | Description          |
+| Name | Type    | Mandatory| Description          |
 | ------- | -------- | ---- | -------------- |
-| format  | string   | Yes  | Format string. This string contains zero or more placeholders, which specify the position and format of the arguments to be inserted. |
+| format  | string   | Yes  | Format string. This string contains zero or more placeholders, which specify the position and format of the arguments to be inserted.|
 | ...args | Object[] | No  | Data used to replace the placeholders in **format**. If **null** is passed in, the first argument is returned by default.|
 
 **Return value**
 
 | Type  | Description             |
 | ------ | -----------------|
-| string | Formatted string. |
+| string | Formatted string.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Format Specifiers**
 
-| Specifier | Description                         |
+| Specifier| Description                         |
 | ------ | -------------------------------- |
 | %s     | Converts a parameter into a string for all values except **Object**, **BigInt**, and **-0**.|
 | %d     | Converts a parameter into a decimal integer for all values except **Symbol** and **BigInt**.|
@@ -131,21 +131,21 @@ Obtains detailed information about a system error code.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                      |
+| Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| errno  | number | Yes  | Error code generated. |
+| errno  | number | Yes  | Error code generated.|
 
 **Return value**
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| string | Detailed information about the error code. |
+| string | Detailed information about the error code.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -159,7 +159,7 @@ console.info("result = " + result);
 
 **Some error code and message examples**
 
-| Error Code | Message                             |
+| Error Code| Message                             |
 | ------ | -------------------------------- |
 | -1     | operation not permitted          |
 | -2     | no such file or directory        |
@@ -181,21 +181,21 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| original | Function | Yes | Asynchronous function. |
+| original | Function | Yes| Asynchronous function.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Function | Callback function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value. |
+| Function | Callback function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -222,21 +222,21 @@ Processes an asynchronous function and returns a promise.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| original | Function | Yes | Function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value. |
+| original | Function | Yes| Function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value. |
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Function | Promise function. |
+| Function | Promise function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -267,21 +267,21 @@ Uses a secure random number generator to generate a random universally unique id
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | No | Whether a cached UUID can be used. The default value is **true**. |
+| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | A string representing the UUID generated. |
+| string | A string representing the UUID generated.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -303,21 +303,21 @@ Uses a secure random number generator to generate a random UUID of the Uint8Arra
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | No | Whether a cached UUID can be used. The default value is **true**. |
+| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Uint8Array | A Uint8Array value representing the UUID generated. |
+| Uint8Array | A Uint8Array value representing the UUID generated.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -326,8 +326,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 let uuid = util.generateRandomBinaryUUID(true);
 console.info(JSON.stringify(uuid));
-// Output:
-// 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
+// Output a random UUID.
 ```
 
 ## util.parseUUID<sup>9+</sup>
@@ -340,21 +339,21 @@ Converts a UUID of the string type generated by **generateRandomUUID** to a UUID
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uuid | string | Yes | A string representing the UUID. |
+| uuid | string | Yes| A string representing the UUID.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Uint8Array | A Uint8Array value representing the UUID parsed. If the parsing fails, **SyntaxError** is thrown. |
+| Uint8Array | A Uint8Array value representing the UUID parsed. If the parsing fails, **SyntaxError** is thrown.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -381,16 +380,16 @@ Formats a string by replacing the placeholders in it.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| format | string | Yes | Format string. |
-| ...args | Object[] | No | Data used to replace the placeholders in **format**. If **null** is passed in, the first argument is returned by default. |
+| format | string | Yes| Format string.|
+| ...args | Object[] | No| Data used to replace the placeholders in **format**. If **null** is passed in, the first argument is returned by default.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | String containing the formatted values. |
+| string | String containing the formatted values.|
 
 **Example**
 
@@ -414,15 +413,15 @@ Obtains detailed information about a system error code.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| errno | number | Yes | Error code generated. |
+| errno | number | Yes| Error code generated.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | Detailed information about the error code. |
+| string | Detailed information about the error code.|
 
 **Example**
 
@@ -446,15 +445,15 @@ Processes an asynchronous function and returns a promise.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| original | Function | Yes | Asynchronous function. |
+| original | Function | Yes| Asynchronous function.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise. |
+| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise.|
 
 
 ## util.getHash<sup>12+</sup>
@@ -469,21 +468,21 @@ Obtains the hash value of an object. If no hash value has been obtained, a rando
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| object | object | Yes | Object whose hash value is to be obtained. |
+| object | object | Yes| Object whose hash value is to be obtained.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Hash value. |
+| number | Hash value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -494,7 +493,7 @@ interface Person {
   name: string,
   age: number
 }
-let obj: Person = { name: 'Dany', age: 20 };
+let obj: Person = { name: 'Jack', age: 20 };
 let result1 = util.getHash(obj);
 console.info('result1 is ' + result1);
 let result2 = util.getHash(obj);
@@ -505,15 +504,15 @@ console.info('result2 is ' + result2);
 
 ## TextDecoderOptions<sup>11+</sup>
 
-Decoding-related options, which include **fatal** and **ignoreBOM**.
+Describes decoding-related options, which include **fatal** and **ignoreBOM**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name     | Type | Mandatory | Description              |
+| Name     | Type| Mandatory| Description              |
 | --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | No  | Whether to display fatal errors. The default value is **false**. |
+| fatal     | boolean  | No  | Whether to display fatal errors. The default value is **false**.|
 | ignoreBOM | boolean  | No  | Whether to ignore the BOM. The default value is **false**. |
 
 
@@ -525,9 +524,9 @@ Defines whether decoding follows data blocks.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| stream | boolean | No | Whether to allow data blocks in subsequent **decodeWithStream()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**. |
+| stream | boolean | No| Whether to allow data blocks in subsequent **decodeWithStream()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**.|
 
 
 ## Aspect<sup>11+</sup>
@@ -544,18 +543,18 @@ Inserts a function before a method of a class object. The inserted function is e
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description                                  |
+| Name   | Type   | Mandatory| Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method.                   |
 | isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
-| before       | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed. |
+| before       | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -634,7 +633,7 @@ Inserts a function after a method of a class object. The final return value is t
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description                                  |
+| Name   | Type   | Mandatory| Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method.                  |
@@ -645,7 +644,7 @@ Inserts a function after a method of a class object. The final return value is t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -715,7 +714,7 @@ Replaces a method of a class object with another function. After the replacement
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description                                  |
+| Name   | Type   | Mandatory| Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
 | methodName   | string   | Yes  | Name of the method.                 |
@@ -726,7 +725,7 @@ Replaces a method of a class object with another function. After the replacement
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -775,11 +774,11 @@ Provides APIs to decode byte arrays into strings. It supports multiple formats, 
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes | No | Encoding format.<br>The following formats are supported: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrillic, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le, UTF-8, GBK, GB2312, gb2312, GB18030 and iso-8859-1. |
-| fatal | boolean | Yes | No | Whether to display fatal errors. |
-| ignoreBOM | boolean | Yes | No | Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM. |
+| encoding | string | Yes| No| Encoding format.<br>The following formats are supported: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrillic, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le, UTF-8, GBK, GB2312, gb2312, GB18030 and iso-8859-1.|
+| fatal | boolean | Yes| No| Whether to display fatal errors.|
+| ignoreBOM | boolean | Yes| No| Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM.|
 
 ### constructor<sup>9+</sup>
 
@@ -809,7 +808,7 @@ Creates a **TextDecoder** object. It provides the same function as the deprecate
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                                            |
+| Name  | Type  | Mandatory| Description                                            |
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | No  | Encoding format. The default format is **'utf-8'**.                     |
 | options  | [TextDecoderOptions](#textdecoderoptions11) | No  | Decoding-related options, which include **fatal** and **ignoreBOM**.|
@@ -818,7 +817,7 @@ Creates a **TextDecoder** object. It provides the same function as the deprecate
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -849,22 +848,22 @@ Decodes the input content into a string.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| input | Uint8Array | Yes | Uint8Array object to decode. |
-| options | [DecodeWithStreamOptions](#decodewithstreamoptions11) | No | Decoding-related options. |
+| input | Uint8Array | Yes| Uint8Array object to decode.|
+| options | [DecodeWithStreamOptions](#decodewithstreamoptions11) | No| Decoding-related options.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | String obtained. |
+| string | String obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -905,17 +904,17 @@ A constructor used to create a **TextDecoder** object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| encoding | string | No | Encoding format. The default format is **'utf-8'**. |
-| options | object | No | Decoding-related options, which include **fatal** and **ignoreBOM**. |
+| encoding | string | No| Encoding format. The default format is **'utf-8'**.|
+| options | object | No| Decoding-related options, which include **fatal** and **ignoreBOM**.|
 
   **Table 1** options
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| fatal | boolean | No | Whether to display fatal errors. The default value is **false**. |
-| ignoreBOM | boolean | No | Whether to ignore the BOM. The default value is **false**. |
+| fatal | boolean | No| Whether to display fatal errors. The default value is **false**.|
+| ignoreBOM | boolean | No| Whether to ignore the BOM. The default value is **false**.|
 
 **Example**
 
@@ -937,22 +936,22 @@ Decodes the input content into a string.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| input | Uint8Array | Yes | Uint8Array object to decode. |
-| options | object | No | Decoding-related options. |
+| input | Uint8Array | Yes| Uint8Array object to decode.|
+| options | object | No| Decoding-related options.|
 
 **Table 2** options
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| stream | boolean | No | Whether to allow data blocks in subsequent **decode()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**. |
+| stream | boolean | No| Whether to allow data blocks in subsequent **decode()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | String obtained. |
+| string | String obtained.|
 
 **Example**
 
@@ -978,10 +977,10 @@ Defines encoded text.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name     | Type | Readable |Writable | Description              |
+| Name     | Type| Readable |Writable | Description              |
 | --------- | -------- | -------- |-------- |------------------ |
-| read     | number  | Yes | No |Number of characters that have been read. |
-| written | number   | Yes |No |Number of bytes that have been written. |
+| read     | number  | Yes| No|Number of characters that have been read.|
+| written | number   | Yes|No|Number of bytes that have been written. |
 
 
 ## TextEncoder
@@ -994,9 +993,9 @@ Note that when **TextEncoder** is used for encoding, the number of bytes occupie
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes | No |  Encoding format.<br>The following formats are supported: utf-8, UTF-8, GBK, GB2312, gb2312, GB18030, gb18030, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, gbk, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, x-mac-cyrillic, utf-16be, and utf-16le.<br>The default value is **'utf-8'**. |
+| encoding | string | Yes| No|  Encoding format.<br>The following formats are supported: utf-8, UTF-8, GBK, GB2312, gb2312, GB18030, gb18030, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, gbk, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, x-mac-cyrillic, utf-16be, and utf-16le.<br>The default value is **'utf-8'**.|
 
 
 ### constructor
@@ -1027,15 +1026,15 @@ A constructor used to create a **TextEncoder** object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ----- | ---- | ---- | ---- |
-| encoding | string | No | Encoding format. The default format is **'utf-8'**. |
+| encoding | string | No| Encoding format. The default format is **'utf-8'**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -1057,15 +1056,15 @@ Creates a **TextEncoder** object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ----- | ---- | ---- | ---- |
-| encoding | string | No | Encoding format. The default format is **'utf-8'**. |
+| encoding | string | No| Encoding format. The default format is **'utf-8'**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -1087,21 +1086,21 @@ Encodes the input content into a Uint8Array object.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description              |
+| Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| input  | string | No  | String to encode. The default value is an empty string. |
+| input  | string | No  | String to encode. The default value is an empty string.|
 
 **Return value**
 
 | Type      | Description              |
 | ---------- | ------------------ |
-| Uint8Array | Uint8Array object obtained. |
+| Uint8Array | Uint8Array object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
@@ -1109,9 +1108,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 let textEncoder = new util.TextEncoder();
-let buffer = new ArrayBuffer(20);
-let result = new Uint8Array(buffer);
-result = textEncoder.encodeInto("\uD800¥¥");
+let result = textEncoder.encodeInto("\uD800¥¥");
+console.info("result = " + result);
+// Output: result = 237,160,128,194,165,194,165
 ```
 
 ### encodeIntoUint8Array<sup>9+</sup>
@@ -1126,33 +1125,34 @@ Encodes the input content into a Uint8Array object.
 
 **Parameters**
 
-| Name | Type      | Mandatory | Description                                                   |
+| Name| Type      | Mandatory| Description                                                   |
 | ------ | ---------- | ---- | ------------------------------------------------------- |
 | input  | string     | Yes  | String to encode.                                     |
-| dest   | Uint8Array | Yes  | Uint8Array object used to store the UTF-8 encoded text. |
+| dest   | Uint8Array | Yes  | Uint8Array object used to store the UTF-8 encoded text.|
 
 **Return value**
 
 | Type      | Description              |
 | ---------- | ------------------ |
-| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | Object obtained. **read** indicates the number of encoded characters, and **write** indicates the number of bytes in the encoded characters. |
+| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | Object obtained. **read** indicates the number of encoded characters, and **write** indicates the number of bytes in the encoded characters.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-let that = new util.TextEncoder();
+let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
 let dest = new Uint8Array(buffer);
-let result = new Object();
-result = that.encodeIntoUint8Array('abcd', dest);
+let result = textEncoder.encodeIntoUint8Array('abcd', dest);
+console.info("dest = " + dest);
+// Output: dest = 97,98,99,100
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -1169,25 +1169,26 @@ Stores the UTF-8 encoded text.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| input | string | Yes | String to encode. |
-| dest | Uint8Array | Yes | Uint8Array object used to store the UTF-8 encoded text. |
+| input | string | Yes| String to encode.|
+| dest | Uint8Array | Yes| Uint8Array object used to store the UTF-8 encoded text.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Uint8Array | Uint8Array object obtained. |
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
 ```ts
-let that = new util.TextEncoder();
+let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
 let dest = new Uint8Array(buffer);
-let result = new Object();
-result = that.encodeInto('abcd', dest);
+let result = textEncoder.encodeInto('abcd', dest);
+console.info("dest = " + dest);
+// Output: dest = 97,98,99,100
 ```
 
 ### encode<sup>(deprecated)</sup>
@@ -1204,23 +1205,23 @@ Encodes the input content in to a Uint8Array object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| input | string | No | String to encode. The default value is an empty string. |
+| input | string | No| String to encode. The default value is an empty string.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Uint8Array | Uint8Array object obtained. |
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
 ```ts
 let textEncoder = new util.TextEncoder();
-let buffer = new ArrayBuffer(20);
-let result = new Uint8Array(buffer);
-result = textEncoder.encode("\uD800¥¥");
+let result = textEncoder.encode("\uD800¥¥");
+console.info("result = " + result);
+// Output: result = 237,160,128,194,165,194,165
 ```
 
 ## RationalNumber<sup>8+</sup>
@@ -1251,16 +1252,16 @@ Create a **RationalNumber** instance with a given numerator and denominator.
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description            |
+| Name     | Type  | Mandatory| Description            |
 | ----------- | ------ | ---- | ---------------- |
-| numerator   | number | Yes  | Numerator, which is an integer. |
-| denominator | number | Yes  | Denominator, which is an integer. |
+| numerator   | number | Yes  | Numerator, which is an integer.|
+| denominator | number | Yes  | Denominator, which is an integer.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1280,21 +1281,21 @@ Creates a **RationalNumber** object based on the given string.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| rationalString | string | Yes | String used to create the **RationalNumber** object. |
+| rationalString | string | Yes| String used to create the **RationalNumber** object.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Object | **RationalNumber** object obtained. |
+| Object | **RationalNumber** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | The type of rationalString must be string. |
 
@@ -1314,21 +1315,21 @@ Compares this **RationalNumber** object with another **RationalNumber** object.
 
 **Parameters**
 
-| Name | Type          | Mandatory | Description              |
+| Name | Type          | Mandatory| Description              |
 | ------- | -------------- | ---- | ------------------ |
-| another | [RationalNumber](#rationalnumber8) | Yes  | Object used to compare with this **RationalNumber** object. |
+| another | [RationalNumber](#rationalnumber8) | Yes  | Object used to compare with this **RationalNumber** object.|
 
 **Return value**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object. |
+| number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1352,9 +1353,9 @@ Obtains the value of this **RationalNumber** object as an integer or a floating-
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | An integer or a floating-point number. |
+| number | An integer or a floating-point number.|
 
 **Example**
 
@@ -1382,15 +1383,15 @@ Checks whether this **RationalNumber** object equals the given object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| obj | Object | Yes | Object used to compare with this **RationalNumber** object. |
+| obj | Object | Yes| Object used to compare with this **RationalNumber** object.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the two objects are equal; returns **false** otherwise. |
+| boolean | Returns **true** if the two objects are equal; returns **false** otherwise.|
 
 **Example**
 
@@ -1420,22 +1421,22 @@ Obtains the greatest common divisor of two specified integers.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description      |
+| Name | Type  | Mandatory| Description      |
 | ------- | ------ | ---- | ---------- |
-| number1 | number | Yes  | The first integer used to get the greatest common divisor. |
-| number2 | number | Yes  | The second integer used to get the greatest common divisor. |
+| number1 | number | Yes  | The first integer used to get the greatest common divisor.|
+| number2 | number | Yes  | The second integer used to get the greatest common divisor.|
 
 **Return value**
 
 | Type  | Description                          |
 | ------ | ------------------------------ |
-| number | Greatest common divisor obtained. |
+| number | Greatest common divisor obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -1457,9 +1458,9 @@ Obtains the numerator of this **RationalNumber** object.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Numerator of this **RationalNumber** object. |
+| number | Numerator of this **RationalNumber** object.|
 
 **Example**
 
@@ -1487,9 +1488,9 @@ Obtains the denominator of this **RationalNumber** object.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Denominator of this **RationalNumber** object. |
+| number | Denominator of this **RationalNumber** object.|
 
 **Example**
 
@@ -1517,9 +1518,9 @@ Checks whether this **RationalNumber** object is **0**.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the value of this **RationalNumber** object is **0**; returns **false** otherwise. |
+| boolean | Returns **true** if the value of this **RationalNumber** object is **0**; returns **false** otherwise.|
 
 **Example**
 
@@ -1547,9 +1548,9 @@ Checks whether this **RationalNumber** object is a Not a Number (NaN).
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if this **RationalNumber** object is a NaN (the denominator and numerator are both **0**); returns **false** otherwise. |
+| boolean | Returns **true** if this **RationalNumber** object is a NaN (the denominator and numerator are both **0**); returns **false** otherwise.|
 
 **Example**
 
@@ -1577,9 +1578,9 @@ Checks whether this **RationalNumber** object represents a finite value.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if this **RationalNumber** object represents a finite value (the denominator is not **0**); returns **false** otherwise. |
+| boolean | Returns **true** if this **RationalNumber** object represents a finite value (the denominator is not **0**); returns **false** otherwise.|
 
 **Example**
 
@@ -1607,7 +1608,7 @@ Obtains the string representation of this **RationalNumber** object.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | string | Returns a string in Numerator/Denominator format in normal cases, for example, 3/5; returns **0/1** if the numerator of this object is **0**; returns **Infinity** if the denominator is **0**; returns **NaN** if the numerator and denominator are both **0**.|
 
@@ -1641,10 +1642,10 @@ A constructor used to create a **RationalNumber** object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| numerator | number | Yes | Numerator, which is an integer. |
-| denominator | number | Yes | Denominator, which is an integer. |
+| numerator | number | Yes| Numerator, which is an integer.|
+| denominator | number | Yes| Denominator, which is an integer.|
 
 **Example**
 
@@ -1666,15 +1667,15 @@ Compares this **RationalNumber** object with a given object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| another | RationalNumber | Yes | Object used to compare with this **RationalNumber** object. |
+| another | RationalNumber | Yes| Object used to compare with this **RationalNumber** object.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object. |
+| number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object.|
 
 **Example**
 
@@ -1698,16 +1699,16 @@ Obtains the greatest common divisor of two specified integers.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| number1 | number | Yes | The first integer used to get the greatest common divisor. |
-| number2 | number | Yes | The second integer used to get the greatest common divisor. |
+| number1 | number | Yes| The first integer used to get the greatest common divisor.|
+| number2 | number | Yes| The second integer used to get the greatest common divisor.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Greatest common divisor obtained. |
+| number | Greatest common divisor obtained.|
 
 **Example**
 
@@ -1724,9 +1725,9 @@ Provides APIs to discard the least recently used data to make rooms for new elem
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name  | Type  | Readable | Writable | Description                  |
+| Name  | Type  | Readable| Writable| Description                  |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| length | number | Yes  | No  | Total number of values in this cache. |
+| length | number | Yes  | No  | Total number of values in this cache.|
 
 **Example**
 
@@ -1747,9 +1748,9 @@ A constructor used to create a **LRUCache** instance. The default capacity of th
 
 **Parameters**
 
-| Name  | Type  | Mandatory | Description                        |
+| Name  | Type  | Mandatory| Description                        |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | No  | Capacity of the cache to create. The default value is **64**. |
+| capacity | number | No  | Capacity of the cache to create. The default value is **64**.|
 
 **Example**
 
@@ -1768,15 +1769,15 @@ Changes the cache capacity. If the new capacity is less than or equal to **0**, 
 
 **Parameters**
 
-| Name     | Type  | Mandatory | Description                        |
+| Name     | Type  | Mandatory| Description                        |
 | ----------- | ------ | ---- | ---------------------------- |
-| newCapacity | number | Yes  | New capacity of the cache. |
+| newCapacity | number | Yes  | New capacity of the cache.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
@@ -1799,7 +1800,7 @@ Obtains the string representation of this cache.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| string | String representation of this cache. |
+| string | String representation of this cache.|
 
 **Example**
 
@@ -1825,7 +1826,7 @@ Obtains the capacity of this cache.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| number | Capacity of the cache. |
+| number | Capacity of the cache.|
 
 **Example**
 
@@ -1863,7 +1864,7 @@ Obtains the number of times that an object is created.
 
 | Type  | Description               |
 | ------ | -------------------|
-| number | Number of times that objects are created. |
+| number | Number of times that objects are created.|
 
 **Example**
 
@@ -1897,7 +1898,7 @@ Obtains the number of times that the queried values are mismatched.
 
 | Type  | Description                    |
 | ------ | ------------------------ |
-| number | Number of times that the queried values are mismatched. |
+| number | Number of times that the queried values are mismatched.|
 
 **Example**
 
@@ -1920,7 +1921,7 @@ Obtains the number of times that key-value pairs in the cache are recycled.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | Number of times that key-value pairs in the cache are recycled. |
+| number | Number of times that key-value pairs in the cache are recycled.|
 
 **Example**
 
@@ -1944,7 +1945,7 @@ Obtains the number of times that the queried values are matched.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | Number of times that the queried values are matched. |
+| number | Number of times that the queried values are matched.|
 
 **Example**
 
@@ -1967,7 +1968,7 @@ Obtains the number of additions to this cache.
 
 | Type  | Description                        |
 | ------ | ---------------------------- |
-| number | Number of additions to the cache. |
+| number | Number of additions to the cache.|
 
 **Example**
 
@@ -1989,7 +1990,7 @@ Checks whether this cache is empty.
 
 | Type   | Description                                    |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if the cache does not contain any value. |
+| boolean | Returns **true** if the cache does not contain any value.|
 
 **Example**
 
@@ -2009,21 +2010,21 @@ Obtains the value of the specified key.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description        |
+| Name| Type| Mandatory| Description        |
 | ------ | ---- | ---- | ------------ |
-| key    | K    | Yes  | Key based on which the value is queried. |
+| key    | K    | Yes  | Key based on which the value is queried.|
 
 **Return value**
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| V \| undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise. |
+| V \| undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2045,22 +2046,22 @@ Adds a key-value pair to this cache.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                      |
+| Name| Type| Mandatory| Description                      |
 | ------ | ---- | ---- | -------------------------- |
 | key    | K    | Yes  | Key of the key-value pair to add.            |
-| value  | V    | Yes  | Value of the key-value pair to add. |
+| value  | V    | Yes  | Value of the key-value pair to add.|
 
 **Return value**
 
-| Type | Description                                                        |
+| Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| V    | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**. |
+| V    | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2083,7 +2084,7 @@ Obtains all values in this cache, listed from the most to the least recently acc
 
 | Type     | Description                                                        |
 | --------- | ------------------------------------------------------------ |
-| V&nbsp;[] | All values in the cache, listed from the most to the least recently accessed. |
+| V&nbsp;[] | All values in the cache, listed from the most to the least recently accessed.|
 
 **Example**
 
@@ -2107,7 +2108,7 @@ Obtains all keys in this cache, listed from the most to the least recently acces
 
 | Type     | Description                                                        |
 | --------- | ------------------------------------------------------------ |
-| K&nbsp;[] | All keys in the cache, listed from the most to the least recently accessed. |
+| K&nbsp;[] | All keys in the cache, listed from the most to the least recently accessed.|
 
 **Example**
 
@@ -2127,21 +2128,21 @@ Removes the specified key and its value from this cache.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description          |
+| Name| Type| Mandatory| Description          |
 | ------ | ---- | ---- | -------------- |
-| key    | K    | Yes  | Key to remove. |
+| key    | K    | Yes  | Key to remove.|
 
 **Return value**
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns **undefined** if the key does not exist; throws an error if **null** is passed in for **key**. |
+| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns **undefined** if the key does not exist; throws an error if **null** is passed in for **key**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2163,18 +2164,18 @@ Performs subsequent operations after a value is removed.
 
 **Parameters**
 
-| Name  | Type   | Mandatory | Description                                                        |
+| Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | isEvict  | boolean | Yes  | Whether the capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.   |
 | key      | K       | Yes  | Key removed.                                              |
 | value    | V       | Yes  | Value removed.                                              |
-| newValue | V       | Yes  | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank. |
+| newValue | V       | Yes  | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2210,21 +2211,21 @@ Checks whether this cache contains the specified key.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description            |
+| Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| key    | K | Yes  | Key to check. |
+| key    | K | Yes  | Key to check.|
 
 **Return value**
 
 | Type   | Description                                      |
 | ------- | ------------------------------------------ |
-| boolean | Returns **true** if the cache contains the specified key; returns **false** otherwise. |
+| boolean | Returns **true** if the cache contains the specified key; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2250,21 +2251,21 @@ Creates a value if the value of the specified key is not available.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description          |
+| Name| Type| Mandatory| Description          |
 | ------ | ---- | ---- | -------------- |
-| key    | K    | Yes  | Key of which the value is missing. |
+| key    | K    | Yes  | Key of which the value is missing.|
 
 **Return value**
 
-| Type | Description              |
+| Type| Description              |
 | ---- | ------------------ |
-| V    | Value of the key. |
+| V    | Value of the key.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2287,7 +2288,7 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 
 | Type       | Description                |
 | ----------- | -------------------- |
-| [K,&nbsp;V] | Iterable array. |
+| [K,&nbsp;V] | Iterable array.|
 
 **Example**
 
@@ -2318,10 +2319,11 @@ Obtains a two-dimensional array in key-value pairs.
 
 | Type       | Description                          |
 | ----------- | ------------------------------ |
-| [K,&nbsp;V] | Two-dimensional array in key-value pairs. |
+| [K,&nbsp;V] | Two-dimensional array in key-value pairs.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
@@ -2349,13 +2351,13 @@ Compares two values and returns a Boolean value.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description          |
+| Name| Type| Mandatory| Description          |
 | ------ | ---- | ---- | -------------- |
-| other  | [ScopeComparable](#scopecomparable8) | Yes | The other value to be compared with the current value. |
+| other  | [ScopeComparable](#scopecomparable8) | Yes | The other value to be compared with the current value.|
 
 **Return value**
 
-| Type | Description              |
+| Type| Description              |
 | ---- | ------------------ |
 | boolean | If the current value is greater than or equal to the input value, **true** is returned. Otherwise, **false** is returned.|
 
@@ -2389,9 +2391,9 @@ Defines the type of values in a **Scope** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | The value type is a number. |
+| number | The value type is a number.|
 | [ScopeComparable](#scopecomparable8) | The value type is ScopeComparable.|
 
 ## ScopeHelper<sup>9+</sup>
@@ -2408,16 +2410,16 @@ A constructor used to create a **ScopeHelper** object with the specified upper a
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description                  |
+| Name  | Type                    | Mandatory| Description                  |
 | -------- | ------------------------ | ---- | ---------------------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit of the **Scope** object. |
-| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit of the **Scope** object. |
+| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit of the **Scope** object.|
+| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit of the **Scope** object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2456,7 +2458,7 @@ Obtains a string representation that contains this **Scope**.
 
 | Type  | Description                                  |
 | ------ | -------------------------------------- |
-| string | String representation containing the **Scope**. |
+| string | String representation containing the **Scope**.|
 
 **Example**
 
@@ -2493,21 +2495,21 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 **Parameters**
 
-| Name | Type                        | Mandatory | Description              |
+| Name| Type                        | Mandatory| Description              |
 | ------ | ---------------------------- | ---- | ------------------ |
-| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified. |
+| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified.|
 
 **Return value**
 
 | Type                          | Description                          |
 | ------------------------------ | ------------------------------ |
-| [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given **Scope**. |
+| [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given **Scope**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2549,22 +2551,22 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description            |
+| Name  | Type                    | Mandatory| Description            |
 | -------- | ------------------------ | ---- | ---------------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit. |
-| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit. |
+| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit.|
+| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit.|
 
 **Return value**
 
 | Type                        | Description                                    |
 | ---------------------------- | ---------------------------------------- |
-| [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given lower and upper limits. |
+| [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given lower and upper limits.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2607,7 +2609,7 @@ Obtains the upper limit of this **Scope**.
 
 | Type                    | Description                  |
 | ------------------------ | ---------------------- |
-| [ScopeType](#scopetype8) | Upper limit of this **Scope**. |
+| [ScopeType](#scopetype8) | Upper limit of this **Scope**.|
 
 **Example**
 
@@ -2646,7 +2648,7 @@ Obtains the lower limit of this **Scope**.
 
 | Type                    | Description                  |
 | ------------------------ | ---------------------- |
-| [ScopeType](#scopetype8) | Lower limit of this **Scope**. |
+| [ScopeType](#scopetype8) | Lower limit of this **Scope**.|
 
 **Example**
 
@@ -2683,22 +2685,22 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 
 **Parameters**
 
-| Name  | Type                    | Mandatory | Description            |
+| Name  | Type                    | Mandatory| Description            |
 | -------- | ------------------------ | ---- | ---------------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit. |
-| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit. |
+| lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit.|
+| upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit.|
 
 **Return value**
 
 | Type                        | Description                                |
 | ---------------------------- | ------------------------------------ |
-| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given lower and upper limits. |
+| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given lower and upper limits.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2739,21 +2741,21 @@ Obtains the union set of this **Scope** and the given **Scope**.
 
 **Parameters**
 
-| Name | Type                        | Mandatory | Description              |
+| Name| Type                        | Mandatory| Description              |
 | ------ | ---------------------------- | ---- | ------------------ |
-| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified. |
+| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified.|
 
 **Return value**
 
 | Type                        | Description                              |
 | ---------------------------- | ---------------------------------- |
-| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given **Scope**. |
+| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given **Scope**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2795,21 +2797,21 @@ Obtains the union set of this **Scope** and the given value.
 
 **Parameters**
 
-| Name | Type                    | Mandatory | Description            |
+| Name| Type                    | Mandatory| Description            |
 | ------ | ------------------------ | ---- | ---------------- |
-| value  | [ScopeType](#scopetype8) | Yes  | Value specified. |
+| value  | [ScopeType](#scopetype8) | Yes  | Value specified.|
 
 **Return value**
 
 | Type                        | Description                            |
 | ---------------------------- | -------------------------------- |
-| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given value. |
+| [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2849,21 +2851,21 @@ Checks whether a value is within this **Scope**.
 
 **Parameters**
 
-| Name | Type                    | Mandatory | Description            |
+| Name| Type                    | Mandatory| Description            |
 | ------ | ------------------------ | ---- | ---------------- |
-| value  | [ScopeType](#scopetype8) | Yes  | Value specified. |
+| value  | [ScopeType](#scopetype8) | Yes  | Value specified.|
 
 **Return value**
 
 | Type   | Description                                               |
 | ------- | --------------------------------------------------- |
-| boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise. |
+| boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2903,21 +2905,21 @@ Checks whether a range is within this **Scope**.
 
 **Parameters**
 
-| Name | Type                        | Mandatory | Description              |
+| Name| Type                        | Mandatory| Description              |
 | ------ | ---------------------------- | ---- | ------------------ |
-| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified. |
+| range  | [ScopeHelper](#scopehelper9) | Yes  | **Scope** specified.|
 
 **Return value**
 
 | Type   | Description                                                 |
 | ------- | ----------------------------------------------------- |
-| boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise. |
+| boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -2959,21 +2961,21 @@ Limits a value to this **Scope**.
 
 **Parameters**
 
-| Name | Type                    | Mandatory | Description          |
+| Name| Type                    | Mandatory| Description          |
 | ------ | ------------------------ | ---- | -------------- |
-| value  | [ScopeType](#scopetype8) | Yes  | Value specified. |
+| value  | [ScopeType](#scopetype8) | Yes  | Value specified.|
 
 **Return value**
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**. |
+| [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3035,22 +3037,22 @@ Encodes the input content into a Uint8Array object.
 
 **Parameters**
 
-| Name | Type      | Mandatory | Description               |
+| Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | Yes  | Uint8Array object to encode. |
-| options<sup>12+</sup> | [Type](#type10) | No | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. |
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
+| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| Uint8Array | Uint8Array object obtained. |
+| Uint8Array | Uint8Array object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3075,22 +3077,22 @@ Encodes the input content into a string. This API returns the result synchronous
 
 **Parameters**
 
-| Name | Type      | Mandatory | Description               |
+| Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | Yes  | Uint8Array object to encode. |
-| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME**: Base64 encoding. Each line of the return value contains a maximum of 76 characters and ends with '\r\n'.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME_URL_SAFE**: Base64URL encoding. Each line in the return value contains a maximum of 76 characters and ends with '\r\n'. |
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
+| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME**: Base64 encoding. Each line of the return value contains a maximum of 76 characters and ends with '\r\n'.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME_URL_SAFE**: Base64URL encoding. Each line in the return value contains a maximum of 76 characters and ends with '\r\n'.|
 
 **Return value**
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | String obtained. |
+| string | String obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3115,22 +3117,22 @@ Decodes a string into a Uint8Array object. This API returns the result synchrono
 
 **Parameters**
 
-| Name | Type                          | Mandatory | Description                         |
+| Name| Type                          | Mandatory| Description                         |
 | ------ | ------------------------------ | ---- | ----------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode. |
-| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 decoding.<br>- **util.Type.MIME**: Base64 decoding. The input parameter **src** contains carriage return characters and newline characters.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL decoding.<br>- **util.Type.MIME_URL_SAFE**: Base64 URL decoding. The input parameter **src** contains carriage return characters and newline characters. |
+| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode.|
+| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 decoding.<br>- **util.Type.MIME**: Base64 decoding. The input parameter **src** contains carriage return characters and newline characters.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL decoding.<br>- **util.Type.MIME_URL_SAFE**: Base64 URL decoding. The input parameter **src** contains carriage return characters and newline characters.|
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| Uint8Array | Uint8Array object obtained. |
+| Uint8Array | Uint8Array object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3155,22 +3157,22 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 
 **Parameters**
 
-| Name | Type      | Mandatory | Description                   |
+| Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | Yes  | Uint8Array object to encode. |
-| options<sup>12+</sup> | [Type](#type10) | No | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC**: Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. |
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
+| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC**: Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
 
 **Return value**
 
 | Type                     | Description                             |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained. |
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3195,22 +3197,22 @@ Encodes the input content into a string. This API uses a promise to return the r
 
 **Parameters**
 
-| Name | Type      | Mandatory | Description                   |
+| Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | Yes  | Uint8Array object to encode. |
-| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME**: Base64 encoding. Each line of the return value contains a maximum of 76 characters and ends with '\r\n'.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME_URL_SAFE**: Base64URL encoding. Each line in the return value contains a maximum of 76 characters and ends with '\r\n'. |
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
+| options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME**: Base64 encoding. Each line of the return value contains a maximum of 76 characters and ends with '\r\n'.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. The return value does not contain carriage return characters or newline characters.<br>- **util.Type.MIME_URL_SAFE**: Base64URL encoding. Each line in the return value contains a maximum of 76 characters and ends with '\r\n'.|
 
 **Return value**
 
 | Type                 | Description                    |
 | --------------------- | ------------------------ |
-| Promise&lt;string&gt; | Promise used to return the string obtained. |
+| Promise&lt;string&gt; | Promise used to return the string obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3235,22 +3237,22 @@ Decodes the input content into a Uint8Array object. This API uses a promise to r
 
 **Parameters**
 
-| Name | Type                          | Mandatory | Description                             |
+| Name| Type                          | Mandatory| Description                             |
 | ------ | ------------------------------ | ---- | --------------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode. |
-| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 decoding.<br>- **util.Type.MIME**: Base64 decoding. The input parameter **src** contains carriage return characters and newline characters.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL decoding.<br>- **util.Type.MIME_URL_SAFE**: Base64 URL decoding. The input parameter **src** contains carriage return characters and newline characters. |
+| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode.|
+| options<sup>10+</sup>    | [Type](#type10) | No  | Decoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 decoding.<br>- **util.Type.MIME**: Base64 decoding. The input parameter **src** contains carriage return characters and newline characters.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL decoding.<br>- **util.Type.MIME_URL_SAFE**: Base64 URL decoding. The input parameter **src** contains carriage return characters and newline characters.|
 
 **Return value**
 
 | Type                     | Description                             |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained. |
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3280,15 +3282,15 @@ Constructor used to create a **StringDecoder** instance.
 
 **Parameters**
 
-| Name | Type                          | Mandatory | Description                             |
+| Name| Type                          | Mandatory| Description                             |
 | ------ | ------------------------------ | ---- | --------------------------------- |
-| encoding  | string | No  | Encoding type of the input data. The default value is **utf-8**. |
+| encoding  | string | No  | Encoding type of the input data. The default value is **utf-8**.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3310,21 +3312,21 @@ Decodes a string. Any incomplete multi-byte characters at the end of Uint8Array 
 
 **Parameters**
 
-| Name | Type      | Mandatory | Description               |
+| Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
-| chunk  | string \| Uint8Array | Yes  | String to decode. Decoding is performed based on the input encoding type. If the input is of the Uint8Array type, decoding is performed normally. If the input is of the string type, decoding is performed in the original path. |
+| chunk  | string \| Uint8Array | Yes  | String to decode. Decoding is performed based on the input encoding type. If the input is of the Uint8Array type, decoding is performed normally. If the input is of the string type, decoding is performed in the original path.|
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| string | String decoded. |
+| string | String decoded.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3349,21 +3351,21 @@ Ends the decoding process and returns any remaining input stored in the internal
 
 **Parameters**
 
-| Name | Type      | Mandatory | Description               |
+| Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
-| chunk  | string \| Uint8Array | No  | String to decode. The default value is **undefined**. |
+| chunk  | string \| Uint8Array | No  | String to decode. The default value is **undefined**.|
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| string | String decoded. |
+| string | String decoded.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
@@ -3390,7 +3392,7 @@ Enumerates the Base64 encoding formats.
 | BASIC | 0 | Basic format. **Atomic service API**: This API can be used in atomic services since API version 11.|
 | MIME  | 1 | MIME format. **Atomic service API**: This API can be used in atomic services since API version 11.|
 | BASIC_URL_SAFE<sup>12+</sup> | 2 | BASIC_URL_SAFE format.<br>This value is supported since API version 12. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| MIME_URL_SAFE<sup>12+</sup> | 3 | MIME_URL_SAFE format.<br>This value is supported since API version 12. **Atomic service API**: This API can be used in atomic services since API version 12. |
+| MIME_URL_SAFE<sup>12+</sup> | 3 | MIME_URL_SAFE format.<br>This value is supported since API version 12. **Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
 ## types<sup>8+</sup>
@@ -3422,21 +3424,23 @@ Checks whether the input value is of the ArrayBuffer type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isAnyArrayBuffer(new ArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isAnyArrayBuffer(new ArrayBuffer(0));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3452,21 +3456,23 @@ Checks whether the input value is of the ArrayBufferView type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the ArrayBufferView type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the ArrayBufferView type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isArrayBufferView(new Int8Array([]));
+  let type = new util.types();
+  let result = type.isArrayBufferView(new Int8Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3480,24 +3486,26 @@ Checks whether the input value is of the arguments type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the arguments type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the arguments type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   function foo() {
-      let result = that.isArgumentsObject(arguments);
+      let result = type.isArgumentsObject(arguments);
+      console.info("result = " + result);
   }
   let f = foo();
+  // Output: result = true
   ```
 
 
@@ -3511,21 +3519,23 @@ Checks whether the input value is of the ArrayBuffer type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isArrayBuffer(new ArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isArrayBuffer(new ArrayBuffer(0));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3539,21 +3549,23 @@ Checks whether the input value is an asynchronous function.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is an asynchronous function; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is an asynchronous function; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isAsyncFunction(async () => {});
+  let type = new util.types();
+  let result = type.isAsyncFunction(async () => {});
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3567,21 +3579,23 @@ Checks whether the input value is of the Boolean type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Boolean type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Boolean type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBooleanObject(new Boolean(true));
+  let type = new util.types();
+  let result = type.isBooleanObject(new Boolean(true));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3595,21 +3609,23 @@ Checks whether the input value is of the Boolean, Number, String, or Symbol type
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Boolean, Number, String, or Symbol type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Boolean, Number, String, or Symbol type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBoxedPrimitive(new Boolean(false));
+  let type = new util.types();
+  let result = type.isBoxedPrimitive(new Boolean(false));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3623,22 +3639,24 @@ Checks whether the input value is of the DataView type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the DataView type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the DataView type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const ab = new ArrayBuffer(20);
-  let result = that.isDataView(new DataView(ab));
+  let result = type.isDataView(new DataView(ab));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3652,21 +3670,23 @@ Checks whether the input value is of the Date type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Date type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Date type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isDate(new Date());
+  let type = new util.types();
+  let result = type.isDate(new Date());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3680,21 +3700,23 @@ Checks whether the input value is of the native external type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the native external type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the native external type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isExternal(true);
+  let type = new util.types();
+  let result = type.isExternal(true);
+  console.info("result = " + result);
+  // Output: result = false
   ```
 
 
@@ -3708,21 +3730,23 @@ Checks whether the input value is of the Float32Array type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Float32Array type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Float32Array type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isFloat32Array(new Float32Array());
+  let type = new util.types();
+  let result = type.isFloat32Array(new Float32Array());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3736,21 +3760,23 @@ Checks whether the input value is of the Float64Array type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Float64Array type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Float64Array type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isFloat64Array(new Float64Array());
+  let type = new util.types();
+  let result = type.isFloat64Array(new Float64Array());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3768,21 +3794,24 @@ Checks whether the input value is a generator function.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a generator function; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is a generator function; returns **false** otherwise.|
 
 **Example**
 
+<!--code_no_check-->
   ```ts
-  let that = new util.types();
-  let result = that.isGeneratorFunction(function* foo() {});
+  let type = new util.types();
+  let result = type.isGeneratorFunction(function* foo() {});
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3800,24 +3829,27 @@ Checks whether the input value is a generator object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a generator object; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is a generator object; returns **false** otherwise.|
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   // This API cannot be used in .ets files.
-  let that = new util.types();
+  let type = new util.types();
   function* foo() {};
   const generator = foo();
-  let result = that.isGeneratorObject(generator);
+  let result = type.isGeneratorObject(generator);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3831,21 +3863,23 @@ Checks whether the input value is of the Int8Array type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Int8Array type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Int8Array type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt8Array(new Int8Array([]));
+  let type = new util.types();
+  let result = type.isInt8Array(new Int8Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3859,21 +3893,23 @@ Checks whether the input value is of the Int16Array type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Int16Array type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Int16Array type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt16Array(new Int16Array([]));
+  let type = new util.types();
+  let result = type.isInt16Array(new Int16Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3887,21 +3923,23 @@ Checks whether the input value is of the Int32Array type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Int32Array type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Int32Array type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt32Array(new Int32Array([]));
+  let type = new util.types();
+  let result = type.isInt32Array(new Int32Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3915,21 +3953,23 @@ Checks whether the input value is of the Map type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Map type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Map type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isMap(new Map());
+  let type = new util.types();
+  let result = type.isMap(new Map());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3944,22 +3984,24 @@ Checks whether the input value is of the MapIterator type.
 **Parameters**
 
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the MapIterator type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the MapIterator type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const map : Map<number,number> = new Map();
-  let result = that.isMapIterator(map.keys());
+  let result = type.isMapIterator(map.keys());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3973,21 +4015,23 @@ Checks whether the input value is of the Error type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Error type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Error type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isNativeError(new TypeError());
+  let type = new util.types();
+  let result = type.isNativeError(new TypeError());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4001,21 +4045,23 @@ Checks whether the input value is a number object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a number object; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is a number object; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isNumberObject(new Number(0));
+  let type = new util.types();
+  let result = type.isNumberObject(new Number(0));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4029,21 +4075,23 @@ Checks whether the input value is a promise.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a promise; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is a promise; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isPromise(Promise.resolve(1));
+  let type = new util.types();
+  let result = type.isPromise(Promise.resolve(1));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4057,25 +4105,27 @@ Checks whether the input value is a proxy.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a proxy; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is a proxy; returns **false** otherwise.|
 
 **Example**
 
   ```ts
   class Target{
   }
-  let that = new util.types();
+  let type = new util.types();
   const target : Target = {};
   const proxy = new Proxy(target, target);
-  let result = that.isProxy(proxy);
+  let result = type.isProxy(proxy);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4089,21 +4139,23 @@ Checks whether the input value is of the RegExp type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the RegExp type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the RegExp type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isRegExp(new RegExp('abc'));
+  let type = new util.types();
+  let result = type.isRegExp(new RegExp('abc'));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4117,22 +4169,24 @@ Checks whether the input value is of the Set type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Set type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Set type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   let set : Set<number> = new Set();
-  let result = that.isSet(set);
+  let result = type.isSet(set);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4146,22 +4200,24 @@ Checks whether the input value is of the SetIterator type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the SetIterator type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the SetIterator type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const set : Set<number> = new Set();
-  let result = that.isSetIterator(set.keys());
+  let result = type.isSetIterator(set.keys());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4175,21 +4231,23 @@ Checks whether the input value is a string object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a string object; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is a string object; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isStringObject(new String('foo'));
+  let type = new util.types();
+  let result = type.isStringObject(new String('foo'));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4207,23 +4265,26 @@ Checks whether the input value is a symbol object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a symbol object; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is a symbol object; returns **false** otherwise.|
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   // This API cannot be used in .ets files.
-  let that = new util.types();
+  let type = new util.types();
   const symbols = Symbol('foo');
-  let result = that.isSymbolObject(Object(symbols));
+  let result = type.isSymbolObject(Object(symbols));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4239,21 +4300,23 @@ Checks whether the input value is of the TypedArray type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the TypedArray type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the TypedArray type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isTypedArray(new Float64Array([]));
+  let type = new util.types();
+  let result = type.isTypedArray(new Float64Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4267,21 +4330,23 @@ Checks whether the input value is of the Uint8Array type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Uint8Array type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Uint8Array type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint8Array(new Uint8Array([]));
+  let type = new util.types();
+  let result = type.isUint8Array(new Uint8Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4295,21 +4360,23 @@ Checks whether the input value is of the Uint8ClampedArray type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Uint8ClampedArray type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Uint8ClampedArray type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
+  let type = new util.types();
+  let result = type.isUint8ClampedArray(new Uint8ClampedArray([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4323,21 +4390,23 @@ Checks whether the input value is of the Uint16Array type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Uint16Array type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Uint16Array type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint16Array(new Uint16Array([]));
+  let type = new util.types();
+  let result = type.isUint16Array(new Uint16Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4351,21 +4420,23 @@ Checks whether the input value is of the Uint32Array type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the Uint32Array type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the Uint32Array type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint32Array(new Uint32Array([]));
+  let type = new util.types();
+  let result = type.isUint32Array(new Uint32Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4379,22 +4450,24 @@ Checks whether the input value is of the WeakMap type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the WeakMap type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the WeakMap type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   let value : WeakMap<object, number> = new WeakMap();
-  let result = that.isWeakMap(value);
+  let result = type.isWeakMap(value);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4408,21 +4481,23 @@ Checks whether the input value is of the WeakSet type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the WeakSet type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the WeakSet type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isWeakSet(new WeakSet());
+  let type = new util.types();
+  let result = type.isWeakSet(new WeakSet());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4436,21 +4511,23 @@ Checks whether the input value is of the BigInt64Array type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the BigInt64Array type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the BigInt64Array type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBigInt64Array(new BigInt64Array([]));
+  let type = new util.types();
+  let result = type.isBigInt64Array(new BigInt64Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4464,21 +4541,23 @@ Checks whether the input value is of the BigUint64Array type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the BigUint64Array type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the BigUint64Array type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBigUint64Array(new BigUint64Array([]));
+  let type = new util.types();
+  let result = type.isBigUint64Array(new BigUint64Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -4496,23 +4575,26 @@ Checks whether the input value is a module namespace object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is a module namespace object; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is a module namespace object; returns **false** otherwise.|
 
 **Example**
 
+<!--code_no_check-->
   ```ts
   // This API cannot be used in .ets files.
   import { url } from '@kit.ArkTS';
-  let that = new util.types();
-  let result = that.isModuleNamespaceObject(url);
+  let type = new util.types();
+  let result = type.isModuleNamespaceObject(url);
+  console.info("result = " + result);
+  // Output: result = false
   ```
 
 
@@ -4526,21 +4608,23 @@ Checks whether the input value is of the SharedArrayBuffer type.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | Object | Yes | Object to check. |
+| value | Object | Yes| Object to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the SharedArrayBuffer type; returns **false** otherwise. |
+| boolean | Returns **true** if the input value is of the SharedArrayBuffer type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isSharedArrayBuffer(new SharedArrayBuffer(0));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 ## LruBuffer<sup>(deprecated)</sup>
@@ -4553,9 +4637,9 @@ Checks whether the input value is of the SharedArrayBuffer type.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes | No | Total number of values in this cache. |
+| length | number | Yes| No| Total number of values in this cache.|
 
 **Example**
 
@@ -4580,9 +4664,9 @@ A constructor used to create a **LruBuffer** instance. The default capacity of t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| capacity | number | No | Capacity of the cache to create. The default value is **64**. |
+| capacity | number | No| Capacity of the cache to create. The default value is **64**.|
 
 **Example**
 
@@ -4604,9 +4688,9 @@ Changes the cache capacity. If the new capacity is less than or equal to **0**, 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| newCapacity | number | Yes | New capacity of the cache. |
+| newCapacity | number | Yes| New capacity of the cache.|
 
 **Example**
 
@@ -4629,9 +4713,9 @@ Obtains the string representation of this cache.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | String representation of this cache. |
+| string | String representation of this cache.|
 
 **Example**
 
@@ -4657,9 +4741,9 @@ Obtains the capacity of this cache.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Capacity of the cache. |
+| number | Capacity of the cache.|
 
 **Example**
 
@@ -4703,9 +4787,9 @@ Obtains the number of return values for **createDefault()**.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Number of return values for **createDefault()**. |
+| number | Number of return values for **createDefault()**.|
 
 **Example**
 
@@ -4729,9 +4813,9 @@ Obtains the number of times that the queried values are mismatched.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Number of times that the queried values are mismatched. |
+| number | Number of times that the queried values are mismatched.|
 
 **Example**
 
@@ -4756,9 +4840,9 @@ Obtains the number of removals from this cache.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Number of removals from the cache. |
+| number | Number of removals from the cache.|
 
 **Example**
 
@@ -4784,9 +4868,9 @@ Obtains the number of times that the queried values are matched.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Number of times that the queried values are matched. |
+| number | Number of times that the queried values are matched.|
 
 **Example**
 
@@ -4811,9 +4895,9 @@ Obtains the number of additions to this cache.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Number of additions to the cache. |
+| number | Number of additions to the cache.|
 
 **Example**
 
@@ -4837,9 +4921,9 @@ Checks whether this cache is empty.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the cache does not contain any value. |
+| boolean | Returns **true** if the cache does not contain any value.|
 
 **Example**
 
@@ -4863,15 +4947,15 @@ Obtains the value of the specified key.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes | Key based on which the value is queried. |
+| key | K | Yes| Key based on which the value is queried.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise. |
+| V&nbsp;\|&nbsp;undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise.|
 
 **Example**
 
@@ -4895,16 +4979,16 @@ Adds a key-value pair to this cache.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes | Key of the key-value pair to add. |
-| value | V | Yes | Value of the key-value pair to add. |
+| key | K | Yes| Key of the key-value pair to add.|
+| value | V | Yes| Value of the key-value pair to add.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| V | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**. |
+| V | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**.|
 
 **Example**
 
@@ -4927,9 +5011,9 @@ Obtains all values in this cache, listed from the most to the least recently acc
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| V&nbsp;[] | All values in the cache, listed from the most to the least recently accessed. |
+| V&nbsp;[] | All values in the cache, listed from the most to the least recently accessed.|
 
 **Example**
 
@@ -4955,9 +5039,9 @@ Obtains all keys in this cache, listed from the most to the least recently acces
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| K&nbsp;[] | All keys in the cache, listed from the most to the least recently accessed. |
+| K&nbsp;[] | All keys in the cache, listed from the most to the least recently accessed.|
 
 **Example**
 
@@ -4981,15 +5065,15 @@ Removes the specified key and its value from this cache.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes | Key to remove. |
+| key | K | Yes| Key to remove.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns an empty **Optional** object otherwise; throws an error if **null** is passed in for **key**. |
+| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns an empty **Optional** object otherwise; throws an error if **null** is passed in for **key**.|
 
 **Example**
 
@@ -5013,12 +5097,12 @@ Performs subsequent operations after a value is removed.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isEvict | boolean | Yes | Whether the capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity. |
-| key | K | Yes | Key removed. |
-| value | V | Yes | Value removed. |
-| newValue | V | Yes | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank. |
+| isEvict | boolean | Yes| Whether the capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.|
+| key | K | Yes| Key removed.|
+| value | V | Yes| Value removed.|
+| newValue | V | Yes| New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
 
 **Example**
 
@@ -5057,15 +5141,15 @@ Checks whether this cache contains the specified key.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes | Key to check. |
+| key | K | Yes| Key to check.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the cache contains the specified key; returns **false** otherwise. |
+| boolean | Returns **true** if the cache contains the specified key; returns **false** otherwise.|
 
 **Example**
 
@@ -5089,15 +5173,15 @@ Creates a value if the value of the specified key is not available.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| key | K | Yes | Key of which the value is missing. |
+| key | K | Yes| Key of which the value is missing.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| V | Value of the key. |
+| V | Value of the key.|
 
 **Example**
 
@@ -5120,9 +5204,9 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [K,&nbsp;V] | Iterable array. |
+| [K,&nbsp;V] | Iterable array.|
 
 **Example**
 
@@ -5146,9 +5230,9 @@ Obtains a two-dimensional array in key-value pairs.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [K,&nbsp;V] | Two-dimensional array in key-value pairs. |
+| [K,&nbsp;V] | Two-dimensional array in key-value pairs.|
 
 **Example**
 
@@ -5179,10 +5263,10 @@ A constructor used to create a **Scope** object with the specified upper and low
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes | Lower limit of the **Scope** object. |
-| upperObj | [ScopeType](#scopetype8) | Yes | Upper limit of the **Scope** object. |
+| lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit of the **Scope** object.|
+| upperObj | [ScopeType](#scopetype8) | Yes| Upper limit of the **Scope** object.|
 
 **Example**
   ```ts
@@ -5220,9 +5304,9 @@ Obtains a string representation that contains this **Scope**.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | String representation containing the **Scope**. |
+| string | String representation containing the **Scope**.|
 
 **Example**
 
@@ -5263,15 +5347,15 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scopedeprecated) | Yes | **Scope** specified. |
+| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given **Scope**. |
+| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given **Scope**.|
 
 **Example**
 
@@ -5315,16 +5399,16 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes | Lower limit. |
-| upperObj | [ScopeType](#scopetype8) | Yes | Upper limit. |
+| lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit.|
+| upperObj | [ScopeType](#scopetype8) | Yes| Upper limit.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given lower and upper limits. |
+| [Scope](#scopedeprecated) | Intersection of this **Scope** and the given lower and upper limits.|
 
 **Example**
 
@@ -5367,9 +5451,9 @@ Obtains the upper limit of this **Scope**.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [ScopeType](#scopetype8) | Upper limit of this **Scope**. |
+| [ScopeType](#scopetype8) | Upper limit of this **Scope**.|
 
 **Example**
 
@@ -5410,9 +5494,9 @@ Obtains the lower limit of this **Scope**.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [ScopeType](#scopetype8) | Lower limit of this **Scope**. |
+| [ScopeType](#scopetype8) | Lower limit of this **Scope**.|
 
 **Example**
 
@@ -5453,16 +5537,16 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| lowerObj | [ScopeType](#scopetype8) | Yes | Lower limit. |
-| upperObj | [ScopeType](#scopetype8) | Yes | Upper limit. |
+| lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit.|
+| upperObj | [ScopeType](#scopetype8) | Yes| Upper limit.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [Scope](#scopedeprecated) | Union set of this **Scope** and the given lower and upper limits. |
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given lower and upper limits.|
 
 **Example**
 
@@ -5505,15 +5589,15 @@ Obtains the union set of this **Scope** and the given **Scope**.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scopedeprecated) | Yes | **Scope** specified. |
+| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [Scope](#scopedeprecated) | Union set of this **Scope** and the given **Scope**. |
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given **Scope**.|
 
 **Example**
 
@@ -5557,15 +5641,15 @@ Obtains the union set of this **Scope** and the given value.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [ScopeType](#scopetype8) | Yes | Value specified. |
+| value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [Scope](#scopedeprecated) | Union set of this **Scope** and the given value. |
+| [Scope](#scopedeprecated) | Union set of this **Scope** and the given value.|
 
 **Example**
 
@@ -5607,15 +5691,15 @@ Checks whether a value is within this **Scope**.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [ScopeType](#scopetype8) | Yes | Value specified. |
+| value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise. |
+| boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise.|
 
 **Example**
 
@@ -5657,15 +5741,15 @@ Checks whether a range is within this **Scope**.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | [Scope](#scopedeprecated) | Yes | **Scope** specified. |
+| range | [Scope](#scopedeprecated) | Yes| **Scope** specified.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise. |
+| boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise.|
 
 **Example**
 
@@ -5710,15 +5794,15 @@ Limits a value to this **Scope**.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [ScopeType](#scopetype8) | Yes | Value specified. |
+| value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**. |
+| [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**.|
 
 **Example**
 
@@ -5785,15 +5869,15 @@ Encodes the input content into a Uint8Array object. This API returns the result 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes | Uint8Array object to encode. |
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Uint8Array | Uint8Array object obtained. |
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -5817,15 +5901,15 @@ Encodes the input content into a string. This API returns the result synchronous
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes | Uint8Array object to encode. |
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| string | String obtained. |
+| string | String obtained.|
 
 **Example**
 
@@ -5849,15 +5933,15 @@ Decodes the input content into a Uint8Array object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array&nbsp;\|&nbsp;string | Yes | Uint8Array object or string to decode. |
+| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array object or string to decode.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Uint8Array | Uint8Array object obtained. |
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -5881,15 +5965,15 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes | Uint8Array object to encode. |
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained. |
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Example**
 
@@ -5915,15 +5999,15 @@ Encodes the input content into a string. This API uses a promise to return the r
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes | Uint8Array object to encode. |
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the string obtained. |
+| Promise&lt;string&gt; | Promise used to return the string obtained.|
 
 **Example**
 
@@ -5950,15 +6034,15 @@ Decodes the input content into a Uint8Array object. This API uses a promise to r
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array&nbsp;\|&nbsp;string | Yes | Uint8Array object or string to decode. |
+| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array object or string to decode.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained. |
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Example**
 
