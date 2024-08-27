@@ -123,8 +123,6 @@
 | const char \* [OH_PLAYER_VIDEO_HEIGHT](#oh_player_video_height) | 获取视频高度信息的关键字, 对应值类型int32_t。  | 
 | const char \* [OH_PLAYER_MESSAGE_TYPE](#oh_player_message_type) | 获取播放器消息信息的关键字, 对应值类型int32_t。  | 
 | const char \* [OH_PLAYER_IS_LIVE_STREAM](#oh_player_is_live_stream) | 获取媒体资源是否为直播类型信息的关键字, 对应值类型int32_t。  | 
-| [OH_AVPlayerOnInfo](#oh_avplayeroninfo) [AVPlayerCallback::onInfo](#oninfo) | 监听AVPlayer过程信息，参考[OH_AVPlayerOnInfo](#oh_avplayeroninfo)。 | 
-| [OH_AVPlayerOnError](#oh_avplayeronerror) [AVPlayerCallback::onError](#onerror) | 监听AVPlayer操作错误，参考[OH_AVPlayerOnError](#oh_avplayeronerror)。 | 
 
 
 ## 类型定义说明
@@ -162,7 +160,7 @@ typedef enum AVPlayerBufferingType AVPlayerBufferingType
 typedef struct AVPlayerCallback AVPlayerCallback
 ```
 **描述**
-OH_AVPlayer中所有回调函数指针的集合，包含[onError](#onerror)和[onInfo](#oninfo)两个成员。应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
+OH_AVPlayer中所有回调函数指针的集合，包含onError和onInfo两个成员。应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
