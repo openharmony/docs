@@ -67,8 +67,8 @@ Core模块提供用于播放框架的基础骨干能力，包含内存、错误�
 | -------- | -------- |
 | [OH_AVBuffer](#oh_avbuffer) \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | 创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要调用者手动释放，请参阅[OH_AVBuffer_Destroy](#oh_avbuffer_destroy)。 | 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 释放OH_AVBuffer实例指针的资源。 | 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_GetBufferAttr](#oh_avbuffer_getbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 获取数据缓冲区的高频属性参数。 | 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetBufferAttr](#oh_avbuffer_setbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 设置数据缓冲区的高频属性参数。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_GetBufferAttr](#oh_avbuffer_getbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 获取数据缓冲区的pts、size、offset、flags高频属性参数。 | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetBufferAttr](#oh_avbuffer_setbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 设置数据缓冲区的pts、size、offset、flags高频属性参数。 | 
 | [OH_AVFormat](#oh_avformat) \* [OH_AVBuffer_GetParameter](#oh_avbuffer_getparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取除基础属性外的其他参数，信息在OH_AVFormat中承载。 | 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetParameter](#oh_avbuffer_setparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVFormat](#oh_avformat) \*format) | 设置除基础属性外的其他参数，信息在OH_AVFormat中承载。 | 
 | uint8_t \* [OH_AVBuffer_GetAddr](#oh_avbuffer_getaddr) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的虚拟地址。 | 
@@ -594,7 +594,7 @@ OH_AVErrCode OH_AVBuffer_GetBufferAttr (OH_AVBuffer *buffer, OH_AVCodecBufferAtt
 
 **描述**
 
-获取数据缓冲区的高频属性参数。
+获取数据缓冲区的pts、size、offset、flags高频属性参数。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -723,7 +723,7 @@ OH_AVErrCode OH_AVBuffer_SetBufferAttr (OH_AVBuffer *buffer, const OH_AVCodecBuf
 
 **描述**
 
-设置数据缓冲区的高频属性参数。
+设置数据缓冲区的pts、size、offset、flags高频属性参数。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -831,7 +831,7 @@ struct OH_AVFormat* OH_AVFormat_Create (void)
 
 **返回：**
 
-返回指向OH_AVFormat实例的指针。
+返回指向OH_AVFormat实例的指针。系统资源不足时返回NULL。
 
 
 ### OH_AVFormat_CreateAudioFormat()
@@ -858,7 +858,7 @@ struct OH_AVFormat* OH_AVFormat_CreateAudioFormat (const char *mimeType, int32_t
 
 **返回：**
 
-返回指向OH_AVFormat实例的指针。
+返回指向OH_AVFormat实例的指针。传入的mimeType为NULL或系统资源不足时返回NULL。
 
 
 ### OH_AVFormat_CreateVideoFormat()
@@ -885,7 +885,7 @@ struct OH_AVFormat* OH_AVFormat_CreateVideoFormat (const char *mimeType, int32_t
 
 **返回：**
 
-返回指向OH_AVFormat实例的指针。
+返回指向OH_AVFormat实例的指针。传入的mimeType为NULL或系统资源不足时返回NULL。
 
 
 ### OH_AVFormat_Destroy()
@@ -934,7 +934,7 @@ const char* OH_AVFormat_DumpInfo (struct OH_AVFormat *format)
 
 **返回：**
 
-返回一个由key-value组成的字符串。
+返回一个由key-value组成的字符串。传入的format为NULL或系统资源不足时返回NULL。
 
 
 ### OH_AVFormat_GetBuffer()
@@ -970,7 +970,9 @@ bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t
 2. 输入format参数结构校验失败；
 3. 输入key为空指针；
 4. 输入addr为空指针；
-5. size为空指针。
+5. size为空指针；
+6. 获取的key不存在或者未设置。
+
 
 ### OH_AVFormat_GetDoubleValue()
 
@@ -1004,7 +1006,7 @@ bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat *format, const char *key, do
 2. 输入format参数结构校验失败；
 3. 输入key为空指针；
 4. 输入out为空指针；
-5. 输入key不存在。
+5. 获取的key不存在或者未设置。
 
 
 ### OH_AVFormat_GetFloatValue()
@@ -1039,7 +1041,7 @@ bool OH_AVFormat_GetFloatValue (struct OH_AVFormat *format, const char *key, flo
 2. 输入format参数结构校验失败；
 3. 输入key为空指针；
 4. 输入out为空指针；
-5. 输入key不存在。
+5. 获取的key不存在或者未设置。
 
 
 ### OH_AVFormat_GetIntValue()
@@ -1074,7 +1076,7 @@ bool OH_AVFormat_GetIntValue (struct OH_AVFormat *format, const char *key, int32
 2. 输入format参数结构校验失败；
 3. 输入key为空指针；
 4. 输入out为空指针；
-5. 输入key不存在。
+5. 获取的key不存在或者未设置。
 
 
 ### OH_AVFormat_GetLongValue()
@@ -1109,7 +1111,7 @@ bool OH_AVFormat_GetLongValue (struct OH_AVFormat *format, const char *key, int6
 2. 输入format参数结构校验失败；
 3. 输入key为空指针；
 4. 输入out为空指针；
-5. 输入key不存在。
+5. 获取的key不存在或者未设置。
 
 
 ### OH_AVFormat_GetStringValue()
@@ -1145,7 +1147,7 @@ bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, co
 3. 输入key为空指针；
 4. 输入out为空指针；
 5. malloc出的out字符串资源不足；
-6. 输入key不存在。
+6. 获取的key不存在或者未设置。
 
 
 ### OH_AVFormat_SetBuffer()
@@ -1181,7 +1183,8 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const u
 2. 输入format参数结构校验失败；
 3. 输入key为空指针；
 4. 输入addr为空指针；
-5. size为0。
+5. size为0；
+6. 设置的key对应的value类型错误。
 
 
 ### OH_AVFormat_SetDoubleValue()
@@ -1214,7 +1217,8 @@ bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 1. 输入format为空指针；
 2. 输入format参数结构校验失败；
-3. 输入key为空指针。
+3. 输入key为空指针；
+4. 设置的key对应的value类型错误。
 
 
 ### OH_AVFormat_SetFloatValue()
@@ -1247,8 +1251,8 @@ bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, flo
 
 1. 输入format为空指针；
 2. 输入format参数结构校验失败；
-3. 输入key为空指针。
-
+3. 输入key为空指针；
+4. 设置的key对应的value类型错误。
 
 ### OH_AVFormat_SetIntValue()
 
@@ -1280,7 +1284,8 @@ bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32
 
 1. 输入format为空指针；
 2. 输入format参数结构校验失败；
-3. 输入key为空指针。
+3. 输入key为空指针；
+4. 设置的key对应的value类型错误。
 
 
 ### OH_AVFormat_SetLongValue()
@@ -1313,7 +1318,8 @@ bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int6
 
 1. 输入format为空指针；
 2. 输入format参数结构校验失败；
-3. 输入key为空指针。
+3. 输入key为空指针；
+4. 设置的key对应的value类型错误。
 
 
 ### OH_AVFormat_SetStringValue()
@@ -1347,7 +1353,8 @@ bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, co
 1. 输入format为空指针；
 2. 输入format参数结构校验失败；
 3. 输入key为空指针；
-4. 输入value为空指针。
+4. 输入value为空指针；
+5. 设置的key对应的value类型错误。
 
 
 ### OH_AVMemory_Create()
