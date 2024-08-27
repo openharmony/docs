@@ -64,6 +64,10 @@ static show(options?: TextPickerDialogOptions)
 
 ## 示例
 
+>  **说明：**
+>
+> 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTextPickerDialog](../js-apis-arkui-UIContext.md#showtextpickerdialog)来明确UI的执行上下文。
+
 ### 示例1
 
 TextPickerDialog基本使用
@@ -83,7 +87,7 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({
+            TextPickerDialog.show({ // 建议使用 this.getUIContext().showTextPickerDialog()接口
               range: this.fruits,
               selected: this.select,
               disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
@@ -145,7 +149,7 @@ struct TextPickerDialogExample {
         Button("TextPickerDialog:" + this.v)
           .margin(20)
           .onClick(() => {
-            TextPickerDialog.show({
+            TextPickerDialog.show({ // 建议使用 this.getUIContext().showTextPickerDialog()接口
               range: this.fruits,
               selected: this.select,
               disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},

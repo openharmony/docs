@@ -191,7 +191,7 @@ struct TextPickerExample {
     Column() {
       Button("TextPickerDialog.show:" + this.v)
         .onClick(() => {
-          TextPickerDialog.show({
+          this.getUIContext().showTextPickerDialog({
             range: this.cascade,
             selected: this.select,
             onAccept: (value: TextPickerResult) => {
