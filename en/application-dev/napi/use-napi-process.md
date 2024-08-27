@@ -25,10 +25,7 @@ The following demonstrates how to implement cross-language interaction by implem
 
   When a native module is imported in ArkTS, the .so file will be loaded. During the loading process, the **napi_module_register** method is called to register the module with the system and call the module initialization function.
 
-  **napi_module** has two key attributes:
-
-  -  **.nm_register_func**: defines the module initialization function.
-  - **is .nm_modname**: defines the module name, that is, the name of the .so file imported by ArkTS.
+  napi_module has two key attributes: **.nm_register_func** and **.nm_modname**. **.nm_register_func** defines the module initialization function, and **.nm_modname** defines the module name, that is, the name of the .so file imported by ArkTS.
 
   ```
   // entry/src/main/cpp/hello.cpp
@@ -52,7 +49,7 @@ The following demonstrates how to implement cross-language interaction by implem
 
 - Initialize the module.
 
-  Create the mappings between the ArkTS and C++ APIs.
+  Implement the mappings between the ArkTS and C++ APIs.
 
   ```
   // entry/src/main/cpp/hello.cpp
@@ -167,7 +164,7 @@ The following demonstrates how to implement cross-language interaction by implem
 
 ## Calling C/C++ APIs on ArkTS
 
-On ArkTS, import the .so file that contains the native processing logic and call C/C++ APIs.
+On ArkTS, import the .so file that contains the processing logic on the native side to use C/C++ APIs.
 
 ```
 // entry/src/main/ets/pages/Index.ets
