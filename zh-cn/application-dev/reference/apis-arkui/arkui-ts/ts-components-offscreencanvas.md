@@ -26,8 +26,8 @@ OffscreenCanvas(width: number, height: number)
 
 | 参数名 | 类型 | 必填 | 说明                        |
 | ------ | -------- | ---- | ------------------------------------- |
-| width  | number   | 是  | OffscreenCanvas组件的宽度。<br>默认单位为vp。 |
-| height | number   | 是  | OffscreenCanvas组件的高度。<br>默认单位为vp。 |
+| width  | number   | 是  | OffscreenCanvas组件的宽度。<br>单位为vp。 |
+| height | number   | 是  | OffscreenCanvas组件的高度。<br>单位为vp。 |
 
 ## 属性
 
@@ -41,8 +41,8 @@ OffscreenCanvas支持以下属性：
 
 | 名称   | 类型   | 只读 | 可选 | 说明 |
 | ------ | ------ | ------ | ------- | ---- |
-| width  | number | 否  |  否  | OffscreenCanvas组件的宽度。<br>默认单位为vp。 |
-| height | number | 否  |  否  | OffscreenCanvas组件的高度。<br>默认单位为vp。 |
+| width  | number | 否  |  否  | OffscreenCanvas组件的宽度。<br>单位为vp。 |
+| height | number | 否  |  否  | OffscreenCanvas组件的高度。<br>单位为vp。 |
 
 ### width
 
@@ -188,7 +188,7 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 
 | 参数名  | 类型 | 必填 | 说明    |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| contextType | string | 是   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。<br>默认值："2d"。|
+| contextType | string | 是   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。|
 | options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否 | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。<br>默认值：null。 |
 
 **返回值：**
