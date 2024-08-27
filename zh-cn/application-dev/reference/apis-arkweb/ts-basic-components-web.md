@@ -16,7 +16,7 @@
 
 ## 接口
 
-Web(options: { src: ResourceStr, controller: WebviewController | WebController, renderMode? : RenderMode, incognitoMode? : boolean})
+Web(options: { src: ResourceStr, controller: WebviewController | WebController, renderMode? : RenderMode, incognitoMode? : boolean, sharedRenderProcessToken? : string})
 
 > **说明：**
 >
@@ -618,7 +618,7 @@ databaseAccess(databaseAccess: boolean)
 
 geolocationAccess(geolocationAccess: boolean)
 
-设置是否开启获取地理位置权限，默认开启。
+设置是否开启获取地理位置权限，默认开启。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)
 
 **参数：**
 
@@ -2931,6 +2931,8 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 
 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
+组件生命周期详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
+
 **参数：**
 
 | 参数名  | 参数类型   | 参数描述      |
@@ -2966,6 +2968,8 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
 网页加载完成时触发该回调，且只在主frame触发。
+
+组件生命周期详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
 
 **参数：**
 
@@ -3130,6 +3134,12 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 应用渲染进程异常退出时触发该回调。
 
+多个web组件可能共享单个渲染进程，每个受影响的web组件都会触发该回调。
+
+应用处理该回调时，可以调用绑定的webviewContoller相关接口来恢复页面。例如[refresh](js-apis-webview.md#refresh)、[loadUrl](js-apis-webview.md#loadurl)等。
+
+组件生命周期回调详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
+
 **参数：**
 
 | 参数名              | 参数类型                                     | 参数描述             |
@@ -3163,7 +3173,11 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
-渲染进程无响应时触发该回调函数。
+渲染进程无响应时触发该回调函数。如果Web组件无法处理输入事件，或者无法在合理的时间范围内导航到新的URL，则认为网页进程无响应，并将触发该回调。
+
+只要网页进程一直无响应，此回调仍可能会持续触发，直到网页进程再次响应，此时[onRenderProcessResponding](#onrenderprocessresponding12)将会触发。
+
+应用可以通过WebviewController接口[terminateRenderProcess](js-apis-webview.md#terminaterenderprocess12)来终止关联的渲染进程，这可能会影响同一渲染进程的其他Web组件。
 
 **参数：**
 
@@ -4412,6 +4426,10 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 若不调用event.handler.setWebController接口，会造成render进程阻塞。
 如果不需要打开新窗口，在调用event.handler.setWebController接口时须设置成null。
 
+应用应谨慎的显示新窗口：不要简单的覆盖在原web组件上，防止误导用户正在查看哪个网站，如果应用显示主页的URL，请确保也以相似的方式显示新窗口的URL。否则请考虑完全禁止创建新窗口。
+
+注意：没有可靠的方式判断哪个页面请求了新窗口，该请求可能来自第三方iframe
+
 **参数：**
 
 | 参数名           | 参数类型                                     | 参数描述                          |
@@ -4481,7 +4499,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 onWindowExit(callback: () => void)
 
-通知用户窗口关闭请求。
+通知用户窗口关闭请求。和[onWindowNew](#onwindownew9)一样，从安全角度讲，应用应该确保用户可以知道他们交互的页面已关闭。
 
 **参数：**
 
@@ -4615,6 +4633,8 @@ onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
 onPageVisible(callback: Callback\<OnPageVisibleEvent\>)
 
 设置旧页面不再呈现，新页面即将可见时触发的回调函数。
+
+组件生命周期详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
 
 **参数：**
 
@@ -5067,6 +5087,8 @@ onControllerAttached(callback: () => void)
 
 当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，
 因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](js-apis-webview.md#zoomin)、[zoomOut](js-apis-webview.md#zoomout)等，可以使用[loadUrl](js-apis-webview.md#loadurl)、[getWebId](js-apis-webview.md#getwebid)等操作网页不相关的接口。
+
+组件生命周期详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
 
 **示例：**
 
