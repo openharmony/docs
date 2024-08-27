@@ -2488,7 +2488,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。入参错误会导致promise对象创建失败。
+入参错误会导致promise对象创建失败，需要从外部捕获。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -2511,11 +2511,8 @@ systemPasteboard.detectPatterns(patterns).then((data: Array<Pattern>) => {
       } catch (err) {
         console.error('Failed to get PasteData. Cause:' + err.message);
       };
-    }
-    else {
+    } else {
       console.info("Not all needed patterns detected, no need to get data.");
     }
-}).catch((err: BusinessError) => {
-    console.error('Failed to set PasteData. Cause: ' + err.message);
 });
 ```
