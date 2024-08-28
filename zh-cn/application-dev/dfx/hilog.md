@@ -98,7 +98,7 @@ hilog命令行使用方式：
 
 ## 常用命令
 
-1. 查看帮助命令。
+### 查看帮助命令。
 
    ```
    hilog -h
@@ -123,7 +123,7 @@ hilog命令行使用方式：
         Show n lines logs on tail of buffer.
    ```
 
-2. 查看日志缓冲区大小。
+### 查看日志缓冲区大小。
 
    ```
    hilog -g
@@ -139,7 +139,7 @@ hilog命令行使用方式：
    Log type only_prerelease buffer size is 16.0M
    ```
 
-3. 修改日志缓冲区大小。
+### 修改日志缓冲区大小。
 
    ```
    hilog -G size
@@ -154,7 +154,7 @@ hilog命令行使用方式：
    Set log type only_prerelease buffer size to 16.0M successfully
    ```
 
-4. 进程流控开关。
+### 进程流控开关。
 
    ```
    hilog -Q pidon/pidoff
@@ -171,7 +171,7 @@ hilog命令行使用方式：
    Set flow control by process to disabled successfully
    ```
 
-5. domain流控开关。
+### domain流控开关。
 
    ```
    hilog -Q domainon/domainoff
@@ -188,7 +188,7 @@ hilog命令行使用方式：
    Set flow control by domain to disabled successfully
    ```
 
-6. 查看指定级别日志。
+### 查看指定级别日志。
 
    ```
    hilog -L D/I/W/E/F
@@ -208,7 +208,7 @@ hilog命令行使用方式：
    08-28 09:01:56.408  8586  8586 E A00500/com.ohos.settingsdata/SettingsData: decoder failure: /data/migrate/settings_global.xml , error code:-1
    ```
 
-7. 查看指定TAG日志。
+### 查看指定TAG日志。
 
    ```
    hilog -T tag
@@ -229,7 +229,7 @@ hilog命令行使用方式：
    08-28 09:27:59.965   610  4064 I C01800/samgr/SAMGR: AddProc:media_analysis_service. size:75
    ```
 
-8. 查看指定进程日志。
+### 查看指定进程日志。
 
    ```
    hilog -P pid
@@ -249,7 +249,7 @@ hilog命令行使用方式：
    08-28 10:19:24.002   618 17580 W C01650/hiview/Rdb:  sctime: Wed Aug 28 00:34:30 2024
    ```
 
-9. 查看、设置落盘任务。
+### 查看、设置落盘任务。
 
    ```
    hilog -w control
@@ -282,7 +282,7 @@ hilog命令行使用方式：
    Persist task [jobid:2] stop successfully
    ```
 
-10. 设置可打印日志的最低等级
+### 设置可打印日志的最低等级
  
    ```
    hilog -b D/I/W/E/F
@@ -295,7 +295,7 @@ hilog命令行使用方式：
    Set global log level to E successfully
    ```
 <!--Del-->
-11. 隐私开关。
+### 隐私开关。
 
    ```
    hilog -p on/off
