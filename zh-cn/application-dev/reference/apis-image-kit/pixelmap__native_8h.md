@@ -33,10 +33,10 @@
 | -------- | -------- |
 | typedef struct [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。 | 
 | typedef struct [OH_NativeBuffer](_image___native_module.md#oh_nativebuffer) [OH_NativeBuffer](_image___native_module.md#oh_nativebuffer) | NativeBuffer结构体类型，用于执行NativeBuffer相关操作。 | 
-| typedef struct [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md ) [OH_Pixelmap_HdrStaticMetadata](_image___native_module.md#oh_pixelmap_hdrstaticmetadata) | HDR_STATIC_METADATA关键字对应的静态元数据值。  | 
-| typedef struct [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md ) [OH_Pixelmap_HdrDynamicMetadata](_image___native_module.md#oh_pixelmap_hdrdynamicmetadata) | DR_DYNAMIC_METADATA关键字对应的动态元数据值。  | 
-| typedef struct [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md ) [OH_Pixelmap_HdrGainmapMetadata](_image___native_module.md#oh_pixelmap_hdrgainmapmetadata) | HDR_GAINMAP_METADATA关键字对应的gainmap相关元数据值，参考ISO 21496-1。  | 
-| typedef struct [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md ) [OH_Pixelmap_HdrMetadataValue](_image___native_module.md#oh_pixelmap_hdrmetadatavalue) | Pixelmap使用的HDR元数据值，和OH_Pixelmap_HdrMetadataKey关键字相对应。  | 
+| typedef struct [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md) [OH_Pixelmap_HdrStaticMetadata](_image___native_module.md#oh_pixelmap_hdrstaticmetadata) | HDR_STATIC_METADATA关键字对应的静态元数据值。  | 
+| typedef struct [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md) [OH_Pixelmap_HdrDynamicMetadata](_image___native_module.md#oh_pixelmap_hdrdynamicmetadata) | DR_DYNAMIC_METADATA关键字对应的动态元数据值。  | 
+| typedef struct [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md) [OH_Pixelmap_HdrGainmapMetadata](_image___native_module.md#oh_pixelmap_hdrgainmapmetadata) | HDR_GAINMAP_METADATA关键字对应的gainmap相关元数据值，参考ISO 21496-1。  | 
+| typedef struct [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) [OH_Pixelmap_HdrMetadataValue](_image___native_module.md#oh_pixelmap_hdrmetadatavalue) | Pixelmap使用的HDR元数据值，和OH_Pixelmap_HdrMetadataKey关键字相对应。  | 
 | typedef struct [OH_Pixelmap_InitializationOptions](_image___native_module.md#oh_pixelmap_initializationoptions) [OH_Pixelmap_InitializationOptions](_image___native_module.md#oh_pixelmap_initializationoptions) | 初始化参数结构体。 | 
 | typedef struct [OH_Pixelmap_ImageInfo](_image___native_module.md#oh_pixelmap_imageinfo) [OH_Pixelmap_ImageInfo](_image___native_module.md#oh_pixelmap_imageinfo) | 图像像素信息结构体。 | 
 
