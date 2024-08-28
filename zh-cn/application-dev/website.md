@@ -1012,9 +1012,9 @@
           <!--DelEnd-->
           - 应用账号<!--application-account-->
             - [管理应用账号](basic-services/account/manage-application-account.md)
-          - USB服务<!--usb-->
-            - [USB服务开发概述](basic-services/usb/usb-overview.md)
-            - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
+        - USB服务<!--usb-->
+          - [USB服务开发概述](basic-services/usb/usb-overview.md)
+          - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
         <!--Del-->
         - 升级服务<!--update-->
           - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
@@ -2791,7 +2791,7 @@
           - [@ohos.userIAM.userAuthIcon (嵌入式用户身份认证控件)](reference/apis-user-authentication-kit/ohos-useriam-userauthicon.md)
         - 错误码<!--user-authentication-arkts-errcode-->
           - [用户认证错误码](reference/apis-user-authentication-kit/errorcode-useriam.md)
-      - 网络<!--system-network-api-->
+    - 网络<!--system-network-api-->
       - Connectivity Kit（短距通信服务）<!--connectivity-api-->
         - ArkTS API<!--connectivity-arkts--> 
           - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md)
