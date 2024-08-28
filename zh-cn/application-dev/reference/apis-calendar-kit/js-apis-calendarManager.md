@@ -1783,13 +1783,13 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | expire              | number                                      | 否   | 是  | 重复周期截止日。不填时，默认为0。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | count<sup>12+</sup>               | number                                      | 否   | 是  | 重复日程重复次数。 不填时，默认为0。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | interval<sup>12+</sup>            | number                                      | 否   | 是  | 重复日程重复间隔。 不填时，默认为0。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| excludedDates<sup>12+</sup>       | number[]                                    | 否   | 是  | 重复日程排除日期。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
-| daysOfWeek<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一周第几天重复。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| daysOfMonth<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一个月第几天重复。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                |
-| daysOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年第几天重复。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
-| weeksOfMonth<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一个月第几周重复。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                |
-| weeksOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年中第几周重复。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                |
-| monthsOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年中第几个月重复。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+| excludedDates<sup>12+</sup>       | number[]                                    | 否   | 是  | 重复日程排除日期。不填时，默认为空。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
+| daysOfWeek<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一周第几天重复。不填时，默认为空。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| daysOfMonth<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一个月第几天重复。不填时，默认为空。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                |
+| daysOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年第几天重复。不填时，默认为空。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| weeksOfMonth<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一个月第几周重复。不填时，默认为空。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                |
+| weeksOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年中第几周重复。不填时，默认为空。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                |
+| monthsOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年中第几个月重复。不填时，默认为空。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 ## RecurrenceFrequency
 
 日程重复规则类型枚举。
