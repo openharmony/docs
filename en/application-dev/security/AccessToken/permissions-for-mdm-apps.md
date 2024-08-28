@@ -469,3 +469,16 @@ Allows an MDM application to query security audit events.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 12
+
+## ohos.permission.ENTERPRISE_RECOVERY_KEY
+
+Allows an application to manage enterprise recovery key.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 13
