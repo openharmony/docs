@@ -51,7 +51,7 @@ TextInput(value?: TextInputOptions)
 | showUnit<sup>10+</sup>                | [CustomBuilder](ts-types.md#custombuilder8)                  | 设置控件作为文本框单位。<br/>默认无单位。<br/>需搭配showUnderline使用，当showUnderline为true时生效。 |
 | showError<sup>10+</sup>               | string&nbsp;\|&nbsp;undefined                                | 设置错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>**说明：** <br/>当参数类型为string并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2) |
 | showUnderline<sup>10+</sup>           | boolean                                                      | 设置是否开启下划线。下划线默认颜色为'#33182431'，默认粗细为1px，文本框尺寸48vp（下划线只支持InputType.Normal类型）。<br/>默认值：false |
-| passwordIcon<sup>10+</sup>            | [PasswordIcon](#passwordicon10对象说明)                      | 密码输入模式时，设置输入框末尾的图标。<br/>默认为系统提供的密码图标。 |
+| passwordIcon<sup>10+</sup>            | [PasswordIcon](#passwordicon10对象说明)                      | 密码输入模式时，设置输入框末尾的图标。支持jpg、png、bmp、heic和webp类型的图片格式。该图标的固定尺寸为24vp，若引用的图标过大或过小，均显示为固定尺寸。<br/>默认为系统提供的密码图标。 |
 | enableKeyboardOnFocus<sup>10+</sup>   | boolean                                                      | TextInput通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 | selectionMenuHidden<sup>10+</sup>     | boolean                                                      | 设置单击输入框光标、长按输入框、双击输入框、三击输入框或者右键输入框时，是否不弹出文本选择菜单。<br />默认值：false |
 | barState<sup>10+</sup>                | [BarState](ts-appendix-enums.md#barstate)                    | 设置内联输入风格编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
@@ -115,7 +115,7 @@ TextInput(value?: TextInputOptions)
 | 名称      | 描述                                       |
 | ------- | ---------------------------------------- |
 | Default | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。      |
-| Inline  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。 |
+| Inline  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。<br/>内联模式下，不支持拖入文本。 |
 
 ## PasswordIcon<sup>10+</sup>对象说明
 
@@ -372,13 +372,16 @@ struct TextInputExample {
         .onChange((value: string) => {
           this.Text = value
         })
-        .onSubmit(() => { // 用户名不正确会清空输入框和用户名并提示错误文本
+        .onSubmit(() => { 
+          // 用户名不正确会清空输入框和用户名并提示错误文本
           if (this.Text == this.NameText) {
             this.TextError = ''
           } else {
             this.TextError = '用户名输入错误'
             this.Text = ''
           }
+          // 调用keepEditableState方法，输入框保持编辑态
+          event.keepEditableState()
         })
 
     }.width('100%')
