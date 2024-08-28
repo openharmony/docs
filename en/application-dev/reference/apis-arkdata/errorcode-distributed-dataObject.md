@@ -20,4 +20,4 @@ An object with the same session ID already exists.
 
 **Solution**
 
-Check for the object has been added to the same session.
+Use the session ID created by [genSessionId](../../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid).
