@@ -70,7 +70,7 @@ radiusHeight(value: number | string)
 
 ### radius
 
-radius(value: number | string | Array&lt;any&gt;)
+radius(value: number | string | Array&lt;string&nbsp;|&nbsp;number&gt;)
 
 设置圆角半径大小。  异常值按照默认值处理。
 
@@ -84,7 +84,7 @@ radius(value: number | string | Array&lt;any&gt;)
 
 | 参数名 | 类型                                                         | 必填 | 说明                         |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Array&lt;any&gt; | 是   | 圆角半径大小。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 是   | 圆角半径大小。<br/>默认值：0 |
 
 ### fill
 
