@@ -24,7 +24,7 @@ System applications are not restricted. They can implement all the ExtensionAbil
 | [BackupExtensionAbility](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md) | ExtensionAbility component of the backup type, which provides APIs for [backing up and restoring application data](../file-management/app-file-backup-overview.md).     | Y | NA |
 | [DriverExtensionAbility](../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)            | ExtensionAbility component of the driver type, which provides the [driver-related extension framework](../device/driver/driverextensionability.md).     | Y | Y |
 | [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) | ExtensionAbility component of the embedded UI type, which provides the [embedded UI across processes](embeddeduiextensionability.md).| Y | Y |
-
+| [ShareExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md) | ExtensionAbility component of the SHARE type, which is used to extend the sharing template service. | Y | Y | N | N |
 
 
 ## Accessing ExtensionAbility of the Specified Type

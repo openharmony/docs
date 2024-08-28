@@ -1229,7 +1229,7 @@ Describes the data returned by the **WantAgent** object after being triggered.
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | info           | WantAgent                       | No| No  | A triggered **WantAgent** object.      |
-| want           | [Want](js-apis-app-ability-want.md#attributes)                           | No| No  | An existing triggered Want.    |
+| want           | [Want](js-apis-app-ability-want.md#properties)                           | No| No  | An existing triggered Want.    |
 | finalCode      | number                          | No| No  | Request code that triggers the **WantAgent** object.|
 | finalData      | string                          | No| No  | Final data collected by the common event. |
 | extraInfo      | Record\<string, Object>            | No|Yes  | Extra information.              |

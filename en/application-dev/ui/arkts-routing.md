@@ -21,7 +21,7 @@ The **Router** module provides two redirection modes: [router.pushUrl()](../refe
 
 >**NOTE**
 >
->- When creating a page, configure the route to this page by following instructions in [Building the Second Page](../quick-start/start-with-ets-stage.md#building-the-second-page).
+>- When creating a page, configure the route to this page by following instructions in <!--RP1-->[Building the Second Page](../quick-start/start-with-ets-stage.md#building-the-second-page)<!--RP1End-->.
 >
 >
 >- The maximum capacity of a page stack is 32 pages. If this limit is exceeded, the [router.clear()](../reference/apis-arkui/js-apis-router.md#routerclear) API can be called to clear the historical page stack and free the memory.

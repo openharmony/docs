@@ -28,7 +28,7 @@ An application package can contain either only one entry HAP or one entry HAP pl
 
 To create a HAP in DevEco Studio:
 
-1. Create a project. For details, see [Building the First ArkTS Application in Stage Model](start-with-ets-stage.md).
+1. Create a project.
 2. Right-click the project directory and choose **New** > **Module** from the shortcut menu.
 3. In the dialog box displayed, select **Empty Ability** as the template and click **Next**.
    
