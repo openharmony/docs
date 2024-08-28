@@ -721,7 +721,7 @@ struct ImageExample3 {
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_0000001607845173.gif)
 
 ### 示例4
-
+<!--RP1-->
 使用enableAnalyzer接口开启图像AI分析
 
 ```ts
@@ -773,7 +773,7 @@ struct ImageExample4 {
 ```
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view4.gif)
-
+<!--RP1End-->
 ### 示例5
 
 调整不同方向对图片进行拉伸
