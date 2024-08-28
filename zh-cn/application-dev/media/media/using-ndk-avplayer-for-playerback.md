@@ -21,11 +21,27 @@
 - 如果要实现后台播放或熄屏播放，需要接入[AVSession（媒体会话）](../avsession/avsession-access-scene.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。此功能仅提供ArkTS API。
 - 应用在播放过程中，若播放的媒体数据涉及音频，根据系统音频管理策略（参考[处理音频焦点事件](../audio/audio-playback-concurrency.md)），可能会被其他应用打断，建议应用通过[OH_AVPlayer_SetPlayerCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setplayercallback)主动监听音频打断事件[AV_INFO_TYPE_INTERRUPT_EVENT](../../reference/apis-media-kit/_a_v_player.md#avplayeroninfotype-1)，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
 - 面对设备同时连接多个音频输出设备的情况，应用可以通过[OH_AVPlayer_SetPlayerCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setplayercallback)主动监听音频输出设备改变事件[AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE](../../reference/apis-media-kit/_a_v_player.md#avplayeroninfotype-1)，从而做出相应处理。
+- 由于通过[OH_AVPlayer_SetPlayerCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setplayercallback)设置的信息监听回调函数可以传递信息有限，也不便于应用区分多个播放实例。从API 12开始，应用需要使用[OH_AVPlayer_SetOnInfoCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setoninfocallback)、[OH_AVPlayer_SetOnErrorCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setonerrorcallback)接口分别设置信息监听回调函数[OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback)和错误监听回到函数[OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback)。当应用成功设置信息监听回调函数[OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback)后，不再执行通过[OH_AVPlayer_SetPlayerCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setplayercallback)设置的信息监听回调函数[OH_AVPlayerOnInfo](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfo)；当应用成功设置错误监听回调函数[OH_AVPlayerOnErrorCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerrorcallback)后，不再执行通过[OH_AVPlayer_SetPlayerCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setplayercallback)设置的错误监听回调函数[OH_AVPlayerOnError](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeronerror)。
 
 ## 开发步骤及注意事项
-在 CMake 脚本中链接动态库
+在 CMake 脚本中链接动态库：
 ```
 target_link_libraries(sample PUBLIC libavplayer.so)
+```
+
+开发者使用[OH_AVPlayer_SetOnInfoCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setoninfocallback)、[OH_AVPlayer_SetOnErrorCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setonerrorcallback)接口设置信息监听回调函数和错误监听回调函数，需要在 CMake 脚本中链接如下动态库：
+```
+target_link_libraries(sample PUBLIC libnative_media_core.so)
+```
+
+开发者使用系统日志能力时，需引入如下头文件：
+```
+#include <hilog/log.h>
+```
+
+并需要在 CMake 脚本中链接如下动态库:
+```
+target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 ```
 
 开发者通过引入[avplayer.h](../../reference/apis-media-kit/avplayer_8h.md)、[avpalyer_base.h](../../reference/apis-media-kit/avplayer__base_8h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用音频播放相关API。
@@ -38,6 +54,8 @@ target_link_libraries(sample PUBLIC libavplayer.so)
    | -------- | -------- |
    | OH_AVPlayerOnInfo | 必要事件，监听播放器的过程信息。 |
    | OH_AVPlayerOnError | 必要事件，监听播放器的错误信息。 |
+
+    从API 12开始应使用[OH_AVPlayer_SetOnInfoCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setoninfocallback)、[OH_AVPlayer_SetOnErrorCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setonerrorcallback)接口设置信息监听回调函数和错误监听回调函数，可以通过回调获取更多信息，还可以通过设置 userData 区分不同播放实例。
 
 3. 设置资源：调用OH_AVPlayer_SetURLSource(),设置属性url，AVPlayer进入initialized状态。
 
@@ -64,74 +82,234 @@ target_link_libraries(sample PUBLIC libavplayer.so)
 #include <multimedia/player_framework/avplayer_base.h>
 #include <multimedia/player_framework/native_averrors.h>
 
-static char *Url;
+#include <hilog/log.h>
 
-void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
-{
-    int32_t ret;
-    switch (type) {
-        case AV_INFO_TYPE_STATE_CHANGE:
-            switch (extra) {
-                case AV_IDLE: // 成功调用reset接口后触发该状态机上报
-//                    ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
-//                    if (ret != AV_ERR_OK) {
-//                    // 处理异常
-//                    }
-                    break;
-                case AV_INITIALIZED: 
-                    ret = OH_AVPlayer_Prepare(player); //设置播放源后触发该状态上报
-                    if (ret != AV_ERR_OK) {
-                    // 处理异常
-                    }
-                    break;
-                case AV_PREPARED:            
-//                    ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // 设置音频音效模式
-//                    if (ret != AV_ERR_OK) {
-//                    //处理异常    
-//                    }  
-                    ret = OH_AVPlayer_Play(player); // 调用播放接口开始播放
-                    if (ret != AV_ERR_OK) {
-                    // 处理异常
-                    }
-                    break;
-                case AV_PLAYING:  
-//                    ret = OH_AVPlayer_Pause(player); //调用暂停接口暂停播放
-//                    if (ret != AV_ERR_OK) {
-//                    // 处理异常
-//                    }
-                    break;
-                case AV_PAUSED:  
-//                    ret = OH_AVPlayer_Play(player); // 再次播放接口开始播放
-//                    if (ret != AV_ERR_OK) {
-//                    // 处理异常
-//                    }
-                   break;
-                case AV_STOPPED:  
-                    ret = OH_AVPlayer_Release(player); //调用reset接口初始化avplayer状态
-                    if (ret != AV_ERR_OK) {
-                    // 处理异常
-                    }
-                    break;
-                case AV_COMPLETED:  
-                    ret = OH_AVPlayer_Stop(player);// 调用播放结束接口
-                    if (ret != AV_ERR_OK) {
-                    // 处理异常
-                    }
-                    break;
-                default:
-                    break;
+#define LOG_MSG_TAG "AVPlayerNdk"
+#define LOG(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_INFO, 0xFF00, LOG_MSG_TAG, format, ##__VA_ARGS__))
+#define LOGE(format, ...) ((void)OH_LOG_Print(LOG_APP, LOG_ERROR, 0xFF00, LOG_MSG_TAG, format, ##__VA_ARGS__))
+
+static char *g_url;
+
+typedef struct DemoNdkPlayer {
+    OH_AVPlayer *player = nullptr;
+    char *url = nullptr;
+    int32_t errorCode = AV_ERR_UNKNOWN;
+
+    int32_t value = -1;
+    int32_t state = -1;
+    int32_t stateChangeReason = -1;
+    AVPlayerState avState = AV_IDLE;
+    AVPlaybackSpeed speed = AV_SPEED_FORWARD_1_00_X;
+
+    float volume = 0.0;
+    int64_t duration = -1;
+
+    int32_t width = -1;
+    int32_t height = -1;
+
+    AVPlayerBufferingType bufferType = AVPLAYER_BUFFERING_START;
+    int32_t bufferValue = -1;
+
+    uint32_t *bitRates = nullptr;
+    size_t bitRatesSize = 0;
+    uint32_t bitRate = 0;
+
+    int32_t interruptType = -1;
+    int32_t interruptForce = -1;
+    int32_t interruptHint = -1;
+} DemoNdkPlayer;
+
+void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
+    switch (state) {
+        case AV_IDLE: // 成功调用reset接口后触发该状态机上报
+//            ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
+//            if (ret != AV_ERR_OK) {
+//            // 处理异常
+//        }
+            break;
+        case AV_INITIALIZED:
+            ret = OH_AVPlayer_Prepare(player); //设置播放源后触发该状态上报
+            if (ret != AV_ERR_OK) {
+            // 处理异常
             }
             break;
-        case AV_INFO_TYPE_POSITION_UPDATE:
-        // do something
+        case AV_PREPARED:
+//            ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // 设置音频音效模式
+//            if (ret != AV_ERR_OK) {
+//            //处理异常    
+//            }  
+            ret = OH_AVPlayer_Play(player); // 调用播放接口开始播放
+            if (ret != AV_ERR_OK) {
+            // 处理异常
+            }
+            break;
+        case AV_PLAYING:
+//            ret = OH_AVPlayer_Pause(player); //调用暂停接口暂停播放
+//            if (ret != AV_ERR_OK) {
+//            // 处理异常
+//            }
+            break;
+        case AV_PAUSED:
+//            ret = OH_AVPlayer_Play(player); // 再次播放接口开始播放
+//            if (ret != AV_ERR_OK) {
+//            // 处理异常
+//            }
+           break;
+        case AV_STOPPED:
+            ret = OH_AVPlayer_Release(player); //调用reset接口初始化avplayer状态
+            if (ret != AV_ERR_OK) {
+            // 处理异常
+            }
+            break;
+        case AV_COMPLETED:
+            ret = OH_AVPlayer_Stop(player);// 调用播放结束接口
+            if (ret != AV_ERR_OK) {
+            // 处理异常
+            }
             break;
         default:
             break;
     }
 }
 
-void OnError(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg)
-{
+void OHAVPlayerOnError(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg) {
+    LOG("onError");
+    LOG("player OnErrorCallBack  errorCode: %d ,errorMsg: %s", errorCode, errorMsg);
+    // do something
+}
+
+void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat *infoBody, void *userData) {
+    int32_t ret;
+    int32_t value = -1;
+
+    DemoNdkPlayer *demoNdkPlayer = reinterpret_cast<DemoNdkPlayer*>(userData);
+    if (demoNdkPlayer == nullptr || player == nullptr) {
+        LOGE("OHAVPlayerOnInfoCallback demoNdkPlayer is nullptr");
+        return;
+    }
+    switch (type) {
+    case AV_INFO_TYPE_STATE_CHANGE:
+        LOG("AVPlayerOnInfoType AV_INFO_TYPE_STATE_CHANGE");
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_STATE, &demoNdkPlayer->state);
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_STATE_CHANGE_REASON, &demoNdkPlayer->stateChangeReason);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_STATE_CHANGE  state: %d ,stateChangeReason: %d",
+            demoNdkPlayer->state, demoNdkPlayer->stateChangeReason);
+        demoNdkPlayer->avState = static_cast<AVPlayerState>(demoNdkPlayer->state);
+        HandleStateChange(player, demoNdkPlayer->avState);
+        break;
+    case AV_INFO_TYPE_SEEKDONE:
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_SEEK_POSITION, &value);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_SEEKDONE value: %d", value);
+        break;
+    case AV_INFO_TYPE_SPEEDDONE:
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_PLAYBACK_SPEED, &value);
+        demoNdkPlayer->speed = static_cast<AVPlaybackSpeed>(value);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_SPEEDDONE value: %d", value);
+        break;
+    case AV_INFO_TYPE_BITRATEDONE:
+        // 目前OH_AVFormat仅支持存储不支持存储uint32_t类型、自定义类型枚举数据
+        // 需要通过int32_t类型数据获取，然后强转为对应类型数据。
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_BITRATE, &value);
+        demoNdkPlayer->bitRate = static_cast<uint32_t>(value);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_BITRATEDONE value: %d", value);
+        break;
+    case AV_INFO_TYPE_EOS:
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_EOS");
+        break;
+    case AV_INFO_TYPE_POSITION_UPDATE:
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_CURRENT_POSITION, &value);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_POSITION_UPDATE value: %d", value);
+        break;
+    case AV_INFO_TYPE_MESSAGE:
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_MESSAGE_TYPE, &value);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_MESSAGE value: %d", value);
+        break;
+    case AV_INFO_TYPE_VOLUME_CHANGE:
+        OH_AVFormat_GetFloatValue(infoBody, OH_PLAYER_VOLUME, &demoNdkPlayer->volume);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_VOLUME_CHANGE value: %f", demoNdkPlayer->volume);
+        break;
+    case AV_INFO_TYPE_RESOLUTION_CHANGE:
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_VIDEO_WIDTH, &demoNdkPlayer->width);
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_VIDEO_HEIGHT, &demoNdkPlayer->height);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_RESOLUTION_CHANGE width: %d, height: %d",
+            demoNdkPlayer->width, demoNdkPlayer->height);
+        break;
+    case AV_INFO_TYPE_BUFFERING_UPDATE:
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_BUFFERING_TYPE, &value);
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_BUFFERING_VALUE, &demoNdkPlayer->bufferValue);
+        demoNdkPlayer->bufferType = static_cast<AVPlayerBufferingType>(value);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_BUFFERING_UPDATE bufferType: %d, bufferValue: %d",
+            value, demoNdkPlayer->bufferValue);
+        break;
+    case AV_INFO_TYPE_BITRATE_COLLECT: {
+        uint8_t *bitRates = nullptr;
+        size_t size = 0;
+        OH_AVFormat_GetBuffer(infoBody, OH_PLAYER_BITRATE_ARRAY, &bitRates, &size);
+        demoNdkPlayer->bitRatesSize = size / sizeof(uint32_t);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_BITRATE_COLLECT bytes size: %zu, size: %zu",
+            size, demoNdkPlayer->bitRatesSize );
+        if (demoNdkPlayer->bitRatesSize <= 0) {
+            LOGE("OHAVPlayerOnInfoCallback AV_INFO_TYPE_BITRATE_COLLECT invalid bitRatesSize");
+            return;
+        }
+        demoNdkPlayer->bitRates = new uint32_t[demoNdkPlayer->bitRatesSize];
+        if (demoNdkPlayer->bitRates == nullptr || bitRates == nullptr) {
+            LOGE("OHAVPlayerOnInfoCallback AV_INFO_TYPE_BITRATE_COLLECT bitRates is nullptr");
+            return;
+        }
+        memcpy((void *)(demoNdkPlayer->bitRates), (void *)bitRates, demoNdkPlayer->bitRatesSize * sizeof(uint32_t));
+        for (size_t i = 0; i < demoNdkPlayer->bitRatesSize; i++) {
+            LOGE("OHAVPlayerOnInfoCallback AV_INFO_TYPE_BITRATE_COLLECT bitRates[%zu]: %zu",
+                i, *(demoNdkPlayer->bitRates + i));
+        }
+        break;
+    }
+    case AV_INFO_TYPE_INTERRUPT_EVENT:
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_TYPE, &demoNdkPlayer->interruptType);
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_FORCE, &demoNdkPlayer->interruptForce);
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_INTERRUPT_HINT, &demoNdkPlayer->interruptHint);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_INTERRUPT_EVENT interruptType: %d, interruptForce: %d"
+            ", interruptHint: %d", demoNdkPlayer->interruptType, demoNdkPlayer->interruptForce,
+            demoNdkPlayer->interruptHint);
+        break;
+    case AV_INFO_TYPE_DURATION_UPDATE:
+        OH_AVFormat_GetLongValue(infoBody, OH_PLAYER_DURATION, &demoNdkPlayer->duration);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_DURATION_UPDATE value: %lld", demoNdkPlayer->duration);
+        break;
+    case AV_INFO_TYPE_IS_LIVE_STREAM:
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_IS_LIVE_STREAM, &value);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_IS_LIVE_STREAM value: %d", value);
+        break;
+    case AV_INFO_TYPE_TRACKCHANGE:
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_TRACKCHANGE value: %d", value);
+        break;
+    case AV_INFO_TYPE_TRACK_INFO_UPDATE:
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_TRACK_INFO_UPDATE value: %d", value);
+        break;
+    case AV_INFO_TYPE_SUBTITLE_UPDATE:
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_SUBTITLE_UPDATE value: %d", value);
+        break;
+    case AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE:
+        OH_AVFormat_GetIntValue(infoBody, OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON, &value);
+        LOG("OHAVPlayerOnInfoCallback AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE value: %d", value);
+        break;
+    default:
+        break;
+    }
+}
+
+void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg, void *userData) {
+    DemoNdkPlayer *demoNdkPlayer = reinterpret_cast<DemoNdkPlayer*>(userData);
+    if (demoNdkPlayer == nullptr || player == nullptr) {
+        LOGE("OHAVPlayerOnErrorCallback demoNdkPlayer or player is nullptr");
+        return;
+    }
+    if (demoNdkPlayer == nullptr) {
+        LOGE("OHAVPlayerOnErrorCallback demoNdkPlayer is nullptr");
+        return;
+    }
+    LOG("OHAVPlayerOnErrorCallback errorCode: %d ,errorMsg: %s",
+        errorCode, errorMsg == nullptr ? "unknown error" : errorMsg);
     // do something
 }
 
@@ -178,16 +356,24 @@ static napi_value Play(napi_env env, napi_callback_info info)
         // 处理异常
         return nullptr;
     }
+    if (g_url != nullptr) {
+        delete g_url;
+    }
+    g_url = url;
 
-    Url = url;
-    
-    // 创建播放实例
-    OH_AVPlayer *player = OH_AVPlayer_Create();
-    AVPlayerCallback callback;
-    callback.onInfo = OnInfo;
-    callback.onError = OnError;
-    // 设置回调，监听信息
-    int32_t ret = OH_AVPlayer_SetPlayerCallback(player, callback);
+    // 通过新接口设置信息监听回调函数和错误监听回调函数，不用再调用OH_AVPlayer_SetPlayerCallback。
+    // 业务播放实例不再使用后，再释放对象。
+    DemoNdkPlayer *demoNdkPlayer = new DemoNdkPlayer({
+        .player = player,
+        .url = url,
+    });
+    LOG("call OH_AVPlayer_SetPlayerOnInfoCallback");
+    ret = OH_AVPlayer_SetOnInfoCallback(player, OHAVPlayerOnInfoCallback, demoNdkPlayer);
+    LOG("OH_AVPlayer_SetPlayerOnInfoCallback ret:%d", ret);
+    LOG("call OH_AVPlayer_SetPlayerOnErrorCallback");
+    ret = OH_AVPlayer_SetOnErrorCallback(player, OHAVPlayerOnErrorCallback, demoNdkPlayer);
+    LOG("OH_AVPlayer_SetPlayerOnErrorCallback ret:%d", ret);
+
     if (ret != AV_ERR_OK) {
     // 处理异常
     }

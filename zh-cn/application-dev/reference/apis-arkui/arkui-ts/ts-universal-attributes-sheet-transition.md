@@ -212,9 +212,10 @@ struct SheetTransitionExample {
 
 ### 示例2
 
+使用bindSheet的detents属性设置三个不同高度的档位
+
 ```ts
 // xxx.ets
-// 使用bindSheet的detents属性设置三个不同高度的档位
 @Entry
 @Component
 struct SheetTransitionExample {
@@ -259,9 +260,10 @@ struct SheetTransitionExample {
 
 ### 示例3
 
+bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型
+
 ```ts
 // xxx.ets
-// bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类型和LocalizedEdgeColors类型
 
 import { LengthMetrics } from '@kit.ArkUI'
 
@@ -319,9 +321,10 @@ struct SheetTransitionExample {
 
 ### 示例4
 
+bindSheet注册onWillDismiss与onWillSpringBackWhenDismiss
+
 ```ts
 // xxx.ets
-// bindSheet注册onWillDismiss与onWillSpringBackWhenDismiss
 
 @Entry
 @Component

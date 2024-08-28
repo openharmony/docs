@@ -75,7 +75,7 @@ struct WebComponent {
 
 postMessageEvent(message: WebMessage): void
 
-发送消息。完整示例代码参考[postMessage](#postmessage)。
+发送消息，必须先调用[onMessageEvent](#onmessageevent)，否则会发送失败。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -202,7 +202,7 @@ struct WebComponent {
 
 postMessageEventExt(message: WebMessageExt): void
 
-发送消息。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+发送消息，必须先调用[onMessageEventExt](#onmessageeventext10)，否则会发送失败。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -757,7 +757,9 @@ export default class EntryAbility extends UIAbility {
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-设置是否启用网页调试功能。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+设置是否启用网页调试功能，默认不开启。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+
+安全提示：启用网页调试功能可以让用户检查修改Web页面内部状态，存在安全隐患，不建议在应用正式发布版本中启用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1289,6 +1291,8 @@ struct WebComponent {
 onInactive(): void
 
 调用此接口通知Web组件进入未激活状态。开发者可以在此回调中实现应用失去焦点时应表现的恰当行为。
+
+此状态下会尽可能的暂停任何可以安全暂停的内容，例如动画和地理位置。但不会暂停JavaScript，要全局暂停JavaScript，请使用[pauseAllTimers](#pausealltimers12)。要重新激活Web组件，请调用[onActive](#onactive)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3145,6 +3149,8 @@ getUserAgent(): string
 
 获取当前默认用户代理。
 
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -3710,6 +3716,10 @@ scrollBy(deltaX:number, deltaY:number,duration?:number): void
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
+> **说明：**
+>
+> 嵌套滚动场景中，调用scrollBy不会触发父组件的嵌套滚动。
+
 **示例：**
 
 ```ts
@@ -3767,7 +3777,93 @@ Scroll Test
 </body>
 </html>
 ```
+### scrollByWithResult<sup>12+</sup>
 
+scrollByWithResult(deltaX:number, deltaY:number): boolean
+
+将页面滚动指定的偏移量，返回值表示此次滚动是否执行成功。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明               |
+| ------ | -------- | ---- | ---------------------- |
+| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
+| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| boolean | 当前网页是否可以滑动，默认为false。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+> **说明：**
+>
+> - 返回值场景：Web页面处于触摸中状态时，返回false，否则返回true。
+> - 同层渲染场景中，Web的同层渲染区域处于触摸中状态时，返回值为true。
+> - 嵌套滚动场景中，调用scrollByWithResult不会触发父组件的嵌套滚动。
+> - 此接口不保证滑动帧率性能。
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('scrollByWithResult')
+        .onClick(() => {
+          try {
+          let result = this.controller.scrollByWithResult(50, 50);
+          console.log("original result: " + result);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+    }
+  }
+}
+```
+
+加载的html文件。
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        body {
+            width:2000px;
+            height:2000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+        }
+    </style>
+</head>
+<body>
+Scroll Test
+</body>
+</html>
+```
 ### slideScroll
 
 slideScroll(vx:number, vy:number): void
@@ -5136,6 +5232,8 @@ setCustomUserAgent(userAgent: string): void
 
 当Web组件src设置为空字符串时，建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
 
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+
 > **说明：**
 >
 >当Web组件src设置了url，且未在onControllerAttached回调事件中设置UserAgent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置UserAgent不符的异常现象。
@@ -5303,6 +5401,8 @@ struct WebComponent {
 getCustomUserAgent(): string
 
 获取自定义用户代理。
+
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -6013,7 +6113,7 @@ terminateRenderProcess(): boolean
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 |
+| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 如果渲染进程已被销毁则直接返回true。|
 
 **错误码：**
 
@@ -8120,7 +8220,7 @@ setUrlTrustList(urlTrustList: string): void
         Button('Access the trust web')
           .onClick(() => {
             try {
-              // 白名单生效，可以访问untrust网页
+              // 白名单生效，可以访问trust网页
               this.controller.loadUrl('http://trust.example.com/test');
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);

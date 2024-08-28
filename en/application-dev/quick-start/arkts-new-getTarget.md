@@ -4,13 +4,13 @@ To obtain the original object before adding a proxy in the state management, you
 
 >**NOTE**
 >
->Since API version 12, you can use the **getTarget** API in UIUtils to obtain the original object.
+>The **getTarget** API in UIUtils is supported since API version 12.
 
 ## Overview
 
 The state management framework adds proxies to original objects of the Class, Date, Map, Set, and Array types to observe attribute changes and API invoking. Proxies will change the variable types. In scenarios such as type determination and Node-API invoking, unexpected results may be generated because the variable type is not the type of the original object.
 
-- Import the UIUtils tool to use the **getTarget** API.
+- Import the UIUtils to use the **getTarget** API.
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
@@ -23,11 +23,11 @@ Use **getTarget** to obtain the original objects of these proxy objects.
 
 ## Constraints
 
-- You can pass the parameters to only the object type using **getTarget**.
+- Only the parameters of the object type can be passed by **getTarget**.
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
-  let res = UIUtils.getTarget(2); // Incorrect usage. Input parameter is passed in the non-object type.
+  let res = UIUtils.getTarget(2); //  Incorrect usage. The input parameter is of the non-object type.
   @Observed
   class Info {
     name: string = "Tom";
@@ -248,6 +248,7 @@ class Info {
 let info: Info = new Info(); // info instance passed in through Node-APIs.
 ```
 Affected Node-APIs are as below.
+
 | Name             | Result                                      |
 | ----------------------- | ---------------------------------------------- |
 | napi_get_property_names | Returns value that is **\_\_ob\_name** or **\_\_ob\_age**.       |
@@ -259,4 +260,5 @@ Affected Node-APIs are as below.
 | napi_set_named_property | Changes values successfully using **name** or **\_\_ob\_name**.      |
 | napi_get_named_property | Obtains values using **name** or **\_\_ob\_name**.      |
 | napi_has_named_property | Returns **true** using **name** or **\_\_ob\_name**.        |
+
 <!--no_check-->

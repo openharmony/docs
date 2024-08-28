@@ -22,8 +22,8 @@ Enumerates the child process start modes.
 
 | Name                      | Value                            | Description                             |
 | --------                     |  -----------------               |  -----------------               |
-| SELF_FORK |  0   | The child process is forked from the application process. Binder IPC cannot be called in such a child process. Otherwise, the child process will crash. Asynchronous ArkTS API calls are not supported. |
-| APP_SPAWN_FORK |  1   | The child process is forked from AppSpawn. Such a child process does not inherit the parent process resources. It does not have application context and therefore does not support API calls that depend on application context. |
+| SELF_FORK |  0   | The child process is forked from the application process. Binder IPC cannot be called in such a child process. Otherwise, the child process will crash. Asynchronous ArkTS API calls are not supported.|
+| APP_SPAWN_FORK |  1   | The child process is forked from AppSpawn. Such a child process does not inherit the parent process resources. It does not have application context and therefore does not support API calls that depend on application context.|
 
 ## childProcessManager.startChildProcess
 
@@ -37,22 +37,22 @@ A PID is returned once the child process is created. However, this does not mean
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes | Path of the source file of the child process relative to the root directory **src/main**. The source file can be stored only in the module of the entry type. For example, if the source file of a child process is **src/main/ets/process/DemoProcess.ets** in the entry module, then **srcEntry** is **./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.) |
-  | startMode | [StartMode](#childprocessmanagerstartmode) | Yes | Start mode of the child process. |
+  | srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file can be stored only in the module of the entry type. For example, if the source file of a child process is **src/main/ets/process/DemoProcess.ets** in the entry module, then **srcEntry** is **./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
+  | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
 
 **Return value**
 
-  | Type | Description |
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the PID of the child process. |
+  | Promise&lt;number&gt; | Promise used to return the PID of the child process.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
@@ -106,17 +106,17 @@ A PID is returned once the child process is created. However, this does not mean
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes | Path of the source file of the child process relative to the root directory **src/main**. The source file can be stored only in the module of the entry type. For example, if the source file of a child process is **src/main/ets/process/DemoProcess.ets** in the entry module, then **srcEntry** is **./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.) |
-  | startMode | [StartMode](#childprocessmanagerstartmode) | Yes | Start mode of the child process. |
-  | callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the result. If the subprocess is started, **err** is **undefined** and **data** is the PID of the child process. Otherwise, **data** is an error object. |
+  | srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file can be stored only in the module of the entry type. For example, if the source file of a child process is **src/main/ets/process/DemoProcess.ets** in the entry module, then **srcEntry** is **./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
+  | startMode | [StartMode](#childprocessmanagerstartmode) | Yes| Start mode of the child process.|
+  | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the subprocess is started, **err** is **undefined** and **data** is the PID of the child process. Otherwise, **data** is an error object.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
@@ -173,28 +173,28 @@ The child process supports parameter transfer and asynchronous ArkTS API calls (
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes | Path of the source file of the child process relative to the root directory **src/main**. The source file cannot be stored in the module of the HAR type. The value consists of a module name, a slash (/), and a file path. For example, if the child process file is **src/main/ets/process/DemoProcess.ets** in module1, then **srcEntry** is **module1/./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.) |
-  | args | [ChildProcessArgs](js-apis-app-ability-childProcessArgs.md) | Yes | Parameters transferred to the child process. |
-  | options | [ChildProcessOptions](js-apis-app-ability-childProcessOptions.md) | No | Startup configuration of the child process.|
+  | srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file cannot be stored in the module of the HAR type. The value consists of a module name, a slash (/), and a file path. For example, if the child process file is **src/main/ets/process/DemoProcess.ets** in module1, then **srcEntry** is **module1/./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
+  | args | [ChildProcessArgs](js-apis-app-ability-childProcessArgs.md) | Yes| Parameters transferred to the child process.|
+  | options | [ChildProcessOptions](js-apis-app-ability-childProcessOptions.md) | No| Startup configuration of the child process.|
 
 **Return value**
 
-  | Type | Description |
+  | Type| Description|
   | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the PID of the child process. |
+  | Promise&lt;number&gt; | Promise used to return the PID of the child process.|
 
 **Error codes**
 
   For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
-| 16000061  | Operation not supported. |
+| 16000061  | Operation not supported. The API cannot be called in a child process. |
 
 **Example**
 
@@ -215,6 +215,7 @@ export default class DemoProcess extends ChildProcess {
 }
 ```
 
+<!--code_no_check-->
 ```ts
 // Call childProcessManager.startArkChildProcess to start the child process.
 // module1/src/main/ets/tool/Tool.ets

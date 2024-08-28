@@ -16,7 +16,7 @@
 
 ## 接口
 
-Web(options: { src: ResourceStr, controller: WebviewController | WebController, renderMode? : RenderMode, incognitoMode? : boolean})
+Web(options: { src: ResourceStr, controller: WebviewController | WebController, renderMode? : RenderMode, incognitoMode? : boolean, sharedRenderProcessToken? : string})
 
 > **说明：**
 >
@@ -618,7 +618,7 @@ databaseAccess(databaseAccess: boolean)
 
 geolocationAccess(geolocationAccess: boolean)
 
-设置是否开启获取地理位置权限，默认开启。
+设置是否开启获取地理位置权限，默认开启。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)
 
 **参数：**
 
@@ -1964,7 +1964,7 @@ forceDisplayScrollBar(enabled: boolean)
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController()
 
     build() {
       Column() {
@@ -2297,6 +2297,108 @@ Web组件自定义软件键盘避让模式。
   </body>
   </html>
   ```
+
+### editMenuOptions<sup>12+</sup>
+editMenuOptions(editMenu: EditMenuOptions)
+
+Web组件自定义文本选择菜单。
+
+用户可以通过该属性设置自定义的文本菜单。
+
+在[onCreateMenu](../apis-arkui/arkui-ts/ts-text-common.md#oncreatemenu)中，可以修改、增加、删除菜单选项，如果希望不显示文本菜单，需要返回空数组。
+
+在[onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick)中，可以自定义菜单选项的回调函数。该函数在菜单选项被点击后触发，并根据返回值决定是否执行系统默认的回调。返回true不执行系统回调，返回false继续执行系统回调。
+
+本接口在与[selectionMenuOptions](#selectionmenuoptions12)同时使用时，会使selectionMenuOptions不生效。
+
+**参数：**
+| 参数名              | 类型                              | 必填   | 说明          |
+| ------------------- | ------------------------------   | ------ | ------------- |
+| editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions对象说明) | 是     | Web自定义文本菜单选项。<br>菜单项数量，及菜单的content大小、icon图标尺寸，与ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md)组件保持一致。<br>菜单中系统自带的id枚举值（[TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)）在Web中仅支持CUT、COPY、PASTE、SELECT_ALL四项。<br>onMenuItemClick函数中textRange参数在web中无意义，传入值为-1。|
+
+**示例**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
+    let items = menuItems.filter((menuItem) => {
+        //过滤用户需要的系统按键
+      return (
+        menuItem.id.equals(TextMenuItemId.CUT) ||
+        menuItem.id.equals(TextMenuItemId.COPY) ||
+        menuItem.id.equals((TextMenuItemId.PASTE))
+      )
+    });
+    let customItem1: TextMenuItem = {
+      content: 'customItem1',
+      id: TextMenuItemId.of('customItem1'),
+      icon: $r('app.media.icon')
+    };
+    let customItem2: TextMenuItem = {
+      content: $r('app.string.customItem2'),
+      id: TextMenuItemId.of('customItem2'),
+      icon: $r('app.media.icon')
+    };
+    items.push(customItem1);//在选项列表后添加新选项
+    items.unshift(customItem2);//在选项列表前添加选项
+
+    return items;
+  }
+
+  onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
+    if (menuItem.id.equals(TextMenuItemId.CUT)) {
+      //用户自定义行为
+      console.log("拦截 id：CUT")
+      return true; //返回true不执行系统回调
+    } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      //用户自定义行为
+      console.log("不拦截 id：COPY")
+      return false; //返回false执行系统回调
+    } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
+      //用户自定义行为
+      console.log("拦截 id：customItem1")
+      return true;//用户自定义菜单选项返回true、false无影响，推荐返回true
+    } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
+      //用户自定义行为
+      console.log("拦截 id：app.string.customItem2")
+      return true;
+    }
+    return false;//返回默认值false
+  }
+
+  @State EditMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }
+
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+        .editMenuOptions(this.EditMenuOptions)
+    }
+  }
+}
+```
+
+ 加载的html文件。
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>测试网页</title>
+  </head>
+  <body>
+    <h1>editMenuOptions Demo</h1>
+    <span>edit menu options</span>
+  </body>
+</html>
+```
+
 ## 事件
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
@@ -2830,6 +2932,8 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 
 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
+组件生命周期详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
+
 **参数：**
 
 | 参数名  | 参数类型   | 参数描述      |
@@ -2865,6 +2969,8 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
 网页加载完成时触发该回调，且只在主frame触发。
+
+组件生命周期详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
 
 **参数：**
 
@@ -3029,6 +3135,12 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 应用渲染进程异常退出时触发该回调。
 
+多个web组件可能共享单个渲染进程，每个受影响的web组件都会触发该回调。
+
+应用处理该回调时，可以调用绑定的webviewContoller相关接口来恢复页面。例如[refresh](js-apis-webview.md#refresh)、[loadUrl](js-apis-webview.md#loadurl)等。
+
+组件生命周期回调详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
+
 **参数：**
 
 | 参数名              | 参数类型                                     | 参数描述             |
@@ -3062,7 +3174,11 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
-渲染进程无响应时触发该回调函数。
+渲染进程无响应时触发该回调函数。如果Web组件无法处理输入事件，或者无法在合理的时间范围内导航到新的URL，则认为网页进程无响应，并将触发该回调。
+
+只要网页进程一直无响应，此回调仍可能会持续触发，直到网页进程再次响应，此时[onRenderProcessResponding](#onrenderprocessresponding12)将会触发。
+
+应用可以通过WebviewController接口[terminateRenderProcess](js-apis-webview.md#terminaterenderprocess12)来终止关联的渲染进程，这可能会影响同一渲染进程的其他Web组件。
 
 **参数：**
 
@@ -4311,6 +4427,10 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 若不调用event.handler.setWebController接口，会造成render进程阻塞。
 如果不需要打开新窗口，在调用event.handler.setWebController接口时须设置成null。
 
+应用应谨慎的显示新窗口：不要简单的覆盖在原web组件上，防止误导用户正在查看哪个网站，如果应用显示主页的URL，请确保也以相似的方式显示新窗口的URL。否则请考虑完全禁止创建新窗口。
+
+注意：没有可靠的方式判断哪个页面请求了新窗口，该请求可能来自第三方iframe
+
 **参数：**
 
 | 参数名           | 参数类型                                     | 参数描述                          |
@@ -4380,7 +4500,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 onWindowExit(callback: () => void)
 
-通知用户窗口关闭请求。
+通知用户窗口关闭请求。和[onWindowNew](#onwindownew9)一样，从安全角度讲，应用应该确保用户可以知道他们交互的页面已关闭。
 
 **参数：**
 
@@ -4514,6 +4634,8 @@ onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
 onPageVisible(callback: Callback\<OnPageVisibleEvent\>)
 
 设置旧页面不再呈现，新页面即将可见时触发的回调函数。
+
+组件生命周期详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
 
 **参数：**
 
@@ -4966,6 +5088,8 @@ onControllerAttached(callback: () => void)
 
 当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，
 因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](js-apis-webview.md#zoomin)、[zoomOut](js-apis-webview.md#zoomout)等，可以使用[loadUrl](js-apis-webview.md#loadurl)、[getWebId](js-apis-webview.md#getwebid)等操作网页不相关的接口。
+
+组件生命周期详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
 
 **示例：**
 
@@ -5779,6 +5903,69 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
     </body>
 
     </html>
+  ```
+
+### onNativeEmbedVisibilityChange<sup>12+</sup>
+
+onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
+
+网页中同层渲染标签（如Embed标签或Object标签）在视口内的可见性发生变化时会触发该回调。同层渲染标签默认不可见，如果首次进入页面可见则会上报，不可见则不会上报，当同层渲染标签大小由非0值变为0 *0时，不会上报不可见，由0 *0变为非0值时会上报可见。同层渲染标签全部不可见才算不可见，部分可见或全部可见算作可见。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnNativeEmbedVisibilityChangeCallback](#onnativeembedvisibilitychangecallback12) | 同层渲染标签可见性变化时触发该回调。 |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State embedVisibility: string = '';
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Stack() {
+          NodeContainer(this.nodeController)
+          Web({ src: $rawfile("index.html"), controller: this.controller })
+            .enableNativeEmbedMode(true)
+            .onNativeEmbedVisibilityChange((embed) => {
+              if (embed.visibility) {
+                this.embedVisibility = 'Visible';
+              } else {
+                this.embedVisibility = 'Hidden';
+              }
+              console.log("embedId = " + embed.embedId);
+              console.log("visibility = " + embed.visibility);
+            })
+        }
+      }
+    }
+  }
+  ```
+
+  加载的html文件
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>同层渲染测试html</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeVideo" type = "native/video" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
   ```
 
 ## WebKeyboardCallback<sup>12+</sup>
@@ -8460,3 +8647,22 @@ type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
 | 参数名               | 参数类型                                        | 参数描述                         |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
 | details | [AdsBlockedDetails](#adsblockeddetails12) | 发生广告拦截时，广告资源信息。 |
+
+## NativeEmbedVisibilityInfo<sup>12+</sup>
+
+提供Embed标签的可见性信息。
+
+| 名称           | 类型                                | 必填   | 描述              |
+| -------------  | ------------------------------------| ----- | ------------------ |
+| visibility     | boolean                             | 否     | 可见性。         |
+| embedId        | string                              | 否     | 同层渲染标签的唯一id。  |
+
+## OnNativeEmbedVisibilityChangeCallback<sup>12+</sup>
+
+type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeEmbedVisibilityInfo) => void
+
+当Embed标签可见性变化时触发该回调。
+
+| 参数名   | 参数类型                                                                          | 参数描述                    |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](#nativeembedvisibilityinfo12)  | 提供同层渲染标签的可见性信息。 |

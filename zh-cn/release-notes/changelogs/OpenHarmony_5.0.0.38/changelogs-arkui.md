@@ -213,3 +213,64 @@ struct V2ComponentMember {
   }
 }
 ```
+
+## cl.arkui.4 Tabs组件的选中页签为子页签且背板模式时，其默认字体颜色变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Tabs组件内TabContent子组件的tabbar属性为SubTabBarStyle对象，SubTabBarStyle对象的selectedMode为SelectedMode.BOARD情况下，选中页签的默认字体颜色与背板颜色一致，此时文本内容无法清晰可见，因此修改其默认字体颜色。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+变更前：选中子页签背板模式下默认字体颜色为'#ff007dff'
+
+变更后：选中子页签背板模式下默认字体颜色为'#ffffff'
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/tabs_before.png) | ![](figures/tabs_after.png) |
+
+**起始API Level**
+
+API 10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.38开始。
+
+**变更的接口/组件**
+
+Tabs组件
+
+**适配指导**
+
+若需要变更前的颜色，可以修改SubTabBarStyle对象的labelStyle属性中selectedColor值为变更前的默认颜色。
+
+```ts
+@Entry
+@Component
+struct TabBarStyleExample {
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar(new SubTabBarStyle('Pink')
+          .selectedMode(SelectedMode.BOARD)
+          .labelStyle({selectedColor:'#ff007dff'}))
+      }
+      .vertical(false)
+      .scrollable(true)
+      .barMode(BarMode.Fixed)
+      .width('100%')
+      .backgroundColor(0xF1F3F5)
+    }.width('100%').height(200)
+  }
+}
+```

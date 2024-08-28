@@ -148,7 +148,8 @@ loop(value: boolean)
 
 enableAnalyzer(enable: boolean)
 
-设置组件支持AI分析。使能后，视频播放暂停时自动进入分析状态，开始分析当前画面帧，视频继续播放后自动退出分析状态。
+设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
+使能后，视频播放暂停时自动进入分析状态，开始分析当前画面帧，视频继续播放后自动退出分析状态。
 不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
@@ -172,7 +173,7 @@ enableAnalyzer(enable: boolean)
 
 analyzerConfig(config: ImageAnalyzerConfig)
 
-设置AI分析识别类型，包括主体识别和文字识别功能，默认全部开启。
+设置AI分析识别类型，包括主体识别、文字识别和对象查找等功能。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
