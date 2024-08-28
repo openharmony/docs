@@ -119,7 +119,7 @@ onHoverStatusChange(handler: (param: HoverEventParam) => void)
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| handler | (param: [HoverEventParam](#hovereventparam对象说明)) => void | 是   | 当悬停状态改变的时候触发回调。 |
+| handler | (param: [HoverEventParam](#hovereventparam12对象说明)) => void | 是   | 当悬停状态改变的时候触发回调。 |
 
 ## HoverEventParam<sup>12+</sup>对象说明
 
