@@ -1357,6 +1357,7 @@
     - 减少卡顿丢帧
       - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
       - [组件复用使用指导](performance/component-recycle.md)
+      - [组件复用性能优化指导](performance/component-recycle-case.md)
       - [组件复用总览](performance/component-reuse-overview.md)
       - [WaterFlow高性能开发指导](performance/waterflow_optimization.md)
       - [Swiper高性能开发指导](performance/swiper_optimization.md)
