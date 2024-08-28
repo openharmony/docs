@@ -63,6 +63,7 @@ Album Picker配置选项。
 | 名称  | 类型  | 必填  | 说明    |
 |------|------|-----|---------|
 | uri  | string | 否   | 相册的uri。 |
+| albumName  | string | 否   | 相册的名称。 |
 
 ## 示例
 
@@ -82,6 +83,9 @@ struct PickerDemo {
   private onAlbumClick(albumInfo: AlbumInfo): boolean {
     if (albumInfo?.uri) {
       // 通过pickerController向PhotoPickerComponent发送消息，通知其刷新
+    }
+    if (albumInfo?.albumName) {
+      // 基于获取到的albumName后续逻辑处理
     }
     return true;
   }

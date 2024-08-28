@@ -1,6 +1,6 @@
 # @ohos.file.PhotoPickerComponent (Photo Picker组件)
 
-应用可以在布局中嵌入Photo Picker组件，通过此组件，应用无需申请权限，即可访问公共目录中的图片或视频文件。
+应用可以在布局中嵌入Photo Picker组件，通过此组件，应用无需申请权限，即可访问公共目录中的图片或视频文件。仅包含读权限。
 应用嵌入组件后，用户可直接在Photo Picker组件中选择图片或视频文件。
 
 > **说明：**
@@ -12,10 +12,10 @@
 ```ts
 import {
   PhotoPickerComponent, PickerController, PickerOptions,
-  DataType, ItemInfo, PhotoBrowserInfo, AnimatorParams,
+  DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
-  SelectMode, PickerColorMode, ReminderMode, MaxCountType
-} from '@kit.MediaLibraryKit';
+  SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange
+} from '@ohos.file.PhotoPickerComponent';
 ```
 
 ## 属性
@@ -32,6 +32,7 @@ PhotoPickerComponent({
   onEnterPhotoBrowser?: (photoBrowserInfo: PhotoBrowserInfo) => boolean,
   onExitPhotoBrowser?: (photoBrowserInfo: PhotoBrowserInfo) => boolean,
   onPickerControllerReady?: () => void,
+  onPhotoBrowserChanged?: (browserItemInfo: BaseItemInfo) => boolean,
   pickerController: PickerController
 })
 
@@ -59,6 +60,7 @@ PhotoPickerComponent({
 | onEnterPhotoBrowser | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean   | 否   | - | 点击进入大图时产生的回调事件，将大图相关信息报给应用。   |
 | onExitPhotoBrowser | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean   | 否   | - | 退出大图时产生的回调事件，将大图相关信息报给应用。           |
 | onPickerControllerReady | () => void   | 否   | - | 当pickerController可用时产生的回调事件。<br>调用PickerController相关接口需在该回调后才能生效。          |
+| onPhotoBrowserChanged | (browserItemInfo: [BaseItemInfo](#baseiteminfo)) => boolean   | 否   | - | 大图左右滑动时产生的回调事件，将大图相关信息报给应用。           |
 | pickerController         | [PickerController](#pickercontroller) | 否   | @ObjectLink | 应用可通过PickerController向Picker组件发送数据。               |
 
 ## PickerOptions
@@ -127,7 +129,43 @@ setMaxSelected(maxSelected: MaxSelected): void
 | ------------------------- | ------------------ | ----- | --------------- |
 | maxSelected | [MaxSelected](#maxselected) | 是 | 最大选择数量。|
 
+### setPhotoBrowserItem
+
+setPhotoBrowserItem(uri: string, photoBrowserRange?: PhotoBrowserRange): void
+
+应用可通过该接口,切换picker组件至大图浏览模式浏览图片；当已处于大图浏览模式时，切换浏览的图片。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+|  参数名        | 类型                                    | 必填  | 说明  |
+| ------------------------- | ------------------ | ----- | --------------- |
+| uri | string | 是 | 指定大图浏览的图片uri。仅支持指定用户已选择的图片，未选择的图片不生效。|
+| photoBrowserRange | [PhotoBrowserRange](#photobrowserrange) | 否 | 打开大图浏览模式后，左右滑动切换浏览图片的范围，可配置仅浏览用户选择的或浏览全部图片，视频。默认：PhotoBrowserRange.ALL。浏览全部图片，视频。 | 
+
+## BaseItemInfo
+
+图片、视频相关信息。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称     | 类型    | 必填  | 说明                                                |
+|----------|--------|-----|---------------------------------------------------|
+| uri      | string                | 否   | 图片、视频的uri（itemType为ThUMBNAIL时支持，否则为空）。            |
+| mimeType | string                | 否   | 图片、视频的mimeType（itemType为ThUMBNAIL时支持，否则为空）。       |
+| width    | number                | 否   | 图片、视频的宽（单位：像素）（itemType为ThUMBNAIL时支持，否则为空）。       |
+| height   | number                | 否   | 图片、视频的高（单位：像素）（itemType为ThUMBNAIL时支持，否则为空）。       |
+| size     | number                | 否   | 图片、视频的大小（单位：千字节）（itemType为ThUMBNAIL时支持，否则为空）。     |
+| duration   | number                | 否   | 视频的时长（单位：毫秒），图片时返回-1（itemType为ThUMBNAIL时支持，否则为空）。 |
+
 ## ItemInfo
+
+继承自[BaseItemInfo]，仅含私有参数itemType
 
 图片、视频相关信息。
 
@@ -138,12 +176,6 @@ setMaxSelected(maxSelected: MaxSelected): void
 | 名称     | 类型    | 必填  | 说明                                                |
 |----------|--------|-----|---------------------------------------------------|
 | itemType | [ItemType](#itemtype) | 否   | 被点击的item类型。包括缩略图item和相机item。                      |
-| uri      | string                | 否   | 图片、视频的uri（itemType为ThUMBNAIL时支持，否则为空）。            |
-| mimeType | string                | 否   | 图片、视频的mimeType（itemType为ThUMBNAIL时支持，否则为空）。       |
-| width    | number                | 否   | 图片、视频的宽（单位：像素）（itemType为ThUMBNAIL时支持，否则为空）。       |
-| height   | number                | 否   | 图片、视频的高（单位：像素）（itemType为ThUMBNAIL时支持，否则为空）。       |
-| size     | number                | 否   | 图片、视频的大小（单位：千字节）（itemType为ThUMBNAIL时支持，否则为空）。     |
-| duration   | number                | 否   | 视频的时长（单位：毫秒），图片时返回-1（itemType为ThUMBNAIL时支持，否则为空）。 |
 
 ## PhotoBrowserInfo
 
@@ -289,16 +321,30 @@ Picker的颜色模式。
 | PHOTO_MAX_COUNT | 1   | 图片的最大选择数量（不能大于总的最大选择数量）。 |
 | VIDEO_MAX_COUNT | 2   | 视频的最大选择数量（不能大于总的最大选择数量）。 |
 
+## PhotoBrowserRange
+
+打开大图浏览模式后，左右滑动切换浏览图片的范围。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                | 值   | 说明                        |
+|-------------------|-----|---------------------------|
+| ALL | 0   | 全部图片，视频。                 |
+| SELECTED_ONLY | 1   | 仅用户已选择的图片，视频。 |
+
 ## 示例
 
 ```ts
 // xxx.ets
 import {
-  photoAccessHelper, PhotoPickerComponent, PickerController, PickerOptions,
-  DataType, ItemInfo, PhotoBrowserInfo, AnimatorParams,
+  PhotoPickerComponent, PickerController, PickerOptions,
+  DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
-  SelectMode, PickerColorMode, ReminderMode, MaxCountType
-} from '@kit.MediaLibraryKit';
+  SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange
+} from '@ohos.file.PhotoPickerComponent';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 @Entry
 @Component
@@ -306,10 +352,12 @@ struct PickerDemo {
   pickerOptions: PickerOptions = new PickerOptions();
   @State pickerController: PickerController = new PickerController();
   @State selectUris: Array<string> = new Array<string>();
+  @State currentUri: string = '';
+  @State isBrowserShow: boolean = false;
 
   aboutToAppear() {
     this.pickerOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
-    this.pickerOptions.maxSelectNumber = 10;
+    this.pickerOptions.maxSelectNumber = 5;
     this.pickerOptions.isSearchSupported = false;
     this.pickerOptions.isPhotoTakingSupported = false;
     // 其他属性.....
@@ -336,25 +384,39 @@ struct PickerDemo {
        return false;
     }
     let type: ItemType | undefined = itemInfo.itemType;
+    let uri: string | undefined = itemInfo.uri;
     if (type === ItemType.CAMERA) {
       // 点击相机item
       return true; // 返回true则拉起系统相机，若应用需要自行处理则返回false。
     } else {
       if (clickType === ClickType.SELECTED) {
         // 应用做自己的业务处理
+        if (uri) {
+          this.selectUris.push(uri);
+          this.pickerOptions.preselectedUris = [...this.selectUris];
+        }
         return true; // 返回true则勾选，否则则不响应勾选。
+      } else {
+        if (uri) {
+          this.selectUris = this.selectUris.filter((item: string) => {
+          return item != uri;
+          });
+          this.pickerOptions.preselectedUris = [...this.selectUris];
+        }
       }
+      return true;
     }
-    return true;
   }
   
   private onEnterPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean {
     // 进入大图的回调
+    this.isBrowserShow = true;
     return true;
   }
   
   private onExitPhotoBrowser(photoBrowserInfo: PhotoBrowserInfo): boolean {
     // 退出大图的回调
+    this.isBrowserShow = false;
     return true;
   }
   
@@ -362,8 +424,18 @@ struct PickerDemo {
     // 接收到该回调后，便可通过pickerController相关接口向picker发送数据，在此之前不生效。
   }
 
+  private onPhotoBrowserChanged(browserItemInfo: BaseItemInfo): boolean {
+    // 大图左右滑动的回调
+    this.currentUri = browserItemInfo.uri ?? '';
+    return true;
+  }
+
   build() {
-    Stack() {
+    Flex({
+      direction: FlexDirection.Column,
+      justifyContent: FlexAlign.Center,
+      alignItems: ItemAlign.Center
+    }) {
       PhotoPickerComponent({
         pickerOptions: this.pickerOptions,
         // onSelect: (uri: string): void => this.onSelect(uri),
@@ -372,21 +444,32 @@ struct PickerDemo {
         onEnterPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onEnterPhotoBrowser(photoBrowserInfo),
         onExitPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onExitPhotoBrowser(photoBrowserInfo),
         onPickerControllerReady: (): void => this.onPickerControllerReady(),
+        onPhotoBrowserChanged: (browserItemInfo: BaseItemInfo): boolean => this.onPhotoBrowserChanged(browserItemInfo),
         pickerController: this.pickerController,
-      }).height('100%').width('100%')
+      }).height('60%').width('100%')
 
 
       // 这里模拟应用侧底部的选择栏
-      Row() {
-        ForEach(this.selectUris, (uri: string) => {
-          Image(uri).height('10%').width('10%').onClick(() => {
-            // 点击事件模拟删除操作，通过pickerController向picker组件发送已选择的数据列表，触发picker组件勾选框刷新
-            this.selectUris = this.selectUris.filter((item: string) => {
-              return item != uri;
-            })
-            this.pickerController.setData(DataType.SET_SELECTED_URIS, this.selectUris);
-          })
-        }, (uri: string) => JSON.stringify(uri))
+      if (this.isBrowserShow) {
+        Row() {
+          ForEach(this.selectUris, (uri: string) => {
+            if (uri === this.currentUri) {
+              Image(uri).height('10%').width('10%').onClick(() => {
+              }).borderWidth(1).borderColor('red')
+            } else {
+              Image(uri).height('10%').width('10%').onClick(() => {
+                this.pickerController.setData(DataType.SET_SELECTED_URIS, this.selectUris);
+                this.pickerController.setPhotoBrowserItem(uri, PhotoBrowserRange.ALL);
+              })
+            }
+          }, (uri: string) => JSON.stringify(uri))
+        }
+      } else {
+        Button('预览').width('33%').height('5%').onClick(() => {
+          if (this.selectUris.length > 0) {
+            this.pickerController.setPhotoBrowserItem(this.selectUris[0], PhotoBrowserRange.SELECTED_ONLY);
+          }
+        })
       }
     }
   }

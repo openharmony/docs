@@ -58,8 +58,8 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     };
 
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720,
-        .videoFrameHeight = 1080,
+        .videoFrameWidth = 768,
+        .videoFrameHeight = 1280,
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -164,8 +164,9 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
         // 处理状态变更
     }
-    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
-        // 通话中断状态处理
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL ||
+        stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
+        // 录屏中断状态处理
     }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // 处理状态变更
@@ -233,7 +234,7 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig
     OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720, .videoFrameHeight = 1080, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
+        .videoFrameWidth = 768, .videoFrameHeight = 1280, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
     OH_AudioInfo audioinfo = {
         .micCapInfo = miccapinfo,
     };

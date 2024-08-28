@@ -204,3 +204,12 @@ try {
   console.error(`getWantAgent failed! ${err.code} ${err.message}}`);
 }
 ```
+## OperationType
+
+表示操作WantAgent类型的枚举。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称                      | 值 | 说明                                            |
+|-------------------------|---|-----------------------------------------------|
+| START_SERVICE_EXTENSION<sup>12+</sup> | 6 | 开启一个ServiceExtension。<br/>**系统接口：** 该接口为系统接口。 |

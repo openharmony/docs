@@ -44,7 +44,8 @@ OpenHarmony系统采用ELF文件格式作为全系统的二进制文件格式，
 
 ### armeabi-v7a
 
-此ABI是以《[ARM架构应用二进制接口](https://developer.arm.com/Architectures/Application%20Binary%20Interface)》为基础制定，适用于32位armv7a架构的cpu，支持的核心列表可以参考《list of ARM processors》，支持arm32，thumb-2，VFPv3-D16指令。
+此ABI是以《[ARM架构应用二进制接口](https://developer.arm.com/Architectures/ABI)》为基础制定，适用于32位armv7a架构的cpu，支持的核心包括Cortex-A5，Cortex-A7，Cortex-A8，Cortex-A9，Cortex-A12，Cortex-A15，以及Cortex-A17，支持arm32，thumb-2，VFPv3-D16指令。
+
 
 此ABI使用-mfloat-cpu=softfp作为强制浮点数调用规则，本身不影响实际指令是否使用硬件浮点指令。Neon指令等其他扩展在此ABI中是可选的，为了更好的兼容性，建议应用开发者采用-mfpu=softvfp来编译native库 。
 

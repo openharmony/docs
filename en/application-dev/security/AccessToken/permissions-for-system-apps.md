@@ -3697,6 +3697,42 @@ Allows a system application to access the widget for credential enrollment.
 
 **Valid since**：12
 
+### ohos.permission.ACCESS_DISTRIBUTED_MODEM
+
+Allows a system service to access distributed modems.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
+### ohos.permission.GET_TELEPHONY_ESIM_STATE
+
+Allows a system application to obtain eSIM profile information and information written on the device chip when the eSIM is activated.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：13
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE
+
+Allows a system application to modify the eSIM profile and upgrade the eSIM.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：13
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
@@ -3946,6 +3982,18 @@ Allows a system ability to send screen rotation events to applications or other 
 ### ohos.permission.PUBLISH_CAST_PLUGGED_EVENT
 
 Allows a system ability to send the projection cable plug-in and plug-out events to applications or other system abilities.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
+
+Allows a system application or system service to grant third-party applications the temporary permission to save images and videos for the specified period of time.
 
 **Permission level**: system_core
 

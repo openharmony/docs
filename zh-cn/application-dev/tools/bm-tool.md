@@ -55,13 +55,13 @@ bm install [-h] [-p path] [-u userId] [-r] [-w waitting-time]
 | -p | 是 | 安装HAP路径，支持指定路径和多个HAP同时安装 |
 | -u | 否，默认安装到当前活跃用户上 | 给指定用户安装一个HAP。当安装的应用是驱动应用时，该参数会被忽略，会在所有用户下安装。 |
 | -r | 否，默认值为覆盖安装 | 覆盖安装一个HAP |
-| -w | 否，默认等待5s | 安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为5s |
+| -w | 否，默认等待180s | 安装HAP时指定bm工具等待时间，最小的等待时长为180s，最大的等待时长为600s,&nbsp;默认缺省为180s |
 
 
 示例：
 
 ```bash
-bm install -p /data/app/ohosapp.hap -u 100 -w 5s -r
+bm install -p /data/app/ohosapp.hap -u 100 -w 300s -r
 // 执行结果
 install bundle successfully.
 ```

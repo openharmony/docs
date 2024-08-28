@@ -16,17 +16,17 @@ Invoked when a touch event is triggered.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                             | Mandatory | Description                |
+| Name| Type                             | Mandatory| Description                |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [TouchEvent](#touchevent)  | Yes  | **TouchEvent** object. |
+| event  | [TouchEvent](#touchevent) | Yes  | **TouchEvent** object.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Current component. |
+| T | Current component.|
 
 ## TouchEvent
 
@@ -37,13 +37,10 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | Name               | Type                                      | Description          |
 | ------------------- | ---------------------------------------- | ------------ |
 | type                | [TouchType](ts-appendix-enums.md#touchtype)      | Type of the touch event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.    |
-| touches             | Array&lt;[TouchObject](#touchobject)&gt;  | All finger information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
-| changedTouches      | Array&lt;[TouchObject](#touchobject)&gt;  | Finger information changed.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts.<br>For example, if the system starts at 2023/10/12 11:33 and the touch event is triggered at 2023/10/12 11:34, then the returned timestamp value is 60,000,000,000 ns.<br>Unit: ns<br>**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8)  | Display area of the element that triggers the gesture event.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype) | Event input device.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets. |
-| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br> **NOTE**<br>This API can only be used by certain components; currently there are no supported components.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
+| changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br> **NOTE**<br>This API can only be used by certain components; currently there are no supported components.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
 ### getHistoricalPoints<sup>10+</sup>
@@ -60,7 +57,7 @@ Obtains all historical points of the current frame. The touch event frequency of
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| Array&lt;[HistoricalPoint](#historicalpoint10)&gt; | Array of historical points. |
+| Array&lt;[HistoricalPoint](#historicalpoint10)&gt;| Array of historical points.|
 
 
 ## TouchObject
@@ -71,8 +68,8 @@ Obtains all historical points of the current frame. The touch event frequency of
 | ------- | ------------------------------------------- | ------------------------------------- |
 | type    | [TouchType](ts-appendix-enums.md#touchtype) | Type of the touch event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                     |
 | id      | number                                      | Unique identifier of a finger.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                     |
-| x       | number                                      | X coordinate of the touch point relative to the upper left corner of the event responding component.<br>Unit: vp<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| y       | number                                      | Y coordinate of the touch point relative to the upper left corner of the event responding component.<br>Unit: vp<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| x       | number                                      | X coordinate of the touch point relative to the upper left corner of the event responding component.<br>Unit: vp<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| y       | number                                      | Y coordinate of the touch point relative to the upper left corner of the event responding component.<br>Unit: vp<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | windowX<sup>10+</sup>  | number                       | X coordinate of the touch point relative to the upper left corner of the application window.<br>Unit: vp<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | windowY<sup>10+</sup>  | number                       | Y coordinate of the touch point relative to the upper left corner of the application window.<br>Unit: vp<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | displayX<sup>10+</sup> | number                       | X coordinate of the touch point relative to the upper left corner of the application screen.<br>Unit: vp<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
@@ -90,7 +87,7 @@ Obtains all historical points of the current frame. The touch event frequency of
 | ----------- | ----------------------------------- | ----------------------------------------------------------------------------- |
 | touchObject | [TouchObject](#touchobject)  | Basic information of the historical point.                                                  |
 | size        | number                              | Size of the contact area between the finger and screen for the historical point.<br>Default value: **0**                                    |
-| force       | number                              | Touch force of the historical point.<br>Default value: **0**<br>Value range: [0, 65535). The greater the pressure, the greater the value.|
+| force       | number                              | Touch force of the historical point.<br>Default value: **0**<br>Value range: [0, 65535). The greater the pressure, the larger the value.|
 | timestamp   | number                              | Timestamp of the historical point. It is the interval between the time when the event is triggered and the time when the system starts.<br>Unit: ns          |
 ## Example
 

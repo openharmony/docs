@@ -11,6 +11,7 @@ The application model consists of the following elements:
 - Application component
    
    An application component is the basic unit and entry for the running of an application. When a user starts, uses, or exits an application, the application component transits in different states. This is called the application component lifecycle. The application component provides lifecycle callbacks, through which you can detect application [status changes](uiability-lifecycle.md). When writing an application, you needs to compile application components and their lifecycle callbacks, and configure related information in the application configuration file. In this way, the operating system creates an application component instance based on the configuration file during running, and schedules the lifecycle callbacks to execute your code.
+
 - Process model
 
    The process model defines how application processes are created, destroyed, and communicate with each other.
