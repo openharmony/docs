@@ -24,6 +24,8 @@ Shape(value?: PixelMap)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -219,7 +221,7 @@ strokeOpacity(value: number | string | Resource)
 
 ### strokeWidth
 
-strokeWidth(value: Length)
+strokeWidth(value: number | string)
 
 设置边框宽度。该属性若为string类型, 暂不支持百分比，百分比按照1px处理。
 
@@ -233,7 +235,7 @@ strokeWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框宽度。<br/>默认值：1 |
 
 ### antiAlias
 
@@ -255,7 +257,7 @@ antiAlias(value: boolean)
 
 ### mesh<sup>8+</sup>
 
-mesh(value: Array&lt;number&gt;, column: number, row: number)
+mesh(value: Array&lt;any&gt;, column: number, row: number)
 
 设置mesh效果。
 
@@ -269,7 +271,7 @@ mesh(value: Array&lt;number&gt;, column: number, row: number)
 
 | 参数名 | 类型                | 必填 | 说明                                                         |
 | ------ | ------------------- | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;number&gt; | 是   | 长度（column + 1）* （row + 1）* 2的数组，它记录了扭曲后的位图各个顶点位置。 |
+| value  | Array&lt;any&gt; | 是   | 长度（column + 1）* （row + 1）* 2的数组，它记录了扭曲后的位图各个顶点位置。 |
 | column | number              | 是   | mesh矩阵列数。                                               |
 | row    | number              | 是   | mesh矩阵行数。                                               |
 

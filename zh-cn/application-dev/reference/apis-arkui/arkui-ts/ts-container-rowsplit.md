@@ -17,6 +17,10 @@ RowSplit通过分割线限制子组件的宽度。初始化时，分割线位置
 
 RowSplit()
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 属性
 
 ### resizeable
@@ -31,7 +35,7 @@ resizeable(value: boolean)
 
 **参数：** 
 
-| 参数名 | 类型 | 必填 | 描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | boolean | 是 | 分割线是否可拖拽。<br/>默认值：false |
 
