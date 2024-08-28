@@ -25,8 +25,7 @@ Line(value?: {width?: string | number, height?: string | number})
 
 | 参数名 | 类型 | 必填 | 说明 
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
-| height | string \| number | 否 | 高度。<br/>值为异常值或缺省时按照自身内容需要的高度处理。 |
+| value | {width?: string \| number, height?: string \| number} | 否 | width：宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>height：高度。<br/>值为异常值或缺省时按照自身内容需要的高度处理。 |
 
 ## 属性
 

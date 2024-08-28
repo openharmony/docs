@@ -41,7 +41,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
-| type        | [XComponentType](#xcomponenttype10枚举说明)   | 是   | 用于指定XComponent组件类型。                                 |
+| type        | [XComponentType](ts-appendix-enums#xcomponenttype10枚举说明)   | 是   | 用于指定XComponent组件类型。                                 |
 | libraryname | string                                        | 否   | 用Native层编译输出动态库名称，仅类型为SURFACE或TEXTURE时有效。 |
 | controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 
@@ -157,7 +157,7 @@ xcomponentController: XComponentController = new XComponentController()
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor()
 
