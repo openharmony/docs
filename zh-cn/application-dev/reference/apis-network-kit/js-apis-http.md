@@ -190,7 +190,6 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
@@ -273,7 +272,6 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
@@ -384,7 +382,6 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
@@ -494,7 +491,6 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
@@ -569,7 +565,6 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
@@ -671,7 +666,6 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
-| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **错误码说明：**
