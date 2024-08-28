@@ -10,7 +10,7 @@ Mozilla/5.0 ({deviceType}; {OSName} {OSVersion}) AppleWebKit/537.36 (KHTML, like
 | ------------------ | ------------------ | ------------------ |
 | deviceType         | 设备类型           | 通过系统参数const.product.devicetype映射得到。|
 | OSName             | 发行版操作系统名称 | 通过系统参数const.product.os.dist.name得到。|
-| OSVersion          | 发行版操作系统版本 | 通过系统参数<!--RP1-->const.ohos.fullname<!--RP2End-->解析版本号得到。|
+| OSVersion          | 发行版操作系统版本 | 通过系统参数<!--RP1-->const.ohos.fullname<!--RP1End-->解析版本号得到。|
 | ArkWeb VersionCode | ArkWeb版本号       |- |
 | Mobile（可选）     | 是否是手机设备     |- |
 
