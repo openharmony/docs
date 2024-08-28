@@ -3709,6 +3709,30 @@ Allows a system service to access distributed modems.
 
 **Valid since**: 13
 
+### ohos.permission.GET_TELEPHONY_ESIM_STATE
+
+Allows a system application to obtain eSIM profile information and information written on the device chip when the eSIM is activated.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：13
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE
+
+Allows a system application to modify the eSIM profile and upgrade the eSIM.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：13
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.

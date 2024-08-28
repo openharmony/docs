@@ -363,6 +363,16 @@ Allows an application to access the car distributed engine.
 
 **Valid since**: 12
 
+### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
+
+**Permission level**：normal
+
+**Authorization mode**：system_grant
+
+**Valid since**：13
+
 ## user_grant Permissions
 
 The [user_grant permissions](app-permission-mgmt-overview.md#user_grant-user-authorization) are permissions granted by users. For details about how to request this type of permissions, see [Requesting User Authorization](request-user-authorization.md).
