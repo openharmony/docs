@@ -334,6 +334,16 @@ onFullscreenChange(callback:(event:&nbsp;{&nbsp;fullscreen:&nbsp;boolean&nbsp;})
 let controller: VideoController = new VideoController()
 ```
 
+### constructor
+
+constructor()
+
+VideoController的构造函数。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### start
 
 start()

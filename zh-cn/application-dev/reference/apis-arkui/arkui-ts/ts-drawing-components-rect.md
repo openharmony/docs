@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -14,8 +14,7 @@
 
 ## 接口
 
-Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
-  {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
+Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |{width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -27,11 +26,7 @@ Rect(value?: {width?: string | number,height?: string | number,radius?: string |
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string&nbsp;\|&nbsp;number | 否 | 宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| height | string&nbsp;\|&nbsp;number | 否 | 高度。<br/>默认值：<br/>异常值按照默认值处理。 |
-| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 否 | 圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效<br/>默认值：0<br/>异常值按照默认值处理。 |
-| radiusWidth | string&nbsp;\|&nbsp;number | 否 | 圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。 |
-| radiusHeight | string&nbsp;\|&nbsp;number | 否 | 圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。 |
+| value | {width?: string \| number,height?: string \| number,radius?: string \| number \| Array&lt;string \| number&gt;} \| {width?: string \| number,height?: string \| number,radiusWidth?: string \| number,radiusHeight?: string \| number} | 否 | width：宽度。<br/>默认值：0<br/>异常值按照默认值处理。<br/>height: 高度。<br/>默认值：0<br/>异常值按照默认值处理。<br/>radius：圆角半径，支持分别设置四个角的圆角度数。<br/>该属性和radiusWidth/radiusHeight属性效果类似，在组合使用时优先于radiusWidth/radiusHeight生效<br/>默认值：0<br/>异常值按照默认值处理。<br/>radiusWidth：圆角宽度。<br/>默认值：0<br/>异常值按照默认值处理。<br/>radiusHeight：圆角高度。<br/>默认值：0<br/>异常值按照默认值处理。|
 
 ## 属性
 
