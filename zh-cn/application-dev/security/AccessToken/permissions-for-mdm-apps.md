@@ -469,3 +469,16 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：12
+
+## ohos.permission.ENTERPRISE_RECOVERY_KEY
+
+允许应用管理企业级恢复密钥。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：13
