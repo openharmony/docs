@@ -26,7 +26,7 @@ Circle(value?: CircleOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [CircleOptions](#circleoptions) | 否 | 设置圆形尺寸 |
+| value | [CircleOptions](#circleoptions对象说明) | 否 | 设置圆形尺寸 |
 
 ## CircleOptions对象说明
 
