@@ -5,11 +5,11 @@
 
 [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, **resourceManager**, **applicationInfo**, **dir** (application file path), and **area** (encryption level). It also provides basic methods such as **createBundleContext()** and **getApplicationContext()**. The UIAbility component and ExtensionAbility derived class components have their own **Context** classes, for example, the base class **Context**, **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, **ExtensionContext**, and **ServiceExtensionContext**.
 
-- The figure below illustrates the inheritance relationship of contexts. 
+- The figure below illustrates the inheritance relationship of contexts.
 
   ![context-inheritance](figures/context-inheritance.png)
   
-- The figure below illustrates the holding relationship of contexts. 
+- The figure below illustrates the holding relationship of contexts.
 
   ![context-holding](figures/context-holding.png)
   
@@ -267,8 +267,8 @@ struct Page_Context {
       Button()
         .onClick(() => {
           // Before storing common information, switch the encryption level to EL1.
-          if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
-            this.context.area = contextConstant.AreaMode.EL1; // 修改area
+          if (this.context.area === contextConstant.AreaMode.EL2) { // 锟斤拷取area
+            this.context.area = contextConstant.AreaMode.EL1; // 锟睫革拷area
             promptAction.showToast({
               message: 'SwitchToEL1'
             });
