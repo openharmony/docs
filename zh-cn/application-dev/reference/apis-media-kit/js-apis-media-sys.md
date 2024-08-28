@@ -138,18 +138,6 @@ try {
 }
 ```
 
-## AVImageQueryOptions<sup>11+</sup>
-
-需要获取的缩略图时间点与视频帧的对应关系。
-
-在获取视频缩略图时，传入的时间点与实际取得的视频帧所在时间点不一定相等，需要指定传入的时间点与实际取得的视频帧的时间关系。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
-
-| 名称                     | 值              | 说明                                                         |
-| ------------------------ | --------------- | ------------------------------------------------------------ |
-| AV_IMAGE_QUERY_CLOSEST          | 3      | 表示选取离传入时间点最近的帧，该帧不一定是关键帧<br>**系统接口：** 该接口为系统接口     |
-
 ## PixelMapParams<sup>11+</sup>
 
 获取视频缩略图时，输出缩略图的格式参数。
@@ -173,6 +161,145 @@ try {
 | RGB_565       | 2   | 表示RGB_565颜色格式。                       |
 | RGBA_8888        | 3    | 表示RGBA_8888颜色格式。 |
 | RGB_888        | 5    | 表示RGB_888颜色格式。                 |
+
+## AvPlayer<sup>9+</sup>
+> **说明：**
+> 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](js-apis-media.md#mediacreateavplayer9)构建一个[AVPlayer](js-apis-media.md#avplayer9)实例。
+
+### setPlaybackRange<sup>12+</sup>
+
+setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Promise\<void>
+
+设置播放区间，并通过指定的[SeekMode](js-apis-media.md#seekmode8)跳转到区间开始位置。设置之后，只播放音视频文件设定区间内的内容。该方法异步方式返回执行结果，通过Promise获取返回值。可在**initialized**/**prepared**/**paused**/**stopped**/**completed**状态下使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AvPlayer
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                        |
+| -------- | ---------------------- | ---- | --------------------------- |
+| startTimeMs | number | 是   | 区间开始位置，单位ms，取值[0, duration)。可以设置-1值，系统将会从0位置开始播放。|
+| endTimeMs | number | 是   | 区间结束位置，单位ms，取值(startTimeMs, duration]。可以设置-1值，系统将会播放到资源末尾。|
+| mode | [SeekMode](js-apis-media.md#seekmode8) | 否   | 支持SeekMode.SEEK_PREV_SYNC和SeekMode.SEEK_CLOSEST, <br/>默认值: SeekMode.SEEK_PREV_SYNC。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 202  | Called from Non-System applications. Return by promise. |
+| 401  | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.setPlaybackRange(0, 6000, media.SeekMode.SEEK_CLOSEST).then(() => {
+  console.info('Succeeded setPlaybackRange');
+}).catch((err: BusinessError) => {
+  console.error('Failed to setPlaybackRange' + err.message);
+});
+```
+
+## AVMetadataExtractor<sup>11+</sup>
+> **说明：**
+> 元数据获取类，用于从媒体资源中获取元数据。在调用AVMetadataExtractor的方法前，需要先通过[createAVMetadataExtractor()](js-apis-media.md#mediacreateavmetadataextractor11)构建一个AVMetadataExtractor实例。
+
+### getTimeByFrameIndex<sup>12+</sup>
+
+getTimeByFrameIndex(index: number): Promise\<number>
+
+获取目标视频帧号对应的视频时间戳。仅支持MP4视频文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| index  | number | 是   | 视频帧号。 |
+
+**返回值：**
+
+| 类型             | 说明                                |
+| ---------------- | ----------------------------------- |
+| Promise\<number> | 时间戳的Promise返回值。单位是微秒。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Returned by promise.    |
+| 5400106  | Unsupported format. Returned by promise.       |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avMetadataExtractor.getTimeByFrameIndex(0).then((timeUs: number) => {
+  console.info(`Succeeded getTimeByFrameIndex timeUs: ${timeUs}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getTimeByFrameIndex ${err.message}`);
+})
+```
+
+### getFrameIndexByTime<sup>12+</sup>
+
+getFrameIndexByTime(timeUs: number): Promise\<number>
+
+获取目标视频时间戳对应的视频帧号。仅支持MP4视频文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| timeUs | number | 是   | 视频时间戳，单位：微秒。 |
+
+**返回值：**
+
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+| Promise\<number> | 视频帧号的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Returned by promise.    |
+| 5400106  | Unsupported format. Returned by promise.       |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
+  console.info(`Succeeded getFrameIndexByTime index: ${index}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getFrameIndexByTime ${err.message}`);
+})
+```
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -1005,15 +1132,3 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
-
-## SeekMode<sup>8+</sup>
-
-视频播放的Seek模式枚举，可通过seek方法作为参数传递下去。
-
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
-**系统接口：** 该接口为系统接口
-
-| 名称           | 值   | 说明                                                         |
-| -------------- | ---- | ------------------------------------------------------------ |
-| SEEK_CONTINUOUS<sup>12+</sup> | 3    | 表示拖动预览的Seek模式。有序、批量调用该模式Seek，实现视频的拖动预览功能。<br>该模式下Seek成功不上报SeekDone事件。 |

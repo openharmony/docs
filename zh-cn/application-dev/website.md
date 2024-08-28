@@ -18,6 +18,7 @@
         - [动态import](quick-start/arkts-dynamic-import.md)
         - [延迟加载（lazy import）](quick-start/arkts-lazy-import.md)
         - [HAR转HSP指导](quick-start/har-to-hsp.md)
+        - [HSP转HAP指导](quick-start/hsp-to-har.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
     - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
@@ -100,6 +101,7 @@
           - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
           - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
           - [getTarget接口：获取状态管理框架代理前的原始对象](quick-start/arkts-new-getTarget.md)
+          - [makeObserved接口：将非观察数据变为可观察数据](quick-start/arkts-new-makeObserved.md)
     - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
       - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
@@ -525,12 +527,13 @@
       - [ArkWeb简介](web/web-component-overview.md)
       - [Web组件的生命周期](web/web-event-sequence.md)
       - 设置基本属性和事件<!--web-set-attributes-events-->
-        - [默认UserAgent定义](web/web-default-userAgent.md)
+        - [设置UserAgent](web/web-default-userAgent.md)
         - [管理Cookie及数据存储](web/web-cookie-and-data-storage-mgmt.md)
         - [设置深色模式](web/web-set-dark-mode.md)
         - [在新窗口中打开页面](web/web-open-in-new-window.md)
         - [管理位置权限](web/web-geolocation-permission.md)
         - [使用隐私模式](web/web-incognito-mode.md)
+        - [使用运动和方向传感器](web/web-sensor.md)
       - 在应用中使用前端页面JavaScript<!--web-use-frontend-page-js-->
         - [应用侧调用前端页面函数](web/web-in-app-frontend-page-function-invoking.md)
         - [前端页面调用应用侧函数](web/web-in-page-app-function-invoking.md)
@@ -779,6 +782,8 @@
           - 加解密开发指导<!--crypto-encrypt-decrypt-dev-->
             - [使用AES对称密钥（GCM模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)
             - [使用AES对称密钥（GCM模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-ndk.md)
+            - [使用AES对称密钥（CCM模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ccm.md)
+            - [使用AES对称密钥（CCM模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ccm-ndk.md)
             - [使用AES对称密钥（CBC模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc.md)
             - [使用AES对称密钥（CBC模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc-ndk.md)
             - [使用AES对称密钥（ECB模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-ecb.md)
@@ -1007,9 +1012,9 @@
           <!--DelEnd-->
           - 应用账号<!--application-account-->
             - [管理应用账号](basic-services/account/manage-application-account.md)
-          - USB服务<!--usb-->
-            - [USB服务开发概述](basic-services/usb/usb-overview.md)
-            - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
+        - USB服务<!--usb-->
+          - [USB服务开发概述](basic-services/usb/usb-overview.md)
+          - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
         <!--Del-->
         - 升级服务<!--update-->
           - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
@@ -1045,7 +1050,7 @@
         - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
         - [驱动扩展框架DriverExtensionAbility](device/driver/driverextensionability.md)
         - [扩展外设管理开发指导](device/driver/externaldevice-guidelines.md)
-      - MultimodalAwareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
+      - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
         - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
       - Sensor Service Kit（传感器服务）<!--sensor-service-kit-->
@@ -1135,6 +1140,7 @@
         - [扫描工具](tools/app-check-tool.md)
         - [cem工具](tools/cem-tool.md)
         - [anm工具](tools/anm-tool.md)
+        - [edm工具](tools/edm-tool.md)
         - [restool工具](tools/restool.md)
         <!--Del-->
         - [LLDB工具](tools/lldb-tool.md)
@@ -1147,6 +1153,8 @@
     - Audio Kit（音频服务）<!--audio-kit-->
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
       - [处理音频焦点事件](media/audio/audio-playback-concurrency.md)
+      - [音频并发策略扩展(ArkTS)](media/audio/audio-session-management.md)
+      - [音频并发策略扩展(C/C++)](media/audio/using-ohaudio-for-session.md)
       - 音频播放<!--audio-playback-->
         - [音频播放开发概述](media/audio/audio-playback-overview.md)
         - [使用AudioRenderer开发音频播放功能](media/audio/using-audiorenderer-for-playback.md)
@@ -1430,9 +1438,14 @@
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
         - [JSVM-API支持的数据类型和接口](napi/jsvm-data-types-interfaces.md)
+        - [使用JSVM-API实现JS与C/C++语言交互开发流程](napi/use-jsvm-process.md)
         - JSVM-API开发规范
             - [JSVM-API使用规范](napi/jsvm-guidelines.md)
             - [JSVM-API常见问题](napi/jsvm-frequently-questions.md)
+        - JSVM-API使用指导<!--jsvm-use-->
+            - [使用JSVM-API接口进行任务队列相关开发](napi/use-jsvm-execute_tasks.md)
+            - [使用JSVM-API接口进行虚拟机快照相关开发](napi/use-jsvm-create-snapshot.md)
+            - [使用JSVM-API接口进行WebAssembly模块相关开发](napi/use-jsvm-about-wasm.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - JSVM-API调优&高性能使用示例
@@ -2175,7 +2188,7 @@
           - [日期滑动选择器弹窗 (DatePickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-datepicker-dialog.md)
           - [时间滑动选择器弹窗 (TimePickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-timepicker-dialog.md)
           - [文本滑动选择器弹窗 (TextPickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md)
-          - [Dialog (弹出框)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)
+          - [弹出框 (Dialog)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)
         - 卡片
           - [FormLink](reference/apis-arkui/arkui-ts/ts-container-formlink.md)
           - [FormMenu](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md)
@@ -2778,7 +2791,7 @@
           - [@ohos.userIAM.userAuthIcon (嵌入式用户身份认证控件)](reference/apis-user-authentication-kit/ohos-useriam-userauthicon.md)
         - 错误码<!--user-authentication-arkts-errcode-->
           - [用户认证错误码](reference/apis-user-authentication-kit/errorcode-useriam.md)
-      - 网络<!--system-network-api-->
+    - 网络<!--system-network-api-->
       - Connectivity Kit（短距通信服务）<!--connectivity-api-->
         - ArkTS API<!--connectivity-arkts--> 
           - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md)
@@ -2888,7 +2901,11 @@
             - [NetConn_NetHandle](reference/apis-network-kit/_net_conn___net_handle.md)
             - [NetConn_NetHandleList](reference/apis-network-kit/_net_conn___net_handle_list.md)
             - [NetConn_Route](reference/apis-network-kit/_net_conn___route.md)
+            - [NetConn_NetConnCallback](reference/apis-network-kit/_net_conn___net_conn_callback.md)
+            - [NetConn_NetSpecifier](reference/apis-network-kit/_net_conn___net_specifier.md)
             - [NetStack_CertBlob](reference/apis-network-kit/_net_stack___cert_blob.md)
+            - [NetStack_CertificatePinning](reference/apis-network-kit/_net_stack___certificate_pinning.md)
+            - [NetStack_Certificates](reference/apis-network-kit/_net_stack___certificates.md)
             - [WebSocket](reference/apis-network-kit/_web_socket.md)
             - [WebSocket_CloseOption](reference/apis-network-kit/_web_socket___close_option.md)
             - [WebSocket_CloseResult](reference/apis-network-kit/_web_socket___close_result.md)
@@ -3303,6 +3320,7 @@
           - [native_audio_common.h](reference/apis-audio-kit/native__audio__common_8h.md)
           - [native_audio_device_base.h](reference/apis-audio-kit/native__audio__device__base_8h.md)
           - [native_audio_routing_manager.h](reference/apis-audio-kit/native__audio__routing__manager_8h.md)
+          - [native_audio_session_manager.h](reference/apis-audio-kit/native__audio__session__manager_8h.md)
           - [native_audiocapturer.h](reference/apis-audio-kit/native__audiocapturer_8h.md)
           - [native_audiorenderer.h](reference/apis-audio-kit/native__audiorenderer_8h.md)
           - [native_audiostream_base.h](reference/apis-audio-kit/native__audiostream__base_8h.md)
@@ -3311,6 +3329,8 @@
           - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
           - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/_o_h___audio_device_descriptor_array.md)
           - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
+          - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/_o_h___audio_session___deactivated_event.md)
+          - [OH_AudioSession_Strategy](reference/apis-audio-kit/_o_h___audio_session___strategy.md)
       - 错误码<!--audio-arkts-errcode-->
         - [Audio错误码](reference/apis-audio-kit/errorcode-audio.md)
     - AVCodec Kit（音视频编解码服务）<!--avcodec-api-->

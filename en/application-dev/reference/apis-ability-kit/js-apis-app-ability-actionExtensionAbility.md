@@ -1,6 +1,6 @@
 # @ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)
 
-The **ActionExtensionAbility** module, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides a custom action service template. An ActionExtensionAbility is used to view and process the content in a host application. For example, you can add a bookmark, translate the selected text into another language, or edit an image on the current page.
+The **ActionExtensionAbility** module, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides a custom action service template. An ActionExtensionAbility is used to view and process the content in a host application. For example, you can add a bookmark, translate the selected text into another language, or edit an image on the current page. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 > 

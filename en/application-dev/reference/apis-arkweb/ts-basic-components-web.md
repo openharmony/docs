@@ -2034,9 +2034,8 @@ Sets the default character encoding for web pages.
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
-          // Set the height and padding.
+          // Set the height
           .height(500)
-          .padding(20)
           .defaultTextEncodingFormat("UTF-8")
           .javaScriptAccess(true)
       }

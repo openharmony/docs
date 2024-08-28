@@ -1,42 +1,42 @@
-# getTarget接口：获取状态管理框架代理前的原始对象
+# getTarget API: Obtaining Original Objects
 
-为了获取状态管理框架代理前的原始对象，开发者可以使用[getTarget接口](../reference/apis-arkui/js-apis-StateManagement.md#gettarget12)。
+To obtain the original object before adding a proxy in the state management, you can use the [getTarget](../reference/apis-arkui/js-apis-StateManagement.md#gettarget12) API.
 
->**说明：**
+>**NOTE**
 >
->从API version 12开始，开发者可以使用UIUtils中的getTarget接口获取状态管理框架代理前的原始对象。
+>The **getTarget** API in UIUtils is supported since API version 12.
 
-## 概述
+## Overview
 
-状态管理框架会对Class、Date、Map、Set、Array类型的原始对象添加代理，用于观测属性变化与API调用。这一层代理会使得变量类型改变，在类型判断、NAPI调用等场景，会由于类型并非原始对象的类型产生预料之外的结果。
+The state management framework adds proxies to original objects of the Class, Date, Map, Set, and Array types to observe attribute changes and API invoking. Proxies will change the variable types. In scenarios such as type determination and Node-API invoking, unexpected results may be generated because the variable type is not the type of the original object.
 
-- 使用getTarget接口需要导入UIUtils工具。
+- Import the UIUtils to use the **getTarget** API.
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   ```
 
-- 状态管理V1中，会给\@Observed装饰的类对象以及使用状态变量装饰器如\@State装饰的Class、Date、Map、Set、Array添加一层代理用于观测一层属性或API调用产生的变化。
-- 状态管理V2中，会给使用状态变量装饰器如\@Trace、\@Local装饰的Date、Map、Set、Array添加一层代理用于观测API调用产生的变化。
+- In state management V1, a proxy is added to the class objects decorated by @Observed and the Class, Date, Map, Set, and Array decorated by @State or other state variable decorators to observe the changes of top-level attributes or changes invoked by APIs.
+- In state management V2, a proxy is added to Date, Map, Set, and Array decorated by \@Trace, \@Local or other state variable decorators to observe changes invoked by APIs.
 
-使用getTarget接口可以获取这些代理对象的原始对象。
+Use **getTarget** to obtain the original objects of these proxy objects.
 
-## 限制条件
+## Constraints
 
-- getTarget仅支持对象类型传参
+- Only the parameters of the object type can be passed by **getTarget**.
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
-  let res = UIUtils.getTarget(2); // 非对象类型入参，错误用法
+  let res = UIUtils.getTarget(2); //  Incorrect usage. The input parameter is of the non-object type.
   @Observed
   class Info {
     name: string = "Tom";
   }
   let info: Info = new Info();
-  let rawInfo: Info = UIUtils.getTarget(info); // 正确用法
+  let rawInfo: Info = UIUtils.getTarget (info); // Correct usage.
   ```
 
-- 更改getTarget获取的原始对象中的内容不会被观察到变化，也不会触发UI刷新。
+- Changes to the content in the original object obtained by **getTarget** cannot be observed nor trigger UI re-renders.
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
@@ -52,27 +52,27 @@
     build() {
       Column() {
         Text(`info.name: ${this.info.name}`)
-        Button(`更改代理对象的属性`)
+        Button(`Change the attributes of the proxy object`)
           .onClick(() => {
-            this.info.name = "Alice"; // Text组件能够刷新
+            this.info.name = "Alice"; // Text component can be re-rendered.
           })
-        Button(`更改原始对象的属性`)
+        Button (`Change the attributes of the original object`)
           .onClick(() => {
             let rawInfo: Info = UIUtils.getTarget(this.info);
-            rawInfo.name = "Bob"; // Text组件不能刷新
+            The rawInfo.name = "Bob"; // Text component cannot be re-rendered.
           })
       }
     }
   }
   ```
 
-## 使用场景
+## Use Scenarios
 
-### 获取状态管理V1代理前的原始对象
+### Obtains the original object before adding a proxy in the state management V1.
 
-状态管理V1有两种场景会给对象增加代理：
+State management V1 adds proxies to objects in the following scenarios:
 
-【1】\@Observed装饰的类实例。在创建\@Observed装饰的类实例时，会给该实例添加代理。该过程发生在new对象的过程中，没有经过new操作符创建的对象是不被代理的。
+1. \@Observed decorated class instance. When this class instance is created, a proxy is added to the instance. However, objects that are not created by using the **new** operator are not proxied.
 
 ```ts
 @Observed
@@ -82,11 +82,11 @@ class ObservedClass {
 class NonObservedClass {
   name: string = "Tom";
 }
-let observedClass: ObservedClass = new ObservedClass(); // 被代理
-let nonObservedClass: NonObservedClass = new NonObservedClass(); // 不被代理
+let observedClass: ObservedClass = new ObservedClass(); // Proxied.
+let nonObservedClass: NonObservedClass = new NonObservedClass(); // Not proxied.
 ```
 
-【2】状态变量装饰器装饰的复杂类型对象。使用\@State、\@Prop等状态变量装饰器装饰Class、Map、Set、Date、Array时，会添加代理。若该对象已经是代理对象，则不会重复创建代理。
+2. Complex object decorated by the state variable decorator. When state variables decorators such as \@State or \@Prop are used to decorate Class, Map, Set, Date, and Array, proxies are added. If the object is already a proxy object, the proxy will not be created again.
 
 ```ts
 @Observed
@@ -96,17 +96,17 @@ class ObservedClass {
 class NonObservedClass {
   name: string = "Tom";
 }
-let observedClass: ObservedClass = new ObservedClass(); // 被代理
-let nonObservedClass: NonObservedClass = new NonObservedClass(); // 不被代理
+let observedClass: ObservedClass = new ObservedClass(); // Proxied.
+let nonObservedClass: NonObservedClass = new NonObservedClass(); // Not proxied.
 @Entry
 @Component
 struct Index {
-  @State observedObject: ObservedClass = observedClass; // 已被代理数据不会重复创建代理
-  @State nonObservedObject: NonObservedClass = nonObservedClass; // 创建代理
-  @State numberList: number[] = [1, 2, 3]; // Array类型创建代理
-  @State sampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // Map类型创建代理
-  @State sampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // Set类型创建代理
-  @State sampleDate: Date = new Date(); // Date类型创建代理
+  @State observedObject: ObservedClass = observedClass; // Proxy will not be created repeatedly for proxied data.
+  @State nonObservedObject: NonObservedClass = nonObservedClass; // A proxy is created.
+  @State numberList: number[] = [1, 2, 3]; // A proxy is created for the Array type.
+  @State sampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // A proxy is created for the Map type.
+  @State sampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // A proxy is created for the Set type.
+  @State sampleDate: Date = new Date(); // A proxy is created for the Date type.
   
   build() {
     Column() {
@@ -117,7 +117,7 @@ struct Index {
 }
 ```
 
-使用UIUtils.getTarget接口可以获取代理前的原始对象。
+Use **UIUtils.getTarget** to obtain the original objects before proxies are added.
 
 ```ts
 import { UIUtils } from '@kit.ArkUI';
@@ -128,21 +128,21 @@ class ObservedClass {
 class NonObservedClass {
   name: string = "Tom";
 }
-let observedClass: ObservedClass = new ObservedClass(); // 被代理
-let nonObservedClass: NonObservedClass = new NonObservedClass(); // 不被代理
-let globalNumberList: number[] = [1, 2, 3]; // 不被代理
-let globalSampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // 不被代理
-let globalSampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // 不被代理
-let globalSampleDate: Date = new Date(); // 不被代理
+let observedClass: ObservedClass = new ObservedClass(); // Proxied.
+let nonObservedClass: NonObservedClass = new NonObservedClass(); // Not proxied.
+let globalNumberList: number[] = [1, 2, 3]; // Not proxied.
+let globalSampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // Not proxied.
+let globalSampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // Not proxied.
+let globalSampleDate:Date = new Date (); // Not proxied.
 @Entry
 @Component
 struct Index {
-  @State observedObject: ObservedClass = observedClass; // 已被代理数据不会重复创建代理
-  @State nonObservedObject: NonObservedClass = nonObservedClass; // 创建代理
-  @State numberList: number[] = globalNumberList; // Array类型创建代理
-  @State sampleMap: Map<number, string> = globalSampleMap; // Map类型创建代理
-  @State sampleSet: Set<number> = globalSampleSet; // Set类型创建代理
-  @State sampleDate: Date = globalSampleDate; // Date类型创建代理
+  @State observedObject: ObservedClass = observedClass; // Proxy will not be created repeatedly for proxied data.
+  @State nonObservedObject: NonObservedClass = nonObservedClass; // A proxy is created.
+  @State numberList: number[] = globalNumberList; // A proxy is created for the Array type.
+  @State sampleMap: Map<number, string> = globalSampleMap; // A proxy is created for the Map type.
+  @State sampleSet: Set<number> = globalSampleSet; // A proxy is created for the Set type.
+  @State sampleDate: Date = globalSampleDate; // A proxy is created for the Date type.
   
   build() {
     Column() {
@@ -163,28 +163,28 @@ struct Index {
 }
 ```
 
-### 获取状态管理V2代理前的原始对象
+### Obtains the original object before adding a proxy in the state management V2.
 
-状态管理V2会给状态变量装饰器如\@Trace、\@Local装饰的Map、Set、Date、Array添加一层代理。和V1不同的是，状态管理V2不会对类对象实例进行代理。
+A proxy is added to the Map, Set, Date, and Array decorated by \@Trace, \@Local, or other state variable decorators in state management V2. Different from state management V1, the class object instances are not proxied in state management V2.
 
 ```ts
 @ObservedV2
 class ObservedClass {
   @Trace name: string = "Tom";
 }
-let globalObservedObject: ObservedClass = new ObservedClass(); // 不被代理
-let globalNumberList: number[] = [1, 2, 3]; // 不被代理
-let globalSampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // 不被代理
-let globalSampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // 不被代理
-let globalSampleDate: Date = new Date(); // 不被代理
+let globalObservedObject: ObservedClass = new ObservedClass(); // Not proxied.
+let globalNumberList: number[] = [1, 2, 3]; // Not proxied
+let globalSampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // Not proxied.
+let globalSampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // Not proxied.
+let globalSampleDate:Date = new Date (); // Not proxied.
 @Entry
 @ComponentV2
 struct Index {
-  @Local observedObject: ObservedClass = globalObservedObject; // V2中对象不被代理
-  @Local numberList: number[] = globalNumberList; // Array类型创建代理
-  @Local sampleMap: Map<number, string> = globalSampleMap; // Map类型创建代理
-  @Local sampleSet: Set<number> = globalSampleSet; // Set类型创建代理
-  @Local sampleDate: Date = globalSampleDate; // Date类型创建代理
+  @Local observedObject: ObservedClass = globalObservedObject; // Objects in V2 are not proxied.
+  @Local numberList: number[] = globalNumberList; // A proxy is created for the Array type.
+  @Local sampleMap: Map<number, string> = globalSampleMap; // A proxy is created for the Map type.
+  @Local sampleSet: Set<number> = globalSampleSet; // A proxy is created for the Set type.
+  @Local sampleDate: Date = globalSampleDate; // A proxy is created for the Date type.
   
   build() {
     Column() {
@@ -195,7 +195,7 @@ struct Index {
 }
 ```
 
-使用UIUtils.getTarget接口可以获取代理前的原始对象。
+Use **UIUtils.getTarget** to obtain the original objects before proxies are added.
 
 ```ts
 import { UIUtils } from '@kit.ArkUI';
@@ -203,19 +203,19 @@ import { UIUtils } from '@kit.ArkUI';
 class ObservedClass {
   @Trace name: string = "Tom";
 }
-let globalObservedObject: ObservedClass = new ObservedClass(); // 不被代理
-let globalNumberList: number[] = [1, 2, 3]; // 不被代理
-let globalSampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // 不被代理
-let globalSampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // 不被代理
-let globalSampleDate: Date = new Date(); // 不被代理
+let globalObservedObject: ObservedClass = new ObservedClass(); // Not proxied.
+let globalNumberList: number[] = [1, 2, 3]; // Not proxied
+let globalSampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // Not proxied.
+let globalSampleSet: Set<number> = new Set([0, 1, 2, 3, 4]); // Not proxied.
+let globalSampleDate:Date = new Date (); // Not proxied.
 @Entry
 @ComponentV2
 struct Index {
-  @Local observedObject: ObservedClass = globalObservedObject; // V2中对象不被代理
-  @Local numberList: number[] = globalNumberList; // Array类型创建代理
-  @Local sampleMap: Map<number, string> = globalSampleMap; // Map类型创建代理
-  @Local sampleSet: Set<number> = globalSampleSet; // Set类型创建代理
-  @Local sampleDate: Date = globalSampleDate; // Date类型创建代理
+  @Local observedObject: ObservedClass = globalObservedObject; // Objects in V2 are not proxied.
+  @Local numberList: number[] = globalNumberList; // A proxy is created for the Array type.
+  @Local sampleMap: Map<number, string> = globalSampleMap; // A proxy is created for the Map type.
+  @Local sampleSet: Set<number> = globalSampleSet; // A proxy is created for the Set type.
+  @Local sampleDate: Date = globalSampleDate; // A proxy is created for the Date type.
   
   build() {
     Column() {
@@ -234,28 +234,30 @@ struct Index {
 }
 ```
 
-状态管理V2装饰器会为装饰的变量生成getter和setter方法，同时为原有变量名添加"\_\_ob\_"的前缀。出于性能考虑，getTarget接口不会对V2装饰器生成的前缀进行处理，因此向getTarget接口传入\@ObservedV2装饰的类对象实例时，返回的对象依旧为对象本身，且被\@Trace装饰的属性名仍有"\_\_ob\_"前缀。
+Decorators in state management V2 generate the **getter** and **setter** methods for the decorated variables and add prefix **\_\_ob\_** in the original variable names. To ensure performance, the **getTarget** API does not process the prefix generated by the decorators in V2. Therefore, when the \@ObservedV2 decorated class object instance is passed in through **getTarget** API, the returned object is still the object itself and the attribute name decorated by \@Trace still has the prefix **\_\_ob\_**.
 
-该前缀会导致某些NAPI接口无法按预期处理对象的属性，以下面的对象为例，目前已知影响的NAPI接口如下：
+Some Node-APIs fail to process object attributes as expected due to this prefix.<br>Example:<br>Affected Node-APIs are as below.
 
 ```ts
-// ObservedV2装饰的类
+// Class decorated by @ObservedV2.
 @ObservedV2
 class Info {
   @Trace name: string = "Tom";
   @Trace age: number = 24;
 }
-let info: Info = new Info(); // NAPI接口传入info实例
+let info: Info = new Info(); // info instance passed in through Node-APIs.
 ```
 
-| 影响接口名              | 影响结果                                       |
+| Name             | Result                                      |
 | ----------------------- | ---------------------------------------------- |
-| napi_get_property_names | 返回值为"\_\_ob\_name"，"\_\_ob\_age"。        |
-| napi_set_property       | 使用"name"，"\_\_ob\_name"均能赋值成功。       |
-| napi_get_property       | 使用"name"，"\_\_ob\_name"均能获取到值。       |
-| napi_has_property       | 使用"name"，"\_\_ob\_name"均返回true。         |
-| napi_delete_property    | 删除属性时需要加上"\_\_ob\_"前缀才能删除成功。 |
-| napi_has_own_property   | 使用"name"，"\_\_ob\_name"均返回true。         |
-| napi_set_named_property | 使用"name"，"\_\_ob\_name"均能赋值成功。       |
-| napi_get_named_property | 使用"name"，"\_\_ob\_name"均能获取到值。       |
-| napi_has_named_property | 使用"name"，"\_\_ob\_name"均返回true。         |
+| napi_get_property_names | Returns value that is **\_\_ob\_name** or **\_\_ob\_age**.       |
+| napi_set_property       | Changes values successfully using **name** or **\_\_ob\_name**.      |
+| napi_get_property       | Obtains values using **name** or **\_\_ob\_name**.      |
+| napi_has_property       | Returns **true** using **name** or **\_\_ob\_name**.        |
+| napi_delete_property    | Deletes an attribute successfully adding the prefix **\_\_ob\_**. |
+| napi_has_own_property   | Returns **true** using **name** or **\_\_ob\_name**.        |
+| napi_set_named_property | Changes values successfully using **name** or **\_\_ob\_name**.      |
+| napi_get_named_property | Obtains values using **name** or **\_\_ob\_name**.      |
+| napi_has_named_property | Returns **true** using **name** or **\_\_ob\_name**.        |
+
+<!--no_check-->

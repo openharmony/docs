@@ -5283,7 +5283,7 @@ getLocales(includeSystem?: boolean): Array\<string>
 
 getSymbol(resId: number):number
 
-用户获取指定资源ID对应的符号值，是用同步方式返回。
+用户获取指定资源ID对应的符号值，使用同步方式返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5328,7 +5328,7 @@ getSymbol(resId: number):number
 ### getSymbol<sup>11+</sup>
 getSymbol(resource: Resource): number
 
-用户获取指定resource对象对应的符号值，是用同步方式返回。
+用户获取指定resource对象对应的符号值，使用同步方式返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 

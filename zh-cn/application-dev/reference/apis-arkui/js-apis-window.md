@@ -356,6 +356,7 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
@@ -422,6 +423,7 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
@@ -5777,7 +5779,11 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 创建主窗口或子窗口下的子窗口，使用Promise异步回调，该接口仅在2in1设备上调用生效。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 

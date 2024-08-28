@@ -173,6 +173,70 @@ async function example() {
 }
 ```
 
+### getBurstAssets<sup>12+</sup>
+
+getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
+
+获取连拍照片资源，使用Promise方式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明             |
+| ------- | ------------------- | ---- | ---------------- |
+| burstKey | string   | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](#photokeys)的BURST_KEY)     |
+| options | [FetchOptions](#fetchoptions)   | 是   | 连拍照片检索选项。     |
+
+**返回值：**
+
+| 类型                        | 说明           |
+| --------------------------- | -------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise对象，返回连拍照片数据结果集。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } form '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('getBurstAssets');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  // burstKey为36位的uuid，可以根据photoAccessHelper.PhotoKeys获取。
+  let burstKey: string = "e719d696-09fa-44f8-ec3f215aa62a";
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await 
+      phAccessHelper.getBurstAssets(burstKey, fetchOptions);
+    if (fetchResult !== undefined) {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      if (photoAsset !== undefined) {
+        console.info('photoAsset.displayName :' + photoAsset.displayName);
+      }
+    }
+  } catch (err) {
+    console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ### createAsset
 
 createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void
@@ -4049,7 +4113,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   try {
     let requestId: string = 'xxx-xxx'; // 应用需使用requestImage等接口返回的有效requestId
-    await photoAccessHelper.MediaAssetManager.cancelRequest(requestId);
+    await photoAccessHelper.MediaAssetManager.cancelRequest(context, requestId);
     console.info("request cancelled successfully");
   } catch (err) {
     console.error(`cancelRequest failed with error: ${err.code}, ${err.message}`);
@@ -4519,6 +4583,7 @@ PhotoAsset的成员类型。
 | ----- |  ---- |  ---- |
 | DEFAULT |  0 |  默认照片类型。 |
 | MOVING_PHOTO |  3 |  动态照片文件类型。 |
+| BURST |  4 |  连拍照片文件类型。 |
 
 ## DynamicRangeType<sup>12+</sup>
 
@@ -4582,6 +4647,9 @@ PhotoAsset的成员类型。
 | PHOTO_SUBTYPE<sup>12+</sup>   | 'subtype'               | 媒体文件的子类型。                                                   |
 | DYNAMIC_RANGE_TYPE<sup>12+</sup>   | 'dynamic_range_type'               | 媒体文件的动态范围类型。                                                  |
 | COVER_POSITION<sup>12+</sup>   | 'cover_position'               | 动态照片的封面位置，具体表示封面帧所对应的视频时间戳（单位：微秒）。 |
+| BURST_KEY<sup>12+</sup>   | 'burst_key'               | 一组连拍照片的唯一标识：uuid。 |
+| LCD_SIZE<sup>12+</sup>  | 'lcd_size'  | LCD图片的宽高，值为width:height拼接而成的字符串。|
+| THM_SIZE<sup>12+</sup>  | 'thm_size'  | THUMB图片的宽高，值为width:height拼接而成的字符串。|
 
 ## AlbumKeys
 
