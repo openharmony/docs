@@ -196,7 +196,7 @@ libace_napi.z.so
 |FUNC|napi_destroy_ark_runtime|销毁基础运行时环境。|12|
 |FUNC|napi_run_event_loop|触发底层的事件循环。|12|
 |FUNC|napi_stop_event_loop|停止底层的事件循环。|12|
-|FUNC|napi_load_module_with_info|将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTs基础运行时环境中使用。|12|
+|FUNC|napi_load_module_with_info|将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTS基础运行时环境中使用。|12|
 |FUNC|napi_serialize|将ArkTS对象转换为native数据。|12|
 |FUNC|napi_deserialize|将native数据转为ArkTS对象。|12|
 |FUNC|napi_delete_serialization_data|删除序列化数据。|12|
@@ -487,7 +487,7 @@ napi_status napi_load_module_with_info(napi_env env,
 
 **描述：**
 
-将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTs基础运行时环境中使用。
+将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTS基础运行时环境中使用。
 
 **参数：**
 

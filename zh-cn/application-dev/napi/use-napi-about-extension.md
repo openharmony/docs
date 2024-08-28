@@ -635,7 +635,7 @@ await taskpool.execute(task6);
 
 #### napi_create_ark_runtime、napi_destroy_ark_runtime
 
-[使用Node-API接口创建ArkTs运行时环境](use-napi-ark-runtime.md)
+[使用Node-API接口创建ArkTS运行时环境](use-napi-ark-runtime.md)
 
 ## 序列化和反序列化
 
