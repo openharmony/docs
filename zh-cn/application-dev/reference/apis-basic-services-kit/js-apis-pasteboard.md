@@ -2466,7 +2466,7 @@ try {
 
 detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&gt;
 
-检测剪贴板中存在的模式，使用Promise异步回调。
+检测**本地**剪贴板中存在的模式，使用Promise异步回调。（仅支持本地数据中的模式检测，不会跨设备拉取非本端设备的数据）
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
