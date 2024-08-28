@@ -6876,7 +6876,7 @@ audioRenderer.on('markReach', 1000, (position: number) => {
 ```
 
 
-### off('markReach') <sup>8+</sup>
+### off('markReach')<sup>8+</sup>
 
 off(type: 'markReach'): void
 
@@ -6896,7 +6896,7 @@ off(type: 'markReach'): void
 audioRenderer.off('markReach');
 ```
 
-### on('periodReach') <sup>8+</sup>
+### on('periodReach')<sup>8+</sup>
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
@@ -6924,7 +6924,7 @@ audioRenderer.on('periodReach', 1000, (position: number) => {
 });
 ```
 
-### off('periodReach') <sup>8+</sup>
+### off('periodReach')<sup>8+</sup>
 
 off(type: 'periodReach'): void
 
@@ -6944,7 +6944,7 @@ off(type: 'periodReach'): void
 audioRenderer.off('periodReach');
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
@@ -6972,7 +6972,7 @@ audioRenderer.on('stateChange', (state: audio.AudioState) => {
 });
 ```
 
-### on('outputDeviceChange') <sup>10+</sup>
+### on('outputDeviceChange')<sup>10+</sup>
 
 on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
@@ -7006,7 +7006,7 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
 });
 ```
 
-### off('outputDeviceChange') <sup>10+</sup>
+### off('outputDeviceChange')<sup>10+</sup>
 
 off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
 
@@ -7040,7 +7040,7 @@ audioRenderer.off('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptor
 });
 ```
 
-### on('outputDeviceChangeWithInfo') <sup>11+</sup>
+### on('outputDeviceChangeWithInfo')<sup>11+</sup>
 
 on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChangeInfo>): void
 
@@ -7075,7 +7075,7 @@ audioRenderer.on('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStr
 });
 ```
 
-### off('outputDeviceChangeWithInfo') <sup>11+</sup>
+### off('outputDeviceChangeWithInfo')<sup>11+</sup>
 
 off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceChangeInfo>): void
 
@@ -8311,7 +8311,7 @@ off(type: 'periodReach'): void
 audioCapturer.off('periodReach');
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
