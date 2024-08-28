@@ -95,10 +95,13 @@
     - [OsAccount](_os_account.md)
     - [OH_Scan](c-apis-scan.md)
     - [TimeService](_time_service.md)
+    - [CommonEvent](./common_event/capi-common-event.md)
   - 头文件
     - [os_account.h](os__account_8h.md)
     - [os_account_common.h](os__account__common_8h.md)
     - [time_service.h](time__service_8h.md)
+    - [oh_commonevent.h](./common_event/oh_commonevent_8h.md)
+    - [oh_commonevnt_support.h](./common_event/oh_commonevent_support_8h.md)
 - 错误码
   - [USB服务错误码](errorcode-usb.md)
   - [RunningLock锁错误码](errorcode-runninglock.md)
