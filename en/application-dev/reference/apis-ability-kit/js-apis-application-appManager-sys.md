@@ -58,12 +58,6 @@ Registers an observer to listen for the state changes of all applications.
     },
     onProcessStateChanged(processData) {
       console.log('------------ onProcessStateChanged -----------', processData);
-    },
-    onAppStarted(appStateData) {
-      console.log('------------ onAppStarted -----------', appStateData);
-    },
-    onAppStopped(appStateData) {
-      console.log('------------ onAppStopped -----------', appStateData);
     }
   });
   console.log('-------- observerCode: ---------', observerCode);

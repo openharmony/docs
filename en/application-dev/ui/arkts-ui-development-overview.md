@@ -75,7 +75,7 @@ Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplifi
 
 ## Development Process
 
-The table below lists the main tasks involved in UI development with ArkUI. You can familiarize yourself with the UI development process by [getting started with a simple project](../quick-start/start-with-ets-stage.md).
+The table below lists the main tasks involved in UI development with ArkUI.
 
 
 | Task         | Description                                 | Guide                                    |
