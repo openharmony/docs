@@ -374,6 +374,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称            | 描述               |
 | ------------- | ---------------- |
 | Row           | 主轴与行方向一致作为布局模式。  |
@@ -807,19 +809,6 @@ Nullable\<T> {
 | SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                 |
 | PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                      |
 
-## BarrierDirection<sup>12+</sup>
-
-定义屏障线的方向。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最左侧。    |
-| RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最右侧。   |
-| TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最上方。    |
-| BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最下方。 |
-
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
 组件边界像素级取整计算策略。
@@ -844,13 +833,6 @@ Nullable\<T> {
 | DASHED        | 虚线。 |
 | WAVY        | 波浪线。 |
 
-## FlexSpaceOptions<sup>12+</sup>
-
-| 名称          | 类型        |  只读     | 必填      | 说明      |
-| ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
-| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
-
 ## MenuPolicy<sup>12+</sup>
 
 菜单弹出的策略。
@@ -869,6 +851,8 @@ Nullable\<T> {
 枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                  | 值 | 说明                                                |
 | --------------------- | - | ---------------------------------------------------- |
@@ -950,3 +934,15 @@ Nullable\<T> {
 | CENTER   | 图片中间与行中间对齐。       |
 | BOTTOM   | 图片下边沿与行下边沿对齐。   |
 | BASELINE | 图片下边沿与文本BaseLine对齐。 |
+
+
+## XComponentType<sup>10+</sup>枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                             | 描述                                                         |
+| -------------------------------- | ------------------------------------------------------------ |
+| SURFACE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。背景色设置为黑色时会走显示子系统（DSS）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| COMPONENT<sup>(deprecated)</sup> | XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>**说明：**<br/>从API version 12 开始，该接口废弃，建议使用其他容器组件替代。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和原生组件统一。3、走图形处理器（GPU）合成，相比suface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NODE                             | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
