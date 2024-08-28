@@ -147,7 +147,7 @@ hilog命令行使用方式：
 
    **使用样例：**
    ```
-   # hilog -G 16M
+   $ hilog -G 16M
    Set log type app buffer size to 16.0M successfully
    Set log type init buffer size to 16.0M successfully
    Set log type core buffer size to 16.0M successfully
