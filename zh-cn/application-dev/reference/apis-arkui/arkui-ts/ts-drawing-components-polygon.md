@@ -35,7 +35,7 @@ Polygon(value?: {width?: string | number, height?: string | number})
 
 ### points
 
-points(value: Array&lt;any&gt;)
+points(value: Array&lt;Point&gt;)
 
 设置多边形的顶点坐标列表。异常值按照默认值处理。
 
@@ -49,7 +49,7 @@ points(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                  |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------- |
-| value  | Array&lt;any&gt; | 是   | 多边形的顶点坐标列表。坐标类型可使用[Point](ts-drawing-components-polyline.md#point)<br/>默认值：[] |
+| value  | Array&lt;[Point](ts-drawing-components-polyline.md#point)&gt; | 是   | 多边形的顶点坐标列表。<br/>默认值：[] |
 
 ### fill
 
