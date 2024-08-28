@@ -8,13 +8,15 @@
 
 **变更原因**
 
-应用安全隐私保护
+基于对应用的安全隐私保护，调试能力遵循以下原则：
+1.A应用厂商不可以调试B应用。
+2.调试信息不包含安全、隐私信息。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-如下所述调试命令使用权限缩小
+调试命令使用权限缩小，部分命令仅debug应用可用，详见下表
 
 **变更发生版本**
 
@@ -25,12 +27,12 @@
 
 | 组件 | 命令  | 变更前 | 变更后 |
 | -------- | ----- | ----- | -------- |
-| hidumper   | hidumper --mem-smaps pid [-v] | 有内存信息打印，且能获取内存地址信息 | 将打印帮助信息，该功能不可用   |
+| hidumper   | hidumper --mem-smaps pid [-v] | 有内存信息打印，且能获取内存地址信息 | 将打印帮助信息，不支持该命令   |
 | hidumper   | hidumper -p [pid] | 可以导出任意进程的maps信息以及/proc/pid/mountinfo等信息 | 只支持导出debug应用的基础信息，所有进程均不支持导出maps信息   |
 | hiprofiler | nativehook      | nativehook插件可以对任意进程进行调优      | 使用nativehook插件仅支持对debug应用进行调试         |
 | hiperf         | hiperf record/stat      | 支持对release应用进行调试      | 仅支持对debug应用进行调试         |
-| hiperf         | hiperf dump      | 可以输出maps信息      | 不输出maps信息         |
-| hiperf         | 日志输出      | 可以输出hiperf日志信息      | 不输出hiperf日志信息         |
+| hiperf         | hiperf dump      | 可以输出采集进程的maps信息以及其他信息 | 不输出maps信息，其他信息不变       |
+| hiperf         | 日志输出      | 可以输出hiperf日志信息      | 不支持该功能         |
 
 
 **适配指导**
@@ -62,7 +64,7 @@ hdc调试连接功能增强
 
 | 组件 | 命令  | 变更前 | 变更后 |
 | -------- | ----- | ----- | -------- |
-| hdc   | hdc tmode usb | 命令将关闭无线调试，同时开启usb调试 | 命令不再控制调试方式切换，usb调试方式需要在设备设置界面进行控制。对于无线调试可以通过hdc tmode port close进行关闭   |
+| hdc   | hdc tmode usb | 命令将关闭无线调试，同时开启usb调试 | 命令不再控制调试方式切换，usb调试方式需要在设备设置界面进行控制。命令将不会关闭无线调试，关闭无线调试请使用hdc tmode port close进行关闭   |
 
 
 **适配指导**
