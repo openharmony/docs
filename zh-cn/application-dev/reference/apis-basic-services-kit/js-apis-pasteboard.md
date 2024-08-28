@@ -2493,12 +2493,12 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { pasteboard } from '@kit.BasicServicesKit'
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-let patterns: Array<Pattern> = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
+let patterns: Array<pasteboard.Pattern> = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
 
-systemPasteboard.detectPatterns(patterns).then((data: Array<Pattern>) => {
+systemPasteboard.detectPatterns(patterns).then((data: Array<pasteboard.Pattern>) => {
     if (patterns.sort().join('')==data.sort().join('')) {
       console.info('All needed patterns detected, next get data');
       try {
