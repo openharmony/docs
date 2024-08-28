@@ -3,7 +3,9 @@
 - ArkTS API
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
   - [@ohos.multimedia.sendableImage (基于Sendable对象的图片处理)](js-apis-sendableImage.md)
+  <!--Del-->
   - [@ohos.multimedia.image (图片处理)(系统接口)](js-apis-image-sys.md)
+  <!--DelEnd-->
 - C API
   - 模块
     - [Image](image.md)
@@ -28,6 +30,10 @@
     - [image_effect_filter.h](image__effect__filter_8h.md)
   - 结构体
     - [ImagePacker_Opts](_image_packer___opts__.md)
+    - [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md)
+    - [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md)
+    - [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md)
+    - [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md)
     - [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
     - [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
     - [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
