@@ -24,21 +24,41 @@ Flex(value?: FlexOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名            | 参数类型        | 必填   | 参数描述                                     |
+| 参数名            | 类型        | 必填   | 说明                                     |
 | -------------- | ---------------------------------------- | ---- |  ---------------------------------------- |
 | value      | [FlexOptions](#flexoptions对象说明) | 否    |  弹性布局子组件参数。               |
 
 ## FlexOptions对象说明
-| 参数名            | 参数类型                                     | 必填   | 默认值               | 参数描述                                     |
-| -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
-| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | 否    | FlexDirection.Row | 子组件在Flex容器上排列的方向，即主轴的方向。                 |
-| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap) | 否    | FlexWrap.NoWrap   | Flex容器是单行/列还是多行/列排列。<br/>**说明：** <br/>在多行布局时，通过交叉轴方向，确认新行堆叠方向。 |
-| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | 否    | FlexAlign.Start   | 所有子组件在Flex容器主轴上的对齐格式。                    |
-| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | 否    | ItemAlign.Start   | 所有子组件在Flex容器交叉轴上的对齐格式。                   |
-| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | 否    | FlexAlign.Start   | 交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。 |
-| space<sup>12+</sup>          | [FlexSpaceOptions](ts-appendix-enums.md#flexspaceoptions12) | 否   | {main:LengthMetrics.px(0), cross:LengthMetrics.px(0)} | 所有子组件在Flex容器主轴或交叉轴的space。<br/>space为负数、百分比或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>**说明：**<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 类型        | 必填   | 说明                                     |
+| -------------- | ---------------------------------------- | ---- |  ---------------------------------------- |
+| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | 否     | 子组件在Flex容器上排列的方向，即主轴的方向。<br/>**默认值：** FlexDirection.Row                 |
+| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap) | 否     | Flex容器是单行/列还是多行/列排列。<br/>**默认值：** FlexWrap.NoWrap<br/>**说明：** <br/>在多行布局时，通过交叉轴方向，确认新行堆叠方向。 |
+| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | 否     | 所有子组件在Flex容器主轴上的对齐格式。<br/>**默认值：** FlexAlign.Start                    |
+| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | 否     | 所有子组件在Flex容器交叉轴上的对齐格式。 <br/>**默认值：** ItemAlign.Start                 |
+| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | 否     | 交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。<br/>**默认值：** FlexAlign.Start  |
+| space<sup>12+</sup>          | [FlexSpaceOptions](ts-container-flex.md#flexspaceoptions12) | 否   | 所有子组件在Flex容器主轴或交叉轴的space。<br/>**默认值：** {main:LengthMetrics.px(0), cross:LengthMetrics.px(0)} <br/>space为负数、百分比或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>**说明：**<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 <br/>|
+
+## FlexSpaceOptions<sup>12+</sup>
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型        |  只读     | 必填      | 说明      |
+| ----------- | --------- | ----------- | --------- |----------- |
+| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
+| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
 
 ## 示例
 

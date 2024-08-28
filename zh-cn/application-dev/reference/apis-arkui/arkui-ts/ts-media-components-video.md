@@ -24,15 +24,21 @@ Video(value: VideoOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [VideoOptions](#videooptions对象说明) | 是 | 视频信息。 |
 
 ##  VideoOptions对象说明
 
-| 参数名              | 参数类型                                                     | 必填 | 参数描述                                                     |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名              | 类型                                                     | 必填 | 说明                                                     |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频的数据源，支持本地视频和网络视频。<br>Resource格式可以跨包/跨模块访问资源文件，常用于访问本地视频。<br/>- 支持rawfile文件下的资源，即通过$rawfile引用视频文件。<br/>string格式可用于加载网络视频和本地视频，常用于加载网络视频。<br/>- 支持网络视频地址。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、TS。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -43,6 +49,8 @@ Video(value: VideoOptions)
 ## PlaybackSpeed<sup>8+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                   | 描述        |
 | -------------------- | --------- |
@@ -222,7 +230,7 @@ onError(event:()&nbsp;=&gt;&nbsp;void)
 
 ### onStop<sup>12+</sup>
 
-onStop(event:()&nbsp;=&gt;&nbsp;void)
+onStop(event: Callback&lt;void&gt;)
 
 播放停止时触发该事件(当stop()方法被调用后触发)。
 
@@ -317,6 +325,7 @@ onFullscreenChange(callback:(event:&nbsp;{&nbsp;fullscreen:&nbsp;boolean&nbsp;})
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
 
@@ -324,30 +333,35 @@ onFullscreenChange(callback:(event:&nbsp;{&nbsp;fullscreen:&nbsp;boolean&nbsp;})
 let controller: VideoController = new VideoController()
 ```
 
-
 ### start
 
-start(): void
+start()
 
 开始播放。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### pause
 
-pause(): void
+pause()
 
 暂停播放，显示当前帧，再次播放时从当前位置继续播放。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### stop
 
-stop(): void
+stop()
 
 停止播放，显示当前帧，再次播放时从头开始播放。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### reset<sup>12+</sup>
 
@@ -357,6 +371,8 @@ video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放�
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### setCurrentTime
 
 setCurrentTime(value: number)
@@ -365,9 +381,11 @@ setCurrentTime(value: number)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 参数描述           |
+| 参数名   | 类型   | 必填   | 说明           |
 | ----- | ------ | ---- | -------------- |
 | value | number | 是    | 视频播放进度位置，单位为s。 |
 
@@ -379,9 +397,11 @@ requestFullscreen(value: boolean)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述                         |
+| 参数名 | 类型 | 必填 | 说明                         |
 | ------ | -------- | ---- | -------------------------------- |
 | value  | boolean  | 是   | 是否全屏（填充满应用窗口）播放。 |
 
@@ -393,6 +413,8 @@ exitFullscreen()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### setCurrentTime<sup>8+</sup>
 
 setCurrentTime(value: number, seekMode: SeekMode)
@@ -401,9 +423,11 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名      | 参数类型     | 必填   | 参数描述           |
+| 参数名      | 类型     | 必填   | 说明           |
 | -------- | -------- | ---- | -------------- |
 | value    | number   | 是    | 视频播放进度位置，单位为s。 |
 | seekMode | [SeekMode](#seekmode8枚举说明) | 是    | 跳转模式。          |
@@ -411,6 +435,8 @@ setCurrentTime(value: number, seekMode: SeekMode)
 ## SeekMode<sup>8+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称               | 描述             |
 | ---------------- | -------------- |
