@@ -545,7 +545,7 @@ xml解析选项。
 
 | 名称                           | 类型                                                         | 必填 | 说明                                    |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | 否   | 是否忽略文档类型，默认false，表示解析文档类型。 |
+| supportDoctype                 | boolean                                                      | 否   | 是否忽略文档类型，默认false，表示不解析文档类型。 |
 | ignoreNameSpace                | boolean                                                      | 否   | 是否忽略命名空间，默认false，表示解析命名空间。 |
 | tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 获取tagValue回调函数，解析标签和标签值，默认undefined，表示不解析标签和标签值。 |
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 获取attributeValue回调函数，解析属性和属性值，默认undefined，表示不解析属性和属性值。 |
