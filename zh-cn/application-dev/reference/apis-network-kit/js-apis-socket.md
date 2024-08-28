@@ -2847,7 +2847,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2301009  | Bad file number.                            |
+| 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -2905,7 +2905,7 @@ listen(address: NetAddress): Promise\<void\>
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2301009  | Bad file number.                            |
+| 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -4826,7 +4826,7 @@ listen(address: LocalAddress): Promise\<void\>
 | 错误码ID | 错误信息                      |
 | -------- | --------------------------- |
 | 401      | Parameter error.            |
-| 2301009  | Bad file number.            |
+| 2303109  | Bad file number.            |
 | 2301013  | Insufficient permissions.   |
 | 2301022  | Invalid argument.           |
 | 2301098  | Address already in use.     |
@@ -6245,7 +6245,7 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
-| 2301009 | Bad file number.                             |
+| 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Incorrect socket protocol type.              |
@@ -6351,7 +6351,7 @@ connect(options: TLSConnectOptions): Promise\<void\>
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
-| 2301009 | Bad file number.                             |
+| 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Incorrect socket protocol type.              |
