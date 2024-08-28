@@ -1,6 +1,6 @@
 # ArkUI子系统Changelog
 
-## hideNonSecureWindows接口使用权限变更
+## cl.arkui.1 hideNonSecureWindows接口使用权限变更
 
 **访问级别**
 
@@ -12,7 +12,7 @@
 
 **变更影响**
 
-该变更为兼容变更。
+该变更为兼容性变更。
 
 变更前：模态UIExtension默认隐藏不安全窗口且不允许取消隐藏。
 
