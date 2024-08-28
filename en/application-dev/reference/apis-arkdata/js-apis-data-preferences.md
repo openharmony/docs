@@ -7,8 +7,9 @@ The key is of the string type, and the value can be a number, a string, a Boolea
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - Preferences are not thread-safe and may cause file damage and data loss when used in multi-process scenarios. Do not use preferences in multi-process scenarios.
 
 ## Modules to Import
 
@@ -22,10 +23,10 @@ import { preferences } from '@kit.ArkData';
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name            | Type | Readable | Writable | Description                                   |
+| Name            | Type| Readable| Writable| Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 1024 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 x 1024 x 1024 bytes. |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 x 1024 x 1024 bytes.|
 
 
 ## preferences.getPreferences
@@ -40,17 +41,17 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name  | Type                                            | Mandatory | Description                                                        |
+| Name  | Type                                            | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | context  | Context            | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).                                                |
 | name     | string                                           | Yes  | Name of the **Preferences** instance.                                     |
-| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and the **Preferences** instance obtained is returned. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and the **Preferences** instance obtained is returned. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -112,22 +113,22 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 
 **Parameters**
 
-| Name | Type                                 | Mandatory | Description                   |
+| Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).           |
-| name    | string                                | Yes  | Name of the **Preferences** instance. |
+| name    | string                                | Yes  | Name of the **Preferences** instance.|
 
 **Return value**
 
 | Type                                      | Description                              |
 | ------------------------------------------ | ---------------------------------- |
-| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained. |
+| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -188,9 +189,9 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory | Description                                                                                                                                                                          |
+| Name  | Type                                         | Mandatory| Description                                                                                                                                                                          |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context  | Context                                       | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
+| context  | Context                                       | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
 | options  | [Options](#options10)                              | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and the **Preferences** instance obtained is returned. Otherwise, **err** is an error object.                                                                                   |
 
@@ -198,7 +199,7 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -267,22 +268,22 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description                                                                                                                                                                          |
+| Name | Type            | Mandatory| Description                                                                                                                                                                          |
 | ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
+| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
 | options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 
 **Return value**
 
 | Type                                   | Description                              |
 | --------------------------------------- | ---------------------------------- |
-| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained. |
+| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -348,22 +349,22 @@ Obtains a **Preferences** instance. This API returns the result synchronously.
 
 **Parameters**
 
-| Name | Type                 | Mandatory | Description                                                        |
+| Name | Type                 | Mandatory| Description                                                        |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context | Context               | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
+| context | Context               | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
 | options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                           |
 
 **Return value**
 
 | Type                       | Description                 |
 | --------------------------- | --------------------- |
-| [Preferences](#preferences) | **Preferences** instance obtained. |
+| [Preferences](#preferences) | **Preferences** instance obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -411,23 +412,25 @@ Deletes a **Preferences** instance from the cache. If the **Preferences** instan
 
 Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
+This API cannot be called concurrently with other **preferences** APIs.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                                                |
+| Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance.                             |
-| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -482,28 +485,30 @@ Deletes a **Preferences** instance from the cache. If the **Preferences** instan
 
 Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
+This API cannot be called concurrently with other **preferences** APIs.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
 
-| Name | Type                                 | Mandatory | Description                   |
+| Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).           |
-| name    | string                                | Yes  | Name of the **Preferences** instance. |
+| name    | string                                | Yes  | Name of the **Preferences** instance.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -556,15 +561,17 @@ Deletes a **Preferences** instance from the cache. If the **Preferences** instan
 
 Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
+This API cannot be called concurrently with other **preferences** APIs.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                                                                                                                                          |
+| Name  | Type                     | Mandatory| Description                                                                                                                                                                          |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
 | options  | [Options](#options10)          | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.                                                                                                                          |
 
@@ -572,7 +579,7 @@ Avoid using a deleted **Preferences** instance to perform data operations, which
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -633,28 +640,30 @@ Deletes a **Preferences** instance from the cache. If the **Preferences** instan
 
 Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
+This API cannot be called concurrently with other **preferences** APIs.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description                                                                                                                                                                          |
+| Name | Type            | Mandatory| Description                                                                                                                                                                          |
 | ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
+| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
 | options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -721,17 +730,17 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                                                |
+| Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance.                             |
-| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -792,22 +801,22 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Parameters**
 
-| Name | Type                                 | Mandatory | Description                   |
+| Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).           |
-| name    | string                                | Yes  | Name of the **Preferences** instance. |
+| name    | string                                | Yes  | Name of the **Preferences** instance.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -866,16 +875,16 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Parameters**
 
-| Name | Type                                 | Mandatory | Description                   |
+| Name | Type                                 | Mandatory| Description                   |
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).           |
-| name    | string                                | Yes  | Name of the **Preferences** instance. |
+| name    | string                                | Yes  | Name of the **Preferences** instance.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -921,9 +930,9 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                                                                                                                                          |
+| Name  | Type                     | Mandatory| Description                                                                                                                                                                          |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
+| context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
 | options  | [Options](#options10)          | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.                                                                                                                          |
 
@@ -931,7 +940,7 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -997,22 +1006,22 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description                                                                                                                                                                          |
+| Name | Type            | Mandatory| Description                                                                                                                                                                          |
 | ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
+| context | Context          | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
 | options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                                                                                                                                             |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -1076,16 +1085,16 @@ Avoid using a removed **Preferences** instance to perform data operations, which
 
 **Parameters**
 
-| Name | Type                 | Mandatory | Description                                                        |
+| Name | Type                 | Mandatory| Description                                                        |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context | Context               | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md). |
+| context | Context               | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).|
 | options | [Options](#options10) | Yes  | Configuration options of the **Preferences** instance.                           |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -1128,10 +1137,10 @@ Represents the configuration of a **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name       | Type  | Mandatory | Description                                                        |
+| Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | Yes  | Name of the **Preferences** instance.                                     |
-| dataGroupId | string\|null\|undefined | No  | Application group ID, which needs to be obtained from the AppGallery. This parameter is not supported currently.<br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br>**Model restriction**: This attribute can be used only in the stage model.|
+| dataGroupId | string\|null\|undefined | No  | Application group ID, which needs to be obtained from AppGallery. This parameter is not supported currently.<br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br> **Model restriction**: This attribute can be used only in the stage model.|
 
 
 ## Preferences
@@ -1153,17 +1162,17 @@ Obtains the value of a key from this **Preferences** instance. This API uses an 
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory | Description              |
+| Name  | Type                                        | Mandatory| Description              |
 | -------- | -------------------------------------------- | ---- |---------------------------|
 | key      | string                                       | Yes  | Key of the data to obtain. It cannot be empty.  |
-| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. |
+| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned.|
 | callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the value obtained. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1194,22 +1203,22 @@ Obtains the value of a key from this **Preferences** instance. This API uses a p
 
  **Parameters**
 
-| Name  | Type                   | Mandatory | Description |
+| Name  | Type                   | Mandatory| Description |
 | -------- | ----------------------- | ---- |--------|
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty. |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. |
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned.|
 
 **Return value**
 
 | Type                               | Description                         |
 | ----------------------------------- | ----------------------------- |
-| Promise<[ValueType](#valuetype)&gt; | Promise used to return the value obtained. |
+| Promise<[ValueType](#valuetype)&gt; | Promise used to return the value obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1239,22 +1248,22 @@ Obtains the value of a key from this **Preferences** instance. This API returns 
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description           |
+| Name  | Type                   | Mandatory| Description           |
 | -------- | ----------------------- | ---- |---------------------|
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty. |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. |
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned.|
 
 **Return value**
 
 | Type                               | Description                         |
 | ----------------------------------- | ----------------------------- |
-| [ValueType](#valuetype) | Returns the value obtained. |
+| [ValueType](#valuetype) | Returns the value obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1277,15 +1286,15 @@ Obtains all KV pairs from this **Preferences** instance. This API uses an asynch
 
 **Parameters**
 
-| Name  | Type                       | Mandatory | Description                                                        |
+| Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **value** provides all KV pairs obtained. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **value** provides all KV pairs obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Mandatory parameters are left unspecified.|
 | 15500000 | Inner error.                   |
@@ -1328,13 +1337,13 @@ Obtains all KV pairs from this **Preferences** instance. This API uses a promise
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;Object&gt; | Promise used to return the KV pairs obtained. |
+| Promise&lt;Object&gt; | Promise used to return the KV pairs obtained.|
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 15500000 | Inner error.                   |
 
@@ -1374,13 +1383,13 @@ Obtains all KV pairs from this **Preferences** instance. This API returns the re
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| Object | Returns all KV pairs obtained. |
+| Object | Returns all KV pairs obtained.|
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 15500000 | Inner error.                   |
 
@@ -1416,17 +1425,17 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                      |
+| Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- |-------------------------|
-| key      | string                    | Yes  | Key of the data. It cannot be empty. |
-| value    | [ValueType](#valuetype)   | Yes  | Value to write. |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| key      | string                    | Yes  | Key of the data. It cannot be empty.|
+| value    | [ValueType](#valuetype)   | Yes  | Value to write.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1462,22 +1471,22 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
 
 **Parameters**
 
-| Name | Type                   | Mandatory | Description                        |
+| Name| Type                   | Mandatory| Description                        |
 | ------ | ----------------------- | ---- |--------------------------|
 | key    | string                  | Yes  | Key of the data. It cannot be empty. |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. |
+| value  | [ValueType](#valuetype) | Yes  | Value to write.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1512,16 +1521,16 @@ Writes data to this **Preferences** instance. This API returns the result synchr
 
 **Parameters**
 
-| Name | Type                   | Mandatory | Description                                                        |
+| Name| Type                   | Mandatory| Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------ |
-| key    | string                  | Yes  | Key of the data. It cannot be empty. |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. |
+| key    | string                  | Yes  | Key of the data. It cannot be empty.|
+| value  | [ValueType](#valuetype) | Yes  | Value to write.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1545,16 +1554,16 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 
 **Parameters**
 
-| Name  | Type                        | Mandatory | Description                                                        |
+| Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                       | Yes  | Key of the data to check. It cannot be empty.                             |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1590,21 +1599,21 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                           |
+| Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the data to check. It cannot be empty. |
+| key    | string | Yes  | Key of the data to check. It cannot be empty.|
 
 **Return value**
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned. |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1639,21 +1648,21 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                           |
+| Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the data to check. It cannot be empty. |
+| key    | string | Yes  | Key of the data to check. It cannot be empty.|
 
 **Return value**
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned. |
+| boolean | If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1682,16 +1691,16 @@ Deletes a KV pair from this **Preferences** instance. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                |
+| Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | key      | string                    | Yes  | Key of the KV pair to delete. It cannot be empty.                     |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1723,21 +1732,21 @@ Deletes a KV pair from this **Preferences** instance. This API uses a promise to
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                           |
+| Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty. |
+| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1768,15 +1777,15 @@ Deletes a KV pair from this **Preferences** instance. This API returns the resul
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                           |
+| Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty. |
+| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1800,15 +1809,15 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                |
+| Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Mandatory parameters are left unspecified.                       |
 | 15500000 | Inner error.                   |
@@ -1842,13 +1851,13 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 15500000 | Inner error.                   |
 
@@ -1878,15 +1887,15 @@ Clears this **Preferences** instance. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                |
+| Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Mandatory parameters are left unspecified.                       |
 | 15500000 | Inner error.                   |
@@ -1920,13 +1929,13 @@ Clears this **Preferences** instance. This API uses a promise to return the resu
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 15500000 | Inner error.                   |
 
@@ -1973,16 +1982,16 @@ Subscribes to data changes. The registered callback will be invoked to return th
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                    |
+| Name  | Type    | Mandatory| Description                                    |
 | -------- | -------- | ---- | ---------------------------------------- |
-| type     | string   | Yes  | Event type. The value is **'change'**, which indicates data changes. |
+| type     | string   | Yes  | Event type. The value is **'change'**, which indicates data changes.|
 | callback | Callback&lt;string&gt; | Yes  | Callback used to return the data change.    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -2018,16 +2027,16 @@ Subscribes to inter-process data changes. For the multiple processes holding the
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                        |
+| Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes. |
+| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes.|
 | callback | Callback&lt;string&gt; | Yes  | Callback used to return the data change.                        |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | -------------------------------------- |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                           |
@@ -2064,17 +2073,17 @@ Subscribes to changes of specific data. The registered callback will be invoked 
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.          |
 | keys     | Array&lt;string&gt;                                          | Yes  | Array of the keys to be observed.                                         |
-| callback | Callback&lt;Record&lt;string, [ValueType](#valuetype)&gt;&gt; | Yes  | Callback used to return the changed data, in an array of KV pairs. The keys identify the data changed, and the values are the new values. The values support the following data types: number, string, boolean, Array\<number>, Array\<string>, Array\< boolean>, Uint8Array, and object. |
+| callback | Callback&lt;Record&lt;string, [ValueType](#valuetype)&gt;&gt; | Yes  | Callback used to return the changed data, in an array of KV pairs. The keys identify the data changed, and the values are the new values. The values support the following data types: number, string, boolean, Array\<number>, Array\<string>, Array\< boolean>, Uint8Array, and object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -2115,16 +2124,16 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                        |
+| Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type. The value is **'change'**, which indicates data changes.                    |
-| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes. |
+| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -2161,16 +2170,16 @@ Unsubscribes from inter-process data changes.
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                        |
+| Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes. |
-| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes. |
+| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes.|
+| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -2206,17 +2215,17 @@ Unsubscribes from changes of specific data.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.          |
-| keys     | Array&lt;string&gt;                                          | Yes  | Array of keys to be unsubscribed from. If this parameter is left empty, all keys are unsubscribed from. |
-| callback | Callback&lt;Record&lt;string, [ValueType](#valuetype)&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the changes of the specified data. |
+| keys     | Array&lt;string&gt;                                          | Yes  | Array of keys to be unsubscribed from. If this parameter is left empty, all keys are unsubscribed from.|
+| callback | Callback&lt;Record&lt;string, [ValueType](#valuetype)&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the changes of the specified data.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -2264,6 +2273,6 @@ Enumerates the value types.
 | Array\<number>           | The value is an array of numbers.   |
 | Array\<boolean>          | The value is a Boolean array.   |
 | Array\<string>           | The value is an array of strings.  |
-| Uint8Array<sup>11+</sup> | The value is an array of 8-bit unsigned integers. |
-| object<sup>12+</sup>     | The value is an object. |
+| Uint8Array<sup>11+</sup> | The value is an array of 8-bit unsigned integers.|
+| object<sup>12+</sup>     | The value is an object.|
 | bigint<sup>12+</sup>     | The value is an integer in any format. |
