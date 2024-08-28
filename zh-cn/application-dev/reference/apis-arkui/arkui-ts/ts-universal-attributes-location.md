@@ -184,8 +184,8 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| horizontal  | number | &nbsp;否 | 水平方向上的bias值。<br/>当子组件的width可以确定并且有2个水平方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
-| vertical  | number | &nbsp;否 | 垂直方向上的bias值。<br/>当子组件的height可以确定并且有2个垂直方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
+| horizontal  | number | &nbsp;否 | 水平方向上的bias值。<br/>当子组件的width属性有正确值并且有2个水平方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
+| vertical  | number | &nbsp;否 | 垂直方向上的bias值。<br/>当子组件的height属性有正确值并且有2个垂直方向的锚点时生效。<br/>默认值：&nbsp;0.5 |
 
 ## chainMode<sup>12+</sup>
 
