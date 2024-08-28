@@ -12,94 +12,92 @@
 下面分别介绍在Stage模型和FA模型中静态快捷方式的配置方法。
 
 ### Stage模型配置步骤
-
 1. 配置快捷方式的配置文件
+    开发者若要配置静态快捷方式，开发者可以在某个模块的/resources/base/profile/目录下配置[快捷方式的配置文件](module-configuration-file.md#shortcuts标签)，如shortcuts_config.json。
 
-  开发者若要配置静态快捷方式，开发者可以在某个模块的/resources/base/profile/目录下配置[快捷方式的配置文件](module-configuration-file.md#shortcuts标签)，如shortcuts_config.json。
-
-```json
-  {
-    "shortcuts": [
-      {
-        "shortcutId": "id_test1",  // 标识快捷方式，在应用有多个快捷方式时，该字段可作为快捷方式的唯一标识符
-        "label": "$string:share",  // 标识该快捷方式对外显示的文字
-        "icon": "$media:share_icon",  // 标识该快捷方式对外显示的图片
-        "wants": [
-          {
-            "bundleName": "com.ohos.hello",   // 对应该快捷方式对应拉起组件的包名
-            "moduleName": "entry",    // 对应该快捷方式对应拉起组件的模块名
-            "abilityName": "EntryAbility",   // 对应该快捷方式对应拉起组件的组件名
-            "parameters": {
-              "testKey": "testValue"   // 表示拉起快捷方式时的自定义数据
+    ```json
+    {
+      "shortcuts": [
+        {
+          "shortcutId": "id_test1",  // 标识快捷方式，在应用有多个快捷方式时，该字段可作为快捷方式的唯一标识符
+          "label": "$string:share",  // 标识该快捷方式对外显示的文字
+          "icon": "$media:share_icon",  // 标识该快捷方式对外显示的图片
+          "wants": [
+            {
+              "bundleName": "com.ohos.hello",   // 对应该快捷方式对应拉起组件的包名
+              "moduleName": "entry",    // 对应该快捷方式对应拉起组件的模块名
+              "abilityName": "EntryAbility",   // 对应该快捷方式对应拉起组件的组件名
+              "parameters": {
+                "testKey": "testValue"   // 表示拉起快捷方式时的自定义数据
+              }
             }
-          }
-        ]
-      }
-    ]
-  }
-  ```
+          ]
+        }
+      ]
+    }
+    ```
 
 2. 在应用module.json5文件中配置metadata指向快捷方式的配置文件
 
-```json
-{
-    "module": {
-    // ...
+    ```json
+    {
+      "module": {
+      // ...
         "abilities": [
-            {
-                "name": "EntryAbility",
-                "srcEntry": "./ets/entryability/EntryAbility.ets",
-                // ...
-                "metadata": [
-                    {
-                        "name": "ohos.ability.shortcuts",  // 配置快捷方式，该值固定为ohos.ability.shortcuts
-                        "resource": "$profile:shortcuts_config"  // 指定shortcuts信息的资源位置
-                    }
-                ]
-            }
+          {
+            "name": "EntryAbility",
+            "srcEntry": "./ets/entryability/EntryAbility.ets",
+            // ...
+            "metadata": [
+              {
+                "name": "ohos.ability.shortcuts",  // 配置快捷方式，该值固定为ohos.ability.shortcuts
+                "resource": "$profile:shortcuts_config"  // 指定shortcuts信息的资源位置
+              }
+            ]
+          }
         ]
+      }
     }
-}
-```
-
+    ```
+    
 ### FA模型配置步骤
 
   FA模型中配置静态快捷方式，只需在模块的[config.json](module-structure.md)中module标签下配置[shortcuts信息](module-structure.md#shortcuts对象的内部结构)。
 
-```json
-{
-  "app": {
-    "bundleName": "com.example.fademo",
-    // ...
-  },
-  "deviceConfig": {},
-  "module": {
-    // ...
-    "shortcuts": [
-      {
-        "shortcutId": "id_test1",  // 标识快捷方式，在应用有多个快捷方式时，该字段可作为快捷方式的唯一标识符
-        "label": "$string:module_desc",  // 标识该快捷方式对外显示的文字
-        "icon": "$media:icon",  // 标识该快捷方式对外显示的图片
-        "intents": [
+    ```json
+    {
+      "app": {
+        "bundleName": "com.example.fademo",
+        // ...
+      },
+      "deviceConfig": {},
+      "module": {
+        // ...
+        "shortcuts": [
           {
-            "targetBundle": "com.example.fademo",  // 对应该快捷方式对应拉起组件的包名
-            "targetClass": "EntryAbility"  // 对应该快捷方式对应拉起组件的组件名
+            "shortcutId": "id_test1",  // 标识快捷方式，在应用有多个快捷方式时，该字段可作为快捷方式的唯一标识符
+            "label": "$string:module_desc",  // 标识该快捷方式对外显示的文字
+            "icon": "$media:icon",  // 标识该快捷方式对外显示的图片
+            "intents": [
+              {
+                "targetBundle": "com.example.fademo",  // 对应该快捷方式对应拉起组件的包名
+                "targetClass": "EntryAbility"  // 对应该快捷方式对应拉起组件的组件名
+              }
+            ]
+          }
+        ],
+        "abilities": [
+          {
+            // ...
+          }
+        ],
+        "js": [
+          {
+            // ...
           }
         ]
       }
-    ],
-    "abilities": [
-      {
-        // ...
-      }
-    ],
-    "js": [
-      {
-        // ...
-      }
-    ]
-  }
-}
-```
+    }
+    ```
 
   与Stage模型不一样的是，在FA模型中快捷方式对应拉起的组件元素，用intents字段标识。而且在FA模型中没有拉起快捷方式时的自定义数据，也就是Stage模型中的parameters信息。
