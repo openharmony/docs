@@ -41,7 +41,7 @@
 
 将release应用修改为debug应用，重新编译调试
 
-## cl.DFX.2 hdc命令行为变更
+## cl.DFX.2 hdc工具tmode usb命令不再进行调试通道切换
 
 **访问级别**
 
