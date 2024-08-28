@@ -3955,6 +3955,18 @@ Allows a system ability to send the projection cable plug-in and plug-out events
 
 **Valid since**: 12
 
+### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
+
+Allows a system application or system service to grant third-party applications the temporary permission to save images and videos for the specified period of time.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
