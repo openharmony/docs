@@ -2257,7 +2257,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawTextBlob(blob: TextBlob, x: number, y: number): void
 
-用于绘制一段文字。
+用于绘制一段文字。若构造blob的字体不支持待绘制字符，则该部分字符无法绘制。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
