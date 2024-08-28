@@ -2454,8 +2454,6 @@ try {
 ### Pattern<sup>13+</sup>
 剪贴板可以检测的特定模式。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 | 名称                               | 值  | 说明                                                                                  |
@@ -2471,8 +2469,6 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 检测剪贴板中存在的模式，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
