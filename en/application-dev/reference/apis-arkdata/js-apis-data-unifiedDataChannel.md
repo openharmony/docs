@@ -108,7 +108,7 @@ for (let i = 0; i < records.length; i++) {
 
 ## Summary
 
-Defines the summary of a **UnifiedData object**, including the data types and sizes. Currently, it is not supported.
+Defines the summary of a **UnifiedData object**, including the data types and sizes.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
