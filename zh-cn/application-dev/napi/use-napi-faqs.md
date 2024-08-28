@@ -195,7 +195,7 @@ napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
         delete myContext;
         return nullptr;
     };
-    char *data0 = "Im call in ArkTs Thread";
+    char *data0 = "Im call in ArkTS Thread";
     if (!myContext->Call(data0)) {
         OH_LOG_INFO(LOG_APP, "call tsfn failed");
     };

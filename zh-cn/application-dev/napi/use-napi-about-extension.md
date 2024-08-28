@@ -13,7 +13,7 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_load_module | 用于在Node-API模块中将abc文件作为模块加载，返回模块的命名空间，适用于需要在运行时动态加载模块或资源的应用程序，从而实现灵活的扩展和定制。 |
-| napi_load_module_with_info | 用于在Node-API中进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTs基础运行时环境](use-napi-ark-runtime.md)中使用 |
+| napi_load_module_with_info | 用于在Node-API中进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTS基础运行时环境](use-napi-ark-runtime.md)中使用 |
 | napi_module_register | 有些功能可能需要通过Node-API模块来实现以获得更好的性能，通过将这些功能实现为自定义模块并注册到ArkTS环境中，可以在一定程度上提高整体的性能。 |
 
 ### 使用示例
@@ -603,7 +603,7 @@ await taskpool.execute(task6);
 
 **注意事项**
 
-对ArkTs对象A调用`napi_coerce_to_native_binding_object`将开发者实现的detach/attach回调和native对象信息加到A上，再将A跨线程传递。跨线程传递需要对A进行序列化和反序列化，在当前线程thread1序列化A得到数据data，序列化阶段执行detach回调。然后将data传给目标线程thread2，在thread2中反序列化data，执行attach回调，最终得到ArkTS对象A'。
+对ArkTS对象A调用`napi_coerce_to_native_binding_object`将开发者实现的detach/attach回调和native对象信息加到A上，再将A跨线程传递。跨线程传递需要对A进行序列化和反序列化，在当前线程thread1序列化A得到数据data，序列化阶段执行detach回调。然后将data传给目标线程thread2，在thread2中反序列化data，执行attach回调，最终得到ArkTS对象A'。
 ![napi_coerce_to_native_binding_object](figures/napi_coerce_to_native_binding_object.png)
 
 ## 事件循环
@@ -634,7 +634,7 @@ await taskpool.execute(task6);
 
 #### napi_create_ark_runtime、napi_destroy_ark_runtime
 
-[使用Node-API接口创建ArkTs运行时环境](use-napi-ark-runtime.md)
+[使用Node-API接口创建ArkTS运行时环境](use-napi-ark-runtime.md)
 
 ## 序列化和反序列化
 
