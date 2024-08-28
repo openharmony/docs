@@ -671,7 +671,7 @@
 
 **ACL使能**：true
 
-**起始版本**：11
+**起始版本**：12
 
 ### ohos.permission.PERMISSION_USED_STATS
 
