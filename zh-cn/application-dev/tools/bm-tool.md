@@ -534,16 +534,20 @@ Error: signature verification failed due to not trusted app source.
 
 **可能原因**
 
-签名中未包含该调试设备的UDID。
+* 场景一：签名中未包含该调试设备的UDID。
+
+* 场景二：使用发布证书签名。发布证书签名的应用不能启动调试或运行。
 
 **处理步骤**
 
-1. 使用<!--RP5-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP5End-->。在连接设备后，重新为应用进行签名。
-2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
-	```
-	//UDID获取命令
-	hdc shell bm get -u
-	```
+* 场景一：
+	1. 使用<!--RP5-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP5End-->。在连接设备后，重新为应用进行签名。
+	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
+		```
+		//UDID获取命令
+		hdc shell bm get -u
+		```
+* 场景二：使用调试证书重新签名应用。
 
 
 ### 9568289 权限请求失败导致安装失败
