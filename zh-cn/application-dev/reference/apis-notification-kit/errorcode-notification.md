@@ -313,6 +313,24 @@ There is no corresponding agent relationship configuration.
 
 确认代理关系配置。
 
+## 1600018 通知设置页面已经拉起
+
+**错误信息**
+
+The notification settings window is already displayed.
+
+**错误描述**
+
+通知设置页面已经拉起，方法将返回该错误码。
+
+**可能原因**
+
+通知设置页面已经拉起。
+
+**处理步骤**
+
+确认通知设置页面是否拉起。
+
 
 ## 2300007 网络无法访问
 

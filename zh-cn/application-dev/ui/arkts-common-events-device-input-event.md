@@ -15,7 +15,7 @@
 | onHover(event:&nbsp;(isHover:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) | 鼠标进入或退出组件时触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。 |
 | onMouse(event:&nbsp;(event?:&nbsp;MouseEvent)&nbsp;=&gt;&nbsp;void) | 当前组件被鼠标按键点击时或者鼠标在组件上悬浮移动时，触发该回调，event返回值包含触发事件时的时间戳、鼠标按键、动作、鼠标位置在整个屏幕上的坐标和相对于当前组件的坐标。 |
 
-当组件绑定onHover回调时，可以通过[hoverEffect](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md)属性设置该组件的鼠标悬浮态显示效果。
+当组件绑定onHover回调时，可以通过[hoverEffect](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md#hovereffect)属性设置该组件的鼠标悬浮态显示效果。
 
 
   **图1** 鼠标事件数据流  
@@ -339,7 +339,7 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 上述两种方法的区别仅在于触发的时机（见 [按键事件数据流](#按键事件数据流)）。其中，`onKeyPreIme`的返回值决定了该按键事件后续是否会被继续分发给页面快捷键、输入法和`onKeyEvent`。
 
 
-当绑定方法的组件处于[获焦状态](arkts-common-events-focus-event.md)下，外设键盘的按键事件会触发该方法，回调参数为[KeyEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent对象说明)，可由该参数获得当前按键事件的按键行为（[KeyType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keytype)）、键码（[keyCode](../reference/apis-input-kit/js-apis-keycode.md)）、按键英文名称（keyText）、事件来源设备类型（[KeySource](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keysource)）、事件来源设备id（deviceId）、元键按压状态（metaKey）、时间戳（timestamp）、阻止冒泡设置（stopPropagation）。
+当绑定方法的组件处于获焦状态下，外设键盘的按键事件会触发该方法，回调参数为[KeyEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent对象说明)，可由该参数获得当前按键事件的按键行为（[KeyType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keytype)）、键码（[keyCode](../reference/apis-input-kit/js-apis-keycode.md#keycode)）、按键英文名称（keyText）、事件来源设备类型（[KeySource](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keysource)）、事件来源设备id（deviceId）、元键按压状态（metaKey）、时间戳（timestamp）、阻止冒泡设置（stopPropagation）。
 
 
 

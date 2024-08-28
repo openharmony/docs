@@ -26,7 +26,7 @@ SaveButton()
 
 ### SaveButton
 
-SaveButton(option:SaveButtonOptions)
+SaveButton(options:SaveButtonOptions)
 
 创建包含指定元素的保存按钮。
 
@@ -38,9 +38,9 @@ SaveButton(option:SaveButtonOptions)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| option | [SaveButtonOptions](#savebuttonoptions) | 否 | 创建包含指定元素的保存按钮。 |
+| options | [SaveButtonOptions](#savebuttonoptions) | 否 | 创建包含指定元素的保存按钮。 |
 
 ## SaveButtonOptions
 
@@ -48,7 +48,7 @@ SaveButton(option:SaveButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
 | text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
@@ -80,6 +80,9 @@ SaveButton(option:SaveButtonOptions)
 | RECEIVE | 6 | 保存按钮的文字描述为“接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存至图库”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| EXPORT_TO_GALLERY<sup>12+</sup> | 9 | 保存按钮的文字描述为“导出”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| QUICK_SAVE_TO_GALLERY<sup>12+</sup> | 10 | 保存按钮的文字描述为“快速保存图片”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| RESAVE_TO_GALLERY<sup>12+</sup> | 11 | 保存按钮的文字描述为“重新保存”。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## SaveButtonOnClickResult枚举说明
 

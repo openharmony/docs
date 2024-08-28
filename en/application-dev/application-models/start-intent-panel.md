@@ -90,38 +90,38 @@ If the **type** field in **startAbilityByType** is set to **mail**, **wantParam*
 
 1. Add the [linkFeature](../quick-start/module-configuration-file.md#skills) attribute to **module.json5** and declare the features supported. In this way, the system can find the applications that support a specific feature from all the applications installed on the device.
 
-    ~~~json
+    ```json
     {
-    "abilities": [
-        {
-        "skills": [
-            {
-            "uris": [
-                {
-                "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
-                "host": "navigation",
-                "path": "",
-                "linkFeature": "Navigation" // Declare that the application supports navigation.
-                },
-                {
-                "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
-                "host": "routePlan",
-                "path": "",
-                "linkFeature": "RoutePlan" // Declare that the application supports route planning.
-                },
-                {
-                "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
-                "host": "search",
-                "path": "",
-                "linkFeature": "PlaceSearch" // Declare that the application supports place search.
-                }
-            ]
-            }
-        ]
-        }
-    ]
+      "abilities": [
+          {
+          "skills": [
+              {
+              "uris": [
+                  {
+                  "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
+                  "host": "navigation",
+                  "path": "",
+                  "linkFeature": "Navigation" // Declare that the application supports navigation.
+                  },
+                  {
+                  "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
+                  "host": "routePlan",
+                  "path": "",
+                  "linkFeature": "RoutePlan" // Declare that the application supports route planning.
+                  },
+                  {
+                  "scheme": "maps", // It is for reference only. Ensure that the declared URI can be started by external systems.
+                  "host": "search",
+                  "path": "",
+                  "linkFeature": "PlaceSearch" // Declare that the application supports place search.
+                  }
+              ]
+              }
+          ]
+          }
+      ]
     }
-    ~~~
+    ```
 
 2. Parse parameters and perform corresponding processing.
 
@@ -183,6 +183,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
 ## Displaying the Email Application Panel
 
 ### For the Caller Application
@@ -225,26 +226,26 @@ export default class EntryAbility extends UIAbility {
 ### For the Target Application
 1. Add the [linkFeature](../quick-start/module-configuration-file.md#skills) attribute to **module.json5** and declare the features supported. In this way, the system can find the applications that support a specific feature from all the applications installed on the device.
 
-    ~~~json
+    ```json
     {
-    "abilities": [
-        {
-        "skills": [
-            {
-            "uris": [
-                {
-                "scheme": "mail", // It is for reference only. Ensure that the declared URI can be started by external systems.
-                "host": "mail",
-                "path": "",
-                "linkFeature": "ComposeMail" // Declare that the application supports email writing.
-                }
-            ]
-            }
-        ]
-        }
-    ]
+      "abilities": [
+          {
+          "skills": [
+              {
+              "uris": [
+                  {
+                  "scheme": "mail", // It is for reference only. Ensure that the declared URI can be started by external systems.
+                  "host": "mail",
+                  "path": "",
+                  "linkFeature": "ComposeMail" // Declare that the application supports email writing.
+                  }
+              ]
+              }
+          ]
+          }
+      ]
     }
-    ~~~
+    ```
     
 2. Parse and process the parameters transferred from the panel.
 

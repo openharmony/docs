@@ -38,7 +38,7 @@ The aforementioned decorators can observe only the changes of the first layer. H
 | \@ObjectLink Decorator| Description                                      |
 | ----------------- | ---------------------------------------- |
 | Decorator parameters            | None.                                       |
-| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>Objects of classes that extend **Date**, **Array**, **Map**, and **Set** (the latter two are supported since API version 11). For an example, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of @Observed decorated classes and **undefined** or **null**, for example, ClassA \| ClassB, ClassA \| undefined or ClassA \| null. For details, see [Union Type @ObjectLink](#union-type).<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed.|
+| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>Objects of classes that extend Date, [Array](#two-dimensional-array), [Map](#extended-map-class), and [Set](#extended-set-class) (the latter two are supported since API version 11). For an example, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of @Observed decorated classes and **undefined** or **null**, for example, **ClassA \| ClassB**, **ClassA \| undefined** or **ClassA \| null**. For details, see [Union Type @ObjectLink](#union-type-objectlink).<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed. |
 | Initial value for the decorated variable        | Not allowed.                                    |
 
 Example of a read-only \@ObjectLink decorated variable:
@@ -64,7 +64,7 @@ this.objLink= ...
 
 | \@ObjectLink Transfer/Access| Description                                      |
 | ----------------- | ---------------------------------------- |
-| Initialization from the parent component          | Mandatory.<br>To initialize an \@ObjectLink decorated variable, a variable in the parent component must meet all the following conditions:<br>- The variable type is an \@Observed decorated class.<br>- The initialized value must be an array item or a class attribute.<br>- The class or array of the synchronization source must be decorated by \@State, \@Link, \@Provide, \@Consume, or \@ObjectLink.<br>For an example where the synchronization source is an array item, see [Object Array](#object-array). For an example of the initialized class, see [Nested Object](#nested-object).|
+| Initialization from the parent component          | Mandatory.<br>To initialize an \@ObjectLink decorated variable, a variable in the parent component must meet all the following conditions:<br>- The variable type is an \@Observed decorated class.<br>- The initialized value must be an array item or a class attribute.<br>- The class or array of the synchronization source must be decorated by [\@State](./arkts-state.md), [\@Link](./arkts-link.md), [\@Provide](./arkts-provide-and-consume.md), [\@Consume](./arkts-provide-and-consume.md), or \@ObjectLink.<br>For an example where the synchronization source is an array item, see [Object Array](#object-array). For an example of the initialized class, see [Nested Object](#nested-object).|
 | Synchronization with the source           | Two-way.                                     |
 | Subnode initialization         | Supported; can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 
@@ -358,7 +358,7 @@ Event handles in **ViewB**:
 
 - **this.user.bag = new Bag(10)** and **this.user = new User(new Bag(20))**: Change to the \@State decorated variable **size** and its attributes.
 
-- **this.child.bookName.size += ...**: Change at the second layer. Though \@State cannot observe changes at the second layer, the change of an attribute of \@Observed decorated **Bag**, which is attribute **size** in this example, can be observed by \@ObjectLink.
+- this.child.bookName.size += ... : Change at the second layer. Though \@State cannot observe changes at the second layer, the change of an attribute of \@Observed decorated **Bag**, which is attribute **size** in this example, can be observed by \@ObjectLink.
 
 
 Event handle in **ViewC**:
@@ -466,11 +466,11 @@ struct ViewB {
 ![Observed_ObjectLink_object_array](figures/Observed_ObjectLink_object_array.gif)
 
 - this.arrA[Math.floor(this.arrA.length/2)] = new ClassA(..): The change of this state variable triggers two updates.
-  1. ForEach: The value assignment of the array item causes the change of [itemGenerator](arkts-rendering-control-foreach.md#available-apis) of **ForEach**. Therefore, the array item is identified as changed, and the item builder of **ForEach** is executed to create a **ViewA** component instance.
+  1. ForEach: The value assignment of the array item causes the change of [itemGenerator](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md) of **ForEach**. Therefore, the array item is identified as changed, and the item builder of** ForEach** is executed to create a **ViewA** component instance.
   2. ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] }): The preceding update changes the second element in the array. Therefore, the **ViewA** component instance bound to **this.arrA[1]** is updated.
 
 - this.arrA.push(new ClassA(0)): The change of this state variable triggers two updates with different effects.
-  1. ForEach: The newly added **ClassA** object is unknown to the **ForEach** [itemGenerator](arkts-rendering-control-foreach.md#available-apis). The item builder of **ForEach** will be executed to create a **ViewA** component instance.
+  1. ForEach: The newly added **ClassA** object is unknown to the **ForEach** [itemGenerator](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md). The item builder of **ForEach** will be executed to create a **ViewA** component instance.
   2. ViewA({ label: ViewA this.arrA[last], a: this.arrA[this.arrA.length-1] }): The last item of the array is changed. As a result, the second **View A** component instance is changed. For **ViewA({ label: ViewA this.arrA[first], a: this.arrA[0] })**, a change to the array does not trigger a change to the array item, so the first **View A** component instance is not refreshed.
 
 - this.arrA[Math.floor(this.arrA.length/2)].c: @State cannot observe changes at the second layer. However, as **ClassA** is decorated by \@Observed, the change of its attributes will be observed by \@ObjectLink.
@@ -745,7 +745,7 @@ struct SetSampleNestedChild {
 
 ![Observed_ObjectLink_inherit_set](figures/Observed_ObjectLink_inherit_set.gif)
 
-## Union Type
+## Union Type @ObjectLink
 
 @ObjectLink supports union types of @Observed decorated classes and **undefined** or **null**. In the following example, the type of **count** is ClassA | ClassB | undefined. If the attribute or type of **count** is changed when the button in the parent component **Page2** is clicked, the change will be synchronized to the child component.
 
@@ -1022,7 +1022,7 @@ struct MyView {
       Text(`c: ${this.b.c.c}`)
       Button("Change ClassB.ClassC.c")
         .onClick(() => {
-          // The <Text> component is not updated when clicked.
+          // The Text component is not updated when clicked.
           this.b.c.c += 1;
         })
     }
@@ -1030,7 +1030,7 @@ struct MyView {
 }
 ```
 
-- The UI is not updated when the last **\<Text>** component Text('c: ${this.b.c.c}') is clicked. This is because, **\@State b: ClassB** can observe only the changes of the **this.b** attribute, such as **this.b.a**, **this.b.b**, and **this.b.c**, but cannot observe the attributes nested in the attribute, that is, **this.b.c.c** (attribute **c** is an attribute of the **ClassC** object nested in **b**).
+- The UI is not updated when the last **Text** component Text('c: ${this.b.c.c}') is clicked. This is because, **\@State b: ClassB** can observe only the changes of the **this.b** attribute, such as **this.b.a**, **this.b.b**, and **this.b.c**, but cannot observe the attributes nested in the attribute, that is, **this.b.c.c** (attribute **c** is an attribute of the **ClassC** object nested in **b**).
 
 - To observe the attributes of nested object **ClassC**, you need to make the following changes:
   - Construct a child component for separate rendering of the **ClassC** instance. Then, in this child component, you can use \@ObjectLink or \@Prop to decorate **c : ClassC**. In general cases, use \@ObjectLink, unless local changes to the **ClassC** object are required.
@@ -1662,7 +1662,7 @@ class RenderClass {
   constructor() {
     setTimeout(() => {
       this.waitToRender = true;
-      console.log("change waitToRender to " + this.waitToRender);
+      console.log("Change waitToRender to" + this.waitToRender);
     }, 1000)
   }
 }
@@ -1674,13 +1674,13 @@ struct Index {
   @State textColor: Color = Color.Black;
 
   renderClassChange() {
-    console.log("Render Class Change waitToRender is " + this.renderClass.waitToRender);
+    console.log("Render Class Change waitToRender is" + this.renderClass.waitToRender);
   }
 
   build() {
     Row() {
       Column() {
-        Text("Render Class waitToRender is " + this.renderClass.waitToRender)
+        Text("Render Class waitToRender is" + this.renderClass.waitToRender)
           .fontSize(20)
           .fontColor(this.textColor)
         Button("Show")
@@ -1696,7 +1696,7 @@ struct Index {
 }
 ```
 
-In the preceding example, a timer is used in the constructor of **RenderClass**. Though the value of **waitToRender** changes 1 second later, the UI is not re-rendered. After the button is clicked to forcibly refresh the **\<Text>** component, you can see that the value of **waitToRender** is changed to **true**.
+In the preceding example, a timer is used in the constructor of **RenderClass**. Though the value of **waitToRender** changes 1 second later, the UI is not re-rendered. After the button is clicked to forcibly refresh the **Text** component, you can see that the value of **waitToRender** is changed to **true**.
 
 [Correct Usage]
 
@@ -1715,20 +1715,20 @@ struct Index {
   @State @Watch('renderClassChange') renderClass: RenderClass = new RenderClass();
 
   renderClassChange() {
-    console.log("Render Class Change waitToRender is " + this.renderClass.waitToRender);
+    console.log("Render Class Change waitToRender is" + this.renderClass.waitToRender);
   }
 
   onPageShow() {
     setTimeout(() => {
       this.renderClass.waitToRender = true;
-      console.log("change waitToRender to " + this.renderClass.waitToRender);
+      console.log("Change renderClass to: " + this.renderClass.waitToRender);
     }, 1000)
   }
 
   build() {
     Row() {
       Column() {
-        Text("Render Class Wait To Render is " + this.renderClass.waitToRender)
+        Text ("Render Class Wait To Render is"+ this.renderClass.waitToRender)
           .fontSize(20)
       }
       .width('100%')
@@ -1738,6 +1738,124 @@ struct Index {
 }
 ```
 
-In the preceding example, the timer is moved to the component. In this case, the page content changes from "Render Class Change waitToRender is false" to "Render Class Change waitToRender is true" when the timer is triggered.
+In the preceding example, the timer is moved to the component. In this case, the page displays "Render Class Wait To Render is false". When the timer is triggered, the value of renderClass is changed, triggering the [@Watch](./arkts-watch.md) callback. As a result, page content changes from "Render Class Change waitToRender is false" to "Render Class Change waitToRender is true".
 
 In sum, it is recommended that you change the class members decorated by @Observed in components to implement UI re-rendering.
+
+### ObjectLink Re-render Depends on the Custom Component
+
+```ts
+@Observed
+class Person {
+  name: string = '';
+  age: number = 0;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+@Observed
+class Persons {
+  person: Person;
+
+  constructor(person: Person) {
+    this.person = person;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State pers01: Persons = new Persons(new Person('1', 1));
+
+  build() {
+    Column() {
+      Child01({ pers: this.pers01 });
+    }
+  }
+}
+
+@Component
+struct Child01 {
+  @ObjectLink @Watch('onChange01') pers: Persons;
+
+  onChange01() {
+    console.log(':::onChange01:' + this.pers.person.name); // 2
+  }
+
+  build() {
+    Column() {
+      Text(this.pers.person.name).height(40)
+      Child02({
+        per: this.pers.person, selectItemBlock: () => {
+          console.log(':::selectItemBlock before', this.pers.person.name); // 1
+          this.pers.person = new Person('2', 2);
+          console.log(':::selectItemBlock after', this.pers.person.name); // 3
+        }
+      })
+    }
+  }
+}
+
+@Component
+struct Child02 {
+  @ObjectLink @Watch('onChange02') per: Person;
+  selectItemBlock?: () => void;
+
+  onChange02() {
+    console.log(':::onChange02:' + this.per.name); // 5
+  }
+
+  build() {
+    Column() {
+      Button(this.per.name)
+        .height(40)
+        .onClick(() => {
+          this.onClickFType();
+        })
+    }
+  }
+
+  private onClickFType() {
+    if (this.selectItemBlock) {
+      this.selectItemBlock();
+    }
+    console.log(':::-------- this.per.name in Child02 is still:' + this.per.name); // 4
+  }
+}
+```
+
+The data source notifies that the @ObjectLink re-render depends on the re-render function of the custom component to which @ObjectLink belongs, which uses an asynchronous callback. In the preceding example, **Parent** contains **Child01**, and the latter contains **Child02**. When click the button, the **Child01** points to the **Child02**. In this case, the click event of **Child02** is called. The log printing order is **1** > **2** > **3** > **4** > **5**. When log 4 is printed, the click event ends, in this case, only the child component **Child02** is marked as dirty. The update of **Child02** needs to wait for the next VSYCN. And the @ObjectLink re-render depends on the re-render function of the custom component to which @ObjectLink belongs. Therefore, the value of **this.per.name** in log 4 is still **1**.
+
+When the **@ObjectLink @Watch('onChange02') per: Person** is executed, the re-render function of **Child02** has been executed, and @ObjectLink has been notified to be re-rendered. Therefore, the value of log 5 is **2**.
+
+The meaning of the log is as follows:
+- Log 1: Before assigning a value to **Child01 @ObjectLink @Watch('onChange01') pers: Persons**.
+
+- Log 2: Assign a value to **Child01 @ObjectLink @Watch('onChange01') pers: Persons** and execute its @Watch function synchronously.
+
+- Log 3: After assigning a value to **Child01 @ObjectLink @Watch('onChange01') pers: Persons**.
+
+- Log 4: After **selectItemBlock** in the **onClickFType** method is executed, the value is marked as dirty and the latest value of **Child02 @ObjectLink @Watch('onChange02') per: Person** is not re-rendered. Therefore, the value of **this.per.name** in log 4 is still **1**.
+
+- Log 5: The next VSYNC triggers **Child02** re-rendering. **@ObjectLink @Watch('onChange02') per: Person** is re-rendered and its @Watch method is triggered. In this case, the new value of the **@ObjectLink @Watch('onChange02') per: Person** is **2**.
+
+The parent-child synchronization principle of @Prop is the same as that of @ObjectLink.
+
+When **this.pers.person.name** is changed in **selectItemBlock**, this change takes effect immediately. In this case, the value of log 4 is **2**.
+
+```ts
+Child02({
+  per: this.pers.person, selectItemBlock: () => {
+    console.log(':::selectItemBlock before', this.pers.person.name); // 1
+    this.pers.person.name = 2;
+    console.log(':::selectItemBlock after', this.pers.person.name); // 3
+  }
+})
+```
+
+The Text component in **Child01** is not re-rendered because **this.pers.person.name** is a value with two-layer nesting.
+
+<!--no_check-->

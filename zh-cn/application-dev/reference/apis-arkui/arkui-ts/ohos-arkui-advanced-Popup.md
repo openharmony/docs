@@ -4,7 +4,9 @@ Popup是用于显示特定样式气泡。
 
 >  **说明：**
 >
->  该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  - 建议开发者结合[Popup控制](ts-universal-attributes-popup.md)中提供的自定义气泡功能一起使用。
 
 ## 导入模块
 
@@ -93,7 +95,7 @@ PopupIconOptions定义icon（右上角图标）的属性。
 | image        | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 设置图标内容。                     |
 | width        | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标宽度。<br />默认值：32VP |
 | height       | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标高度。<br />默认值：32VP |
-| fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置图标填充颜色。                 |
+| fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置图标填充颜色。 <br />**说明：**<br />仅针对svg图源生效。|
 | borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置图标圆角。<br />默认值：`$r('sys.float.ohos_id_corner_radius_default_s')`  |
 
 ## 示例   
@@ -169,18 +171,12 @@ Popup布局镜像展示
 
 ```ts
 // xxx.ets
-import {
-  Popup,
-  PopupOptions,
-  PopupTextOptions,
-  PopupButtonOptions,
-  PopupIconOptions
-}   from '@kit.ArkUI'
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct PopupPage {
-  @State currentDirection: Direction = Direction.Auto
+  @State currentDirection: Direction = Direction.Rtl
 
   build() {
     Column() {

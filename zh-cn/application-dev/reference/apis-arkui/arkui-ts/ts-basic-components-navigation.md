@@ -558,7 +558,7 @@ pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?
 |------|------|------|------|
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
-| onPop | Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
+| onPop | Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。仅pop中设置result参数后触发。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### pushDestination<sup>11+</sup>
@@ -680,7 +680,7 @@ pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, an
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
-| onPop | Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。 |
+| onPop | Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。仅pop中设置result参数后触发。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
@@ -1156,7 +1156,7 @@ setInterception(interception: NavigationInterception): void
 
 ### constructor
 
-constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
+constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: boolean)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1169,6 +1169,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 否    | NavDestination页面详细参数。 |
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
+| isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。 |
 
 ## PopInfo<sup>11+</sup>
 

@@ -898,7 +898,7 @@ lockCloudContainer(): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 若手动加锁成功，则其他同账户设备的同应用禁止同步到云端。
+> 若手动加锁成功，则其他同账户设备的同应用禁止同步到云端。使用该接口需要实现云同步功能。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -928,7 +928,7 @@ if(store != undefined) {
 
 unlockCloudContainer(): Promise&lt;void&gt;
 
-手动对应用云端数据库解锁，使用Promise异步处理。
+手动对应用云端数据库解锁，使用Promise异步处理。使用该接口需要实现云同步功能。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

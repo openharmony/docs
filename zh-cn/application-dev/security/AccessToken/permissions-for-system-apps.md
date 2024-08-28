@@ -5,7 +5,7 @@
 > **说明：**
 >
 > - 以下权限仅对APL等级为system_basic及以上的应用开放，不向APL等级为normal的应用开放。
-> - 仅部分权限可通过[访问控制列表（ACL）](app-permission-mgmt-overview.md#访问控制列表acl)的方式跨级别申请。
+> - 仅部分权限可通过[访问控制列表（ACL）](app-permission-mgmt-overview.md#权限机制中的基本概念)的方式跨级别申请。
 
 ## system_grant，允许ACL跨级申请
 
@@ -3541,6 +3541,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_FUSION_MANAGER
+
+允许系统服务或系统应用访问融合服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.PUBLISH_LOCATION_EVENT
 
 允许应用发布位置管理相关的公共事件。
@@ -3768,6 +3780,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.ACCESS_DISTRIBUTED_MODEM
+
+允许系统服务访问虚拟Modem。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
 
 ### ohos.permission.GET_TELEPHONY_ESIM_STATE
 
@@ -4310,3 +4334,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
+
+允许系统应用或者系统服务为三方应用授予存图片和视频的短时访问权限。
+
+**权限级别**：system_core
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：13

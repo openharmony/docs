@@ -30,7 +30,6 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->        |
 | [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。                         |
-| [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) | 音频低码率音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd--> |
 | [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
 | [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
 | [OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT](#oh_avcodec_mimetype_subtitle_webvtt) |WEBVTT字幕解封装器的MIME类型。                         |
@@ -98,6 +97,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr)    | 	描述当前帧参考的长期参考帧帧号的键，值类型为int32_t。 |
 | [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr)      | 指示当前帧是否为长期参考帧的键，值类型为int32_t，1表示是LTR，0表示其它情况。 |
 | [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc)            | 描述帧的POC的键，值类型为int32_t。 |
+| [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)    | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
 
 
 音频专有的键值对：
@@ -238,7 +238,6 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->  |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。 |
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) |音频低码率音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd--> |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT](#oh_avcodec_mimetype_subtitle_webvtt) |WEBVTT字幕解封装器的MIME类型。                 |
@@ -320,6 +319,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | 文件开始时间的键，值类型为int64_t。     |
 | const char \* [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | 轨道开始时间的键，值类型为int64_t。     |
 | const char \* [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)            | 样本长宽比的键，值类型为double。 |
+| const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)   | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
 
 
 ## 类型定义说明
@@ -1261,19 +1261,6 @@ const char* OH_AVCODEC_MIMETYPE_AUDIO_APE
 ```
 **描述**
 APE音频解码器的MIME类型。
-
-**系统能力：** SystemCapability.Multimedia.Media.CodecBase
-
-**起始版本：** 12
-
-
-### OH_AVCODEC_MIMETYPE_AUDIO_LBVC
-
-```
-const char* OH_AVCODEC_MIMETYPE_AUDIO_LBVC
-```
-**描述**
-音频低码率音频编解码器的MIME类型。<!--Del-->（目前本规格未开放）<!--DelEnd-->
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2390,6 +2377,29 @@ const char* OH_MD_KEY_TRACK_START_TIME
 ```
 **描述**
 轨道开始时间的键，值类型为int64_t。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE
+
+```
+const char* OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE
+```
+**描述**
+设置视频解码器输出色彩空间的键，值类型为int32_t。
+
+支持的值为OH_COLORSPACE_BT709_LIMIT，请参见[OH_NativeBuffer_ColorSpace](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace)。
+
+在视频解码调用[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)接口时使用。
+
+如果支持色彩空间转换功能并配置了此键，则视频解码器会自动将HDR Vivid视频转码为色彩空间BT709的SDR视频。
+
+如果不支持色彩空间转换功能，则接口[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)返回错误码AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION。
+
+如果输入视频不是HDR vivid视频，则会通过回调函数[OH_AVCodecOnError](#oh_avcodeconerror)报告错误AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

@@ -103,7 +103,7 @@ class C {
   name: string = ''
   age: string = ''
 }
-let c: C = {name : "Dylon", age : "13"};
+let c: C = {name : "Dylan", age : "13"};
 let result3 = linkedList.add(c);
 let result4 = linkedList.add(false);
 ```
@@ -144,7 +144,7 @@ class C {
   name: string = ''
   age: string = ''
 }
-let c: C = {name : "Dylon", age : "13"};
+let c: C = {name : "Dylan", age : "13"};
 linkedList.addFirst(c);
 linkedList.addFirst(false);
 ```
@@ -163,7 +163,7 @@ insert(index: number, element: T): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 插入位置索引。 |
+| index | number | 是 | 插入位置索引。需要小于等于int32_max即2147483647。 |
 | element | T | 是 | 插入元素。 |
 
 **错误码：**
@@ -237,7 +237,7 @@ get(index: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定的下标值。 |
+| index | number | 是 | 指定的下标值。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -370,7 +370,7 @@ removeByIndex(index: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定元素的下标值。 |
+| index | number | 是 | 指定元素的下标值。需要小于等于int32_max即2147483647。 |
 
 **返回值：**
 
@@ -727,7 +727,7 @@ set(index: number, element: T): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 查找的下标值。 |
+| index | number | 是 | 查找的下标值。需要小于等于int32_max即2147483647。 |
 | element | T | 是 | 用来替换的元素。 |
 
 **返回值：**

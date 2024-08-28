@@ -5,13 +5,13 @@ ArkTS provides conditional rendering. It supports the use of the **if**, **else*
 
 > **NOTE**
 >
-> Since API version 9, this feature is supported in ArkTS widgets.
+> This API can be used in ArkTS widgets since API version 9.
 
 ## Rules of Use
 
 - The **if**, **else**, and **else if** statements are supported.
 
-- The conditional statements following **if** and **else if** can use state variables.
+- The condition statements following the **if** or **else if** statement can use state variables or normal variables. (Value change of state variables can trigger UI rendering in real time, but value change of normal variables cannot.)
 
 - Conditional statements can be used within a container component to build different child components.
 
@@ -19,7 +19,7 @@ ArkTS provides conditional rendering. It supports the use of the **if**, **else*
 
 - The build function inside each conditional branch must follow the special rules for build functions. Each of such build functions must create one or more components. An empty build function that creates no components will result in a syntax error.
 
-- Some container components impose restrictions on the type or number of child components. When conditional statements are used in such components, these restrictions also apply to the components to be created by using the conditional statements. For example, when a conditional statement is used in the **\<Grid>** container component, whose child components can only be **\<GridItem>**, only the **\<GridItem>** component can be used in the conditional statement.
+- Some container components impose restrictions on the type or number of child components. When conditional statements are used in such components, these restrictions also apply to the components to be created by using the conditional statements. For example, the child component of the [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) container component supports only the [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) component. Therefore, only the **GridItem** can be used in the conditional statement within **Grid**.
 
 
 ## Update Mechanism
@@ -78,7 +78,7 @@ Each branch of the **if** statement includes a build function. Each of such buil
 
 2. Execute the build function of the branch and add the generated child component to its parent component.
 
-In the preceding example, if **count** increases from 0 to 1, then **if** updates, the condition **count > 0** is re-evaluated, and the evaluation result changes from **false** to **true**. Therefore, the positive branch build function will be executed, which creates a **\<Text>** component and adds it to the **\<Column>** parent component. If **count** changes back to 0 later, then the **\<Text>** component will be removed from the **\<Column>** component. Since there is no **else** branch, no new build function will be executed.
+In the preceding example, if **count** increases from 0 to 1, then **if** updates, the condition **count > 0** is re-evaluated, and the evaluation result changes from **false** to **true**. Therefore, the positive branch build function will be executed, which creates a **Text** component and adds it to the **Column** parent component. If **count** changes back to 0 later, then the **Text** component will be removed from the **Column** component. Since there is no **else** branch, no new build function will be executed.
 
 
 ### if ... else ... and Child Component States
@@ -93,13 +93,16 @@ struct CounterView {
   label: string = 'unknown';
 
   build() {
-    Row() {
+    Column({ space: 20 }) {
       Text(`${this.label}`)
       Button(`counter ${this.counter} +1`)
         .onClick(() => {
           this.counter += 1;
         })
     }
+    .margin(10)
+    .padding(10)
+    .border({ width: 1 })
   }
 }
 
@@ -120,6 +123,8 @@ struct MainView {
           this.toggle = !this.toggle;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
@@ -133,20 +138,24 @@ On first render, the **CounterView** (label: **'CounterView \#positive'**) child
 The following example shows the required modifications if the value of **counter** needs to be preserved when the **if** condition changes:
 
 
-```
+```ts
 @Component
 struct CounterView {
   @Link counter: number;
   label: string = 'unknown';
 
   build() {
-    Row() {
+    Column({ space: 20 }) {
       Text(`${this.label}`)
+        .fontSize(20)
       Button(`counter ${this.counter} +1`)
         .onClick(() => {
           this.counter += 1;
         })
     }
+    .margin(10)
+    .padding(10)
+    .border({ width: 1 })
   }
 }
 
@@ -168,6 +177,8 @@ struct MainView {
           this.toggle = !this.toggle;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```
@@ -188,7 +199,7 @@ struct CompA {
   @State toggleColor: boolean = false;
 
   build() {
-    Column() {
+    Column({ space: 20 }) {
       Text('Before')
         .fontSize(15)
       if (this.toggle) {
@@ -224,6 +235,8 @@ struct CompA {
           this.toggleColor = !this.toggleColor;
         })
     }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
   }
 }
 ```

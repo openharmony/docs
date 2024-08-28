@@ -117,3 +117,36 @@ project(xxx)
 
 
 
+## cl.cmake.3 应用编译构建harA链接harB的so，导致hap包so冲突
+
+**变更原因**
+
+cmake从3.16.5版本升级到3.28.2版本，引入了该项变更。
+
+**变更影响**
+
+cmake版本升级到3.28.2之后，当某har模块（如harA）的CMakeLists.txt中链接了 ”依赖har模块（如harB）中的so” 时，此so会被打包到harA中，可能导致最终打HAP包时so版本冲突。
+
+ **适配指导**
+
+如果so版本冲突，请在工程级或者模块级build-profile.json5文件中buildOption下添加nativeLib/filter/select字段，根据包名、版本、产物名称等，选择打包或排除so文件到HAP产物。具体请参考[关于select的使用](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-cpp-V5#section14491810432)。
+
+````
+{
+  buildOption:{
+    nativeLib:{
+      filter:{
+        select:[ // select的优先级高于excludes、pickFirsts等配置项
+          {
+            package: "@ohos/curl", // 包名
+            version： "1.3.5", // 包版本
+            include： ["libcurl.so"], // 选择打包的native产物
+            exclude： ["libc++shared.so"], // 排除的native产物
+          },
+        ];
+      }
+    }
+  }
+}
+````
+

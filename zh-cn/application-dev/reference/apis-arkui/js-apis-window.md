@@ -356,6 +356,7 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
@@ -422,6 +423,7 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
@@ -1673,6 +1675,8 @@ try {
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 获取当前窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+
+该接口一般适用于两种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -5775,7 +5779,11 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 创建主窗口或子窗口下的子窗口，使用Promise异步回调，该接口仅在2in1设备上调用生效。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 

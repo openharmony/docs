@@ -426,7 +426,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 16. （可选）调用OH_VideoEncoder_Reset()重置编码器。
 
-    调用OH_VideoEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_VideoEncoder_Configure()重新配置。
+    调用OH_VideoEncoder_Reset()后，编码器将回到初始化的状态，需要调用OH_VideoEncoder_Configure()和OH_VideoEncoder_Prepare()重新配置。
 
     ```c++
     // 重置编码器videoEnc
@@ -436,6 +436,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     // 重新配置编码器参数
     ret = OH_VideoEncoder_Configure(videoEnc, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 编码器重新就绪
+    ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }

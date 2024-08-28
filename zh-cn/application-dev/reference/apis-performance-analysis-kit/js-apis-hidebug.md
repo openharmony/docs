@@ -915,7 +915,7 @@ type GcStats = Record&lt;string, number&gt;
 | ark.gc.gc-bytes-freed   | number | 当前线程GC成功回收的内存，以B为单位。|
 | ark.gc.fullgc-longtime-count | number |  当前线程超长fullGC次数。 |
 
-## hidebug.isDebugState<sup>13+</sup>
+## hidebug.isDebugState<sup>12+</sup>
 
 isDebugState(): boolean
 
@@ -935,4 +935,72 @@ isDebugState(): boolean
 import { hidebug,hilog } from '@kit.PerformanceAnalysisKit';
 
 hilog.info(0x000, "testTag", "isDebugState = %{public}s", hidebug.isDebugState())
+```
+
+## hidebug.getGraphicsMemory<sup>13+</sup>
+
+getGraphicsMemory(): Promise&lt;number&gt;
+
+使用异步方式，获取应用显存大小。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型                    | 说明                           |
+|-----------------------|------------------------------|
+| Promise&lt;number&gt; | promise对象，调用结束后返回应用显存大小，单位kB |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 11400104 | Failed to get the application memory due to a remote exception. |
+
+**示例**
+
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+hidebug.getGraphicsMemory().then((ret: number) => {
+    hilog.info(0x000, "testTag", `graphicsMemory: ${ret}`)
+}).catch((error: BusinessError) => {
+    hilog.info(0x000, "testTag", `error code: ${error.code}, error msg: ${error.message}`);
+})
+```
+
+## hidebug.getGraphicsMemorySync<sup>13+</sup>
+
+getGraphicsMemorySync(): number
+
+使用同步方式，获取应用显存大小。
+
+**注意：** 该接口涉及多次跨进程通信，可能存在性能问题，推荐使用异步接口getGraphicsMemory。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型  | 说明         |
+| ------ |------------|
+| number | 应用显存大小（kB） |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 11400104 | Failed to get the application memory due to a remote exception. |
+
+**示例**
+
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    hilog.info(0x000, "testTag", `graphicsMemory: ${hidebug.getGraphicsMemorySync()}`)
+} catch (error) {
+    hilog.info(0x000, "testTag", `error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```

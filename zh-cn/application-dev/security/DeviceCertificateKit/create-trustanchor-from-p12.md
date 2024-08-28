@@ -10,7 +10,7 @@
    import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. 基于现有的p12文件数据，调用[cert.createTrustAnchorsWithKeyStore](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509certchain11)创建TrustAnchor数组对象，并返回结果。
+2. 基于现有的p12文件数据，调用[cert.createTrustAnchorsWithKeyStore](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatetrustanchorswithkeystore12)创建TrustAnchor数组对象，并返回结果。
 
   ```ts
   import { cert } from '@kit.DeviceCertificateKit';

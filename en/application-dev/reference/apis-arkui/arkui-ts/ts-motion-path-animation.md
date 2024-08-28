@@ -9,6 +9,8 @@ The motion path animation is used to animate a component along a custom path.
 ## motionPath
 motionPath(value: MotionPathOptions)
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name   | Type                               | Mandatory| Description                                   |
@@ -16,6 +18,9 @@ motionPath(value: MotionPathOptions)
 | value | [MotionPathOptions](#motionpathoptions) | Yes   | Motion path of the component.            |
 
 ## MotionPathOptions
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | ---- | -------- |
 | path                         | string                     | Yes  | Motion path of the translation animation. The **svg** path string is used. In the value, **start** and **end** can be used in place of the start point and end point, for example, **'Mstart.x start.y L50 50 Lend.x end.y Z'**. For details, see [Path Drawing](../../../ui/ui-js-components-svg-path.md).<br>If this parameter is set to an empty string, the path animation is not set.      |

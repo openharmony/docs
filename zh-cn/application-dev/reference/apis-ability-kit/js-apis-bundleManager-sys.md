@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager模块)(系统接口)
 
-本模块提供应用信息查询能力，支持BundleInfo、ApplicationInfo、Ability、ExtensionAbility等信息的查询。
+本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-BundleInfo-sys.md)、[ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)、[Ability](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
 > **说明：**
 >
@@ -49,6 +49,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | 用于获取包含routerMap的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
 | GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | 用于获取包含skills的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。 |
 | GET_BUNDLE_INFO_ONLY_WITH_LAUNCHER_ABILITY<sup>12+</sup> | 0x00001000 | 用于获取仅包含有桌面图标的应用的bundleInfo。它仅在[getAllBundleInfo](#bundlemanagergetallbundleinfo)接口中生效。 |
+| GET_BUNDLE_INFO_OF_ANY_USER<sup>12+</sup>      | 0x00002000 | 用于获取任意用户安装的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_APPLICATION一起使用。它仅在[getBundleInfo](#bundlemanagergetbundleinfo)、[getAllBundleInfo](#bundlemanagergetallbundleinfo)接口生效。<br/>**系统API：** 从API version 12开始，该接口支持在系统API中使用。 |
 | GET_BUNDLE_INFO_EXCLUDE_CLONE<sup>12+</sup> | 0x00004000 | 用于获取去除分身应用而仅包含主应用的bundleInfo。它仅在[getAllBundleInfo](#bundlemanagergetallbundleinfo)接口中生效。 |
 
 ### ApplicationFlag
@@ -130,6 +131,17 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | OS_INTEGRATION    | 5    | 系统预置应用。    |
 | CROWDTESTING      | 6    | 众包测试应用。    |
 | NONE              | 7    | 其他。           |
+
+### ApplicationInfoFlag<sup>12+</sup>
+标识应用和用户之间的各种状态类型。
+
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称 | 值 | 说明 |
+|:----------------:|:---:|:---:|
+| FLAG_INSTALLED|  0x00000001 | 表示指定用户安装应用的状态，1表示指定用户安装了，0表示未安装。|
 
 ## 接口
 
