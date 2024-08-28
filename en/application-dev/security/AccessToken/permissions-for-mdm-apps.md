@@ -472,7 +472,7 @@ Allows an MDM application to query security audit events.
 
 ## ohos.permission.ENTERPRISE_RECOVERY_KEY
 
-Allows an application to manage enterprise recovery key.
+Allows an application to manage the enterprise recovery keys.
 
 **Permission level**: system_core
 
