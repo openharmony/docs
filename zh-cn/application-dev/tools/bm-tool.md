@@ -547,6 +547,7 @@ Error: signature verification failed due to not trusted app source.
 		//UDID获取命令
 		hdc shell bm get -u
 		```
+
 * 场景二：使用<!--RP10-->[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)<!--RP10End-->重新签名应用。
 
 
