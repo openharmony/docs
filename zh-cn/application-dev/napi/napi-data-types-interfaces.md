@@ -344,16 +344,18 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | -------- | -------- |
 | napi_create_array | 创建并获取一个JS Array。 |
 | napi_create_array_with_length | 创建并获取一个指定长度的JS Array。 |
-| napi_create_typedarray | 通过现有的ArrayBuffer创建一个JS TypeArray。 |
-| napi_create_dataview | 通过现有的ArrayBuffer创建一个JS DataView。 |
 | napi_get_array_length | 获取array的length。 |
-| napi_get_typedarray_info | 获取给定TypedArray的各种属性。 |
-| napi_get_dataview_info | 获取给定DataView的各种属性。 |
 | napi_is_array | 判断给定JS value是否为array。 |
 | napi_set_element | 在给定Object的指定索引处，设置元素。 |
 | napi_get_element | 获取给定Object指定索引处的元素。 |
 | napi_has_element | 若给定Object的指定索引处拥有属性，获取该元素。 |
 | napi_delete_element | 尝试删除给定Object的指定索引处的元素。 |
+| napi_create_typedarray | 通过现有的ArrayBuffer创建一个JS TypeArray。 |
+| napi_is_typedarray | 判断给定JS value是否为TypeArray。|
+| napi_get_typedarray_info | 获取给定TypedArray的各种属性。 |
+| napi_create_dataview | 通过现有的ArrayBuffer创建一个JS DataView。 |
+| napi_is_dataview | 判断给定JS value是否为DataView。|
+| napi_get_dataview_info | 获取给定DataView的各种属性。|
 
 ### primitive相关
 
