@@ -57,7 +57,7 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 | MIMEType                | [PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes)   | 否    | 最近图片控件显示的文件类型，默认为PhotoViewMIMETypes.IMAGE_VIDEO_TYPE。                         |
 | photoSource             | [PhotoSource](#photosource)                                 | 否    | 配置最近图片视频显示内容的来源，比如拍照、截屏等。默认不限制来源。                               |
 
-### RecentPhotoCheckResultCallback
+## RecentPhotoCheckResultCallback
 
 type RecentPhotoCheckResultCallback = (recentPhotoExists: boolean) => void
 
