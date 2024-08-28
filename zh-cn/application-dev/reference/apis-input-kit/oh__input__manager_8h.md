@@ -47,7 +47,6 @@
 | typedef void(\* [Input_AxisEventCallback](input.md#input_axiseventcallback)) (const [Input_AxisEvent](input.md#input_axisevent) \*axisEvent) | 轴事件的回调函数，axisEvent的生命周期为回调函数内。  | 
 | typedef struct [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)[Input_InterceptorEventCallback](input.md#input_interceptoreventcallback) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
 | typedef struct [Input_InterceptorOptions](input.md#input_interceptoroptions)[Input_InterceptorOptions](input.md#input_interceptoroptions) | 事件拦截选项。  | 
-| typedef struct [Input_Hotkey](input.md#input_hotkey)[Input_Hotkey](input.md#input_hotkey) | 定义快捷键结构体。  | 
 
 
 ### 枚举
@@ -147,13 +146,3 @@
 | [Input_Result](input.md#input_result)[OH_Input_AddInputEventInterceptor](input.md#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](input.md#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。  | 
 | [Input_Result](input.md#input_result)[OH_Input_RemoveKeyEventInterceptor](input.md#oh_input_removekeyeventinterceptor) () | 移除按键事件拦截。  | 
 | [Input_Result](input.md#input_result)[OH_Input_RemoveInputEventInterceptor](input.md#oh_input_removeinputeventinterceptor) () | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
-| int32_t [OH_Input_GetIntervalSinceLastInput](input.md#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | 获取距离上次系统输入事件的时间间隔。  | 
-| [Input_Hotkey](input.md#input_hotkey) \* [OH_Input_CreateHotkey](input.md#oh_input_createhotkey) () | 创建快捷键对象的实例。  | 
-| void [OH_Input_DestroyHotkey](input.md#oh_input_destroyhotkey) ([Input_Hotkey](input.md#input_hotkey) \*\*hotkey) | 销毁快捷键对象的实例。  | 
-| void [OH_Input_SetPreKeys](input.md#oh_input_setprekeys) ([Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t \*preKeys, int32_t size) | 设置修饰键。  | 
-| [Input_Result](input.md#input_result)[OH_Input_GetPreKeys](input.md#oh_input_getprekeys) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t \*\*preKeys, int32_t \*preKeyCount) | 获取修饰键。  | 
-| void [OH_Input_SetFinalKey](input.md#oh_input_setfinalkey) ([Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t finalKey) | 设置被修饰键。  | 
-| [Input_Result](input.md#input_result)[OH_Input_GetFinalKey](input.md#oh_input_getfinalkey) (const [Input_Hotkey](input.md#input_hotkey) \*hotkey, int32_t \*finalKeyCode) | 获取被修饰键。  | 
-| [Input_Hotkey](input.md#input_hotkey) \*\* [OH_Input_CreateAllSystemHotkeys](input.md#oh_input_createallsystemhotkeys) (int32_t count) | 创建[Input_Hotkey](input.md#input_hotkey)类型实例的数组。  | 
-| void [OH_Input_DestroyAllSystemHotkeys](input.md#oh_input_destroyallsystemhotkeys) ([Input_Hotkey](input.md#input_hotkey) \*\*hotkeys, int32_t count) | 销毁[Input_Hotkey](input.md#input_hotkey)实例数组并回收内存。  | 
-| [Input_Result](input.md#input_result)[OH_Input_GetAllSystemHotkeys](input.md#oh_input_getallsystemhotkeys) ([Input_Hotkey](input.md#input_hotkey) \*\*hotkey, int32_t \*count) | 获取设置的所有快捷键。  | 
