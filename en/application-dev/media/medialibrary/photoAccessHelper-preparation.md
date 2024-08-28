@@ -34,8 +34,8 @@ The required permissions must be authorized by the user. After adding the permis
 **How to Develop**
 
 <!--RP1-->
-
-1. Request the required permissions via the ACL. For details, see [Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md).<!--RP1End-->
+1. Request the required permissions via the ACL. For details, see [Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md).
+<!--RP1End-->
 2. [Declare the required permissions in the **module.json5** file](../../security/AccessToken/declare-permissions.md).
 3. [Request user authorization](../../security/AccessToken/request-user-authorization.md).
 
