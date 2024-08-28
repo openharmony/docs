@@ -4,7 +4,8 @@
 - 后台任务管理<!--DelEnd-->
 
   - [后台任务总体概述](background-task-overview.md)
-  - [短时任务](transient-task.md)
+  - [短时任务(ArkTS)](transient-task.md)
+  - [短时任务(C/C++)](native-transient-task.md)
   - [长时任务](continuous-task.md)
   - [延迟任务](work-scheduler.md)
   - [代理提醒](agent-powered-reminder.md)
