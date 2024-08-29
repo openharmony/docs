@@ -40,9 +40,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                            |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -99,9 +99,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -151,9 +151,9 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Return value**
 
-| Type    | Description              | 
+| Type    | Description              |
 | ------- |------------------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value. |
 
 **Error codes**
 
@@ -161,9 +161,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -206,9 +206,9 @@ Subscribes to a notification with the subscription information specified. This A
 
 **Return value**
 
-| Type    | Description              | 
+| Type    | Description              |
 | ------- |------------------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value. |
 
 **Error codes**
 
@@ -216,9 +216,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -269,9 +269,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -317,9 +317,9 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 
 **Return value**
 
-| Type    | Description        | 
+| Type    | Description        |
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value. |
 
 **Error codes**
 
@@ -327,9 +327,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -379,9 +379,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -436,9 +436,9 @@ Removes a notification based on the bundle information and notification key. Thi
 
 **Return value**
 
-| Type    | Description        | 
+| Type    | Description        |
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value. |
 
 **Error codes**
 
@@ -446,9 +446,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -502,9 +502,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -548,9 +548,9 @@ Removes a notification based on the specified unique notification ID. This API u
 
 **Return value**
 
-| Type    | Description | 
+| Type    | Description |
 | ------- |--|
-| Promise\<void\> | Promise that returns no value. | 
+| Promise\<void\> | Promise that returns no value. |
 
 **Error codes**
 
@@ -558,9 +558,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -606,9 +606,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -651,9 +651,9 @@ Removes specified notifications. This API uses a promise to return the result.
 
 **Return value**
 
-| Type    | Description              | 
+| Type    | Description              |
 | ------- |------------------|
-| Promise\<void\> | Promise that returns no value. |  
+| Promise\<void\> | Promise that returns no value. |
 
 **Error codes**
 
@@ -661,9 +661,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -707,9 +707,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -757,9 +757,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -799,9 +799,9 @@ Removes all notifications for a specified application. This API uses a promise t
 
 **Return value**
 
-| Type    | Description        | 
+| Type    | Description        |
 | ------- |------------|
-| Promise\<void\> | Promise that returns no value. |  
+| Promise\<void\> | Promise that returns no value. |
 
 **Error codes**
 
@@ -809,9 +809,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                                |
 | -------- | ---------------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -855,9 +855,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -903,9 +903,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 201      | The application dose not have permission to call the interface.     |  
-| 202      | not system app.                                      |  
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201      | The application dose not have permission to call the interface.     |
+| 202      | not system app.                                      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
