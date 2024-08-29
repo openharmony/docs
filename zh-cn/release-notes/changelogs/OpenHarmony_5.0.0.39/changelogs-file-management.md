@@ -20,6 +20,7 @@
 该变更为不兼容变更。
 
 变更前：由分布式文件业务监测同WIFI可信设备并自动触发建链，应用无需主动建链，但仅适用同WiFi场景。
+
 变更后：新增主动建链接口，由应用通过主动调用接口触发建链，适用于同WIFI和不同WIFI的场景。
 
 
@@ -35,13 +36,13 @@ API11
 
 本次变更仅涉及新增以下接口：
 
-| 名称              | 描述        |
-|-----------------|-----------|
-| connectDfs(networkId: string, listeners: DfsListeners) | Public API，应用调用该接口主动出发建链执行结果通过DfsListeners回调内onStatus上报。 |
+| 名称              | 描述                                                       |
+|-----------------|----------------------------------------------------------|
+| connectDfs(networkId: string, listeners: DfsListeners) | Public API，应用调用该接口主动触发建链执行结果通过DfsListeners回调内onStatus上报。 |
 
 **适配指导**
 
-分布式组网和访问跨设备文件参考代码如下
-https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/file-management/file-access-across-devices.md
+应用使用新接口可以同时支持用同WiFi和不同WiFi场景下的跨设备文件访问能力，详见[跨设备文件访问开发指导]
+(../../../application-dev/file-management/file-access-across-devices.md)。
 
 
