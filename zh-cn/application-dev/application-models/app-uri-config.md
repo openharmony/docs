@@ -36,21 +36,21 @@
 
 1. 支持系统识别同类应用：当调用方拉起垂类应用（例如导航类应用）时，系统会根据linkFeature字段识别到匹配的应用，并在应用面板中展现。
 
-|值|说明|
-|---|---|
-|AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能|
-|FileOpen|指示打开处理文件的功能|
-|Navigation|指示导航功能|
-|RoutePlan|指示路线规划功能|
-|PlaceSerach|指示地点搜索功能|
+    |值|说明|
+    |---|---|
+    |AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能|
+    |FileOpen|指示打开处理文件的功能|
+    |Navigation|指示导航功能|
+    |RoutePlan|指示路线规划功能|
+    |PlaceSerach|指示地点搜索功能|
 
 2. 跳转一键返回能力：用户从A应用跳转至B应用的某个功能界面后，B应用调用[一键返回能力](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextbacktocallerabilitywithresult12)，可以支持用户直接返回A应用，无问询弹窗。例如：A应用跳转至B应用的支付界面，若B应用已申请了支付的linkfeature，则用户在B应用内完成操作后，可一键返回A应用。
 
-|值|说明|
-|---|---|
-|Login|指示登录、授权登录等功能|
-|Pay|指示支付页面、收银台等功能|
-|Share|指示分享功能|
+    |值|说明|
+    |---|---|
+    |Login|指示登录、授权登录等功能|
+    |Pay|指示支付页面、收银台等功能|
+    |Share|指示分享功能|
 
 ## 配置示例
 
