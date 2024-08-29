@@ -20,9 +20,11 @@ Row(value?:{space?:  number&nbsp;|&nbsp;string })
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | space | number&nbsp;\|&nbsp;string | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
 
