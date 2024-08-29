@@ -661,6 +661,18 @@ Allows an application to access system event logging data.
 
 **Valid since**: 8
 
+### ohos.permission.READ_DFX_XPOWER
+
+Allows an application to read XPower data.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.PERMISSION_USED_STATS
 
 Allows a system application to access the permission usage records.
