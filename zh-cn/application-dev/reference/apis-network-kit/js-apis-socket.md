@@ -543,8 +543,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > bind方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -1440,8 +1438,6 @@ getLocalAddress(): Promise\<NetAddress\>
 
 > **说明：**
 > bind方法调用成功后，才可调用此方法。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -2515,8 +2511,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > bind方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -3197,8 +3191,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -3670,8 +3662,6 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 getLocalAddress(): Promise\<NetAddress\>
 
 获取TCPSocketConnection连接的本地Socket地址。使用Promise方式作为异步方法。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -4394,8 +4384,6 @@ getLocalAddress(): Promise\<string\>
 > **说明：**
 > bind方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -4999,8 +4987,6 @@ getLocalAddress(): Promise\<string\>
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -5289,8 +5275,6 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 getLocalAddress(): Promise\<string\>
 
 获取LocalSocketConnection连接中的本地Socket地址。使用Promise方式作为异步方法。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -6893,8 +6877,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > 在TLSSocketServer通信连接成功之后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -7869,8 +7851,6 @@ getLocalAddress(): Promise\<NetAddress\>
 
 > **说明：**
 > 在TLSSocketServer通信连接成功之后，才可调用此方法。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -8958,8 +8938,6 @@ getLocalAddress(): Promise\<NetAddress\>
 
 > **说明：**
 > 在TLSSocketServer通信连接成功之后，才可调用此方法。
-
-**需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
 
