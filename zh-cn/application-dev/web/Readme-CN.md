@@ -15,6 +15,7 @@
   - [前端页面调用应用侧函数](web-in-page-app-function-invoking.md)
   - [建立应用侧与前端页面数据通道](web-app-page-data-channel.md)
   - [应用侧与前端页面的相互调用(C/C++)](arkweb-ndk-jsbridge.md)
+  - [建立应用侧与前端页面数据通道(C/C++)](arkweb-ndk-page-data-channel.md)
 - 管理网页交互
   - [Web组件嵌套滚动](web-nested-scrolling.md)
   - [Web页面显示内容滚动](web-content-scrolling.md)
