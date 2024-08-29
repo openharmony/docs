@@ -7701,6 +7701,45 @@ avScreenCaptureRecorder.stopRecording().then(() => {
 })
 ```
 
+### skipPrivacyMode<sup>12+</sup>
+
+skipPrivacyMode(windowIDs: Array<number>): Promise\<void>
+
+录屏时对应用自己的隐私窗口做安全豁免。通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                      |
+| ------ | ------- | ---- | --------------------------------------------------------- |
+| windowIDs | Array<number> | 是   | 需要豁免隐私窗口的windowID列表 |
+
+**返回值：**
+
+| 类型           | 说明                             |
+| -------------- | -------------------------------- |
+| Promise\<void> | 豁免隐私窗口的Promise返回值. |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
+    console.info('Succeeded in skipping privacy mode');
+}).catch((err: BusinessError) => {
+    console.info('Failed to skip privacy mode, error: ' + err.message);
+})
+```
+
 ### setMicEnabled<sup>12+</sup>
 
 setMicEnabled(enable: boolean): Promise\<void>
