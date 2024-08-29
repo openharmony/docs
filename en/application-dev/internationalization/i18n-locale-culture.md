@@ -17,7 +17,7 @@ A locale consists of four parts: language, script, country/region, and extended 
 | Part| Description| 
 | -------- | -------- |
 | Language| Language used by the user. The value consists of two or three lowercase letters. For example, **zh** indicates Chinese.<br>For more language codes, see the ISO-639 standard.| 
-| Script| Character set used by the user. The value consists of four letters with the first letter being capitalized. For example, **Hans** indicates simplified Chinese.<br>For more script codes, see the ISO-5924 standard.| 
+| Script| Character set used by the user. The value consists of four letters with the first letter being capitalized. For example, **Hans** indicates simplified Chinese.<br>For more script codes, see the ISO-15924 standard.| 
 | Country/region| Country/region where the user is located. The value consists of two uppercase letters. For example, **CN** indicates China.<br>For more country/region codes, see the ISO-3166 standard.| 
 | Extensions| Extended parameters that indicate other features of the user, including the calendar, string collation, numeral system, and hour cycle. The value starts with a lowercase letter **u**. Each extended parameter consists of a key and a value, which are separated using a hyphen (-). For example, **u-ca-chinese-co-pinyin** means collation by lunar calendar and pinyin.<br>For supported extended parameters, see Table 2. For more extended parameters, see BCP 47 Extensions.| 
 
