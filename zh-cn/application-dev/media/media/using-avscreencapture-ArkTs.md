@@ -123,7 +123,7 @@
     await this.screenCapture.init(this.captureConfig);
     ```
 
-6. 创建豁免隐私窗口，这里填写的是子窗口id和主窗口id，具体开发步骤可参见[窗口管理首页](../../../../../tree/master/zh-cn/application-dev/windowmanager)
+6. 创建豁免隐私窗口，这里填写的是子窗口id和主窗口id，具体开发步骤可参见[窗口管理首页](../../../windowmanager)
 
     ```javascript
     let windowIDs = [57, 86];
@@ -255,7 +255,6 @@ export class AVScreenCaptureDemo {
       console.info('Failed to release screenCapture, error:' + err.message);
     })
 
-    // 关闭创建的录屏文件fd
-    fs.close(fd);
+    // 最后需要关闭创建的录屏文件fd, fs.close(fd);
   }
 ```
