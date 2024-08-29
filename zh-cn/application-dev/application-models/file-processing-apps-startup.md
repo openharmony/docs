@@ -2,7 +2,7 @@
 
 ## 使用场景
 
-开发者可以通过调用startAbility接口，由系统从已安装的应用中寻找符合要求的应用来实现打开特定文件的意图，例如：浏览器下应用下载PDF文件，可以调用此接口选择文件处理应用打开此PDF文件。开发者需要在请求中设置待打开文件的URI路径（uri）、文件格式（type）等字段，以便系统能够识别，直接拉起文件打开应用或弹出一个选择框，让用户选择合适的应用来打开文件，效果示意如下图所示。
+开发者可以通过调用[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，由系统从已安装的应用中寻找符合要求的应用来实现打开特定文件的意图，例如：浏览器下应用下载PDF文件，可以调用此接口选择文件处理应用打开此PDF文件。开发者需要在请求中设置待打开文件的URI路径（[uri](#接口关键参数说明)）、文件格式（[type](#接口关键参数说明)）等字段，以便系统能够识别，直接拉起文件打开应用或弹出一个选择框，让用户选择合适的应用来打开文件，效果示意如下图所示。
 
 图1 效果示意图<br>
 ![](figures/file-open.jpeg)
@@ -13,11 +13,11 @@
 
 表1 startAbility请求中[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)相关参数说明
 
-| 参数名称 | 类型   | 是否必填 | 说明                                                                                                                                                                                   |
-|----------|--------|----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 参数名称 | 类型   | 是否必填 | 说明                  |
+|----------|--------|----------|---------------------|
 | uri      | string | 是       | 表示待打开文件的URI路径，一般配合type使用。<br />uri格式为：file:\/\/bundleName\/path<br />- file：文件URI的标志。<br />- bundleName：该文件资源的属主。<br />- path：文件资源在应用沙箱中的路径。 |
 | type     | string | 否       | 表示MIME type类型描述，打开文件的类型。比如：'text/xml' 、 'image/*'等，MIME定义请参见https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。                  |
-| parameters | Record<string, Object>       | 否         | 表示由系统定义，由开发者按需赋值的自定义参数，文件打开场景请参考表2。                                                                                                                                                                                       |
+| parameters | Record<string, Object>       | 否         | 表示由系统定义，由开发者按需赋值的自定义参数，文件打开场景请参考表2。         |
 | flags | number | 否 | 表示处理方式，文件打开场景请参考表3。                                                                                                                                                                                       |
 
 **表2** [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)相关参数说明
@@ -121,7 +121,7 @@
 
 1. 声明文件打开能力
 
-    支持打开文件的应用需要在module.json5配置文件中声明文件打开能力。其中uris字段表示接收URI的类型，其中scheme固定为file。type字段表示支持打开的文件类型（请参见[MIME定义](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)），如下举例中类型为txt文件。
+    支持打开文件的应用需要在[module.json5](../quick-start/module-configuration-file.md)配置文件中声明文件打开能力。其中uris字段表示接收URI的类型，其中scheme固定为file。type字段表示支持打开的文件类型（请参见[MIME定义](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)），如下举例中类型为txt文件。
 
     ```ts
     {
@@ -156,7 +156,7 @@
 
 2. 应用处理待打开文件。
 
-    声明了文件打开的应用在被拉起后，获取传入的Want参数信息，从中获取待打开文件的URI，在打开文件并获取对应的file对象后，可对文件进行读写操作。
+    声明了文件打开的应用在被拉起后，获取传入的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)参数信息，从中获取待打开文件的URI，在打开文件并获取对应的file对象后，可对文件进行读写操作。
 
     ```ts
     // xxx.ets
