@@ -536,7 +536,7 @@ Error: signature verification failed due to not trusted app source.
 
 * 场景一：签名中未包含该调试设备的UDID。
 
-* 场景二：使用发布证书签名。发布证书签名的应用不能启动调试或运行。
+* 场景二：签名时使用了<!--RP9-->[发布证书和发布profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-releaseharmony-0000001933963166)<!--RP9End-->。发布证书签名的应用不能启动调试或运行。
 
 **处理步骤**
 
@@ -547,7 +547,7 @@ Error: signature verification failed due to not trusted app source.
 		//UDID获取命令
 		hdc shell bm get -u
 		```
-* 场景二：使用调试证书重新签名应用。
+* 场景二：使用<!--RP10-->[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)<!--RP10End-->重新签名应用。
 
 
 ### 9568289 权限请求失败导致安装失败
