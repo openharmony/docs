@@ -113,7 +113,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 62980096 | Operation failed|
-| 62980097 | Ipc error|
+| 62980097 | IPC error.|
 | 62980115 | Invalid input parameter|
 | 62980105 | Failed to get the data|
 | 62980177 | Abnormal API environment|
@@ -695,7 +695,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 
@@ -823,7 +823,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 
@@ -965,7 +965,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 
@@ -1100,7 +1100,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 
@@ -1217,7 +1217,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 
@@ -1408,7 +1408,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 
@@ -1517,7 +1517,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 
@@ -1642,7 +1642,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 
@@ -1766,7 +1766,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 
@@ -1885,7 +1885,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 
@@ -2008,7 +2008,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 
@@ -2128,7 +2128,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **Example**
 

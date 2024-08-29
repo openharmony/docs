@@ -41,7 +41,7 @@ Transaction operation failed.
 
 **错误信息**
 
-RPC error.
+IPC error.
 
 **可能原因**
 

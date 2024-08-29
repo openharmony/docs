@@ -120,7 +120,7 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 | 62980178 | Failed to create the PixelMap|
 | 62980179 | Abnormal buffer size|
 | 62980180 | FD mapping failed|
-| 62980246 | Failed to read the PixelMap|
+| 62980246 | Failed to read the pixel map.|
 
 **示例：**
 
@@ -372,7 +372,7 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallbac
 | ------- | --------------------------------------------|
 |  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103     | The image data is not supported |
-|  62980246      | Failed to read the pixelMap |
+|  62980246     | Failed to read the pixel map. |
 |  62980248     | Pixelmap not allow modify |
 
 **示例：**
@@ -432,7 +432,7 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 | ------- | --------------------------------------------|
 |  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103     | The image data is not supported |
-|  62980246      | Failed to read the pixelMap |
+|  62980246     | Failed to read the pixel map. |
 |  62980248     | Pixelmap not allow modify |
 
 **示例：**
@@ -484,7 +484,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallb
 | ------- | --------------------------------------------|
 |  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103     | The image data is not supported |
-|  62980246      | Failed to read the pixelMap |
+|  62980246     | Failed to read the pixel map. |
 |  62980248     | Pixelmap not allow modify |
 
 **示例：**
@@ -544,7 +544,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 | ------- | --------------------------------------------|
 |  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103    | The image data is not supported |
-|  62980246    | Failed to read the pixelMap. |
+|  62980246    | Failed to read the pixel map. |
 |  62980248    | PixelMap not allow modify. |
 
 **示例：**
@@ -695,7 +695,7 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -823,7 +823,7 @@ readPixelsSync(area: PositionArea): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -965,7 +965,7 @@ writePixelsSync(area: PositionArea): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -1100,7 +1100,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -1217,7 +1217,7 @@ getImageInfoSync(): ImageInfo
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -1408,7 +1408,7 @@ opacitySync(rate: number): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -1517,7 +1517,7 @@ createAlphaPixelmapSync(): PixelMap
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -1642,7 +1642,7 @@ scaleSync(x: number, y: number): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -1766,7 +1766,7 @@ translateSync(x: number, y: number): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -1885,7 +1885,7 @@ rotateSync(angle: number): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -2008,7 +2008,7 @@ flipSync(horizontal: boolean, vertical: boolean): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -2128,7 +2128,7 @@ cropSync(region: Region): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 |  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
@@ -2492,7 +2492,7 @@ pixelmap在跨线程传输时，断开原线程的引用。适用于需立即释
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  501    | Resource Unavailable |
+|  501    | Resource unavailable. |
 
 **示例：**
 
