@@ -3008,6 +3008,7 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
@@ -4603,9 +4604,9 @@ Describes the sensor data reporting frequency.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name    | Type                                                      | Readable| Writable| Description                                                        |
-| -------- | ---------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| interval | number/[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. This attribute has restrictions on the minimum and maximum values, determined by the reporting frequency supported by the hardware.|
+| Name    | Type                                                       | Readable| Writable| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| interval | number\|[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. The maximum and minimum values of this parameter are determined by the reporting frequency supported by the hardware. If the configured frequency is greater than the maximum value, the maximum value is used for data reporting. If the configured frequency is less than the minimum value, the minimum value is used for data reporting.|
 
 ## SensorFrequency<sup>11+</sup>
 
@@ -4617,13 +4618,13 @@ Defines the reporting frequency mode of the sensor.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name| Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| game   | string | No  | The sensor reports data every 20,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
-| ui     | string | No  | The sensor reports data every 60,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
-| normal | string | No  | The sensor reports data every 200,000,000 ns. The frequency takes effect when it is within the frequency range supported by the hardware.|
+| Type    | Description                                                        |
+| -------- | ------------------------------------------------------------ |
+| 'game'   | Game mode, which specifies a sensor data reporting frequency of 20,000,000 ns. This parameter takes effect only when the frequency is within the frequency range supported by the hardware.|
+| 'ui'     | UI mode, which specifies a sensor data reporting frequency of 60,000,000 ns. This parameter takes effect only when the frequency is within the frequency range supported by the hardware.|
+| 'normal' | Normal mode, which specifies a sensor data reporting frequency of 200,000,000 ns. This parameter takes effect only when the frequency is within the frequency range supported by the hardware.|
 
-## RotationMatrixResponse
+##  
 
 Describes the response for setting the rotation matrix.
 
@@ -4662,7 +4663,6 @@ Describes a geomagnetic response object.
 | deflectionAngle | number | Yes  | Yes  | Magnetic declination, which is the angle between true north (geographic north) and the magnetic north (the horizontal component of the field).|
 | levelIntensity  | number | Yes  | Yes  | Horizontal intensity of the magnetic field vector field.                                |
 | totalIntensity  | number | Yes  | Yes  | Total intensity of the magnetic field vector.                                  |
-
 
 ## LocationOptions
 

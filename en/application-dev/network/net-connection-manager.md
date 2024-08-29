@@ -212,13 +212,17 @@ export class GlobalContext {
 
 // Call getDefaultNet to obtain the default data network specified by **NetHandle**.
 connection.getDefaultNet().then((data:connection.NetHandle) => {
+  if (data.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    return;
+  }
   if (data) {
     console.info("getDefaultNet get data: " + JSON.stringify(data));
     GlobalContext.getContext().netHandle = data;
     // Obtain the network capability information of the data network specified by **NetHandle**. The capability information includes information such as the network type and specific network capabilities.
-    connection.getNetCapabilities(GlobalContext.getContext().netHandle).then((data: connection.NetCapabilities) => {
+   connection.getNetCapabilities(GlobalContext.getContext().netHandle).then(
+      (data: connection.NetCapabilities) => {
       console.info("getNetCapabilities get data: " + JSON.stringify(data));
-
       // Obtain the network type via bearerTypes.
       let bearerTypes: Set<number> = new Set(data.bearerTypes);
       let bearerTypesNum = Array.from(bearerTypes.values());
