@@ -204,7 +204,7 @@ let blender : uiEffect.BrightnessBlender =
 visualEffect.backgroundColorBlender(blender)
 ```
 
-## Blender
+## Blender<sup>13+</sup>
 混合器类型，用于描述混合效果。
 
 **系统能力：** SystemCapability.Graphics.Drawing
