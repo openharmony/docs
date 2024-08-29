@@ -2397,9 +2397,9 @@ const char* OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE
 
 如果支持色彩空间转换功能并配置了此键，则视频解码器会自动将HDR Vivid视频转码为色彩空间BT709的SDR视频。
 
-如果不支持色彩空间转换功能，则接口[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)返回错误码AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION。
+如果不支持色彩空间转换功能，则接口[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)返回错误码[AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION](_core.md#oh_averrcode-1)。
 
-如果输入视频不是HDR vivid视频，则会通过回调函数[OH_AVCodecOnError](#oh_avcodeconerror)报告错误码AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION。
+如果输入视频不是HDR vivid视频，则会通过回调函数[OH_AVCodecOnError](#oh_avcodeconerror)报告错误码[AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION](_core.md#oh_averrcode-1)。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
