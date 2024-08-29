@@ -2484,7 +2484,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 **错误码：**
 
-除了参数个数错误和数据类型错误外，传入数组中含有不支持的Pattern枚举值也会导致401错误。401错误将导致promise对象创建失败，需从外部捕获。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
