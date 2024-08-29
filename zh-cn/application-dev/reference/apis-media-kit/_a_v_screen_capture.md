@@ -744,6 +744,7 @@ enum OH_AVScreenCaptureStateCode
 | OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER  | 麦克风被取消静音。 当前版本暂不支持。   | 
 | OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE  | 进入隐私弹窗。 当前版本暂不支持。   | 
 | OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE  | 隐私弹窗退出。 当前版本暂不支持。   | 
+| OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES   | 系统用户切换，录屏中断。 | 
 
 
 ### OH_CaptureMode
