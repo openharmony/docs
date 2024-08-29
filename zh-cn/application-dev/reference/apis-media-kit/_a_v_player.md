@@ -25,7 +25,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct  [AVPlayerCallback](_a_v_player_callback.md) | OH_AVPlayer中所有回调函数指针的集合。  | 
+| struct  [AVPlayerCallback](_a_v_player_callback.md) | （已废弃）包含了OH_AVPlayerOnInfo和OH_AVPlayerOnInfo回调函数指针的集合。  | 
 
 
 ### 类型定义输入player为空、callback为空、player SetDrmSystemInfoCallback执行失败。
@@ -40,11 +40,11 @@
 | typedef enum [AVPlaybackSpeed](#avplaybackspeed-1) [AVPlaybackSpeed](#avplaybackspeed) | 播放速度。  | 
 | typedef enum [AVPlayerOnInfoType](#avplayeroninfotype-1) [AVPlayerOnInfoType](#avplayeroninfotype) | OnInfo类型。  | 
 | typedef enum [AVPlayerBufferingType](#avplayerbufferingtype-1) [AVPlayerBufferingType](#avplayerbufferingtype) | 播放缓冲消息类型定义。  | 
-| typedef void(\*[OH_AVPlayerOnInfo](#oh_avplayeroninfo)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](#avplayeroninfotype) type, int32_t extra) | 收到播放器消息时调用。  | 
+| typedef void(\*[OH_AVPlayerOnInfo](#oh_avplayeroninfo)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](#avplayeroninfotype) type, int32_t extra) | （已废弃）收到播放器消息时调用。  | 
 | typedef void(\*[OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](#avplayeroninfotype) type, OH_AVFormat \*infoBody, void \*userData) | 收到播放器消息时被调用。如果应用成功设置该回调，则不会回调OH_AVPlayerOnInfo函数。  | 
-| typedef void(\* [OH_AVPlayerOnError](#oh_avplayeronerror)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg) | 在API 9以上的版本发生错误时调用  | 
+| typedef void(\* [OH_AVPlayerOnError](#oh_avplayeronerror)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg) | （已废弃）在API 9以上的版本发生错误时调用。  | 
 | typedef void(\* [OH_AVPlayerOnErrorCallback](#oh_avplayeronerrorcallback)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg, void \*userData) | 发生错误时被调用。如果应用成功设置该回调，则不会回调OH_AVPlayerOnError函数。  | 
-| typedef struct [AVPlayerCallback](_a_v_player_callback.md) [AVPlayerCallback](#avplayercallback) | OH_AVPlayer中所有回调函数指针的集合。注册此的实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。  | 
+| typedef struct [AVPlayerCallback](_a_v_player_callback.md) [AVPlayerCallback](#avplayercallback) | （已废弃）包含了OH_AVPlayerOnInfo和OH_AVPlayerOnInfo回调函数指针的集合。注册此的实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。  | 
 
 
 ### 枚举
@@ -116,7 +116,7 @@
 | const char \* [OH_PLAYER_BUFFERING_VALUE](#oh_player_buffering_value) | 获取缓冲更新消息具体数值的关键字, 对应值类型是int32_t。  | 
 | const char \* [OH_PLAYER_SEEK_POSITION](#oh_player_seek_position) | 获取Seek后播放进度信息的关键字, 对应值类型是int32_t。  | 
 | const char \* [OH_PLAYER_PLAYBACK_SPEED](#oh_player_playback_speed) | 获取播放倍速信息的关键字, 对应值类型是[AVPlaybackSpeed](#avplaybackspeed-1)。  | 
-| const char \* [OH_PLAYER_BITRATE](#oh_player_bitrate) | 获取比特率信息的关键字, 对应值类型是uint32_t。  | 
+| const char \* [OH_PLAYER_BITRATE](#oh_player_bitrate) | 获取比特率信息的关键字, 对应值类型是int32_t。  | 
 | const char \* [OH_PLAYER_CURRENT_POSITION](#oh_player_current_position) | 获取播放进度信息的关键字, 对应值类型是int32_t。  | 
 | const char \* [OH_PLAYER_DURATION](#oh_player_duration) | 获取媒体资源时长信息的关键字, 对应值类型是int64_t。  | 
 | const char \* [OH_PLAYER_VIDEO_WIDTH](#oh_player_video_width) | 获取视频宽度信息的关键字, 对应值类型int32_t。  | 
@@ -253,7 +253,7 @@ typedef void(* OH_AVPlayerOnError) (OH_AVPlayer *player, int32_t errorCode, cons
 
 **废弃版本：** 12
 
-**替代接口：**[OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback) [OH_AVPlayerOnError](#oh_avplayeronerror)
+**替代接口：**[OH_AVPlayerOnError](#oh_avplayeronerror)
 
 **参数:**
 
@@ -283,7 +283,7 @@ typedef void(* OH_AVPlayerOnErrorCallback) (OH_AVPlayer *player, int32_t errorCo
 | player | 指向OH_AVPlayer实例的指针。  | 
 | errorCode | 错误码。<br> AV_ERR_NO_MEMORY：无内存，取值为1<br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许，取值为2<br>AV_ERR_INVALID_VAL：无效值，取值为3<br>AV_ERR_IO：IO错误，取值为4<br>AV_ERR_TIMEOUT：超时错误，取值为5<br>AV_ERR_UNKNOWN：未知错误，取值为6<br>AV_ERR_SERVICE_DIED：服务死亡，取值为7<br>AV_ERR_INVALID_STATE：当前状态不支持此操作，取值为8<br>AV_ERR_UNSUPPORT：未支持的接口，取值为9<br>AV_ERR_EXTEND_START：扩展错误码初始值，取值为100 | 
 | errorMsg | 错误消息。  | 
-| userData | 指向应用调用者设置该回调函数时提供的实例的指针。  | 
+| userData | 原样返回用户设置回调时传入的userData数据。  | 
 
 
 ### OH_AVPlayerOnInfo
@@ -330,7 +330,7 @@ typedef void(* OH_AVPlayerOnInfoCallback) (OH_AVPlayer *player, AVPlayerOnInfoTy
 | player | 指向OH_AVPlayer实例的指针。  | 
 | type | 信息类型。具体请参见[AVPlayerOnInfoType](#avplayeroninfotype-1)。  | 
 | infoBody | 指向携带具体消息的指针，仅在该回调方法内有效。  | 
-| userData | 指向应用调用者设置该回调函数时提供的实例的指针。  | 
+| userData | 原样返回用户设置回调时传入的userData数据。  | 
 
 
 ### Player_MediaKeySystemInfoCallback
@@ -418,7 +418,7 @@ OnInfo类型。
 | AV_INFO_TYPE_SEEKDONE | 跳转到对应播放位置时返回消息，extra表示seek到的位置。 |
 | AV_INFO_TYPE_SPEEDDONE | 播放倍速设置完成时返回消息，extra表示播放倍速信息，具体请参考[AVPlaybackSpeed](#avplaybackspeed-1)。 |
 | AV_INFO_TYPE_BITRATEDONE | 比特率设置完成时返回消息，extra表示比特率信息。 |
-| AV_INFO_TYPE_EOS | 播放完成时返回消息，extra表示是否设置循环播放，0表示设置循环，1表示未设置循环。|
+| AV_INFO_TYPE_EOS | 播放完成时返回消息。|
 | AV_INFO_TYPE_STATE_CHANGE | 状态改变时返回消息，extra表示当前播放状态，具体请参见[AVPlayerState](#avplayerstate-1)。 |
 | AV_INFO_TYPE_POSITION_UPDATE | 返回当前播放位置，extra表示当前位置。 |
 | AV_INFO_TYPE_MESSAGE | 视频开始渲染时返回消息，extra表示视频首帧渲染。 |
@@ -1559,7 +1559,7 @@ const char* OH_PLAYER_AUDIO_INTERRUPT_TYPE
 const char* OH_PLAYER_BITRATE
 ```
 **描述**
-获取比特率信息的关键字, 对应值类型是uint32_t。
+获取比特率信息的关键字, 对应值类型是int32_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
