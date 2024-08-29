@@ -389,7 +389,7 @@ export default class EntryAbility extends UIAbility {
         // kvStoreType不填时，默认创建多设备协同数据库
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
         // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
-        securityLevel: distributedKVStore.SecurityLevel.S1
+        securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
     let eContext = this.context.createModuleContext("entry");
@@ -408,7 +408,7 @@ export default class EntryAbility extends UIAbility {
         // kvStoreType不填时，默认创建多设备协同数据库
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
         // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
-        securityLevel: distributedKVStore.SecurityLevel.S1
+        securityLevel: distributedKVStore.SecurityLevel.S3
       }
     }
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`);
@@ -837,7 +837,7 @@ export default class EntryAbility extends UIAbility {
       context: cContext,
       config: {
         name: 'cstore.db',
-        securityLevel: relationalStore.SecurityLevel.S1,
+        securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "cstore.db"
     }
@@ -847,7 +847,7 @@ export default class EntryAbility extends UIAbility {
       context: eContext,
       config: {
         name: 'estore.db',
-        securityLevel: relationalStore.SecurityLevel.S1,
+        securityLevel: relationalStore.SecurityLevel.S3,
       },
       storeId: "estore.db",
     }

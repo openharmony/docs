@@ -87,7 +87,7 @@
      onWindowStageCreate(windowStage: window.WindowStage) {
        const STORE_CONFIG: relationalStore.StoreConfig = {
          name: "RdbTest.db",
-         securityLevel: relationalStore.SecurityLevel.S1
+         securityLevel: relationalStore.SecurityLevel.S3
        };
           
        relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, store: relationalStore.RdbStore) => {
