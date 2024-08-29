@@ -4624,7 +4624,7 @@ Defines the reporting frequency mode of the sensor.
 | 'ui'     | UI mode, which specifies a sensor data reporting frequency of 60,000,000 ns. This parameter takes effect only when the frequency is within the frequency range supported by the hardware.|
 | 'normal' | Normal mode, which specifies a sensor data reporting frequency of 200,000,000 ns. This parameter takes effect only when the frequency is within the frequency range supported by the hardware.|
 
-##  
+## RotationMatrixResponse
 
 Describes the response for setting the rotation matrix.
 
