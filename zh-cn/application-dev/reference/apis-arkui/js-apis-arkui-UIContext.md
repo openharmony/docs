@@ -5114,7 +5114,7 @@ try {
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。暂不支持isModal = true与showInSubWindow = true同时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5291,11 +5291,107 @@ struct Index {
 }
 ```
 
+### updateCustomDialog<sup>12+</sup>
+
+updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+
+更新已弹出的dialogContent对应的自定义弹窗的样式，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 是    |   弹窗样式，目前仅支持更新alignment、offset、autoCancel、maskColor。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | the ComponentContent is incorrect. |
+| 103303 | the ComponentContent cannot be found. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
+
+class Params {
+  text: string = ""
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({bottom: 36})
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+            .onClick(() => {
+                let uiContext = this.getUIContext();
+                let promptAction = uiContext.getPromptAction();
+                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+                try {
+                  promptAction.openCustomDialog(contentNode);
+                } catch (error) {
+                  let message = (error as BusinessError).message;
+                  let code = (error as BusinessError).code;
+                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
+                };
+
+                setTimeout(() => {
+                  try {
+                    promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd });
+                  } catch (error) {
+                    let message = (error as BusinessError).message;
+                    let code = (error as BusinessError).code;
+                    console.error(`updateCustomDialog args error code is ${code}, message is ${message}`);
+                  };
+                }, 2000);   //2秒后自动更新弹窗位置
+            })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### openCustomDialog<sup>12+</sup>
 
 openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
-创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。
+创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。暂不支持isModal = true与showInSubWindow = true同时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5397,102 +5493,6 @@ struct Index {
               this.customDialogComponentId = dialogId
             })
           })
-      }
-      .width('100%')
-      .height('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-### updateCustomDialog<sup>12+</sup>
-
-updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
-
-更新已弹出的dialogContent对应的自定义弹窗的样式，使用Promise异步回调。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名     | 类型                                       | 必填   | 说明      |
-| ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
-| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 是    |   弹窗样式，目前仅支持更新alignment、offset、autoCancel、maskColor。 |
-
-**返回值：**
-
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
-
-| 错误码ID  | 错误信息                               |
-| ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { ComponentContent } from '@kit.ArkUI';
-
-class Params {
-  text: string = ""
-  constructor(text: string) {
-    this.text = text;
-  }
-}
-
-@Builder
-function buildText(params: Params) {
-  Column() {
-    Text(params.text)
-      .fontSize(50)
-      .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
-  }.backgroundColor('#FFF0F0F0')
-}
-
-@Entry
-@Component
-struct Index {
-  @State message: string = "hello"
-
-  build() {
-    Row() {
-      Column() {
-        Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
-
-                setTimeout(() => {
-                  try {
-                    promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd });
-                  } catch (error) {
-                    let message = (error as BusinessError).message;
-                    let code = (error as BusinessError).code;
-                    console.error(`updateCustomDialog args error code is ${code}, message is ${message}`);
-                  };
-                }, 2000);   //2秒后自动更新弹窗位置
-            })
       }
       .width('100%')
       .height('100%')
