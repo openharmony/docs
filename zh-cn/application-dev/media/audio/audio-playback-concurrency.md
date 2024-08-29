@@ -88,8 +88,7 @@ async function onAudioInterrupt(): Promise<void> {
           isPlay = false; // 此句为简化处理，代表应用切换至音频暂停状态的若干操作
           break;
         case audio.InterruptHint.INTERRUPT_HINT_DUCK:
-          // 此分支表示系统已将音频音量降低（默认降到正常音量的20%），为保持状态一致，应用需切换至降低音量播放状态
-          // 若应用不接受降低音量播放，可在此处选择其他处理方式，如主动暂停等
+          // 此分支表示系统已将音频音量降低（默认降到正常音量的20%）
           isDucked = true; // 此句为简化处理，代表应用切换至降低音量播放状态的若干操作
           break;
         case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
