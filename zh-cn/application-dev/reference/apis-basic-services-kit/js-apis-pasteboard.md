@@ -2466,7 +2466,7 @@ try {
 
 detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&gt;
 
-检测**本地**剪贴板中存在的模式，使用Promise异步回调。（仅支持本地数据中的模式检测，不会跨设备拉取非本端设备的数据）
+检测**本地**剪贴板中存在的模式，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -2474,17 +2474,17 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| patterns | [Array&lt;Pattern&gt;](#pattern13) | 是 | 	用户希望检测的模式。 |
+| patterns | [Array&lt;Pattern&gt;](#pattern13) | 是 | 	需要在剪贴板中检测的模式。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;Pattern&gt;&gt; | 返回结果为剪贴板中检测到的模式的数组的Promise对象。 |
+| Promise&lt;Array&lt;Pattern&gt;&gt; | Promise对象，返回检测到的模式 |
 
 **错误码：**
 
-除了参数个数错误和数据类型错误外，传入数组中含有不支持的Pattern枚举值也会导致401错误。401错误会导致promise对象创建失败，需要从外部捕获。
+除了参数个数错误和数据类型错误外，传入数组中含有不支持的Pattern枚举值也会导致401错误。401错误将导致promise对象创建失败，需从外部捕获。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
