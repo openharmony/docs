@@ -530,9 +530,9 @@ import { ethernet } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getMacAddress().then((data: Array<ethernet.MacAddressInfo>) => {
-  console.log("getMacAddress promise data = " + JSON.stringify(data));
+  console.info("getMacAddress promise data = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("getMacAddress promise error = " + JSON.stringify(error));
+  console.error("getMacAddress promise error = " + JSON.stringify(error));
 });
 ```
 
