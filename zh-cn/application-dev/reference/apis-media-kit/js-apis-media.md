@@ -7705,7 +7705,8 @@ avScreenCaptureRecorder.stopRecording().then(() => {
 
 skipPrivacyMode(windowIDs: Array<number>): Promise\<void>
 
-录屏时对应用自己的隐私窗口做安全豁免。通过Promise获取返回值。
+录屏时，应用可对本应用的隐私窗口做安全豁免。通过Promise获取返回值。
+如录屏时，用户在本应用进行输入密码等操作，应用不会进行黑屏处理。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -7713,7 +7714,7 @@ skipPrivacyMode(windowIDs: Array<number>): Promise\<void>
 
 | 参数名 | 类型    | 必填 | 说明                                                      |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| windowIDs | Array<number> | 是   | 需要豁免隐私窗口的windowID列表 |
+| windowIDs | Array\<number> | 是   | 需要豁免隐私的窗口列表，包括主窗口id和子窗口id，窗口属性获取方法可以参考../apis-arkui/js-apis-window.md#getwindowproperties9文档 |
 
 **返回值：**
 
@@ -7733,6 +7734,7 @@ skipPrivacyMode(windowIDs: Array<number>): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let windowIDs = [];
 avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
     console.info('Succeeded in skipping privacy mode');
 }).catch((err: BusinessError) => {
