@@ -28,29 +28,29 @@
 
 > **说明：**
 > 
-> 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接‘https://www.example.com/path1’拉起目标应用1，链接‘https://www.example.com/path2’拉起目标应用2。
+> 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接`https://www.example.com/path1`拉起目标应用1，链接`https://www.example.com/path2`拉起目标应用2。
 
 ## linkFeature标签说明
 
-目标应用在linkFeature字段中申明功能类型，并通过应用市场上架审核后，可以提升应用跳转体验。
+目标应用在linkFeature字段中申明功能类型，并通过应用市场上架审核后，可以提升应用跳转体验。主要用于以下两种场景：
 
-1. 系统识别同类应用：当调用方拉起垂类应用（例如导航类应用）时，系统会根据linkFeature字段识别到匹配的应用，并在应用面板中展现。
+1. 支持系统识别同类应用：当调用方拉起垂类应用（例如导航类应用）时，系统会根据linkFeature字段识别到匹配的应用，并在应用面板中展现。
 
-2. 跳转一键返回能力：当用户从其他应用通过此应用链接跳转至您的应用的某个功能界面，若您申请为该链接配置了相应功能的linkFeature并通过系统认证，您可调用系统[一键返回能力](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextbacktocallerabilitywithresult12)，在用户确认后直接返回来源应用。例如：A应用跳转至B应用的支付功能界面，若B应用已申请了支付的linkfeature，用户在B应用内完成操作后，可无拦截一键返回A应用。
+|值|说明|
+|---|---|
+|AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能|
+|FileOpen|指示打开处理文件的功能|
+|Navigation|指示导航功能|
+|RoutePlan|指示路线规划功能|
+|PlaceSerach|指示地点搜索功能|
 
+2. 跳转一键返回能力：用户从A应用跳转至B应用的某个功能界面后，B应用调用[一键返回能力](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextbacktocallerabilitywithresult12)，可以支持用户直接返回A应用，无问询弹窗。例如：A应用跳转至B应用的支付界面，若B应用已申请了支付的linkfeature，则用户在B应用内完成操作后，可一键返回A应用。
 
-**linkFeature**的枚举定义。
-
-|值|说明|跳转一键返回能力|系统识别同类应用|
-|---|---|---|---|
-|Login|指示登录、授权登录等功能|是|否|
-|Pay|指示支付页面、收银台等功能|是|否|
-|AppStorageMgmt|指示清理应用沙箱目录中缓存数据的功能|否|是|
-|FileOpen|指示打开处理文件的功能|否|是|
-|Navigation|指示导航功能|否|是|
-|RoutePlan|指示路线规划功能|否|是|
-|PlaceSerach|指示地点搜索功能|否|是|
-|Share|指示地点搜索功能|是|否|
+|值|说明|
+|---|---|
+|Login|指示登录、授权登录等功能|
+|Pay|指示支付页面、收银台等功能|
+|Share|指示分享功能|
 
 ## 配置示例
 
