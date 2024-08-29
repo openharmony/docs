@@ -249,9 +249,6 @@
           - [Storage接口切换](application-models/storage-switch.md)   
       <!--DelEnd-->
       - [Native子进程开发指导（C/C++）](application-models/capi_nativechildprocess_development_guideline.md) 
-    - Accessibility Kit（无障碍开发服务）<!--accessibility-kit-->
-      - [Accessibility Kit简介](accessibility/accessibilityKit.md)
-      - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
     - ArkData（方舟数据管理）<!--arkdata-->
       - [ArkData简介](database/data-mgmt-overview.md)
       - 标准化数据定义<!--uniform-data-definition-->
@@ -1732,19 +1729,6 @@
         - [包管理子系统通用错误码](reference/apis-ability-kit/errorcode-bundle.md)
         - [访问控制错误码](reference/apis-ability-kit/errorcode-access-token.md)
         - [锁屏敏感数据管理错误码](reference/apis-ability-kit/errorcode-screenLockFileManager.md)
-    - Accessibility Kit（无障碍开发服务）<!--accessibility-api-->
-      - ArkTS API<!--accessibility-arkts-->
-        - [@ohos.accessibility (辅助功能)](reference/apis-accessibility-kit/js-apis-accessibility.md)
-        - [@ohos.accessibility.GesturePath (手势路径)](reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md)
-        - [@ohos.accessibility.GesturePoint (手势触摸点)](reference/apis-accessibility-kit/js-apis-accessibility-GesturePoint.md)
-        - [@ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)](reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)
-        - [AccessibilityExtensionContext (辅助功能扩展上下文)](reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md)
-        <!--Del-->
-        - [@ohos.accessibility.config (系统辅助功能配置)(系统接口)](reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md)
-        - [AccessibilityExtensionContext (辅助功能扩展上下文)(系统接口)](reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext-sys.md)
-        <!--DelEnd-->
-      - 错误码<!--accessibility-arkts-errcode-->
-        - [无障碍子系统错误码](reference/apis-accessibility-kit/errorcode-accessibility.md)
     - ArkData（方舟数据管理）<!--arkdata-api-->
       - ArkTS API<!--arkdata-arkts-->
         - [@ohos.data.commonType (数据通用类型)](reference/apis-arkdata/js-apis-data-commonType.md)
