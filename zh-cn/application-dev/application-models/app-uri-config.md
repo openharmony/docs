@@ -28,7 +28,7 @@
 
 > **说明：**
 > 
-> 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接https://www.example.com/path1拉起目标应用1，链接https://www.example.com/path2拉起目标应用2。
+> 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接‘https://www.example.com/path1’拉起目标应用1，链接‘https://www.example.com/path2’拉起目标应用2。
 
 ## linkFeature标签说明
 
