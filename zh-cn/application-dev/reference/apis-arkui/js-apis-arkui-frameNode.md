@@ -2327,6 +2327,40 @@ createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 typeNode.createNode(uiContext, 'XComponent');
 ```
 
+### createNode('XComponent')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'XComponent', options: XComponentOptions): XComponent
+
+按照options中的配置参数创建XComponent类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'XComponent' | 是 | 创建XComponent类型的节点。 |
+| options | [XComponentOptions](./arkui-ts/ts-basic-components-xcomponent.md#xcomponentoptions12) | 是 | 定义XComponent的具体配置参数。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [XComponent](#xcomponent12) | XComponent类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+controller: XComponentController = new XComponentController();
+options: XComponentOptions = {
+  type: XComponentType.TEXTURE,
+  controller: this.controller
+};
+typeNode.createNode(uiContext, 'XComponent', this.options);
+```
+
 ### QRCode<sup>13+</sup>
 type QRCode = TypedFrameNode&lt;QRCodeInterface, QRCodeAttribute&gt;
 
