@@ -10,13 +10,13 @@
 
 开始屏幕录制时正在通话中或者屏幕录制过程中来电，录屏将自动停止。因通话中断的录屏会上报SCREENCAPTURE_STATE_STOPPED_BY_CALL状态。
 
-本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCaptureRecorder进行屏幕录制，详细的API声明请参考[AVScreenCaptureRecoder API参考](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-kit/js-apis-media.md#avscreencapturerecorder12)。
+本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCaptureRecorder进行屏幕录制，详细的API声明请参考[AVScreenCaptureRecoder API参考](../../reference/apis-media-kit/js-apis-media.md#avscreencapturerecorder12)。
 
-如果配置了采集麦克风音频数据，需对应配置麦克风权限ohos.permission.MICROPHONE和申请长时任务，配置方式请参见[向用户申请权限](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/request-user-authorization.md)、[申请长时任务](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/task-management/continuous-task.md)。
+如果配置了采集麦克风音频数据，需对应配置麦克风权限ohos.permission.MICROPHONE和申请长时任务，配置方式请参见[向用户申请权限](../../security/AccessToken/request-user-authorization.md)、[申请长时任务](../../task-management/continuous-task.md)。
 
 ## 申请权限
 
-在开发此功能前，开发者应根据实际需求申请相应权限，申请方式请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md)。
+在开发此功能前，开发者应根据实际需求申请相应权限，申请方式请参考：[申请应用权限](../../security/AccessToken/request-user-authorization.md)。
 
 | 权限名 | 说明 | 授权方式 | 权限级别 |
 | ------ | ----- | --------| ------- |
@@ -123,23 +123,30 @@
     await this.screenCapture.init(this.captureConfig);
     ```
 
-6. 调用startRecording()方法开始进行屏幕录制，并通过监听函数监听状态。
+6. 创建豁免隐私窗口，这里填写的是子窗口id和主窗口id，具体开发步骤可参见[窗口管理首页](../../../../../tree/master/zh-cn/application-dev/windowmanager)
+
+    ```javascript
+    let windowIDs = [57, 86];
+    await screenCapture.skipPrivacyMode(windowIDs);
+    ```
+
+7. 调用startRecording()方法开始进行屏幕录制，并通过监听函数监听状态。
 
     ```javascript
     await this.screenCapture.startRecording();
     ```
 
-7. 停止录屏。
+8. 停止录屏。
 
-    ① 点击录屏胶囊中的结束按钮停止录制：基于回调函数实现，录屏对象实例screenCapture会触发SCREENCAPTURE_STATE_STOPPED_BY_USER的回调，通知应用此次录屏已停止，不需要开发者主动调用stopRecording()方法。
+    - 点击录屏胶囊中的结束按钮停止录制：基于回调函数实现，录屏对象实例screenCapture会触发SCREENCAPTURE_STATE_STOPPED_BY_USER的回调，通知应用此次录屏已停止，不需要开发者主动调用stopRecording()方法。
 
-    ② 应用主动调用stopRecording()方法，停止录屏。
+    - 应用主动调用stopRecording()方法，停止录屏。
 
-    ```javascript
-    await this.screenCapture.stopRecording();
-    ```
+      ```javascript
+      await this.screenCapture.stopRecording();
+      ```
 
-8. 调用release()方法销毁实例，释放资源。
+9. 调用release()方法销毁实例，释放资源。
 
     ```javascript
     await this.screenCapture.release();
@@ -225,12 +232,13 @@ export class AVScreenCaptureDemo {
       console.info("处理异常情况");
     })
     await this.screenCapture.init(this.captureConfig);
+    
+    // 豁免隐私窗口
+    let windowIDs = [57, 86];
+    await screenCapture.skipPrivacyMode(windowIDs);
+    
     await this.screenCapture.startRecording();
   }
-
-  // 豁免隐私窗口
-  let windowIDs = [0, 333, 456];
-  await screenCapture.skipPrivacyMode(windowIDs);
 
   // 可以主动调用stopRecording方法来停止录屏。
   public async stopRecording() {
@@ -239,15 +247,15 @@ export class AVScreenCaptureDemo {
       return;
     }
     await this.screenCapture.stopRecording();
+    
+    // 调用release()方法销毁实例，释放资源。
+    await screenCapture.release().then(() => {
+      console.info('Succeeded in releasing screenCapture');  
+    }).catch((err: BusinessError) => {
+      console.info('Failed to release screenCapture, error:' + err.message);
+    })
+
+    // 关闭创建的录屏文件fd
+    fs.close(fd);
   }
-
-  // 调用release()方法销毁实例，释放资源。
-  await screenCapture.release().then(() => {
-    console.info('Succeeded in releasing screenCapture');  
-  }).catch((err: BusinessError) => {
-    console.info('Failed to release screenCapture, error:' + err.message);
-  })
-
-  // 关闭创建的录屏文件fd
-  fs.close(fd);
 ```
