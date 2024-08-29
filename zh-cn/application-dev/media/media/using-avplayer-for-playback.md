@@ -123,7 +123,7 @@ export class AVPlayerDemo {
         case 'paused': // pause成功调用后触发该状态机上报
           console.info('AVPlayer state paused called.');
           setTimeout(() => {
-              console.info('AVPlayer paused wait to play again');
+              console.info('AVPlayer  paused wait to play again');
               avPlayer.play(); // 暂停3s后再次调用播放接口开始播放
             }, 3000)
           break;
