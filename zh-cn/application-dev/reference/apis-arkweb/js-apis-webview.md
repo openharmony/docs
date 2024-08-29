@@ -1,5 +1,3 @@
-
-
 # @ohos.web.webview (Webview)
 
 @ohos.web.webview提供web控制能力，[Web](ts-basic-components-web.md)组件提供网页显示的能力。
@@ -680,7 +678,7 @@ struct WebComponent {
 
 static initializeWebEngine(): void
 
-在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
+在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。自动预连接历史访问过的高频网站。
 
 > **说明：**
 >
@@ -3707,6 +3705,7 @@ scrollBy(deltaX:number, deltaY:number,duration?:number): void
 | deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
 | deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
 | duration<sup>13+</sup> | number | 否 | 滚动动画时间。<br>单位：ms。<br>不传入为无动画，当传入数值为负数或传入0时，按照不传入处理。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
@@ -4671,7 +4670,6 @@ getCertificate(): Promise<Array<cert.X509Cert>>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a web component. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -4833,6 +4831,7 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -5893,7 +5892,7 @@ enableAdsBlock(enable: boolean): void
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. Parameter string is too long. 3.Parameter verification failed. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -7750,7 +7749,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。
 资源的MIMEType通过提供的Content-Type响应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
 以此方式注入的资源，仅支持通过HTML中的标签加载。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。
-当调用`web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
+当调用`webview.WebviewController.SetRenderProcessMode(webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -15343,8 +15342,8 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| nativeEmbed | bool | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
-| mediaTakeOver | bool | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
+| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
+| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
 
 ## BackForwardCacheOptions<sup>12+<sup>
 
