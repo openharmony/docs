@@ -1,6 +1,6 @@
 # 文件子系统变更说明
 
-## cl.file_api.1 setSecurityLable接口行为变更
+## cl.CoreFileKit.1 setSecurityLable接口行为变更
 
 **访问级别**
 
@@ -53,7 +53,7 @@ API 9
 
 如果应用需多次设置数据风险等级，需注意设置数据风险等级应该符合安全规范，数据风险等级仅可由低向高或平级设置。避免将高等级风险等级数据设置为低风险等级。
 
-## cl.file_api.2 getSecurityLable接口行为变更
+## cl.CoreFileKit.2 getSecurityLable接口行为变更
 
 **访问级别**
 
