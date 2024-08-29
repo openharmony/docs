@@ -8,6 +8,7 @@
 - [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
 - [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的显示样式。
 - [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
+- [LineTypeset](#lineTypeset)：行排版器，由ParagraphBuilder类调用[buildLineTypeset()](#buildLineTypeset)接口构建而成。
 - [ParagraphBuilder](#paragraphbuilder)：段落生成器，控制生成不同的段落对象。
 - [TextLine](#textline)：以行为单位的段落文本的载体，由段落类调用[getTextLines()](#gettextlines)接口获取。
 - [Run](#run)：文本排版的渲染单元，由行文本类调用[getGlyphRuns()](#getglyphruns)接口获取。
@@ -1008,6 +1009,79 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
+## LineTypeset
+
+保存着文本内容以及样式的载体，可以用于计算单行排版信息。
+
+下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[buildLineTypeset()](#buildLineTypeset)接口获取到LineTypeset对象实例，再通过此实例调用对应方法。
+
+### getLineBreak
+
+getLineBreak(startIndex: number, width: number): number
+
+计算在限定屏幕宽度width(单位物理像素px)的情况下，从文本下标startIndex（从0开始计数）处开始可以排版多少个字符。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ----- | ------ | ---- | -------------- |
+| startIndex | number | 是 | 开始计算排版的起始位置，整数，从0开始计数，计算时包含startIndex位置对应的字符。|
+| width | number | 是   | 可用于排版的宽度，浮点数，单位为物理像素px。|
+另外入参应该满足以下条件:
+1. startIndex取值范围[0, 文本字符总数)。
+2. width应大于0。
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| number | 从起始位置开始计算，在固定宽度限制下可以参与排版的字符总数，整数。|
+
+**示例：**
+
+```ts
+let startIndex = 0;
+let width = 100.0;
+let count = lineTypeset.getLineBreak(startIndex, width);
+```
+
+### createLine
+
+createLine(startIndex: number, count: number): TextLine
+
+根据文本[startIndex, startIndex + count)区间字符生成TextLine对象。 
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ----- | ------ | ---- | -------------- |
+| startIndex | number | 是 | 开始计算排版的起始位置，整数。|
+| count | number | 是   | 使用[startIndex, startIndex + count)区间字符生成TextLine对象，整数。|
+另外入参应满足以下条件: 
+1. startIndex取值范围为[0, 文本字符总数)。
+2. count取值范围为[0, 文本字符总数]。 当count为0时表示使用的字符区间为[startIndex, 文本结尾]。
+3. startIndex + count <= 文本字符总数。
+可以先调用getLineBreak方法获取合理的count值。
+
+**返回值：**
+
+| 类型         | 说明                         |
+| ------------ | --------------------------- |
+| TextLine\<[TextLine](#textline)> | 根据文本区间字符生成的TextLine对象。|
+
+**示例：**
+
+```ts
+let startIndex = 0;
+let width = 100.0;
+let count = lineTypeset.getLineBreak(startIndex, width);
+let line : text.TextLine = lineTypeset.createLine(startIndex, count);
+```
+
 ## RunMetrics
 
 描述文本行中连续文本块的布局信息和度量数据。
@@ -1393,6 +1467,50 @@ struct Index {
 }
 ```
 
+### buildLineTypeset
+
+buildLineTypeset(): LineTypeset
+
+构建生成一个行排版器。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                     | 说明                           |
+| ------------------------ | ------------------------------ |
+| [LineTypeset](#lineTypeset)  | 可用于行排版的LineTypeset对象。|
+
+**示例：**
+
+```ts
+import { drawing, text, common2D } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit';
+
+function Text() {
+  let myParagraphStyle: text.ParagraphStyle = {
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  ParagraphGraphBuilder.addText("123456789");
+  let lineTypeset = ParagraphGraphBuilder.buildLineTypeset();
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
 ### addSymbol
 
 addSymbol(symbolId: number): void
@@ -1445,7 +1563,7 @@ struct Index {
 
 描述段落基础文本行结构的载体。
 
-下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口获取到TextLine对象实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[Paragraph](#paragraph)类的[getTextLines()](#gettextlines)接口或者[LineTypeset](#linetypeset)类的[createLine()](#createline)接口获取到TextLine对象实例，再通过此实例调用对应方法。
 
 ### getGlyphCount
 
@@ -1488,7 +1606,7 @@ struct Index {
 
 getTextRange(): Range
 
-获取该文本行中的文本在整个段落文本中的索引区间。
+获取该文本行中的文本在整个段落文本中的索引区间。[LineTypeset](#linetypeset)类的[creatLine](#createline)方法创建的TextLine对象属于一个内部临时Paragraph对象, 通过该方法创建的TextLine对象调用getTextRange()方法返回的索引区间属于该内部临时Paragraph对象。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
