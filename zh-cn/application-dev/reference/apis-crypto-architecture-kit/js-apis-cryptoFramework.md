@@ -241,7 +241,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | PSS_MGF_NAME_STR | 101 | 表示RSA算法中，使用PSS模式时，掩码生成算法（目前仅支持MGF1）。 |
 | PSS_MGF1_MD_STR | 102 | 表示RSA算法中，使用PSS模式时，MGF1掩码生成功能的消息摘要参数。 |
 | PSS_SALT_LEN_NUM | 103 | 表示RSA算法中，使用PSS模式时，盐值的长度，长度以字节为单位。 |
-| PSS_TRAILER_FIELD_NUM | 104 | 表示RSA算法中，使用PSS模式时，用于编码操作的整数，值为1。 |
+| PSS_TRAILER_FIELD_NUM | 104 | 表示RSA算法中，使用PSS模式时，用于编码操作的整数。 |
 | SM2_USER_ID_UINT8ARR<sup>11+</sup> | 105 | 表示SM2算法中，用户身份标识字段。 |
 
 ## AsyKeySpec<sup>10+</sup>
@@ -4769,7 +4769,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob>): void
 
-基于传入的私钥与公钥进行密钥协商，通过注册回调函数返回共享秘密。
+基于传入的私钥与公钥进行密钥协商，通过注册回调函数返回共享密钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4783,7 +4783,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ------------------------ | ---- | ---------------------- |
 | priKey   | [PriKey](#prikey)        | 是   | 设置密钥协商的私钥输入。 |
 | pubKey   | [PubKey](#pubkey)        | 是   | 设置密钥协商的公钥输入。 |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 异步接受共享秘密的回调。 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 异步接受共享密钥的回调。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4799,7 +4799,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
-基于传入的私钥与公钥进行密钥协商，通过Promise返回共享秘密。
+基于传入的私钥与公钥进行密钥协商，通过Promise返回共享密钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4818,7 +4818,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-| Promise\<[DataBlob](#datablob)> | 共享秘密。 |
+| Promise\<[DataBlob](#datablob)> | 共享密钥。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4834,7 +4834,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 generateSecretSync(priKey: PriKey, pubKey: PubKey): DataBlob
 
-基于传入的私钥与公钥进行密钥协商，通过同步返回共享秘密。
+基于传入的私钥与公钥进行密钥协商，通过同步返回共享密钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4851,7 +4851,7 @@ generateSecretSync(priKey: PriKey, pubKey: PubKey): DataBlob
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-|[DataBlob](#datablob) | 共享秘密。 |
+|[DataBlob](#datablob) | 共享密钥。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
