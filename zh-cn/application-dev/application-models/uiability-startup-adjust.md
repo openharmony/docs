@@ -18,7 +18,7 @@
         "abilities": [
           {
             "name": "EntryAbility",
-            "srcEntry": "./ets/entryability/EntryAbility.ts",
+            "srcEntry": "./ets/entryability/EntryAbility.ets",
             "icon": "$media:icon",
             "label": "$string:EntryAbility_label",
             "startWindowIcon": "$media:icon",
@@ -122,7 +122,7 @@
         "abilities": [
           {
             "name": "EntryAbility",
-            "srcEntry": "./ets/entryability/EntryAbility.ts",
+            "srcEntry": "./ets/entryability/EntryAbility.ets",
             "icon": "$media:icon",
             "label": "$string:EntryAbility_label",
             "startWindowIcon": "$media:icon",
