@@ -77,6 +77,7 @@
                 console.info("录屏麦克风被用户取消静音");
                 break;
             case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_ENTER_PRIVATE_SCENE:
+                // 目前可以从系统直接注册监听到进入隐私场景
                 console.info("录屏进入隐私场景");
                 break;
             case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE:
@@ -140,7 +141,7 @@
 
 8. 调用release()方法销毁实例，释放资源。
 
-    ```c++
+    ```javascript
     await this.screenCapture.release();
     ```
 
@@ -154,9 +155,12 @@ import media from '@ohos.multimedia.media';
 export class AVScreenCaptureDemo {
   private screenCapture?: media.AVScreenCaptureRecorder;
   captureConfig: media.AVScreenCaptureRecordConfig = {
+    // 开发者可以根据自身的需要设置宽高
     frameWidth: 768,
     frameHeight: 1280,
+    // 参考应用文件访问与管理开发示例新建并读写一个文件fd
     fd: 0,
+    // 可选参数及其默认值
     videoBitrate: 10000000,
     audioSampleRate: 48000,
     audioChannelCount: 2,
@@ -204,6 +208,7 @@ export class AVScreenCaptureDemo {
           console.info("录屏麦克风被用户取消静音");
           break;
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_ENTER_PRIVATE_SCENE:
+          // 目前可以从系统直接注册监听到进入隐私场景
           console.info("录屏进入隐私场景");
           break;
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE:
@@ -223,6 +228,10 @@ export class AVScreenCaptureDemo {
     await this.screenCapture.startRecording();
   }
 
+  // 豁免隐私窗口
+  let windowIDs = [0, 333, 456];
+  await screenCapture.skipPrivacyMode(windowIDs);
+
   // 可以主动调用stopRecording方法来停止录屏。
   public async stopRecording() {
     if (this.screenCapture == undefined) {
@@ -231,4 +240,14 @@ export class AVScreenCaptureDemo {
     }
     await this.screenCapture.stopRecording();
   }
+
+  // 调用release()方法销毁实例，释放资源。
+  await screenCapture.release().then(() => {
+    console.info('Succeeded in releasing screenCapture');  
+  }).catch((err: BusinessError) => {
+    console.info('Failed to release screenCapture, error:' + err.message);
+  })
+
+  // 关闭创建的录屏文件fd
+  fs.close(fd);
 ```
