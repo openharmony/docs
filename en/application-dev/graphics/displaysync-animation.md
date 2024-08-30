@@ -8,13 +8,13 @@ The code snippet below defines a property animation for the **Text** component a
    ```ts
     Text()
      .animation({
-      duration: 1200,
-      iterations: 10,
-      expectedFrameRateRange: { // Set the frame rate range of the property animation.
-   ​    expected: 60, // Set the expected frame rate of the animation to 60 Hz.
-   ​    min: 0, // Set the frame rate range.
-   ​    max: 120 // Set the frame rate range.
-      },
+        duration: 1200,
+        iterations: 10,
+        expectedFrameRateRange: { // Set the frame rate range of the property animation.
+          expected: 60, // Set the expected frame rate of the animation to 60 Hz.
+          min: 0, // Set the frame rate range.
+          max: 120, // Set the frame rate range.
+        },
      })
    ```
 

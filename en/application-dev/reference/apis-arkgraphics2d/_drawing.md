@@ -731,7 +731,7 @@ The Drawing module provides the functions for 2D graphics rendering, text drawin
 ### OH_Drawing_ErrorCode
 
 ```
-typedef enum OH_Drawing_ErrorCodeOH_Drawing_ErrorCode
+typedef enum OH_Drawing_ErrorCode OH_Drawing_ErrorCode
 ```
 
 
@@ -771,7 +771,7 @@ Defines an enum for the types of matrix information obtained during path measure
 ### OH_Drawing_RegionOpMode
 
 ```
-typedef enum OH_Drawing_RegionOpModeOH_Drawing_RegionOpMode
+typedef enum OH_Drawing_RegionOpMode OH_Drawing_RegionOpMode
 ```
 
 **Description**
@@ -3080,7 +3080,7 @@ If either **path** or **points** is NULL or **count** is **0**, **OH_DRAWING_ERR
 | path | Pointer to the current path, which is an [OH_Drawing_Path](#oh_drawing_path) object. |
 | points | Pointer to an array that holds the vertex coordinates of the polygon. |
 | count | Size of the array. |
-| isClosed | Whether the path is closed. |
+| isClosed | Whether the path is closed. The value **true** means that the path is closed, and **false** means the opposite. |
 
 
 ### OH_Drawing_PathAddCircle()
