@@ -61,7 +61,7 @@
 
 #### 状态管理
 ##### 介绍
-本示例通过使用[页面级的状态变量](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fquick-start%2Farkts-localstorage.md%2F) 和[应用级的状态变量](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Fquick-start%2Farkts-appstorage.md%2F) 来实现应用的状态管理。展示内容包括修饰的对象类型、父子组件之间的状态同步、爷孙组件之间的状态同步以及兄弟组件之间的状态同步。
+本示例通过使用[页面级的状态变量](quick-start/arkts-localstorage.md) 和[应用级的状态变量](quick-start/arkts-appstorage.md) 来实现应用的状态管理。展示内容包括修饰的对象类型、父子组件之间的状态同步、爷孙组件之间的状态同步以及兄弟组件之间的状态同步。
 ##### 使用
 1.点击首页的切换按钮，可切换List和Grid布局。
 
@@ -674,12 +674,12 @@ Preferences.flush()保存并刷新文件内容。
 - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
 - [@ohos.charger (充电类型)](reference/apis/js-apis-charger.md)
 - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
-- [@ohos.power (系统电源管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-power.md%2F)
-- [@ohos.runningLock (Runninglock锁)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-runninglock.md%2F)
-- [@ohos.settings (设置数据项名称)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-settings.md%2F)
-- [@ohos.stationary (设备状态感知框架)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-stationary.md%2F)
-- [@ohos.thermal (热管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-thermal.md%2F)
-- [@ohos.usbManager (USB管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-usbManager.md%2F)
+- [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
+- [@ohos.runningLock (Runninglock锁)](reference/apis/js-apis-runninglock.md)
+- [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
+- [@ohos.stationary (设备状态感知框架)](reference/apis/js-apis-stationary.md)
+- [@ohos.thermal (热管理)](reference/apis/js-apis-thermal.md)
+- [@ohos.usbManager (USB管理)](reference/apis/js-apis-usbManager.md)
 - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis/js-apis-inputconsumer.md)
 - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis/js-apis-inputdevice.md)
 - [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis/js-apis-inputevent.md)
@@ -4853,12 +4853,12 @@ return formInfo.FormState.READY }。
 
 本示例集合设备管理相关(系统特性)不需要复杂功能展示的模块，展示了各个模块的基础功能，包含：
 
-- [@ohos.batteryStatistics (耗电统计)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-batteryStatistics.md%2F)
-- [@ohos.brightness (屏幕亮度)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-brightness.md%2F)
-- [@ohos.power (系统电源管理)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-power.md%2F)
-- [@ohos.settings (设置数据项名称)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-settings.md%2F)
-- [@ohos.systemCapability (系统能力)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-system-capability.md%2F)
-- [@ohos.systemParameterEnhance (系统参数)](https://gitee.com/link?target=https%3A%2F%2Fdocs.openharmony.cn%2Fpages%2Fv3.2%2Fzh-cn%2Fapplication-dev%2Freference%2Fapis%2Fjs-apis-system-parameterEnhance.md%2F)
+- [@ohos.batteryStatistics (耗电统计)](reference/apis/js-apis-batteryStatistics.md)
+- [@ohos.brightness (屏幕亮度)](reference/apis/js-apis-brightness.md)
+- [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
+- [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
+- [@ohos.systemCapability (系统能力)](reference/apis/js-apis-system-capability.md)
+- [@ohos.systemParameterEnhance (系统参数)](reference/apis/js-apis-system-parameterEnhance.md)
 - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
 - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
 - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis/js-apis-inputconsumer.md)
