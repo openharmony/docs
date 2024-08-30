@@ -30,7 +30,6 @@ The table below lists the media codec formats. The type is a constant string.
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | MIME type of the AMR-WB audio decoder.                          |
 | [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | MIME type of the Opus audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->        |
 | [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | MIME type of the G.711 mu-law audio codec.                        |
-| [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) | MIME type of the low-bitrate audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd--> |
 | [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |MIME type of the APE audio decoder.                        |
 | [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |MIME type of the SRT subtitle demuxer.                        |
 
@@ -236,7 +235,6 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | Pointer to the key that describes the MIME type of the AMR-WB audio decoder.|
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | Pointer to the key that describes the MIME type of the Opus audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->  |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | Pointer to the key that describes the MIME type of the G.711 mu-law audio codec.|
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) |Pointer to the key that describes the MIME type of the low-bitrate audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd--> |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |Pointer to the key that describes the MIME type of the APE audio decoder.                        |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |Pointer to the key that describes the MIME type of the SRT subtitle demuxer.                        |
 | const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | Pointer to the key that describes the surface buffer timestamp. The value is of the int64 type. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
@@ -1324,21 +1322,6 @@ const char* OH_AVCODEC_MIMETYPE_AUDIO_APE
 **Description**
 
 Pointer to the key that describes the MIME type of the APE audio decoder.
-
-**System capability**: SystemCapability.Multimedia.Media.CodecBase
-
-**Since**: 12
-
-
-### OH_AVCODEC_MIMETYPE_AUDIO_LBVC
-
-```
-const char* OH_AVCODEC_MIMETYPE_AUDIO_LBVC
-```
-
-**Description**
-
-Pointer to the key that describes the MIME type of the low-bitrate audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 

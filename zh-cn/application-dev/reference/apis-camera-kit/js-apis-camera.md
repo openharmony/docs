@@ -170,7 +170,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | 名称      | 类型                          | 只读 | 可选 | 说明         |
 | -------- | ----------------------------- |---- | ---- | ------------- |
 | format   | [CameraFormat](#cameraformat) | 是  |  否  | 输出格式。      |
-| size     | [Size](#size)                 | 是  |  否  | 分辨率。       |
+| size     | [Size](#size)                 | 是  |  否  | 分辨率。<br>设置的是相机分辨率宽高，非实际出图宽高。  |
 
 ## FrameRateRange
 

@@ -293,9 +293,10 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 
 | 参数名 | 类型  | 必填 | 说明  |
 | ------ | -------- | ---- | ------------------------------------------- |
-| types   | [TextDataDetectorType[]](ts-text-common.md#textdatadetectortype11枚举说明) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
+| types   | [TextDataDetectorType](ts-text-common.md#textdatadetectortype11枚举说明)[] | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
 | onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
-
+| color<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本识别成功后的实体颜色。<br/>默认值：'#ff007dff' |
+| decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface对象说明)| 否   | 设置文本识别成功后的实体装饰线样式。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.Underline,<br/>&nbsp;color:&nbsp;与实体颜色一致,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 ## PreviewText<sup>12+</sup>
 
 预上屏信息。
@@ -308,3 +309,17 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | offset | number | 是   | 预上屏内容的起始位置。 |
 | value    | string         | 是   | 预上屏的内容。         |
+
+## FontSettingOptions<sup>12+</sup>对象说明
+
+字体配置项。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                             | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。 |

@@ -5222,7 +5222,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 | 103301   | the ComponentContent is incorrect.                           |
 | 103302   | Dialog content already exists.                               |
 
-## closeCustomDialog<sup>12+</sup>
+### closeCustomDialog<sup>12+</sup>
 
 closeCustomDialog(dialogId: number): void
 
@@ -6974,9 +6974,80 @@ struct ComponentSnapshotExample {
 }
 ```
 
+### getSync<sup>12+</sup>
+
+getSync(id: string, options?: SnapshotOptions): image.PixelMap
+
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| id      | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| options | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | 否   | 截图相关的自定义参数。                                       |
+
+**返回值：**
+
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
+| 160002   | Timeout.                                                     |
+
+**示例：**
+
+```ts
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          try {
+            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", {scale : 2, waitUntilRenderFinished : true})
+            this.pixmap = pixelmap
+          } catch (error) {
+            console.error("getSync errorCode: " + error.code + " message: " + error.message)
+          }
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
 ## FrameCallback<sup>12+</sup>
 
-用于设置下一帧渲染时需要执行的任务。需要配合[UIContext](#uicontext)中的[postFrameCallback](#postframecallback12)和[postDelayedFrameCallback](#postdelayedframecallback12)使用。开发者需要继承该类并重写[onFrame](#onframe12)方法，实现具体的业务逻辑。
+用于设置下一帧渲染时需要执行的任务。需要配合[UIContext](#uicontext)中的[postFrameCallback](#postframecallback12)和[postDelayedFrameCallback](#postdelayedframecallback12)使用。开发者需要继承该类并重写[onFrame](#onframe12)或[onIdle](#onidle12)方法，实现具体的业务逻辑。
 
 ### onFrame<sup>12+</sup>
 
@@ -7025,6 +7096,62 @@ struct Index {
         Button('点击触发postDelayedFrameCallback')
           .onClick(() => {
             this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### onIdle<sup>12+</sup>
+
+在下一帧渲染结束时，如果距离下一个Vsync信号到来还有1ms以上的剩余时间，该方法将被执行，否则将顺延至后面的帧。
+
+onIdle(timeLeftInNano: number): void
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                    |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
+| timeLeftInNano | number | 是   | 这一帧剩余的空闲时间。 |
+
+**示例：**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyIdleCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onIdle(timeLeftInNano: number) {
+    console.info('MyIdleCallback ' + this.tag + ' ' + timeLeftInNano.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('点击触发postFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postFrameCallback(new MyIdleCallback("normTask"));
+          })
+        Button('点击触发postDelayedFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postDelayedFrameCallback(new MyIdleCallback("delayTask"), 5);
           })
       }
       .width('100%')

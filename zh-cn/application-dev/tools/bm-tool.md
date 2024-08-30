@@ -55,13 +55,13 @@ bm install [-h] [-p path] [-u userId] [-r] [-w waitting-time]
 | -p | 是 | 安装HAP路径，支持指定路径和多个HAP同时安装 |
 | -u | 否，默认安装到当前活跃用户上 | 给指定用户安装一个HAP |
 | -r | 否，默认值为覆盖安装 | 覆盖安装一个HAP |
-| -w | 否，默认等待5s | 安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为5s |
+| -w | 否，默认等待180s | 安装HAP时指定bm工具等待时间，最小的等待时长为180s，最大的等待时长为600s,&nbsp;默认缺省为180s |
 
 
 示例：
 
 ```bash
-bm install -p /data/app/ohosapp.hap -u 100 -w 5s -r
+bm install -p /data/app/ohosapp.hap -u 100 -w 300s -r
 // 执行结果
 install bundle successfully.
 ```
@@ -534,16 +534,21 @@ Error: signature verification failed due to not trusted app source.
 
 **可能原因**
 
-签名中未包含该调试设备的UDID。
+* 场景一：签名中未包含该调试设备的UDID。
+
+* 场景二：签名时使用了<!--RP9-->[发布证书和发布profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-releaseharmony-0000001933963166)<!--RP9End-->。发布证书签名的应用不能启动调试或运行。
 
 **处理步骤**
 
-1. 使用<!--RP5-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP5End-->。在连接设备后，重新为应用进行签名。
-2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
-	```
-	//UDID获取命令
-	hdc shell bm get -u
-	```
+* 场景一：
+	1. 使用<!--RP5-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP5End-->。在连接设备后，重新为应用进行签名。
+	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
+		```
+		//UDID获取命令
+		hdc shell bm get -u
+		```
+
+* 场景二：使用<!--RP10-->[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)<!--RP10End-->重新签名应用。
 
 
 ### 9568289 权限请求失败导致安装失败

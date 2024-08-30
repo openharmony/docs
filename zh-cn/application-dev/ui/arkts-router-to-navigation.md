@@ -211,8 +211,8 @@ struct Index {
     Navigation(this.pathStack) {
         ...
     }.width('100%').height('100%')
+    .title("Navigation")
   }
-  .title("Navigation")
 }
 
 

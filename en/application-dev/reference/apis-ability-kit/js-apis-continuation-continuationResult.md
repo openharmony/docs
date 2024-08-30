@@ -13,8 +13,8 @@ Describes the device information returned by the continuation management entry a
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
-| Name| Type| Read Only| Mandatory| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| id | string | No| Yes| Device ID.|
-| type | string | No| Yes| Device type.|
-| name | string | No| Yes| Device name.|
+| id | string | No| No| Device ID.|
+| type | string | No| No| Device type.|
+| name | string | No| No| Device name.|

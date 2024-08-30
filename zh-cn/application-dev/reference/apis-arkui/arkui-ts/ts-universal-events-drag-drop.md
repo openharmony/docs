@@ -180,7 +180,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
-| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使能并使用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义动效。<br/>当不配置或设置为false时，系统默认落位动效生效，此情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
+| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使能并使用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义落位动效。<br/>当不配置或设置为false时，系统默认落位动效生效，当松手位置的控件可接收拖拽的数据时，落位为缩小消失动效，若不可接收数据，则为放大消失动效。<br/>当未禁用系统默认落位动效情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
 |dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
 
 ### 方法
@@ -422,11 +422,7 @@ struct Index {
               this.imageHeight = Number(rect.height);
               this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
               event.useCustomDropAnimation = false;
-              animateTo({ duration: 1000 }, () => {
-                this.imageWidth = 100;
-                this.imageHeight = 100;
-                this.imgState = Visibility.None;
-              })
+              this.imgState = Visibility.None;
               // 显式设置result为successful，则将该值传递给拖出方的onDragEnd
               event.setResult(DragResult.DRAG_SUCCESSFUL);
             })

@@ -3701,6 +3701,10 @@ scrollBy(deltaX:number, deltaY:number): void
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
+> **说明：**
+>
+> 嵌套滚动场景中，调用scrollBy不会触发父组件的嵌套滚动。
+
 **示例：**
 
 ```ts
@@ -3751,7 +3755,93 @@ Scroll Test
 </body>
 </html>
 ```
+### scrollByWithResult<sup>12+</sup>
 
+scrollByWithResult(deltaX:number, deltaY:number): boolean
+
+将页面滚动指定的偏移量，返回值表示此次滚动是否执行成功。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明               |
+| ------ | -------- | ---- | ---------------------- |
+| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
+| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| boolean | 当前网页是否可以滑动，默认为false。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+> **说明：**
+>
+> - 返回值场景：Web页面处于触摸中状态时，返回false，否则返回true。
+> - 同层渲染场景中，Web的同层渲染区域处于触摸中状态时，返回值为true。
+> - 嵌套滚动场景中，调用scrollByWithResult不会触发父组件的嵌套滚动。
+> - 此接口不保证滑动帧率性能。
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('scrollByWithResult')
+        .onClick(() => {
+          try {
+          let result = this.controller.scrollByWithResult(50, 50);
+          console.log("original result: " + result);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+    }
+  }
+}
+```
+
+加载的html文件。
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        body {
+            width:2000px;
+            height:2000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+        }
+    </style>
+</head>
+<body>
+Scroll Test
+</body>
+</html>
+```
 ### slideScroll
 
 slideScroll(vx:number, vy:number): void
@@ -5997,7 +6087,7 @@ terminateRenderProcess(): boolean
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 |
+| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。如果渲染进程已被销毁则直接返回true。 |
 
 **错误码：**
 
@@ -6258,7 +6348,7 @@ struct WebComponent {
 
 ### setScrollable<sup>12+</sup>
 
-setScrollable(enable: boolean): void
+setScrollable(enable: boolean, type?: ScrollType): void
 
 设置网页是否允许滚动。
 
@@ -6269,6 +6359,7 @@ setScrollable(enable: boolean): void
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
 | enable     | boolean   | 是   | 表示是否将网页设置为允许滚动，true表示设置为允许滚动，false表示禁止滚动。 |
+| type       | [ScrollType](#scrolltype12) |  否 | 网页可触发的滚动类型，支持缺省配置。<br/> - enable为false时，表示禁止ScrollType类型的滚动，当ScrollType缺省时表示禁止所有类型网页滚动。<br/> - enable为true时，ScrollType缺省与否，都表示允许所有类型的网页滚动。|
 
 **错误码：**
 
@@ -15846,3 +15937,13 @@ struct WebComponent {
 | status | boolean | 否 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 全量绘制结果image.pixelMap格式。|
+
+## ScrollType<sup>12+</sup>
+
+Scroll滚动类型，用于[setScrollable](#setscrollable12)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 值 | 说明                              |
+| ------------ | -- |--------------------------------- |
+| EVENT  | 0 | 滚动事件，表示通过触摸屏，触摸板，鼠标滚轮生成的网页滚动。|

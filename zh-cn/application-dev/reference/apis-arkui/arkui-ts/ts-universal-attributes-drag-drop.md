@@ -153,7 +153,7 @@ struct ImageExample {
       .margin({ bottom: 20 })
       Row() {
         Column(){
-          Text('不允许释放区域(显示不允许角标但可以释放)')
+          Text('不允许释放区域')
             .fontSize('15dp')
             .height('10%')
           List(){

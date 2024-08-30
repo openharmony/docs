@@ -36,7 +36,7 @@ The following table describes the APIs for managing ArkTS arrays.
 
 ## Example
 
-If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following only demonstrates the C++ and ArkTS code for array management APIs. The **napi_create_typedarray** API is different. For details, see the example.
+If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code for array management. The **napi_create_typedarray** API is different. For details, see the example.
 
 ### napi_create_array
 

@@ -371,6 +371,10 @@ passwordIcon(value: PasswordIcon)
 
 设置当密码输入模式时，输入框末尾的图标。
 
+支持jpg、png、bmp、heic和webp类型的图片格式。
+
+该图标的固定尺寸为24vp，若引用的图标过大或过小，均显示为固定尺寸。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -829,6 +833,8 @@ enablePreviewText(enable: boolean)
 
 设置是否开启输入预上屏。
 
+预上屏内容定义为文字暂存态，目前不支持文字拦截功能，因此不触发onWillInsert、onDidInsert、onWillDelete、onDidDelete回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -897,7 +903,7 @@ enablePreviewText(enable: boolean)
 | 名称      | 描述                                       |
 | ------- | ---------------------------------------- |
 | Default | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。      |
-| Inline  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。 |
+| Inline  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。<br/>内联模式下，不支持拖入文本。 |
 
 ## PasswordIcon<sup>10+</sup>对象说明
 
@@ -1378,12 +1384,15 @@ struct TextInputExample {
         .onChange((value: string) => {
           this.Text = value
         })
-        .onSubmit(() => { // 用户名不正确会清空输入框和用户名并提示错误文本
+        .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
+          // 用户名不正确会清空输入框和用户名并提示错误文本
           if (this.Text == this.NameText) {
             this.TextError = ''
           } else {
             this.TextError = '用户名输入错误'
             this.Text = ''
+            // 调用keepEditableState方法，输入框保持编辑态
+            event.keepEditableState()
           }
         })
 

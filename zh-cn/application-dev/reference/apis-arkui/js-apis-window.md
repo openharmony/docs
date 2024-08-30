@@ -356,6 +356,7 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
@@ -422,6 +423,7 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
@@ -5701,7 +5703,6 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-<!--Del-->
 ### getWindowStatus<sup>12+</sup>
 
 getWindowStatus(): WindowStatusType
@@ -5830,7 +5831,6 @@ try {
   console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
-<!--DelEnd-->
 
 ### enableLandscapeMultiWindow<sup>12+</sup>
 

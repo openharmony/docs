@@ -36,8 +36,8 @@ Matrix2D(unit?: LengthMetricsUnit)
 | [scaleY](#scaley)         | number | 否 | 是 | 垂直缩放系数。           |
 | [rotateX](#rotatex)       | number | 否 | 是 | 水平倾斜系数。           |
 | [rotateY](#rotatey)       | number | 否 | 是 | 垂直倾斜系数。           |
-| [translateX](#translatex) | number | 否 | 是 | 水平平移距离。<br>默认单位为vp。 |
-| [translateY](#translatey) | number | 否 | 是 | 垂直平移距离。<br>默认单位为vp。 |
+| [translateX](#translatex) | number | 否 | 是 | 水平平移距离。<br>默认单位：vp。 |
+| [translateY](#translatey) | number | 否 | 是 | 垂直平移距离。<br>默认单位：vp。 |
 
 >  **说明：**
 >  
@@ -451,8 +451,8 @@ rotate(rx?: number, ry?: number): Matrix2D
 
 | 参数名 | 类型   | 必填 | 说明                          |
 | ---- | ------ | ---- | -------------------------------- |
-| rx   | number | 否   | 旋转点的水平方向坐标。<br>默认单位为vp。<br>默认值：0。 |
-| ry   | number | 否   | 旋转点的垂直方向坐标。<br>默认单位为vp。<br>默认值：0。 |
+| rx   | number | 否   | 旋转点的水平方向坐标。<br>默认单位：vp。 |
+| ry   | number | 否   | 旋转点的垂直方向坐标。<br>默认单位：vp。 |
 
 **返回值：**
 
@@ -517,9 +517,9 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| degree | number | 是  | 旋转角度，单位为弧度。顺时针方向为正角度，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。<br>默认值：0。|
-| rx     | number | 否  | 旋转点的水平方向坐标。<br>默认单位为vp。<br>默认值：0。    |
-| ry     | number | 否  | 旋转点的垂直方向坐标。<br>默认单位为vp。<br>默认值：0。    |
+| degree | number | 是  | 旋转角度。顺时针方向为正角度，可以通过 degree * Math.PI / 180 将角度转换为弧度值。<br>默认单位：弧度。|
+| rx     | number | 否  | 旋转点的水平方向坐标。<br>默认单位：vp。<br>默认值：0。    |
+| ry     | number | 否  | 旋转点的垂直方向坐标。<br>默认单位：vp。<br>默认值：0。    |
 
 **返回值：**
 
@@ -584,8 +584,8 @@ translate(tx?: number, ty?: number): Matrix2D
 
 | 参数名 | 类型   | 必填 | 说明                  |
 | ---- | ------ | ---- | ---------------------------- |
-| tx   | number | 否   | 水平方向平移距离。<br>默认单位为vp。<br>默认值：0。 |
-| ty   | number | 否   | 垂直方向平移距离。<br>默认单位为vp。<br>默认值：0。 |
+| tx   | number | 否   | 水平方向平移距离。<br>默认单位：vp。<br>默认值：0。 |
+| ty   | number | 否   | 垂直方向平移距离。<br>默认单位：vp。<br>默认值：0。 |
 
 **返回值：**
 
@@ -650,8 +650,8 @@ scale(sx?: number, sy?: number): Matrix2D
 
 | 参数 | 类型   | 必填 | 描述               |
 | ---- | ------ | ---- | ------------------ |
-| sx   | number | 否   | 水平缩放比例系数。<br>默认值：1。 |
-| sy   | number | 否   | 垂直缩放比例系数。<br>默认值：1。 |
+| sx   | number | 否   | 水平缩放比例系数。<br>默认值：1.0。 |
+| sy   | number | 否   | 垂直缩放比例系数。<br>默认值：1.0。 |
 
 **返回值：**
 

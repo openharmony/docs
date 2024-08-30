@@ -18,6 +18,7 @@
         - [动态import](quick-start/arkts-dynamic-import.md)
         - [延迟加载（lazy import）](quick-start/arkts-lazy-import.md)
         - [HAR转HSP指导](quick-start/har-to-hsp.md)
+        - [HSP转HAP指导](quick-start/hsp-to-har.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
     - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
@@ -100,6 +101,7 @@
           - [自定义组件冻结功能](quick-start/arkts-custom-components-freezeV2.md)
           - [Repeat：子组件复用](quick-start/arkts-new-rendering-control-repeat.md)
           - [getTarget接口：获取状态管理框架代理前的原始对象](quick-start/arkts-new-getTarget.md)
+          - [makeObserved接口：将非观察数据变为可观察数据](quick-start/arkts-new-makeObserved.md)
     - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
       - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
@@ -247,9 +249,6 @@
           - [Storage接口切换](application-models/storage-switch.md)   
       <!--DelEnd-->
       - [Native子进程开发指导（C/C++）](application-models/capi_nativechildprocess_development_guideline.md) 
-    - Accessibility Kit（无障碍开发服务）<!--accessibility-kit-->
-      - [Accessibility Kit简介](accessibility/accessibilityKit.md)
-      - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
     - ArkData（方舟数据管理）<!--arkdata-->
       - [ArkData简介](database/data-mgmt-overview.md)
       - 标准化数据定义<!--uniform-data-definition-->
@@ -1010,9 +1009,9 @@
           <!--DelEnd-->
           - 应用账号<!--application-account-->
             - [管理应用账号](basic-services/account/manage-application-account.md)
-          - USB服务<!--usb-->
-            - [USB服务开发概述](basic-services/usb/usb-overview.md)
-            - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
+        - USB服务<!--usb-->
+          - [USB服务开发概述](basic-services/usb/usb-overview.md)
+          - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
         <!--Del-->
         - 升级服务<!--update-->
           - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
@@ -1138,6 +1137,7 @@
         - [扫描工具](tools/app-check-tool.md)
         - [cem工具](tools/cem-tool.md)
         - [anm工具](tools/anm-tool.md)
+        - [edm工具](tools/edm-tool.md)
         - [restool工具](tools/restool.md)
         <!--Del-->
         - [LLDB工具](tools/lldb-tool.md)
@@ -1729,19 +1729,6 @@
         - [包管理子系统通用错误码](reference/apis-ability-kit/errorcode-bundle.md)
         - [访问控制错误码](reference/apis-ability-kit/errorcode-access-token.md)
         - [锁屏敏感数据管理错误码](reference/apis-ability-kit/errorcode-screenLockFileManager.md)
-    - Accessibility Kit（无障碍开发服务）<!--accessibility-api-->
-      - ArkTS API<!--accessibility-arkts-->
-        - [@ohos.accessibility (辅助功能)](reference/apis-accessibility-kit/js-apis-accessibility.md)
-        - [@ohos.accessibility.GesturePath (手势路径)](reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md)
-        - [@ohos.accessibility.GesturePoint (手势触摸点)](reference/apis-accessibility-kit/js-apis-accessibility-GesturePoint.md)
-        - [@ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)](reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)
-        - [AccessibilityExtensionContext (辅助功能扩展上下文)](reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md)
-        <!--Del-->
-        - [@ohos.accessibility.config (系统辅助功能配置)(系统接口)](reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md)
-        - [AccessibilityExtensionContext (辅助功能扩展上下文)(系统接口)](reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext-sys.md)
-        <!--DelEnd-->
-      - 错误码<!--accessibility-arkts-errcode-->
-        - [无障碍子系统错误码](reference/apis-accessibility-kit/errorcode-accessibility.md)
     - ArkData（方舟数据管理）<!--arkdata-api-->
       - ArkTS API<!--arkdata-arkts-->
         - [@ohos.data.commonType (数据通用类型)](reference/apis-arkdata/js-apis-data-commonType.md)
@@ -2185,7 +2172,7 @@
           - [日期滑动选择器弹窗 (DatePickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-datepicker-dialog.md)
           - [时间滑动选择器弹窗 (TimePickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-timepicker-dialog.md)
           - [文本滑动选择器弹窗 (TextPickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md)
-          - [Dialog (弹出框)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)
+          - [弹出框 (Dialog)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)
         - 卡片
           - [FormLink](reference/apis-arkui/arkui-ts/ts-container-formlink.md)
           - [FormMenu](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md)
@@ -2788,7 +2775,7 @@
           - [@ohos.userIAM.userAuthIcon (嵌入式用户身份认证控件)](reference/apis-user-authentication-kit/ohos-useriam-userauthicon.md)
         - 错误码<!--user-authentication-arkts-errcode-->
           - [用户认证错误码](reference/apis-user-authentication-kit/errorcode-useriam.md)
-      - 网络<!--system-network-api-->
+    - 网络<!--system-network-api-->
       - Connectivity Kit（短距通信服务）<!--connectivity-api-->
         - ArkTS API<!--connectivity-arkts--> 
           - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md)
@@ -2898,7 +2885,11 @@
             - [NetConn_NetHandle](reference/apis-network-kit/_net_conn___net_handle.md)
             - [NetConn_NetHandleList](reference/apis-network-kit/_net_conn___net_handle_list.md)
             - [NetConn_Route](reference/apis-network-kit/_net_conn___route.md)
+            - [NetConn_NetConnCallback](reference/apis-network-kit/_net_conn___net_conn_callback.md)
+            - [NetConn_NetSpecifier](reference/apis-network-kit/_net_conn___net_specifier.md)
             - [NetStack_CertBlob](reference/apis-network-kit/_net_stack___cert_blob.md)
+            - [NetStack_CertificatePinning](reference/apis-network-kit/_net_stack___certificate_pinning.md)
+            - [NetStack_Certificates](reference/apis-network-kit/_net_stack___certificates.md)
             - [WebSocket](reference/apis-network-kit/_web_socket.md)
             - [WebSocket_CloseOption](reference/apis-network-kit/_web_socket___close_option.md)
             - [WebSocket_CloseResult](reference/apis-network-kit/_web_socket___close_result.md)

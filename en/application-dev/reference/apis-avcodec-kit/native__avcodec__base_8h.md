@@ -93,7 +93,6 @@ The **native_avcodec_base.h** file declares the native APIs used for basic audio
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](_codec_base.md#oh_avcodec_mimetype_audio_amr_wb) | Pointer to the key that describes the MIME type of the AMR-WB audio decoder.| 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](_codec_base.md#oh_avcodec_mimetype_audio_opus) | Pointer to the key that describes the MIME type of Opus audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->  | 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](_codec_base.md#oh_avcodec_mimetype_audio_g711mu) | Pointer to the key that describes the MIME type of G.711 mu-law audio codec.| 
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](_codec_base.md#oh_avcodec_mimetype_audio_lbvc) |Pointer to the key that describes the MIME type of the low-bitrate audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd--> |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](_codec_base.md#oh_avcodec_mimetype_audio_ape) |Pointer to the key that describes the MIME type of the APE audio decoder.                        |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](_codec_base.md#oh_avcodec_mimetype_subtitle_srt) |Pointer to the key that describes the MIME type of the SRT subtitle demuxer.                        |
 | const char \* [OH_ED_KEY_TIME_STAMP](_codec_base.md#oh_ed_key_time_stamp) | Pointer to the key that describes the surface buffer timestamp. The value is of the int64 type. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
