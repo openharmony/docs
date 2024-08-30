@@ -39,10 +39,12 @@
 
 ### 函数
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_RegisterCallback](_o_h___camera.md#oh_videooutput_registercallback) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | 注册录像输出更改事件回调。  | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_UnregisterCallback](_o_h___camera.md#oh_videooutput_unregistercallback) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | 注销录像输出更改事件回调。  | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_Start](_o_h___camera.md#oh_videooutput_start) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput) | 开始录像输出。  | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_Stop](_o_h___camera.md#oh_videooutput_stop) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput) | 停止录像输出。  | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_Release](_o_h___camera.md#oh_videooutput_release) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput) | 释放录像输出。  | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_RegisterCallback](_o_h___camera.md#oh_videooutput_registercallback) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | 注册录像输出更改事件回调。  |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_UnregisterCallback](_o_h___camera.md#oh_videooutput_unregistercallback) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput, [VideoOutput_Callbacks](_video_output___callbacks.md) \*callback) | 注销录像输出更改事件回调。  |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_Start](_o_h___camera.md#oh_videooutput_start) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput) | 开始录像输出。  |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_Stop](_o_h___camera.md#oh_videooutput_stop) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput) | 停止录像输出。  |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_Release](_o_h___camera.md#oh_videooutput_release) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput) \*videoOutput) | 释放录像输出。  |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_GetActiveProfile](_o_h___camera.md#oh_videooutput_getactiveprofile) ([Camera_VideoOutput](_o_h___camera.md#camera_videooutput)\* videoOutput, [Camera_VideoProfile](_o_h___camera.md#camera_videoprofile)\*\* profile) | 获取录像输出当前的profile。 |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_VideoOutput_DeleteProfile](_o_h___camera.md#oh_videooutput_deleteprofile) ([Camera_VideoProfile](_o_h___camera.md#camera_videoprofile)\* profile) | 删除获取到的profile。 |

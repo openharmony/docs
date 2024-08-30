@@ -39,10 +39,12 @@
 
 ### 函数
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_RegisterCallback](_o_h___camera.md#oh_previewoutput_registercallback) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | 注册预览输出更改事件回调。  | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_UnregisterCallback](_o_h___camera.md#oh_previewoutput_unregistercallback) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | 注销预览输出更改事件回调。  | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_Start](_o_h___camera.md#oh_previewoutput_start) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput) | 开始预览输出。  | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_Stop](_o_h___camera.md#oh_previewoutput_stop) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput) | 停止预览输出。  | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_Release](_o_h___camera.md#oh_previewoutput_release) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput) | 释放预览输出。  | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_RegisterCallback](_o_h___camera.md#oh_previewoutput_registercallback) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | 注册预览输出更改事件回调。  |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_UnregisterCallback](_o_h___camera.md#oh_previewoutput_unregistercallback) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput, [PreviewOutput_Callbacks](_preview_output___callbacks.md) \*callback) | 注销预览输出更改事件回调。  |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_Start](_o_h___camera.md#oh_previewoutput_start) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput) | 开始预览输出。  |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_Stop](_o_h___camera.md#oh_previewoutput_stop) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput) | 停止预览输出。  |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_Release](_o_h___camera.md#oh_previewoutput_release) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput) \*previewOutput) | 释放预览输出。  |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_GetActiveProfile](_o_h___camera.md#oh_previewoutput_getactiveprofile) ([Camera_PreviewOutput](_o_h___camera.md#camera_previewoutput)\* previewOutput, [Camera_Profile](_o_h___camera.md#camera_profile)\*\* profile) | 获取预览输出当前的profile。 |
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_PreviewOutput_DeleteProfile](_o_h___camera.md#oh_previewoutput_deleteprofile) ([Camera_Profile](_o_h___camera.md#camera_profile)* profile) | 删除获取到的profile。 |
