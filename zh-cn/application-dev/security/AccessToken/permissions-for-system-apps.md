@@ -3791,7 +3791,7 @@
 
 **ACL使能**：true
 
-**起始版本**：12
+**起始版本**：13
 
 ### ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
 
