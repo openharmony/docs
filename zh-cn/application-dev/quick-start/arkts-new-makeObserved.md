@@ -1,65 +1,65 @@
-# makeObserved API: Changing Unobservable Data to Observable Data
+# makeObserved接口：将非观察数据变为可观察数据
 
-To change the unobservable data to observable data, you can use the [makeObserved](../reference/apis-arkui/js-apis-StateManagement.md#makeobserved12) API.
+为了将普通不可观察数据变为可观察数据，开发者可以使用[makeObserved接口](../reference/apis-arkui/js-apis-StateManagement.md#makeobserved12)。
 
->**NOTE**
+>**说明：**
 >
->The **makeObserved** API in UIUtils is supported since API version 12.
+>从API version 12开始，开发者可以使用UIUtils中的makeObserved接口将普通不可观察数据变为可观察数据。
 
-## Overview
+## 概述
 
-- The state management framework provides [@ObservedV2 and @Trace](./arkts-new-observedV2-and-trace.md) decorators to observe class property changes. The **makeObserved** API is mainly used in scenarios where @ObservedV2 or @Trace cannot be used. For example:
+- 状态管理框架已提供[@ObservedV2/@Trace](./arkts-new-observedV2-and-trace.md)用于观察类属性变化，makeObserved接口提供主要应用于@ObservedV2/@Trace无法涵盖的场景：
 
-  - Object in a third-party package defined by class is unobservable. You cannot manually add the @Trace tag to the attributes to be observed in the class, so **makeObserved** can be used to make this object observable.
+  - class的定义在三方包中：开发者无法手动对class中需要观察的属性加上@Trace标签，可以使用makeObserved使得当前对象可以被观察。
 
-  - The member property of the current class cannot be modified. This is because @Trace will dynamically modifie the class property when it observes. But this behavior is not allowed in the @Sendable decorated class, therefore, you can use **makeObserved** instead.
+  - 当前类的成员属性不能被修改：因为@Trace观察类属性会动态修改类的属性，这个行为在@Sendable装饰的class中是不被允许的，可以使用makeObserved。
 
-  - Anonymous object returned by API or JSON.parse does not have a class declaration. In this scenario, you cannot use @Trace to mark that the current attribute, therefore, **makeObserved** can be used instead.
+  - interface或者JSON.parse返回的匿名对象：这类场景往往没有明确的class声明，开发者无法使用@Trace标记当前属性可以被观察，可以使用makeObserved。
 
 
-- To use the **makeObserved** API, you need to import UIUtils.
+- 使用makeObserved接口需要导入UIUtils。
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   ```
 
-## Constraints
+## 限制条件
 
-- Only the parameters of the object type can be passed by **makeObserved**.
+- makeObserved仅支持对象类型传参。
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
-  let res = UIUtils.makeObserved(2); // Incorrect usage. The input parameter is of the non-object type.
+  let res = UIUtils.makeObserved(2); // 非对象类型入参，错误用法
   class Info {
     id: number = 0;
   }
-  let rawInfo: Info = UIUtils.makeObserved(new Info()); // Correct usage.
+  let rawInfo: Info = UIUtils.makeObserved(new Info()); // 正确用法
   ```
 
-- Instances of classes decorated by [@ObservedV2](./arkts-new-observedV2-and-trace.md) and [@Observed](./arkts-observed-and-objectlink.md) and proxy data that has been encapsulated by **makeObserved** cannot be passed in and are directly returned without processing to prevent dual proxies.
+- makeObserved不支持传入被[@ObservedV2](./arkts-new-observedV2-and-trace.md)、[@Observed](./arkts-observed-and-objectlink.md)装饰的类的实例以及已经被makeObserved封装过的代理数据。为了防止双重代理，makeObserved发现入参为上述情况时则直接返回，不做处理。
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   @ObservedV2
   class Info {
     @Trace id: number = 0;
   }
-  // Incorrect usage: If makeObserved finds that the input instance is an instance of a class decorated by @ObservedV2, makeObserved returns the input object itself.
+  // 错误用法：makeObserved发现传入的实例是@ObservedV2装饰的类的实例，则返回传入对象自身
   let observedInfo: Info = UIUtils.makeObserved(new Info());
 
   class Info2 {
     id: number = 0;
   }
-  // Correct usage. The input object is neither an instance of the class decorated by @ObservedV2 or @Observed nor the proxy data encapsulated by makeObserved.
-  // Return observable data.
+  // 正确用法：传入对象既不是@ObservedV2/@Observed装饰的类的实例，也不是makeObserved封装过的代理数据
+  // 返回可观察数据
   let observedInfo1: Info2 = UIUtils.makeObserved(new Info2());
-  // Incorrect usage. The input object is the proxy data encapsulated by makeObserved, which is not processed this time.
+  // 错误用法：传入对象为makeObserved封装过的代理数据，此次makeObserved不做处理
   let observedInfo2: Info2 = UIUtils.makeObserved(observedInfo1);
   ```
-- **makeObserved** can be used in custom components decorated by @Component, but cannot be used together with the state variable decorator in state management V1. If they are used together, a runtime exception is thrown.
+- makeObserved可以用在@Component装饰的自定义组件中，但不能和状态管理V1的状态变量装饰器连用，如果连用，则会抛出运行时异常。
   ```ts
-  // Incorrect usage. An exception occurs during running.
+  // 错误写法，运行时异常
   @State message: Info = UIUtils.makeObserved(new Info(20));
   ```
-  The following **message2** does not throw an exception because **this.message** is decorated by @State and its implementation is the same as @Observed, while the input parameter of **UIUtils.makeObserved** is the @Observed decorated class, which is returned directly. Therefore, the initial value of **message2** is not the return value of **makeObserved**, but a variable decorated by @State.
+  下面`message2`的写法不会抛异常，原因是this.message是@State装饰的，其实现等同于@Observed，而UIUtils.makeObserved的入参是@Observed装饰的class，会直接返回自身。因此对于`message2`来说，他的初始值不是makeObserved的返回值，而是@State装饰的变量。
   ```ts
   import { UIUtils } from '@kit.ArkUI';
   class Person {
@@ -73,24 +73,24 @@ To change the unobservable data to observable data, you can use the [makeObserve
   @Component
   struct Index {
     @State message: Info = new Info();
-    @State message2: Info = UIUtils.makeObserved(this.message); // An exception does not throw.
+    @State message2: Info = UIUtils.makeObserved(this.message); // 不会抛异常
     build() {
       Column() {
         Text(`${this.message2.person.age}`)
           .onClick(() => {
-            // The UI is not re-rendered because only the changes at the first layer can be observed by the @State.
+            // UI不会刷新，因为State只能观察到第一层的变化
             this.message2.person.age++;
           })
       }
     }
   }
   ```
-### makeObserved Is Used Only for Input Parameters and Return Value Still Has Observation Capability
+### makeObserved仅对入参生效，不会改变接受返回值的观察能力
 
- - **message** is decorated by @Local and has the capability of observing its own value changes. Its initial value is the return value of **makeObserved**, which supports in-depth observation.
- - Click **change id** to re-render the UI.
- - Click **change Info** to set **this.message** to unobservable data. Click **change id** again, UI cannot be re-rendered.
- - Click **change Info1** to set **this.message** to observable data. Click **change id** again, UI can be re-rendered.
+ - `message`被@Local装饰，本身具有观察自身赋值的能力。其初始值为makeObserved的返回值，具有深度观察能力。
+ - 点击`change id`可以触发UI刷新。
+ - 点击`change Info`将`this.message`重新赋值为不可观察数据后，再次点击`change id`无法触发UI刷新。
+ - 再次点击`change Info1`将`this.message`重新赋值为可观察数据后，点击`change id`可以触发UI刷新。
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
@@ -120,41 +120,41 @@ To change the unobservable data to observable data, you can use the [makeObserve
   }
   ```
 
-## Supported Types and Observed Changes
+## 支持类型和观察变化
 
-### Supported Types
+### 支持类型
 
-- Classes that are not decorated by @Observed or @ObserveV2.
-- Array, Map, Set, and Date types.
-- collections.Array, collections.Set, and collections.Map.
-- Object returned by JSON.parse.
-- @Sendable decorated class.
+- 支持未被@Observed或@ObserveV2装饰的类。
+- 支持Array、Map、Set和Date。
+- 支持collections.Array, collections.Set和collections.Map。
+- JSON.parse返回的Object。
+- @Sendable装饰的类。
 
-### Observed Changes
+### 观察变化
 
-- When an instance of the built-in type or collections type is passed by **makeObserved**, you can observe the changes.
+- makeObserved传入内置类型或collections类型的实例时，可以观测其API带来的变化：
 
-  | Type | APIs that Can Observe Changes                                             |
+  | 类型  | 可观测变化的API                                              |
   | ----- | ------------------------------------------------------------ |
-  | Array | push, pop, shift, unshift, splice, copyWithin, fill, reverse, sort|
-  | collections.Array | push, pop, shift, unshift, splice, fill, reverse, sort, shrinkTo, extendTo|
-  | Map/collections.Map   | set, clear, delete                                |
-  | Set/collections.Set   | add, clear, delete                                |
-  | Date  | setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, setUTCMilliseconds|
+  | Array | push、pop、shift、unshift、splice、copyWithin、fill、reverse、sort |
+  | collections.Array | push、pop、shift、unshift、splice、fill、reverse、sort、shrinkTo、extendTo |
+  | Map/collections.Map   | set、clear、delete                                 |
+  | Set/collections.Set   | add、clear、delete                                 |
+  | Date  | setFullYear、setMonth、setDate、setHours、setMinutes、setSeconds、setMilliseconds、setTime、setUTCFullYear、setUTCMonth、setUTCDate、setUTCHours、setUTCMinutes、setUTCSeconds、setUTCMilliseconds |
 
-## Use Scenarios
+## 使用场景
 
-### Using makeObserved Together with @Sendable Decorated Classes
+### makeObserved和@Sendable装饰的class连用
 
-[@Sendable](../arkts-utils/arkts-sendable.md) is used to process concurrent tasks in application scenarios. The **makeObserved** and @Sendable are used together to meet the requirements of big data processing in the sub-thread and **ViewModel** display and data observation in the UI thread in common application development. For details about @Sendable, see [Multithreaded Concurrency Overview (TaskPool and Worker)](../arkts-utils/multi-thread-concurrency-overview.md).
+[@Sendable](../arkts-utils/arkts-sendable.md)主要是为了处理应用场景中的并发任务。将makeObserved和@Sendable连用是为了满足一般应用开发中，在子线程做大数据处理，在UI线程做ViewModel的显示和观察数据的需求。@Sendable具体内容可参考[并发任务文档](../arkts-utils/multi-thread-concurrency-overview.md)。
 
-This section describes the following scenarios:
-- **makeObserved** has the observation capability after data of the @Sendable type is passed in, and the change of the data can trigger UI re-rendering.
-- Obtain an entire data from the subthread and replace the entire observable data of the UI thread.
-- Re-execute **makeObserved** from the data obtained from the subthread to change the data to observable data.
-- When data is passed from the main thread to a subthread, only unobservable data is passed. The return value of **makeObserved** cannot be directly passed to a subthread.
+本章节将说明下面的场景：
+- makeObserved在传入@Sendable类型的数据后有观察能力，且其变化可以触发UI刷新。
+- 从子线程中获取一个整体数据，然后对UI线程的可观察数据做整体替换。
+- 从子线程获取的数据重新执行makeObserved，将数据变为可观察数据。
+- 将数据从主线程传递回子线程时，仅传递不可观察的数据。makeObserved的返回值不可直接传给子线程。
 
-Example:
+例子如下：
 
 ```ts
 // SendableData.ets
@@ -177,7 +177,7 @@ import { UIUtils } from '@kit.ArkUI';
 
 @Concurrent
 function threadGetData(param: string): SendableData {
-  // Process data in the subthread.
+  // 在子线程处理数据
   let ret = new SendableData();
   console.info(`Concurrent threadGetData, param ${param}`);
   ret.name = param + "-o";
@@ -189,20 +189,20 @@ function threadGetData(param: string): SendableData {
 @Entry
 @ComponentV2
 struct ObservedSendableTest {
-  // Use makeObserved to add the observation capability to a common object or a @Sendable decorated object.
+  // 通过makeObserved给普通对象或是Sendable对象添加可观察能力
   @Local send: SendableData = UIUtils.makeObserved(new SendableData());
   build() {
     Column() {
       Text(this.send.name)
       Button("change name").onClick(() => {
-        // Change of the attribute can be observed.
+        // ok 可以观察到属性的改变
         this.send.name += "0";
       })
 
       Button("task").onClick(() => {
-        // Places a function to be executed in the internal queue of the task pool. The function will be distributed to the worker thread for execution.
+        // 将待执行的函数放入taskpool内部任务队列等待，等待分发到工作线程执行。
         taskpool.execute(threadGetData, this.send.name).then(val => {
-          // Used together with @Local to observe the change of this.send.
+          // 和@Local一起使用，可以观察this.send的变化
           this.send = UIUtils.makeObserved(val as SendableData);
         })
       })
@@ -210,17 +210,17 @@ struct ObservedSendableTest {
   }
 }
 ```
-**NOTE**<br>Data can be constructed and processed in subthreads. However, observable data can be processded only in the main thread. Therefore, in the preceding example, only the **name** attribute of **this.send** is passed to the subthread.
+需要注意：数据的构建和处理可以在子线程中完成，但有观察能力的数据不能传给子线程，只有在主线程里才可以操作可观察的数据。所以上述例子中只是将`this.send`的属性`name`传给子线程操作。
 
-### Using makeObserved Together with collections.Array/Set/Map
-**collections** provide ArkTS container sets for high-performance data passing in concurrent scenarios. For details, see [@arkts.collections (ArkTS Collections)](../reference/apis-arkts/js-apis-arkts-collections.md).
+### makeObserved和collections.Array/Set/Map连用
+collections提供ArkTS容器集，可用于并发场景下的高性能数据传递。详情见[@arkts.collections文档](../reference/apis-arkts/js-apis-arkts-collections.md)。
 
 #### collections.Array
-The following APIs can trigger UI re-rendering:
-- Changing the array length: push, pop, shift, unshift, splice, shrinkTo and extendTo
-- Changing the array items: sort and fill.
+collections.Array可以触发UI刷新的API有：
+- 改变数组长度：push、pop、shift、unshift、splice、shrinkTo、extendTo
+- 改变数组项本身：sort、fill
 
-Other APIs do not change the original array. Therefore, the UI re-rendering is not triggered.
+其他API不会改变原始数组，所以不会触发UI刷新。
 
 ```ts
 import { collections } from '@kit.ArkTS';
@@ -246,9 +246,9 @@ struct Index {
 
   build() {
     Column() {
-      // The ForEach API supports only Array<any>. collections.Array<any> is not supported.
-      // However, the array APIs used for ForEach implementation are provided in collections.Array. Therefore, you can assert an Array type using the as keyword.
-      // The assertion does not change the original data type.
+      // ForEach接口仅支持Array<any>，不支持collections.Array<any>。
+      // 但ForEach的实现用到的Array的API，collections.Array都有提供。所以可以使用as类型断言Array。
+      // 需要注意断言并不会改变原本的数据类型。
       ForEach(this.arrCollect as object as Array<Info>, (item: Info) => {
         Text(`${item.id}`).onClick(() => {
           item.id++;
@@ -263,10 +263,10 @@ struct Index {
       Divider()
         .color('blue')
 
-      /****************************APIs for Changing the Data Length**************************/
+      /****************************改变数据长度的api**************************/
       Scroll(this.scroller) {
         Column({space: 10}) {
-          // push
+          // push 操作
           Button('push').onClick(() => {
             this.arrCollect.push(new Info(30));
           })
@@ -299,8 +299,8 @@ struct Index {
           Divider()
             .color('blue')
 
-          /****************************APIs for Changing the Array Item**************************/
-          // sort: arranging the Array item in descending order.
+          /****************************************改变数组item本身*****************/
+          // sort：从大到小排序
           Button('sort').onClick(() => {
             this.arrCollect.sort((a: Info, b: Info) => b.id - a.id);
           })
@@ -309,25 +309,25 @@ struct Index {
             this.arrCollect.fill(new Info(5), 0, 2);
           })
 
-          /****************************APIs for Not Changing the Array Item**************************/
-          // slice: returns a new array. The original array is copied using Array.slice(start,end), which does not change the original array. Therefore, directly invoking slice does not trigger UI re-rendering.
-          // You can construct a case to assign the return data of the shallow copy to this.arrCollect. Note that makeObserved must be called here. Otherwise, the observation capability will be lost after this.arr is assigned a value by a common variable.
+          /*****************************不会改变数组本身API***************************/
+          // slice：返回新的数组，根据start end对原数组的拷贝，不会改变原数组，所以直接调用slice不会触发UI刷新
+          // 可以构建用例为返回的浅拷贝的数据赋值给this.arrCollect,需要注意这里依然要调用makeObserved，否则this.arr被普通变量赋值后，会丧失观察能力
           Button('slice').onClick(() => {
             this.arrCollect = UIUtils.makeObserved(this.arrCollect.slice(0, 1));
           })
-          // map: The principle is the same as above.
+          // map：原理同上
           Button('map').onClick(() => {
             this.arrCollect = UIUtils.makeObserved(this.arrCollect.map((value) => {
               value.id += 10;
               return value;
             }))
           })
-          // filter: The principle is the same as above.
+          // filter：原理同上
           Button('filter').onClick(() => {
             this.arrCollect = UIUtils.makeObserved(this.arrCollect.filter((value: Info) => value.id % 2 === 0));
           })
 
-          // concat: The principle is the same as above.
+          // concat：原理同上
           Button('concat').onClick(() => {
             let array1 = new collections.Array(new Info(100))
             this.arrCollect = UIUtils.makeObserved(this.arrCollect.concat(array1));
@@ -342,7 +342,7 @@ struct Index {
 ```
 #### collections.Map
 
-The following APIs can trigger UI re-rendering: set, clear, and delete.
+collections.Map可以触发UI刷新的API有：set、clear、delete。
 ```ts
 import { collections } from '@kit.ArkTS';
 import { UIUtils } from '@kit.ArkUI';
@@ -364,7 +364,7 @@ struct CollectionMap {
 
   build() {
     Column() {
-      // this.mapCollect.keys() returns an iterator which is not supported by Foreach. Therefore, Array.from is used to generate data in shallow copy mode.
+      // this.mapCollect.keys()返回迭代器。Foreach不支持迭代器，所以要Array.From浅拷贝生成数据。
       ForEach(Array.from(this.mapCollect.keys()), (item: string) => {
         Text(`${this.mapCollect.get(item)?.id}`).onClick(() => {
           let value: Info|undefined = this.mapCollect.get(item);
@@ -396,7 +396,7 @@ struct CollectionMap {
 ```
 
 #### collections.Set
-The following APIs can trigger UI re-rendering: add, clear, and delete.
+collections.Set可以触发UI刷新的API有：add、clear、delete。
 
 ```ts
 import { collections } from '@kit.ArkTS';
@@ -418,8 +418,8 @@ struct Index {
 
   build() {
     Column() {
-      // ForEach does not support iterators. Therefore, Array.from is used to generate data in shallow copy mode.
-      // However, the new array generated by shallow copy does not have the observation capability. To ensure that the data can be observed when the ForEach component accesses the item, makeObserved needs to be called again.
+      // 因为ForEach不支持迭代器，所以需要使用Array.from浅拷贝生成数组。
+      // 但是浅拷贝生成的新的数组没有观察能力，为了ForEach组件在访问item的时候是可观察的数据，所以需要重新调用makeObserved。
       ForEach((UIUtils.makeObserved(Array.from(this.set.values()))), (item: Info) => {
         Text(`${item.id}`).onClick(() => {
           item.id++;
@@ -447,8 +447,8 @@ struct Index {
 }
 ```
 
-### Input Parameter of makeObserved Is the Return Value of JSON.parse
-JSON.parse returns an object which cannot be decorated by @Trace. You can use makeObserved to make it observable.
+### makeObserved的入参为JSON.parse的返回值
+JSON.parse返回Object，无法使用@Trace装饰其属性，可以使用makeObserved使其变为可观察数据。
 
 ```ts
 import { JSON } from '@kit.ArkTS';
@@ -492,10 +492,10 @@ struct Index {
 }
 ```
 
-### Using makeObserved Together with Decorators in V2
-**makeObserved** can be used with the decorators in V2. For @Monitor and @Computed, the class instance decorated by @Observed or ObservedV2 passed by makeObserved returns itself. Therefore, @Monitor or @Computed cannot be defined in a class but in a custom component.
+### makeObserved和V2装饰器连用
+makeObserved可以和V2的装饰器一起使用。对于@Monitor和@Computed，因为makeObserved传入@Observed或ObservedV2装饰的类实例会返回其自身，所以@Monitor或者@Computed不能定义在class中，只能定义在自定义组件里。
 
-Example:
+例子如下：
 ```ts
 import { UIUtils } from '@kit.ArkUI';
 
@@ -561,8 +561,8 @@ struct Child {
 }
 ```
 
-### Using makeObserved in @Component
-**makeObserved** cannot be used with the state variable decorator in V1, but can be used in custom components decorated by @Component.
+### makeObserved在@Component内使用
+makeObserved不能和V1的状态变量装饰器一起使用，但可以在@Component装饰的自定义组件里使用。
 
 ```ts
 import { UIUtils } from '@kit.ArkUI';
@@ -578,7 +578,7 @@ class Info {
 @Entry
 @Component
 struct Index {
-  // Using makeObserved together with @State, a runtime exception is thrown.
+  // 如果和@State一起使用会抛出运行时异常
   message: Info = UIUtils.makeObserved(new Info(20));
 
   build() {
@@ -594,15 +594,15 @@ struct Index {
 }
 ```
 
-## FAQs
-### Data Proxied by getTarget Can Perform Value Changes but Fails to Trigger UI Re-rendering
-[getTarget](./arkts-new-getTarget.md) can be used to obtain the original object before adding a proxy in the state management.
+## 常见问题
+### getTarget后的数据可以正常赋值，但是无法触发UI刷新
+[getTarget](./arkts-new-getTarget.md)可以获取状态管理框架代理前的原始对象。
 
-The observation object encapsulated by **makeObserved** can obtain its original object through **getTarget**. The value changes to the original object do not trigger UI re-rendering.
+makeObserved封装的观察对象，可以通过getTarget获取到其原始对象，对原始对象的赋值不会触发UI刷新。
 
-Example:
-1. Click the first **Text** component and obtain its original object through **getTarget**. In this case, modifying the attributes of the original object does not trigger UI re-rendering, but a value is assigned to the data.
-2. Click the second **Text** component. If the **this.observedObj** attribute is modified, the UI is re-rendered and the value of **Text** is **21**.
+如下面例子：
+1. 先点击第一个Text组件，通过getTarget获取其原始对象，此时修改原始对象的属性不会触发UI刷新，但数据会正常赋值。
+2. 再点击第二个Text组件，此时修改`this.observedObj`的属性会触发UI刷新，Text显示21。
 
 ```ts
 import { UIUtils } from '@kit.ArkUI';
@@ -619,20 +619,19 @@ struct Index {
       Text(`${this.observedObj.id}`)
         .fontSize(50)
         .onClick(() => {
-          // Use getTarget to obtain the original object and assign this.observedObj to unobservable data.
+          // 通过getTarget获取其原始对象，将this.observedObj赋值为不可观察的数据
           let rawObj: Info= UIUtils.getTarget(this.observedObj);
-          // The UI is not re-rendered, but a value is assigned to the data.
+          // 不会触发UI刷新，但数据会正常赋值
           rawObj.id = 20;
         })
 
       Text(`${this.observedObj.id}`)
         .fontSize(50)
         .onClick(() => {
-          // Triggers UI re-rendering. The value of Text is 21.
+          // 触发UI刷新，Text显示21
           this.observedObj.id++;
         })
     }
   }
 }
 ```
-<!--no_check-->
