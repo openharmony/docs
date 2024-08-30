@@ -1845,17 +1845,19 @@ LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替
 **示例：**
 
 ```ts
-let  pro : util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(1,8);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(1, 8);
 let result = pro.length;
+console.info('result = ' + result);
+// 输出结果：result = 2
 ```
 
 ### constructor<sup>9+</sup>
 
 constructor(capacity?: number)
 
-默认构造函数用于创建一个新的LruBuffer实例，默认容量为64。
+默认构造函数用于创建一个新的LRUCache实例，默认容量为64。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1865,12 +1867,20 @@ constructor(capacity?: number)
 
 | 参数名   | 类型   | 必填 | 说明                         |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | 否   | 指示要为缓冲区自定义的容量，默认值为64。 |
+| capacity | number | 否   | 指示要为缓冲区自定义的容量，不传默认值为64，最大值不能超过2147483647。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 ```
 
 
@@ -1878,7 +1888,7 @@ let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
 
 updateCapacity(newCapacity: number): void
 
-将缓冲区容量更新为指定容量，如果newCapacity小于或等于0，则抛出异常。
+将缓冲区容量更新为指定容量，如果newCapacity小于或等于0，则抛出异常。当缓冲区中值的总数大于指定容量时，会执行删除操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1888,7 +1898,7 @@ updateCapacity(newCapacity: number): void
 
 | 参数名      | 类型   | 必填 | 说明                         |
 | ----------- | ------ | ---- | ---------------------------- |
-| newCapacity | number | 是   | 指示要为缓冲区自定义的容量。 |
+| newCapacity | number | 是   | 指示要为缓冲区自定义的容量，最大值不能超过2147483647。 |
 
 **错误码：**
 
@@ -1901,7 +1911,7 @@ updateCapacity(newCapacity: number): void
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 pro.updateCapacity(100);
 ```
 
@@ -1924,8 +1934,8 @@ toString(): string
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.get(2);
 pro.get(3);
 console.info(pro.toString());
@@ -1952,15 +1962,17 @@ getCapacity(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 let result = pro.getCapacity();
+console.info('result = ' + result);
+// 输出结果：result = 64
 ```
 
 ### clear<sup>9+</sup>
 
 clear(): void
 
-从当前缓冲区清除键值对。后续会调用afterRemoval()方法执行后续操作。
+从当前缓冲区清除键值对。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1969,10 +1981,15 @@ clear(): void
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.length;
 pro.clear();
+let res = pro.length;
+console.info('result = ' + result);
+console.info('res = ' + res);
+// 输出结果：result = 1
+// 输出结果：res = 0
 ```
 
 ### getCreateCount<sup>9+</sup>
@@ -2005,10 +2022,12 @@ class ChildLRUCache extends util.LRUCache<number, number> {
   }
 }
 let lru = new ChildLRUCache();
-lru.put(2,10);
+lru.put(2, 10);
 lru.get(3);
 lru.get(5);
 let res = lru.getCreateCount();
+console.info('res = ' + res);
+// 输出结果：res = 2
 ```
 
 ### getMissCount<sup>9+</sup>
@@ -2030,10 +2049,12 @@ getMissCount(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.get(2);
 let result = pro.getMissCount();
+console.info('result = ' + result);
+// 输出结果：result = 0
 ```
 
 ### getRemovalCount<sup>9+</sup>
@@ -2055,11 +2076,13 @@ getRemovalCount(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.updateCapacity(2);
-pro.put(50,22);
+pro.put(50, 22);
 let result = pro.getRemovalCount();
+console.info('result = ' + result);
+// 输出结果：result = 0
 ```
 
 ### getMatchCount<sup>9+</sup>
@@ -2081,10 +2104,12 @@ getMatchCount(): number
 **示例：**
 
   ```ts
-  let pro: util.LRUCache<number, number> = new util.LRUCache();
-  pro.put(2,10);
+  let pro = new util.LRUCache<number, number>();
+  pro.put(2, 10);
   pro.get(2);
   let result = pro.getMatchCount();
+  console.info('result = ' + result);
+  // 输出结果：result = 1
   ```
 
 ### getPutCount<sup>9+</sup>
@@ -2106,9 +2131,11 @@ getPutCount(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.getPutCount();
+console.info('result = ' + result);
+// 输出结果：result = 1
 ```
 
 ### isEmpty<sup>9+</sup>
@@ -2130,16 +2157,18 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.isEmpty();
+console.info('result = ' + result);
+// 输出结果：result = false
 ```
 
 ### get<sup>9+</sup>
 
 get(key: K): V | undefined
 
-表示要查询的键。
+返回键对应的值。当键不在缓冲区中时，通过[createDefault<sup>9+</sup>](#createdefault9)接口创建，若createDefault创建的值不为undefined时，此时会调用[afterRemoval<sup>9+</sup>](#afterremoval9)接口，返回createDefault创建的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2155,7 +2184,7 @@ get(key: K): V | undefined
 
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
-| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则返回undefined。 |
+| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则返回createDefault创建的值。 |
 
 **错误码：**
 
@@ -2168,16 +2197,18 @@ get(key: K): V | undefined
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result  = pro.get(2);
+console.info('result = ' + result);
+// 输出结果：result = 10
 ```
 
 ### put<sup>9+</sup>
 
 put(key: K,value: V): V
 
-将键值对添加到缓冲区。
+将键值对添加到缓冲区中，返回与添加的键关联的值。当缓冲区中值的总数大于容量时，会执行删除操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2187,14 +2218,14 @@ put(key: K,value: V): V
 
 | 参数名 | 类型 | 必填 | 说明                       |
 | ------ | ---- | ---- | -------------------------- |
-| key    | K    | 是   | 要添加的密钥。             |
+| key    | K    | 是   | 要添加的键。             |
 | value  | V    | 是   | 指示与要添加的键关联的值。 |
 
 **返回值：**
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| V    | 返回与添加的键关联的值；如果要添加的键已经存在，则返回原始值，如果键或值为空，则抛出此异常。 |
+| V    | 返回与添加的键关联的值。如果键或值为空，则抛出此异常。 |
 
 **错误码：**
 
@@ -2207,8 +2238,10 @@ put(key: K,value: V): V
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-let result = pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+let result = pro.put(2, 10);
+console.info('result = ' + result);
+// 输出结果：result = 10
 ```
 
 ### values<sup>9+</sup>
@@ -2230,11 +2263,13 @@ values(): V[]
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number|string,number|string> = new util.LRUCache();
-pro.put(2,10);
-pro.put(2,"anhu");
-pro.put("afaf","grfb");
+let pro = new util.LRUCache<number|string,number|string>();
+pro.put(2, 10);
+pro.put(2, "anhu");
+pro.put("afaf", "grfb");
 let result = pro.values();
+console.info('result = ' + result);
+// 输出结果：result = anhu,grfb
 ```
 
 ### keys<sup>9+</sup>
@@ -2256,16 +2291,19 @@ keys(): K[]
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 1);
 let result = pro.keys();
+console.info('result = ' + result);
+// 输出结果：result = 2,3
 ```
 
 ### remove<sup>9+</sup>
 
 remove(key: K): V | undefined
 
-从当前缓冲区中删除指定的键及其关联的值。
+从当前缓冲区中删除指定的键及其关联的值，返回键关联的值。如果键不存在时，则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2294,16 +2332,18 @@ remove(key: K): V | undefined
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.remove(20);
+console.info('result = ' + result);
+// 输出结果：result = undefined
 ```
 
 ### afterRemoval<sup>9+</sup>
 
 afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
-删除值后执行后续操作。
+删除值后执行后续操作，后续操作由开发者自行实现。本接口会在删除操作时被调用，如[get<sup>9+</sup>](#get9)、[put<sup>9+</sup>](#put9)、[remove<sup>9+</sup>](#remove9)、[clear<sup>9+</sup>](#clear9)、[updateCapacity<sup>9+</sup>](#updatecapacity9)接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2336,13 +2376,16 @@ class ChildLRUCache<K, V> extends util.LRUCache<K, V> {
 
   afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
     if (isEvict === true) {
-      console.info('key: ' + key);
-      console.info('value: ' + value);
-      console.info('newValue: ' + newValue);
+      console.info('key = ' + key);
+      // 输出结果：key = 1
+      console.info('value = ' + value);
+      // 输出结果：value = 1
+      console.info('newValue = ' + newValue);
+      // 输出结果：newValue = null
     }
   }
 }
-let lru: ChildLRUCache<number, number>= new ChildLRUCache(2);
+let lru = new ChildLRUCache<number, number>(2);
 lru.put(1, 1);
 lru.put(2, 2);
 lru.put(3, 3);
@@ -2381,20 +2424,18 @@ contains(key: K): boolean
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number | object, number> = new util.LRUCache();
-pro.put(2,10);
-class Lru{
-s : string = "";
-}
-let obj : Lru = {s : "key" };
-let result = pro.contains(obj);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+let result = pro.contains(2);
+console.info('result = ' + result);
+// 输出结果：result = true
 ```
 
 ### createDefault<sup>9+</sup>
 
 createDefault(key: K): V
 
-如果未计算特定键的值，则执行后续操作，参数表示丢失的键，返回与键关联的值。
+如果在缓冲区未匹配到键，则执行后续操作，参数表示未匹配的键，返回与键关联的值，默认返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2404,7 +2445,7 @@ createDefault(key: K): V
 
 | 参数名 | 类型 | 必填 | 说明           |
 | ------ | ---- | ---- | -------------- |
-| key    | K    | 是   | 表示丢失的键。 |
+| key    | K    | 是   | 表示未匹配的键。 |
 
 **返回值：**
 
@@ -2423,8 +2464,10 @@ createDefault(key: K): V
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 let result = pro.createDefault(50);
+console.info('result = ' + result);
+// 输出结果：result = undefined
 ```
 
 ### entries<sup>9+</sup>
@@ -2446,13 +2489,16 @@ entries(): IterableIterator&lt;[K,V]&gt;
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(3,15);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 15);
 let pair:Iterable<Object[]> = pro.entries();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
   console.info(value[0]+ ', '+ value[1]);
+  // 输出结果：
+  // 2, 10
+  // 3, 15
 }
 ```
 
@@ -2480,13 +2526,16 @@ for (let value of arrayValue) {
 
 <!--code_no_check-->
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(3,15);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 15);
 let pair:Iterable<Object[]> = pro[Symbol.iterator]();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
   console.info(value[0]+ ', '+ value[1]);
+  // 输出结果：
+  // 2, 10
+  // 3, 15
 }
 ```
 

@@ -6,14 +6,14 @@ You can use the APIs of this module to configure the concerned information, obta
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Usage
 
 Before using the **AccessibilityExtensionContext** module, you must define a child class that inherits from **AccessibilityExtensionAbility**.
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 class EntryAbility extends AccessibilityExtensionAbility {
   onConnect(): void {
@@ -33,6 +33,7 @@ Provides attribute names and value types of a node element.
 | Name                  | Type                                                                | Readable | Writable | Description                 |
 |----------------------|--------------------------------------------------------------------|-----|-----| ------------------- |
 | accessibilityFocused | boolean                                                            | Yes  | No  |   Accessibility focus status.  |
+| accessibilityText<sup>12+</sup> | string                                                  | Yes  | No  | Accessibility text information of an element.|
 | bundleName           | string                                                             | Yes  | No  | Bundle name.|
 | checkable            | boolean                                                            | Yes  | No  | Whether the element is checkable.|
 | checked              | boolean                                                            | Yes  | No  | Whether the element is checked.|
@@ -71,7 +72,7 @@ Provides attribute names and value types of a node element.
 | selected             | boolean                                                            | Yes  | No  | Whether the element is selected.|
 | startIndex           | number                                                             | Yes  | No  | Index of the first list item on the screen.|
 | text                 | string                                                             | Yes  | No  | Text of the element.|
-| textLengthLimit      | string                                                             | Yes  | No  | Maximum text length of the element.|
+| textLengthLimit      | number                                                             | Yes  | No  | Maximum text length of the element.|
 | textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | Yes  | No  | Unit of movement when the text is read.|
 | triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)         | Yes  | No  | Action that triggers the element event.|
 | type                 | [WindowType](#windowtype)                                          | Yes  | No  | Window type of the element.|
@@ -79,6 +80,9 @@ Provides attribute names and value types of a node element.
 | valueMin             | number                                                             | Yes  | No  | Minimum value.|
 | valueNow             | number                                                             | Yes  | No  | Current value.|
 | windowId             | number                                                             | Yes  | No  | Window ID.|
+| textType<sup>12+</sup>             | string                                                             | Yes  | No  | Accessibility text type of an element, which is configured by the **accessibilityTextHint** attribute of the component.|
+| offset<sup>12+</sup>             | number                                                             | Yes  | No  | Pixel offset of the content area relative to the top coordinate of a scrollable component, such as **List** and **Grid**.|
+| hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | Yes  | No  | Touchable area of an element.|
 
 ## FocusDirection
 
@@ -88,14 +92,16 @@ Enumerates the focus directions.
 
 | Name      | Description     |
 | -------- | ------- |
-| up       | Search for the next focusable item above the current item in focus.|
-| down     | Search for the next focusable item below the current item in focus.|
-| left     | Search for the next focusable item on the left of the current item in focus.|
-| right    | Search for the next focusable item on the right of the current item in focus.|
-| forward  | Search for the next focusable item before the current item in focus.|
-| backward | Search for the next focusable item after the current item in focus.|
+| 'up'       | Search for the next focusable item above the current item in focus.|
+| 'down'     | Search for the next focusable item below the current item in focus.|
+| 'left'     | Search for the next focusable item on the left of the current item in focus.|
+| 'right'    | Search for the next focusable item on the right of the current item in focus.|
+| 'forward'  | Search for the next focusable item before the current item in focus.|
+| 'backward' | Search for the next focusable item after the current item in focus.|
 
 ## FocusType
+
+type FocusType = 'accessibility' | 'normal'
 
 Enumerates the focus types.
 
@@ -103,8 +109,8 @@ Enumerates the focus types.
 
 | Name           | Description         |
 | ------------- | ----------- |
-| accessibility | Accessibility focus.|
-| normal        | Normal focus. |
+| 'accessibility' | Accessibility focus.|
+| 'normal'        | Normal focus. |
 
 ## Rect
 
@@ -121,20 +127,26 @@ Defines a rectangle.
 
 ## WindowType
 
+type WindowType = 'application' | 'system'
+
 Enumerates the window types.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 | Name         | Description       |
 | ----------- | --------- |
-| application | Application window.|
-| system      | System window.|
+| 'application' | Application window.|
+| 'system'      | System window.|
 
-## AccessibilityExtensionContext.setTargetBundleName
+## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated)</sup>
 
 setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 Sets the concerned target bundle. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -142,7 +154,7 @@ Sets the concerned target bundle. This API uses a promise to return the result.
 
 | Name        | Type                 | Mandatory  | Description      |
 | ----------- | ------------------- | ---- | -------- |
-| targetNames | Array&lt;string&gt; | Yes   | Bundle names of the concerned target application. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.|
+| targetNames | Array&lt;string&gt; | Yes   | Bundle name of the concerned target application. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.|
 
 **Return value**
 
@@ -150,10 +162,18 @@ Sets the concerned target bundle. This API uses a promise to return the result.
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let targetNames = ['com.ohos.xyz'];
 axContext.setTargetBundleName(targetNames).then(() => {
@@ -163,11 +183,15 @@ axContext.setTargetBundleName(targetNames).then(() => {
 })
 ```
 
-## AccessibilityExtensionContext.setTargetBundleName
+## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated)</sup>
 
 setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>): void;
 
 Sets the concerned target bundle. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -178,10 +202,18 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 | targetNames | Array&lt;string&gt;       | Yes   | Bundle name of the concerned target application. The service receives accessibility events of the concerned application. By default, accessibility events of all applications are received. Pass in an empty array if there is no concerned application.                                |
 | callback    | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **err** that contains data is returned.|
 
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let targetNames = ['com.ohos.xyz'];
 try {
@@ -197,11 +229,15 @@ try {
 }
 ```
 
-## AccessibilityExtensionContext.getFocusElement
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated)</sup>
 
 getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 Obtains the focus element. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -222,13 +258,14 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -240,11 +277,15 @@ axContext.getFocusElement().then((data: AccessibilityElement) => {
 })
 ```
 
-## AccessibilityExtensionContext.getFocusElement
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated)</sup>
 
 getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 Obtains the focus element. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -260,13 +301,14 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -280,11 +322,15 @@ axContext.getFocusElement((err: BusinessError, data: AccessibilityElement) => {
 });
 ```
 
-## AccessibilityExtensionContext.getFocusElement
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated)</sup>
 
 getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<AccessibilityElement>): void;
 
 Obtains the focus element. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -292,7 +338,7 @@ Obtains the focus element. This API uses an asynchronous callback to return the 
 
 | Name                 | Type                                      | Mandatory  | Description               |
 | -------------------- | ---------------------------------------- | ---- | ----------------- |
-| isAccessibilityFocus | boolean                                  | Yes   | Whether the obtained focus element is an accessibility focus.   |
+| isAccessibilityFocus | boolean                                  | Yes   | Whether the obtained focus element is an accessibility focus. The value **True** means that the obtained focus element is an accessibility focus, and **False** means the opposite.   |
 | callback             | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Yes   | Callback used to return the current focus element.|
 
 **Error codes**
@@ -301,13 +347,14 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isAccessibilityFocus = true;
 let rootElement: AccessibilityElement;
@@ -322,11 +369,15 @@ axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError, data: Acces
 });
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated)</sup>
 
 getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 Obtains the root element of a window. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -348,13 +399,14 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -366,11 +418,15 @@ axContext.getWindowRootElement().then((data: AccessibilityElement) => {
 });
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated)</sup>
 
 getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 Obtains the root element of a window. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -386,13 +442,14 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -406,11 +463,15 @@ axContext.getWindowRootElement((err: BusinessError, data: AccessibilityElement) 
 });
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated)</sup>
 
 getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityElement>): void;
 
 Obtains the root element of a window. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -427,13 +488,14 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowId = 10;
 let rootElement: AccessibilityElement;
@@ -448,11 +510,15 @@ axContext.getWindowRootElement(windowId, (err: BusinessError, data: Accessibilit
 });
 ```
 
-## AccessibilityExtensionContext.getWindows
+## AccessibilityExtensionContext.getWindows<sup>(deprecated)</sup>
 
 getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
 Obtains the list of windows on a display. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -474,13 +540,14 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 axContext.getWindows().then((data: AccessibilityElement[]) => {
   console.log(`Succeeded in get windows, ${JSON.stringify(data)}`);
@@ -489,11 +556,15 @@ axContext.getWindows().then((data: AccessibilityElement[]) => {
 });
 ```
 
-## AccessibilityExtensionContext.getWindows
+## AccessibilityExtensionContext.getWindows<sup>(deprecated)</sup>
 
 getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 Obtains the list of windows on this display. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -509,13 +580,14 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
   if (err && err.code) {
@@ -526,11 +598,15 @@ axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
 });
 ```
 
-## AccessibilityExtensionContext.getWindows
+## AccessibilityExtensionContext.getWindows<sup>(deprecated)</sup>
 
 getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-Obtains the list of windows on a display. This API uses an asynchronous callback to return the result.
+Obtains the list of windows on this display. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -547,13 +623,14 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayId = 10;
 axContext.getWindows(displayId, (err: BusinessError, data: AccessibilityElement[]) => {
@@ -572,8 +649,6 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 > **NOTE**
 >
 > This API is deprecated since API version 10.
->
-> You are advised to use [injectGestureSync<sup>10+</sup>](#accessibilityextensioncontextinjectgesturesync10) instead.
 
 Injects a gesture. This API uses a promise to return the result.
 
@@ -597,19 +672,19 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
-import GesturePoint from '@ohos.accessibility.GesturePoint';
-import { BusinessError } from '@ohos.base';
+import { GesturePath, GesturePoint } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+let gesturePath: GesturePath = new GesturePath(100);
 
 for (let i = 0; i < 10; i++) {
-  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  let gesturePoint = new GesturePoint(100, i * 200);
   gesturePath.points.push(gesturePoint);
 }
 axContext.injectGesture(gesturePath).then(() => {
@@ -625,8 +700,6 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 > **NOTE**
 >
 > This API is deprecated since API version 10.
->
-> You are advised to use [injectGestureSync<sup>10+</sup>](#accessibilityextensioncontextinjectgesturesync10) instead.
 
 Injects a gesture. This API uses an asynchronous callback to return the result.
 
@@ -645,18 +718,18 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
-import GesturePoint from '@ohos.accessibility.GesturePoint';
-import { BusinessError } from '@ohos.base';
+import { GesturePath, GesturePoint } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+let gesturePath: GesturePath = new GesturePath(100);
 for (let i = 0; i < 10; i++) {
-  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  let gesturePoint = new GesturePoint(100, i * 200);
   gesturePath.points.push(gesturePoint);
 }
 axContext.injectGesture(gesturePath, (err: BusinessError) => {
@@ -667,11 +740,15 @@ axContext.injectGesture(gesturePath, (err: BusinessError) => {
   console.info(`Succeeded in inject gesture,gesturePath is ${gesturePath}`);
 });
 ```
-## AccessibilityExtensionContext.injectGestureSync<sup>10+</sup>
+## AccessibilityExtensionContext.injectGestureSync<sup>(deprecated)</sup>
 
 injectGestureSync(gesturePath: GesturePath): void
 
 Injects a gesture.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -687,17 +764,17 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID| Error Message                                           |
 | -------- | --------------------------------------------------- |
-| 9300003  | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003  | No accessibility permission to perform the operation. |
 
 **Example**
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
-import GesturePoint from '@ohos.accessibility.GesturePoint';
+import { GesturePath, GesturePoint } from '@kit.AccessibilityKit';
 
-let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+let gesturePath: GesturePath = new GesturePath(100);
 for (let i = 0; i < 10; i++) {
-  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  let gesturePoint = new GesturePoint(100, i * 200);
   gesturePath.points.push(gesturePoint);
 }
 axContext.injectGestureSync(gesturePath);
@@ -705,15 +782,19 @@ axContext.injectGestureSync(gesturePath);
 
 ## AccessibilityElement<sup>9+</sup>
 
-Defines the **AccessibilityElement**. Before calling APIs of **AccessibilityElement**, you must call [AccessibilityExtensionContext.getFocusElement()](#accessibilityextensioncontextgetfocuselement) or [AccessibilityExtensionContext.getWindowRootElement()](#accessibilityextensioncontextgetwindowrootelement) to obtain an **AccessibilityElement** instance.
+Defines the **AccessibilityElement**. Before calling APIs of **AccessibilityElement**, you must call [AccessibilityExtensionContext.getFocusElement()](#accessibilityextensioncontextgetfocuselementdeprecated) or [AccessibilityExtensionContext.getWindowRootElement()](#accessibilityextensioncontextgetwindowrootelementdeprecated) to obtain an **AccessibilityElement** instance.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### attributeNames
+### attributeNames<sup>(deprecated)</sup>
 
 attributeNames\<T extends keyof ElementAttributeValues>() : Promise\<Array\<T>>;
 
 Obtains all attribute names of this element. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -726,8 +807,8 @@ Obtains all attribute names of this element. This API uses a promise to return t
 **Example**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement is an instance of AccessibilityElement.
 rootElement.attributeNames().then((data: ElementAttributeKeys[]) => {
@@ -737,11 +818,15 @@ rootElement.attributeNames().then((data: ElementAttributeKeys[]) => {
 });
 ```
 
-### attributeNames
+### attributeNames<sup>(deprecated)</sup>
 
 attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\<Array\<T>>): void;
 
 Obtains all attribute names of this element. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -754,8 +839,8 @@ Obtains all attribute names of this element. This API uses an asynchronous callb
 **Example**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement is an instance of AccessibilityElement.
 rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys[]) => {
@@ -767,11 +852,15 @@ rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys[]) =>
 });
 ```
 
-### attributeValue
+### attributeValue<sup>(deprecated)</sup>
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promise\<ElementAttributeValues[T]>;
 
 Obtains the attribute value based on an attribute name. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -794,14 +883,15 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300004 | This property does not exist. |
 
 
 **Example**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
 
@@ -813,12 +903,16 @@ rootElement.attributeValue(attributeName).then((data: string) => {
 });
 ```
 
-### attributeValue
+### attributeValue<sup>(deprecated)</sup>
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T, 
     callback: AsyncCallback\<ElementAttributeValues[T]>): void;
 
 Obtains the attribute value based on an attribute name. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -835,13 +929,14 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300004 | This property does not exist. |
 
 **Example**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
 
@@ -855,11 +950,15 @@ rootElement.attributeValue(attributeName, (err: BusinessError, data: string) => 
 });
 ```
 
-### actionNames
+### actionNames<sup>(deprecated)</sup>
 
 actionNames(): Promise\<Array\<string>>;
 
 Obtains the names of all actions supported by this element. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -872,7 +971,7 @@ Obtains the names of all actions supported by this element. This API uses a prom
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement is an instance of AccessibilityElement.
 rootElement.actionNames().then((data: string[]) => {
@@ -882,11 +981,15 @@ rootElement.actionNames().then((data: string[]) => {
 })
 ```
 
-### actionNames
+### actionNames<sup>(deprecated)</sup>
 
 actionNames(callback: AsyncCallback\<Array\<string>>): void;
 
 Obtains the names of all actions supported by this element. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -909,11 +1012,15 @@ rootElement.actionNames((err: BusinessError, data: string[]) => {
 })
 ```
 
-### performAction
+### performAction<sup>(deprecated)</sup>
 
 performAction(actionName: string, parameters?: object): Promise\<void>;
 
 Performs an action based on the specified action name. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -922,7 +1029,7 @@ Performs an action based on the specified action name. This API uses a promise t
 | Name        | Type                                    | Mandatory  | Description                                                      |
 | ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
 | actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
-| parameters | object | No   | Parameters required for performing the target action. Empty by default. Not supported currently.                            |
+| parameters | object | No   | Parameters required for performing the target action. Empty by default.                            |
 
 **Return value**
 
@@ -936,12 +1043,13 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let actionName = 'action';
 
@@ -953,11 +1061,61 @@ rootElement.performAction(actionName).then(() => {
 });
 ```
 
-### performAction
+**Example of an action without parameters:**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// rootElement is an instance of AccessibilityElement.
+// An action that does not require any parameter setting is an action without parameters, as specified in the action description.
+rootElement.performAction('click').then(() => {
+  console.info(`Succeeded in perform action.`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+**Example of an action with parameters:**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// rootElement is an instance of AccessibilityElement.
+// Sample code of setSelection
+rootElement.performAction('setSelection', {
+  selectTextBegin: '0', // Indicates the start position of selection.
+  selectTextEnd: '8',   // Indicates the end position of selection.
+  selectTextInForWard: true   // true indicates the insertion point, and false indicates the selection range.
+}).then(() => {
+  console.info(`Succeeded in perform action`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// rootElement is an instance of AccessibilityElement.
+// Sample code of setCursorPosition
+rootElement.performAction('setCursorPosition', {
+  offset: '1'   // Position of the cursor.
+}).then(() => {
+  console.info(`Succeeded in perform action`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### performAction<sup>(deprecated)</sup>
 
 performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 Performs an action based on the specified action name. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -974,12 +1132,13 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let actionName = 'action';
 
@@ -993,11 +1152,15 @@ rootElement.performAction(actionName, (err: BusinessError) => {
 });
 ```
 
-### performAction
+### performAction<sup>(deprecated)</sup>
 
 performAction(actionName: string, parameters: object, callback: AsyncCallback\<void>): void;
 
 Performs an action based on the specified action name. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1006,7 +1169,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 | Name       | Type                       | Mandatory  | Description                                                         |
 | ---------- | ------------------------- | ---- |-------------------------------------------------------------|
 | actionName | string                    | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).|
-| parameters | object                    | Yes   | Parameters required for performing the target action. Empty by default. Not supported currently.                               |
+| parameters | object                    | Yes   | Parameters required for performing the target action. Empty by default.                               |
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                                          |
 
 **Error codes**
@@ -1015,12 +1178,13 @@ For details about the error codes, see [Accessibility Error Codes](errorcode-acc
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let actionName = 'action';
 let parameters: object = [];
@@ -1035,11 +1199,15 @@ rootElement.performAction(actionName, parameters, (err: BusinessError) => {
 });
 ```
 
-### findElement('content')
+### findElement('content')<sup>(deprecated)</sup>
 
 findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityElement>>;
 
 Finds an element based on the content type. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1056,10 +1224,18 @@ Finds an element based on the content type. This API uses a promise to return th
 | ---------------------------------------- | ----------------------------- |
 | Promise&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID  | Error Message                         |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition = 'keyword';
 
@@ -1071,11 +1247,15 @@ rootElement.findElement('content', condition).then((data: AccessibilityElement[]
 });
 ```
 
-### findElement('content')
+### findElement('content')<sup>(deprecated)</sup>
 
 findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 Finds an element based on the content type. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1087,10 +1267,18 @@ Finds an element based on the content type. This API uses an asynchronous callba
 | condition | string                                   | Yes   | Search criteria.                    |
 | callback  | AsyncCallback&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Yes   | Callback used to return the result.    |
 
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID  | Error Message                         |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition = 'keyword';
 
@@ -1104,11 +1292,15 @@ rootElement.findElement('content', condition, (err: BusinessError, data: Accessi
 });
 ```
 
-### findElement('focusType')
+### findElement('focusType')<sup>(deprecated)</sup>
 
 findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElement>;
 
 Finds an element based on the focus type. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1125,11 +1317,19 @@ Finds an element based on the focus type. This API uses a promise to return the 
 | ----------------------------------- | ------------------------------ |
 | Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID  | Error Message                         |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusType } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusType = 'normal';
 
@@ -1141,11 +1341,15 @@ rootElement.findElement('focusType', condition).then((data: AccessibilityElement
 });
 ```
 
-### findElement('focusType')
+### findElement('focusType')<sup>(deprecated)</sup>
 
 findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<AccessibilityElement>): void;
 
 Finds an element based on the focus type. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1157,11 +1361,19 @@ Finds an element based on the focus type. This API uses an asynchronous callback
 | condition | [FocusType](#focustype)                  | Yes   | Focus type.                      |
 | callback  | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Yes   | Callback used to return the result.         |
 
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID  | Error Message                         |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusType } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusType = 'normal';
 
@@ -1175,11 +1387,15 @@ rootElement.findElement('focusType', condition, (err: BusinessError, data: Acces
 });
 ```
 
-### findElement('focusDirection')
+### findElement('focusDirection')<sup>(deprecated)</sup>
 
 findElement(type: 'focusDirection', condition: FocusDirection): Promise\<AccessibilityElement>;
 
 Finds an element based on the focus direction. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1196,11 +1412,19 @@ Finds an element based on the focus direction. This API uses a promise to return
 | ----------------------------------- | -------------------------------- |
 | Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID  | Error Message                         |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusDirection } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusDirection = 'up';
 
@@ -1212,11 +1436,15 @@ rootElement.findElement('focusDirection', condition).then((data: AccessibilityEl
 });
 ```
 
-### findElement('focusDirection')
+### findElement('focusDirection')<sup>(deprecated)</sup>
 
 findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback\<AccessibilityElement>): void;
 
 Finds an element based on the focus direction. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1228,11 +1456,19 @@ Finds an element based on the focus direction. This API uses an asynchronous cal
 | condition | [FocusDirection](#focusdirection)        | Yes   | Direction of the next focus element.                          |
 | callback  | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Yes   | Callback used to return the result.             |
 
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID  | Error Message                         |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
-import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusDirection } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusDirection = 'up';
 

@@ -45,6 +45,10 @@ registerFont(options: FontOptions): void
 
 **示例：**
 
+> **说明**
+>
+> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+
 ```ts
 // xxx.ets
 import { font } from '@kit.ArkUI';
@@ -60,7 +64,7 @@ struct FontExample {
 
   aboutToAppear() {
     // familyName和familySrc都支持系统Resource
-    font.registerFont({
+    font.registerFont({ // 建议使用 this.getUIContext().getFont().registerFont()接口
       familyName: $r('app.string.font_name'),
       familySrc: $r('app.string.font_src')
     })
@@ -132,6 +136,10 @@ getSystemFontList(): Array\<string>
 
 **示例：**
 
+> **说明**
+>
+> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+
 ```ts
 // xxx.ets
 import { font } from '@kit.ArkUI';
@@ -146,7 +154,7 @@ struct FontExample {
         .width('60%')
         .height('6%')
         .onClick(()=>{
-          this.fontList = font.getSystemFontList()
+          this.fontList = font.getSystemFontList() // 建议使用 this.getUIContext().getFont().getSystemFontList()接口
         })
     }.width('100%')
   }
@@ -196,6 +204,10 @@ getFontByName(fontName: string): FontInfo
 
 **示例：**
 
+> **说明**
+>
+> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+
 ```ts
 // xxx.ets
 import { font } from '@kit.ArkUI';
@@ -209,7 +221,7 @@ struct FontExample {
     Column() {
       Button("getFontByName")
         .onClick(() => {
-          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic')
+          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic') // 建议使用 this.getUIContext().getFont().getFontByName()接口
           console.log("getFontByName(): path = " + this.fontInfo.path)
           console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
           console.log("getFontByName(): fullName = " + this.fontInfo.fullName)

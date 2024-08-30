@@ -686,7 +686,7 @@ isClipToFrame(): boolean
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| boolean | 节点是否是剪裁到页面。 |
+| boolean | 节点是否是剪裁到组件区域。 |
 
 **示例：**
 
@@ -2327,6 +2327,40 @@ createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 typeNode.createNode(uiContext, 'XComponent');
 ```
 
+### createNode('XComponent')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'XComponent', options: XComponentOptions): XComponent
+
+按照options中的配置参数创建XComponent类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'XComponent' | 是 | 创建XComponent类型的节点。 |
+| options | [XComponentOptions](./arkui-ts/ts-basic-components-xcomponent.md#xcomponentoptions12) | 是 | 定义XComponent的具体配置参数。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [XComponent](#xcomponent12) | XComponent类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+controller: XComponentController = new XComponentController();
+options: XComponentOptions = {
+  type: XComponentType.TEXTURE,
+  controller: this.controller
+};
+typeNode.createNode(uiContext, 'XComponent', this.options);
+```
+
 ## NodeAdapter<sup>12+</sup>
 
 NodeAdapter提供FrameNode的数据懒加载能力。
@@ -2403,7 +2437,7 @@ reloadAllItems(): void
 
 reloadItem(start: number, count: number): void
 
-定义从索引值开始重新加载指定数量的节点数据。
+从索引值开始重新加载指定数量的节点数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2420,7 +2454,7 @@ reloadItem(start: number, count: number): void
 
 removeItem(start: number, count: number): void
 
-定义从索引值开始删除指定数量的节点数据。
+从索引值开始删除指定数量的节点数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2437,7 +2471,7 @@ removeItem(start: number, count: number): void
 
 insertItem(start: number, count: number): void
 
-定义从索引值开始新增指定数量的节点数据。
+从索引值开始新增指定数量的节点数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2454,7 +2488,7 @@ insertItem(start: number, count: number): void
 
 moveItem(from: number, to: number): void
 
-定义数据移动操作。将数据从起始索引移动到结束索引。
+将数据从原始索引移动到目的索引。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2464,8 +2498,8 @@ moveItem(from: number, to: number): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| from | number | 是   | 数据移动起始索引值。 |
-| to | number | 是   | 数据移动结束索引值。 |
+| from | number | 是   | 数据移动的原始索引值。 |
+| to | number | 是   | 数据移动的目的索引值。 |
 
 ### getAllAvailableItems<sup>12+</sup>
 

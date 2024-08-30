@@ -580,6 +580,13 @@ class C {}
 type D = C; // 编译报错
 ```
 
+## 注意事项
+
+### 在HAR中使用Sendable时，需开启编译生成TS文件的配置
+
+详情请查[编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)。
+
+
 ## 与TS/JS交互的规则
 
 ### ArkTS通用规则（目前只针对Sendable对象）
