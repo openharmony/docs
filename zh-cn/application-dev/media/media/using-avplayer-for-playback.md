@@ -63,7 +63,7 @@
 
 ## 完整示例
 
-参考以下示例，完整地播放一首音乐。
+参考以下示例，完整地播放一首音乐。实现起播后3s暂停，暂停3s重新播放的效果。
 
 ```ts
 import { media } from '@kit.MediaKit';
@@ -113,13 +113,19 @@ export class AVPlayerDemo {
               console.info('AVPlayer wait to play end.');
             }
           } else {
-            avPlayer.pause(); // 调用暂停接口暂停播放
+            setTimeout(() => {
+              console.info('AVPlayer is playing wait to pause');
+              avPlayer.pause(); // 播放3s后调用暂停接口暂停播放
+            }, 3000)
           }
           this.count++;
           break;
         case 'paused': // pause成功调用后触发该状态机上报
           console.info('AVPlayer state paused called.');
-          avPlayer.play(); // 再次播放接口开始播放
+          setTimeout(() => {
+              console.info('AVPlayer paused wait to play again');
+              avPlayer.play(); // 暂停3s后再次调用播放接口开始播放
+            }, 3000)
           break;
         case 'completed': // 播放结束后触发该状态机上报
           console.info('AVPlayer state completed called.');
