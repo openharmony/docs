@@ -450,7 +450,7 @@ OnInfo类型。
 | AV_INFO_TYPE_EOS | 播放完成时返回消息。|
 | AV_INFO_TYPE_STATE_CHANGE | 状态改变时返回消息。<br>- key为OH_PLAYER_STATE：取值类型int32_t。系统通过int32_t传递value，应用需先通过int32_t获取，再强制转为[AVPlayerState](#avplayerstate-1)。<br>- key为OH_PLAYER_STATE_CHANGE_REASON：取值类型int32_t。系统通过int32_t传递value，应用需通过int32_t获取。1：用户操作触发；2：系统变更触发。 |
 | AV_INFO_TYPE_POSITION_UPDATE | 返回当前播放位置。<br>key为OH_PLAYER_CURRENT_POSITION：取值类型int32_t。系统通过int32_t传递value，应用需通过int32_t获取。 |
-| AV_INFO_TYPE_MESSAGE | 视频开始渲染时返回消息。<br>key为OH_PLAYER_MESSAGE_TYPE：取值类型int32_t。系统通过int32_t传递value，应用需通过int32_t获取。 |
+| AV_INFO_TYPE_MESSAGE | 视频开始渲染时返回消息。<br>key为OH_PLAYER_MESSAGE_TYPE：取值类型int32_t。系统通过int32_t传递value，应用需通过int32_t获取。1表示视频开始渲染。 |
 | AV_INFO_TYPE_VOLUME_CHANGE | 音量改变时返回消息。<br>key为OH_PLAYER_VOLUME：取值类型float。系统通过float传递value，应用需通过float获取。取值范围[0.0, 1.0]。 |
 | AV_INFO_TYPE_RESOLUTION_CHANGE | 首次获取视频大小或视频大小更新时返回消息。<br>key为OH_PLAYER_VIDEO_WIDTH 或 OH_PLAYER_VIDEO_HEIGHT：取值类型int32_t。系统通过int32_t传递value，应用需通过int32_t获取。 |
 | AV_INFO_TYPE_BUFFERING_UPDATE | 返回多队列缓冲时间。<br>- key为OH_PLAYER_BUFFERING_TYPE：取值类型[AVPlayerBufferingType](#avplayerbufferingtype-1)。系统通过int32_t传递value，应用需先通过int32_t获取，再强制转为[AVPlayerBufferingType](#avplayerbufferingtype-1)。<br>- key为OH_PLAYER_BUFFERING_VALUE：取值类型int32_t。系统通过int32_t传递value，应用需通过int32_t获取。当缓冲更新消息类型是AVPLAYER_BUFFERING_PERCENT、AVPLAYER_BUFFERING_CACHED_DURATION时有效，分别表示缓冲进度完成百分比、缓冲数据可播放时长。 |
