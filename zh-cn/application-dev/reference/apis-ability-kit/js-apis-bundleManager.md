@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager模块)
 
-本模块提供应用信息查询能力，支持BundleInfo、ApplicationInfo、Ability、ExtensionAbility等信息的查询。
+本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-bundleInfo.md)、[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)、[Ability](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。

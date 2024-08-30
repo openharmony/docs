@@ -173,8 +173,8 @@ FlowItem分组配置信息。
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|-----|
-| itemsCount | number | 是 | 分组中FlowItem数量，必须是正整数。 |
-| crossCount | number | 否 | 纵向布局时为列数，横向布局时为行数，默认值：1。 |
+| itemsCount | number | 是 | 分组中FlowItem数量，必须是正整数。若splice、push、update方法收到的分组中有分组的itemsCount小于0，则不会执行该方法。 |
+| crossCount | number | 否 | 纵向布局时为列数，横向布局时为行数，默认值：1。小于1的按默认值处理。 |
 | columnsGap | [Dimension](ts-types.md#dimension10) | 否 | 该分组的列间距，不设置时使用瀑布流的columnsGap，设置非法值时使用0vp。 |
 | rowsGap | [Dimension](ts-types.md#dimension10) | 否 | 该分组的行间距，不设置时使用瀑布流的rowsGap，设置非法值时使用0vp。 |
 | margin | [Margin](ts-types.md#margin) \| [Dimension](ts-types.md#dimension10) | 否 | 该分组的外边距参数为Length类型时，四个方向外边距同时生效。<br>默认值：0<br>单位：vp<br>margin设置百分比时，上下左右外边距均以瀑布流的width作为基础值。 |
@@ -1102,3 +1102,67 @@ struct WaterFlowDemo {
 ```
 
 ![pinch](figures/waterflow-pinch.gif)
+
+### 示例5
+
+```ts
+//index.ets
+//该示例实现了WaterFlow组件开启边缘渐隐效果并设置边缘渐隐长度
+import { LengthMetrics } from '@kit.ArkUI'
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+@Entry
+@Component
+struct WaterFlowDemo {
+  @State minSize: number = 80
+  @State maxSize: number = 180
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  scroller: Scroller = new Scroller()
+  private itemWidthArray: number[] = []
+  private itemHeightArray: number[] = []
+
+  // 计算FlowItem宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // 设置FlowItem宽/高数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    this.setItemSizeArray()
+  }
+
+  build() {
+    Column({ space: 2 }) {
+
+      WaterFlow({ scroller:this.scroller }) {
+        LazyForEach(this.dataSource, (item: number) => {
+          FlowItem() {
+            Column() {
+              Text("N" + item).fontSize(12).height('16')
+            }
+          }
+          .width('100%')
+          .height(this.itemHeightArray[item % 100])
+          .backgroundColor(this.colors[item % 5])
+        }, (item: string) => item)
+      }
+      .columnsTemplate('repeat(auto-fill,80)')
+      .columnsGap(10)
+      .rowsGap(5)
+      .height('90%')
+      .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
+
+    }
+  }
+}
+```
+
+![fadingEdge_waterFlow](figures/fadingEdge_waterFlow.gif)

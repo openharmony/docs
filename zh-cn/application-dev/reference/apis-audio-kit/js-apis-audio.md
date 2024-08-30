@@ -300,6 +300,21 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | INPUT_DEVICES_FLAG              | 2      | 输入设备。                     |
 | ALL_DEVICES_FLAG                | 3      | 所有设备。                     |
 
+## DeviceUsage<sup>12+</sup>
+
+枚举，可获取的设备种类。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称                            |  值     | 说明                        |
+| ------------------------------- | ------ |---------------------------|
+| MEDIA_OUTPUT_DEVICES | 1      | 媒体输出设备。|
+| MEDIA_INPUT_DEVICES  | 2      | 媒体输入设备。|
+| ALL_MEDIA_DEVICES    | 3      | 所有媒体设备。|
+| CALL_OUTPUT_DEVICES  | 4      | 通话输出设备。|
+| CALL_INPUT_DEVICES   | 8      | 通话输入设备。|
+| ALL_CALL_DEVICES     | 12     | 所有通话设备。|
+
 ## DeviceRole
 
 枚举，设备角色。
@@ -862,8 +877,10 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称                   |  值     | 说明                                          |
 | :--------------------- | :----- | :-------------------------------------------- |
-| AUDIO_SCENE_DEFAULT    | 0      | 默认音频场景。                                |
-| AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
+| AUDIO_SCENE_DEFAULT                  | 0      | 默认音频场景。                                |
+| AUDIO_SCENE_RINGING<sup>12+</sup>    | 1      | 响铃模式。 |
+| AUDIO_SCENE_PHONE_CALL<sup>12+</sup> | 2      | 电话模式。 |
+| AUDIO_SCENE_VOICE_CHAT               | 3      | 语音聊天模式。                                |
 
 ## AudioConcurrencyMode<sup>12+</sup>
 
@@ -4242,6 +4259,115 @@ audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER
 });
 ```
 
+### getAvailableDevices<sup>12+</sup>
+
+getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
+
+获取音频可选设备列表，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明             |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceUsage| [DeviceUsage](#deviceusage12) | 是   | 设备的usage。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                      |
+| ------------------------------------------------------------ | ------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 返回设备列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
+  console.info(`Indicate that the device list is obtained ${data}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the device list. ${error}`);
+}
+```
+
+### on('availableDeviceChange')<sup>12+</sup>
+
+on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction\>): void
+
+订阅音频可选设备连接变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'availableDeviceChange' |
+| deviceUsage | [DeviceUsage](#deviceusage12)                       | 是   | 设备的usage。     |
+| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioRoutingManager.on('availableDeviceChange', audio.DeviceUsage.MEDIA_OUTPUT_DEVICES, (deviceChanged: audio.DeviceChangeAction) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+});
+```
+
+### off('availableDeviceChange')<sup>12+</sup>
+
+off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): void
+
+取消订阅音频可选设备连接变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'availableDeviceChange' |
+| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)> | 否   | 回调函数，返回可选设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioRoutingManager.off('availableDeviceChange');
+```
+
 ### setCommunicationDevice<sup>9+</sup>
 
 setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Promise&lt;void&gt;
@@ -7108,7 +7234,7 @@ audioRenderer.on('markReach', 1000, (position: number) => {
 ```
 
 
-### off('markReach') <sup>8+</sup>
+### off('markReach')<sup>8+</sup>
 
 off(type: 'markReach'): void
 
@@ -7128,7 +7254,7 @@ off(type: 'markReach'): void
 audioRenderer.off('markReach');
 ```
 
-### on('periodReach') <sup>8+</sup>
+### on('periodReach')<sup>8+</sup>
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
@@ -7156,7 +7282,7 @@ audioRenderer.on('periodReach', 1000, (position: number) => {
 });
 ```
 
-### off('periodReach') <sup>8+</sup>
+### off('periodReach')<sup>8+</sup>
 
 off(type: 'periodReach'): void
 
@@ -7176,7 +7302,7 @@ off(type: 'periodReach'): void
 audioRenderer.off('periodReach');
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
@@ -7204,7 +7330,7 @@ audioRenderer.on('stateChange', (state: audio.AudioState) => {
 });
 ```
 
-### on('outputDeviceChange') <sup>10+</sup>
+### on('outputDeviceChange')<sup>10+</sup>
 
 on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
@@ -7238,7 +7364,7 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
 });
 ```
 
-### off('outputDeviceChange') <sup>10+</sup>
+### off('outputDeviceChange')<sup>10+</sup>
 
 off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
 
@@ -7272,7 +7398,7 @@ audioRenderer.off('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptor
 });
 ```
 
-### on('outputDeviceChangeWithInfo') <sup>11+</sup>
+### on('outputDeviceChangeWithInfo')<sup>11+</sup>
 
 on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChangeInfo>): void
 
@@ -7307,7 +7433,7 @@ audioRenderer.on('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStr
 });
 ```
 
-### off('outputDeviceChangeWithInfo') <sup>11+</sup>
+### off('outputDeviceChangeWithInfo')<sup>11+</sup>
 
 off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceChangeInfo>): void
 
@@ -7379,7 +7505,7 @@ class Options {
 
 let bufferSize: number = 0;
 let path = getContext().cacheDir;
-// 确保该路径下存在该资源
+// 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
@@ -8543,7 +8669,7 @@ off(type: 'periodReach'): void
 audioCapturer.off('periodReach');
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
@@ -8608,7 +8734,7 @@ class Options {
 
 let bufferSize: number = 0;
 let path = getContext().cacheDir;
-// 确保该路径下存在该资源
+// 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
 let readDataCallback = (buffer: ArrayBuffer) => {

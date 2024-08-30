@@ -1,6 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 NODE_TIME_PICKER_DISAPPEAR_TEXT_STYLE接口行为变更
+## cl.arkui.1 修复C-API场景下NODE_TIME_PICKER_DISAPPEAR_TEXT_STYLE的get接口的错误行为
 
 **访问级别**
 
@@ -8,7 +8,9 @@
 
 **变更原因**
 
-修复了此处返回值的实现错误。
+该接口用于C-API中TimePicker组件用于设置或者获取待消失字体样式。
+
+该变更修复了此处返回值的实现错误。
 
 **变更影响**
 

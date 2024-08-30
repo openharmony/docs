@@ -175,7 +175,7 @@ try {
         backup : false,
         autoSync : true,
         kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-        securityLevel : distributedData.SecurityLevel.S2,
+        securityLevel : distributedData.SecurityLevel.S3,
     };
     kvManager.getKVStore('storeId', options, function (err, store) {
         if (err) {
@@ -225,7 +225,7 @@ try {
         backup : false,
         autoSync : true,
         kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-        securityLevel : distributedData.SecurityLevel.S2,
+        securityLevel : distributedData.SecurityLevel.S3,
     };
     kvManager.getKVStore('storeId', options).then((store) => {
         console.log("getKVStore success");
@@ -268,7 +268,7 @@ const options = {
     autoSync: false,
     kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
     schema: undefined,
-    securityLevel: distributedData.SecurityLevel.S2,
+    securityLevel: distributedData.SecurityLevel.S3,
 }
 try {
     kvManager.getKVStore('storeId', options, async function (err, store) {
@@ -318,7 +318,7 @@ const options = {
     autoSync: false,
     kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
     schema: undefined,
-    securityLevel: distributedData.SecurityLevel.S2,
+    securityLevel: distributedData.SecurityLevel.S3,
 }
 try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
@@ -366,7 +366,7 @@ const options = {
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
     schema : undefined,
-    securityLevel : distributedData.SecurityLevel.S2,
+    securityLevel : distributedData.SecurityLevel.S3,
 }
 try {
     kvManager.getKVStore('store', options, async function (err, store) {
@@ -415,7 +415,7 @@ const options = {
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
     schema : undefined,
-    securityLevel : distributedData.SecurityLevel.S2,
+    securityLevel : distributedData.SecurityLevel.S3,
 }
 try {
     kvManager.getKVStore('storeId', options).then(async (store) => {

@@ -18,6 +18,8 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 创建WantAgent（callback形式）。 创建失败返回的WantAgent为空值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -76,6 +78,8 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 创建WantAgent（Promise形式）。 创建失败返回的WantAgent为空值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -130,6 +134,8 @@ WantAgent.getWantAgent({
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
 获取WantAgent实例的Bundle名称（callback形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -202,6 +208,8 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 获取WantAgent实例的Bundle名称（Promise形式）。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：** 
@@ -267,6 +275,8 @@ WantAgent.getWantAgent({
 getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
 获取WantAgent实例的用户ID（callback形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -339,6 +349,8 @@ getUid(agent: WantAgent): Promise\<number\>
 
 获取WantAgent实例的用户ID（Promise形式）。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -403,6 +415,8 @@ WantAgent.getWantAgent({
 cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
 取消WantAgent实例（callback形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -475,6 +489,8 @@ cancel(agent: WantAgent): Promise\<void\>
 
 取消WantAgent实例（Promise形式）。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -541,6 +557,8 @@ WantAgent.getWantAgent({
 trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<CompleteData\>): void
 
 主动激发WantAgent实例（callback形式）。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -614,6 +632,8 @@ WantAgent.getWantAgent({
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
 判断两个WantAgent实例是否相等（callback形式）,以此来判断是否是来自同一应用的相同操作。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -689,6 +709,8 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 判断两个WantAgent实例是否相等（Promise形式）,以此来判断是否是来自同一应用的相同操作。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -754,6 +776,8 @@ WantAgent.getWantAgent({
 
 ## WantAgentFlags
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                | 值             | 说明                                                         |
@@ -771,6 +795,8 @@ WantAgent.getWantAgent({
 
 ## OperationType
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称              | 值            | 说明                      |
@@ -782,6 +808,8 @@ WantAgent.getWantAgent({
 | SEND_COMMON_EVENT | 4 | 发送一个公共事件。        |
 
 ## CompleteData 
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 

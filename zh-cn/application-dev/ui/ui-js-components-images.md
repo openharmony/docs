@@ -210,4 +210,4 @@ export default {
 
 - [image、image-animator组件的使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ClickableJs)
 
-- [图片编辑（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageOperation)
+- [图片常见操作（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageOperation)

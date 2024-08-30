@@ -901,7 +901,7 @@ let isClearPageStack = false;
 let appIndex = 1;
 
 try {
-  appManager.killProcessWithAccount(bundleName, accountId，isClearPageStack, appIndex).then(() => {
+  appManager.killProcessWithAccount(bundleName, accountId, isClearPageStack, appIndex).then(() => {
     console.log('killProcessWithAccount success');
   }).catch((err: BusinessError) => {
     console.error(`killProcessWithAccount fail, err: ${JSON.stringify(err)}`);

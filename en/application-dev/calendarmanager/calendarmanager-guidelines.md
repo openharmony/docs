@@ -16,22 +16,41 @@ You must manually apply for these required permissions.
 
 ### Procedure for Requesting Permissions
 
-Declare the permissions to request in the **module.json5** file.
+Declare the required permissions in **module.json5** file. For details, see [Declaring Permissions](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/AccessToken/declare-permissions.md).
 ```
-"requestPermissions": [
-  {
-    "name": "ohos.permission.READ_CALENDAR",
-  },
-  {
-    "name": "ohos.permission.WRITE_CALENDAR"
+{
+  "module" : {
+    // ...
+    "requestPermissions":[
+      {
+        "name" : "ohos.permission.READ_CALENDAR",
+        // reason is used to describe the reason for applying for the permission. The value is a resource reference of the string type, in the $string: \*\*\* format.
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "XxxAbility"
+          ],
+          "when":"inuse"
+        }
+      },
+      {
+        "name" : "ohos.permission.WRITE_CALENDAR",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "XxxAbility"
+          ],
+          "when":"always"
+        }
+      }
+    ]
   }
-]
+}
 ```
 
 Manually request the required permissions.
 ```typescript
-import { Permissions } from '@kit.SafetyDetectKit';
-import { abilityAccessCtrl, PermissionRequestResult } from '@kit.AbilityKit';
+import { abilityAccessCtrl, PermissionRequestResult, Permissions } from '@kit.AbilityKit';
 import {mContext} from '../entryability/EntryAbility'; // Obtained context, which needs to be defined.
 
 const permissions: Permissions[] = ["ohos.permission.READ_CALENDAR", "ohos.permission.WRITE_CALENDAR"];
