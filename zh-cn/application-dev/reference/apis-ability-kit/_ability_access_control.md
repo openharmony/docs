@@ -22,7 +22,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| bool [OH_AT_CheckSelfPermission](#oh_at_checkselfpermission) (const char \*permission) | 校验应用是否被授予指定的权限。  | 
+| bool [OH_AT_CheckSelfPermission](#oh_at_checkselfpermission)(const char \*permission) | 校验应用是否被授予指定的权限。  | 
 
 
 ## 函数说明
@@ -31,7 +31,7 @@
 ### OH_AT_CheckSelfPermission()
 
 ```
-bool OH_AT_CheckSelfPermission (const char* permission)
+bool OH_AT_CheckSelfPermission(const char* permission)
 ```
 **描述**
 校验应用是否被授予指定的权限。
