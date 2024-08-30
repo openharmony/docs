@@ -104,6 +104,18 @@ Enumerates the exposure modes.
 | ----------------------------- |-----|---------|
 | EXPOSURE_MODE_MANUAL<sup>12+</sup>          | 3   | Manual exposure mode.|
 
+## PolicyType<sup>12+</sup>
+
+Enumerates the policy types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                          | Value  | Description     |
+| ----------------------------- |-----|---------|
+| PRIVACY<sup>12+</sup>          | 1   | Privacy.|
+
 ## CameraManager
 
 Implements camera management. Before calling any API in **CameraManager**, you must use [getCameraManager](js-apis-camera.md#cameragetcameramanager) to obtain a **CameraManager** instance.
@@ -139,6 +151,10 @@ muteCamera(mute: boolean): void
 
 Mutes or unmutes the camera device.
 
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 12. You are advised to use [muteCameraPersistent](#mutecamerapersistent12) instead.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
@@ -155,6 +171,32 @@ Mutes or unmutes the camera device.
 function muteCamera(cameraManager: camera.CameraManager): void {
   let mute: boolean = true;
   cameraManager.muteCamera(mute);
+}
+```
+
+### muteCameraPersistent<sup>12+</sup>
+
+muteCameraPersistent(mute: boolean, type: PolicyType): void
+
+Disables the camera in a persistent manner.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                         | Mandatory | Description                                        |
+| -------- |-----------------------------| ---- |--------------------------------------------|
+| mute     | boolean                     |  Yes | Whether to mute the camera device. The value **true** means to mute the camera device, and **false** means the opposite.                  |
+| type     | [PolicyType](#policytype12) |  Yes | Policy type. For details about the available options, see [PolicyType](#policytype12).|
+
+**Example**
+
+```ts
+function muteCameraPersistent(cameraManager: camera.CameraManager): void {
+  let mute: boolean = true;
+  cameraManager.muteCameraPersistent(mute, camera.PolicyType.PRIVACY);
 }
 ```
 
