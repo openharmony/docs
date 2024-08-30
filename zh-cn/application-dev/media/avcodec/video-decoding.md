@@ -328,7 +328,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 11. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
 
-    若当前播放的节目是DRM加密节目，应用自行实现媒体解封装功能而非依赖系统[解封装](audio-video-demuxer.md)功能时，需调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置到AVBuffer，AVBuffer携带待解密的数据及cencInfo，以实现AVBuffer中媒体数据的解密。当应用使用系统[解封装](audio-video-demuxer.md)功能时，则无需调用此接口。
+    若当前播放的节目是DRM加密节目，应用自行实现媒体解封装功能而非依赖系统[解封装](audio-video-demuxer.md)功能时，需调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置到AVBuffer，AVBuffer携带待解密的数据以及cencInfo，以实现AVBuffer中媒体数据的解密。当应用使用系统[解封装](audio-video-demuxer.md)功能时，则无需调用此接口。
 
     添加头文件
 
