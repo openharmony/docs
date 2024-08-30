@@ -13,6 +13,7 @@
 1.只适用于同WiFi设备场景，不同WiFi间无法建链，导致分布式文件业务无法使用。
 
 2.自动建链功能也存在功耗开销，即使用户不使用分布式文件功能，但链路一直存在。
+
 鉴于以上两个原因，需要在新版本上对该规格进行整改。
 
 **变更影响**
@@ -36,13 +37,12 @@ API11
 
 本次变更仅涉及新增以下接口：
 
-| 名称              | 描述                                                       |
-|-----------------|----------------------------------------------------------|
-| connectDfs(networkId: string, listeners: DfsListeners) | Public API，应用调用该接口主动触发建链执行结果通过DfsListeners回调内onStatus上报。 |
+| 名称              | 描述                                             |
+|-----------------|------------------------------------------------|
+| connectDfs(networkId: string, listeners: DfsListeners) | 应用调用该接口主动触发建链，执行结果通过DfsListeners回调内onStatus上报。 |
 
 **适配指导**
 
-应用使用新接口可以同时支持用同WiFi和不同WiFi场景下的跨设备文件访问能力，详见[跨设备文件访问开发指导]
-(../../../application-dev/file-management/file-access-across-devices.md)。
+应用使用新接口可以同时支持用同WiFi和不同WiFi场景下的跨设备文件访问能力，详见   [跨设备文件访问](https://gitee.com/openharmony/filemanagement_file_api/pulls/776)
 
 
