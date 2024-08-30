@@ -1738,7 +1738,7 @@ Callback function invoked upon a timeout.
 
 `repeat`
 
-Whether to repeat the timer (not supported yet).
+Whether to repeat the timer.
 
 ##### Return value
 
@@ -2170,7 +2170,7 @@ Callback function invoked upon event changes.
 
 `repeat`
 
-Whether to repeat the timer (not supported yet).
+Whether to repeat the timer.
 
 ##### Return value
 
