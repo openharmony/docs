@@ -781,7 +781,7 @@ path.transform(matrix);
 
 contains(x: number, y: number): boolean
 
-判断指定坐标点是否被路径包含。
+判断指定坐标点是否被路径包含，判定是否被路径包含的规则参考[PathFillType](#pathfilltype12)。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -2339,7 +2339,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawTextBlob(blob: TextBlob, x: number, y: number): void
 
-用于绘制一段文字。
+用于绘制一段文字。若构造blob的字体不支持待绘制字符，则该部分字符无法绘制。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -7810,7 +7810,7 @@ class DrawingRenderNode extends RenderNode {
 
 quickReject(left: number, top: number, right: number, bottom: number) : boolean
 
-用于判断矩形和区域是否不相交。
+用于快速判断矩形和区域是否不相交，实际上比较的是矩形和区域的外接矩形是否不相交，因此会有误差。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 

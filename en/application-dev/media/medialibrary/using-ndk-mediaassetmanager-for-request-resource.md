@@ -7,7 +7,6 @@ The procedure is as follows:
 1. Create a **MediaAssetManager** instance.
 2. Set parameters for requesting an image and request the image.
 3. (Optional) Cancel the request.
-
 ## How to Develop
 
 Add the dynamic library in the CMake script.
@@ -16,7 +15,7 @@ Add the dynamic library in the CMake script.
 target_link_libraries(sample PUBLIC libmedia_asset_manager.so)
 ```
 
-Import [media_asset_manager.h](../../reference/apis-media-library-kit/media__asset__manager__capi_8h.md) and [media_asset_base_capi_8h](../../reference/apis-media-library-kit/media__asset__base__capi_8h.md) header files.
+Import [media_asset_manager.h](../../reference/apis-media-library-kit/media__asset__manager__capi_8h.md) and [media_asset_base_capi.h](../../reference/apis-media-library-kit/media__asset__base__capi_8h.md) header files.
 For details about the APIs, see [MediaAssetManager API](../../reference/apis-media-library-kit/_media_asset_manager.md).
 
 > **NOTE**<br>

@@ -188,6 +188,8 @@ import { text } from '@kit.ArkGraphics2D';
 
 省略号类型枚举。
 
+EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
+
 **系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称   | 值 | 说明      |

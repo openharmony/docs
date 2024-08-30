@@ -48,19 +48,26 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
   }
   let Mleft:Record<string,number> = { 'left': 20 }
   let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
-  RelativeContainer() {
-    Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
-      .backgroundColor("#FF3333")
-      .alignRules(AlignRus)
-      .id("row1")
+ 
+  @Entry
+  @Component
+  struct Index {
+    build() {
+      RelativeContainer() {
+        Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FF3333")
+        .alignRules(AlignRus)
+        .id("row1")
 
-    Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
-      .backgroundColor("#FFCC00")
-      .alignRules(AlignRue)
-      .id("row2")
-  }.width(300).height(300)
-  .margin(Mleft)
-  .border(BWC)
+        Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FFCC00")
+        .alignRules(AlignRue)
+        .id("row2")
+      }.width(300).height(300)
+      .margin(Mleft)
+      .border(BWC)
+    }
+  }
   ```
 
   ![zh-cn_image_0000001562820901](figures/zh-cn_image_0000001562820901.png)
@@ -78,19 +85,26 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
   }
   let Mleft:Record<string,number> = { 'left': 20 }
   let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
-  RelativeContainer() {
-    Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
-      .backgroundColor("#FF3333")
-      .alignRules(AlignRus)
-      .id("row1")
 
-    Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
-      .backgroundColor("#FFCC00")
-      .alignRules(RelConB)
-      .id("row2")
-  }.width(300).height(300)
-  .margin(Mleft)
-  .border(BWC)
+  @Entry
+  @Component
+  struct Index {
+    build() {
+      RelativeContainer() {
+        Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FF3333")
+        .alignRules(AlignRus)
+        .id("row1")
+
+        Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FFCC00")
+        .alignRules(RelConB)
+        .id("row2")
+      }.width(300).height(300)
+      .margin(Mleft)
+      .border(BWC)
+    }
+  }
   ```
 
   ![zh-cn_image_0000001562940613](figures/zh-cn_image_0000001562940613.png)

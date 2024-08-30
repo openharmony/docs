@@ -295,17 +295,20 @@ struct ListItemExample2 {
   @State arr: number[] = [0, 1, 2, 3, 4]
   @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
   @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
+  private scroller: ListScroller = new ListScroller()
 
   @Builder itemEnd() {
     Row() {
       Button("Delete").margin("4vp")
-      Button("Set").margin("4vp")
+      Button("Set").margin("4vp").onClick(() => {
+        this.scroller.closeAllSwipeActions()
+      })
     }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
   }
 
   build() {
     Column() {
-      List({ space: 10 }) {
+      List({ space: 10, scroller: this.scroller }) {
         ForEach(this.arr, (item: number) => {
           ListItem() {
             Text("item" + item)

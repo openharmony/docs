@@ -24,15 +24,15 @@ Stream to which data can be written. A writable stream allows data to be written
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name   | Type     | Read-Only | Optional | Description       |
+| Name   | Type     | Read-Only| Optional | Description       |
 | ------- | -------- | ------ | ------ | ----------- |
-| writableObjectMode  | boolean   | Yes  | No | Whether the writable stream works in object mode. The value **true** means that the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**. |
-| writableHighWatermark | number | Yes | No | Maximum amount of data that can be stored in the buffer. The default value is 16 x 1024, in bytes.|
-| writable | boolean | Yes | No | Whether the writable stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
-| writableLength | number | Yes | No | Number of bytes to be written in the buffer of the readable stream.|
-| writableCorked | number | Yes | No | Number of times the **uncork()** API needs to be called in order to fully uncork the writable stream.|
-| writableEnded | boolean | Yes | No | Whether [end()](#end) has been called for the writable stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end) has been called, and **false** means the opposite. |
-| writableFinished | boolean | Yes | No | Whether data in the writable stream has been flushed. The value **true** means that data in the stream has been flushed, and **false** means the opposite. |
+| writableObjectMode  | boolean   | Yes  | No| Whether the writable stream works in object mode. The value **true** means that the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
+| writableHighWatermark | number | Yes| No | Maximum amount of data that can be stored in the buffer. The default value is 16 x 1024, in bytes.|
+| writable | boolean | Yes| No | Whether the writable stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
+| writableLength | number | Yes| No | Number of bytes to be written in the buffer of the readable stream.|
+| writableCorked | number | Yes | No| Number of times the **uncork()** API needs to be called in order to fully uncork the writable stream.|
+| writableEnded | boolean | Yes | No| Whether [end()](#end) has been called for the writable stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end) has been called, and **false** means the opposite.|
+| writableFinished | boolean | Yes | No| Whether data in the writable stream has been flushed. The value **true** means that data in the stream has been flushed, and **false** means the opposite.|
 
 ### constructor
 
@@ -62,25 +62,25 @@ Writes data to the buffer of the stream. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                      |
+| Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | No | Data to write. The default value is **undefined**. |
+| chunk  | string \| Uint8Array | No| Data to write. The default value is **undefined**.|
 | encoding  | string | No  | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
-| callback  | Function | No  | Callback used to return the result. It is not called by default. |
+| callback  | Function | No  | Callback used to return the result. It is not called by default.|
 
 **Return value**
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full. |
+| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200035 | The doWrite method has not been implemented. |
 | 10200036 | The stream has been ended. |
 | 10200037 | The callback is invoked multiple times consecutively. |
@@ -115,9 +115,9 @@ Ends the writable stream. If the **chunk** parameter is passed in, it is written
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                      |
+| Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | No | Data to write. The default value is **undefined**. |
+| chunk  | string \| Uint8Array | No| Data to write. The default value is **undefined**.|
 | encoding  | string | No  | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
 | callback  | Function | No  | Callback used to return the result.|
 
@@ -125,15 +125,15 @@ Ends the writable stream. If the **chunk** parameter is passed in, it is written
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| [Writable](#writable) | Current **Writable** object. |
+| [Writable](#writable) | Current **Writable** object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200035 | The doWrite method has not been implemented. |
 
 **Example**
@@ -173,23 +173,23 @@ Sets the default encoding format for the writable stream.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| encoding | string | No | Default encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
+| encoding | string | No| Default encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Whether the setting is successful. The value **true** means that the setting is successful, and **false** means the opposite. |
+| boolean | Whether the setting is successful. The value **true** means that the setting is successful, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -221,9 +221,9 @@ Forces all written data to be buffered in memory. This API is called to optimize
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Whether the corked status is successfully set. The value **true** means that the setting is successful, and **false** means the opposite. |
+| boolean | Whether the corked status is successfully set. The value **true** means that the setting is successful, and **false** means the opposite.|
 
 **Example**
 
@@ -255,9 +255,9 @@ Flushes all data buffered, and writes the data to the target.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Whether the corked status is successfully removed. The value **true** means that the corked status is successfully removed, and **false** means the opposite. |
+| boolean | Whether the corked status is successfully removed. The value **true** means that the corked status is successfully removed, and **false** means the opposite.|
 
 **Example**
 
@@ -295,18 +295,18 @@ Registers an event processing callback to listen for different events on the wri
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event    | string   | Yes | Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream reaches **writableHighWatermark**.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target. |
-| callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\> | Yes | Callback function used to return the event data. |
+| event    | string   | Yes| Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream reaches **writableHighWatermark**.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target.|
+| callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\> | Yes| Callback function used to return the event data.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -342,18 +342,18 @@ Unregisters an event processing callback used to listen for different events on 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event    | string   | Yes | Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream reaches **writableHighWatermark**.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target. |
-| callback | string   | No | Callback function. |
+| event    | string   | Yes| Type of the event. The following events are supported:| `'drain' `\|`'error'` \|  <br>\- **'close'**: triggered when the call of [end()](#end) is complete and the write operation ends.<br>\- **'drain'**: triggered when the data in the buffer of the writable stream reaches **writableHighWatermark**.<br>\- **'error'**: triggered when an exception occurs in the writable stream.<br>\- **'finish'**: triggered when all data in the buffer is written to the target.|
+| callback | string   | No| Callback function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -394,17 +394,17 @@ You need to implement this API but do not call it directly. It is automatically 
 
 **Parameters**
 
-| Name   | Type    | Mandatory    | Description |
+| Name   | Type    | Mandatory    | Description|
 | -------- | -------- | -------- | -------- |
-| callback | Function | Yes | Callback function. |
+| callback | Function | Yes| Callback function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -435,19 +435,19 @@ A data write API. You need to implement this API but do not call it directly. Th
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                      |
+| Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | Yes | Data to write. |
+| chunk  | string \| Uint8Array | Yes| Data to write.|
 | encoding  | string | Yes  | Encoding format. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
-| callback  | Function | Yes  | Callback function. |
+| callback  | Function | Yes  | Callback function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -479,18 +479,18 @@ A batch data write API. You need to implement this API but do not call it direct
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| chunks    | string[] \|  Uint8Array[] | Yes | Data arrays to write in batches. |
-| callback  | Function | Yes | Callback function. |
+| chunks    | string[] \|  Uint8Array[] | Yes| Data arrays to write in batches.|
+| callback  | Function | Yes| Callback function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -525,9 +525,9 @@ Describes the options used in the **Readable** constructor.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ---- | -------- | ---- | -------------- |
-| encoding | string  | No | Encoding format. If an invalid string is input, an exception is thrown in the **Readable** constructor.<br>The following formats are supported: utf-8, UTF-8, GBK, GB2312, gb2312, GB18030, gb18030, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, gbk, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, x-mac-cyrillic, utf-16be, and utf-16le.<br>The default value is **'utf-8'**.|
+| encoding | string  | No| Encoding format. If an invalid string is input, an exception is thrown in the **Readable** constructor.<br>The following formats are supported: utf-8, UTF-8, GBK, GB2312, gb2312, GB18030, gb18030, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, gbk, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, x-mac-cyrillic, utf-16be, and utf-16le.<br>The default value is **'utf-8'**.|
 
 ## Readable
 
@@ -541,13 +541,13 @@ Stream from which data can be read. A readable stream is used to read data from 
 
 | Name   | Type     | Read-Only| Optional | Description       |
 | ------- | -------- | ------ | ------ | ----------- |
-| readableObjectMode  | boolean   | Yes  | No | Whether the readable stream works in object mode. The value **true** means that the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
-| readable | boolean | Yes | No | Whether the readable stream is currently readable. The value **true** means that the stream is currently readable, and **false** means that no data is available to read from the stream. |
-| readableHighWatermark | number | Yes | No | Maximum amount of data that can be stored in the buffer. The default value is 16 x 1024, in bytes.|
-| readableFlowing | boolean \| null | Yes | No | Whether the readable stream is flowing. The value **true** means that the stream is flowing, and **false** means the opposite.|
-| readableLength | number | Yes | No | Number of bytes in the buffer.|
-| readableEncoding | string \| null | Yes | No | Encoding format. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
-| readableEnded | boolean | Yes | No | Whether the readable stream ends. The value **true** means that the stream has no more data to read, and **false** means the opposite. |
+| readableObjectMode  | boolean   | Yes  | No| Whether the readable stream works in object mode. The value **true** means that the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
+| readable | boolean | Yes| No | Whether the readable stream is currently readable. The value **true** means that the stream is currently readable, and **false** means that no data is available to read from the stream.|
+| readableHighWatermark | number | Yes| No | Maximum amount of data that can be stored in the buffer. The default value is 16 x 1024, in bytes.|
+| readableFlowing | boolean \| null | Yes| No | Whether the readable stream is flowing. The value **true** means that the stream is flowing, and **false** means the opposite.|
+| readableLength | number | Yes| No | Number of bytes in the buffer.|
+| readableEncoding | string \| null | Yes| No | Encoding format. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
+| readableEnded | boolean | Yes | No| Whether the readable stream ends. The value **true** means that the stream has no more data to read, and **false** means the opposite.|
 
 ### constructor
 
@@ -577,17 +577,17 @@ A constructor used to create a **Readable** object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name | Type| Mandatory| Description|
 | ------ | -------- | -------- | -------- |
-| options   | [ReadableOptions](#readableoptions)   | Yes | Options in the **Readable** constructor.|
+| options   | [ReadableOptions](#readableoptions)   | Yes| Options in the **Readable** constructor.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -610,23 +610,23 @@ Reads data from the buffer of the readable stream and returns the read data. If 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name | Type| Mandatory| Description|
 | ------ | -------- | -------- | -------- |
-| size   | number   | No | Number of bytes to read. The default value is **undefined**. |
+| size   | number   | No| Number of bytes to read. The default value is **undefined**.|
 
 **Return value**
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| string \| null | Data read from the readable stream. |
+| string \| null | Data read from the readable stream.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200038 | The doRead method has not been implemented. |
 
 **Example**
@@ -662,7 +662,7 @@ Resumes an explicitly paused readable stream.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| [Readable](#readable) | Current **Readable** object. |
+| [Readable](#readable) | Current **Readable** object.|
 
 **Example**
 
@@ -695,7 +695,7 @@ Pauses the readable stream in flowing mode.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| [Readable](#readable) | Current **Readable** object. |
+| [Readable](#readable) | Current **Readable** object.|
 
 **Example**
 
@@ -726,23 +726,23 @@ Sets an encoding format for the readable stream.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| encoding | string | No | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported. |
+| encoding | string | No| Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Whether the setting is successful. The value **true** means that the setting is successful, and **false** means the opposite. |
+| boolean | Whether the setting is successful. The value **true** means that the setting is successful, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -773,9 +773,9 @@ Checks whether the readable stream is paused. The stream is paused after [pause(
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Whether the stream is paused. The value **true** means that the stream is paused, and **false** means the opposite. |
+| boolean | Whether the stream is paused. The value **true** means that the stream is paused, and **false** means the opposite.|
 
 **Example**
 
@@ -807,24 +807,24 @@ Attaches a writable stream to the readable stream to implement automatic data tr
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| destination | [Writable](#writable) | Yes | Writable stream that receives data.|
-| options     | Object | No | Reserved. |
+| destination | [Writable](#writable) | Yes| Writable stream that receives data.|
+| options     | Object | No| Reserved.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [Writable](#writable) | Current **Writable** object. |
+| [Writable](#writable) | Current **Writable** object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -868,23 +868,23 @@ Detaches a writable stream previously attached to the readable stream.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| destination | [Writable](#writable) | No | Writable stream to detach. The default value is **undefined**.|
+| destination | [Writable](#writable) | No| Writable stream to detach. The default value is **undefined**.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| [Readable](#readable) | Current **Readable** object. |
+| [Readable](#readable) | Current **Readable** object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -931,18 +931,18 @@ Registers an event processing callback to listen for different events on the rea
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event    | string   | Yes | Type of the event. The following events are supported:| `'data' `\|`'end'` \| `'error'`\|`'readable'`\|`'pause'`\| <br>\- **'close'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'data'**: triggered when a data chunk is transferred to a consumer.<br>\- **'end'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'error'**: triggered when an exception occurs in the stream.<br>\- **'readable'**: triggered when there is data available to be read from the stream.<br>\- **'pause'**: triggered when [pause()](#pause) is called.<br>\- **'resume'**: triggered when [resume()](#resume) is called. |
-| callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\> | Yes | Callback function used to return the event data. |
+| event    | string   | Yes| Type of the event. The following events are supported:| `'data' `\|`'end'` \| `'error'`\|`'readable'`\|`'pause'`\| <br>\- **'close'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'data'**: triggered when a data chunk is transferred to a consumer.<br>\- **'end'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'error'**: triggered when an exception occurs in the stream.<br>\- **'readable'**: triggered when there is data available to be read from the stream.<br>\- **'pause'**: triggered when [pause()](#pause) is called.<br>\- **'resume'**: triggered when [resume()](#resume) is called.|
+| callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\> | Yes| Callback function used to return the event data.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -968,7 +968,7 @@ readable.on('error', () => {
 
 off(event: string, callback?: Callback<emitter.EventData>): void
 
-Unregisters an event processing callback used to listen for different events on the readable stream.
+Unregisters an event processing callback used to listen for different events on the writable stream.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -976,18 +976,18 @@ Unregisters an event processing callback used to listen for different events on 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event    | string   | Yes | Type of the event. The following events are supported:| `'data' `\|`'end'` \| `'error'`\|`'readable'`\|`'pause'`\| <br>\- **'close'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'data'**: triggered when a data chunk is transferred to a consumer.<br>\- **'end'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'error'**: triggered when an exception occurs in the stream.<br>\- **'readable'**: triggered when there is data available to be read from the stream.<br>\- **'pause'**: triggered when [pause()](#pause) is called.<br>\- **'resume'**: triggered when [resume()](#resume) is called. |
-| callback | string   | No | Callback function. |
+| event    | string   | Yes| Type of the event. The following events are supported:| `'data' `\|`'end'` \| `'error'`\|`'readable'`\|`'pause'`\| <br>\- **'close'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'data'**: triggered when a data chunk is transferred to a consumer.<br>\- **'end'**: triggered when [push()](#push) is called, with **null** passed in.<br>\- **'error'**: triggered when an exception occurs in the stream.<br>\- **'readable'**: triggered when there is data available to be read from the stream.<br>\- **'pause'**: triggered when [pause()](#pause) is called.<br>\- **'resume'**: triggered when [resume()](#resume) is called.|
+| callback | string   | No| Callback function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -1025,17 +1025,17 @@ You need to implement this API. It is called when the readable stream calls [on]
 
 **Parameters**
 
-| Name   | Type    | Mandatory    | Description |
+| Name   | Type    | Mandatory    | Description|
 | -------- | -------- | -------- | -------- |
-| callback | Function | Yes | Callback function. |
+| callback | Function | Yes| Callback function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1067,17 +1067,17 @@ A data read API that needs to be implemented in child classes.
 
 **Parameters**
 
-| Name   | Type    | Mandatory    | Description |
+| Name   | Type    | Mandatory    | Description|
 | -------- | -------- | -------- | -------- |
-| size | number | Yes | Number of bytes to read. |
+| size | number | Yes| Number of bytes to read.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1109,24 +1109,24 @@ Pushes data into the buffer of the readable stream.
 
 **Parameters**
 
-| Name   | Type    | Mandatory    | Description |
+| Name   | Type    | Mandatory    | Description|
 | -------- | -------- | -------- | -------- |
-| chunk | Uint8Array \| string  \| null | Yes | Data to read. |
-| encoding | string | No | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
+| chunk | Uint8Array \| string  \| null | Yes| Data to read.|
+| encoding | string | No| Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Whether there is space in the buffer of the readable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full. |
+| boolean | Whether there is space in the buffer of the readable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -1157,15 +1157,15 @@ The **Duplex** class inherits from [Readable](# readable) and supports all the A
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name   | Type     | Read-Only | Optional | Description       |
+| Name   | Type     | Read-Only| Optional | Description       |
 | ------- | -------- | ------ | ------ | ----------- |
-| writableObjectMode  | boolean   | Yes  | No | Whether the writable side of the duplex stream works in object mode. The value **true** means that the writable side of the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**. |
-| writableHighWatermark | number | Yes | No | Maximum amount of data that can be stored in the buffer in the writable side of the duplex stream. The default value is 16 x 1024, in bytes.|
-| writable | boolean | Yes | No | Whether the duplex stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
-| writableLength | number | Yes | No | Number of bytes to be written in the buffer of the duplex stream.|
-| writableCorked | number | Yes | No | Number of times the **uncork()** API needs to be called in order to fully uncork the duplex stream.|
-| writableEnded | boolean | Yes | No | Whether [end()](#end) has been called for the duplex stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end) has been called, and **false** means the opposite.|
-| writableFinished | boolean | Yes | No | Whether data in the duplex stream has been flushed. The value **true** means that data in the stream has been flushed, and **false** means the opposite.|
+| writableObjectMode  | boolean   | Yes  | No| Whether the writable side of the duplex stream works in object mode. The value **true** means that the writable side of the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
+| writableHighWatermark | number | Yes| No | Maximum amount of data that can be stored in the buffer in the writable side of the duplex stream. The default value is 16 x 1024, in bytes.|
+| writable | boolean | Yes| No | Whether the duplex stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
+| writableLength | number | Yes| No | Number of bytes to be written in the buffer of the duplex stream.|
+| writableCorked | number | Yes | No| Number of times the **uncork()** API needs to be called in order to fully uncork the duplex stream.|
+| writableEnded | boolean | Yes | No| Whether [end()](#end) has been called for the duplex stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end) has been called, and **false** means the opposite.|
+| writableFinished | boolean | Yes | No| Whether data in the duplex stream has been flushed. The value **true** means that data in the stream has been flushed, and **false** means the opposite.|
 
 ### constructor
 
@@ -1195,25 +1195,25 @@ Writes data to the buffer of the stream. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                      |
+| Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | No | Data to write. The default value is **undefined**. |
+| chunk  | string \| Uint8Array | No| Data to write. The default value is **undefined**.|
 | encoding  | string | No  | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
-| callback  | Function | No  | Callback used to return the result. It is not called by default. |
+| callback  | Function | No  | Callback used to return the result. It is not called by default.|
 
 **Return value**
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full. |
+| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200036 | The stream has been ended. |
 | 10200037 | The callback is invoked multiple times consecutively. |
 | 10200039 | The doTransform method has not been implemented for a class that inherits from Transform. |
@@ -1252,25 +1252,25 @@ Ends the duplex stream. If the **chunk** parameter is passed in, it is written a
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                      |
+| Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | No | Data to write. The default value is **undefined**. |
+| chunk  | string \| Uint8Array | No| Data to write. The default value is **undefined**.|
 | encoding  | string | No  | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
-| callback  | Function | No  | Callback used to return the result. It is not called by default. |
+| callback  | Function | No  | Callback used to return the result. It is not called by default.|
 
 **Return value**
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| [Writable](#writable) | Current **Duplex** object. |
+| [Writable](#writable) | Current **Duplex** object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | An input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200039 | The doTransform method has not been implemented for a class that inherits from Transform. |
 
 **Example**
@@ -1308,23 +1308,23 @@ Sets the default encoding format for the duplex stream so that characters can be
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| encoding | string | No | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
+| encoding | string | No| Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Whether the setting is successful. The value **true** means that the setting is successful, and **false** means the opposite. |
+| boolean | Whether the setting is successful. The value **true** means that the setting is successful, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1359,9 +1359,9 @@ Forces all written data to be buffered in memory. This API is called to optimize
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Whether the corked status is successfully set. The value **true** means that the setting is successful, and **false** means the opposite. |
+| boolean | Whether the corked status is successfully set. The value **true** means that the setting is successful, and **false** means the opposite.|
 
 **Example**
 
@@ -1383,9 +1383,9 @@ Flushes all data buffered, and writes the data to the target.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Whether the corked status is successfully removed. The value **true** means that the corked status is successfully removed, and **false** means the opposite. |
+| boolean | Whether the corked status is successfully removed. The value **true** means that the corked status is successfully removed, and **false** means the opposite.|
 
 **Example**
 
@@ -1425,19 +1425,19 @@ A data write API. You need to implement this API but do not call it directly. Th
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                      |
+| Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| chunk  | string \| Uint8Array | Yes | Data to write. |
+| chunk  | string \| Uint8Array | Yes| Data to write.|
 | encoding  | string | Yes  | Encoding format. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
-| callback  | Function | Yes  | Callback function. |
+| callback  | Function | Yes  | Callback function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1472,18 +1472,18 @@ A batch data write API. You need to implement this API but do not call it direct
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| chunks    | string[] \| Uint8Array[] | Yes | Data arrays to write in batches. |
-| callback  | Function | Yes | Callback function. |
+| chunks    | string[] \| Uint8Array[] | Yes| Data arrays to write in batches.|
+| callback  | Function | Yes| Callback function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1546,19 +1546,19 @@ Converts or processes input data chunks and uses a callback to notify that the p
 
 **Parameters**
 
-| Name   | Type    | Mandatory    | Description |
+| Name   | Type    | Mandatory    | Description|
 | -------- | -------- | -------- | -------- |
-| chunk  | string | Yes | Data to write. |
-| encoding  | string | Yes  | Encoding format. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported. |
-| callback  | Function | Yes  | Callback function. |
+| chunk  | string | Yes| Data to write.|
+| encoding  | string | Yes  | Encoding format. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
+| callback  | Function | Yes  | Callback function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1592,17 +1592,17 @@ Called at the end of the stream to process the remaining data. This API uses an 
 
 **Parameters**
 
-| Name   | Type    | Mandatory    | Description |
+| Name   | Type    | Mandatory    | Description|
 | -------- | -------- | -------- | -------- |
-| callback  | Function | Yes  | Callback function. |
+| callback  | Function | Yes  | Callback function.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
-| 401      | if the input parameters are invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 

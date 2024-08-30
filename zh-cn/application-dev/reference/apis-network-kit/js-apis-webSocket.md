@@ -136,11 +136,15 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                     |
-|---------|------------------------------------------|
-| 401     | Parameter error.                         |
-| 201     | Permission denied.                       |
-| 2302998 | It is not allowed to access this domain. |
+| 错误码ID              | 错误信息                                   |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -187,11 +191,15 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                     |
-|---------|------------------------------------------|
-| 401     | Parameter error.                         |
-| 201     | Permission denied.                       |
-| 2302998 | It is not allowed to access this domain. |
+| 错误码ID              | 错误信息                                   |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -252,11 +260,15 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                     |
-|---------|------------------------------------------|
-| 401     | Parameter error.                         |
-| 201     | Permission denied.                       |
-| 2302998 | It is not allowed to access this domain. |
+| 错误码ID              | 错误信息                                   |
+| --------------------- | ------------------------------------------ |
+| 401                   | Parameter error.                           |
+| 201                   | Permission denied.                         |
+| 2302001<sup>12+</sup> | Websocket url error.                       |
+| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
+| 2302003<sup>12+</sup> | Websocket connection already exists.       |
+| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
+| 2302999<sup>10+</sup> | Websocket other unknown error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。

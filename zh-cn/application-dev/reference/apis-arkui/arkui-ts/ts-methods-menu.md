@@ -1,4 +1,4 @@
-# 菜单
+# ContextMenu
 
 在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#属性)属性绑定的菜单。
 

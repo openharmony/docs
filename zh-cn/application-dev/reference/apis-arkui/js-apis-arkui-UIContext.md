@@ -5323,7 +5323,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 | 103301   | the ComponentContent is incorrect.                           |
 | 103302   | Dialog content already exists.                               |
 
-## closeCustomDialog<sup>12+</sup>
+### closeCustomDialog<sup>12+</sup>
 
 closeCustomDialog(dialogId: number): void
 

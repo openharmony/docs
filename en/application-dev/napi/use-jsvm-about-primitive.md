@@ -2,7 +2,7 @@
 
 ## Introduction
 
-JSVM-API provides APIs for converting data between C/C++ and JavaScript (JS) data types and obtaining the specific JS object.
+JSVM-API provides APIs for converting data between C/C++ and JavaScript (JS) data types and obtaining the JS object of the specified type.
 
 ## Basic Concepts
 
@@ -26,7 +26,7 @@ Before using JSVM-API to operate JS objects, you need to understand the followin
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to primitives.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code involved in primitive-related APIs.
 
 ### OH_JSVM_CoerceToBool
 
@@ -321,7 +321,7 @@ try {
 
 ### OH_JSVM_GetValueBool
 
-Use **OH_JSVM_GetValueBool** to obtain the C Boolean primitive equivalent of the given JS Boolean.
+Use **OH_JSVM_GetValueBool** to obtain the C Boolean equivalent of the given JS Boolean.
 
 CPP code:
 
@@ -395,7 +395,7 @@ try {
 
 ### OH_JSVM_GetGlobal
 
-Use **OH_JSVM_GetGlobal** to obtain a JS **global** object. You can use this API to obtain the **JSVM_Value** that represents a JS global object, so that the JSVM module can interact with the global variables and functions defined in the JS context.
+Use **OH_JSVM_GetGlobal** to obtain a JS global object. You can use this API to obtain the **JSVM_Value** that represents a JS global object, so that the JSVM module can interact with the global variables and functions defined in the JS context.
 
 CPP code:
 
@@ -517,7 +517,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Define OH_JSVM_GetUndefined.
 static JSVM_Value GetUndefined(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    //Obtain and parse the input parameters.
+    // Obtain and parse the parameters passed in.
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
