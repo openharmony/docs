@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Open Sound Library for Embedded Systems (OpenSL ES) is a set of audio acceleration standards for embedded systems. It provides objects and APIs for developers to implement high-performance, low-latency audio features. OpenHarmony implements some native APIs based on [OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API specifications. The following table lists the related APIs.
+Open Sound Library for Embedded Systems (OpenSL ES) is a set of audio acceleration standards for embedded systems. It provides objects and APIs for developers to implement high-performance, low-latency audio features. OpenHarmony implements some native APIs based on [OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API specifications. The table below list these APIs.
+
+
 
 ## Supported APIs
 
