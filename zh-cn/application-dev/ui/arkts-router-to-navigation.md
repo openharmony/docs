@@ -74,8 +74,11 @@ Router路由的页面是一个`@Entry`修饰的Component，每一个页面都需
 
 ```ts
 // index.ets
+import { router } from '@kit.ArkUI';
+
 @Entry
 @Component
+
 struct Index {
   @State message: string = 'Hello World';
 
@@ -85,6 +88,51 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
+        Button('router to pageOne', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/pageOne' // 目标url
+              }, router.RouterMode.Standard, (err) => {
+                if (err) {
+                  console.error(Invoke pushUrl failed, code is ${err.code}, message is ${err.message});
+                  return;
+                }
+                console.info('Invoke pushUrl succeeded.');
+              })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+```ts
+// pageOne.ets
+import { router } from '@kit.ArkUI';
+
+@entry
+@Component
+struct pageOne {
+  @State message: string = 'This is pageOne';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button('router back to Index', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            router.back();
+          })
       }
       .width('100%')
     }
