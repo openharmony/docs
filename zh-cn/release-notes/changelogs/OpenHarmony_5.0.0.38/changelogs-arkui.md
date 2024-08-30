@@ -213,7 +213,6 @@ struct V2ComponentMember {
   }
 }
 ```
-
 ## cl.arkui.4 Tabs组件的选中页签为子页签且背板模式时，其默认字体颜色变更
 
 **访问级别**
@@ -271,6 +270,62 @@ struct TabBarStyleExample {
       .width('100%')
       .backgroundColor(0xF1F3F5)
     }.width('100%').height(200)
+  }
+}
+```
+## cl.arkui.5 Text组件属性字符串支持超链接
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+为了提升Text组件的联合布局能力，StyledStringValue需要增加UrlStyle类型。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+新增属性字符串超链接功能，提升组件的联合布局能力。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.38开始
+
+**变更的接口/组件**
+
+StyledStringValue
+
+**适配指导**
+
+Text组件属性字符串支持超链接的示例代码：
+
+```ts
+@Entry
+@Component
+struct styled_string {
+  urlString: StyledStringValue = new UrlStyle( "https://www.example.com" );
+  mutableStyledString: MutableStyledString = new MutableStyledString("test hello world", [{
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.URL,
+    styledValue: this.urlString
+  }]);
+  controller: TextController = new TextController();
+  async onPageShow() {
+    this.controller.setStyledString(this.mutableStyledString)
+  }
+  build() {
+    Column() {
+      Column() {
+        Text(undefined, { controller: this.controller }).key('mutableStyledString')
+      }
+    }
   }
 }
 ```

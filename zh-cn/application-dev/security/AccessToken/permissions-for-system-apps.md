@@ -661,6 +661,18 @@
 
 **起始版本**：8
 
+### ohos.permission.READ_DFX_XPOWER
+
+允许应用访问xpower的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.PERMISSION_USED_STATS
 
 允许系统应用访问权限使用记录。
@@ -3779,11 +3791,47 @@
 
 **ACL使能**：true
 
+**起始版本**：13
+
+### ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
+
+允许模态UIExtension取消对不安全窗口的隐藏。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
 **起始版本**：12
 
 ### ohos.permission.ACCESS_DISTRIBUTED_MODEM
 
 允许系统服务访问虚拟Modem。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.GET_TELEPHONY_ESIM_STATE
+
+允许系统应用获取eSIM profile信息及设备芯片开卡相关属性。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE
+
+允许系统应用修改eSIM profile文件，及eSIM升级。
 
 **权限级别**：system_basic
 
@@ -4014,6 +4062,18 @@
 **ACL使能**：false
 
 **起始版本**：11
+
+### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
+
+允许系统应用或者系统服务为三方应用授予存图片和视频的短时访问权限。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ## user_grant，允许ACL跨级申请
 
@@ -4310,15 +4370,3 @@
 **ACL使能**：true
 
 **起始版本**：11
-
-### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
-
-允许系统应用或者系统服务为三方应用授予存图片和视频的短时访问权限。
-
-**权限级别**：system_core
-
-**授权方式**：user_grant
-
-**ACL使能**：true
-
-**起始版本**：13

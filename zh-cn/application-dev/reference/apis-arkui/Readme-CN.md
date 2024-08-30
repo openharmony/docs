@@ -398,6 +398,7 @@
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [WindowManager_NativeModule](_window_manager___native_module.md)
+    - [OH_DisplayManager](_o_h___display_manager.md)
   - 头文件
     - [drag_and_drop.h](drag__and__drop_8h.md)
     - [drawable_descriptor.h](drawable__descriptor_8h.md)
@@ -414,6 +415,8 @@
     - [ui_input_event.h](ui__input__event_8h.md)
     - [oh_window_comm.h](oh__window__comm_8h.md)
     - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
+    - [oh_display_info.h](oh__display__info_8h.md)
+    - [oh_display_manager.h](oh__display__manager_8h.md)
   - 结构体
     - [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md)
     - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
@@ -442,6 +445,9 @@
     - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
+    - [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md)
+    - [NativeDisplayManager_Rect](_native_display_manager___rect.md)
+    - [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md)
 - 错误码
   - UI界面
     - [动画错误码](errorcode-animator.md)

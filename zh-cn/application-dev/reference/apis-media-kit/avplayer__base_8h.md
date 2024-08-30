@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct  [AVPlayerCallback](_a_v_player_callback.md) | OH_AVPlayer中所有回调函数指针的集合。注册此的实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。  | 
+| struct  [AVPlayerCallback](_a_v_player_callback.md) | （已废弃）包含了OH_AVPlayerOnInfo和OH_AVPlayerOnInfo回调函数指针的集合。注册此的实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。  | 
 
 
 ### 类型定义
@@ -33,9 +33,9 @@
 | typedef enum [AVPlaybackSpeed](_a_v_player.md#avplaybackspeed-1) [AVPlaybackSpeed](_a_v_player.md#avplaybackspeed) | 播放速度。  | 
 | typedef enum [AVPlayerOnInfoType](_a_v_player.md#avplayeroninfotype-1) [AVPlayerOnInfoType](_a_v_player.md#avplayeroninfotype) | OnInfo类型。  | 
 | typedef enum [AVPlayerBufferingType](_a_v_player.md#avplayerbufferingtype-1) [AVPlayerBufferingType](_a_v_player.md#avplayerbufferingtype) | 播放缓冲消息类型定义。  | 
-| typedef void(\* [OH_AVPlayerOnInfo](_a_v_player.md#oh_avplayeroninfo)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](_a_v_player.md#avplayeroninfotype) type, int32_t extra) | 收到播放器消息时调用。  | 
+| typedef void(\* [OH_AVPlayerOnInfo](_a_v_player.md#oh_avplayeroninfo)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](_a_v_player.md#avplayeroninfotype) type, int32_t extra) | （已废弃）收到播放器消息时调用。  | 
 | typedef void(\* [OH_AVPlayerOnInfoCallback](_a_v_player.md#oh_avplayeroninfocallback)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](_a_v_player.md#avplayeroninfotype) type, OH_AVFormat \*infoBody, void \*userData) | 收到播放器消息时被调用。如果应用成功设置该回调，则不会回调OH_AVPlayerOnInfo函数。  | 
-| typedef void(\* [OH_AVPlayerOnError](_a_v_player.md#oh_avplayeronerror)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg) | 在API 9以上的版本发生错误时调用  | 
+| typedef void(\* [OH_AVPlayerOnError](_a_v_player.md#oh_avplayeronerror)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg) | （已废弃）在API 9以上的版本发生错误时调用  | 
 | typedef void(\* [OH_AVPlayerOnErrorCallback](_a_v_player.md#oh_avplayeronerrorcallback)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg, void \*userData) | 发生错误时被调用。如果应用成功设置该回调，则不会回调OH_AVPlayerOnError函数。  | 
 | typedef struct [AVPlayerCallback](_a_v_player_callback.md) [AVPlayerCallback](_a_v_player.md#avplayercallback) | OH_AVPlayer中所有回调函数指针的集合。  | 
 
@@ -67,7 +67,7 @@
 | const char \* [OH_PLAYER_BUFFERING_VALUE](_a_v_player.md#oh_player_buffering_value) | 获取缓冲更新消息具体数值的关键字, 对应值类型是int32_t。  | 
 | const char \* [OH_PLAYER_SEEK_POSITION](_a_v_player.md#oh_player_seek_position) | 获取Seek后播放进度信息的关键字, 对应值类型是int32_t。  | 
 | const char \* [OH_PLAYER_PLAYBACK_SPEED](_a_v_player.md#oh_player_playback_speed) | 获取播放倍速信息的关键字, 对应值类型是AVPlaybackSpeed。  | 
-| const char \* [OH_PLAYER_BITRATE](_a_v_player.md#oh_player_bitrate) | 获取比特率信息的关键字, 对应值类型是uint32_t。  | 
+| const char \* [OH_PLAYER_BITRATE](_a_v_player.md#oh_player_bitrate) | 获取比特率信息的关键字, 对应值类型是int32_t。  | 
 | const char \* [OH_PLAYER_CURRENT_POSITION](_a_v_player.md#oh_player_current_position) | 获取播放进度信息的关键字, 对应值类型是int32_t。  | 
 | const char \* [OH_PLAYER_DURATION](_a_v_player.md#oh_player_duration) | 获取媒体资源时长信息的关键字, 对应值类型是int64_t。  | 
 | const char \* [OH_PLAYER_VIDEO_WIDTH](_a_v_player.md#oh_player_video_width) | 获取视频宽度信息的关键字, 对应值类型int32_t。  | 
