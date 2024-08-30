@@ -100,9 +100,9 @@ AV_ERR_UNKNOWN：未知错误。
 
 AV_ERR_SERVICE_DIED：服务状态已经消亡。
 
-AV_ERR_INVALID_STATE：本接口必须在Prepare接口前调用，如果在其他状态时调用，则返回此错误码;
+AV_ERR_INVALID_STATE：本接口必须在Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
 
-AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：不支持色彩空间转换功能;
+AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：不支持色彩空间转换功能。
 
 
 ### OH_VideoDecoder_CreateByMime()
@@ -346,7 +346,7 @@ AV_ERR_UNKNOWN：未知错误。
 
 AV_ERR_SERVICE_DIED：服务状态已经消亡。
 
-AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用；
+AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
 AV_ERR_OPERATE_NOT_PERMIT：配置了色彩空间转换功能，但解码器处于buffer模式。
 
@@ -687,7 +687,7 @@ AV_ERR_UNKNOWN：未知错误。
 
 AV_ERR_SERVICE_DIED：服务状态已经消亡。
 
-AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用；
+AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
 AV_ERR_OPERATE_NOT_PERMIT：视频色彩空间转换功能已配置，但是没有调用Prepare接口。
 
