@@ -3,6 +3,7 @@
 This module provides the firewall configuration and query functions for applications. You can configure firewall policies to implement access control for devices based on IP addresses, domain names, and DNS servers. In addition to adding, modifying, removing, and querying firewall policies, you can query firewall interception records.
 
 > **NOTE**
+
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs provided by this module are system APIs.
 
