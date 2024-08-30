@@ -214,8 +214,6 @@ The credential does not exist.
 
 - Insufficient memory.
 - Malloc failed.
-- 传入的出参缓存太小。
-
 
 **可能原因**
 
