@@ -91,19 +91,23 @@ Generally, a button is used to start a page. Below is an example:
   
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       // Obtain the targetPage parameter passed in the router event.
-      hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate, ${JSON.stringify(want)}`);
-      if (want.parameters !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters));
-        this.selectPage = params.targetPage;
+      hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate: ${JSON.stringify(want?.parameters)}`);
+      if (want?.parameters?.params) {
+        // want.parameters.params corresponds to params in postCardAction().
+        let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+        this.selectPage = params.targetPage as string;
+        hilog.info(DOMAIN_NUMBER, TAG, `onCreate selectPage: ${this.selectPage}`);
       }
     }
   
     // If the UIAbility is running in the background, the onNewWant lifecycle callback is triggered after the router event is received.
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-      hilog.info(DOMAIN_NUMBER, TAG, `onNewWant Want: ${JSON.stringify(want)}`);
-      if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters));
-        this.selectPage = params.targetPage;
+      hilog.info(DOMAIN_NUMBER, TAG, `Ability onNewWant: ${JSON.stringify(want?.parameters)}`);
+      if (want?.parameters?.params) {
+        // want.parameters.params corresponds to params in postCardAction().
+        let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+        this.selectPage = params.targetPage as string;
+        hilog.info(DOMAIN_NUMBER, TAG, `onNewWant selectPage: ${this.selectPage}`);
       }
       if (this.currentWindowStage !== null) {
         this.onWindowStageCreate(this.currentWindowStage);
