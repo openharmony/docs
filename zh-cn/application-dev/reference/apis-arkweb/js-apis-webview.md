@@ -1,5 +1,3 @@
-
-
 # @ohos.web.webview (Webview)
 
 @ohos.web.webview提供web控制能力，[Web](ts-basic-components-web.md)组件提供网页显示的能力。
@@ -680,7 +678,7 @@ struct WebComponent {
 
 static initializeWebEngine(): void
 
-在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
+在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。自动预连接历史访问过的高频网站。
 
 > **说明：**
 >

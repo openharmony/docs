@@ -242,7 +242,7 @@
   }
   ```
 
-- 应用侧代码，视频播放示例。
+- 应用侧代码，视频播放示例，使用时需替换正确的视频链接地址。
 
   ```ts
   // HAP's src/main/ets/pages/PlayerDemo.ets
