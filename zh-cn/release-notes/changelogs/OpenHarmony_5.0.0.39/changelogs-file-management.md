@@ -43,6 +43,6 @@ API11
 
 **适配指导**
 
-应用使用新接口可以同时支持用同WiFi和不同WiFi场景下的跨设备文件访问能力，详见   [跨设备文件访问](../../../application-dev/file-management/file-access-across-devices.md)
+应用使用新接口可以同时支持用同WiFi和不同WiFi场景下的跨设备文件访问能力，详见[跨设备文件访问](../../../application-dev/file-management/file-access-across-devices.md)
 
 
