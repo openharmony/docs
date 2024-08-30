@@ -520,6 +520,8 @@
         - [WindowExtensionAbility（仅对系统应用开放）](windowmanager/windowextensionability.md)
         <!--DelEnd-->
         - [使用NativeWindowEventFilter过滤多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
+      - 屏幕管理<!--display-manager-->
+        - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听(C/C++)](displaymanager/native-display-manager.md)
     - ArkWeb（方舟Web）<!--arkweb-->
       - [ArkWeb简介](web/web-component-overview.md)
       - [Web组件的生命周期](web/web-event-sequence.md)
@@ -2414,6 +2416,7 @@
           - [Native XComponent](reference/apis-arkui/_o_h___native_x_component.md)
           - [ArkUI_EventModule](reference/apis-arkui/_ark_u_i___event_module.md)
           - [WindowManager_NativeModule](reference/apis-arkui/_window_manager___native_module.md)
+          - [OH_DisplayManager](reference/apis-arkui/_o_h___display_manager.md)
         - 头文件和结构体<!--arkui-headerfile-struct-->
           - 头文件<!--arkui-headerfile-->
             - [drag_and_drop.h](reference/apis-arkui/drag__and__drop_8h.md)
@@ -2431,6 +2434,8 @@
             - [ui_input_event.h](reference/apis-arkui/ui__input__event_8h.md)
             - [oh_window_comm.h](reference/apis-arkui/oh__window__comm_8h.md)
             - [oh_window_event_filter.h](reference/apis-arkui/oh__window__event__filter_8h.md)
+            - [oh_display_info.h](reference/apis-arkui/oh__display__info_8h.md)
+            - [oh_display_manager.h](reference/apis-arkui/oh__display__manager_8h.md)
           - 结构体<!--arkui-struct-->
             - [ArkUI_AnimateCompleteCallback](reference/apis-arkui/_ark_u_i___animate_complete_callback.md)
             - [ArkUI_AttributeItem](reference/apis-arkui/_ark_u_i___attribute_item.md)
@@ -2459,6 +2464,9 @@
             - [OH_NativeXComponent_MouseEvent_Callback](reference/apis-arkui/_o_h___native_x_component___mouse_event___callback.md)
             - [OH_NativeXComponent_TouchEvent](reference/apis-arkui/_o_h___native_x_component___touch_event.md)
             - [OH_NativeXComponent_TouchPoint](reference/apis-arkui/_o_h___native_x_component___touch_point.md)
+            - [NativeDisplayManager_CutoutInfo](reference/apis-arkui/_native_display_manager___cutout_info.md)
+            - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
+            - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
       - 错误码<!--arkui-arkts-errcode-->
         - UI界面
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
