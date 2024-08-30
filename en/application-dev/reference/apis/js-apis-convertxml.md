@@ -130,7 +130,7 @@ Options for conversion.
 | trim              | boolean  | Yes  | Whether to trim the whitespace characters before and after the text.                |
 | ignoreDeclaration | boolean  | No  | Whether to ignore the XML declaration. The default value is **false**.                       |
 | ignoreInstruction | boolean  | No  | Whether to ignore the XML processing instruction. The default value is **false**.                     |
-| ignoreAttributes  | boolean  | No  | Whether to print attributes across multiple lines and indent attributes. The default value is **false**.                  |
+| ignoreAttributes  | boolean  | No  | Whether to ignore the element's attribute information. The default value is **false**.                  |
 | ignoreComment     | boolean  | No  | Whether to ignore element comments. The default value is **false**.                        |
 | ignoreCDATA       | boolean  | No  | Whether to ignore the element's CDATA information. The default value is **false**.                       |
 | ignoreDoctype     | boolean  | No  | Whether to ignore the element's Doctype information. The default value is **false**.                     |
