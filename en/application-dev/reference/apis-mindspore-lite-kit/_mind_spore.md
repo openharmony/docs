@@ -29,7 +29,7 @@ Provides APIs related to MindSpore Lite model inference.
 | Name| Description|
 | -------- | -------- |
 | [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) | Defines the tensor array structure, which is used to store the tensor array pointer and tensor array length.|
-| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **MS_MAX_SHAPE_NUM**.|
+| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.|
 | [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) | Defines the operator information passed in a callback.|
 
 
@@ -51,7 +51,7 @@ Provides APIs related to MindSpore Lite model inference.
 | [OH_AI_ModelHandle](#oh_ai_modelhandle) | Defines the pointer to a model object.|
 | [OH_AI_TrainCfgHandle](#oh_ai_traincfghandle) | Defines the pointer to a training configuration object.|
 | [OH_AI_TensorHandleArray](#oh_ai_tensorhandlearray) | Defines the tensor array structure, which is used to store the tensor array pointer and tensor array length.|
-| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **MS_MAX_SHAPE_NUM**.|
+| [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.|
 | [OH_AI_CallBackParam](#oh_ai_callbackparam) | Defines the operator information passed in a callback.|
 | [OH_AI_KernelCallBack](#oh_ai_kernelcallback)) (const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) inputs, const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) outputs, const [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) kernel_Info) | Defines the pointer to a callback.|
 | [OH_AI_Status](#oh_ai_status) | Defines MindSpore status codes.|
@@ -183,7 +183,7 @@ Provides APIs related to MindSpore Lite model inference.
 
 **Description**
 
-Defines dimension information. The maximum dimension is set by **MS_MAX_SHAPE_NUM**.
+Defines dimension information. The maximum dimension is set by **OH_AI_MAX_SHAPE_NUM**.
 
 **Since**: 9
 
@@ -207,7 +207,7 @@ Defines the NNRt device information, including the device ID and device name.
 ### OH_AI_CallBackParam
 
 ```
-typedef struct OH_AI_CallBackParamOH_AI_CallBackParam
+typedef struct OH_AI_CallBackParam OH_AI_CallBackParam
 ```
 
 **Description**
@@ -233,7 +233,7 @@ Defines the pointer to the MindSpore context.
 ### OH_AI_DataType
 
 ```
-typedef enum OH_AI_DataTypeOH_AI_DataType
+typedef enum OH_AI_DataType OH_AI_DataType
 ```
 
 **Description**
@@ -259,7 +259,7 @@ Defines the pointer to the MindSpore device information.
 ### OH_AI_DeviceType
 
 ```
-typedef enum OH_AI_DeviceTypeOH_AI_DeviceType
+typedef enum OH_AI_DeviceType OH_AI_DeviceType
 ```
 
 **Description**
@@ -272,7 +272,7 @@ Defines the supported device types.
 ### OH_AI_Format
 
 ```
-typedef enum OH_AI_FormatOH_AI_Format
+typedef enum OH_AI_Format OH_AI_Format
 ```
 
 **Description**
@@ -313,7 +313,7 @@ Defines the pointer to a model object.
 ### OH_AI_ModelType
 
 ```
-typedef enum OH_AI_ModelTypeOH_AI_ModelType
+typedef enum OH_AI_ModelType OH_AI_ModelType
 ```
 
 **Description**
@@ -326,7 +326,7 @@ Defines model file types.
 ### OH_AI_NNRTDeviceType
 
 ```
-typedef enum OH_AI_NNRTDeviceTypeOH_AI_NNRTDeviceType
+typedef enum OH_AI_NNRTDeviceType OH_AI_NNRTDeviceType
 ```
 
 **Description**
@@ -339,7 +339,7 @@ Defines NNRt device types.
 ### OH_AI_PerformanceMode
 
 ```
-typedef enum OH_AI_PerformanceModeOH_AI_PerformanceMode
+typedef enum OH_AI_PerformanceMode OH_AI_PerformanceMode
 ```
 
 **Description**
@@ -352,7 +352,7 @@ Defines performance modes of the NNRt device.
 ### OH_AI_Priority
 
 ```
-typedef enum OH_AI_PriorityOH_AI_Priority
+typedef enum OH_AI_Priority OH_AI_Priority
 ```
 
 **Description**
@@ -365,7 +365,7 @@ Defines NNRt inference task priorities.
 ### OH_AI_Status
 
 ```
-typedef enum OH_AI_StatusOH_AI_Status
+typedef enum OH_AI_Status OH_AI_Status
 ```
 
 **Description**
@@ -391,7 +391,7 @@ Defines the handle of a tensor object.
 ### OH_AI_TensorHandleArray
 
 ```
-typedef struct OH_AI_TensorHandleArrayOH_AI_TensorHandleArray
+typedef struct OH_AI_TensorHandleArray OH_AI_TensorHandleArray
 ```
 
 **Description**
@@ -488,11 +488,11 @@ Defines the supported device types.
 
 | Value| Description|
 | -------- | -------- |
-| OH_AI_DEVICETYPE_CPU | Device type: CPU|
-| OH_AI_DEVICETYPE_GPU | Device type: GPU|
-| OH_AI_DEVICETYPE_KIRIN_NPU | Device type: Kirin NPU|
+| OH_AI_DEVICETYPE_CPU | CPU.|
+| OH_AI_DEVICETYPE_GPU | GPU.|
+| OH_AI_DEVICETYPE_KIRIN_NPU | Kirin NPU.|
 | OH_AI_DEVICETYPE_NNRT | Device type: NNRt<br>OHOS device range: [60, 80)|
-| OH_AI_DEVICETYPE_INVALID | Invalid device type|
+| OH_AI_DEVICETYPE_INVALID | Invalid device type.|
 
 
 ### OH_AI_Format
@@ -1612,7 +1612,7 @@ Note that the same {\@Link OH_AI_ContextHandle} object can only be passed to {\@
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **MSStatus::kMSStatusSuccess** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
 
 
 ### OH_AI_ModelBuildFromFile()
@@ -1640,7 +1640,7 @@ Note that the same {\@Link OH_AI_ContextHandle} object can only be passed to {\@
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **MSStatus::kMSStatusSuccess** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
 
 
 ### OH_AI_ModelCreate()
@@ -1866,7 +1866,7 @@ Performs model inference.
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **MSStatus::kMSStatusSuccess** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
 
 
 ### OH_AI_ModelResize()
@@ -1892,7 +1892,7 @@ Adjusts the input tensor shapes of a built model.
 
 **Returns**
 
-Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **MSStatus::kMSStatusSuccess** indicates that the operation is successful.
+Status code enumerated by [OH_AI_Status](#oh_ai_status). The value **OH_AI_Status::OH_AI_STATUS_SUCCESS** indicates that the operation is successful.
 
 
 ### OH_AI_ModelSetLearningRate()
