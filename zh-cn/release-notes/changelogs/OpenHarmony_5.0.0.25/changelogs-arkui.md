@@ -359,3 +359,40 @@ Image('/resource/image.jpg')
   .dragPreviewOptions({ mode: [ DragPreviewMode.ENABLE_DEFAULT_SHADOW, DragPreviewMode.ENABLE_DEFAULT_RADIUS ] })
 
 ```
+
+
+## cl.arkui.7 窗口hide接口支持范围变更，仅支持系统窗口和子窗口
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+主窗口调用hide接口会导致不可预期的后果。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：接口支持系统窗口和子窗口，针对主窗口调用hide接口可能会存在不可预期的问题。
+
+变更后：接口仅支持系统窗口和子窗口。
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.25 版本开始。
+
+**变更的接口/组件**
+
+Window的hide接口。包含：
+hide(callback: AsyncCallback<void>): void;
+hide(): Promise<void>。
+
+**适配指导**
+
+hide()接口用来隐藏当前窗口，仅支持系统窗口和子窗口调用。若主窗口想实现最小化，请使用minimize()接口实现。
