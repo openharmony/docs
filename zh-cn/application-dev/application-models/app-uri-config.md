@@ -54,7 +54,6 @@
 
 ## 配置示例
 
-参考应用链接（[Deep Linking](deep-linking-startup.md)、[App Linking](app-linking-startup.md)）的配置要求进行URI配置。
 
 下面以授权登录场景举例说明：
 
