@@ -182,7 +182,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_drm.so)
    ```
-   设置DRM信息监听的接口有两种，示例一所示的回调函数支持返回解封装器实例，适用于多个解封装器场景。示例二所示的回调函数不支持返回解封装器实例，适用于单个解封装器实例。可根据需要选择，推荐使用示例一。
+   设置DRM信息监听的接口有两种，示例一所示的回调函数支持返回解封装器实例，适用于多个解封装器场景。示例二所示的回调函数不支持返回解封装器实例，适用于单个解封装器实例场景。可根据需要选择，推荐使用示例一。
 
    使用示例一：
    ```c++
