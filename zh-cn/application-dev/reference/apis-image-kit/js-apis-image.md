@@ -2985,7 +2985,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(file.fd, sourc
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
-通过缓冲区创建图片源实例。
+通过缓冲区创建图片源实例。buf数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[image.createPixelMapSync](#createpixelmapsync12)这一类接口。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -3017,7 +3017,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(buf);
 
 createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
-通过缓冲区创建图片源实例。
+通过缓冲区创建图片源实例。buf数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[image.createPixelMapSync](#createpixelmapsync12)这一类接口。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -5495,7 +5495,7 @@ creator.release().then(() => {
 | 名称     | 类型               | 可读 | 可写 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
-| size     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
+| size     | [Size](#size)      | 是   | 否   | 图像大小。如果image对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的size中的宽高分别对应YUV图像的宽高； 如果image对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的文件，size中的宽等于JPEG文件大小，高等于1。image对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。                                |
 | format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
 | timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。|
 
