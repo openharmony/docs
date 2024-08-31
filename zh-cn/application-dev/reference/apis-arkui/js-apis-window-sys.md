@@ -3550,6 +3550,64 @@ promise.then(() => {
 });
 ```
 
+### requestFocus<sup>13+</sup>
+
+requestFocus(isFocused: boolean): Promise&lt;void&gt;
+
+支持系统应用窗口主动请求获焦/失焦，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| isFocused | boolean | 是   | 是否获取焦点，true表示请求获焦，false表示请求失焦。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // ...
+    windowStage.getMainWindow().then((window) => {
+      let isFocused: boolean = true;
+      let promise = window.requestFocus(isFocused);
+      promise.then(() => {
+        console.info('Succeeded in requesting focus.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to request focus. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
+```
+
 ## SubWindowOptions<sup>11+</sup>
 
 子窗口创建参数。
