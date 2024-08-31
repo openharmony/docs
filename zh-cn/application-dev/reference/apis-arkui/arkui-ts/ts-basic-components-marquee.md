@@ -73,7 +73,7 @@ marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
 
 onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
-开始滚动时触发回调。
+当滚动的文本内容变化或者开始滚动时触发回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

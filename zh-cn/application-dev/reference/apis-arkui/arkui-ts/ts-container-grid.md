@@ -41,7 +41,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 **参数：**
 
-| 参数名   | 参数类型                                    | 必填 | 参数描述                                                     |
+| 参数名   | 类型                                    | 必填 | 说明                                                     |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
 | layoutOptions<sup>10+</sup> | [GridLayoutOptions](#gridlayoutoptions10) | 否 | Grid布局选项。 |
@@ -56,7 +56,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 描述                    |
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | regularSize  | [number, number]  | 是    | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | irregularIndexes | number[] | 否    | 指定的GridItem索引在Grid中的大小是不规则的。当不设置onGetIrregularSizeByIndex时，irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -449,6 +449,41 @@ friction(value: number | Resource)
 | ------ | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。<br/>从API version 12开始，非可穿戴设备默认值为0.75。 |
 
+### alignItems<sup>12+</sup>
+
+alignItems(alignment: Optional\<GridItemAlignment\>)
+
+设置Grid中GridItem的对齐方式， 使用方法可以参考[示例9](#示例9)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| alignment | Optional\<[GridItemAlignment](#griditemalignment12枚举说明)\> | 是   | 设置Grid中GridItem的对齐方式。<br/>默认值：GridItemAlignment.DEFAULT |
+
+## GridItemAlignment<sup>12+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 值 | 描述                                   |
+| ------ |------| -------------------------------------- |
+| DEFAULT  |  0  | 使用Grid的默认对齐方式。 |
+| STRETCH |  1  | 以一行中的最高的GridItem作为其他GridItem的高度。 |
+
+
+> **说明：** 
+>
+> 1、只有可滚动的Grid中，设置STRETCH参数会生效，其他场景不生效。<br/>
+> 2、在Grid的一行中，如果每个GridItem都是大小规律的（只占一行一列），设置STRETCH参数会生效，存在跨行或跨列的GridItem的场景不生效。<br/>
+> 3、设置STRETCH后，只有不设置高度的GridItem才会以当前行中最高的GridItem作为自己的高度，设置过高度的GridItem高度不会变化。<br/>
+> 4、设置STRETCH后，Grid布局时会有额外的布局流程，可能会带来额外的性能开销。
+
 ## GridDirection<sup>8+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -694,10 +729,10 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型         |   描述         |
-| ---------- | ---------- | ---------- |
-| totalOffset | number |  Grid内容相对显示区域的总偏移，单位px。    |
-| totalLength   | number |  Grid内容总长度，单位px。    |
+| 名称         | 类型         | 只读 | 可选 |   说明         |
+| ----------- | ------------ | ---- | ---- | ---------- |
+| totalOffset | number | 否 | 否 |  Grid内容相对显示区域的总偏移，单位px。    |
+| totalLength   | number | 否 | 否 |  Grid内容总长度，单位px。    |
 
 ## 示例
 
@@ -1410,3 +1445,65 @@ struct GridColumnsTemplate {
 ```
 
 ![gridColumnsTemplate](figures/gridColumnsTemplate.png)
+
+### 示例9
+下面的Grid中包含两列，每列中的GridItem包括高度确定的两个Column和一个高度不确定的Text共三个子组件。
+
+在默认情况下，左右两个GridItem的高度可能是不同的；在设置了Grid的[alignItems](#alignitems12)属性为GridItemAlignment.STRETCH后，一行左右两个GridItem中原本高度较小的GridItem会以另一个高度较大的GridItem的高度作为自己的高度。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State data: number[] = [];
+  @State items: number[] = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.data.push(i)
+      this.items.push(this.getSize())
+    }
+  }
+
+  getSize() {
+    let ret = Math.floor(Math.random() * 5)
+    return Math.max(1, ret)
+  }
+
+  build() {
+    Column({ space: 10 }) {
+      Text('Grid alignItems示例代码')
+
+      Grid() {
+        ForEach(this.data, (item: number) => {
+          // GridItem和Column不设置高度，默认会自适应子组件大小，设置STRETCH的场景下，会变成与当前行最高节点同高。
+          // 若设置高度，则会保持已设置的高度，不会与当前行最高节点同高。
+          GridItem() {
+            Column() {
+              Column().height(100).backgroundColor('#D5D5D5').width('100%')
+              // 中间的Text设置flexGrow(1)来自适应填满父组件的空缺
+              Text('这是一段文字。'.repeat(this.items[item]))
+                .flexGrow(1).width('100%').align(Alignment.TopStart)
+                .backgroundColor('#F7F7F7')
+              Column().height(50).backgroundColor('#707070').width('100%')
+            }
+          }
+          .border({ color: Color.Black, width: 1 })
+        })
+      }
+      .columnsGap(10)
+      .rowsGap(5)
+      .columnsTemplate('1fr 1fr')
+      .width('80%')
+      .height('100%')
+      // Grid设置alignItems为STRETCH，以当前行最高的GridItem的高度为其他GridItem的高度。
+      .alignItems(GridItemAlignment.STRETCH)
+      .scrollBar(BarState.Off)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+```
+![gridAlignItems](figures/gridAlignItems.png)

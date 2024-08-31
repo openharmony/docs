@@ -67,7 +67,7 @@ export default {
 
 ## 设置图表类型
 
-chart组件通过设置type属性定义图表t类型，如将图表设置为柱状图。
+chart组件通过设置type属性定义图表类型，如将图表设置为柱状图。
 
 
 ```html

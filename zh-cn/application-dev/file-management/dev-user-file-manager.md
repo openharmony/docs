@@ -83,18 +83,20 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    import { Filter } from '@kit.CoreFileKit';
 
    // 从根目录开始
-   let rootInfo: Array<fileAccess.RootInfo> = rootInfos[0];
+   let rootInfos = [];
+   //rootInfos 从getRoots()获取
+   let rootInfo: fileAccess.RootInfo = rootInfos[0];
    let fileInfos: Array<fileAccess.FileInfo> = [];
    let isDone: boolean = false;
    let filter: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // 设定过滤条件
    try {  
-     let fileIterator: string = rootInfo.listFile();          // 遍历设备rootinfos[0]的根目录，返回迭代器对象
+     let fileIterator = rootInfo.listFile();          // 遍历设备rootinfos[0]的根目录，返回迭代器对象
      // let fileIterator = rootInfo.scanFile(filter); // 过滤设备rootinfos[0]满足指定条件的文件信息，返回迭代对象
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
      }
      while (!isDone) {
-       let result: boolean = fileIterator.next();
+       let result = fileIterator.next();
        console.info("next result = " + JSON.stringify(result));
        isDone = result.done;
        if (!isDone)
@@ -106,18 +108,18 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    }
    
    // 从指定的目录开始
-   let fileInfoDir: Array<fileAccess.FileInfo> = fileInfos[0]; // fileInfoDir 表示某个目录信息
+   let fileInfoDir: fileAccess.FileInfo = fileInfos[0]; // fileInfoDir 表示某个目录信息
    let subFileInfos: Array<fileAccess.FileInfo> = [];
    let isDone02: boolean = false;
    let filter02: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // 设定过滤条件
    try {
-     let fileIterator: string = fileInfoDir.listFile(); // 遍历特定的目录fileinfo，返回迭代器对象
+     let fileIterator = fileInfoDir.listFile(); // 遍历特定的目录fileinfo，返回迭代器对象
      // let fileIterator = rootInfo.scanFile(filter02); // 过滤特定的目录fileinfo，返回迭代器对象
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
      }
      while (!isDone02) {
-       let result: boolean = fileIterator.next();
+       let result = fileIterator.next();
        console.info("next result = " + JSON.stringify(result));
        isDone02 = result.done;
        if (!isDone02)

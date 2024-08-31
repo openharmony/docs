@@ -754,6 +754,47 @@ The app clone index is invalid.
 
 确认appCloneIndex的约束条件是否满足。
 
+## 16000074 返回结果时requestCode对应的调用方不存在
+
+**错误信息**
+
+The caller does not exist.
+
+**错误描述**
+
+通过backTocallerAbilityResult接口向调用方返回结果时，如果根据传入的requestCode无法找到调用方，返回该错误码。
+
+**可能原因**
+
+1. requestCode不是通过want中的CALLER_REQUEST_CODE字段获取的。
+
+2. requestCode对应的调用方已经被销毁或结果已经返回。
+
+**处理步骤**
+
+1. 确认requestCode是否是通过want中的CALLER_REQUEST_CODE获取的。
+
+2. 确认调用方是否被销毁或结果已经返回。
+
+## 16000075 不支持返回结果时拉起调用方
+
+**错误信息**
+
+Not support back to caller.
+
+**错误描述**
+
+不支持通过backToCallerAbilityWithResult接口返回到调用方时，返回该错误码。
+
+**可能原因**
+
+当前应用未进行linkFeature配置或未通过系统审核。
+
+**处理步骤**
+
+1. 确认当前应用已在module.json5文件中配置linkFeature字段。
+2. 确认当前应用声明的linkFeature取值正确，linkFeature描述的功能与应用链接对应的实际功能一致，且应用通过系统审核。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**

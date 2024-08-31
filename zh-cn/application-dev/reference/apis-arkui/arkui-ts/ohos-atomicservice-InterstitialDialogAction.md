@@ -1,4 +1,4 @@
-# @ohos.atomicservice.InterstitialDialogAction (弹框)
+# InterstitialDialogAction
 
 InterstitialDialogAction弹框在原子化服务中用于在保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户点击弹框的不同区域可以触发相应的动作。
 

@@ -52,7 +52,7 @@
 
 4. 调用[OH_CryptoDigest_GetLength](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_getlength)，获取摘要计算长度，单位为字节。
 
-5. 调用[OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy)，销毁摘要操作实例（OH_CryptoDigest）。
+5. 调用[OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy)，销毁摘要操作实例[OH_CryptoDigest](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest)。
 
 - 以下使用单次传入数据，获取摘要计算结果为例：
 
@@ -99,7 +99,7 @@ static OH_Crypto_ErrCode doTestMd()
 
 4. 调用[OH_CryptoDigest_GetLength](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_getlength)，获取摘要计算长度，单位为字节。
 
-5. 调用[OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy)，销毁摘要操作实例（OH_CryptoDigest）。
+5. 调用[OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy)，销毁摘要操作实例[OH_CryptoDigest](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest)。
 
 - 以下使用分段传入数据，获取摘要计算结果为例：
 

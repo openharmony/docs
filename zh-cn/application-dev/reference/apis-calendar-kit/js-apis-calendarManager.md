@@ -83,7 +83,7 @@ export default class EntryAbility extends UIAbility {
       console.log(`get Permission success, result: ${JSON.stringify(result)}`);
       calendarMgr = calendarManager.getCalendarManager(mContext);
     }).catch((error: BusinessError) => {
-      console.error(`get Permission error, error. Code: ${err.code}, message: ${err.message}`);
+      console.error(`get Permission error, error. Code: ${error.code}, message: ${error.message}`);
     })
   }
 
@@ -157,7 +157,7 @@ try {
     }
   });
 } catch (error) {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -209,7 +209,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
   console.info(`Succeeded in creating calendar data->${JSON.stringify(data)}`);
   calendar = data;
 }).catch((error : BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 });
 ```
 
@@ -259,7 +259,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
       console.info(`Succeeded in getting calendar, data -> ${JSON.stringify(data)}`);
       calendarMgr?.deleteCalendar(data, (err1: BusinessError) => {
         if (err1) {
-          console.error(`Failed to delete calendar. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to delete calendar. Code: ${err1.code}, message: ${err1.message}`);
         } else {
           console.info("Succeeded in deleting calendar");
         }
@@ -267,7 +267,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
     }
   });
 }).catch((error: BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 })
 ```
 
@@ -326,7 +326,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
     console.error(`Failed to get calendar. Code: ${err.code}, message: ${err.message}`);
   });
 }).catch((error: BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 })
 ```
 
@@ -426,7 +426,7 @@ calendarMgr?.createCalendar(calendarAccount).then((data: calendarManager.Calenda
     }
   });
 }).catch((error: BusinessError) => {
-  console.error(`Failed to create calendar. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to create calendar. Code: ${error.code}, message: ${error.message}`);
 })
 ```
 
@@ -1783,7 +1783,13 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | expire              | number                                      | 否   | 是  | 重复周期截止日。不填时，默认为0。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | count<sup>12+</sup>               | number                                      | 否   | 是  | 重复日程重复次数。 不填时，默认为0。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | interval<sup>12+</sup>            | number                                      | 否   | 是  | 重复日程重复间隔。 不填时，默认为0。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| excludedDates<sup>12+</sup>       | number[]                                    | 否   | 是  | 重复日程排除日期。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
+| excludedDates<sup>12+</sup>       | number[]                                    | 否   | 是  | 重复日程排除日期。不填时，默认为空。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
+| daysOfWeek<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一周第几天重复。不填时，默认为空。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| daysOfMonth<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一个月第几天重复。 不填时，默认为空。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                |
+| daysOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年第几天重复。不填时，默认为空。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| weeksOfMonth<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一个月第几周重复。 不填时，默认为空。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                |
+| weeksOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年中第几周重复。 不填时，默认为空。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                |
+| monthsOfYear<sup>12+</sup>       | number[]                                    | 否   | 是  | 按照一年中第几个月重复。不填时，默认为空。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 ## RecurrenceFrequency
 
 日程重复规则类型枚举。

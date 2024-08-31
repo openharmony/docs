@@ -1820,7 +1820,7 @@ toDecimalPlaces(decimalPlaces: number): Decimal
 
 | 参数名        | 类型   | 必填 | 说明                                                     |
 | ------------- | ------ | ---- | -------------------------------------------------------- |
-| decimalPlaces | number | 是   | 转换时保留的小数点后有效位数，取值范围为[1, 1e9]的整数。 |
+| decimalPlaces | number | 是   | 转换时保留的小数点后有效位数，取值范围为[0, 1e9]的整数。 |
 
 **返回值：**
 
@@ -1858,7 +1858,7 @@ toDecimalPlaces(decimalPlaces: number, rounding: Rounding): Decimal
 
 | 参数名        | 类型                  | 必填 | 说明                                                      |
 | ------------- | --------------------- | ---- | --------------------------------------------------------- |
-| decimalPlaces | number                | 是   | 转换时保留的小数点后有效位数，取值范围为[1, 1e9]的整数。  |
+| decimalPlaces | number                | 是   | 转换时保留的小数点后有效位数，取值范围为[0, 1e9]的整数。  |
 | rounding      | [Rounding](#rounding) | 是   | 转换时使用的舍入模式。取值范围参考[Rounding](#rounding)。 |
 
 **返回值：**
@@ -1924,7 +1924,7 @@ toExponential(decimalPlaces: number): string
 
 | 参数名        | 类型   | 必填 | 说明                                                     |
 | ------------- | ------ | ---- | -------------------------------------------------------- |
-| decimalPlaces | number | 是   | 转换时保留的小数点后有效位数，取值范围为[1, 1e9]的整数。 |
+| decimalPlaces | number | 是   | 转换时保留的小数点后有效位数，取值范围为[0, 1e9]的整数。 |
 
 **返回值：**
 
@@ -1964,7 +1964,7 @@ toExponential(decimalPlaces: number, rounding: Rounding): string
 
 | 参数名        | 类型                  | 必填 | 说明                                                      |
 | ------------- | --------------------- | ---- | --------------------------------------------------------- |
-| decimalPlaces | number                | 是   | 转换时保留的小数点后有效位数，取值范围为[1, 1e9]的整数。  |
+| decimalPlaces | number                | 是   | 转换时保留的小数点后有效位数，取值范围为[0, 1e9]的整数。  |
 | rounding      | [Rounding](#rounding) | 是   | 转换时使用的舍入模式，取值范围参考[Rounding](#rounding)。 |
 
 **返回值：**
@@ -2029,7 +2029,7 @@ toFixed(decimalPlaces: number): string
 
 | 参数名        | 类型   | 必填 | 说明                                                     |
 | ------------- | ------ | ---- | -------------------------------------------------------- |
-| decimalPlaces | number | 是   | 转换时保留的小数点后有效位数，取值范围为[1, 1e9]的整数。 |
+| decimalPlaces | number | 是   | 转换时保留的小数点后有效位数，取值范围为[0, 1e9]的整数。 |
 
 **返回值：**
 
@@ -2069,7 +2069,7 @@ toFixed(decimalPlaces: number, rounding: Rounding): string
 
 | 参数名        | 类型                  | 必填 | 说明                                                      |
 | ------------- | --------------------- | ---- | --------------------------------------------------------- |
-| decimalPlaces | number                | 是   | 转换时保留的小数点后有效位数，取值范围为[1, 1e9]的整数。  |
+| decimalPlaces | number                | 是   | 转换时保留的小数点后有效位数，取值范围为[0, 1e9]的整数。  |
 | rounding      | [Rounding](#rounding) | 是   | 转换时使用的舍入模式，取值范围参考[Rounding](#rounding)。 |
 
 **返回值：**

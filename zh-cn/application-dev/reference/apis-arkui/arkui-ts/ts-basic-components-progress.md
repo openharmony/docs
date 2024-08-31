@@ -11,28 +11,13 @@
 
 无
 
-
-## 接口
-
-Progress(options: ProgressOptions\<Type\>)
-
-创建进度组件，用于显示内容加载或操作处理进度。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**参数：** 
-
-| 参数名 | 参数类型 | 必填 | 参数描述 |
-| -------- | -------- | -------- | -------- |
-| options |  ProgressOptions\<Type\> | 是 | 进度条组件参数。 |
-
 ## ProgressOptions\<Type\>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名                        | 参数类型                                | 必填   | 参数描述                                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                        | 类型                                | 必填   | 说明                                     |
 | -------------------------- | ----------------------------------- | ---- | ---------------------------------------- |
 | value                      | number                              | 是    | 指定当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。<br/>默认值：0<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | total                      | number                              | 否    | 指定进度总长。设置小于等于0的数值时置为100。<br/>默认值：100<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -44,6 +29,8 @@ Progress(options: ProgressOptions\<Type\>)
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                     | 描述                                       |
 | ---------------------- | ---------------------------------------- |
@@ -59,6 +46,8 @@ Progress(options: ProgressOptions\<Type\>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称        | 描述                                       |
 | --------- | ---------------------------------------- |
 | Linear    | 线性样式。                                    |
@@ -66,6 +55,20 @@ Progress(options: ProgressOptions\<Type\>)
 | Eclipse   | 圆形样式，显示类似月圆月缺的进度展示效果，从月牙逐渐变化至满月。         |
 | ScaleRing<sup>8+</sup> | 环形有刻度样式，显示类似时钟刻度形式的进度展示效果。               |
 | Capsule<sup>8+</sup>   | 胶囊样式，头尾两端圆弧处的进度展示效果与Eclipse相同；中段处的进度展示效果与Linear相同。高度大于宽度的时候自适应垂直显示。 |
+
+##  ProgressStyleMap说明 
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 类型                                      |
+| --------- | ---------------------------------------- |
+| ProgressType.Linear | [LinearStyleOptions<sup>10+</sup>](#linearstyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions<sup>8+</sup>](#progressstyleoptions8)&nbsp; |
+ProgressType.Ring | [RingStyleOptions<sup>10+</sup>](#ringstyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions<sup>8+</sup>](#progressstyleoptions8)&nbsp; |
+ProgressType.Eclipse | [EclipseStyleOptions<sup>10+</sup>](#eclipsestyleoptions10)&nbsp;  \| &nbsp;[ProgressStyleOptions<sup>8+</sup>](#progressstyleoptions8)&nbsp; |
+ProgressType.ScaleRing| [ScaleRingStyleOptions<sup>10+</sup>](#scaleringstyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions<sup>8+</sup>](#progressstyleoptions8)&nbsp; |
+ProgressType.Capsule | [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10)&nbsp; \| &nbsp;[ProgressStyleOptions<sup>8+</sup>](#progressstyleoptions8)&nbsp;
 
 ## 属性
 
@@ -108,22 +111,6 @@ color(value: ResourceColor | LinearGradient)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) | 是   | 进度条前景色。<br/>默认值：<br/>- Capsule：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#ff007dff'<br/>&nbsp;&nbsp;&nbsp;API version 10：'\#33006cde'<br/>&nbsp;&nbsp;&nbsp;API version 11及以上：'\#33007dff'<br/>- Ring：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#ff007dff'<br/>&nbsp;&nbsp;&nbsp;API version 10及以上：起始端：'\#ff86c1ff'，结束端：'\#ff254ff7'<br/>- 其他样式：'\#ff007dff' |
-
-### backgroundColor
-
-backgroundColor(value: ResourceColor)
-
-设置进度条底色。当设置[通用属性backgroundColor](./ts-universal-attributes-background.md#backgroundcolor)时，生效的是进度条的底色，而不是整个Progress组件的背景色。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                       | 必填 | 说明                                                         |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 进度条底色。<br/>默认值：<br/>- Capsule：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#19182431'<br/>&nbsp;&nbsp;&nbsp;API version 10及以上：'\#33ffffff'<br/>- Ring：<br/>&nbsp;&nbsp;&nbsp;API version 9及以下：'\#19182431'<br/>&nbsp;&nbsp;&nbsp;API version 10：'\#08182431'<br/>&nbsp;&nbsp;&nbsp;API version 11及以上：'\#0c182431'<br/>- 其他样式：'\#19182431' |
 
 ### style<sup>8+</sup>
 
@@ -177,15 +164,21 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称 | 参数类型  | 描述         |
-| ------ | ------ | ------------|
-| value  | number | 当前进度值。 |
-| total  | number | 进度总长。   |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型  | 必填 |说明         |
+| ------ | ------ | ------- |------------|
+| value  | number | 是 | 当前进度值。 |
+| total  | number | 是 | 进度总长。   |
 ## ProgressStyleOptions<sup>8+</sup>
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 参数类型                      | 必填 | 描述                                                                                        |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型                      | 必填 | 说明                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
 | scaleCount   | number                       | 否   | 设置环形进度条总刻度数。<br/>默认值：120                                                        |
@@ -196,7 +189,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 参数类型 | 必填 | 描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
 | borderColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 内描边颜色。<br/>默认值：<br/>API version 10：'\#33006cde'<br/>API version 11及以上：'\#33007dff' |
 | borderWidth | [Length](ts-types.md#length) | 否 | 内描边宽度（不支持百分比设置）。<br/>默认值：1vp |
@@ -211,7 +206,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称           | 参数类型                      | 必填 | 描述                                                                                        |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型                      | 必填 | 说明                                                                                        |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置），宽度大于等于半径时，默认修改宽度至半径值的二分之一。<br/>默认值：4.0vp |
 | shadow        | boolean                      | 否   | 进度条阴影开关。<br/>默认值：false                                                             |
@@ -223,7 +220,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称           | 参数类型                      | 必填 | 描述                                                                                        |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型                      | 必填 | 说明                                                                                        |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp |
 | strokeRadius   | [PX](ts-types.md#px10)    \| [VP](ts-types.md#vp10)    \| [LPX](ts-types.md#lpx10)    \| [Resource](ts-types.md#resource)| 否   | 设置线性进度条圆角半径。<br/>取值范围[0, strokeWidth / 2]。默认值：strokeWidth / 2。 |
@@ -234,7 +233,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 参数类型                      | 必填 | 描述                                                                                        |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型                      | 必填 | 说明                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
 | scaleCount   | number                       | 否   | 设置环形进度条总刻度数。<br/>默认值：120                                                        |
@@ -245,13 +246,17 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 参数类型                      | 必填 | 描述                                                                                        |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型                      | 必填 | 说明                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## ProgressStatus<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                    | 描述             |
 | ----------------------- | ---------------- |

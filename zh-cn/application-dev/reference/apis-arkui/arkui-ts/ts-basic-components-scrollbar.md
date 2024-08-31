@@ -22,7 +22,7 @@ ScrollBar(value: ScrollBarOptions)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value |  [ScrollBarOptions](#scrollbaroptions对象说明)| 是 | 滚动条组件参数。 |
 
@@ -32,7 +32,7 @@ ScrollBar(value: ScrollBarOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 是 | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
 | direction | [ScrollBarDirection](#scrollbardirection枚举说明) | 否 | 滚动条的方向，控制可滚动组件对应方向的滚动。<br/>默认值：ScrollBarDirection.Vertical |

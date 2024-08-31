@@ -28,18 +28,19 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object. |
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -109,19 +110,20 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | Yes | Want information about the target ability. |
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes | Parameters used for starting the ability. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object. |
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -192,24 +194,25 @@ Starts an ability. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No | Parameters used for starting the ability. |
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -284,18 +287,19 @@ Starts an ability and obtains the result when the ability is terminated. This AP
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes | Callback used to return the result. |
+| want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -367,19 +371,20 @@ Starts an ability with the start options specified and obtains the result when t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes | Parameters used for starting the ability. |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes | Callback used to return the result. |
+| want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -453,25 +458,26 @@ Starts an ability and obtains the result when the ability is terminated. This AP
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the target ability. |
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No | Parameters used for starting the ability. |
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the result. |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -544,24 +550,25 @@ Connects this ability to a ServiceExtensionAbility.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes | Want information for connecting to the ServiceExtensionAbility. |
-| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes | Instance of the callback function after the connection to the ServiceExtensionAbility is set up. |
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information for connecting to the ServiceExtensionAbility.|
+| options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Instance of the callback function after the connection to the ServiceExtensionAbility is set up.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Result code of the connection. |
+| number | Result code of the connection.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -624,23 +631,23 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes | Digital code of the connected ServiceExtensionAbility, that is, connectionId returned by **connectServiceExtensionAbility**. |
+| connection | number | Yes| Digital code of the connected ServiceExtensionAbility, that is, connectionId returned by **connectServiceExtensionAbility**.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
@@ -687,18 +694,18 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes | Digital code of the connected ServiceExtensionAbility, that is, connectionId returned by **connectServiceExtensionAbility**. |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the result. If the disconnection is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| connection | number | Yes| Digital code of the connected ServiceExtensionAbility, that is, connectionId returned by **connectServiceExtensionAbility**.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the disconnection is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
@@ -747,15 +754,15 @@ Stops the window object corresponding to this UIExtensionContext. This API uses 
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                        |
+| Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -799,7 +806,7 @@ Stops the window object corresponding to this UIExtensionContext. This API uses 
 
 | Type               | Description                                  |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -839,16 +846,16 @@ Stops the window object corresponding to this UIExtensionContext and returns the
 
 **Parameters**
 
-| Name   | Type                                                   | Mandatory | Description                                                  |
+| Name   | Type                                                   | Mandatory| Description                                                  |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes  | Result returned to the UIExtensionComponent.                |
-| callback  | AsyncCallback&lt;void&gt;                               | Yes  | Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback  | AsyncCallback&lt;void&gt;                               | Yes  | Callback used to return the result. If the window object is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -901,21 +908,21 @@ Stops the window object corresponding to this UIExtensionContext and returns the
 
 **Parameters**
 
-| Name   | Type                                                   | Mandatory | Description                                  |
+| Name   | Type                                                   | Mandatory| Description                                  |
 | --------- | ------------------------------------------------------- | ---- | -------------------------------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes  | Result returned to the UIExtensionComponent. |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes  | Result returned to the UIExtensionComponent.|
 
 **Return value**
 
 | Type               | Description                                  |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -966,15 +973,15 @@ Reports an event indicating that page loading is complete (**onSessionCreate()**
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the event is reported, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the event is reported, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
@@ -1032,25 +1039,25 @@ The following situations may be possible for a started EmbeddableUIAbility:
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| appId | string | Yes | Unique ID of the application, which is allocated by the cloud. |
-| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | No | Parameter carried in the request for starting the atomic service in jump-out mode. |
+| appId | string | Yes| Unique ID of the application, which is allocated by the cloud.|
+| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | No| Parameter carried in the request for starting the atomic service in jump-out mode.|
 
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the result, which is an [AbilityResult](js-apis-inner-ability-abilityResult.md) object. |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the result, which is an [AbilityResult](js-apis-inner-ability-abilityResult.md) object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000002 | Incorrect ability type. |
 | 16000003 | The appId does not exist. |
 | 16000004 | Can not start invisible component. |
@@ -1115,25 +1122,26 @@ If an input parameter is invalid, for example, a mandatory parameter is not set 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| link | string | Yes | URL to open, which must be in the standard format. |
-| options | [OpenLinkOptions](js-apis-app-ability-openLinkOptions.md) | No | Options of the URL. |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | No | Callback used to return the result. |
+| link | string | Yes| URL to open, which must be in the standard format.|
+| options | [OpenLinkOptions](js-apis-app-ability-openLinkOptions.md) | No| Options of the URL.|
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | No| Callback used to return the result.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1149,7 +1157,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000054 | Installation-free service is busy.Try again later. |
 
 **Example**
 

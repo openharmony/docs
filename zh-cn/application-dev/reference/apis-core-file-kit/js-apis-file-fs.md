@@ -28,7 +28,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
   }
   ```
 
-使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径。表示沙箱路径的字符串称为path，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。将指向资源的字符串称为URI。对于只支持path作为入参的接口可使用构造fileUri对象并获取其path属性的方式将URI转换为path，然后使用文件接口。URI定义解及其转换方式请参考:[文件URI](../../../application-dev/reference/apis-core-file-kit/js-apis-file-fileuri.md)
 
 ## fs.stat
 
@@ -754,7 +754,7 @@ copyDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
       console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy directory succeed");
-    }  
+    }
   });
   ```
 
@@ -797,7 +797,7 @@ copyDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
       console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy directory succeed");
-    }  
+    }
   });
   ```
 
@@ -1341,8 +1341,8 @@ open(path: string, mode?: number): Promise&lt;File&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 文件的应用沙箱路径或文件URI。                                   |
-| mode  | number | 否   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
+| path   | string | 是   | 文件的应用沙箱路径或文件URI，使用URI作为入参时，仅支持打开文件。                                   |
+| mode  | number | 否   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。(path为URI时不支持创建文件)<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
 
 **返回值：**
 
@@ -1384,8 +1384,8 @@ open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                          | 是   | 文件的应用沙箱路径或URI。                                   |
-| mode  | number | 是   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
+| path     | string                          | 是   | 文件的应用沙箱路径或URI，使用URI作为入参时，仅支持打开文件。                                   |
+| mode  | number | 是   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。(path为URI时不支持创建文件)<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
 | callback     | AsyncCallback&lt;void&gt;                          | 是   | 异步打开文件之后的回调。                                   |
 
 **错误码：**
@@ -1457,8 +1457,8 @@ openSync(path: string, mode?: number): File
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | 是   | 打开文件的应用沙箱路径或URI。                                   |
-| mode  | number | 否   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
+| path   | string | 是   | 打开文件的应用沙箱路径或URI，使用URI作为入参时，仅支持打开文件。                                   |
+| mode  | number | 否   | 打开文件的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。(path为URI时不支持创建文件)<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
 
 **返回值：**
 
@@ -3015,14 +3015,14 @@ lseek(fd: number, offset: number, whence?: WhenceType): number
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | fd | number | 是    | 文件描述符。 |
-  | offset | number | 是    | 相对偏移位置。 |
+  | offset | number | 是    | 相对偏移位置，单位为字节。 |
   | whence | [WhenceType](#whencetype11) | 否    | 偏移指针相对位置类型。 |
 
 **返回值：**
 
   | 类型                   | 说明         |
   | --------------------- | ---------- |
-  | number | 当前文件偏置指针位置（相对于文件头的偏移量）。 |
+  | number | 当前文件偏置指针位置（相对于文件头的偏移量，单位为字节）。 |
 
 **错误码：**
 
@@ -3121,7 +3121,7 @@ moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
       console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move directory succeed");
-    }  
+    }
   });
   ```
 
@@ -3167,7 +3167,7 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
       console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move directory succeed");
-    }  
+    }
   });
   ```
 
@@ -3294,7 +3294,7 @@ moveFile(src: string, dest: string, mode: number, callback: AsyncCallback\<void>
       console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move file succeed");
-    }  
+    }
   });
   ```
 
@@ -3332,7 +3332,7 @@ moveFile(src: string, dest: string, callback: AsyncCallback\<void>): void
       console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move file succeed");
-    }  
+    }
   });
   ```
 
@@ -3463,7 +3463,7 @@ mkdtempSync(prefix: string): string
 
   ```ts
   let res = fs.mkdtempSync(pathDir + "/XXXXXX");
-  ```  
+  ```
 
 ## fs.utimes<sup>11+</sup>
 
@@ -3785,7 +3785,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
       console.info("createStream succeed");
     }
     stream.closeSync();
-  })  
+  })
   ```
 
 ## fs.createStreamSync
@@ -4078,7 +4078,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
   | event   | [WatchEvent](#watchevent10) | 是    | 回调的事件类。                             |
- 
+
 ## WatchEvent<sup>10+</sup>
 
 事件类
@@ -4128,7 +4128,7 @@ cancel(): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { fileuri } from '@kit.CoreFileKit';
-let context = getContext(this) as common.UIAbilityContext; 
+let context = getContext(this) as common.UIAbilityContext;
 let pathDir: string = context.filesDir;
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
@@ -4229,7 +4229,7 @@ copySignal.onCancel().then(() => {
 ### 属性
 
 | 名称     | 类型   | 只读   | 可写   | 说明                                       |
-| ------ | ------ | ---- | ---- | ---------------------------------------- |                        
+| ------ | ------ | ---- | ---- | ---------------------------------------- |
 | ino    | bigint | 是    | 否    | 标识该文件。通常同设备上的不同文件的INO不同。|                 |
 | mode   | number | 是    | 否    | 表示文件权限，各特征位的含义如下：<br/>**说明：** 以下值为八进制，取得的返回值为十进制，请换算后查看。<br/>-&nbsp;0o400：用户读，对于普通文件，所有者可读取文件；对于目录，所有者可读取目录项。<br/>-&nbsp;0o200：用户写，对于普通文件，所有者可写入文件；对于目录，所有者可创建/删除目录项。<br/>-&nbsp;0o100：用户执行，对于普通文件，所有者可执行文件；对于目录，所有者可在目录中搜索给定路径名。<br/>-&nbsp;0o040：用户组读，对于普通文件，所有用户组可读取文件；对于目录，所有用户组可读取目录项。<br/>-&nbsp;0o020：用户组写，对于普通文件，所有用户组可写入文件；对于目录，所有用户组可创建/删除目录项。<br/>-&nbsp;0o010：用户组执行，对于普通文件，所有用户组可执行文件；对于目录，所有用户组是否可在目录中搜索给定路径名。<br/>-&nbsp;0o004：其他读，对于普通文件，其余用户可读取文件；对于目录，其他用户组可读取目录项。<br/>-&nbsp;0o002：其他写，对于普通文件，其余用户可写入文件；对于目录，其他用户组可创建/删除目录项。<br/>-&nbsp;0o001：其他执行，对于普通文件，其余用户可执行文件；对于目录，其他用户组可在目录中搜索给定路径名。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | uid    | number | 是    | 否    | 文件所有者的ID。|
@@ -4314,7 +4314,7 @@ isDirectory(): boolean
 
   ```ts
   let dirPath = pathDir + "/test";
-  let isDirectory = fs.statSync(dirPath).isDirectory(); 
+  let isDirectory = fs.statSync(dirPath).isDirectory();
   ```
 
 ### isFIFO
@@ -4339,7 +4339,7 @@ isFIFO(): boolean
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  let isFIFO = fs.statSync(filePath).isFIFO(); 
+  let isFIFO = fs.statSync(filePath).isFIFO();
   ```
 
 ### isFile
@@ -4391,7 +4391,7 @@ isSocket(): boolean
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  let isSocket = fs.statSync(filePath).isSocket(); 
+  let isSocket = fs.statSync(filePath).isSocket();
   ```
 
 ### isSymbolicLink
@@ -4416,7 +4416,7 @@ isSymbolicLink(): boolean
 
   ```ts
   let filePath = pathDir + "/test";
-  let isSymbolicLink = fs.statSync(filePath).isSymbolicLink(); 
+  let isSymbolicLink = fs.statSync(filePath).isSymbolicLink();
   ```
 
 ## Stream
@@ -4950,7 +4950,7 @@ lock(exclusive?: boolean, callback: AsyncCallback\<void>): void
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | exclusive  | boolean | 否   | 是否施加独占锁，默认false。       |
-  | callback | AsyncCallback&lt;void&gt; | 是    | 异步文件上锁之后的回调。   |     
+  | callback | AsyncCallback&lt;void&gt; | 是    | 异步文件上锁之后的回调。   |
 
 **错误码：**
 
@@ -4984,7 +4984,7 @@ tryLock(exclusive?: boolean): void
 
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | 否   | 是否施加独占锁，默认false。       |    
+  | exclusive  | boolean | 否   | 是否施加独占锁，默认false。       |
 
 **错误码：**
 
@@ -5046,7 +5046,7 @@ onStatus(networkId: string, status: number): void;
   | 参数名  | 类型     | 必填   | 说明                              |
   | ---- | ------ | ---- | ---------------------------------------- |
   | networkId   | string | 是    | 设备的网络Id。                             |
-  | status | number | 是    | 分布式文件系统的状态码（以connectDfs回调onStatus的特定错误码作为入参）。触发场景为connectDfs调用过程中出现对端设备异常，对应错误码为：<br/>-&nbsp;[13900046](errorcode-filemanagement.md#13900046)：软件造成连接中断。  
+  | status | number | 是    | 分布式文件系统的状态码（以connectDfs回调onStatus的特定错误码作为入参）。触发场景为connectDfs调用过程中出现对端设备异常，对应错误码为：<br/>-&nbsp;[13900046](errorcode-filemanagement.md#13900046)：软件造成连接中断。
 
 ## RandomAccessFile
 
@@ -5576,8 +5576,8 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 类型       | 必选       | 说明                |
 | ----------- | --------------- | ------------------ |------------------ |
-| length | number     | 否 | 期望读取数据的长度。可选，默认缓冲区长度。           |
-|  offset    | number     | 否 | 期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。 |
+| length | number     | 否 | 期望读取数据的长度，单位为字节。可选，默认缓冲区长度。           |
+|  offset    | number     | 否 | 期望读取文件位置，单位为字节（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。 |
 
 ## ReadTextOptions<sup>11+</sup>
 
@@ -5587,8 +5587,8 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 类型       | 必选       | 说明                |
 | ----------- | --------------- | ------------------ | ------------------ |
-| length | number     | 否 | 期望读取数据的长度。可选，默认文件长度。           |
-|  offset    | number     | 否 | 期望读取文件的位置。可选，默认从当前位置开始读取。 |
+| length | number     | 否 | 期望读取数据的长度，单位为字节。可选，默认文件长度。           |
+|  offset    | number     | 否 | 期望读取文件的位置，单位为字节。可选，默认从当前位置开始读取。 |
 | encoding    | string | 否 | 当数据是 string 类型时有效，表示数据的编码方式，默认 'utf-8'，仅支持 'utf-8'。   <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
 
 ## WriteOptions<sup>11+</sup>
@@ -5599,8 +5599,8 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 类型       | 必选       | 说明                |
 | ----------- | --------------- | ------------------ | ------------------ |
-| length | number     | 否 | 期望写入数据的长度。可选，默认缓冲区长度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
-|  offset    | number     | 否 | 期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| length | number     | 否 | 期望写入数据的长度，单位为字节。可选，默认缓冲区长度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。           |
+|  offset    | number     | 否 | 期望写入文件位置，单位为字节（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | encoding    | string | 否 | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
 
 ## ListFileOptions<sup>11+</sup>
@@ -5615,7 +5615,7 @@ open接口flags参数常量。文件打开标签。
 | ----------- | --------------- | ------------------ | ------------------ |
 | recursion | boolean     | 否 | 是否递归子目录下文件名。可选，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。           |
 |  listNum    | number     | 否 | 列出文件名数量。可选，当设置0时，列出所有文件，默认为0。 |
-| filter    | [Filter](#filter10) | 否 | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
+| filter    | [Filter](#filter10) | 否 | 文件过滤配置项类型。 可选，设置文件的过滤条件 |
 
 ## ReadStream<sup>12+</sup>
 
@@ -5624,9 +5624,9 @@ open接口flags参数常量。文件打开标签。
 ### 属性
 
 | 名称     | 类型   | 只读   | 可写   | 说明                                       |
-| ------ | ------ | ---- | ---- | ---------------------------------------- |                        
-| bytesRead    | number | 是    | 否    | 可读流已经读取的字节数 |   
-| path    | string | 是    | 否    | 当前可读流对应的文件路径 |   
+| ------ | ------ | ---- | ---- | ---------------------------------------- |
+| bytesRead    | number | 是    | 否    | 可读流已经读取的字节数 |
+| path    | string | 是    | 否    | 当前可读流对应的文件路径 |
 
 ### Seek
 
@@ -5641,14 +5641,14 @@ seek(offset: number, whence?: WhenceType): number;
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | offset | number | 是    | 相对偏移位置。 |
+  | offset | number | 是    | 相对偏移位置，单位为字节。 |
   | whence | [WhenceType](#whencetype11) | 否    | 偏移指针相对位置类型，默认值：SEEK_SET，文件起始位置处。 |
 
 **返回值：**
 
   | 类型                   | 说明         |
   | --------------------- | ---------- |
-  | number | 当前可读流偏置指针位置（相对于文件头的偏移量）。 |
+  | number | 当前可读流偏置指针位置（相对于文件头的偏移量，单位为字节）。 |
 
 **错误码：**
 
@@ -5691,9 +5691,9 @@ close(): void
 ### 属性
 
 | 名称     | 类型   | 只读   | 可写   | 说明                                       |
-| ------ | ------ | ---- | ---- | ---------------------------------------- |                        
-| bytesWritten    | number | 是    | 否    | 可写流已经写入的字节数 |   
-| path    | string | 是    | 否    | 当前可写流对应的文件路径 |   
+| ------ | ------ | ---- | ---- | ---------------------------------------- |
+| bytesWritten    | number | 是    | 否    | 可写流已经写入的字节数 |
+| path    | string | 是    | 否    | 当前可写流对应的文件路径 |
 
 ### Seek
 
@@ -5707,14 +5707,14 @@ seek(offset: number, whence?: WhenceType): number;
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | offset | number | 是    | 相对偏移位置。 |
+  | offset | number | 是    | 相对偏移位置，单位为字节。 |
   | whence | [WhenceType](#whencetype11) | 否    | 偏移指针相对位置类型，默认值：SEEK_SET，文件起始位置处。 |
 
 **返回值：**
 
   | 类型                   | 说明         |
   | --------------------- | ---------- |
-  | number | 当前可写流偏置指针位置（相对于文件头的偏移量）。 |
+  | number | 当前可写流偏置指针位置（相对于文件头的偏移量，单位为字节）。 |
 
 **错误码：**
 
@@ -5758,8 +5758,8 @@ close(): void
 
 | 名称        | 类型       | 必选       |  说明                |
 | ----------- | --------------- | ------------------ | ------------------ |
-| start   | number     | 否 | 表示期望读取文件的位置。可选，默认从当前位置开始读。           |
-| end     | number     | 否 |  表示期望读取结束的位置。可选，默认文件末尾。 |
+| start   | number     | 否 | 表示期望读取文件的位置，单位为字节。可选，默认从当前位置开始读。           |
+| end     | number     | 否 |  表示期望读取结束的位置，单位为字节。可选，默认文件末尾。 |
 
 ## ReadStreamOptions<sup>12+</sup>
 
@@ -5769,8 +5769,8 @@ close(): void
 
 | 名称        | 类型       | 必选       |  说明                |
 | ----------- | --------------- | ------------------ | ------------------ |
-| start   | number     | 否 | 表示期望读取文件的位置。可选，默认从当前位置开始读。           |
-| end     | number     | 否 |  表示期望读取结束的位置。可选，默认文件末尾。 |
+| start   | number     | 否 | 表示期望读取文件的位置，单位为字节。可选，默认从当前位置开始读。           |
+| end     | number     | 否 |  表示期望读取结束的位置，单位为字节。可选，默认文件末尾。 |
 
 ## WriteStreamOptions<sup>12+</sup>
 
@@ -5780,5 +5780,5 @@ close(): void
 
 | 名称        | 类型       | 必选       |  说明                |
 | ----------- | --------------- | ------------------ | ------------------ |
-| start   | number     | 否 | 表示期望写入文件的位置。可选，默认文件起始位置。           |
+| start   | number     | 否 | 表示期望写入文件的位置，单位为字节。可选，默认文件起始位置。           |
 | mode     | number     | 否 | 创建文件可写流的[选项](#openmode)，必须指定如下选项中的一个，默认只写方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |

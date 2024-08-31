@@ -307,8 +307,8 @@ struct Index {
 ```ts
 @ObservedV2
 class Info {
-  name: string;
-  age: number;
+  @Trace name: string;
+  @Trace age: number;
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;

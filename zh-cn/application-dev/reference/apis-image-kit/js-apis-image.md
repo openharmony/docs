@@ -113,7 +113,7 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 62980096 | Operation failed|
-| 62980097 | Ipc error|
+| 62980097 | IPC error.|
 | 62980115 | Invalid input parameter|
 | 62980105 | Failed to get the data|
 | 62980177 | Abnormal API environment|
@@ -207,7 +207,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980115 | Invalid input parameter|
+| 62980115 | If the image parameter invalid.|
 | 62980105 | Failed to get the data|
 | 62980178 | Failed to create the PixelMap|
 
@@ -544,8 +544,8 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 | ------- | --------------------------------------------|
 |  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103    | The image data is not supported |
-|  60980246    | Failed to read the PixelMap |
-|  60980248    | PixelMap does not allow modification |
+|  62980246    | Failed to read the pixelMap. |
+|  62980248    | PixelMap not allow modify. |
 
 **示例：**
 
@@ -594,7 +594,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -635,7 +635,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，通过回调函数返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -674,7 +674,7 @@ async function Demo() {
 
 readPixelsToBufferSync(dst: ArrayBuffer): void
 
-以同步方法读取PixelMap到Buffer里。
+以同步方式读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -714,7 +714,7 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取区域内的图片数据，使用Promise形式返回。
+读取区域内的图像像素数据，并按照BGRA_8888格式写入缓冲区中，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -760,7 +760,7 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取区域内的图片数据，使用callback形式返回读取结果。
+读取区域内的图像像素数据，并按照BGRA_8888格式写入缓冲区中，通过回调函数返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -804,7 +804,7 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-读取区域内的图片数据并同步返回结果。
+以同步方式读取区域内的图像像素数据，并按照BGRA_8888格式写入缓冲区中。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -847,7 +847,7 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-将PixelMap写入指定区域内，使用Promise形式返回写入结果。
+将BGRA_8888格式的图像像素数据写入指定区域内，使用Promise形式返回写入结果。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -897,7 +897,7 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-将PixelMap写入指定区域内，使用callback形式返回写入结果。
+将BGRA_8888格式的图像像素数据写入指定区域内，通过回调函数返回写入结果。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -944,7 +944,7 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-以同步方法将PixelMap写入指定区域内。
+以同步方式将BGRA_8888格式的图像像素数据写入指定区域内。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -993,7 +993,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
+读取缓冲区中的图像像素数据，并按照PixelMap的像素格式将结果写入PixelMap，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1038,7 +1038,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取缓冲区中的图片数据，结果写入PixelMap中，使用callback形式返回。
+读取缓冲区中的图像像素数据，并按照PixelMap的像素格式将结果写入PixelMap，通过回调函数形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1081,7 +1081,7 @@ async function Demo() {
 
 writeBufferToPixelsSync(src: ArrayBuffer): void
 
-读取缓冲区中的图片数据，结果写入PixelMap并同步返回结果。
+读取缓冲区中的图像像素数据，按照PixelMap的像素格式将结果写入PixelMap并同步返回结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1309,7 +1309,7 @@ let getDensity: number = pixelMap.getDensity();
 
 opacity(rate: number, callback: AsyncCallback\<void>): void
 
-通过设置透明比率来让PixelMap达到对应的透明效果，使用callback形式返回。
+通过设置透明比率来让PixelMap达到对应的透明效果，yuv图片不支持设置透明度，使用callback形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1348,7 +1348,7 @@ async function Demo() {
 
 opacity(rate: number): Promise\<void>
 
-通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回。
+通过设置透明比率来让PixelMap达到对应的透明效果，yuv图片不支持设置透明度，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1389,7 +1389,7 @@ async function Demo() {
 
 opacitySync(rate: number): void
 
-设置PixelMap的透明比率，初始化PixelMap并同步返回结果。
+设置PixelMap的透明比率，yuv图片不支持设置透明度，初始化PixelMap并同步返回结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1427,7 +1427,7 @@ async function Demo() {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用Promise形式返回。
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，yuv格式不支持此接口，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1461,7 +1461,7 @@ async function Demo() {
 
 createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
-根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用callback形式返回。
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，yuv格式不支持此接口，使用callback形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1498,7 +1498,7 @@ async function Demo() {
 
 createAlphaPixelmapSync(): PixelMap
 
-根据Alpha通道的信息，生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，同步返回PixelMap类型的结果。
+根据Alpha通道的信息，生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，yuv格式不支持此接口，同步返回PixelMap类型的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1654,6 +1654,99 @@ async function Demo() {
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
     pixelMap.scaleSync(scaleX, scaleY);
+  }
+}
+```
+
+### scale<sup>12+</sup>
+
+scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
+
+根据输入的宽高对图片进行缩放，使用Promise形式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scale(scaleX, scaleY, image.AntiAliasingLevel.LOW).then(() => {
+      console.info('Succeeded in scaling pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+
+    })
+  }
+}
+```
+
+### scaleSync<sup>12+</sup>
+
+scaleSync(x: number, y: number, level: AntiAliasingLevel): void
+
+以同步方法根据输入的宽高对图片进行缩放。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scaleSync(scaleX, scaleY, image.AntiAliasingLevel.LOW);
   }
 }
 ```
@@ -2358,6 +2451,151 @@ if (pixelmap != undefined) {
   }
 } else {
   console.info('Failed to create pixelMap.');
+}
+```
+
+### getMetadata<sup>12+</sup>
+
+getMetadata(key: HdrMetadataKey): HdrMetadataValue
+
+从PixelMap中获取元数据。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名        | 类型                             | 必填 | 说明             |
+| ------------- | -------------------------------- | ---- | ---------------- |
+| key | [HdrMetadataKey](#hdrmetadatakey12) | 是   | HDR元数据的关键字，可用于查询对应值。 |
+
+**返回值：**
+
+| 类型                              | 说明                              |
+| --------------------------------- | --------------------------------- |
+| [HdrMetadataValue](#hdrmetadatavalue12) | 返回元数据的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.          |
+| 501 | Resource unavailable.          |
+| 62980173 | The DMA memory does not exist.          |
+| 62980173 | Memory copy failed.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import image from '@ohos.multimedia.image'
+
+// 'app.media.test'需要替换为本地hdr图片。
+let img = await getContext(this).resourceManager.getMediaContent($r('app.media.test'));
+let imageSource = image.createImageSource(img.buffer.slice(0));
+let decodingOptions: image.DecodingOptions = {
+  desiredDynamicRange: image.DecodingDynamicRange.AUTO
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+  try {
+    let staticMetadata = pixelmap.getMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA);
+    console.info("getmetadata:" + JSON.stringify(staticMetadata));
+  } catch (e) {
+    console.info('pixelmap create failed' + e);
+  }
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
+### setMetadata<sup>12+</sup>
+
+setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
+
+设置PixelMap元数据。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名        | 类型                             | 必填 | 说明             |
+| ------------- | -------------------------------- | ---- | ---------------- |
+| key | [HdrMetadataKey](#hdrmetadatakey12) | 是   | HDR元数据的关键字，用于设置对应值 |
+| value | [HdrMetadataValue](#hdrmetadatavalue12) | 是   | 元数据的值 |
+
+**返回值：**
+
+| 类型           | 说明                  |
+| -------------- | --------------------- |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401|  Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
+| 501 | Resource unavailable.          |
+| 62980173 | The DMA memory does not exist.          |
+| 62980173 | Memory copy failed.          |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { BusinessError } from '@kit.BasicServicesKit';
+@State pixelmap: image.PixelMap | undefined = undefined;
+
+async Demo() {
+  let staticMetadata: image.HdrStaticMetadata = {
+    displayPrimariesX: [1.1, 1.1, 1.1],
+    displayPrimariesY: [1.2, 1.2, 1.2],
+    whitePointX: 1.1,
+    whitePointY: 1.2,
+    maxLuminance: 2.1,
+    minLuminance: 1.0,
+    maxContentLightLevel: 2.1,
+    maxFrameAverageLightLevel: 2.1,
+  }
+  this.pixelmap?.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata);
+}
+```
+
+### setTransferDetached<sup>12+<sup>
+
+setTransferDetached(detached: boolean): void
+
+pixelmap在跨线程传输时，断开原线程的引用。适用于需立即释放pixelmap的场景。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型               | 必填 | 说明                          |
+| ------- | ------------------ | ---- | ----------------------------- |
+| detached | boolean   | 是   | 是否断开原线程引用                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  if (pixelMap != undefined) {
+    pixelMap.setTransferDetached(true);
+  }
 }
 ```
 
@@ -5833,6 +6071,107 @@ PixelMap的初始化选项。
 | ------------- | ----------| ------------ |
 | AUTO          | 0    | 自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容编码。  |
 | SDR           | 1    | 按照标准动态范围处理图片。   |
+
+## HdrMetadataKey<sup>12+</sup>
+
+枚举，[pixelmap](#pixelmap7)使用的HDR相关元数据信息的关键字。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 值       | 说明         |
+| ------------- | ----------| ------------ |
+| HDR_METADATA_TYPE    | 0    | [pixelmap](#pixelmap7)使用的元数据类型。  |
+| HDR_STATIC_METADATA  | 1    | 静态元数据。   |
+| HDR_DYNAMIC_METADATA | 2    | 动态元数据。   |
+| HDR_GAINMAP_METADATA | 3    | Gainmap使用的元数据。   |
+
+## HdrMetadataType<sup>12+</sup>
+
+枚举，[HdrMetadataKey](#hdrmetadatakey12)中HDR_METADATA_TYPE关键字对应的值。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 值       | 说明         |
+| ------------- | ----------| ------------ |
+| NONE     | 0    | 无元数据内容。  |
+| BASE     | 1    | 表示用于基础图的元数据。   |
+| GAINMAP  | 2    | 表示用于Gainmap图的元数据。   |
+| ALTERNATE| 3    | 表示用于合成后HDR图的元数据。   |
+
+## HdrStaticMetadata<sup>12+</sup>
+
+静态元数据值，[HdrMetadataKey](#hdrmetadatakey12)中HDR_STATIC_METADATA关键字对应的值。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 类型       | 说明         |
+| ------------- | ----------| ------------ |
+| displayPrimariesX     | Array\<number>    | 归一化后显示设备三基色的X坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
+| displayPrimariesY     | Array\<number>    | 归一化后显示设备三基色的Y坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
+| whitePointX  | number    | 归一化后白点值的X坐标，以0.00002为单位，范围[0.0, 1.0]。   |
+| whitePointY  | number     | 归一化后白点值的Y坐标，以0.00002为单位，范围[0.0, 1.0]。   |
+| maxLuminance  | number    | 图像主监视器最大亮度。以1为单位，最大值为65535。   |
+| minLuminance  | number     | 图像主监视器最小亮度。以0.0001为单位，最大值6.55535。   |
+| maxContentLightLevel  | number    | 显示内容的最大亮度。以1为单位，最大值为65535。   |
+| maxFrameAverageLightLevel  | number     | 显示内容的最大平均亮度，以1为单位，最大值为65535。 |
+
+## GainmapChannel<sup>12+</sup>
+
+Gainmap图单个通道的数据内容，参考ISO 21496-1。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 类型       | 说明         |
+| ------------- | ----------| ------------ |
+| gainmapMax     | number   | 增强图像的最大值，参考ISO 21496-1。  |
+| gainmapMin     | number   | 增强图像的最小值，参考ISO 21496-1。  |
+| gamma  | number    | gamma值，参考ISO 21496-1。   |
+| baseOffset  | number     | 基础图的偏移，参考ISO 21496-1。   |
+| alternateOffset  | number    | 提取的可选择图像偏移量，参考ISO 21496-1。    |
+
+## HdrGainmapMetadata<sup>12+</sup>
+
+Gainmap使用的元数据值，[HdrMetadataKey](#hdrmetadatakey12)中HDR_GAINMAP_METADATA关键字对应的值，参考ISO 21496-1。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 类型       | 说明         |
+| ------------- | ----------| ------------ |
+| writerVersion     | number   | 元数据编写器使用的版本。  |
+| miniVersion     | number   | 元数据解析需要理解的最小版本。  |
+| gainmapChannelCount  | number    | Gainmap的颜色通道数，值为3时RGB通道的元数据值不同，值为1时各通道元数据值相同，参考ISO 21496-1。  |
+| useBaseColorFlag  | boolean     | 是否使用基础图的色彩空间，参考ISO 21496-1。   |
+| baseHeadroom  | number    |  基础图提亮比，参考ISO 21496-1。   |
+| alternateHeadroom  | number     |  提取的可选择图像提亮比，参考ISO 21496-1。  |
+| channels  | Array<[GainmapChannel](#gainmapchannel12)> | 各通道的数据，长度为3，参考ISO 21496-1。 |
+
+## HdrMetadataValue<sup>12+</sup>
+
+type HdrMetadataValue = HdrMetadataType | HdrStaticMetadata | ArrayBuffer | HdrGainmapMetadata
+
+PixelMap使用的HDR元数据值类型，和[HdrMetadataKey](#hdrmetadatakey12)关键字相对应。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 类型                | 说明                                            |
+| ------------------- | ----------------------------------------------- |
+| [HdrMetadataType](#hdrmetadatatype12) | [HdrMetadataKey](#hdrmetadatakey12)中HDR_GAINMAP_METADATA关键字对应的元数据值类型。 |
+| [HdrStaticMetadata](#hdrstaticmetadata12) | [HdrMetadataKey](#hdrmetadatakey12)中HDR_STATIC_METADATA关键字对应的元数据值类型。 |
+| ArrayBuffer | [HdrMetadataKey](#hdrmetadatakey12)中HDR_DYNAMIC_METADATA关键字对应的元数据值类型。 |
+| [HdrGainmapMetadata](#hdrgainmapmetadata12) | [HdrMetadataKey](#hdrmetadatakey12)中HDR_GAINMAP_METADATA关键字对应的元数据值类型。 |
+
+## AntiAliasingLevel<sup>12+</sup>
+
+缩放时的缩放算法。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称                   |   值   | 说明              |
+| ---------------------- | ------ | ----------------- |
+| NONE                | 0      | 默认为最近邻缩放算法。        |
+| LOW                 | 1      | 双线性缩放算法。     |
+| MEDIUM              | 2      | 双线性缩放算法，同步开启mipmap。|
+| HIGH                | 3      | cubic缩放算法。 |
 
 ## 补充说明
 ### SVG标签说明

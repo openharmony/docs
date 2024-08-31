@@ -104,7 +104,7 @@ subStyledString(start: number , length?: number): StyledString
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 ### getStyles
 

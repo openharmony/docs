@@ -17,9 +17,9 @@
 
 ## 使用bindContentCover构建全屏模态转场效果
 
-[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)接口用于为组件绑定全屏模态页面，在组件出现和消失时可通过设置转场参数ModalTransition添加过渡动效。
+[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)接口用于为组件绑定全屏模态页面，在组件出现和消失时可通过设置转场参数ModalTransition添加过渡动效。
 
-1. 定义全屏模态转场效果[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)。
+1. 定义全屏模态转场效果[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)。
 
 2. 定义模态展示界面。
 
@@ -244,7 +244,7 @@ struct BindContentCoverDemo {
 
 ## 使用bindSheet构建半模态转场效果
 
-[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)属性可为组件绑定半模态页面，在组件出现时可通过设置自定义或默认的内置高度确定半模态大小。构建半模态转场动效的步骤基本与使用bindContentCover构建全屏模态转场动效相同。
+[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)属性可为组件绑定半模态页面，在组件出现时可通过设置自定义或默认的内置高度确定半模态大小。构建半模态转场动效的步骤基本与使用[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)构建全屏模态转场动效相同。
 
 完整示例和效果如下。
 
@@ -344,7 +344,7 @@ struct BindSheetDemo {
 
 ## 使用bindMenu实现菜单弹出效果
 
-[bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)为组件绑定弹出式菜单，通过点击触发。完整示例和效果如下。
+[bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)为组件绑定弹出式菜单，通过点击触发。完整示例和效果如下。
 
 
 ```ts
@@ -392,7 +392,7 @@ struct BindMenuDemo {
 
 ## 使用bindContextMenu实现菜单弹出效果
 
-[bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)为组件绑定弹出式菜单，通过长按或右键点击触发。完整示例和效果如下。
+[bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)为组件绑定弹出式菜单，通过长按或右键点击触发。完整示例和效果如下。
 
 完整示例和效果如下。
 
@@ -459,7 +459,7 @@ struct BindContextMenuDemo {
 
 ## 使用bindPopUp实现气泡弹窗效果
 
-[bindpopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)属性可为组件绑定弹窗，并设置弹窗内容，交互逻辑和显示状态。
+[bindpopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup)属性可为组件绑定弹窗，并设置弹窗内容，交互逻辑和显示状态。
 
 完整示例和代码如下。
 

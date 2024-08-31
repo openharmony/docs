@@ -22,7 +22,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | arrayValue | Array&lt;string&gt; | 是 | 字母索引字符串数组，不可设置为空。 |
 | selected   | number              | 是    | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |

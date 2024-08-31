@@ -4,9 +4,6 @@
 >  **说明：**
 >  本模块首批接口从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-**元服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## IPrefetcher
 实现此接口以提供预取能力。

@@ -38,5 +38,5 @@
 
 - 系统可动画属性：组件自带的支持改变UI界面的属性接口，如位置、缩放、模糊等。
 
-- [自定义可动画属性](../quick-start/arkts-animatable-extend.md)：ArkUI提供[@AnimatableExtend](../quick-start/arkts-animatable-extend.md)装饰器用于自定义可动画属性。开发者可从自定义绘制的内容中抽象出可动画属性，用于控制每帧绘制的内容，如自定义绘制音量图标。通过自定义可动画属性，可以为ArkUI中部分原本不支持动画的属性添加动画。
+- 自定义可动画属性：ArkUI提供[@AnimatableExtend装饰器](../quick-start/arkts-animatable-extend.md)用于自定义可动画属性。开发者可从自定义绘制的内容中抽象出可动画属性，用于控制每帧绘制的内容，如自定义绘制音量图标。通过自定义可动画属性，可以为ArkUI中部分原本不支持动画的属性添加动画。
 

@@ -41,7 +41,7 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **示例**
 
@@ -81,7 +81,7 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **示例**
 
@@ -122,7 +122,7 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaInfo&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 
 **示例**
 
@@ -160,7 +160,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **示例**
 
@@ -201,7 +201,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
 **示例**
 
@@ -249,7 +249,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window proxy is abnormal. |

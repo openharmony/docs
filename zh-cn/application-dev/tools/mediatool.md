@@ -15,7 +15,7 @@ mediatool是一个轻量级的命令行工具集合，开发者可通过此工�
 ### mediatool send
   
   ```shell
-  mediatool send [-ts] [-tas] [-rf] [-urf] <path-to-local-media-file>
+  mediatool send <path-to-local-media-file> [-ts] [-tas] [-rf] [-urf]
   ```
   该命令能够将设备```<path-to-local-media-file>```路径下的图片视频文件推入媒体库中保存。支持保存图片、视频和音频文件。文件在媒体库中会保留原有的名字。```<path-to-local-media-file>```可以为文件夹，mediatool会将文件夹里的所有文件置入媒体库中。保存成功后会打印成功置入的资源的uri。
 

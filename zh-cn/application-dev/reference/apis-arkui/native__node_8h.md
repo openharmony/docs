@@ -31,8 +31,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| **MAX_NODE_SCOPE_NUM** | 1000 | 
-| **MAX_COMPONENT_EVENT_ARG_NUM** | 12 | 
+| **MAX_NODE_SCOPE_NUM**&nbsp;&nbsp;&nbsp; | 1000 | 
+| **MAX_COMPONENT_EVENT_ARG_NUM**&nbsp;&nbsp;&nbsp; | 12 | 
 
 
 ### 类型定义
@@ -119,3 +119,9 @@
 | int32_t [OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen](_ark_u_i___native_module.md#oh_arkui_nodeutils_getpositionwithtranslateinscreen) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*translateOffset) | 获取组件在屏幕中的位置，包含了图形平移变化属性。  | 
 | int32_t [OH_ArkUI_List_CloseAllSwipeActions](_ark_u_i___native_module.md#oh_arkui_list_closeallswipeactions) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData, void(\*onFinish)(void \*userData)) | 收起展开状态下的ListItem。  | 
 | [ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) [OH_ArkUI_GetContextByNode](_ark_u_i___native_module.md#oh_arkui_getcontextbynode) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取当前节点所在页面的UI的上下文实例对象指针。  | 
+| int32_t [OH_ArkUI_RegisterSystemColorModeChangeEvent](_ark_u_i___native_module.md#oh_arkui_registersystemcolormodechangeevent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData, void(\*onColorModeChange)([ArkUI_SystemColorMode](_ark_u_i___native_module.md#arkui_systemcolormode) colorMode, void \*userData)) | 注册系统深浅色变更事件。同一组件仅能注册一个系统深浅变更回调。  | 
+| void [OH_ArkUI_UnregisterSystemColorModeChangeEvent](_ark_u_i___native_module.md#oh_arkui_unregistersystemcolormodechangeevent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 注销系统深浅色变更事件。  | 
+| int32_t [OH_ArkUI_RegisterSystemFontStyleChangeEvent](_ark_u_i___native_module.md#oh_arkui_registersystemfontstylechangeevent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData, void(\*onFontStyleChange)([ArkUI_SystemFontStyleEvent](_ark_u_i___native_module.md#arkui_systemfontstyleevent) \*event, void \*userData)) | 注册系统字体变更事件。同一组件仅能注册一个系统字体变更回调。  | 
+| void [OH_ArkUI_UnregisterSystemFontStyleChangeEvent](_ark_u_i___native_module.md#oh_arkui_unregistersystemfontstylechangeevent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 注销系统字体变更事件。  | 
+| float [OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale](_ark_u_i___native_module.md#oh_arkui_systemfontstyleevent_getfontsizescale) (const [ArkUI_SystemFontStyleEvent](_ark_u_i___native_module.md#arkui_systemfontstyleevent) \*event) | 获取系统字体变更事件的字体大小值。  | 
+| float [OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale](_ark_u_i___native_module.md#oh_arkui_systemfontstyleevent_getfontweightscale) (const [ArkUI_SystemFontStyleEvent](_ark_u_i___native_module.md#arkui_systemfontstyleevent) \*event) | 获取系统字体变更事件的字体粗细值。  | 

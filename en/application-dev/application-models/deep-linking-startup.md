@@ -19,7 +19,7 @@ A configuration example is as follows:
     "abilities": [
       {
         "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
         "startWindowIcon": "$media:icon",
@@ -111,7 +111,7 @@ Pass in the target application's link into **want** of **startAbility()**, which
 The sample code is as follows:
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';

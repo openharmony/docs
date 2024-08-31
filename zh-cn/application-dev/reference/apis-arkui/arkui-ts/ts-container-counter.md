@@ -20,6 +20,8 @@ Counter()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性。 

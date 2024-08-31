@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-开发者通过createJsCore方法来创建一个新的JS基础运行时环境，并通过该方法获得一个CoreID，通过evalUateJS方法使用CoreID对应的运行环境来运行JS代码，在JS代码中创建promise并异步调取TS侧设定的callback函数，最后使用releaseJsCore方法来释放CoreID对应的运行环境。
+开发者通过createJsCore方法来创建一个新的JS基础运行时环境，并通过该方法获得一个CoreID，通过evaluateJS方法使用CoreID对应的运行环境来运行JS代码，在JS代码中创建promise并异步调取TS侧设定的callback函数，最后使用releaseJsCore方法来释放CoreID对应的运行环境。
 
 ## 使用示例
 
@@ -14,7 +14,7 @@
   // index.d.ts
   export const createJsCore: (fun: Function) => number;
   export const releaseJsCore: (a: number) => void;
-  export const evalUateJS: (a: number, str: string) => string;
+  export const evaluateJS: (a: number, str: string) => string;
   ```
 
 **编译配置**
@@ -102,10 +102,8 @@
   using namespace std;
   // 定义map管理每个独立vm环境
   static map<int, JSVM_VM*> g_vmMap;
-  static map<int, JSVM_VMScope> g_vmScopeMap;
   static map<int, JSVM_Env*> g_envMap;
   static map<int, napi_env> g_napiEnvMap;
-  static map<int, JSVM_EnvScope> g_envScopeMap;
   static map<int, napi_ref> g_callBackMap;
   static map<int, JSVM_CallbackStruct*> g_callBackStructMap;
   static uint32_t ENVTAG_NUMBER = 0;
@@ -273,12 +271,11 @@
 
       // 虚拟机实例
       g_vmMap[ENVTAG_NUMBER] = new JSVM_VM;
-      JSVM_VMScope vmScope;
-      g_vmScopeMap[ENVTAG_NUMBER] = vmScope;
       JSVM_CreateVMOptions options;
       memset(&options, 0, sizeof(options));
       status = OH_JSVM_CreateVM(&options, g_vmMap[ENVTAG_NUMBER]);
-      status = OH_JSVM_OpenVMScope(*g_vmMap[ENVTAG_NUMBER], &g_vmScopeMap[ENVTAG_NUMBER]);
+      JSVM_VMScope vmScope;
+      OH_JSVM_OpenVMScope(*g_vmMap[ENVTAG_NUMBER], &vmScope);
 
       // 新环境
       g_envMap[ENVTAG_NUMBER] = new JSVM_Env;
@@ -301,9 +298,7 @@
           {"createPromise", NULL, &g_callBackStructMap[ENVTAG_NUMBER][4], NULL, NULL, NULL, JSVM_DEFAULT},
       };
       status = OH_JSVM_CreateEnv(*g_vmMap[ENVTAG_NUMBER], sizeof(descriptors) / sizeof(descriptors[0]), descriptors, g_envMap[ENVTAG_NUMBER]);
-      JSVM_EnvScope envScope;
-      g_envScopeMap[ENVTAG_NUMBER] = envScope;
-      status = OH_JSVM_OpenEnvScope(*g_envMap[ENVTAG_NUMBER], &g_envScopeMap[ENVTAG_NUMBER]);
+      OH_JSVM_CloseVMScope(*g_vmMap[ENVTAG_NUMBER], vmScope);
   }
 
   // 提供创建JSVM运行环境的对外接口并返回对应唯一ID
@@ -356,13 +351,9 @@
       }
       if (g_envMap[coreEnvId] != nullptr) {
           std::lock_guard<std::mutex> lock_guard(envMapLock);
-          OH_JSVM_CloseEnvScope(*g_envMap[coreEnvId], g_envScopeMap[coreEnvId]);
-          g_envScopeMap.erase(coreEnvId);
           OH_JSVM_DestroyEnv(*g_envMap[coreEnvId]);
           g_envMap[coreEnvId] = nullptr;
           g_envMap.erase(coreEnvId);
-          OH_JSVM_CloseVMScope(*g_vmMap[coreEnvId], g_vmScopeMap[coreEnvId]);
-          g_vmScopeMap.erase(coreEnvId);
           OH_JSVM_DestroyVM(*g_vmMap[coreEnvId]);
           g_vmMap[coreEnvId] = nullptr;
           g_vmMap.erase(coreEnvId);
@@ -379,26 +370,32 @@
 
   static std::mutex mutexLock;
   // 对外提供执行JS代码接口，通过coreID在对应的JSVN环境中执行JS代码
-  static napi_value EvalUateJS(napi_env env, napi_callback_info info) {
-      OH_LOG_ERROR(LOG_APP, "JSVM EvalUateJS START");
+  static napi_value EvaluateJS(napi_env env, napi_callback_info info) {
+      OH_LOG_ERROR(LOG_APP, "JSVM EvaluateJS START");
       size_t argc = 2;
       napi_value args[2] = {nullptr};
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
       uint32_t envId;
       napi_status status = napi_get_value_uint32(env, args[0], &envId);
       if (status != napi_ok) {
-          OH_LOG_ERROR(LOG_APP, "EvalUateJS first param should be number");
+          OH_LOG_ERROR(LOG_APP, "EvaluateJS first param should be number");
           return nullptr;
       }
       
       if (g_envMap.count(envId) == 0 || g_envMap[envId] == nullptr) {
-          OH_LOG_ERROR(LOG_APP, "EvalUateJS env is null");
+          OH_LOG_ERROR(LOG_APP, "EvaluateJS env is null");
           return nullptr;
       }
       std::string dataStr = napiValueToString(env, args[1]);
       napi_value res = nullptr;
       std::lock_guard<std::mutex> lock_guard(mutexLock);
       {
+          // open vm scope
+          JSVM_VMScope vmscope;
+          OH_JSVM_OpenVMScope(*g_vmMap[envId], &vmscope);
+          // open env scope
+          JSVM_EnvScope envscope;
+          OH_JSVM_OpenEnvScope(*g_envMap[envId], &envscope);
           // open handle scope
           JSVM_HandleScope handlescope;
           OH_JSVM_OpenHandleScope(*g_envMap[envId], &handlescope);
@@ -445,8 +442,10 @@
           OH_JSVM_PumpMessageLoop(*g_vmMap[envId], &aal);
           OH_JSVM_PerformMicrotaskCheckpoint(*g_vmMap[envId]);
           OH_JSVM_CloseHandleScope(*g_envMap[envId], handlescope);
+          OH_JSVM_CloseEnvScope(*g_envMap[envId], envscope);
+          OH_JSVM_CloseVMScope(*g_vmMap[envId], vmscope);
       }
-      OH_LOG_ERROR(LOG_APP, "JSVM EvalUateJS END");
+      OH_LOG_ERROR(LOG_APP, "JSVM EvaluateJS END");
       return res;
   }
   ```
@@ -460,7 +459,7 @@
       napi_property_descriptor desc[] = {
           {"createJsCore", nullptr, CreateJsCore, nullptr, nullptr, nullptr, napi_default, nullptr},
           {"releaseJsCore", nullptr, ReleaseJsCore, nullptr, nullptr, nullptr, napi_default, nullptr},
-          {"evalUateJS", nullptr, EvalUateJS, nullptr, nullptr, nullptr, napi_default, nullptr}
+          {"evaluateJS", nullptr, EvaluateJS, nullptr, nullptr, nullptr, napi_default, nullptr}
       };
 
       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
@@ -540,13 +539,13 @@
               const coreId = testNapi.createJsCore(MyCallback);
               console.log("TEST coreId: " + coreId);
               // 在首个运行环境中执行JS代码
-              console.log("TEST evalUateJS :   " + testNapi.evalUateJS(coreId, sourcecodestr));
+              console.log("TEST evaluateJS :   " + testNapi.evaluateJS(coreId, sourcecodestr));
 
               //创建第二个运行环境，并绑定TS回调
               const coreId1 = testNapi.createJsCore(MyCallback2);
               console.log("TEST coreId: " + coreId1);
               // 在第二个运行环境中执行JS代码
-              console.log("TEST evalUateJS :   " + testNapi.evalUateJS(coreId1, sourcecodestr1));
+              console.log("TEST evaluateJS :   " + testNapi.evaluateJS(coreId1, sourcecodestr1));
 
               // 释放首个运行环境
               testNapi.releaseJsCore(coreId);

@@ -22,9 +22,13 @@
 
 Panel(show: boolean)
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | show | boolean | 是 | 控制Panel显示或隐藏。<br/>**说明：** <br/>如果设置为false时，则不占位隐藏。[Visible.None](ts-universal-attributes-visibility.md)或者show之间有一个生效时，都会生效不占位隐藏。 |
 
@@ -32,22 +36,171 @@ Panel(show: boolean)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| type | [PanelType](#paneltype枚举说明) | 设置可滑动面板的类型。<br/>默认值：PanelType.Foldable |
-| mode | [PanelMode](#panelmode枚举说明) | 设置可滑动面板的初始状态。<br/>Minibar类型默认值：PanelMode.Mini；其余类型默认值：PanelMode.Half<br />从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| dragBar | boolean | 设置是否存在dragbar，true表示存在，false表示不存在。<br/>默认值：true |
-| customHeight<sup>10+</sup> | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[PanelHeight](#panelheight10枚举说明) | 指定PanelType.CUSTOM状态下的高度。<br/>默认值：0<br/>**说明：** <br/>不支持设置百分比。 |
-| fullHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Full状态下的高度。<br/>默认值：当前组件主轴大小减去8vp空白区<br/>**说明：** <br/>不支持设置百分比。 |
-| halfHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Half状态下的高度。<br/>默认值：当前组件主轴大小的一半。<br/>**说明：** <br/>不支持设置百分比。 |
-| miniHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Mini状态下的高度。<br/>默认值：48<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
-| show | boolean | 当滑动面板弹出时调用，true显示面板，false不显示面板。 <br/>默认值：true<br/>**说明：** <br/>该属性的优先级高于参数show。 |
-| backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|指定Panel的背景蒙层。<br/>默认值：'#08182431' |
-| showCloseIcon<sup>10+</sup> | boolean | 设置是否显示关闭图标，true表示显示，false表示不显示。<br/>默认值：false |
+### type
+
+type(value: PanelType)
+
+可滑动面板的类型。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | [PanelType](#paneltype枚举说明) | 是   | 设置可滑动面板的类型。<br/>默认值：PanelType.Foldable |
+
+### mode
+
+mode(value: PanelMode)
+
+可滑动面板的初始状态。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | [PanelMode](#panelmode枚举说明) | 是   | 设置可滑动面板的初始状态。<br/>Minibar类型默认值：PanelMode.Mini；其余类型默认值：PanelMode.Half<br />从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+
+### dragBar
+
+dragBar(value: boolean)
+
+设置是否存在dragbar。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | boolean | 是   | 设置是否存在dragbar，true表示存在，false表示不存在。<br/>默认值：true |
+
+### customHeight<sup>10+</sup>
+
+customHeight(value: Dimension | PanelHeight)
+
+指定PanelType.CUSTOM状态下的高度。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[PanelHeight](#panelheight10枚举说明) | 是   | 指定PanelType.CUSTOM状态下的高度。<br/>默认值：0<br/>**说明：** <br/>不支持设置百分比。 |
+
+### fullHeight
+
+fullHeight(value: number | string)
+
+指定PanelType.CUSTOM状态下的高度。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | string&nbsp;\|&nbsp;number | 是   | 指定PanelMode.Full状态下的高度。<br/>默认值：当前组件主轴大小减去8vp空白区<br/>**说明：** <br/>不支持设置百分比。 |
+
+### halfHeight
+
+halfHeight(value: number | string)
+
+指定PanelMode.Full状态下的高度。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | string&nbsp;\|&nbsp;number | 是   | 指定PanelMode.Half状态下的高度。<br/>默认值：当前组件主轴大小的一半。<br/>**说明：** <br/>不支持设置百分比。 |
+
+### miniHeight
+
+miniHeight(value: number | string)
+
+指定PanelMode.Half状态下的高度。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | string&nbsp;\|&nbsp;number | 是   | 指定PanelMode.Mini状态下的高度。<br/>默认值：48<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
+
+### show
+
+show(value: boolean)
+
+当滑动面板弹出时调用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | boolean | 是   | 当滑动面板弹出时调用，true显示面板，false不显示面板。 <br/>默认值：true<br/>**说明：** <br/>该属性的优先级高于参数show。 |
+
+### backgroundMask<sup>9+</sup>
+
+backgroundMask(color: ResourceColor)
+
+指定Panel的背景蒙层。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | [ResourceColor](ts-types.md#resourcecolor) | 是   | 指定Panel的背景蒙层。<br/>默认值：'#08182431' |
+
+### showCloseIcon<sup>10+</sup>
+
+showCloseIcon(value: boolean)
+
+设置是否显示关闭图标。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | boolean | 是   | 设置是否显示关闭图标，true表示显示，false表示不显示。<br/>默认值：false |
 
 ## PanelType枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -60,6 +213,8 @@ Panel(show: boolean)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 值 | 描述 |
 | -------- | -------- | -------- |
 | Mini |0| 类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。|
@@ -69,6 +224,8 @@ Panel(show: boolean)
 ## PanelHeight<sup>10+</sup>枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- | 

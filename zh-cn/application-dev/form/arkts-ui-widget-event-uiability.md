@@ -85,6 +85,7 @@
       hilog.info(DOMAIN_NUMBER, TAG, `handleFormRouterEvent ${source}, Want: ${JSON.stringify(want)}`);
       if (want.parameters && want.parameters[formInfo.FormParam.IDENTITY_KEY] !== undefined) {
         let curFormId = want.parameters[formInfo.FormParam.IDENTITY_KEY].toString();
+        // want.parameters.params 对应 postCardAction() 中 params 内容
         let message: string = (JSON.parse(want.parameters?.params as string))?.routerDetail;
         hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {

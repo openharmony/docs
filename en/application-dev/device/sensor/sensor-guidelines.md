@@ -46,7 +46,7 @@ The acceleration sensor is used as an example.
 
     ![](figures/001.png)
 
-    The minimum and the maximum sampling periods supported by the sensor are 5000000 ns and 200000000 ns, respectively. The specified sampling interval must be within this range. A smaller value means a higher reporting frequency and a higher power consumption.
+    The minimum and the maximum sampling periods supported by the sensor are 5000000 ns and 200000000 ns, respectively. The sampling interval may vary depending on the sensor type. The specified sampling interval must be within this range. If the configured value is smaller than the minimum sampling interval of the sensor, the minimum sampling interval is used. If the configured value is larger than the maximum sampling interval of the sensor, the maximum sampling interval is used. A smaller value means a higher reporting frequency and a higher power consumption.
 
 3. Check whether the corresponding permission has been configured. For details, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 

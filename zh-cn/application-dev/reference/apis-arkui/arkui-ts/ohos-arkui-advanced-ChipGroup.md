@@ -141,7 +141,7 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 
 | 名称     | 类型                            | 必填 | 描述                                      |
 | -------- | --------------                 | ---- | ------------------------------           |
-| icon     | [IconOptions](#iconoptions)    | 是   | 自定义Builder icon                        |
+| icon     | [IconOptions](#iconoptions)    | 是   | 自定义Builder icon。<br/>chip大小是ChipSize.SMALL时，suffix默认值：{width: 16,height: 16}。<br/>chip大小是ChipSize.NORMAL时，suffix默认值：{width: 24,height: 24}。</br> 如果想动态修改size，那么必须在引入[IconGroupSuffix](#icongroupsuffix)时，使用[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)类型。                       |
 | action   | Callback\<void>        | 是   | 自定义Builder items 的Callback<br/>为undefined时，表示解绑事件。            |
 
 ## IconOptions
@@ -153,7 +153,7 @@ IconOptions定义图标的共通属性。
 | 名称 | 类型                                   | 必填 | 说明                                                         |
 | ---- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | src  | [ResourceStr](ts-types.md#resourcestr) | 是   | 图标图片或图片地址引用。                                     |
-| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 图标大小，不支持百分比。<br/>chip大小是ChipSize.SMALL时，suffix默认值：{width: 16,height: 16}。 <br/>chip大小是ChipSize.NORMAL时，suffix默认值：{width: 24,height: 24}。</br> 如果想动态修改size，那么必须在引入[IconGroupSuffix](#icongroupsuffix)时，使用[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)类型。|
+| size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 图标大小，不支持百分比。|
 
 ## LabelOptions
 

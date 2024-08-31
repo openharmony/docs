@@ -71,8 +71,8 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | timestamp| number | 事件时间戳。<br>单位：ns<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | pressure | number | 按压的压力大小。<br/>默认值：0<br/>取值范围：[0,65535)，压力越大值越大。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| titleX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| titleY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| tiltX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| tiltY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 事件输入源。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | axisHorizontal<sup>12+</sup> | number | 水平轴值。<br/>**说明：**<br/>当前仅在由鼠标滚轮或者触控板双指滑动场景下触发的Pan手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | axisVertical<sup>12+</sup> | number | 垂直轴值。<br/>**说明：**<br/>当前仅在由鼠标滚轮或者触控板双指滑动场景下触发的Pan手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |

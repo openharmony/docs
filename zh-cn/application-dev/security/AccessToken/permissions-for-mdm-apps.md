@@ -457,7 +457,7 @@
 
 **起始版本**：12
 
-### ohos.permission.QUERY_AUDIT_EVENT
+## ohos.permission.QUERY_AUDIT_EVENT
 
 允许MDM应用查询安全审计事件。
 

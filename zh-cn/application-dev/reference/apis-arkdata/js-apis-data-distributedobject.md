@@ -163,7 +163,7 @@ let sessionId: string = distributedDataObject.genSessionId();
 
 setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置sessionId，使用callback方式异步回调。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId，使用callback方式异步回调。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -242,7 +242,7 @@ g_object.setSessionId(() => {
 
 setSessionId(sessionId?: string): Promise&lt;void&gt;
 
-设置sessionId，使用Promise异步返回。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId，使用Promise异步返回。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -851,7 +851,7 @@ let g_object: distributedDataObject.DistributedObject = distributedDataObject.cr
 
 setSessionId(sessionId?: string): boolean
 
-设置sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
 > **说明：**
 >

@@ -93,6 +93,7 @@
       // 获取router事件中传递的targetPage参数
       hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate: ${JSON.stringify(want?.parameters)}`);
       if (want?.parameters?.params) {
+        // want.parameters.params 对应 postCardAction() 中 params 内容
         let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
         this.selectPage = params.targetPage as string;
         hilog.info(DOMAIN_NUMBER, TAG, `onCreate selectPage: ${this.selectPage}`);
@@ -103,6 +104,7 @@
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       hilog.info(DOMAIN_NUMBER, TAG, `Ability onNewWant: ${JSON.stringify(want?.parameters)}`);
       if (want?.parameters?.params) {
+        // want.parameters.params 对应 postCardAction() 中 params 内容
         let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
         this.selectPage = params.targetPage as string;
         hilog.info(DOMAIN_NUMBER, TAG, `onNewWant selectPage: ${this.selectPage}`);

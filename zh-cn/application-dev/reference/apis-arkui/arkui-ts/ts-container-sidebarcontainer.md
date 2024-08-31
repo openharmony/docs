@@ -28,7 +28,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | [SideBarContainerType](#sidebarcontainertype枚举说明) | 否 | 设置侧边栏的显示类型。<br/>默认值：SideBarContainerType.Embed |
 
@@ -136,7 +136,7 @@ minSideBarWidth优先于侧边栏子组件minWidth，minSideBarWidth未设置时
 
 maxSideBarWidth(value: number&nbsp;|&nbsp;Length)
 
-设置侧边栏最小宽度。设置为小于0的值时按默认值显示。值不能超过侧边栏容器本身宽度，超过使用侧边栏容器本身宽度。
+设置侧边栏最大宽度。设置为小于0的值时按默认值显示。值不能超过侧边栏容器本身宽度，超过使用侧边栏容器本身宽度。
 
 maxSideBarWidth优先于侧边栏子组件maxWidth，maxSideBarWidth未设置时默认值优先级高于侧边栏子组件maxWidth。
 
@@ -235,7 +235,7 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 参数类型 | 必填 | 描述 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | left | number | 否 | 设置侧边栏控制按钮距离容器左界限的间距。<br/>默认值：16vp<br>单位：vp |
 | top | number | 否 | 设置侧边栏控制按钮距离容器上界限的间距。<br/>默认值：48vp<br/>单位：vp |
@@ -262,7 +262,7 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 参数类型      | 必填 | 描述                                     |
+| 名称        | 类型      | 必填 | 说明                                     |
 | ----------- | ------------- | ---- | ---------------------------------------- |
 | strokeWidth | [Length](ts-types.md#length)        | 是   | 分割线的线宽。<br/>默认值：1vp |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 分割线的颜色。<br/>默认值：#000000，3%   |

@@ -105,7 +105,7 @@ type DataOperation =
 ```ts
 interface DataAddOperation {
   type: DataOperationType.ADD,     // Data operation type of adding.
-  index: number,                   // Index at which to insert data.
+  index: number,                   // Index of original data array at which to insert data.
   count?: number,                  // Number of entries to insert. The default value is 1.
   key?: string | Array<string>     // Keys to assign to the inserted data.
 }
@@ -116,7 +116,7 @@ interface DataAddOperation {
 ```ts
 interface DataDeleteOperation {
   type: DataOperationType.DELETE, // Data operation type of deletion.
-  index: number,                   // Index at which to start deleting data.
+  index: number,                   // Index of original data array at which to start deleting data.
   count?: number                   // Number of entries to delete. The default value is 1.
 }
 ```
@@ -126,7 +126,7 @@ interface DataDeleteOperation {
 ```ts
 interface DataChangeOperation {
   type: DataOperationType.CHANGE, // Data operation type of change.
-  index: number,                   // Index at which to change data.
+  index: number,                   // Index of original data array at which to change data.
   key?: string                     // New keys to assign to the changed data. By default, the original keys are used.
 }
 ```
@@ -135,8 +135,8 @@ interface DataChangeOperation {
 
 ```ts
 interface MoveIndex {
-  from: number;                    // Original position.
-  to: number;                      // Destination position.
+  from: number;                    // Index of to-move data in original data array.
+  to: number;                      // Index of destination in original data array.
 }
 
 interface DataMoveOperation {
@@ -150,12 +150,12 @@ interface DataMoveOperation {
 
 ```ts
 interface ExchangeIndex {
-  start: number;                   // First position for exchange.
-  end: number;                     // Second position for exchange.
+  start: number;                   // Index of first to-exchange data in original data array.
+  end: number;                     // Index of second to-exhange data in original data array.
 }
 interface ExchangeKey {
-  start: string;                   // New key to assign to the data in the first position for exchange. By default, the original key is used.
-  end: string;                     // New key to assign to the data in the second position for exchange. By default, the original key is used.
+  start: string;                   // New key for the first to-exchange data. By default, the original key is used.
+  end: string;                     // New key for the second to-exhange data. By default, the original key is used.
 }
 
 interface DataExchangeOperation {
@@ -1172,22 +1172,25 @@ class MyDataSource extends BasicDataSource {
   }
 
   public operateData(): void {
-    this.dataArray.splice(3, 0, this.dataArray[1]);
+    console.info(JSON.stringify(this.dataArray));
+    this.dataArray.splice(4, 0, this.dataArray[1]);
     this.dataArray.splice(1, 1);
     let temp = this.dataArray[4];
     this.dataArray[4] = this.dataArray[6];
     this.dataArray[6] = temp
-    this.dataArray.splice(8, 0, 'Hello a', 'Hello b');
-    this.dataArray.splice(10, 2);
+    this.dataArray.splice(8, 0, 'Hello 1', 'Hello 2');
+    this.dataArray.splice(12, 2);
+    console.info(JSON.stringify(this.dataArray));
     this.notifyDatasetChange([
-      {type: DataOperationType.MOVE, index: {from: 1, to: 3}},
-      {type: DataOperationType.EXCHANGE, index: {start: 4, end: 6}},
-      {type: DataOperationType.ADD, index: 8, count: 2},
-      {type: DataOperationType.DELETE, index: 10, count: 2}]);
+      { type: DataOperationType.MOVE, index: { from: 1, to: 3 } },
+      { type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } },
+      { type: DataOperationType.ADD, index: 8, count: 2 },
+      { type: DataOperationType.DELETE, index: 10, count: 2 }]);
   }
 
-  public pushData(data: string): void {
-    this.dataArray.push(data);
+  public init(): void {
+    this.dataArray.splice(0, 0, 'Hello a', 'Hello b', 'Hello c', 'Hello d', 'Hello e', 'Hello f', 'Hello g', 'Hello h',
+      'Hello i', 'Hello j', 'Hello k', 'Hello l', 'Hello m', 'Hello n', 'Hello o', 'Hello p', 'Hello q', 'Hello r');
   }
 }
 
@@ -1197,21 +1200,123 @@ struct MyComponent {
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
-    for (let i = 1; i <= 21; i++) {
-      this.data.pushData(`Hello ${i}`)
-    }
+    this.data.init()
   }
 
   build() {
     Column() {
-      Text('Move the second item to where the fourth item is located, exchange the fifth and seventh data items, add "Hello a" "Hello b" to the ninth item, and delete two items starting from the eleventh item')
+      Text('Move the second item to where the fourth item is located, exchange the fifth and seventh data items, add "Hello 1" "Hello 2" to the ninth item, and delete two items starting from the eleventh item')
         .fontSize(10)
         .backgroundColor(Color.Blue)
         .fontColor(Color.White)
         .borderRadius(50)
         .padding(5)
         .onClick(() => {
-            this.data.operateData();
+          this.data.operateData();
+        })
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string, index: number) => {
+          ListItem() {
+            Row() {
+              Text(item).fontSize(35)
+                .onAppear(() => {
+                  console.info("appear:" + item)
+                })
+            }.margin({ left: 10, right: 10 })
+          }
+
+        }, (item: string) => item + new Date().getTime())
+      }.cachedCount(5)
+    }
+  }
+}
+```
+The **onDatasetChange** API notifies **LazyForEach** of the operations to be performed at once. In the preceding example, **LazyForEach** adds, deletes, moves, and exchanges data at the same time.
+
+**Figure 8** Changing multiple data items in LazyForEach
+![LazyForEach-Change-MultiData](./figures/LazyForEach-Change-MultiData.gif)
+
+The second example is to directly assign values to the array without involving splice functions. Operations are obtained by comparing the original array with the new array.
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  notifyDatasetChange(operations: DataOperation[]): void {
+    this.listeners.forEach(listener => {
+      listener.onDatasetChange(operations);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public operateData(): void {
+    this.dataArray =
+      ['Hello x', 'Hello 1', 'Hello 2', 'Hello b', 'Hello c', 'Hello e', 'Hello d', 'Hello f', 'Hello g', 'Hello h']
+    this.notifyDatasetChange([
+      { type: DataOperationType.CHANGE, index: 0 },
+      { type: DataOperationType.ADD, index: 1, count: 2 },
+      { type: DataOperationType.EXCHANGE, index: { start: 3, end: 4 } },
+    ]);
+  }
+
+  public init(): void {
+    this.dataArray = ['Hello a', 'Hello b', 'Hello c', 'Hello d', 'Hello e', 'Hello f', 'Hello g', 'Hello h'];
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    this.data.init()
+  }
+
+  build() {
+    Column() {
+      Text('Multi-Data Change')
+        .fontSize(10)
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .borderRadius(50)
+        .padding(5)
+        .onClick(() => {
+          this.data.operateData();
         })
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string, index: number) => {
@@ -1231,19 +1336,31 @@ struct MyComponent {
 }
 ```
 
-The **onDatasetChange** API notifies **LazyForEach** of the operations to be performed at once. In the preceding example, **LazyForEach** adds, deletes, moves, and exchanges data at the same time.
+**Figure 9** Changing multiple data items in LazyForEach 
+![LazyForEach-Change-MultiData2](./figures/LazyForEach-Change-MultiData2.gif) 
+
 
 Pay attention to the following when using the **onDatasetChange** API:
 
 1. The **onDatasetChange** API cannot be used together with other data operation APIs.
-2. The data corresponding to the specified indexes is sourced from the original array before the data operation.
+2. The input parameter of **onDatasetChange** is operations. The **index** of each operation is sourced from the original array. Therefore, the index in operations(input parameter of **onDatasetChange**) does not correspond exactly with the index in the operations on Datasource.   
+The first example clearly illustrates this point:
+```ts
+// data array before change
+["Hello a","Hello b","Hello c","Hello d","Hello e","Hello f","Hello g","Hello h","Hello i","Hello j","Hello k","Hello l","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
+// data array after change
+["Hello a","Hello c","Hello d","Hello b","Hello g","Hello f","Hello e","Hello h","Hello 1","Hello 2","Hello i","Hello j","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
+```
+"Hello b" changed from the 2nd item to the 4th item, so the first operation is `{ type: DataOperationType.MOVE, index: { from: 1, to: 3 } }`  
+"Hello e" exchanged with "Hello g", while index of "Hello e" is 4 in the original data array and index of "Hello g" is 6, so the second operation is `{ type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } }`  
+"Hello 1","Hello 2" are inserted after "Hello h", while index of "Hello h"  is 7 in the original data array, so the third operation is `{ type: DataOperationType.ADD, index: 8, count: 2 }`  
+"Hello k","Hello l" are deleted, while index of "Hello k" is 10 in the original data array, so the fourth operation is `{ type: DataOperationType.DELETE, index: 10, count: 2 }`  
+
 3. When **onDatasetChange** is called, the data can be operated only once for each index. If the data is operated multiple times, **LazyForEach** enables only the first operation to take effect.
 4. In operations where you can specify keys on your own, **LazyForEach** does not call the key generator to obtain keys. As such, make sure the specified keys are correct.
 5. If the API contains the **RELOAD** operation, other operations do not take effect.
 
-**Figure 8** Changing multiple data items in LazyForEach 
 
-![LazyForEach-Change-MultiData](./figures/LazyForEach-Change-MultiData.gif)
 
 - ### Changing Data Subproperties
 
@@ -1380,7 +1497,7 @@ struct ChildComponent {
 
 When the child component of **LazyForEach** is clicked, **item.message** is changed. As re-rendering depends on the listening of the @ObjectLink decorated member variable of **ChildComponent** on its subproperties. In this case, the framework only re-renders **Text(this.data.message)** and does not rebuild the entire **ListItem** child component.
 
-**Figure 9** Changing data subproperties in LazyForEach 
+**Figure 10** Changing data subproperties in LazyForEach 
 ![LazyForEach-Change-SubProperty](./figures/LazyForEach-Change-SubProperty.gif)
 
 ## Enabling Drag and Sort
@@ -1512,7 +1629,7 @@ struct Parent {
 }
 ```
 
-**Figure 10** Drag and sort in LazyForEach 
+**Figure 11** Drag and sort in LazyForEach 
 ![LazyForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)
 
 ## FAQs
@@ -1637,7 +1754,7 @@ struct Parent {
   }
   ```
 
-  **Figure 11** Unexpected data deletion by LazyForEach 
+  **Figure 12** Unexpected data deletion by LazyForEach 
   ![LazyForEach-Render-Not-Expected](./figures/LazyForEach-Render-Not-Expected.gif)
 
   When child components are clicked to be deleted, there may be cases where the deleted child component is not the one clicked. If this is the case, the indexes of data items are not updated correctly. In normal cases, after a child component is deleted, all data items following the data item of the child component should have their index decreased by 1. If these data items still use the original indexes, the indexes in **itemGenerator** do not change, resulting in the unexpected rendering result.
@@ -1770,7 +1887,7 @@ struct Parent {
 
   After a data item is deleted, the **reloadData** method is called to rebuild the subsequent data items to update the indexes.
 
-  **Figure 12** Fixing unexpected data deletion 
+  **Figure 13** Fixing unexpected data deletion 
   ![LazyForEach-Render-Not-Expected-Repair](./figures/LazyForEach-Render-Not-Expected-Repair.gif)
 
 - ### Image Flickering During Re-renders
@@ -1905,7 +2022,7 @@ struct Parent {
   }
   ```
 
-  **Figure 13** Unwanted image flickering with LazyForEach 
+  **Figure 14** Unwanted image flickering with LazyForEach 
   ![LazyForEach-Image-Flush](./figures/LazyForEach-Image-Flush.gif)
 
   In the example, when a list item is clicked, only the **message** property of the item is changed. Yet, along with the text change comes the unwanted image flickering. This is because, with the **LazyForEach** update mechanism, the entire list item is rebuilt. As the **\<Image>** component is updated asynchronously, flickering occurs. To address this issue, use @ObjectLink and @Observed so that only the **\<Text>** component that uses the **item.message** property is re-rendered.
@@ -2045,7 +2162,7 @@ struct Parent {
   }
   ```
 
-  **Figure 14** Fixing unwanted image flickering 
+  **Figure 15** Fixing unwanted image flickering 
   ![LazyForEach-Image-Flush-Repair](./figures/LazyForEach-Image-Flush-Repair.gif)
 
 - ### UI Not Re-rendered When @ObjectLink Property Is Changed
@@ -2187,7 +2304,7 @@ struct Parent {
   }
   ```
 
-  **Figure 15** UI not re-rendered when @ObjectLink property is changed 
+  **Figure 16** UI not re-rendered when @ObjectLink property is changed 
   ![LazyForEach-ObjectLink-NotRenderUI](./figures/LazyForEach-ObjectLink-NotRenderUI.gif)
   
   The member variable decorated by @ObjectLink can observe only changes of its sub-properties, not changes of nested properties. Therefore, to instruct a component to re-render, we need to change the component sub-properties. For details, see [\@Observed and \@ObjectLink Decorators](./arkts-observed-and-objectlink.md).
@@ -2331,7 +2448,7 @@ struct Parent {
   }
   ```
   
-  **Figure 16** Fixing the UI-not-re-rendered issue 
+  **Figure 17** Fixing the UI-not-re-rendered issue 
   ![LazyForEach-ObjectLink-NotRenderUI-Repair](./figures/LazyForEach-ObjectLink-NotRenderUI-Repair.gif)
 
 - ### Screen Flickering

@@ -27,11 +27,11 @@
 
 - 同层渲染区域支持的触屏事件包括：滑动、点击、缩放、长按，不支持拖拽。
 
-- 开启同层渲染后，Web组件打开的所有Web页面将不支持手势缩放和[initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale)、[zoom](../reference/apis-arkweb/js-apis-webview.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)等缩放接口。
+- 开启同层渲染后，Web组件打开的所有Web页面将不支持手势缩放和[initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale9)、[zoom](../reference/apis-arkweb/js-apis-webview.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)等缩放接口。
 
 - 同层渲染区域不支持鼠标、键盘、触摸板事件
 
-- 开启同层渲染后，Web组件打开的所有Web页面将不支持统一渲染模式[RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode)。
+- 开启同层渲染后，Web组件打开的所有Web页面将不支持统一渲染模式[RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode12枚举说明)。
 
 
 ## 绘制XComponent+AVPlayer和Button组件

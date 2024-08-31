@@ -661,7 +661,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , cal
   // 认证的设备信息，可以从发现的结果中获取
   let deviceId = 'XXXXXXXX';
   let bindParam: Record<string, string | number> = {
-    'bindType': 1, // 认证类型： 1 - 无帐号PIN码认证
+    'bindType': 1, // 认证类型： 1 - 无账号PIN码认证
     'targetPkgName': 'xxxx',
     'appName': 'xxxx',
     'appOperation': 'xxxx',

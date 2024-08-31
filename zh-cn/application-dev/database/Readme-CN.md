@@ -5,6 +5,7 @@
   - [标准化数据定义概述](unified-data-definition-overview.md)
   - [标准化数据类型](uniform-data-type-descriptors.md)
   - [标准化数据结构](uniform-data-structure.md)
+  - [Uniform Type Descriptor(UTD)预置类型列表](uniform-data-type-list.md)
 - 应用数据持久化
   - [应用数据持久化概述](app-data-persistence-overview.md)
   - [通过用户首选项实现数据持久化](data-persistence-by-preferences.md)

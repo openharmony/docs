@@ -39,7 +39,31 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     });
     ```
 
-2. 调用load方法进行音频资源加载。
+2. 调用on('loadComplete')方法，用于监听“资源加载完成”。
+
+    ```ts
+    soundPool.on('loadComplete', (soundId: number) => {
+      console.info('loadComplete, soundId: ' + soundId);
+    });
+    ```
+
+3. 调用on('playFinished')方法，用于监听“播放完成”。
+     
+    ```ts
+    soundPool.on('playFinished', () => {
+      console.info("receive play finished message");
+    });
+    ```
+
+4. 调用on('error')方法，设置错误类型监听。
+     
+    ```ts
+    soundPool.on('error', (error: BusinessError) => {
+      console.info('error happened,message is :' + error.message);
+    });
+    ```
+
+5. 调用load方法进行音频资源加载。
     可以传入uri或fd加载资源，此处使用传入uri的方式为例，更多方法请参考[API文档](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md#load)。
 
     ```ts
@@ -60,30 +84,6 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
         console.error('soundPool load failed and catch error is ' + err.message);
       })
     }
-    ```
-
-3. 调用on('loadComplete')方法，用于监听“资源加载完成”。
-
-    ```ts
-    soundPool.on('loadComplete', (soundId: number) => {
-      console.info('loadComplete, soundId: ' + soundId);
-    });
-    ```
-
-4. 调用on('playFinished')方法，用于监听“播放完成”。
-     
-    ```ts
-    soundPool.on('playFinished', () => {
-      console.info("receive play finished message");
-    });
-    ```
-
-5. 调用on('error')方法，设置错误类型监听。
-     
-    ```ts
-    soundPool.on('error', (error: BusinessError) => {
-      console.info('error happened,message is :' + error.message);
-    });
     ```
 
 6. 配置播放参数PlayParameters，并调用play方法播放音频。多次调用play播放同一个soundID，只会播放一次。

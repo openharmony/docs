@@ -131,7 +131,7 @@ WIFI服务内部执行P2P相关操作时出现未知错误。
 
 **错误信息**
 
-Operation failed because the service is being closed.
+ Failed for wifi is closing.
 
 **错误描述**
 
@@ -149,7 +149,7 @@ Operation failed because the service is being closed.
 
 **错误信息**
 
-Operation failed because the service is being opened.
+ Failed for wifi is opening.
 
 **错误描述**
 

@@ -1,6 +1,6 @@
 # 使用AudioRenderer开发音频播放功能
 
-AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音频数据，相比AVPlayer而言，可以在输入前添加数据预处理，更适合有音频开发经验的开发者，以实现更灵活的播放功能。
+AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音频数据，相比[AVPlayer](../media/using-avplayer-for-playback.md)而言，可以在输入前添加数据预处理，更适合有音频开发经验的开发者，以实现更灵活的播放功能。
 
 ## 开发指导
 
@@ -74,7 +74,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     }
 
     let path = getContext().cacheDir;
-    //确保该路径下存在该资源
+    // 确保该沙箱路径下存在该资源
     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
     let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 
@@ -137,7 +137,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 创建播放器时候，开发者需要根据应用场景指定播放器的`StreamUsage`，选择正确的`StreamUsage`可以避免用户遇到不符合预期的行为。
 
-在音频API文档[StreamUsage](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-audio-kit/js-apis-audio.md#streamusage)介绍中，列举了每一种类型推荐的应用场景。例如音乐场景推荐使用`STREAM_USAGE_MUSIC`，电影或者视频场景推荐使用`STREAM_USAGE_MOVIE`，游戏场景推荐使用`STREAM_USAGE_GAME`，等等。
+在音频API文档[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)介绍中，列举了每一种类型推荐的应用场景。例如音乐场景推荐使用`STREAM_USAGE_MUSIC`，电影或者视频场景推荐使用`STREAM_USAGE_MOVIE`，游戏场景推荐使用`STREAM_USAGE_GAME`，等等。
 
 如果开发者配置了不正确的`StreamUsage`，可能带来一些不符合预期的行为。例如以下场景。
 
@@ -178,7 +178,7 @@ let audioRendererOptions: audio.AudioRendererOptions = {
   rendererInfo: audioRendererInfo
 }
 let path = getContext().cacheDir;
-//确保该路径下存在该资源
+// 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 

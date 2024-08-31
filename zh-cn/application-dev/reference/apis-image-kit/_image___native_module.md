@@ -32,7 +32,10 @@
 | struct  [Image_Size](_image___size.md) | 图像大小结构体。  | 
 | struct  [Image_Region](_image___region.md) | 待解码的图像源区域结构体。  | 
 | struct  [Image_String](_image___string.md) | 字符串结构。  | 
-
+| struct  [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md) | HDR_STATIC_METADATA关键字对应的静态元数据值。  | 
+| struct  [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md) | DR_DYNAMIC_METADATA关键字对应的动态元数据值。  | 
+| struct  [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md) | HDR_GAINMAP_METADATA关键字对应的gainmap相关元数据值，参考ISO 21496-1。  | 
+| struct  [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) | Pixelmap使用的HDR元数据值，和OH_Pixelmap_HdrMetadataKey关键字相对应。  | 
 
 ### 类型定义
 
@@ -52,6 +55,11 @@
 | typedef struct [OH_ImageSource_Info](#oh_imagesource_info) [OH_ImageSource_Info](#oh_imagesource_info) | 图片源信息结构体 [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create)。 | 
 | typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | 解码选项参数结构体,被用于[OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)。 | 
 | typedef struct [OH_PixelmapNative](#oh_pixelmapnative) [OH_PixelmapNative](#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。 | 
+| typedef struct [OH_NativeBuffer](#oh_nativebuffer) [OH_NativeBuffer](#oh_nativebuffer) | NativeBuffer结构体类型，用于执行NativeBuffer相关操作。 | 
+| typedef struct [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md) [OH_Pixelmap_HdrStaticMetadata](#oh_pixelmap_hdrstaticmetadata) | HDR_STATIC_METADATA关键字对应的静态元数据值。  | 
+| typedef struct [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md) [OH_Pixelmap_HdrDynamicMetadata](#oh_pixelmap_hdrdynamicmetadata) | DR_DYNAMIC_METADATA关键字对应的动态元数据值。  | 
+| typedef struct [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md) [OH_Pixelmap_HdrGainmapMetadata](#oh_pixelmap_hdrgainmapmetadata) | HDR_GAINMAP_METADATA关键字对应的gainmap相关元数据值，参考ISO 21496-1。  | 
+| typedef struct [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) [OH_Pixelmap_HdrMetadataValue](#oh_pixelmap_hdrmetadatavalue) | Pixelmap使用的HDR元数据值，和OH_Pixelmap_HdrMetadataKey关键字相对应。用于[OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata)及[OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata)，有相应[OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey)关键字作为入参时，设置或获取到本结构体中相对应的元数据类型的值。  |
 | typedef struct [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) | 初始化参数结构体。 | 
 | typedef struct [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) | 图像像素信息结构体。 | 
 
@@ -60,12 +68,14 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0,<br/>IMAGE_BAD_PARAMETER = 401,<br/>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101,<br/>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103,<br/>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202,<br/>IMAGE_UNSUPPORTED_CONVERSION = 7600203,<br/>IMAGE_INVALID_REGION = 7600204,<br/>IMAGE_ALLOC_FAILED = 7600301,<br/>IMAGE_COPY_FAILED = 7600302,<br/>IMAGE_UNKNOWN_ERROR = 7600901,<br/>IMAGE_BAD_SOURCE = 7700101,<br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。 | 
+| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0, <br/>IMAGE_BAD_PARAMETER = 401, <br/>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, <br/>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, <br/>IMAGE_DMA_NOT_EXIST = 7600173, <br/>IMAGE_DMA_OPERATION_FAILED = 7600174, <br/>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, <br/>IMAGE_UNSUPPORTED_CONVERSION = 7600203, <br/>IMAGE_INVALID_REGION = 7600204, <br/>IMAGE_ALLOC_FAILED = 7600301,<br/>IMAGE_COPY_FAILED = 7600302, <br/>IMAGE_UNKNOWN_ERROR = 7600901, <br/>IMAGE_BAD_SOURCE = 7700101, <br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。  | 
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br/>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | 编码指定动态范围。 | 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br/>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_DYNAMIC_RANGE_SDR = 1,<br/>IMAGE_DYNAMIC_RANGE_HDR = 2 } | 解码指定期望动态范围。 | 
 | [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br/>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br/>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br/>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2 } | Pixelmap透明度类型。 | 
 | [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br/>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br/>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br/>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br/>PIXEL_FORMAT_NV12 = 9<br/>} | 图片像素格式。 | 
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br/>OH_PixelmapNative_AntiAliasing_NONE = 0, <br/>OH_PixelmapNative_AntiAliasing_LOW = 1, <br/>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br/>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br/>} | Pixelmap缩放时采用的缩放算法。  | 
+| [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br/>HDR_METADATA_TYPE = 0, <br/>HDR_STATIC_METADATA = 1, <br/>HDR_DYNAMIC_METADATA = 2, <br/>HDR_GAINMAP_METADATA = 3 } | Pixelmap使用的HDR相关元数据信息的关键字，用于[OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata)及[OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata)。  | 
+| [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br/>HDR_METADATA_TYPE_NONE = 0, <br/>HDR_METADATA_TYPE_BASE = 1, <br/>HDR_METADATA_TYPE_GAINMAP = 2, <br/>HDR_METADATA_TYPE_ALTERNATE = 3 } | HDR_METADATA_TYPE关键字对应的值。  | 
 
 
 ### 函数
@@ -176,6 +186,9 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放OH_PixelmapNative指针。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_PixelmapNative](#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | 将pixlemap的像素数据做预乘和非预乘之间的转换。| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 利用OH_Pixelmap_InitializationOptions创建空的pixelmap对象，内存数据为0。| 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetNativeBuffer](#oh_pixelmapnative_getnativebuffer) (OH_PixelmapNative \*pixelmap, OH_NativeBuffer \*\*nativeBuffer) | 从DMA内存的PixelMap中，获取NativeBuffer对象。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata) (OH_PixelmapNative \*pixelmap, [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*\*value) | 获取元数据。  | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) (OH_PixelmapNative \*pixelmap, [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*value) | 设置元数据。  | 
 
 
 ### 变量
@@ -450,6 +463,52 @@ typedef struct OH_ImageReceiverOptionsOH_ImageReceiverOptions
 **起始版本：** 12
 
 
+### OH_Pixelmap_HdrDynamicMetadata
+
+```
+typedef struct OH_Pixelmap_HdrDynamicMetadata OH_Pixelmap_HdrDynamicMetadata
+```
+**描述**
+DR_DYNAMIC_METADATA关键字对应的动态元数据值。
+
+**起始版本：** 12
+
+
+### OH_Pixelmap_HdrGainmapMetadata
+
+```
+typedef struct OH_Pixelmap_HdrGainmapMetadata OH_Pixelmap_HdrGainmapMetadata
+```
+**描述**
+HDR_GAINMAP_METADATA关键字对应的gainmap相关元数据值，参考ISO 21496-1。
+
+**起始版本：** 12
+
+
+### OH_Pixelmap_HdrMetadataValue
+
+```
+typedef struct OH_Pixelmap_HdrMetadataValue OH_Pixelmap_HdrMetadataValue
+```
+**描述**
+Pixelmap使用的HDR元数据值，和OH_Pixelmap_HdrMetadataKey关键字相对应。
+
+用于[OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata)及[OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata)，有相应[OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey)关键字作为入参时，设置或获取到本结构体中相对应的元数据类型的值。
+
+**起始版本：** 12
+
+
+### OH_Pixelmap_HdrStaticMetadata
+
+```
+typedef struct OH_Pixelmap_HdrStaticMetadata OH_Pixelmap_HdrStaticMetadata
+```
+**描述**
+HDR_STATIC_METADATA关键字对应的静态元数据值。
+
+**起始版本：** 12
+
+
 ### OH_ImageSource_Info
 
 ```
@@ -528,6 +587,18 @@ Pixelmap结构体类型，用于执行Pixelmap相关操作。
 **起始版本：** 12
 
 
+### OH_NativeBuffer
+
+```
+typedef struct OH_NativeBuffer OH_NativeBuffer
+```
+**描述**
+NativeBuffer结构体类型，用于执行NativeBuffer相关操作。
+
+
+**起始版本：** 12
+
+
 ## 枚举类型说明
 
 
@@ -560,21 +631,23 @@ enum Image_ErrorCode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| IMAGE_SUCCESS | 操作成功。 | 
-| IMAGE_BAD_PARAMETER | 无效参数。 | 
-| IMAGE_UNSUPPORTED_MIME_TYPE | 不支持的MIME类型。 | 
-| IMAGE_UNKNOWN_MIME_TYPE | 未知的MIME类型。 | 
-| IMAGE_TOO_LARGE | 过大的数据或图片。 | 
-| IMAGE_UNSUPPORTED_OPERATION | 不支持的操作。 | 
-| IMAGE_UNSUPPORTED_METADATA | 不支持的 metadata。 | 
-| IMAGE_UNSUPPORTED_CONVERSION | 不支持的转换。 | 
-| IMAGE_INVALID_REGION | 无效区域。 | 
-| IMAGE_ALLOC_FAILED | 申请内存失败。 | 
-| IMAGE_COPY_FAILED | 内存拷贝失败。 | 
-| IMAGE_UNKNOWN_ERROR | 未知错误。 | 
-| IMAGE_BAD_SOURCE | 解码数据源异常。 | 
-| IMAGE_DECODE_FAILED | 解码失败。 | 
-| IMAGE_ENCODE_FAILED | 编码失败。 | 
+| IMAGE_SUCCESS  | 操作成功。 | 
+| IMAGE_BAD_PARAMETER  | 无效参数。 | 
+| IMAGE_UNSUPPORTED_MIME_TYPE  | 不支持的MIME类型。 | 
+| IMAGE_UNKNOWN_MIME_TYPE  | 未知的MIME类型。 | 
+| IMAGE_TOO_LARGE  | 过大的数据或图片。 | 
+| IMAGE_DMA_NOT_EXIST  | 内存不是DMA内存。 | 
+| IMAGE_DMA_OPERATION_FAILED  | DMA内存操作失败。 | 
+| IMAGE_UNSUPPORTED_OPERATION  | 不支持的操作。 | 
+| IMAGE_UNSUPPORTED_METADATA  | 不支持的 metadata。 | 
+| IMAGE_UNSUPPORTED_CONVERSION  | 不支持的转换。 | 
+| IMAGE_INVALID_REGION  | 无效区域。 | 
+| IMAGE_ALLOC_FAILED  | 申请内存失败。 | 
+| IMAGE_COPY_FAILED  | 内存拷贝失败。 | 
+| IMAGE_UNKNOWN_ERROR  | 未知错误。 | 
+| IMAGE_BAD_SOURCE  | 解码数据源异常。 | 
+| IMAGE_DECODE_FAILED  | 解码失败。 | 
+| IMAGE_ENCODE_FAILED  | 编码失败。 | 
 
 
 ### IMAGE_PACKER_DYNAMIC_RANGE
@@ -616,6 +689,42 @@ enum PIXEL_FORMAT
 | PIXEL_FORMAT_RGBA_F16 | RGBA_F16格式 | 
 | PIXEL_FORMAT_NV21 | NV21格式 | 
 | PIXEL_FORMAT_NV12 | NV12格式 | 
+
+
+### OH_Pixelmap_HdrMetadataKey
+
+```
+enum OH_Pixelmap_HdrMetadataKey
+```
+**描述**
+Pixelmap使用的HDR相关元数据信息的关键字，用于[OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata)及[OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata)。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| HDR_METADATA_TYPE  | Pixelmap使用的元数据类型。   | 
+| HDR_STATIC_METADATA  | 静态元数据。   | 
+| HDR_DYNAMIC_METADATA  | 动态元数据。   | 
+| HDR_GAINMAP_METADATA  | Gainmap使用的元数据。   | 
+
+
+### OH_Pixelmap_HdrMetadataType
+
+```
+enum OH_Pixelmap_HdrMetadataType
+```
+**描述**
+HDR_METADATA_TYPE关键字对应的值。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| HDR_METADATA_TYPE_NONE  | 无元数据内容。   | 
+| HDR_METADATA_TYPE_BASE  | 表示用于基础图的元数据。   | 
+| HDR_METADATA_TYPE_GAINMAP  | 表示用于Gainmap图的元数据。   | 
+| HDR_METADATA_TYPE_ALTERNATE  | 表示用于合成后HDR图的元数据。   | 
 
 
 ### OH_PixelmapNative_AntiAliasingLevel
@@ -828,7 +937,6 @@ Image_ErrorCode OH_DecodingOptions_Release (OH_DecodingOptions * options)
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
-
 
 
 ### OH_DecodingOptions_SetDesiredDynamicRange()
@@ -1816,7 +1924,7 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromUri (char * uri, size_t uriSize, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uri | 指向图像源URI的指针。只接受文件URI或Base64 URI。  | 
+| uri | 指向图像源URI的指针。只接受文件URI或Base64 URI。当前文件资源只支持绝对路径。  |
 | uriSize | URI长度。  | 
 | res | 指向c++本地层创建的OH_ImageSourceNative对象的指针。  | 
 
@@ -2799,6 +2907,51 @@ Image_ErrorCode OH_PixelmapNative_GetImageInfo (OH_PixelmapNative * pixelmap, OH
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
+### OH_PixelmapNative_GetMetadata()
+
+```
+Image_ErrorCode OH_PixelmapNative_GetMetadata (OH_PixelmapNative * pixelmap, OH_Pixelmap_HdrMetadataKey key, OH_Pixelmap_HdrMetadataValue ** value )
+```
+**描述**
+获取元数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。  | 
+| key | 元数据的关键字，参见[OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey)。  | 
+| value | 元数据的值，参见[OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md)。  | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不存在DMA内存返回 IMAGE_DMA_NOT_EXIST，如果内存拷贝失败返回 IMAGE_COPY_FAILED。具体请参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_GetNativeBuffer()
+
+```
+Image_ErrorCode OH_PixelmapNative_GetNativeBuffer (OH_PixelmapNative * pixelmap, OH_NativeBuffer ** nativeBuffer )
+```
+**描述**
+从DMA内存的PixelMap中，获取NativeBuffer对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 要获取NativeBuffer的源PixelMap。  | 
+| nativeBuffer | 被创建的NativeBuffer对象指针。  | 
+
+**返回：**
+
+如果操作成功返回IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，如果不是DMA内存返回IMAGE_DMA_NOT_EXIST，如果DMA内存操作失败返回IMAGE_DMA_OPERATION_FAILED。具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
 ### OH_PixelmapNative_Opacity()
 
 ```
@@ -2827,7 +2980,7 @@ Image_ErrorCode OH_PixelmapNative_Opacity (OH_PixelmapNative * pixelmap, float r
 Image_ErrorCode OH_PixelmapNative_ReadPixels (OH_PixelmapNative * pixelmap, uint8_t * destination, size_t * bufferSize )
 ```
 **描述**
-读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。 指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中。
 
 **起始版本：** 12
 
@@ -2934,6 +3087,29 @@ Image_ErrorCode OH_PixelmapNative_ScaleWithAntiAliasing (OH_PixelmapNative * pix
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果图片过大返回 IMAGE_TOO_LARGE，如果内存申请失败返回 IMAGE_ALLOC_FAILED， 如果pixelmap已经被释放返回 IMAGE_UNKNOWN_ERROR，具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
+### OH_PixelmapNative_SetMetadata()
+
+```
+Image_ErrorCode OH_PixelmapNative_SetMetadata (OH_PixelmapNative * pixelmap, OH_Pixelmap_HdrMetadataKey key, OH_Pixelmap_HdrMetadataValue * value )
+```
+**描述**
+设置元数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。  | 
+| key | 元数据的关键字，参见[OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey)。  | 
+| value | 元数据的值，参见[OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md)。  | 
+
+**返回：**
+
+如果操作成功返回IMAGE_SUCCESS，如果参数错误返回IMAGE_BAD_PARAMETER，如果不存在DMA内存返回IMAGE_DMA_NOT_EXIST，如果内存拷贝失败返回IMAGE_COPY_FAILED。具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
 ### OH_PixelmapNative_ToSdr()
 
 ```
@@ -2984,7 +3160,7 @@ Image_ErrorCode OH_PixelmapNative_Translate (OH_PixelmapNative * pixelmap, float
 Image_ErrorCode OH_PixelmapNative_WritePixels (OH_PixelmapNative * pixelmap, uint8_t * source, size_t bufferSize )
 ```
 **描述**
-读取缓冲区中的图片数据，结果写入PixelMap中
+读取缓冲区中的图像像素数据，并按照PixelMap的像素格式将结果写入PixelMap。
 
 **起始版本：** 12
 

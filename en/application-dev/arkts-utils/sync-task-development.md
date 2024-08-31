@@ -32,7 +32,7 @@ Simulate a singleton class that contains synchronous calls.
 
 @Sendable
 export default class Handle {
-  private static instance: Handle = new Handle;
+  private static instance: Handle = new Handle();
   static getInstance(): Handle {
     // Return a singleton object.
     return Handle.instance;

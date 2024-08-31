@@ -71,7 +71,7 @@ Defines the camera device information.
 | cameraPosition | [CameraPosition](#cameraposition) | Yes  | No  | Camera position.   |
 | cameraType     | [CameraType](#cameratype)         | Yes  | No  | Camera type.   |
 | connectionType | [ConnectionType](#connectiontype) | Yes  | No  | Camera connection type.|
-| cameraOrientation<sup>12+</sup> | number | Yes  | No  | Camera rotation angle. The value ranges from 0¡ã to 360¡ã.|
+| cameraOrientation<sup>12+</sup> | number | Yes  | No  | Camera rotation angle. The value ranges from 0Â° to 360Â°.|
 
 ## CameraPosition
 
@@ -81,12 +81,12 @@ Enumerates the camera positions.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                        | Value  | Description           |
-| --------------------------- | ---- | -------------- |
-| CAMERA_POSITION_UNSPECIFIED | 0    | Unspecified position. |
-| CAMERA_POSITION_BACK        | 1    | Rear camera.      |
-| CAMERA_POSITION_FRONT       | 2    | Front camera.      |
-| CAMERA_POSITION_FOLD_INNER<sup>11+</sup>  | 3    | Folded camera.    |
+| Name                        | Value  | Description                                                             |
+| --------------------------- | ---- |-----------------------------------------------------------------|
+| CAMERA_POSITION_UNSPECIFIED | 0    | Unspecified position.                                                       |
+| CAMERA_POSITION_BACK        | 1    | Rear camera.                                                          |
+| CAMERA_POSITION_FRONT       | 2    | Front camera.                                                          |
+| CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | Folded camera.<br>This API is supported since API version 11 and deprecated since API version 12.|
 
 ## CameraType
 
@@ -127,6 +127,18 @@ Enumerates the camera statuses.
 | CAMERA_STATUS_AVAILABLE   | 2    | The camera is available.      |
 | CAMERA_STATUS_UNAVAILABLE | 3    | The camera is unavailable.    |
 
+## FoldStatus<sup>12+</sup>
+
+Enumerates the folding statuses available for a fordable device.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                      | Value  | Description           |
+| ------------------------- | ---- | ------------    |
+| NON_FOLDABLE      | 0    | The device is not foldable.  |
+| EXPANDED   | 1    | The device is fully unfolded.|
+| FOLDED   | 2    | The device is folded.      |
+
 ## CameraStatusInfo
 
 Defines the camera status information.
@@ -138,6 +150,17 @@ Defines the camera status information.
 | camera | [CameraDevice](#cameradevice) |     No   |       No    | Camera device.|
 | status | [CameraStatus](#camerastatus) |     No   |       No    | Camera status.|
 
+## FoldStatusInfo<sup>12+</sup>
+
+Describes the folding status information about a foldable device.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name  | Type                          |    Read-only  |     Optional    | Description      |
+| ------ | ----------------------------- | --------- |------------ | ---------- |
+| supportedCameras | [Array<CameraDevice\>](#cameradevice) |     No   |       No    | List of cameras supported in the current folding status.|
+| foldStatus | [FoldStatus](#foldstatus12) |     No   |       No    | Folding status.|
+
 ## Profile
 
 Defines the camera profile.
@@ -147,7 +170,7 @@ Defines the camera profile.
 | Name     | Type                         | Read-only| Optional| Description        |
 | -------- | ----------------------------- |---- | ---- | ------------- |
 | format   | [CameraFormat](#cameraformat) | Yes |  No | Output format.     |
-| size     | [Size](#size)                 | Yes |  No | Resolution.      |
+| size     | [Size](#size)                 | Yes |  No | Resolution.<br>The width and height of the camera resolution is set, not the actual width and height of an output image. |
 
 ## FrameRateRange
 
@@ -869,6 +892,67 @@ Unsubscribes from camera status events. This API uses an asynchronous callback t
 ```ts
 function unregisterCameraStatus(cameraManager: camera.CameraManager): void {
   cameraManager.off('cameraStatus');
+}
+```
+
+### on('foldStatusChange')<sup>12+</sup>
+
+on(type: 'foldStatusChange', callback: AsyncCallback\<FoldStatusInfo\>): void
+
+Subscribes to folding status change events of the foldable device. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> Currently, you cannot use **off()** to unregister the callback in the callback method of **on()**.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type           | Mandatory| Description      |
+| -------- | -----------------| ---- | --------- |
+| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the folding status of the foldable device changes.|
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | Yes  | Callback used to return the folding status information about the foldable device.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('foldStatusChange with errorCode = ' + err.code);
+    return;
+  }
+  console.info(`camera length: ${foldStatusInfo.supportedCameras.length}`);
+  console.info(`foldStatus: ${foldStatusInfo.foldStatus}`);
+}
+
+function registerFoldStatusChange(cameraManager: camera.CameraManager): void {
+  cameraManager.on('foldStatusChange', callback);
+}
+```
+
+### off('foldStatusChange')<sup>12+</sup>
+
+off(type: 'foldStatusChange', callback?: AsyncCallback\<FoldStatusInfo\>): void
+
+Unsubscribes from folding status change events of the foldable device.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type           | Mandatory| Description      |
+| -------- | -----------------| ---- | --------- |
+| type     | string           | Yes  | Event type. The value is fixed at **'foldStatusChange'**. The event is triggered when the folding status of the foldable device changes.|
+| callback | AsyncCallback\<[FoldStatusInfo](#foldstatusinfo12)\> | No  | Callback used to return the folding status information about the foldable device. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Example**
+
+```ts
+function unregisterFoldStatusChange(cameraManager: camera.CameraManager): void {
+  cameraManager.off('foldStatusChange');
 }
 ```
 
@@ -2365,7 +2449,7 @@ function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
 
 ### on('photoAssetAvailable')<sup>12+</sup>
 
-on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
+on(type: 'photoAssetAvailable', callback: AsyncCallback\<photoAccessHelper.PhotoAsset\>): void
 
 Subscribes to photo asset available events. This API uses an asynchronous callback to return the result.
 
@@ -2380,7 +2464,7 @@ Subscribes to photo asset available events. This API uses an asynchronous callba
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | Yes  | Event type. The value is fixed at **'photoAssetAvailable'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | Yes  | Callback used to return the photo asset.|
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | Yes  | Callback used to return the photo asset.|
 
 **Example**
 
@@ -2404,7 +2488,7 @@ function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void
 
 ### off('photoAssetAvailable')<sup>12+</sup>
 
-off(type: 'photoAssetAvailable', callback?: AsyncCallback\<PhotoAsset\>): void
+off(type: 'photoAssetAvailable', callback?: AsyncCallback\<photoAccessHelper.PhotoAsset\>): void
 
 Unsubscribes from photo asset available events.
 
@@ -2415,7 +2499,7 @@ Unsubscribes from photo asset available events.
 | Name    | Type     | Mandatory | Description                                                                        |
 | -------- | ---------- |-----|----------------------------------------------------------------------------|
 | type     | string     | Yes  | Event type. The value is fixed at **'photoAssetAvailable'**. The event can be listened for when a **photoOutput** instance is created.                        |
-| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | No  | Callback used for unsubscription. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | No  | Callback used for unsubscription. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -2769,7 +2853,7 @@ Subscribes to estimated capture duration events. This API uses an asynchronous c
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'estimatedCaptureDuration'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photographing is complete.|
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the estimated duration when the sensor captures frames at the bottom layer in a single capture. If **¨C1** is reported, there is no estimated duration.                                |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the estimated duration when the sensor captures frames at the bottom layer in a single capture. If **â€“1** is reported, there is no estimated duration.                                |
 
 **Example**
 
@@ -2898,7 +2982,7 @@ Defines the capture start information.
 | Name      | Type   | Read-only| Optional| Description      |
 | ---------- | ------ | ---- | ---- | --------- |
 | captureId  | number | No  | No  | ID of this capture action.|
-| time       | number | No  | No  | Estimated duration when the sensor captures frames at the bottom layer in a single capture. If **¨C1** is reported, there is no estimated duration.   |
+| time       | number | No  | No  | Estimated duration when the sensor captures frames at the bottom layer in a single capture. If **â€“1** is reported, there is no estimated duration.   |
 
 ## CaptureEndInfo
 

@@ -22,13 +22,15 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 
 **参数：**
 
-| 参数名   | 类型  | 必填 | 描述 |
+| 参数名   | 类型  | 必填 | 说明 |
 | ---- | --------------- | -------- | -------- |
 | value | [AlertDialogParamWithConfirm](#alertdialogparamwithconfirm对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithButtons](#alertdialogparamwithbuttons对象说明)&nbsp;\|&nbsp;[AlertDialogParamWithOptions](#alertdialogparamwithoptions10对象说明)<sup>10+</sup> | 是 | 定义并显示AlertDialog组件。 |
 
 ## AlertDialogParam对象说明
 
-| 名称                              | 类型                                                         | 必填 | 描述                                                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                              | 类型                                                         | 必填 | 说明                                                        |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | title                             | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 弹窗标题。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                  |
 | subtitle<sup>10+</sup>            | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 弹窗副标题。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                 |
@@ -52,7 +54,7 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 | borderColor<sup>12+</sup>         | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)&nbsp;\|&nbsp;[LocalizedEdgeColors](ts-types.md#LocalizedEdgeColors12) | 否   | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。**说明：**<br/>当borderColor属性类型为LocalizedEdgeColors时，支持随语言习惯改变布局顺序。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | borderStyle<sup>12+</sup>         | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-types.md#edgestyles9) | 否   | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid<br/>如果使用borderStyle属性，需要和borderWidth属性一起使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。 <br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| textStyle<sup>12+</sup>              | [TextStyle](#textstyle12类型说明) | 否   | 设置弹窗message内容的文本样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| textStyle<sup>12+</sup>              | [TextStyle](#textstyle12对象说明) | 否   | 设置弹窗message内容的文本样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## AlertDialogParamWithConfirm对象说明
 
@@ -60,7 +62,9 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名       | 参数类型     | 必填     | 参数描述         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型     | 必填     | 说明         |
 | ---------- | ---------------- | ---------- | ------------------------------- |
 | confirm    | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>fontColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>backgroundColor?:&nbsp;&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否   | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。<br />enabled：点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。<br />默认值：true<br />defaultFocus：设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。<br />默认值：false<br />style：设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT。<br />value：Button文本内容。<br />fontColor：Button文本颜色。<br />backgroundColor：Button背景颜色。<br />action：&nbsp;Button选中时的回调。 |
 
@@ -88,7 +92,9 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名             | 参数类型                | 必填     | 参数描述                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称             | 类型                | 必填     | 说明                     |
 | --------------- | ---------------------- | ------------ | --------------------- |
 | primaryButton   | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>fontColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>backgroundColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否 | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。<br />enabled：点击Button是否响应。<br />默认值：true<br />defaultFocus：设置Button是否是默认焦点。<br />默认值：false<br />style：设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT。<br />value：Button文本内容。<br />fontColor：Button文本颜色。<br />backgroundColor：Button背景颜色。<br />action：&nbsp;Button选中时的回调。 |
 | secondaryButton | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](ts-appendix-enums.md#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>fontColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>backgroundColor?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否  | 确认Button的使能状态、默认焦点、按钮风格、文本内容、文本色、按钮背景色和点击回调。<br />enabled：点击Button是否响应。<br />默认值：true。<br />defaultFocus：设置Button是否是默认焦点。<br />默认值：false。<br />style：设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT。<br />value：Button文本内容。<br />fontColor：Button文本颜色。<br />backgroundColor：Button背景颜色。<br />action：&nbsp;Button选中时的回调。 |
@@ -99,14 +105,18 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名             | 参数类型                | 必填     | 参数描述                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称             | 类型                | 必填     | 说明                    |
 | --------------- | ---------------------- | ------------ | --------------------- |
 | buttons<sup>10+</sup>       | Array&lt;[AlertDialogButtonOptions](#alertdialogbuttonoptions10对象说明)&gt;                 | 是  | 弹窗容器中的多个按钮。 |
 |buttonDirection<sup>10+</sup>      | [DialogButtonDirection](#dialogbuttondirection10枚举说明)| 否  | 按钮排布方向默认值为DialogButtonDirection.AUTO，建议3个以上按钮使用Auto模式（两个以上按钮会切换为纵向模式，通常能显示更多按钮），非Auto模式下，3个以上按钮可能会显示不全，超出显示范围的按钮会被截断。|
 
 ## AlertDialogButtonOptions<sup>10+</sup>对象说明
 
-| 参数名             | 参数类型                | 必填     | 参数描述                     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称             | 类型                | 必填     | 说明                    |
 | ------------------| ---------------------- | ------------ | --------------------- |
 | enabled           | boolean | 否     | 点击Button是否响应，默认值true。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | defaultFocus           | boolean | 否     | 设置Button是否是默认焦点，默认值false。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -121,6 +131,8 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称                       | 描述      |
 | -------------------------- | --------- |
 | AUTO                      | 两个及以下按钮水平排布，两个以上为竖直排布。 |
@@ -130,6 +142,8 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 ## DialogAlignment枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                       | 描述      |
 | ------------------------ | ------- |
@@ -152,7 +166,9 @@ Rectangle是各种Dialog中maskRect参数的类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型                           | 必填 | 描述                                |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                           | 必填 | 说明                               |
 |--------|------------------------------|----|-----------------------------------|
 | x      | [Length](ts-types.md#length) | 否  | 弹窗遮蔽层区域相对于窗口左上角的x轴坐标。<br/>默认值：0vp |
 | y      | [Length](ts-types.md#length) | 否  | 弹窗遮蔽层区域相对于窗口左上角的y轴坐标。<br/>默认值：0vp |
@@ -171,14 +187,18 @@ Rectangle是各种Dialog中maskRect参数的类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型                                 | 必填 | 描述                                                           |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                 | 必填 | 说明                                                           |
 |----------|-------------------------------------|------|----------------------------------------------------------------|
 | dismiss  | Callback&lt;void&gt;                            |  是  | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。    |
 | reason   | [DismissReason](ts-appendix-enums.md#dismissreason12) |  是  | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
 
-## TextStyle<sup>12+</sup>类型说明
+## TextStyle<sup>12+</sup>对象说明
 
-| 名称     | 类型                           | 必填 | 描述                                |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                           | 必填 | 说明                                |
 |--------|------------------------------|----|-----------------------------------|
 | wordBreak      | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否  | 弹窗message内容的文本截断方式。<br/>默认值：WordBreak.BREAK_ALL |
 

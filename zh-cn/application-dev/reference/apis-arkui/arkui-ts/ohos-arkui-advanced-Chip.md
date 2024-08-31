@@ -434,7 +434,6 @@ import { Chip, ChipSize,LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct ChipPage {
-  @State message: string = 'Hello World';
 
   build() {
     Column() {

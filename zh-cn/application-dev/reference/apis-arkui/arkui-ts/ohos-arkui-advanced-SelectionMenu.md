@@ -75,7 +75,7 @@ SelectionMenuOptions定义SelectionMenu的可选菜单类型项及其具体配�
 
 扩展下拉菜单。
 
-继承于[MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions类型说明)。
+继承于[MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions对象说明)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -11,7 +11,7 @@
 
 - 音视频录制（[AVRecorder](#avrecorder9)<sup>9+</sup>）
 
-- 音视频转码（[AVTranscoder](#avtranscoder12)<sup>12+</sup>）
+- 视频转码（[AVTranscoder](#avtranscoder12)<sup>12+</sup>）
 
 - 获取音视频元数据（[AVMetadataExtractor](#avmetadataextractor11)<sup>11+</sup>）
 
@@ -31,9 +31,8 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 > **说明：**
 >
-> - 可创建的视频播放实例不能超过13个。
-> - 可创建的音视频播放实例（即音频、视频、音视频三类相加）不能超过16个。<!--Del-->
-> - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568仅支持创建6个以内的视频播放实例。<!--DelEnd-->
+> - 推荐单个应用创建的音视频播放实例（即音频、视频、音视频三类相加）不超过16个。<!--Del-->
+> - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568推荐单个应用创建6个以内的音视频播放实例。<!--DelEnd-->
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -77,9 +76,8 @@ createAVPlayer(): Promise\<AVPlayer>
 
 > **说明：**
 >
-> - 可创建的视频播放实例不能超过13个。
-> - 可创建的音视频播放实例（即音频、视频、音视频三类相加）不能超过16个。<!--Del-->
-> - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568仅支持创建6个以内的视频播放实例。<!--DelEnd-->
+> - 推荐单个应用创建的音视频播放实例（即音频、视频、音视频三类相加）不超过16个。<!--Del-->
+> - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568推荐单个应用创建6个以内的音视频播放实例。<!--DelEnd-->
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -211,11 +209,11 @@ media.createAVRecorder().then((recorder: media.AVRecorder) => {
 
 createAVTranscoder(): Promise\<AVTrancoder>
 
-异步方式创建音视频转码实例，通过Promise获取返回值。
+异步方式创建视频转码实例，通过Promise获取返回值。
 
 > **说明：**
 
-> 可创建的音视频转码实例不能超过2个。
+> 可创建的视频转码实例不能超过2个。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -223,7 +221,7 @@ createAVTranscoder(): Promise\<AVTrancoder>
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVTrancoder](#avtranscoder12)> | Promise对象。异步返回AVtranscoder实例，失败时返回null。可用于音视频转码。 |
+| Promise\<[AVTrancoder](#avtranscoder12)> | Promise对象。异步返回AVtranscoder实例，失败时返回null。可用于视频转码。 |
 
 **错误码：**
 
@@ -478,6 +476,7 @@ Codec MIME类型枚举。
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
 | AUDIO_MP3<sup>12+</sup>   | 'audio/mpeg'          | 表示音频/mpeg类型。      |
+| AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | 表示音频/G711-mulaw类型。 |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -498,6 +497,22 @@ Codec MIME类型枚举。
 | MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | 表示位深，其对应键值类型为number，单位为位（bit）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| MD_KEY_TRACK_NAME<sup>12+</sup>  | 'track_name'  | 表示track名称，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| MD_KEY_HDR_TYPE<sup>12+</sup>  | 'hdr_type'  | 表示视频轨类型，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+
+## PlaybackInfoKey<sup>12+</sup>
+
+播放信息描述枚举。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称                     | 值              | 说明                                                         |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| SERVER_IP_ADDRESS        | 'server_ip_address'    | 表示服务器IP地址，其对应键值类型为string。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| AVG_DOWNLOAD_RATE        | 'average_download_rate'| 表示平均下载速率，其对应键值类型为number，单位为比特率（bps）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| DOWNLOAD_RATE            | 'download_rate'        | 表示1s的下载速率，其对应键值类型为number，单位为比特率（bps）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| IS_DOWNLOADING           | 'is_downloading'       | 表示下载状态，1表示在下载状态，0表示非下载状态（下载完成），其对应键值类型为number。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| BUFFER_DURATION          | 'buffer_duration'      | 表示缓存数据的可播放时长，其对应键值类型为number，单位为秒（s）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -545,24 +560,20 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 
 | 名称                                                | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | 否   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>- 设置网络播放路径，需[声明权限](../../security/AccessToken/declare-permissions.md)：[ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet)，相关错误码: [201](../errorcode-universal.md)。<br>- 从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| url<sup>9+</sup>                                    | string                                                       | 否   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>- 设置网络播放路径，需[声明权限](../../security/AccessToken/declare-permissions.md)：[ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet)，相关错误码: [201](../errorcode-universal.md)。<br>- 从API version 11开始不支持webm。<br> - 将资源句柄（fd）传递给 AVPlayer 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致媒体播放器数据获取异常。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 否   | 是   | 媒体文件描述，只允许在**idle**状态下设置。<br/>使用场景：应用中的媒体资源被连续存储在同一个文件中。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**使用示例**：<br/>假设一个连续存储的媒体文件: <br/>视频1(地址偏移:0，字节长度:100)；<br/>视频2(地址偏移:101，字节长度:50)；<br/>视频3(地址偏移:151，字节长度:150)；<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }。<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }。<br/>假设是一个独立的媒体文件: 请使用src=fd://xx。<br>**说明：**<br>从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 否   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。<br>**说明：**<br>从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | surfaceId<sup>9+</sup>                              | string                                                       | 否   | 是   | 视频窗口ID，默认无窗口。<br/>支持在**initialized**状态下设置。<br/>支持在**prepared**/**playing**/**paused**/**completed**/**stopped**状态下重新设置，重新设置时确保已经在**initialized**状态下进行设置，否则重新设置失败，重新设置后视频播放在新的窗口渲染。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | loop<sup>9+</sup>                                   | boolean                                                      | 否   | 否   | 视频循环播放属性，默认'false'，设置为'true'表示循环播放，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>直播场景不支持loop设置。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | 否   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)       | 否   | 是   | 音频焦点模型，默认SHARE_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>在第一次调用[play()](#play9)之前设置， 以便此后中断模式生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8) | 否   | 是   | 设置音频渲染信息，默认值usage为STREAM_USAGE_MUSIC，rendererFlags为0。<br/>只允许在**initialized**状态下设置。<br/>在第一次调用[prepare()](#prepare9)之前设置，以便音频渲染器信息在之后生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8) | 否   | 是   | 设置音频渲染信息。若媒体源包含视频，则usage默认值为STREAM_USAGE_MOVIE，否则usage默认值为STREAM_USAGE_MUSIC。rendererFlags默认值为0。若默认usage不满足需求，则须主动配置[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)。<br/>只允许在**initialized**状态下设置。<br/>在第一次调用[prepare()](#prepare9)之前设置，以便音频渲染器信息在之后生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](../apis-audio-kit/js-apis-audio.md#audioeffectmode10)  | 否   | 是   | 设置音频音效模式，默认值为EFFECT_DEFAULT，动态属性。audioRendererInfo的usage变动时会恢复为默认值，只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | 是   | 否   | 音视频播放的状态，全状态有效，可查询参数。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | currentTime<sup>9+</sup>                            | number                                                       | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | duration<sup>9+</sup> | number                                                       | 是   | 否   | 视频时长，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | width<sup>9+</sup>                                  | number                                                       | 是   | 否   | 视频宽，单位为像素（px），可查询参数。<br/>返回为(0)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | height<sup>9+</sup>                                 | number                                                       | 是   | 否   | 视频高，单位为像素（px），可查询参数。<br/>返回为(0)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-
-**说明：**
-
-将资源句柄（fd）传递给媒体播放器之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个媒体播放器。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致播放异常。
 
 ### on('stateChange')<sup>9+</sup>
 
@@ -754,6 +765,50 @@ let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight:
 player.setMediaSource(mediaSource, playStrategy);
 ```
 
+### setPlaybackStrategy<sup>12+</sup>
+
+setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
+
+设置播放策略，只能在initialized状态下调用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| strategy | [PlaybackStrategy](#playbackstrategy12) | 是   | 播放策略。 |
+
+**返回值：**
+
+| 类型           | 说明                                  |
+| -------------- | ------------------------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit';
+
+let player = await media.createAVPlayer();
+let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
+player.fdSrc = fileDescriptor
+let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3,
+  preferredHdr: false, mutedMediaType: media.MediaType.MEDIA_TYPE_AUD};
+player.setPlaybackStrategy(playStrategy);
+```
+
 ### prepare<sup>9+</sup>
 
 prepare(callback: AsyncCallback\<void>): void
@@ -825,6 +880,51 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
+}, (err: BusinessError) => {
+  console.error('Failed to prepare,error message is :' + err.message)
+})
+```
+
+### setMediaMuted<sup>12+</sup>
+
+setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
+
+设置音频静音/取消音频静音。只能在prepared/playing/paused/completed状态下调用。仅支持设置mediaType为音频格式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| mediaType | [MediaType](#mediatype8) | 是   | 播放策略。 |
+| muted | boolean | 是   | 是否静音播放。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 准备播放的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ----------------------------------------- |
+| 401 | The parameter check failed. Return by promise. |
+| 5400102 | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.prepare().then(() => {
+  console.info('Succeeded in preparing');
+  avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true)
 }, (err: BusinessError) => {
   console.error('Failed to prepare,error message is :' + err.message)
 })
@@ -1274,9 +1374,95 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
 });
 ```
 
+### getSelectedTracks<sup>12+</sup>
+
+getSelectedTracks(): Promise\<Array\<number>>
+
+获取已选择的音视频轨道索引，可以在prepared/playing/paused状态调用。通过Promise获取返回值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**返回值：**
+
+| 类型                                                   | 说明                                              |
+| ------------------------------------------------------ | ------------------------------------------------- |
+| Promise<Array<[number]>> | Promise对象，返回已选择音视频轨道索引数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.getSelectedTracks().then((arrList: Array<number>) => {
+  console.info('Succeeded in getting SelectedTracks');
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get SelectedTracks, error:${error}`);
+});
+```
+
+### getPlaybackInfo<sup>12+</sup>
+
+getPlaybackInfo(): Promise\<PlaybackInfo>
+
+获取播放过程信息，可以在prepared/playing/paused状态调用。通过Promise获取返回值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**返回值：**
+
+| 类型                                                   | 说明                                              |
+| ------------------------------------------------------ | ------------------------------------------------- |
+| Promise<[PlaybackInfo](#playbackinfo12)> | Promise对象，返回播放器信息PlaybackInfo。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+
+let avPlayer: media.AVPlayer | undefined = undefined;
+let playbackInfo: media.PlaybackInfo | undefined = undefined;
+media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
+  if (player != null) {
+    avPlayer = player;
+    console.info(`Succeeded in creating AVPlayer`);
+    if (avPlayer) {
+      try {
+        playbackInfo = await avPlayer.getPlaybackInfo();
+        console.info(`AVPlayer getPlaybackInfo = ${JSON.stringify(playbackInfo)}`); // 打印整个PlaybackInfo的值
+      } catch (error) {
+        console.error(`error = ${error}`);
+      }
+    }
+  } else {
+    console.error(`Failed to create AVPlayer, error message:${err.message}`);
+  }
+});
+```
+
 ### selectTrack<sup>12+</sup>
 
-selectTrack(index: number): Promise\<void>
+selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 使用AVPlayer播放多音轨视频时选择指定音轨播放，通过Promise获取返回值。
 
@@ -1289,6 +1475,7 @@ selectTrack(index: number): Promise\<void>
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
+| mode   | [SwitchMode](#switchmode12) | 否   | 切换视频轨模式，默认为SMOOTH模式，仅支持DASH协议，**仅在视频资源播放时设置**。 |
 
 **返回值：**
 
@@ -1311,26 +1498,18 @@ selectTrack(index: number): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
-let avPlayer: media.AVPlayer | undefined = undefined;
+let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
-media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
-  if(player != null) {
-    avPlayer = player;
-    console.info(`Succeeded in creating AVPlayer`);
-    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
-      if (arrList != null) {
-        for (let i = 0; i < arrList.length; i++) {
-          if (i != 0) {
-            // 获取音频轨道列表
-            audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
-          }
-        }
-      } else {
-        console.error(`Failed to get TrackDescription, error:${error}`);
+avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+  if (arrList != null) {
+    for (let i = 0; i < arrList.length; i++) {
+      if (i != 0) {
+        // 获取音频轨道列表
+        audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
       }
-    });
+    }
   } else {
-    console.error(`Failed to create AVPlayer, error message:${err.message}`);
+    console.error(`Failed to get TrackDescription, error:${error}`);
   }
 });
 
@@ -1375,26 +1554,18 @@ deselectTrack(index: number): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
-let avPlayer: media.AVPlayer | undefined = undefined;
+let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
-media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
-  if(player != null) {
-    avPlayer = player;
-    console.info(`Succeeded in creating AVPlayer`);
-    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
-      if (arrList != null) {
-        for (let i = 0; i < arrList.length; i++) {
-          if (i != 0) {
-            // 获取音频轨道列表
-            audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
-          }
-        }
-      } else {
-        console.error(`Failed to get TrackDescription, error:${error}`);
+avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+  if (arrList != null) {
+    for (let i = 0; i < arrList.length; i++) {
+      if (i != 0) {
+        // 获取音频轨道列表
+        audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
       }
-    });
+    }
   } else {
-    console.error(`Failed to create AVPlayer, error message:${err.message}`);
+    console.error(`Failed to get TrackDescription, error:${error}`);
   }
 });
 
@@ -1836,7 +2007,7 @@ avPlayer.on('volumeChange', (vol: number) => {
 
 ### off('volumeChange')<sup>9+</sup>
 
-off(type: 'volumeChange', callback?: Callback<number>): void
+off(type: 'volumeChange', callback?: Callback\<number>): void
 
 取消监听setVolume生效的事件。
 
@@ -2145,7 +2316,7 @@ avPlayer.off('videoSizeChange')
 
 on(type: 'audioInterrupt', callback: Callback\<audio.InterruptEvent>): void
 
-监听音频焦点变化事件，多个音视频资源同时播放时，会根据音频焦点模型[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)触发此事件。
+监听音频焦点变化事件，多个音视频资源同时播放时，会根据音频焦点模型[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)触发此事件。应用需根据不同焦点变化事件作相应处理。具体可参考[处理音频焦点事件](../../media/audio/audio-playback-concurrency.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2390,6 +2561,110 @@ off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
 avPlayer.off('subtitleUpdate')
 ```
 
+### on('trackChange')<sup>12+</sup>
+
+on(type: 'trackChange', callback: OnTrackChangeHandler): void
+
+订阅获取轨道变更的事件，当播放的轨道变更时，会通过订阅的回调方法通知用户。用户只能订阅一个轨道变更事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | 是   | 事件回调类型，支持的事件为：'trackChange'。 |
+| callback | [OnTrackChangeHandler](#ontrackchangehandler12) | 是   | 轨道变更事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
+  console.info('trackChange info: number=' + number + ' isSelect=' + isSelect)
+})
+```
+
+### off('trackChange')<sup>12+</sup>
+
+off(type: 'trackChange', callback?: OnTrackChangeHandler): void
+
+取消订阅获取轨道变更的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | 是   | 事件回调类型，支持的事件为：'trackChange'。 |
+| callback | [OnTrackChangeHandler](#ontrackchangehandler12) | 否   | 取消轨道变更事件的回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.off('trackChange')
+```
+
+### on('trackInfoUpdate')<sup>12+</sup>
+
+on(type: 'trackInfoUpdate', callback: Callback\<Array\<MediaDescription>>): void
+
+订阅获取轨道信息更新的事件，当播放的轨道有更新时，会通过订阅的回调方法通知用户。用户只能订阅一个轨道变更事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | 是   | 事件回调类型，支持的事件为：'trackInfoUpdate'。 |
+| callback | Callback\<Array\<[MediaDescription](#mediadescription8)>> | 是   | 轨道信息更新事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.on('trackInfoUpdate', (info: Array<media.MediaDescription>) => {
+  if (info) {
+    for (let i = 0; i < info.len; i++) {
+      let propertyIndex: Object = info[i][media.MediaDescription.MD_KEY_TRACK_INDEX];
+      let propertyType: Object = info[i][media.MediaDescription.MD_KEY_TRACK_TYPE];
+      console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType)
+    }
+  } else {
+    console.info('track info is null')
+  }
+})
+```
+
+### off('trackInfoUpdate')<sup>12+</sup>
+
+off(type: 'trackInfoUpdate', callback?: Callback\<Array\<MediaDescription>>): void
+
+取消订阅获取轨道变更的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | 是   | 事件回调类型，支持的事件为：'trackInfoUpdate'。 |
+| callback | Callback\<Array\<[MediaDescription](#mediadescription8)>> | 否   | 取消轨道信息更新事件的回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.off('trackInfoUpdate')
+```
+
 ## AVPlayerState<sup>9+</sup>
 
 type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error'
@@ -2411,6 +2686,21 @@ type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' 
 |             'stopped'             | 停止状态，在prepared/playing/paused/completed状态调用[stop()](#stop9)方法，AVPlayer会进入stopped状态，此时播放引擎只会保留属性，但会释放内存资源，可以调用[prepare()](#prepare9)重新准备，也可以调用[reset()](#reset9)重置，或者调用[release()](#release9)彻底销毁。 |
 |            'released'             | 销毁状态，销毁与当前AVPlayer关联的播放引擎，无法再进行状态转换，调用[release()](#release9)方法后，会进入released状态，结束流程。 |
 | 'error' | 错误状态，当**播放引擎**发生**不可逆的错误**（详见[媒体错误码](errorcode-media.md)），则会转换至当前状态，可以调用[reset()](#reset9)重置，也可以调用[release()](#release9)销毁重建。<br/>**注意：** 区分error状态和 [on('error')](#onerror9) ：<br/>1、进入error状态时，会触发on('error')监听事件，可以通过on('error')事件获取详细错误信息；<br/>2、处于error状态时，播放服务进入不可播控的状态，要求客户端设计容错机制，使用[reset()](#reset9)重置或者[release()](#release9)销毁重建；<br/>3、如果客户端收到on('error')，但未进入error状态：<br/>原因1：客户端未按状态机调用API或传入参数错误，被AVPlayer拦截提醒，需要客户端调整代码逻辑；<br/>原因2：播放过程发现码流问题，导致容器、解码短暂异常，不影响连续播放和播控操作的，不需要客户端设计容错机制。 |
+
+## OnTrackChangeHandler<sup>12+</sup>
+
+type OnTrackChangeHandler = (index: number, isSelected: boolean) => void
+
+track变更事件回调方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ---------------------------------------------------------- |
+| index  | number | 是 | 当前选中的track索引。     |
+| isSelected | boolean | 是 | 当前索引的选中状态。 |
 
 ## OnAVPlayerStateChangeHandle<sup>12+</sup>
 
@@ -2510,6 +2800,18 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | SEEK_PREV_SYNC | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | SEEK_CLOSEST<sup>12+</sup> | 2    | 表示跳转到距离指定时间点最近的帧，建议精准跳转进度的时候用这个枚举值。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
+## SwitchMode<sup>12+</sup>
+
+视频播放的selectTrack模式枚举，可通过selectTrack方法作为参数传递下去，当前仅DASH协议视频轨支持该扩展参数。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称           | 值   | 说明                                                         |
+| -------------- | ---- | ------------------------------------------------------------ |
+| SMOOTH | 0    | 表示切换后视频平滑播放，该模式切换存在延迟，不会立即生效。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SEGMENT | 1    | 表示切换后从当前分片开始位置播放，该模式立即切换，会有重复播放。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CLOSEST | 2    | 表示从距离当前播放时间点最近的帧开始播放，该模式立即切换，切换后会卡住3到5s，然后恢复播放。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
 ## PlaybackSpeed<sup>8+</sup>
 
 视频播放的倍速枚举，可通过setSpeed方法作为参数传递下去。
@@ -2581,6 +2883,51 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
         console.error(`Failed to get TrackDescription, error:${error}`);
       }
     });
+  } else {
+    console.error(`Failed to create AVPlayer, error message:${err.message}`);
+  }
+});
+```
+
+## PlaybackInfo<sup>12+</sup>
+
+通过key-value方式获取播放信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称          | 类型   | 必填 | 说明                                                         |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| [key: string] | Object | 是   | 该键值对支持的key取值范围，请参考[PlaybackInfoKey](#playbackinfokey12);每个key值的Object类型和范围，请参考[PlaybackInfoKey](#playbackinfokey12)对应Key值的说明。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+
+function printfPlaybackInfo(obj: media.PlaybackInfo, key: string) {
+  let property: Object = obj[key];
+  console.info('key is ' + key); // 通过key值获取对应的value。key值具体可见[PlaybackInfoKey]
+  console.info('value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[PlaybackInfoKey]
+}
+
+let avPlayer: media.AVPlayer | undefined = undefined;
+let playbackInfo: media.PlaybackInfo | undefined = undefined;
+media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
+  if (player != null) {
+    avPlayer = player;
+    console.info(`Succeeded in creating AVPlayer`);
+    if (avPlayer) {
+      try {
+        playbackInfo = await avPlayer.getPlaybackInfo();
+        console.info(`AVPlayer getPlaybackInfo = ${JSON.stringify(playbackInfo)}`); // 打印整个PlaybackInfo的值
+        printfPlaybackInfo(playbackInfo, media.PlaybackInfoKey.SERVER_IP_ADDRESS); // 打印ip的值
+      } catch (error) {
+        console.error(`error = ${error}`);
+      }
+    }
   } else {
     console.error(`Failed to create AVPlayer, error message:${err.message}`);
   }
@@ -3861,6 +4208,82 @@ off(type: 'audioCapturerChange', callback?: Callback<audio.AudioCapturerChangeIn
 avRecorder.off('audioCapturerChange');
 ```
 
+### on('photoAssetAvailable')<sup>12+</sup>
+
+on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset>): void
+
+订阅媒体资源回调事件，当[FileGenerationMode](#filegenerationmode12)枚举设置为系统创建媒体文件时，会在[stop](#stop9-2)操作结束后把[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)对象回调给应用。
+
+当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   |录像资源的回调类型，支持的事件：'photoAssetAvailable'。 |
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象|
+
+**错误码：**
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400103  | I/O error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+let photoAsset: photoAccessHelper.PhotoAsset;
+
+// 例:处理photoAsset回调，保存video
+async saveVideo(asset: photoAccessHelper.PhotoAsset) {
+  console.info("saveVideo called");
+  try {
+    let phAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.saveCameraPhoto();
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply saveVideo successfully');
+  } catch (err) {
+    console.error(`apply saveVideo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+// 注册photoAsset监听
+avRecorder.on('photoAssetAvailable',  (asset: photoAccessHelper.PhotoAsset) => {
+  console.info('photoAssetAvailable called');
+  if (asset != undefined) {
+    photoAsset = asset;
+    // 处理photoAsset回调
+    // 例: this.saveVideo(asset);
+  } else {
+    console.error('photoAsset is undefined');
+  }
+});
+```
+
+### off('photoAssetAvailable')<sup>12+</sup>
+
+off(type: 'photoAssetAvailable', callback?: Callback<photoAccessHelper.PhotoAsset>): void
+
+取消订阅媒体资源的回调类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 录音配置变化的回调类型，支持的事件：'photoAssetAvailable'。 |
+
+**示例：**
+
+```ts
+avRecorder.off('photoAssetAvailable');
+```
+
 ## AVRecorderState<sup>9+</sup>
 
 type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 'released' | 'error'
@@ -3910,6 +4333,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+|fileGenerationMode<sup>12+</sup> | [FileGenerationMode](#filegenerationmode12)  | 否   |  创建媒体文件的模式，配合[on('photoAssetAvailable')](#onphotoassetavailable12)监听使用。|
 | rotation<sup>(deprecated)</sup>        | number                                   | 否   | 录制的视频旋转角度，mp4格式支持0，90，180，270，默认值为0。<br>从API version 6开始支持，从API version 12开始废弃。建议使用[AVMetadata](#avmetadata11).videoOrientation替代。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).videoOrientation。     |
 | location<sup>(deprecated)</sup>        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。<br>从API version 6开始支持，从API version 12开始废弃。建议使用 [AVMetadata](#avmetadata11).location。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).location。 |
 | metadata<sup>12+</sup>        | [AVMetadata](#avmetadata11)              | 否   | 设置元数据信息。详情见 [AVMetadata](#avmetadata11)。                  |
@@ -3922,10 +4346,10 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 名称             | 类型                                         | 必填 | 说明                                                         |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。<br>支持范围：<br>- AAC编码格式支持比特率范围[32000 - 500000]。<br>- MP3编码格式支持范围[8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000]。<br>当使用MP3编码格式时，采样率和比特率的映射关系： <br>- 采样率使用16K以下时，对应比特率范围为[8kbps - 64kbps]。<br>- 采样率使用16K~32K时对应的比特率范围为[8kbps - 160kbps]。<br>- 采样率使用32K以上时对应的比特率范围为[32kbps - 320kbps]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- MP3编码格式支持范围[1 - 2]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
-| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。<br>支持范围：<br>- AAC编码格式支持比特率范围[32000 - 500000]。<br>- G711-mulaw编码格式支持比特率范围[64000 - 64000]。<br>- MP3编码格式支持范围[8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000]。<br>当使用MP3编码格式时，采样率和比特率的映射关系： <br>- 采样率使用16K以下时，对应比特率范围为[8kbps - 64kbps]。<br>- 采样率使用16K~32K时对应的比特率范围为[8kbps - 160kbps]。<br>- 采样率使用32K以上时对应的比特率范围为[32kbps - 320kbps]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- G711-mulaw编码格式支持范围[1 - 1]。<br>- MP3编码格式支持范围[1 - 2]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3，AUDIO_G711MU。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
+| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000 - 8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
@@ -3945,6 +4369,10 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | ------------------------- | ---- | ---------------------- |
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | 默认的音频输入源类型。 |
 | AUDIO_SOURCE_TYPE_MIC     | 1    | 表示MIC的音频输入源。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| AUDIO_SOURCE_TYPE_VOICE_RECOGNITION<sup>12+</sup> | 2    | 表示语音识别场景的音频源。 |
+| AUDIO_SOURCE_TYPE_VOICE_COMMUNICATION<sup>12+</sup>     | 7    | 表示语音通话场景的音频源。 |
+| AUDIO_SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup> | 10    | 表示短语音消息的音频源。 |
+| AUDIO_SOURCE_TYPE_CAMCORDER<sup>12+</sup>     | 13    | 表示相机录像的音频源。 |
 
 ## VideoSourceType<sup>9+</sup>
 
@@ -3968,6 +4396,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | CFT_MPEG_4  | 'mp4' | 视频的容器格式，MP4。 |
 | CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 | CFT_MP3<sup>12+</sup>  | 'mp3' | 音频的容器格式，MP3。 |
+| CFT_WAV<sup>12+</sup>  | 'wav' | 音频的容器格式，WAV。 |
 
 ## Location
 
@@ -4008,13 +4437,22 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | min  | number | 是   | 否   | 范围的最小值 |
 | max  | number | 是   | 否   | 范围的最大值 |
 
+## FileGenerationMode<sup>12+</sup>
 
+表示创建媒体文件模式的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称                          | 值   | 说明                            |
+| ----------------------------- | ---- | ------------------------------- |
+| APP_CREATE  | 0    | 由应用自行在沙箱创建媒体文件。 |
+| AUTO_CREATE_CAMERA_SCENE  | 1    | 由系统创建媒体文件，当前仅在相机录制场景下生效，会忽略应用设置的url。 |
 
 ## AVTranscoder<sup>12+</sup>
 
-音视频转码管理类，用于音视频媒体转码。在调用AVTranscoder的方法前，需要先通过createAVTranscoder()构建一个AVTranscoder实例。
+视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过createAVTranscoder()构建一个AVTranscoder实例。
 
-音视频转码demo可参考：[音视频转码开发指导](../../media/media/using-avtranscoder-for-transcodering.md)
+视频转码demo可参考：[视频转码开发指导](../../media/media/using-avtranscoder-for-transcodering.md)
 
 ### 属性
 
@@ -4022,14 +4460,14 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 名称    | 类型                                 | 只读 | 可选 | 说明               |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  否  | 否   | 源媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
-| fdDst<sup>12+</sup>                               | number                 |  否  | 否   | 目标媒体文件描述，通过该属性设置数据输出。在创建AVTranscoder实例后，必须设置fdSrc和fdDst属性。|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  否  | 否   | 源媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVTranscoder 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致视频转码数据获取异常。 |
+| fdDst<sup>12+</sup>                               | number                 |  否  | 否   | 目标媒体文件描述，通过该属性设置数据输出。在创建AVTranscoder实例后，必须设置fdSrc和fdDst属性。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVTranscoder 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致视频转码数据获取异常。 |
 
 ### prepare<sup>12+</sup>
 
 prepare(config: AVTranscoderConfig): Promise<\void>
 
-异步方式进行音视频录制的参数设置。通过Promise获取返回值。
+异步方式进行视频转码的参数设置。通过Promise获取返回值。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -4037,13 +4475,13 @@ prepare(config: AVTranscoderConfig): Promise<\void>
 
 | 参数名 | 类型                                   | 可选 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVTranscoderConfig](#avtranscoderconfig12) | 否   | 配置音视频转码的相关参数。 |
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | 否   | 配置视频转码的相关参数。 |
 
 **返回值：**
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| Promise\<void> | 异步音视频转码prepare方法的Promise返回值。 |
+| Promise\<void> | 异步视频转码prepare方法的Promise返回值。 |
 
 **错误码：**
 
@@ -4234,9 +4672,9 @@ avTranscoder.cancel().then(() => {
 
 release(): Promise\<void>
 
-异步方式释放音视频转码资源。通过Promise获取返回值。
+异步方式释放视频转码资源。通过Promise获取返回值。
 
-释放音视频转码资源之后，该AVTranscoder实例不能再进行任何操作。
+释放视频转码资源之后，该AVTranscoder实例不能再进行任何操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -4244,7 +4682,7 @@ release(): Promise\<void>
 
 | 类型           | 说明                                        |
 | -------------- | ------------------------------------------- |
-| Promise\<void> | 异步释放音视频转码资源方法的Promise返回值。 |
+| Promise\<void> | 异步释放视频转码资源方法的Promise返回值。 |
 
 **错误码：**
 
@@ -4422,16 +4860,16 @@ avTranscoder.off('complete');
 
 ## AVTranscoderConfig<sup>12+</sup>
 
-表示音视频转码的参数设置。
+表示视频转码的参数设置。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
 | 名称            | 类型                                    | 只读 | 可选 | 说明                                                         |
 | --------------- | ---------------------------------------- |---- | ---- | ------------------------------------------------------------ |
-| audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps）。用户不设置，则默认设置为源音频码率|
+| audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps）。用户不设置，则默认设置为48Kbps|
 | audioCodec | [CodecMimeType](#codecmimetype8)     | 否 | 是  | 输出音频的编码格式，当前仅支持AAC。                   |
-| fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 否   | 输出音视频文件的封装格式，当前音频文件仅支持M4A，视频文件仅支持MP4。|
-| videoBitrate         | number | 否 |  否   | 输出视频的码率，单位为比特率（bps）。|
+| fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 否   | 输出视频文件的封装格式，当前视频文件仅支持MP4。|
+| videoBitrate         | number | 否 |  是   | 输出视频的码率，单位为比特率（bps）。用户不设置，则默认码率按输出视频的分辨率设置，[240p，480P]默认码率值为1Mbps，(480P,720P]默认码率值为2Mbps，(720P,1080P]默认码率值为4Mbps，1080P及以上默认值为8Mbps。|
 | videoCodec        | [CodecMimeType](#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持AVC和HEVC。|
 | videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px）。用户不设置，则默认设置为源视频帧的宽|
 | videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px）。用户不设置，则默认设置为源视频帧的高|
@@ -4450,7 +4888,7 @@ avTranscoder.off('complete');
 
 | 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVMetadataExtractor 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致音视频元数据获取异常。 |
 | dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> 当应用从远端获取音视频媒体文件，在应用未下载完整音视频资源时，可以设置dataSrc提前获取该资源的元数据。|
 
 ### fetchMetadata<sup>11+</sup>
@@ -4699,7 +5137,7 @@ avMetadataExtractor.release().then(() => {
 | videoHeight | string | 否   | 视频的高度，单位为像素。当前版本为只读参数。 |
 | videoWidth | string | 否   | 视频的宽度，单位为像素。当前版本为只读参数。 |
 | videoOrientation | string | 否   | 视频的旋转方向，单位为度（°）。|
-| hdrType<sup>12+</sup> | [HdrType](#hdrtype12) | 否   | 媒体资源的HDR类型。 |
+| hdrType<sup>12+</sup> | [HdrType](#hdrtype12) | 否   | 媒体资源的HDR类型。当前版本为只读参数。 |
 | location<sup>12+</sup> | [Location](#location) | 否 | 视频的地理位置信息。 |
 | customInfo<sup>12+</sup> | Record<string, string> | 否 | 从moov.meta.list 获取的自定义参数键值映射。|
 
@@ -6714,7 +7152,7 @@ media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
 
 | 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br>**说明：** <br> - 将资源句柄（fd）传递给 AVImageGenerator 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致视频缩略图数据获取异常。 |
 
 ### fetchFrameByTime<sup>12+</sup>
 
@@ -6954,6 +7392,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 | AV_IMAGE_QUERY_NEXT_SYNC       | 0   | 表示选取传入时间点或之后的关键帧。                       |
 | AV_IMAGE_QUERY_PREVIOUS_SYNC        | 1    | 表示选取传入时间点或之前的关键帧。 |
 | AV_IMAGE_QUERY_CLOSEST_SYNC        | 2    | 表示选取离传入时间点最近的关键帧。                 |
+| AV_IMAGE_QUERY_CLOSEST             | 3    | 表示选取离传入时间点最近的帧，该帧不一定是关键帧。 |
 
 ## PixelMapParams<sup>12+</sup>
 
@@ -7079,6 +7518,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。 |
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。 |
+| mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
@@ -7109,6 +7549,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | SCREENCAPTURE_STATE_MIC_UNMUTED_BY_USER  | 7    | 麦克风被用户打开。 当前版本暂不支持。       |
 | SCREENCAPTURE_STATE_ENTER_PRIVATE_SCENE  | 8    | 录屏进入隐私页面。 当前版本暂不支持。       |
 | SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE   | 9    | 录屏退出隐私页面。 当前版本暂不支持。       |
+| SCREENCAPTURE_STATE_STOPPED_BY_USER_SWITCHES   | 10    | 系统用户切换，录屏中断。       |
 
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
@@ -7241,6 +7682,47 @@ avScreenCaptureRecorder.stopRecording().then(() => {
     console.info('Succeeded in stopping avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Failed to stop avScreenCaptureRecorder, error: ' + err.message);
+})
+```
+
+### skipPrivacyMode<sup>12+</sup>
+
+skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
+
+录屏时，应用可对本应用的隐私窗口做安全豁免。通过Promise获取返回值。
+如录屏时，用户在本应用进行输入密码等操作，应用不会进行黑屏处理。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                      |
+| ------ | ------- | ---- | --------------------------------------------------------- |
+| windowIDs | Array\<number> | 是   | 需要豁免隐私的窗口列表，包括主窗口id和子窗口id，窗口属性获取方法可以参考[窗口API引用](../apis-arkui/js-apis-window.md#getwindowproperties9) |
+
+**返回值：**
+
+| 类型           | 说明                             |
+| -------------- | -------------------------------- |
+| Promise\<void> | 豁免隐私窗口的Promise返回值. |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowIDs = [];
+avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
+    console.info('Succeeded in skipping privacy mode');
+}).catch((err: BusinessError) => {
+    console.info('Failed to skip privacy mode, error: ' + err.message);
 })
 ```
 

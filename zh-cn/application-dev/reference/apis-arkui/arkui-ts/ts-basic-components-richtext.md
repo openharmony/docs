@@ -34,9 +34,11 @@
 
 RichText(content:string)
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名 | 参数类型 | 必填  | 参数描述 |
+| 参数名 | 类型 | 必填  | 说明 |
 | ------- | -------- | ------------- | -------- |
 | content | string | 是   | 表示HTML格式的字符串。 |
 

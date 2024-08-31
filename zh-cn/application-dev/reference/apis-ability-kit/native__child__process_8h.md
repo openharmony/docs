@@ -42,3 +42,7 @@
 | 名称                                                                                                                                                                                                                                                                     | 描述                                                                                    |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | int [OH_Ability_CreateNativeChildProcess](c-apis-ability-childprocess.md#oh_ability_createnativechildprocess) (const char \*libName, [OH_Ability_OnNativeChildProcessStarted](c-apis-ability-childprocess.md#oh_ability_onnativechildprocessstarted) onProcessStarted) | 创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。 |
+
+> **说明：**
+>
+> 当前仅支持2in1设备，且单个进程只能启动一个Native子进程。

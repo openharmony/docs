@@ -27,7 +27,7 @@
    当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
 
    - 当数据量较小时，可以在init完成后直接调用final。
-   - 当数据量较大时，可以多次调用update，即[分段加解密](crypto-sm4-sym-encrypt-decrypt-gcm-by-segment-ndk.md)。
+   - 当数据量较大时，可以多次调用update，即分段加解密。
 
 6. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取加密后的数据。
    - 由于已使用update传入数据，此处data传入null。

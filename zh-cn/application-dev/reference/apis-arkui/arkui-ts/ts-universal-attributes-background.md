@@ -80,7 +80,7 @@ backgroundImageSize(value: SizeOptions | ImageSize)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions对象说明)&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 是   | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>**说明：** <br/>设置为小于0的值时，按值为0显示。当设置了height未设置width时，width根据图片原始宽高比进行调整。 |
+| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions对象说明)&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 是   | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>**说明：** <br/>width和height均设置为小于或等于0的值时，按值为0显示。当width和height中只有一个值未设置或者设置为小于等于0的值时，另一个会根据图片原始宽高比进行调整。 |
 
 ## backgroundImagePosition
 
@@ -111,10 +111,10 @@ backgroundImagePosition(value: Position | Alignment)
 | Thin                 | 轻薄材质模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | Regular              | 普通厚度材质模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Thick                | 厚材质模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
-| BACKGROUND_THIN       | 近距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| BACKGROUND_REGULAR    | 中距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| BACKGROUND_THICK      | 远距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| BACKGROUND_ULTRA_THICK | 超远距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| BACKGROUND_THIN<sup>10+</sup>       | 近距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| BACKGROUND_REGULAR<sup>10+</sup>    | 中距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| BACKGROUND_THICK<sup>10+</sup>      | 远距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| BACKGROUND_ULTRA_THICK<sup>10+</sup> | 超远距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | NONE<sup>10+</sup> | 关闭模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -169,7 +169,7 @@ backgroundEffect(options: BackgroundEffectOptions)
 | radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。  |
 | saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 50]。     |
 | brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 2]。 |
-| color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
+| color        | [ResourceColor](ts-types.md#resourcecolor)         |   否   |   颜色，默认透明色。  |
 | adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 
