@@ -23,7 +23,7 @@ Represents data of the plain text type.
 | uniformDataType | 'general.plain-text'| Yes  | No  | Uniform data type, which has a fixed value of **general.plain-text**. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).               |
 | textContent | string | No  | No  | Plaintext content.               |
 | abstract    | string | No  | Yes  | Text abstract. It is an empty string by default.|
-| details | Record<string, string> | No  | Yes| Object of the dictionary type used to describe the attributes of the text content. Both the key and value of the object are of the string type. The following is a **details** object used to describe the attributes of a file:<br>{<br>"title":"Title of the file",<br>"content":"Content of the file"<br>}<br> By default, it is an empty dictionary object.|
+| details | Record<string, string> | No  | Yes| Object of the dictionary type used to describe the properties of the text content. Both the key and value of the object are of the string type. The following is a **details** object used to describe the properties of a file:<br>{<br>"title":"Title of the file",<br>"content":"Content of the file"<br>}<br> By default, it is an empty dictionary object.|
 
 **Example**
 
@@ -58,7 +58,7 @@ Represents data of the hyperlink type.
 | uniformDataType | 'general.hyperlink'| Yes  | No  | Uniform data type, which has a fixed value of **general.hyperlink**. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).|
 | url         | string | No  | No  | URL.      |
 | description | string | No  | Yes  | Description of the linked content. This parameter is optional. By default, it is an empty string.|
-| details | Record<string, string> | No  | Yes | Object of the dictionary type used to describe the attributes of the hyperlink. Both the key and value of the object are of the string type. <br/>Example:<br>{<br>"title":"Title of the hyperlink",<br>"content":"Content"<br>}<br> By default, it is an empty dictionary object.|
+| details | Record<string, string> | No  | Yes | Object of the dictionary type used to describe the properties of the hyperlink. Both the key and value of the object are of the string type. <br/>Example:<br>{<br>"title":"Title of the hyperlink",<br>"content":"Content"<br>}<br> By default, it is an empty dictionary object.|
 
 **Example**
 
@@ -87,7 +87,7 @@ Represents data of the HTML type.
 | uniformDataType | 'general.html'| Yes  | No  | Uniform data type, which has a fixed value of **general.html**. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).|
 | htmlContent  | string | No  | No  | Content in HTML format.            |
 | plainContent | string | No  | Yes  | Plaintext without HTML tags. This parameter is optional. By default, it is an empty string.|
-| details | Record<string, string> | No  | Yes  | Object of the dictionary type used to describe the attributes of the HTML content. Both the key and value of the object are of the string type. <br/>Example:<br>{<br>"title":"Title of the HTML content",<br>"content":"Content"<br>}<br> By default, it is an empty dictionary object.|
+| details | Record<string, string> | No  | Yes  | Object of the dictionary type used to describe the properties of the HTML content. Both the key and value of the object are of the string type. <br/>Example:<br>{<br>"title":"Title of the HTML content",<br>"content":"Content"<br>}<br> By default, it is an empty dictionary object.|
 
 **Example**
 

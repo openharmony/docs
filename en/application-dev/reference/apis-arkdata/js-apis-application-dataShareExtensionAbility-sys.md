@@ -17,7 +17,7 @@ The **DataShareExtensionAbility** module provides data share services based on t
 import { DataShareExtensionAbility } from '@kit.ArkData';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
 
