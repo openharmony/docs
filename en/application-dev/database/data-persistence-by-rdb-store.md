@@ -40,15 +40,15 @@ A relational database (RDB) store is used to store data in complex relational mo
 
 The following table lists the APIs used for RDB data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
-| API | Description | 
+| API| Description| 
 | -------- | -------- |
-| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains an **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations. | 
-| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value. | 
-| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table. | 
-| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **predicates** instance. | 
-| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance. | 
-| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions. | 
-| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store. | 
+| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains an **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations.| 
+| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value.| 
+| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table.| 
+| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **predicates** instance.| 
+| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance.| 
+| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.| 
+| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.| 
 
 
 ## How to Develop
@@ -68,7 +68,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
      onWindowStageCreate(windowStage: window.WindowStage) {
        const STORE_CONFIG :relationalStore.StoreConfig= {
          name: 'RdbTest.db', // Database file name.
-         securityLevel: relationalStore.SecurityLevel.S1 // Database security level.
+         securityLevel: relationalStore.SecurityLevel.S3, // Database security level.
          encrypt: false, // Whether to encrypt the database. This parameter is optional. By default, the database is not encrypted.
          customDir: 'customDir/subCustomDir' // (Optional) Customized database path. The database is created in the context.databaseDir + '/rdb/' + customDir directory, where context.databaseDir indicates the application sandbox path, '/rdb/' indicates a relational database, and customDir indicates the customized path. If this parameter is not specified, an RdbStore instance is created in the sandbox directory of the application.
          isReadOnly: false // (Optional) Specify whether the RDB store is opened in read-only mode. The default value is false, which means the RDB store is readable and writable. If this parameter is true, data can only be read from the RDB store. If write operation is performed, error code 801 is returned.
@@ -128,7 +128,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
 
    const STORE_CONFIG :relationalStore.StoreConfig = {
      name: 'RdbTest.db', // Database file name.
-     securityLevel: relationalStore.SecurityLevel.S1 // Database security level.
+     securityLevel: relationalStore.SecurityLevel.S3 // Database security level.
    };
 
    // For example, the RDB store version is 3 and the table structure is EMPLOYEE (NAME, AGE, SALARY, CODES, IDENTITY).
@@ -316,7 +316,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    >
    > Use **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
 
-5. Back up the database in the same directory.<br>Example:
+5. Back up the database in the same directory. <br>Example:
 
    ```ts
    if (store !== undefined) {
@@ -331,7 +331,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
    }
    ```
 
-6. Restore data from the database backup.<br>Example:
+6. Restore data from the database backup. <br>Example:
 
    ```ts
    if (store !== undefined) {
@@ -357,7 +357,7 @@ Unless otherwise specified, the sample code without "stage model" or "FA model" 
      // Set config.allowRebuild to true and call getRdbStore to open the RDB store again.
      const STORE_CONFIG: relationalStore.StoreConfig = {
        name: 'RdbTest.db',
-       securityLevel: relationalStore.SecurityLevel.S1,
+       securityLevel: relationalStore.SecurityLevel.S3,
        allowRebuild: true
      };
 

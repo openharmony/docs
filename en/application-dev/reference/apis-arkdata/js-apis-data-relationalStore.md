@@ -2030,7 +2030,7 @@ Provides APIs to manage an RDB store.
 
 Before using the APIs of this class, use [executeSql](#executesql) to initialize the database table structure and related data.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7258,7 +7258,7 @@ if(store != undefined) {
 }
 ```
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
