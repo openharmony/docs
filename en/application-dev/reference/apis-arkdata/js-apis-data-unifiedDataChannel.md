@@ -138,7 +138,7 @@ Provides APIs for encapsulating a set of data records.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-### Attributes
+### Properties
 
 | Name| Type| Read-Only| Optional| Description                                                                                             |
 | -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------|
