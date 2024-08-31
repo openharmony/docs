@@ -1113,7 +1113,7 @@
         - Hidebug使用指导<!--hidebug-->
           - [使用Hidebug获取调试信息（ArkTS）](dfx/hidebug-guidelines-arkts.md)
           - [使用Hidebug获取调试信息（C/C++）](dfx/hidebug-guidelines-ndk.md)
-        - HiCollie使用指导
+        - HiCollie使用指导<!--hicollie-->
           - [使用HiCollie检测业务线程卡死卡顿问题（C/C++）](dfx/hiicollie-guidelines-ndk.md)
         - 错误管理<!--error-manager-->
           - [错误管理开发指导](dfx/errormanager-guidelines.md)
