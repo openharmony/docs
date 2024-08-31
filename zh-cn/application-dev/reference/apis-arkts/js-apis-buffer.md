@@ -421,7 +421,7 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 | -------- | -------- | -------- | -------- |
 | object | Object | 是 | 支持Symbol.toPrimitive或valueOf()的对象。 |
 | offsetOrEncoding | number&nbsp;\|&nbsp;string | 是 | 字节偏移量或编码格式。 |
-| length | number | 是 | 字节长度(此入参仅在object的valueOf()返回值为arraybuffer时生效)。其他情况下可填任意number类型值，该参数不会对结果产生影响。 |
+| length | number | 是 | 字节长度(此入参仅在object的valueOf()返回值为ArrayBuffer时生效，取值范围：0 <= length <= ArrayBuffer.byteLength, 超出范围时报错: 10200001)。其他情况下可填任意number类型值，该参数不会对结果产生影响。 |
 
 **返回值：**
 
@@ -1992,7 +1992,7 @@ subarray(start?: number, end?: number): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回新的Buffer对象。 |
+| Buffer | 返回新的Buffer对象。当 start < 0 或 end < 0 时返回一个空Buffer。 |
 
 **示例：**
 
@@ -2169,7 +2169,7 @@ toString(encoding?: string, start?: number, end?: number): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 字符串。 |
+| string | 字符串。 当start >= Buffer.length 或 start > end 时返回空字符串。 |
 
 **错误码：**
 
