@@ -1526,26 +1526,27 @@ createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, 
 
 ```ts
 async function example() {
-  console.info('createAssetsForAppDemo.');
+  console.info('createAssetsForAppWithModeDemo.');
 
   try {
-    let bundleName: string = 'testBundleName';
-    let appName: string = 'testAppName';
-    let appId: string = 'testAppId';
-    let tokenId:number = "testTokenId";
-    let authorizationMode:number = "testTokenId";
     let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
       {
-        title: 'test',
+        title: '123456',
         fileNameExtension: 'jpg',
         photoType: photoAccessHelper.PhotoType.IMAGE,
         subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
       }
     ];
-    let desFileUris: string[] = await phAccessHelper.createAssetsForAppWithMode(bundleName, appName, appId, tokenId, authorizationMode, photoCreationConfigs);
-    console.info('createAssetsForApp success, data is ' + desFileUris);
+    let bundleName: string = 'testBundleName';
+    let appName: string = 'testAppName';
+    let appId: string = 'testAppId';
+    let tokenId: number = 537197950;
+    let authorizationMode: photoAccessHelper.AuthorizationMode = photoAccessHelper.AuthorizationMode.SHORT_TIME_AUTHORIZATION;
+    let result: Array<string> = await phAccessHelper.createAssetsForAppWithMode(bundleName, appName, appId, tokenId, authorizationMode, photoCreationConfigs);
+    console.info(`result: ${JSON.stringfy(result)}`);
+    console.info('Photo createAssetsForAppWithMode success.');
   } catch (err) {
-    console.error(`createAssetsForApp failed with error: ${err.code}, ${err.message}`);
+    console.error(`createAssetsForAppWithMode failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
