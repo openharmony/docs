@@ -2980,7 +2980,7 @@ Image_ErrorCode OH_PixelmapNative_Opacity (OH_PixelmapNative * pixelmap, float r
 Image_ErrorCode OH_PixelmapNative_ReadPixels (OH_PixelmapNative * pixelmap, uint8_t * destination, size_t * bufferSize )
 ```
 **描述**
-读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。 指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中。
 
 **起始版本：** 12
 
@@ -3160,7 +3160,7 @@ Image_ErrorCode OH_PixelmapNative_Translate (OH_PixelmapNative * pixelmap, float
 Image_ErrorCode OH_PixelmapNative_WritePixels (OH_PixelmapNative * pixelmap, uint8_t * source, size_t bufferSize )
 ```
 **描述**
-读取缓冲区中的图片数据，结果写入PixelMap中
+读取缓冲区中的图像像素数据，并按照PixelMap的像素格式将结果写入PixelMap。
 
 **起始版本：** 12
 

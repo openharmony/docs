@@ -594,7 +594,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -635,7 +635,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，通过回调函数返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -674,7 +674,7 @@ async function Demo() {
 
 readPixelsToBufferSync(dst: ArrayBuffer): void
 
-以同步方法读取PixelMap到Buffer里。
+以同步方式读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -714,7 +714,7 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取区域内的图片数据，使用Promise形式返回。
+读取区域内的图像像素数据，并按照BGRA_8888格式写入缓冲区中，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -760,7 +760,7 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取区域内的图片数据，使用callback形式返回读取结果。
+读取区域内的图像像素数据，并按照BGRA_8888格式写入缓冲区中，通过回调函数返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -804,7 +804,7 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-读取区域内的图片数据并同步返回结果。
+以同步方式读取区域内的图像像素数据，并按照BGRA_8888格式写入缓冲区中。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -847,7 +847,7 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-将PixelMap写入指定区域内，使用Promise形式返回写入结果。
+将BGRA_8888格式的图像像素数据写入指定区域内，使用Promise形式返回写入结果。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -897,7 +897,7 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-将PixelMap写入指定区域内，使用callback形式返回写入结果。
+将BGRA_8888格式的图像像素数据写入指定区域内，通过回调函数返回写入结果。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -944,7 +944,7 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-以同步方法将PixelMap写入指定区域内。
+以同步方式将BGRA_8888格式的图像像素数据写入指定区域内。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -993,7 +993,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
+读取缓冲区中的图像像素数据，并按照PixelMap的像素格式将结果写入PixelMap，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1038,7 +1038,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取缓冲区中的图片数据，结果写入PixelMap中，使用callback形式返回。
+读取缓冲区中的图像像素数据，并按照PixelMap的像素格式将结果写入PixelMap，通过回调函数形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1081,7 +1081,7 @@ async function Demo() {
 
 writeBufferToPixelsSync(src: ArrayBuffer): void
 
-读取缓冲区中的图片数据，结果写入PixelMap并同步返回结果。
+读取缓冲区中的图像像素数据，按照PixelMap的像素格式将结果写入PixelMap并同步返回结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
