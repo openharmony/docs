@@ -657,8 +657,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
-  for (const key in record) {
-    console.log(`private command key: ${key}, value: ${record[key]}`);
+  for (let i = 0; i < record.lenght; i++) {
+    console.log(`private command key: ${i}, value: ${record[i]}`);
   }
 }
 try {
@@ -700,8 +700,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
-  for (const key in record) {
-    console.log(`private command key: ${key}, value: ${record[key]}`);
+  for (let i = 0; i < record.lenght; i++) {
+    console.log(`private command key: ${i}, value: ${record[i]}`);
   }
 }
 try {
