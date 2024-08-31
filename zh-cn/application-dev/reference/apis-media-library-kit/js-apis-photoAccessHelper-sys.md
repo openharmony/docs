@@ -1543,7 +1543,7 @@ async function example() {
     let tokenId: number = 537197950;
     let authorizationMode: photoAccessHelper.AuthorizationMode = photoAccessHelper.AuthorizationMode.SHORT_TIME_AUTHORIZATION;
     let result: Array<string> = await phAccessHelper.createAssetsForAppWithMode(bundleName, appName, appId, tokenId, authorizationMode, photoCreationConfigs);
-    console.info(`result: ${JSON.stringfy(result)}`);
+    console.info(`result: ${JSON.stringify(result)}`);
     console.info('Photo createAssetsForAppWithMode success.');
   } catch (err) {
     console.error(`createAssetsForAppWithMode failed with error: ${err.code}, ${err.message}`);
