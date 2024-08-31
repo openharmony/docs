@@ -1,4 +1,4 @@
-# @ohos.atomicservice.NavPushPathHelper(分包路由工具类)
+# NavPushPathHelper
 
 当跳转的目标[NavDestination](ts-basic-components-navdestination.md)在不同的hsp分包，且未被主包依赖，首次运行元服务只会下载安装主包，需要使用NavPushPathHelper先下载安装相应hsp分包，再将指定的[NavDestination](ts-basic-components-navdestination.md)页面信息入栈。使[Navigation](ts-basic-components-navigation.md)支持动态加载hsp分包后再跳转。
 
