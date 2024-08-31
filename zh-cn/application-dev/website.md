@@ -1110,9 +1110,9 @@
           - [使用HiTraceChain打点（C/C++）](dfx/hitracechain-guidelines-ndk.md)
         - HiChecker使用指导<!--hichecker-->
           - [使用HiChecker检测问题（ArkTS/JS）](dfx/hichecker-guidelines-arkts.md)
-        - Hidebug使用指导<!--hidebug-->
-          - [使用Hidebug获取调试信息（ArkTS）](dfx/hidebug-guidelines-arkts.md)
-          - [使用Hidebug获取调试信息（C/C++）](dfx/hidebug-guidelines-ndk.md)
+        - HiDebug使用指导<!--hidebug-->
+          - [使用HiDebug获取调试信息（ArkTS）](dfx/hidebug-guidelines-arkts.md)
+          - [使用HiDebug获取调试信息（C/C++）](dfx/hidebug-guidelines-ndk.md)
         - HiCollie使用指导<!--hicollie-->
           - [使用HiCollie检测业务线程卡死卡顿问题（C/C++）](dfx/hiicollie-guidelines-ndk.md)
         - 错误管理<!--error-manager-->
@@ -1175,7 +1175,7 @@
         - [空间音频管理(仅对系统应用开放)](media/audio/audio-spatialization-management.md)
         <!--DelEnd-->
         - [音频播放流管理](media/audio/audio-playback-stream-management.md)
-        - [管理全局音频输出设备管理](media/audio/audio-output-device-management.md)
+        - [管理全局音频输出设备](media/audio/audio-output-device-management.md)
         <!--Del-->
         - [分布式音频播放(仅对系统应用开放)](media/audio/distributed-audio-playback.md)
         <!--DelEnd-->
@@ -1185,7 +1185,7 @@
         - [使用OHAudio开发音频录制功能(C/C++)](media/audio/using-ohaudio-for-recording.md)
         - [管理麦克风](media/audio/mic-management.md)
         - [音频录制流管理](media/audio/audio-recording-stream-management.md)
-        - [管理全局音频输入设备管理](media/audio/audio-input-device-management.md)
+        - [管理全局音频输入设备](media/audio/audio-input-device-management.md)
       - 音频通话<!--audio-call-->
         - [音频通话开发概述](media/audio/audio-call-overview.md)
         - [开发音频通话功能](media/audio/audio-call-development.md)
@@ -1299,6 +1299,7 @@
         - [视频播放](media/media/video-playback.md)
         - [添加视频外挂字幕](media/media/video-subtitle.md)
         - [视频录制](media/media/video-recording.md)
+        - [使用AVScreenCaptureRecorder录屏保存到文件(ArkTs)](media/media/using-avscreencapture-ArkTs.md)
         - [使用AVScreenCapture录屏取原始码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
         - [使用AVScreenCapture录屏保存到文件(C/C++)](media/media/using-avscreencapture-for-file.md)
         - [获取视频缩略图](media/media/avimagegenerator.md)
@@ -2641,6 +2642,19 @@
         - [@ohos.inputMethod (输入法框架)](reference/apis-ime-kit/js-apis-inputmethod.md)
         - [@ohos.inputMethodEngine (输入法服务)](reference/apis-ime-kit/js-apis-inputmethodengine.md)
         - [@ohos.inputMethodList (输入法切换列表控件)](reference/apis-ime-kit/js-apis-inputmethodlist.md)
+      - C API<!--ime-c-->
+        - 模块<!--ime-module-->
+          - [InputMethod](reference/apis-ime-kit/_input_method.md)
+        - 头文件<!--ime-headerfile-->
+          - [inputmethod_attach_options_capi.h](reference/apis-ime-kit/inputmethod__attach__options__capi_8h.md)
+          - [inputmethod_controller_capi.h](reference/apis-ime-kit/inputmethod__controller__capi_8h.md)
+          - [inputmethod_cursor_info_capi.h](reference/apis-ime-kit/inputmethod__cursor__info__capi_8h.md)
+          - [inputmethod_inputmethod_proxy_capi.h](reference/apis-ime-kit/inputmethod__inputmethod__proxy__capi_8h.md)
+          - [inputmethod_private_command_capi.h](reference/apis-ime-kit/inputmethod__private__command__capi_8h.md)
+          - [inputmethod_text_avoid_info_capi.h](reference/apis-ime-kit/inputmethod__text__avoid__info__capi_8h.md)
+          - [inputmethod_text_config_capi.h](reference/apis-ime-kit/inputmethod__text__config__capi_8h.md)
+          - [inputmethod_text_editor_proxy_capi.h](reference/apis-ime-kit/inputmethod__text__editor__proxy__capi_8h.md)
+          - [inputmethod_types_capi.h](reference/apis-ime-kit/inputmethod__types__capi_8h.md)
       - 错误码<!--ime-arkts-errcode-->
         - [输入法框架错误码](reference/apis-ime-kit/errorcode-inputmethod-framework.md)
     - IPC Kit（进程间通信服务）<!--ipc-api-->
@@ -3336,6 +3350,7 @@
         - 头文件<!--audio-headerfile-->
           - [native_audio_common.h](reference/apis-audio-kit/native__audio__common_8h.md)
           - [native_audio_device_base.h](reference/apis-audio-kit/native__audio__device__base_8h.md)
+          - [native_audio_manager.h](reference/apis-audio-kit/native__audio__manager_8h.md)
           - [native_audio_routing_manager.h](reference/apis-audio-kit/native__audio__routing__manager_8h.md)
           - [native_audio_session_manager.h](reference/apis-audio-kit/native__audio__session__manager_8h.md)
           - [native_audiocapturer.h](reference/apis-audio-kit/native__audiocapturer_8h.md)
