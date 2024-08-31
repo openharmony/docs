@@ -1484,7 +1484,7 @@ async function example() {
 
 ### createAssetsForAppWithMode<sup>12+</sup>
 
-createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, tokenId: number, authorizationMode: AuthorizationMode, photoCreationConfigs:Array\<PhotoCreationConfig>): Promise\<Array\<string>>
+createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, tokenId: number, authorizationMode: AuthorizationMode, photoCreationConfigs:Array<PhotoCreationConfig>): Promise<Array<string>>
 
 提供给应用保存短时授权，使用Promise方式返回结果。
 
@@ -1501,15 +1501,15 @@ createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, 
 | boundleName| string | 是 | 需要保存图片/视频文件的应用boundleName。 |
 | appName| string | 是 | 需要保存图片/视频文件的应用appName。|
 | appId| string | 是 | 需要保存图片/视频文件的应用app id。 |
-| tokenId| number| 是 | 需要短时授权应用的唯一标识。 |
-| authorizationMode| AuthorizationMode| 是 | 授权模式。授予应用短期内再次保存无需重复弹框确认。 |
-| PhotoCreationConfig| Array\<PhotoCreationConfig> | 是 | 保存图片/视频到媒体库的配置。|
+| tokenId| number| 是 | 需要短时授权应用的唯一标识 |
+| authorizationMode| [AuthorizationMode](#authorizationmode12)| 是 | 授权模式。授予应用短期内再次保存无需重复弹框确认 |
+| photoPermissionType | [PhotoPermissionType](js-apis-photoAccessHelper.md#photopermissiontype12) | 是 | 权限类型，取消应用对媒体资源的访问权限为photoPermissionType。|
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise\<Array\<string>> | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。|
+| Promise<Array<string>>; | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据|
 
 **错误码：**
 
@@ -5416,17 +5416,6 @@ async function example() {
 | ----- |  ---- |  ---- |
 | ORIGINAL_MODE |  0 |  读取源文件。 |
 | EDITED_MODE |  1 |  读取编辑后的文件。|
-## AuthorizationMode<sup>12+</sup>
-
-枚举，授权模式。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称  |  值 |  说明 |
-| ----- |  ---- |  ---- |
-| SHORT_TIME_AUTHORIZATION|  0 |  短时授权。 |
 
 ## AnalysisType<sup>11+</sup>
 
