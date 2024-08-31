@@ -3556,6 +3556,65 @@ promise.then(() => {
 });
 ```
 
+  ### requestFocus<sup>13+</sup>
+
+requestFocus(isFocused: boolean): Promise&lt;void&gt;
+
+Window requests to get focus or lose focus. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| isFocused | boolean | Yes  | Whether to get window focus. The value **true** means to get focus, and **false** means to lose focus.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // ...
+    windowStage.getMainWindow().then((window) => {
+      let isFocused: boolean = true;
+      let promise = window.requestFocus(isFocused);
+      promise.then(() => {
+        console.info('Succeeded in requesting focus.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to request focus. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
+```
+
 ## SubWindowOptions<sup>11+</sup>
 
 Describes the parameters used for creating a subwindow.
