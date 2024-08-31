@@ -1658,6 +1658,99 @@ async function Demo() {
 }
 ```
 
+### scale<sup>12+</sup>
+
+scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
+
+根据输入的宽高对图片进行缩放，使用Promise形式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scale(scaleX, scaleY, image.AntiAliasingLevel.LOW).then(() => {
+      console.info('Succeeded in scaling pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+
+    })
+  }
+}
+```
+
+### scaleSync<sup>12+</sup>
+
+scaleSync(x: number, y: number, level: AntiAliasingLevel): void
+
+以同步方法根据输入的宽高对图片进行缩放。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scaleSync(scaleX, scaleY, image.AntiAliasingLevel.LOW);
+  }
+}
+```
+
 ### translate<sup>9+</sup>
 
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
@@ -6066,6 +6159,19 @@ PixelMap使用的HDR元数据值类型，和[HdrMetadataKey](#hdrmetadatakey12)�
 | [HdrStaticMetadata](#hdrstaticmetadata12) | [HdrMetadataKey](#hdrmetadatakey12)中HDR_STATIC_METADATA关键字对应的元数据值类型。 |
 | ArrayBuffer | [HdrMetadataKey](#hdrmetadatakey12)中HDR_DYNAMIC_METADATA关键字对应的元数据值类型。 |
 | [HdrGainmapMetadata](#hdrgainmapmetadata12) | [HdrMetadataKey](#hdrmetadatakey12)中HDR_GAINMAP_METADATA关键字对应的元数据值类型。 |
+
+## AntiAliasingLevel<sup>12+</sup>
+
+缩放时的缩放算法。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称                   |   值   | 说明              |
+| ---------------------- | ------ | ----------------- |
+| NONE                | 0      | 默认为最近邻缩放算法。        |
+| LOW                 | 1      | 双线性缩放算法。     |
+| MEDIUM              | 2      | 双线性缩放算法，同步开启mipmap。|
+| HIGH                | 3      | cubic缩放算法。 |
 
 ## 补充说明
 ### SVG标签说明
