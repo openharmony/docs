@@ -154,8 +154,8 @@ configuration标签示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| fontSizeScale | 应用字体大小是否跟随系统，枚举值, followSystem，nonFollowSystem，表示跟随和不跟随。| 字符串 | 该标签可缺省，缺省由系统决定。 |
-| fontSizeMaxScale | 应用字体大小选择跟随系统后，配置的最大比例，枚举值1，1.15，1.3，1.45，1.75，2，3.2。	 <br/> fontSizeScale为nonFollowSystem，则该项不生效。 | 字符串 | 该标签可缺省，缺省由系统决定。 |
+| fontSizeScale | 应用字体大小是否跟随系统，支持的取值如下：<br/>-&nbsp;followSystem：跟随系统。<br/>-&nbsp;nonFollowSystem：不跟随系统。| 字符串 | 该标签可缺省，缺省值为nonFollowSystem。 |
+| fontSizeMaxScale | 应用字体大小选择跟随系统后，配置的最大比例，支持的取值：1、1.15、1.3、1.45、1.75、2、3.2。	 <br/> fontSizeScale为nonFollowSystem时，该项不生效。 | 字符串 | 该标签可缺省，缺省值为3.2。 |
 
 resources/base/profile/configuration.json
 
