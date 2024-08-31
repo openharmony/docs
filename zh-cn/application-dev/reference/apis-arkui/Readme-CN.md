@@ -140,6 +140,7 @@
       - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
       <!--Del-->
       - [点光源设置 (系统接口)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
+      - [图像效果 (系统接口)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
       <!--DelEnd-->
     - 手势处理
       - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
