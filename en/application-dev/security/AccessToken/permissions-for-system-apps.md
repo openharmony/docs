@@ -3517,6 +3517,18 @@ Allows a system application or system ability to receive fusion service messages
 
 **Valid since**: 12
 
+### ohos.permission.ACCESS_FUSION_MANAGER
+
+Allows a system ability or system application to access the fusion service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.PUBLISH_LOCATION_EVENT
 
 Allows an application to publish common events related to location management.
