@@ -8378,7 +8378,9 @@ body.appendChild(element);
 
 static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
 
-开启Web组件前进后退缓存功能，通过参数指定是否允许使用特定特定的页面进入前进后退缓存。
+开启Web组件前进后退缓存功能，通过参数指定是否允许使用特定的页面进入前进后退缓存。
+
+需要在[initializeWebEngine()](#initializewebengine)初始化内核之前调用。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -8386,7 +8388,7 @@ static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| features     |  [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12) | 是   | 允许使用特定特性的页面进入前进后退缓存中。|
+| features     |  [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12) | 是   | 允许使用特定的页面进入前进后退缓存中。|
 
 **示例：**
 

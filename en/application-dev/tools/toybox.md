@@ -15,9 +15,9 @@ Toybox is a lightweight collection of Linux command line utilities. It combines 
 
 > **NOTE**
 >
-> Due to permission control, if the commands are run in a process, directory, or file that is not authorized, the command execution fails.
+>Due to permission control, if the commands are run in a process, directory, or file that is not authorized, the command execution fails.
 >
-> In the case of such a failure, check the authorization status. You can find the error information in the log.
+>In the case of such a failure, check the authorization status. You can find the error information in the log.
 
 ## Command Description
 

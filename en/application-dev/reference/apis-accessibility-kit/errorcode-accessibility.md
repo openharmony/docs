@@ -41,14 +41,14 @@ The target ability is already enabled and cannot be enabled again.
 
 **Solution**
 
-1. Stop the target Ability.
+1. Stop the target ability.
 2. Re-enable the target ability.
 
 ## 9300003 No Accessibility Permission to Perform the Operation
 
 **Error Message**
 
-Do not have accessibility right for this operation.
+No accessibility permission to perform the operation.
 
 **Description**
 
