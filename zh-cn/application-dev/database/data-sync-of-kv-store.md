@@ -180,7 +180,7 @@
      schema.root.appendChild(child1);
      schema.root.appendChild(child2);
      schema.indexes = ['$.id', '$.name'];
-     // 0表示STRICT模式，1表示COMPATIBLE模式。
+     // 0表示COMPATIBLE模式，1表示STRICT模式。
      schema.mode = 1;
      // 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。
      schema.skip = 0;
@@ -195,7 +195,7 @@
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // schema 可以不填，在需要使用schema功能时可以构造此参数，例如：使用谓词查询等。
        schema: schema,
-       securityLevel: distributedKVStore.SecurityLevel.S1
+       securityLevel: distributedKVStore.SecurityLevel.S3
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {

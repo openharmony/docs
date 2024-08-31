@@ -170,7 +170,7 @@ Defines the camera profile.
 | Name     | Type                         | Read-only| Optional| Description        |
 | -------- | ----------------------------- |---- | ---- | ------------- |
 | format   | [CameraFormat](#cameraformat) | Yes |  No | Output format.     |
-| size     | [Size](#size)                 | Yes |  No | Resolution.      |
+| size     | [Size](#size)                 | Yes |  No | Resolution.<br>The width and height of the camera resolution is set, not the actual width and height of an output image. |
 
 ## FrameRateRange
 
@@ -2449,7 +2449,7 @@ function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
 
 ### on('photoAssetAvailable')<sup>12+</sup>
 
-on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
+on(type: 'photoAssetAvailable', callback: AsyncCallback\<photoAccessHelper.PhotoAsset\>): void
 
 Subscribes to photo asset available events. This API uses an asynchronous callback to return the result.
 
@@ -2464,7 +2464,7 @@ Subscribes to photo asset available events. This API uses an asynchronous callba
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | Yes  | Event type. The value is fixed at **'photoAssetAvailable'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | Yes  | Callback used to return the photo asset.|
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | Yes  | Callback used to return the photo asset.|
 
 **Example**
 
@@ -2488,7 +2488,7 @@ function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void
 
 ### off('photoAssetAvailable')<sup>12+</sup>
 
-off(type: 'photoAssetAvailable', callback?: AsyncCallback\<PhotoAsset\>): void
+off(type: 'photoAssetAvailable', callback?: AsyncCallback\<photoAccessHelper.PhotoAsset\>): void
 
 Unsubscribes from photo asset available events.
 
@@ -2499,7 +2499,7 @@ Unsubscribes from photo asset available events.
 | Name    | Type     | Mandatory | Description                                                                        |
 | -------- | ---------- |-----|----------------------------------------------------------------------------|
 | type     | string     | Yes  | Event type. The value is fixed at **'photoAssetAvailable'**. The event can be listened for when a **photoOutput** instance is created.                        |
-| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | No  | Callback used for unsubscription. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | No  | Callback used for unsubscription. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 

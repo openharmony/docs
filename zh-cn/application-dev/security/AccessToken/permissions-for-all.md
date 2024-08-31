@@ -347,6 +347,8 @@
 
 允许应用支持持久化访问文件Uri。
 
+<!--RP2--><!--RP2End-->
+
 **权限级别**：API version 11为system_basic; 从API version 12开始为normal。
 
 **授权方式**：system_grant
@@ -362,6 +364,16 @@
 **授权方式**：system_grant
 
 **起始版本**：12
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：13
 
 ## user_grant（用户授权）权限列表
 
@@ -531,6 +543,8 @@
 
 当前仅2in1设备应用可申请此权限。
 
+<!--RP2--><!--RP2End-->
+
 **权限级别**：API version 11为system_basic; 从API version 12开始为normal。
 
 **授权方式**：user_grant
@@ -542,6 +556,8 @@
 允许应用访问公共目录下的Documents目录及子目录。
 
 当前仅2in1设备应用可申请此权限。
+
+<!--RP2--><!--RP2End-->
 
 **权限级别**：API version 11为system_basic; 从API version 12开始为normal。
 

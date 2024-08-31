@@ -51,3 +51,6 @@ import { appManager } from '@kit.AbilityKit';
 | 0    | UNKNOWN | 未知类型。              |
 | 1    | PAGE    | UI界面类型的Ability。   |
 | 2    | SERVICE | 后台服务类型的Ability。 |
+| 3    | DATA | 数据类型的Ability。              |
+| 4    | FORM    | 卡片类型的Ability。   |
+| 5    | EXTENSION | Extension类型的Ability。 |

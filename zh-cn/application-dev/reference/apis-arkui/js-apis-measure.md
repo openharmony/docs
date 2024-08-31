@@ -43,13 +43,17 @@ measureText(options: MeasureOptions): number
 
 **示例：**
 
+> **说明**
+>
+>推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例
+
 ```ts
 import { MeasureText } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-  @State textWidth: number = MeasureText.measureText({
+  @State textWidth: number = MeasureText.measureText({ // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
     textContent: "Hello word",
     fontSize: '50px'
   })
@@ -91,13 +95,17 @@ measureTextSize(options: MeasureOptions): SizeOptions
 
 **示例：**
 
+> **说明**
+>
+>推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例
+
 ```ts
 import { MeasureText } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
-  textSize : SizeOptions = MeasureText.measureTextSize({
+  textSize : SizeOptions = MeasureText.measureTextSize({ // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
     textContent: "Hello word",
     fontSize: '50px'
   })

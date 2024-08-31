@@ -187,3 +187,4 @@
   - [自定义组件](ui-js-custom-components.md)
   - [WebGL](../webgl/Readme-CN.md)
 - [窗口管理](../windowmanager/Readme-CN.md)
+- [屏幕管理](../displaymanager/Readme-CN.md)

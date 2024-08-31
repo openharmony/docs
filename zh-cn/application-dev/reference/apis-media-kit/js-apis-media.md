@@ -1498,26 +1498,18 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
-let avPlayer: media.AVPlayer | undefined = undefined;
+let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
-media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
-  if(player != null) {
-    avPlayer = player;
-    console.info(`Succeeded in creating AVPlayer`);
-    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
-      if (arrList != null) {
-        for (let i = 0; i < arrList.length; i++) {
-          if (i != 0) {
-            // 获取音频轨道列表
-            audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
-          }
-        }
-      } else {
-        console.error(`Failed to get TrackDescription, error:${error}`);
+avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+  if (arrList != null) {
+    for (let i = 0; i < arrList.length; i++) {
+      if (i != 0) {
+        // 获取音频轨道列表
+        audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
       }
-    });
+    }
   } else {
-    console.error(`Failed to create AVPlayer, error message:${err.message}`);
+    console.error(`Failed to get TrackDescription, error:${error}`);
   }
 });
 
@@ -1562,26 +1554,18 @@ deselectTrack(index: number): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
 
-let avPlayer: media.AVPlayer | undefined = undefined;
+let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
-media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
-  if(player != null) {
-    avPlayer = player;
-    console.info(`Succeeded in creating AVPlayer`);
-    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
-      if (arrList != null) {
-        for (let i = 0; i < arrList.length; i++) {
-          if (i != 0) {
-            // 获取音频轨道列表
-            audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
-          }
-        }
-      } else {
-        console.error(`Failed to get TrackDescription, error:${error}`);
+avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+  if (arrList != null) {
+    for (let i = 0; i < arrList.length; i++) {
+      if (i != 0) {
+        // 获取音频轨道列表
+        audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
       }
-    });
+    }
   } else {
-    console.error(`Failed to create AVPlayer, error message:${err.message}`);
+    console.error(`Failed to get TrackDescription, error:${error}`);
   }
 });
 
@@ -7698,6 +7682,47 @@ avScreenCaptureRecorder.stopRecording().then(() => {
     console.info('Succeeded in stopping avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Failed to stop avScreenCaptureRecorder, error: ' + err.message);
+})
+```
+
+### skipPrivacyMode<sup>12+</sup>
+
+skipPrivacyMode(windowIDs: Array<number>): Promise\<void>
+
+录屏时，应用可对本应用的隐私窗口做安全豁免。通过Promise获取返回值。
+如录屏时，用户在本应用进行输入密码等操作，应用不会进行黑屏处理。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                      |
+| ------ | ------- | ---- | --------------------------------------------------------- |
+| windowIDs | Array\<number> | 是   | 需要豁免隐私的窗口列表，包括主窗口id和子窗口id，窗口属性获取方法可以参考[窗口API引用](../apis-arkui/js-apis-window.md#getwindowproperties9) |
+
+**返回值：**
+
+| 类型           | 说明                             |
+| -------------- | -------------------------------- |
+| Promise\<void> | 豁免隐私窗口的Promise返回值. |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowIDs = [];
+avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
+    console.info('Succeeded in skipping privacy mode');
+}).catch((err: BusinessError) => {
+    console.info('Failed to skip privacy mode, error: ' + err.message);
 })
 ```
 

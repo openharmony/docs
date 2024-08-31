@@ -1960,7 +1960,7 @@ Creates the pointer to an **OH_ImageSourceNative** object based on a URI.
 
 | Name| Description| 
 | -------- | -------- |
-| uri | Pointer to the URI of the image source. Only file URIs or Base64 URIs are accepted. | 
+| uri | Pointer to the URI of the image source. Only file URIs or Base64 URIs are accepted. Currently, only absolute paths are supported. |
 | uriSize | URI length. | 
 | res | Double pointer to the **OH_ImageSourceNative** object created at the C++ local layer. | 
 
@@ -2830,7 +2830,7 @@ The stride is the actual memory size occupied by each row of the image, in bytes
 | Name| Description| 
 | -------- | -------- |
 | options | Pointer to an **OH_Pixelmap_InitializationOptions** object. | 
-| rowStride | Pointer to the row stride, in bytes. | 
+| rowStride | Pointer to the stride, in bytes. | 
 
 **Returns**
 
@@ -2902,7 +2902,7 @@ Converts pixel data of a pixel map from premultiplied alpha to non-premultiplied
 | Name| Description| 
 | -------- | -------- |
 | srcpixelmap | Pointer to the source pixel map, which is an **OH_PixelmapNative** object. | 
-| dstpixelmap | Pointer to the destination pixel map, which is an **OH_PixelmapNative** object. | 
+| dstpixelmap | Pointer to the destination pixel map, which is an **OH_PixelmapNative** object. This pointer must be different from the pointer to the source pixel map. | 
 | isPremul | Conversion mode. The value **true** means a conversion from premultiplied alpha to non-premultiplied alpha, and **false** means a conversion from non-premultiplied alpha to premultiplied alpha. | 
 
 **Returns**

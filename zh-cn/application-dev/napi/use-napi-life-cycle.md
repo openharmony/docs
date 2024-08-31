@@ -180,9 +180,9 @@ try {
 
 获取与reference相关联的ArkTS Object。
 
-### napi_add_finalize
+### napi_add_finalizer
 
-当ArkTS Object中的对象被垃圾回收时调用注册的napi_finalize回调。
+当ArkTS Object中的对象被垃圾回收时调用注册的napi_add_finalizer回调。
 
 cpp部分代码
 

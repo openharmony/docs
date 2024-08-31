@@ -736,6 +736,36 @@ constructor(textBackgroundStyle: TextBackgroundStyle)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | textBackgroundStyle |  TextBackgroundStyle | 是   | 文本背景色设置项。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
+## UrlStyle<sup>13+</sup>
+
+超链接对象说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| url  | string |  是  |  是  | 获取属性字符串的超链接内容。 |
+
+### constructor<sup>13+</sup>
+
+constructor(url: string)
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| url | string | 是   | 超链接设置项。|
+
 
 ## ImageAttachment
 
@@ -949,6 +979,7 @@ constructor(value?: ParagraphStyleInterface)
 | LINE_HEIGHT | 文本行高样式键。[LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle)所属键。|
 | TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
 | BACKGROUND_COLOR<sup>13+</sup> | 文本背景色样式键。[BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle13)所属键。|
+| URL<sup>13+</sup> | 超链接样式键。[UrlStyle](./ts-universal-styled-string.md#urlstyle13)所属键。|
 | GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
 | PARAGRAPH_STYLE | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。|
 | IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
