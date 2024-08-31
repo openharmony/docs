@@ -1503,7 +1503,7 @@ createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, 
 | appId| string | 是 | 需要保存图片/视频文件的应用app id。 |
 | tokenId| number| 是 | 需要短时授权应用的唯一标识。 |
 | authorizationMode| [AuthorizationMode](#authorizationmode12)| 是 | 授权模式。授予应用短期内再次保存无需重复弹框确认。 |
-| PhotoCreationConfig| Array\<[PhotoCreationConfig]js-apis-photoAccessHelper.md#photocreationconfig12> | 是 | 保存图片/视频到媒体库的配置。|
+| PhotoCreationConfig| Array\<[PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)> | 是 | 保存图片/视频到媒体库的配置。|
 
 **返回值：**
 
