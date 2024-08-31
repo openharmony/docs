@@ -10,6 +10,7 @@
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.app.ability.VpnExtensionAbility (Enhanced VPN Management)](js-apis-VpnExtensionAbility.md)
+  - [@ohos.net.netFirewall (Network Firewall)](js-apis-net-netfirewall.md)
   - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
   <!--Del-->
   - [@ohos.net.connection (Network Connection Management) (System API)](js-apis-net-connection-sys.md)

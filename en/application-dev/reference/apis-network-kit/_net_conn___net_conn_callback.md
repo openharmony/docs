@@ -2,7 +2,7 @@
 
 ## Overview
 
-Network connection callbacks.
+Defines network status callbacks.
 
 **Since**: 12
 
@@ -11,16 +11,15 @@ Network connection callbacks.
 
 ## Summary
 
-
 ### Member Variables
 
-| Name| Description.| 
+| Name| Description|
 | -------- | -------- |
-| [onNetworkAvailable](#onnetworkavailable) | Callback for network available. |
-| [onNetCapabilitiesChange](#onnetcapabilitieschange) | Callback for network capabilities changed. |
-| [onConnetionProperties](#onconnetionproperties) | Callback for network connection properties changed. |
-| [onNetLost](#onnetlost) | Callback for network lost. |
-| [onNetUnavailable](#onnetunavailable) | Callback for network unavailable, this function invoked while network can not be available in given timeout. |
+| [onNetworkAvailable](#onnetworkavailable) | Called when the network is available.|
+| [onNetCapabilitiesChange](#onnetcapabilitieschange) | Called when the network capabilities change.|
+| [onConnetionProperties](#onconnetionproperties) | Called when network connection properties change.|
+| [onNetLost](#onnetlost) | Called when the network is disconnected.|
+| [onNetUnavailable](#onnetunavailable) | Called when the network is unavailable. This callback is triggered when the network is not activated within the specified timeout interval. If the timeout interval is not set, this callback is not triggered.|
 
 
 ## Member Variable Description
@@ -34,17 +33,17 @@ typedef void (*OH_NetConn_NetworkAvailable)(NetConn_NetHandle *netHandle)
 
 **Description**
 
-Callback for network available.
+Called when the network is available.
 
-**Information**
+**Description**
 
-After the callback ends, the memory of the parameters will be automatically released, and the parameter pointers should not be saved.
+After the callback is complete, the parameter memory is automatically cleared and therefore the parameter pointer should be released.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| netHandle | Network ID. |
+| netHandle | Network handle.|
 
 ### onNetCapabilitiesChange
 
@@ -54,18 +53,18 @@ typedef void (*OH_NetConn_NetCapabilitiesChange)(NetConn_NetHandle *netHandle, N
 
 **Description**
 
-Callback for network capabilities changed.
+Called when the network capabilities change.
 
-**Information**
+**Description**
 
-After the callback ends, the memory of the parameters will be automatically released, and the parameter pointers should not be saved.
+After the callback is complete, the parameter memory is automatically cleared and therefore the parameter pointer should be released.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| netHandle | Network ID. |
-| netCapabilities | Network capabilities. |
+| netHandle | Network handle.|
+| netCapabilities | Network capabilities.|
 
 ### onConnetionProperties
 
@@ -75,18 +74,18 @@ typedef void (*OH_NetConn_NetConnectionPropertiesChange)(NetConn_NetHandle *netH
 
 **Description**
 
-Callback for network connection properties changed.
+Called when network connection properties change.
 
-**Information**
+**Description**
 
-After the callback ends, the memory of the parameters will be automatically released, and the parameter pointers should not be saved.
+After the callback is complete, the parameter memory is automatically cleared and therefore the parameter pointer should be released.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| netHandle | Network ID. |
-| connConnetionProperties | Network connection properties. |
+| netHandle | Network handle.|
+| connConnetionProperties | Network connection properties.|
 
 ### onNetLost
 
@@ -96,17 +95,17 @@ typedef void (*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle)
 
 **Description**
 
-Callback for network lost.
+Called when the network is disconnected.
 
-**Information**
+**Description**
 
-After the callback ends, the memory of the parameters will be automatically released, and the parameter pointers should not be saved.
+After the callback is complete, the parameter memory is automatically cleared and therefore the parameter pointer should be released.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| netHandle | Network ID. |
+| netHandle | Network handle.|
 
 ### onNetUnavailable
 
@@ -116,4 +115,4 @@ typedef void (*OH_NetConn_NetUnavailable)(void)
 
 **Description**
 
-Callback for network unavailable, this function invoked while network can not be available in given timeout.
+Called when the network is unavailable. This callback is triggered when the network is not activated within the specified timeout interval. If the timeout interval is not set, this callback is not triggered.
