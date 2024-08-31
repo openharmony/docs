@@ -41,12 +41,12 @@ import { bundleManager } from '@kit.AbilityKit';
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
-|:----------------:|:---:|-----|
+|----------------|---|-----|
 | FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
 | SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
-| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)：无障碍服务扩展能力，支持访问与操作前台界面。 |
+| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/is-inner-application-accessibilityextensioncontext-V5)：无障碍服务扩展能力，支持访问与操作前台界面。 |
 | DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->：数据共享扩展能力，用于对外提供数据读写服务。 |
 | FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，仅系统应用支持。 |
 | STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
@@ -76,7 +76,7 @@ import { bundleManager } from '@kit.AbilityKit';
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
-|:----------------:|:---:|:---:|
+|----------------|---|---|
 | PERMISSION_DENIED|  -1 | 拒绝授予权限。 |
 | PERMISSION_GRANTED |  0  |  授予权限。  |
 
@@ -89,7 +89,7 @@ import { bundleManager } from '@kit.AbilityKit';
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
-|:----------------:|:---:|:---:|
+|----------------|---|---|
 | FULL_SCREEN      | 0   | 窗口支持全屏显示。 |
 | SPLIT            | 1   | 窗口支持分屏显示。 |
 | FLOATING         | 2   | 支持窗口化显示。   |
@@ -103,7 +103,7 @@ import { bundleManager } from '@kit.AbilityKit';
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称 | 值 | 说明 |
-|:----------------:|:---:|:---:|
+|----------------|---|---|
 | SINGLETON        | 0   | ability的启动模式，表示单实例。 |
 | MULTITON         | 1   | ability的启动模式，表示普通多实例。 |
 | SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己指定多实例。 |
@@ -117,7 +117,7 @@ import { bundleManager } from '@kit.AbilityKit';
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 |  名称   | 值   |                            说明                            |
-| :-----: | ---- | :--------------------------------------------------------: |
+| ----- | ---- | -------------------------------------------------------|
 | PAGE    | 1    | UI界面类型的Ability。表示基于Page模板开发的FA，用于提供与用户交互的能力。        |
 | SERVICE | 2    | 后台服务类型的Ability，无UI界面。表示基于Service模板开发的PA，用于提供后台运行任务的能力。  |
 |  DATA   | 3    | 表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象。 |
@@ -129,7 +129,7 @@ import { bundleManager } from '@kit.AbilityKit';
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称                               |值 |说明 |
-|:----------------------------------|---|---|
+|----------------------------------|---|---|
 | UNSPECIFIED                        |0 |表示未定义方向模式，由系统判定。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | LANDSCAPE                          |1 |表示横屏显示模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | PORTRAIT                           |2 |表示竖屏显示模式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
