@@ -5416,7 +5416,7 @@ async function example() {
 | ----- |  ---- |  ---- |
 | ORIGINAL_MODE |  0 |  读取源文件。 |
 | EDITED_MODE |  1 |  读取编辑后的文件。|
-## AuthorizationMode<sup>11+</sup>
+## AuthorizationMode<sup>12+</sup>
 
 枚举，授权模式。
 
