@@ -1985,3 +1985,1179 @@ IME_ERR_OK - 表示成功。
 IME_ERR_NULL_POINTER - 非预期的空指针。
 
 具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+### OH_TextConfig_GetTextAvoidInfo()
+
+```
+InputMethod_ErrorCode OH_TextConfig_GetTextAvoidInfo (InputMethod_TextConfig * config, InputMethod_TextAvoidInfo ** avoidInfo )
+```
+
+**描述**
+
+获取[InputMethod_TextConfig](#inputmethod_textconfig)实例的避让信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被获取值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| avoidInfo | 输入框避让信息。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextConfig_GetWindowId()
+
+```
+InputMethod_ErrorCode OH_TextConfig_GetWindowId (InputMethod_TextConfig * config, int32_t * windowId )
+```
+
+**描述**
+
+获取[InputMethod_TextConfig](#inputmethod_textconfig)实例所属窗口的窗口id。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被获取值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| windowId | 绑定输入法的应用所属窗口的窗口id。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextConfig_IsPreviewTextSupported()
+
+```
+InputMethod_ErrorCode OH_TextConfig_IsPreviewTextSupported (InputMethod_TextConfig * config, bool * supported )
+```
+
+**描述**
+
+获取[InputMethod_TextConfig](#inputmethod_textconfig)实例的是否支持预上屏。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被获取值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| supported | 表示输入框是否支持预上屏。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextConfig_SetEnterKeyType()
+
+```
+InputMethod_ErrorCode OH_TextConfig_SetEnterKeyType (InputMethod_TextConfig * config, InputMethod_EnterKeyType enterKeyType )
+```
+
+**描述**
+
+设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的回车键功能类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| enterKeyType | 回车键功能类型。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextConfig_SetInputType()
+
+```
+InputMethod_ErrorCode OH_TextConfig_SetInputType (InputMethod_TextConfig * config, InputMethod_TextInputType inputType )
+```
+
+**描述**
+
+设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的输入框类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| inputType | 输入框的输入类型。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextConfig_SetPreviewTextSupport()
+
+```
+InputMethod_ErrorCode OH_TextConfig_SetPreviewTextSupport (InputMethod_TextConfig * config, bool supported )
+```
+
+**描述**
+
+将预上屏支持情况设置到[InputMethod_TextConfig](#inputmethod_textconfig)实例。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| supported | 表示输入框是否支持预上屏。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextConfig_SetSelection()
+
+```
+InputMethod_ErrorCode OH_TextConfig_SetSelection (InputMethod_TextConfig * config, int32_t start, int32_t end )
+```
+
+**描述**
+
+设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的选中文本范围。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| start | 所选文本的起始位置。 | 
+| end | 所选文本的结束位置。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextConfig_SetWindowId()
+
+```
+InputMethod_ErrorCode OH_TextConfig_SetWindowId (InputMethod_TextConfig * config, int32_t windowId )
+```
+
+**描述**
+
+设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的所属窗口的窗口id。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
+| windowId | 绑定输入法的应用所属窗口的窗口id。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_Create()
+
+```
+InputMethod_TextEditorProxy* OH_TextEditorProxy_Create ()
+```
+
+**描述**
+
+创建一个新的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例。
+
+**起始版本：** 12
+
+**返回：**
+
+如果创建成功，返回一个指向新创建的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 如果创建失败，对象返回NULL，可能的失败原因有应用地址空间满。
+
+
+### OH_TextEditorProxy_Destroy()
+
+```
+void OH_TextEditorProxy_Destroy (InputMethod_TextEditorProxy * proxy)
+```
+
+**描述**
+
+销毁一个[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 表示指向即将被销毁的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+
+
+### OH_TextEditorProxy_GetDeleteBackwardFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetDeleteBackwardFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_DeleteBackwardFunc * deleteBackwardFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_DeleteBackwardFunc](#oh_texteditorproxy_deletebackwardfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| deleteBackwardFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_DeleteBackwardFunc](#oh_texteditorproxy_deletebackwardfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetDeleteForwardFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetDeleteForwardFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_DeleteForwardFunc * deleteForwardFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_DeleteForwardFunc](#oh_texteditorproxy_deleteforwardfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| deleteForwardFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_DeleteForwardFunc](#oh_texteditorproxy_deleteforwardfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetFinishTextPreviewFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetFinishTextPreviewFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_FinishTextPreviewFunc * finishTextPreviewFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_FinishTextPreviewFunc](#oh_texteditorproxy_finishtextpreviewfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| finishTextPreviewFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_FinishTextPreviewFunc](#oh_texteditorproxy_finishtextpreviewfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetGetLeftTextOfCursorFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetGetLeftTextOfCursorFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_GetLeftTextOfCursorFunc * getLeftTextOfCursorFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_GetLeftTextOfCursorFunc](#oh_texteditorproxy_getlefttextofcursorfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| getLeftTextOfCursorFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_GetLeftTextOfCursorFunc](#oh_texteditorproxy_getlefttextofcursorfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetGetRightTextOfCursorFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetGetRightTextOfCursorFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_GetRightTextOfCursorFunc * getRightTextOfCursorFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_GetRightTextOfCursorFunc](#oh_texteditorproxy_getrighttextofcursorfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| getRightTextOfCursorFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_GetRightTextOfCursorFunc](#oh_texteditorproxy_getrighttextofcursorfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetGetTextConfigFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetGetTextConfigFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_GetTextConfigFunc * getTextConfigFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextconfigfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| getTextConfigFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextconfigfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetGetTextIndexAtCursorFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetGetTextIndexAtCursorFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_GetTextIndexAtCursorFunc * getTextIndexAtCursorFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_GetTextIndexAtCursorFunc](#oh_texteditorproxy_gettextindexatcursorfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| getTextIndexAtCursorFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_GetTextIndexAtCursorFunc](#oh_texteditorproxy_gettextindexatcursorfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetHandleExtendActionFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetHandleExtendActionFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_HandleExtendActionFunc * handleExtendActionFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_HandleExtendActionFunc](#oh_texteditorproxy_handleextendactionfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| handleExtendActionFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_HandleExtendActionFunc](#oh_texteditorproxy_handleextendactionfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetHandleSetSelectionFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetHandleSetSelectionFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_HandleSetSelectionFunc * handleSetSelectionFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_HandleSetSelectionFunc](#oh_texteditorproxy_handlesetselectionfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| handleSetSelectionFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_HandleSetSelectionFunc](#oh_texteditorproxy_handlesetselectionfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetInsertTextFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetInsertTextFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_InsertTextFunc * insertTextFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_InsertTextFunc](#oh_texteditorproxy_inserttextfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| insertTextFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_InsertTextFunc](#oh_texteditorproxy_inserttextfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetMoveCursorFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetMoveCursorFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_MoveCursorFunc * moveCursorFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_MoveCursorFunc](#oh_texteditorproxy_movecursorfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| moveCursorFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_MoveCursorFunc](#oh_texteditorproxy_movecursorfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetReceivePrivateCommandFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetReceivePrivateCommandFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_ReceivePrivateCommandFunc * receivePrivateCommandFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_ReceivePrivateCommandFunc](#oh_texteditorproxy_receiveprivatecommandfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| receivePrivateCommandFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_ReceivePrivateCommandFunc](#oh_texteditorproxy_receiveprivatecommandfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetSendEnterKeyFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetSendEnterKeyFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_SendEnterKeyFunc * sendEnterKeyFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_SendEnterKeyFunc](#oh_texteditorproxy_sendenterkeyfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| sendEnterKeyFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_SendEnterKeyFunc](#oh_texteditorproxy_sendenterkeyfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetSendKeyboardStatusFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetSendKeyboardStatusFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_SendKeyboardStatusFunc * sendKeyboardStatusFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_SendKeyboardStatusFunc](#oh_texteditorproxy_sendkeyboardstatusfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| sendKeyboardStatusFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_SendKeyboardStatusFunc](#oh_texteditorproxy_sendkeyboardstatusfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_GetSetPreviewTextFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_GetSetPreviewTextFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_SetPreviewTextFunc * setPreviewTextFunc )
+```
+
+**描述**
+
+从[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中获取[OH_TextEditorProxy_SetPreviewTextFunc](#oh_texteditorproxy_setpreviewtextfunc)函数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向被读取的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| setPreviewTextFunc | 表示从proxy获取到的函数[OH_TextEditorProxy_SetPreviewTextFunc](#oh_texteditorproxy_setpreviewtextfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetDeleteBackwardFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteBackwardFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_DeleteBackwardFunc deleteBackwardFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_DeleteBackwardFunc](#oh_texteditorproxy_deletebackwardfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| deleteBackwardFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_DeleteBackwardFunc](#oh_texteditorproxy_deletebackwardfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetDeleteForwardFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetDeleteForwardFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_DeleteForwardFunc deleteForwardFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_DeleteForwardFunc](#oh_texteditorproxy_deleteforwardfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| deleteForwardFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_DeleteForwardFunc](#oh_texteditorproxy_deleteforwardfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetFinishTextPreviewFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetFinishTextPreviewFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_FinishTextPreviewFunc finishTextPreviewFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_FinishTextPreviewFunc](#oh_texteditorproxy_finishtextpreviewfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| finishTextPreviewFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_FinishTextPreviewFunc](#oh_texteditorproxy_finishtextpreviewfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetGetLeftTextOfCursorFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetGetLeftTextOfCursorFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_GetLeftTextOfCursorFunc getLeftTextOfCursorFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_GetLeftTextOfCursorFunc](#oh_texteditorproxy_getlefttextofcursorfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| getLeftTextOfCursorFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_GetLeftTextOfCursorFunc](#oh_texteditorproxy_getlefttextofcursorfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetGetRightTextOfCursorFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetGetRightTextOfCursorFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_GetRightTextOfCursorFunc getRightTextOfCursorFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_GetRightTextOfCursorFunc](#oh_texteditorproxy_getrighttextofcursorfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| getRightTextOfCursorFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_GetRightTextOfCursorFunc](#oh_texteditorproxy_getrighttextofcursorfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetGetTextConfigFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetGetTextConfigFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_GetTextConfigFunc getTextConfigFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextconfigfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| getTextConfigFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_GetTextConfigFunc](#oh_texteditorproxy_gettextconfigfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetGetTextIndexAtCursorFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetGetTextIndexAtCursorFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_GetTextIndexAtCursorFunc getTextIndexAtCursorFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_GetTextIndexAtCursorFunc](#oh_texteditorproxy_gettextindexatcursorfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| getTextIndexAtCursorFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_GetTextIndexAtCursorFunc](#oh_texteditorproxy_gettextindexatcursorfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetHandleExtendActionFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetHandleExtendActionFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_HandleExtendActionFunc handleExtendActionFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_HandleExtendActionFunc](#oh_texteditorproxy_handleextendactionfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| handleExtendActionFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_HandleExtendActionFunc](#oh_texteditorproxy_handleextendactionfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetHandleSetSelectionFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetHandleSetSelectionFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_HandleSetSelectionFunc handleSetSelectionFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_HandleSetSelectionFunc](#oh_texteditorproxy_handlesetselectionfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| handleSetSelectionFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_HandleSetSelectionFunc](#oh_texteditorproxy_handlesetselectionfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetInsertTextFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetInsertTextFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_InsertTextFunc insertTextFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_InsertTextFunc](#oh_texteditorproxy_inserttextfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| insertTextFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_InsertTextFunc](#oh_texteditorproxy_inserttextfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetMoveCursorFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetMoveCursorFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_MoveCursorFunc moveCursorFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_SetMoveCursorFunc](#oh_texteditorproxy_setmovecursorfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| moveCursorFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_MoveCursorFunc](#oh_texteditorproxy_movecursorfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetReceivePrivateCommandFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetReceivePrivateCommandFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_ReceivePrivateCommandFunc receivePrivateCommandFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_ReceivePrivateCommandFunc](#oh_texteditorproxy_receiveprivatecommandfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| receivePrivateCommandFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_ReceivePrivateCommandFunc](#oh_texteditorproxy_receiveprivatecommandfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetSendEnterKeyFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetSendEnterKeyFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_SendEnterKeyFunc sendEnterKeyFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_SetSendEnterKeyFunc](#oh_texteditorproxy_setsendenterkeyfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| sendEnterKeyFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_SendEnterKeyFunc](#oh_texteditorproxy_sendenterkeyfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetSendKeyboardStatusFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetSendKeyboardStatusFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_SendKeyboardStatusFunc sendKeyboardStatusFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_SendKeyboardStatusFunc](#oh_texteditorproxy_sendkeyboardstatusfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| sendKeyboardStatusFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_SendKeyboardStatusFunc](#oh_texteditorproxy_sendkeyboardstatusfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
+
+
+### OH_TextEditorProxy_SetSetPreviewTextFunc()
+
+```
+InputMethod_ErrorCode OH_TextEditorProxy_SetSetPreviewTextFunc (InputMethod_TextEditorProxy * proxy, OH_TextEditorProxy_SetPreviewTextFunc setPreviewTextFunc )
+```
+
+**描述**
+
+将函数[OH_TextEditorProxy_SetPreviewTextFunc](#oh_texteditorproxy_setpreviewtextfunc)设置到[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| proxy | 指向即将被设置的[InputMethod_TextEditorProxy](#inputmethod_texteditorproxy)实例的指针。 | 
+| setPreviewTextFunc | 表示被设置到proxy的函数[OH_TextEditorProxy_SetPreviewTextFunc](#oh_texteditorproxy_setpreviewtextfunc)。 | 
+
+**返回：**
+
+返回一个特定的错误码。
+
+IME_ERR_OK - 表示成功。
+
+IME_ERR_NULL_POINTER - 非预期的空指针。
+
+具体错误码可以参考 [InputMethod_ErrorCode](#inputmethod_errorcode)。
