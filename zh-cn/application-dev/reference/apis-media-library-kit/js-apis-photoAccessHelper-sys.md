@@ -5416,6 +5416,17 @@ async function example() {
 | ----- |  ---- |  ---- |
 | ORIGINAL_MODE |  0 |  读取源文件。 |
 | EDITED_MODE |  1 |  读取编辑后的文件。|
+## AuthorizationMode<sup>11+</sup>
+
+枚举，授权模式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| SHORT_TIME_AUTHORIZATION|  0 |  短时授权。 |
 
 ## AnalysisType<sup>11+</sup>
 
