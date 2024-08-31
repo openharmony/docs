@@ -3,7 +3,7 @@
 
 ## 概述
 
-Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。 本模块采用屏幕物理像素单位px。
+Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。 本模块采用屏幕物理像素单位px。本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
