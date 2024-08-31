@@ -117,7 +117,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2
 
 #### napi_create_object_with_properties
 
-用于使用给定的napi_property_descriptor作为属性去创建一个ArkTS对象，并且descriptor的键名必须为string，且不可转为number。
+用给定的napi_property_descriptor作为属性去创建一个ArkTS对象，并且descriptor的键名必须为string，且不可转为number。
 
 cpp部分代码
 
@@ -241,8 +241,9 @@ static napi_value RunScriptPath(napi_env env, napi_callback_info info)
     napi_value returnValue = nullptr;
     if (value == nullptr || status != napi_ok) {
         napi_get_boolean(env, false, &returnValue);
+    } else {
+        napi_get_boolean(env, true, &returnValue);
     }
-    napi_get_boolean(env, true, &returnValue);
     return returnValue;
 }
 ```
@@ -270,7 +271,7 @@ try {
 
 test.js代码，将js代码编成.abc文件，步骤如下:
 
-1. 在sdK的ets/build-tools/ets-loader/bin/ark/build-win/bin目录下放置test.js文件
+1. 在SDK的ets/build-tools/ets-loader/bin/ark/build-win/bin目录下放置test.js文件
 2. 执行命令如es2abc.exe test.js  --output test.abc后便可生成test.abc文件
 
 放入指定路径中：/entry/resources/rawfile
@@ -718,7 +719,7 @@ hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.a
 
 | 接口 | 描述 |
 | -------- | -------- |
-| napi_call_threadsafe_function_with_priority | 将指定优先级和入队方式的任务投递到ArkTS线程。 |
+| napi_call_threadsafe_function_with_priority | 将指定优先级和入队方式的任务投递到ArkTS主线程。 |
 
 ### 使用示例
 
