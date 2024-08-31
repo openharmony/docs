@@ -4128,3 +4128,15 @@ Allows an application to install beta applications.
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+
+Allows an application to save images and videos to the user's directory within up to 30 minutes after obtaining the permission.
+
+**Permission level**: system_basic
+
+**Authorization mode**: user_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
