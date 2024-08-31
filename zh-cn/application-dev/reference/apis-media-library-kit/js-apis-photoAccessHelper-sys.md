@@ -1482,6 +1482,74 @@ async function example() {
 }
 ```
 
+### createAssetsForAppWithMode<sup>12+</sup>
+
+createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, tokenId: number, authorizationMode: AuthorizationMode, photoCreationConfigs:Array\<PhotoCreationConfig>): Promise\<Array\<string>>
+
+提供给应用保存短时授权，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| boundleName| string | 是 | 需要保存图片/视频文件的应用boundleName。 |
+| appName| string | 是 | 需要保存图片/视频文件的应用appName。|
+| appId| string | 是 | 需要保存图片/视频文件的应用app id。 |
+| tokenId| number| 是 | 需要短时授权应用的唯一标识。 |
+| authorizationMode| [AuthorizationMode](#authorizationmode12)| 是 | 授权模式。授予应用短期内再次保存无需重复弹框确认。 |
+| PhotoCreationConfig| Array\<[PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)> | 是 | 保存图片/视频到媒体库的配置。|
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise\<Array\<string>> | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('createAssetsForAppDemo.');
+
+  try {
+    let bundleName: string = 'testBundleName';
+    let appName: string = 'testAppName';
+    let appId: string = 'testAppId';
+    let tokenId:number = "testTokenId";
+    let authorizationMode:number = "testTokenId";
+    let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+      {
+        title: 'test',
+        fileNameExtension: 'jpg',
+        photoType: photoAccessHelper.PhotoType.IMAGE,
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
+      }
+    ];
+    let desFileUris: string[] = await phAccessHelper.createAssetsForAppWithMode(bundleName, appName, appId, tokenId, authorizationMode, photoCreationConfigs);
+    console.info('createAssetsForApp success, data is ' + desFileUris);
+  } catch (err) {
+    console.error(`createAssetsForApp failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## PhotoAsset
 
 提供封装文件属性的方法。
@@ -5348,6 +5416,17 @@ async function example() {
 | ----- |  ---- |  ---- |
 | ORIGINAL_MODE |  0 |  读取源文件。 |
 | EDITED_MODE |  1 |  读取编辑后的文件。|
+## AuthorizationMode<sup>12+</sup>
+
+枚举，授权模式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| SHORT_TIME_AUTHORIZATION|  0 |  短时授权。 |
 
 ## AnalysisType<sup>11+</sup>
 
