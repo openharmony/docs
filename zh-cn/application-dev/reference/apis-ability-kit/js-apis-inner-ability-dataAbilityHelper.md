@@ -98,7 +98,7 @@ DAHelper.openFile('dataability:///com.example.DataAbility', mode).then((data) =>
 });
 ```
 
-## DataAbilityHelper.on
+## DataAbilityHelper.on('dataChange')
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
@@ -136,7 +136,7 @@ DAHelper.on(
 );
 ```
 
-## DataAbilityHelper.off
+## DataAbilityHelper.off('dataChange')
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
