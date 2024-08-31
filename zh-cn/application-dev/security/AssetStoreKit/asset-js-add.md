@@ -32,6 +32,7 @@
 | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
 | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
 | CONFLICT_RESOLUTION   | 类型为number，取值范围详见[ConflictResolution](../../reference/apis-asset-store-kit/js-apis-asset.md#conflictresolution)。 | 可选     | 新增关键资产时的冲突（如：别名相同）处理策略。  |
+| REQUIRE_ATTR_ENCRYPTED<sup>13+</sup> | 类型为bool。 | 可选 | 是否加密业务自定义附属信息，默认不需要加密。|
 
 ## 约束和限制
 
