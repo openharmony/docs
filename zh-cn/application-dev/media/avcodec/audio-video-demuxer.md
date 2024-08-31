@@ -182,7 +182,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_drm.so)
    ```
-   设置DRM信息监听的接口有两种，示例一所示的回调函数支持返回解封装器实例，适用于多个解封装器场景。示例二所示的回调函数不支持返回解封装器实例，适用于单个解封装器实例场景。可根据需要选择，推荐使用示例一。
+   设置DRM信息监听的接口有两种，示例一所示的回调函数支持返回解封装器实例，适用于多个解封装器场景，推荐使用。示例二所示的回调函数不支持返回解封装器实例，适用于单个解封装器实例场景。
 
    使用示例一：
    ```c++
@@ -214,7 +214,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
-   在获取、解析DRM信息后，需创建对应DRM方案的[MediaKeySystem](../drm/native-drm-mediakeysystem-management.md#DRM系统管理)、[MediaKeySession](../drm/native-drm-mediakeysession-management.md#DRM会话管理)，获取DRM许可证等。并根据需要设置音频解密配置(详见[音频解码开发指南开发步骤](./audio-decoding.md#开发步骤)第4步)、设置视频解密配置(详见[视频解码开发指南开发步骤Surface模式](./video-decoding.md#surface模式)第5步或[Buffer模式](./video-decoding.md#buffer模式)第4步)，实现DRM内容解密。
+   在获取、解析DRM信息后，需创建对应DRM解决方案的[MediaKeySystem](../drm/native-drm-mediakeysystem-management.md#DRM系统管理)、[MediaKeySession](../drm/native-drm-mediakeysession-management.md#DRM会话管理)，获取DRM许可证等。并根据需要设置音频解密配置(详见[音频解码开发指南开发步骤](./audio-decoding.md#开发步骤)第4步)、设置视频解密配置(详见[视频解码开发指南开发步骤Surface模式](./video-decoding.md#surface模式)第5步或[Buffer模式](./video-decoding.md#buffer模式)第4步)，实现DRM内容解密。
 
 5. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
 
