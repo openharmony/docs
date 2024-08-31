@@ -878,7 +878,7 @@ async function example() {
 
 Provides APIs for encapsulating file asset attributes.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2269,7 +2269,7 @@ async function example() {
 
 Provides APIs to manage albums.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
