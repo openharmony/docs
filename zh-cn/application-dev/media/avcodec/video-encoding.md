@@ -1,6 +1,6 @@
 # 视频编码
 
-开发者可以调用本模块的Native API接口，完成视频编码，即将未压缩的视频数据压缩成视频码流。
+调用者可以调用本模块的Native API接口，完成视频编码，即将未压缩的视频数据压缩成视频码流。
 
 <!--RP3--><!--RP3End-->
 
@@ -28,7 +28,8 @@
 ## 限制约束
 1. buffer模式不支持10bit的图像数据。
 2. 由于硬件编码器资源有限，每个编码器在使用完毕后都必须调用OH_VideoEncoder_Destroy()函数来销毁实例并释放资源。
-3. 在调用Flush，Reset，Stop的过程中，开发者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
+3. 在调用Flush，Reset，Stop的过程中，调用者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
+4. Buffer模式和Surface模式使用方式一致的接口，故提供了Surface模式的示例。
 
 
 ## Surface输入与Buffer输入
@@ -66,7 +67,7 @@
 6. Executing 状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoEncoder_Start()之后，编码器立即进入Running子状态。
    - 对于处于Executing状态的编码器，可以调用OH_VideoEncoder_Flush()方法返回到Flushed子状态。
-   - 当待处理数据全部传递给编码器后，可以在input buffers队列中为最后一个入队的input buffer中添加AVCODEC_BUFFER_FLAGS_EOS标记，遇到这个标记时，编码器会转换为End-of-Stream子状态。在此状态下，编码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
+   - 当待处理数据全部传递给编码器后，可以在input buffers队列中为最后一个入队的input buffer中添加AVCODEC_BUFFER_FLAGS_EOS标记，遇到这个标记时，编码器会转换为End-of-Stream子状态。在此状态下，编码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。具体可参考下文中：buffer模式的步骤-8-调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
 
 7. 使用完编码器后，必须调用OH_VideoEncoder_Destroy()方法销毁编码器实例。使编码器进入Released 状态。
 
@@ -85,12 +86,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 ```
 > **说明：**
 >
-> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
+> 上述'sample'字样仅为示例，此处由调用者根据实际工程目录自定义。
 >
 
 ### Surface模式
 
-参考以下示例代码，开发者可以完成Surface模式下视频编码的全流程。此处以surface数据输入，编码成H.264格式为例。
+参考以下示例代码，调用者可以完成Surface模式下视频编码的全流程。此处以surface数据输入，编码成H.264格式为例。
 本模块目前仅支持异步模式的数据轮转。
 
 1. 添加头文件。
@@ -119,7 +120,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
    
 3. 创建编码器实例对象。
 
-    应用可以通过名称或媒体类型创建编码器。示例中的变量说明如下：
+    调用者可以通过名称或媒体类型创建编码器。示例中的变量说明如下：
 
     - videoEnc：视频编码器实例的指针；
     - capability：编解码器能力查询实例的指针；
@@ -130,6 +131,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```c++
     // 通过codec name创建编码器，应用有特殊需求，比如选择支持某种分辨率规格的编码器，可先查询capability，再根据codec name创建编码器。
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
+    // 创建硬件编码器实例
+    OH_AVCapability *capability= OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, HARDWARE);
     const char *codecName = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
     ```
@@ -146,7 +149,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     - OH_AVCodecOnError 编码器运行错误；
     - OH_AVCodecOnStreamChanged  码流信息变化，如格式变化等；
-    - OH_AVCodecOnNeedInputBuffer 输入回调无作用，用户通过获取的surface输入数据；
+    - OH_AVCodecOnNeedInputBuffer 输入回调无作用，调用者通过获取的surface输入数据；
     - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。
 
     <!--RP2--><!--RP2End-->
@@ -158,7 +161,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 设置OH_AVCodecOnError 回调函数，编码异常
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
-        // 回调的错误码由用户判断处理
+        // 回调的错误码由调用者判断处理
         (void)codec;
         (void)errorCode;
         (void)userData;
@@ -181,7 +184,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 设置 OH_AVCodecOnNeedInputBuffer 回调函数，编码输入帧送入数据队列
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // surface模式下，该回调函数无作用，用户通过获取的surface输入数据
+        // surface模式下，该回调函数无作用，调用者通过获取的surface输入数据
         (void)userData;
         (void)index;
         (void)buffer;
@@ -359,14 +362,14 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     <!--RP8End-->
 
 11. 写入编码图像。
-    在之前的第7步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
+    在之前的第7步中，调用者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以调用者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
 
 12. （可选）调用OH_VideoEncoder_PushInputParameter()通知编码器随帧参数配置输入完成。
-    在之前的第5步中，开发者已经注册随帧通路回调
+    在之前的第5步中，调用者已经注册随帧通路回调
 
     以下示例中：
 
-    - index：回调函数OnNeedInputParameter传入的参数，数据队列的索引。
+    - index：回调函数OnNeedInputParameter传入的参数，与buffer唯一对应的标识。
 
     ```c++
     int32_t ret = OH_VideoEncoder_PushInputParameter(videoEnc, index);
@@ -390,8 +393,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     以下示例中：
 
-    - index：回调函数OnNewOutputBuffer传入的参数，数据队列的索引。
-    - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针。
+    - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识。
+    - buffer： 回调函数OnNewOutputBuffer传入的参数，Surface模式调用者无法通过OH_AVBuffer_GetAddr()接口获取图像虚拟地址。
 
     ```c++
     // 获取编码后信息
@@ -451,7 +454,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
 
 17. （可选）调用OH_VideoEncoder_Stop()停止编码器。
-    调用OH_VideoEncoder_Stop()后，编码器处于停止的状态，直到调用OH_VideoEncoder_Start()重新开始编码。
+
+    调用OH_VideoEncoder_Stop()后，编码器保留了编码实例，调用者可以直接调用OH_VideoEncoder_Start()继续编码，
+
+    输入的第一个buffer需要携带参数集，从IDR帧开始送入。
+
     ```c++
     // 终止编码器videoEnc
     int32_t ret = OH_VideoEncoder_Stop(videoEnc);
@@ -489,7 +496,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 ### Buffer模式
 
-参考以下示例代码，开发者可以完成Buffer模式下视频编码的全流程。此处以YUV文件输入，编码成H.264格式为例。
+参考以下示例代码，调用者可以完成Buffer模式下视频编码的全流程。此处以YUV文件输入，编码成H.264格式为例。
 本模块目前仅支持异步模式的数据轮转。
 
 1. 添加头文件。
@@ -528,7 +535,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即编码器已准备好，可以输入YUV/RGB数据；
     - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。
 
-    开发者可以通过处理该回调报告的信息，确保编码器正常运转。
+    调用者可以通过处理该回调报告的信息，确保编码器正常运转。
 
     <!--RP2--><!--RP2End-->
 
@@ -542,7 +549,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 编码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
-        // 回调的错误码由用户判断处理
+        // 回调的错误码由调用者判断处理
         (void)codec;
         (void)errorCode;
         (void)userData;
@@ -675,7 +682,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     送入输入队列进行编码，以下示例中：
 
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针；
-    - index：回调函数OnNeedInputBuffer传入的参数，数据队列的索引；
+    - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
     - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)
     - stride: 获取到的buffer数据的跨距。
 
@@ -685,7 +692,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         int32_t frameSize = width * height * 3 / 2; // NV12像素格式下，每帧数据大小的计算公式
         inputFile->read(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), frameSize);
     } else {
-        // 如果跨距不等于宽，需要用户按照跨距进行偏移
+        // 如果跨距不等于宽，需要调用者按照跨距进行偏移
     }
     // 配置buffer info信息
     OH_AVCodecBufferAttr info;
@@ -771,7 +778,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     delete[] src;
     src = nullptr;
     ```
-    硬件编码在处理buffer数据时（推送数据前），需要用户拷贝宽高对齐后的图像数据到输入回调的AVbuffer中。
+    硬件编码在处理buffer数据时（推送数据前），需要调用者拷贝宽高对齐后的图像数据到输入回调的AVbuffer中。
     一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理。
     
     具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoEncoder_RegisterCallback()设置回调函数来获取数据的宽高、跨距、像素格式。
@@ -780,7 +787,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 9. 通知编码器结束。
 
     以下示例中：
-    - index：回调函数OnNeedInputBuffer传入的参数，数据队列的索引。
+    - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识。
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针；
 
     与“8. 写入编码图像”一样，使用同一个接口OH_VideoEncoder_PushInputBuffer，通知编码器输入结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
