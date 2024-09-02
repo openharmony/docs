@@ -4110,6 +4110,128 @@ function setSlowMotionDetectionArea(slowMotionVideoSession: camera.SlowMotionVid
 }
 ```
 
+## PanoramaPhotoSession<sup>12+</sup>
+
+PanoramaPhotoSession extends Session, Focus, AutoExposure, WhiteBalance, ColorEffect
+
+全景拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置全景拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+监听全景拍照会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                          | 必填 | 说明                           |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError): void {
+  console.error(`Panorama photo session error code: ${err.code}`);
+}
+
+function registerSessionError(panoramaPhotoSession: camera.PanoramaPhotoSession): void {
+  panoramaPhotoSession.on('error', callback);
+}
+```
+
+### off('error')<sup>11+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听全景拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                        | 必填 | 说明                           |
+| -------- | ------------------------ | ---- | ------------------------------ |
+| type     | string    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。       |
+
+**示例：**
+
+```ts
+function unregisterSessionError(panoramaPhotoSession: camera.PanoramaPhotoSession): void {
+  panoramaPhotoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>11+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明                       |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(panoramaPhotoSession: camera.PanoramaPhotoSession): void {
+  panoramaPhotoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>11+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+注销监听相机聚焦的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+
+**示例：**
+
+```ts
+function unregisterFocusStateChange(panoramaPhotoSession: camera.PanoramaPhotoSession): void {
+  panoramaPhotoSession.off('focusStateChange');
+}
+```
+
 ## IsoInfo<sup>12+</sup>
 
 ISO参数信息。
