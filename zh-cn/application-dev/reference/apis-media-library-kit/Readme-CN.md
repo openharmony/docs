@@ -14,8 +14,11 @@
   - 模块
     - [MediaAssetManager](_media_asset_manager.md)
   - 头文件
+    - [media_access_helper_capi.h](media__access__helper__capi_8h.md)
     - [media_asset_base_capi.h](media__asset__base__capi_8h.md)
+    - [media_asset_capi.h](media__asset__capi_8h.md)
+    - [media_asset_change_request_capi.h](media__asset__change__request__capi_8h.md)
     - [media_asset_manager_capi.h](media__asset__manager__capi_8h.md)
   - 结构体
     - [MediaLibrary_RequestId](_media_library___request_id.md)
-    - [MediaLibrary_RequestOptions](_media_library___request_options.md)  
+    - [MediaLibrary_RequestOptions](_media_library___request_options.md)
