@@ -172,8 +172,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
               document.getElementById("webDemo").innerHTML = "ndkProxy method2 undefined"
               return "objName  test undefined"
         }
-        var retStr = window.ndkProxy.method1("hello", "world", [1.2, -3.4, 123.456], ["Saab", "Volvo", "BMW", undefined], 1.23456, 123789, true, false, 0,  undefined);
-        document.getElementById("webDemo").innerHTML  = "ndkProxy and method1 is ok, " + retStr;
+        window.ndkProxy.method1("hello", "world", [1.2, -3.4, 123.456], ["Saab", "Volvo", "BMW", undefined], 1.23456, 123789, true, false, 0,  undefined);
   }
 
   function testNdkProxyObjMethod2() {
@@ -200,8 +199,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
       var cars = [student, 456, false, 4.567];
       let params = "[\"{\\\"scope\\\"]";
 
-      var retStr = window.ndkProxy.method2("hello", "world", false, cars, params);
-      document.getElementById("webDemo").innerHTML  = "ndkProxy and method2 is ok, " + retStr;
+      window.ndkProxy.method2("hello", "world", false, cars, params);
   }
 
   function runJSRetStr(data) {
