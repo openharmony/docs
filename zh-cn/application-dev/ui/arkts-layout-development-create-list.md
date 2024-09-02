@@ -753,7 +753,7 @@ ListItem() {
              Blank()
              Text('+') //提供新增列表项入口，即给新增按钮添加点击事件
                .onClick(() => {
-                 TextPickerDialog.show({
+                 this.getUIContext().showTextPickerDialog({
                    range: this.availableThings,
                    onAccept: (value: TextPickerResult) => {
                      let arr = Array.isArray(value.index) ? value.index : [value.index];
