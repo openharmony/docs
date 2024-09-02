@@ -7,6 +7,8 @@
 
 **库：** libvideo_processing.so
 
+**引用文件：** <multimedia/video_processing_engine/video_processing_types.h>
+
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
 **起始版本：** 12
