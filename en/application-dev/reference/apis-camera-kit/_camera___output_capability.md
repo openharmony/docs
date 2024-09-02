@@ -49,6 +49,8 @@ Camera_Profile** Camera_OutputCapability::photoProfiles
 
 Double pointer to the list of photo profiles.
 
+In the configuration file, **size** is set to the width and height of the camera resolution, not the actual width and height of an output image.
+
 
 ### photoProfilesSize
 

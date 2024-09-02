@@ -3,7 +3,7 @@
 
 ## 概述
 
-Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。 本模块采用屏幕物理像素单位px。
+Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。 本模块采用屏幕物理像素单位px。本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -232,6 +232,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| void [OH_Drawing_TypographyDestroyTextBox](#oh_drawing_typographydestroytextbox) ([OH_Drawing_TextBox](#oh_drawing_textbox) \*) | 释放文本框占用的内存。 | 
+| void [OH_Drawing_SetTextShadow](#oh_drawing_settextshadow) ([OH_Drawing_TextShadow](#oh_drawing_textshadow) \*shadow, uint32_t color, [OH_Drawing_Point](#oh_drawing_point) \*offset, double blurRadius) | 设置字体阴影对象的参数。 | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_CanvasDrawSingleCharacter](#oh_drawing_canvasdrawsinglecharacter) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, const char \*str, const [OH_Drawing_Font](#oh_drawing_font) \*font, float x, float y) | 用于绘制单个字符。当前字型中的字体不支持待绘制字符时，退化到使用系统字体绘制字符。 | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontMeasureSingleCharacter](#oh_drawing_fontmeasuresinglecharacter) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const char \*str, float \*textWidth) | 用于测量单个字符的宽度。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。 |
 | void [OH_Drawing_TypographyPaintOnPath](#oh_drawing_typographypaintonpath) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Path](#oh_drawing_path) \*, double, double) | 沿路径绘制文本。 |
@@ -2854,6 +2856,53 @@ enum OH_Drawing_WordBreakType
 
 
 ## 函数说明
+
+
+### OH_Drawing_TypographyDestroyTextBox()
+
+```
+void OH_Drawing_TypographyDestroyTextBox (OH_Drawing_TextBox* )
+```
+
+**描述**
+
+释放文本框占用的内存。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_TextBox | 指向文本框对象[OH_Drawing_TextBox](#oh_drawing_textbox)的指针。 | 
+
+
+### OH_Drawing_SetTextShadow()
+
+```
+void OH_Drawing_SetTextShadow (OH_Drawing_TextShadow* shadow, uint32_t color, OH_Drawing_Point* offset, double blurRadius )
+```
+
+**描述**
+
+设置字体阴影对象的参数。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_TextShadow | 指向字体阴影对象[OH_Drawing_TextShadow](#oh_drawing_textshadow)的指针，由[OH_Drawing_CreateTextShadow](#oh_drawing_createtextshadow)获取。 | 
+| color | 字体阴影的颜色，例如入参为0xAABBCCDD，AA代表透明度，BB代表红色分量的值，CC代表绿色分量的值，DD代表蓝色分量的值。 | 
+| OH_Drawing_Point | 指向坐标点对象[OH_Drawing_Point](#oh_drawing_point)的指针，字体阴影基于当前文本的偏移位置。 | 
+| blurRadius | 模糊半径，浮点数，没有单位，值为0.0时表示没有模糊效果。 | 
+
+
 
 ### OH_Drawing_CanvasDrawSingleCharacter()
 

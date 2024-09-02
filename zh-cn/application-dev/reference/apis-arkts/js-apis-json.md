@@ -119,7 +119,7 @@ console.info((numberObj as object)?.["largeNumber"]);
 
 stringify(value: Object, replacer?: (number | string)[] | null, space?: string | number): string
 
-该方法将一个ArkTS对象或数组转换为JSON字符串。
+该方法将一个ArkTS对象或数组转换为JSON字符串，对于容器支持线性容器转换，非线性的容器不支持。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -129,7 +129,7 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | Object | 是 | ArkTS对象或数组。|
+| value | Object | 是 | ArkTS对象或数组，对于容器支持线性容器转换，非线性的容器不支持。|
 | replacer | number[] \| string[] \| null | 否 | 当参数是数组时，只有包含在这个数组中的属性名才会被序列化到最终的JSON字符串中；当参数为null或者未提供时，则对象所有的属性都会被序列化。默认值是undefined。|
 | space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供时，将没有空格。默认值是空字符串。|
 
@@ -164,7 +164,7 @@ let str1 = JSON.stringify(obj, ["name"]);
 
 stringify(value: Object, replacer?: Transformer, space?: string | number): string
 
-该方法将一个ArkTS对象或数组转换为JSON字符串。
+该方法将一个ArkTS对象或数组转换为JSON字符串，对于容器支持线性容器转换，非线性的容器不支持。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -174,7 +174,7 @@ stringify(value: Object, replacer?: Transformer, space?: string | number): strin
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | Object | 是 | ArkTS对象或数组。|
+| value | Object | 是 | ArkTS对象或数组，对于容器支持线性容器转换，非线性的容器不支持。|
 | replacer | [Transformer](#transformer) | 否 | 在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理。默认值是undefined。|
 | space | string \| number | 否 | 指定缩进用的空格或字符串或空字符串，用于美化输出。当参数是数字时表示有多少个空格；当参数是字符串时，该字符串被当作空格；当参数没有提供时，将没有空格。默认值是空字符串。|
 

@@ -2094,6 +2094,10 @@ getSystemFontList(): Array\<string>
 | -------------- | --------- |
 | Array\<string> | 系统的字体名列表。 |
 
+>  **说明：**
+>
+>  该接口仅在2in1设备上生效。
+
 **示例：** 
 
 ```ts
@@ -5114,7 +5118,7 @@ try {
 
 openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。暂不支持isModal = true与showInSubWindow = true同时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5291,11 +5295,107 @@ struct Index {
 }
 ```
 
+### updateCustomDialog<sup>12+</sup>
+
+updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+
+更新已弹出的dialogContent对应的自定义弹窗的样式，使用Promise异步回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 是    |   弹窗样式，目前仅支持更新alignment、offset、autoCancel、maskColor。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | the ComponentContent is incorrect. |
+| 103303 | the ComponentContent cannot be found. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
+
+class Params {
+  text: string = ""
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({bottom: 36})
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+            .onClick(() => {
+                let uiContext = this.getUIContext();
+                let promptAction = uiContext.getPromptAction();
+                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+                try {
+                  promptAction.openCustomDialog(contentNode);
+                } catch (error) {
+                  let message = (error as BusinessError).message;
+                  let code = (error as BusinessError).code;
+                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
+                };
+
+                setTimeout(() => {
+                  try {
+                    promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd });
+                  } catch (error) {
+                    let message = (error as BusinessError).message;
+                    let code = (error as BusinessError).code;
+                    console.error(`updateCustomDialog args error code is ${code}, message is ${message}`);
+                  };
+                }, 2000);   //2秒后自动更新弹窗位置
+            })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ### openCustomDialog<sup>12+</sup>
 
 openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
-创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。
+创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。暂不支持isModal = true与showInSubWindow = true同时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5397,102 +5497,6 @@ struct Index {
               this.customDialogComponentId = dialogId
             })
           })
-      }
-      .width('100%')
-      .height('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-### updateCustomDialog<sup>12+</sup>
-
-updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
-
-更新已弹出的dialogContent对应的自定义弹窗的样式，使用Promise异步回调。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名     | 类型                                       | 必填   | 说明      |
-| ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
-| options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 是    |   弹窗样式，目前仅支持更新alignment、offset、autoCancel、maskColor。 |
-
-**返回值：**
-
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
-
-| 错误码ID  | 错误信息                               |
-| ------ | ---------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103303 | the ComponentContent cannot be found. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { ComponentContent } from '@kit.ArkUI';
-
-class Params {
-  text: string = ""
-  constructor(text: string) {
-    this.text = text;
-  }
-}
-
-@Builder
-function buildText(params: Params) {
-  Column() {
-    Text(params.text)
-      .fontSize(50)
-      .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
-  }.backgroundColor('#FFF0F0F0')
-}
-
-@Entry
-@Component
-struct Index {
-  @State message: string = "hello"
-
-  build() {
-    Row() {
-      Column() {
-        Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
-
-                setTimeout(() => {
-                  try {
-                    promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd });
-                  } catch (error) {
-                    let message = (error as BusinessError).message;
-                    let code = (error as BusinessError).code;
-                    console.error(`updateCustomDialog args error code is ${code}, message is ${message}`);
-                  };
-                }, 2000);   //2秒后自动更新弹窗位置
-            })
       }
       .width('100%')
       .height('100%')
@@ -7425,3 +7429,102 @@ SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应S
 | -------- | ---- | ---------------------- |
 | GESTURE | 0   | 手势操作场景 |
 | ANIMATION | 1   | 动画过度场景 |
+
+## MarqueeDynamicSyncScene<sup>13+</sup>
+
+MarqueeDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应Marquee的动态帧率场景。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型                                                      | 只读 | 可选 | 说明                                |
+| --------- | --------------------------------------------------------- | ---- | ---- | ---------------------------------- |
+| type      | [MarqueeDynamicSyncSceneType](#marqueedynamicsyncscenetype13) | 是   | 否   | Marquee的动态帧率场景。             |
+
+## MarqueeDynamicSyncSceneType<sup>13+</sup>
+
+枚举值，表示Marquee的动态帧率场景的类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| ANIMATION | 1   | 动画过度场景 |
+
+**示例：**
+
+```ts
+import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct MarqueeExample {
+  @State start: boolean = false
+  @State src: string = ''
+  @State marqueeText: string = 'Running Marquee'
+  private fromStart: boolean = true
+  private step: number = 10
+  private loop: number = Number.POSITIVE_INFINITY
+  controller: TextClockController = new TextClockController()
+  convert2time(value: number): string{
+    let date = new Date(Number(value+'000'));
+    let hours = date.getHours().toString().padStart(2, '0');
+    let minutes = date.getMinutes().toString().padStart(2, '0');
+    let seconds = date.getSeconds().toString().padStart(2, '0');
+    return hours+ ":" + minutes + ":" + seconds;
+  }
+  @State ANIMATION: ExpectedFrameRateRange = {min:0, max:120, expected:30}
+  private scenes: MarqueeDynamicSyncScene[] = []
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Marquee({
+        start: this.start,
+        step: this.step,
+        loop: this.loop,
+        fromStart: this.fromStart,
+        src: this.marqueeText + this.src
+      })
+        .marqueeUpdateStrategy(MarqueeUpdateStrategy.PRESERVE_POSITION)
+        .width(300)
+        .height(80)
+        .fontColor('#FFFFFF')
+        .fontSize(48)
+        .fontWeight(700)
+        .backgroundColor('#182431')
+        .margin({ bottom: 40 })
+        .id('dynamicMarquee')
+        .onAppear(()=>{
+          this.scenes = this.getUIContext().requireDynamicSyncScene('dynamicMarquee') as MarqueeDynamicSyncScene[]
+        })
+      Button('Start')
+        .onClick(() => {
+          this.start = true
+          this.controller.start()
+          this.scenes.forEach((scenes: MarqueeDynamicSyncScene) => {
+            if (scenes.type == MarqueeDynamicSyncSceneType.ANIMATION) {
+              scenes.setFrameRateRange(this.ANIMATION)
+            }
+          });
+        })
+        .width(120)
+        .height(40)
+        .fontSize(16)
+        .fontWeight(500)
+        .backgroundColor('#007DFF')
+      TextClock({ timeZoneOffset: -8, controller: this.controller })
+        .format('hms')
+        .onDateChange((value: number) => {
+          this.src = this.convert2time(value);
+        })
+        .margin(20)
+        .fontSize(30)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```

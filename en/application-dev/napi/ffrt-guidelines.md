@@ -650,7 +650,7 @@ Pointer to the CPU function. The struct executed by the pointer describes, two f
 
   **NOTE**
 
-  The dependency is essentially a value. FFRT cannot determine whether the value is reasonable. It always treats the input value reasonable. However, you are not advised to use inappropriate values such as **NULL**, **1**, or **2** to establish dependencies. Instead, use the actual memory address because inappropriate values will establish unnecessary dependencies and affect concurrency.
+  The dependency is essentially a value. FFRT cannot determine whether the value is reasonable. It always treats the input value reasonable. However, you are not advised to use inappropriate values such as **NULL**, **1**, or **2** to establish dependencies because doing this will establish unnecessary dependencies and affect concurrency. Instead, use the actual memory address.
 
 `attr`
 
@@ -1340,7 +1340,7 @@ void func(void* arg)
 {
     time_t current_time = time(NULL);
     printf("Time: %s", ctime(&current_time));
-    ffrt_usleep(2000000);
+    ffrt_usleep(2000000); // Suspend for 2 seconds
     current_time = time(NULL);
     printf("Time: %s", ctime(&current_time));
 }
@@ -1397,7 +1397,7 @@ int main(int narg, char** argv)
 }
 ```
 
-An output case：
+An output case is as follows:
 
 ```
 Time: Tue Aug 13 15:45:30 2024

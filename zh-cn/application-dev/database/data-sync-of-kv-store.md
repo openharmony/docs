@@ -37,7 +37,8 @@
 
 ### 自动同步
 
-在[跨设备Call调用实现的多端协同](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)场景中，在应用程序更新数据后，由分布式数据库自动将本端数据推送到远端，同时也将远端数据拉取到本端来完成数据同步，应用不需要主动调用sync接口。
+<!--RP5-->
+在[跨设备Call调用实现的多端协同](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)场景中，在应用程序更新数据后，由分布式数据库自动将本端数据推送到远端，同时也将远端数据拉取到本端来完成数据同步，应用不需要主动调用sync接口。<!--RP5End-->
 
 
 ## 运作机制
@@ -180,7 +181,7 @@
      schema.root.appendChild(child1);
      schema.root.appendChild(child2);
      schema.indexes = ['$.id', '$.name'];
-     // 0表示STRICT模式，1表示COMPATIBLE模式。
+     // 0表示COMPATIBLE模式，1表示STRICT模式。
      schema.mode = 1;
      // 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。
      schema.skip = 0;
@@ -195,7 +196,7 @@
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // schema 可以不填，在需要使用schema功能时可以构造此参数，例如：使用谓词查询等。
        schema: schema,
-       securityLevel: distributedKVStore.SecurityLevel.S1
+       securityLevel: distributedKVStore.SecurityLevel.S3
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {

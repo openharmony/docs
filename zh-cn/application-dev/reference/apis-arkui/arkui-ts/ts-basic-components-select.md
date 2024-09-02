@@ -143,7 +143,7 @@ font(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 下拉按钮本身的文本样式。<br/>API Version 11及以前默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>从API Version 12以后，<br/>如果设置controlSize的值为：controlSize.SMALL，size默认值是'14fp'，否则还是'16fp'。|
+| value  | [Font](ts-types.md#font) | 是   | 下拉按钮本身的文本样式。<br/>API Version 11及以前默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_button1'),<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>API Version 12以后，如果设置controlSize的值为：controlSize.SMALL，size默认值是`$r('sys.float.ohos_id_text_size_button2')`，否则为`$r('sys.float.ohos_id_text_size_button1')`。 |
 
 ### fontColor
 
@@ -157,9 +157,9 @@ fontColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                              |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉按钮本身的文本颜色。<br/>默认值：'\#E5182431' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉按钮本身的文本颜色。<br/>默认值：`$r('sys.color.ohos_id_color_text_primary')`混合`$r('sys.color.ohos_id_alpha_content_primary')`的透明度。 |
 
 ### selectedOptionBgColor
 
@@ -173,9 +173,9 @@ selectedOptionBgColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                              |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单选中项的背景色。<br/>默认值：'\#33007DFF' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单选中项的背景色。<br/>默认值：`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_alpha_highlight_bg')`的透明度。 |
 
 ### selectedOptionFont
 
@@ -191,7 +191,7 @@ selectedOptionFont(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.color.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 
 ### selectedOptionFontColor
 
@@ -205,9 +205,9 @@ selectedOptionFontColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                                |
-| ------ | ------------------------------------------ | ---- | --------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单选中项的文本颜色。<br/>默认值：'\#ff007dff' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单选中项的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated') |
 
 ### optionBgColor
 
@@ -221,9 +221,9 @@ optionBgColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                          |
-| ------ | ------------------------------------------ | ---- | --------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单项的背景色。<br/>默认值：'\#ffffffff' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单项的背景色。<br/>默认值：<br/>API version 11之前，默认值为Color.White。<br/>API version 11及之后，默认值为Color.Transparent。 |
 
 ### optionFont
 
@@ -239,7 +239,7 @@ optionFont(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;$r('sys.float.ohos_id_text_size_body1'),<br/>weight:&nbsp;FontWeight.Regular<br/>} |
 
 ### optionFontColor
 
@@ -253,9 +253,9 @@ optionFontColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                            |
-| ------ | ------------------------------------------ | ---- | ----------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单项的文本颜色。<br/>默认值：'\#ff182431' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单项的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary') |
 
 ### space<sup>10+</sup>
 
@@ -356,9 +356,9 @@ menuBackgroundColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                             |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单的背景色。<br/>默认值：Color.Transparent |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 下拉菜单的背景色。<br/>默认值：<br/>API version 11之前，默认值为$r('sys.color.ohos_id_color_card_bg')。<br/>API version 11及之后，默认值为Color.Transparent。 |
 
 ### menuBackgroundBlurStyle<sup>11+</sup>
 

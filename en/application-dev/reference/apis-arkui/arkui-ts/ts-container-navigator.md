@@ -4,6 +4,8 @@ The **Navigator** component provides redirection.
 
 > **NOTE**
 >
+> This component is no longer maintained since API version 13. You are advised to use the [Navigation](ts-basic-components-navigation.md) component for page routing.
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 

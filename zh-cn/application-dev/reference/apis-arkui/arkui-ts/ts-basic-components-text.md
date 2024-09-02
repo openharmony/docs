@@ -1573,3 +1573,25 @@ struct TextExample12 {
 ```
 
 ![textHalfLeading](figures/textHalfLeading.PNG)
+
+### 示例13
+
+该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持
+
+```ts
+@Entry
+@Component
+struct ImageExample {
+  build() {
+    Column({ space: 10 }) {
+      Text("privacySensitive")
+        .privacySensitive(true)
+        .margin({top :30})
+    }
+    .alignItems(HorizontalAlign.Center)
+    .width("100%")
+  }
+}
+```
+
+![textPrivacySensitive](figures/textPrivacySensitive.gif)

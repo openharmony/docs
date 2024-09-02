@@ -1,6 +1,6 @@
 # AbilityStateData (系统接口)
 
-定义Ability状态信息，可以通过[on](js-apis-app-ability-appManager-sys.md#appmanageron11)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md)的onAbilityStateChanged生命周期回调获取。
+定义Ability状态信息，可以通过[on](js-apis-app-ability-appManager-sys.md#appmanageronappforegroundstate11)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md)的onAbilityStateChanged生命周期回调获取。
 
 > **说明：**
 > 
@@ -51,3 +51,6 @@ import { appManager } from '@kit.AbilityKit';
 | 0    | UNKNOWN | 未知类型。              |
 | 1    | PAGE    | UI界面类型的Ability。   |
 | 2    | SERVICE | 后台服务类型的Ability。 |
+| 3    | DATA | 数据类型的Ability。              |
+| 4    | FORM    | 卡片类型的Ability。   |
+| 5    | EXTENSION | Extension类型的Ability。 |

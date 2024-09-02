@@ -661,6 +661,18 @@
 
 **起始版本**：8
 
+### ohos.permission.READ_DFX_XPOWER
+
+允许应用访问xpower的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.PERMISSION_USED_STATS
 
 允许系统应用访问权限使用记录。
@@ -3779,7 +3791,7 @@
 
 **ACL使能**：true
 
-**起始版本**：12
+**起始版本**：13
 
 ### ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
 
@@ -4358,3 +4370,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+
+允许应用保存图片、视频到用户公共目录。应用获取此权限后，最长可获得30分钟的短时授权，来保存图片/视频。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：12

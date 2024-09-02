@@ -145,7 +145,6 @@ ohos.permission.GET_WIFI_PEERS_MAC权限仅系统应用可申请。
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -341,6 +340,8 @@ WLAN热点信息。
 wifi 设备地址（mac/bssid）类型。
 
 **系统能力：** SystemCapability.Communication.WiFi.Core
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
@@ -679,6 +680,7 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 
@@ -726,6 +728,7 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -869,7 +872,7 @@ getSignalLevel(rssi: number, band: number): number
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1101,7 +1104,7 @@ isFeatureSupported(featureId: number): boolean
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2401000  | Operation failed.|
 
@@ -1223,13 +1226,12 @@ Ipv6信息。
 | linkIpv6Address | string | 是 | 否 | 链路Ipv6地址。 |
 | globalIpv6Address | string | 是 | 否 | 全局Ipv6地址。 |
 | randomGlobalIpv6Address | string | 是 | 否 | 随机全局Ipv6地址。 预留字段，暂不支持。|
-| uniqueIpv6Address | string | 是 | 否 | 唯一本地Ipv6地址。 |
-| randomUniqueIpv6Address | string | 是 | 否 | 随机唯一本地Ipv6地址。 |
+| uniqueIpv6Address<sup>12+</sup> | string | 是 | 否 | 唯一本地Ipv6地址。 |
+| randomUniqueIpv6Address<sup>12+</sup> | string | 是 | 否 | 随机唯一本地Ipv6地址。 |
 | gateway | string | 是 | 否 | 网关。 |
 | netmask | string | 是 | 否 | 网络掩码。 |
 | primaryDNS | string | 是 | 否 | 主DNS服务器Ipv6地址。 |
 | secondDNS | string | 是 | 否 | 备DNS服务器Ipv6地址。 |
-
 
 ## wifiManager.getCountryCode<sup>9+</sup>
 
@@ -1344,6 +1346,7 @@ isMeteredHotspot(): boolean
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **示例：**
 
@@ -1414,9 +1417,9 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1517,7 +1520,6 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
 
@@ -1595,9 +1597,9 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1702,9 +1704,9 @@ API 11起：ohos.permission.GET_WIFI_INFO
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1746,9 +1748,10 @@ createGroup(config: WifiP2PConfig): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1817,6 +1820,7 @@ removeGroup(): void
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1856,9 +1860,10 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 | 201 | Permission denied.                 |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1946,6 +1951,7 @@ p2pCancelConnect(): void
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -1981,6 +1987,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -2012,6 +2019,7 @@ stopDiscoverDevices(): void
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
 ```ts
@@ -2658,6 +2666,7 @@ API 10起：无
 
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
+| 201<sup>10+</sup> | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
@@ -2736,6 +2745,7 @@ API 10起：无
 
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
+| 201<sup>10+</sup> | Permission denied.                 |
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |

@@ -1,4 +1,4 @@
-# Capi Vibrator Development
+# Vibrator Development (C/C++)
 
 
 ## When to Use

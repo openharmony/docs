@@ -344,16 +344,18 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | -------- | -------- |
 | napi_create_array | 创建并获取一个JS Array。 |
 | napi_create_array_with_length | 创建并获取一个指定长度的JS Array。 |
-| napi_create_typedarray | 通过现有的ArrayBuffer创建一个JS TypeArray。 |
-| napi_create_dataview | 通过现有的ArrayBuffer创建一个JS DataView。 |
 | napi_get_array_length | 获取array的length。 |
-| napi_get_typedarray_info | 获取给定TypedArray的各种属性。 |
-| napi_get_dataview_info | 获取给定DataView的各种属性。 |
 | napi_is_array | 判断给定JS value是否为array。 |
 | napi_set_element | 在给定Object的指定索引处，设置元素。 |
 | napi_get_element | 获取给定Object指定索引处的元素。 |
 | napi_has_element | 若给定Object的指定索引处拥有属性，获取该元素。 |
 | napi_delete_element | 尝试删除给定Object的指定索引处的元素。 |
+| napi_create_typedarray | 通过现有的ArrayBuffer创建一个JS TypeArray。 |
+| napi_is_typedarray | 判断给定JS value是否为TypeArray。|
+| napi_get_typedarray_info | 获取给定TypedArray的各种属性。 |
+| napi_create_dataview | 通过现有的ArrayBuffer创建一个JS DataView。 |
+| napi_is_dataview | 判断给定JS value是否为DataView。|
+| napi_get_dataview_info | 获取给定DataView的各种属性。|
 
 ### primitive相关
 
@@ -484,7 +486,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_queue_async_work_with_qos | 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。 |
 | napi_run_script_path | 运行指定abc文件。 |
 | napi_load_module | 将abc文件作为模块加载，返回模块的命名空间。 |
-| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间, 可在新创建的ArkTs基础运行时环境中使用。 |
+| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间, 可在新创建的ArkTS基础运行时环境中使用。 |
 | napi_create_object_with_properties | 使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为 string，且不可转为number。 |
 | napi_create_object_with_named_properties | 使用给定的napi_value和键名创建js Object。键名必须为 string，且不可转为number。 |
 | napi_coerce_to_native_binding_object | 强制将js Object和Native对象绑定。 |
@@ -715,7 +717,7 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 | napi_add_async_cleanup_hook | 注册清理异步钩子函数。 |
 | napi_remove_async_cleanup_hook | 取消清理异步钩子函数。|
 
-### ArkTs基础运行时环境
+### ArkTS基础运行时环境
 
 | 接口 | 功能说明 |
 | -------- | -------- |

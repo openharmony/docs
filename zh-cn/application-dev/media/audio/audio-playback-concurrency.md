@@ -92,7 +92,7 @@ async function onAudioInterrupt(): Promise<void> {
           isDucked = true; // 此句为简化处理，代表应用切换至降低音量播放状态的若干操作
           break;
         case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
-          // 此分支表示系统已将音频音量恢复正常，为保持状态一致，应用需切换至正常音量播放状态
+          // 此分支表示系统已将音频音量恢复正常
           isDucked = false; // 此句为简化处理，代表应用切换至正常音量播放状态的若干操作
           break;
         default:

@@ -16,12 +16,14 @@ Operation not permitted
 
 **可能原因**
 
-当前用户文件操作不被允许，URI或path访问未授权
+当前用户文件操作不被允许，URI或path访问未授权。
 
 **处理步骤**
 
 1、根据当前系统的[访问控制机制](../../security/AccessToken/access-token-overview.md)，应用无法使用分享给其他应用的URI。
+
 2、根据[系统Picker](../../application-models/system-app-startup.md)的运行机制，通过Picker获取到的URI仅有临时权限，无法持久化保存使用。
+
 3、URI路径不推荐进行拼接，拼接后的URI默认未授权。
 
 ### 13900002 没有这个文件或目录
@@ -1032,7 +1034,7 @@ Cloud status not ready
 
 **处理步骤**
 
-1.检查是否帐号登录。
+1.检查是否账号登录。
 
 2.检查云同步开关是否打开。
 

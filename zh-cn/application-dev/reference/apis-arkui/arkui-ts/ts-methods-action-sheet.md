@@ -68,6 +68,10 @@ static show(value: ActionSheetOptions)
 
 ## 示例
 
+>  **说明：**
+>
+> 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)来明确UI的执行上下文。
+
 ### 示例1
 
 ```ts
@@ -78,7 +82,7 @@ struct ActionSheetExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
         .onClick(() => {
-          ActionSheet.show({
+          ActionSheet.show({ // 建议使用 this.getUIContest().showActionSheet()接口
             title: 'ActionSheet title',
             subtitle: 'ActionSheet subtitle',
             message: 'message',

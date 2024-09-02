@@ -1000,7 +1000,7 @@ Provides APIs for encapsulating file asset attributes.
 > - If the device does not support the modification of the **orientation** field, use [ImageSource.modifyImageProperty](../apis-image-kit/js-apis-image.md#modifyimagepropertydeprecated).
 > - This API is deprecated since API version 9. Use [PhotoAsset](js-apis-photoAccessHelper.md#photoasset) instead.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -2649,7 +2649,7 @@ Provides APIs to manage albums.
 >
 > This API is deprecated since API version 9. Use [Album](js-apis-photoAccessHelper.md#album) instead.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 

@@ -1693,7 +1693,7 @@ Creates an **ImageSource** object at the JavaScript native layer based on the sp
 | Name| Description| 
 | -------- | -------- |
 | env | Pointer to the JNI environment. | 
-| uri | Pointer to the image source URI. Only a file URI or Base64 URI is accepted. | 
+| uri | Pointer to the image source URI. Only a file URI or Base64 URI is accepted. Currently, only absolute paths are supported. |
 | size | Length of the image source URI. | 
 | ops | Pointer to the options for creating the image source. For details, see [OhosImageSourceOps](_ohos_image_source_ops.md). | 
 | res | Pointer to an **ImageSource** object at the JavaScript native layer. | 

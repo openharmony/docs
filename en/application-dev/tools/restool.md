@@ -67,23 +67,22 @@ There are two resource compilation modes: full resource compilation and incremen
 
 1. To compile all resources, run the following command:
 
-   ```
-   restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt -f
-   ```
+```
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt -f
+```
 
 2. To compile incremental resources, perform the following steps:
 
-   Step 1: Generate the resource middleware.
+Step 1: Generate the resource middleware.
 
-   ```
-   restool -x entry/src/main/resource -o out
-   ```
+```
+restool -x entry/src/main/resource -o out
+```
+Step 2: Compile the resource middleware.
 
-   Step 2: Compile the resource middleware.
-
-   ```
-   restool -i out1 -i out2 -o out -p com.ohos.demo -r out/ResourceTable.txt -j entry/src/main/module.json -f -z
-   ```
+```
+restool -i out1 -i out2 -o out -p com.ohos.demo -r out/ResourceTable.txt -j entry/src/main/module.json -f -z
+```
 
 ### Fixing the Resource ID
 
@@ -93,35 +92,33 @@ Step 1: Create the **id_defined.json** file. There are two ways to create the fi
 
 + Run the following command to generate the file:
 
-  ```
-  restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt --ids out -f
-  ```
+```
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out -r out/ResourceTable.txt --ids out -f
+```
 
 + Customize the **id_defined.json** file with the following content:
 
-  ```
-  {
-      "record" :
-      [
-          {
-              "id": "0x01000000", // A fixed ID for the resource.
-              "name": "app_name", // Resource name.
-              "type": "string" // Resource type.
-          }
-      ]
-  }
-  ```
+```
+{
+    "record" :
+    [
+        {
+            "id": "0x01000000", // A fixed ID for the resource.
+            "name": "app_name", // Resource name.
+            "type": "string" // Resource type.
+        }
+    ]
+}
+```
 
 Step 2: Fix the resource ID. There are two ways to fix the resource ID.
 
 + Run the following command to fix the resource ID:
-
-  ```
-  restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt --defined-ids out/id_defined.json -f
-  ```
+```
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt --defined-ids out/id_defined.json -f
+```
 
 + Place the customized **id_defined.json** file in the **resource/base/element/** directory and then run the following command to fix the resource ID:
-
-  ```
-  restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt  -f
-  ```
+```
+restool -i entry/src/main -j entry/src/main/module.json -p com.ohos.demo -o out1 -r out1/ResourceTable.txt  -f
+```

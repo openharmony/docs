@@ -18,7 +18,7 @@ import { missionManager } from '@kit.AbilityKit';
 
 ohos.permission.MANAGE_MISSIONS
 
-## missionManager.on
+## missionManager.on('mission')
 
 on(type:'mission', listener: MissionListener): number
 
@@ -120,7 +120,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## missionManager.off
+## missionManager.off('mission')
 
 off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -218,7 +218,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 
-## missionManager.off
+## missionManager.off('mission')
 
 off(type: 'mission', listenerId: number): Promise&lt;void&gt;
 
