@@ -5852,7 +5852,6 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
     build() {
       Column() {
         Stack() {
-          NodeContainer(this.nodeController)
           Web({ src: $rawfile("index.html"), controller: this.controller })
             .enableNativeEmbedMode(true)
             .onNativeEmbedVisibilityChange((embed) => {
