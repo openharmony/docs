@@ -1000,10 +1000,10 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
   let context = getContext(this) as Context;
   contact.queryMyCard(context, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to query MyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in querying MyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1033,10 +1033,10 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryMyCard((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to query MyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in querying MyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1075,10 +1075,10 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to query MyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in querying MyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1111,10 +1111,10 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to query MyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in querying MyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1158,9 +1158,9 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying MyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query MyCard. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -1197,9 +1197,9 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying MyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query MyCard. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
