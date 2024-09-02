@@ -1046,3 +1046,27 @@ struct ImageContentExample {
 ```
 
 ![imageContent](figures/zh-cn_image_view9.gif)
+
+### 示例10
+
+该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持
+
+```ts
+@Entry
+@Component
+struct ImageExample {
+  build() {
+    Column({ space: 10 }) {
+      Image($r("app.media.startIcon"))
+        .width(50)
+        .height(50)
+        .margin({top :30})
+        .privacySensitive(true)
+    }
+    .alignItems(HorizontalAlign.Center)
+    .width("100%")
+  }
+}
+```
+
+![imageContent](figures/zh-cn_image_view10.gif)
