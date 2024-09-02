@@ -571,7 +571,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 停止Ability自身。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
-> 
+>
 > 调用该接口后，任务中心的任务默认不会清理，如需清理，需要配置[removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities标签)为true。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -631,7 +631,7 @@ terminateSelf(): Promise&lt;void&gt;
 停止Ability自身。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
-> 
+>
 > 调用该接口后，任务中心的任务默认不会清理，如需清理，需要配置[removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities标签)为true。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -693,7 +693,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者。
 
 > **说明：**
-> 
+>
 > 调用该接口后，任务中心的任务默认不会清理，如需清理，需要配置[removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities标签)为true。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -768,7 +768,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 如果该Ability是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时会将结果返回给调用者，如果该Ability不是通过调用[startAbilityForResult](#uiabilitycontextstartabilityforresult)接口被拉起的，调用terminateSelfWithResult接口时不会有结果返回给调用者。
 
 > **说明：**
-> 
+>
 > 调用该接口后，任务中心的任务默认不会清理，如需清理，需要配置[removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities标签)为true。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -1660,7 +1660,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
 
-通过type隐式启动UIExtensionAbility。使用callback异步回调。仅支持在主线程调用。
+通过type隐式启动UIExtensionAbility。使用callback异步回调。仅支持在主线程调用，仅支持处于前台的应用调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1719,7 +1719,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback) : Promise\<void>
 
-通过type隐式启动UIExtensionAbility。使用Promise异步回调。仅支持在主线程调用。
+通过type隐式启动UIExtensionAbility。使用Promise异步回调。仅支持在主线程调用，仅支持处于前台的应用调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
