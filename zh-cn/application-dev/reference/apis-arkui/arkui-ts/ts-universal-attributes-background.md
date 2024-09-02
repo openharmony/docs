@@ -126,7 +126,7 @@ backgroundImagePosition(value: Position | Alignment)
 
 backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 
-为当前组件提供一种在背景和内容之间的模糊能力。
+为当前组件提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -145,7 +145,7 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 
 backdropBlur(value: number, options?: BlurOptions)
 
-为组件添加背景模糊效果。
+为组件添加背景模糊效果，可以自定设置模糊半径和灰阶参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -168,7 +168,7 @@ backdropBlur(value: number, options?: BlurOptions)
 
 backgroundEffect(options: BackgroundEffectOptions)
 
-设置组件背景属性。
+设置组件背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -555,3 +555,57 @@ struct Index {
 ```
 
 ![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
+
+### 示例6
+backgroundEffect,backDropBlur,backgroundBlurStyle 模糊效果对比。
+
+```ts
+// xxx.ets
+// xxx.ets
+@Entry
+@Component
+struct BackGroundBlur {
+  private imageSize: number = 150;
+
+  build() {
+    Column({ space: 5 }) {
+      // backgroundBlurStyle通过枚举值的方式设置模糊参数
+      Stack() {
+        Image($r('app.media.test'))
+          .width(this.imageSize)
+          .height(this.imageSize)
+        Column()
+          .width(this.imageSize)
+          .height(this.imageSize)
+          .backgroundBlurStyle(BlurStyle.Thin)
+      }
+
+      // backgroundEffect 可以自定义设置 模糊半径，亮度，饱和度等参数
+      Stack() {
+        Image($r('app.media.test'))
+          .width(this.imageSize)
+          .height(this.imageSize)
+        Column()
+          .width(this.imageSize)
+          .height(this.imageSize)
+          .backgroundEffect({ radius: 20, brightness: 0.6, saturation: 15 })
+      }
+
+      // backdropBlur 只能设置模糊半径和灰阶参数
+      Stack() {
+        Image($r('app.media.test'))
+          .width(this.imageSize)
+          .height(this.imageSize)
+        Column()
+          .width(this.imageSize)
+          .height(this.imageSize)
+          .backdropBlur(20, { grayscale: [30, 50] })
+      }
+    }
+    .width('100%')
+    .padding({ top: 5 })
+  }
+}
+```
+
+![backgroundBlur](figures/backgroundBlur.png)
