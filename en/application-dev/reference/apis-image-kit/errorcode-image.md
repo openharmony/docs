@@ -41,7 +41,7 @@ Check the image and follow the instructions to decode it.
 
 **Error Message**
 
-IPC error.
+RPC error.
 
 **Possible Cause**
 
