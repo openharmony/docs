@@ -43,7 +43,6 @@
     - [CameraManager_Callbacks](_camera_manager___callbacks.md)
     - [CaptureSession_Callbacks](_capture_session___callbacks.md)
     - [MetadataOutput_Callbacks](_metadata_output___callbacks.md)
-    - [OH_Photonative](_o_h___photonative.md)
     - [PhotoOutput_Callbacks](_photo_output___callbacks.md)
     - [PreviewOutput_Callbacks](_preview_output___callbacks.md)
     - [VideoOutput_Callbacks](_video_output___callbacks.md)
