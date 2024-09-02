@@ -3458,13 +3458,16 @@
           - [camera_manager.h](reference/apis-camera-kit/camera__manager_8h.md)
           - [capture_session.h](reference/apis-camera-kit/capture__session_8h.md)
           - [metadata_output.h](reference/apis-camera-kit/metadata__output_8h.md)
+          - [photo_native.h](reference/apis-camera-kit/photo__native_8h.md)
           - [photo_output.h](reference/apis-camera-kit/photo__output_8h.md)
           - [preview_output.h](reference/apis-camera-kit/preview__output_8h.md)
           - [video_output.h](reference/apis-camera-kit/video__output_8h.md)
         - 结构体<!--camera-struct-->
           - [Camera_CaptureEndInfo](reference/apis-camera-kit/_camera___capture_end_info.md)
+          - [Camera_CaptureStartInfo](reference/apis-camera-kit/_camera___capture_start_info.md)
           - [Camera_Device](reference/apis-camera-kit/_camera___device.md)
           - [Camera_FrameRateRange](reference/apis-camera-kit/_camera___frame_rate_range.md)
+          - [Camera_FrameShutterEndInfo](reference/apis-camera-kit/_camera___frame_shutter_end_info.md)
           - [Camera_FrameShutterInfo](reference/apis-camera-kit/_camera___frame_shutter_info.md)
           - [Camera_Location](reference/apis-camera-kit/_camera___location.md)
           - [Camera_MetadataObject](reference/apis-camera-kit/_camera___metadata_object.md)
@@ -3474,7 +3477,9 @@
           - [Camera_Profile](reference/apis-camera-kit/_camera___profile.md)
           - [Camera_Rect](reference/apis-camera-kit/_camera___rect.md)
           - [Camera_Size](reference/apis-camera-kit/_camera___size.md)
+          - [Camera_SmoothZoomInfo](reference/apis-camera-kit/_camera___smooth_zoom_info.md)
           - [Camera_StatusInfo](reference/apis-camera-kit/_camera___status_info.md)
+          - [Camera_TorchStatusInfo](reference/apis-camera-kit/_camera___torch_status_info.md)
           - [Camera_VideoProfile](reference/apis-camera-kit/_camera___video_profile.md)
           - [CameraInput_Callbacks](reference/apis-camera-kit/_camera_input___callbacks.md)
           - [CameraManager_Callbacks](reference/apis-camera-kit/_camera_manager___callbacks.md)
@@ -3624,7 +3629,10 @@
         - 模块<!--media-library-module-->
           - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)
         - 头文件<!--media-library-headerfile-->
+          - [media_access_helper_capi.h](reference/apis-media-library-kit/media__access__helper__capi_8h.md)
           - [media_asset_base_capi.h](reference/apis-media-library-kit/media__asset__base__capi_8h.md)
+          - [media_asset_capi.h](reference/apis-media-library-kit/media__asset__capi_8h.md)
+          - [media_asset_change_request_capi.h](reference/apis-media-library-kit/media__asset__change__request__capi_8h.md)
           - [media_asset_manager_capi.h](reference/apis-media-library-kit/media__asset__manager__capi_8h.md)
         - 结构体<!--media-library-struct-->
           - [MediaLibrary_RequestId](reference/apis-media-library-kit/_media_library___request_id.md)
