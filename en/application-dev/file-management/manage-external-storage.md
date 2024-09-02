@@ -52,13 +52,13 @@ You can subscribe to broadcast events to observe the insertion and removal of ex
    - "usual.event.data.VOLUME_EJECT": The device is being ejected.
 
    ```ts
-   import CommonEvent from '@ohos.commonEventManager';
-   import volumeManager from '@ohos.file.volumeManager';
-   import { BusinessError } from '@ohos.base';
+   import { commonEventManager } from '@kit.BasicServicesKit';
+   import { volumeManager } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-   let subscriber: CommonEvent.CommonEventSubscriber;
+   let subscriber: commonEventManager.CommonEventSubscriber;
    async function example() {
-     const subscribeInfo: CommonEvent.CommonEventSubscribeInfo = {
+     const subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
        events: [
          "usual.event.data.VOLUME_REMOVED",
          "usual.event.data.VOLUME_UNMOUNTED",
@@ -67,14 +67,14 @@ You can subscribe to broadcast events to observe the insertion and removal of ex
          "usual.event.data.VOLUME_EJECT"
        ]
      };
-     subscriber = await CommonEvent.createSubscriber(subscribeInfo);
+     subscriber = await commonEventManager.createSubscriber(subscribeInfo);
    }
    ```
 
 3. Obtain volume information from the broadcast.
 
    ```ts
-   CommonEvent.subscribe(subscriber, (err: BusinessError, data: CommonEvent.CommonEventData) => {
+   commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
      if (data.event === 'usual.event.data.VOLUME_MOUNTED') {
        // Manage the volume device based on the information obtained from the broadcast.
        let volId: string = data.parameters.id;
