@@ -5050,7 +5050,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_RetainScript (JSVM_Env env, JSVM_Script script )
 
 **返回：**
 
-返回执行状态码 JSVM_Status JSVM_OK 表示行成功。
+返回执行状态码 JSVM_Status JSVM_OK 表示执行成功。
 
 JSVM_INVALID_ARG 表示脚本为空或已被保存过.
 
