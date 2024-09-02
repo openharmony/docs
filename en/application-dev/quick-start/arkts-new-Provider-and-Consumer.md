@@ -25,14 +25,14 @@ The following notes must be paid attention to when using \@Provider and \@Consum
 In state management V1, [\@Provide and \@Consume](./arkts-provide-and-consume.md) are the decorators which provide two-way synchronization across component levels. This topic introduces \@Provider and \@Consumer decorators in state management V2. Although the names and features of the two pairs are similar, there are still some differences.
 If you are not familiar with \@Provide and \@Consume in state management V1, please skip this section.
 
-| Capability | Decorators in V2: \@Provider and \@Consumer                                            |Decorators in V1: \@Provide and \@Consume|
+| Capability| Decorators in V2: \@Provider and \@Consumer                                            |Decorators in V1: \@Provide and \@Consume|
 | ------------------ | ----------------------------------------------------- |----------------------------------------------------- |
-| \@Consume(r)         |Local initialization is allowed. Local default value will be used when \@Provider is not found.| Local initialization is forbidden. An exception will be thrown when the \@Provide is not found. |
-| Supported type          | **function** is supported. | **function** is not supported. |
-| Observation capability          | Only the value change of itself can be observed. To observe the nesting scenario, use this decorator together with \@Trace. | Changes at the first layer can be observed. To observe the nesting scenario, use this decorator together with \@Observed and \@ObjectLink. |
-| alias and attribute name        | **alias** is the unique matching **key** and the default attribute name. | If both the **alias** and attribute name are **key**, the former one is matched first. If no match is found, the attribute name can be matched.|
-| \@Provide(r) initialization from the parent component     | Forbidden. | Allowed.|
-| \@Provide(r) overloading support | Enabled by default. That is, \@Provider can have duplicate names and \@Consumer can search upwards for the nearest \@Provider. | Disabled by default. That is, \@Provide with duplicate names is not allowed in the component tree. If overloading is required, set **allowOverride**.|
+| \@Consume(r)         |Local initialization is allowed. Local default value will be used when \@Provider is not found.| Local initialization is forbidden. An exception will be thrown when the \@Provide is not found.|
+| Supported type          | **function** is supported.| **function** is not supported.|
+| Observation capability          | Only the value change of itself can be observed. To observe the nesting scenario, use this decorator together with [\@Trace](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/arkts-new-observedV2-and-trace.md).| Changes at the first layer can be observed. To observe the nesting scenario, use this decorator together with [\@Observed and \@ObjectLink](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/arkts-observed-and-objectlink.md).|
+| alias and attribute name        | **alias** is the unique matching **key** and the default attribute name.| If both the **alias** and attribute name are **key**, the former one is matched first. If no match is found, the attribute name can be matched.|
+| \@Provide(r) initialization from the parent component     | Forbidden.| Allowed.|
+| \@Provide(r) overloading support | Enabled by default. That is, \@Provider can have duplicate names and \@Consumer can search upwards for the nearest \@Provider.| Disabled by default. That is, \@Provide with duplicate names is not allowed in the component tree. If overloading is required, set **allowOverride**.|
 
 
 ## Decorator Description
@@ -41,25 +41,25 @@ If you are not familiar with \@Provide and \@Consume in state management V1, ple
 \@Provider syntax:
 `@Provider(alias?: string) varName : varType = initValue`
 
-| \@Provider Property Decorator | Description                                                 |
+| \@Provider Property Decorator| Description                                                 |
 | ------------------ | ----------------------------------------------------- |
 | Decorator parameters        | **aliasName?: string**: alias. The default value is the attribute name.|
-| Supported type          | Member variables in the custom component. Property types include number, string, boolean, class, Array, Date, Map, and Set. The [arrow function](#decorating-callback-by-using-provider-and-consumer-and-facilitating-behavior-abstraction-between-components) can be decorated.  |
-| Initialization from the parent component     | Forbidden. |
-| Local initialization        | Required. |
-| Observation capability        | Be equivalent to \@Trace. Changes will be synchronized to the corresponding \@Consumer. |
+| Supported type          | Member variables in the custom component. Property types include number, string, boolean, class, Array, Date, Map, and Set. The [arrow function](#decorating-callback-by-using-provider-and-consumer-and-facilitating-behavior-abstraction-between-components) can be decorated.|
+| Initialization from the parent component     | Forbidden.|
+| Local initialization        | Required.|
+| Observation capability        | Be equivalent to \@Trace. Changes will be synchronized to the corresponding \@Consumer.|
 
 \@Consumer syntax:
 `@Consumer(alias?: string) varName : varType = initValue`
 
 
-| \@Consumer Property Decorator | Description                                                        |
+| \@Consumer Property Decorator| Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Decorator parameters           | `aliasName?: string`: alias. The default value is the attribute name. The nearest \@Provider is searched upwards.   |
-| Allowed variable types         | Member variables in the custom component. Property types include number, string, boolean, class, Array, Date, Map, and Set. The arrow function can be decorated. |
-| Initialization from the parent component     | Forbidden. |
-| Local initialization        | Required. |
-| Observation capability        | Be equivalent to \@Trace. Changes will be synchronized to the corresponding \@Provider. |
+| Decorator parameters           | **aliasName?: string**: alias. The default value is the attribute name. The nearest \@Provider is searched upwards.   |
+| Allowed variable types         | Member variables in the custom component. Property types include number, string, boolean, class, Array, Date, Map, and Set. The arrow function can be decorated.|
+| Initialization from the parent component     | Forbidden.|
+| Local initialization        | Required.|
+| Observation capability        | Be equivalent to \@Trace. Changes will be synchronized to the corresponding \@Provider.|
 
 ### aliasName and Attribute Name
 \@Provider and \@Consumer accept the optional parameter **aliasName**. If the parameter is not set, the attribute name will be used as the default value. Note: **aliasName** is the unique key for \@Provider and \@Consumer matching.
@@ -149,7 +149,7 @@ In the following example, \@Provider and \@Consumer fail to establish a two-way 
 1. Initialize the **Parent** and **Child** custom components:
     - @Provider is not found when **@Consumer() str: string = 'world'** in the **Child** component searches upwards.
     - **@Consumer() str: string = 'world'** uses the local default value 'world'.
-    - They fail to establish a two-way synchronization relationship.
+    - Both of them fail to establish a two-way synchronization relationship.
 2. Click the button in the **Parent** component to change @Provider decorated **str1** and refresh the **Button** component associated with @Provider.
 3. Click the button in the **Child** component to change the @Consumer decorated **str** and refresh the **Button** component associated with @Consumer.
 
@@ -188,7 +188,7 @@ struct Child {
 
 ### Decorating Callback by Using \@Provider and \@Consumer and Facilitating Behavior Abstraction Between Components
 
-To register a callback function for a child component in a parent component, you can use \@Provider and \@Consumer to modify the callback method.
+To register a callback function for a child component in a parent component, you can use \@Provider and \@Consumer to decorate a callback.
 For instance, when a drag event occurs, if you want to synchronize the start position of a child component to the parent component, see the following example:
 
 ```ts
@@ -205,7 +205,7 @@ struct Parent {
 
   build() {
     Column() {
-      Text(`child postion x: ${this.childX}, y: ${this.childY}`)
+      Text(`child position x: ${this.childX}, y: ${this.childY}`)
       Child()
     }
   }
@@ -376,4 +376,5 @@ struct A1Comp {
   }
 }
 ```
+
 <!--no_check-->

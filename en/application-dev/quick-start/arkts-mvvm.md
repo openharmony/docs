@@ -170,97 +170,97 @@ A one- or two-way data synchronization relationship can be set up from an \@Stat
    - The changes can only be passed by specifying parameters of constructors, that is, through the named parameter mechanism CompA: ({ aProp: this.aProp }).
 
    A complete code example is as follows:
-
-
-   ```ts
-   @Component
-   struct LinkLinkChild {
-     @Link @Watch("testNumChange") testNumGrand: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
-     }
-   
-     build() {
-       Text(`LinkLinkChild: ${this.testNumGrand}`)
-     }
-   }
    
    
-   @Component
-   struct PropLinkChild {
-     @Prop @Watch("testNumChange") testNumGrand: number = 0;
-   
-     testNumChange(propName: string): void {
-       console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
-     }
-   
-     build() {
-       Text(`PropLinkChild: ${this.testNumGrand}`)
-         .height(70)
-         .backgroundColor(Color.Red)
-         .onClick(() => {
-           this.testNumGrand += 1;
-         })
-     }
-   }
-   
-   
-   @Component
-   struct Sibling {
-     @Link @Watch("testNumChange") testNum: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`Sibling: testNumChange value ${this.testNum}`);
-     }
-   
-     build() {
-       Text(`Sibling: ${this.testNum}`)
-     }
-   }
-   
-   @Component
-   struct LinkChild {
-     @Link @Watch("testNumChange") testNum: number;
-   
-     testNumChange(propName: string): void {
-       console.log(`LinkChild: testNumChange value ${this.testNum}`);
-     }
-   
-     build() {
-       Column() {
-         Button('incr testNum')
-           .onClick(() => {
-             console.log(`LinkChild: before value change value ${this.testNum}`);
-             this.testNum = this.testNum + 1
-             console.log(`LinkChild: after value change value ${this.testNum}`);
-           })
-         Text(`LinkChild: ${this.testNum}`)
-         LinkLinkChild({ testNumGrand: $testNum })
-         PropLinkChild({ testNumGrand: this.testNum })
-       }
-       .height(200).width(200)
-     }
-   }
-   
-   
-   @Entry
-   @Component
-   struct Parent {
-     @State @Watch("testNumChange1") testNum: number = 1;
-   
-     testNumChange1(propName: string): void {
-       console.log(`Parent: testNumChange value ${this.testNum}`)
-     }
-   
-     build() {
-       Column() {
-         LinkChild({ testNum: $testNum })
-         Sibling({ testNum: $testNum })
-       }
-     }
-   }
-   ```
+      ```ts
+      @Component
+      struct LinkLinkChild {
+        @Link @Watch("testNumChange") testNumGrand: number;
+      
+        testNumChange(propName: string): void {
+          console.log(`LinkLinkChild: testNumGrand value ${this.testNumGrand}`);
+        }
+      
+        build() {
+          Text(`LinkLinkChild: ${this.testNumGrand}`)
+        }
+      }
+      
+      
+      @Component
+      struct PropLinkChild {
+        @Prop @Watch("testNumChange") testNumGrand: number = 0;
+      
+        testNumChange(propName: string): void {
+          console.log(`PropLinkChild: testNumGrand value ${this.testNumGrand}`);
+        }
+      
+        build() {
+          Text(`PropLinkChild: ${this.testNumGrand}`)
+            .height(70)
+            .backgroundColor(Color.Red)
+            .onClick(() => {
+              this.testNumGrand += 1;
+            })
+        }
+      }
+      
+      
+      @Component
+      struct Sibling {
+        @Link @Watch("testNumChange") testNum: number;
+      
+        testNumChange(propName: string): void {
+          console.log(`Sibling: testNumChange value ${this.testNum}`);
+        }
+      
+        build() {
+          Text(`Sibling: ${this.testNum}`)
+        }
+      }
+      
+      @Component
+      struct LinkChild {
+        @Link @Watch("testNumChange") testNum: number;
+      
+        testNumChange(propName: string): void {
+          console.log(`LinkChild: testNumChange value ${this.testNum}`);
+        }
+      
+        build() {
+          Column() {
+            Button('incr testNum')
+              .onClick(() => {
+                console.log(`LinkChild: before value change value ${this.testNum}`);
+                this.testNum = this.testNum + 1
+                console.log(`LinkChild: after value change value ${this.testNum}`);
+              })
+            Text(`LinkChild: ${this.testNum}`)
+            LinkLinkChild({ testNumGrand: $testNum })
+            PropLinkChild({ testNumGrand: this.testNum })
+          }
+          .height(200).width(200)
+        }
+      }
+      
+      
+      @Entry
+      @Component
+      struct Parent {
+        @State @Watch("testNumChange1") testNum: number = 1;
+      
+        testNumChange1(propName: string): void {
+          console.log(`Parent: testNumChange value ${this.testNum}`)
+        }
+      
+        build() {
+          Column() {
+            LinkChild({ testNum: $testNum })
+            Sibling({ testNum: $testNum })
+          }
+        }
+      }
+      ```
 
 
 ### State Data Sharing Through \@Provide
@@ -621,14 +621,14 @@ In the nested scenario, use the \@Observed decorator as follows:
   ```
 
   The view model is the outer class.
-
-
-  ```ts
-  class Outer {
-    innerArrayProp : ObservedArray<string> = [];
-    ...
-  }
-  ```
+  
+  
+    ```ts
+    class Outer {
+      innerArrayProp : ObservedArray<string> = [];
+      ...
+    }
+    ```
 
 
 ### Differences Between \@Prop and \@ObjectLink in Nested Data Structures
@@ -759,11 +759,9 @@ struct ViewA {
 
 When \@ObjectLink is used, if you click the first or second item of the array, the following two **ViewA** instances change synchronously.
 
-Unlike \@ObjectLink, \@Prop sets up a one-way data synchronization. Clicking the button in **ViewA** triggers only the re-rendering of the button itself and is not propagated to other **ViewA** instances. **ClassA** in **ViewA** is only a copy, not an object of its parent component \@State arrA : Array&lt;ClassA&gt, nor a **ClassA** instance of any other **ViewA**. As a result, though on the surface, the array and **ViewA** have the same object passed in, two irrelevant objects are used for rendering on the UI.
+Unlike \@ObjectLink, \@Prop sets up a one-way data synchronization. Clicking the button in **ViewA** triggers only the re-rendering of the button itself and is not propagated to other **ViewA** instances. **ClassA** in **ViewA** is only a copy, not an object of its parent component \@State arrA : Array\<ClassA>, nor a **ClassA** instance of any other **ViewA**. As a result, though on the surface, the array and **ViewA** have the same object passed in, two irrelevant objects are used for rendering on the UI.
 
-Note the differences between \@Prop and \@ObjectLink:
-
-- \@ObjectLink decorated variables are readable only and cannot be assigned values, whereas \@Prop decorated variables can be assigned values.
+Note the differences between \@Prop and \@ObjectLink: \@ObjectLink decorated variables are readable only and cannot be assigned values, whereas \@Prop decorated variables can be assigned values.
 
 - \@ObjectLink implements two-way data synchronization because it is initialized through a reference to the data source.
 
@@ -800,8 +798,6 @@ In this example, the view model needs to include the following:
 
 The **AddressBook** class is declared as follows:
 
-
-
 ```ts
 export class AddressBook {
   me: Person;
@@ -817,17 +813,15 @@ export class AddressBook {
 
 - Person (class)
   - name : string
-  - address: Address
-  - phones: ObservedArray&lt;string&gt;
+  - address : Address
+  - phones: ObservedArray\<string>;
   - Address (class)
-    - street: string
-    - zip: number
-    - city: string
+    - street : string
+    - zip : number
+    - city : string
 
 
 The **Address** class is declared as follows:
-
-
 
 ```ts
 @Observed
@@ -848,8 +842,6 @@ export class Address {
 
 
 The **Person** class is declared as follows:
-
-
 
 ```ts
 let nextId = 0;
@@ -878,8 +870,6 @@ export class Person {
 
 Note that **phones** is a nested property. To observe its change, you need to extend the array to an **ObservedArray** class and decorate it with \@Observed. The **ObservedArray** class is declared as follows:
 
-
-
 ```ts
 @Observed
 export class ObservedArray<T> extends Array<T> {
@@ -903,110 +893,110 @@ The update process is as follows:
 
 1. Initialize all data in the root node **PageEntry**, and establish two-way data synchronization between **me** and **contacts** and its child component **AddressBookView**. The default value of **selectedPerson** is **me**. Note that **selectedPerson** is not data in the **PageEntry** data source, but a reference to a **Person** object in the data source.
    **PageEntry** and **AddressBookView** are declared as follows:
-
-
-   ```ts
-   @Component
-   struct AddressBookView {
    
-       @ObjectLink me : Person;
-       @ObjectLink contacts : ObservedArray<Person>;
-       @State selectedPerson: Person = new Person("", "", 0, "", []);
    
-       aboutToAppear() {
-           this.selectedPerson = this.me;
-       }
+      ```ts
+      @Component
+      struct AddressBookView {
+      
+          @ObjectLink me : Person;
+          @ObjectLink contacts : ObservedArray<Person>;
+          @State selectedPerson: Person = new Person("", "", 0, "", []);
+      
+          aboutToAppear() {
+              this.selectedPerson = this.me;
+          }
+      
+          build() {
+              Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start}) {
+                  Text("Me:")
+                  PersonView({
+                   person: this.me,
+                   phones: this.me.phones,
+                   selectedPerson: this.selectedPerson
+                 })
+      
+                  Divider().height(8)
+      
+                 ForEach(this.contacts, (contact: Person) => {
+                   PersonView({
+                     person: contact,
+                     phones: contact.phones as ObservedArray<string>,
+                     selectedPerson: this.selectedPerson
+                   })
+                 },
+                   (contact: Person): string => { return contact.id_; }
+                 )
    
-       build() {
-           Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start}) {
-               Text("Me:")
-               PersonView({
-                person: this.me,
-                phones: this.me.phones,
-                selectedPerson: this.selectedPerson
-              })
+                  Divider().height(8)
+      
+                  Text("Edit:")
+                  PersonEditView({ 
+                   selectedPerson: this.selectedPerson, 
+                   name: this.selectedPerson.name, 
+                   address: this.selectedPerson.address, 
+                   phones: this.selectedPerson.phones 
+                 })
+              }
+                  .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
+          }
+      }
+      
+      @Entry
+      @Component
+      struct PageEntry {
+        @Provide addrBook: AddressBook = new AddressBook(
+          new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
+          [
+            new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+            new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+            new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+          ]);
+      
+        build() {
+          Column() {
+            AddressBookView({ 
+             me: this.addrBook.me, 
+             contacts: this.addrBook.contacts, 
+             selectedPerson: this.addrBook.me 
+           })
+          }
+        }
+      }
+      ```
    
-               Divider().height(8)
-   
-              ForEach(this.contacts, (contact: Person) => {
-                PersonView({
-                  person: contact,
-                  phones: contact.phones as ObservedArray<string>,
-                  selectedPerson: this.selectedPerson
-                })
-              },
-                (contact: Person): string => { return contact.id_; }
-              )
-
-               Divider().height(8)
-   
-               Text("Edit:")
-               PersonEditView({ 
-                selectedPerson: this.selectedPerson, 
-                name: this.selectedPerson.name, 
-                address: this.selectedPerson.address, 
-                phones: this.selectedPerson.phones 
-              })
-           }
-               .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
-       }
-   }
-   
-   @Entry
-   @Component
-   struct PageEntry {
-     @Provide addrBook: AddressBook = new AddressBook(
-       new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
-       [
-         new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-         new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-         new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-       ]);
-   
-     build() {
-       Column() {
-         AddressBookView({ 
-          me: this.addrBook.me, 
-          contacts: this.addrBook.contacts, 
-          selectedPerson: this.addrBook.me 
-        })
-       }
-     }
-   }
-   ```
-
 2. **PersonView** is the view that shows a contact name and preferred phone number in the phonebook. When you select a contact (person), that contact is highlighted and needs to be synchronized back to the **selectedPerson** of the parent component **AddressBookView**. In this case, two-way data synchronization needs to be established through \@Link.
    **PersonView** is declared as follows:
 
 
-   ```ts
-   // Display the contact name and preferred phone number.
-   // To update the phone number, @ObjectLink person and @ObjectLink phones are required.
-   // this.person.phones[0] cannot be used to display the preferred phone number because @ObjectLink person only proxies the Person property and cannot observe the changes inside the array.
-   // Trigger the onClick event to update selectedPerson.
-   @Component
-   struct PersonView {
-   
-       @ObjectLink person : Person;
-       @ObjectLink phones :  ObservedArray<string>;
-   
-       @Link selectedPerson : Person;
-   
-       build() {
-           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-             Text(this.person.name)
-             if (this.phones.length > 0) {
-               Text(this.phones[0])
-             }
-           }
-           .height(55)
-           .backgroundColor(this.selectedPerson.name == this.person.name ? "#ffa0a0" : "#ffffff")
-           .onClick(() => {
-               this.selectedPerson = this.person;
-           })
-       }
-   }
-   ```
+      ```ts
+      // Display the contact name and preferred phone number.
+      // To update the phone number, @ObjectLink person and @ObjectLink phones are required.
+      // this.person.phones[0] cannot be used to display the preferred phone number because @ObjectLink person only proxies the Person property and cannot observe the changes inside the array.
+      // Trigger the onClick event to update selectedPerson.
+      @Component
+      struct PersonView {
+      
+          @ObjectLink person : Person;
+          @ObjectLink phones :  ObservedArray<string>;
+      
+          @Link selectedPerson : Person;
+      
+          build() {
+              Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+                Text(this.person.name)
+                if (this.phones.length > 0) {
+                  Text(this.phones[0])
+                }
+              }
+              .height(55)
+              .backgroundColor(this.selectedPerson.name == this.person.name ? "#ffa0a0" : "#ffffff")
+              .onClick(() => {
+                  this.selectedPerson = this.person;
+              })
+          }
+      }
+      ```
 
 3. The information about the selected contact (person) is displayed in the **PersonEditView** object. The data synchronization for the **PersonEditView** can be implemented as follows:
 
@@ -1105,274 +1095,274 @@ The update process is as follows:
      }
      ```
 
-     Pay attention to the following differences between \@ObjectLink and \@Link.
+     Pay attention to the following differences between \@ObjectLink and \@Link:
 
-     To implement two-way data synchronization with the parent component, you need to use \@ObjectLink, instead of \@Link, to decorate **me: Person** and **contacts: ObservedArray\<Person>** in **AddressBookView**. The reasons are as follows:
-     - The type of the \@Link decorated variable must be the same as that of the data source, and \@Link can only observe the changes at the first layer.
-     
-     - \@ObjectLink allows for initialization from the property of the data source. It functions as a proxy for the properties of the \@Observed decorated class and can observe the changes of the properties of that class.
-- When the contact name (**Person.name**) or preferred phone number (**Person.phones[0]**) is updated, **PersonView** needs to be updated. As the update to **Person.phones[0]** occurs at the second layer, it cannot be observed if \@Link is used. In addition, \@Link requires its decorated variable be of the same type as the data source. Therefore, \@ObjectLink is required in **PersonView**, that is, \@ObjectLink **person: Person** and \@ObjectLink **phones: ObservedArray\<string>**.
-     
-![en-us_image_0000001605293914](figures/en-us_image_0000001605293914.png)
-     
-Now you have a basic idea of how to build a view model. In the root node of an application, the view model may comprise a huge amount of nested data, which is more often the case. Yet, you can make reasonable separation of the data in the UI tree structure. You can adapt the view model data items to views so that the view at each layer contains relatively flat data, and you only need to observe changes at the current layer.
-     
-In this way, the UI re-render workload is minimized, leading to higher application performance.
-     
+     1. To implement two-way data synchronization with the parent component, you need to use \@ObjectLink, instead of \@Link, to decorate **me: Person** and **contacts: ObservedArray\<Person>** in **AddressBookView**. The reasons are as follows:
+        - The type of the \@Link decorated variable must be the same as that of the data source, and \@Link can only observe the changes at the first layer.
+        - \@ObjectLink allows for initialization from the property of the data source. It functions as a proxy for the properties of the \@Observed decorated class and can observe the changes of the properties of that class.
+     2. When the contact name (**Person.name**) or preferred phone number (**Person.phones[0]**) is updated, **PersonView** needs to be updated. As the update to **Person.phones[0]** occurs at the second layer, it cannot be observed if \@Link is used. In addition, \@Link requires its decorated variable be of the same type as the data source. Therefore, \@ObjectLink is required in **PersonView**, that is, \@ObjectLink **person: Person** and \@ObjectLink **phones: ObservedArray\<string>**.
+
+     ![en-us_image_0000001605293914](figures/en-us_image_0000001605293914.png)
+
+     Now you have a basic idea of how to build a view model. In the root node of an application, the view model may comprise a huge amount of nested data, which is more often the case. Yet, you can make reasonable separation of the data in the UI tree structure. You can adapt the view model data items to views so that the view at each layer contains relatively flat data, and you only need to observe changes at the current layer.
+
+     In this way, the UI re-render workload is minimized, leading to higher application performance.
+
      The complete sample code is as follows:
+     
+     
+     ```ts
+     // ViewModel classes
+     let nextId = 0;
+     
+     @Observed
+     export class ObservedArray<T> extends Array<T> {
+       constructor(args: T[]) {
+         console.log(`ObservedArray: ${JSON.stringify(args)} `)
+         if (args instanceof Array) {
+           super(...args);
+         } else {
+           super(args)
+         }
+       }
+     }
+     
+     @Observed
+     export class Address {
+       street: string;
+       zip: number;
+       city: string;
+     
+       constructor(street: string,
+                   zip: number,
+                   city: string) {
+         this.street = street;
+         this.zip = zip;
+         this.city = city;
+       }
+     }
+     
+     @Observed
+     export class Person {
+       id_: string;
+       name: string;
+       address: Address;
+       phones: ObservedArray<string>;
+     
+       constructor(name: string,
+                   street: string,
+                   zip: number,
+                   city: string,
+                   phones: string[]) {
+         this.id_ = `${nextId}`;
+         nextId++;
+         this.name = name;
+         this.address = new Address(street, zip, city);
+         this.phones = new ObservedArray<string>(phones);
+       }
+     }
+     
+     export class AddressBook {
+       me: Person;
+       contacts: ObservedArray<Person>;
+     
+       constructor(me: Person, contacts: Person[]) {
+         this.me = me;
+         this.contacts = new ObservedArray<Person>(contacts);
+       }
+     }
+     
+     // Render the name of the Person object and the first phone number in the @Observed array <string>.
+     // To update the phone number, @ObjectLink person and @ObjectLink phones are required.
+     // this.person.phones cannot be used. Otherwise, changes to items inside the array will not be observed.
+     // Update selectedPerson in onClick in AddressBookView and PersonEditView.
+     @Component
+     struct PersonView {
+       @ObjectLink person: Person;
+       @ObjectLink phones: ObservedArray<string>;
+       @Link selectedPerson: Person;
+     
+       build() { 
+         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+           Text(this.person.name)
+           if (this.phones.length) {
+             Text(this.phones[0])
+           }
+         }
+         .height(55)
+         .backgroundColor(this.selectedPerson.name == this.person.name ? "#ffa0a0" : "#ffffff")
+         .onClick(() => {
+           this.selectedPerson = this.person;
+         })
+       }
+     }
+     
+     @Component
+     struct phonesNumber {
+       @ObjectLink phoneNumber: ObservedArray<string>
+     
+       build() {
+         Column() {
+     
+           ForEach(this.phoneNumber,
+             (phone: ResourceStr, index?: number) => {
+               TextInput({ text: phone })
+                 .width(150)
+                 .onChange((value) => {
+                   console.log(`${index}. ${value} value has changed`)
+                   this.phoneNumber[index!] = value;
+                 })
+             },
+             (phone: ResourceStr, index: number) => `${this.phoneNumber[index] + index}`
+           )
+         }
+       }
+     }
+     
+     
+     // Render the information about the contact (person).
+     // The @Prop decorated variable makes a deep copy from the parent component AddressBookView and retains the changes locally. The changes of TextInput apply only to the local copy.
+     // Click Save Changes to copy all data to @Link through @Prop and synchronize the data to other components.
+     @Component
+     struct PersonEditView {
+       @Consume addrBook: AddressBook;
+       /* Reference pointing to selectedPerson in the parent component. */
+       @Link selectedPerson: Person;
+       /* Make changes on the local copy until you click Save Changes. */
+       @Prop name: string = "";
+       @Prop address: Address = new Address("", 0, "");
+       @Prop phones: ObservedArray<string> = [];
+     
+       selectedPersonIndex(): number {
+         return this.addrBook.contacts.findIndex((person: Person) => person.id_ == this.selectedPerson.id_);
+       }
+     
+       build() {
+         Column() {
+           TextInput({ text: this.name })
+             .onChange((value) => {
+               this.name = value;
+             })
+           TextInput({ text: this.address.street })
+             .onChange((value) => {
+               this.address.street = value;
+             })
+     
+           TextInput({ text: this.address.city })
+             .onChange((value) => {
+               this.address.city = value;
+             })
+     
+           TextInput({ text: this.address.zip.toString() })
+             .onChange((value) => {
+               const result = Number.parseInt(value);
+               this.address.zip = Number.isNaN(result) ? 0 : result;
+             })
+     
+           if (this.phones.length > 0) {
+             phonesNumber({ phoneNumber: this.phones })
+           }
+     
+           Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+             Text("Save Changes")
+               .onClick(() => {
+                 // Assign the updated value of the local copy to the reference pointing to selectedPerson in the parent component.
+                 // Do not create new objects. Modify the properties of the existing objects instead.
+                 this.selectedPerson.name = this.name;
+                 this.selectedPerson.address = new Address(this.address.street, this.address.zip, this.address.city)
+                 this.phones.forEach((phone: string, index: number) => {
+                   this.selectedPerson.phones[index] = phone
+                 });
+               })
+             if (this.selectedPersonIndex() != -1) {
+               Text("Delete Contact")
+                 .onClick(() => {
+                   let index = this.selectedPersonIndex();
+                   console.log(`delete contact at index ${index}`);
+     
+                   // Delete the current contact.
+                   this.addrBook.contacts.splice(index, 1);
+     
+                   // Delete the current selectedPerson. The selected contact is then changed to the contact immediately before the deleted contact.
+                   index = (index < this.addrBook.contacts.length) ? index : index - 1;
+     
+                   // If all contracts are deleted, the me object is selected.
+                   this.selectedPerson = (index >= 0) ? this.addrBook.contacts[index] : this.addrBook.me;
+                 })
+             }
+           }
+     
+         }
+       }
+     }
+     
+     @Component
+     struct AddressBookView {
+       @ObjectLink me: Person;
+       @ObjectLink contacts: ObservedArray<Person>;
+       @State selectedPerson: Person = new Person("", "", 0, "", []);
+     
+       aboutToAppear() {
+         this.selectedPerson = this.me;
+       }
+     
+       build() {
+         Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
+           Text("Me:")
+           PersonView({
+             person: this.me,
+             phones: this.me.phones,
+             selectedPerson: this.selectedPerson
+           })
+     
+           Divider().height(8)
+     
+           ForEach(this.contacts, (contact: Person) => {
+             PersonView({
+               person: contact,
+               phones: contact.phones as ObservedArray<string>,
+               selectedPerson: this.selectedPerson
+             })
+           },
+             (contact: Person): string => {
+               return contact.id_;
+             }
+           )
+     
+           Divider().height(8)
+     
+           Text("Edit:")
+           PersonEditView({
+             selectedPerson: this.selectedPerson,
+             name: this.selectedPerson.name,
+             address: this.selectedPerson.address,
+             phones: this.selectedPerson.phones
+           })
+         }
+         .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
+       }
+     }
+     
+     @Entry
+     @Component
+     struct PageEntry {
+       @Provide addrBook: AddressBook = new AddressBook(
+         new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
+         [
+           new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["11*********", "12*********"]),
+           new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["13*********", "14*********"]),
+           new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["15*********", "168*********"]),
+         ]);
+     
+       build() {
+         Column() {
+           AddressBookView({
+             me: this.addrBook.me,
+             contacts: this.addrBook.contacts,
+             selectedPerson: this.addrBook.me
+           })
+         }
+       }
+     }
+     ```
 
-
-```ts
-// ViewModel classes
-let nextId = 0;
-
-@Observed
-export class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    console.log(`ObservedArray: ${JSON.stringify(args)} `)
-    if (args instanceof Array) {
-      super(...args);
-    } else {
-      super(args)
-    }
-  }
-}
-
-@Observed
-export class Address {
-  street: string;
-  zip: number;
-  city: string;
-
-  constructor(street: string,
-              zip: number,
-              city: string) {
-    this.street = street;
-    this.zip = zip;
-    this.city = city;
-  }
-}
-
-@Observed
-export class Person {
-  id_: string;
-  name: string;
-  address: Address;
-  phones: ObservedArray<string>;
-
-  constructor(name: string,
-              street: string,
-              zip: number,
-              city: string,
-              phones: string[]) {
-    this.id_ = `${nextId}`;
-    nextId++;
-    this.name = name;
-    this.address = new Address(street, zip, city);
-    this.phones = new ObservedArray<string>(phones);
-  }
-}
-
-export class AddressBook {
-  me: Person;
-  contacts: ObservedArray<Person>;
-
-  constructor(me: Person, contacts: Person[]) {
-    this.me = me;
-    this.contacts = new ObservedArray<Person>(contacts);
-  }
-}
-
-// Render the name of the Person object and the first phone number in the @Observed array <string>.
-// To update the phone number, @ObjectLink person and @ObjectLink phones are required.
-// this.person.phones cannot be used. Otherwise, changes to items inside the array will not be observed.
-// Update selectedPerson in onClick in AddressBookView and PersonEditView.
-@Component
-struct PersonView {
-  @ObjectLink person: Person;
-  @ObjectLink phones: ObservedArray<string>;
-  @Link selectedPerson: Person;
-
-  build() { 
-    Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-      Text(this.person.name)
-      if (this.phones.length) {
-        Text(this.phones[0])
-      }
-    }
-    .height(55)
-    .backgroundColor(this.selectedPerson.name == this.person.name ? "#ffa0a0" : "#ffffff")
-    .onClick(() => {
-      this.selectedPerson = this.person;
-    })
-  }
-}
-
-@Component
-struct phonesNumber {
-  @ObjectLink phoneNumber: ObservedArray<string>
-
-  build() {
-    Column() {
-
-      ForEach(this.phoneNumber,
-        (phone: ResourceStr, index?: number) => {
-          TextInput({ text: phone })
-            .width(150)
-            .onChange((value) => {
-              console.log(`${index}. ${value} value has changed`)
-              this.phoneNumber[index!] = value;
-            })
-        },
-        (phone: ResourceStr, index: number) => `${this.phoneNumber[index] + index}`
-      )
-    }
-  }
-}
-
-
-// Render the information about the contact (person).
-// The @Prop decorated variable makes a deep copy from the parent component AddressBookView and retains the changes locally. The changes of TextInput apply only to the local copy.
-// Click Save Changes to copy all data to @Link through @Prop and synchronize the data to other components.
-@Component
-struct PersonEditView {
-  @Consume addrBook: AddressBook;
-  /* Reference pointing to selectedPerson in the parent component. */
-  @Link selectedPerson: Person;
-  /* Make changes on the local copy until you click Save Changes. */
-  @Prop name: string = "";
-  @Prop address: Address = new Address("", 0, "");
-  @Prop phones: ObservedArray<string> = [];
-
-  selectedPersonIndex(): number {
-    return this.addrBook.contacts.findIndex((person: Person) => person.id_ == this.selectedPerson.id_);
-  }
-
-  build() {
-    Column() {
-      TextInput({ text: this.name })
-        .onChange((value) => {
-          this.name = value;
-        })
-      TextInput({ text: this.address.street })
-        .onChange((value) => {
-          this.address.street = value;
-        })
-
-      TextInput({ text: this.address.city })
-        .onChange((value) => {
-          this.address.city = value;
-        })
-
-      TextInput({ text: this.address.zip.toString() })
-        .onChange((value) => {
-          const result = Number.parseInt(value);
-          this.address.zip = Number.isNaN(result) ? 0 : result;
-        })
-
-      if (this.phones.length > 0) {
-        phonesNumber({ phoneNumber: this.phones })
-      }
-
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-        Text("Save Changes")
-          .onClick(() => {
-            // Assign the updated value of the local copy to the reference pointing to selectedPerson in the parent component.
-            // Do not create new objects. Modify the properties of the existing objects instead.
-            this.selectedPerson.name = this.name;
-            this.selectedPerson.address = new Address(this.address.street, this.address.zip, this.address.city)
-            this.phones.forEach((phone: string, index: number) => {
-              this.selectedPerson.phones[index] = phone
-            });
-          })
-        if (this.selectedPersonIndex() != -1) {
-          Text("Delete Contact")
-            .onClick(() => {
-              let index = this.selectedPersonIndex();
-              console.log(`delete contact at index ${index}`);
-
-              // Delete the current contact.
-              this.addrBook.contacts.splice(index, 1);
-
-              // Delete the current selectedPerson. The selected contact is then changed to the contact immediately before the deleted contact.
-              index = (index < this.addrBook.contacts.length) ? index : index - 1;
-
-              // If all contracts are deleted, the me object is selected.
-              this.selectedPerson = (index >= 0) ? this.addrBook.contacts[index] : this.addrBook.me;
-            })
-        }
-      }
-
-    }
-  }
-}
-
-@Component
-struct AddressBookView {
-  @ObjectLink me: Person;
-  @ObjectLink contacts: ObservedArray<Person>;
-  @State selectedPerson: Person = new Person("", "", 0, "", []);
-
-  aboutToAppear() {
-    this.selectedPerson = this.me;
-  }
-
-  build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
-      Text("Me:")
-      PersonView({
-        person: this.me,
-        phones: this.me.phones,
-        selectedPerson: this.selectedPerson
-      })
-
-      Divider().height(8)
-
-      ForEach(this.contacts, (contact: Person) => {
-        PersonView({
-          person: contact,
-          phones: contact.phones as ObservedArray<string>,
-          selectedPerson: this.selectedPerson
-        })
-      },
-        (contact: Person): string => {
-          return contact.id_;
-        }
-      )
-
-      Divider().height(8)
-
-      Text("Edit:")
-      PersonEditView({
-        selectedPerson: this.selectedPerson,
-        name: this.selectedPerson.name,
-        address: this.selectedPerson.address,
-        phones: this.selectedPerson.phones
-      })
-    }
-    .borderStyle(BorderStyle.Solid).borderWidth(5).borderColor(0xAFEEEE).borderRadius(5)
-  }
-}
-
-@Entry
-@Component
-struct PageEntry {
-  @Provide addrBook: AddressBook = new AddressBook(
-    new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
-    [
-      new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["11*********", "12*********"]),
-      new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["13*********", "14*********"]),
-      new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["15*********", "168*********"]),
-    ]);
-
-  build() {
-    Column() {
-      AddressBookView({
-        me: this.addrBook.me,
-        contacts: this.addrBook.contacts,
-        selectedPerson: this.addrBook.me
-      })
-    }
-  }
-}
-```
