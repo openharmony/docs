@@ -21,7 +21,7 @@ if (!canIUse('SystemCapability.FileManagement.File.Environment.FolderObtain')) {
 }
 ```
 **需要权限**
-：ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)，该权限APL等级为system_basic，APL等级为normal的应用需要通过ACL的方式跨级别申请。
+ohos.permission.FILE_ACCESS_PERSIST，具体参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
 **示例：**
 
