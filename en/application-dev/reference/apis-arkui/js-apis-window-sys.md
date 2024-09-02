@@ -3594,25 +3594,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    // ...
-    windowStage.getMainWindow().then((window) => {
-      let isFocused: boolean = true;
-      let promise = window.requestFocus(isFocused);
-      promise.then(() => {
-        console.info('Succeeded in requesting focus.');
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to request focus. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    });
-  }
-}
+let isFocused: boolean = true;
+let promise = windowClass.requestFocus(isFocused);
+promise.then(() => {
+  console.info('Succeeded in requesting focus.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to request focus. Cause code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ## SubWindowOptions<sup>11+</sup>
