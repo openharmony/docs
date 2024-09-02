@@ -1,15 +1,17 @@
-# @ohos.arkui.advanced.Popup (Popup)
+# Popup
 
 The popup component is used to display popups in a specific style.
 
 >  **NOTE**
 >
->  This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>  - This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  - Use this component with the custom popup features in [popup control](ts-universal-attributes-popup.md) for best results.
 
 ## Modules to Import
 
 ```
-import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
+import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 ```
 
 ##  Child Components
@@ -22,17 +24,21 @@ Popup(options: PopupOptions)
 
 **Decorator**: @Builder
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name   | Type                         | Mandatory| Description                 |
 | ------- | ----------------------------- | ---- | --------------------- |
-| options | [PopupOptions](#popupoptions) | Yes  | Type of the popup.|
+| options | [PopupOptions](#popupoptions) | Yes  | Parameters of the popup.|
 
 ## PopupOptions
 
 Defines the style parameters of the popup.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -44,10 +50,13 @@ Defines the style parameters of the popup.
 | showClose | boolean \| [Resource](ts-types.md#resource)                | No  | Whether to show the close button.<br>Default value: **true**|
 | onClose   | () => void                                                   | No  | Callback for the popup close button.|
 | buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | No  | Buttons of the popup. A maximum of two buttons can be set.|
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | No                               | Layout direction.<br>Default value: **Direction.Auto**                               |
 
 ## PopupTextOptions
 
 Defines the text parameters of the popup.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -62,6 +71,8 @@ Defines the text parameters of the popup.
 
 Defines the button attributes and events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Type                                                | Mandatory| Description                  |
@@ -74,6 +85,8 @@ Defines the button attributes and events.
 ##  PopupIconOptions
 
 Defines the attributes of the icon (in the upper right corner).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -89,7 +102,7 @@ Defines the attributes of the icon (in the upper right corner).
 
 ```ts
 // xxx.ets
-import { Popup, PopupOptions, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -97,7 +110,7 @@ struct PopupExample {
 
   build() {
     Row() {
-      // Define the custom advanced component through popup.
+      // Define a popup.
       Popup({
         // Set the icon through PopupIconOptions.
         icon: {
@@ -105,6 +118,77 @@ struct PopupExample {
           width:32,
           height:32,
           fillColor:Color.White,
+          borderRadius: 16
+        } as PopupIconOptions,
+        // Set the text through PopupTextOptions.
+        title: {
+          text: 'This is a popup with PopupOptions',
+          fontSize: 20,
+          fontColor: Color.Black,
+          fontWeight: FontWeight.Normal
+        } as PopupTextOptions,
+        // Set the text through PopupTextOptions.
+        message: {
+          text: 'This is the message',
+          fontSize: 15,
+          fontColor: Color.Black
+        } as PopupTextOptions,
+        showClose: false,
+        onClose: () => {
+          console.info('close Button click')
+        },
+        // Set the button through PopupButtonOptions.
+        buttons: [{
+          text: 'confirm',
+          action: () => {
+            console.info('confirm button click')
+          },
+          fontSize: 15,
+          fontColor: Color.Black,
+        },
+          {
+            text: 'cancel',
+            action: () => {
+              console.info('cancel button click')
+            },
+            fontSize: 15,
+            fontColor: Color.Black
+          },] as [PopupButtonOptions?, PopupButtonOptions?]
+      })
+    }
+    .width(300)
+    .height(200)
+    .borderWidth(2)
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+![](figures/popup_7.png)
+
+## Example 2
+This example shows a mirrored layout of the popup.
+
+```ts
+// xxx.ets
+import { Popup, PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PopupPage {
+  @State currentDirection: Direction = Direction.Rtl
+
+  build() {
+    Column() {
+      // Define a popup.
+      Popup({
+        // Set the icon through PopupIconOptions.
+        direction: this.currentDirection,
+        icon: {
+          image: $r('app.media.icon'),
+          width: 32,
+          height: 32,
+          fillColor: Color.White,
           borderRadius: 16,
         } as PopupIconOptions,
         // Set the text through PopupTextOptions.
@@ -121,7 +205,7 @@ struct PopupExample {
           fontSize: 15,
           fontColor: Color.Black,
         } as PopupTextOptions,
-        showClose: false,
+        showClose: true,
         onClose: () => {
           console.info('close Button click')
         },
@@ -144,13 +228,13 @@ struct PopupExample {
             fontColor: Color.Black,
           },] as [PopupButtonOptions?, PopupButtonOptions?],
       })
+
     }
-    .width(300)
-    .height(200)
-    .borderWidth(2)
     .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
   }
 }
 ```
 
-![](figures/popup_7.png)
+![](figures/popup_8.png)

@@ -1,6 +1,6 @@
 # Counter
 
-The **\<Counter>** component provides an operation to increase or decrease the number.
+The **Counter** component provides an operation to increase or decrease the number.
 
 >  **NOTE**
 >
@@ -16,25 +16,73 @@ Supported
 
 Counter()
 
-This API can be used in ArkTS widgets since API version 9.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name                         | Type                              | Description                                      |
-| --------------------------- | ---------------------------------------- | ---------------------------------------- |
-| enableInc<sup>10+</sup>              | boolean                            | Whether the plus button is enabled.<br>Default value: **true**  |
-| enableDec<sup>10+</sup>           | boolean                                  | Whether the minus button is enabled.<br>Default value: **true**|
+### enableInc<sup>10+</sup>
+
+enableInc(value: boolean)
+
+Sets whether to enable the increment button.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                 |
+| ------ | ------- | ---- | ------------------------------------- |
+| value  | boolean | Yes  | Whether to enable the increment button.<br>Default value: **true**|
+
+### enableDec<sup>10+</sup>
+
+enableDec(value: boolean)
+
+Sets whether to enable the decrement button.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                 |
+| ------ | ------- | ---- | ------------------------------------- |
+| value  | boolean | Yes  | Whether to enable the decrement button.<br>Default value: **true**|
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name| Description|
-| -------- | -------- |
-| onInc(event: () =&gt; void) | Invoked when the number of monitored objects is increased.<br>This API can be used in ArkTS widgets since API version 9.|
-| onDec(event: () =&gt; void) | Invoked when the number of monitored objects is decreased.<br>This API can be used in ArkTS widgets since API version 9.|
+### onInc
+
+onInc(event: () =&gt; void)
+
+Invoked when the value increases.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onDec
+
+onDec(event: () =&gt; void)
+
+Invoked when the value decreases.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 
 ## Example

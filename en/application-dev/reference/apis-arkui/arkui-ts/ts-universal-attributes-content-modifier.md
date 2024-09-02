@@ -16,9 +16,9 @@ Creates a content modifier.
 
 **Parameters**
 
-| Name  | Type              | Mandatory| Description                                                        |
+| Name  | Type              | Mandatory | Description                                                        |
 | -------- | ------------------ | ---- | ------------------------------------------------------------ |
-| modifier | ContentModifier\<T> | Yes  | Content modifier to apply to the current component.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.|
+| modifier | ContentModifier\<T> | Yes  | Content modifier to apply to the current component.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API. |
 
 ## ContentModifier\<T>
 
@@ -30,11 +30,13 @@ applyContent() : WrappedBuilder<[T]>
 
 Builder of the custom content area.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
-| Name| Description                                                        |
+| Name | Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| T    | Component attribute class, which is used to distinguish different information required by different components after content areas are customized, for example, **ButtonConfiguration** for the **\<Button>** component and **CheckBoxConfiguration** of the **\<Checkbox>** component.|
+| T    | Component attribute class, which is used to distinguish different information required by different components after content areas are customized, for example, **ButtonConfiguration** for the **\<Button>** component and **CheckBoxConfiguration** of the **\<Checkbox>** component. |
 
 **Value range of the T parameter:**
 
@@ -47,14 +49,16 @@ The universal attribute **enabled** and **contentModifier** are supported.
 
 You need a custom class to implement the **ContentModifier** API.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name | Type   | Description             |
 | ------ | ------ | ---------------- |
-| enabled | boolean | Whether to enable the content modifier and respond to operations such as **triggerChange**. The value **true** means to enable the content modifier and respond to operations such as **triggerChange**, and **false** means the opposite.|
-| contentModifier | ContentModifier\<T> | Content modifier that sends the component information required by users to the custom content area.|
+| enabled | boolean | Whether to enable the content modifier and respond to operations such as **triggerChange**. The value **true** means to enable the content modifier and respond to operations such as **triggerChange**, and **false** means the opposite. |
+| contentModifier | ContentModifier\<T> | Content modifier that sends the component information required by users to the custom content area. |
 
 
 ## Example
-This example implements a custom check box. This check box comes in the custom pentagon style instead of the original check box style. When selected, the check box shows a red triangle pattern inside and the title indicates the selected state; when deselected, the check box hides the red triangle pattern inside and the title indicates the deselected state.
+This example implements a custom check box. This check box comes in the custom pentagon style instead of the original check box style. When selected, the check box shows a red triangle pattern inside, and the title displays the word "Selected;" when deselected, the check box hides the red triangle pattern inside, and the title displays the word "Unselected."
 ```ts
 // xxx.ets
 class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
@@ -100,7 +104,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Checkbox({ name: 'Check box status ', group: 'checkboxGroup' })
+        Checkbox({ name: 'Check box status', group: 'checkboxGroup' })
         .select(true)
         .contentModifier(new MyCheckboxStyle(Color.Red))
         .onChange((value: boolean) => {
