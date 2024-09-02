@@ -21,7 +21,7 @@
 不兼容场景：
 当用户存在指定数据类型赋值场景时，会出现不兼容情况; 例如：
 ```ts
-const params1: scene3d.SceneResourceParameters = { name: "name1", uri: $rawfile("default_path") }
+const params1: SceneResourceParameters = { name: "name1", uri: $rawfile("default_path") }
 const test_uri: Resource | undefined = params1.uri;
 ```
 
@@ -48,9 +48,9 @@ API 12
 **适配指导**
 
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Scene, Image, SceneResourceParameters, SceneResourceFactory } from '@kit.ArkGraphics3D'
 
-const params1: scene3d.SceneResourceParameters = { name: "name1", uri: $rawfile("default_path") }
+const params1: SceneResourceParameters = { name: "name1", uri: $rawfile("default_path") }
 // 变更前
 // const test_uri: Resource | undefined = params1.uri;
 // 变更后适配为
@@ -59,9 +59,9 @@ const test_uri: ResourceStr | undefined = params1.uri;
 @Entry
 @Component
 struct node_geometry {
-    scene: scene3d.Scene | null = null;
+    scene: Scene | null = null;
     @State sceneOpt: SceneOptions | null = null; 
-    envImg: scene3d.Image | null = null;
+    envImg: Image | null = null;
 
     onPageShow(): void {
         this.Init();
@@ -75,11 +75,11 @@ struct node_geometry {
 
     Init(): void {
         if (this.scene == null) {
-            scene3d.Scene.load($rawfile("default_path"))
-            .then(async (result: scene3d.Scene) => {
+            Scene.load($rawfile("default_path"))
+            .then(async (result: Scene) => {
                 this.scene = result;
                 this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
-                let rf: scene3d.SceneResourceFactory = this.scene.getResourceFactory();
+                let rf: SceneResourceFactory = this.scene.getResourceFactory();
 
                 this.envImg = await rf.createImage({ name: "image1", uri: test_uri });
             });
