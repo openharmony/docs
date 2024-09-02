@@ -22,7 +22,7 @@
 当用户存在指定数据类型赋值场景时，会出现不兼容情况; 例如：
 ```ts
 const params1: scene3d.SceneResourceParameters = { name: "name1", uri: $rawfile("default_path") }
-const test_uri: Resource = params1.uri;
+const test_uri: Resource | undefined = params1.uri;
 ```
 
 **起始API Level**
@@ -48,13 +48,13 @@ API 12
 **适配指导**
 
 ```ts
-import scene3d from `@ohos.graphics.scene`
+import scene3d from '@ohos.graphics.scene'
 
 const params1: scene3d.SceneResourceParameters = { name: "name1", uri: $rawfile("default_path") }
 // 变更前
-// const test_uri: Resource = params1.uri;
+// const test_uri: Resource | undefined = params1.uri;
 // 变更后适配为
-const test_uri: ResourceStr = params1.uri;
+const test_uri: ResourceStr | undefined = params1.uri;
 
 @Entry
 @Component
@@ -78,7 +78,7 @@ struct node_geometry {
             scene3d.Scene.load($rawfile("default_path"))
             .then(async (result: scene3d.Scene) => {
                 this.scene = result;
-                this.sceneOpt = { scene: this.scene, modelType: ModelType.USRFACE } as SceneOptions;
+                this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
                 let rf: scene3d.SceneResourceFactory = this.scene.getResourceFactory();
 
                 this.envImg = await rf.createImage({ name: "image1", uri: test_uri });
