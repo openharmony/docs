@@ -505,7 +505,7 @@ struct ParticleExample {
           opacity:{
             range:[0.0,1.0],//粒子透明度的初始值从【0.0到1.0】随机产生
             updater:{
-              type:ParticleUpdater.CURVE,//透明度的变化方式是随机变化
+              type:ParticleUpdater.CURVE,
               config:[
                 {
                   from:0.0,
@@ -543,7 +543,7 @@ struct ParticleExample {
             speed:{
               range:[3,9],
               updater:{
-                type:ParticleUpdater.RANDOM,
+                type:ParticleUpdater.RANDOM,//Speed的变化方式是随机变化的
                 config:[1,20]
               }
             },
@@ -1011,7 +1011,7 @@ struct ParticleExample {
           opacity:{
             range:[0.0,1.0],//粒子透明度的初始值从[0.0,1.0]随机产生
             updater:{
-              type:ParticleUpdater.CURVE,//透明度的变化方式是随机变化
+              type:ParticleUpdater.CURVE,
               config:[
                 {
                   from:0.0,
