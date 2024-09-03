@@ -57,10 +57,10 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 	  }]
     }, (err: BusinessError, data) => {
       if (err) {
-        console.error(`Failed to addContact. Code:${err.code}, message: ${err.message}`);
+        console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
         return;
       }
-      console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
 ```
 
@@ -98,10 +98,10 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 	  }]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to addContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
   ```
 
@@ -154,9 +154,9 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 	  }]
   });
   promise.then((data) => {
-    console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to addContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -199,9 +199,9 @@ addContact(contact: Contact): Promise&lt;number&gt;
 	  }]
   });
   promise.then((data) => {
-      console.info(`Succeeded in addContact. data: ${JSON.stringify(data)}`);
+      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to addContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -238,10 +238,10 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
   let context = getContext(this) as Context; 
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in deleteContact.');
+      console.info('Succeeded in deleting Contact.');
   });
 ```
 
@@ -272,10 +272,10 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.deleteContact('xxx', (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in deleteContact.');
+      console.info('Succeeded in deleting Contact.');
   });
   ```
 
@@ -318,9 +318,9 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
   let context = getContext(this) as Context;
   let promise = contact.deleteContact(context, 'xxx');
   promise.then(() => {
-      console.info(`Succeeded in deleteContact.`);
+      console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -356,9 +356,9 @@ deleteContact(key: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
-      console.info(`Succeeded in deleteContact.`);
+      console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to deleteContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -369,7 +369,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
 更新联系人，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -404,10 +404,10 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 	  }]
   }, (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -421,7 +421,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -446,10 +446,10 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 	  }]
   }, (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -460,7 +460,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
 更新联系人，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -498,10 +498,10 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -515,7 +515,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-1)
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -543,10 +543,10 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
       if (err) {
-          console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -557,7 +557,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 更新联系人，使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -600,9 +600,9 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -616,7 +616,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-2)
 
-**需要权限**：ohos.permission.WRITE_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -648,9 +648,9 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.info('Succeeded in updateContact.');
+      console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`Failed to updateContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1000,10 +1000,10 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
   let context = getContext(this) as Context;
   contact.queryMyCard(context, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1033,10 +1033,10 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryMyCard((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1075,10 +1075,10 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1111,10 +1111,10 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1158,9 +1158,9 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -1197,9 +1197,9 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryMyCard. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryMyCard. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1228,10 +1228,10 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContact((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to selectContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in selectContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1260,9 +1260,9 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContact();
   promise.then((data) => {
-      console.info(`Succeeded in selectContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to selectContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1294,10 +1294,10 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContacts((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1324,9 +1324,9 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContacts();
   promise.then((data) => {
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1361,10 +1361,10 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
     isMultiSelect:false
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1402,9 +1402,9 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
-      console.info(`Succeeded in selectContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to selectContacts. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1441,10 +1441,10 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1475,10 +1475,10 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1521,10 +1521,10 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1560,10 +1560,10 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1603,10 +1603,10 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1640,10 +1640,10 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1688,10 +1688,10 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1730,10 +1730,10 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1783,9 +1783,9 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1828,9 +1828,9 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContact. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContact. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1866,10 +1866,10 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
   let context = getContext(this) as Context;
   contact.queryContacts(context, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1899,10 +1899,10 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1943,10 +1943,10 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1981,10 +1981,10 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2023,10 +2023,10 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2059,10 +2059,10 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2106,10 +2106,10 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2147,10 +2147,10 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2198,9 +2198,9 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`queryContacts success: data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2243,9 +2243,9 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContacts. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContacts. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -2282,10 +2282,10 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2316,10 +2316,10 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2362,10 +2362,10 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2401,10 +2401,10 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2444,10 +2444,10 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2481,10 +2481,10 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2529,10 +2529,10 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2571,10 +2571,10 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2624,9 +2624,9 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2670,9 +2670,9 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByPhoneNumber. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByPhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2709,10 +2709,10 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2743,10 +2743,10 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2788,10 +2788,10 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2827,10 +2827,10 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2870,10 +2870,10 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2907,10 +2907,10 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2955,10 +2955,10 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2997,10 +2997,10 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3050,9 +3050,9 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3096,9 +3096,9 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryContactsByEmail. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3134,10 +3134,10 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
   let context = getContext(this) as Context;
   contact.queryGroups(context, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryGroups. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3167,10 +3167,10 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryGroups((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups.. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3211,10 +3211,10 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3249,10 +3249,10 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3298,9 +3298,9 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
       displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3340,9 +3340,9 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
       displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryContactsByEmail. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryGroups. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3378,10 +3378,10 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
   let context = getContext(this) as Context;
   contact.queryHolders(context, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3411,10 +3411,10 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryHolders((err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3455,9 +3455,9 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
   let context = getContext(this) as Context;
   let promise = contact.queryHolders(context);
   promise.then((data) => {
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3487,9 +3487,9 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryHolders();
   promise.then((data) => {
-      console.info(`Succeeded in queryHolders. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryHolders. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3526,10 +3526,10 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
   let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3560,10 +3560,10 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryKey(/*id*/1, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3605,10 +3605,10 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3644,10 +3644,10 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
       displayName: ""
   }, (err: BusinessError, data) => {
       if (err) {
-          console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
+          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
           return;
       }
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3694,9 +3694,9 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
       displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryKey. Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3737,9 +3737,9 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
       displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in queryKey. data->${JSON.stringify(data)}`);
+      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to queryKey Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
