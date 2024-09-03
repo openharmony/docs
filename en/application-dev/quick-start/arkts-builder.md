@@ -13,7 +13,7 @@ For simplicity, here we refer to an \@Builder decorated function also as a custo
 >
 > This decorator can be used in atomic services since API version 11.
 
-## Rules of Use
+## How to Use
 
 
 ### Local Custom Builder Function
@@ -32,7 +32,7 @@ Usage:
 this.MyBuilderFunction()
 ```
 
-- You can define one or more @Builder decorated methods in a custom component. Such a method is considered as a private, special type of member function of the component.
+- One or more @LocalBuilder methods can be defined in a custom component. The methods are considered as private and special member functions of the component.
 
 - The custom builder function can be called from the **build** method or another custom builder function in the same component only.
 
@@ -120,7 +120,7 @@ class Tmp {
 
 @Component
 struct HelloComponent {
-  @Link message: string;
+  @Prop message: string;
 
   build() {
     Row() {
@@ -148,7 +148,7 @@ struct Parent {
 
 When parameters are passed by reference, if a custom component or another \@Builder method is called within the \@Builder method, ArkUI provides [$$](arkts-two-way-sync.md) as the paradigm for passing parameters by reference.
 
-The following is an example of a multi-level, nested \@Builder method:
+The following is an example of multi-layer \@Builder method nesting:
 
 ```ts
 class Tmp {
@@ -218,7 +218,7 @@ struct HelloChildComponent {
 
 @Component
 struct HelloGrandsonComponent {
-  @Link message: string;
+  @Prop message: string;
   build() {
     Row() {
       Text(`HelloGrandsonComponent===${this.message}`)
