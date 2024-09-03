@@ -88,6 +88,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetBufferSize](#oh_imagenative_getbuffersize) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, size_t \*size) | 获取Native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的缓冲区的大小。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetRowStride](#oh_imagenative_getrowstride) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, int32_t \*rowStride) | 获取Native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的像素行宽。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetPixelStride](#oh_imagenative_getpixelstride) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, int32_t \*pixelStride) | 获取Native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的像素大小。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetTimestamp](#oh_imagenative_gettimestamp) ([OH_ImageNative](#oh_imagenative) \*image, int64_t \*timestamp) | 获取Native [OH_ImageNative](#oh_imagenative) 对象中的时间戳信息。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageNative_Release](#oh_imagenative_release) ([OH_ImageNative](#oh_imagenative) \*image) | 释放Native [OH_ImageNative](#oh_imagenative) 对象。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_Create](#oh_packingoptions_create) ([OH_PackingOptions](#oh_packingoptions) \*\*options) | 创建PackingOptions结构体的指针。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetMimeType](#oh_packingoptions_getmimetype) ([OH_PackingOptions](#oh_packingoptions) \*options, [Image_MimeType](#image_mimetype) \*format) | 获取MIME类型。 | 
@@ -1146,7 +1147,7 @@ Image_ErrorCode OH_ImageNative_GetComponentTypes (OH_ImageNative * image, uint32
 Image_ErrorCode OH_ImageNative_GetImageSize (OH_ImageNative * image, Image_Size * size )
 ```
 **描述**
-获取Native [OH_ImageNative](#oh_imagenative) 对象的 [Image_Size](_image___size.md) 信息。
+获取Native [OH_ImageNative](#oh_imagenative) 对象的 [Image_Size](_image___size.md) 信息。如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的[Image_Size](_image___size.md)中的宽高分别对应YUV图像的宽高；如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的数据，[Image_Size](_image___size.md)中的宽等于JPEG数据大小，高等于1。[OH_ImageNative](#oh_imagenative) 对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。
 
 **起始版本：** 12
 
@@ -1202,6 +1203,28 @@ Image_ErrorCode OH_ImageNative_GetRowStride (OH_ImageNative * image, uint32_t co
 | image | 表示 [OH_ImageNative](#oh_imagenative) native对象的指针。  | 
 | componentType | 表示组件的类型。  | 
 | rowStride | 表示作为获取结果的像素行宽的指针。  | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageNative_GetTimestamp()
+
+```
+Image_ErrorCode OH_ImageNative_GetTimestamp (OH_ImageNative * image, int64_t * timestamp )
+```
+**描述**
+获取Native [OH_ImageNative](#oh_imagenative) 对象中的时间戳信息
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 表示 [OH_ImageNative](#oh_imagenative) native对象的指针。  | 
+| timestamp | 表示作为获取结果的时间戳信息的指针。  |
 
 **返回：**
 
@@ -1849,7 +1872,7 @@ Image_ErrorCode OH_ImageSourceInfo_Release (OH_ImageSource_Info * info)
 Image_ErrorCode OH_ImageSourceNative_CreateFromData (uint8_t * data, size_t dataSize, OH_ImageSourceNative ** res )
 ```
 **描述**
-通过缓冲区数据创建OH_ImageSourceNative指针。
+通过缓冲区数据创建OH_ImageSourceNative指针。data数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[OH_PixelmapNative_CreatePixelmap](./pixelmap__native_8h.md)这一类接口。
 
 **起始版本：** 12
 
@@ -2990,7 +3013,7 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels (OH_PixelmapNative * pixelmap, uint
 | -------- | -------- |
 | pixelmap | 被操作的OH_PixelmapNative指针。  | 
 | destination | 缓冲区，获取的图像像素数据写入到该内存区域内。  | 
-| bufferSize | 缓冲区大小。  | 
+| bufferSize | 缓冲区大小。RGBA格式的缓冲区大小等于width * height * 4，NV21与NV12格式的缓冲区大小等于width * height+((width+1)/2) * ((height+1)/2) * 2。  | 
 
 **返回：**
 
