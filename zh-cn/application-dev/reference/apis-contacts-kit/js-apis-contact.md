@@ -369,7 +369,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
 更新联系人，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS;ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -421,7 +421,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
 
-**需要权限**：ohos.permission.WRITE_CONTACTS;ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -460,7 +460,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
 更新联系人，使用callback方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS;ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -515,7 +515,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-1)
 
-**需要权限**：ohos.permission.WRITE_CONTACTS;ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -557,7 +557,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 更新联系人，使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.WRITE_CONTACTS;ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -616,7 +616,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-2)
 
-**需要权限**：ohos.permission.WRITE_CONTACTS;ohos.permission.READ_CONTACTS
+**需要权限**：ohos.permission.WRITE_CONTACTS和ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
 
@@ -1433,7 +1433,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 | 201      | Permission denied. |
 | 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
-- [ ] **示例：**
+**示例：**
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
