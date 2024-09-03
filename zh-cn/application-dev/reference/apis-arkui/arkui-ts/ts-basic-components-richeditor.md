@@ -285,6 +285,21 @@ enableKeyboardOnFocus(isEnabled: boolean)
 | ------ | ------- | ---- | ----------------------------------------------------------- |
 | isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true |
 
+
+### enableHapticFeedback<sup>13+</sup>
+
+enableHapticFeedback(isEnabled: boolean)
+
+设置RichEditor是否支持触控反馈。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| isEnabled  | boolean | 是   | 是否支持触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。<br/>设置为true后是否生效，还取决于系统的硬件是否支持。 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -637,6 +652,7 @@ Span类型信息。
 | TEXT  | 0 | Span为文字类型。   |
 | IMAGE | 1 | Span为图像类型。   |
 | MIXED | 2 | Span为图文混合类型。 |
+| BUILDER<sup>12+</sup> | 3 | Span为BuilderSpan类型。 |
 
 ## RichEditorTextStyleResult
 
