@@ -35,7 +35,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -159,7 +159,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -269,7 +269,7 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -385,7 +385,7 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -489,7 +489,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -536,7 +536,7 @@ stopVibration(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -575,7 +575,7 @@ stopVibrationSync(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -615,7 +615,7 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -686,7 +686,7 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -752,7 +752,7 @@ isSupportEffectSync(effectId: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -886,7 +886,7 @@ try {
 
 ## VibrateFromFile<sup>10+</sup>
 
-自定义振动类型，仅部分设备支持，当设备不支持此振动类型时，返回[设备不支持错误码](../errorcode-universal.md)。
+自定义振动类型，仅部分设备支持，当设备不支持此振动类型时，返回[设备不支持错误码](../errorcode-universal.md#801该设备不支持此API)。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
