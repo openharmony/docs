@@ -2,7 +2,14 @@
 配合LazyForEach，为List、Grid、Waterfall和Swiper等容器组件滑动浏览时提供内容预加载能力，提升用户浏览体验。
 
 >  **说明：**
+>
 >  本模块首批接口从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+## 导入模块
+
+```ts
+import { BasicPrefetcher, IDataSourcePrefetching } from '@kit.ArkUI';
+```
 
 
 ## IPrefetcher
