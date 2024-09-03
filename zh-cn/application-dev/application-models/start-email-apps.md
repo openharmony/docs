@@ -2,7 +2,7 @@
 
 本章节介绍如何拉起邮件类应用扩展面板。
 
-### 邮件类应用扩展面板参数说明
+## 邮件类应用扩展面板参数说明
 
 startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
