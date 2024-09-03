@@ -7,7 +7,7 @@ Before accessing or operating a user file, a third-party application needs to ob
 ## Constraints
 
 - Before using the APIs of the **Environment** module, ensure that the device has SystemCapability.FileManagement.File.Environment.FolderObtain.
-- To obtain the sandbox path of a user directory, a third-party application must request the permission required via the ACL and request user authorization in a dialog box. For details, see [Workflow for Using Permissions](../security/AccessToken/determine-application-mode.md).
+- The APIs provided by the **Environment** module can be used to obtain the application sandbox paths of the user directories. To operate the related directory and its subdirectories, user authorization is required via a dialog box. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 ## Available APIs
 
@@ -15,9 +15,9 @@ For details about the APIs, see [Environment](../reference/apis-core-file-kit/_e
 
 | API| Description|
 | -------- | -------- |
-| FileManagement_ErrCode OH_Environment_GetUserDownloadDir (char **result)| Obtains the sandbox path of the **Download** directory. The caller must have the ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY permission.|
-| FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char **result)	 | Obtains the sandbox path of the **Desktop** directory. The caller must have the ohos.permission.READ_WRITE_DESKTOP_DIRECTORY permission.|
-| FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char **result) | Obtains the sandbox path of the **Documents** directory. The caller must have the ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY permission.|
+| FileManagement_ErrCode OH_Environment_GetUserDownloadDir (char **result)| Obtains the sandbox path of the **Download** directory. This API is available only for 2-in-1 devices.|
+| FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char **result)	 | Obtains the sandbox path of the **Desktop** directory. This API is available only for 2-in-1 devices.|
+| FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char **result) | Obtains the sandbox path of the **Documents** directory. This API is available only for 2-in-1 devices.|
 
 ## How to Develop
 
@@ -41,14 +41,14 @@ target_link_libraries(sample PUBLIC libohenvironment.so)
     ```c
     void GetUserDownloadDirPathExample() {
         char *downloadPath = NULL;
-        FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath); 
+        FileManagement_ErrCode ret = OH_Environment_GetUserDownloadDir(&downloadPath);
         if (ret == 0) {
             printf("Download Path=%s", downloadPath);
             free(downloadPath);
         } else {
             printf("GetDownloadPath failed, error code is %d", ret);
         }
-    }    
+    }
    ```
 
 2. Use **OH_Environment_GetUserDesktopDir** to obtain the sandbox path of the user **Desktop** directory. The memory allocated must be released using **free()**. <br>Example:
@@ -56,14 +56,14 @@ target_link_libraries(sample PUBLIC libohenvironment.so)
     ```c
     void GetUserDesktopDirPathExample() {
         char *desktopPath = NULL;
-        FileManagement_ErrCode ret = OH_Environment_GetUserDesktopDir(&desktopPath); 
+        FileManagement_ErrCode ret = OH_Environment_GetUserDesktopDir(&desktopPath);
         if (ret == 0) {
             printf("Desktop Path=%s", desktopPath);
             free(desktopPath);
         } else {
             printf("GetDesktopPath failed, error code is %d", ret);
         }
-    }    
+    }
    ```
 
 3. Use **OH_Environment_GetUserDocumentDir** to obtain the sandbox path of the user **Documents** directory. The memory allocated must be released using **free()**. <br>Example:
@@ -71,12 +71,12 @@ target_link_libraries(sample PUBLIC libohenvironment.so)
     ```c
     void GetUserDocumentDirPathExample() {
         char *documentPath = NULL;
-        FileManagement_ErrCode ret = OH_Environment_GetUserDocumentDir(&documentPath); 
+        FileManagement_ErrCode ret = OH_Environment_GetUserDocumentDir(&documentPath);
         if (ret == 0) {
             printf("Document Path=%s", documentPath);
             free(documentPath);
         } else {
             printf("GetDocumentPath failed, error code is %d", ret);
         }
-    }    
+    }
    ```
