@@ -23,11 +23,11 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 4. Use [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to **CRYPTO_ENCRYPT_MODE**, and specify the key for encryption (**OH_CryptoSymKey**) and the encryption parameter instance (**OH_CryptoSymCipherParams**) corresponding to the GCM mode.
 
 5. Use [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) to update the data (plaintext) to be encrypted.
-
+   
    Currently, the amount of data to be passed in by a single **OH_CryptoSymCipher_Update()** is not limited. You can determine how to pass in data based on the data volume.
 
    - If a small amount of data is to be encrypted, you can use **OH_CryptoSymCipher_Final()** immediately after **OH_CryptoSymCipher_Init()**.
-   - If a large amount of data is to be encrypted, you can call **OH_CryptoSymCipher_Update()** multiple times to [pass in the data by segment](crypto-sm4-sym-encrypt-decrypt-gcm-by-segment-ndk.md).
+   - If a large amount of data is to be encrypted, you can call **OH_CryptoSymCipher_Update()** multiple times to pass in the data by segment.
 
 6. Use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the ciphertext.
    - If data has been passed in by **OH_CryptoSymCipher_Update()**, pass in **null** in the **data** parameter of **OH_CryptoSymCipher_Final**.
@@ -46,6 +46,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 2. Use [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) to update the data (ciphertext) to be decrypted.
 
 3. Use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the plaintext.
+
 
 **Example**
 
