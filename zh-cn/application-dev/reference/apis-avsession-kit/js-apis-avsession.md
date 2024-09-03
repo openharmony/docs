@@ -221,7 +221,9 @@ let metadata: avSession.AVMetadata = {
   mediaImage: "https://www.example.com/example.jpg",
   subtitle: "8 Mile",
   description: "Rap",
-  lyric: "https://www.example.com/example.lrc",
+  // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
+  // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
+  lyric: "lrc格式歌词内容",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -274,7 +276,9 @@ let metadata: avSession.AVMetadata = {
   mediaImage: "https://www.example.com/example.jpg",
   subtitle: "8 Mile",
   description: "Rap",
-  lyric: "https://www.example.com/example.lrc",
+  // LRC中有两类元素：一种是时间标签+歌词，一种是ID标签。
+  // 例如：[00:25.44]xxx\r\n[00:26.44]xxx\r\n
+  lyric: "lrc格式歌词内容",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -3830,7 +3834,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
   // 从服务器获取许可证，需要开发者根据实际情况进行赋值
   let licenseResponseData: Uint8Array = new Uint8Array();
-  console.info('Succeeded in get license by ' + drmUrl);
+  console.info(`Succeeded in get license by ${drmUrl}.`);
   aVCastController.processMediaKeyResponse(assetId, licenseResponseData);
 }
 ```
@@ -4467,8 +4471,7 @@ on(type: 'error', callback: ErrorCallback): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.on('error', (error: BusinessError) => {
-  console.info('error happened,and error message is :' + error.message)
-  console.info('error happened,and error code is :' + error.code)
+  console.info(`error happened, error code: ${error.code}, error message : ${error.message}.`)
 })
 ```
 
@@ -4666,7 +4669,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | publishDate     | Date                    | 否   | 发行日期。                                                             |
 | subtitle        | string                  | 否   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | description     | string                  | 否   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
-| lyric           | string                  | 否   | 歌词文件路径地址(本地路径或网络路径) |
+| lyric           | string                  | 否   | 媒体歌词内容。应用需将歌词内容拼接为一个字符串传入。 |
 | previousAssetId | string                  | 否   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
