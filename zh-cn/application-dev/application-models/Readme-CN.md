@@ -40,7 +40,7 @@
     - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
   - 应用间跳转
     - [应用间跳转概述](link-between-apps-overview.md)
-    - 指向性跳转
+    - 拉起指定应用
       - [（可选）使用canOpenLink判断应用是否可访问](canopenlink.md)
       - [使用Deep Linking实现应用间跳转](deep-linking-startup.md)
       <!--Del-->
@@ -48,10 +48,12 @@
       <!--DelEnd-->
       - [显式Want跳转切换应用链接跳转适配指导](uiability-startup-adjust.md)
       - [应用链接说明](app-uri-config.md)
-    - 通用意图跳转
-      - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
-      - [拉起图片编辑类应用编辑图片](photoEditorExtensionAbility.md)
-      - [通过startAbility拉起文件处理类应用](file-processing-apps-startup.md)
+    - [拉起指定类型的应用](start-intent-panel.md)
+      - [拉起导航类应用](start-navigation-apps)
+      - [拉起邮件类应用](start-email-apps)
+      - [拉起支付类应用](start-payment-apps)
+      - [拉起图片编辑类应用](photoEditorExtensionAbility.md)
+      - [拉起文件处理类应用](file-processing-apps-startup.md)
     - [拉起系统应用](system-app-startup.md)
   - [进程模型](process-model-stage.md)
   - [线程模型](thread-model-stage.md)
