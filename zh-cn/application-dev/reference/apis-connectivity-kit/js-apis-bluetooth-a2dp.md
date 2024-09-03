@@ -145,6 +145,7 @@ try {
 | CODEC_TYPE_L2HCST<sup>13+</sup>  | 3 | L2HCST。 |
 | CODEC_TYPE_LDAC<sup>13+</sup>    | 4 | LDAC。|
 
+
 ## CodecChannelMode<sup>11+</sup>
 
 枚举，蓝牙编码器的声道模式。
