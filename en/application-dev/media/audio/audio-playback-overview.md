@@ -26,6 +26,6 @@ To enable your application to play a video in the background or when the screen 
 
 1. The application is registered with the system for unified management through the **AVSession** APIs. Otherwise, the playback will be forcibly stopped when the application switches to the background. For details, see [AVSession Kit Development](../avsession/avsession-overview.md).
 
-2. The application must request a continuous task to prevent from being suspended. For details, see [Background Tasks Kit Development](../../task-management/continuous-task.md).
+2. The application must request a continuous task to prevent from being suspended. For details, see [Continuous Task](../../task-management/continuous-task.md).
 
 If the playback is interrupted when the application switches to the background, you can view the log to see whether the application has requested a continuous task. If the application has requested a continuous task, there is no log recording **pause id**; otherwise, there is a log recording **pause id**.
