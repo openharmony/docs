@@ -176,13 +176,18 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         printf("create media key system failed");
         return;
     }
-    // 进行DRM授权
+
     // 创建解密会话
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
+    if (ret != DRM_OK) {
+        // 如创建失败，请查看DRM接口文档及日志信息
+        printf("create media key session failed.");
+        return;
+    }
     if (session == nullptr) {
-        printf("create media key session failed");
+        printf("media key session is nullptr.");
         return;
     }
     // 获取许可证请求、设置许可证响应等
