@@ -40,7 +40,7 @@ PasteButton(options:PasteButtonOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [PasteButtonOptions](#pastebuttonoptions) | 否 | 创建包含指定元素的粘贴按钮。<br/>默认值：<br/>{<br/>icon: PasteIconStyle.LINES,<br/>text: PasteDescription.PASTE,<br/>buttonType: ButtonType.Capsule <br/>} |
+| options | [PasteButtonOptions](#pastebuttonoptions) | 是 | 创建包含指定元素的粘贴按钮。<br/>默认值：<br/>{<br/>icon: PasteIconStyle.LINES,<br/>text: PasteDescription.PASTE,<br/>buttonType: ButtonType.Capsule <br/>} |
 
 ## PasteButtonOptions
 
