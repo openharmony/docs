@@ -1,4 +1,4 @@
-- 性能
+# 性能
   - [性能优化概览](performance-overview.md)
   - [应用开发性能优化入门引导](application-performance-optimization-guidance.md)
   - [应用性能优化常见问题解决指导](performance-optimization-practical-guidance.md)
@@ -48,6 +48,7 @@
     - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
     - [使用ArkUI的FrameNode扩展实现动态布局类框架](imperative_dynamic_layouts.md)
     - [在线短视频流畅切换](performance-quick-switch-short-video.md)
+    - [相机分段式拍照性能提升实践](performance-camera-shot2see.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
