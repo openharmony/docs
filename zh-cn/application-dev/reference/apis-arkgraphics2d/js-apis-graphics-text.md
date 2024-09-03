@@ -189,7 +189,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | heightOnly    | boolean                                              | 是 | 否 | true表示根据字体大小计算文本框的高度，false表示根据行高和行距，默认为false。|
 | ellipsis      | string                                               | 是 | 否 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
 | ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 否 | 省略号类型，默认为END，行尾省略号。                        |
-| locale        | string                                               | 是 | 否 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
+| locale        | string                                               | 是 | 否 | 语言类型，如字段为'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。具体请参照ISO 639-1规范，默认为空字符串。|
 
 ## FontCollection
 
