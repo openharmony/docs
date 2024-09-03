@@ -2200,7 +2200,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
   promise.then((data) => {
       console.info(`Succeeded in querying Contacts. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts. data->${JSON.stringify(err)}`);
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
