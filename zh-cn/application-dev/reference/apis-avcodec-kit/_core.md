@@ -3,7 +3,7 @@
 
 ## 概述
 
-Core模块提供用于播放框架的基础骨干能力，包含内存、错误码、媒体数据结构等相关函数。
+Core模块提供用于媒体框架的基础骨干能力，包含内存、错误码、媒体数据结构等相关函数。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1173,7 +1173,7 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const u
 | format | 指向OH_AVFormat实例的指针。 | 
 | key | 写入数据的键。 | 
 | addr | 写入数据的地址，生命周期由开发者管理。 | 
-| size | 写入数据的长度，范围为0-1MB。 | 
+| size | 写入数据的长度，范围为(0, 1)MB。 | 
 
 **返回：**
 
@@ -1185,7 +1185,7 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const u
 2. 输入format参数结构校验失败；
 3. 输入key为空指针；
 4. 输入addr为空指针；
-5. size为0；
+5. size为0或超过限制1MB；
 6. 设置的key对应的value类型错误。
 
 
