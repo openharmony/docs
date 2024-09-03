@@ -16,7 +16,7 @@ import { SceneResourceParameters, SceneNodeParameters, SceneResourceFactory, Sce
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | name | string | 否 | 否 | 要创建资源的名称，可由开发者自定填写。|
-| uri | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#ResourceStr) | 否 | 是 | 3D场景所需的资源文件路径。默认值为undefined。|
+| uri | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | 否 | 是 | 3D场景所需的资源文件路径。默认值为undefined。|
 
 **示例：**
 ```ts
