@@ -41,7 +41,7 @@ Navigation(pathInfos: NavPathStack)
 
 | 参数名       | 类型                            | 必填   | 说明   |
 | --------- | ------------------------------- | ---- | ------ |
-| pathInfos | [NavPathStack](#navpathstack10) | 否    | 路由栈信息。 |
+| pathInfos | [NavPathStack](#navpathstack10) | 是    | 路由栈信息。 |
 
 ## 属性
 
@@ -135,7 +135,7 @@ toolBar(value: object | CustomBuilder)
 
 **object类型说明：** 
 
-| 名称     | 类型            | 必填   | 描述              |
+| 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
 | value  | string        | 是    | 工具栏单个选项的显示文本。   |
 | icon   | string        | 否    | 工具栏单个选项的图标资源路径。 |
@@ -464,7 +464,7 @@ onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void)
 
 ### customNavContentTransition<sup>11+</sup>
 
-customNavContentTransition(delegate(from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => NavigationAnimatedTransition | undefined)
+customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => NavigationAnimatedTransition | undefined)
 
 自定义转场动画回调。
 
@@ -502,7 +502,7 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 说明                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -519,7 +519,7 @@ pushPath(info: NavPathInfo, options?: NavigationOptions): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 说明                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
@@ -536,7 +536,7 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 说明                    |
+| 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 是    | NavDestination页面详细参数。 |
@@ -554,7 +554,7 @@ pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 |------|------|------|------|
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
@@ -573,7 +573,7 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 说明                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -607,7 +607,7 @@ pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 说明                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
@@ -641,7 +641,7 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 说明                    |
+| 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
@@ -676,7 +676,7 @@ pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, an
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 说明                    |
+| 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
@@ -712,7 +712,7 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 说明                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -729,7 +729,7 @@ replacePath(info: NavPathInfo, options?: NavigationOptions): void
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 说明                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
 | options | [NavigationOptions](#navigationoptions12) | 否    | 页面栈操作选项。 |
@@ -746,7 +746,7 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 说明                    |
+| 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
@@ -764,7 +764,7 @@ removeByIndexes(indexes: Array<number\>): number
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 说明                    |
+| 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | indexes  | Array<number\>  | 是    | 待删除NavDestination页面的索引值数组。   |
 
@@ -786,7 +786,7 @@ removeByName(name: string): number
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 说明                    |
+| 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | 删除的NavDestination页面的名字。   |
 
@@ -808,7 +808,7 @@ removeByNavDestinationId(navDestinationId: string): boolean
 
 **参数：**
 
-| 名称    | 类型      | 必填   | 说明                    |
+| 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | navDestinationId  | string  | 是    | 删除的NavDestination页面的唯一标识符navDestinationId。   |
 
@@ -830,7 +830,7 @@ pop(animated?: boolean): NavPathInfo | undefined
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 说明                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
@@ -853,7 +853,7 @@ pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 **参数：**
 
-| 名称   | 类型                            | 必填   | 说明                   |
+| 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -877,7 +877,7 @@ popToName(name: string, animated?: boolean): number
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 说明                  |
+| 参数名   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -900,7 +900,7 @@ popToName(name: string, result: Object, animated?: boolean): number
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 说明                  |
+| 参数名   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 | result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
@@ -924,7 +924,7 @@ popToIndex(index: number, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 说明                     |
+| 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -941,7 +941,7 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 说明                     |
+| 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 | result | Object | 是 | 页面自定义处理结果。不支持boolean类型。 |
@@ -959,7 +959,7 @@ moveToTop(name: string, animated?: boolean): number
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 说明                  |
+| 参数名   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -982,7 +982,7 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 说明                     |
+| 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
@@ -999,7 +999,7 @@ clear(animated?: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 说明                     |
+| 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
@@ -1031,7 +1031,7 @@ getParamByIndex(index: number): unknown | undefined
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 说明                     |
+| 参数名    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
 
@@ -1054,7 +1054,7 @@ getParamByName(name: string): Array<unknown\>
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 说明                  |
+| 参数名   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 
@@ -1076,7 +1076,7 @@ getIndexByName(name: string): Array<number\>
 
 **参数：**
 
-| 名称   | 类型     | 必填   | 说明                  |
+| 参数名   | 类型     | 必填   | 说明                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
 
@@ -1114,7 +1114,7 @@ disableAnimation(value: boolean): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 说明                    |
+| 参数名    | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | ---------------------- |
 | value | boolean | 否    | 是否关闭转场动画，默认值：false。 |
 
@@ -1146,7 +1146,7 @@ setInterception(interception: NavigationInterception): void
 
 **参数：**
 
-| 名称    | 类型     | 必填   | 说明                     |
+| 参数名    | 类型     | 必填   | 说明                     |
 | ---- | ---- | --- | ---|
 |interception| [NavigationInterception](#navigationinterception12)| 是 | 设置Navigation跳转拦截对象。|
 
@@ -1162,9 +1162,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称    | 类型      | 必填   | 说明                   |
+| 参数名    | 类型      | 必填   | 说明                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 否    | NavDestination页面详细参数。 |
@@ -1179,8 +1177,6 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
 | 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|-----|
 | info | [NavPathInfo](#navpathinfo10) | 是 | 页面触发返回时的当前页面信息，系统自动获取填入，无需开发者传入。 |
@@ -1193,8 +1189,6 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
 
 | 名称  | 类型  | 必填  | 说明  |
 |-------|-------|------|-------|
@@ -1212,7 +1206,6 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
 | 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|------|
 | timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br> 默认值：可交互动画无默认值，不可交互动画默认超时时间为1000ms。|
@@ -1270,7 +1263,7 @@ updateTransition?(progress: number): void;
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述 |
+| 参数名 | 类型 | 必填 | 描述 |
 |------|------|------|-----|
 | progress | number | 是 | 设置交互转场动画进度百分比。取值范围 0-1。|
 
@@ -1319,7 +1312,7 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | ------ | ------ | ---- | ---------------- |
 | mode | [NavigationMode](#navigationmode9枚举说明) | 是 |  导航栏的显示模式。 |
 
-### NavBar<sup>12+</sup>
+## NavBar<sup>12+</sup>
 
 type NavBar = 'navBar'
 
@@ -1335,13 +1328,15 @@ Navigation首页名字。
 
 ## NavigationMenuItem
 
-| 名称     | 类型            | 必填   | 描述              |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
 | value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。 |
+| symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ToolbarItem<sup>10+</sup>
 
@@ -1349,15 +1344,15 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                       | 必填   | 描述                                       |
+| 名称         | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | value      | ResourceStr                              | 是    | 工具栏单个选项的显示文本。                            |
 | icon       | ResourceStr                              | 否    | 工具栏单个选项的图标资源路径。                          |
 | action     | () =&gt; void                            | 否    | 当前选项被选中的事件回调。                            |
 | status     | [ToolbarItemStatus](#toolbaritemstatus10枚举说明) | 否    | 工具栏单个选项的状态。<br/>默认值：ToolbarItemStatus.NORMAL |
 | activeIcon | ResourceStr                              | 否    | 工具栏单个选项处于ACTIVE态时的图标资源路径。                |
-| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)        | 否    | 工具栏单个选项的symbol资源（优先级高于icon）。               |
-| activeSymbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)              | 否    | 工具栏单个选项处于ACTIVE态时的symbol资源（优先级高于activeIcon）。                |
+| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)        | 否    | 工具栏单个选项的symbol资源（优先级高于icon）。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。            |
+| activeSymbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)              | 否    | 工具栏单个选项处于ACTIVE态时的symbol资源（优先级高于activeIcon）。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
 
 ## ToolbarItemStatus<sup>10+</sup>枚举说明
 
@@ -1389,7 +1384,7 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型     | 必填   | 描述     |
+| 名称   | 类型     | 必填   | 说明     |
 | ---- | ------ | ---- | ------ |
 | main | string | 是    | 设置主标题。 |
 | sub  | string | 是    | 设置副标题。 |
@@ -1400,10 +1395,10 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                       | 必填   | 描述       |
+| 名称      | 类型                                       | 必填   | 说明        |
 | ------- | ---------------------------------------- | ---- | -------- |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 设置标题栏内容。 |
-| height  | [TitleHeight](#titleheight9枚举说明) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
+| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
 
 ## NavBarPosition<sup>9+</sup>枚举说明
 
@@ -1427,17 +1422,6 @@ Navigation首页名字。
 | Stack | 导航栏与内容区独立显示，相当于两个页面。                     |
 | Split | 导航栏与内容区分两栏显示。<br/>以下navBarWidthRange的值用[minNavBarWidth,maxNavBarWidth]表示<br/>1.当navBarWidth属性的值，在navBarWidthRange属性的值范围以外时，navBarWidth按如下规则显示：<br/>navBarWidth < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) > maxNavBarWidth时，navBarWidth修正为maxNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)在navBarWidthRange范围内，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth。<br/>2.当navBarWidth属性的值，在navBarWidthRange属性的值范围以内时，navBarWidth按如下规则显示：<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为minNavBarWidth；<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth;<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度时，navBarWidth为设置的值。<br/>3.缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>4.设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>5.若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。 |
 | Auto  | API version 9之前：窗口宽度>=520vp时，采用Split模式显示；窗口宽度<520vp时，采用Stack模式显示。<br/>API version 10及以上：窗口宽度>=600vp时，采用Split模式显示；窗口宽度<600vp时，采用Stack模式显示，600vp等于minNavBarWidth(240vp) + minContentWidth (360vp)。 |
-
-## TitleHeight<sup>9+</sup>枚举说明
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称          | 描述                         |
-| ----------- | -------------------------- |
-| MainOnly    | 只有主标题时标题栏的推荐高度（56vp）。      |
-| MainWithSub | 同时有主标题和副标题时标题栏的推荐高度（82vp）。 |
 
 ## NavigationOperation<sup>11+</sup>枚举说明
 
@@ -1464,7 +1448,9 @@ Navigation首页名字。
 
 ## NavigationTitleOptions<sup>11+</sup>
 
-| 名称     | 类型            | 必填   | 描述              |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -1478,7 +1464,7 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型            | 必填   | 描述              |
+| 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色，不设置时为系统默认颜色。 |
 | backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 |
@@ -1502,7 +1488,7 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型            | 必填   | 描述              |
+| 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
 | launchMode | [LaunchMode](#launchmode12枚举说明)  | 否    | 页面栈的操作模式。<br/>默认值：LaunchMode.STANDARD |
 | animated   | boolean  | 否    | 是否支持转场动画。<br/>默认值：true。 |
