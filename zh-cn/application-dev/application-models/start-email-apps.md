@@ -19,9 +19,9 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
 > **说明：**
 >
-> 1、邮件类应用扩展面板中的类型为string的参数，都要经过encodeURI编码；
+> * 邮件类应用扩展面板中的类型为string的参数，都要经过encodeURI编码。
 > 
-> 2、邮件类应用扩展面板中的类型为string[]的参数，数组中的元素都要经过encodeURI编码；
+> * 邮件类应用扩展面板中的类型为string[]的参数，数组中的元素都要经过encodeURI编码。
 
 ## 拉起方开发步骤
 1. 导入ohos.app.ability.common模块。 
@@ -64,8 +64,7 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
 ## 目标方开发步骤
 
-1. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
-    > linkFeature取值范围
+1. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用；linkFeature取值范围如下：
 
     | 取值           | 含义                      |
     | --------------| ------------------------- |
@@ -111,9 +110,9 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
     
     > **说明：**
     > 
-    > 1、目标方接收的类型为string的参数，都要经过decodeURI解码；
+    > * 目标方接收的类型为string的参数，都要经过decodeURI解码。
     > 
-    > 2、目标方接收的类型为string[]的参数，数组中的元素都要经过decodeURI解码；
+    > * 目标方接收的类型为string[]的参数，数组中的元素都要经过decodeURI解码。
 
 **完整示例：**
 
