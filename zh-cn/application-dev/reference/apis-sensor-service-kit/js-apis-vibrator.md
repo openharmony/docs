@@ -821,7 +821,7 @@ try {
 
 | 名称               | 值                   | 说明                             |
 | ------------------ | -------------------- | -------------------------------- |
-| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 描述用户调整计时器时的振动效果。|
+| EFFECT_CLOCK_TIMER | 'haptic.clock.timer' | 描述用户调整计时器时的振动效果。|
 
 ## HapticFeedback<sup>12+</sup>
 
@@ -831,9 +831,9 @@ try {
 
 | 名称         | 值                    | 说明                         |
 | ------------ | --------------------- | ---------------------------- |
-| EFFECT_SOFT  | "haptic.effect.soft"  | 较松散的振动效果，频率偏低。 |
-| EFFECT_HARD  | "haptic.effect.hard"  | 较沉重的振动效果，频率居中。 |
-| EFFECT_SHARP | "haptic.effect.sharp" | 较尖锐的振动效果，频率偏高。 |
+| EFFECT_SOFT  | 'haptic.effect.soft'  | 较松散的振动效果，频率偏低。 |
+| EFFECT_HARD  | 'haptic.effect.hard'  | 较沉重的振动效果，频率居中。 |
+| EFFECT_SHARP | 'haptic.effect.sharp' | 较尖锐的振动效果，频率偏高。 |
 
 ## VibratorStopMode
 
@@ -843,8 +843,8 @@ try {
 
 | 名称                      | 值       | 说明                           |
 | ------------------------- | -------- | ------------------------------ |
-| VIBRATOR_STOP_MODE_TIME   | "time"   | 停止duration模式的振动。 |
-| VIBRATOR_STOP_MODE_PRESET | "preset" | 停止预置EffectId的振动。|
+| VIBRATOR_STOP_MODE_TIME   | 'time'   | 停止duration模式的振动。 |
+| VIBRATOR_STOP_MODE_PRESET | 'preset' | 停止预置EffectId的振动。|
 
 ## VibrateEffect<sup>9+</sup>
 
@@ -868,7 +868,7 @@ try {
 
 | 名称     | 类型    | 必填 | 说明                           |
 | -------- | ------ | ----- | ------------------------------ |
-| type     | 'time' |  是   | 值为"time"，按照指定持续时间触发马达振动。 |
+| type     | 'time' |  是   | 值为'time'，按照指定持续时间触发马达振动。 |
 | duration | number |  是   | 马达持续振动时长, 单位ms。         |
 
 ## VibratePreset<sup>9+</sup>
@@ -879,20 +879,20 @@ try {
 
 | 名称     | 类型      | 必填 | 说明                           |
 | -------- | -------- | ---- |------------------------------ |
-| type     | 'preset' |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
+| type     | 'preset' |  是  | 值为'preset'，按照预置振动效果触发马达振动。 |
 | effectId | string   |  是  | 预置的振动效果ID。             |
 | count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
 | intensity<sup>12+</sup> | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
 
 ## VibrateFromFile<sup>10+</sup>
 
-自定义振动类型，仅部分设备支持，当设备不支持此振动类型时，返回[设备不支持错误码](../errorcode-universal.md#801该设备不支持此API)。
+自定义振动类型，仅部分设备支持，当设备不支持此振动类型时，返回[设备不支持错误码](../errorcode-universal.md)。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称     | 类型       | 必填 | 说明                           |
 | -------- | --------  | ---- | ------------------------------ |
-| type     | 'file' |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
+| type     | 'file' |  是  | 值为'file'，按照振动配置文件触发马达振动。 |
 | hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | 是 | 振动配置文件的描述符。|
 
 ## HapticFileDescriptor<sup>10+</sup>
