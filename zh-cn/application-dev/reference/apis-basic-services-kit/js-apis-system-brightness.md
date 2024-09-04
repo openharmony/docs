@@ -16,7 +16,7 @@ import brightness, { BrightnessModeResponse, BrightnessResponse } from '@system.
 ```
 
 
-## brightness.getValue
+## brightness.getValue<sup>(deprecated)</sup>
 
 getValue(options?: GetBrightnessOptions): void
 
@@ -44,7 +44,7 @@ getValue(options?: GetBrightnessOptions): void
   ```
 
 
-## brightness.setValue
+## brightness.setValue<sup>(deprecated)</sup>
 
 setValue(options?: SetBrightnessOptions): void
 
@@ -73,7 +73,7 @@ setValue(options?: SetBrightnessOptions): void
   ```
 
 
-## brightness.getMode
+## brightness.getMode<sup>(deprecated)</sup>
 
 getMode(options?: GetBrightnessModeOptions): void
 
@@ -101,7 +101,7 @@ getMode(options?: GetBrightnessModeOptions): void
   ```
 
 
-## brightness.setMode
+## brightness.setMode<sup>(deprecated)</sup>
 
 setMode(options?: SetBrightnessModeOptions): void
 
@@ -129,7 +129,7 @@ setMode(options?: SetBrightnessModeOptions): void
   ```
 
 
-## brightness.setKeepScreenOn
+## brightness.setKeepScreenOn<sup>(deprecated)</sup>
 
 setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
@@ -158,7 +158,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
       }
   });
   ```
-## GetBrightnessOptions
+## GetBrightnessOptions<sup>(deprecated)</sup>
 
 获取屏幕亮度的参数对象。
 
@@ -170,7 +170,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 | fail     | (data: string, code: number) => void                      | 否   | 接口调用失败的回调函数。data为错误信息，code为错误码。       |
 | complete | () => void                                                | 否   | 接口调用结束的回调函数。                                     |
 
-## SetBrightnessOptions
+## SetBrightnessOptions<sup>(deprecated)</sup>
 
 设置屏幕亮度的参数对象。
 
@@ -183,7 +183,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 | fail     | (data: string, code: number) => void | 否   | 接口调用失败的回调函数。data为错误信息，code为错误码。       |
 | complete | () => void                           | 否   | 接口调用结束的回调函数。                                     |
 
-## BrightnessResponse
+## BrightnessResponse<sup>(deprecated)</sup>
 
 包含屏幕亮度的对象。
 
@@ -193,7 +193,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 | -------- | -------- | -------- | -------- | -------- |
 | value | number | 是 | 否 | 屏幕亮度，范围：1到255。 |
 
-## GetBrightnessModeOptions
+## GetBrightnessModeOptions<sup>(deprecated)</sup>
 
 获取屏幕亮度模式的参数对象。
 
@@ -205,7 +205,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 | fail     | (data: string, code: number) => void                         | 否   | 接口调用失败的回调函数。data为错误信息，code为错误码。       |
 | complete | () => void                                                   | 否   | 接口调用结束的回调函数。                                     |
 
-## SetBrightnessModeOptions
+## SetBrightnessModeOptions<sup>(deprecated)</sup>
 
 设置屏幕亮度模式的参数对象。
 
@@ -218,7 +218,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 | fail     | (data: string, code: number) => void | 否   | 接口调用失败的回调函数。data为错误信息，code为错误码。 |
 | complete | () => void                           | 否   | 接口调用结束的回调函数。                               |
 
-## BrightnessModeResponse
+## BrightnessModeResponse<sup>(deprecated)</sup>
 
 包含屏幕亮度模式的对象。
 
@@ -228,7 +228,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 | -------- | -------- | -------- | -------- | -------- |
 | mode | number | 是 | 否 | 0表示手动调节屏幕亮度模式，1表示自动调节屏幕亮度模式。 |
 
-## SetKeepScreenOnOptions
+## SetKeepScreenOnOptions<sup>(deprecated)</sup>
 
 设置屏幕常亮的参数对象。
 

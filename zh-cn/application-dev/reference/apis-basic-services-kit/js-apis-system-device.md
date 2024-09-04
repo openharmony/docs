@@ -14,7 +14,7 @@
 import device from '@system.device';
 ```
 
-## device.getInfo
+## device.getInfo<sup>(deprecated)</sup>
 
 getInfo(options?: GetDeviceOptions): void
 
@@ -31,7 +31,7 @@ getInfo(options?: GetDeviceOptions): void
 | -------- | -------- | -------- | -------- |
 | options | [GetDeviceOptions](#getdeviceoptions) | 否 | 定义设备信息获取的参数选项。 |
 
-## GetDeviceOptions
+## GetDeviceOptions<sup>(deprecated)</sup>
 
 定义设备信息获取的参数选项。
 
@@ -43,7 +43,7 @@ getInfo(options?: GetDeviceOptions): void
 | fail | (data：any,code:number）=> void | 否 | 接口调用失败的回调函数。 code为失败返回的错误码。<br>code:200，表示返回结果中存在无法获得的信息。|
 | complete | （）=> void | 否 | 接口调用结束的回调函数。 |
 
-## DeviceResponse
+## DeviceResponse<sup>(deprecated)</sup>
 
 设备信息。
 

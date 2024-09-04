@@ -15,7 +15,7 @@ system.request部件主要给应用提供上传下载文件的基础能力。
 import request from '@system.request';
 ```
 
-## request.upload
+## request.upload<sup>(deprecated)</sup>
 
 upload(options: UploadRequestOptions): void
 
@@ -67,7 +67,7 @@ upload(options: UploadRequestOptions): void
   ```
 
 
-## UploadRequestOptions
+## UploadRequestOptions<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
@@ -96,7 +96,7 @@ upload(options: UploadRequestOptions): void
 
 
 
-## UploadResponse
+## UploadResponse<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
@@ -107,7 +107,7 @@ upload(options: UploadRequestOptions): void
   | headers | Object | 是 | 服务器返回的返回头内容。 |
 
 
-## RequestFile
+## RequestFile<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
@@ -119,7 +119,7 @@ upload(options: UploadRequestOptions): void
   | type | string | 否 | 文件的内容类型，默认根据文件名或路径的后缀获取。 |
 
 
-## RequestData
+## RequestData<sup>(deprecated)</sup>
 
 **系统能力**: SystemCapability.MiscServices.Upload。
 
@@ -130,7 +130,7 @@ upload(options: UploadRequestOptions): void
 
 
 
-## request.download
+## request.download<sup>(deprecated)</sup>
 
 download(options: DownloadRequestOptions): void
 
@@ -174,7 +174,7 @@ download(options: DownloadRequestOptions): void
   ```
 
 
-## DownloadRequestOptions
+## DownloadRequestOptions<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
@@ -199,7 +199,7 @@ download(options: DownloadRequestOptions): void
   | data | any | 是 | 下载任务失败返回header信息。 |
   | code | number | 是 | 下载任务失败返回HTTP状态码。 |
 
-## DownloadResponse
+## DownloadResponse<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
@@ -208,7 +208,7 @@ download(options: DownloadRequestOptions): void
   | token | string | 是 | 表示下载的token，获取下载状态的依据。 |
 
 
-## request.onDownloadComplete
+## request.onDownloadComplete<sup>(deprecated)</sup>
 
 onDownloadComplete(options: OnDownloadCompleteOptions): void
 
@@ -244,7 +244,7 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
   ```
 
 
-## OnDownloadCompleteOptions
+## OnDownloadCompleteOptions<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
@@ -267,7 +267,7 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
   | code | number | 是 | 下载任务失败返回HTTP状态码。 |
 
 
-## OnDownloadCompleteResponse
+## OnDownloadCompleteResponse<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
