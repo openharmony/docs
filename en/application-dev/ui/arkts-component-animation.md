@@ -14,7 +14,7 @@ The default animation of a component exhibits the following features:
 
 - Reduce development workload, as the APIs are readily available.
 
-For more effects, see [Component Overview](../reference/apis-arkui/arkui-ts/ts-components-summary.md).
+For more effects, see [Component Overview](../reference/apis-arkui/arkui-ts/ts-container-flex.md).
 
 Below is the sample code and effect:
 

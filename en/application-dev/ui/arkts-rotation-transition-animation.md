@@ -1,6 +1,6 @@
-# Screen Rotation Transition Animation
+# Screen Rotation Animation Enhancement
 
-You can add fade-in and fade-out transition effects to a screen rotation animation, to create a more amazing experience.
+You can add fade-in and fade-out transition effects to a screen rotation animation, to create a seamless transition experience.
 
 Below is the complete sample code and effect.
 

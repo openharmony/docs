@@ -1,6 +1,6 @@
 # Component Navigation (Navigation) (Recommended)
 
-The [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) component functions as the root container of a page and supports three display modes: single-page, column, and adaptive. It is applicable to routing within a module or across modules and useful in [one-time development for multi-device deployment](../key-features/multi-device-app-dev/introduction.md). Draw on this component's routing capability to create a smooth page transition experience, and explore its various title bar styles to present titles seamlessly linked with the content. On devices of different sizes, the **Navigation** component can automatically adapt to the display size and switch between display modes.
+The [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) component functions as the root container of a page and supports three display modes: single-page, column, and adaptive. It is applicable to routing within a module or across modules and useful in one-time development for multi-device deployment. Draw on this component's routing capability to create a smooth page transition experience, and explore its various title bar styles to present titles seamlessly linked with the content. On devices of different sizes, the **Navigation** component can automatically adapt to the display size and switch between display modes.
 
 The **Navigation** component consists of the navigation page (**NavBar**) and subpage (**NavDestination**). The navigation page consists of the title bar (including the menu bar), content area, and toolbar. It can be hidden through the [hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9) attribute. The navigation page does not exist in the page stack, and switching between this page and its subpages, as well as switching between subpages, can be implemented through routing.
 
@@ -665,7 +665,7 @@ The custom route table and system route table can be used together.
 
 ### System Routing Table
 
-**Navigation** supports the system routing table for dynamic routing since API version 12. Each service module (HSP/HAR) requires an individual **router_map.json** file. When routing is triggered, the application only needs to pass the name of the page that needs to be routed through the routing API provided by **NavPactStack**. In this case, the system will automatically complete the dynamic loading of the target module, page component construction, and route redirection. This way, module decoupling is achieved at the development level. The main steps are as follows:
+**Navigation** supports the system routing table for dynamic routing since API version 12. Each service module (HSP/HAR) requires an individual **router_map.json** file. When routing is triggered, the application only needs to pass the name of the page that needs to be routed through the routing API provided by **NavPathStack**. In this case, the system will automatically complete the dynamic loading of the target module, page component construction, and route redirection. This way, module decoupling is achieved at the development level. The main steps are as follows:
 
 1. Add the route table configuration to the **module.json5** file of the redirection target module.
    

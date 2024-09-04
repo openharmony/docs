@@ -1,64 +1,63 @@
 # Tabs
 
 
-When there is a large amount of page information, to enable the user to focus on the currently displayed content, the page content needs to be classified to improve the page space utilization. The [\<Tabs>](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users can obtain at a time.
+When there is a large amount of page information, to enable the user to focus on the currently displayed content, the page content needs to be classified to improve the page space utilization. The [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md) component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users receive at a time.
 
 
 ## Basic Layout
 
-  The **\<Tabs>** component consists of two parts: **\<TabContent>** and **\<TabBar>**. **\<TabContent>** is the content page, and **\<TabBar>** is the navigation tab bar. The following figure shows the page structure. The layout varies according to the navigation type. In bottom navigation, top navigation, and side navigation, the navigation tab bar is located at the bottom, top, and edge, respectively.
-
-**Figure 1** \<Tabs> component layout
+  The **Tabs** component consists of two parts: **TabContent** and **TabBar**. **TabContent** is the content page, and **TabBar** is the navigation tab bar. The following figure shows the page structure. The layout varies according to the navigation type. In bottom navigation, top navigation, and side navigation, the navigation tab bar is located at the bottom, top, and edge, respectively.
+  **Figure 1** Tabs component layout 
 
 ![tabs-layout](figures/tabs-layout.png)
 
 
 >**NOTE**
 >
-> - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **\<Tabs>** component.
+> - The **TabContent** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **Tabs** component.
 >
-> - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
+> - The **TabContent** component does not support setting of the common height attribute. Its height is determined by the height of the parent **Tabs** component and the **TabBar** component.
 
 
-**\<Tabs>** use braces to enclose the tab content, as shown in Figure 2.
+**Tabs** use braces to enclose the tab content, as shown in Figure 2.
 
 
-  **Figure 2** Using \<Tabs> and \<TabContent> 
+  **Figure 2** Using Tabs and TabContent 
 
 ![tabs-tabscontent](figures/tabs-tabscontent.png)
 
 
-Each **\<TabContent>** component should be mapped to a tab page, which can be configured through the **tabBar** attribute. The following is an example.
+Each **TabContent** component should be mapped to a tab page, which can be configured through the **tabBar** attribute. The following is an example.
 
 ```ts
  TabContent() {
-   Text('Content of the Home tab').fontSize(30)
+   Text('Home tab content').fontSize(30)
  }
 .tabBar ('Home')
 ```
 
 
-When setting multiple **\<TabContent>** components, place them in sequence in the **\<Tabs>** component.
+When setting multiple **TabContent** components, place them in sequence in the **Tabs** component.
 
 ```ts
 Tabs() {
   TabContent() {
-    Text('Content of the Home tab').fontSize(30)
+    Text('Home tab content').fontSize(30)
   }
   .tabBar ('Home')
 
   TabContent() {
-    Text('Content of the Recommended tab').fontSize(30)
+    Text('Recommended tab content').fontSize(30)
   }
   .tabBar ('Recommended')
 
   TabContent() {
-    Text ('Content of the Discover tab').fontSize (30)
+    Text ('Discover tab content').fontSize (30)
   }
   .tabBar ('Discover')
   
   TabContent() {
-    Text ('Content of the Me tab').fontSize (30)
+    Text ('Me tab content').fontSize (30)
   }
   .tabBar ("Me")
 }
@@ -75,7 +74,7 @@ Bottom navigation is the most common navigation mode in applications. The bottom
 ![bottom-navigation](figures/bottom-navigation.gif)
 
 
-You set the position of the navigation bar through the **barPosition** parameter of the **\<Tabs>** component. By default, **barPosition** is set to **BarPosition.Start**, which means that the navigation bar is located on the top. To display the navigation bar at the bottom, set **barPosition** to **BarPosition.End**.
+You set the position of the navigation bar through the **barPosition** parameter of the **Tabs** component. By default, **barPosition** is set to **BarPosition.Start**, which means that the navigation bar is located on the top. To display the navigation bar at the bottom, set **barPosition** to **BarPosition.End**.
 
 
 ```ts
@@ -113,7 +112,7 @@ Side navigation is seldom used in applications. It is more applicable to landsca
 ![side-navigation](figures/side-navigation.png)
 
 
-To implement the side navigation bar, set the **vertical** attribute of the **\<Tabs>** component to **true**. By default, **vertical** is set to **false**, indicating that the content page and navigation bar are aligned vertically.
+To implement the side navigation bar, set the **vertical** attribute of the **Tabs** component to **true**. By default, **vertical** is set to **false**, indicating that the content page and navigation bar are aligned vertically.
 
 
 
@@ -171,12 +170,12 @@ Tabs({ barPosition: BarPosition.End }) {
 When the content categories are relatively fixed and not scalable, a fixed navigation bar can be used. For example, it can be used for the bottom navigation bar, which generally contains 3 to 5 categories. The fixed navigation bar cannot be scrolled or dragged. The tab bar width is evenly distributed among the categories.
 
 
-  **Figure 7** Fixed navigation bar
+  **Figure 7** Fixed navigation bar 
 
 ![fixed-navigation](figures/fixed-navigation.gif)
 
 
-To use a fixed navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **barMode.Fixed** (default).
+To use a fixed navigation bar, set the **barMode** attribute of the **Tabs** component to **barMode.Fixed** (default).
 
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
@@ -197,7 +196,7 @@ The top navigation bar or side navigation bar can be set to be scrollable if the
 ![scrollable-navigation](figures/scrollable-navigation.gif)
 
 
-To use a scrollable navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **BarMode.Scrollable**.
+To use a scrollable navigation bar, set the **barMode** attribute of the **Tabs** component to **BarMode.Scrollable**.
 
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
@@ -243,7 +242,7 @@ Pass the custom function component to the **tabBar** attribute corresponding to 
 ```ts
 TabContent() {
   Column(){
-    Text('Content of the Me tab') 
+    Text('Me tab content') 
   }
   .width('100%')
   .height('100%')
@@ -255,156 +254,91 @@ TabContent() {
 
 ## Switching to a Specified Tab
 
-Non-custom navigation bars follow the default system switching logic. If you are using a custom navigation bar, you must manually implement the logic for switching tabs so that when the user switches to a tab, the application displays the corresponding tab page.
+Non-custom navigation bars follow the default switching logic. If you are using a custom navigation bar, you must manually implement the logic for switching tabs so that when the user switches to a tab, the application displays the corresponding tab page.
 
 
-  **Figure 10** Switching to a specified tab in a custom navigation bar 
+  **Figure 10** Content page and tab bar not synced 
 
-![switching-to-a-specified-tab](figures/switching-to-a-specified-tab.gif)
+![Content Page and Tab Bar Not Synced](figures/tabcontent_tabbar_not_sync.gif)
 
-
-To switch to a specified tab page, use **TabsController**, which is the controller of the **\<Tabs>** component. By using the **changeIndex** API of **TabsController**, you can set your application to display the tab content corresponding to the specified index.
-
-```ts
-class Tmp{
-  currentIndex:number = 0;
-  tabsController : TabsController = new TabsController()
-  foo(val:number){
-    this.currentIndex = val;
-  }
-  tabFoo(){
-    this.tabsController.changeIndex(this.currentIndex);
-  }
-}
-private tabsController : TabsController = new TabsController()
-@State currentIndex:number = 0;
-
-@Builder tabBuilder(title: string, targetIndex: number) {
-  Column() {
-    Text(title)
-      .fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
-  }
-  ...
-  .onClick(() => {
-    let cur:Tmp = new Tmp()
-    cur.foo(targetIndex)
-    cur.tabFoo()
-  })
-}
-```
-
-
-When using a custom navigation bar, pass the corresponding \@Builder in the **tabBar** attribute and transfer the corresponding parameters.
+To sync the content page with the tab bar, use the **onChange** event provided by **Tabs** to listen for changes in the index. Pass the currently active index value to **currentIndex** to enable tab switching.
 
 ```ts
-Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
-  TabContent(){
-    ...
-  }.tabBar(this.tabBuilder('Home',0))
-
-  TabContent(){
-    ...
-  }.tabBar (this.tabBuilder ('Discover', 1))
-
-  TabContent(){
-    ...
-  }.tabBar (this.tabBuilder ('Recommended', 2))
-
-  TabContent(){
-    ...
-  }
-  .tabBar(this.tabBuilder('Me', 3))
-}
-```
-
-
-## Swiping to Switch Between Tabs
-
-For non-custom navigation bars, tabs and tab content are linked by default. For custom navigation bars, however, tabs and tab content are linked when tab switching is initiated by **TabsController**, but not when tab switching is initiated by a swipe gesture. This means that, when the user swipes on the screen to switch between tab content, the tabs do not switch automatically. In this case, manual switching is required.
-
-
-  **Figure 11** Lack of linkage between tabs and tab content 
-
-![TabsChange1](figures/TabsChange1.gif)
-
-
-To manually switch between the tabs, use the **onChange** API provided by the **\<Tabs>** component to listen for the index change and pass the index of the active tab to **currentIndex**.
-
-
-```ts
-//xxx.ets
 @Entry
 @Component
-struct TabsExample {
+struct TabsExample1 {
   @State currentIndex: number = 2
-  private controller: TabsController = new TabsController()
-    
-  ...
-  
+
+  @Builder tabBuilder(title: string, targetIndex: number) {
+    Column() {
+      Text(title)
+        .fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
+    }
+  }
+
   build() {
     Column() {
-      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+      Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
           ...
-        }.tabBar(this.tabBuilder('Home',0))
+        }.tabBar(this.tabBuilder('Home', 0))
 
         TabContent() {
           ...
-        }.tabBar (this.tabBuilder ('Discover', 1))
+        }.tabBar(this.tabBuilder('Discover', 1))
 
         TabContent() {
           ...
-        }.tabBar (this.tabBuilder ('Recommended', 2))
+        }.tabBar(this.tabBuilder('Recommended', 2))
 
         TabContent() {
           ...
         }.tabBar(this.tabBuilder('Me',3))
       }
-      .vertical(false)
-      .barMode(BarMode.Fixed)
-      .barWidth(360)
-      .barHeight(60)
       .animationDuration(0)
+      .backgroundColor('#F1F3F5')
       .onChange((index: number) => {
         this.currentIndex = index
       })
-      .width(360)
-      .height(600)
-      .backgroundColor('#F1F3F5')
-      .scrollable(true)
-      .onContentWillChange((currentIndex, comingIndex) => {
-        if (comingIndex == 2) {
-          return false
-        }
-        return true
-      })
-
-      Button('Change index').width('50%').margin({ top: 20 })
-        .onClick(()=>{
-          this.currentIndex = (this.currentIndex + 1) % 4
-        })
-
-      Button('changeIndex').width('50%').margin({ top: 20 })
-        .onClick(()=>{
-          this.currentIndex = (this.currentIndex + 1) % 4
-          this.controller.changeIndex(this.currentIndex)
-        })
     }.width('100%')
   }
 }
 ```
+  **Figure 10** Content page and tab bar synced 
 
+![Content Page and Tab Bar Synced](figures/tabcontent_tabbar_sync.gif)
 
-  **Figure 12** Linkage between tabs and tab content
+To enable switching between content pages and tabs without swiping, you can pass **currentIndex** to the **index** parameter of **Tabs**. By changing the value of **currentIndex**, you can navigate to the content page corresponding to a specific index. Alternatively, use **TabsController**, which is the controller for the **Tabs** component, to manage content page switches. By using the **changeIndex** API of **TabsController**, you can set your application to display the tab content corresponding to the specified index.
+```ts
+@State currentIndex: number = 2
+private controller: TabsController = new TabsController()
 
-![TabsChange2](figures/TabsChange2.gif)
+Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
+  ...
+}
+.height(600)
+.onChange((index: number) => {
+   this.currentIndex = index
+})
 
-  **Figure 13** Customizing the page switching interception event
+Button('Switch Tab by Index').width('50%').margin({ top: 20 })
+  .onClick(()=>{
+    this.currentIndex = (this.currentIndex + 1) % 4
+})
 
-![TabsChange3](figures/TabsChange3.gif)
+Button('changeIndex').width('50%').margin({ top: 20 })
+  .onClick(()=>{
+    let index = (this.currentIndex + 1) % 4
+    this.controller.changeIndex(index)
+})
+```
+  
+  **Figure 12** Switching to a specific tab page   
 
-You can use the **onContentWillChange** API of the **\<Tabs>** component to customize the interception callback function. The interception callback function is called when a new page is about to be displayed. If the callback returns **true**, the tab can switch to the new page. If the callback returns **false**, the tab cannot switch to the new page and will remain on the current page.
+![Switching to a Specified Tab Page](figures/TabsChange.gif)
 
+You can use the **onContentWillChange** API of the **Tabs** component to customize the interception callback function. The interception callback function is called when a new page is about to be displayed. If the callback returns **true**, the tab can switch to the new page. If the callback returns **false**, the tab cannot switch to the new page and will remain on the current page.
+  
 ```ts
 Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {...}
 .onContentWillChange((currentIndex, comingIndex) => {
@@ -413,6 +347,170 @@ Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.cu
   }
   return true
 })
-
 ```
+  **Figure 13** Customizing the page switching interception event 
 
+![TabsChange3](figures/TabsChange3.gif)
+<!--Del-->
+## Supporting Aging-Friendly Design
+
+In ging-friendly scenarios with large font sizes, the bottom tab bar offers a dialog box with large fonts for content display. When the component detects a large font setting, it constructs a long-press dialog box based on the configured text and icons. After the user long-presses the tab bar and then swipes in the dialog box to switch to the next tab, the dialog box updates with content of the new tab. Upon releasing, the dialog box closes and the UI switches to the corresponding tab page.
+
+>  **NOTE** 
+>
+> The dialog box applies only to bottom tab bars, that is, tab bars in the style of **BottomTabBarStyle**.
+
+**Figure 14** Displaying an aging-friendly dialog box by long-pressing the bottom tab bar in an aging-friendly scenario
+
+![Aging-Friendly Design](figures/tabs11.png)
+
+```ts
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction, uiAppearance } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Demo {
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  @State currentIndex: number = 0;
+  @State currentFontSizeScale: string = '';
+  @State showBuilderTab: boolean = false;
+  @State fontSize: number = 15;
+  private darkModeKey: string[] = Object.keys(uiAppearance.DarkMode).filter(
+    key => typeof uiAppearance.DarkMode[key] === 'number')
+
+  async setFontScale(scale: number): Promise<void> {
+    let configInit: Configuration = {
+      fontSizeScale: scale,
+    };
+    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
+      if (err) {
+        console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
+        promptAction.showToast({ message: `scale:${scale}, err:${JSON.stringify(err)}` })
+      } else {
+        this.currentFontSizeScale = String(scale);
+        if (scale > 1) {
+          this.fontSize = 8;
+        } else {
+          this.fontSize = 15;
+        }
+        console.log('updateConfiguration success.');
+        promptAction.showToast({ message: `scale:${scale}, updateConfiguration success.` })
+      }
+    });
+  }
+
+  darkMode(isDarkMode: boolean): void {
+    let mode: uiAppearance.DarkMode = uiAppearance.DarkMode.ALWAYS_LIGHT;
+    if (isDarkMode) {
+      mode = uiAppearance.DarkMode.ALWAYS_DARK;
+    }
+    if (mode == uiAppearance.getDarkMode()) {
+      console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`)
+      return;
+    }
+    try {
+      uiAppearance.setDarkMode(mode).then(() => {
+        console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`)
+      }).catch((error: Error) => {
+        console.error(`TitleDarkMode Set ${this.darkModeKey[mode]} failed, ${error.message}`);
+      });
+    } catch (error) {
+      let message = (error as BusinessError).message;
+      console.error(`TitleDarkMode Set dark-mode failed, ${message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Row() {
+          Text(`current fontSizeScale:${this.currentFontSizeScale}`)
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+        }
+
+        Row() {
+          Button('1.75')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(1.75);
+            })
+          Button('2')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(2);
+            })
+        }.margin({ top: 25 })
+
+        Row() {
+          Button('3.2')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(3.2);
+            })
+          Button('1')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(1);
+            })
+        }
+
+        Row() {
+          Button('Dark Mode')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              this.darkMode(true);
+            })
+          Button('Light Mode')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              this.darkMode(false);
+            })
+        }
+      }.alignItems(HorizontalAlign.Start)
+
+      Column() {
+        Tabs({ barPosition: BarPosition.End }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'OverLength'))
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'SixLine'))
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('80%').height(200)
+      .margin({ top: 200 })
+    }.width('100%')
+  }
+}
+```
+<!--DelEnd-->
