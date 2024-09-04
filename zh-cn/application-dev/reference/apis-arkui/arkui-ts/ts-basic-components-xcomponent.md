@@ -393,6 +393,8 @@ setXComponentSurfaceRotation(rotationOptions: SurfaceRotationOptions): void
 > 仅在屏幕旋转过程中生效，旋转完成后不再锁定Surface。
 >
 > 仅在屏幕旋转90°，即发生横竖屏切换时生效。
+>
+> 锁定旋转后的Buffer宽高需要保持不变，否则会有拉伸问题。
 
 ### getXComponentSurfaceRotation<sup>12+</sup>
 
