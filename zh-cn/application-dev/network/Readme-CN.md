@@ -1,6 +1,6 @@
 # Network Kit（网络服务）
 
-- [Network Kit开发概述](net-mgmt-overview.md)
+- [Network Kit简介](net-mgmt-overview.md)
 
 - Network Kit数据传输能力
     - [HTTP数据请求](http-request.md)

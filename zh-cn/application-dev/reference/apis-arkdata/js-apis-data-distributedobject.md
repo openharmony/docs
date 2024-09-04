@@ -145,15 +145,13 @@ let sessionId: string = distributedDataObject.genSessionId();
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
 
-**参数：**
-
-  | 名称       | 类型                                                               | 必填 | 说明                                 |
-  | ---------- | ------------------------------------------------------------------ | ---- | ------------------------------------ |
-  | storeName  | string                                                             | 是   | 待绑定资产在所属的数据库中的库名。   |
-  | tableName  | string                                                             | 是   | 待绑定资产在所属的数据库中的表名。   |
-  | primaryKey | [commonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | 是   | 待绑定资产在所属的数据库中的主键。   |
-  | field      | string                                                             | 是   | 待绑定资产在所属的数据库中的列名。   |
-  | assetName  | string                                                             | 是   | 待绑定资产在所属的数据库中的资产名。 |
+  | 名称       | 类型                                                               | 只读 | 可选 | 说明                                 |
+  | ---------- | ------------------------------------------------------------------ | ---- | ---- | ------------------------------------ |
+  | storeName  | string                                                             | 否   | 否   | 待绑定资产在所属的数据库中的库名。   |
+  | tableName  | string                                                             | 否   | 否   | 待绑定资产在所属的数据库中的表名。   |
+  | primaryKey | [commonType.ValuesBucket](js-apis-data-commonType.md#valuesbucket) | 否   | 否   | 待绑定资产在所属的数据库中的主键。   |
+  | field      | string                                                             | 否   | 否   | 待绑定资产在所属的数据库中的列名。   |
+  | assetName  | string                                                             | 否   | 否   | 待绑定资产在所属的数据库中的资产名。 |
 
 ## DataObject
 
@@ -163,7 +161,7 @@ let sessionId: string = distributedDataObject.genSessionId();
 
 setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置sessionId，使用callback方式异步回调。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId，使用callback方式异步回调。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -242,7 +240,7 @@ g_object.setSessionId(() => {
 
 setSessionId(sessionId?: string): Promise&lt;void&gt;
 
-设置sessionId，使用Promise异步返回。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId，使用Promise异步返回。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -851,7 +849,7 @@ let g_object: distributedDataObject.DistributedObject = distributedDataObject.cr
 
 setSessionId(sessionId?: string): boolean
 
-设置sessionId，当可信组网中有多个设备时，多个设备间的对象如果设置为同一个sessionId，就能自动同步。
+设置sessionId。当可信组网中有多个设备处于协同状态时，如果多个设备间的分布式对象设置为同一个sessionId，就能自动同步。
 
 > **说明：**
 >

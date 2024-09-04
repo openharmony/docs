@@ -40,10 +40,6 @@ let properties1: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048
-  },
-  {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
   }
 ];
 let huksOptions: huks.HuksOptions = {

@@ -6,7 +6,7 @@
 >  - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  - 该组件嵌套List子组件滚动时，若List不设置宽高，则默认全部加载，在对性能有要求的场景下建议指定List的宽高。
 >  - 该组件滚动的前提是主轴方向大小小于内容大小。
->  - 该组件回弹的前提是要有滚动。内容小于一屏时，没有回弹效果。
+>  - Scroll组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 
 ## 子组件
@@ -656,7 +656,7 @@ isAtEnd(): boolean
 
 getItemRect(index: number): RectResult
 
-获取子组件的大小位置。
+获取子组件的大小及相对容器组件的位置。
 
 >  **说明：**
 >

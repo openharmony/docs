@@ -1,6 +1,6 @@
-# @ohos.file.cloudSyncManager (Device-Cloud Synchronization Management) (System API)
+# @ohos.file.cloudSyncManager (Device-Cloud Sync Management) (System API)
 
-The **cloudSyncManager** module provides APIs for managing device-cloud synergy for applications. You can use the APIs to enable or disable device-cloud synergy, change the device-cloud synchronization switch for an application, notify an application of cloud data changes, and clear or retain cloud files when a cloud account exits.
+The **cloudSyncManager** module provides APIs for managing device-cloud synergy for applications. You can use the APIs to enable or disable device-cloud synergy, change the device-cloud sync switch for an application, notify cloud data changes, and clear or retain cloud files when a cloud account exits.
 
 > **NOTE**
 >
@@ -10,14 +10,14 @@ The **cloudSyncManager** module provides APIs for managing device-cloud synergy 
 ## Modules to Import
 
 ```ts
-import cloudSyncManager from '@ohos.file.cloudSyncManager';
+import { cloudSyncManager } from '@kit.CoreFileKit';
 ```
 
 ## cloudSyncManager.changeAppCloudSwitch
 
 changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean): Promise&lt;void&gt;
 
-Changes the device-cloud file synchronization switch for an application. This API uses a promise to return the result.
+Changes the device-cloud file sync switch for an application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
@@ -27,7 +27,7 @@ Changes the device-cloud file synchronization switch for an application. This AP
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
 | bundleName | string | Yes  | Bundle name of the application.|
-| status | boolean | Yes  | State of the cloud-device file synchronization switch to set. The value **true** means to enable this function; the value **false** means the opposite.|
+| status | boolean | Yes  | State of the cloud-device file sync switch to set. The value **true** means to enable this function; the value **false** means the opposite.|
 
 **Return value**
 
@@ -48,7 +48,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let bundleName: string = "com.example.bundle";
   cloudSyncManager.changeAppCloudSwitch(accountId, bundleName, true).then(() => {
@@ -62,7 +62,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Changes the device-cloud file synchronization switch for an application. This API uses an asynchronous callback to return the result.
+Changes the device-cloud file sync switch for an application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
@@ -72,7 +72,7 @@ Changes the device-cloud file synchronization switch for an application. This AP
 | ---------- | ------ | ---- | ---- |
 | accountId | string | Yes  | Account ID.|
 | bundleName | string | Yes  | Bundle name of the application.|
-| status | boolean | Yes  | State of the cloud-device file synchronization switch to set. The value **true** means to enable this function; the value **false** means the opposite.|
+| status | boolean | Yes  | State of the cloud-device file sync switch to set. The value **true** means to enable this function; the value **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -88,7 +88,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let bundleName: string = "com.example.bundle";
   cloudSyncManager.changeAppCloudSwitch(accountId, bundleName, true, (err: BusinessError) => {
@@ -134,7 +134,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let bundleName: string = "com.example.bundle";
   cloudSyncManager.notifyDataChange(accountId, bundleName).then(() => {
@@ -173,7 +173,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let bundleName: string = "com.example.bundle";
   cloudSyncManager.notifyDataChange(accountId, bundleName, (err: BusinessError) => {
@@ -233,7 +233,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let userId: number = 100;
   let extraData: cloudSyncManager.ExtraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData).then(() => {
@@ -275,7 +275,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let userId: number = 100;
   let extraData: cloudSyncManager.ExtraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData, (err: BusinessError) => {
@@ -323,7 +323,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let switches: Record<string, boolean> = {
     'com.example.bundleName1': true,
@@ -367,7 +367,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let switches: Record<string, boolean> = {
     'com.example.bundleName1': true,
@@ -417,7 +417,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   cloudSyncManager.disableCloud(accountId).then(() => {
     console.info("disableCloud successfully");
@@ -456,7 +456,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   cloudSyncManager.disableCloud(accountId, (err: BusinessError) => {
     if (err) {
@@ -516,7 +516,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
   let appActions: Record<string, cloudSyncManager.Action> = {
     'com.example.bundleName1': cloudSyncManager.Action.RETAIN_DATA,
@@ -561,7 +561,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountId: string = "testAccount";
     let appActions: Record<string, cloudSyncManager.Action> = {
     'com.example.bundleName1': cloudSyncManager.Action.RETAIN_DATA,

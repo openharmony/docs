@@ -3791,7 +3791,7 @@
 
 **ACL使能**：true
 
-**起始版本**：12
+**起始版本**：13
 
 ### ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
 
@@ -3834,6 +3834,18 @@
 允许系统应用修改eSIM profile文件，及eSIM升级。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.CAMERA_BACKGROUND
+
+允许系统应用在后台使用相机。
+
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
@@ -4370,3 +4382,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+
+允许应用保存图片、视频到用户公共目录。应用获取此权限后，最长可获得30分钟的短时授权，来保存图片/视频。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：12

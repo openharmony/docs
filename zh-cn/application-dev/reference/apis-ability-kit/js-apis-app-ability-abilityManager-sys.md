@@ -676,7 +676,7 @@ try {
 }
 ```
 
-## abilityManager.on<sup>11+</sup>
+## abilityManager.on('abilityForegroundState')<sup>11+</sup>
 
 on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): void
 
@@ -726,7 +726,7 @@ try {
 }
 ```
 
-## abilityManager.off<sup>11+</sup>
+## abilityManager.off('abilityForegroundState')<sup>11+</sup>
 
 off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): void
 

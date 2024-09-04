@@ -1211,7 +1211,7 @@ int32_t OH_Image_Release (ImageNative * native)
 int32_t OH_Image_Size (const ImageNative * native, struct OhosImageSize * size )
 ```
 **描述**
-获取native **ImageNative** 对象的 [OhosImageSize](_ohos_image_size.md) 信息。
+获取native **ImageNative** 对象的 [OhosImageSize](_ohos_image_size.md) 信息。如果[ImageNative](image.md#imagenative) 对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的[OhosImageSize](_ohos_image_size.md)中的宽高分别对应YUV图像的宽高；如果[ImageNative](image.md#imagenative) 对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的数据，[OhosImageSize](_ohos_image_size.md)中的宽等于JPEG数据大小，高等于1。[ImageNative](image.md#imagenative) 对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。
 
 **起始版本：** 10
 
@@ -1483,7 +1483,7 @@ int32_t OH_ImageSource_Create (napi_env env, struct OhosImageSource * src, struc
 int32_t OH_ImageSource_CreateFromData (napi_env env, uint8_t * data, size_t dataSize, struct OhosImageSourceOps * ops, napi_value * res )
 ```
 **描述**
-通过给定的图像源缓冲区资源 data 和 [OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取JavaScript native层**ImageSource**对象。
+通过给定的图像源缓冲区资源 data 和 [OhosImageSourceOps](_ohos_image_source_ops.md)结构体，获取JavaScript native层**ImageSource**对象。data数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[OH_PixelMap_CreatePixelMap](./image__pixel__map__mdk_8h.md)这一类接口。
 
 **起始版本：** 11
 

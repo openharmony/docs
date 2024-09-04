@@ -7,7 +7,7 @@
 
 根据拉起方应用是否向指定跳转的目标应用，可以将应用跳转分为指向性跳转与通用意图跳转。
 
-- 指向性跳转：拉起方应用明确指定跳转的目标应用，来实现应用跳转。指向性跳转可以分为指定应用链接、指定Ability两种方式。
+- 拉起指定应用：拉起方应用明确指定跳转的目标应用，来实现应用跳转。指向性跳转可以分为指定应用链接、指定Ability两种方式。
 
     - 指定应用链接（推荐）：通过[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)或[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口来指定[应用链接](#应用链接)，拉起目标应用页面。
 
@@ -18,7 +18,7 @@
     >
     > API 11及以前版本，可以使用显式want拉起其他应用。从API 12开始，已不再支持三方应用使用该方式拉起其他应用。
 
-- 通用意图跳转：拉起方应用只申明跳转意图、而不指定具体跳转到哪一个应用，通过调用接口来拉起满足用户意图的垂类应用面板，该面板将展示目标方接入的垂域应用，由用户选择打开指定应用。
+- 拉起指定类型的应用：拉起方应用通过指定应用类型（比如type、feature等字段），拉起满足用户意图的垂类应用面板。该面板将展示目标方接入的垂域应用，由用户选择打开指定应用。
 
     常见的通用意图跳转包括导航、分享、文件打开等高频场景，不同意图类型的跳转实现也有多种方式。
 
@@ -42,7 +42,7 @@ scheme://host[:port]/path/
 
 > **说明：**
 > 
-> 系统应用预留scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的scheme不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。 
+> 三方应用组件配置的scheme不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。 
 > 
 > 如果多个应用的URL配置相同，应用跳转时匹配到同多个应用，则会拉起应用选择框。为了更好的用户体验，开发者可以通过链接的path字段去区分同一域名下的不同应用，如链接`https://www.example.com/path1`拉起目标应用1，链接`https://www.example.com/path2`拉起目标应用2。
 

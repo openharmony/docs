@@ -78,6 +78,7 @@
       - [按键事件](arkui-ts/ts-universal-events-key.md)
       - [焦点事件](arkui-ts/ts-universal-focus-event.md)
       - [鼠标事件](arkui-ts/ts-universal-mouse-key.md)
+      - [悬浮事件](arkui-ts/ts-universal-events-hover.md)
       - [无障碍悬浮事件](arkui-ts/ts-universal-accessibility-hover-event.md)
       - [组件区域变化事件](arkui-ts/ts-universal-component-area-change-event.md)
       - [组件尺寸变化事件](arkui-ts/ts-universal-component-size-change-event.md)
@@ -140,6 +141,7 @@
       - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
       <!--Del-->
       - [点光源设置 (系统接口)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
+      - [图像效果 (系统接口)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
       <!--DelEnd-->
     - 手势处理
       - [绑定手势方法](arkui-ts/ts-gesture-settings.md)

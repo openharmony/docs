@@ -8,8 +8,8 @@ You may need to use musl libc APIs when developing your app with the NDK. Howeve
 
 The use of musl libc APIs may be restricted by the following factors:
 
-1. The use of the musl libc API is restricted by the secure computing (seccomp) mechanism.
-    For details about the seccomp mechanism, see [Seccomp Policy Development](../../../device-dev/subsystems/subsys-boot-init-seccomp.md).
+1. The use of the musl libc API is restricted by the secure computing (seccomp) mechanism.<!--Del-->
+   For details about the seccomp mechanism, see [Seccomp Policy Development](../../../device-dev/subsystems/subsys-boot-init-seccomp.md).<!--DelEnd-->
 
     A common error caused by seccomp is as follows:
     - Top function is the musl function in stacktrace.
@@ -25,12 +25,14 @@ The use of musl libc APIs may be restricted by the following factors:
 
 2. The API cannot be used because it is a kernel API that is not exposed.
 
-3. The use of the musl libc API is restricted by SELinux.
-    For details about SELinux, see [OpenHarmony SELinux Overview](../../../device-dev/subsystems/subsys-security-selinux-overview.md).
+3. The use of the musl libc API is restricted by SELinux.<!--Del-->
+   For details about SELinux, see [OpenHarmony SELinux Overview](../../../device-dev/subsystems/subsys-security-selinux-overview.md).<!--DelEnd-->
 
 4. The use of the musl libc API is restricted by the sandbox mechanism. For details about the sandbox mechanism, see [Application Sandbox](../../file-management/app-sandbox-directory.md).
 
 5. The musl libc API is a null implementation or failed by default.
+
+6. The API can be executed after special permissions are granted.
 
 ## Restricted musl libc APIs
 
@@ -75,6 +77,7 @@ The following table lists the musl libc APIs that cannot be used.
 | seccomp    | grp.h        | init_module |
 | seccomp    | sched.h      | unshare |
 | seccomp    | sched.h      | setns |
+| seccomp    | None         | pivot_root |
 | Kernel API not exposed| sys/fanotify.h | fanotify_init |
 | Kernel API not exposed| sys/fanotify.h | fanotify_mark |
 | Kernel API not exposed| syslog.h       | syslog |
@@ -122,3 +125,4 @@ The following table lists the musl libc APIs that cannot be used.
 | Null implementation or failed by default     | stdio_ext.h    | __fsetlocking |
 | Null implementation or failed by default     | netdb.h        | getnetbyaddr |
 | Null implementation or failed by default     | netdb.h        | getnetbyname |
+| **CAP_SYS_ADMIN** permission required| None          | pivot_root |

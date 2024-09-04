@@ -1284,8 +1284,11 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
   async function appendBundles() {
+    let fileData : backup.FileData = {
+      fd : -1
+    }
     try {
-      let fileData = await backup.getLocalCapabilities();
+      fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
       let restoreApps: Array<string> = [
         "com.example.hiworld",
@@ -1399,8 +1402,11 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
   async function appendBundles() {
+    let fileData : backup.FileData = {
+      fd : -1
+    }
     try {
-      let fileData = await backup.getLocalCapabilities();
+      fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
       let restoreApps: Array<string> = [
         "com.example.hiworld",

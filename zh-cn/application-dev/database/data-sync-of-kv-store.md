@@ -37,7 +37,8 @@
 
 ### 自动同步
 
-在[跨设备Call调用实现的多端协同](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)场景中，在应用程序更新数据后，由分布式数据库自动将本端数据推送到远端，同时也将远端数据拉取到本端来完成数据同步，应用不需要主动调用sync接口。
+<!--RP5-->
+在[跨设备Call调用实现的多端协同](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)场景中，在应用程序更新数据后，由分布式数据库自动将本端数据推送到远端，同时也将远端数据拉取到本端来完成数据同步，应用不需要主动调用sync接口。<!--RP5End-->
 
 
 ## 运作机制
@@ -84,7 +85,7 @@
 | -------- | -------- |
 | createKVManager(config: KVManagerConfig): KVManager | 创建一个KVManager对象实例，用于管理数据库对象。 | 
 | getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定options和storeId，创建并得到指定类型的KVStore数据库。 | 
-| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | 插入和更新数据。 | 
+| put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void | 插入和更新数据。 | 
 | on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | 订阅数据库中数据的变化。 | 
 | get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | 查询指定Key键的值。 | 
 | sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void | 在手动模式下，触发数据库同步。 | 
@@ -180,7 +181,7 @@
      schema.root.appendChild(child1);
      schema.root.appendChild(child2);
      schema.indexes = ['$.id', '$.name'];
-     // 0表示STRICT模式，1表示COMPATIBLE模式。
+     // 0表示COMPATIBLE模式，1表示STRICT模式。
      schema.mode = 1;
      // 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。
      schema.skip = 0;

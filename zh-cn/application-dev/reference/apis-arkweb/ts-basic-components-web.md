@@ -1940,7 +1940,7 @@ enableNativeEmbedMode(mode: boolean)
     }
   }
   ```
-### forceDisplayScrollBar<sup>12+</sup>
+### forceDisplayScrollBar<sup>14+</sup>
 
 forceDisplayScrollBar(enabled: boolean)
 
@@ -1981,6 +1981,7 @@ forceDisplayScrollBar(enabled: boolean)
   <!DOCTYPE html>
   <html>
   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Demo</title>
       <style>
         body {
@@ -5931,7 +5932,6 @@ onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
     build() {
       Column() {
         Stack() {
-          NodeContainer(this.nodeController)
           Web({ src: $rawfile("index.html"), controller: this.controller })
             .enableNativeEmbedMode(true)
             .onNativeEmbedVisibilityChange((embed) => {
