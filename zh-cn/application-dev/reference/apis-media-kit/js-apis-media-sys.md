@@ -303,9 +303,7 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 
 ## AVRecorder<sup>9+</sup>
 
-音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](#mediacreateavrecorder9)构建一个AVRecorder实例。
-
-音视频录制demo可参考：[音频录制开发指导](../../media/media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/media/video-recording.md)。
+音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](js-apis-media.md#mediacreateavrecorder9)构建一个AVRecorder实例。
 
 > **说明：**
 >
@@ -317,7 +315,7 @@ isWatermarkSupported(): Promise\<boolean>
 
 检查当前设备录制是否支持硬件数字水印能力。通过Promise获取返回值。
 
-可在[prepare()](js-apis-media.md#prepare9-3)、[start()](js-apis-media.md#start9)、[paused()](js-apis-media.md#pause9)事件成功触发后
+可在[prepare()](js-apis-media.md#prepare9-3)、[start()](js-apis-media.md#start9)、[paused()](js-apis-media.md#pause9)事件成功触发后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -335,8 +333,8 @@ isWatermarkSupported(): Promise\<boolean>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
-  console.info(`Succeeded in get, isWatermarkSupported: ${isWatermarkSupported}`)
-}).catch((err: BusinessError) => {
+  console.info(`Succeeded in get, isWatermarkSupported: ${isWatermarkSupported}`);
+}).catch((error: BusinessError) => {
   console.error(`Failed to get and catch error is ${error.message}`);
 });
 ```
@@ -345,7 +343,7 @@ avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
 
 setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
-将水印图像设置给recorder。通过Promise获取返回值。
+给AVRecorder设置水印图像。通过Promise获取返回值。
 
 当且仅当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，且在[start()](js-apis-media.md#start9)之前，才能调用setWatermark方法。
 
@@ -379,16 +377,14 @@ setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
-let watermark: image.PixelMap = ...;
-let watermarkConfig: media.WatermarkConfig = {
-  top: 100;
-  left: 100;
-}
+let watermark: image.PixelMap|undefined = undefined; // need data
+let watermarkConfig: media.WatermarkConfig = { top: 100, left: 100 }
 
 avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
   console.info('Succeeded in setWatermark');
-}).catch((err: BusinessError) => {
+}).catch((error: BusinessError) => {
   console.error(`Failed to setWatermark and catch error is ${error.message}`);
 });
 ```
@@ -1235,5 +1231,5 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 | 名称      | 类型   | 必填 | 说明             |
 | --------- | ------ | ---- | ---------------- |
-| top       | number | 是   | 水印到像素顶部的偏移量。 |
-| left      | number | 是   | 水印到像素左部的偏移量。 |
+| top       | number | 是   | 显示位置，距离图像顶部的偏移量。 |
+| left      | number | 是   | 显示位置，距离图像左部的偏移量。 |
