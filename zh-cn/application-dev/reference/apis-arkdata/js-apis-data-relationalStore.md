@@ -6751,7 +6751,9 @@ attach(fullPath: string, attachName: string, waitTime?: number) : Promise&lt;num
 
 数据库文件来自文件，且此API不支持附加加密数据库。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。
 
-在attach之前，所有的数据库操作要确保已经结束，所有的ResultSet已经Close。并且不能并发调用，可能出现未响应情况，需要重试。
+attach的时候，数据库会切换为非WAL模式，切换模式需要确保所有的ResultSet都已经Close，所有的写操作已经结束，否则会报错14800015。
+
+attach不能并发调用，可能出现未响应情况，报错14800015，需要重试。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -6821,7 +6823,9 @@ attach(context: Context, config: StoreConfig, attachName: string, waitTime?: num
 
 此API不支持加密数据库附加非加密数据库的场景。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。
 
-在attach之前，所有的数据库操作要确保已经结束，所有的ResultSet已经Close。并且不能并发调用，可能出现未响应情况，需要重试。
+attach的时候，数据库会切换为非WAL模式，切换模式需要确保所有的ResultSet都已经Close，所有的写操作已经结束，否则会报错14800015。
+
+attach不能并发调用，可能出现未响应情况，报错14800015，需要重试。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
