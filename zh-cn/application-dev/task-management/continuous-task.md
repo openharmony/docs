@@ -19,7 +19,7 @@
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | 数据传输 | dataTransfer | 后台下载大文件，如浏览器后台下载等。 |
 | AUDIO_PLAYBACK | 音视频播放 | audioPlayback | 音乐类应用在后台播放音乐。<br>支持在原子化服务中使用。 |
-| AUDIO_RECORDING | 录制 | audioRecording | 录音机在后台录制。 |
+| AUDIO_RECORDING | 录制 | audioRecording | 录音机在后台录音。 |
 | LOCATION | 定位导航 | location | 导航类应用后台导航。 |
 | BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输分享的文件。 |
 | MULTI_DEVICE_CONNECTION | 多设备互联 | multiDeviceConnection | 分布式业务连接。<br>支持在原子化服务中使用。 |
