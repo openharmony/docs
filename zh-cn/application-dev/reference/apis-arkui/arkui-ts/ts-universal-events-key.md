@@ -138,9 +138,10 @@ struct KeyEventExample {
             }
             if (event.unicode == 97) {
               this.keyType = 'a'
-            }
-            if (event.unicode == 65) {
+            } else if (event.unicode == 65) {
               this.keyType = 'A'
+            } else {
+              this.keyType = ' '
             }
             this.text = 'KeyType:' + this.eventType + '\nUnicode:' + event.unicode + '\nkeyCode:' + event.keyCode + '\nkeyType:' + this.keyType
           }
