@@ -581,7 +581,7 @@ Tabs组件动画相关信息集合。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型      | 只读 | 可选 | 描述                                       |
+| 名称            | 类型      | 只读 | 可选 | 说明                                       |
 | ------------- | ---------- | ---- | ---- | ------------------------ |
 | currentOffset | number | 否 | 否 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
 | targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
@@ -614,7 +614,7 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 
 ### 属性
 
-| 名称  | 类型     | 只读 | 可选 | 描述                         |
+| 名称  | 类型     | 只读 | 可选 | 说明                         |
 | ----- | ------- | ---- | ---- | --------------------------- |
 | from | number | 否 | 否 | 自定义动画起始页面对应的index值。|
 | to | number | 否 | 否 | 自定义动画目标页面对应的index值。|
@@ -699,7 +699,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 | 错误码ID   | 错误信息                                      |
 | --------   | -------------------------------------------- |
-| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
+| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 
 ## 示例
 
