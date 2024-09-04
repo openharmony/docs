@@ -15,7 +15,7 @@
 | **接口名**  | **描述** |
 | -------- | -------- |
 | onStartContentEditing(uri: string, want:Want, session: UIExtensionContentSession):void       | 可以执行读取原始图片、加载页面等操作。|
-| saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | 传入编辑过的图片的PixMap对象并保存。   |
+| saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | 传入编辑过的图片的PixlMap对象并保存。   |
 
 ## 图片编辑类应用实现图片编辑页面
 
@@ -398,7 +398,7 @@ struct Index {
               });
             }
           }
-          // 将图片转换为图片url，并调用startAbilityByType拉起图片编辑应用面板
+          // 将图片转换为图片uri，并调用startAbilityByType拉起图片编辑应用面板
           let uri = fileUri.getUriFromPath(this.filePath);
           context.startAbilityByType("photoEditor", {
             "ability.params.stream": [uri], // 原始图片的uri,只支持传入一个uri
