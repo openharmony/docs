@@ -1231,5 +1231,5 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 | 名称      | 类型   | 必填 | 说明             |
 | --------- | ------ | ---- | ---------------- |
-| top       | number | 是   | 显示位置，距离图像顶部的偏移量。 |
-| left      | number | 是   | 显示位置，距离图像左部的偏移量。 |
+| top       | number | 是   | 显示位置，距离图像顶部的像素偏移量。 |
+| left      | number | 是   | 显示位置，距离图像左部的像素偏移量。 |
