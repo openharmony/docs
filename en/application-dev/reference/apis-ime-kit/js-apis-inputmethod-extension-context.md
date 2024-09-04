@@ -37,9 +37,9 @@ Destroys this input method. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                                                        |
+| Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -74,9 +74,9 @@ Destroys this input method. This API uses a promise to return the result.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -109,21 +109,21 @@ Starts an ability. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory | Description                                                        |
+| Name| Type                                                   | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information related to the extension ability to start, including the ability name and bundle name. |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information related to the extension ability to start, including the ability name and bundle name.|
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md), [Ability Error Codes](../apis-ability-kit/errorcode-ability.md), and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                               |
+| ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 16000001 | The specified ability does not exist.                   |
@@ -143,6 +143,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 16000055 | Installation-free timed out.                            |
 | 16000061 | Can not start component belongs to other bundle.        |
 | 16200001 | The caller has been released.                           |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service.                 |
 
 **Example**
 
