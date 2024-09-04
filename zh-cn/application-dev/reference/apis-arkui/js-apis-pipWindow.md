@@ -180,12 +180,13 @@ create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;P
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { PiPWindow } from '@kit.ArkUI';
+import { PiPWindow, UIContext } from '@kit.ArkUI';
 import { typeNode } from '@ohos.arkui.node';
 
 let pipController: PiPWindow.PiPController | undefined = undefined;
 let xComponentController: XComponentController = new XComponentController();
-let xComponent = typeNode.createNode(this.getUIContext(), "XComponent");
+let context: UIContext | undefined = undefined; // 可传入UIContext或在布局中通过this.getUIContext()为context赋有效值
+let xComponent = typeNode.createNode(context, 'XComponent');
 xComponent.initialize({
   id:'xcomponent',
   type:XComponentType.SURFACE,
