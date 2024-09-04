@@ -25,8 +25,7 @@ startAbilityByType接口中type字段为navigation，对应的wantParam参数：
 > 
 > * 本文中的经纬度均采用GCJ-02坐标系统。
 > 
-> * 终点POI ID和起点POI ID需开发者自行从各地图系统中获取，并按照以下对应关系传参
-
+> * 终点POI ID和起点POI ID需开发者自行从各地图系统中获取，并按照以下对应关系传参。
 
 ```ts
 let wantParam: Record<string, Object> = {
@@ -94,7 +93,7 @@ let wantParam: Record<string, Object> = {
 ## 目标方开发步骤
 
 1. 在module.json5中配置[uris](../quick-start/module-configuration-file.md#skills标签)，步骤如下：
-    1. 设置linkFeature属性以声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用；linkFeature取值范围如下：
+    1. 设置linkFeature属性以声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用，取值范围如下：
         | 取值           | 含义                         |
         | -------------- | ---------------------------- |
         | Navigation     | 声明应用支持导航功能 		|

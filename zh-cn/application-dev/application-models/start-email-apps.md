@@ -64,7 +64,7 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 
 ## 目标方开发步骤
 
-1. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用；linkFeature取值范围如下：
+1. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用，取值范围如下：
 
     | 取值           | 含义                      |
     | --------------| ------------------------- |
