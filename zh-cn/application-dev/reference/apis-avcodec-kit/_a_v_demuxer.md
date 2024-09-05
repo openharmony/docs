@@ -23,8 +23,8 @@ AVDemuxer模块提供用于音视频解封装功能的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef void(* [DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback)) (DRM_MediaKeySystemInfo *mediaKeySystemInfo) | 媒体密钥系统信息回调函数指针类型。  |
-| typedef void(* [Demuxer_MediaKeySystemInfoCallback](#demuxer_mediakeysysteminfocallback)) (OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo)| 媒体密钥系统信息回调函数指针类型。  |
+| typedef void(* [DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback)) (DRM_MediaKeySystemInfo *mediaKeySystemInfo) | [DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md)回调函数指针类型，不返回解封装器实例，适用于单个解封装器实例场景。需要使用[OH_AVDemuxer_SetMediaKeySystemInfoCallback](#oh_avdemuxer_setmediakeysysteminfocallback)接口将其设置为回调。  |
+| typedef void(* [Demuxer_MediaKeySystemInfoCallback](#demuxer_mediakeysysteminfocallback)) (OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo)| [DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md)回调函数指针类型，返回解封装器实例，适用于多个解封装器实例场景。需要使用[OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback](#oh_avdemuxer_setdemuxermediakeysysteminfocallback)接口将其设置为回调，推荐使用。  |
 
 
 ### 函数
@@ -136,7 +136,7 @@ AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例。
 OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo (OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo)
 ```
 **描述**
-获取DRM信息。
+获取DRM信息。在[Demuxer_MediaKeySystemInfoCallback](#demuxer_mediakeysysteminfocallback)或[DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback)成功回调以后，调用此接口才能获取到DRM信息。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
@@ -155,7 +155,7 @@ OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo (OH_AVDemuxer *demuxer, DRM_Medi
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：解复用器实例为nullptr或无效，或者mediaKeySystemInfo为nullptr。
+AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例，或者mediaKeySystemInfo为nullptr。
 
 
 ### OH_AVDemuxer_ReadSample()
@@ -300,7 +300,7 @@ AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例，�
 OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback (OH_AVDemuxer *demuxer, Demuxer_MediaKeySystemInfoCallback callback)
 ```
 **描述**
-设置异步DRM信息回调函数。
+设置DRM信息回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
@@ -319,9 +319,9 @@ OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback (OH_AVDemuxer *de
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_OPERATE_NOT_PERMIT：解复用器引擎未启动或初始化失败。
+AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
 
-AV_ERR_INVALID_VAL：解复用器实例为nullptr或无效。
+AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例。
 
 
 ### OH_AVDemuxer_SetMediaKeySystemInfoCallback()
@@ -330,7 +330,7 @@ AV_ERR_INVALID_VAL：解复用器实例为nullptr或无效。
 OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback (OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfoCallback callback)
 ```
 **描述**
-设置异步DRM信息回调函数。
+设置DRM信息回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
@@ -349,9 +349,9 @@ OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback (OH_AVDemuxer *demuxer, 
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_OPERATE_NOT_PERMIT：解复用器引擎未启动或初始化失败。
+AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
 
-AV_ERR_INVALID_VAL：解复用器实例为nullptr或无效。
+AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例。
 
 
 ### OH_AVDemuxer_UnselectTrackByID()

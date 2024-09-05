@@ -868,7 +868,7 @@ try {
 
 | 名称     | 类型    | 必填 | 说明                           |
 | -------- | ------ | ----- | ------------------------------ |
-| type     | "time" |  是   | 值为"time"，按照指定持续时间触发马达振动。 |
+| type     | 'time' |  是   | 值为"time"，按照指定持续时间触发马达振动。 |
 | duration | number |  是   | 马达持续振动时长, 单位ms。         |
 
 ## VibratePreset<sup>9+</sup>
@@ -879,7 +879,7 @@ try {
 
 | 名称     | 类型      | 必填 | 说明                           |
 | -------- | -------- | ---- |------------------------------ |
-| type     | "preset" |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
+| type     | 'preset' |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
 | effectId | string   |  是  | 预置的振动效果ID。             |
 | count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
 | intensity<sup>12+</sup> | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
@@ -892,7 +892,7 @@ try {
 
 | 名称     | 类型       | 必填 | 说明                           |
 | -------- | --------  | ---- | ------------------------------ |
-| type     | "file" |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
+| type     | 'file' |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
 | hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | 是 | 振动配置文件的描述符。|
 
 ## HapticFileDescriptor<sup>10+</sup>

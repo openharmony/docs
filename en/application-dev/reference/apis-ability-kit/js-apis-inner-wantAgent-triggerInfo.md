@@ -12,7 +12,7 @@ The **TriggerInfo** module defines the information required for triggering the W
 import { wantAgent } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -22,4 +22,4 @@ import { wantAgent } from '@kit.AbilityKit';
 | want       | Want                 | No  | Carrier for information transfer between objects (application components).   |
 | permission | string               | No  | Permission.   |
 | extraInfo  | { [key: string]: any } | No  | Extra information.   |
-| extraInfos<sup>11+<sup>  | Record\<string, Object> | No  | Extra information. You are advised to use this attribute to replace **extraInfo**. When this attribute is set, **extraInfo** does not take effect.   |
+| extraInfos<sup>11+<sup>  | Record\<string, Object> | No  | Extra information. You are advised to use this property to replace **extraInfo**. When this property is set, **extraInfo** does not take effect.   |

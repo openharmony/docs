@@ -11,6 +11,7 @@
   - [Development Overview](develop-code-overview.md)
   - C/C++ Standard Library
     - [C/C++ Mechanisms](c-cpp-overview.md)
+    - [Using fdsan](fdsan.md)
   - Using Node-API
     - [Node-API Overview](napi-introduction.md)
     - [Node-API Data Types and APIs](napi-data-types-interfaces.md)
@@ -23,18 +24,28 @@
       - [Calling Back ArkTS APIs in a Non-ArkTS Thread](use-uv-queue-work.md)
       - [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.md)
       - [Loading a Module in the Main Thread Using Node-API](use-napi-load-module.md)
-      - [Running or Stopping an Event Loop in an Asynchronous Thread Using Extended Node-API](use-napi-event-loop.md)
+      - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](use-napi-event-loop.md)
       - [Loading a Module Using Node-API](use-napi-load-module-with-info.md)
       - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](use-call-threadsafe-function-with-priority.md)
+      - [Error Handling Using Node-API](use-napi-about-error.md)
       - [Using Node-API Extension APIs](use-napi-about-extension.md)
     - [Node-API FAQs](use-napi-faqs.md)
   - Using JSVM-API
     - [JSVM-API Overview](jsvm-introduction.md)
     - [JSVM-API Data Types and APIs](jsvm-data-types-interfaces.md)
-    - [JSVM-API Development Specifications](jsvm-guidelines.md)
-    - [Debugging and Tuning JS Code Using JSVM-API](jsvm-debugger-cpuprofiler-heapsnapshot.md)
+    - [JSVM-API Development Process](use-jsvm-process.md)
+    - JSVM-API Development Specifications
+      - [JSVM-API Development Specifications](jsvm-guidelines.md)
+      - [JSVM-API FAQs](jsvm-frequently-questions.md)
     - JSVM-API Use Cases
-      - [Creating and Destroying JS VMs Using JSVM-API](use-jsvm-runtime-task.md)
+      - [Working with Task Queues Using JSVM-API](use-jsvm-execute_tasks.md)
+      - [Working with VM Snapshots Using JSVM-API](use-jsvm-create-snapshot.md)
+    - JSVM-API Tuning & Performant Coding Cases
+      - [Debugging and Tuning JS Code Using JSVM-API](jsvm-debugger-cpuprofiler-heapsnapshot.md)
+    
+      - [Creating and Destroying JSVMs Using JSVM-API](use-jsvm-runtime-task.md)
+      - [Accelerating Compilation Using a Code Cache](use-jsvm-about-code-cache.md)
+      - [JSVM Tuning Practices](jsvm-optimizations.md)
   - Resource Management
     - [Raw File Development](rawfile-guidelines.md)
   - Thread Scheduling
@@ -47,11 +58,8 @@
   - Bundle Management
     - [Native Bundle Development](native-bundle-guidelines.md)
 - Debugging and Profiling
-  - [Overview of Debugging and Profiling](debug-performance-profiling-overview.md)
-- Debugging and Profiling
   - [Debugging and Profiling Overview](debug-performance-profiling-overview.md)
   - [Debugging in DevEco Studio](debug-ide.md)
-  - [LLDB Debugger](debug-lldb.md)
   - [C/C++ Memory Error Detection](debug-asan.md)
 - Hardware Compatibility
   - [Introduction to Hardware Compatibility](hw-guide.md)

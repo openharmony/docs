@@ -39,7 +39,7 @@
    documentSelectOptions.authMode = true;
    ```
 
-3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-2)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。
+3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。
    ```ts
    let uris: Array<string> = [];
    let context = getContext(this) as common.Context; // 请确保 getContext(this) 返回结果为 UIAbilityContext
@@ -98,16 +98,16 @@
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
-3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-4)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-6)接口拉起FilePicker应用界面进行文件选择。
+3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-6)接口拉起FilePicker应用界面进行文件选择。
    ```ts
-   let uri: string = '';
+   let uris: string = '';
    // 请确保 getContext(this) 返回结果为 UIAbilityContext
    let context = getContext(this) as common.Context; 
    const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
      //文件选择成功后，返回被选中音频的uri结果集。
-     uri = audioSelectResult[0];
-     console.info('audioViewPicker.select to file succeed and uri is:' + uri);
+     uris = audioSelectResult[0];
+     console.info('audioViewPicker.select to file succeed and uri is:' + uris);
    }).catch((err: BusinessError) => {
      console.error(`Invoke audioViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })

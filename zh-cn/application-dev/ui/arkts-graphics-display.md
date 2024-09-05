@@ -38,7 +38,9 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Image组件的src参数为网络图片的链接。
 
-  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)、[setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7)、[setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7)。
+  当前Image组件仅支持加载简单网络图片。
+
+  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)、[setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7)、[setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7)。但是，这三个图片缓存接口并不灵活，且后续不继续演进，对于复杂情况，更推荐使用[ImageKnife](https://gitee.com/openharmony-tpc/ImageKnife)。
 
   ```ts
   Image('https://www.example.com/example.JPG') // 实际使用时请替换为真实地址
@@ -220,6 +222,25 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
            sethtp.set()
          })
        Image(this.image).height(100).width(100)
+      ```
+      同时，也可以传入pixelMap创建[PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12)对象，用来显示图片。
+      ```ts
+       import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
+       class htp{
+        httpRequest: Function | undefined = undefined
+        set(){
+          if(this.httpRequest){
+            this.httpRequest()
+          }
+        }
+       }
+       Button("获取网络图片")
+         .onClick(() => {
+           let sethtp = new htp()
+           sethtp.set()
+           this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image)
+         })
+       Image(this.drawablePixelMap).height(100).width(100)
       ```
 
 

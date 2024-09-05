@@ -505,7 +505,7 @@ struct ParticleExample {
           opacity:{
             range:[0.0,1.0],//粒子透明度的初始值从【0.0到1.0】随机产生
             updater:{
-              type:ParticleUpdater.CURVE,//透明度的变化方式是随机变化
+              type:ParticleUpdater.CURVE,
               config:[
                 {
                   from:0.0,
@@ -543,7 +543,7 @@ struct ParticleExample {
             speed:{
               range:[3,9],
               updater:{
-                type:ParticleUpdater.RANDOM,
+                type:ParticleUpdater.RANDOM,//Speed的变化方式是随机变化
                 config:[1,20]
               }
             },
@@ -582,7 +582,7 @@ struct ParticleExample {
               particle:{
                 type:ParticleType.IMAGE,
                 config:{
-                  src:$r("app.media.glass"),
+                  src:$r("app.media.book"),
                   size:[10,10]
                 },
                 count: this.myCount,
@@ -704,7 +704,7 @@ struct ParticleExample {
             particle:{
               type:ParticleType.IMAGE,
               config:{
-                src:$r('app.media.book'),
+                src:$r('app.media.heart'),
                 size:[10,10]
               },
               count: this.myCount,
@@ -825,7 +825,7 @@ struct ParticleExample {
             particle:{
               type:ParticleType.IMAGE,
               config:{
-                src:$r('app.media.squares'),
+                src:$r('app.media.sun'),
                 size:[10,10]
               },
               count: this.myCount,
@@ -951,7 +951,7 @@ struct ParticleExample {
   }
 }
 ```
-![particle](figures/particle_image.gif)
+![particle](figures/particle_inage_one.gif)
 
 ### 示例3
 
@@ -1011,7 +1011,7 @@ struct ParticleExample {
           opacity:{
             range:[0.0,1.0],//粒子透明度的初始值从[0.0,1.0]随机产生
             updater:{
-              type:ParticleUpdater.CURVE,//透明度的变化方式是随机变化
+              type:ParticleUpdater.CURVE,
               config:[
                 {
                   from:0.0,

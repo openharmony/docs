@@ -1,8 +1,6 @@
 # \@Builder Decorator: Custom Builder Function
 
-
-As previously described, you can reuse UI elements by creating a custom component, which comes with a fixed internal UI structure and allows for data transfer only with its caller. ArkUI also provides a more lightweight mechanism for reusing UI elements: \@Builder. An \@Builder decorated function is a special function that serves similar purposes as the **build** function. The \@Builder decorated function follows the same syntax rules as the **build()** function. You can abstract reusable UI elements into a method and call the method in **build**.
-
+ArkUI provides the \@Builder decorator that is a lightweight UI element reuse mechanism. This custom component has a fixed internal UI structure and passes the data only to the user. You can abstract reused UI elements into a method and call the method in the **build** method.
 
 For simplicity, here we refer to an \@Builder decorated function also as a custom builder function.
 
@@ -13,20 +11,27 @@ For simplicity, here we refer to an \@Builder decorated function also as a custo
 >
 > This decorator can be used in atomic services since API version 11.
 
+## Constraints
+
+- The \@Builder triggers dynamic UI rendering for only when parameters are passed in by reference. Only one parameter can be passed.
+
+- If the \@Builder passes in two or more parameters, dynamic UI rendering is not triggered.
+
+- If the \@Builder passes in parameters by value and by reference, dynamic UI rendering is not triggered.
+
+- \@Builder parameters must be passed in one by one in the form of object literals to trigger dynamic UI rendering.
+
 ## Rules of Use
 
-
-### Local Custom Builder Function
+### Private Custom Builder Function
 
 Syntax:
 
-
 ```ts
-@Builder MyBuilderFunction() { ... }
+@Builder MyBuilderFunction() {}
 ```
 
 Usage:
-
 
 ```ts
 this.MyBuilderFunction()
@@ -43,13 +48,11 @@ this.MyBuilderFunction()
 
 Syntax:
 
-
 ```ts
 @Builder function MyGlobalBuilderFunction() { ... }
 ```
 
 Usage:
-
 
 ```ts
 MyGlobalBuilderFunction()
@@ -120,7 +123,7 @@ class Tmp {
 
 @Component
 struct HelloComponent {
-  @Link message: string;
+  @Prop message: string;
 
   build() {
     Row() {
@@ -135,7 +138,7 @@ struct Parent {
   @State label: string = 'Hello';
   build() {
     Column() {
-      // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
+        // Pass the this.label reference to the overBuilder component when the overBuilder component is called in the Parent component.
       overBuilder({paramA1: this.label})
       Button('Click me').onClick(() => {
         // After Click me is clicked, the UI text changes from Hello to ArkUI.
@@ -146,9 +149,222 @@ struct Parent {
 }
 ```
 
-When parameters are passed by reference, if a custom component or another \@Builder method is called within the \@Builder method, ArkUI provides [$$](arkts-two-way-sync.md) as the paradigm for passing parameters by reference.
+### By-Value Parameter Passing
 
-The following is an example of a multi-level, nested \@Builder method:
+By default, parameters in the \@Builder decorated functions are passed by value. In this case, when the passed parameter is a state variable, the change of the state variable does not cause UI re-rendering in the \@Builder decorated function. Therefore, when passing state variables, you are advised to use [by-reference parameter passing](#by-reference-parameter-passing).
+
+
+```ts
+@Builder function overBuilder(paramA1: string) {
+  Row() {
+    Text(`UseStateVarByValue: ${paramA1} `)
+  }
+}
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+  build() {
+    Column() {
+      overBuilder(this.label)
+    }
+  }
+}
+```
+
+## Use Scenarios
+
+### Using Custom Builder Function in Custom Component
+
+Create a private \@Builder method, call this method by using **this.builder()** in **Column**, and change the content of **builder_value** through the **aboutToAppear** lifecycle function and Button click event to dynamically render the UI.
+
+```ts
+@Entry
+@Component
+struct PrivateBuilder {
+  @State builder_value: string = 'Hello';
+
+  @Builder builder() {
+    Column(){
+      Text(this.builder_value)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  aboutToAppear(): void {
+    setTimeout(() => {
+      this.builder_value = 'Hello World';
+    },3000)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.builder_value)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+        this.builder()
+        Button('Click to change builder_value')
+          .onClick(() => {
+            this.builder_value = 'builder_value clicked'
+          })
+      }
+    }
+  }
+}
+```
+
+### Using Global Custom Builder Function
+
+Create a global \@Builder method and call this method by using **overBuilder()** in **Column**. Pass the simple type or complex type parameters in the form of object literals, value changes will trigger UI re-rendering.
+
+```ts
+class ChildTmp {
+  val: number = 1;
+}
+
+class Tmp {
+  str_value: string = 'Hello';
+  num_value: number = 0;
+  tmp_value: ChildTmp = new ChildTmp();
+  arrayTmp_value: Array<ChildTmp> = [];
+}
+
+@Builder function overBuilder(param: Tmp) {
+  Column() {
+    Text(`str_value: ${param.str_value}`)
+    Text(`num_value: ${param.num_value}`)
+    Text(`tmp_value: ${param.tmp_value.val}`)
+    ForEach(param.arrayTmp_value, (item: ChildTmp) => {
+      Text(`arrayTmp_value: ${item.val}`)
+    }, (item: ChildTmp) => JSON.stringify(item))
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State objParam: Tmp = new Tmp();
+  build() {
+    Column() {
+      Text('Render the UI by calling the @Builder')
+        .fontSize(20)
+      overBuilder({str_value: this.objParam.str_value, num_value: this.objParam.num_value, tmp_value: this.objParam.tmp_value, arrayTmp_value: this.objParam.arrayTmp_value})
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Button('Click to change parameter').onClick(() => {
+        this.objParam.str_value = 'Hello World';
+        this.objParam.num_value = 1;
+        this.objParam.tmp_value.val = 8;
+        const child_value: ChildTmp = {
+          val: 2
+        }
+        this.objParam.arrayTmp_value.push(child_value)
+      })
+    }
+  }
+}
+```
+
+### Changing the Variables Decorated by the Decorator Triggers UI Re-rendering
+
+In this case, the decorator feature is used. The change of the listening value triggers UI re-rendering and parameters are not passed through the \@Builder.
+
+```ts
+class Tmp {
+  str_value: string = 'Hello';
+}
+
+@Entry
+@Component
+struct Parent {
+  @State objParam: Tmp = new Tmp();
+  @State label: string = 'World';
+
+  @Builder privateBuilder() {
+    Column() {
+      Text(`wrapBuilder str_value: ${this.objParam.str_value}`)
+      Text(`wrapBuilder num: ${this.label}`)
+    }
+  }
+
+  build() {
+    Column() {
+      Text('Render the UI by calling the @Builder')
+        .fontSize(20)
+      this.privateBuilder()
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Button('Click to change parameter').onClick(() => {
+        this.objParam.str_value = 'str_value Hello World';
+        this.label = 'label Hello World'
+      })
+    }
+  }
+}
+```
+
+### Using the Global and Local @Builder to Pass in Parameters of the customBuilder Type
+
+```ts
+@Builder
+function overBuilder() {
+  Row() {
+    Text('Global Builder')
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+
+@Entry
+@Component
+struct customBuilderDemo {
+  @State arr: number[] = [0, 1, 2, 3, 4];
+
+  @Builder privateBuilder() {
+    Row() {
+      Text('Local Builder')
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  build() {
+    Column() {
+      List({ space: 10 }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem(){
+            Text(`${item}`)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+          }
+            .swipeAction({
+              start: {
+                builder: overBuilder()
+              },
+              end: {
+                builder: () => { this.privateBuilder() }
+              }
+            })
+        }, (item: string) => JSON.stringify(item))
+      }
+    }
+  }
+}
+```
+
+### Nesting of Multi-layer \@Builder Method
+
+Call the custom components or other methods within \@Builder method. ArkUI provides [$$](arkts-two-way-sync.md) as a paradigm for passing parameters by reference.
 
 ```ts
 class Tmp {
@@ -218,7 +434,7 @@ struct HelloChildComponent {
 
 @Component
 struct HelloGrandsonComponent {
-  @Link message: string;
+  @Prop message: string;
   build() {
     Row() {
       Text(`HelloGrandsonComponent===${this.message}`)
@@ -243,26 +459,288 @@ struct Parent {
 }
 ```
 
+### Using \@Builder Functions Together with the Decorators in V2
 
-### By-Value Parameter Passing
-
-By default, parameters in the \@Builder decorated functions are passed by value. In this case, when the passed parameter is a state variable, the change of the state variable does not cause UI re-rendering in the \@Builder decorated function. Therefore, when passing state variables, you are advised to use [by-reference parameter passing](#by-reference-parameter-passing).
-
+Call the global @Builder and local @Builder in the @ComponentV2 decorated custom component to change related variables, triggering UI re-renders.
 
 ```ts
-@Builder function overBuilder(paramA1: string) {
-  Row() {
-    Text(`UseStateVarByValue: ${paramA1} `)
+@ObservedV2
+class Info {
+  @Trace name: string = '';
+  @Trace age: number = 0;
+}
+
+@Builder
+function overBuilder(param: Info) {
+  Column() {
+    Text('Global @Builder name :${param.name}`)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+    Text('Global @Builder age :${param.age}`)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
   }
 }
+
+@ComponentV2
+struct ChildPage {
+  @Require @Param childInfo: Info;
+  build() {
+    overBuilder({name: this.childInfo.name, age: this.childInfo.age})
+  }
+}
+
+@Entry
+@ComponentV2
+struct ParentPage {
+  info1: Info = { name: "Tom", age: 25 };
+  @Local info2: Info = { name: "Tom", age: 25 };
+
+  @Builder
+  privateBuilder() {
+    Column() {
+      Text('Local @Builder name :${this.info1.name}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      Text('Local @Builder age :${this.info1.age}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  build() {
+    Column() {
+      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      this.privateBuilder() // Call the local @Builder.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      overBuilder({ name: this.info2.name, age: this.info2.age}) // Call the global @Builder.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      ChildPage ({childInfo: this.info1}) // Call the custom component.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      ChildPage ({childInfo: this.info2}) // Call the custom component.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Button("change info1&info2")
+        .onClick(() => {
+          this.info1 = { name: "Cat", age: 18} // Text1 is not re-rendered because no decorator is used to listen for value changes.
+          this.info2 = { name: "Cat", age: 18} // Text2 is re-rendered because a decorator is used to listen for value changes.
+        })
+    }
+  }
+}
+```
+
+## FAQs
+
+### Two or More Parameters Are Used in the \@Builder
+
+When two or more parameters are used, the value change does not trigger the UI re-rendering even if the parameters are passed in the form of object literals.
+
+[Incorrect Example]
+
+```ts
+class GlobalTmp {
+  str_value: string = 'Hello';
+}
+
+@Builder function overBuilder(param: GlobalTmp, num: number) {
+  Column() {
+    Text(`str_value: ${param.str_value}`)
+    Text(`num: ${num}`)
+  }
+}
+
 @Entry
 @Component
 struct Parent {
-  @State label: string = 'Hello';
+  @State objParam: GlobalTmp = new GlobalTmp();
+  @State num: number = 0;
   build() {
     Column() {
-      overBuilder(this.label)
+      Text('Render the UI by calling the @Builder')
+        .fontSize(20)
+      overBuilder({str_value: this.objParam.str_value}, this.num) // Two parameters are used.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Button('Click to change parameter').onClick(() => {
+        this.objParam.str_value = 'Hello World';
+        this.num = 1;
+      })
     }
+  }
+}
+```
+
+[Incorrect Example]
+
+```ts
+class GlobalTmp {
+  str_value: string = 'Hello';
+}
+class SecondTmp {
+  num_value: number = 0;
+}
+@Builder function overBuilder(param: GlobalTmp, num: SecondTmp) {
+  Column() {
+    Text(`str_value: ${param.str_value}`)
+    Text(`num: ${num.num_value}`)
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State strParam: GlobalTmp = new GlobalTmp();
+  @State numParam: SecondTmp = new SecondTmp();
+  build() {
+    Column() {
+      Text('Render the UI by calling the @Builder')
+        .fontSize(20)
+      overBuilder({str_value: this.strParam.str_value}, {num_value: this.numParam.num_value}) // Two parameters are used.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Button('Click to change parameter').onClick(() => {
+        this.strParam.str_value = 'Hello World';
+        this.numParam.num_value = 1;
+      })
+    }
+  }
+}
+```
+
+Only one parameter can be used in the \@Builder. When one parameter is passed in the form of object literals, the value change triggers the UI re-rendering.
+
+[Correct Example]
+
+```ts
+class GlobalTmp {
+  str_value: string = 'Hello';
+  num_value: number = 0;
+}
+@Builder function overBuilder(param: GlobalTmp) {
+  Column() {
+    Text(`str_value: ${param.str_value}`)
+    Text(`num: ${param.num_value}`)
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State objParam: GlobalTmp = new GlobalTmp();
+  build() {
+    Column() {
+      Text('Render the UI by calling the @Builder')
+        .fontSize(20)
+      overBuilder({str_value: this.objParam.str_value, num_value: this.objParam.num_value})
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Button('Click to change parameter').onClick(() => {
+        this.objParam.str_value = 'Hello World';
+        this.objParam.num_value = 1;
+      })
+    }
+  }
+}
+```
+
+### Component Used in the \@Builder Function Is Not Added to a Root Node
+
+When using the **if** statement in the \@Builder function, if the created component is not added to the **Column** or **Row** root node, the component cannot be created.
+
+[Incorrect Example]
+
+```ts
+const showComponent: boolean = true;
+@Builder function OverlayNode() {
+  // The Text component is not created without adding it to the Column or Row root node.
+  if (showComponent) {
+      Text("This is overlayNode Blue page")
+        .fontSize(20)
+        .fontColor(Color.Blue)
+        .height(100)
+        .textAlign(TextAlign.End)
+    } else {
+      Text("This is overlayNode Red page")
+        .fontSize(20)
+        .fontColor(Color.Red)
+    }
+}
+
+@Entry
+@Component
+struct OverlayExample {
+
+  build() {
+    RelativeContainer() {
+      Text('Hello World')
+        .overlay(OverlayNode(), { align: Alignment.Center})
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+[Correct Example]
+
+```ts
+const showComponent: boolean = true;
+@Builder function OverlayNode() {
+  Column() {
+    if (showComponent) {
+      Text("This is overlayNode Blue page")
+        .fontSize(20)
+        .fontColor(Color.Blue)
+        .height(100)
+        .textAlign(TextAlign.End)
+    } else {
+      Text("This is overlayNode Red page")
+        .fontSize(20)
+        .fontColor(Color.Red)
+    }
+  }
+}
+
+@Entry
+@Component
+struct OverlayExample {
+
+  build() {
+    RelativeContainer() {
+      Text('Hello World')
+        .overlay(OverlayNode(), { align: Alignment.Center})
+    }
+    .height('100%')
+    .width('100%')
   }
 }
 ```

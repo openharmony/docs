@@ -1331,9 +1331,11 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 
 ## WorkerEventListener<sup>9+</sup>
 
-(event: Event): void | Promise&lt;void&gt;
-
 事件监听类。
+
+### (event: Event)<sup>9+</sup>
+
+(event: Event): void | Promise&lt;void&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2175,12 +2177,19 @@ parentPort.onmessageerror = (e) => {
 
 ## EventListener<sup>(deprecated)</sup>
 
-(evt: Event): void | Promise&lt;void&gt;
-
 事件监听类。
 
-> **说明：**<br/>
+> **说明：**
+>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[WorkerEventListener<sup>9+</sup>](#workereventlistener9)替代。
+
+### (evt: Event)<sup>(deprecated)</sup>
+
+(evt: Event): void | Promise&lt;void&gt;
+
+> **说明：**
+>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[(event:Event)<sup>9+</sup>](#event-event9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
