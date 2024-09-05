@@ -18,7 +18,7 @@
         - [动态import](quick-start/arkts-dynamic-import.md)
         - [延迟加载（lazy import）](quick-start/arkts-lazy-import.md)
       - 典型场景的开发指导
-        - [集成态HSP](integrated-hsp.md)
+        - [集成态HSP](quick-start/integrated-hsp.md)
         - [HAR转HSP指导](quick-start/har-to-hsp.md)
         - [HSP转HAP指导](quick-start/hsp-to-har.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
