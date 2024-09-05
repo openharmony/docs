@@ -32,7 +32,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 >
 > 2. 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定isShow参数。
 >
-> 3. 在半模态单挡位向上拖拽或是多挡位上滑换挡请况下，内容在拖拽结束或换挡结束后更新显示区域。
+> 3. 在半模态单挡位向上拖拽或是多挡位上滑换挡情况下，内容在拖拽结束或换挡结束后更新显示区域。
 >
 > 4. 半模态是一个严格和宿主节点绑定在一起的弹窗。若是想实现类似“页面显示的瞬间就弹出半模态”的效果，请确认宿主节点是否已挂载上树。若宿主节点还没上树就将isShow置为true，半模态将不生效。建议使用[onAppear](ts-universal-events-show-hide.md#onappear)函数，确保在宿主节点挂载后再显示半模态。
 > 尤其是 [SheetMode](#sheetmode12) = EMBEDDED 时，除宿主节点外，还需确保对应的页面节点成功挂载。
