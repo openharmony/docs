@@ -276,10 +276,10 @@ try {
   let mineType = 'text/plain';
   let typeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType(mineType);
   for (let typeId of typeIds) {
-      // 3. 根据UTD数据类型查询对应的MIMEType列表
-      let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
-      let filenameExtensions = typeObj.filenameExtensions;
-      console.info('filenameExtensions:' + filenameExtensions);
+    // 3. 根据UTD数据类型查询对应的MIMEType列表
+    let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
+    let filenameExtensions = typeObj.filenameExtensions;
+    console.info('filenameExtensions:' + filenameExtensions);
   }
 } catch (err) {
   console.error('err message:' + err.message + ', err code:' + err.code);
