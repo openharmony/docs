@@ -465,6 +465,8 @@ enum OH_AVErrCode
 | AV_ERR_EXTEND_START  | 扩展错误码初始值。   | 
 | AV_ERR_DRM_BASE  | DRM起始错误码。<br/>**起始版本：** 12 | 
 | AV_ERR_DRM_DECRYPT_FAILED  | DRM解密失败。<br/>**起始版本：** 12 | 
+| AV_ERR_VIDEO_BASE   | 视频起始错误码。<br/>**起始版本：** 12 |
+| AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION   | 视频不支持色彩空间转换。<br/>**起始版本：** 12 |
 
 ### OH_AVPixelFormat
 

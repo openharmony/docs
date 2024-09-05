@@ -1,6 +1,6 @@
 # ContainerSpan
 
-As a child of the [\<Text>](ts-basic-components-text.md) component, the **\<ContainerSpan>** component is used to manage the background colors and rounded corners of multiple [\<Span>](ts-basic-components-span.md) and [\<ImageSpan>](ts-basic-components-imagespan.md) components in a unified manner.
+As a child of the [Text](ts-basic-components-text.md) component, the **ContainerSpan** component is used to manage the background colors and rounded corners of multiple [Span](ts-basic-components-span.md) and [ImageSpan](ts-basic-components-imagespan.md) components in a unified manner.
 
 > **NOTE**
 >
@@ -8,11 +8,15 @@ As a child of the [\<Text>](ts-basic-components-text.md) component, the **\<Cont
 
 ## Child Components
 
-This component can contain the [\<Span>](ts-basic-components-span.md) and [\<ImageSpan>](ts-basic-components-imagespan.md) child components.
+This component can contain the [Span](ts-basic-components-span.md) and [ImageSpan](ts-basic-components-imagespan.md) child components.
 
 ## APIs
 
 ContainerSpan()
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## Attributes
 
@@ -24,28 +28,37 @@ textBackgroundStyle(style: TextBackgroundStyle)
 
 Sets the text background style If this attribute is not separately set for a child component, the child component inherits the settings from the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                               | Mandatory| Description                                                        |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| style  | [TextBackgroundStyle](#textbackgroundstyle) | Yes  | Text background style.<br>Default value:<br>{<br>  color: Color.Transparent,<br>  radius: 0<br>} |
+| style  | [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11) | Yes  | Text background style.<br>Default value:<br>{<br>  color: Color.Transparent,<br>  radius: 0<br>} |
 
-## TextBackgroundStyle
+### attributeModifier<sup>12+</sup>
 
-| Name  | Type                                                                | Mandatory| Description        |
-| ------ | ------------------------------------------------------------------------ | ---- | ------------ |
-| color  | [ResourceColor](ts-types.md#resourcecolor)                                  | No  | Text background color.|
-| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9) | No  | Rounded corner radius of the text background.|
+attributeModifier(modifier: AttributeModifier\<ContainerSpanAttribute>)
+
+Creates an attribute modifier.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                                        |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| modifier  | [AttributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifiert)\<ContainerSpanAttribute> | Yes  | Modifier for dynamically setting attributes on the current component.|
 
 ## Events
 
 The [universal events](ts-universal-events-click.md) are not supported.
 
 ## Example
-
-### Example 1
 
 ```ts
 // xxx.ets

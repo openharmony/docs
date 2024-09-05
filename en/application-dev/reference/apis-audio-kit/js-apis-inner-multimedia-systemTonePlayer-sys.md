@@ -23,10 +23,10 @@ Describes the options of system alert tones.
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
 
-| Name     | Type           | Mandatory | Description                       |
-| --------- | -------------- |---|---------------------------|
-| muteAudio | boolean | No | Whether the sound is muted. The value **true** means that the sound is muted, and **false** means the opposite. |
-| muteHaptics | boolean | No | Whether haptics feedback is turned off. The value **true** means that haptics feedback is turned off, and **false** means the opposite. |
+| Name       | Type   | Mandatory| Description                                         |
+| ----------- | ------- | ---- | --------------------------------------------- |
+| muteAudio   | boolean | No  | Whether the sound is muted. The value **true** means that the sound is muted, and **false** means the opposite.  |
+| muteHaptics | boolean | No  | Whether haptics feedback is turned off. The value **true** means that haptics feedback is turned off, and **false** means the opposite.|
 
 ## SystemTonePlayer
 
@@ -44,18 +44,18 @@ Obtains the title of a system alert tone. This API uses a promise to return the 
 
 **Return value**
 
-| Type                 | Description                             |
-| --------------------- | -------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the title obtained. |
+| Type   | Description                                 |
+| ------- | ------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the title obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
-| ------- | --------------------- |
-| 202 | Caller is not a system application. |
-| 5400103 | I/O error. |
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+| 5400103  | I/O error.                          |
 
 **Example**
 
@@ -81,19 +81,19 @@ Prepares to play a system alert tone. This API uses a promise to return the resu
 
 **Return value**
 
-| Type               | Description                             |
-| ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Type   | Description                           |
+| ------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
-| ------- | --------------------- |
-| 202 | Caller is not a system application. |
-| 5400102 | Operation not allowed. |
-| 5400103 | I/O error. |
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+| 5400102  | Operation not allowed.              |
+| 5400103  | I/O error.                          |
 
 **Example**
 
@@ -121,26 +121,26 @@ Starts playing a system alert tone. This API uses a promise to return the result
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory | Description                      |
-| -------- |-----------------------------------------|--| ------------------------- |
-| toneOptions  | [SystemToneOptions](#systemtoneoptions) | No | Options of the system alert tone. |
+| Name     | Type                                   | Mandatory| Description            |
+| ----------- | --------------------------------------- | ---- | ---------------- |
+| toneOptions | [SystemToneOptions](#systemtoneoptions) | No  | Options of the system alert tone.|
 
 **Return value**
 
-| Type               | Description                           |
-| ------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the stream ID. |
+| Type   | Description                     |
+| ------- | ------------------------- |
+| Promise&lt;number&gt; | Promise used to return the stream ID.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
-| ------- | --------------------- |
-| 201 | Permission denied. |
-| 202 | Caller is not a system application. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 5400102 | Operation not allowed. |
+| ID| Error Message                                                                                                   |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied.                                                                                          |
+| 202      | Caller is not a system application.                                                                         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 5400102  | Operation not allowed.                                                                                      |
 
 **Example**
 
@@ -172,25 +172,25 @@ Stops playing a system alert tone. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory | Description                      |
-| -------- |-----------------------------------------|--| ------------------------- |
-| id  | number | Yes | Stream ID returned by **start()**. |
+| Name| Type  | Mandatory| Description                     |
+| ------ | ------ | ---- | ------------------------- |
+| id     | number | Yes  | Stream ID returned by **start()**.|
 
 **Return value**
 
-| Type               | Description                             |
-| ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Type   | Description                               |
+| ------- | ----------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
-| ------- | --------------------- |
-| 202 | Caller is not a system application. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 5400102 | Operation not allowed. |
+| ID| Error Message                                                                                                   |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 202      | Caller is not a system application.                                                                         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 5400102  | Operation not allowed.                                                                                      |
 
 **Example**
 
@@ -217,17 +217,17 @@ Releases the system alert tone player. This API uses a promise to return the res
 
 **Return value**
 
-| Type               | Description                           |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.  |
+| Type   | Description                           |
+| ------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
-| ------- | --------------------- |
-| 202 | Caller is not a system application. |
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
 
 **Example**
 

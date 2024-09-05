@@ -61,7 +61,7 @@ export default class Handle {
 ```
 
 
-业务使用TaskPool调用相关同步方法的代码。
+如下示例中业务使用TaskPool调用相关同步方法的代码，首先定义并发函数func，需要注意必须使用[@Concurrent装饰器](../arkts-utils/arkts-concurrent.md#concurrent装饰器声明并校验并发函数)装饰该函数；其次定义函数asyncGet，该函数功能为创建任务，执行对应任务并打印其返回的结果；最后在主线程调用函数asyncGet，观察其执行过程。
 
 
 ```ts

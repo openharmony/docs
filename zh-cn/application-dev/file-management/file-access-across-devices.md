@@ -37,6 +37,9 @@
    ```
 
    设备B主动向设备A发起建链，建链成功后设备B可在分布式路径下读取测试文件。
+   > **说明：**
+   >
+   > 这里通过分布式设备管理的接口获取设备networkId，详见[设备管理接口](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)。
 
    ```ts
    import { fileIo as fs } from '@kit.CoreFileKit';

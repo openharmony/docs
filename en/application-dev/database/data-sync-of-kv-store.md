@@ -31,10 +31,13 @@ The underlying devices manage the data by device. The device KV stores support d
 
 **DatamgrService** provides the following sync types:
 
+### Manual Sync
 
-- Manual sync: The application calls **sync()** to trigger a sync. The list of devices to be synced and the sync mode must be specified. The sync mode can be **PULL_ONLY** (pulling remote data to the local end), **PUSH_ONLY** (pushing local data to the remote end), or **PUSH_PULL** (pushing local data to the remote end and pulling remote data to the local end). You can use the [**sync()** with the **query** parameter](../reference/apis-arkdata/js-apis-distributedKVStore.md#sync-1) to synchronize the data that meets the specified conditions.
+The application calls **sync()** with the devices to be synced and the sync mode specified to trigger the sync. The sync mode can be **PULL_ONLY** (pulling remote data to the local end), **PUSH_ONLY** (pushing local data to the remote end), or **PUSH_PULL** (pushing local data to the remote end and pulling remote data to the local end). You can use the [**sync()** with the **query** parameter](../reference/apis-arkdata/js-apis-distributedKVStore.md#sync-1) to synchronize the data that meets the specified conditions.
 
-- Automatic sync: The distributed database automatically pushes local data to the remote end and pulls remote data to the local end. An auto sync is triggered when a device goes online or an application updates data.
+### Auto Sync
+
+In [multi-device collaboration via cross-device calls](../application-models/hop-multi-device-collaboration.md#using-cross-device-call), after an application updates data, the distributed database automatically pushes the local data to the peer ends and pulls the peer data to the local device for data sync. In this case, the application does not need to call **sync()**.
 
 
 ## Working Principles
@@ -77,14 +80,14 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 The following table lists the APIs for cross-device data sync of the single KV store. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
 
-| API | Description |
+| API| Description| 
 | -------- | -------- |
-| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects. |
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Obtains a KV store of the specified type. |
-| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Inserts and updates data. |
-| on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | Subscribes to data changes in the KV store. |
-| get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | Queries the value of the specified key. |
-| sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void | Triggers a manual sync of the KV store. |
+| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.| 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Obtains a KV store of the specified type.| 
+| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Inserts and updates data.| 
+| on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | Subscribes to data changes in the KV store.| 
+| get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | Queries the value of the specified key.| 
+| sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void | Triggers a manual sync of the KV store.| 
 
 
 ## How to Develop
@@ -98,7 +101,7 @@ The following uses a single KV store as an example to describe how to implement 
 > The data on a device can be synced only to the devices whose data security labels are not higher than the security level of the device. For details, see [Access Control Mechanism in Cross-Device Sync](sync-app-data-across-devices-overview.md#access-control-mechanism-in-cross-device-sync).
 
 1. Import the module.
-   
+     
    ```ts
    import { distributedKVStore } from '@kit.ArkData';
    ```
@@ -113,7 +116,7 @@ The following uses a single KV store as an example to describe how to implement 
    a) Create a **kvManagerConfig** object based on the application context.
    b) Create a **KvManager** instance.
 
-   
+     
    ```ts
    // Obtain the context of the stage model.
    import { window } from '@kit.ArkUI';
@@ -160,7 +163,7 @@ The following uses a single KV store as an example to describe how to implement 
    a) Declare the ID of the distributed KV store to create, for example, **'storeId'** in the sample code.
    b) Disable the auto sync function (**autoSync:false**) to facilitate subsequent verification of the sync function. If sync is required, call the **sync()** interface.
 
-   
+     
    ```ts
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
@@ -192,7 +195,7 @@ The following uses a single KV store as an example to describe how to implement 
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // The schema parameter is optional. You need to set this parameter when the schema function is required, for example, when predicates are used for query.
        schema: schema,
-       securityLevel: distributedKVStore.SecurityLevel.S1
+       securityLevel: distributedKVStore.SecurityLevel.S3
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {
@@ -215,7 +218,7 @@ The following uses a single KV store as an example to describe how to implement 
    ```
 
 5. Subscribe to distributed data changes. To unsubscribe from the data changes, call [off('dataChange')](../reference/apis-arkdata/js-apis-distributedKVStore.md#offdatachange).
-   
+     
    ```ts
    try {
      kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
@@ -232,7 +235,7 @@ The following uses a single KV store as an example to describe how to implement 
    a) Construct the key and value to be written to the single KV store.
    b) Write KV pairs to the single KV store.
 
-   
+     
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    // If schema is not defined, pass in other values that meet the requirements.
@@ -256,7 +259,7 @@ The following uses a single KV store as an example to describe how to implement 
    a) Construct the key to be queried from the single KV store.
    b) Query data from the single KV store.
 
-   
+     
    ```ts
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {

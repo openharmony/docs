@@ -1045,6 +1045,18 @@
 
 **起始版本**：9
 
+### ohos.permission.GET_DISPOSED_APP_STATUS
+
+允许查询应用的处置状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.FILE_ACCESS_MANAGER
 
 允许文件管理类应用通过FAF框架访问公共数据文件。
@@ -3517,6 +3529,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_FUSION_MANAGER
+
+允许系统服务或系统应用访问融合服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.PUBLISH_LOCATION_EVENT
 
 允许应用发布位置管理相关的公共事件。
@@ -3568,6 +3592,42 @@
 ### ohos.permission.ALLOW_CONNECT_CAR
 
 允许应用连接车机。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.MANAGE_ACCESSORY
+
+允许应用获取配件（键盘、鼠标等）信息、向配件发送数据及获取配件回复的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.COLLECT_ACCESSORY_LOG
+
+允许应用获取配件（键盘、鼠标等）日志。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
+
+允许模态UIExtension取消对不安全窗口的隐藏。
 
 **权限级别**：system_basic
 
@@ -4130,3 +4190,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+
+允许应用保存图片、视频到用户公共目录。应用获取此权限后，最长可获得30分钟的短时授权，来保存图片/视频。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：12

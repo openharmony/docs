@@ -6,7 +6,7 @@
 >  - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  - 该组件嵌套List子组件滚动时，若List不设置宽高，则默认全部加载，在对性能有要求的场景下建议指定List的宽高。
 >  - 该组件滚动的前提是主轴方向大小小于内容大小。
->  - 该组件回弹的前提是要有滚动。内容小于一屏时，没有回弹效果。
+>  - Scroll组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 
 ## 子组件
@@ -542,7 +542,7 @@ fling(velocity: number): void
 
 ### scrollPage<sup>9+</sup>
 
-scrollPage(value:   ScrollPageOptions)
+scrollPage(value: { next: boolean }): void
 
 滚动到下一页或者上一页。
 
@@ -552,9 +552,9 @@ scrollPage(value:   ScrollPageOptions)
 
 **参数：**
 
-| 参数名 | 类型                                           | 必填 | 说明       |
-| ------ | -------------------------------------------------- | ---- | -------------- |
-| value  | [ScrollPageOptions](#scrollpageoptions12对象说明) | 是   | 设置翻页模式。 |
+| 参数名                            | 参数类型                          | 必填 | 参数描述                                                    |
+| --------------------------------- | --------------------------------- | ---- | ----------------------------------------------------------- |
+| next                              | boolean                           | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。         |
 
 ### scrollPage<sup>(deprecated)</sup>
 
@@ -656,7 +656,7 @@ isAtEnd(): boolean
 
 getItemRect(index: number): RectResult
 
-获取子组件的大小位置。
+获取子组件的大小及相对容器组件的位置。
 
 >  **说明：**
 >
@@ -737,17 +737,6 @@ getItemRect(index: number): RectResult
 | 名称   | 类型  | 必填 | 说明              |
 | ----- | ------ | ------ | ----------------- |
 | extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。 |
-
-## ScrollPageOptions<sup>12+</sup>对象说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 类型 | 必填 | 说明                                                     |
-| --------- | -------- | ---- | ------------------------------------------------------------ |
-| next      | boolean  | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
-| animation | boolean  | 否   | 是否开启翻页动画效果。true有动画，false无动画。<br />默认值：false。 |
 
 ## OffsetOptions<sup>12+</sup>对象说明
 
@@ -845,7 +834,7 @@ struct ScrollExample {
       Button('next page')
         .height('5%')
         .onClick(() => { // 点击后滑到下一页
-          this.scroller.scrollPage({ next: true ,animation: true })
+          this.scroller.scrollPage({ next: true })
         })
         .margin({ top: 210, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)

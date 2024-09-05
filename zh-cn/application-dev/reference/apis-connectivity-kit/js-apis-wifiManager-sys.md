@@ -33,7 +33,7 @@ enableWifi(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          | 
 | 2501000  | Operation failed.|
-| 2501003  | Operation failed because the service is being closed. |
+| 2501003  | Failed for wifi is closing. |
 
 **示例：**
 
@@ -69,7 +69,7 @@ disableWifi(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501004  | Operation failed because the service is being opened. |
+| 2501004  | Failed for wifi is opening. |
 
 **示例：**
 
@@ -105,7 +105,7 @@ enableSemiWifi(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          | 
 | 2501000  | Operation failed.|
-| 2501004  | Operation failed because the service is being opened. |
+| 2501004  | Failed for wifi is opening. |
 
 **示例：**
 
@@ -455,7 +455,7 @@ connectToNetwork(networkId: number): void
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
+| 2501001  | Wifi is closed.|
 
 **示例：**
 
@@ -500,7 +500,7 @@ connectToDevice(config: WifiDeviceConfig): void
 | 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
+| 2501001  | Wifi is closed.|
 
 **示例：**
 ```ts
@@ -680,7 +680,7 @@ getDeviceMacAddress(): string[]
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
+| 2501001  | Wifi is closed.|
 
 **示例：**
 ```ts
@@ -778,7 +778,7 @@ reassociate(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
+| 2501001  | Wifi is closed.|
 
 **示例：**
 ```ts
@@ -813,7 +813,7 @@ reconnect(): void
 | 202 | System API is not allowed called by Non-system application. |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
+| 2501001  | Wifi is closed.|
 
 **示例：**
 ```ts
@@ -1433,7 +1433,7 @@ setHotspotConfig(config: HotspotConfig): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types..<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1601,7 +1601,7 @@ addHotspotBlockList(stationInfo: StationInfo)
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types..<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1649,7 +1649,7 @@ delHotspotBlockList(stationInfo: StationInfo)
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types..<br>2. Parameter verification failed. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1696,6 +1696,7 @@ getHotspotBlockList(): Array&lt;StationInfo&gt;
   | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 801 | Capability not supported.          |
 | 2601000  | Operation failed. |
 
@@ -1739,7 +1740,7 @@ deletePersistentGroup(netId: number): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. |
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
 
@@ -1837,7 +1838,6 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 801 | Capability not supported.          |
 | 2801000  | Operation failed. |
 

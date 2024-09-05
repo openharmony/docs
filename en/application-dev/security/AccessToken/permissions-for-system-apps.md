@@ -3517,6 +3517,18 @@ Allows a system application or system ability to receive fusion service messages
 
 **Valid since**: 12
 
+### ohos.permission.ACCESS_FUSION_MANAGER
+
+Allows a system ability or system application to access the fusion service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.PUBLISH_LOCATION_EVENT
 
 Allows an application to publish common events related to location management.
@@ -3568,6 +3580,18 @@ Allows an application to access the mappings between applications and domain nam
 ### ohos.permission.ALLOW_CONNECT_CAR
 
 Allows an application to connect to an automobile head unit.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
+### ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
+
+Allows a modal UIExtension to unhide non-secure windows.
 
 **Permission level**：system_basic
 
@@ -4100,6 +4124,18 @@ Allows an application to install beta applications.
 **Permission level**: system_core
 
 **Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+
+Allows an application to save images and videos to the user's directory within up to 30 minutes after obtaining the permission.
+
+**Permission level**: system_basic
+
+**Authorization mode**: user_grant
 
 **Enable via ACL**: true
 

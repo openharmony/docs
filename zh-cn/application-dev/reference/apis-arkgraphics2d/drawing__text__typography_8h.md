@@ -269,3 +269,5 @@
 | double [OH_Drawing_TextStyleGetFontHeight](_drawing.md#oh_drawing_textstylegetfontheight) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取字体高度。 | 
 | bool [OH_Drawing_TextStyleGetHalfLeading](_drawing.md#oh_drawing_textstylegethalfleading) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取当前文档是否设置为一半行间距。 | 
 | const char \* [OH_Drawing_TextStyleGetLocale](_drawing.md#oh_drawing_textstylegetlocale) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取语言区域。 | 
+| void [OH_Drawing_TypographyDestroyTextBox](_drawing.md#oh_drawing_typographydestroytextbox) ([OH_Drawing_TextBox](_drawing.md#oh_drawing_textbox) \*) | 释放文本框占用的内存。 | 
+| void [OH_Drawing_SetTextShadow](_drawing.md#oh_drawing_settextshadow) ([OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \*shadow, uint32_t color, [OH_Drawing_Point](_drawing.md#oh_drawing_point) \*offset, double blurRadius) | 设置字体阴影对象的参数。 |
