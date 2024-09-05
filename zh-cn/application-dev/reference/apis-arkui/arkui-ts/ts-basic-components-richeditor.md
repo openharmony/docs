@@ -640,6 +640,8 @@ Span类型信息。
 
 ## RichEditorResponseType<sup>11+</sup>
 
+菜单的响应类型。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称         | 描述            |
