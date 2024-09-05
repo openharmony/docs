@@ -1021,6 +1021,8 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限：** ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+
 **参数：**
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
