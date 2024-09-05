@@ -509,7 +509,7 @@ extensionAbilities示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 标识需要使用的权限名称。 | 字符串 | 该标签不可缺省。 |
+| name | 标识需要使用的权限名称。取值范围请参考[应用权限列表](../security/AccessToken/permissions-for-all.md)。 | 字符串 | 该标签不可缺省，且必须为系统定义权限或[definePermissions](#definepermissions标签)中定义的权限。 |
 | reason | 标识申请权限的原因，取值需要采用资源引用格式，以适配多语种。  | 字符串 | 该标签可缺省，缺省值为空。 <br/>**说明：**<br/>当申请的权限为user_grant权限时，该字段必填，否则不允许在应用市场上架。|
 | usedScene | 标识权限使用的场景，包含abilities和when两个子标签。<br/>-&nbsp;abilities：可以配置为多个UIAbility或者ExtensionAbility名称的字符串数组。<br/>-&nbsp;when：表示调用时机，支持的取值包括inuse（使用时）和always（始终）。 | 对象 | 该标签可缺省，缺省值为空。 <br/>**说明：**<br/>HAR/HSP的场景下对于受限的权限不再校验usedScene权限。当申请的权限为user_grant权限时，abilities标签在hap中必填，when标签可选。 |
 
