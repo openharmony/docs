@@ -3621,6 +3621,7 @@
           - [OH_VideoCaptureInfo](reference/apis-media-kit/_o_h___video_capture_info.md)
           - [OH_VideoEncInfo](reference/apis-media-kit/_o_h___video_enc_info.md)
           - [OH_VideoInfo](reference/apis-media-kit/_o_h___video_info.md)
+          - [VideoProcessing_ColorSpaceInfo](reference/apis-media-kit/_video_processing___color_space_info.md)
       - 错误码<!--media-arkts-errcode-->
         - [Media错误码](reference/apis-media-kit/errorcode-media.md)
     - Media Library Kit（媒体文件管理服务）<!--media-library-api-->
