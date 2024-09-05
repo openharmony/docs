@@ -549,6 +549,53 @@ function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapabili
 }
 ```
 
+### createPreviewOutput<sup>12+</sup>
+
+createPreviewOutput(surfaceId: string): PreviewOutput
+
+创建无配置信息的预览输出对象，同步返回结果。该接口需配合[Preconfig](#preconfig12)功能一起使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                              |
+| -------- | ----------------------------------------------- | ---- | ------------------------------- |
+| surfaceId| string | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9)组件获取的surfaceId。|
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [PreviewOutput](#previewoutput)    | PreviewOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                                           |
+|---------|------------------------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect. |
+| 7400201 | Camera service fatal error.                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function createPreviewOutput(cameraManager: camera.CameraManager, surfaceId: string): camera.PreviewOutput | undefined {
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
+  try {
+    previewOutput = cameraManager.createPreviewOutput(surfaceId);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The createPreviewOutput call failed. error code: ${err.code}`);
+  }
+  return previewOutput;
+}
+```
+
 ### createPhotoOutput<sup>(deprecated)</sup>
 
 createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
@@ -600,7 +647,7 @@ function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability
 
 ### createPhotoOutput<sup>11+</sup>
 
-createPhotoOutput(profile: Profile): PhotoOutput
+createPhotoOutput(profile?: Profile): PhotoOutput
 
 创建拍照输出对象，同步返回结果。
 
@@ -609,8 +656,8 @@ createPhotoOutput(profile: Profile): PhotoOutput
 **参数：**
 
 | 参数名     | 类型                                         | 必填 | 说明                                  |
-| -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| profile  | [Profile](#profile)                         | 是   | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
+| -------- | ------------------------------------------- |----| ----------------------------------- |
+| profile  | [Profile](#profile)                         | 否  | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。<br>API 11时，该参数必填；从API version 12开始，如果使用Preconfig进行预配置，传入profile参数会覆盖Preconfig的预配置参数。|
 
 **返回值：**
 
@@ -622,10 +669,10 @@ createPhotoOutput(profile: Profile): PhotoOutput
 
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400101                |  Parameter missing or parameter type incorrect.               |
-| 7400201                |  Camera service fatal error.               |
+| 错误码ID    | 错误信息                                           |
+|----------|------------------------------------------------|
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400201  | Camera service fatal error.                    |
 
 **示例：**
 
@@ -686,6 +733,53 @@ function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability
   let videoOutput: camera.VideoOutput | undefined = undefined;
   try {
     videoOutput = cameraManager.createVideoOutput(profile, surfaceId);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The createVideoOutput call failed. error code: ${err.code}`);
+  }
+  return videoOutput;
+}
+```
+
+### createVideoOutput<sup>12+</sup>
+
+createVideoOutput(surfaceId: string): VideoOutput
+
+创建无配置信息的录像输出对象，同步返回结果。该接口需配合[Preconfig](#preconfig12)功能一起使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名       | 类型     | 必填    | 说明                                                                         |
+|-----------|--------|-------|----------------------------------------------------------------------------|
+| surfaceId | string | 是     | 从[AVRecorder](../apis-media-kit/js-apis-media.md#avrecorder9)获取的surfaceId。 |
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [VideoOutput](#videooutput)   | VideoOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID    | 错误信息                                           |
+|----------|------------------------------------------------|
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400201  | Camera service fatal error.                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function createVideoOutput(cameraManager: camera.CameraManager, surfaceId: string): camera.VideoOutput | undefined {
+  let videoOutput: camera.VideoOutput | undefined = undefined;
+  try {
+    videoOutput = cameraManager.createVideoOutput(surfaceId);
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
@@ -1952,6 +2046,44 @@ function getActiveFrameRate(previewOutput: camera.PreviewOutput): camera.FrameRa
 }
 ```
 
+### getActiveProfile<sup>12+</sup>
+
+getActiveProfile(): Profile
+
+获取当前生效的配置信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [Profile](#profile) | 当前生效的配置信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profile | undefined {
+  let activeProfile: camera.Profile | undefined = undefined;
+  try {
+    activeProfile = previewOutput.getActiveProfile();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The previewOutput.getActiveProfile call failed. error code: ${err.code}`);
+  }
+  return activeProfile;
+}
+```
+
 ## ImageRotation
 
 枚举，图片旋转角度。
@@ -2945,6 +3077,44 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 }
 ```
 
+### getActiveProfile<sup>12+</sup>
+
+getActiveProfile(): Profile
+
+获取当前生效的配置信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [Profile](#profile) | 当前生效的配置信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile | undefined {
+  let activeProfile: camera.Profile | undefined = undefined;
+  try {
+    activeProfile = photoOutput.getActiveProfile();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The photoOutput.getActiveProfile call failed. error code: ${err.code}`);
+  }
+  return activeProfile;
+}
+```
+
 ## FrameShutterInfo
 
 拍照帧输出信息。
@@ -3388,6 +3558,43 @@ function getActiveFrameRate(videoOutput: camera.VideoOutput): camera.FrameRateRa
 }
 ```
 
+### getActiveProfile<sup>12+</sup>
+
+getActiveProfile(): VideoProfile
+
+获取当前生效的配置信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [VideoProfile](#videoprofile) | 当前生效的配置信息 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile | undefined {
+  let activeProfile: camera.VideoProfile | undefined = undefined;
+  try {
+    activeProfile = videoOutput.getActiveProfile();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The videoOutput.getActiveProfile call failed. error code: ${err.code}`);
+  }
+  return activeProfile;
+}
+```
 
 ## MetadataOutput
 
@@ -7290,6 +7497,31 @@ function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.Co
 }
 ```
 
+## PreconfigType<sup>12+</sup>
+
+枚举，提供预配置的类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                      | 值 | 说明         |
+|-------------------------|---|------------|
+| PRECONFIG_720P          | 0 | 720P预配置。   |
+| PRECONFIG_1080P         | 1 | 1080P预配置。  |
+| PRECONFIG_4K            | 2 | 4K预配置。     |
+| PRECONFIG_HIGH_QUALITY  | 3 | 高质量预配置。    |
+
+## PreconfigRatio<sup>12+</sup>
+
+枚举，提供预配置的分辨率比例。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                       | 值 | 说明      |
+|--------------------------|---|---------|
+| PRECONFIG_RATIO_1_1      | 0 | 1:1画幅。  |
+| PRECONFIG_RATIO_4_3      | 1 | 4:3画幅。  |
+| PRECONFIG_RATIO_16_9     | 2 | 16:9画幅。 |
+
 ## PhotoSession<sup>11+</sup>
 
 PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12)
@@ -7299,6 +7531,88 @@ PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 > **说明：**
 >
 > 默认的拍照模式，用于拍摄标准照片。支持多种照片格式和分辨率，适合大多数日常拍摄场景。
+
+### canPreconfig<sup>12+</sup>
+
+canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
+
+查询当前Session是否支持指定的与配置类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名            | 类型                                  | 必填  | 说明              |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为4:3。  |
+
+**返回值：**
+
+| 类型      | 说明                                      |
+|---------|-----------------------------------------|
+| boolean | true: 支持指定预配值类型。<br/>false: 不支持指定预配值类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                        |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**示例：**
+
+```ts
+function testCanPreconfig(photoSession: camera.PhotoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    let result = photoSession.canPreconfig(preconfigType, preconfigRatio);
+    console.info(`canPreconfig ${preconfigType} ${preconfigRatio} result is : ${result}`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The canPreconfig call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### preconfig<sup>12+</sup>
+
+preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
+
+对当前Session进行预配置。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名            | 类型                                  | 必填  | 说明              |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为4:3。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                        |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**示例：**
+
+```ts
+function testPreconfig(photoSession: camera.PhotoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    photoSession.preconfig(preconfigType, preconfigRatio);
+    console.info(`preconfig ${preconfigType} ${preconfigRatio} success`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The preconfig call failed. error code: ${err.code}`);
+  }
+}
+```
 
 ### on('error')<sup>11+</sup>
 
@@ -7485,6 +7799,88 @@ VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 > **说明：**
 >
 > 默认的视频录制模式，适用于一般场景。支持720P、1080p等多种分辨率的录制，可选择不同帧率（如30fps、60fps）。
+
+### canPreconfig<sup>12+</sup>
+
+canPreconfig(preconfigType: PreconfigType), preconfigRatio?: PreconfigRatio): boolean
+
+查询当前Session是否支持指定的与配置类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名            | 类型                                  | 必填  | 说明              |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为16:9。 |
+
+**返回值：**
+
+| 类型      | 说明                                      |
+|---------|-----------------------------------------|
+| boolean | true: 支持指定预配值类型。<br/>false: 不支持指定预配值类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                        |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**示例：**
+
+```ts
+function testCanPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    let result = videoSession.canPreconfig(preconfigType, preconfigRatio);
+    console.info(`canPreconfig ${preconfigType} ${preconfigRatio} result is : ${result}`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The canPreconfig call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### preconfig<sup>12+</sup>
+
+preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
+
+对当前Session进行预配置。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名            | 类型                                  | 必填  | 说明              |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为16:9。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                        |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**示例：**
+
+```ts
+function testPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    videoSession.preconfig(preconfigType, preconfigRatio);
+    console.info(`preconfig ${preconfigType} ${preconfigRatio} success`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The preconfig call failed. error code: ${err.code}`);
+  }
+}
+```
 
 ### on('error')<sup>11+</sup>
 
