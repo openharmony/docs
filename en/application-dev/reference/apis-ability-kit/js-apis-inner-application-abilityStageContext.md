@@ -29,7 +29,7 @@ class MyAbilityStage extends AbilityStage {
 }
 ```
 
-## Attributes
+## Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

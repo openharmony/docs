@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager)
 
-The **bundleManager** module provides APIs for querying information about bundles, applications, abilities, ExtensionAbilities, and more.
+The bundleManager module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-bundleInfo.md), [ApplicationInfo](js-apis-bundleManager-applicationInfo.md), [Ability](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md).
 
 > **NOTE**
 >
@@ -42,12 +42,12 @@ Enumerates the types of ExtensionAbilities.
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
-|:----------------:|:---:|-----|
+|----------------|---|-----|
 | FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
 | SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->: enables applications to run in the background and provide services.|
-| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md): provides accessibility for access to and operations on the UI.|
+| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/is-inner-application-accessibilityextensioncontext-V5): provides accessibility for access to and operations on the UI.|
 | DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->: enables applications to read and write data.|
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved and supported only by system applications.|
 | STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->: provides APIs for processing static events, such as the startup event.|
@@ -56,7 +56,7 @@ Enumerates the types of ExtensionAbilities.
 | WINDOW           |  10 | <!--Del-->[<!--DelEnd-->WindowExtensionAbility<!--Del-->](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)<!--DelEnd-->: allows system applications to display UIs of other applications.|
 | ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved and supported only by system applications.|
-| PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. Reserved ability, which is supported only by system applications.|
+| PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved and supported only by system applications.|
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. This ability is supported only by system applications.|
 | SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md): provides sharing service templates based on UIExtensionAbilities.|
 | PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved and supported only by system applications.|
@@ -77,7 +77,7 @@ Enumerates the permission grant states.
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
-|:----------------:|:---:|:---:|
+|----------------|---|---|
 | PERMISSION_DENIED|  -1 | Permission denied.|
 | PERMISSION_GRANTED |  0  |  Permission granted. |
 
@@ -90,7 +90,7 @@ Enumerates the window modes supported by the ability.
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
-|:----------------:|:---:|:---:|
+|----------------|---|---|
 | FULL_SCREEN      | 0   | A window in full-screen mode is supported.|
 | SPLIT            | 1   | A window in split-screen mode is supported.|
 | FLOATING         | 2   | A floating window is supported.  |
@@ -104,7 +104,7 @@ Enumerates the launch types of the ability.
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
-|:----------------:|:---:|:---:|
+|----------------|---|---|
 | SINGLETON        | 0   | The ability can have only one instance.|
 | MULTITON         | 1   | The ability can have multiple instances.|
 | SPECIFIED        | 2   | The ability can have one or multiple instances, depending on the internal service of the ability.|
@@ -118,7 +118,7 @@ Enumerates the types of abilities.
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 |  Name  | Value  |                            Description                           |
-| :-----: | ---- | :--------------------------------------------------------: |
+| ----- | ---- | -------------------------------------------------------|
 | PAGE    | 1    | Ability that has the UI. FA developed using the Page template to provide the capability of interacting with users.       |
 | SERVICE | 2    | Ability of the background service type, without the UI. PA developed using the Service template to provide the capability of running tasks in the background. |
 |  DATA   | 3    | PA developed using the Data template to provide unified data access for external systems.|
@@ -130,7 +130,7 @@ Enumerates the display orientations of the ability. This property applies only t
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                              |Value|Description|
-|:----------------------------------|---|---|
+|----------------------------------|---|---|
 | UNSPECIFIED                        |0 |Unspecified. The orientation is determined by the system.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | LANDSCAPE                          |1 |Landscape.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | PORTRAIT                           |2 |Portrait.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -308,7 +308,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 > **NOTE**
 > 
->If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -369,7 +369,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 > **NOTE**
 > 
->If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -453,7 +453,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 > **NOTE**
 > 
->If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -531,7 +531,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 > **NOTE**
 > 
->If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -591,7 +591,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 > **NOTE**
 > 
->If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -665,7 +665,7 @@ Obtains the JSON string array of the current application's configuration file in
 
 > **NOTE**
 > 
->If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
+> If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

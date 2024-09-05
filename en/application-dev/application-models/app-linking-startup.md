@@ -2,7 +2,7 @@
 
 ## Overview
 
-In App Linking, the system directs users to specific content in the target application based on the passed-in URI (HTTPS link). Unlike Deep Link, users can directly access the content regardless of whether the target application is installed.
+In App Linking, the system directs users to specific content in the target application based on the passed-in URI (HTTPS link). Unlike [Deep Linking](deep-linking-startup.md), users can directly access the content regardless of whether the target application is installed.
 
 
 ## When to Use
@@ -41,14 +41,10 @@ For example, the configuration below declares that the application is associated
 ```json
 {
   "module": {
+    // ...
     "abilities": [
       {
-        "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ets",
-        "icon": "$media:icon",
-        "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
+        // ...
         "skills": [
           {
             "entities": [
@@ -95,11 +91,11 @@ Perform the following operations on the developer website to associate the appli
           "appIdentifier": "1234"
         }
       ]
-    },
+    }
    }
    ```
 
-   **app-identifer** is the unique identifier allocated to an application during [application signing] (https://gitee.com/openharmony/developtools_hapsigner/blob/master/README.md). It is also the value of the **app-identifer** field declared in the [HarmonyAppProvision configuration file](../security/app-provision-structure.md).
+   **app-identifer** is the unique identifier allocated to an application during [application signing](https://gitee.com/openharmony/developtools_hapsigner/blob/master/README.md). It is also the value of the **app-identifer** field declared in the [HarmonyAppProvision configuration file](../security/app-provision-structure.md).
 
 1. Place the domain name configuration file in a fixed directory on the DNS.
    
@@ -129,10 +125,9 @@ export default class EntryAbility extends UIAbility {
       let urlObject = url.URL.parseURL(want?.uri);
       let action = urlObject.params.get('action')
       // For example, if action is set to showall, all programs are displayed.
-      if (action === "showall"){
-         ...
+      if (action === "showall") {
+         // ...
       }
-      ...
     }
   }
 }

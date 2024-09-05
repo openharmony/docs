@@ -1371,7 +1371,7 @@ try {
 
 ## BundleInstaller.createAppClone<sup>12+</sup>
 
-createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise<number>;
+createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise\<number>;
 
 Creates an application clone. This API uses a promise to return the result.
 
@@ -1438,7 +1438,7 @@ try {
 
 ## BundleInstaller.destroyAppClone<sup>12+</sup>
 
-destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise<void>;
+destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\<void>;
 
 Destroys an application clone. This API uses a promise to return the result.
 
@@ -1501,6 +1501,69 @@ try {
 }
 ```
 
+## BundleInstaller.installPreexistingApp<sup>12+</sup>
+
+installPreexistingApp(bundleName: string, userId?: number): Promise\<void>;
+
+Installs a bundle. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.INSTALL_BUNDLE
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name       | Type                         | Mandatory| Description                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | Yes  | Bundle name of the application to install.                                          |
+| userId       | number                        | No  | ID of the user for whom the application is to be installed. The value must be greater than 0. The default value is the user ID of the caller.   |
+
+**Return value**
+
+| Type           | Description                                  |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName cannot be found. |
+| 17700004 | The userId is invalid. |
+| 17700071 | It is not allowed to install the enterprise bundle. |
+
+**Example**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let userId = 100;
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.installPreexistingApp(bundleName, userId)
+            .then(() => {
+                console.info('installPreexistingApp successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('installPreexistingApp failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
 ## HashParam
 
 Defines the hash parameters for bundle installation and uninstall.
@@ -1524,7 +1587,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process.|
+| userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process. |
 | installFlag                    | number                         | No                       | Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
 | isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall. The default value is **false**.|
 | hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters. By default, no value is passed.        |

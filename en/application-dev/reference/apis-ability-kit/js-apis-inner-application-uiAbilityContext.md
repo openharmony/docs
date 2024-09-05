@@ -571,7 +571,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 Terminates this ability. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 > **NOTE**
-> 
+>
 > After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -631,7 +631,7 @@ terminateSelf(): Promise&lt;void&gt;
 Terminates this ability. This API uses a promise to return the result. It can be called only by the main thread.
 
 > **NOTE**
-> 
+>
 > After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -693,7 +693,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
 > **NOTE**
-> 
+>
 > After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -768,7 +768,7 @@ Terminates this ability. This API uses a promise to return the result. It can be
 If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
 > **NOTE**
-> 
+>
 > After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -1632,7 +1632,7 @@ export default class EntryAbility extends UIAbility {
       if (err.code) {
         return;
       }
-      
+
       try {
         this.context.reportDrawnCompleted((err) => {
           if (err.code) {
@@ -1660,7 +1660,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
 
-Implicitly starts a given type of UIExtensionAbility. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Implicitly starts a given type of UIExtensionAbility. This API uses an asynchronous callback to return the result. It can be called only in the main thread and by applications running in the foreground.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1719,7 +1719,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback) : Promise\<void>
 
-Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result. It can be called only by the main thread.
+Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result. It can be called only in the main thread and by applications running in the foreground.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1795,7 +1795,7 @@ To call this API, the current ability must be started through [UIAbilityContext.
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
@@ -1892,7 +1892,7 @@ To call this API, the current ability must be started through [UIAbilityContext.
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
@@ -1974,7 +1974,7 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
 moveAbilityToBackground(): Promise\<void>
 
-Moves this ability from the foreground to the background. This API uses a promise to return the result. It can be called only by the main thread.
+Moves this ability from the foreground to the background. This API uses a promise to return the result. It can be called only by the main thread.<br><!--RP1-->This API applies only to devices whose **deviceTypes** is **default**.<!--RP1End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2046,7 +2046,7 @@ The following situations may be possible for a started EmbeddableUIAbility:
 > **NOTE**
 >
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
- 
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
