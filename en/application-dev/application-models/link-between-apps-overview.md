@@ -7,17 +7,17 @@ Application redirection enables users to jump from one application to another to
 
 Application redirection can be categorized as follows based on whether the target application is specified:
 
-- Directional redirection: The caller application specifies the target application by specifying either an application link and an ability.
+- Starting the specified application: The caller application specifies the target application by specifying either an application link and an ability.
 
     - Specifying an application link (recommended): Use [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) or [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to specify an [application link](#application-links) and start the target application page.
 
     - Specifying an ability (not recommended): Use [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to specify an ability and explicitly start the target application page.
-    
+
     > **NOTE**
     >
     > In API version 11 and earlier versions, you can use explicit Want to start other applications. Since API version 12, third-party applications cannot use explicit Want to start other applications.
 
-- Common intent redirection: The caller application declares the redirection intent, rather than a specific redirected-to application. Specifically, the caller application calls an API to start a vertical domain panel. The panel displays all the vertical applications that can handle the intent, and users can choose to open one of them.
+- Starting an application of the specified type: The caller application starts a vertical domain panel that meets the user intent based on the business category (specified by the **type** or **feature** field). The panel displays all the vertical applications that can handle the intent, and users can choose to open one of them.
 
     Typical scenarios are navigation, sharing, and file opening. Redirection can be implemented in multiple modes based on the intent type.
 
@@ -41,7 +41,7 @@ scheme://host[:port]/path/
 
 > **NOTE**
 > 
-> The schemes of system applications always start with **ohos**, for example, **ohosclock://**. The scheme of a third-party application cannot be the same as that of a system application. Otherwise, the third-party application cannot be started using the URI.
+> The scheme of a third-party application cannot be the same as that of a system application. Otherwise, the third-party application cannot be started using the URI.
 > 
 > If multiple applications are configured with the same URLs, these applications will be matched during application redirection, and a dialog box will be displayed for uses to select. For better user experience, you can use the **path** field to distinguish the application to start. For example, use **https://www.example.com/path1** to start target application 1 and use **https://www.example.com/path2** to start target application 2.
 

@@ -12,7 +12,7 @@ The **Skill** module defines a skill object. Such an object can be obtained thro
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-| Name    | Type  | Readable| Optional| Description      |
+| Name    | Type  | Readable| Writable| Description      |
 | -------- | ------ | ---- | ---- | ---------- |
 | actions     | Array\<string> | Yes  | No  | Actions received by the skill.|
 | entities    | Array\<string> | Yes  | No  | Entities received by the skill.  |
@@ -24,7 +24,7 @@ The **Skill** module defines a skill object. Such an object can be obtained thro
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
-| Name           | Type  | Readable| Optional| Description                                                       |
+| Name           | Type  | Readable| Writable| Description                                                       |
 | --------------- | ------ | ---- | ---- | ----------------------------------------------------------- |
 | scheme          | string | Yes  | No  | Scheme of the URI, such as HTTP, HTTPS, file, and FTP.         |
 | host            | string | Yes  | No  | Host address of the URI. This parameter is valid only when **scheme** is specified.           |
