@@ -52,7 +52,7 @@
    }
    ```
 
-5. 配置extensionAbilities信息。
+2. 配置extensionAbilities信息。
 
    在entry/src/main/[module.json5配置文件](../quick-start/module-configuration-file.md)中配置AutoFillAbility，例如：
 
@@ -329,7 +329,7 @@
    ]
    ```
 
-3. 情景化自动填充与自动填充服务的实现基本一致。请参考[实现账号密码自动填充功能](##实现账号密码自动填充功能)。
+3. 情景化自动填充与自动填充服务的实现基本一致。请参考[实现账号密码自动填充功能](#实现账号密码自动填充功能)。
 
 ### 开发AutoFillExtensionAbility使用方
 
