@@ -30,14 +30,16 @@ startAbilityByType接口中type字段为finance，对应的wantParam参数：
       },
       onResult: (result)=>{
         console.log(`onResult result: ${JSON.stringify(result)}`);
+      }
     }
     
-    context.startAbilityByType("finance", wantParam, abilityStartCallback, (err) => {
-    if (err) {
-        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-      } else {
-        console.log(`success`);
-      }
+    context.startAbilityByType("finance", wantParam, abilityStartCallback, 
+        (err) => {
+            if (err) {
+                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+            } else {
+                console.log(`success`);
+            }
     });
     ```
     效果示例图：
