@@ -1,4 +1,4 @@
-# Creating and Obtaining String Values Using Node-API
+# Working with String Using Node-API
 
 ## Introduction
 
@@ -6,7 +6,7 @@ This topic walks you through on how to use Node-API to convert data between nati
 
 ## Basic Concepts
 
-As a common data type in programming, string a sequence of characters used to represent text. It can also be used to build user interface (UI) elements such as labels, buttons, and text boxes, process user input, and validate and format input data. Different encodings support different character sets and languages. Major encoding schemes include the following:
+As a common data type in programming, string is a sequence of characters used to represent text. It can also be used to build user interface (UI) elements such as labels, buttons, and text boxes, process user input, and validate and format input data. Different encodings support different character sets and languages. Major encoding schemes include the following:
 
 - ASCII<br>ASCII is one of the earliest character encoding schemes. It uses 7 bits to represent English letters, digits, and some basic symbols. It serves as the foundation for encoding schemes.
 - UTF-8<br>UTF-8 is a variable-length encoding scheme that can represent any Unicode character. It uses 8 bits per character and uses byte sequences of different lengths depending on the range of the character. UTF-8 is widely used for web content.
@@ -23,7 +23,7 @@ The following table lists the APIs provided by the Node-API module for creating 
 | napi_get_value_string_utf16 | Obtains a UTF16-encoded string from an ArkTS value.|
 | napi_create_string_utf16 | Creates an ArkTS string from a UTF16-encoded C string.|
 | napi_get_value_string_latin1 | Obtains an ISO-8859-1-encoded string from an ArkTS value.|
-| napi_create_string_latin1 | Creates an ArkTS string from an ISO-8859-1-encoded C string.|
+| napi_create_string_latin1 | Creates an ArkTS string from an ISO-8859-1-encoded tring.|
 
 ## Example
 
@@ -138,11 +138,11 @@ static napi_value GetValueStringUtf16(napi_env env, napi_callback_info info)
     // Size of the buffer for storing the string.
     size_t bufferSize = MAX_BUFFER_SIZE;
     // Length of the string.
-    size_t string;
+    size_t stringLen;
     // Obtain the value and length of the string.
-    napi_get_value_string_utf16(env, args[0], buffer, bufferSize, &string);
+    napi_get_value_string_utf16(env, args[0], buffer, bufferSize, &stringLen);
     // Obtain the string.
-    napi_create_string_utf16(env, buffer, string, &result);
+    napi_create_string_utf16(env, buffer, stringLen, &result);
     // Return the result.
     return result; 
 }
