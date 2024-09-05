@@ -2862,7 +2862,7 @@ Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi (napi_env env, OH_
 
 **返回：**
 
-如果操作成功返回IMAGE_SUCCESS，如果pixelmapNative为空返回IMAGE_BAD_PARAMETER，具体请参考 具体请参考[Image_ErrorCode](#image_errorcode)。
+如果操作成功返回IMAGE_SUCCESS，如果pixelmapNative为空返回IMAGE_BAD_PARAMETER，具体请参考[Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapNative_CreateEmptyPixelmap()
