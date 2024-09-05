@@ -4405,11 +4405,7 @@
 
 **ACL使能**：true
 
-<<<<<<< HEAD
 **起始版本**：13
-=======
-**起始版本**：14
->>>>>>> 513aa36bd9aef7ee91a964ba4312ccf134febeda
 
 ### ohos.permission.CALLED_BELOW_LOCK_SCREEN
 
@@ -4421,8 +4417,4 @@
 
 **ACL使能**：true
 
-<<<<<<< HEAD
 **起始版本**：13
-=======
-**起始版本**：14
->>>>>>> 513aa36bd9aef7ee91a964ba4312ccf134febeda
