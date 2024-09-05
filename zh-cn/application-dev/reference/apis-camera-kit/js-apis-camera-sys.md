@@ -134,13 +134,13 @@ createDepthDataOutput(profile: Profile): DepthDataOutput
 
 | 参数名     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| profile  | [Profile](js-apis-camera#profile)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](js-apis-camera#getsupportedoutputcapability11)接口获取。|
+| profile  | [Profile](js-apis-camera.md#profile)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11)接口获取。|
 
 **返回值：**
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [DepthDataOutput](#depthdataoutput12)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera#cameraerrorcode)。 |
+| [DepthDataOutput](#depthdataoutput12)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -594,7 +594,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 | -------- | ----------------------------- |----- |---| -------------- |
 | DEPTH_DATA_QUALITY_BAD     | number            |  是  | 否 | 深度图的质量很差，无法用于虚化等。      |
 | DEPTH_DATA_QUALITY_FAIR      | number          |  是  | 否 | 深度图的质量一般，无法生成高质量的虚化等。      |
-| DEPTH_DATA_QUALITY_GOOD      | number          |  是  | 否 | 深度图的质量很差，可以生成高质量的虚化等。      |
+| DEPTH_DATA_QUALITY_GOOD      | number          |  是  | 否 | 深度图的质量较高，可以生成高质量的虚化等。      |
 
 ## DepthData<sup>12+</sup>
 
@@ -795,7 +795,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | 是   | 监听事件，固定为'error'，depthDataOutput创建成功可监听。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera#cameraerrorcode)。  |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。  |
 
 **示例：**
 
