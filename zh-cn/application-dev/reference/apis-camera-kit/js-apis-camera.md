@@ -651,18 +651,13 @@ createPhotoOutput(profile?: Profile): PhotoOutput
 
 创建拍照输出对象，同步返回结果。
 
-> **说明：**
-> API version 11 上，[Profile](#profile)该参数为必填
->
-> 从API version 12开始，如果使用Preconfig进行预配值，则不要传入profile参数。
-
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
 
 | 参数名     | 类型                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------- |----| ----------------------------------- |
-| profile  | [Profile](#profile)                         | 否  | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。|
+| profile  | [Profile](#profile)                         | 否  | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。<br>API 11时，该参数必填；从API version 12开始，如果使用Preconfig进行预配置，传入profile参数会覆盖Preconfig的预配置参数。|
 
 **返回值：**
 
@@ -2053,7 +2048,7 @@ function getActiveFrameRate(previewOutput: camera.PreviewOutput): camera.FrameRa
 
 ### getActiveProfile<sup>12+</sup>
 
-getActiveProfile(): [Profile](#profile)
+getActiveProfile(): Profile
 
 获取当前生效的配置信息。
 
@@ -3084,7 +3079,7 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 
 ### getActiveProfile<sup>12+</sup>
 
-getActiveProfile(): [Profile](#profile)
+getActiveProfile(): Profile
 
 获取当前生效的配置信息。
 
@@ -3565,7 +3560,7 @@ function getActiveFrameRate(videoOutput: camera.VideoOutput): camera.FrameRateRa
 
 ### getActiveProfile<sup>12+</sup>
 
-getActiveProfile(): [VideoProfile](#videoprofile)
+getActiveProfile(): VideoProfile
 
 获取当前生效的配置信息。
 
@@ -7539,7 +7534,7 @@ PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 ### canPreconfig<sup>12+</sup>
 
-canPreconfig(preconfigType: [PreconfigType](#preconfigtype12), preconfigRatio?: [PreconfigRatio](#preconfigRatio12)): boolean
+canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
 查询当前Session是否支持指定的与配置类型。
 
@@ -7550,7 +7545,7 @@ canPreconfig(preconfigType: [PreconfigType](#preconfigtype12), preconfigRatio?: 
 | 参数名            | 类型                                  | 必填  | 说明              |
 |----------------|-------------------------------------|-----|-----------------|
 | preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
-| preconfigRatio | [PreconfigRatio](#preconfigRatio12) | 否   | 可选画幅比例，默认为4:3。  |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为4:3。  |
 
 **返回值：**
 
@@ -7583,7 +7578,7 @@ function testCanPreconfig(photoSession: camera.PhotoSession, preconfigType: came
 
 ### preconfig<sup>12+</sup>
 
-preconfig(preconfigType: [PreconfigType](#preconfigtype12), preconfigRatio?: [PreconfigRatio](#preconfigRatio12)): void
+preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
 
 对当前Session进行预配置。
 
@@ -7594,7 +7589,7 @@ preconfig(preconfigType: [PreconfigType](#preconfigtype12), preconfigRatio?: [Pr
 | 参数名            | 类型                                  | 必填  | 说明              |
 |----------------|-------------------------------------|-----|-----------------|
 | preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
-| preconfigRatio | [PreconfigRatio](#preconfigRatio12) | 否   | 可选画幅比例，默认为4:3。  |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为4:3。  |
 
 **错误码：**
 
@@ -7807,7 +7802,7 @@ VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 ### canPreconfig<sup>12+</sup>
 
-canPreconfig(preconfigType: [PreconfigType](#preconfigtype12), preconfigRatio?: [PreconfigRatio](#preconfigRatio12)): boolean
+canPreconfig(preconfigType: PreconfigType), preconfigRatio?: PreconfigRatio): boolean
 
 查询当前Session是否支持指定的与配置类型。
 
@@ -7818,7 +7813,7 @@ canPreconfig(preconfigType: [PreconfigType](#preconfigtype12), preconfigRatio?: 
 | 参数名            | 类型                                  | 必填  | 说明              |
 |----------------|-------------------------------------|-----|-----------------|
 | preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
-| preconfigRatio | [PreconfigRatio](#preconfigRatio12) | 否   | 可选画幅比例，默认为16:9。 |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为16:9。 |
 
 **返回值：**
 
@@ -7851,7 +7846,7 @@ function testCanPreconfig(videoSession: camera.VideoSession, preconfigType: came
 
 ### preconfig<sup>12+</sup>
 
-preconfig(preconfigType: [PreconfigType](#preconfigtype12), preconfigRatio?: [PreconfigRatio](#preconfigRatio12)): void
+preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
 
 对当前Session进行预配置。
 
@@ -7862,7 +7857,7 @@ preconfig(preconfigType: [PreconfigType](#preconfigtype12), preconfigRatio?: [Pr
 | 参数名            | 类型                                  | 必填  | 说明              |
 |----------------|-------------------------------------|-----|-----------------|
 | preconfigType  | [PreconfigType](#preconfigtype12)   | 是   | 指定配置预期分辨率。      |
-| preconfigRatio | [PreconfigRatio](#preconfigRatio12) | 否   | 可选画幅比例，默认为16:9。 |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | 否   | 可选画幅比例，默认为16:9。 |
 
 **错误码：**
 
