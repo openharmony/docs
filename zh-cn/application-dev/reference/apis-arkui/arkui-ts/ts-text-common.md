@@ -358,3 +358,42 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | 名称     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。 |
+
+## OnDidChangeCallback<sup>12+</sup>
+
+type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => void
+
+文本变换后回调。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| rangeBefore | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
+| rangeAfter | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
+
+## StyledStringChangedListener<sup>12+</sup>
+
+属性字符串的文本内容变化监听器。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| onWillChange | Callback<[StyledStringChangeValue](ts-basic-components-richeditor.md#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
+| onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | 否 | 文本内容完成变化回调函数。 |
+
+## StyledStringChangeValue<sup>12+</sup>
+
+属性字符串的文本变化信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
+| replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
