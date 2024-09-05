@@ -27,7 +27,7 @@ upload(options: UploadRequestOptions): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [UploadRequestOptions](#uploadrequestoptions) | 是 | 上传的配置信息。 |
+  | options | [UploadRequestOptions](#uploadrequestoptionsdeprecated) | 是 | 上传的配置信息。 |
 
 **示例：**
 
@@ -75,8 +75,8 @@ upload(options: UploadRequestOptions): void
   | 名称 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | url | string | 是 | 上传服务器地址。 |
-  | data | Array&lt;[RequestData](#requestdata)&gt; | 否 | 请求的表单数据。 |
-  | files | Array&lt;[RequestFile](#requestfile)&gt; | 是 | 待上传文件列表。请使用multipart/form-data进行提交。 |
+  | data | Array&lt;[RequestData](#requestdatadeprecated)&gt; | 否 | 请求的表单数据。 |
+  | files | Array&lt;[RequestFile](#requestfiledeprecated)&gt; | 是 | 待上传文件列表。请使用multipart/form-data进行提交。 |
   | header | Object | 否 | 请求头。 |
   | method | string | 否 | 请求方法：POST、PUT。缺省POST。 |
   | success | Function | 否 | 接口调用成功的回调函数。 |
@@ -86,7 +86,7 @@ upload(options: UploadRequestOptions): void
 **success参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | data | [UploadResponse](#uploadresponse) | 是 | 上传任务成功返回信息。 |
+  | data | [UploadResponse](#uploadresponsedeprecated) | 是 | 上传任务成功返回信息。 |
 
 **fail参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -142,7 +142,7 @@ download(options: DownloadRequestOptions): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [DownloadRequestOptions](#downloadrequestoptions) | 是 | 下载的配置信息。 |
+  | options | [DownloadRequestOptions](#downloadrequestoptionsdeprecated) | 是 | 下载的配置信息。 |
 
 **示例：**
 
@@ -191,7 +191,7 @@ download(options: DownloadRequestOptions): void
 **success参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | data | [DownloadResponse](#downloadresponse) | 是 | 下载任务成功返回信息。 |
+  | data | [DownloadResponse](#downloadresponsedeprecated) | 是 | 下载任务成功返回信息。 |
 
 **fail参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -220,7 +220,7 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [OnDownloadCompleteOptions](#ondownloadcompleteoptions) | 是 | 监听下载任务的配置信息。 |
+  | options | [OnDownloadCompleteOptions](#ondownloadcompleteoptionsdeprecated) | 是 | 监听下载任务的配置信息。 |
 
 **示例：**
 
@@ -258,7 +258,7 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
 **success参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | data | [OnDownloadCompleteResponse](#ondownloadcompleteresponse) | 是 | 下载任务成功返回信息。 |
+  | data | [OnDownloadCompleteResponse](#ondownloadcompleteresponsedeprecated) | 是 | 下载任务成功返回信息。 |
 
 **fail参数：**
   | 参数名 | 类型 | 必填 | 说明 |

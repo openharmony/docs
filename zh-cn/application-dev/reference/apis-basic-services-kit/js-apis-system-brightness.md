@@ -28,7 +28,7 @@ getValue(options?: GetBrightnessOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [GetBrightnessOptions](#getbrightnessoptions) | 否   | 获取屏幕亮度的参数对象。可选，默认为空。 |
+| options | [GetBrightnessOptions](#getbrightnessoptionsdeprecated) | 否   | 获取屏幕亮度的参数对象。可选，默认为空。 |
 
 **示例：**
 
@@ -56,7 +56,7 @@ setValue(options?: SetBrightnessOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SetBrightnessOptions](#setbrightnessoptions) | 否   | 设置屏幕亮度的参数对象。可选，默认为空。 |
+| options | [SetBrightnessOptions](#setbrightnessoptionsdeprecated) | 否   | 设置屏幕亮度的参数对象。可选，默认为空。 |
 
 **示例：**
 
@@ -85,7 +85,7 @@ getMode(options?: GetBrightnessModeOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [GetBrightnessModeOptions](#getbrightnessmodeoptions) | 否 | 获取屏幕亮度模式的参数对象。可选，默认为空。 |
+| options | [GetBrightnessModeOptions](#getbrightnessmodeoptionsdeprecated) | 否 | 获取屏幕亮度模式的参数对象。可选，默认为空。 |
 
 **示例：**
 
@@ -112,7 +112,7 @@ setMode(options?: SetBrightnessModeOptions): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SetBrightnessModeOptions](#setbrightnessmodeoptions) | 否   | 设置屏幕亮度模式的参数对象。可选，默认为空。 |
+| options | [SetBrightnessModeOptions](#setbrightnessmodeoptionsdeprecated) | 否   | 设置屏幕亮度模式的参数对象。可选，默认为空。 |
 
 **示例：**
 
@@ -143,7 +143,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SetKeepScreenOnOptions](#setkeepscreenonoptions) | 否 | 设置屏幕常亮的参数对象。可选，默认为空。 |
+| options | [SetKeepScreenOnOptions](#setkeepscreenonoptionsdeprecated) | 否 | 设置屏幕常亮的参数对象。可选，默认为空。 |
 
 **示例：**
 
@@ -166,7 +166,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 | 名称     | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| success  | (data: [BrightnessResponse](#brightnessresponse)) => void | 否   | 接口调用成功的回调函数。data为[BrightnessResponse](#brightnessresponse)类型的返回值。 |
+| success  | (data: [BrightnessResponse](#brightnessresponsedeprecated)) => void | 否   | 接口调用成功的回调函数。data为[BrightnessResponse](#brightnessresponsedeprecated)类型的返回值。 |
 | fail     | (data: string, code: number) => void                      | 否   | 接口调用失败的回调函数。data为错误信息，code为错误码。       |
 | complete | () => void                                                | 否   | 接口调用结束的回调函数。                                     |
 
@@ -201,7 +201,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 | 名称     | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| success  | (data: [BrightnessModeResponse](#brightnessmoderesponse)) => void | 否   | 接口调用成功的回调函数。data为[BrightnessModeResponse](#brightnessmoderesponse)类型的返回值。 |
+| success  | (data: [BrightnessModeResponse](#brightnessmoderesponsedeprecated)) => void | 否   | 接口调用成功的回调函数。data为[BrightnessModeResponse](#brightnessmoderesponse)类型的返回值。 |
 | fail     | (data: string, code: number) => void                         | 否   | 接口调用失败的回调函数。data为错误信息，code为错误码。       |
 | complete | () => void                                                   | 否   | 接口调用结束的回调函数。                                     |
 
