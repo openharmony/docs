@@ -163,6 +163,10 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 创建一个 三方VPN 连接对象。
 
+> **说明：**
+>
+> 调用createVpnConnection接口前，需要先调用startVpnExtensionAbility接口启用vpn功能。
+
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
 **模型约束**：此接口仅可在Stage模型下使用。
