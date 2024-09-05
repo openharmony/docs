@@ -5691,6 +5691,9 @@ img.release().then(() => {
 | RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16  |
 | NV21<sup>9+</sup>      | 8      | 格式为NV21      |
 | NV12<sup>9+</sup>      | 9      | 格式为NV12      |
+| RGBA_1010102<sup>12+</sup> | 10 | 格式为RGBA_1010102 |
+| YCBCR_P010<sup>12+</sup> | 11 | 格式为YCBCR_P010 |
+| YCRCB_P010<sup>12+</sup> | 12 | 格式为YCRCB_P010 |
 
 ## AlphaType<sup>9+</sup>
 
@@ -6011,6 +6014,14 @@ PixelMap的初始化选项。
 | DNG_VERSION <sup>12+</sup>                | "DNGVersion"                | **读写能力：** 可读写<br> DNG版本标签编码了符合DNG规范的四级版本号。|
 | DEFAULT_CROP_SIZE <sup>12+</sup>          | "DefaultCropSize"           | **读写能力：** 可读写<br> DefaultCropSize指定了原始坐标中的最终图像大小，考虑了额外的边缘像素。|
 | GIF_LOOP_COUNT <sup>12+</sup>             | "GIFLoopCount"              | **读写能力：** 只读<br> GIF图片循环次数。0表示无限循环，其他值表示循环次数。|
+| IS_XMAGE_SUPPORTED <sup>12+</sup> | "HwMnoteIsXmageSupported" | **读写能力：** 可读写<br>是否支持XMAGE。 |
+| XMAGE_MODE <sup>12+</sup> | "HwMnoteXmageMode" | **读写能力：** 可读写<br>XMAGE水印模式。 |
+| XMAGE_LEFT <sup>12+</sup> | "HwMnoteXmageLeft" | **读写能力：** 可读写<br>水印区域X1坐标。 |
+| XMAGE_TOP <sup>12+</sup> | "HwMnoteXmageTop" | **读写能力：** 可读写<br>水印区域Y1坐标。 |
+| XMAGE_RIGHT <sup>12+</sup> | "HwMnoteXmageRight" | **读写能力：** 可读写<br>水印区域X2坐标。 |
+| XMAGE_BOTTOM <sup>12+</sup> | "HwMnoteXmageBottom" | **读写能力：** 可读写<br>水印区域Y2坐标。 |
+| CLOUD_ENHANCEMENT_MODE <sup>12+</sup> | "HwMnoteCloudEnhancementMode" | **读写能力：** 可读写<br>云增强模式。 |
+| WIND_SNAPSHOT_MODE <sup>12+</sup> | "HwMnoteWindSnapshotMode" | **读写能力：** 只读<br>运动快拍模式。 |
 
 ## ImageFormat<sup>9+</sup>
 
