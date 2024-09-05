@@ -3,7 +3,6 @@
 This module provides the firewall configuration and query functions for applications. You can configure firewall policies to implement access control for devices based on IP addresses, domain names, and DNS servers. In addition to adding, modifying, removing, and querying firewall policies, you can query firewall interception records.
 
 > **NOTE**
-
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs provided by this module are system APIs.
 
@@ -514,10 +513,10 @@ Obtains interception records based on the specified user ID. You need to specify
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                        |
-| -------- | ------------------------- | ---- | -------------------------------------------- |
-| userId   | number                    | Yes  | User ID. It must be unique in the system.|
-| requestParam | [RequestParam](#requestparam) | Yes   | Pagination query parameter.          |
+| Name      | Type                         | Mandatory| Description                                        |
+| ------------ | --------------------------- | ---- | -------------------------------------------- |
+| userId       | number                        | Yes  | User ID. It must be unique in the system.|
+| requestParam | [RequestParam](#requestparam) | Yes  | Query parameter.                                  |
 
 **Return value**
 
@@ -701,8 +700,8 @@ Defines a firewall rule.
 
 **System capability**: SystemCapability.Communication.NetManager.NetFirewall
 
-| Name       | Type                                             |Mandatory| Description                                                          |
-| ------------|----------------------------------------------|----|--------------------------------------------  |
+| Name       | Type                                                       |Mandatory| Description                                                          |
+| ------------|-------------------------------------------------------------|----|--------------------------------------------------------------  |
 | userId      | number                                                      | Yes| User ID. It must be unique in the system.                  |
 | name        | string                                                      | Yes| Rule name. This parameter is mandatory and can contain a maximum of 128 characters.                               |
 | direction   | [NetFirewallRuleDirection](#netfirewallruledirection)       | Yes| Interception direction, which can be inbound or outbound.                                        |
@@ -754,7 +753,6 @@ Defines query parameters.
 | pageSize   | number                                           | Yes  | Page size. The value range is [1,50]. |
 | orderField | [NetFirewallOrderField](#netfirewallorderfield)  | Yes  | Sorting order field.                 |
 | orderType  | [NetFirewallOrderType](#netfirewallordertype)    | Yes  | Sorting order type.                 |
-
 ## FirewallRulePage
 
 Defines the pagination structure for firewall rules.

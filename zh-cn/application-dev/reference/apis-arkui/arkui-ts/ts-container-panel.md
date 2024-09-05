@@ -102,7 +102,7 @@ customHeight(value: Dimension | PanelHeight)
 
 ### fullHeight
 
-fullHeight(value: number | string)
+fullHeight(value: string | number)
 
 指定PanelType.CUSTOM状态下的高度。
 
@@ -118,7 +118,7 @@ fullHeight(value: number | string)
 
 ### halfHeight
 
-halfHeight(value: number | string)
+halfHeight(value: string | number)
 
 指定PanelMode.Full状态下的高度。
 
@@ -134,7 +134,7 @@ halfHeight(value: number | string)
 
 ### miniHeight
 
-miniHeight(value: number | string)
+miniHeight(value: string | number)
 
 指定PanelMode.Half状态下的高度。
 
@@ -178,7 +178,7 @@ backgroundMask(color: ResourceColor)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [ResourceColor](ts-types.md#resourcecolor) | 是   | 指定Panel的背景蒙层。<br/>默认值：'#08182431' |
+| color   | [ResourceColor](ts-types.md#resourcecolor) | 是   | 指定Panel的背景蒙层。<br/>默认值：'#08182431' |
 
 ### showCloseIcon<sup>10+</sup>
 
@@ -240,6 +240,10 @@ onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&n
 
 当可滑动面板发生状态变化时触发。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 
 | 参数名    | 类型        | 必填 | 说明                                                                                  |
@@ -253,6 +257,10 @@ onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&n
 onHeightChange(callback: (value: number) => void)
 
 当可滑动面板发生高度变化时触发。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 

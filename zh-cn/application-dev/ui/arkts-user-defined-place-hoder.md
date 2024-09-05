@@ -19,11 +19,14 @@ ArkUI提供了ArkTS原生组件作为自定义节点的占位节点。该占位�
 > - 需要保证一个节点只能作为一个父节点的子节点去使用，否则可能存在显示异常或者功能异常，尤其是页面路由场景或者动效场景。例如，如果通过NodeController将同一个节点挂载在多个NodeContainer上，仅一个占位容器下会显示节点，且多个NodeContainer的可见性、透明度等影响子组件状态的属性更新均会影响被挂载的子节点。
 
 ```ts
-import { BuilderNode, FrameNode, NodeController, Size, UIContext } from '@kit.ArkUI'
+// common.ets
+import { BuilderNode, UIContext } from '@kit.ArkUI'
 
 class Params {
   text: string = "this is a text"
 }
+
+let buttonNode: BuilderNode<[Params]> | null = null;
 
 @Builder
 function buttonBuilder(params: Params) {
@@ -36,10 +39,26 @@ function buttonBuilder(params: Params) {
   }
 }
 
-let buttonNode: BuilderNode<[Params]> | null = null;
+export function createNode(uiContext: UIContext) {
+  buttonNode = new BuilderNode<[Params]>(uiContext);
+  buttonNode.build(wrapBuilder(buttonBuilder), { text: "This is a Button" });
+  return buttonNode;
+}
+
+export function getOrCreateNode(uiContext: UIContext): BuilderNode<[Params]> | null {
+  if (buttonNode?.getFrameNode() && buttonNode?.getFrameNode()?.getUniqueId() != -1) {
+    return buttonNode;
+  } else {
+    return createNode(uiContext);
+  }
+}
+```
+```ts
+// Index.ets
+import { FrameNode, NodeController, Size, UIContext } from '@kit.ArkUI'
+import { getOrCreateNode } from "./common"
 
 class MyNodeController extends NodeController {
-  private wrapBuilder: WrappedBuilder<[Params]> = wrapBuilder(buttonBuilder);
   private isShow: boolean = false;
 
   constructor(isShow: boolean) {
@@ -51,11 +70,7 @@ class MyNodeController extends NodeController {
     if (!this.isShow) {
       return null;
     }
-    if (buttonNode == null) {
-      buttonNode = new BuilderNode<[Params]>(uiContext);
-      buttonNode.build(this.wrapBuilder, { text: "This is a Button" })
-    }
-    let frameNode = buttonNode?.getFrameNode();
+    let frameNode = getOrCreateNode(uiContext)?.getFrameNode();
     return frameNode ? frameNode : null;
   }
 

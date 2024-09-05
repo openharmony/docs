@@ -228,7 +228,7 @@ Provides APIs for managing file or folder attribute information.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-### Attributes
+### Properties
 
 | Name| Type  | Read-Only| Writable| Description    |
 | ------ | ------ | -------- | ------ | -------- |
@@ -398,7 +398,7 @@ Provides APIs for managing the device's root attribute information.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
-### Attributes
+### Properties
 
 | Name| Type  | Read-Only| Writable| Description    |
 | ------ | ------ | -------- | ------ | -------- |

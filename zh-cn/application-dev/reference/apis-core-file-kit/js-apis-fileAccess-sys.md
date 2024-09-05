@@ -274,22 +274,24 @@ listFile(filter?: Filter) : FileIterator
   import { BusinessError } from '@ohos.base';
   // fileInfoDir 表示某个目录信息
   // let filter = { suffix : [".txt", ".jpg", ".xlsx"] };
-  let fileInfoDir: fileAccess.FileInfo; // = fileInfos[0];
+  let fileInfoDir :Array<fileAccess.FileInfo> = [];
   let subfileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
-    let fileIterator = fileInfoDir.listFile();
-    // 含过滤器实现的listFile
-    // let fileIterator = fileInfoDir.listFile(filter);
-    if (!fileIterator) {
-      console.error("listFile interface returns an undefined object");
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone) {
-        subfileInfos.push(result.value);
+    for (let i = 0; i < fileInfoDir.length; ++i) {
+      let fileIterator = fileInfoDir[i].listFile();
+      // 含过滤器实现的listFile
+      // let fileIterator = fileInfoDir.listFile(filter);
+      if (!fileIterator) {
+        console.error("listFile interface returns an undefined object");
+      }
+      while (!isDone) {
+        let result = fileIterator.next();
+        console.log("next result = " + JSON.stringify(result));
+        isDone = result.done;
+        if (!isDone) {
+          subfileInfos.push(result.value);
+        }
       }
     }
   } catch (err) {
@@ -332,22 +334,24 @@ scanFile(filter?: Filter) : FileIterator;
   import { BusinessError } from '@ohos.base';
   // fileInfoDir 表示某个目录信息
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let fileInfoDir: fileAccess.FileInfo; // = fileInfos[0];
+  let fileInfoDir: Array<fileAccess.FileInfo> = [];
   let subfileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
-    let fileIterator = fileInfoDir.scanFile();
-    // 含过滤器实现的scanFile
-    // let fileIterator = fileInfoDir.scanFile(filter);
-    if (!fileIterator) {
-      console.error("scanFile interface returns an undefined object");
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone) {
-        subfileInfos.push(result.value);
+    for (let i = 0; i < fileInfoDir.length; ++i) {
+      let fileIterator = fileInfoDir[i].scanFile();
+      // 含过滤器实现的scanFile
+      // let fileIterator = fileInfoDir.scanFile(filter);
+      if (!fileIterator) {
+        console.error("scanFile interface returns an undefined object");
+      }
+      while (!isDone) {
+        let result = fileIterator.next();
+        console.log("next result = " + JSON.stringify(result));
+        isDone = result.done;
+        if (!isDone) {
+          subfileInfos.push(result.value);
+        }
       }
     }
   } catch (err) {
@@ -440,24 +444,26 @@ listFile(filter?: Filter) : FileIterator
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  // rootinfos 从getRoots()获取
+  // rootInfo 从getRoots()获取
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let rootInfo: fileAccess.RootInfo; // = rootinfos[0];
+  let rootInfo: Array<fileAccess.FileInfo> = [];
   let fileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
-    let fileIterator = rootInfo.listFile();
-    // 含过滤器实现的listFile
-    // let fileIterator = rootInfo.listFile(filter);
-    if (!fileIterator) {
-      console.error("listFile interface returns an undefined object");
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone) {
-        fileInfos.push(result.value);
+    for (let i = 0; i < rootInfo.length; ++i) {
+      let fileIterator = rootInfo[i].listFile();
+      // 含过滤器实现的listFile
+      // let fileIterator = rootInfo.listFile(filter);
+      if (!fileIterator) {
+        console.error("listFile interface returns an undefined object");
+      }
+      while (!isDone) {
+        let result = fileIterator.next();
+        console.log("next result = " + JSON.stringify(result));
+        isDone = result.done;
+        if (!isDone) {
+          fileInfos.push(result.value);
+        }
       }
     }
   } catch (err) {
@@ -498,24 +504,26 @@ scanFile(filter?: Filter) : FileIterator
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  // rootInfos 从 getRoots()获取
+  // rootInfo 从 getRoots()获取
   // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let rootInfo: fileAccess.RootInfo; // = rootinfos[0];
+  let rootInfo: Array<fileAccess.FileInfo> = [];
   let fileInfos: Array<fileAccess.FileInfo> = [];
   let isDone: boolean = false;
   try {
-    let fileIterator = rootInfo.scanFile();
-    // 含过滤器实现的scanFile
-    // let fileIterator = rootInfo.scanFile(filter);
-    if (!fileIterator) {
-      console.error("scanFile interface returns undefined object");
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone) {
-        fileInfos.push(result.value);
+    for (let i = 0; i < rootInfo.length; ++i) {
+      let fileIterator = rootInfo[i].scanFile();
+      // 含过滤器实现的scanFile
+      // let fileIterator = rootInfo.scanFile(filter);
+      if (!fileIterator) {
+        console.error("scanFile interface returns undefined object");
+      }
+      while (!isDone) {
+        let result = fileIterator.next();
+        console.log("next result = " + JSON.stringify(result));
+        isDone = result.done;
+        if (!isDone) {
+          fileInfos.push(result.value);
+        }
       }
     }
   } catch (err) {
@@ -592,19 +600,22 @@ async function getRoots() {
   let rootIterator: fileAccess.RootIterator;
   let rootinfos: Array<fileAccess.RootInfo> = [];
   let isDone: boolean = false;
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    rootIterator = await fileAccessHelper.getRoots();
-    if (!rootIterator) {
-      console.error("getRoots interface returns an undefined object");
-    }
-    while (!isDone) {
-      let result = rootIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone) {
-        rootinfos.push(result.value);
+    if (fileAccessHelper != undefined) {
+      rootIterator = await fileAccessHelper.getRoots();
+      if (!rootIterator) {
+        console.error("getRoots interface returns an undefined object");
       }
+      while (!isDone) {
+        let result = rootIterator.next();
+        console.log("next result = " + JSON.stringify(result));
+        isDone = result.done;
+        if (!isDone) {
+          rootinfos.push(result.value);
+        }
+      }     
     }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
@@ -641,21 +652,24 @@ callback带回迭代器对象RootIterator，然后通过[next](#next-1)方法返
   async function getRoots() {
     let rootinfos: Array<fileAccess.RootInfo> = [];
     let isDone: boolean = false;
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      fileAccessHelper.getRoots((err: BusinessError, rootIterator: fileAccess.RootIterator) => {
-        if (err) {
-          console.error("Failed to getRoots in async, errCode:" + err.code + ", errMessage:" + err.message);
-        }
-        while (!isDone) {
-          let result = rootIterator.next();
-          console.log("next result = " + JSON.stringify(result));
-          isDone = result.done;
-          if (!isDone) {
-            rootinfos.push(result.value);
+      if (fileAccessHelper != undefined) {
+        fileAccessHelper.getRoots((err: BusinessError, rootIterator: fileAccess.RootIterator) => {
+          if (err) {
+            console.error("Failed to getRoots in async, errCode:" + err.code + ", errMessage:" + err.message);
           }
-        }
-      });
+          while (!isDone) {
+            let result = rootIterator.next();
+            console.log("next result = " + JSON.stringify(result));
+            isDone = result.done;
+            if (!isDone) {
+              rootinfos.push(result.value);
+            }
+          }
+        });       
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("getRoots failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -701,14 +715,17 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
     let displayName: string = "file1";
     let fileUri: string;
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
-      if (!fileUri) {
-        console.error("createFile return undefined object");
-        return;
+        if (fileAccessHelper != undefined) {
+        fileUri = await fileAccessHelper.createFile(sourceUri, displayName);
+        if (!fileUri) {
+          console.error("createFile return undefined object");
+          return;
+        }
+        console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));       
       }
-      console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -747,14 +764,17 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
   // 开发者应根据自己实际获取的uri进行开发
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
   let displayName: string = "file1";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileAccessHelper.createFile(sourceUri, displayName, (err: BusinessError, fileUri: string) => {
-      if (err) {
-        console.error("Failed to createFile in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.createFile(sourceUri, displayName, (err: BusinessError, fileUri: string) => {
+        if (err) {
+          console.error("Failed to createFile in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("createFile sucess, fileUri: " + JSON.stringify(fileUri));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -799,14 +819,16 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
     let dirName: string = "dirTest";
     let dirUri: string;
-
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      dirUri = await fileAccessHelper.mkDir(sourceUri, dirName);
-      if (!dirUri) {
-        console.error("mkDir return undefined object");
-      } else {
-        console.log("mkDir success, dirUri: " + JSON.stringify(dirUri));
+      if (fileAccessHelper != undefined) {
+        dirUri = await fileAccessHelper.mkDir(sourceUri, dirName);
+        if (!dirUri) {
+          console.error("mkDir return undefined object");
+        } else {
+          console.log("mkDir success, dirUri: " + JSON.stringify(dirUri));
+        }
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -846,14 +868,17 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
   // 开发者应根据自己实际获取的uri进行开发
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
   let dirName: string = "dirTest";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileAccessHelper.mkDir(sourceUri, dirName, (err: BusinessError, dirUri: string) => {
-      if (err) {
-        console.error("Failed to mkDir in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("mkDir sucess, dirUri: " + JSON.stringify(dirUri));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.mkDir(sourceUri, dirName, (err: BusinessError, dirUri: string) => {
+        if (err) {
+          console.error("Failed to mkDir in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("mkDir sucess, dirUri: " + JSON.stringify(dirUri));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("mkDir failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -896,9 +921,12 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
     // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
     // 开发者应根据自己实际获取的uri进行开发
     let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
+      if (fileAccessHelper != undefined) {
+        let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("openFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -936,14 +964,17 @@ openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) :
   // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
   let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ, (err: BusinessError, fd: number) => {
-      if (err) {
-        console.error("Failed to openFile in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("openFile sucess, fd: " + fd);
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ, (err: BusinessError, fd: number) => {
+        if (err) {
+          console.error("Failed to openFile in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("openFile sucess, fd: " + fd);
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("openFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -985,11 +1016,14 @@ delete(uri: string) : Promise&lt;number&gt;
     // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
     // 开发者应根据自己实际获取的uri进行开发
     let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      let code = await fileAccessHelper.delete(targetUri);
-      if (code != 0)
-        console.error("delete failed, code " + code);
+      if (fileAccessHelper != undefined) {
+        let code = await fileAccessHelper.delete(targetUri);
+        if (code != 0)
+          console.error("delete failed, code " + code);
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("delete failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1026,14 +1060,17 @@ delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
   // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
   let targetUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileAccessHelper.delete(targetUri, (err: BusinessError, code: number) => {
-      if (err) {
-        console.error("Failed to delete in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("delete sucess, code: " + code);
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.delete(targetUri, (err: BusinessError, code: number) => {
+        if (err) {
+          console.error("Failed to delete in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("delete sucess, code: " + code);
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("delete failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1077,10 +1114,13 @@ move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
     // 开发者应根据自己实际获取的uri进行开发
     let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
     let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      let fileUri = await fileAccessHelper.move(sourceFile, destFile);
-      console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+      if (fileAccessHelper != undefined) {
+        let fileUri = await fileAccessHelper.move(sourceFile, destFile);
+        console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("move failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1119,14 +1159,17 @@ move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;
   // 开发者应根据自己实际获取的uri进行开发
   let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileAccessHelper.move(sourceFile, destFile, (err: BusinessError, fileUri: string) => {
-      if (err) {
-        console.error("Failed to move in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.move(sourceFile, destFile, (err: BusinessError, fileUri: string) => {
+        if (err) {
+          console.error("Failed to move in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("move sucess, fileUri: " + JSON.stringify(fileUri));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("move failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1169,10 +1212,13 @@ rename(uri: string, displayName: string) : Promise&lt;string&gt;
     // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
     // 开发者应根据自己实际获取的uri进行开发
     let sourceDir: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
-      console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+      if (fileAccessHelper != undefined) {
+        let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
+        console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("rename failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1210,14 +1256,17 @@ rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) 
   // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
   let sourceDir: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileAccessHelper.rename(sourceDir, "testDir", (err: BusinessError, DestDir: string) => {
-      if (err) {
-        console.error("Failed to rename in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.rename(sourceDir, "testDir", (err: BusinessError, DestDir: string) => {
+        if (err) {
+          console.error("Failed to rename in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("rename sucess, DestDir: " + JSON.stringify(DestDir));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("rename failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1259,13 +1308,16 @@ access(sourceFileUri: string) : Promise&lt;boolean&gt;
   // 开发者应根据自己实际获取的uri进行开发
   async function accessFunc() {
     let sourceDir: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      let existJudgment = await fileAccessHelper.access(sourceDir);
-      if (existJudgment) {
-        console.log("sourceDir exists");
-      } else {
-        console.log("sourceDir does not exist");
+      if (fileAccessHelper != undefined) {
+        let existJudgment = await fileAccessHelper.access(sourceDir);
+        if (existJudgment) {
+          console.log("sourceDir exists");
+        } else {
+          console.log("sourceDir does not exist");
+        }
       }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
@@ -1303,18 +1355,21 @@ access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void
   // 示例代码sourceDir表示Download目录下文件夹，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
   let sourceDir: string = "file://docs/storage/Users/currentUser/Download/test";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileAccessHelper.access(sourceDir, (err: BusinessError, existJudgment: boolean) => {
-      if (err) {
-        console.error("Failed to access in async, errCode:" + err.code + ", errMessage:" + err.message);
-        return;
-      }
-      if (existJudgment)
-        console.log("sourceDir exists");
-      else
-        console.log("sourceDir does not exist");
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.access(sourceDir, (err: BusinessError, existJudgment: boolean) => {
+        if (err) {
+          console.error("Failed to access in async, errCode:" + err.code + ", errMessage:" + err.message);
+          return;
+        }
+        if (existJudgment)
+          console.log("sourceDir exists");
+        else
+          console.log("sourceDir does not exist");
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("access failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1352,9 +1407,12 @@ getFileInfoFromUri(uri: string) : Promise\<FileInfo>
   // 开发者应根据自己实际获取的uri进行开发
   async function getUri() {
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      let fileInfo = await fileAccessHelper.getFileInfoFromUri(sourceUri);
+      if (fileAccessHelper != undefined) {
+        let fileInfo = await fileAccessHelper.getFileInfoFromUri(sourceUri);
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1387,15 +1445,18 @@ getFileInfoFromUri(uri: string, callback: AsyncCallback\<FileInfo>) : void
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileAccessHelper.getFileInfoFromUri(sourceUri, (err: BusinessError, fileInfo: fileAccess.FileInfo) => {
-      if (err) {
-        console.error("Failed to getFileInfoFromUri in async, errCode:" + err.code + ", errMessage:" + err.message);
-        return;
-      }
-      console.log("getFileInfoFromUri success, fileInfo: " + JSON.stringify(fileInfo));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.getFileInfoFromUri(sourceUri, (err: BusinessError, fileInfo: fileAccess.FileInfo) => {
+        if (err) {
+          console.error("Failed to getFileInfoFromUri in async, errCode:" + err.code + ", errMessage:" + err.message);
+          return;
+        }
+        console.log("getFileInfoFromUri success, fileInfo: " + JSON.stringify(fileInfo));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("getFileInfoFromUri failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1433,9 +1494,12 @@ getFileInfoFromRelativePath(relativePath: string) : Promise\<FileInfo>
   // 开发者应根据自己实际获取的relativePath进行开发
   async function getRelativePath() {
     let relativePath: string = "Download/";
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(relativePath);
+      if (fileAccessHelper != undefined) {
+        let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(relativePath);
+      }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1467,15 +1531,18 @@ getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback\<FileI
   // 示例代码relativePath表示Download目录，该relativePath是对应的fileInfo中relativePath
   // 开发者应根据自己实际获取的relativePath进行开发
   let relativePath: string = "Download/";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileAccessHelper.getFileInfoFromRelativePath(relativePath, (err: BusinessError, fileInfo: fileAccess.FileInfo) => {
-      if (err) {
-        console.error("Failed to getFileInfoFromRelativePath in async, errCode:" + err.code + ", errMessage:" + err.message);
-        return;
-      }
-      console.log("getFileInfoFromRelativePath success, fileInfo: " + JSON.stringify(fileInfo));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.getFileInfoFromRelativePath(relativePath, (err: BusinessError, fileInfo: fileAccess.FileInfo) => {
+        if (err) {
+          console.error("Failed to getFileInfoFromRelativePath in async, errCode:" + err.code + ", errMessage:" + err.message);
+          return;
+        }
+        console.log("getFileInfoFromRelativePath success, fileInfo: " + JSON.stringify(fileInfo));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("getFileInfoFromRelativePath failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1512,11 +1579,14 @@ import { BusinessError } from '@ohos.base';
 async function getQuery01() {
   let imageFileRelativePath: string = "/storage/Users/currentUser/Download/queryTest/image/01.jpg";
   let jsonStrSingleRelativepath: string = JSON.stringify({ [fileAccess.FileKey.RELATIVE_PATH]: "" });
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
-    let queryResult = await fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath);
-    console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
+    if (fileAccessHelper != undefined) {
+      let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
+      let queryResult = await fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath);
+      console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("query_file_single faf query failed, error.code :" + error.code + ", errorMessage :" + error.message);
@@ -1549,16 +1619,19 @@ import { BusinessError } from '@ohos.base';
 async function getQuery02() {
   let imageFileRelativePath: string = "/storage/Users/currentUser/Download/queryTest/image/01.jpg";
   let jsonStrSingleRelativepath: string = JSON.stringify({ [fileAccess.FileKey.RELATIVE_PATH]: "" });
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
-    fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath, (err: BusinessError, queryResult: string) => {
-      if (err) {
-        console.log("query_file_single faf query Failed, errCode:" + err.code + ", errMessage:" + err.message);
-        return;
-      }
-      console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
-    })
+    if (fileAccessHelper != undefined) {
+      let fileInfo = await fileAccessHelper.getFileInfoFromRelativePath(imageFileRelativePath);
+      fileAccessHelper.query(fileInfo.uri, jsonStrSingleRelativepath, (err: BusinessError, queryResult: string) => {
+        if (err) {
+          console.log("query_file_single faf query Failed, errCode:" + err.code + ", errMessage:" + err.message);
+          return;
+        }
+        console.log("query_file_single faf query, queryResult.relative_path: " + JSON.parse(queryResult).relative_path);
+      })
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("query_file_single faf query failed, error.code :" + error.code + ", errorMessage :" + error.message);
@@ -1600,17 +1673,20 @@ import { BusinessError } from '@ohos.base';
 async function copyFunc01() {
   let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let copyResult = await fileAccessHelper.copy(sourceFile, destFile);
-    if (copyResult.length === 0) {
-      console.log("copy success");
-    } else {
-      for (let i = 0; i < copyResult.length; i++) {
-        console.error("errCode" + copyResult[i].errCode);
-        console.error("errMsg" + copyResult[i].errMsg);
-        console.error("sourceUri" + copyResult[i].sourceUri);
-        console.error("destUri" + copyResult[i].destUri);
+    if (fileAccessHelper != undefined) {
+      let copyResult = await fileAccessHelper.copy(sourceFile, destFile);
+      if (copyResult.length === 0) {
+        console.log("copy success");
+      } else {
+        for (let i = 0; i < copyResult.length; i++) {
+          console.error("errCode" + copyResult[i].errCode);
+          console.error("errMsg" + copyResult[i].errMsg);
+          console.error("sourceUri" + copyResult[i].sourceUri);
+          console.error("destUri" + copyResult[i].destUri);
+        }
       }
     }
   } catch (err) {
@@ -1630,17 +1706,20 @@ import { BusinessError } from '@ohos.base';
 async function copyFunc02() {
   let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let copyResult = await fileAccessHelper.copy(sourceFile, destFile, true);
-    if (copyResult.length === 0) {
-      console.log("copy success");
-    } else {
-      for (let i = 0; i < copyResult.length; i++) {
-        console.error("errCode" + copyResult[i].errCode);
-        console.error("errMsg" + copyResult[i].errMsg);
-        console.error("sourceUri" + copyResult[i].sourceUri);
-        console.error("destUri" + copyResult[i].destUri);
+    if (fileAccessHelper != undefined) {
+      let copyResult = await fileAccessHelper.copy(sourceFile, destFile, true);
+      if (copyResult.length === 0) {
+        console.log("copy success");
+      } else {
+        for (let i = 0; i < copyResult.length; i++) {
+          console.error("errCode" + copyResult[i].errCode);
+          console.error("errMsg" + copyResult[i].errMsg);
+          console.error("sourceUri" + copyResult[i].sourceUri);
+          console.error("destUri" + copyResult[i].destUri);
+        }
       }
     }
   } catch (err) {
@@ -1677,23 +1756,26 @@ import { BusinessError } from '@ohos.base';
 // 开发者应根据自己实际获取的uri进行开发
 let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
 let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+// fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
-  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-  fileAccessHelper.copy(sourceFile, destFile, async (err: BusinessError, copyResult: Array<fileAccess.CopyResult>) => {
-    if (err) {
-      console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
-    }
-    if (copyResult.length === 0) {
-      console.log("copy success");
-    } else {
-      for (let i = 0; i < copyResult.length; i++) {
-        console.error("errCode" + copyResult[i].errCode);
-        console.error("errMsg" + copyResult[i].errMsg);
-        console.error("sourceUri" + copyResult[i].sourceUri);
-        console.error("destUri" + copyResult[i].destUri);
+  if (fileAccessHelper != undefined) {
+    fileAccessHelper.copy(sourceFile, destFile, async (err: BusinessError, copyResult: Array<fileAccess.CopyResult>) => {
+      if (err) {
+        console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
-    }
-  });
+      if (copyResult.length === 0) {
+        console.log("copy success");
+      } else {
+        for (let i = 0; i < copyResult.length; i++) {
+          console.error("errCode" + copyResult[i].errCode);
+          console.error("errMsg" + copyResult[i].errMsg);
+          console.error("sourceUri" + copyResult[i].sourceUri);
+          console.error("destUri" + copyResult[i].destUri);
+        }
+      }
+    });
+  }
 } catch (err) {
   let error: BusinessError = err as BusinessError;
   console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1728,23 +1810,26 @@ import { BusinessError } from '@ohos.base';
 // 开发者应根据自己实际获取的uri进行开发
 let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
 let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+// fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
-  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-  fileAccessHelper.copy(sourceFile, destFile, true, async (err: BusinessError, copyResult: Array<fileAccess.CopyResult>) => {
-    if (err) {
-      console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
-    }
-    if (copyResult.length === 0) {
-      console.log("copy success");
-    } else {
-      for (let i = 0; i < copyResult.length; i++) {
-        console.error("errCode" + copyResult[i].errCode);
-        console.error("errMsg" + copyResult[i].errMsg);
-        console.error("sourceUri" + copyResult[i].sourceUri);
-        console.error("destUri" + copyResult[i].destUri);
+  if (fileAccessHelper != undefined) {
+    fileAccessHelper.copy(sourceFile, destFile, true, async (err: BusinessError, copyResult: Array<fileAccess.CopyResult>) => {
+      if (err) {
+        console.error("copy failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
-    }
-  });
+      if (copyResult.length === 0) {
+        console.log("copy success");
+      } else {
+        for (let i = 0; i < copyResult.length; i++) {
+          console.error("errCode" + copyResult[i].errCode);
+          console.error("errMsg" + copyResult[i].errMsg);
+          console.error("sourceUri" + copyResult[i].sourceUri);
+          console.error("destUri" + copyResult[i].destUri);
+        }
+      }
+    });
+  }
 } catch (err) {
   let error: BusinessError = err as BusinessError;
   console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1788,10 +1873,13 @@ async function copyFunc01() {
   let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
   let fileName: string = "2.txt";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let copyResult = await fileAccessHelper.copyFile(sourceFile, destFile, fileName);
-    console.log("copyResult uri: " + copyResult);
+    if (fileAccessHelper != undefined) {
+      let copyResult = await fileAccessHelper.copyFile(sourceFile, destFile, fileName);
+      console.log("copyResult uri: " + copyResult);
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1830,12 +1918,14 @@ import { BusinessError } from '@ohos.base';
 let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
 let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
 let fileName: string = "2.txt";
-
+// fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
-  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-  fileAccessHelper.copyFile(sourceFile, destFile, fileName, async (copyResult: string) => {
-        console.log("copyResult uri: " + copyResult);
-  });
+  if (fileAccessHelper != undefined) {
+    fileAccessHelper.copyFile(sourceFile, destFile, fileName, async (copyResult: string) => {
+          console.log("copyResult uri: " + copyResult);
+    });
+  }
 } catch (err) {
   let error: BusinessError = err as BusinessError;
   console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1866,47 +1956,50 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
 import { BusinessError } from '@ohos.base';
 async function registerObserver01() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let dirUri1 = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR1');
-    let dirUri2 = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR2');
-    // 因注册时notifyForDescendants参数为true所以期待收到两次通知
-    // uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
-    // uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVE_SELF
-    const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+    if (fileAccessHelper != undefined) {
+      let dirUri1 = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR1');
+      let dirUri2 = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR2');
+      // 因注册时notifyForDescendants参数为true所以期待收到两次通知
+      // uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
+      // uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVE_SELF
+      const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
-    }
-    // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR2/SUB_FILE'，事件类型为NOTIFY_MOVED_TO
-    const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+      // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR2/SUB_FILE'，事件类型为NOTIFY_MOVED_TO
+      const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
-    }
-    // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVE_SELF
-    // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
-    const callbackFile = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+      // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVE_SELF
+      // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
+      const callbackFile = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
+      let fileUri = await fileAccessHelper.createFile(dirUri1, 'SUB_FILE');
+      fileAccessHelper.registerObserver(dirUri1, true, callbackDir1);
+      fileAccessHelper.registerObserver(dirUri2, true, callbackDir2);
+      // 如果不监听被移动文件本身，将不会触发NOTIFY_MOVE_SELF事件
+      fileAccessHelper.registerObserver(fileUri, true, callbackFile);
+      let moveFileUri = await fileAccessHelper.move(fileUri, dirUri2);
+      // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
+      fileAccessHelper.unregisterObserver(dirUri1, callbackDir1);
+      fileAccessHelper.unregisterObserver(dirUri2, callbackDir2);
+      fileAccessHelper.unregisterObserver(fileUri, callbackFile);
     }
-    let fileUri = await fileAccessHelper.createFile(dirUri1, 'SUB_FILE');
-    fileAccessHelper.registerObserver(dirUri1, true, callbackDir1);
-    fileAccessHelper.registerObserver(dirUri2, true, callbackDir2);
-    // 如果不监听被移动文件本身，将不会触发NOTIFY_MOVE_SELF事件
-    fileAccessHelper.registerObserver(fileUri, true, callbackFile);
-    let moveFileUri = await fileAccessHelper.move(fileUri, dirUri2);
-    // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
-    fileAccessHelper.unregisterObserver(dirUri1, callbackDir1);
-    fileAccessHelper.unregisterObserver(dirUri2, callbackDir2);
-    fileAccessHelper.unregisterObserver(fileUri, callbackFile);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1920,23 +2013,26 @@ async function registerObserver01() {
 import { BusinessError } from '@ohos.base';
 async function registerObserver02() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-    // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_DIR'，事件类型为NOTIFY_ADD
-    const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+    if (fileAccessHelper != undefined) {
+      let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+      // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_DIR'，事件类型为NOTIFY_ADD
+      const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+      // 返回注册成功，仅在log中提示重复注册
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+      let subDirUri = await fileAccessHelper.mkDir(dirUri, 'SUB_DIR');
+      // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
+      fileAccessHelper.unregisterObserver(dirUri, callbackDir);
     }
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-    // 返回注册成功，仅在log中提示重复注册
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-    let subDirUri = await fileAccessHelper.mkDir(dirUri, 'SUB_DIR');
-    // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
-    fileAccessHelper.unregisterObserver(dirUri, callbackDir);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1950,25 +2046,28 @@ async function registerObserver02() {
 import { BusinessError } from '@ohos.base';
 async function registerObserver03() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-    // 期待第一次收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_FILE_1'，事件类型为NOTIFY_ADD
-    // 期待无第二次返回
-    const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+    if (fileAccessHelper != undefined) {
+      let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+      // 期待第一次收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_FILE_1'，事件类型为NOTIFY_ADD
+      // 期待无第二次返回
+      const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+      let subFile1 = await fileAccessHelper.createFile(dirUri, 'SUB_FILE_1');
+      // 注册成功修改notifyForDescendants为false,不感知子文件的变化
+      fileAccessHelper.registerObserver(dirUri, false, callbackDir);
+      let subFile2 = await fileAccessHelper.createFile(dirUri, 'SUB_FILE_2');
+      // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
+      fileAccessHelper.unregisterObserver(dirUri, callbackDir);
     }
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-    let subFile1 = await fileAccessHelper.createFile(dirUri, 'SUB_FILE_1');
-    // 注册成功修改notifyForDescendants为false,不感知子文件的变化
-    fileAccessHelper.registerObserver(dirUri, false, callbackDir);
-    let subFile2 = await fileAccessHelper.createFile(dirUri, 'SUB_FILE_2');
-    // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
-    fileAccessHelper.unregisterObserver(dirUri, callbackDir);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("registerObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -1981,6 +2080,8 @@ async function registerObserver03() {
 ```ts
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver03() {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
@@ -1989,10 +2090,12 @@ async function UnregisterObserver03() {
         console.error("NotifyMessageDir is undefined");
       }
     }
-    // 监听设备的上下线
-    fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
-    // 取消监听设备的上下线
-    fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI);
+    if (fileAccessHelper != undefined) {
+      // 监听设备的上下线
+      fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
+      // 取消监听设备的上下线
+      fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI);
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2023,21 +2126,24 @@ async function UnregisterObserver03() {
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver01() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-    // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
-    const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+    if (fileAccessHelper != undefined) {
+      let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+      // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
+      const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+      await fileAccessHelper.delete(dirUri);
+      // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
+      fileAccessHelper.unregisterObserver(dirUri, callbackDir);
     }
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-    await fileAccessHelper.delete(dirUri);
-    // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
-    fileAccessHelper.unregisterObserver(dirUri, callbackDir);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2051,23 +2157,26 @@ async function UnregisterObserver01() {
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver02() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-    // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
-    const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+      if (fileAccessHelper != undefined) {
+      let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+      // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
+      const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
-    }
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir);
-    await fileAccessHelper.delete(dirUri);
-    // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
-    fileAccessHelper.unregisterObserver(dirUri, callbackDir);
-    // 解注册失败，抛出错误码 E_CAN_NOT_FIND_URI
-    fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir);
+      await fileAccessHelper.delete(dirUri);
+      // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
+      fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+      // 解注册失败，抛出错误码 E_CAN_NOT_FIND_URI
+      fileAccessHelper.unregisterObserver(dirUri, callbackDir);
+      }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2081,35 +2190,38 @@ async function UnregisterObserver02() {
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver03() {
   let DirUri: string = 'file://docs/storage/Users/currentUser/Documents';
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
-    // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
-    // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/RENAME_FILE'，事件类型为NOTIFY_MOVED_TO
-    const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+    if (fileAccessHelper != undefined) {
+      let dirUri = await fileAccessHelper.mkDir(DirUri, 'NOTIFY_DIR');
+      // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
+      // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/RENAME_FILE'，事件类型为NOTIFY_MOVED_TO
+      const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
-    }
-    // 期待收不到任何事件
-    const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
-      if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
-      } else {
-        console.error("NotifyMessageDir is undefined");
+      // 期待收不到任何事件
+      const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+        if (NotifyMessageDir != undefined) {
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+        } else {
+          console.error("NotifyMessageDir is undefined");
+        }
       }
+      let fileUri = await fileAccessHelper.createFile(dirUri, 'SUB_FILE');
+      fileAccessHelper.registerObserver(dirUri, true, callbackDir1);
+      // 此处注册为不关注下一级，将收不到关于下一级的事件
+      fileAccessHelper.registerObserver(dirUri, false, callbackDir2);
+      let renameUri = await fileAccessHelper.rename(fileUri, 'RENAME_FILE');
+      // 取消注册监听dirUri的所有callback(callbackDir1、callbackDir2)
+      // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
+      fileAccessHelper.unregisterObserver(dirUri);
+      await fileAccessHelper.delete(dirUri);
     }
-    let fileUri = await fileAccessHelper.createFile(dirUri, 'SUB_FILE');
-    fileAccessHelper.registerObserver(dirUri, true, callbackDir1);
-    // 此处注册为不关注下一级，将收不到关于下一级的事件
-    fileAccessHelper.registerObserver(dirUri, false, callbackDir2);
-    let renameUri = await fileAccessHelper.rename(fileUri, 'RENAME_FILE');
-    // 取消注册监听dirUri的所有callback(callbackDir1、callbackDir2)
-    // 注册完不应立即解注册，可能存在解注册先于通知返回的情景，这将收不到通知事件
-    fileAccessHelper.unregisterObserver(dirUri);
-    await fileAccessHelper.delete(dirUri);
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2119,9 +2231,11 @@ async function UnregisterObserver03() {
 
 **示例4：解注册监听设备的上下线**
 
-```
+```ts
 import { BusinessError } from '@ohos.base';
 async function UnregisterObserver03() {
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
@@ -2130,10 +2244,12 @@ async function UnregisterObserver03() {
         console.error("NotifyMessageDir is undefined");
       }
     }
-    // 监听设备的上下线
-    fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
-    // 取消监听设备的上下线
-    fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI);
+    if (fileAccessHelper != undefined) {
+      // 监听设备的上下线
+      fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
+      // 取消监听设备的上下线
+      fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI);
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2185,17 +2301,20 @@ import { BusinessError } from '@ohos.base';
 async function moveItemFunc01() {
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri);
-    if (moveResult.length === 0) {
-      console.log("moveItem success");
-    } else {
-      for (let i = 0; i < moveResult.length; i++) {
-        console.error("errCode" + moveResult[i].errCode);
-        console.error("errMsg" + moveResult[i].errMsg);
-        console.error("sourceUri" + moveResult[i].sourceUri);
-        console.error("destUri" + moveResult[i].destUri);
+    if (fileAccessHelper != undefined) {
+      let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri);
+      if (moveResult.length === 0) {
+        console.log("moveItem success");
+      } else {
+        for (let i = 0; i < moveResult.length; i++) {
+          console.error("errCode" + moveResult[i].errCode);
+          console.error("errMsg" + moveResult[i].errMsg);
+          console.error("sourceUri" + moveResult[i].sourceUri);
+          console.error("destUri" + moveResult[i].destUri);
+        }
       }
     }
   } catch (err) {
@@ -2215,17 +2334,20 @@ import { BusinessError } from '@ohos.base';
 async function moveItemFunc02() {
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri, true);
-    if (moveResult.length === 0) {
-      console.log("moveItem success");
-    } else {
-      for (let i = 0; i < moveResult.length; i++) {
-        console.error("errCode" + moveResult[i].errCode);
-        console.error("errMsg" + moveResult[i].errMsg);
-        console.error("sourceUri" + moveResult[i].sourceUri);
-        console.error("destUri" + moveResult[i].destUri);
+    if (fileAccessHelper != undefined) {
+      let moveResult = await fileAccessHelper.moveItem(sourceUri, destUri, true);
+      if (moveResult.length === 0) {
+        console.log("moveItem success");
+      } else {
+        for (let i = 0; i < moveResult.length; i++) {
+          console.error("errCode" + moveResult[i].errCode);
+          console.error("errMsg" + moveResult[i].errMsg);
+          console.error("sourceUri" + moveResult[i].sourceUri);
+          console.error("destUri" + moveResult[i].destUri);
+        }
       }
     }
   } catch (err) {
@@ -2266,23 +2388,26 @@ import { BusinessError } from '@ohos.base';
 // 开发者应根据自己实际获取的uri进行开发
 let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
 let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+// fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
-  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-  fileAccessHelper.moveItem(sourceUri, destUri, async (err: BusinessError, copyResult: Array<fileAccess.MoveResult>) => {
-    if (err) {
-      console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
-    }
-    if (moveResult.length === 0) {
-      console.log("moveItem success");
-    } else {
-      for (let i = 0; i < moveResult.length; i++) {
-        console.error("errCode" + moveResult[i].errCode);
-        console.error("errMsg" + moveResult[i].errMsg);
-        console.error("sourceUri" + moveResult[i].sourceUri);
-        console.error("destUri" + moveResult[i].destUri);
+  if (fileAccessHelper != undefined) {
+    fileAccessHelper.moveItem(sourceUri, destUri, async (err: BusinessError, copyResult: Array<fileAccess.MoveResult>) => {
+      if (err) {
+        console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
-    }
-  });
+      if (moveResult.length === 0) {
+        console.log("moveItem success");
+      } else {
+        for (let i = 0; i < moveResult.length; i++) {
+          console.error("errCode" + moveResult[i].errCode);
+          console.error("errMsg" + moveResult[i].errMsg);
+          console.error("sourceUri" + moveResult[i].sourceUri);
+          console.error("destUri" + moveResult[i].destUri);
+        }
+      }
+    });
+  }
 } catch (err) {
   let error: BusinessError = err as BusinessError;
   console.error("moveItem failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2323,23 +2448,26 @@ import { BusinessError } from '@ohos.base';
 // 开发者应根据自己实际获取的uri进行开发
 let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
 let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+// fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
-  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-  fileAccessHelper.moveItem(sourceUri, destUri, true, async (err: BusinessError, moveResult: Array<fileAccess.MoveResult>) => {
-    if (err) {
-      console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
-    }
-    if (moveResult.length === 0) {
-      console.log("copy success");
-    } else {
-      for (let i = 0; i < moveResult.length; i++) {
-        console.error("errCode" + moveResult[i].errCode);
-        console.error("errMsg" + moveResult[i].errMsg);
-        console.error("sourceUri" + moveResult[i].sourceUri);
-        console.error("destUri" + moveResult[i].destUri);
+  if (fileAccessHelper != undefined) {
+    fileAccessHelper.moveItem(sourceUri, destUri, true, async (err: BusinessError, moveResult: Array<fileAccess.MoveResult>) => {
+      if (err) {
+        console.error("moveItem failed, errCode:" + err.code + ", errMessage:" + err.message);
       }
-    }
-  });
+      if (moveResult.length === 0) {
+        console.log("copy success");
+      } else {
+        for (let i = 0; i < moveResult.length; i++) {
+          console.error("errCode" + moveResult[i].errCode);
+          console.error("errMsg" + moveResult[i].errMsg);
+          console.error("sourceUri" + moveResult[i].sourceUri);
+          console.error("destUri" + moveResult[i].destUri);
+        }
+      }
+    });
+  }
 } catch (err) {
   let error: BusinessError = err as BusinessError;
   console.error("moveItem failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2391,10 +2519,13 @@ moveFile(sourceUri: string, destUri: string, fileName: string) : Promise&lt;stri
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
     let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
     let fileName: string;
+    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+    let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
     try {
-      // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-      let fileUri = await fileAccessHelper.moveFile(sourceUri, destUri, fileName);
-      console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+    if (fileAccessHelper != undefined) {
+        let fileUri = await fileAccessHelper.moveFile(sourceUri, destUri, fileName);
+        console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+    }
     } catch (err) {
       let error: BusinessError = err as BusinessError;
       console.error("moveFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -2441,14 +2572,17 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
   let fileName: string;
+  // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
+  let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
   try {
-    // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
-    fileAccessHelper.moveFile(sourceUri, destUri, fileName, (err: BusinessError, fileUri: string) => {
-      if (err) {
-        console.error("Failed to moveFile in async, errCode:" + err.code + ", errMessage:" + err.message);
-      }
-      console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
-    });
+    if (fileAccessHelper != undefined) {
+      fileAccessHelper.moveFile(sourceUri, destUri, fileName, (err: BusinessError, fileUri: string) => {
+        if (err) {
+          console.error("Failed to moveFile in async, errCode:" + err.code + ", errMessage:" + err.message);
+        }
+        console.log("moveFile sucess, fileUri: " + JSON.stringify(fileUri));
+      });
+    }
   } catch (err) {
     let error: BusinessError = err as BusinessError;
     console.error("moveFile failed, errCode:" + error.code + ", errMessage:" + error.message);

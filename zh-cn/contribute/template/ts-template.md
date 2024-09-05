@@ -75,7 +75,7 @@
 >
 
 ```js
-import Curves from '@ohos.curves'
+import { font } from '@kit.ArkUI';
 ```
 
 ## 子组件

@@ -3,7 +3,7 @@
 
 ## 概述
 
-帧快门回调信息。
+拍照曝光结束信息。
 
 **起始版本：** 12
 
@@ -15,9 +15,9 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [captureId](#captureid) | 捕获id。  |
+| int32_t [captureId](#captureid) | 拍照id。  | 
 
 
 ## 结构体成员变量说明
@@ -29,4 +29,4 @@
 int32_t Camera_FrameShutterEndInfo::captureId
 ```
 **描述**
-捕获id。
+拍照id。

@@ -551,7 +551,7 @@ AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig (OH_AVCodec *codec, MediaKeySession *mediaKeySession, bool secureVideoPath)
 ```
 **描述**
-设置解密配置。在调用准备之前，可选择调用此接口。
+设置解密配置。该接口需在调用Prepare之前调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -563,7 +563,7 @@ OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig (OH_AVCodec *codec, MediaKeySes
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
 | mediaKeySession | 指向带有解密功能的DRM会话实例的指针，请参阅**MediaKeySession**。  | 
-| secureVideoPath | 安全视频通路。指定安全视频通路为true，否则为false。  | 
+| secureVideoPath | 安全视频通路。指定安全视频通路为true，非安全视频通路为false。在[Surface模式](../../media/avcodec/video-decoding.md#surface模式)下，既支持安全视频通路，也支持非安全视频通路。在[Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)下，仅支持非安全视频通路。  |
 
 **返回：**
 
@@ -571,10 +571,9 @@ OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig (OH_AVCodec *codec, MediaKeySes
 
 AV_ERR_OK：操作成功。
 
-AV_ERR_OPERATE_NOT_PERMIT：编解码器服务或媒体密钥会话服务处于错误状态。
+AV_ERR_OPERATE_NOT_PERMIT：解码服务进程异常，或媒体密钥会话服务处于错误状态。
 
-AV_ERR_INVALID_VAL：编解码器实例为nullptr或无效，或者mediaKeySession为nullptr或无效。
-
+AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例或为空指针，或者mediaKeySession为nullptr或无效。
 
 ### OH_VideoDecoder_SetParameter()
 

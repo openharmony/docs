@@ -259,6 +259,7 @@ onProcess(): string;
     // 如下代码中，appJob方法为模拟的实际业务代码，args为appJob方法的参数，用于提交到taskpool中，开启子线程进行工作
     async onBackup() {
       console.log(`onBackup begin`);
+      let args = 0; // args为appJob方法的参数
       let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
       try {
         await taskpool.execute(jobTask, taskpool.Priority.HIGH);
@@ -270,6 +271,7 @@ onProcess(): string;
 
     async onRestore() {
       console.log(`onRestore begin`);
+      let args = 0; // args为appJob方法的参数
       let jobTask: taskpool.Task = new taskpool.LongTask(appJob, args);
       try {
         await taskpool.execute(jobTask, taskpool.Priority.HIGH);

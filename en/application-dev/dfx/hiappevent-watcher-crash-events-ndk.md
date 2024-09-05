@@ -1,4 +1,4 @@
-# Subscribing to Crash Events (C++)
+# Subscribing to Crash Events (C/C++)
 
 ## Available APIs
 
@@ -33,7 +33,7 @@ The following describes how to subscribe to the crash event triggered by a butto
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -50,12 +50,12 @@ The following describes how to subscribe to the crash event triggered by a butto
 3. Import the dependency files to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   #include "json/json.h"
-   #include "hilog/log.h"
-   #include "hiappevent/hiappevent.h"
+   # include "json/json.h"
+   # include "hilog/log.h"
+   # include "hiappevent/hiappevent.h"
    
-   #undef LOG_TAG
-   #define LOG_TAG "testTag"
+   # undef LOG_TAG
+   # define LOG_TAG "testTag"
    ```
 
 4. Subscribe to application events.
@@ -220,16 +220,15 @@ The following describes how to subscribe to the crash event triggered by a butto
    export const registerWatcher: () => void;
    ```
 
-6. In the **EntryAbility.ts** file, add the following interface to **onCreate()**.
+6. In the **EntryAbility.ets** file, add the following interface to **onCreate()**.
 
    ```typescript
+   // Import the dependent module.
    import testNapi from 'libentry.so'
-   export default class EntryAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       // Register the system event watcher at startup.
-       testNapi.registerWatcher();
-     }
-   }
+
+   // Add the interface to onCreate().
+   // Register the system event watcher at startup.
+   testNapi.registerWatcher();
    ```
 
 7. In the **Index.ets** file, add a button to trigger the crash event.
@@ -245,21 +244,21 @@ The following describes how to subscribe to the crash event triggered by a butto
 9. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
 
    ```text
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.name=APP_CRASH
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.eventType=1
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.time=1502032265088
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.crash_type=JsError
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.foreground=1
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_version=1.0.0
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.pid=19237
-   08-06 23:11:35.269 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.uid=20010043
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.uuid=cc0f062e1b28c1fd2c817fafab5e8ca3207925b4bdd87c43ed23c60029659e01
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:16:11)"}
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.hilog.size=110
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1502032265211_19237.log"]
-   08-06 23:11:35.270 19376-19395/? I A00000/testTag: HiAppEvent eventInfo.params.log_over_limit=0
+   HiAppEvent eventInfo.domain=OS
+   HiAppEvent eventInfo.name=APP_CRASH
+   HiAppEvent eventInfo.eventType=1
+   HiAppEvent eventInfo.params.time=1502032265088
+   HiAppEvent eventInfo.params.crash_type=JsError
+   HiAppEvent eventInfo.params.foreground=1
+   HiAppEvent eventInfo.params.bundle_version=1.0.0
+   HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
+   HiAppEvent eventInfo.params.pid=19237
+   HiAppEvent eventInfo.params.uid=20010043
+   HiAppEvent eventInfo.params.uuid=cc0f062e1b28c1fd2c817fafab5e8ca3207925b4bdd87c43ed23c60029659e01
+   HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:16:11)"}
+   HiAppEvent eventInfo.params.hilog.size=110
+   HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1502032265211_19237.log"]
+   HiAppEvent eventInfo.params.log_over_limit=0
    ```
 
 10. Remove the application event watcher.
@@ -276,9 +275,11 @@ The following describes how to subscribe to the crash event triggered by a butto
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // Destroy the created watcher and set onReceiverWatcher to nullptr.
+        // Destroy the created watcher and set systemEventWatcher to nullptr.
         OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        onTriggerWatcher = nullptr;
+        systemEventWatcher = nullptr;
         return {};
     }
     ```
+
+<!--no_check-->
