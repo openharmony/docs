@@ -34,11 +34,11 @@ let wantParam: Record<string, Object> = {
       'destinationPoiIds': {
           1: '1111',  // key为1代表花瓣地图，value需为花瓣地图POI
           2: '2222'   // key为2代表高德地图，value需为高德地图POI
-      },
+      } as Record<number, string>,
       'originPoiIds': {
           1: '3333',  // key为1代表花瓣地图，value需为花瓣地图POI
           2: '4444'   // key为2代表高德地图，value需为高德地图POI
-      }
+      } as Record<number, string>
     };
 ```
 
@@ -60,14 +60,14 @@ let wantParam: Record<string, Object> = {
       'destinationPoiIds': {
           1: "111111111111",
           2: "222222222222"
-      },
+      } as Record<number, string>,
       'originName': 'xx市xx公园',
       'originLatitude': 31.060844,
       'originLongitude': 120.78315,
       'originPoiIds': {
           1: "333333333333",  
           2: "444444444444"
-      },
+      } as Record<number, string>,
       'vehicleType': 0
     };
     let abilityStartCallback: common.AbilityStartCallback = {
@@ -76,14 +76,16 @@ let wantParam: Record<string, Object> = {
       },
       onResult: (result)=>{
         console.log(`onResult result: ${JSON.stringify(result)}`);
+      }
     }
     
-    context.startAbilityByType("navigation", wantParam, abilityStartCallback, (err) => {
-    if (err) {
-        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-      } else {
-        console.log(`success`);
-      }
+    context.startAbilityByType("navigation", wantParam, abilityStartCallback, 
+        (err) => {
+            if (err) {
+                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+            } else {
+                console.log(`success`);
+            }
     });
     ```
     效果示例图：
