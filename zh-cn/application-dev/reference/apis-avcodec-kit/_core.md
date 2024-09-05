@@ -72,7 +72,7 @@ Core模块提供用于媒体框架的基础骨干能力，包含内存、错误�
 | [OH_AVFormat](#oh_avformat) \* [OH_AVBuffer_GetParameter](#oh_avbuffer_getparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取除基础属性外的其他参数，信息在OH_AVFormat中承载。 |
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetParameter](#oh_avbuffer_setparameter) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVFormat](#oh_avformat) \*format) | 设置除基础属性外的其他参数，信息在OH_AVFormat中承载。 |
 | uint8_t \* [OH_AVBuffer_GetAddr](#oh_avbuffer_getaddr) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的虚拟地址。 |
-| int32_t [OH_AVBuffer_GetCapacity](#oh_avbuffer_getcapacity) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的容量。 |
+| int32_t [OH_AVBuffer_GetCapacity](#oh_avbuffer_getcapacity) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取数据缓冲区的容量(字节数)。 |
 | [OH_NativeBuffer](#oh_nativebuffer) \* [OH_AVBuffer_GetNativeBuffer](#oh_avbuffer_getnativebuffer) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 获取OH_NativeBuffer实例的指针。 |
 | struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_Create](#oh_avformat_create) (void) | 创建OH_AVFormat实例，用于读写数据。 |
 | struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateAudioFormat](#oh_avformat_createaudioformat) (const char \*mimeType, int32_t sampleRate, int32_t channelCount) | 创建音频OH_AVFormat实例指针并预设置指定参数，用于读写数据。 |
