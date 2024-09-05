@@ -5319,8 +5319,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
-| 103301   | the ComponentContent is incorrect.                           |
-| 103302   | Dialog content already exists.                               |
+| 100001   | Internal error.                                              |
 
 ### closeCustomDialog<sup>12+</sup>
 
@@ -6828,6 +6827,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for |
 
 **示例：** 
 
@@ -6923,6 +6923,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for |
 
 **示例：** 
 
@@ -6980,7 +6981,7 @@ struct ComponentSnapshotExample {
 
 ### getSync<sup>12+</sup>
 
-getSync(id: string, options?: SnapshotOptions): image.PixelMap
+getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
 
@@ -6994,10 +6995,10 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 **参数：**
 
-| 参数名  | 类型                                                         | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| id      | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| options | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | 否   | 截图相关的自定义参数。                                       |
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
