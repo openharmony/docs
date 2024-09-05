@@ -1087,7 +1087,6 @@ async function example() {
 }
 ```
 
-
 ## PhotoAsset
 
 提供封装文件属性的方法。
