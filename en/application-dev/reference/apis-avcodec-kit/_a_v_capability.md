@@ -196,7 +196,7 @@ Defines an enum for bit rate modes of an encoder.
 | Value| Description| 
 | -------- | -------- |
 | BITRATE_MODE_CBR  | Constant bit rate.  | 
-| BITRATE_MODE_VBR  | Variable bit rate.  | 
+| BITRATE_MODE_VBR  | Variable bit rate. Frame size would fluctuate in range | 
 | BITRATE_MODE_CQ  | Constant quality.  | 
 
 
