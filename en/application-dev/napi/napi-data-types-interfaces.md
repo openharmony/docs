@@ -344,16 +344,18 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | -------- | -------- |
 | napi_create_array | Creates a JS **Array**.|
 | napi_create_array_with_length | Creates a JS **Array** of the specified length.|
-| napi_create_typedarray | Creates a JS **TypedArray** from an existing **ArrayBuffer**.|
-| napi_create_dataview | Creates a JS **DataView** from an existing **ArrayBuffer**.|
 | napi_get_array_length | Obtains the length of an array.|
-| napi_get_typedarray_info | Obtains the properties of a **TypedArray**.|
-| napi_get_dataview_info | Obtains the properties of a **DataView**.|
 | napi_is_array | Checks whether the given JS value is an **Array** object.|
 | napi_set_element | Sets an element at the specified index of the given **Object**.|
 | napi_get_element | Obtains the element at the specified index of the given **Object**.|
 | napi_has_element | Checks whether the given **Object** has an element at the specified index.|
 | napi_delete_element | Deletes the element at the specified index of the given **Object**.|
+| napi_create_typedarray | Creates a JS **TypedArray** from an existing **ArrayBuffer**.|
+| napi_is_typedarray | Checks whether a JS value is an **TypeArray** object.|
+| napi_get_typedarray_info | Obtains the properties of a **TypedArray**.|
+| napi_create_dataview | Creates a JS **DataView** from an existing **ArrayBuffer**.|
+| napi_is_dataview | Checks whether a JS value is an **DataView** object.|
+| napi_get_dataview_info | Obtains the properties of a **DataView**.|
 
 ### Primitives
 
@@ -372,9 +374,12 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 
 | API| Description|
 | -------- | -------- |
+| napi_new_instance | Creates an instance based on the given constructor.|
 | napi_get_new_target | Obtains the **new.target** of the constructor call.|
 | napi_define_class | Defines a JS class corresponding to the C++ class.|
-| napi_new_instance | Creates an instance based on the given constructor.|
+| napi_wrap | Wraps a native object into an ArkTS object. This API allows the methods and properties of a native object to be called from ArkTS.|
+| napi_unwrap | Unwraps the native object from an ArkTS object.|
+| napi_remove_wrap | Removes the wrapping after the native object is unwrapped from an ArkTS object.|
 
 ### Object
 
@@ -405,6 +410,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | API| Description|
 | -------- | -------- |
 | napi_throw | Throws a JS value.|
+| napi_throw_error | Throws an ArkTS **Error** object with text information.|
 | napi_throw_type_error | Throws a JS type error with text information.|
 | napi_throw_range_error | Throws a JS range error with text information.|
 | napi_is_error | Checks whether **napi_value** indicates an error object.|
@@ -473,7 +479,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 
 ### Extension
 
-[Component Extension Symbol List](../reference/native-lib/napi.md)
+[Node-API extended symbols](../reference/native-lib/napi.md#node-api-extended-symbols)
 
 | API| Description|
 | -------- | -------- |
@@ -484,12 +490,14 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_create_object_with_properties | Creates a JS object using the given **napi_property_descriptor**. The key of the descriptor must be a string and cannot be converted into a number.|
 | napi_create_object_with_named_properties | Creates a JS object using the given **napi_value**s and keys. The key must be a string and cannot be converted into a number.|
 | napi_coerce_to_native_binding_object | Forcibly binds a JS object and a native object.|
+| napi_create_ark_runtime|Creates an ArkTS runtime environment.|
+| napi_destroy_ark_runtime|Destroys an ArkTS runtime environment.|
 | napi_run_event_loop | Runs the underlying event loop.|
 | napi_stop_event_loop | Stops the underlying event loop.|
 | napi_serialize | Converts an ArkTS object into native data.|
 | napi_deserialize | Converts native data into an ArkTS object.|
 | napi_delete_serialization_data | Deletes serialized data.|
-| napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into an ArkTS thread.|
+| napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into the ArkTS main thread.|
 | napi_is_sendable|Checks whether the given JS value is sendable.|
 | napi_define_sendable_class|Create a **sendable** class.|
 | napi_create_sendable_object_with_properties | Creates a sendable object with the given **napi_property_descriptor**.|
