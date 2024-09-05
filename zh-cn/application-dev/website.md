@@ -148,7 +148,7 @@
           - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
         - 应用间跳转<!--inter-app-redirection-->
           - [应用间跳转概述](application-models/link-between-apps-overview.md)
-          - 指向性跳转<!--directional-redirection-->
+          - 拉起指定应用<!--directional-redirection-->
             - [（可选）使用canOpenLink判断应用是否可访问](application-models/canopenlink.md)
             - [使用Deep Linking实现应用间跳转](application-models/deep-linking-startup.md)
             <!--Del-->
@@ -156,10 +156,12 @@
             <!--DelEnd-->
             - [显式Want跳转切换应用链接跳转适配指导](application-models/uiability-startup-adjust.md)
             - [应用链接说明](application-models/app-uri-config.md)
-          - 通用意图跳转<!--common-intent-redirection-->
-            - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
-            - [拉起图片编辑类应用编辑图片](application-models/photoEditorExtensionAbility.md)
-            - [通过startAbility拉起文件处理类应用](application-models/file-processing-apps-startup.md)
+          - [拉起指定类型的应用](application-models/start-intent-panel.md)
+            - [拉起导航类应用](application-models/start-navigation-apps.md)
+            - [拉起邮件类应用](application-models/start-email-apps.md)
+            - [拉起金融类应用](application-models/start-finance-apps.md)
+            - [拉起图片编辑类应用](application-models/photoEditorExtensionAbility.md)
+            - [拉起文件处理类应用](application-models/file-processing-apps-startup.md)
           - [拉起系统应用](application-models/system-app-startup.md)
         - [进程模型](application-models/process-model-stage.md)
         - [线程模型](application-models/thread-model-stage.md)
@@ -355,8 +357,7 @@
             - [自定义弹窗 (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
             - [视频播放 (Video)](ui/arkts-common-components-video-player.md)
             - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
-            - [自定义渲染 (XComponent)](ui/arkts-common-components-xcomponent.md)
-            - [Native XComponent](ui/napi-xcomponent-guidelines.md)
+            - [自定义渲染 (XComponent)](ui/napi-xcomponent-guidelines.md)
           - 添加气泡和菜单<!--arkts-add-popup-menu-->
             - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
             - [菜单 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
@@ -2538,6 +2539,7 @@
             - [ArkWeb_AnyNativeAPI](reference/apis-arkweb/_ark_web___any_native_a_p_i.md)
             - [ArkWeb_ComponentAPI](reference/apis-arkweb/_ark_web___component_a_p_i.md)
             - [ArkWeb_ControllerAPI](reference/apis-arkweb/_ark_web___controller_a_p_i.md)
+            - [ArkWeb_CookieManagerAPI](reference/apis-arkweb/_ark_web___cookie_manager_a_p_i.md)
             - [ArkWeb_JavaScriptBridgeData](reference/apis-arkweb/_ark_web___java_script_bridge_data.md)
             - [ArkWeb_JavaScriptObject](reference/apis-arkweb/_ark_web___java_script_object.md)
             - [ArkWeb_ProxyMethod](reference/apis-arkweb/_ark_web___proxy_method.md)
