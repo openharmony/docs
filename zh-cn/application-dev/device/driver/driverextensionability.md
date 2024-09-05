@@ -184,11 +184,3 @@
 自动签名方法： 请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5#section18815157237)。
 
 权限配置方法： 请参考[使用ACL的签名配置指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5#section157591551175916)。
-
-## 开发实例
-
-为开发者提供了以下3款产品的Demo，用于参考，请查看对应Demo的驱动服务端开发。
-
-* [手写板Demo](https://gitee.com/lixinsheng2/handwriting-board)
-* [鼠标Demo](https://gitee.com/lixinsheng2/mouse-demo-rvpoo)
-* [银行UkeyDemo](https://gitee.com/lixinsheng2/ukey-demo-standard)
