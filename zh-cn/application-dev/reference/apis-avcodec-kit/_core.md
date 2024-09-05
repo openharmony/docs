@@ -3,7 +3,7 @@
 
 ## 概述
 
-Core模块提供用于播放框架的基础骨干能力，包含内存、错误码、媒体数据结构等相关函数。
+Core模块提供用于媒体框架的基础骨干能力，包含内存、错误码、媒体数据结构等相关函数。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -299,7 +299,7 @@ enum OH_AudioChannelLayout
 
 **描述**
 
-音频声道布局，
+音频声道布局。
 
 用int64整数来表示在录制或播放时扬声器的外观和顺序。
 
@@ -369,7 +369,7 @@ enum OH_AudioChannelSet
 
 **描述**
 
-音频声道集合，
+音频声道集合。
 
 将每一个声道映射为int64的变量。
 
@@ -583,7 +583,7 @@ uint8_t* OH_AVBuffer_GetAddr (OH_AVBuffer *buffer)
 
 1. 输入的buffer为空指针；
 2. OH_AVBuffer结构校验失败；
-3. OH_AVBuffer内存地址为空。
+3. 出现内部错误。
 
 
 ### OH_AVBuffer_GetBufferAttr()
@@ -616,7 +616,7 @@ AV_ERR_OK：操作成功。
 AV_ERR_INVALID_VAL：
 
     可能的原因：
-    1. 输入的buffer或输入buffer内的buffer或输入attr为空指针；
+    1. 输入的buffer或attr为空指针；
     2. buffer结构校验失败。
 
 
@@ -648,7 +648,7 @@ int32_t OH_AVBuffer_GetCapacity (OH_AVBuffer *buffer)
 
 1. 输入的buffer为空指针；
 2. OH_AVBuffer结构校验失败；
-3. OH_AVBuffer内存地址为空。
+3. 出现内部错误。
 
 
 ### OH_AVBuffer_GetNativeBuffer()
@@ -679,7 +679,7 @@ OH_NativeBuffer* OH_AVBuffer_GetNativeBuffer (OH_AVBuffer *buffer)
 
 1. 输入的buffer为空指针；
 2. OH_AVBuffer结构校验失败；
-3. OH_AVBuffer内存地址为空。
+3. 出现内部错误。
 
 
 ### OH_AVBuffer_GetParameter()
@@ -711,8 +711,9 @@ AV_ERR_OK：操作成功。
 AV_ERR_INVALID_VAL：
 
     可能的原因：
-    1. 输入的buffer或输入buffer内的buffer或输入buffer的meta为空指针；
-    2. buffer结构校验失败。
+    1. 输入的buffer为空指针；
+    2. 输入buffer的meta为空指针；
+    3. buffer结构校验失败。
 
 
 ### OH_AVBuffer_SetBufferAttr()
@@ -745,8 +746,8 @@ AV_ERR_OK：操作成功。
 AV_ERR_INVALID_VAL：
 
     可能的原因：
-    1. 输入的buffer或输入buffer内的buffer或输入attr为空指针
-    2. buffer结构校验失败
+    1. 输入的buffer或attr为空指针；
+    2. buffer结构校验失败；
     3. 输入buffer中内存的size或offset是无效值。
 
 
@@ -780,8 +781,9 @@ AV_ERR_OK：操作成功。
 AV_ERR_INVALID_VAL：
 
     可能的原因：
-    1. 输入的buffer或输入buffer内的buffer或输入format或输入buffer的meta为空指针；
-    2. buffer结构校验失败。
+    1. 输入的buffer或format为空指针；
+    2. 输入buffer的meta为空指针；
+    3. buffer结构校验失败。
 
 
 ### OH_AVFormat_Copy()
@@ -982,7 +984,7 @@ bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 **描述**
 
-从OH_AVFormat的key获取double类型的值
+从OH_AVFormat的key获取double类型的值。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1171,7 +1173,7 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const u
 | format | 指向OH_AVFormat实例的指针。 | 
 | key | 写入数据的键。 | 
 | addr | 写入数据的地址，生命周期由开发者管理。 | 
-| size | 写入数据的长度，范围为0-1MB。 | 
+| size | 写入数据的长度，范围为(0, 1)MB。 | 
 
 **返回：**
 
@@ -1183,7 +1185,7 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const u
 2. 输入format参数结构校验失败；
 3. 输入key为空指针；
 4. 输入addr为空指针；
-5. size为0；
+5. size为0或超过限制1MB；
 6. 设置的key对应的value类型错误。
 
 
