@@ -143,9 +143,11 @@
            }
            if (imgComponent && imgComponent.byteBuffer as ArrayBuffer) {
              // do something...
+             // 如果对buffer进行异步操作，需要在异步操作结束后再释放该资源（nextImage.release()）
            } else {
              console.error('byteBuffer is null');
            }
+           // 确保当前buffer没有在使用的情况下，可进行资源释放
            nextImage.release();
          })
        })
