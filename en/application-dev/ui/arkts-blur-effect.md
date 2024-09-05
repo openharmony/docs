@@ -14,6 +14,9 @@ Blur effects add a sense of depth and allow for distinction of hierarchical rela
 | [foregroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle) | Applies a foreground blur effect to the component. The input parameter is the blur style.|
 | [motionBlur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-motionBlur.md#motionblur) | Applies a motion blur effect to the component being scaled or moved. The input parameters are the blur radius and anchor point coordinates.|
 
+>  **NOTE**
+>
+>  The preceding APIs provide real-time blurring by rendering each frame, which can be performance-intensive. For static blur effects where content and radius remain unchanged, you are advised to use the static [blur](../reference/apis-arkgraphics2d/js-apis-effectKit.md#blur) API to reduce the load.
 
 ## Applying Background Blur with backdropBlur
 
@@ -24,7 +27,7 @@ Blur effects add a sense of depth and allow for distinction of hierarchical rela
 struct BlurEffectsExample {
   build() {
     Column({ space: 10 }) {
-      Text('backdropblur')
+      Text('backdropBlur')
         .width('90%')
         .height('90%')
         .fontSize(20)
