@@ -15,7 +15,7 @@ You can use the APIs of this module to start StaticSubscriberExtensionAbilities.
 ## Modules to Import
 
 ```ts
-import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext';
+import { StaticSubscriberExtensionContext } from '@kit.BasicServicesKit';
 ```
 
 ## Usage
@@ -23,8 +23,7 @@ import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriber
 Before using the **StaticSubscriberExtensionContext** module, you must first obtain a **StaticSubscriberExtensionAbility** instance.
 
 ```ts
-import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
-import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext';
+import { StaticSubscriberExtensionAbility, StaticSubscriberExtensionContext } from '@kit.BasicServicesKit';
 ```
 
 ## StaticSubscriberExtensionContext.startAbility
@@ -54,6 +53,7 @@ Observe the following when using this API:
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
 | 16000004 | Can not start invisible component.                           |
@@ -73,9 +73,8 @@ For details about the error codes, see [Ability Error Codes](../apis-ability-kit
 **Example**
 
   ```ts
-import CommonEventManager from '@ohos.commonEventManager';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { commonEventManager, BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 let want: Want = {
   bundleName: "com.example.myapp",
@@ -83,7 +82,7 @@ let want: Want = {
 };
 
 class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-  onReceiveEvent(event: CommonEventManager.CommonEventData) {
+  onReceiveEvent(event: commonEventManager.CommonEventData) {
     console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
 
     try {
@@ -140,6 +139,7 @@ Observe the following when using this API:
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
 | 16000004 | Can not start invisible component.                           |
@@ -159,9 +159,8 @@ For details about the error codes, see [Ability Error Codes](../apis-ability-kit
 **Example**
 
   ```ts
-import CommonEventManager from '@ohos.commonEventManager';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { commonEventManager, BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
 let want: Want = {
   bundleName: "com.example.myapp",
@@ -169,7 +168,7 @@ let want: Want = {
 };
 
 class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-  onReceiveEvent(event: CommonEventManager.CommonEventData) {
+  onReceiveEvent(event: commonEventManager.CommonEventData) {
     console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
     try {
       this.context.startAbility(want)

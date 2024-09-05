@@ -8,19 +8,18 @@ You can use **uploadFile()** in [ohos.request](../../reference/apis-basic-servic
 
 > **NOTE**
 >
-> - Currently, only the files in the **cache/** directory (specified by **cacheDir**) can be uploaded.
+> Currently, only the files in the **cache/** directory (specified by **cacheDir**) can be uploaded.
 >
-> - The ohos.permission.INTERNET permission is required for using **ohos.request**. For details about how to apply for the permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+> To use **uploadFile()** in **ohos.request**, you need to [declare permissions](../../security/AccessToken/declare-permissions.md): ohos.permission.INTERNET.
 
-The following code snippets demonstrate how to upload a file from the **cache** directory of an application to a network server in two ways:
+The following code demonstrates how to upload files from a cache directory of an application to a network server in two ways:
 
 ```ts
 // Way 1: Use request.uploadFile.
 // pages/xxx.ets
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
-import request from '@ohos.request';
-import { BusinessError } from '@ohos.base';
+import { BusinessError, request } from '@kit.BasicServicesKit';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -48,7 +47,7 @@ let uploadConfig: request.UploadConfig = {
   data: data
 }
 
-// Upload the created application file to a network server.
+// Upload the created application file to the network server.
 try {
   request.uploadFile(context, uploadConfig)
     .then((uploadTask: request.UploadTask) => {
@@ -69,6 +68,10 @@ try {
 
 ```ts
 // Way 2: Use request.agent.
+// pages/xxx.ets
+import { common } from '@kit.AbilityKit';
+import fs from '@ohos.file.fs';
+import { BusinessError, request } from '@kit.BasicServicesKit';
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
 let cacheDir = context.cacheDir;
@@ -98,7 +101,7 @@ let config: request.agent.Config = {
 request.agent.create(getContext(), config).then((task: request.agent.Task) => {
   task.start((err: BusinessError) => {
     if (err) {
-      this.progress = `Failed to start the upload task, Code: ${err.code}  message: ${err.message}`;
+      console.error(`Failed to start the upload task, Code: ${err.code}  message: ${err.message}`);
       return;
     }
   });
@@ -109,7 +112,7 @@ request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     console.warn(`/Request upload completed`);
   })
 }).catch((err: BusinessError) => {
-  this.progress = `Failed to create a upload task, Code: ${err.code}, message: ${err.message}`;
+  console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -121,19 +124,18 @@ You can use **downloadFile()** in [ohos.request](../../reference/apis-basic-serv
 >
 > Currently, network resource files can be downloaded only to the application file directory.
 >
-> The ohos.permission.INTERNET permission is required for using **ohos.request**. For details about how to apply for the permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+> To use **uploadFile()** in **ohos.request**, you need to [declare permissions](../../security/AccessToken/declare-permissions.md): ohos.permission.INTERNET.
 
-The following code snippets demonstrate how to download a file from a network server to an application directory in two ways:
+The following code demonstrates how to download files from a network server to an application directory in two ways:
 
 ```ts
 // Way 1: Use request.downloadFile.
 // pages/xxx.ets
-// Download a network resource file to a local application directory, and read data from the file.
-import common from '@ohos.app.ability.common';
+// Download the network resource file to the local application file directory, and read data from the file.
+import { common } from '@kit.AbilityKit';
 import fs from '@ohos.file.fs';
-import request from '@ohos.request';
-import { BusinessError } from '@ohos.base';
-import buffer from '@ohos.buffer';
+import { BusinessError, request } from '@kit.BasicServicesKit';
+import { buffer } from '@kit.ArkTS';
 
 // Obtain the application file path.
 let context = getContext(this) as common.UIAbilityContext;
@@ -164,12 +166,8 @@ try {
 ```ts
 // Way 2: Use request.agent.
 // pages/xxx.ets
-// Download a network resource file to a local application directory, and read data from the file.
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
-import request from '@ohos.request';
-import { BusinessError } from '@ohos.base';
-import buffer from '@ohos.buffer';
+// Download the network resource file to the local application file directory, and read data from the file.
+import { BusinessError, request } from '@kit.BasicServicesKit';
 
 let config: request.agent.Config = {
   action: request.agent.Action.DOWNLOAD,
@@ -181,7 +179,7 @@ let config: request.agent.Config = {
 request.agent.create(getContext(), config).then((task: request.agent.Task) => {
   task.start((err: BusinessError) => {
     if (err) {
-      this.progress = `Failed to start the upload task, Code: ${err.code}  message: ${err.message}`;
+      console.error(`Failed to start the upload task, Code: ${err.code}  message: ${err.message}`);
       return;
     }
   });
@@ -192,6 +190,6 @@ request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     console.warn(`/Request download completed`);
   })
 }).catch((err: BusinessError) => {
-  this.progress = `Failed to create a download task, Code: ${err.code}, message: ${err.message}`;
+  console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
 });
 ```
