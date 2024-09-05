@@ -32,7 +32,7 @@
     - [@ohos.arkui.uiExtension (uiExtension) (System API)](js-apis-arkui-uiExtension-sys.md)
     - [@ohos.deviceStatus.dragInteraction (Drag Interaction) (System API)](js-apis-devicestatus-draginteraction-sys.md)
     - [@ohos.pluginComponent (PluginComponentManager) (System API)](js-apis-plugincomponent-sys.md)
-    - @ohos.uiAppearance (UI Appearance) (System API)](js-apis-uiappearance-sys.md)
+    - [@ohos.uiAppearance (UI Appearance) (System API)](js-apis-uiappearance-sys.md)
     - [@ohos.uiExtensionHost (System API)](js-apis-uiExtensionHost-sys.md)
     - [@ohos.arkui.UIContext (UIContext) (System API)](js-apis-arkui-UIContext-sys.md)
     - [@ohos.promptAction (Prompt) (System API)](js-apis-promptAction-sys.md)
@@ -85,7 +85,7 @@
       - [Custom Keyboard Shortcuts](arkui-ts/ts-universal-events-keyboardshortcut.md)
       - [Custom Event Dispatch](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
       - [Custom Event Interception](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
-    - Universal attributes
+    - Universal Attributes
       - [Size](arkui-ts/ts-universal-attributes-size.md)
       - [Location](arkui-ts/ts-universal-attributes-location.md)
       - [Layout Constraints](arkui-ts/ts-universal-attributes-layout-constraints.md)
@@ -140,6 +140,7 @@
       - [Special Effect Drawing Combination](arkui-ts/ts-universal-attributes-use-effect.md)
       <!--Del-->
       - [Point Light Style (System API)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
+      - [Image Effects (System API)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
       <!--DelEnd-->
     - Gesture Handling
       - [Gesture Binding Methods](arkui-ts/ts-gesture-settings.md)
@@ -326,7 +327,7 @@
     - [Date Picker Dialog Box (DatePickerDialog)](arkui-ts/ts-methods-datepicker-dialog.md)
     - [Time Picker Dialog Box (TimePickerDialog)](arkui-ts/ts-methods-timepicker-dialog.md)
     - [Text Picker Dialog Box (TextPickerDialog)](arkui-ts/ts-methods-textpicker-dialog.md)
-    - [Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)
+    - [Dialog Box (Dialog)](arkui-ts/ohos-arkui-advanced-Dialog.md)
   - Service Widgets
     - [FormLink](arkui-ts/ts-container-formlink.md)
     - [FormMenu](arkui-ts/ohos-arkui-advanced-formmenu.md)
@@ -398,6 +399,7 @@
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [WindowManager_NativeModule](_window_manager___native_module.md)
+    - [OH_DisplayManager](_o_h___display_manager.md)
   - Header Files
     - [drag_and_drop.h](drag__and__drop_8h.md)
     - [drawable_descriptor.h](drawable__descriptor_8h.md)
@@ -414,6 +416,8 @@
     - [ui_input_event.h](ui__input__event_8h.md)
     - [oh_window_comm.h](oh__window__comm_8h.md)
     - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
+    - [oh_display_info.h](oh__display__info_8h.md)
+    - [oh_display_manager.h](oh__display__manager_8h.md)
   - Structs
     - [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md)
     - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
@@ -442,6 +446,9 @@
     - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
+    - [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md)
+    - [NativeDisplayManager_Rect](_native_display_manager___rect.md)
+    - [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md)
 - Error Codes
   - UI
     - [Animator Error Codes](errorcode-animator.md)
@@ -456,3 +463,4 @@
   - Graphics
     - [Display Error Codes](errorcode-display.md)
     - [Window Error Codes](errorcode-window.md)
+<!--no_check-->

@@ -62,7 +62,7 @@ Invoked each time the page is hidden, for example, during page redirection or wh
 
 onBackPress?(): void | boolean
 
-Invoked when the user clicks the Back button. It works only for the custom components decorated by @Entry. The value **true** means that the page executes its own return logic instead of the , and **false** (default) means that the default return logic is used.
+Invoked when the user clicks the Back button. It works only for the custom components decorated by @Entry. The value **true** means that the page executes its own return logic, and **false** (default) means that the default return logic is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

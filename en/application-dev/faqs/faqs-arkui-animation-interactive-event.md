@@ -278,7 +278,7 @@ Long press the Files application icon or a blank area.
 
 **Solution**
 
-1. When processing a touch event, the system conducts hit testing - from the parent component to its children - determine the component that needs to respond to the event. Subsequent gesture recognition and competition are performed based on the test result.
+1. When processing a touch event, the system conducts hit testing - from the parent component to its children - to determine the component that needs to respond to the event. Subsequent gesture recognition and competition are performed based on the test result.
 
 2. You can set the **hitTestBehavior** attribute to specify how a component behaves during hit testing.
 

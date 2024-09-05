@@ -11,7 +11,7 @@
 
 LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number })
 
-Triggers a long press gesture. In components that support drag actions by default, such as **\<Text>**, **\<TextInput>**, **\<TextArea>**, **\<Hyperlink>**, **\<Image>**, and **\<RichEditor>**, the long press gesture may conflict with the drag action. If this occurs, they are handled as follows:
+Triggers a long press gesture. In components that support drag actions by default, such as **Text**, **TextInput**, **TextArea**, **HyperLink**, **Image**, and **RichEditor**, the long press gesture may conflict with the drag action. If this occurs, they are handled as follows:
 
 If the minimum duration of the long press gesture is less than 500 ms, the long press gesture receives a higher response priority than the drag action.
 
@@ -34,13 +34,16 @@ If the minimum duration of the long press gesture is greater than or equal to 50
 | -------- | -------- |
 | onAction(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a long press gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onActionEnd(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the last finger is lifted after the long press gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after the long press gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after the long press gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
 | tag<sup>11+</sup>   | string  | Tag for the long press gesture. It is used to distinguish the gesture during custom gesture judgment.|
+
 ## Example
 
 ```ts
