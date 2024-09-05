@@ -118,7 +118,7 @@ Represents the basic information about a distributed device.
 | ---------------------- | ------------------------- | ---- | -------- |
 | deviceId               | string                    | Yes   | Unique ID of the device. The value is the udid-hash (hash value of the UDID) and **appid** encrypted using SHA-256.|
 | deviceName             | string                    | Yes   | Device name.   |
-| deviceType             | string                    | Yes   | Device type.   |
+| deviceType             | string                    | Yes   | [Device type](#getdevicetype).   |
 | networkId              | string                    | No   | Network ID of the device. |
 
 ## DeviceStateChange
