@@ -4394,3 +4394,35 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.CALLED_TRANSITION_ON_LOCK_SCREEN
+
+允许应用被其他锁屏之上应用拉起并直接跳转。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+<<<<<<< HEAD
+**起始版本**：13
+=======
+**起始版本**：14
+>>>>>>> 513aa36bd9aef7ee91a964ba4312ccf134febeda
+
+### ohos.permission.CALLED_BELOW_LOCK_SCREEN
+
+允许应用在锁屏下被拉起。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+<<<<<<< HEAD
+**起始版本**：13
+=======
+**起始版本**：14
+>>>>>>> 513aa36bd9aef7ee91a964ba4312ccf134febeda
