@@ -41,7 +41,7 @@ Describes the screenshot options.
 
 pick(): Promise&lt;PickInfo&gt;
 
-Takes a screenshot.
+Takes a screenshot. This API can be used only on 2-in-1 devices.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
