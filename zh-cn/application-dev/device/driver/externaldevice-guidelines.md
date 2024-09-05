@@ -41,8 +41,8 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 | queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;                                                                                          | 查询扩展外设列表。                                                                       |
 | bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;, callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void | 绑定设备，绑定成功后返回设备驱动的IRemoteObject通信对象，通过该对象与设备驱动进行交互。 |
 | bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;                       | 绑定设备的Promise形式。                                                                 |
-| bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback<number>, callback: AsyncCallback<RemoteDeviceDriver>): void;                                  | 绑定设备，API11开始支持。                                                                 |
-| bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback<number>): Promise<RemoteDeviceDriver>;                                                        | 绑定设备的Promise形式，API11开始支持。    
+| bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;, callback: AsyncCallback&gt;RemoteDeviceDriver&gt;): void;                                  | 绑定设备，API11开始支持。                                                                 |
+| bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;                                                        | 绑定设备的Promise形式，API11开始支持。    
 | unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void                                                                                  | 解绑设备。                                                                              |
 | unbindDevice(deviceId: number): Promise&lt;number&gt;                                                                                                        | 解绑设备的Promise形式。                                                                              |
 
