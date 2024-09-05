@@ -16,7 +16,7 @@ For details about the APIs, see [getDisplayCountry](../reference/apis-localizati
    ```
 
 2. Localize language names.
-   When providing language names for a user, for example, when a user switches the system language, the system displays the localized language names. The following uses German as an example.
+   When providing language names for a user, for example, when a user switches the system language, the system displays the localized language names. The following uses provides an example of displaying German in a way similar to Chinese.
    ```ts
    let displayLanguage = i18n.System.getDisplayLanguage("de", "zh-Hans-CN"); // German
    // language: two-letter language code, for example, zh, de, or fr.
