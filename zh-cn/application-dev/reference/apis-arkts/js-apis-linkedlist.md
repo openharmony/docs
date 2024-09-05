@@ -6,6 +6,10 @@ LinkedList和[List](js-apis-list.md)相比，LinkedList是双向链表，可以�
 
 LinkedList和[ArrayList](js-apis-arraylist.md)相比，插入数据效率LinkedList优于ArrayList，而查询效率ArrayList优于LinkedList。
 
+> **注意：**
+>
+> 在LinkedList中使用\[index\]的方式虽然能够获取对应位置的元素，但这会导致未定义结果。推荐使用get()方法。
+
 **推荐使用场景：** 当需要频繁的插入删除时，推荐使用LinkedList高效操作。
 
 文档中存在泛型的使用，涉及以下泛型标记符：<br>
