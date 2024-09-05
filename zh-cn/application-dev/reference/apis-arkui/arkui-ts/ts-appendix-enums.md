@@ -240,6 +240,17 @@
 | On   | 常驻显示。              |
 | Auto | 按需显示(触摸时显示，2s后消失)。 |
 
+## TitleHeight<sup>9+</sup>
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 描述                         |
+| ----------- | -------------------------- |
+| MainOnly    | 只有主标题时标题栏的推荐高度（56vp）。      |
+| MainWithSub | 同时有主标题和副标题时标题栏的推荐高度（82vp）。 |
+
 ## EdgeEffect
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
