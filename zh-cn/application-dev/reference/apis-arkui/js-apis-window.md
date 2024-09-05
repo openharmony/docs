@@ -5713,7 +5713,7 @@ getWindowStatus(): WindowStatusType
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**参数：**
+**返回值：**
 
 | 类型                           | 说明                                   |
 | ------------------------------ | ----------------------------------------|
