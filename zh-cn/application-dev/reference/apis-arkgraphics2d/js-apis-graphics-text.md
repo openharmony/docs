@@ -268,7 +268,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | halfLeading   | boolean                                              | 是 | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
 | ellipsis      | string                                               | 是 | 是 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
 | ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END，行尾省略号。                        |
-| locale        | string                                               | 是 | 是 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
+| locale        | string                                               | 是 | 是 | 语言类型，如字段为'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。具体请参照ISO 639-1规范，默认为空字符串。|
 | baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0px。                 |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 是 | 文本字体特征数组。|
 | fontVariations| Array\<[FontVariation](#fontvariation)>              | 是 | 是 | 可变字体属性数组。|
@@ -1383,9 +1383,9 @@ addSymbol(symbolId: number): void
 
 **参数：**
 
-| 参数名    | 类型    | 必填 | 说明                       |
-| -------- | ------- | ---- | -------------------------- |
-| symbolId | number  | 是   | 要设置的符号，十六进制。|
+| 参数名    | 类型    | 必填 | 说明                                                        |
+| -------- | ------- | ---- | ----------------------------------------------------------- |
+| symbolId | number  | 是   | 要设置的symbol码位，十六进制，当前支持的取值范围为：0xF0000-0xF0C97。|
 
 **示例：**
 
