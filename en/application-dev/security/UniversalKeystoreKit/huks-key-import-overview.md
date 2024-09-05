@@ -28,6 +28,8 @@ To import an encrypted key, you need to use the HUKS APIs to generate a key pair
 
 The [public key material](huks-concepts.md#public-key-material-format) exported is encapsulated in X.509 format. The encrypted key material to be imported must be encapsulated in **Length<sub>Data< /sub>-Data** format.
 
+> **NOTE**<br>
+> The encrypted import supports key agreement algorithms ECDH and X25519. The generated **Shared_Key** uses the AES-GCM algorithm to encrypt **Caller_Kek**. For details about the cipher suites, see [HuksUnwrapSuite](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksunwrapsuite9).
 
 ### Key Material Format for Encrypted Import
 
