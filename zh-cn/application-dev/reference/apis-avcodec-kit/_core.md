@@ -92,10 +92,10 @@ Core模块提供用于媒体框架的基础骨干能力，包含内存、错误�
 | bool [OH_AVFormat_GetStringValue](#oh_avformat_getstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*\*out) | 从OH_AVFormat的key获取string类型的值。 | 
 | bool [OH_AVFormat_GetBuffer](#oh_avformat_getbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, uint8_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取指定长度的数据块。 | 
 | const char \* [OH_AVFormat_DumpInfo](#oh_avformat_dumpinfo) (struct [OH_AVFormat](#oh_avformat) \*format) | 返回OH_AVFormat中包含的key-value组成的字符串。 | 
-| [OH_AVMemory](#oh_avmemory) \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | 创建OH_AVMemory实例的指针。<!--Del-->（API11废弃）<!--DelEnd--> | 
-| uint8_t \* [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 获取内存虚拟地址。 <!--Del-->（API11废弃）<!--DelEnd-->| 
-| int32_t [OH_AVMemory_GetSize](#oh_avmemory_getsize) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 获取内存长度。<!--Del-->（API11废弃）<!--DelEnd--> | 
-| [OH_AVErrCode](#oh_averrcode) [OH_AVMemory_Destroy](#oh_avmemory_destroy) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 释放OH_AVMemory实例指针的资源。<!--Del-->（API11废弃）<!--DelEnd--> | 
+| [OH_AVMemory](#oh_avmemory) \* [OH_AVMemory_Create](#oh_avmemory_create) (int32_t size) | 创建OH_AVMemory实例的指针。（API11废弃） | 
+| uint8_t \* [OH_AVMemory_GetAddr](#oh_avmemory_getaddr) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 获取内存虚拟地址。 （API11废弃）| 
+| int32_t [OH_AVMemory_GetSize](#oh_avmemory_getsize) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 获取内存长度。（API11废弃） | 
+| [OH_AVErrCode](#oh_averrcode) [OH_AVMemory_Destroy](#oh_avmemory_destroy) (struct [OH_AVMemory](#oh_avmemory) \*mem) | 释放OH_AVMemory实例指针的资源。（API11废弃） | 
 
 
 ## 类型定义说明
