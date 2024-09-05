@@ -127,7 +127,7 @@ module.json5配置文件包含以下标签。
 | [abilities](#abilities标签) | 标识当前Module中UIAbility的配置信息，只对当前UIAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [extensionAbilities](#extensionabilities标签) | 标识当前Module中ExtensionAbility的配置信息，只对当前ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [definePermissions](#definepermissions标签) | 标识系统资源hap定义的权限，不支持应用自定义权限。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| [requestPermissions（../security/AccessToken/declare-permissions.md#在配置文件中声明权限）](#requestpermissions标签) | 标识当前应用运行时需向系统申请的权限集合。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| [requestPermissions]（../security/AccessToken/declare-permissions.md#在配置文件中声明权限）| 标识当前应用运行时需向系统申请的权限集合。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [testRunner](#testrunner标签) | 标识用于测试当前Module的测试框架的配置。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [atomicService](#atomicservice标签)| 标识当前应用是原子化服务时，有关原子化服务的相关配置。| 对象 | 该标签可缺省，缺省值为空。  |
 | [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。  |
