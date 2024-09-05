@@ -264,24 +264,20 @@ export default class EntryAbility extends UIAbility {
     }
 
     onWindowStageCreate(windowStage: window.WindowStage): void {
-        // Main window is created, set main page for this ability
         hilog.info(0x0000, TAG, `onWindowStageCreate`);
         this.windowStage = windowStage;
         this.loadPage(this.windowStage);
     }
 
     onWindowStageDestroy(): void {
-        // Main window is destroyed, release UI related resources
         hilog.info(0x0000, TAG, '%{public}s', 'Ability onWindowStageDestroy');
     }
 
     onForeground(): void {
-        // Ability has brought to foreground
         hilog.info(0x0000, TAG, '%{public}s', 'Ability onForeground');
     }
 
     onBackground(): void {
-        // Ability has back to background
         hilog.info(0x0000, TAG, '%{public}s', 'Ability onBackground');
     }
 }
