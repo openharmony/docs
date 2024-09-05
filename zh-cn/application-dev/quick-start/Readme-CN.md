@@ -16,6 +16,7 @@
       - [HSP](in-app-hsp.md)
       - [动态import](arkts-dynamic-import.md)
       - [延迟加载（lazy import）](arkts-lazy-import.md)
+    - 典型场景的开发指导
       - [集成态HSP](integrated-hsp.md)
       - [HAR转HSP指导](har-to-hsp.md)
       - [HSP转HAR指导](hsp-to-har.md)
