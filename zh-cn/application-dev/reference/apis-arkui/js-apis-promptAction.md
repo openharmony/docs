@@ -717,7 +717,20 @@ Dialog关闭的信息。
 | 名称    | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | dismiss | Callback&lt;void&gt;                                         | 否   | 否   | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
-| reason  | [DismissReason](arkui-ts/ts-appendix-enums.md#dismissreason12) | 否   | 否   | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
+| reason  | [DismissReason](#dismissreason12枚举说明) | 否   | 否   | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
+
+## DismissReason<sup>12+</sup>枚举说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 值   | 描述                                                         |
+| ------------- | ---- | ------------------------------------------------------------ |
+| PRESS_BACK    | 0    | 点击三键back、左滑/右滑、键盘ESC。                           |
+| TOUCH_OUTSIDE | 1    | 点击遮障层时。                                               |
+| CLOSE_BUTTON  | 2    | 点击关闭按钮。                                               |
+| SLIDE_DOWN    | 3    | 下拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](./arkui-ts/ts-universal-attributes-sheet-transition.md)中使用。 |
 
 ## KeyboardAvoidMode<sup>12+</sup>枚举说明
 
