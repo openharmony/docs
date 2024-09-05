@@ -201,7 +201,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 | 名称     | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| success  | (data: [BrightnessModeResponse](#brightnessmoderesponsedeprecated)) => void | 否   | 接口调用成功的回调函数。data为[BrightnessModeResponse](#brightnessmoderesponse)类型的返回值。 |
+| success  | (data: [BrightnessModeResponse](#brightnessmoderesponsedeprecated)) => void | 否   | 接口调用成功的回调函数。data为[BrightnessModeResponse](#brightnessmoderesponsedeprecated)类型的返回值。 |
 | fail     | (data: string, code: number) => void                         | 否   | 接口调用失败的回调函数。data为错误信息，code为错误码。       |
 | complete | () => void                                                   | 否   | 接口调用结束的回调函数。                                     |
 
