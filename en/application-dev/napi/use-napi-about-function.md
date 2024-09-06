@@ -1,4 +1,4 @@
-# Creating and Calling Functions Using Node-API
+# Working with Functions Using Node-API
 
 ## Introduction
 
