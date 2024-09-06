@@ -173,3 +173,54 @@ struct BasketModifier {
 3. 状态管理框架调用\@Watch函数BasketViewer onBasketUpdated 更新BasketViewer TotalPurchase的值；
 
 4. \@Link shopBasket的改变，新增了数组项，ForEach组件会执行item Builder，渲染构建新的Item项；\@State totalPurchase改变，对应的Text组件也重新渲染；重新渲染是异步发生的。
+
+### 使用changedPropertyName进行不同的逻辑处理
+
+以下示例说明了如何在\@Watch函数中使用changedPropertyName进行不同的逻辑处理。
+
+
+```ts
+@Entry
+@Component
+struct UsePropertyName {
+  @State @Watch('countUpdated') apple: number = 0;
+  @State @Watch('countUpdated') cabbage: number = 0;
+  @State fruit: number = 0;
+  // @Watch 回调
+  countUpdated(propName: string): void {
+    if (propName == 'apple') {
+      this.fruit = this.apple;
+    }
+  }
+
+  build() {
+    Column() {
+      Text(`Number of apples: ${this.apple.toString()}`).fontSize(30)
+      Text(`Number of cabbages: ${this.cabbage.toString()}`).fontSize(30)
+      Text(`Total number of fruits: ${this.fruit.toString()}`).fontSize(30)
+      Button('Add apples')
+        .onClick(() => {
+          this.apple++;
+        })
+      Button('Add cabbages')
+        .onClick(() => {
+          this.cabbage++;
+        })
+    }
+  }
+}
+```
+
+处理步骤如下：
+
+1. 点击Button('Add apples')时，apple的值发生变化。
+
+2. 状态管理框架调用\@Watch函数countUpdated，发生变化的状态变量名为apple，满足if逻辑条件，fruit的值被改变；
+
+3. 绑定了apple，fruit状态变量的Text重新渲染。
+
+4. 点击Button('Add cabbages')时，cabbage的值发生变化。
+
+5. 状态管理框架调用\@Watch函数countUpdated，发生变化的状态变量名为cabbage，不满足if逻辑条件，fruit的值不发生变化；
+
+6. 绑定了cabbage状态变量的Text重新渲染。
