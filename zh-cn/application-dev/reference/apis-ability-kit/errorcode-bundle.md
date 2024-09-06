@@ -771,6 +771,22 @@ Failed to uninstall updates because the HAP is not pre-installed.
 **处理步骤**<br/>
 确认指定的应用是否为预置应用。
 
+## 17700058 指定的应用禁止在本设备或指定用户下安装
+
+**错误信息**<br/>
+Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.
+
+**错误描述**<br/>
+指定的应用禁止在本设备或指定用户下安装。
+
+**可能原因**<br/>
+1. 当前使用的设备是洗白机。
+2. 指定的应用不支持在指定的用户下安装。
+
+**处理步骤**<br/>
+1. 确认使用的设备是否是洗白机。
+2. 将指定的应用安装在其他用户下。
+
 ## 17700059 指定的开发者ID不存在
 
 **错误信息**<br/>
