@@ -555,16 +555,6 @@
 | LongPress  | 通过长按触发菜单弹出。   |
 | RightClick | 通过鼠标右键触发菜单弹出。 |
 
-## RichEditorResponseType<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称         | 描述            |
-| ---------- | ------------- |
-| LONG_PRESS  | 通过长按触发菜单弹出。   |
-| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
-| SELECT | 通过鼠标选中触发菜单弹出。 |
-
 ## HoverEffect<sup>8+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -783,17 +773,6 @@ Nullable\<T> {
 | ----------- | ------------------------------ |
 | FIT_CONTENT | 设置该值时，下拉菜单宽度按默认2栅格显示。            |
 | FIT_TRIGGER | 设置下拉菜单继承下拉按钮宽度。 |
-
-## SelectionMenuOptions<sup>11+</sup>
-
-范围信息。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称 | 类型  | 只读 | 必填  | 描述                               |
-| ------ | ------ | ------ | ------ | -------------------------------------- |
-| onAppear | [MenuOnAppearCallback](ts-basic-components-richeditor.md#menuonappearcallback12) | 否 | 否 | 自定义选择菜单弹出时回调。 |
-| onDisappear | () => void | 否 | 否 | 自定义选择菜单关闭时回调。 |
 
 ## DismissReason<sup>12+</sup>
 
