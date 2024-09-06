@@ -1,5 +1,5 @@
 # HAR转HSP指导
-目前HAR的使用存在打包多份，包膨胀的问题，导致整体应用包的体积很大，HSP可以很好地解决该问题，本文介绍了HAR转HSP的步骤。
+目前HAR的使用存在打包多份，包膨胀的问题，导致整体应用包的体积很大，HSP可以很好地解决该问题，本文介绍了HAR转HSP的步骤，主要是通过配置项的变更将HAR工程变成HSP工程。
 ## HAR转HSP的操作步骤
 
 1. 修改HAR模块下的module.json5文件，修改type字段为shared，新增deliveryWithInstall字段。
