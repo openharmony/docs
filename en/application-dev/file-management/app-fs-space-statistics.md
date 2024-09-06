@@ -27,13 +27,13 @@ For details about the APIs, see [ohos.file.statvfs](../reference/apis-core-file-
 - Obtain the free space of **/data** of the file system.
     
   ```ts
-  import statvfs from '@ohos.file.statvfs';
-  import { BusinessError } from '@ohos.base';
-  import common from '@ohos.app.ability.common';
+  import { statfs } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
   
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
-  statvfs.getFreeSize(path, (err: BusinessError, number: number) => {
+  statfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
       console.error(`Invoke getFreeSize failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -45,8 +45,8 @@ For details about the APIs, see [ohos.file.statvfs](../reference/apis-core-file-
 - Obtain the space occupied by the current application.
     
   ```ts
-  import storageStatistics from "@ohos.file.storageStatistics";
-  import { BusinessError } from '@ohos.base';
+  import { storageStatistics } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   storageStatistics.getCurrentBundleStats((err: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (err) {
