@@ -1265,6 +1265,64 @@ async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): P
 
 拍照会话中使用的输出信息，继承[CameraOutput](js-apis-camera.md#cameraoutput)。
 
+### burstCapture<sup>12+</sup>
+
+burstCapture()
+
+开始连续拍照，一般用于拍照模式下，开始后底层持续上图，可以通过confirmCapture取消连拍。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名  | 类型                                        | 必填 | 说明     |
+| ------- | ------------------------------------------- | ---- | -------- |
+| setting | [PhotoCaptureSetting](#photocapturesetting) | 是   | 拍照设置，传入undefined类型数据按默认无参处理。 |
+
+**返回值：**
+
+| 类型            | 说明                      |
+| -------------- | ------------------------   |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
+| 7400101         |  Parameter missing or parameter type incorrect.          |
+| 7400104         |  Session not running.          |
+| 7400201         |  Camera service fatal error.   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function burstCapture(photoOutput: camera.PhotoOutput): void {
+  let captureLocation: camera.Location = {
+    latitude: 0,
+    longitude: 0,
+    altitude: 0
+  }
+  let settings: camera.PhotoCaptureSetting = {
+    quality: camera.QualityLevel.QUALITY_LEVEL_LOW,
+    rotation: camera.ImageRotation.ROTATION_0,
+    location: captureLocation,
+    mirror: false
+  }
+  photoOutput.burstCapture(settings).then(() => {
+    console.info('Promise returned to indicate that photo burstCapture request success.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to photo output burstCapture, error code: ${error.code}.`);
+  });
+}
+```
+
 ### confirmCapture<sup>11+</sup>
 
 confirmCapture()
