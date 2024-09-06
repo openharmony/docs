@@ -1279,7 +1279,7 @@ burstCapture()
 
 | 参数名  | 类型                                        | 必填 | 说明     |
 | ------- | ------------------------------------------- | ---- | -------- |
-| setting | [PhotoCaptureSetting](#photocapturesetting) | 是   | 拍照设置，传入undefined类型数据按默认无参处理。 |
+| setting | [PhotoCaptureSetting](js-apis-camera.md#photocapturesetting) | 是   | 拍照设置，传入undefined类型数据按默认无参处理。 |
 
 **返回值：**
 
