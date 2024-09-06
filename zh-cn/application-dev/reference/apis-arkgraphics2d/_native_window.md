@@ -369,6 +369,7 @@ int32_t OH_NativeWindow_SetColorSpace (OHNativeWindow *window, OH_NativeBuffer_C
 **描述**
 
 为OHNativeWindow设置颜色空间属性。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -395,6 +396,7 @@ int32_t OH_NativeWindow_SetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 **描述**
 
 为OHNativeWindow设置元数据属性值。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -422,6 +424,7 @@ int32_t OH_NativeWindow_GetColorSpace (OHNativeWindow *window, OH_NativeBuffer_C
 **描述**
 
 获取OHNativeWindow颜色空间属性。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -448,6 +451,7 @@ int32_t OH_NativeWindow_GetMetadataValue (OHNativeWindow *window, OH_NativeBuffe
 **描述**
 
 获取OHNativeWindow元数据属性值。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -476,6 +480,7 @@ int32_t OH_NativeWindow_WriteToParcel (OHNativeWindow *window, OHIPCParcel *parc
 **描述**
 
 将窗口对象写入IPC序列化对象中。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -502,6 +507,7 @@ int32_t OH_NativeWindow_ReadFromParcel (OHIPCParcel *parcel, OHNativeWindow **wi
 **描述**
 
 从IPC序列化对象中读取窗口对象。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -529,6 +535,8 @@ int32_t OH_NativeWindow_GetLastFlushedBufferV2 (OHNativeWindow *window, OHNative
 **描述**
 
 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer, 与OH_NativeWindow_GetLastFlushedBuffer的差异在于matrix不同。
+本接口需要与OH_NativeWindow_NativeObjectUnreference接口配合使用，否则会存在内存泄露。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -556,6 +564,7 @@ void OH_NativeWindow_SetBufferHold (OHNativeWindow *window)
 ```
 **描述**
 提前缓存一帧buffer，且缓存的这一帧延迟一帧上屏显示，以此抵消后续一次超长帧丢帧。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -607,6 +616,8 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer (
 **描述**
 
 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。
+本接口需要与OH_NativeWindow_DestroyNativeWindowBuffer接口配合使用，否则会存在内存泄露。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -661,6 +672,11 @@ int32_t OH_NativeWindow_CreateNativeWindowFromSurfaceId (uint64_t surfaceId, OHN
 **描述**
 
 通过surfaceId创建对应的OHNativeWindow。
+本接口需要与OH_NativeWindow_DestroyNativeWindow接口配合使用，否则会存在内存泄露。
+如果存在并发释放OHNativeWindow的情况，需要通过OH_NativeWindow_NativeObjectReference和
+OH_NativeWindow_NativeObjectUnreference对OHNativeWindow进行引用计数加一和减一。
+通过surfaceId获取的surface需要是在本进程中创建的，不能跨进程获取surface。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -687,6 +703,7 @@ void OH_NativeWindow_DestroyNativeWindow (OHNativeWindow* window)
 **描述**
 
 将OHNativeWindow对象的引用计数减1，当引用计数为0的时候，该OHNativeWindow对象会被析构掉。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -708,6 +725,7 @@ void OH_NativeWindow_DestroyNativeWindowBuffer (OHNativeWindowBuffer* buffer)
 **描述**
 
 将OHNativeWindowBuffer对象的引用计数减1，当引用计数为0的时候，该OHNativeWindowBuffer对象会被析构掉。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -729,6 +747,7 @@ BufferHandle* OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer* b
 **描述**
 
 通过OHNativeWindowBuffer获取该buffer的BufferHandle指针。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -786,6 +805,7 @@ int32_t OH_NativeWindow_GetNativeObjectMagic (void *obj)
 **描述**
 
 获取NativeObject的MagicId。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -811,6 +831,7 @@ int32_t OH_NativeWindow_GetSurfaceId (OHNativeWindow *window, uint64_t *surfaceI
 **描述**
 
 通过OHNativeWindow获取对应的surfaceId。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -837,6 +858,8 @@ int32_t OH_NativeWindow_NativeObjectReference (void *obj)
 **描述**
 
 增加一个NativeObject的引用计数。
+本接口需要与OH_NativeWindow_NativeObjectUnreference接口配合使用，否则会存在内存泄露。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -862,6 +885,7 @@ int32_t OH_NativeWindow_NativeObjectUnreference (void *obj)
 **描述**
 
 减少一个NativeObject的引用计数，当引用计数减少为0时，该NativeObject将被析构掉。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -887,6 +911,7 @@ int32_t OH_NativeWindow_NativeWindowAbortBuffer (OHNativeWindow *window, OHNativ
 **描述**
 
 通过OHNativeWindow将之前申请出来的OHNativeWindowBuffer返还到Buffer队列中，供下次再申请。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -912,6 +937,8 @@ int32_t OH_NativeWindow_NativeWindowAttachBuffer (OHNativeWindow *window, OHNati
 **描述**
 
 将OHNativeWindowBuffer添加进OHNativeWindow中。
+本接口需要与OH_NativeWindow_NativeWindowDetachBuffer接口配合使用，否则会存在内存管理混乱问题。
+本接口为非线程安全类型接口
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -938,6 +965,7 @@ int32_t OH_NativeWindow_NativeWindowDetachBuffer (OHNativeWindow *window, OHNati
 **描述**
 
 将OHNativeWindowBuffer从OHNativeWindow中分离。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -964,6 +992,8 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *window, OHNativ
 **描述**
 
 通过OHNativeWindow将生产好内容的OHNativeWindowBuffer放回到Buffer队列中，用以内容消费。
+系统会将fenFd关闭，无需用户close。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -992,6 +1022,7 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow *window, int code,
 **描述**
 
 设置/获取OHNativeWindow的属性，包括设置/获取宽高、内容格式等。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -1019,6 +1050,10 @@ int32_t OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow *window, OHNat
 **描述**
 
 通过OHNativeWindow对象申请一块OHNativeWindowBuffer，用以内容生产。
+在调用本接口前，需要通过SET_BUFFER_GEOMETRY对OHNativeWindow设置宽高。
+本接口需要与OH_NativeWindow_NativeWindowFlushBuffer接口配合使用，否则内存会耗尽。
+当fenceFd使用完，用户需要将其close。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -1134,6 +1169,7 @@ int32_t OH_NativeWindow_NativeWindowSetScalingModeV2 (OHNativeWindow* window, OH
 ```
 **描述**
 设置OHNativeWindow的渲染缩放模式。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
