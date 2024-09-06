@@ -7,6 +7,7 @@
     - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-app-ability-abilityLifecycleCallback.md)
     - [@ohos.app.ability.AbilityStage (AbilityStage)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)](js-apis-app-ability-actionExtensionAbility.md)
+    - [@ohos.app.ability.application (Application)](js-apis-app-ability-application.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
     - [@ohos.app.ability.AtomicServiceOptions (Optional Start Options of EmbeddableUIAbilities)](js-apis-app-ability-atomicServiceOptions.md)
     - [@ohos.app.ability.autoFillManager (autoFillManager)](js-apis-app-ability-autoFillManager.md)
@@ -38,6 +39,7 @@
     - [@ohos.app.appstartup.StartupTask](js-apis-app-appstartup-startupTask.md)
     <!--Del-->
     - [@ohos.app.ability.AbilityConstant (AbilityConstant) (System API)](js-apis-app-ability-abilityConstant-sys.md)
+    - [@ohos.app.ability.application (Application) (System API)](js-apis-app-ability-application-sys.md)
     - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility) (System API)](js-apis-app-ability-autoFillExtensionAbility-sys.md)
     - [@ohos.app.ability.autoStartupManager (autoStartupManager) (System API)](js-apis-app-ability-autoStartupManager-sys.md)
     - [@ohos.app.ability.common (Context) (System API)](js-apis-app-ability-common-sys.md)
@@ -46,6 +48,7 @@
     - [@ohos.app.ability.insightIntentDriver (Executing InsightIntent Calls) (System API)](js-apis-app-ability-insightIntentDriver-sys.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility) (System API)](js-apis-app-ability-serviceExtensionAbility-sys.md)
     - [@ohos.app.ability.StartOptions (StartOptions) (System API)](js-apis-app-ability-startOptions-sys.md)
+    - [@ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility) (System API)](js-apis-app-ability-uiServiceExtensionAbility-sys.md)
     - [@ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI) (System API)](js-apis-app-ability-uiExtensionContentSession-sys.md)
     <!--DelEnd-->
   - FA Model
@@ -126,6 +129,8 @@
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
+      - [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md)
+      - [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)
       - [PhotoEditorExtensionContext](js-apis-app-ability-photoEditorExtensionContext.md)
       - [SendableContext](js-apis-inner-application-sendableContext.md)
       <!--Del-->
@@ -160,6 +165,8 @@
       - [PageNodeInfo (System API)](js-apis-inner-application-pageNodeInfo-sys.md)
       - [ProcessData (System API)](js-apis-inner-application-processData-sys.md)
       - [ServiceExtensionContext (System API)](js-apis-inner-application-serviceExtensionContext-sys.md)
+      - [UIServiceExtensionContext (System API)](js-apis-inner-application-uiserviceExtensionContext-sys.md)
+      - [UIServiceHostProxy (System API)](js-apis-inner-application-uiservicehostproxy-sys.md)
       - [UIAbilityContext (System API)](js-apis-inner-application-uiAbilityContext-sys.md)
       - [UIExtensionContext (System API)](js-apis-inner-application-uiExtensionContext-sys.md)
       - [ViewData (System API)](js-apis-inner-application-viewData-sys.md)
@@ -247,6 +254,7 @@
     - [native_child_process.h](native__child__process_8h.md)
   - Structs
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
+    - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
 - Result Codes
   - [Ability Error Codes](errorcode-ability.md)
   - [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md)
