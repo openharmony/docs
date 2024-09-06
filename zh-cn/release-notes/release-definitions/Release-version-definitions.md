@@ -41,6 +41,8 @@ OpenHarmony目前已发布的LTS/Release分支的维护时间表如下:
 | 3.0-LTS       | LTS      | 2021-9-30 | 2023-9-30    | 2025-3-30 |
 | 3.1-Release   | Release  | 2022-3-30 | 2023-3-30    | 2024-3-30 |
 | 3.2-Release   | Release  | 2023-4-9 | 2024-4-9    | 2025-4-9 |
+| 4.0-Release   | Release  | 2023-10-26 | 2025-10-26    | 2026-10-26 |
+| 4.1-Release   | Release  | 2024-3-30 | 2025-3-30    | 2026-3-30 |
 
 分支下载命令如下：
 
@@ -50,6 +52,8 @@ OpenHarmony目前已发布的LTS/Release分支的维护时间表如下:
 | 3.0-LTS       | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.0-LTS --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.0-LTS --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' |
 | 3.1-Release   | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.1-Release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' |
 | 3.2-Release   | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-3.2-Release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' |
+| 4.0-Release   | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-4.0-Release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-4.0-Release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' |
+| 4.1-Release   | repo init -u https://gitee.com/openharmony/manifest.git -b OpenHarmony-4.1-Release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' | repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-4.1-Release -m default.xml --no-repo-verify<br/>repo sync -c<br/>repo forall -c 'git lfs pull' |
 
 
 
