@@ -112,7 +112,7 @@ bool Telephony_NetworkState::isCaActive_
 
 **Description**
 
-CA status.
+Whether Carrier Aggregation (CA) is active.
 
 ### isEmergency_
 
