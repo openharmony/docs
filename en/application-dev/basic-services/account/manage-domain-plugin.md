@@ -77,7 +77,7 @@ The domain account plugin prototype is [DomainPlugin](../../reference/apis-basic
          message: "mock_message"
        };
        let domainStr: string = '';
-       if (options.domain != undefine) {
+       if (options.domain != undefined) {
         domainStr = options.domain
        }
        let accountInfo: osAccount.DomainAccountInfo = {
