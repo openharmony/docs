@@ -15,6 +15,8 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 设置一个定时器，该定时器在定时器到期后执行一个函数。  
 该定时器在回调被执行后自动删除，或使用clearTimeout接口手动删除。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -48,6 +50,8 @@ clearTimeout(timeoutID?: number): void
 
 定时器对象保存在创建它的线程内，删除定时器需要在创建该定时器的线程删除。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -72,6 +76,8 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 
 重复调用一个函数，在每次调用之间具有固定的时间延迟。
 删除该定时器需手动调用clearInterval接口。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -105,6 +111,8 @@ clearInterval(intervalID?: number): void
 可取消通过setInterval()设置的重复定时任务。
 
 定时器对象保存在创建它的线程内，删除定时器需要在创建该定时器的线程删除。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
