@@ -119,7 +119,7 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types;  3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例1：**
 
@@ -742,7 +742,7 @@ addRecord(mimeType: string, value: ValueType): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900002 | The number of records exceeds the upper limit. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1569,7 +1569,7 @@ systemPasteboard.setData(pasteData).then((data: void) => {
 
 ### getData<sup>9+</sup>
 
-getData( callback: AsyncCallback&lt;PasteData&gt;): void
+getData(callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
 
@@ -1591,7 +1591,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
@@ -2100,7 +2100,7 @@ hasDataType(mimeType: string): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12900005 | Request timed out. |
 
 **示例：**
