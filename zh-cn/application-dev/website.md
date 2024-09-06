@@ -21,6 +21,7 @@
         - [集成态HSP](quick-start/integrated-hsp.md)
         - [HAR转HSP指导](quick-start/har-to-hsp.md)
         - [HSP转HAP指导](quick-start/hsp-to-har.md)
+        - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
     - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
