@@ -11,6 +11,7 @@ fdsan provides functions to associate a file descriptor with an owner and enforc
 A tag is of 64 bits, consisting of the following:
 
 - **type**: an 8-bit string indicating how a file descriptor is encapsulated for management. For example, **FDSAN_OWNER_TYPE_FILE** indicates that the file descriptor is managed as a handle to a file. The value of **type** is defined in **fdsan_owner_type**.
+
 - **value**: a 56-bit string uniquely identifying a tag.
 
  **Figure** Tag
@@ -34,9 +35,9 @@ enum fdsan_error_level fdsan_set_error_level(enum fdsan_error_level new_level);
 | Value                      | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ |
 | `FDSAN_ERROR_LEVEL_DISABLED` | fdsan is disabled, that is, no processing is performed.                        |
-| `FDSAN_ERROR_LEVEL_WARN_ONCE` | Give a warning in HiLog only when the error is detected for the first time and then continue execution with fdsan disabled (**FDSAN_ERROR_LEVEL_DISABLED**). |
-| `FDSAN_ERROR_LEVEL_WARN_ALWAYS` | Give a warning in HiLog only each time the error is detected. |
-| `FDSAN_ERROR_LEVEL_FATAL` | Call **abort** to terminate the process when the error is detected. |
+| `FDSAN_ERROR_LEVEL_WARN_ONCE` | Give a warning in HiLog only when the error is detected for the first time and then continue execution with fdsan disabled (**FDSAN_ERROR_LEVEL_DISABLED**).|
+| `FDSAN_ERROR_LEVEL_WARN_ALWAYS` | Give a warning in HiLog only each time the error is detected.|
+| `FDSAN_ERROR_LEVEL_FATAL` | Call **abort** to terminate the process when the error is detected.|
 
 **Return value**<br>Old **error_level**.
 
@@ -54,18 +55,18 @@ enum fdsan_error_level fdsan_get_error_level();
 ```
 uint64_t fdsan_create_owner_tag(enum fdsan_owner_type type, uint64_t tag);
 ```
-**Description**<br>Creates a tag for an file descriptor.
+**Description**<br>Creates a tag for a file descriptor.
 
 **Parameters**<br>**fdsan_owner_type**
 
 | Value                      | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ |
 | `FDSAN_OWNER_TYPE_GENERIC_00` | Default type.    |
-| `FDSAN_OWNER_TYPE_GENERIC_FF` | Default type for invalid file descriptors. |
-| `FDSAN_OWNER_TYPE_FILE` | Type for a file, which can be opened by using **fopen()** or **fdopen()**. |
-| `FDSAN_OWNER_TYPE_DIRECTORY` | Type for a directory, which can be opened by using **opendir** or **fdopendir**. |
-| `FDSAN_OWNER_TYPE_UNIQUE_FD` | Type for **unique_fd**. This value is reserved. |
-| `FDSAN_OWNER_TYPE_ZIPARCHIVE` | Type for a .zip file. This value is reserved. |
+| `FDSAN_OWNER_TYPE_GENERIC_FF` | Default type for invalid file descriptors.|
+| `FDSAN_OWNER_TYPE_FILE` | Type for a file, which can be opened by using **fopen()** or **fdopen()**.|
+| `FDSAN_OWNER_TYPE_DIRECTORY` | Type for a directory, which can be opened by using **opendir** or **fdopendir**.|
+| `FDSAN_OWNER_TYPE_UNIQUE_FD` | Type for **unique_fd**. This value is reserved.|
+| `FDSAN_OWNER_TYPE_ZIPARCHIVE` | Type for a .zip file. This value is reserved.|
 
 **Return value**<br>Created tag, which can be used as an input of **fdsan_exchange_owner_tag**.
 
@@ -84,7 +85,7 @@ If the value of **close_tag** is not the same as that of **expected_tag**, an er
 
 | Name                      | Type              | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `fd` | int | File descriptor, which serves as an index of **FdEntry**. |
+| `fd` | int | File descriptor, which serves as an index of **FdEntry**.|
 | `expected_tag` | uint64_t | Expected value of the tag.    |
 | `new_tag` | uint64_t | New value of the tag.  |
 
@@ -103,7 +104,7 @@ Locate the **FdEntry** based on the file descriptor. If **close_tag** is the sam
 
 | Name                      | Type              | Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `fd` | int | File descriptor to close. |
+| `fd` | int | File descriptor to close.|
 | `tag` | uint64_t | Expected tag.    |
 
 **Return value**<br>Returns **0** if the file descriptor is closed; returns **-1** otherwise.
@@ -199,7 +200,7 @@ int main()
     return 0;
 }
 ```
-In this example, **goog_write** is used to open a file and write data to it; **bad_close** is used to open a file and trigger a double-close problem. If the two threads run at the same time, the application execution is as follows:
+In this example, **good_write** is used to open a file and write data to it; **bad_close** is used to open a file and trigger a double-close problem. If the two threads run at the same time, the application execution is as follows:
 
 ![](./figures/fdsan-error-2.png)
 
