@@ -3755,7 +3755,7 @@ Scroll Test
 ```
 ### scrollByWithResult<sup>12+</sup>
 
-scrollByWithResult(deltaX:number, deltaY:number): boolean
+scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 将页面滚动指定的偏移量，返回值表示此次滚动是否执行成功。
 
@@ -3781,6 +3781,7 @@ scrollByWithResult(deltaX:number, deltaY:number): boolean
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 > **说明：**
 >
@@ -7660,7 +7661,7 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
     // 恢复应用内播放器的状态信息。
   }
 
-  suspendPlayer(type: SuspendType) {
+  suspendPlayer(type: webview.SuspendType) {
     // 记录应用内播放器的状态信息。
     // 销毁应用内播放器。
   }
