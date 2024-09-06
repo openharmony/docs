@@ -685,7 +685,7 @@ DigitIndicator的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名              | 参数类型                                     | 必填项  | 参数描述                                     |
+| 名称              | 类型                                     | 必填  | 说明                                     |
 | ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | showBackground   | boolean                                  | 否    | 设置箭头底板是否显示。<br/>默认值：false                |
 | isSidebarMiddle  | boolean                                  | 否    | 设置箭头显示位置。<br/>默认值：false <br/>默认显示在导航点指示器两侧。 |
