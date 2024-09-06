@@ -22,9 +22,9 @@ import { systemSoundManager } from '@kit.AudioKit';
 | Name                                     | Value  | Description     |
 |------------------------------------------|-----|---------|
 | TONE_CATEGORY_RINGTONE<sup>12+</sup>     | 1   | Ringtone.  |
-| TONE_CATEGORY_TEXT_MESSAGE<sup>12+</sup> | 2   | SMS alert tone. |
-| TONE_CATEGORY_NOTIFICATION<sup>12+</sup> | 4   | Notification alert tone. |
-| TONE_CATEGORY_ALARM<sup>12+</sup>        | 8   | Alarm alert tone. |
+| TONE_CATEGORY_TEXT_MESSAGE<sup>12+</sup> | 2   | SMS alert tone.|
+| TONE_CATEGORY_NOTIFICATION<sup>12+</sup> | 4   | Notification alert tone.|
+| TONE_CATEGORY_ALARM<sup>12+</sup>        | 8   | Alarm alert tone.|
 
 ## RingtoneType
 
@@ -36,9 +36,9 @@ Enumerates the ringtone types.
 
 | Name                           | Value | Description                                                                    |
 | ------------------------------- |----|------------------------------------------------------------------------|
-| RINGTONE_TYPE_DEFAULT<sup>(deprecated)</sup>           | 0  | Default ringtone type.<br>This enumerated value is deprecated since API version 11. You are advised to use **RINGTONE_TYPE_SIM_CARD_0** instead. |
+| RINGTONE_TYPE_DEFAULT<sup>(deprecated)</sup>           | 0  | Default ringtone type.<br> This enumerated value is deprecated since API version 11. You are advised to use **RINGTONE_TYPE_SIM_CARD_0** instead.|
 | RINGTONE_TYPE_SIM_CARD_0<sup>11+</sup> | 0  | Ringtone of SIM card 1.                                                             |
-| RINGTONE_TYPE_MULTISIM<sup>(deprecated)</sup>          | 1  | Multi-SIM ringtone type.<br>This enumerated value is deprecated since API version 11. You are advised to use **RINGTONE_TYPE_SIM_CARD_1** instead. |
+| RINGTONE_TYPE_MULTISIM<sup>(deprecated)</sup>          | 1  | Multi-SIM ringtone type.<br> This enumerated value is deprecated since API version 11. You are advised to use **RINGTONE_TYPE_SIM_CARD_1** instead.|
 | RINGTONE_TYPE_SIM_CARD_1<sup>11+</sup> | 1  | Ringtone of SIM card 2.                                                             |
 
 ## SystemToneType<sup>11+</sup>
@@ -51,8 +51,8 @@ Enumerates the system alert tone types.
 
 | Name                           | Value  | Description        |
 | ------------------------------- |-----|------------|
-| SYSTEM_TONE_TYPE_SIM_CARD_0     | 0   | SMS alert tone of SIM card 1. |
-| SYSTEM_TONE_TYPE_SIM_CARD_1     | 1   | SMS alert tone of SIM card 2. |
+| SYSTEM_TONE_TYPE_SIM_CARD_0     | 0   | SMS alert tone of SIM card 1.|
+| SYSTEM_TONE_TYPE_SIM_CARD_1     | 1   | SMS alert tone of SIM card 2.|
 | SYSTEM_TONE_TYPE_NOTIFICATION   | 32  | Notification alert tone.    |
 
 
@@ -66,8 +66,8 @@ Enumerates the tone customization types.
 
 | Name                        | Value  | Description        |
 | ----------------------------|-----|------------|
-| PRE_INSTALLED<sup>12+</sup> | 0   | Preinstalled tone. |
-| CUSTOMIZED<sup>12+</sup>    | 1   | Customized tone. |
+| PRE_INSTALLED<sup>12+</sup> | 0   | Preinstalled tone.|
+| CUSTOMIZED<sup>12+</sup>    | 1   | Customized tone.|
 
 ## ToneAttrs<sup>12+</sup>
 
@@ -87,7 +87,7 @@ Obtains the title of this tone.
 
 | Type   | Description |
 |--------|-----|
-| string | Title. |
+| string | Title.|
 
 **Error codes**
 
@@ -113,13 +113,13 @@ Sets the title for this tone.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description         |
+| Name | Type   | Mandatory| Description         |
 | -------| -------| ---- | ------------|
 | title  | string | Yes  | Title.  |
 
 **Error codes**
 
-| ID | Error Message             |
+| ID| Error Message             |
 |-------| -------------------- |
 | 202   | Caller is not a system application. |
 | 401   | The parameters check failed. |
@@ -146,11 +146,11 @@ Obtains the file name of this tone.
 
 | Type   | Description  |
 |--------|------|
-| string | File name. |
+| string | File name.|
 
 **Error codes**
 
-| ID | Error Message             |
+| ID| Error Message             |
 |---------| -------------------- |
 | 202     | Caller is not a system application. |
 
@@ -173,13 +173,13 @@ Sets the file name for this tone.
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description        |
+| Name| Type   | Mandatory| Description        |
 | ------| -------|-----| ------------|
-| name  | string | Yes  | File name. |
+| name  | string | Yes  | File name.|
 
 **Error codes**
 
-| ID | Error Message             |
+| ID| Error Message             |
 |-------| -------------------- |
 | 202   | Caller is not a system application. |
 | 401   | The parameters check failed. |
@@ -206,11 +206,11 @@ Obtains the URI of this tone.
 
 | Type   | Description                                                     |
 |--------|---------------------------------------------------------|
-| string | URI, for example, **'/data/storage/el2/base/RingTone/alarms/test.ogg'**. |
+| string | URI, for example, **'/data/storage/el2/base/RingTone/alarms/test.ogg'**.|
 
 **Error codes**
 
-| ID | Error Message             |
+| ID| Error Message             |
 |---------| -------------------- |
 | 202     | Caller is not a system application. |
 
@@ -234,7 +234,7 @@ Obtains the tone customization type.
 
 | Type                                        | Description     |
 |--------------------------------------------|---------|
-| [ToneCustomizedType](#tonecustomizedtype12) | Tone customization type. |
+| [ToneCustomizedType](#tonecustomizedtype12) | Tone customization type.|
 
 **Error codes**
 
@@ -260,13 +260,13 @@ Sets a category for this tone.
 
 **Parameters**
 
-| Name     | Type     | Mandatory | Description      |
+| Name     | Type     | Mandatory| Description      |
 |----------| ---------| ---- |----------|
 | category | number   | Yes  | Category of the tone. For details, see [Constants](#constants). |
 
 **Error codes**
 
-| ID | Error Message             |
+| ID| Error Message             |
 |-------| -------------------- |
 | 202   | Caller is not a system application. |
 | 401   | The parameters check failed. |
@@ -293,7 +293,7 @@ Obtains the category of this tone.
 
 | Type   | Description    |
 |--------|--------|
-| number | Category of the tone. For details, see [Constants](#constants). |
+| number | Category of the tone. For details, see [Constants](#constants).|
 
 **Error codes**
 
@@ -318,7 +318,7 @@ Defines an array of tone attributes.
 
 | Type                                    | Description     |
 |----------------------------------------|---------|
-| Array&lt;[ToneAttrs](#toneattrs12)&gt; | Array of tone attributes. |
+| Array&lt;[ToneAttrs](#toneattrs12)&gt; | Array of tone attributes.|
 
 ## systemSoundManager.createCustomizedToneAttrs<sup>12+</sup>
 
@@ -334,7 +334,7 @@ Creates customized tone attributes.
 
 | Type                       | Description        |
 |---------------------------| ------------ |
-| [ToneAttrs](#toneattrs12) | Class for tone attributes. |
+| [ToneAttrs](#toneattrs12) | Class for tone attributes.|
 
 **Error codes**
 
@@ -348,6 +348,18 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 ```ts
 let toneAttrs: systemSoundManager.ToneAttrs = systemSoundManager.createCustomizedToneAttrs();
 ```
+## ToneHapticsFeature<sup>12+</sup>
+
+Enumerates the haptics styles for system ringtones.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+| Name                         | Value| Description                |
+| ----------------------------- | -- | -------------------- |
+| STANDARD| 0  | Standard haptics style.|
+| GENTLE   | 1  | Gentle haptics style.|
 
 ## systemSoundManager.getSystemSoundManager
 
@@ -363,7 +375,7 @@ Obtains a system sound manager.
 
 | Type                         | Description        |
 | ----------------------------- | ------------ |
-| [SystemSoundManager](#systemsoundmanager) | System sound manager obtained. |
+| [SystemSoundManager](#systemsoundmanager) | System sound manager obtained.|
 
 **Example**
 ```ts
@@ -390,10 +402,10 @@ Sets a URI for a system ringtone. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory | Description                    |
+| Name  | Type                                     | Mandatory| Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | Yes  | Application context.          |
-| uri      | string                                   | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9). |
+| uri      | string                                   | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [RingtoneType](#ringtonetype)            | Yes  | Type of the system ringtone.    |
 | callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.    |
 
@@ -433,10 +445,10 @@ Sets a URI for a system ringtone. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory | Description                    |
+| Name  | Type                                     | Mandatory| Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | Yes  | Application context.        |
-| uri      | string                                   | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9). |
+| uri      | string                                   | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [RingtoneType](#ringtonetype)            | Yes  | Type of the system ringtone.  |
 
 **Return value**
@@ -479,11 +491,11 @@ Obtains the URI of a system ringtone. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name  | Type                                                                   | Mandatory | Description                    |
+| Name  | Type                                                                   | Mandatory| Description                    |
 | -------- |-----------------------------------------------------------------------| ---- | ------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | Yes  | Application context.        |
 | type     | [RingtoneType](#ringtonetype)                                         | Yes  | Type of the system ringtone.   |
-| callback | AsyncCallback&lt;string&gt;                                           | Yes  | Callback used to return the URI obtained. |
+| callback | AsyncCallback&lt;string&gt;                                           | Yes  | Callback used to return the URI obtained.|
 
 **Example**
 
@@ -520,7 +532,7 @@ Obtains the URI of a system ringtone. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name  | Type                                                                  | Mandatory | Description                    |
+| Name  | Type                                                                  | Mandatory| Description                    |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | Yes  | Application context.        |
 | type     | [RingtoneType](#ringtonetype)                                        | Yes  | Type of the system ringtone.  |
@@ -529,7 +541,7 @@ Obtains the URI of a system ringtone. This API uses a promise to return the resu
 
 | Type               | Description                               |
 | ------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the URI obtained. |
+| Promise&lt;string&gt; | Promise used to return the URI obtained.|
 
 **Example**
 
@@ -564,11 +576,11 @@ Obtains a player to play a system ringtone. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory | Description                        |
+| Name  | Type                                     | Mandatory| Description                        |
 | -------- | -----------------------------------------| ---- | --------------------------- |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | Yes  | Application context.           |
-| type     | [RingtoneType](#ringtonetype)            | Yes  | Type of the system ringtone. |
-| callback | AsyncCallback&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Yes | Callback used to return the player obtained. |
+| type     | [RingtoneType](#ringtonetype)            | Yes  | Type of the system ringtone.|
+| callback | AsyncCallback&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Yes| Callback used to return the player obtained.|
 
 **Example**
 
@@ -607,16 +619,16 @@ Obtains a player to play a system ringtone. This API uses a promise to return th
 
 **Parameters**
 
-| Name  | Type                                                                 | Mandatory | Description                        |
+| Name  | Type                                                                 | Mandatory| Description                        |
 | -------- |---------------------------------------------------------------------| ---- | --------------------------- |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.           |
-| type     | [RingtoneType](#ringtonetype)                                       | Yes  | Type of the system ringtone. |
+| type     | [RingtoneType](#ringtonetype)                                       | Yes  | Type of the system ringtone.|
 
 **Return value**
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise used to return the player obtained. |
+| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise used to return the player obtained.|
 
 **Example**
 
@@ -649,10 +661,10 @@ Sets a URI for a system ringtone. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                           | Mandatory | Description                    |
+| Name  | Type                           | Mandatory| Description                    |
 | -------- |-------------------------------| ---- | ------------------------ |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)            | Yes  | Application context.        |
-| uri      | string                        | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9). |
+| uri      | string                        | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [RingtoneType](#ringtonetype) | Yes  | Type of the system ringtone.  |
 
 **Return value**
@@ -665,7 +677,7 @@ Sets a URI for a system ringtone. This API uses a promise to return the result.
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
@@ -701,7 +713,7 @@ Obtains the URI of a system ringtone. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name  | Type                            | Mandatory | Description                    |
+| Name  | Type                            | Mandatory| Description                    |
 | -------- | -------------------------------| ---- | ------------------------ |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)| Yes  | Application context.        |
 | type     | [RingtoneType](#ringtonetype)  | Yes  | Type of the system ringtone.  |
@@ -710,13 +722,13 @@ Obtains the URI of a system ringtone. This API uses a promise to return the resu
 
 | Type               | Description                               |
 | ------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the URI obtained. |
+| Promise&lt;string&gt; | Promise used to return the URI obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | -------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
@@ -751,22 +763,22 @@ Obtains a player to play a system ringtone. This API uses a promise to return th
 
 **Parameters**
 
-| Name  | Type                             | Mandatory | Description                        |
+| Name  | Type                             | Mandatory| Description                        |
 | -------- | --------------------------------| ---- | --------------------------- |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.           |
-| type     | [RingtoneType](#ringtonetype)   | Yes  | Type of the system ringtone. |
+| type     | [RingtoneType](#ringtonetype)   | Yes  | Type of the system ringtone.|
 
 **Return value**
 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
-| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise used to return the player obtained. |
+| Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise used to return the player obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | -------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
@@ -802,10 +814,10 @@ Sets a URI for a system alert tone. This API uses a promise to return the result
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                    |
+| Name  | Type                                 | Mandatory| Description                    |
 | -------- |-------------------------------------| ---- | ------------------------ |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.        |
-| uri      | string                              | Yes  | URI of the system alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9). |
+| uri      | string                              | Yes  | URI of the system alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [SystemToneType](#systemtonetype11) | Yes  | Type of the system alert tone.  |
 
 **Return value**
@@ -818,7 +830,7 @@ Sets a URI for a system alert tone. This API uses a promise to return the result
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
@@ -854,7 +866,7 @@ Obtains the URI of a system alert tone. This API uses a promise to return the re
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                    |
+| Name  | Type                                 | Mandatory| Description                    |
 | -------- |-------------------------------------| ---- | ------------------------ |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.        |
 | type     | [SystemToneType](#systemtonetype11) | Yes  | Type of the system alert tone.  |
@@ -863,13 +875,13 @@ Obtains the URI of a system alert tone. This API uses a promise to return the re
 
 | Type               | Description                               |
 | ------------------- | ---------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the URI obtained. |
+| Promise&lt;string&gt; | Promise used to return the URI obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
@@ -904,22 +916,22 @@ Obtains a player to play a system alert tone. This API uses a promise to return 
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                        |
+| Name  | Type                                 | Mandatory| Description                        |
 | -------- |-------------------------------------| ---- | --------------------------- |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.           |
-| type     | [SystemToneType](#systemtonetype11) | Yes  | Type of the system alert tone. |
+| type     | [SystemToneType](#systemtonetype11) | Yes  | Type of the system alert tone.|
 
 **Return value**
 
 | Type                                                                                              | Description                           |
 |--------------------------------------------------------------------------------------------------| ------------------------------- |
-| Promise&lt;[SystemTonePlayer](js-apis-inner-multimedia-systemTonePlayer-sys.md#systemtoneplayer)&gt; | Promise used to return the player obtained. |
+| Promise&lt;[SystemTonePlayer](js-apis-inner-multimedia-systemTonePlayer-sys.md#systemtoneplayer)&gt; | Promise used to return the player obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
@@ -955,7 +967,7 @@ Obtains the attributes of the default system ringtone. This API uses a promise t
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                        |
+| Name  | Type                                 | Mandatory| Description                        |
 | -------- |-------------------------------------| ---- | --------------------------- |
 | context  |[BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.           |
 | type     |[RingtoneType](#ringtonetype)        | Yes  | Type of the system ringtone. |
@@ -964,13 +976,13 @@ Obtains the attributes of the default system ringtone. This API uses a promise t
 
 | Type                                      | Description                 |
 |------------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default system ringtone. |
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default system ringtone.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | The parameters check failed. |
@@ -1005,7 +1017,7 @@ Obtains the list of attributes of the default system ringtone. This API uses a p
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                        |
+| Name  | Type                                 | Mandatory| Description                        |
 | -------- |-------------------------------------| ---- | --------------------------- |
 | context  |[BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.           |
 | type     |[RingtoneType](#ringtonetype)        | Yes  | Type of the system ringtone. |
@@ -1014,13 +1026,13 @@ Obtains the list of attributes of the default system ringtone. This API uses a p
 
 | Type                                                | Description                   |
 |----------------------------------------------------|-----------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; |  Promise used to return an array of the attributes of the default system ringtone. |
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; |  Promise used to return an array of the attributes of the default system ringtone.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | The parameters check failed. |
@@ -1055,22 +1067,22 @@ Obtains the attributes of the default system alert tone. This API uses a promise
 
 **Parameters**
 
-| Name  | Type                                                                         | Mandatory | Description                        |
+| Name  | Type                                                                         | Mandatory| Description                        |
 | -------- |-----------------------------------------------------------------------------| ---- | --------------------------- |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.           |
-| type     | [SystemToneType](#systemtonetype11)                                         | Yes  | Type of the system alert tone. |
+| type     | [SystemToneType](#systemtonetype11)                                         | Yes  | Type of the system alert tone.|
 
 **Return value**
 
 | Type                                     | Description                  |
 |-----------------------------------------|----------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default system alert tone. |
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default system alert tone.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | The parameters check failed. |
@@ -1105,7 +1117,7 @@ Obtains the list of attributes of the default system alert tone. This API uses a
 
 **Parameters**
 
-| Name  | Type                                                                         | Mandatory | Description                        |
+| Name  | Type                                                                         | Mandatory| Description                        |
 | -------- |-----------------------------------------------------------------------------| ---- | --------------------------- |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.           |
 | type     | [SystemToneType](#systemtonetype11)                                         | Yes  | Type of the system alert tone. |
@@ -1114,13 +1126,13 @@ Obtains the list of attributes of the default system alert tone. This API uses a
 
 | Type                                               | Description                    |
 |---------------------------------------------------|------------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; |  Promise used to return an array of the attributes of the default system alert tone. |
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; |  Promise used to return an array of the attributes of the default system alert tone.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | The parameters check failed. |
@@ -1155,21 +1167,21 @@ Obtains the attributes of the default alarm alert tone. This API uses a promise 
 
 **Parameters**
 
-| Name  | Type        | Mandatory | Description       |
+| Name  | Type        | Mandatory| Description       |
 | --------|------------| ---- |-----------|
-| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context. |
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.|
 
 **Return value**
 
 | Type                                     | Description                 |
 |-----------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default alarm alert tone. |
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default alarm alert tone.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | The parameters check failed. |
@@ -1203,10 +1215,10 @@ Sets a URI for an alarm alert tone. This API uses a promise to return the result
 
 **Parameters**
 
-| Name  | Type       | Mandatory | Description  |
+| Name  | Type       | Mandatory| Description  |
 | -------- | --------- | ---- |--------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.                                                                          |
-| uri      | string    | Yes  | URI of the alarm alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9). |
+| uri      | string    | Yes  | URI of the alarm alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 
 **Return value**
 
@@ -1243,7 +1255,7 @@ Obtains the URI of an alarm alert tone. This API uses a promise to return the re
 
 **Parameters**
 
-| Name  | Type     | Mandatory | Description             |
+| Name  | Type     | Mandatory| Description             |
 | -------- | --------| ---- |-----------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context. |
 
@@ -1251,7 +1263,7 @@ Obtains the URI of an alarm alert tone. This API uses a promise to return the re
 
 | Type                   | Description                   |
 |-----------------------|-----------------------|
-| Promise&lt;string&gt; | Promise used to return the URI of the alarm alert tone. |
+| Promise&lt;string&gt; | Promise used to return the URI of the alarm alert tone.|
 
 **Example**
 
@@ -1281,7 +1293,7 @@ Obtains the list of attributes of alarm alert tones. This API uses a promise to 
 
 **Parameters**
 
-| Name  | Type           | Mandatory | Description                        |
+| Name  | Type           | Mandatory| Description                        |
 | -------- |--------------| ---- | --------------------------- |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)  | Yes  | Application context.           |
 
@@ -1289,13 +1301,13 @@ Obtains the list of attributes of alarm alert tones. This API uses a promise to 
 
 | Type                                                | Description                  |
 |----------------------------------------------------|----------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise used to return an array of the attributes of the alarm alert tones. |
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise used to return an array of the attributes of the alarm alert tones.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | The parameters check failed. |
@@ -1329,22 +1341,22 @@ Enables an alarm alert tone. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type      | Mandatory | Description                                                                                 |
+| Name  | Type      | Mandatory| Description                                                                                 |
 | -------- | ---------| ---- |-------------------------------------------------------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.                                                                          |
-| uri      | string   | Yes  | URI of the alarm alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9). |
+| uri      | string   | Yes  | URI of the alarm alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 
 **Return value**
 
 | Type                   | Description            |
 |-----------------------|----------------|
-| Promise&lt;number&gt; | Promise used to return the FD. |
+| Promise&lt;number&gt; | Promise used to return the FD.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | The parameters check failed. |
@@ -1380,21 +1392,21 @@ Disables an alarm alert tone. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                          |
+| Name| Type  | Mandatory| Description                                          |
 |-----| --------| ---- |----------------------------------------------|
-| fd  | number  | Yes  | File descriptor, which is obtained through [openAlarmTone](#openalarmtone12). |
+| fd  | number  | Yes  | File descriptor, which is obtained through [openAlarmTone](#openalarmtone12).|
 
 **Return value**
 
 | Type                 | Description            |
 |---------------------|----------------|
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
+| ID| Error Message             |
 | ------- | --------------------- |
 | 202 | Caller is not a system application. |
 | 401 | The parameters check failed. |
@@ -1429,17 +1441,17 @@ Adds a customized tone with a given URI to the tone library. This API uses a pro
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description           |
+| Name| Type       | Mandatory| Description           |
 |-----|-----------| ---- |---------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.    |
 | toneAttr  | ToneAttrs | Yes  | Attributes of the tone.        |
-| externalUri  | string    | Yes  | URI of the tone in the external storage device. |
+| externalUri  | string    | Yes  | URI of the tone in the external storage device.|
 
 **Return value**
 
 | Type                   | Description                     |
 |-----------------------|-------------------------|
-| Promise&lt;string&gt; | Promise used to return the URI of the tone in the tone library. |
+| Promise&lt;string&gt; | Promise used to return the URI of the tone in the tone library.|
 
 **Error codes**
 
@@ -1491,11 +1503,11 @@ Adds a customized tone with a given FD to the tone library. This API uses a prom
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                                                                    |
+| Name| Type       | Mandatory| Description                                                                    |
 |-----|-----------|----|------------------------------------------------------------------------|
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes | Application context.                                                             |
 | toneAttr | [ToneAttrs](#toneattrs12) | Yes | Attributes of the tone.                                                                 |
-| fd  | number    | Yes | File descriptor, which is obtained by calling [fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen). |
+| fd  | number    | Yes | File descriptor, which is obtained by calling [fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen).|
 | offset | number    | No | Offset from which the data is read, in bytes. The default value is **0**.                                             |
 | length | number    | No | Length of the data to read, in bytes. By default, the length is the total number of remaining bytes after the offset.                                |
 
@@ -1503,7 +1515,7 @@ Adds a customized tone with a given FD to the tone library. This API uses a prom
 
 | Type                   | Description                     |
 |-----------------------|-------------------------|
-| Promise&lt;string&gt; | Promise used to return the URI of the tone in the tone library. |
+| Promise&lt;string&gt; | Promise used to return the URI of the tone in the tone library.|
 
 **Error codes**
 
@@ -1557,16 +1569,16 @@ Removes a custom tone from the one library. This API uses a promise to return th
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                                                                                                     |
+| Name| Type       | Mandatory| Description                                                                                                     |
 |-----|-----------| ---- |---------------------------------------------------------------------------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.                                                                                              |
-| uri  | string    | Yes  | Tone URI, which is obtained by using [addCustomizedTone](#addcustomizedtone12) or [getAlarmToneAttrList](#getalarmtoneattrlist12). |
+| uri  | string    | Yes  | Tone URI, which is obtained by using [addCustomizedTone](#addcustomizedtone12) or [getAlarmToneAttrList](#getalarmtoneattrlist12).|
 
 **Return value**
 
 | Type                 | Description                   |
 |---------------------|-----------------------|
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -1607,7 +1619,7 @@ Defines a system ringtone player.
 
 | Type             |Description    |
 |-----------------|-------|
-| _RingtonePlayer | System ringtone player. |
+| _RingtonePlayer | System ringtone player.|
 
 ## SystemTonePlayer<sup>11+</sup>
 
@@ -1619,7 +1631,7 @@ Defines a system alert tone player.
 
 | Type             | Description       |
 |-----------------|-----------|
-| _SystemTonePlayer | System alert tone player. |
+| _SystemTonePlayer | System alert tone player.|
 
 ## RingtoneOptions<sup>10+</sup>
 
@@ -1631,7 +1643,7 @@ Defines the configuration of a system ringtone player.
 
 | Type             | Description         |
 |-----------------|-------------|
-| _RingtoneOptions | Configuration of a system ringtone player. |
+| _RingtoneOptions | Configuration of a system ringtone player.|
 
 ## SystemToneOptions<sup>11+</sup>
 
@@ -1643,4 +1655,4 @@ Defines the configuration of a system alert tone player.
 
 | Type             | Description           |
 |-----------------|---------------|
-| _SystemToneOptions | Configuration of a system alert tone player. |
+| _SystemToneOptions | Configuration of a system alert tone player.|

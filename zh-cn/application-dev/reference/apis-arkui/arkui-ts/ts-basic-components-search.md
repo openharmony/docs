@@ -668,7 +668,7 @@ onPaste(callback: (value: string, event: PasteEvent) => void)
 | 参数名              | 类型                                                         | 必填 | 说明                   |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
 | value               | string                                                       | 是   | 粘贴的文本内容。       |
-| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 否   | 用户自定义的粘贴事件。 |
+| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 是   | 用户自定义的粘贴事件。 |
 
 ### onTextSelectionChange<sup>10+</sup>
 

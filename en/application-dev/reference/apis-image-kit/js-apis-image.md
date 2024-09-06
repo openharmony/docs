@@ -594,7 +594,7 @@ Before calling any API in **PixelMap**, you must use [image.createPixelMap](#ima
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-Reads the pixels of this image and writes the data to an ArrayBuffer. This API uses a promise to return the result. If the pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads the pixels of this image and writes the data to the buffer based on the pixel format of the pixel map. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -635,7 +635,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads the pixels of this image and writes the data to an ArrayBuffer. This API uses an asynchronous callback to return the result. If the pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads the pixels of this image and writes the data to the buffer based on the pixel format of the pixel map. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -674,7 +674,7 @@ async function Demo() {
 
 readPixelsToBufferSync(dst: ArrayBuffer): void
 
-Reads the pixels of this image and writes the data to an ArrayBuffer. This API returns the result synchronously.
+Reads the pixels of this image and writes the data to the buffer based on the pixel format of the pixel map. This API returns the result synchronously.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -714,7 +714,7 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-Reads the pixels in an area. This API uses a promise to return the result.
+Reads the pixels from an area of this image and writes the data to the buffer based on the BGRA_8888 format. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -760,7 +760,7 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads the pixels in an area. This API uses an asynchronous callback to return the result.
+Reads the pixels from an area of this image and writes the data to the buffer based on the BGRA_8888 format. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -804,7 +804,7 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-Reads the pixels in an area. This API returns the result synchronously.
+Reads the pixels from an area of this image and writes the data to the buffer based on the BGRA_8888 format. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -847,7 +847,7 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-Writes the pixels to an area. This API uses a promise to return the result.
+Writes the pixels of this image to the specified area based on the BGRA_8888 format. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -897,7 +897,7 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Writes the pixels to an area. This API uses an asynchronous callback to return the result.
+Writes the pixels of this image to the specified area based on the BGRA_8888 format. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -944,7 +944,7 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-Writes the pixels to an area. This API returns the result synchronously.
+Writes the pixels of this image to the specified area based on the BGRA_8888 format. This API returns the result synchronously.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -993,7 +993,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object. This API uses a promise to return the result.
+Reads the pixels in the buffer and writes the data to the pixel map based on the pixel format of the pixel map. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1038,7 +1038,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object. This API uses an asynchronous callback to return the result.
+Reads the pixels in the buffer and writes the data to the pixel map based on the pixel format of the pixel map. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1081,7 +1081,7 @@ async function Demo() {
 
 writeBufferToPixelsSync(src: ArrayBuffer): void
 
-Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object. This API returns the result synchronously.
+Reads the pixels in the buffer and writes the data to the pixel map based on the pixel format of the pixel map. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1309,7 +1309,7 @@ let getDensity: number = pixelMap.getDensity();
 
 opacity(rate: number, callback: AsyncCallback\<void>): void
 
-Sets an opacity rate for this image. This API uses an asynchronous callback to return the result.
+Sets an opacity rate for this image. This API uses an asynchronous callback to return the result. It is invalid for YUV images.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1348,7 +1348,7 @@ async function Demo() {
 
 opacity(rate: number): Promise\<void>
 
-Sets an opacity rate for this image. This API uses a promise to return the result.
+Sets an opacity rate for this image. This API uses a promise to return the result. It is invalid for YUV images.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1389,7 +1389,7 @@ async function Demo() {
 
 opacitySync(rate: number): void
 
-Sets an opacity rate for this pixel map and initializes the pixel map. This API returns the result synchronously.
+Sets an opacity rate for this image. This API returns the result synchronously. It is invalid for YUV images.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1427,7 +1427,7 @@ async function Demo() {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses a promise to return the result.
+Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses a promise to return the result. It is invalid for YUV images.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1461,7 +1461,7 @@ async function Demo() {
 
 createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
-Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses an asynchronous callback to return the result.
+Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses an asynchronous callback to return the result. It is invalid for YUV images.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1498,7 +1498,7 @@ async function Demo() {
 
 createAlphaPixelmapSync(): PixelMap
 
-Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API returns the result synchronously.
+Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API returns the result synchronously. It is invalid for YUV images.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1654,6 +1654,99 @@ async function Demo() {
   let scaleY: number = 1.0;
   if (pixelMap != undefined) {
     pixelMap.scaleSync(scaleX, scaleY);
+  }
+}
+```
+
+### scale<sup>12+</sup>
+
+scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
+
+Scales this image based on a given scaling multiple of the width and height. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | Yes  | Scaling multiple of the width.|
+| y      | number | Yes  | Scaling multiple of the height.|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | Yes  | Anti-aliasing level.|
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise\<void> |  Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scale(scaleX, scaleY, image.AntiAliasingLevel.LOW).then(() => {
+      console.info('Succeeded in scaling pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+
+    })
+  }
+}
+```
+
+### scaleSync<sup>12+</sup>
+
+scaleSync(x: number, y: number, level: AntiAliasingLevel): void
+
+Scales this image based on a given width and height. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | Yes  | Scaling multiple of the width.|
+| y      | number | Yes  | Scaling multiple of the height.|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | Yes  | Anti-aliasing level.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scaleSync(scaleX, scaleY, image.AntiAliasingLevel.LOW);
   }
 }
 ```
@@ -6066,6 +6159,19 @@ Describes the HDR metadata values used by a pixel map, which corresponds to the 
 | [HdrStaticMetadata](#hdrstaticmetadata12) | Metadata value corresponding to the **HDR_STATIC_METADATA** key in [HdrMetadataKey](#hdrmetadatakey12).|
 | ArrayBuffer | Metadata value corresponding to the **HDR_DYNAMIC_METADATA** key in [HdrMetadataKey](#hdrmetadatakey12).|
 | [HdrGainmapMetadata](#hdrgainmapmetadata12) | Metadata value corresponding to the **HDR_GAINMAP_METADATA** key in [HdrMetadataKey](#hdrmetadatakey12).|
+
+## AntiAliasingLevel<sup>12+</sup>
+
+Enumerates the anti-aliasing levels.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name                  |   Value  | Description             |
+| ---------------------- | ------ | ----------------- |
+| NONE                | 0      | The nearest neighbor interpolation algorithm is used by default.       |
+| LOW                 | 1      | Bilinear interpolation.    |
+| MEDIUM              | 2      | Bilinear interpolation with mipmap enabled.|
+| HIGH                | 3      | Cubic convolution.|
 
 ## Supplementary Information
 ### SVG Tags

@@ -356,6 +356,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
@@ -422,6 +423,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
 | 1300006 | This window context is abnormal. |
 | 1300008 | The display device is abnormal. |
@@ -5166,7 +5168,7 @@ promise.then(() => {
 ### maximize<sup>12+</sup>
 maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-Maximizes the main window. This API uses a promise to return the result.
+Maximizes the main window. This API uses a promise to return the result. It can be used only on 2-in-1 devices.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5231,7 +5233,7 @@ export default class EntryAbility extends UIAbility {
 
 recover(): Promise&lt;void&gt;
 
-Restores the main window from the full-screen, maximized, or split-screen mode to a floating window, and restores the window size and position to those before the full-screen, maximized, or split-screen mode is entered. If the main window is already in the floating window mode, nothing will happen. This API uses a promise to return the result. It takes effect only in the multi-window cascade layout.
+Restores the main window from the full-screen, maximized, or split-screen mode to a floating window, and restores the window size and position to those before the full-screen, maximized, or split-screen mode is entered. If the main window is already in the floating window mode, nothing will happen. This API uses a promise to return the result. It takes effect only in the multi-window cascade layout. It can be used only on 2-in-1 devices.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

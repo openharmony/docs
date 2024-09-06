@@ -1,4 +1,4 @@
-# Creating Basic Data Types Using Node-API
+# Working with Basic Data Types Using Node-API
 
 ## Introduction
 
@@ -21,10 +21,10 @@ The following table lists the APIs provided by the Node-API module for convertin
 | napi_get_value_int32 | Obtains a C int32 value from an ArkTS number.|
 | napi_get_value_int64 | Obtains a C int64 value from an ArkTS number.|
 | napi_get_value_double | Obtains a C double value from an ArkTS number.|
-| napi_create_int32 | Creates an ArkTS number from a 32-bit signed integer. You can use this API to convert a value from the C int32_t type to the ArkTS Number type.|
-| napi_create_uint32 | Creates an ArkTS number from a 32-bit unsigned integer. You can use this API to convert a value from the C uint32_t type to the ArkTS Number type.|
-| napi_create_int64 | Creates an ArkTS number from a 64-bit signed integer. You can use this API to convert a value from the C int64_t type to the ArkTS Number type.|
-| napi_create_double | Creates an ArkTS number from a double-precision floating-point number. You can use this API to convert a value from the C double type to the ArkTS Number type.|
+| napi_create_int32 | Creates an ArkTS number from a 32-bit signed integer.|
+| napi_create_uint32 | Creates an ArkTS number from a 32-bit unsigned integer.|
+| napi_create_int64 | Creates an ArkTS number from a 64-bit signed integer.|
+| napi_create_double | Creates an ArkTS number from a double-precision floating-point number.|
 
 ## Example
 
@@ -99,7 +99,7 @@ static napi_value GetValueInt32(napi_env env, napi_callback_info info)
     int32_t result32 = 0;
     // Parse the input parameter.
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // Convert the input parameter into a C int32 value.
+    // Convert the parameter into a C int32 value.
     napi_status status = napi_get_value_int32(env, args[0], &result32);
     // If the input parameter is not a number, napi_number_expected will be thrown. Set the return value of the function to nullptr.
     if (status == napi_number_expected) {
@@ -155,9 +155,9 @@ static napi_value GetValueInt64(napi_env env, napi_callback_info info)
     int64_t result64 = 0;
     // Parse the parameter passed in.
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // Convert the input parameter into a C int64 value.
+    // Convert the parameter into a C int64 value.
     napi_status status = napi_get_value_int64(env, args[0], &result64);
-    // If the input parameter is not a number, napi_number_expected will be thrown. Set the return value of the function to nullptr.
+    // If the input parameter is not a number, return napi_number_expected.
     if (status == napi_number_expected) {
         return nullptr;
     }
@@ -290,7 +290,7 @@ CPP code:
 static napi_value CreateUInt32(napi_env env, napi_callback_info info) 
 {
     // If the uint32_t type is used to represent -26, overflow occurs. Modulo operation is performed on the result to convert the binary complement of the negative number to a positive number. That is, 4294967270 will be returned.
-    // uint32_t represents a 32-bit unsigned integer, ranging from 0 to 2^32 - 1, that is, 0 to 4294967295.    
+    // uint32_t represents a 32-bit unsigned integer, ranging from 0 to 2^32 - 1, that is, 0 to 4294967295.
     uint32_t value = 26;
     // Create an ArkTS Uint32 number.
     napi_value result = nullptr;
@@ -330,7 +330,7 @@ CPP code:
 
 static napi_value CreateInt64(napi_env env, napi_callback_info info)
 {
-    // int64 represents a 64-bit signed integer, ranging from -2^63 to 2^63 - 1, that is, -9223372036854775808 to 9223372036854775807.    
+    // int64 represents a 64-bit signed integer, ranging from -2^63 to 2^63 - 1, that is, -9223372036854775808 to 9223372036854775807.
     int64_t value = 2147483648;
     // Create an ArkTS Int64 number.
     napi_value result = nullptr;

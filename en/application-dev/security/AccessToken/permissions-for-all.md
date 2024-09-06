@@ -347,6 +347,8 @@ After the application obtains this permission, a directory in **/el5** will be a
 
 Allows an application to support persistent access to file URIs.
 
+<!--RP2--><!--RP2End-->
+
 **Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
 
 **Authorization mode**: system_grant
@@ -355,7 +357,7 @@ Allows an application to support persistent access to file URIs.
 
 ### ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE
 
-Allows an application to access the car distributed engine.
+Allows an application to access the distributed travel service engine.
 
 **Permission level**: normal
 
@@ -367,11 +369,11 @@ Allows an application to access the car distributed engine.
 
 Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
 
-**Permission level**：normal
+**Permission level**: normal
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Valid since**：13
+**Valid since**: 13
 
 ## user_grant Permissions
 
@@ -539,6 +541,10 @@ Allows an application to use NearLink, such as device pairing and connecting to 
 
 Allows an application to access the **Download** directory and its subdirectories in the user directory.
 
+Currently, this permission is available only for 2-in-1 device applications.
+
+<!--RP2--><!--RP2End-->
+
 **Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
 
 **Authorization mode**: user_grant
@@ -548,6 +554,10 @@ Allows an application to access the **Download** directory and its subdirectorie
 ### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 
 Allows an application to access the **Documents** directory and its subdirectories in the user directory.
+
+Currently, this permission is available only for 2-in-1 device applications.
+
+<!--RP2--><!--RP2End-->
 
 **Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
 

@@ -903,6 +903,7 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs } from '@kit.CoreFileKit';
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
@@ -915,8 +916,8 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
   }
   fs.connectDfs(networkId, listeners).then(() => {
     console.info("Success to connectDfs");
-  }).catch((err) => {
-    console.error('connectDfs failed with error message: ${JSON.stringify(err)}');
+  }).catch((err: BusinessError) => {
+    console.error("connectDfs failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -949,6 +950,7 @@ disconnectDfs(networkId: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs } from '@kit.CoreFileKit';
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
@@ -956,7 +958,7 @@ disconnectDfs(networkId: string): Promise&lt;void&gt;
   let networkId = deviceInfoList[0].networkId;
   fs.disconnectDfs(networkId).then(() => {
     console.info("Success to disconnectDfs");
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('disconnectDfs failed with error message: ${JSON.stringify(err)}')
   })
   ```
@@ -4127,24 +4129,26 @@ cancel(): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { fileuri } from '@kit.CoreFileKit';
+import { fileUri } from '@kit.CoreFileKit';
+import common from '@ohos.app.ability.common';
 let context = getContext(this) as common.UIAbilityContext;
 let pathDir: string = context.filesDir;
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
-let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
-let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+let srcDirUriLocal: string = fileUri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
+let copySignal = new fs.TaskSignal;
 let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
   console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
   if (progress.processedSize / progress.totalSize > 0.5) {
-    options.copySignal.cancel();
+    copySignal.cancel();
   }
 };
 let options: fs.CopyOptions = {
   "progressListener" : progressListener,
   "copySignal" : new fs.TaskSignal,
 }
-console.info("copyFileWithCancel success.", + options.copySignal.onCancel());
+console.info("copyFileWithCancel success.");
 try {
   fs.copy(srcDirPathLocal, dstDirUriLocal, options, (err: BusinessError) => {
     if (err) {
@@ -4180,6 +4184,8 @@ onCancel(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { TaskSignal } from '@ohos.file.fs';
 let copySignal: fs.TaskSignal = new TaskSignal();
 copySignal.onCancel().then(() => {
     console.info("copyFileWithCancel success.");
@@ -5134,7 +5140,7 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&g
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fsfileIo.OpenMode.READ_WRITE);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength: number = 4096;
   let writeOption: WriteOptions = {

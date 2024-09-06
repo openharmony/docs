@@ -88,6 +88,7 @@
 | [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetBufferSize](#oh_imagenative_getbuffersize) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, size_t \*size) | 获取Native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的缓冲区的大小。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetRowStride](#oh_imagenative_getrowstride) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, int32_t \*rowStride) | 获取Native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的像素行宽。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetPixelStride](#oh_imagenative_getpixelstride) ([OH_ImageNative](#oh_imagenative) \*image, uint32_t componentType, int32_t \*pixelStride) | 获取Native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的像素大小。 | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageNative_GetTimestamp](#oh_imagenative_gettimestamp) ([OH_ImageNative](#oh_imagenative) \*image, int64_t \*timestamp) | 获取Native [OH_ImageNative](#oh_imagenative) 对象中的时间戳信息。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageNative_Release](#oh_imagenative_release) ([OH_ImageNative](#oh_imagenative) \*image) | 释放Native [OH_ImageNative](#oh_imagenative) 对象。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_Create](#oh_packingoptions_create) ([OH_PackingOptions](#oh_packingoptions) \*\*options) | 创建PackingOptions结构体的指针。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetMimeType](#oh_packingoptions_getmimetype) ([OH_PackingOptions](#oh_packingoptions) \*options, [Image_MimeType](#image_mimetype) \*format) | 获取MIME类型。 | 
@@ -172,6 +173,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetDynamicRange](#oh_pixelmapimageinfo_getdynamicrange) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, bool \*isHdr) | 获取Pixelmap是否为高动态范围的信息。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_Release](#oh_pixelmapimageinfo_release) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info) | 释放OH_Pixelmap_ImageInfo指针。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreatePixelmap](#oh_pixelmapnative_createpixelmap) (uint8_t \*data, size_t dataLength, [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。 | 
+| Image_ErrorCode [OH_PixelmapNative_ConvertPixelmapNativeToNapi](#oh_pixelmapnative_convertpixelmapnativetonapi) (napi_env env, OH_PixelmapNative \*pixelmapNative, napi_value \*pixelmapNapi) | 将nativePixelMap对象转换为PixelMapnapi对象。  | 
+| Image_ErrorCode [OH_PixelmapNative_ConvertPixelmapNativeFromNapi](#oh_pixelmapnative_convertpixelmapnativefromnapi) (napi_env env, napi_value pixelmapNapi, OH_PixelmapNative \*\*pixelmapNative) | 将PixelMapnapi对象转换为nativePixelMap对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ReadPixels](#oh_pixelmapnative_readpixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*destination, size_t \*bufferSize) | 读取图像像素数据，结果写入ArrayBuffer里。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_WritePixels](#oh_pixelmapnative_writepixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*source, size_t bufferSize) | 读取缓冲区中的图片数据，结果写入PixelMap中。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ToSdr](#oh_pixelmapnative_tosdr) (OH_PixelmapNative \*pixelmap) | 将HDR的图像内容转换为SDR的图像内容。  | 
@@ -1146,7 +1149,7 @@ Image_ErrorCode OH_ImageNative_GetComponentTypes (OH_ImageNative * image, uint32
 Image_ErrorCode OH_ImageNative_GetImageSize (OH_ImageNative * image, Image_Size * size )
 ```
 **描述**
-获取Native [OH_ImageNative](#oh_imagenative) 对象的 [Image_Size](_image___size.md) 信息。
+获取Native [OH_ImageNative](#oh_imagenative) 对象的 [Image_Size](_image___size.md) 信息。如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的[Image_Size](_image___size.md)中的宽高分别对应YUV图像的宽高；如果[OH_ImageNative](#oh_imagenative) 对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的数据，[Image_Size](_image___size.md)中的宽等于JPEG数据大小，高等于1。[OH_ImageNative](#oh_imagenative) 对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。
 
 **起始版本：** 12
 
@@ -1202,6 +1205,28 @@ Image_ErrorCode OH_ImageNative_GetRowStride (OH_ImageNative * image, uint32_t co
 | image | 表示 [OH_ImageNative](#oh_imagenative) native对象的指针。  | 
 | componentType | 表示组件的类型。  | 
 | rowStride | 表示作为获取结果的像素行宽的指针。  | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageNative_GetTimestamp()
+
+```
+Image_ErrorCode OH_ImageNative_GetTimestamp (OH_ImageNative * image, int64_t * timestamp )
+```
+**描述**
+获取Native [OH_ImageNative](#oh_imagenative) 对象中的时间戳信息
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 表示 [OH_ImageNative](#oh_imagenative) native对象的指针。  | 
+| timestamp | 表示作为获取结果的时间戳信息的指针。  |
 
 **返回：**
 
@@ -1849,7 +1874,7 @@ Image_ErrorCode OH_ImageSourceInfo_Release (OH_ImageSource_Info * info)
 Image_ErrorCode OH_ImageSourceNative_CreateFromData (uint8_t * data, size_t dataSize, OH_ImageSourceNative ** res )
 ```
 **描述**
-通过缓冲区数据创建OH_ImageSourceNative指针。
+通过缓冲区数据创建OH_ImageSourceNative指针。data数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[OH_PixelmapNative_CreatePixelmap](./pixelmap__native_8h.md)这一类接口。
 
 **起始版本：** 12
 
@@ -2794,6 +2819,52 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat (OH_PixelmapNative * srcpix
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
+### OH_PixelmapNative_ConvertPixelmapNativeFromNapi()
+
+```
+Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeFromNapi (napi_env env, napi_value pixelmapNapi, OH_PixelmapNative ** pixelmapNative )
+```
+**描述**
+将PixelMapnapi对象转换为nativePixelMap对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | napi的环境指针。  | 
+| pixelmapNapi | 需要转换的PixelMapnapi对象。  | 
+| pixelmapNative | 转换出的OH_PixelmapNative对象指针。  | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果pixelmapNative是nullptr，或者pixelmapNapi不是PixelMapNapi对象返回IMAGE_BAD_PARAMETER，具体请参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_ConvertPixelmapNativeToNapi()
+
+```
+Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi (napi_env env, OH_PixelmapNative * pixelmapNative, napi_value * pixelmapNapi )
+```
+**描述**
+将nativePixelMap对象转换为PixelMapnapi对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | napi的环境指针。  | 
+| pixelmapNative | 被操作的OH_PixelmapNative指针。  | 
+| pixelmapNapi | 转换出来的PixelMapnapi对象指针。  | 
+
+**返回：**
+
+如果操作成功返回IMAGE_SUCCESS，如果pixelmapNative为空返回IMAGE_BAD_PARAMETER，具体请参考[Image_ErrorCode](#image_errorcode)。
+
+
 ### OH_PixelmapNative_CreateEmptyPixelmap()
 
 ```
@@ -2990,7 +3061,7 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels (OH_PixelmapNative * pixelmap, uint
 | -------- | -------- |
 | pixelmap | 被操作的OH_PixelmapNative指针。  | 
 | destination | 缓冲区，获取的图像像素数据写入到该内存区域内。  | 
-| bufferSize | 缓冲区大小。  | 
+| bufferSize | 缓冲区大小。RGBA格式的缓冲区大小等于width * height * 4，NV21与NV12格式的缓冲区大小等于width * height+((width+1)/2) * ((height+1)/2) * 2。  | 
 
 **返回：**
 

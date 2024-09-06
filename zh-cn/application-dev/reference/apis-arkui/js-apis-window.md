@@ -2145,7 +2145,7 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 | 参数名              | 类型                                        | 必填 | 说明                   |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
 | orientation         | [Orientation](#orientation9)                | 是   | 窗口显示方向的属性。         |
-| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。             |
+| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。该回调函数返回调用结果是否成功，非应用旋转动效结束。 |
 
 **错误码：**
 
@@ -5713,7 +5713,7 @@ getWindowStatus(): WindowStatusType
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**参数：**
+**返回值：**
 
 | 类型                           | 说明                                   |
 | ------------------------------ | ----------------------------------------|

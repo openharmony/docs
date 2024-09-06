@@ -75,13 +75,13 @@ hilog.info(0x0000, 'Node-API', 'napi_new_instance %{public}s', JSON.stringify(ob
 
 Use **napi_get_new_target** to obtain **new.target** of a constructor. In ArkTS, **new.target** is a meta property used to determine whether a constructor was called using the **new** operator.
 
+For more information, see [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md).
+
 ### napi_define_class
 
 Use **napi_define_class** to define an ArkTS class. This API creates an ArkTS class and associates the methods and properties of the ArkTS class with those of a C/C++ class.
 
-For more information, see:
-
-[Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md)
+For more information, see [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md).
 
 ### napi_wrap
 

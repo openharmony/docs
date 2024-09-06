@@ -134,7 +134,7 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
 通过UDPSocket连接发送数据。使用callback方式作为异步方法。
 
-发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。
+发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -184,7 +184,7 @@ send(options: UDPSendOptions): Promise\<void\>
 
 通过UDPSocket连接发送数据。使用Promise方式作为异步方法。
 
-发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。
+发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1882,7 +1882,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 通过TCPSocket连接发送数据。使用callback方式作为异步方法。
 
 > **说明：**
-> connect方法调用成功后，才可调用此方法。
+> connect方法调用成功后，才可调用此方法。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1939,7 +1939,7 @@ send(options: TCPSendOptions): Promise\<void\>
 通过TCPSocket连接发送数据。使用Promise方式作为异步方法。
 
 > **说明：**
-> connect方法调用成功后，才可调用此方法。
+> connect方法调用成功后，才可调用此方法。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 

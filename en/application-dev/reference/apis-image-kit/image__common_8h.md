@@ -19,9 +19,9 @@ The **image_common.h** file declares the common enums and structs used by the im
 
 | Name| Description| 
 | -------- | -------- |
-| struct  [Image_Size](_image___size.md) | Describes the image size.| 
-| struct  [Image_Region](_image___region.md) | Describes the region of an image to decode.| 
-| struct  [Image_String](_image___string.md) | Describes an image string.| 
+| struct  [Image_Size](_image___size.md) | Describes the image size. | 
+| struct  [Image_Region](_image___region.md) | Describes the region of an image to decode. | 
+| struct  [Image_String](_image___string.md) | Describes an image string. | 
 
 
 ### Types
@@ -38,7 +38,7 @@ The **image_common.h** file declares the common enums and structs used by the im
 
 | Name| Description| 
 | -------- | -------- |
-| [Image_ErrorCode](_image___native_module.md#image_errorcode) {<br>IMAGE_SUCCESS = 0,<br>IMAGE_BAD_PARAMETER = 401,<br>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101,<br>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br>IMAGE_TOO_LARGE = 7600103,<br>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br>IMAGE_UNSUPPORTED_METADATA = 7600202,<br>IMAGE_UNSUPPORTED_CONVERSION = 7600203,<br>IMAGE_INVALID_REGION = 7600204,<br>IMAGE_ALLOC_FAILED = 7600301,<br>IMAGE_COPY_FAILED = 7600302,<br>IMAGE_UNKNOWN_ERROR = 7600901,<br>IMAGE_BAD_SOURCE = 7700101,<br>IMAGE_DECODE_FAILED = 7700301,<br>IMAGE_ENCODE_FAILED = 7800301<br>} | Enumerates the error codes.| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) {{<br>IMAGE_SUCCESS = 0, <br>IMAGE_BAD_PARAMETER = 401, <br>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, <br>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br>IMAGE_TOO_LARGE = 7600103, <br>IMAGE_DMA_NOT_EXIST = 7600173, <br>IMAGE_DMA_OPERATION_FAILED = 7600174, <br>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br>IMAGE_UNSUPPORTED_METADATA = 7600202, <br>IMAGE_UNSUPPORTED_CONVERSION = 7600203, <br>IMAGE_INVALID_REGION = 7600204, <br>IMAGE_ALLOC_FAILED = 7600301,<br>IMAGE_COPY_FAILED = 7600302, <br>IMAGE_UNKNOWN_ERROR = 7600901, <br>IMAGE_BAD_SOURCE = 7700101, <br>IMAGE_DECODE_FAILED = 7700301,<br>IMAGE_ENCODE_FAILED = 7800301<br>}} | Enumerates the error codes.| 
 
 
 ### Variables

@@ -6,7 +6,7 @@
 >  - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  - 该组件嵌套List子组件滚动时，若List不设置宽高，则默认全部加载，在对性能有要求的场景下建议指定List的宽高。
 >  - 该组件滚动的前提是主轴方向大小小于内容大小。
->  - 该组件回弹的前提是要有滚动。内容小于一屏时，没有回弹效果。
+>  - Scroll组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 
 ## 子组件
@@ -477,7 +477,7 @@ Scroller的构造函数。
 
 ### scrollTo
 
-scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration?: number, curve?: Curve | ICurve, canOverScroll?: boolean } | boolean })
+scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: ScrollAnimationOptions | boolean })
 
 
 滑动到指定位置。
@@ -656,7 +656,7 @@ isAtEnd(): boolean
 
 getItemRect(index: number): RectResult
 
-获取子组件的大小位置。
+获取子组件的大小及相对容器组件的位置。
 
 >  **说明：**
 >
@@ -748,7 +748,7 @@ getItemIndex(x: number, y: number): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 类型   | 必填   | 说明              |
+| 名称   | 类型   | 必填   | 说明              |
 | ----- | ------ | ------ | ----------------- |
 | duration | number | 否 | 设置滚动时长。<br/>默认值：1000。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9)<sup>9+ </sup> | 否 | 设置滚动曲线。<br/>默认值：Curve.Ease。 |

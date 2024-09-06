@@ -9,7 +9,7 @@ The **cloudSync** module provides the device-cloud synchronization capabilities 
 ## Modules to Import
 
 ```ts
-import cloudSync from '@ohos.file.cloudSync';
+import { cloudSync } from '@kit.CoreFileKit';
 ```
 
 ## State<sup>11+</sup>
@@ -57,7 +57,7 @@ A constructor used to create a **CloudFileCache** instance.
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. Possible causes: Incorrect parameter types. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 
 **Example**
 
@@ -92,7 +92,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileCache = new cloudSync.CloudFileCache();
   let callback = (pg: cloudSync.DownloadProgress) => {
     console.info("download state: " + pg.state);
@@ -133,7 +133,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let fileCache = new cloudSync.CloudFileCache();
 
   let callback = (pg: cloudSync.DownloadProgress) => {
@@ -172,8 +172,8 @@ Starts to download a file from the Drive Kit to the local device. This API uses 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -236,8 +236,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -283,13 +283,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
-| 14000002 | Invalid uri. |
+| 14000002 | Invalid URI. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -327,13 +327,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
-| 14000002 | Invalid uri. |
+| 14000002 | Invalid URI. |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);

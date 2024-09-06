@@ -83,7 +83,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     // 1. Register a mission change listener.
     this.listenerId = missionManager.on('mission', this.listener);
     promptAction.showToast({
-      message: $r('app.string.register_success_toast')
+      message: 'register_success_toast'
     });
     hilog.info(DOMAIN_NUMBER, TAG, `missionManager.on success, listenerId = ${this.listenerId}`);
     ```
@@ -98,7 +98,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
       for (let i = 0;i < missions.length; i++) {
         if (missions[i].want.bundleName === 'ohos.samples.etsclock') {
           promptAction.showToast({
-            message: $r('app.string.obtain_success_toast')
+            message: 'obtain_success_toast'
           });
           hilog.info(DOMAIN_NUMBER, TAG, `getMissionInfos.find etsclock, missionId  = ${missions[i].missionId}`);
           this.missionId = missions[i].missionId;
@@ -106,7 +106,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
         }
       }
       promptAction.showToast({
-        message: $r('app.string.obtain_failed_toast')
+        message: 'obtain_failed_toast'
       });
     });
     ```
@@ -126,7 +126,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     missionManager.getMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
       if (error === null) {
         promptAction.showToast({
-          message: $r('app.string.obtain_snapshot_success_toast')
+          message: 'obtain_snapshot_success_toast'
         });
       }
       hilog.info(DOMAIN_NUMBER, TAG, 'getMissionSnapShot is called, error = ' + JSON.stringify(error));
@@ -138,7 +138,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     missionManager.getLowResolutionMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
       if (error === null) {
         promptAction.showToast({
-          message: $r('app.string.obtain_low_snapshot_success_toast')
+          message: 'obtain_low_snapshot_success_toast'
         });
       }
       hilog.info(DOMAIN_NUMBER, TAG, 'getLowResolutionMissionSnapShot is called, error = ' + JSON.stringify(error));
@@ -149,7 +149,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     // 6-1. Lock the mission.
     missionManager.lockMission(this.missionId).then(() => {
       promptAction.showToast({
-        message: $r('app.string.lock_success_toast')
+        message: 'lock_success_toast'
       });
       hilog.info(DOMAIN_NUMBER, TAG, 'lockMission is called ');
     });
@@ -158,7 +158,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     // 6-2. Unlock the mission.
     missionManager.unlockMission(this.missionId).then(() => {
       promptAction.showToast({
-        message: $r('app.string.unlock_success_toast')
+        message: 'unlock_success_toast'
       });
       hilog.info(DOMAIN_NUMBER, TAG, 'unlockMission is called ');
     });
@@ -173,7 +173,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     // 8. Clear a single mission.
     missionManager.clearMission(this.missionId).then(() => {
       promptAction.showToast({
-        message: $r('app.string.delete_success_toast')
+        message: 'delete_success_toast'
       });
       hilog.info(DOMAIN_NUMBER, TAG, 'clearMission is called ');
     });
@@ -189,7 +189,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     missionManager.off('mission', this.listenerId, (error: BusinessError) => {
       if (error === null) {
         promptAction.showToast({
-          message: $r('app.string.unregister_success_toast')
+          message: 'unregister_success_toast'
         });
       }
       hilog.info(DOMAIN_NUMBER, TAG, 'unregisterMissionListener');

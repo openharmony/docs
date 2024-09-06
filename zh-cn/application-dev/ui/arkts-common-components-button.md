@@ -34,7 +34,7 @@ Button通过调用接口来创建，接口调用有以下两种形式：
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  只支持包含一个子组件，子组件可以是[基础组件](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)或者[容器组件](../reference/apis-arkui/arkui-ts/ts-container-badge.md)。
+  只支持包含一个子组件，子组件可以是基础组件或者容器组件。
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {

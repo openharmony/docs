@@ -27,6 +27,7 @@
 3. 由于硬件解码器资源有限，每个解码器在使用完毕后都必须调用OH_VideoDecoder_Destroy()函数来销毁实例并释放资源。
 4. 视频解码输入码流仅支持AnnexB格式，且支持的AnnexB格式不支持多层次切片。
 5. 在调用Flush，Reset，Stop的过程中，开发者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
+6. DRM解密能力在[Surface模式](#surface模式)下既支持非安全视频通路，也支持安全视频通路，在[Buffer模式](#buffer模式)下仅支持非安全视频通路。
 
 ## Surface输出与Buffer输出
 
@@ -199,7 +200,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     >
 
-5. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
+5. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Surface模式下，DRM解密能力既支持安全视频通路，也支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
 
     添加头文件
 
@@ -224,17 +225,27 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         printf("create media key system failed");
         return;
     }
-    // 进行Provision认证
-    // 创建解密会话
+
+    // 创建解密会话，如果使用安全视频通路，应创建CONTENT_PROTECTION_LEVEL_HW_CRYPTO及其以上内容保护级别的MediaKeySession；
+    // 如果使用非安全视频通路，应创建CONTENT_PROTECTION_LEVEL_SW_CRYPTO及以上内容保护级别的MediaKeySession
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
-    if (session == nullptr) {
-        printf("create media key session failed");
+    if (ret != DRM_OK) {
+        // 如创建失败，请查看DRM接口文档及日志信息
+        printf("create media key session failed.");
         return;
     }
+    if (session == nullptr) {
+        printf("media key session is nullptr.");
+        return;
+    }
+
     // 获取许可证请求、设置许可证响应等
-    // 设置解密配置, 即将解密会话、安全视频通路标志设置到解码器中。
+
+    // 设置解密配置, 即将解密会话、安全视频通路标志设置到解码器中
+    // 如果DRM解决方案支持安全视频通路，在使用安全视频通路时，需将secureVideoPath设置为true，并在此之前须创建安全解码器
+    // 即在步骤3使用OH_VideoDecoder_CreateByName函数、参数为解码器名称后拼接.secure（如“[CodecName].secure”）创建安全解码器
     bool secureVideoPath = false;
     ret = OH_VideoDecoder_SetDecryptionConfig(videoDec, session, secureVideoPath);
     ```
@@ -321,7 +332,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 11. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
 
-    若当前播放的节目是DRM加密节目，且由上层应用做媒体解封装，则须调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置给AVBuffer，以实现AVBuffer中媒体数据的解密。
+    若当前播放的节目是DRM加密节目，应用自行实现媒体解封装功能而非使用系统[解封装](audio-video-demuxer.md)功能时，需调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置到AVBuffer，这样AVBuffer携带待解密的数据以及cencInfo，以实现AVBuffer中媒体数据的解密。当应用使用系统[解封装](audio-video-demuxer.md)功能时，则无需调用此接口。
 
     添加头文件
 
@@ -350,31 +361,38 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     uint32_t firstEncryptedOffset = 0;
     uint32_t subsampleCount = 1;
     DrmSubsample subsamples[1] = { {0x10, 0x16} };
+    // 创建CencInfo实例
     OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
     if (cencInfo == nullptr) {
         // 异常处理
     }
+    // 设置解密算法
     OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 设置KeyId和Iv
     errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 设置Sample信息
     errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
         subsampleCount, subsamples);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 设置模式：KeyId、Iv和SubSamples已被设置
     errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 将CencInfo设置到AVBuffer中
     errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 销毁CencInfo实例
     errNo = OH_AVCencInfo_Destroy(cencInfo);
     if (errNo != AV_ERR_OK) {
         // 异常处理
@@ -674,7 +692,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     >
 
-4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
+4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Buffer模式下，DRM解密能力仅支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
 
     添加头文件
 
@@ -699,13 +717,19 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         printf("create media key system failed");
         return;
     }
-    // 进行DRM授权
+
     // 创建解密会话
+    // 使用非安全视频通路，应创建CONTENT_PROTECTION_LEVEL_SW_CRYPTO及以上内容保护级别的MediaKeySession
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
+    if (ret != DRM_OK) {
+        // 如创建失败，请查看DRM接口文档及日志信息
+        printf("create media key session failed.");
+        return;
+    }
     if (session == nullptr) {
-        printf("create media key session failed");
+        printf("media key session is nullptr.");
         return;
     }
     // 获取许可证请求、设置许可证响应等
@@ -778,31 +802,38 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     uint32_t firstEncryptedOffset = 0;
     uint32_t subsampleCount = 1;
     DrmSubsample subsamples[1] = { {0x10, 0x16} };
+    // 创建CencInfo实例
     OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
     if (cencInfo == nullptr) {
         // 异常处理
     }
+    // 设置解密算法
     OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 设置KeyId和Iv
     errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 设置Sample信息
     errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
         subsampleCount, subsamples);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 设置模式：KeyId、Iv和SubSamples已被设置
     errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 将CencInfo设置到AVBuffer中
     errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
     if (errNo != AV_ERR_OK) {
         // 异常处理
     }
+    // 销毁CencInfo实例
     errNo = OH_AVCencInfo_Destroy(cencInfo);
     if (errNo != AV_ERR_OK) {
         // 异常处理
