@@ -1204,7 +1204,8 @@ ArkWeb 内核需要本地播放器的状态信息来更新到网页， 如视频
   </head>
   <body>
   <div>
-      <video src='https://media.w3.org/2010/05/bunny/trailer.mp4' style='width: 100%'></video>
+      <!-- 使用时需要自行替换视频链接 -->
+      <video src='https://xxx.xxx/demo.mp4' style='width: 100%'></video>
   </div>
   </body>
   </html>
