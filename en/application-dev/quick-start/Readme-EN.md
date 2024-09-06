@@ -45,7 +45,7 @@
   - Basic Syntax of UI Paradigms
     - [Basic Syntax Overview](arkts-basic-syntax-overview.md)
     - [Declarative UI Description](arkts-declarative-ui-description.md)
-    - CustomComponent
+    - Custom Components
       - [Creating a Custom Component](arkts-create-custom-components.md)
       - [Page and Custom Component Lifecycle](arkts-page-custom-components-lifecycle.md)
       - [Custom Component Layout](arkts-page-custom-components-layout.md)
