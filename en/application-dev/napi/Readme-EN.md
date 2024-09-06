@@ -27,8 +27,6 @@
     - [JSVM-API Development Specifications](jsvm-guidelines.md)
   - Resource Management
     - [Raw File Development](rawfile-guidelines.md)
-  - Resource Scheduling
-    - [FFRT Development](ffrt-guidelines.md)
   - Memory Management
     - [Purgeable Memory Development](purgeable-memory-guidelines.md)
   - Device Management
