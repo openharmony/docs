@@ -1545,6 +1545,8 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 Obtains the area where the main window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area.
 
+This API can be used in the **onWindowStageCreate** callback to obtain the avoid area in the initial layout during application startup. It can also be used when a subwindow requires temporary display, necessitating the avoidance of the layout for the existing content.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
