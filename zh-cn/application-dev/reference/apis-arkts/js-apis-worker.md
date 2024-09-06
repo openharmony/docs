@@ -36,7 +36,7 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| type | 'classic' \| 'module' | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
 | name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
 | shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
@@ -1360,8 +1360,8 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
+| 10200004 | Worker instance is not running.          |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
