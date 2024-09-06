@@ -52,6 +52,10 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor | ImageContent)
 
 src新增[ImageContent](#imagecontent12)类型，可指定对应的图形内容。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
