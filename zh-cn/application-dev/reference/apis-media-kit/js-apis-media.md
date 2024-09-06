@@ -4715,10 +4715,10 @@ on(type: 'progressUpdate', callback: Callback\<number>): void
 
 **参数：**
 
-| 参数名   | 类型     | 可选 | 说明                                                         |
+| 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 否   | 进度更新事件回调类型，支持的事件：'progressUpdate'，在转码过程中系统会自动触发此事件。 |
-| callback | function | 否   | 进度更新事件回调方法，progress: number，表示当前转码进度 |
+| type     | string   | 是   | 进度更新事件回调类型，支持的事件：'progressUpdate'，在转码过程中系统会自动触发此事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 进度更新事件回调方法，progress: number，表示当前转码进度 |
 
 **示例：**
 
@@ -4738,10 +4738,10 @@ off(type:'progressUpdate', callback?: Callback\<number>): void
 
 **参数：**
 
-| 参数名 | 类型   | 可选 | 说明                                                         |
+| 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 否   | 进度更新事件回调类型，支持的事件：'progressUpdate'，用户操作和系统都会触发此事件。 |
-| callback | function | 是   | 进度更新事件回调方法，progress: number，表示当前转码进度 |
+| type   | string | 是   | 进度更新事件回调类型，支持的事件：'progressUpdate'，用户操作和系统都会触发此事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 已注册的进度更新事件回调。由于当前回调注册时，仅会保留最后一次注册的回调，建议此参数缺省。 |
 
 **示例：**
 
@@ -4761,10 +4761,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 **参数：**
 
-| 参数名   | 类型          | 可选 | 说明                                                         |
+| 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| type     | string        | 否   | 转码错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 转码错误事件回调方法。                                       |
+| type     | string        | 是   | 转码错误事件回调类型'error'。 <br>- 'error'：录制过程中发生错误，触发该事件。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 转码错误事件回调方法。                                       |
 
 **错误码：**
 
@@ -4801,10 +4801,10 @@ off(type:'error', callback?: ErrorCallback): void
 
 **参数：**
 
-| 参数名 | 类型   | 可选 | 说明                                                         |
+| 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 否   | 转码错误事件回调类型'error'。 <br>- 'error'：转码过程中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 错误事件回调方法 |
+| type   | string | 是   | 转码错误事件回调类型'error'。 <br>- 'error'：转码过程中发生错误，触发该事件。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 错误事件回调方法 |
 
 **示例：**
 
@@ -4824,10 +4824,10 @@ on(type: 'complete', callback: Callback\<void>): void
 
 **参数：**
 
-| 参数名   | 类型     | 可选 | 说明                                                         |
+| 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 否   | 完成事件回调类型，支持的事件：'complete'，在转码过程中系统会自动触发此事件。 |
-| callback | function | 否   | 完成事件回调方法 |
+| type     | string   | 是   | 完成事件回调类型，支持的事件：'complete'，在转码过程中系统会自动触发此事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 完成事件回调方法 |
 
 **示例：**
 
@@ -4847,10 +4847,10 @@ off(type:'complete', callback?: Callback\<void>): void
 
 **参数：**
 
-| 参数名 | 类型   | 可选 | 说明                                                         |
+| 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 否   | 转码完成事件回调类型，支持的事件：'complete'，用户操作和系统都会触发此事件。 |
-| callback | function | 是   | 完成事件回调方法 |
+| type   | string | 是   | 转码完成事件回调类型，支持的事件：'complete'，用户操作和系统都会触发此事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 完成事件回调方法 |
 
 **示例：**
 
@@ -4864,15 +4864,15 @@ avTranscoder.off('complete');
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
-| 名称            | 类型                                    | 只读 | 可选 | 说明                                                         |
+| 名称            | 类型                                    | 只读 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- |---- | ---- | ------------------------------------------------------------ |
-| audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps）。用户不设置，则默认设置为48Kbps|
-| audioCodec | [CodecMimeType](#codecmimetype8)     | 否 | 是  | 输出音频的编码格式，当前仅支持AAC。                   |
-| fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 否   | 输出视频文件的封装格式，当前视频文件仅支持MP4。|
-| videoBitrate         | number | 否 |  是   | 输出视频的码率，单位为比特率（bps）。用户不设置，则默认码率按输出视频的分辨率设置，[240p，480P]默认码率值为1Mbps，(480P,720P]默认码率值为2Mbps，(720P,1080P]默认码率值为4Mbps，1080P及以上默认值为8Mbps。|
+| audioBitrate | number     | 否 | 否 | 输出音频的码率，单位为比特率（bps）。用户不设置，则默认设置为48Kbps|
+| audioCodec | [CodecMimeType](#codecmimetype8)     | 否 | 否  | 输出音频的编码格式，当前仅支持AAC。                   |
+| fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 是   | 输出视频文件的封装格式，当前视频文件仅支持MP4。|
+| videoBitrate         | number | 否 |  否   | 输出视频的码率，单位为比特率（bps）。用户不设置，则默认码率按输出视频的分辨率设置，[240p，480P]默认码率值为1Mbps，(480P,720P]默认码率值为2Mbps，(720P,1080P]默认码率值为4Mbps，1080P及以上默认值为8Mbps。|
 | videoCodec        | [CodecMimeType](#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持AVC和HEVC。|
-| videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px）。用户不设置，则默认设置为源视频帧的宽|
-| videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px）。用户不设置，则默认设置为源视频帧的高|
+| videoFrameWidth        | number | 否 |  否   | 输出视频帧的宽，单位为像素（px）。用户不设置，则默认设置为源视频帧的宽|
+| videoFrameHeight        | number | 否 |  否   | 输出视频帧的高，单位为像素（px）。用户不设置，则默认设置为源视频帧的高|
 
 
 
