@@ -32,6 +32,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 | sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token, 多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""  |
+
 **示例：**
 
 加载在线网页。
@@ -113,6 +114,7 @@ Web组件指定共享渲染进程。
 
 加载本地网页。
 
+通过$rawfile方式加载。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -131,6 +133,7 @@ Web组件指定共享渲染进程。
   }
   ```
 
+通过resources协议加载，适用Webview加载带有"#"路由的链接。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -1826,7 +1829,7 @@ layoutMode(mode: WebLayoutMode)
 
 **示例：**
 
-  1、指明layoutMode为WebLayoutMode.FIT_CONTENT模式后，需要显式指明渲染模式(RenderMode.SYNC_RENDER)。
+  1、指明layoutMode为WebLayoutMode.FIT_CONTENT模式，为避免默认渲染模式下(RenderMode.ASYNC_RENDER)视口高度超过7680px导致页面渲染出错，需要显式指明渲染模式(RenderMode.SYNC_RENDER)。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -1846,7 +1849,7 @@ layoutMode(mode: WebLayoutMode)
   }
   ```
 
-  2、指明layoutMode为WebLayoutMode.FIT_CONTENT模式后，建议指定overScrollMode为OverScrollMode.NEVER。
+  2、指明layoutMode为WebLayoutMode.FIT_CONTENT模式，为避免嵌套滚动场景下，Web滚动到边缘时会优先触发过滚动的过界回弹效果影响用户体验，建议指定overScrollMode为OverScrollMode.NEVER。
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -5164,13 +5167,13 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
 
 onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
-当Embed标签生命周期变化时触发该回调。
+当同层标签生命周期变化时触发该回调。
 
 **参数：**
 
 | 参数名          | 类型                                                                         | 说明                    |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedDataInfo](#nativeembeddatainfo11) | Embed标签生命周期变化时触发该回调。 |
+| event       | [NativeEmbedDataInfo](#nativeembeddatainfo11) | 同层标签生命周期变化时触发该回调。 |
 
 **示例：**
 
@@ -5240,8 +5243,8 @@ export default class EntryAbility extends UIAbility {
 
     build() {
       Column() {
-        // 默认行为：点击按钮跳转页面，关闭index页面，使Embed标签销毁。
-        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮跳转页面，关闭index页面，使Embed标签进入BFCache。
+        // 默认行为：点击按钮跳转页面，关闭index页面，使同层标签销毁。
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮跳转页面，关闭index页面，使同层标签进入BFCache。
         Button('Destroy')
         .onClick(() => {
           try {
@@ -5251,7 +5254,7 @@ export default class EntryAbility extends UIAbility {
           }
         })
 
-        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮返回页面，使Embed标签离开BFCache。
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮返回页面，使同层标签离开BFCache。
         Button('backward')
         .onClick(() => {
           try {
@@ -5261,7 +5264,7 @@ export default class EntryAbility extends UIAbility {
           }
         })
 
-        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮前进页面，使Embed标签进入BFCache。
+        // API12新增：使能同层渲染所在的页面支持BFCache后，点击按钮前进页面，使同层标签进入BFCache。
         Button('forward')
         .onClick(() => {
           try {
@@ -5278,11 +5281,11 @@ export default class EntryAbility extends UIAbility {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .enableNativeEmbedMode(true)
           .onNativeEmbedLifecycleChange((event) => {
-            // 当加载页面中有Embed标签会触发Create。
+            // 当加载页面中有同层标签会触发Create。
             if (event.status == NativeEmbedStatus.CREATE) {
               this.embedStatus = 'Create';
             }
-            // 当页面中Embed标签移动或者缩放时会触发Update。
+            // 当页面中同层标签移动或者缩放时会触发Update。
             if (event.status == NativeEmbedStatus.UPDATE) {
               this.embedStatus = 'Update';
             }
@@ -5338,13 +5341,13 @@ export default class EntryAbility extends UIAbility {
 
 onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
 
-当手指触摸到同层渲染标签时触发该回调。
+当手指触摸到同层标签时触发该回调。
 
 **参数：**
 
 | 参数名          | 类型                                                                         | 说明                    |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedTouchInfo](#nativeembedtouchinfo11) | 手指触摸到同层渲染标签时触发该回调。 |
+| event       | [NativeEmbedTouchInfo](#nativeembedtouchinfo11) | 手指触摸到同层标签时触发该回调。 |
 
 **示例：**
 
@@ -7989,49 +7992,49 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 ## NativeEmbedStatus<sup>11+</sup>
 
-定义Embed标签生命周期，当加载页面中有同层渲染标签会触发CREATE，同层渲染标签移动或者放大会出发UPDATE，退出页面会触发DESTROY。
+定义同层标签生命周期，当加载页面中有同层标签会触发CREATE，同层标签移动或者放大会出发UPDATE，退出页面会触发DESTROY。
 
 | 名称                           | 值 | 描述           |
 | ----------------------------- | -- | ------------ |
-| CREATE                        | 0 | Embed标签创建。   |
-| UPDATE                        | 1 | Embed标签更新。   |
-| DESTROY                       | 2 | Embed标签销毁。 |
-| ENTER_BFCACHE<sup>12+</sup>   | 3 | Embed标签进入BFCache。   |
-| LEAVE_BFCACHE<sup>12+</sup>   | 4 | Embed标签离开BFCache。 |
+| CREATE                        | 0 | 同层标签创建。   |
+| UPDATE                        | 1 | 同层标签更新。   |
+| DESTROY                       | 2 | 同层标签销毁。 |
+| ENTER_BFCACHE<sup>12+</sup>   | 3 | 同层标签进入BFCache。   |
+| LEAVE_BFCACHE<sup>12+</sup>   | 4 | 同层标签离开BFCache。 |
 
 ## NativeEmbedInfo<sup>11+</sup>
 
-提供Embed标签的详细信息。
+提供同层标签的详细信息。
 
 | 名称                | 类型                                  | 必填   | 描述                        |
 |-------------------| ------------------------------------ | ---- |---------------------------|
-| id                | string             | 否    | Embed标签的id信息。             |
-| type              | string                              | 否    | Embed标签的type信息，统一为小写字符。   |
-| src               | string                              | 否    | Embed标签的src信息。            |
-| width             | number  | 否    | Embed标签的宽，单位为px。          |
-| height            | number                              | 否    | Embed标签的高，单位为px。          |
-| url               | string                              | 否    | Embed标签的url信息。            |
+| id                | string             | 否    | 同层标签的id信息。             |
+| type              | string                              | 否    | 同层标签的type信息，统一为小写字符。   |
+| src               | string                              | 否    | 同层标签的src信息。            |
+| width             | number  | 否    | 同层标签的宽，单位为px。          |
+| height            | number                              | 否    | 同层标签的高，单位为px。          |
+| url               | string                              | 否    | 同层标签的url信息。            |
 | tag<sup>12+</sup> | string              | 否    | 标签名，统一为大写字符。              |
 | params<sup>12+</sup>            | map<string, string> | 否    | object标签包含的param标签键值对列表，该map本质为Object类型，请使用Object提供的方法操作该对象。  |
 | position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
 
-提供Embed标签生命周期变化的详细信息。
+提供同层标签生命周期变化的详细信息。
 
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| status     | [NativeEmbedStatus](#nativeembedstatus11)             | 否    | Embed标签生命周期状态。 |
+| status     | [NativeEmbedStatus](#nativeembedstatus11)             | 否    | 同层标签生命周期状态。 |
 | surfaceId  | string                              | 否    | NativeImage的psurfaceid。  |
-| embedId | string                              | 否    | Embed标签的唯一id。  |
-| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 否    | Embed标签的详细信息。       |
+| embedId | string                              | 否    | 同层标签的唯一id。  |
+| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 否    | 同层标签的详细信息。       |
 ## NativeEmbedTouchInfo<sup>11+</sup>
 
-提供手指触摸到Embed标签的详细信息。
+提供手指触摸到同层标签的详细信息。
 
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| embedId     | string   | 否    | Embed标签的唯一id。 |
+| embedId     | string   | 否    | 同层标签的唯一id。 |
 | touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否    | 手指触摸动作信息。 |
 | result<sup>12+</sup>     | [EventResult](#eventresult12)   | 否    | 通知Web组件手势事件的消费结果。 |
 
