@@ -169,7 +169,7 @@
 | void [OH_Drawing_DestroyFontDescriptor](_drawing.md#oh_drawing_destroyfontdescriptor) ([OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \*) | 释放字体描述对象占用的内存。 | 
 | [OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) \* [OH_Drawing_CreateFontParser](_drawing.md#oh_drawing_createfontparser) (void) | 构造字体解析对象，用于解析系统字体。 | 
 | void [OH_Drawing_DestroyFontParser](_drawing.md#oh_drawing_destroyfontparser) ([OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) \*) | 释放字体解析对象占用的内存。 | 
-| char \*\* [OH_Drawing_FontParserGetSystemFontList](_drawing.md#oh_drawing_fontparsergetsystemfontlist) ([OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) \*, size_t \*) | 获取系统字体名称列表。 | 
+| char \*\* [OH_Drawing_FontParserGetSystemFontList](_drawing.md#oh_drawing_fontparsergetsystemfontlist) ([OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) \*, size_t \*) | 获取系统字体名称列表，此接口仅在2in1设备上可用。 | 
 | void [OH_Drawing_DestroySystemFontList](_drawing.md#oh_drawing_destroysystemfontlist) (char \*\*, size_t) | 释放系统字体名称列表占用的内存。 | 
 | [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_FontParserGetFontByName](_drawing.md#oh_drawing_fontparsergetfontbyname) ([OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) \*, const char \*) | 根据传入的系统字体名称获取系统字体的相关信息。 | 
 | [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \* [OH_Drawing_TypographyGetLineMetrics](_drawing.md#oh_drawing_typographygetlinemetrics) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*) | 获取行位置信息。 | 
