@@ -1,16 +1,17 @@
-# Page Routing (@ohos.router)
+# Page Routing (@ohos.router) (Not Recommended)
 
 
 Page routing refers to the redirection and data transfer between different pages in an application. It can be implemented through APIs of the **Router** module. Through different URLs, you can easily navigate users through pages. This document describes the functions provided by the **Router** module from the following aspects: [Page Redirection](#page-redirection), [Page Return](#page-return), [Adding a Confirmation Dialog Box Before Page Return](#adding-a-confirmation-dialog-box-before-page-return), and [Named Route](#named-route).
 
-The **Router** module is applicable to page redirection between [modules](../quick-start/application-package-structure-stage.md) and within a module. It uses page URLs to decouple modules. Regarding page redirection within a module, prefer [Navigation](./arkts-navigation-navigation.md) over this module to create better transition effects.
+>**NOTE**
+>
+>You are advised to use [Navigation](./arkts-navigation-navigation.md), which offers enhanced functionality and customization capabilities, as the routing framework in your application. For details about the differences between **Navigation** and **Router**, see [Transition from Router to Navigation](./arkts-router-to-navigation.md).
 
 ## Page Redirection
 
 Page redirection is an important part of the development process. When using an application, you usually need to jump between different pages, and sometimes you need to pass data from one page to another.
 
-**Figure 1** Page redirection
-
+  **Figure 1** Page redirection 
 ![router-jump-to-detail](figures/router-jump-to-detail.gif)
 
 The **Router** module provides two redirection modes: [router.pushUrl()](../reference/apis-arkui/js-apis-router.md#routerpushurl9) and [router.replaceUrl()](../reference/apis-arkui/js-apis-router.md#routerreplaceurl9). Whether the target page will replace the current page depends on the mode used.
@@ -19,9 +20,9 @@ The **Router** module provides two redirection modes: [router.pushUrl()](../refe
 
 - **router.replaceUrl()**: The target page replaces and destroys the current page. In this mode, the resources of the current page can be released, and users cannot return to the current page.
 
->**NOTE**
+>**NOTE** 
 >
->- When creating a page, configure the route to this page by following instructions in [Building the Second Page](../quick-start/start-with-ets-stage.md#building-the-second-page).
+>- When creating a page, configure the route to this page by following instructions in <!--RP1-->[Building the Second Page](../quick-start/start-with-ets-stage.md#building-the-second-page)<!--RP1End-->.
 >
 >
 >- The maximum capacity of a page stack is 32 pages. If this limit is exceeded, the [router.clear()](../reference/apis-arkui/js-apis-router.md#routerclear) API can be called to clear the historical page stack and free the memory.
@@ -36,16 +37,15 @@ Before using the **Router** module, import it first.
 
 
 ```ts
-import router from '@ohos.router';
-import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
+import { promptAction, router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 ```
 
 - Scenario 1: There is a home page (**Home**) and a details page (**Detail**). You want to click an offering on the home page to go to the details page. In addition, the home page needs to be retained in the page stack so that the status can be restored when the page is returned. In this scenario, you can use the **pushUrl()** API and use the **Standard** instance mode (which can also be omitted).
 
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   // On the Home page
   function onJumpClick(): void {
     router.pushUrl({
@@ -68,7 +68,7 @@ import promptAction from '@ohos.promptAction';
 
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   // On the Login page
   function onJumpClick(): void {
     router.replaceUrl({
@@ -91,7 +91,7 @@ import promptAction from '@ohos.promptAction';
 
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   // On the Setting page
   function onJumpClick(): void {
     router.pushUrl({
@@ -110,7 +110,7 @@ import promptAction from '@ohos.promptAction';
 
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
 
   // On the SearchResult page
   function onJumpClick(): void {
@@ -132,7 +132,7 @@ If you need to transfer data to the target page during redirection, you can add 
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 class DataModelInfo {
   age: number = 0;
 }
@@ -168,7 +168,7 @@ On the target page, you can call the [getParams()](../reference/apis-arkui/js-ap
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 class InfoTmp {
   age: number = 0
@@ -198,7 +198,7 @@ Before using the **Router** module, import it first.
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 ```
 
 You can use any of the following methods to return to a page:
@@ -207,7 +207,7 @@ You can use any of the following methods to return to a page:
 
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   router.back();
   ```
 
@@ -219,7 +219,7 @@ You can use any of the following methods to return to a page:
   Return to the page through a common route.
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   router.back({
     url: 'pages/Home'
   });
@@ -228,7 +228,7 @@ You can use any of the following methods to return to a page:
   Return to the page through a named route.
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   router.back({
     url: 'myPage' // myPage is the alias of the page to return to.
   });
@@ -242,7 +242,7 @@ You can use any of the following methods to return to a page:
   Return to the page through a common route.
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   router.back({
     url: 'pages/Home',
     params: {
@@ -254,7 +254,7 @@ You can use any of the following methods to return to a page:
   Return to the page through a named route.
 
   ```ts
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
   router.back({
     url: 'myPage', // myPage is the alias of the page to return to.
     params: {
@@ -269,7 +269,7 @@ On the target page, call the **router.getParams()** API at the position where pa
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -312,15 +312,15 @@ Before using the **Router** module, import it first.
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 ```
 
 To enable the confirmation dialog box for page return, call the [router.showAlertBeforeBackPage()](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9) API (for setting the information about the dialog box), then the [router.back()](../reference/apis-arkui/js-apis-router.md#routerback) API. For example, define a click event processing function for the back button on the payment page:
 
 
 ```ts
-import router from '@ohos.router';
-import { BusinessError } from '@ohos.base';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Define a click event processing function for the back button.
 function onBackClick(): void {
@@ -355,16 +355,15 @@ Before using the **Router** module, import it first.
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 ```
 
 In the event callback, call the [promptAction.showDialog()](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog) API of the **PromptAction** module.
 
 
 ```ts
-import router from '@ohos.router';
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
+import { promptAction, router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function onBackClick() {
   // Display a custom confirmation dialog box.
@@ -412,7 +411,7 @@ Before using the **Router** module, import it first.
 
 
 ```ts
-import router from '@ohos.router';
+import { router } from '@kit.ArkUI';
 ```
 
 In the target page in the [HAR](../quick-start/har-package.md) or [HSP](../quick-start/in-app-hsp.md), name the [@Entry decorated custom component](../quick-start/arkts-create-custom-components.md#entryoptions10).
@@ -440,9 +439,9 @@ export struct MyComponent {
 When the configuration is successful, import the named route page to the page from which you want to redirect.
 
 ```ts
-import router from '@ohos.router';
-import { BusinessError } from '@ohos.base';
-import('library/src/main/ets/pages/Index');  // Import the named route page from the library of the shared package.
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import '@ohos/library/src/main/ets/pages/Index';  // Import the named route page from the library of the shared package.
 @Entry
 @Component
 struct Index {
@@ -487,4 +486,4 @@ struct Index {
 >    ...
 > }
 >```
-
+<!--no_check-->
