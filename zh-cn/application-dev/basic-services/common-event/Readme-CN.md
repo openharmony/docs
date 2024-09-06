@@ -15,8 +15,5 @@
     <!--Del-->
     - [移除粘性公共事件（仅对系统应用开放）](common-event-remove-sticky.md)
     <!--DelEnd-->
-    <!--Del-->
-    - [公共事件安全注意事项](common-event-security.md)
-    <!--DelEnd-->
 - 线程间通信
     - [使用Emitter进行线程间通信](itc-with-emitter.md)
