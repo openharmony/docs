@@ -29,7 +29,7 @@ OpenHarmony社区基于LTS/Release分支以patch形式合入少量补丁代码�
 
 ## 生命周期策略
 
-OpenHarmony社区依据《OpenHarmony版本生命周期管理》对Release和LTS分支提供维护和技术支持。
+OpenHarmony社区依据《[OpenHarmony版本生命周期管理](https://gitee.com/openharmony/release-management/blob/master/OpenHarmony%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%91%E5%B8%83%E5%85%AC%E5%91%8A.md)》对Release和LTS分支提供维护和技术支持。
 
 ### 维护时间表
 
