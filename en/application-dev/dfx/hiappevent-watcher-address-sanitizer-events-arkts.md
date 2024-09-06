@@ -144,7 +144,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
    }
    ```
 
-7. In DevEco Studio, choose **entry**, click **Edit Configurations**, select **Diagnostics**, and click **OK**. Click the **Run** button to run the project. Then, click the **address-sanitizer** button to trigger an address sanitizer event. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
+7. In DevEco Studio, choose **entry**, click **Edit Configurations**, click **Diagnostics**, select **Address Sanitizer**, and click **OK**. Click the **Run** button to run the project. Then, click the **address-sanitizer** button to trigger an address sanitizer event. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
 
    ```text
    HiAppEvent onReceive: domain=OS

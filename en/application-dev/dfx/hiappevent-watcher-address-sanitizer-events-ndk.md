@@ -41,21 +41,21 @@ The following describes how to subscribe an address sanitizer event for an array
 2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
 
    ```cmake
-   # Add the **jsoncpp.cpp** file, which is used to parse the JSON strings in the subscription events.
+   # Add the jsoncpp.cpp file, which is used to parse the JSON strings in the subscription events.
    add_library(entry SHARED napi_init.cpp jsoncpp.cpp)
-   # Add **libhiappevent_ndk.z.so** and **libhilog_ndk.z.so** (log output). 
+   # Add libhiappevent_ndk.z.so and libhilog_ndk.z.so (log output). 
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
+3. Import the dependency files to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   #include "json/json.h"
-   #include "hilog/log.h"
-   #include "hiappevent/hiappevent.h"
+   # include "json/json.h"
+   # include "hilog/log.h"
+   # include "hiappevent/hiappevent.h"
    
-   #undef LOG_TAG
-   #define LOG_TAG "testTag"
+   # undef LOG_TAG
+   # define LOG_TAG "testTag"
    ```
 
 4. Subscribe to application events. 
@@ -116,7 +116,7 @@ The following describes how to subscribe an address sanitizer event for an array
          OH_HiAppEvent_AddWatcher(systemEventWatcher);
          return {};
      }
-     ``` 
+     ```
 
    - Watcher of the onTrigger type:
 
@@ -253,7 +253,7 @@ The following describes how to subscribe an address sanitizer event for an array
    }
    ```
 
-9. In DevEco Studio, choose **entry**, click **Edit Configurations**, select **Diagnostics**, and click **OK**. Click the **Run** button to run the project. Then, click the **address-sanitizer** button to trigger an address sanitizer event. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
+9. In DevEco Studio, choose **entry**, click **Edit Configurations**, click **Diagnostics**, select **Address Sanitizer**, and click **OK**. Click the **Run** button to run the project. Then, click the **address-sanitizer** button to trigger an address sanitizer event. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
 
    ```text
    HiAppEvent eventInfo.domain=OS
@@ -289,3 +289,5 @@ The following describes how to subscribe an address sanitizer event for an array
         return {};
     }
     ```
+
+<!--no_check-->
