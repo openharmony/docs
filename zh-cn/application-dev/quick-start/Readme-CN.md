@@ -20,7 +20,7 @@
       - [集成态HSP](integrated-hsp.md)
       - [HAR转HSP指导](har-to-hsp.md)
       - [HSP转HAR指导](hsp-to-har.md)
-      - [静态快捷方式](typical-scenario-configuration.md)
+      - [创建应用静态快捷方式](typical-scenario-configuration.md)
     - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
   - 应用配置文件（Stage模型）
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
