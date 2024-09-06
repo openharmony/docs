@@ -53,6 +53,7 @@ import { camera } from '@kit.CameraKit';
 | SLOW_MOTION_VIDEO<sup>12+</sup>        | 7   | 慢动作模式。**系统接口：** 此接口为系统接口。  |
 | HIGH_RESOLUTION_PHOTO<sup>12+</sup>        | 11     | 高像素拍照模式。 **系统接口：** 此接口为系统接口。          |
 | PANORAMA_PHOTO<sup>12+</sup>        | 15     | 全景拍照模式。 **系统接口：** 此接口为系统接口。          |
+| TIME_LAPSE_PHOTO<sup>12+</sup>        | 16     | 延时摄影模式。 **系统接口：** 此接口为系统接口。          |
 
 ## SlowMotionStatus<sup>12+</sup>
 
@@ -7041,5 +7042,899 @@ isLcdFlashSupported(): boolean
 ```ts
 function isLcdFlashSupported(nightPhotoSession: camera.NightPhotoSession): boolean {
   return nightPhotoSession.isLcdFlashSupported();
+}
+```
+
+## TimeLapseRecordState<sup>12+</sup>
+
+枚举，延时摄影录制状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                           | 值   | 说明         |
+| ----------------------------- | ---- | ----------- |
+| IDLE          | 0    | 未录制 |
+| RECORDING     | 1    | 录制中 |
+
+## TimeLapsePreviewType<sup>12+</sup>
+
+枚举，延时摄影预览类型，影响拍摄算法。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                           | 值   | 说明         |
+| ----------------------------- | ---- | ----------- |
+| DARK         | 1    | 暗光环境，指光照较差的场景，比如夜晚或暗处。 |
+| LIGHT        | 2    | 亮光环境，指光照较好的场景，比如白天或灯光下。 |
+
+## TryAEInfo<sup>12+</sup>
+
+TryAE参数信息，TryAE是指延时摄影时硬件会根据环境光照变化上报状态的操作。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称 | 类型    | 只读 | 可选 | 说明           |
+| ---- | ------- | ---- |--| -------------- |
+| isTryAEDone        | boolean  | 是   | 否 | TryAE是否完成。        |
+| isTryAEHintNeeded  | boolean  | 是   | 是 | 是否需要TryAE。        |
+| previewType        | [TimeLapsePreviewType](#timelapsepreviewtype12) | 是   | 是 | 预览类型。        |
+| captureInterval    | number   | 是   | 是 | 拍摄间隔，单位毫秒（ms）。        |
+
+## TimeLapsePhotoSession<sup>12+</sup>
+
+TimeLapsePhotoSession extends Session, Focus, ManualFocus, AutoExposure, ManualExposure, ManualIso, WhiteBalance, Zoom, ColorEffect
+
+延时摄影会话类，继承自[Session](js-apis-camera.md#session12)，用于设置延时摄影会话的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+监听延时摄影会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                          | 必填 | 说明                           |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError): void {
+  console.error(`Time lapse photo session error code: ${err.code}`);
+}
+
+function registerSessionError(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('error', callback);
+}
+```
+
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听延时摄影会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                        | 必填 | 说明                           |
+| -------- | ------------------------ | ---- | ------------------------------ |
+| type     | string    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匿名函数。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+function unregisterSessionError(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>12+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明                       |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>12+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+注销监听相机聚焦的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+function unregisterFocusStateChange(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('focusStateChange');
+}
+```
+
+### on('isoInfoChange')<sup>12+</sup>
+
+on(type: 'isoInfoChange', callback: AsyncCallback\<IsoInfo\>): void
+
+监听自动ISO变化事件，通过注册回调函数获取实时ISO信息。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                      | 必填 | 说明                               |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | 是   | 监听事件，固定为'isoInfoChange'。         |
+| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| 是   | 回调函数，用于获取ISO信息。         |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isoInfoCallback(err: BusinessError, info: camera.IsoInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.log(`ISO value: ${info.iso}`);
+}
+
+function registerIsoInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('isoInfoChange', isoInfoCallback);
+}
+```
+
+### off('isoInfoChange')<sup>12+</sup>
+
+off(type: 'isoInfoChange', callback?: AsyncCallback\<IsoInfo\>): void
+
+注销监听ISO信息事件，通过注册回调函数来注销。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                      | 必填 | 说明                               |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | 是   | 监听事件，固定为'isoInfoChange'。         |
+| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| 否   | 回调函数，可选，用于匹配on('isoInfoChange')的callback。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                    |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**示例：**
+
+```ts
+function unregisterIsoInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('isoInfoChange');
+}
+```
+
+### on('exposureInfoChange')<sup>12+</sup>
+
+on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+
+监听曝光信息事件，通过注册回调函数获取曝光信息。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                      | 必填 | 说明                               |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | 是   | 监听事件，固定为'exposureInfoChange'。         |
+| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| 是   | 回调函数，用于获取曝光信息。         |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function exposureInfoCallback(err: BusinessError, info: camera.ExposureInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.log(`exposureTimeValue: ${info.exposureTime}`);
+}
+
+function registerExposureInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('exposureInfoChange', exposureInfoCallback);
+}
+```
+
+### off('exposureInfoChange')<sup>12+</sup>
+
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+
+注销监听曝光信息事件，通过注册回调函数来注销。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                      | 必填 | 说明                               |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | 是   | 监听事件，固定为'exposureInfoChange'。         |
+| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| 否   | 回调函数，可选，用于匹配on('exposureInfoChange')的callback。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**示例：**
+
+```ts
+function unregisterExposureInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('exposureInfoChange');
+}
+```
+
+### on('luminationInfoChange')<sup>12+</sup>
+
+on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+
+监听光照变化事件，通过注册回调函数获取实时光照参数。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                      | 必填 | 说明                               |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | 是   | 监听事件，固定为'luminationInfoChange'。         |
+| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| 是   | 回调函数，用于获取光照参数。         |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function luminationInfoCallback(err: BusinessError, info: camera.LuminationInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.log(`Lumination: ${info.lumination}`);
+}
+
+function registerLuminationInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('luminationInfoChange', luminationInfoCallback);
+}
+```
+
+### off('luminationInfoChange')<sup>12+</sup>
+
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+
+注销监听光照变化事件，通过注册回调函数来注销。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                      | 必填 | 说明                               |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | 是   | 监听事件，固定为'luminationInfoChange'。         |
+| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| 否   | 回调函数，可选，用于匹配on('luminationInfoChange')的callback。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**示例：**
+
+```ts
+function unregisterLuminationInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('luminationInfoChange');
+}
+```
+
+### on('tryAEInfoChange')<sup>12+</sup>
+
+on(type: 'tryAEInfoChange', callback: AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>): void
+
+监听TryAE变化事件，通过注册回调函数获取实时TryAE参数。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                      | 必填 | 说明                               |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | 是   | 监听事件，固定为'tryAEInfoChange'。         |
+| callback | AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>| 是   | 回调函数，用于获取TryAE参数。         |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function tryAEInfoCallback(err: BusinessError, info: camera.TryAEInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.log(`TryAEInfo: ${info.isTryAEDone}, ${info.isTryAEHintNeeded}, ${info.previewType}, ${info.captureInterval}`);
+}
+
+function registerTryAEInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.on('tryAEInfoChange', tryAEInfoCallback);
+}
+```
+
+### off('tryAEInfoChange')<sup>12+</sup>
+
+off(type: 'tryAEInfoChange', callback?: AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>): void
+
+注销监听TryAE变化事件，通过注册回调函数来注销。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                      | 必填 | 说明                               |
+| -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                  | 是   | 监听事件，固定为'tryAEInfoChange'。         |
+| callback | AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>| 否   | 回调函数，可选，用于匹配on('tryAEInfoChange')的callback。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| ------- | ---------------------- |
+| 202     | Not System Application. |
+
+**示例：**
+
+```ts
+function unregisterTryAEInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  timeLapsePhotoSession.off('tryAEInfoChange');
+}
+```
+
+### isTryAENeeded<sup>12+</sup>
+
+isTryAENeeded(): boolean
+
+判断是否需要执行TryAE。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| boolean   | 是否需要执行TryAE，接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103 |  Session not config.    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isTryAENeeded(timeLapsePhotoSession: camera.TimeLapsePhotoSession): boolean {
+  let needed = false;
+  try {
+    needed = timeLapsePhotoSession.isTryAENeeded();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The isTryAENeeded call failed. error code: ${err.code}`);
+  }
+  return needed;
+}
+```
+
+### startTryAE<sup>12+</sup>
+
+startTryAE(): void
+
+开始执行TryAE。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103 | Session not config.     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function startTryAE(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  try {
+    timeLapsePhotoSession.startTryAE();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The startTryAE call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### stopTryAE<sup>12+</sup>
+
+stopTryAE(): void
+
+停止执行TryAE。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103 | Session not config.     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function stopTryAE(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  try {
+    timeLapsePhotoSession.stopTryAE();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The stopTryAE call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getSupportedTimeLapseIntervalRange<sup>12+</sup>
+
+getSupportedTimeLapseIntervalRange(): Array\<number\>
+
+获取支持的拍摄间隔范围。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| Array\<number\>   | 用于获取拍摄间隔范围，单位毫秒（ms），根据底层能力返回为准，接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getSupportedTimeLapseIntervalRange(timeLapsePhotoSession: camera.TimeLapsePhotoSession): Array<number> {
+  let intervalRange: Array<number> = [];
+  try {
+    intervalRange = timeLapsePhotoSession.getSupportedTimeLapseIntervalRange();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The getSupportedTimeLapseIntervalRange call failed. error code: ${err.code}`);
+  }
+  return intervalRange;
+}
+```
+
+### getTimeLapseInterval<sup>12+</sup>
+
+getTimeLapseInterval(): number
+
+获取当前的拍摄间隔值。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| number    | 返回当前拍摄间隔值，单位毫秒（ms）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getTimeLapseInterval(timeLapsePhotoSession: camera.TimeLapsePhotoSession): number {
+  let interval: number = 0;
+  try {
+    interval = timeLapsePhotoSession.getTimeLapseInterval();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The getTimeLapseInterval call failed. error code: ${err.code}`);
+  }
+  return interval;
+}
+```
+
+### setTimeLapseInterval<sup>12+</sup>
+setTimeLapseInterval(interval: number): void
+
+设置拍摄间隔值。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                     | 必填 | 说明                 |
+| -------- | ----------------------- | ---- | ------------------- |
+| interval | number | 是   | 设置拍摄间隔值，单位毫秒（ms）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setTimeLapseInterval(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  try {
+    let interval: number = 10000;
+    timeLapsePhotoSession.setTimeLapseInterval(interval);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setTimeLapseInterval call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getTimeLapseRecordState<sup>12+</sup>
+
+getTimeLapseRecordState(): TimeLapseRecordState
+
+获取当前拍摄状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [TimeLapseRecordState](#timelapserecordstate12)    | 获取当前拍摄状态。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getTimeLapseRecordState(timeLapsePhotoSession: camera.TimeLapsePhotoSession): camera.TimeLapseRecordState {
+  let state = camera.TimeLapseRecordState.IDLE;
+  try {
+    state = timeLapsePhotoSession.getTimeLapseRecordState();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The getTimeLapseRecordState call failed. error code: ${err.code}`);
+  }
+  return state;
+}
+```
+
+### setTimeLapseRecordState<sup>12+</sup>
+
+setTimeLapseRecordState(state: TimeLapseRecordState): void
+
+设置当前拍摄状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                            | 必填 | 说明                    |
+| -------- | -------------------------------| ---- | ----------------------- |
+| state   | [TimeLapseRecordState](#timelapserecordstate12)  | 是   | 拍摄状态。                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setTimeLapseRecordState(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  try {
+    timeLapsePhotoSession.setTimeLapseRecordState(camera.TimeLapseRecordState.RECORDING);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setTimeLapseRecordState call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getTimeLapsePreviewType<sup>12+</sup>
+
+getTimeLapsePreviewType(): TimeLapsePreviewType
+
+获取当前预览类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [TimeLapsePreviewType](#timelapsepreviewtype12)    | 获取当前预览类型。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSession): camera.TimeLapsePreviewType {
+  let type = camera.TimeLapsePreviewType.DARK;
+  try {
+    type = timeLapsePhotoSession.getTimeLapsePreviewType();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The getTimeLapsePreviewType call failed. error code: ${err.code}`);
+  }
+  return type;
+}
+```
+
+### setTimeLapsePreviewType<sup>12+</sup>
+
+setTimeLapsePreviewType(type: TimeLapsePreviewType): void
+
+设置当前预览类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                            | 必填 | 说明                    |
+| -------- | -------------------------------| ---- | ----------------------- |
+| state   | [TimeLapsePreviewType](#timelapsepreviewtype12)  | 是   | 预览类型。                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202     | Not System Application. |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSession): void {
+  try {
+    timeLapsePhotoSession.setTimeLapsePreviewType(camera.TimeLapsePreviewType.LIGHT);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setTimeLapsePreviewType call failed. error code: ${err.code}`);
+  }
 }
 ```
