@@ -457,7 +457,7 @@ Allows a device administrator application to manage the device administrator.
 
 **Valid since**: 12
 
-### ohos.permission.QUERY_AUDIT_EVENT
+## ohos.permission.QUERY_AUDIT_EVENT
 
 Allows an MDM application to query security audit events.
 

@@ -227,7 +227,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
     if (session == nullptr) {
-        printf("create media key session failed");
+        printf("media key session is nullptr");
         return;
     }
     // Generate a media key request and set the response to the media key request.

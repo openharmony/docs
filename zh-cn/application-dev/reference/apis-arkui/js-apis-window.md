@@ -2145,7 +2145,7 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 | 参数名              | 类型                                        | 必填 | 说明                   |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
 | orientation         | [Orientation](#orientation9)                | 是   | 窗口显示方向的属性。         |
-| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。             |
+| callback            | AsyncCallback&lt;void&gt;                   | 是   | 回调函数。该回调函数返回调用结果是否成功，非应用旋转动效结束。 |
 
 **错误码：**
 
@@ -5141,7 +5141,7 @@ promise.then(() => {
 ### maximize<sup>12+</sup>
 maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-主窗口调用，实现最大化功能，使用Promise异步回调。
+主窗口调用，实现最大化功能，使用Promise异步回调，仅2in1设备可用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5206,7 +5206,7 @@ export default class EntryAbility extends UIAbility {
 
 recover(): Promise&lt;void&gt;
 
-将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在多窗层叠布局效果下生效。
+将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在多窗层叠布局效果下生效，仅2in1设备可用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5713,7 +5713,7 @@ getWindowStatus(): WindowStatusType
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**参数：**
+**返回值：**
 
 | 类型                           | 说明                                   |
 | ------------------------------ | ----------------------------------------|

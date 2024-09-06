@@ -4,7 +4,7 @@ The **TriggerInfo** module defines the information required for triggering the W
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -14,11 +14,13 @@ import { wantAgent } from '@kit.AbilityKit';
 
 ## Properties
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name      | Type                | Mandatory | Description       |
+| Name      | Type                | Mandatory| Description       |
 | ---------- | --- |-------------------- | ----------- |
-| code       | number               | Yes  | Custom result code provided for the target WantAgent. |
+| code       | number               | Yes  | Custom result code provided for the target WantAgent.|
 | want       | Want                 | No  | Carrier for information transfer between objects (application components).   |
 | permission | string               | No  | Permission.   |
 | extraInfo  | { [key: string]: any } | No  | Extra information.   |

@@ -15,14 +15,14 @@
 | **接口名**  | **描述** |
 | -------- | -------- |
 | onStartContentEditing(uri: string, want:Want, session: UIExtensionContentSession):void       | 可以执行读取原始图片、加载页面等操作。|
-| saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | 传入编辑过的图片的PixMap对象并保存。   |
+| saveEditedContentWithImage(pixelMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | 传入编辑过的图片的PixelMap对象并保存。   |
 
 ## 图片编辑类应用实现图片编辑页面
 
 1. 在DevEco Studio工程中手动新建一个PhotoEditorExtensionAbility。
     1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录，如PhotoEditorExtensionAbility。
-    2. 在PhotoEditorExtensionAbility目录中，右键选择“New > File”，新建一个.ets文件，如PhotoEditorUIExtAbility.ets。
-2. 在PhotoEditorUIExtAbility.ets中重写onCreate、onForeground、onBackground、onDestroy和onStartContentEditing的生命周期回调。
+    2. 在PhotoEditorExtensionAbility目录中，右键选择“New > File”，新建一个.ets文件，如ExamplePhotoEditorAbility.ets。
+2. 在ExamplePhotoEditorAbility.ets中重写onCreate、onForeground、onBackground、onDestroy和onStartContentEditing的生命周期回调。
 
     其中，需要在onStartContentEditing中加载入口页面文件pages/Index.ets，并将session、uri、实例对象等保存在LocalStorage中传递给页面。
 
@@ -192,7 +192,7 @@
             "description": "ExamplePhotoEditorAbility",
             "type": "photoEditor",
             "exported": true,
-            "srcEntry": "./ets/PhotoEditorExtensionAbility/PhotoEditorUIExtAbility.ets",
+            "srcEntry": "./ets/PhotoEditorExtensionAbility/ExamplePhotoEditorAbility.ets",
             "label": "$string:EntryAbility_label",
             "extensionProcessMode": "bundle"
           },
@@ -398,7 +398,7 @@ struct Index {
               });
             }
           }
-          // 将图片转换为图片url，并调用startAbilityByType拉起图片编辑应用面板
+          // 将图片转换为图片uri，并调用startAbilityByType拉起图片编辑应用面板
           let uri = fileUri.getUriFromPath(this.filePath);
           context.startAbilityByType("photoEditor", {
             "ability.params.stream": [uri], // 原始图片的uri,只支持传入一个uri

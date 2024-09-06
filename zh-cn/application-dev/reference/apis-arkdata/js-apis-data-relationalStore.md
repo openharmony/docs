@@ -1,7 +1,14 @@
 # @ohos.data.relationalStore (关系型数据库)
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。支持通过[ResultSet.getSendableRow](#getsendablerow12)方法获取Sendable数据，进行跨线程传递。
+
 为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
+
+大数据量场景下查询数据可能会导致耗时长甚至应用卡死，建议如下：
+- 单次查询数据量不超过5000条。
+- 在[TaskPool](../apis-arkts/js-apis-taskpool.md)中查询。
+- 拼接SQL语句尽量简洁。
+- 合理地分批次查询。
 
 该模块提供以下关系型数据库相关的常用功能：
 
@@ -634,8 +641,7 @@ type ValuesBucket = Record<string, ValueType>
 
 | 类型              | 说明                           |
 | ---------------- | ---------------------------- |
-| string | 表示键的类型为string。 |
-| ValueType | 表示值的类型为[ValueType](#valuetype)。 |
+| Record<string, [ValueType](#valuetype)> | 表示键值对类型。键的类型为string，值的类型为[ValueType](#valuetype)。 |
 
 ## PRIKeyType<sup>10+</sup> 
 

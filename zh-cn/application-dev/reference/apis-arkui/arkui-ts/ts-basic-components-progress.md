@@ -11,6 +11,24 @@
 
 无
 
+## 接口
+
+Progress(options: ProgressOptions)
+
+创建进度条组件。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options |  [ProgressOptions](#progressoptionstype对象说明)| 是 | 按进度条类型不同，设置不同属性的进度条组件参数。 |
+
 ## ProgressOptions\<Type\>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。

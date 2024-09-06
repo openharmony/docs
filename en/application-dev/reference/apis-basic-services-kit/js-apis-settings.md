@@ -53,7 +53,7 @@ Provides data items for setting the display effects.
 | ----------------------------- | ------ | ---- | ---- |-------------------------------------------------------------------------------------------------------------|
 | FONT_SCALE                    | string | Yes  | Yes  | Scale factor of the font. The value is a floating point number. (In the current version, only fixed values can be queried.)                                                                             |
 | SCREEN_BRIGHTNESS_STATUS      | string | Yes  | Yes  | Screen brightness. The value ranges from 0 to 255.                                                                                          |
-| AUTO_SCREEN_BRIGHTNESS        | string | Yes  | Yes  | Whether automatic screen brightness adjustment is enabled.<br>**AUTO_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is enabled.<br><br>**MANUAL_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is disabled.   |
+| AUTO_SCREEN_BRIGHTNESS        | string | Yes  | Yes  | Whether automatic screen brightness adjustment is enabled.<br>**AUTO_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is enabled.<br>**MANUAL_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is disabled.   |
 | AUTO_SCREEN_BRIGHTNESS_MODE   | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is enabled.                                                                       |
 | MANUAL_SCREEN_BRIGHTNESS_MODE | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is disabled.                                                                       |
 | SCREEN_OFF_TIMEOUT            | string | Yes  | Yes  | Waiting time for the device to enter the sleep state when not in use (unit: ms).                                                                             |
@@ -61,7 +61,7 @@ Provides data items for setting the display effects.
 | ANIMATOR_DURATION_SCALE       | string | Yes  | Yes  | Scale factor for the animation duration. This affects the start delay and duration of all such animations.<br>If the value is **0**, the animation ends immediately. The default value is **1**.                                                 |
 | TRANSITION_ANIMATION_SCALE    | string | Yes  | Yes  | Scale factor for transition animations.<br>The value **0** indicates that the transition animations are disabled.                                                                               |
 | WINDOW_ANIMATION_SCALE        | string | Yes  | Yes  | Scale factor for normal window animations.<br>The value **0** indicates that window animations are disabled.                                                                             |
-| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br><br>**0**: Display color inversion is disabled.                                                       |
+| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br>**0**: Display color inversion is disabled.                                                       |
 
 ## general
 
@@ -445,7 +445,7 @@ let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_ST
 
 ## settings.getValueSync<sup>11+</sup>
 
-getValueSync(context: Context, name: string, defvalue: string, domainName: string): string;
+getValueSync(context: Context, name: string, defValue: string, domainName: string): string;
 
 Obtains the value of a data item. Unlike **getValue**, this API returns the result synchronously.
 
@@ -459,7 +459,7 @@ Obtains the value of a data item. Unlike **getValue**, this API returns the resu
 |------------| ---------------------- | ---- | ------------------------------------------------------------ |
 | context    | Context                | Yes  | Application context.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name       | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
-| defvalue   | string                 | Yes  | Value of the data item. The value range varies by service.                  |
+| defValue   | string                 | Yes  | Value of the data item. The value range varies by service.                  |
 | domainName | string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;Indicates the user security attribute domain (for system applications only).|
 
 
@@ -587,12 +587,9 @@ Registers an observer in the specified context so that the specified data item c
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, value) => {
-  if(err){
-    console.error('Failed to get the setting.${err.message}');
-    return;
-  }
-  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, () => {
+  let value:string = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
+  console.log(`Promise:value -> $ {value}`);
 });
 ```
 
@@ -783,7 +780,7 @@ Obtains the URI of a data item. This API uses an asynchronous callback to return
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br>- Existing data items in the database<br>- Custom data items|
-| callback | AsyncCallback\<object> | Yes  | Callback used to return the result. obtain the URI of the data item.                                 |
+| callback | AsyncCallback\<object> | Yes  | Callback used to return the result. Obtains the URI of a data item.                                 |
 
 **Example**
 

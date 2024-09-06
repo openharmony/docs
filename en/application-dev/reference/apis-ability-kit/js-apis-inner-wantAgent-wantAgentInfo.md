@@ -15,6 +15,8 @@ import wantAgentDeprecated from '@ohos.wantAgent';
 
 ## Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name          | Type                           | Mandatory| Description                  |

@@ -1,9 +1,9 @@
-#  Camera_CaptureStartInfo
+# Camera_CaptureStartInfo
 
 
 ## 概述
 
-捕获结束信息。
+拍照开始信息。
 
 **起始版本：** 12
 
@@ -15,10 +15,10 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [captureId](#captureid) | 捕获id。  |
-| int64_t [time](#time) | 照片的快门时间（以毫秒为单位）。 |
+| int32_t [captureId](#captureid) | 拍照id。  | 
+| int64_t [time](#time) | 预估的单次拍照底层出sensor采集帧时间，如果上报-1，代表没有预估时间。  | 
 
 
 ## 结构体成员变量说明
@@ -30,7 +30,7 @@
 int32_t Camera_CaptureStartInfo::captureId
 ```
 **描述**
-捕获id。
+拍照id。
 
 
 ### time
@@ -39,4 +39,4 @@ int32_t Camera_CaptureStartInfo::captureId
 int64_t Camera_CaptureStartInfo::time
 ```
 **描述**
-照片的快门时间（以毫秒为单位）。
+预估的单次拍照底层出sensor采集帧时间，如果上报-1，代表没有预估时间。

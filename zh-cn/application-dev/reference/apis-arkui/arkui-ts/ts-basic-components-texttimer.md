@@ -42,7 +42,7 @@ TextTimer(options?: TextTimerOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)和[文本通用属性](ts-universal-attributes-text-style.md)的fontColor、fontSize、fontStyle、fontWeight、fontFamily外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 ### format
 
@@ -192,6 +192,7 @@ contentModifier(modifier: ContentModifier\<TextTimerConfiguration>)
 onTimer(event:&nbsp;(utc:&nbsp;number,&nbsp;elapsedTime:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 时间文本发生变化时触发。锁屏状态和应用后台状态下不会触发该事件。
+设置高精度的format（SSS、SS）时，回调间隔可能会出现波动。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 

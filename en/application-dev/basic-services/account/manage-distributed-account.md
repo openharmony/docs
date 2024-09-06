@@ -67,7 +67,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
    };
    ```
 
-2. Use **setOsAccountDistributedInfoByLocalId** log in to the distributed account from the system account.
+2. Use [setOsAccountDistributedInfoByLocalId](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10) to bind the specified distributed account to the current system account.
 
    ```ts
    distributedAccountAbility.setOsAccountDistributedInfoByLocalId(localId, distributedInfo).then(() => {
@@ -77,7 +77,7 @@ You can use the [distributed account SDK](../../reference/apis-basic-services-ki
    });
    ```
 
-3. After the login, use [getOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10) to obtain information of the distributed account.
+3. After the login, use [getOsAccountDistributedInfoByLocalId](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#getosaccountdistributedinfobylocalid10) to obtain information of the distributed account.
 
    ```ts
    distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data: distributedAccount.DistributedInfo) => {

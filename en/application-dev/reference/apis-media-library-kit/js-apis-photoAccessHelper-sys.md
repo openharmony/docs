@@ -3313,7 +3313,7 @@ Represents the edited media asset data.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### Attributes
+### Properties
 
 | Name          | Type   | Readable  | Writable | Description  |
 | ------------ | ------ | ---- | ---- | ------- |

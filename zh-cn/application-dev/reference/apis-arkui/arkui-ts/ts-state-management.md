@@ -1609,6 +1609,10 @@ link.aboutToBeDeleted();
 
 ## PersistentStorage
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储UI状态)](../../../quick-start/arkts-persiststorage.md)
 
 > **说明：**<br/>
@@ -1839,6 +1843,9 @@ let keys: Array<string> = PersistentStorage.Keys();
 
 ## Environment
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 Environment具体使用说明，详见[Environment(设备环境查询)](../../../quick-start/arkts-environment.md)
 
