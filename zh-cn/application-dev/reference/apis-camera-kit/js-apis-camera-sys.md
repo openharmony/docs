@@ -1267,9 +1267,9 @@ async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): P
 
 ### burstCapture<sup>12+</sup>
 
-burstCapture()
+burstCapture(setting: PhotoCaptureSetting): Promise<void>
 
-开始连续拍照，一般用于拍照模式下，开始后底层持续上图，可以通过[confirmCapture](#confirmCapture11)取消连续拍照。
+开始连续拍照，一般用于拍照模式下，开始后底层持续上图，可以通过[confirmCapture](#confirmcapture)取消连续拍照。
 
 **系统接口：** 此接口为系统接口。
 
