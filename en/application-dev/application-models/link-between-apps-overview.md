@@ -12,7 +12,7 @@ Application redirection can be categorized as follows based on whether the targe
     - Specifying an application link (recommended): Use [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) or [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to specify an [application link](#application-links) and start the target application page.
 
     - Specifying an ability (not recommended): Use [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to specify an ability and explicitly start the target application page.
-    
+
     > **NOTE**
     >
     > In API version 11 and earlier versions, you can use explicit Want to start other applications. Since API version 12, third-party applications cannot use explicit Want to start other applications.

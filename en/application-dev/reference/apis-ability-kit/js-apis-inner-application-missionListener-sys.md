@@ -1,6 +1,6 @@
 # MissionListener (System API)
 
-The **MissionListener** module defines the listeners used to observe the mission status. The listeners can be registered by using [on](js-apis-app-ability-missionManager-sys.md#missionmanageron).
+The MissionListener module defines the listeners used to observe the mission status. The listeners can be registered by using [on](js-apis-app-ability-missionManager-sys.md#missionmanageronmission).
 
 > **NOTE**
 > 
@@ -19,15 +19,15 @@ import { missionManager } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-| Name       | Type                | Mandatory | Description                                                        |
+| Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------- | ---- | ------------------------------------------------------------ |
 | onMissionCreated    | function               | No  | Called when the system creates a mission.                               |
-| onMissionDestroyed   | function               | No  | Called when the system destroys the mission. |
-| onMissionSnapshotChanged   | function               | No  | Called when the system updates the mission snapshot. |
-| onMissionMovedToFront   | function               | No  | Called when the system moves the mission to the foreground. |
-| onMissionLabelUpdated<sup>9+</sup>   | function               | No  | Called when the system updates the mission label. |
-| onMissionIconUpdated<sup>9+</sup>   | function               | No  | Called when the system updates the mission icon. |
-| onMissionClosed<sup>9+</sup>   | function               | No  | Called when the system closes the mission. |
+| onMissionDestroyed   | function               | No  | Called when the system destroys the mission.|
+| onMissionSnapshotChanged   | function               | No  | Called when the system updates the mission snapshot.|
+| onMissionMovedToFront   | function               | No  | Called when the system moves the mission to the foreground.|
+| onMissionLabelUpdated<sup>9+</sup>   | function               | No  | Called when the system updates the mission label.|
+| onMissionIconUpdated<sup>9+</sup>   | function               | No  | Called when the system updates the mission icon.|
+| onMissionClosed<sup>9+</sup>   | function               | No  | Called when the system closes the mission.|
 
 **Example**
 ```ts

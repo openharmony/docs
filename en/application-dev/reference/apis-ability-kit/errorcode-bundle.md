@@ -1082,6 +1082,20 @@ When the API for adding a shortcut is called, a shortcut with the same bundle na
 
 Check whether the bundle name and shortcut ID are correct.
 
+## 17700071 Enterprise Applications Cannot Be Installed
+
+**Error Message**
+
+It is not allowed to install the enterprise bundle.
+
+**Description**
+
+It is not allowed to install enterprise applications through a specific installation API.
+
+**Possible Causes**
+
+Due to policy control, enterprise applications cannot be installed through the specific API.
+
 ## 17700201 .abc File Verification Failure
 
 **Error Message**
