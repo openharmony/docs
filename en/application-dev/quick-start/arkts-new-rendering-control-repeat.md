@@ -741,8 +741,6 @@ struct entryCompSucc {
 }
 ```
 
-Checking the Running Result
+The figure below shows the effect.
 
 ![Repeat-Case2-Succ](./figures/Repeat-Case2-Succ.gif)
-
-<!--no_check-->
