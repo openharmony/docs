@@ -815,6 +815,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
@@ -1096,13 +1097,14 @@ Stops screen hopping. This API uses a promise to return the result.
 | --------             | ----------------------------   |
 | Promise&lt;void&gt; |  Promise that returns no value.     |
 
-**Error Codes**
+**Error codes**
 
 For details about the error codes, see [Screen Hopping Error Codes](errorcode-devicestatus.md).
 
 | ID| Error Message         |
 | -------- | ----------------- |
 | 202 | Not system application. |
+
 **Example**
 
 ```ts
@@ -1145,6 +1147,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
@@ -1189,6 +1192,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Return value**
@@ -1242,6 +1246,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
@@ -1285,6 +1290,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **Example**
