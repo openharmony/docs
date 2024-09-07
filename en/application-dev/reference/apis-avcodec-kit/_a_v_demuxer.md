@@ -23,8 +23,8 @@ The AVDemuxer module provides the functions for audio and video demuxing.
 
 | Name| Description| 
 | -------- | -------- |
-| typedef void(* [DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback)) (DRM_MediaKeySystemInfo *mediaKeySystemInfo) | Defines a pointer to the callback function for the media key system information. |
-| typedef void(* [Demuxer_MediaKeySystemInfoCallback](#demuxer_mediakeysysteminfocallback)) (OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo)| Defines a pointer to the callback function for the media key system information. |
+| typedef void(* [DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback)) (DRM_MediaKeySystemInfo *mediaKeySystemInfo) | Defines a pointer to the callback function for [DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md). No demuxer instance is returned. This callback function applies to the scenario where a single demuxer instance is used. You need to call [OH_AVDemuxer_SetMediaKeySystemInfoCallback](#oh_avdemuxer_setmediakeysysteminfocallback) to set the callback function as a callback. |
+| typedef void(* [Demuxer_MediaKeySystemInfoCallback](#demuxer_mediakeysysteminfocallback)) (OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *mediaKeySystemInfo)| Defines a pointer to the callback function for [DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md). A demuxer instance is returned. This callback function applies to the scenario where multiple demuxer instances are used. You need to call [OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback](#oh_avdemuxer_setdemuxermediakeysysteminfocallback) to set the callback function as a callback. This callback function is recommended. |
 
 
 ### Functions
@@ -129,9 +129,11 @@ The destroyed instance cannot be used until it is re-created. You are advised to
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
-**AV_ERR_INVALID_VAL** is returned if the demuxer pointer is null or points to a non-demuxer instance.
+**AV_ERR_OK**: The operation is successful.
+
+**AV_ERR_INVALID_VAL**: The demuxer pointer is null or does not point to a demuxer instance.
 
 
 ### OH_AVDemuxer_GetMediaKeySystemInfo()
@@ -142,6 +144,8 @@ OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo (OH_AVDemuxer *demuxer, DRM_Medi
 **Description**
 
 Obtains the media key system information.
+
+The media key system information can be obtained only after [Demuxer_MediaKeySystemInfoCallback](#demuxer_mediakeysysteminfocallback) or [DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback) is successfully invoked.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -156,11 +160,11 @@ Obtains the media key system information.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode).
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
-**AV_ERR_OK** is returned if the operation is successful.
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_INVALID_VAL** is returned if the demuxer instance is a null pointer or invalid, or **mediaKeySystemInfo** is a null pointer.
+**AV_ERR_INVALID_VAL**: The demuxer pointer is null or does not point to a demuxer instance, or the **mediaKeySystemInfo** pointer is null.
 
 
 ### OH_AVDemuxer_ReadSample()
@@ -194,9 +198,17 @@ You must select a track before reading data. After this API is called, the demux
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
-**AV_ERR_INVALID_VAL** is returned if the demuxer pointer is null or points to a non-demuxer instance, the demuxer is not initialized correctly, the track index is out of range, or the track cannot be read. **AV_ERR_OPERATE_NOT_PERMIT** is returned if the track with the specified index is not selected. **AV_ERR_NO_MEMORY** is returned if the sample capacity is insufficient to store all frame data. **AV_ERR_UNKNOWN** is returned if frames cannot be read from or parsed from a file.
+**AV_ERR_OK**: The operation is successful.
+
+**AV_ERR_INVALID_VAL**: The demuxer pointer is null or does not point to a demuxer instance, the demuxer is not initialized correctly, the track index is out of range, or the track cannot be read.
+
+**AV_ERR_OPERATE_NOT_PERMIT**: The track index is not selected.
+
+**AV_ERR_NO_MEMORY**: The sample capacity is insufficient to store all frame data.
+
+**AV_ERR_UNKNOWN**: Failed to read or parse the frame from the file.
 
 
 ### OH_AVDemuxer_ReadSampleBuffer()
@@ -225,9 +237,17 @@ You must select a track before reading data. After this API is called, the demux
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
-**AV_ERR_INVALID_VAL** is returned if the demuxer pointer is null or points to a non-demuxer instance, the demuxer is not initialized correctly, the sample pointer is null, or the track index is out of range. **AV_ERR_OPERATE_NOT_PERMIT** is returned if the track with the specified index is not selected. **AV_ERR_NO_MEMORY** is returned if the sample capacity is insufficient to store all frame data. **AV_ERR_UNKNOWN** is returned if frames cannot be read from or parsed from a file.
+**AV_ERR_OK**: The operation is successful.
+
+**AV_ERR_INVALID_VAL**: The demuxer pointer is null or does not point to a demuxer instance, the demuxer is not initialized correctly, the sample pointer is null, or the track index is out of range.
+
+**AV_ERR_OPERATE_NOT_PERMIT**: The track index is not selected.
+
+**AV_ERR_NO_MEMORY**: The sample capacity is insufficient to store all frame data.
+
+**AV_ERR_UNKNOWN**: Failed to read or parse the frame from the file.
 
 
 ### OH_AVDemuxer_SeekToTime()
@@ -254,9 +274,15 @@ Seeks to the specified time for all the selected tracks based on a seek mode.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
-**AV_ERR_INVALID_VAL** is returned if the demuxer pointer is null or points to a non-demuxer instance, the demuxer is not initialized correctly, or the value of **millisecond** is out of range. **AV_ERR_OPERATE_NOT_PERMIT** is returned if the track with the specified index is not selected or the seek operation cannot be performed on the resource. **AV_ERR_UNKNOWN** is returned if the seek operation fails.
+**AV_ERR_OK**: The operation is successful.
+
+**AV_ERR_INVALID_VAL**: The demuxer pointer is null or does not point to a demuxer instance, the demuxer is not initialized correctly, or the value of **millisecond** is out of range.
+
+**AV_ERR_OPERATE_NOT_PERMIT**: The track with the specified index is not selected or the seek operation cannot be performed on the resource.
+
+**AV_ERR_UNKNOWN**: The seek operation fails.
 
 
 ### OH_AVDemuxer_SelectTrackByID()
@@ -286,9 +312,11 @@ When **OH_AVDemuxer_ReadSample** is called, only the data in the selected track 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
-**AV_ERR_INVALID_VAL** is returned if the demuxer pointer is null or points to a non-demuxer instance, the demuxer is not initialized correctly, the track index is out of range, or the track cannot be read.
+**AV_ERR_OK**: The operation is successful.
+
+**AV_ERR_INVALID_VAL**: The demuxer pointer is null or does not point to a demuxer instance, the demuxer is not initialized correctly, the track index is out of range, or the track cannot be read.
 
 
 ### OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback()
@@ -299,7 +327,7 @@ OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback (OH_AVDemuxer *de
 
 **Description**
 
-Sets an asynchronous callback for obtaining the media key system information.
+Sets a callback for obtaining the media key system information.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -314,13 +342,13 @@ Sets an asynchronous callback for obtaining the media key system information.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode).
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
-**AV_ERR_OK** is returned if the operation is successful.
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_OPERATE_NOT_PERMIT** is returned if the demuxer engine is not started or fails to be initialized.
+**AV_ERR_OPERATE_NOT_PERMIT**: The demuxer is not correctly initialized.
 
-**AV_ERR_INVALID_VAL** is returned if the demuxer instance is a null pointer or invalid.
+AV_ERR_INVALID_VAL: The demuxer pointer is null or does not point to a demuxer instance.
 
 
 ### OH_AVDemuxer_SetMediaKeySystemInfoCallback()
@@ -329,7 +357,8 @@ Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode).
 OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback (OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfoCallback callback)
 ```
 **Description**
-Sets an asynchronous callback for obtaining the media key system information.
+
+Sets a callback for obtaining the media key system information.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -344,13 +373,13 @@ Sets an asynchronous callback for obtaining the media key system information.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode).
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
-**AV_ERR_OK** is returned if the operation is successful.
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_OPERATE_NOT_PERMIT** is returned if the demuxer engine is not started or fails to be initialized.
+**AV_ERR_OPERATE_NOT_PERMIT**: The demuxer is not correctly initialized.
 
-**AV_ERR_INVALID_VAL** is returned if the demuxer instance is a null pointer or invalid.
+AV_ERR_INVALID_VAL: The demuxer pointer is null or does not point to a demuxer instance.
 
 
 ### OH_AVDemuxer_UnselectTrackByID()
@@ -380,6 +409,8 @@ If the same track is deselected multiple times, **AV_ERR_OK** is returned and th
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
-**AV_ERR_INVALID_VAL** is returned if the demuxer pointer is null or points to a non-demuxer instance, or the demuxer is not initialized correctly.
+**AV_ERR_OK**: The operation is successful.
+
+**AV_ERR_INVALID_VAL**: The demuxer pointer is null or points to a non-demuxer instance, or the demuxer is not initialized correctly.
