@@ -7,14 +7,14 @@
 
 AppStartup提供了一种简单高效的应用启动方式，可以支持任务的异步启动，加快应用启动速度。同时，通过在一个配置文件中统一设置多个启动任务的执行顺序以及依赖关系，让执行启动任务的代码变得更加简洁清晰、容易维护。
 
-启动框架支持以自动模式或手动模式执行启动任务，默认采用自动模式。在[AbilityStage组件容器](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)完成创建后开始加载开发者配置的启动任务，并执行自动模式的启动任务。开发者也可以在UIAbility创建完后调用[startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法，执行手动模式的启动任务。
+启动框架支持以自动模式或手动模式执行启动任务，默认采用自动模式。在构造[AbilityStage组件容器](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)过程中开始加载开发者配置的启动任务，并执行自动模式的启动任务。开发者也可以在UIAbility创建完后调用[startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法，执行手动模式的启动任务。
 
   **图1** 启动框架执行时机  
   ![app-startup-procedure](figures/app-startup-procedure.png)
 
 ## 约束限制
 
-- 启动框架只支持在entry类型的[Module](../quick-start/application-package-overview.md#module类型)中使用。
+- 启动框架只支持在entry类型的[Module](../quick-start/application-package-overview.md#module类型)下的UIAbility中使用。
 
 - 启动任务之间不允许存在循环依赖。
 
