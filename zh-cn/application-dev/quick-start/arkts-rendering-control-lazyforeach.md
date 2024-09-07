@@ -1163,7 +1163,7 @@ struct MyComponent {
 使用该接口时有如下注意事项。
 
 1. onDatasetChange与其它操作数据的接口不能混用。
-2. 传入onDatasetChange的operations，其中每一项operation的index均从修改前的原数组内寻找。因此，opeartions中的index跟操作Datasource中的index不是一一对应的。  
+2. 传入onDatasetChange的operations，其中每一项operation的index均从修改前的原数组内寻找。因此，opeartions中的index跟操作Datasource中的index不总是一一对应的,而且不能是负数。  
 第一个例子清楚地显示了这一点:
 ```ts
 // 修改之前的数组
@@ -1177,8 +1177,8 @@ struct MyComponent {
 "Hello k","Hello l" 被删除了，而 "Hello k" 在原数组中的 index=10，因此第四个 operation 为 `{ type: DataOperationType.DELETE, index: 10, count: 2 }`  
 
 3. 调用一次onDatasetChange，一个index对应的数据只能被操作一次，若被操作多次，LazyForEach仅使第一个操作生效。
-4. 部分操作可以由开发者传入键值，LazyForEach不会再去重复调用keygenerator获取键值，需要开发者保证传入的键值的正确性。
-5. 若本次操作集合中有RELOAD操作，则其余操作全不生效。
+5. 部分操作可以由开发者传入键值，LazyForEach不会再去重复调用keygenerator获取键值，需要开发者保证传入的键值的正确性。
+6. 若本次操作集合中有RELOAD操作，则其余操作全不生效。
 
 
 
