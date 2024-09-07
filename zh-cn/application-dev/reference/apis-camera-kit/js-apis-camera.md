@@ -2169,7 +2169,7 @@ setPreviewRotation(previewRotation: imagerotation, isDisplayLocked?: boolean): v
 **示例：**
 
 ```ts
-function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): camera.ImageRotation {
+function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
   let previewRotation: camera.ImageRotation;
   try {
     previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);
