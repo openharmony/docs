@@ -1,6 +1,6 @@
-# Creating a Media Asset Using \<SaveButton>
+# Creating a Media Asset Using SaveButton
 
-This topic walks you through on how to create an image using the <**SaveButton**> security component. When \<**SaveButton**> is used to create a media asset, the caller does not need to have the ohos.permission.WRITE_IMAGEVIDEO permission. For details, see [\<SaveButton>](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).
+This topic walks you through on how to create an image using the **SaveButton** security component. When **SaveButton** is used to create a media asset, the caller does not need to have the ohos.permission.WRITE_IMAGEVIDEO permission. For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).
 
 **How to Develop**
 
