@@ -65,26 +65,6 @@
 
 
 
-## 支持跳转系统应用的能力清单
-
-- **设置**：当前支持直接拉起设置应用中如下页面，未列出的暂不支持。
-    - 权限设置页面：[Ability Kit](abilitykit-overview.md)提供[requestPermissionOnSetting](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissiononsetting12)接口，支持拉起权限设置页面。详见[二次向用户申请授权](../security/AccessToken/request-user-authorization-second.md)。
-    <!--Del-->
-    - 通知管理页面：[Notification Kit](../notification/notification-overview.md)提供[openNotificationSettings()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageropennotificationsettings12)接口，支持拉起通知管理页面。
-    <!--DelEnd-->
-- **应用市场**：[Store Kit](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/store-introduction-V5)提供了[loadProduct()](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/store-productviewmanager-V5#section144826162913)接口，支持直接跳转应用详情页；也可以通过[startAbility()](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-inner-application-uiabilitycontext-V5#uiabilitycontextstartability-2)隐式拉起应用市场详情页。详见[应用详情页展示](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/store-productview-V5#section729012543213)。
-- **电话**：[Telephony Kit](../telephony/telephony-overview.md)提供[makeCall()](../reference/apis-telephony-kit/js-apis-call.md#callmakecall7)接口，支持跳转到拨号界面，并显示待拨出的号码。
-- **日历**：[Calendar Kit](../calendarmanager/calendarmanager-overview.md)提供[addEvent](../reference/apis-calendar-kit/js-apis-calendarManager.md#addevent)接口，用于创建日程。<!--RP1-->
-<!--RP1End-->
-- **联系人**：[Contacts Kit](../contacts/contacts-intro.md)提供联系人Picker（Contacts Picker），用于拉起联系人应用，读取联系人数据人。详见[选择联系人](../contacts/contacts-intro.md#选择联系人)。<!--RP2-->
-- **相机**：[Camera Kit](../media/camera/camera-overview.md)提供了相机Picker （Camera Picker），用于拍照、录制。详见[cameraPicker](../reference/apis-camera-kit/js-apis-cameraPicker.md)。<!--RP2End-->
-- **文件管理**：[Core File Kit](../file-management/core-file-kit-intro.md)提供了文件Picker和音频Picker。
-    - 文件Picker（DocumentViewPicker）：用于访问、保存公共目录中文档类文件。详见[选择文档类文件](../file-management/select-user-file.md#选择文档类文件)、[保存文档类文件](../file-management/save-user-file.md#保存文档类文件)。
-    - 音频Picker（AudioViewPicker）：用于访问、保存公共目录的图片或视频文件。详见[选择音频类文件](../file-management/select-user-file.md#选择音频类文件)、[保存音频类文件](../file-management/save-user-file.md#保存音频类文件)。
-- **图库（媒体库）**：[Media Library Kit](../media/medialibrary/photoAccessHelper-overview.md)提供了照片Picker（PhotoViewPicker），用于访问、保存公共目录的图片或视频文件。详见[选择媒体库资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md) 、[创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
-
-
-
 
 
 
