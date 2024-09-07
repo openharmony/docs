@@ -1444,7 +1444,7 @@ cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoP
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | appid | string | 是 | 应用标识，将取消appid标识应用对媒体资源的访问权限。 |
-| uri | sring | 是 | 媒体资源的uri，取消应用对uri表示的资源的访问权限。|
+| uri | string | 是 | 媒体资源的uri，取消应用对uri表示的资源的访问权限。|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，取消应用对媒体资源的访问权限为photoPermissionType。|
 
 **返回值：**
