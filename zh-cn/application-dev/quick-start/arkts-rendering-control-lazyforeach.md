@@ -1177,8 +1177,8 @@ struct MyComponent {
 "Hello k","Hello l" 被删除了，而 "Hello k" 在原数组中的 index=10，因此第四个 operation 为 `{ type: DataOperationType.DELETE, index: 10, count: 2 }`  
 
 3. 调用一次onDatasetChange，一个index对应的数据只能被操作一次，若被操作多次，LazyForEach仅使第一个操作生效。
-5. 部分操作可以由开发者传入键值，LazyForEach不会再去重复调用keygenerator获取键值，需要开发者保证传入的键值的正确性。
-6. 若本次操作集合中有RELOAD操作，则其余操作全不生效。
+4. 部分操作可以由开发者传入键值，LazyForEach不会再去重复调用keygenerator获取键值，需要开发者保证传入的键值的正确性。
+5. 若本次操作集合中有RELOAD操作，则其余操作全不生效。
 
 
 
