@@ -7,7 +7,7 @@ For details about API parameters, see [LazyForEach](https://gitee.com/openharmon
 ## Constraints
 
 - **LazyForEach** must be used in a container component. Only the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), and [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) components support lazy loading (that is, only the visible part and a small amount of data before and after the visible part are loaded for caching). For other components, all data is loaded at once.
-- **LazyForEach** must create one and only one child component in each iteration.
+- In each iteration, only one child component must be created for **LazyForEach**. That is, the child component generation function of **LazyForEach** has only one root component.
 - The generated child components must be allowed in the parent container component of **LazyForEach**.
 - **LazyForEach** can be included in an **if/else** statement, and can also contain such a statement.
 - The ID generation function must generate a unique value for each piece of data. Rendering issues will arise with components assigned duplicate IDs.
@@ -1057,7 +1057,7 @@ The **onDatasetChange** API notifies **LazyForEach** of the operations to be per
 
 ![LazyForEach-Change-MultiData](./figures/LazyForEach-Change-MultiData.gif)  
 
-In the second example, values are directly changed in the array without using **splice()** method. Result of **operations** is directly obtained by comparing the original array with the new array.
+In the second example, values are directly changed in the array without using **splice()**. Result of **operations** is directly obtained by comparing the original array with the new array.
 ```ts
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
@@ -1179,6 +1179,8 @@ which is shown in the following example:
 3. When **onDatasetChange** is called, the data can be operated only once for each index. If the data is operated multiple times, **LazyForEach** enables only the first operation to take effect.
 4. In operations where you can specify keys on your own, **LazyForEach** does not call the key generator to obtain keys. As such, make sure the specified keys are correct.
 5. If the API contains the **RELOAD** operation, other operations do not take effect.
+
+
 
 - ### Changing Data Subproperties
 
@@ -2270,151 +2272,151 @@ struct Parent {
   ![LazyForEach-ObjectLink-NotRenderUI-Repair](./figures/LazyForEach-ObjectLink-NotRenderUI-Repair.gif)
 
 - ### Screen Flickering
-  List has an **onScrollIndex** callback function. When **onDataReloaded** is called in **onScrollIndex**, there is a risk of screen flickering.
+List has an **onScrollIndex** callback function. When **onDataReloaded** is called in **onScrollIndex**, there is a risk of screen flickering.
 
-  ```ts
-  class BasicDataSource implements IDataSource {
-    private listeners: DataChangeListener[] = [];
-    private originDataArray: string[] = [];
-  
-    public totalCount(): number {
-      return 0;
-    }
-  
-    public getData(index: number): string {
-      return this.originDataArray[index];
-    }
-  
-    registerDataChangeListener(listener: DataChangeListener): void {
-      if (this.listeners.indexOf(listener) < 0) {
-        console.info('add listener');
-        this.listeners.push(listener);
-      }
-    }
-  
-    unregisterDataChangeListener(listener: DataChangeListener): void {
-      const pos = this.listeners.indexOf(listener);
-      if (pos >= 0) {
-        console.info('remove listener');
-        this.listeners.splice(pos, 1);
-      }
-    }
-  
-    notifyDataReload(): void {
-      this.listeners.forEach(listener => {
-        listener.onDataReloaded();
-        // Method 2: listener.onDatasetChange([{type: DataOperationType.RELOAD}]);
-      })
-    }
-  
-    notifyDataAdd(index: number): void {
-      this.listeners.forEach(listener => {
-        listener.onDataAdd(index);
-      })
-    }
-  
-    notifyDataChange(index: number): void {
-      this.listeners.forEach(listener => {
-        listener.onDataChange(index);
-      })
-    }
-  
-    notifyDataDelete(index: number): void {
-      this.listeners.forEach(listener => {
-        listener.onDataDelete(index);
-      })
-    }
-  
-    notifyDataMove(from: number, to: number): void {
-      this.listeners.forEach(listener => {
-        listener.onDataMove(from, to);
-      })
-    }
-  
-    notifyDatasetChange(operations: DataOperation[]):void{
-      this.listeners.forEach(listener => {
-        listener.onDatasetChange(operations);
-      })
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
     }
   }
-  
-  class MyDataSource extends BasicDataSource {
-    private dataArray: string[] = [];
-  
-    public totalCount(): number {
-      return this.dataArray.length;
-    }
-  
-    public getData(index: number): string {
-      return this.dataArray[index];
-    }
-  
-    public addData(index: number, data: string): void {
-      this.dataArray.splice(index, 0, data);
-      this.notifyDataAdd(index);
-    }
-  
-    public pushData(data: string): void {
-      this.dataArray.push(data);
-      this.notifyDataAdd(this.dataArray.length - 1);
-    }
-  
-    public deleteData(index: number): void {
-      this.dataArray.splice(index, 1);
-      this.notifyDataDelete(index);
-    }
-  
-    public changeData(index: number): void {
-      this.notifyDataChange(index);
-    }
-  
-    operateData():void {
-      const totalCount = this.dataArray.length;
-      const batch=5;
-      for (let i = totalCount; i < totalCount + batch; i++) {
-        this.dataArray.push(`Hello ${i}`)
-      }
-      this.notifyDataReload();
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
     }
   }
-  
-  @Entry
-  @Component
-  struct MyComponent {
-    private moved: number[] = [];
-    private data: MyDataSource = new MyDataSource();
-  
-    aboutToAppear() {
-      for (let i = 0; i <= 10; i++) {
-        this.data.pushData(`Hello ${i}`)
-      }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+      // Method 2: listener.onDatasetChange([{type: DataOperationType.RELOAD}]);
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+
+  notifyDatasetChange(operations: DataOperation[]):void{
+    this.listeners.forEach(listener => {
+      listener.onDatasetChange(operations);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+
+  public deleteData(index: number): void {
+    this.dataArray.splice(index, 1);
+    this.notifyDataDelete(index);
+  }
+
+  public changeData(index: number): void {
+    this.notifyDataChange(index);
+  }
+
+  operateData():void {
+    const totalCount = this.dataArray.length;
+    const batch=5;
+    for (let i = totalCount; i < totalCount + batch; i++) {
+      this.dataArray.push(`Hello ${i}`)
     }
-  
-    build() {
-      List({ space: 3 }) {
-        LazyForEach(this.data, (item: string, index: number) => {
-          ListItem() {
-            Row() {
-              Text(item)
-                .width('100%')
-                .height(80)
-                .backgroundColor(Color.Gray)
-                .onAppear(() => {
-                  console.info("appear:" + item)
-                })
-            }.margin({ left: 10, right: 10 })
-          }
-        }, (item: string) => item)
-      }.cachedCount(10)
-      .onScrollIndex((start, end, center) => {
-        if (end === this.data.totalCount() - 1) {
-          console.log('scroll to end')
-          this.data.operateData();
+    this.notifyDataReload();
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private moved: number[] = [];
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= 10; i++) {
+      this.data.pushData(`Hello ${i}`)
+    }
+  }
+
+  build() {
+    List({ space: 3 }) {
+      LazyForEach(this.data, (item: string, index: number) => {
+        ListItem() {
+          Row() {
+            Text(item)
+              .width('100%')
+              .height(80)
+              .backgroundColor(Color.Gray)
+              .onAppear(() => {
+                console.info("appear:" + item)
+              })
+          }.margin({ left: 10, right: 10 })
         }
-      })
-    }
+      }, (item: string) => item)
+    }.cachedCount(10)
+    .onScrollIndex((start, end, center) => {
+      if (end === this.data.totalCount() - 1) {
+        console.log('scroll to end')
+        this.data.operateData();
+      }
+    })
   }
-  ```
+}
+```
 
 When **List** is scrolled to the bottom, screen flicks like the following. 
 ![LazyForEach-Screen-Flicker](figures/LazyForEach-Screen-Flicker.gif)
