@@ -809,6 +809,16 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 | context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。<br/>**说明：** <br/>DrawContext的canvas方法获取的画布是Text组件的画布，绘制时不会超出Text组件的范围。 |
 | drawInfo | [CustomSpanDrawInfo](#customspandrawinfo对象说明) | 是   | 自定义绘制Span的绘制信息。 |
 
+### invalidate<sup>13+<sup>
+
+主动刷新使用CustomSpan的Text组件或者RichEditor组件。
+
+invalidate(): void
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## CustomSpanMeasureInfo对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -1647,7 +1657,6 @@ struct Index {
 ```ts
 // xxx.ets
 import { drawing } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit'
 import { LengthMetrics } from '@kit.ArkUI'
 
 class MyCustomSpan extends CustomSpan {
@@ -1666,7 +1675,12 @@ class MyCustomSpan extends CustomSpan {
     let canvas = context.canvas;
 
     const brush = new drawing.Brush();
-    brush.setColor({ alpha: 255, red: 0, green: 74, blue: 175 });
+    brush.setColor({
+      alpha: 255,
+      red: 0,
+      green: 74,
+      blue: 175
+    });
     const font = new drawing.Font();
     font.setSize(25);
     const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
@@ -1678,7 +1692,12 @@ class MyCustomSpan extends CustomSpan {
       bottom: options.lineBottom - 10
     });
 
-    brush.setColor({ alpha: 255, red: 23, green: 169, blue: 141 });
+    brush.setColor({
+      alpha: 255,
+      red: 23,
+      green: 169,
+      blue: 141
+    });
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
     canvas.detachBrush();
@@ -1696,30 +1715,12 @@ class MyCustomSpan extends CustomSpan {
 @Entry
 @Component
 struct styled_string_demo6 {
-  customSpan2: MyCustomSpan = new MyCustomSpan("change", 130, 10);
   customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80, 10);
-  customSpan3: MyCustomSpan = new MyCustomSpan("World", 80, 40);
-  style2: MutableStyledString = new MutableStyledString(this.customSpan2);
-  style1: MutableStyledString = new MutableStyledString(this.customSpan1);
+  customSpan2: MyCustomSpan = new MyCustomSpan("World", 80, 40);
+  style: MutableStyledString = new MutableStyledString(this.customSpan1);
   textStyle: MutableStyledString = new MutableStyledString("123");
   textController: TextController = new TextController();
-  imagePixelMap: image.PixelMap | undefined = undefined;
   isPageShow: boolean = true;
-
-  private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
-      bundleName: resource.bundleName,
-      moduleName: resource.moduleName,
-      id: resource.id
-    });
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
-    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
-      desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-      desiredSize: { width: 50, height: 50 }
-    });
-    await imageSource.release();
-    return createPixelMap;
-  }
 
   async onPageShow() {
     if (!this.isPageShow) {
@@ -1727,7 +1728,7 @@ struct styled_string_demo6 {
     }
     this.isPageShow = false;
 
-    this.style1.appendStyledString(new MutableStyledString("文本绘制 示例代码 CustomSpan", [
+    this.style.appendStyledString(new MutableStyledString("文本绘制 示例代码 CustomSpan", [
       {
         start: 0,
         length: 5,
@@ -1745,15 +1746,14 @@ struct styled_string_demo6 {
       styledValue: new TextStyle({ fontColor: Color.Green, fontWeight: FontWeight.Bold })
     }
     ]))
-    this.style1.appendStyledString(new StyledString(this.customSpan3))
-    this.style1.appendStyledString(new StyledString("自定义绘制", [{
+    this.style.appendStyledString(new StyledString(this.customSpan2))
+    this.style.appendStyledString(new StyledString("自定义绘制", [{
       start: 0,
       length: 5,
       styledKey: StyledStringKey.FONT,
       styledValue: new TextStyle({ fontColor: Color.Green, fontSize: LengthMetrics.px(50) })
     }]))
-    this.textController.setStyledString(this.style1)
-    this.imagePixelMap = await this.getPixmapFromMedia($r('sys.media.ohos_ic_public_voice')).then()
+    this.textController.setStyledString(this.style)
   }
 
   build() {
@@ -1762,6 +1762,11 @@ struct styled_string_demo6 {
         Text(undefined, { controller: this.textController })
           .copyOption(CopyOptions.InApp)
           .fontSize(30)
+
+        Button("invalidate").onClick(() => {
+          this.customSpan1.setWord("你好")
+          this.customSpan1.invalidate()
+        })
       }
       .width('100%')
     }
@@ -1770,7 +1775,7 @@ struct styled_string_demo6 {
 }
 ```
 
-![](figures/styledstring_6.PNG)
+![](figures/styledstring_6.gif)
 
 ### 示例7
 
