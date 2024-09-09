@@ -4087,6 +4087,30 @@
 
 **起始版本**：12
 
+### ohos.permission.CALLED_TRANSITION_ON_LOCK_SCREEN
+
+允许应用被位于锁屏界面的其他应用拉起并直接跳转。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.CALLED_BELOW_LOCK_SCREEN
+
+允许应用在处于锁屏状态时进行启动。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ## user_grant，允许ACL跨级申请
 
 以下权限的授权方式均为user_grant（用户授权），且允许通过ACL的方式申请。
@@ -4394,27 +4418,3 @@
 **ACL使能**：true
 
 **起始版本**：12
-
-### ohos.permission.CALLED_TRANSITION_ON_LOCK_SCREEN
-
-允许应用被其他锁屏之上应用拉起并直接跳转。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：13
-
-### ohos.permission.CALLED_BELOW_LOCK_SCREEN
-
-允许应用在锁屏下被拉起。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：13
