@@ -139,7 +139,8 @@ export default {
 
 ![zh-cn_image_0000001222985331](figures/zh-cn_image_0000001222985331.gif)
 
-> **说明：**
+> **说明：** 
+>
 > 画布不支持在onInit和onReady中进行创建。
 
 ## 相关实例

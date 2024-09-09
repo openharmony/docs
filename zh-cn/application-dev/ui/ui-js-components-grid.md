@@ -35,7 +35,8 @@
 
 ![zh-cn_image_0000001226897009](figures/zh-cn_image_0000001226897009.png)
 
-> **说明：**
+> **说明：** 
+>
 > grid-container仅支持grid-row为子组件。
 
 
@@ -166,7 +167,8 @@ text{
 
 ![zh-cn_image_0000001227135731](figures/zh-cn_image_0000001227135731.png)
 
-> **说明：**
+> **说明：** 
+>
 > grid-row仅支持grid-col为子组件，只能在grid-col组件中添加填充的内容。
 
 
