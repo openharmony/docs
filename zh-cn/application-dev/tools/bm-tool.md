@@ -566,7 +566,7 @@ Error: install failed due to grant request permissions failed.
 
 **处理步骤**
 
-1. 在UnsgnedDebugProfileTemplate.json文件中修改apl等级，调整成system_basic或system_core等级，重新签名打包即可。
+1. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，调整成system_basic或system_core等级，重新签名打包即可。
 
 
 ### 9568297 由于设备sdk版本较低导致安装失败
