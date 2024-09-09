@@ -118,6 +118,21 @@ lcd闪光灯信息项。
 | ----------------------------- |-----|---------|
 | PRIVACY<sup>12+</sup>          | 1   | 隐私类型。 |
 
+## LightPaintingType<sup>12+</sup>
+
+枚举，流光快门模式类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                           | 值   | 说明      |
+| ----------------------------- |-----|---------|
+| TRAFFIC_TRAILS         | 0   | 车水马龙。 |
+| STAR_TRAILS          | 1   | 绚丽星轨。 |
+| SILKY_WATER          | 2   | 丝绢流水。 |
+| LIGHT_GRAFFITI          | 3   | 光绘涂鸦。 |
+
 ## CameraManager
 
 相机管理器类，使用前需要通过[getCameraManager](js-apis-camera.md#cameragetcameramanager)获取相机管理实例。
@@ -534,6 +549,17 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 }
 ```
 
+## CameraOcclusionDetectionResult<sup>12+</sup>
+摄像头模组被遮挡状态。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                           | 类型                                                | 只读 | 可选 | 说明                |
+| ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
+| isCameraOccluded                 | boolean              |  是  | 否 |遮挡状态。        |
+
 ## CameraOutputCapability<sup>12+</sup>
 
 相机输出能力项。
@@ -558,6 +584,78 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 | ----------------------- | --------- | ------------ |
 | CAMERA_FORMAT_DEPTH_16<sup>12+</sup> |   3000   | DEPTH_16格式的深度图。      |
 | CAMERA_FORMAT_DEPTH_32<sup>12+</sup> |   3001   | DEPTH_32格式的深度图。      |
+
+## CameraInput
+
+相机设备输入对象。
+
+会话中[Session](js-apis-camera.md#session11)使用的相机信息。
+
+### on('cameraOcclusionDetection')<sup>12+</sup>
+
+on(type: 'cameraOcclusionDetection', callback: AsyncCallback\<CameraOcclusionDetectionResult\>): void
+
+监听CameraInput的遮挡事件，通过注册回调函数获取结果。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填 | 说明                                          |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| type     | string                           | 是   | 监听事件，固定为'cameraOcclusionDetection'，CameraInput对象创建成功可监听。相机模组遮挡状态发生改变时触发该事件并返回结果。 |
+| callback | AsyncCallback\<[CameraOcclusionDetectionResult](#cameraocclusiondetectionresult12)\> | 是   | 回调函数，用于获取结果。返回遮挡状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, CameraOcclusionDetectionResult: camera.CameraOcclusionDetectionResult): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('cameraOcclusionDetection with errorCode = ' + err.code);
+    return;
+  }
+  console.info(`isCameraOccluded : ${CameraOcclusionDetectionResult.isCameraOccluded}`);
+}
+
+function registerCameraOcclusionDetection(cameraInput: camera.CameraInput): void {
+  cameraInput.on('cameraOcclusionDetection', callback);
+}
+```
+
+### off('cameraOcclusionDetection')<sup>12+</sup>
+
+off(type: 'cameraOcclusionDetection', callback?: AsyncCallback\<CameraOcclusionDetectionResult\>): void
+
+注销CameraInput遮挡监听事件。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型             | 必填 | 说明                                                      |
+| -------- | --------------- | ---- |---------------------------------------------------------|
+| type     | string          | 是   | 监听事件，固定为'cameraOcclusionDetection'，CameraInput对象创建成功可监听。 |
+| callback | AsyncCallback\<[CameraOcclusionDetectionResult](#cameraocclusiondetectionresult12)\> | 否   | 回调函数，可选参数，有就是匹配on('cameraOcclusionDetection') callback（callback对象不可是匿名函数）。                  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, CameraOcclusionDetectionResult: camera.CameraOcclusionDetectionResult): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('cameraOcclusionDetection with errorCode = ' + err.code);
+    return;
+  }
+  console.info(`isCameraOccluded : ${CameraOcclusionDetectionResult.isCameraOccluded}`);
+}
+
+function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): void {
+  cameraInput.off('cameraOcclusionDetection', callback);
+}
+```
 
 ## DepthDataAccuracy<sup>12+</sup>
 
@@ -3587,7 +3685,7 @@ function unregisterSessionError(portraitPhotoSession: camera.PortraitPhotoSessio
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+监听相机对焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3622,7 +3720,7 @@ function registerFocusStateChange(portraitPhotoSession: camera.PortraitPhotoSess
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
-注销监听相机聚焦的状态变化。
+注销监听相机对焦的状态变化。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3769,7 +3867,7 @@ function unregisterSessionError(nightPhotoSession: camera.NightPhotoSession): vo
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+监听相机对焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3804,7 +3902,7 @@ function registerFocusStateChange(nightPhotoSession: camera.NightPhotoSession): 
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
-注销监听相机聚焦的状态变化。
+注销监听相机对焦的状态变化。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4042,7 +4140,7 @@ function unregisterSessionError(highResolutionPhotoSession: camera.HighResolutio
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+监听相机对焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4085,7 +4183,7 @@ function registerFocusStateChange(highResolutionPhotoSession: camera.HighResolut
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
-注销监听相机聚焦的状态变化。
+注销监听相机对焦的状态变化。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4211,7 +4309,7 @@ function unregisterSessionError(slowMotionVideoSession: camera.SlowMotionVideoSe
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+监听相机对焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4254,7 +4352,7 @@ function registerFocusStateChange(slowMotionVideoSession: camera.SlowMotionVideo
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
-注销监听相机聚焦的状态变化。
+注销监听相机对焦的状态变化。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4592,7 +4690,7 @@ function unregisterSessionError(panoramaPhotoSession: camera.PanoramaPhotoSessio
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+监听相机对焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4627,7 +4725,7 @@ function registerFocusStateChange(panoramaPhotoSession: camera.PanoramaPhotoSess
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
-注销监听相机聚焦的状态变化。
+注销监听相机对焦的状态变化。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5654,7 +5752,7 @@ function unregisterSessionError(professionalPhotoSession: camera.ProfessionalPho
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+监听相机对焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5697,7 +5795,7 @@ function registerFocusStateChange(professionalPhotoSession: camera.ProfessionalP
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
-注销监听相机聚焦的状态变化。
+注销监听相机对焦的状态变化。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6172,7 +6270,7 @@ function unregisterSessionError(professionalVideoSession: camera.ProfessionalVid
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+监听相机对焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6215,7 +6313,7 @@ function registerFocusStateChange(professionalVideoSession: camera.ProfessionalV
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
-注销监听相机聚焦的状态变化。
+注销监听相机对焦的状态变化。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6690,7 +6788,7 @@ function unregisterSessionError(macroPhotoSession: camera.MacroPhotoSession): vo
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+监听相机对焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6733,7 +6831,7 @@ function registerFocusStateChange(macroPhotoSession: camera.MacroPhotoSession): 
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
-注销监听相机聚焦的状态变化。
+注销监听相机对焦的状态变化。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6920,7 +7018,7 @@ function unregisterSessionError(macroVideoSession: camera.MacroVideoSession): vo
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+监听相机对焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -6963,7 +7061,7 @@ function registerFocusStateChange(macroVideoSession: camera.MacroVideoSession): 
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
-注销监听相机聚焦的状态变化。
+注销监听相机对焦的状态变化。
 
 **系统接口：** 此接口为系统接口。
 
@@ -7228,7 +7326,7 @@ function unregisterSessionError(timeLapsePhotoSession: camera.TimeLapsePhotoSess
 
 on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 
-监听相机聚焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+监听相机对焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -7271,7 +7369,7 @@ function registerFocusStateChange(timeLapsePhotoSession: camera.TimeLapsePhotoSe
 
 off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 
-注销监听相机聚焦的状态变化。
+注销监听相机对焦的状态变化。
 
 **系统接口：** 此接口为系统接口。
 
@@ -7996,5 +8094,343 @@ function setTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSes
     let err = error as BusinessError;
     console.error(`The setTimeLapsePreviewType call failed. error code: ${err.code}`);
   }
+}
+```
+
+## LightPaintingPhotoSession<sup>12+</sup>
+
+LightPaintingPhotoSession extends Session, Flash, Focus, Zoom, ColorEffect
+
+流光快门拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置流光快门拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+监听流光快门拍照会话的错误事件，通过注册回调函数获取结果。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                                                                        | 必填  | 说明                                                                                                                                                                      |
+|----------|---------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type     | string                                                                    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。                                                                                                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                       |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError): void {
+  console.error(`LightPaintingPhotoSession error code: ${err.code}`);
+}
+
+function registerSessionError(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.on('error', callback);
+}
+```
+
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听流光快门拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                                                                        | 必填 | 说明                                                          |
+|----------|---------------------------------------------------------------------------|----|-------------------------------------------------------------|
+| type     | string                                                                    | 是  | 监听事件，固定为'error'，session创建成功之后可监听该接口。                        |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否  | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                       |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**示例：**
+
+```ts
+function unregisterSessionError(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>12+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+监听相机对焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名       | 类型                                          | 必填 | 说明                                                                      |
+|-----------|---------------------------------------------|----|-------------------------------------------------------------------------|
+| type      | string                                      | 是  | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
+| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | 是  | 回调函数，用于获取当前对焦状态。                                                        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                       |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>12+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+注销监听相机对焦的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名       | 类型                                          | 必填 | 说明                                                           |
+|-----------|---------------------------------------------|----|--------------------------------------------------------------|
+| type      | string                                      | 是  | 监听事件，固定为'focusStateChange'，session创建成功可监听。                   |
+| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | 否  | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                       |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**示例：**
+
+```ts
+function unregisterFocusStateChange(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.off('focusStateChange');
+}
+```
+
+### on('smoothZoomInfoAvailable')<sup>12+</sup>
+
+on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
+
+监听相机平滑变焦的状态变化，通过注册回调函数获取结果。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                   | 必填 | 说明                       |
+| -------- | ----------------------- | ---- | ------------------------ |
+| type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                       |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
+}
+
+function registerSmoothZoomInfo(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.on('smoothZoomInfoAvailable', callback);
+}
+```
+
+### off('smoothZoomInfoAvailable')<sup>12+</sup>
+
+off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>): void
+
+注销监听相机平滑变焦的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                       |
+|-------|----------------------------|
+| 202   | Not System Application.    |
+
+**示例：**
+
+```ts
+function unregisterSmoothZoomInfo(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  lightPaintingPhotoSession.off('smoothZoomInfoAvailable');
+}
+```
+
+### getLightPaintingType<sup>12+</sup>
+
+getLightPaintingType(): LightPaintingType
+
+获取当前生效的流光快门模式类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+| 类型                                             | 说明                    |
+|------------------------------------------------- | --------------------- |
+| [LightPaintingType](#lightpaintingtype12) | 流光快门模式类型。  |
+
+**错误码：**
+ 
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                               |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+function getLightPaintingType(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): camera.LightPaintingType {
+  let type: camera.LightPaintingType = lightPaintingPhotoSession.getLightPaintingType();
+  return type;
+}
+```
+
+### setLightPaintingType<sup>12+</sup>
+
+setLightPaintingType(type: LightPaintingType): void
+
+设置当前生效的流光快门模式类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+| 参数名      | 类型                     | 必填 | 说明                 |
+| -------- | ----------------------- | ---- | ------------------- |
+| type | [LightPaintingType](#lightpaintingtype12) | 是   | 设置流光快门模式的类型。 |
+
+**错误码：**
+ 
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                               |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setLightPaintingType(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): void {
+  try {
+    let type: camera.LightPaintingType = camera.LightPaintingType.TRAFFIC_TRAILS;
+    lightPaintingPhotoSession.setLightPaintingType(type);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setLightPaintingType call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getSupportedLightPaintingTypes<sup>12+</sup>
+
+getSupportedLightPaintingTypes(): Array\<LightPaintingType\>
+
+获取当前支持的流光快门模式类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+| 类型                                             | 说明                    |
+|------------------------------------------------- | --------------------- |
+| Array\<[LightPaintingType](#lightpaintingtype12)\> | 支持的流光快门模式类型。  |
+
+**错误码：**
+ 
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                               |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+function getSupportedLightPaintingTypes(lightPaintingPhotoSession: camera.LightPaintingPhotoSession): Array<camera.LightPaintingType> {
+  let types: Array<camera.LightPaintingType> = lightPaintingPhotoSession.getSupportedLightPaintingTypes();
+  return types
 }
 ```
