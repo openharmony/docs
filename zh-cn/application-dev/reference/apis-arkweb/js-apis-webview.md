@@ -8521,6 +8521,158 @@ struct WebComponent {
 }
 ```
 
+### createPdf<sup>14+</sup>
+
+createPdf(configuration: PdfConfiguration, callback: AsyncCallback\<PdfData\>): void
+
+异步callback方式获取指定网页的数据流。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 类型                                    | 必填 | 说明                    |
+| ------------- | --------------------------------------- | ---- | ----------------------- |
+| configuration | [PdfConfiguration](#pdfconfiguration14) | 是   | 生成PDF所需参数。       |
+| callback      | AsyncCallback<[PdfData](#pdfdata14)>    | 是   | 回调返回网页PDF数据流。 |
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例**:
+
+```ts
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  pdfConfig: webview.PdfConfiguration = {
+    width: 8.27,
+    height: 11.69,
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 0,
+    marginLeft: 0,
+    shouldPrintBackground: true
+  }
+
+  build() {
+    Column() {
+      Button('SavePDF')
+        .onClick(() => {
+          this.controller.createPdf(
+            this.pdfConfig,
+            (error, result: webview.PdfData) => {
+              try {
+                // 获取组件上下文
+                let context = getContext(this) as common.UIAbilityContext;
+                // 获取沙箱路径，设置pdf文件名
+                let filePath = context.filesDir + "/test.pdf";
+                let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                fs.write(file.fd, result.pdfArrayBuffer().buffer).then((writeLen: number) => {
+                  console.info("createPDF write data to file succeed and size is:" + writeLen);
+                }).catch((err: BusinessError) => {
+                  console.error("createPDF write data to file failed with error message: " + err.message +
+                    ", error code: " + err.code);
+                }).finally(() => {
+                  fs.closeSync(file);
+                });
+              } catch (resError) {
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+              }
+            });
+        })
+      Web({ src: "www.example.com", controller: this.controller })
+    }
+  }
+}
+```
+
+### createPdf<sup>14+</sup>
+
+createPdf(configuration: PdfConfiguration): Promise\<PdfData\>
+
+以Promise方式异步获取指定网页的数据流。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 类型                                    | 必填 | 说明              |
+| ------------- | --------------------------------------- | ---- | ----------------- |
+| configuration | [PdfConfiguration](#pdfconfiguration14) | 是   | 生成PDF所需参数。 |
+
+**返回值：**
+
+| 类型                           | 说明                          |
+| ------------------------------ | ----------------------------- |
+| Promise<[PdfData](#pdfdata14)> | Promise实例，返回网页数据流。 |
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例**:
+
+```ts
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  pdfConfig: webview.PdfConfiguration = {
+    width: 8.27,
+    height: 11.69,
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 0,
+    marginLeft: 0,
+    shouldPrintBackground: true
+  }
+
+  build() {
+    Column() {
+      Button('SavePDF')
+        .onClick(() => {
+          this.controller.createPdf(this.pdfConfig)
+            .then((result: webview.PdfData) => {
+              try {
+                // 获取组件上下文
+                let context = getContext(this) as common.UIAbilityContext;
+                // 获取沙箱路径，设置pdf文件名
+                let filePath = context.filesDir + "/test.pdf";
+                let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                fs.write(file.fd, result.pdfArrayBuffer().buffer).then((writeLen: number) => {
+                  console.info("createPDF write data to file succeed and size is:" + writeLen);
+                }).catch((err: BusinessError) => {
+                  console.error("createPDF write data to file failed with error message: " + err.message +
+                    ", error code: " + err.code);
+                }).finally(() => {
+                  fs.closeSync(file);
+                });
+              } catch (resError) {
+                console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
+              }
+            })
+        })
+      Web({ src: "www.example.com", controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。
@@ -16037,3 +16189,46 @@ Scroll滚动类型，用于[setScrollable](#setscrollable12)。
 | ------------------------------- | - | ---------- |
 | MEMORY_PRESSURE_LEVEL_MODERATE | 1 | 中等内存压力等级。这个等级下，Web内核会尝试释放重新分配开销较小且不需要立即使用的缓存。 |
 | MEMORY_PRESSURE_LEVEL_CRITICAL | 2 | 严重内存压力等级。这个等级下，Web内核会尝试释放所有可能的内存缓存。 |
+
+##  PdfConfiguration<sup>14+</sup>
+
+createPdf函数输入参数。
+
+> **说明：**
+>
+> 英寸与像素之间转换公式：像素 = 96 * 英寸。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称                  | 类型    | 必填 | 说明                                                         |
+| --------------------- | ------- | ---- | ------------------------------------------------------------ |
+| width                 | number  | 是   | 页面宽度。单位：英寸。<br />推荐值：A4纸页面宽度8.27英寸。   |
+| height                | number  | 是   | 页面高度。单位：英寸。<br />推荐值：A4纸页面高度11.69英寸。  |
+| scale                 | number  | 否   | 放大倍数。取值范围：[0.0, 2.0]。如果不在取值范围内，小于0.0设置为0.0，大于2.0设置为2.0。默认值：1.0。 |
+| marginTop             | number  | 是   | 上边距。取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| marginBottom          | number  | 是   | 下边距。取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| marginRight           | number  | 是   | 右边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| marginLeft            | number  | 是   | 左边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| shouldPrintBackground | boolean | 否   | 是否打印背景颜色。默认值：false。                            |
+
+## PdfData<sup>14+</sup>
+
+createPdf函数输出数据流类。
+
+> **说明：**
+>
+> 在网页生成PDF过程中，返回的是数据流，由PdfData类封装。
+
+### pdfArrayBuffer<sup>14+</sup>
+
+pdfArrayBuffer(): Uint8Array
+
+获取网页生成的数据流。完整示例代码参考[createPdf](#createpdf14)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型       | 说明     |
+| ---------- | -------- |
+| Uint8Array | 数据流。 |
