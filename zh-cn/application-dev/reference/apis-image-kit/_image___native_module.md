@@ -1217,7 +1217,8 @@ Image_ErrorCode OH_ImageNative_GetRowStride (OH_ImageNative * image, uint32_t co
 Image_ErrorCode OH_ImageNative_GetTimestamp (OH_ImageNative * image, int64_t * timestamp )
 ```
 **描述**
-获取Native [OH_ImageNative](#oh_imagenative) 对象中的时间戳信息
+获取Native [OH_ImageNative](#oh_imagenative) 对象中的时间戳信息。时间戳以纳秒为单位，通常是单调递增的。时间戳的具体含义和基准取决于图像的生产者，在相机预览/拍照场景，生产者就是相机。来自不同生产者的图像的时间戳可能有不同的含义和基准，因此可能无法进行比较。
+如果要获取某张照片的生成时间，可以通过[OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty)接口读取相关的EXIF信息。
 
 **起始版本：** 12
 
