@@ -66,7 +66,7 @@ Core File Kit常见的使用场景：
 
 用户文件访问框架（File Access Framework）是一套提供给开发者访问和管理用户文件的基础框架。该框架依托于OpenHarmony的ExtensionAbility组件机制，提供了一套统一访问用户文件的方法和接口。
 
-**图1** 用户文件访问框架示意图  
+**图2** 用户文件访问框架示意图  
 ![User file access framework](figures/user-file-access-framework.png)
 
 - 各类系统应用或三方应用（即图中的文件访问客户端）若需访问用户文件，如选择一张照片或保存多个文档等，可以通过拉起“文件选择器应用”来实现。
@@ -89,4 +89,4 @@ Ability Kit: Core File Kit中用户文件访问框架依赖Ability Kit提供的E
 
 针对Core File Kit开发，有以下相关实例可供参考：
 
-- [文件管理（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileManager)
+- [文件管理（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/FileManager)

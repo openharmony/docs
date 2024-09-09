@@ -92,7 +92,7 @@
    audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; 
    ```
 
-3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-6)接口拉起FilePicker界面进行文件保存。
+3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-5)接口拉起FilePicker界面进行文件保存。
    ```ts
    let uri: string = '';
    // 请确保 getContext(this) 返回结果为 UIAbilityContext
@@ -149,7 +149,7 @@
    documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD; 
    ```
 
-3. 创建文件选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-6)接口拉起FilePicker模态窗界面进行文件保存。用户点击同意，即可在download目录下创建对应应用的专属目录，返回该目录的uri。
+3. 创建文件选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-1)接口拉起FilePicker模态窗界面进行文件保存。用户点击同意，即可在download目录下创建对应应用的专属目录，返回该目录的uri。
    
    ```ts
    let uri: string = '';
