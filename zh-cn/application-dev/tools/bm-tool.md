@@ -658,7 +658,7 @@ Error: install parse unexpected.
 * 场景二：查看本地hap与推送到设备上hap的md5值，若不一致则表示推送过程hap损毁，请尝试重传。
 
 
-### 9568316 数据代理中apl权限字段描述权限低
+### 9568316 数据代理中APL权限字段描述权限低
 **错误信息**
 
 Error: apl of required permission in proxy data is too low.
