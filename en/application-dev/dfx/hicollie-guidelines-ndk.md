@@ -201,11 +201,11 @@ The following describes how to add a button in the application and click the but
 
 7. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria to **testTag**.
 
-  (1) Click the **testHiCollieJankNdk** button after the thread processed the event for 10s.
+    (1) Click the **testHiCollieJankNdk** button after the thread processed the event for 10s.
     The thread timeout information of the sampling stack obtained through **OH_HiCollie_Init_JankDetection()** is displayed.
     The path of the sampling stack: **/data/app/el2/100/log/application bundle name/watchdog/BUSSINESS_THREAD_JANK_XXX.txt.**
 
-  (2) Click the **testHiCollieStuckNdk** button.
+    (2) Click the **testHiCollieStuckNdk** button.
     The callback used for detecting stuck event is initialized through **OH_HiCollie_Init_StuckDetection()**. You can define the detection function for stuck events as required.
 
 <!--no_check-->
