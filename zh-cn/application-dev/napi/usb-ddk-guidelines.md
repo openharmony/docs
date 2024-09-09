@@ -6,7 +6,7 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 
 ## 约束与限制
 
-* USB DDK开放API支持非标外设扩展驱动开发场景。
+* USB DDK开放API支持USB接口非标外设扩展驱动开发场景。
 
 * USB DDK开放API使用范围内仅允许DriverExtensionAbilit生命周期内使用。
 
@@ -65,7 +65,7 @@ libusb_ndk.z.so
 
 2. **获取配置描述符及声明接口**。
     
-    使用 **usb_ddk_api.h** 的 **OH_Usb_GetConfigDescriptor** 接口获取配置描述符 **config**，并使用 **OH_Usb_ClaimInterface** 声明接口。
+    使用 **usb_ddk_api.h** 的 **OH_Usb_GetConfigDescriptor** 接口获取配置描述符 **config**，并使用 OH_Usb_ClaimInterface 声明"认领"接口。。
 
     ```c++
     struct UsbDdkConfigDescriptor *config = nullptr;
