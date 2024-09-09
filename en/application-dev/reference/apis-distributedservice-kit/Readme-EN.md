@@ -1,6 +1,6 @@
 # Distributed Service Kit (Distributed Management Service)
 
-- ArkTS APIs
+- ArkTS APIs 
   - [@ohos.distributedDeviceManager (Device Management)](js-apis-distributedDeviceManager.md)
   <!--Del-->
   - [@ohos.distributedHardware.hardwareManager (Distributed Hardware Management) (System API)](js-apis-distributedHardwareManager-sys.md)
