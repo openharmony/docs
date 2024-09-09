@@ -2086,7 +2086,7 @@ function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profi
 
 ### getPreviewRotation<sup>12+</sup>
 
-getPreviewRotation(imageRotation: ImageRotation): imageRotation
+getPreviewRotation(imageRotation: ImageRotation): ImageRotation
 
 获取预览旋转角度。
 
@@ -3203,7 +3203,7 @@ function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile |
 ```
 ### getPhotoRotation<sup>12+</sup>
 
-getPhotoRotation(imageRotation: ImageRotation): imageRotation
+getPhotoRotation(imageRotation: ImageRotation): ImageRotation
 
 获取拍照旋转角度。
 
@@ -3734,7 +3734,7 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
 
 ### getVideoRotation<sup>12+</sup>
 
-getVideoRotation(imageRotation: ImageRotation): imageRotation
+getVideoRotation(imageRotation: ImageRotation): ImageRotation
 
 获取录像旋转角度。
 
