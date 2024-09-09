@@ -24,7 +24,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 5. Use [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) to update the data (plaintext) to be encrypted.
    
    - If a small amount of data is to be encrypted, you can use **OH_CryptoSymCipher_Final()** immediately after **OH_CryptoSymCipher_Init()**.
-   - If a large amount of data is to be encrypted, you can call **OH_CryptoSymCipher_Update()** multiple times to [pass in the data by segment](crypto-sm4-sym-encrypt-decrypt-gcm-by-segment-ndk.md).
+   - If a large amount of data is to be encrypted, you can call **OH_CryptoSymCipher_Update()** multiple times to pass in the data by segment.
 
 6. Use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the ciphertext.
    

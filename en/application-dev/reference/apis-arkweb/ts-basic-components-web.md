@@ -16,7 +16,7 @@ Not supported
 
 ## APIs
 
-Web(options: { src: ResourceStr, controller: WebviewController | WebController, renderMode? : RenderMode, incognitoMode? : boolean})
+Web(options: { src: ResourceStr, controller: WebviewController | WebController, renderMode? : RenderMode, incognitoMode? : boolean, sharedRenderProcessToken? : string})
 
 > **NOTE**
 >
@@ -27,11 +27,11 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 | Name       | Type                                    | Mandatory  | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file (in HTML or TXT format) in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.<br>**src** cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](js-apis-webview.md#loadurl). |
-| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead. |
-| renderMode<sup>12+</sup> | [RenderMode](#rendermode12)| No  | Rendering mode.<br>**RenderMode.ASYNC_RENDER** (default, cannot be dynamically adjusted): The **Web** component is rendered asynchronously.<br>**RenderMode.SYNC_RENDER**: The **Web** component is rendered synchronously within the current execution context. |
-| incognitoMode<sup>11+</sup> | boolean | No | Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false** |
-| sharedRenderProcessToken<sup>12+</sup> | string | No | The token of the shared rendering process specified by the **Web** component. In multi-rendering process mode, the **Web** component with the same token preferentially attempts to reuse the rendering process bound to the token. The token is bound to the rendering process when the rendering process is initialized. When the rendering process is not associated with a **Web** component, its binding to the token is removed.<br> Default value: **""** |
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file (in HTML or TXT format) in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.<br>**src** cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](js-apis-webview.md#loadurl).|
+| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
+| renderMode<sup>12+</sup> | [RenderMode](#rendermode12)| No  | Rendering mode.<br>**RenderMode.ASYNC_RENDER** (default, cannot be dynamically adjusted): The **Web** component is rendered asynchronously.<br>**RenderMode.SYNC_RENDER**: The **Web** component is rendered synchronously within the current execution context.|
+| incognitoMode<sup>11+</sup> | boolean | No| Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false**|
+| sharedRenderProcessToken<sup>12+</sup> | string | No| The token of the shared rendering process specified by the **Web** component. In multi-rendering process mode, the **Web** component with the same token preferentially attempts to reuse the rendering process bound to the token. The token is bound to the rendering process when the rendering process is initialized. When the rendering process is not associated with a **Web** component, its binding to the token is removed.<br> Default value: **""** |
 **Example**
 
 Example of loading online web pages:
@@ -55,7 +55,7 @@ Example of loading online web pages:
 
 Example of loading online web pages in incognito mode:
 
-   ```ts
+  ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
@@ -70,11 +70,11 @@ Example of loading online web pages in incognito mode:
       }
     }
   }
-   ```
+  ```
 
 Example of rendering the **Web** component synchronously within the current execution context:
 
-   ```ts
+  ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
@@ -89,7 +89,7 @@ Example of rendering the **Web** component synchronously within the current exec
       }
     }
   }
-   ```
+  ```
 
 Example of using the **Web** component to specify the shared rendering process.
 
@@ -245,7 +245,7 @@ Sets whether to enable the DOM Storage API. By default, this feature is disabled
 
 | Name             | Type   | Mandatory  | Default Value  | Description                                |
 | ---------------- | ------- | ---- | ----- | ------------------------------------ |
-| domStorageAccess | boolean | Yes   | false | Whether to enable the DOM Storage API. |
+| domStorageAccess | boolean | Yes   | false | Whether to enable the DOM Storage API.|
 
 **Example**
 
@@ -279,7 +279,7 @@ Sets whether to enable access to the file system in the application. This settin
 
 | Name       | Type   | Mandatory  | Default Value | Description                  |
 | ---------- | ------- | ---- | ---- | ---------------------- |
-| fileAccess | boolean | Yes   | false | Whether to enable access to the file system in the application.<br>Default value:<br>API version 11 and earlier: **true**<br> API version 12 and later: **false** |
+| fileAccess | boolean | Yes   | false | Whether to enable access to the file system in the application.<br>Default value:<br>API version 11 and earlier: **true**<br> API version 12 and later: **false**|
 
 **Example**
 
@@ -311,7 +311,7 @@ Sets whether to enable automatic image loading. By default, this feature is enab
 
 | Name        | Type   | Mandatory  | Default Value | Description           |
 | ----------- | ------- | ---- | ---- | --------------- |
-| imageAccess | boolean | Yes   | true | Whether to enable automatic image loading. |
+| imageAccess | boolean | Yes   | true | Whether to enable automatic image loading.|
 
 **Example**
   ```ts
@@ -401,7 +401,7 @@ Sets whether JavaScript scripts can be executed. By default, JavaScript scripts 
 
 | Name             | Type   | Mandatory  | Default Value | Description               |
 | ---------------- | ------- | ---- | ---- | ------------------- |
-| javaScriptAccess | boolean | Yes   | true | Whether JavaScript scripts can be executed. |
+| javaScriptAccess | boolean | Yes   | true | Whether JavaScript scripts can be executed.|
 
 **Example**
 
@@ -432,7 +432,7 @@ Sets the overscroll mode, which is disabled by default. When the overscroll mode
 
 | Name | Type                                   | Mandatory  | Default Value                 | Description              |
 | ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11)  | Yes   | OverScrollMode.NEVER | Whether to enable the overscroll mode. |
+| mode | [OverScrollMode](#overscrollmode11) | Yes   | OverScrollMode.NEVER | Whether to enable the overscroll mode.|
 
 **Example**
 
@@ -464,7 +464,7 @@ Sets whether to enable loading of HTTP and HTTPS hybrid content can be loaded. B
 
 | Name      | Type                       | Mandatory  | Default Value           | Description     |
 | --------- | --------------------------- | ---- | -------------- | --------- |
-| mixedMode | [MixedMode](#mixedmode) | Yes   | MixedMode.None | Mixed content to load. |
+| mixedMode | [MixedMode](#mixedmode)| Yes   | MixedMode.None | Mixed content to load.|
 
 **Example**
 
@@ -496,7 +496,7 @@ Sets whether to enable access to online images through HTTP and HTTPS. By defaul
 
 | Name              | Type   | Mandatory  | Default Value | Description            |
 | ----------------- | ------- | ---- | ---- | ---------------- |
-| onlineImageAccess | boolean | Yes   | true | Whether to enable access to online images through HTTP and HTTPS. |
+| onlineImageAccess | boolean | Yes   | true | Whether to enable access to online images through HTTP and HTTPS.|
 
 **Example**
 
@@ -528,7 +528,7 @@ Sets whether to enable zoom gestures. By default, this feature is enabled.
 
 | Name       | Type   | Mandatory  | Default Value | Description         |
 | ---------- | ------- | ---- | ---- | ------------- |
-| zoomAccess | boolean | Yes   | true | Whether to enable zoom gestures. |
+| zoomAccess | boolean | Yes   | true | Whether to enable zoom gestures.|
 
 **Example**
 
@@ -560,7 +560,7 @@ Sets whether to load web pages by using the overview mode. By default, this feat
 
 | Name               | Type   | Mandatory  | Default Value | Description           |
 | ------------------ | ------- | ---- | ---- | --------------- |
-| overviewModeAccess | boolean | Yes   | true | Whether to load web pages by using the overview mode. |
+| overviewModeAccess | boolean | Yes   | true | Whether to load web pages by using the overview mode.|
 
 **Example**
 
@@ -592,7 +592,7 @@ Sets whether to enable database access. By default, this feature is disabled.
 
 | Name           | Type   | Mandatory  | Default Value  | Description             |
 | -------------- | ------- | ---- | ----- | ----------------- |
-| databaseAccess | boolean | Yes   | false | Whether to enable database access. |
+| databaseAccess | boolean | Yes   | false | Whether to enable database access.|
 
 **Example**
 
@@ -618,13 +618,13 @@ Sets whether to enable database access. By default, this feature is disabled.
 
 geolocationAccess(geolocationAccess: boolean)
 
-Sets whether to enable geolocation access. By default, this feature is enabled.
+Sets whether to enable geolocation access. By default, this feature is enabled. For details, see [Managing Location Permissions](../../web/web-geolocation-permission.md).
 
 **Parameters**
 
 | Name              | Type   | Mandatory  | Default Value | Description           |
 | ----------------- | ------- | ---- | ---- | --------------- |
-| geolocationAccess | boolean | Yes   | true | Whether to enable geolocation access. |
+| geolocationAccess | boolean | Yes   | true | Whether to enable geolocation access.|
 
 **Example**
 
@@ -656,7 +656,7 @@ Sets whether video playback must be started by user gestures. This API is not ap
 
 | Name   | Type   | Mandatory  | Default Value | Description               |
 | ------ | ------- | ---- | ---- | ------------------- |
-| access | boolean | Yes   | true | Whether video playback must be started by user gestures. |
+| access | boolean | Yes   | true | Whether video playback must be started by user gestures.|
 
 **Example**
 
@@ -690,7 +690,7 @@ Enabling the multi-window permission requires implementation of the **onWindowNe
 
 | Name        | Type   | Mandatory  | Default Value  | Description        |
 | ----------- | ------- | ---- | ----- | ------------ |
-| multiWindow | boolean | Yes   | false | Whether to enable the multi-window permission. |
+| multiWindow | boolean | Yes   | false | Whether to enable the multi-window permission.|
 
 **Example**
 
@@ -726,7 +726,7 @@ Sets whether to display the horizontal scrollbar, including the default system s
 
 | Name                | Type   | Mandatory  | Default Value | Description        |
 | ------------------- | ------- | ---- | ---- | ------------ |
-| horizontalScrollBar | boolean | Yes   | true | Whether to display the horizontal scrollbar. |
+| horizontalScrollBar | boolean | Yes   | true | Whether to display the horizontal scrollbar.|
 
 **Example**
 
@@ -798,7 +798,7 @@ Sets whether to display the vertical scrollbar, including the default system scr
 
 | Name              | Type   | Mandatory  | Default Value | Description        |
 | ----------------- | ------- | ---- | ---- | ------------ |
-| verticalScrollBar | boolean | Yes   | true | Whether to display the vertical scrollbar. |
+| verticalScrollBar | boolean | Yes   | true | Whether to display the vertical scrollbar.|
 
 **Example**
 
@@ -875,7 +875,7 @@ Sets the cache mode.
 
 | Name      | Type                       | Mandatory  | Default Value              | Description     |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| cacheMode | [CacheMode](#cachemode9)  | Yes   | CacheMode.Default | Cache mode to set. |
+| cacheMode | [CacheMode](#cachemode9) | Yes   | CacheMode.Default | Cache mode to set.|
 
 **Example**
 
@@ -908,7 +908,7 @@ Sets the pasteboard copy options.
 
 | Name      | Type                       | Mandatory  | Default Value              | Description     |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | Yes   | CopyOptions.LocalDevice | Pasteboard copy options. |
+| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | Yes   | CopyOptions.LocalDevice | Pasteboard copy options.|
 
 **Example**
 
@@ -941,7 +941,7 @@ This API is deprecated since API version 9. You are advised to use [textZoomRati
 
 | Name         | Type  | Mandatory  | Default Value | Description                            |
 | ------------ | ------ | ---- | ---- | -------------------------------- |
-| textZoomAtio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞). |
+| textZoomAtio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞).|
 
 **Example**
 
@@ -971,7 +971,7 @@ Sets the text zoom ratio of the page. The default value is **100**, which indica
 
 | Name          | Type  | Mandatory  | Default Value | Description                            |
 | ------------- | ------ | ---- | ---- | -------------------------------- |
-| textZoomRatio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞). |
+| textZoomRatio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞).|
 
 **Example**
 
@@ -1004,7 +1004,7 @@ Sets the scale factor of the entire page. The default value is 100%.
 
 | Name    | Type  | Mandatory  | Default Value | Description                         |
 | ------- | ------ | ---- | ---- | ----------------------------- |
-| percent | number | Yes   | 100  | Scale factor of the entire page. |
+| percent | number | Yes   | 100  | Scale factor of the entire page.|
 
 **Example**
 
@@ -1041,7 +1041,7 @@ Sets the user agent.
 
 | Name      | Type  | Mandatory  | Default Value | Description     |
 | --------- | ------ | ---- | ---- | --------- |
-| userAgent | string | Yes   | -    | User agent to set. |
+| userAgent | string | Yes   | -    | User agent to set.|
 
 **Example**
 
@@ -1074,7 +1074,7 @@ Sets whether to block online downloads.
 
 | Name  | Type   | Mandatory  | Default Value  | Description               |
 | ----- | ------- | ---- | ----- | ------------------- |
-| block | boolean | Yes   | false | Whether to block online downloads. |
+| block | boolean | Yes   | false | Whether to block online downloads.|
 
 **Example**
 
@@ -1107,7 +1107,7 @@ Sets the default fixed font size for the web page.
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 13   | Default fixed font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
+| size | number | Yes   | 13   | Default fixed font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
 
 **Example**
 
@@ -1140,7 +1140,7 @@ Sets the default font size for the web page.
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 16   | Default font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
+| size | number | Yes   | 16   | Default font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
 
 **Example**
 
@@ -1173,7 +1173,7 @@ Sets the minimum font size for the web page.
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 8    | Minimum font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
+| size | number | Yes   | 8    | Minimum font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
 
 **Example**
 
@@ -1206,7 +1206,7 @@ Sets the minimum logical font size for the web page.
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| size | number | Yes   | 8    | Minimum logical font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
+| size | number | Yes   | 8    | Minimum logical font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
 
 **Example**
 
@@ -1239,7 +1239,7 @@ Sets the fixed font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value      | Description               |
 | ------ | ------ | ---- | --------- | ------------------- |
-| family | string | Yes   | monospace | Fixed font family to set. |
+| family | string | Yes   | monospace | Fixed font family to set.|
 
 **Example**
 
@@ -1272,7 +1272,7 @@ Sets the sans serif font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value       | Description                    |
 | ------ | ------ | ---- | ---------- | ------------------------ |
-| family | string | Yes   | sans-serif | Sans serif font family to set. |
+| family | string | Yes   | sans-serif | Sans serif font family to set.|
 
 **Example**
 
@@ -1305,7 +1305,7 @@ Sets the serif font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value  | Description               |
 | ------ | ------ | ---- | ----- | ------------------- |
-| family | string | Yes   | serif | Serif font family to set. |
+| family | string | Yes   | serif | Serif font family to set.|
 
 **Example**
 
@@ -1338,7 +1338,7 @@ Sets the standard font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value       | Description                  |
 | ------ | ------ | ---- | ---------- | ---------------------- |
-| family | string | Yes   | sans serif | Standard font family to set. |
+| family | string | Yes   | sans serif | Standard font family to set.|
 
 **Example**
 
@@ -1371,7 +1371,7 @@ Sets the fantasy font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value    | Description                 |
 | ------ | ------ | ---- | ------- | --------------------- |
-| family | string | Yes   | fantasy | Fantasy font family to set. |
+| family | string | Yes   | fantasy | Fantasy font family to set.|
 
 **Example**
 
@@ -1403,7 +1403,7 @@ Sets the cursive font family for the web page.
 
 | Name   | Type  | Mandatory  | Default Value    | Description                 |
 | ------ | ------ | ---- | ------- | --------------------- |
-| family | string | Yes   | cursive | Cursive font family to set. |
+| family | string | Yes   | cursive | Cursive font family to set.|
 
 **Example**
 
@@ -1436,7 +1436,7 @@ Sets the web dark mode. By default, web dark mode is disabled. When it is enable
 
 | Name | Type                            | Mandatory  | Default Value            | Description                  |
 | ---- | -------------------------------- | ---- | --------------- | ---------------------- |
-| mode | [WebDarkMode](#webdarkmode9)  | Yes   | WebDarkMode.Off | Web dark mode to set. |
+| mode | [WebDarkMode](#webdarkmode9) | Yes   | WebDarkMode.Off | Web dark mode to set.|
 
 **Example**
 
@@ -1469,7 +1469,7 @@ Sets whether to enable forcible dark mode for the web page. By default, this fea
 
 | Name   | Type   | Mandatory  | Default Value  | Description           |
 | ------ | ------- | ---- | ----- | --------------- |
-| access | boolean | Yes   | false | Whether to enable forcible dark mode for the web page. |
+| access | boolean | Yes   | false | Whether to enable forcible dark mode for the web page.|
 
 **Example**
 
@@ -1524,7 +1524,7 @@ Sets whether to enable smooth pinch mode for the web page.
 
 | Name      | Type   | Mandatory  | Default Value  | Description         |
 | --------- | ------- | ---- | ----- | ------------- |
-| isEnabled | boolean | Yes   | false | Whether to enable smooth pinch mode for the web page. |
+| isEnabled | boolean | Yes   | false | Whether to enable smooth pinch mode for the web page.|
 
 **Example**
 
@@ -1569,7 +1569,7 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
 
 | Name | Type   | Mandatory  | Default Value                                     | Description                     |
 | ---- | ------- | ---- | ---------------------------------------- | ------------------------- |
-| flag | boolean | Yes   | Subject to the settings of the **persist.web.allowWindowOpenMethod.enabled** system attribute. If this attribute is set, the default value of **flag** is **true**. Otherwise, the default value of **flag** is **false**. | Whether to allow a new window to automatically open through JavaScript. |
+| flag | boolean | Yes   | Subject to the settings of the **persist.web.allowWindowOpenMethod.enabled** system attribute. If this attribute is set, the default value of **flag** is **true**. Otherwise, the default value of **flag** is **false**.| Whether to allow a new window to automatically open through JavaScript.|
 
 **Example**
 
@@ -1642,12 +1642,13 @@ Sets the web-based media playback policy, including the validity period for auto
 > - The media playback policy controls videos with an audio track.
 > - After the parameter settings are updated, the playback must be started again for the settings to take effect.
 > - It is recommended that you set the same **audioExclusive** value for all **Web** components.
+> - Audio and video interruption takes effect within an app and between apps, and playback resumption takes effect only between apps.
 
 **Parameters**
 
 | Name    | Type                                 | Mandatory  | Default Value                                     | Description                                    |
 | ------- | ------------------------------------- | ---- | ---------------------------------------- | ---------------------------------------- |
-| options | [WebMediaOptions](#webmediaoptions10) | Yes   | {resumeInterval: 0, audioExclusive: true} | Web-based media playback policy. The default value of **resumeInterval** is **0**, indicating that the playback is not automatically resumed. |
+| options | [WebMediaOptions](#webmediaoptions10) | Yes   | {resumeInterval: 0, audioExclusive: true} | Web-based media playback policy. The default value of **resumeInterval** is **0**, indicating that the playback is not automatically resumed.|
 
 **Example**
 
@@ -1684,7 +1685,7 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 
 | Name    | Type                               | Mandatory  | Default Value | Description              |
 | ------- | ----------------------------------- | ---- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected. |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected.|
 
 **Example in the .ets file**
 
@@ -1746,7 +1747,7 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 
 javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
-Injects a JavaScript script into the **Web** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
+Injects a JavaScript script into the **Web** component. When the specified page or document has been loaded, the script is executed on any page whose source matches **scriptRules**.
 
 > **NOTE**
 >
@@ -1756,7 +1757,7 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 
 | Name    | Type                               | Mandatory  | Default Value | Description              |
 | ------- | ----------------------------------- | ---- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected. |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected.|
 
 **Example**
 
@@ -1821,7 +1822,7 @@ Sets the web layout mode.
 
 | Name | Type                                 | Mandatory  | Default Value               | Description                 |
 | ---- | ------------------------------------- | ---- | ------------------ | --------------------- |
-| mode | [WebLayoutMode](#weblayoutmode11)  | Yes   | WebLayoutMode.NONE | Web layout mode. |
+| mode | [WebLayoutMode](#weblayoutmode11) | Yes   | WebLayoutMode.NONE | Web layout mode.|
 
 **Example**
 
@@ -1886,7 +1887,7 @@ Sets nested scrolling options.
 
 | Name  | Type                                    | Mandatory  | Description            |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](#nestedscrolloptions11)  | Yes   | Nested scrolling options. |
+| value | [NestedScrollOptions](#nestedscrolloptions11) | Yes   | Nested scrolling options.|
 
 **Example**
 
@@ -1919,7 +1920,7 @@ Specifies whether to enable the same-layer rendering feature. By default, this f
 
 | Name  | Type                     | Mandatory  | Default Value               | Description            |
 | ----- | ---------------------------------------- | ---- | ------------------| ---------------- |
-| mode |  boolean | Yes   | false | Whether to enable the same-layer rendering feature. |
+| mode |  boolean | Yes   | false | Whether to enable the same-layer rendering feature.|
 
 **Example**
 
@@ -1939,7 +1940,7 @@ Specifies whether to enable the same-layer rendering feature. By default, this f
     }
   }
   ```
-### forceDisplayScrollBar<sup>12+</sup>
+### forceDisplayScrollBar<sup>14+</sup>
 
 forceDisplayScrollBar(enabled: boolean)
 
@@ -1949,9 +1950,9 @@ Sets whether the scroll bar is always visible. By default, it is not always visi
 
 **Parameters**
 
-| Name | Type | Mandatory | Default Value | Description          |
+| Name | Type| Mandatory| Default Value| Description          |
 | ------- | -------- | ---- | ------ | ------------------ |
-| enabled | boolean  | Yes  | false  | Whether the scroll bar is always visible. |
+| enabled | boolean  | Yes  | false  | Whether the scroll bar is always visible.|
 
 
 **Example**
@@ -1963,7 +1964,7 @@ Sets whether the scroll bar is always visible. By default, it is not always visi
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController()
 
     build() {
       Column() {
@@ -1980,6 +1981,7 @@ Sets whether the scroll bar is always visible. By default, it is not always visi
   <!DOCTYPE html>
   <html>
   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Demo</title>
       <style>
         body {
@@ -2006,7 +2008,7 @@ Registers the HTML tag name and type for same-layer rendering. The tag name only
 | Name | Type  | Mandatory  | Default Value | Description            |
 |------|--------| ---- |------|------------------|
 | tag  | string | Yes   | ""   | Tag name.            |
-| type | string | Yes   | ""   | Tag type. It is used by the ArkWeb engine for prefix matching. |
+| type | string | Yes   | ""   | Tag type. It is used by the ArkWeb engine for prefix matching.|
 
 **Example**
 
@@ -2038,7 +2040,7 @@ Sets the default character encoding for web pages.
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| textEncodingFormat | string | Yes   | "UTF-8"   | Default character encoding. |
+| textEncodingFormat | string | Yes   | "UTF-8"   | Default character encoding.|
 
   **Example**
 
@@ -2091,9 +2093,9 @@ Sets whether the **viewport** property of the **meta** tag is enabled.
 
 **Parameters**
 
-| Name | Type | Mandatory | Default Value | Description                        |
+| Name| Type| Mandatory| Default Value| Description                        |
 | ------ | -------- | ---- | ------ | -------------------------------- |
-| enable | boolean  | Yes  | true   | Whether the **viewport** property of the **meta** tag is enabled. |
+| enable | boolean  | Yes  | true   | Whether the **viewport** property of the **meta** tag is enabled.|
 
 **Example**
 
@@ -2136,7 +2138,7 @@ Sets whether automatic text resizing is enabled.
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| textAutosizing | boolean | Yes   | true   | Whether automatic text resizing is enabled. |
+| textAutosizing | boolean | Yes   | true   | Whether automatic text resizing is enabled.|
 
   **Example**
 
@@ -2167,7 +2169,7 @@ Enable the [application takeover of web media playback feature](../../web/app-ta
 
 **Parameters**
 
-| Name | Type  | Mandatory  | Default Value | Description |
+| Name | Type  | Mandatory  | Default Value | Description|
 | ---- | ------ | ---- | ---- | ---------------------|
 | config | [NativeMediaPlayerConfig](#nativemediaplayerconfig12) | Yes   |  {enable: false, shouldOverlay: false} | **enable**: whether to enable the feature.<br> **shouldOverlay**: whether the image of the video player taken over by the application will overlay the web page content, if this feature is enabled.|
 
@@ -2203,7 +2205,7 @@ The API only supports the selection of plain text; if the selected content conta
 
 | Name             | Type                                                        | Description         |
 | ------------------- | ----------------------------------------------------------   | ------------- |
-| expandedMenuOptions | Array<[ExpandedMenuItemOptions](#expandedmenuitemoptions12)> | Extended options of the custom context menu on selection.<br>The number of menu items, menu content size, and start icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.|
+| expandedMenuOptions | Array<[ExpandedMenuItemOptions](#expandedmenuitemoptions12)> | Extended options of the custom context menu on selection.<br>The number of menu options, menu content size, and start icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.|
 
 **Example**
 
@@ -2296,6 +2298,108 @@ If the keyboard avoidance mode set in **UIContext** is [KeyboardAvoidMode.RESIZE
   </body>
   </html>
   ```
+
+### editMenuOptions<sup>12+</sup>
+editMenuOptions(editMenu: EditMenuOptions)
+
+Sets the custom menu options of the **Web** component.
+
+You can use this property to customize a text menu.
+
+You can use [onCreateMenu](../apis-arkui/arkui-ts/ts-text-common.md#oncreatemenu) to modify, add, and delete menu options. If you do not want to display text menus, return an empty array.
+
+You can use [onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick) to customize the callback for menu options. This function is triggered after a menu option is clicked and determines whether to execute the default callback based on the return value. If **true** is returned, the system callback is not executed. If **false** is returned, the system callback is executed.
+
+If this API is used together with [selectionMenuOptions](#selectionmenuoptions12), **selectionMenuOptions** does not take effect.
+
+**Parameters**
+| Name             | Type                             | Mandatory  | Description         |
+| ------------------- | ------------------------------   | ------ | ------------- |
+| editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions)| Yes    | Custom menu options of the **Web** component.<br>The number of menu options, menu content size, and icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.<br>The values of ([TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)) supported by the **Web** component are **CUT**, **COPY**, **PASTE**, and **SELECT_ALL**.<br>**textRange** in **onMenuItemClick()** is useless in the **Web** component. The input value is **-1**.|
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
+    let items = menuItems.filter((menuItem) => {
+        // Filter the menu items as required.
+      return (
+        menuItem.id.equals(TextMenuItemId.CUT) ||
+        menuItem.id.equals(TextMenuItemId.COPY) ||
+        menuItem.id.equals((TextMenuItemId.PASTE))
+      )
+    });
+    let customItem1: TextMenuItem = {
+      content: 'customItem1',
+      id: TextMenuItemId.of('customItem1'),
+      icon: $r('app.media.icon')
+    };
+    let customItem2: TextMenuItem = {
+      content: $r('app.string.customItem2'),
+      id: TextMenuItemId.of('customItem2'),
+      icon: $r('app.media.icon')
+    };
+    items.push(customItem1);// Add an option to the end of the option list.
+    items.unshift(customItem2);// Add an option to the beginning of the option list.
+
+    return items;
+  }
+
+  onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
+    if (menuItem.id.equals(TextMenuItemId.CUT)) {
+      // User-defined behavior.
+      console.log ("Intercept ID: CUT")
+      return true; // Return true to not execute the system callback.
+    } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      // User-defined behavior.
+      console.log ("Do not intercept ID: COPY")
+      return false; // Return false to execute the system callback.
+    } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
+      // User-defined behavior.
+      console.log ("Intercept ID: customItem1")
+      return true;// Return true. There is no difference between true and false to the custom menu option, but true is recommended.
+    } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
+      // User-defined behavior.
+      console.log ("Intercept ID: app.string.customItem2")
+      return true;
+    }
+    return false;// Return the default value false.
+  }
+
+  @State EditMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }
+
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+        .editMenuOptions(this.EditMenuOptions)
+    }
+  }
+}
+```
+
+ HTML file to be loaded:
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Test Web Page</title>
+  </head>
+  <body>
+    <h1>editMenuOptions Demo</h1>
+    <span>edit menu options</span>
+  </body>
+</html>
+```
+
 ## Events
 
 The following universal events are supported: [onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear), [onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear), [onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur), [onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus), [onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend), [onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter), [onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart), [onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove), [onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave), [onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop), [onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover), [onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse), [onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent), [onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch), [onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)
@@ -2310,7 +2414,7 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | Called when **alert()** is invoked to display an alert dialog box on the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
+| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | Callback used when **alert()** is invoked to display an alert dialog box on the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2387,7 +2491,7 @@ Called when this page is about to exit after the user refreshes or closes the pa
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | Called when this page is about to exit after the user refreshes or closes the page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
+| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | Callback used when this page is about to exit after the user refreshes or closes the page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2464,7 +2568,7 @@ Called when **confirm()** is invoked by the web page.
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | Called when **confirm()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
+| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | Callback used when **confirm()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2550,7 +2654,7 @@ Called when **prompt()** is invoked by the web page.
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | Called when **prompt()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective. |
+| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | Callback used when **prompt()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2633,7 +2737,7 @@ Called to notify the host application of a JavaScript console message.
 
 | Name    | Type                             | Description     |
 | ------- | --------------------------------- | --------- |
-| callback | Callback\<[OnConsoleEvent](#onconsoleevent12), boolean\> | Called when the web page receives a JavaScript console message.<br>Return value: boolean<br> Returns **true** if the message will not be printed to the console; returns **false** otherwise. |
+| callback | Callback\<[OnConsoleEvent](#onconsoleevent12), boolean\> | Called when the web page receives a JavaScript console message.<br>Return value: boolean<br> Returns **true** if the message will not be printed to the console; returns **false** otherwise.|
 
 **Example**
 
@@ -2779,7 +2883,7 @@ Called when an HTTP error (the response code is greater than or equal to 400) oc
 
 | Name     | Type                                    | Description      |
 | -------- | ---------------------------------------- | ---------- |
-| callback  | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent12)\> | Called when an HTTP error occurs during web page resource loading. |
+| callback  | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent12)\> | Called when an HTTP error occurs during web page resource loading.|
 
 **Example**
 
@@ -2829,11 +2933,13 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 
 Called when the web page starts to be loaded. This API is called only for the main frame content, and not for the iframe or frameset content.
 
+For details about the component lifecycle, see [Lifecycle of Web Components](../../web/web-event-sequence.md).
+
 **Parameters**
 
 | Name | Type  | Description     |
 | ---- | ------ | --------- |
-| callback  | Callback\<[OnPageBeginEvent](#onpagebeginevent12)\> | Called when the web page starts to be loaded. |
+| callback  | Callback\<[OnPageBeginEvent](#onpagebeginevent12)\> | Called when the web page starts to be loaded.|
 
 **Example**
 
@@ -2865,11 +2971,13 @@ onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
 Called when the web page loading is complete. This API takes effect only for the main frame content.
 
+For details about the component lifecycle, see [Lifecycle of Web Components](../../web/web-event-sequence.md).
+
 **Parameters**
 
 | Name | Type  | Description     |
 | ---- | ------ | --------- |
-| callback  | Callback\<[OnPageEndEvent](#onpageendevent12)\> | Called when the web page loading is complete. |
+| callback  | Callback\<[OnPageEndEvent](#onpageendevent12)\> | Called when the web page loading is complete.|
 
 **Example**
 
@@ -2905,7 +3013,7 @@ Called when the web page loading progress changes.
 
 | Name        | Type  | Description                 |
 | ----------- | ------ | --------------------- |
-| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | Called when the web page loading progress changes. |
+| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | Called when the web page loading progress changes.|
 
 **Example**
 
@@ -2934,13 +3042,13 @@ Called when the web page loading progress changes.
 
 onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
-Called when the document title of the web page is changed.
+Called when the document title of a web page is changed. If the <title\> element is not set for an HTML5 page, the corresponding URL is returned.
 
 **Parameters**
 
 | Name  | Type  | Description         |
 | ----- | ------ | ------------- |
-| callback | Callback\<[OnTitleReceiveEvent](#ontitlereceiveevent12)\> | Called when the document title of the web page is changed. |
+| callback | Callback\<[OnTitleReceiveEvent](#ontitlereceiveevent12)\> | Called when the document title of the web page is changed.|
 
 **Example**
 
@@ -3028,11 +3136,17 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 Called when the rendering process exits abnormally.
 
+A rendering process may shared by multiple Web components. Each affected Web component triggers this callback.
+
+You call the bound **webviewContoller** APIs to restore the web page when this callback is triggered. For example, [refresh](js-apis-webview.md#refresh) and [loadUrl](js-apis-webview.md#loadurl).
+
+For details about the component lifecycle, see [Lifecycle of Web Components](../../web/web-event-sequence.md).
+
 **Parameters**
 
 | Name             | Type                                    | Description            |
 | ---------------- | ---------------------------------------- | ---------------- |
-| callback | Callback\<[OnRenderExitedEvent](#onrenderexitedevent12)\> | Called when the rendering process exits abnormally. |
+| callback | Callback\<[OnRenderExitedEvent](#onrenderexitedevent12)\> | Called when the rendering process exits abnormally.|
 
 **Example**
 
@@ -3061,13 +3175,17 @@ Called when the rendering process exits abnormally.
 
 onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
-Called when the rendering process does not respond.
+Called when the rendering process does not respond. If the **Web** component cannot process the input event or navigate to a new URL within a proper time range, the web page process is considered unresponsive and the callback is triggered.
+
+If the web page process does not respond, this callback may be triggered until the web page process responds again. In this case, [onRenderProcessResponding](#onrenderprocessresponding12) is triggered.
+
+You can terminate the associated rendering process through [terminateRenderProcess](js-apis-webview.md#terminaterenderprocess12), which may affect other Web components in the same rendering process.
 
 **Parameters**
 
 | Name  | Type                                                        | Description                                  |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | Callback triggered when the rendering process does not respond. |
+| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | Callback triggered when the rendering process does not respond.|
 
 **Example**
 
@@ -3102,7 +3220,7 @@ Called when the rendering process transitions back to a normal operating state f
 
 | Name  | Type                                                        | Description                                  |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | Callback triggered when the rendering process transitions back to a normal operating state from an unresponsive state. |
+| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | Callback triggered when the rendering process transitions back to a normal operating state from an unresponsive state.|
 
 **Example**
 
@@ -3136,7 +3254,7 @@ Called to process an HTML form whose input type is **file**. If this function is
 
 | Name         | Type                                    | Description             |
 | ------------ | ---------------------------------------- | ----------------- |
-| callback       | Callback\<[OnShowFileSelectorEvent](#onshowfileselectorevent12), boolean\> | File selection result to be sent to the **Web** component.<br>Return value: boolean<br> The value **true** means that you can invoke the system-provided popup capability. The value **false** means that the custom dialog box drawn in the function is ineffective. |
+| callback       | Callback\<[OnShowFileSelectorEvent](#onshowfileselectorevent12), boolean\> | File selection result to be sent to the **Web** component.<br>Return value: boolean<br> The value **true** means that you can invoke the system-provided popup capability. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -3241,7 +3359,7 @@ Called to notify the **Web** component of the URL of the loaded resource file.
 
 | Name | Type  | Description          |
 | ---- | ------ | -------------- |
-| callback  | Callback\<[OnResourceLoadEvent](#onresourceloadevent12)\> | Callback invoked when a URL is loaded. |
+| callback  | Callback\<[OnResourceLoadEvent](#onresourceloadevent12)\> | Callback invoked when a URL is loaded.|
 
 **Example**
 
@@ -3275,7 +3393,7 @@ Called when the display ratio of this page changes.
 
 | Name     | Type  | Description        |
 | -------- | ------ | ------------ |
-| callback | Callback\<[OnScaleChangeEvent](#onscalechangeevent12)\> | Callback invoked when the display ratio of the page changes. |
+| callback | Callback\<[OnScaleChangeEvent](#onscalechangeevent12)\> | Callback invoked when the display ratio of the page changes.|
 
 **Example**
 
@@ -3310,13 +3428,13 @@ This API is deprecated since API version 10. You are advised to use [onLoadInter
 
 | Name | Type                                    | Description     |
 | ---- | ---------------------------------------- | --------- |
-| data | string \| [WebResourceRequest](#webresourcerequest) | URL information. |
+| data | string \| [WebResourceRequest](#webresourcerequest) | URL information.|
 
 **Return value**
 
 | Type     | Description                      |
 | ------- | ------------------------ |
-| boolean | Returns **true** if the access is blocked; returns **false** otherwise. |
+| boolean | Returns **true** if the access is blocked; returns **false** otherwise.|
 
 **Example**
 
@@ -3353,7 +3471,7 @@ Called when the **Web** component is about to access a URL. This API is used to 
 
 | Name    | Type                                    | Description       |
 | ------- | ---------------------------------------- | ----------- |
-| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12)\> | Callback invoked when the **Web** component is about to load a URL.<br>The return value is [WebResourceResponse](#webresourceresponse). If response data is returned, the data is loaded based on the response data. If no response data is returned, null is returned, indicating that the data is loaded in the original mode. |
+| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12)\> | Callback invoked when the **Web** component is about to load a URL.<br>The return value is [WebResourceResponse](#webresourceresponse). If response data is returned, the data is loaded based on the response data. If no response data is returned, null is returned, indicating that the data is loaded in the original mode.|
 
 **Example**
 
@@ -3490,7 +3608,7 @@ To include errors with requests for subframes, use the [OnSslErrorEvent](#onssle
 
 | Name    | Type                                | Description          |
 | ------- | ------------------------------------ | -------------- |
-| callback | Callback\<[OnSslErrorEventReceiveEvent](#onsslerroreventreceiveevent12)\> | Callback invoked when the web page receives an SSL error. |
+| callback | Callback\<[OnSslErrorEventReceiveEvent](#onsslerroreventreceiveevent12)\> | Callback invoked when the web page receives an SSL error.|
 
 **Example**
 
@@ -3542,7 +3660,7 @@ Called to notify users when an SSL error occurs during the loading of resources 
 
 | Name    | Type                                | Description          |
 | ------- | ------------------------------------ | -------------- |
-| callback | [OnSslErrorEventCallback](#onsslerroreventcallback12) | Callback invoked when an SSL error occurs during resource loading. |
+| callback | [OnSslErrorEventCallback](#onsslerroreventcallback12) | Callback invoked when an SSL error occurs during resource loading.|
 
 **Example**
 
@@ -3794,24 +3912,40 @@ Called when an SSL client certificate request is received.
 
 onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
 
-Called when a permission request is received.
+Called when a permission request is received. To call this API, you need to declare the **ohos.permission.CAMERA** and **ohos.permission.MICROPHONE** permissions.
 
 **Parameters**
 
 | Name    | Type                                    | Description          |
 | ------- | ---------------------------------------- | -------------- |
-| callback | Callback\<[OnPermissionRequestEvent](#onpermissionrequestevent12)\> | Callback invoked when a permission request is received. |
+| callback | Callback\<[OnPermissionRequestEvent](#onpermissionrequestevent12)\> | Callback invoked when a permission request is received.|
 
 **Example**
 
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { abilityAccessCtrl } from '@kit.AbilityKit';
 
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+
+    aboutToAppear() {
+      // Enable web frontend page debugging.
+      webview.WebviewController.setWebDebuggingAccess(true);
+      let atManager = abilityAccessCtrl.createAtManager();
+      atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
+        .then((data) => {
+          console.info('data:' + JSON.stringify(data));
+          console.info('data permissions:' + data.permissions);
+          console.info('data authResults:' + data.authResults);
+        }).catch((error: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+      })
+    }
 
     build() {
       Column() {
@@ -4075,7 +4209,7 @@ Called when the scrollbar of the page scrolls.
 
 | Name    | Type  | Description                  |
 | ------- | ------ | ---------------------- |
-| callback | Callback\<[OnScrollEvent](#onscrollevent12)\> | Callback invoked when the scrollbar scrolls to a specified position. |
+| callback | Callback\<[OnScrollEvent](#onscrollevent12)\> | Callback invoked when the scrollbar scrolls to a specified position.|
 
 **Example**
 
@@ -4182,7 +4316,7 @@ Called to notify the user that the request for obtaining the geolocation informa
 
 | Name     | Type      | Description                |
 | -------- | ---------- | -------------------- |
-| callback | () => void | Callback invoked when the request for obtaining geolocation information has been canceled.  |
+| callback | () => void | Callback invoked when the request for obtaining geolocation information has been canceled. |
 
 **Example**
 
@@ -4217,7 +4351,7 @@ Called when the **Web** component enters full screen mode.
 
 | Name    | Type                                    | Description          |
 | ------- | ---------------------------------------- | -------------- |
-| callback | [OnFullScreenEnterCallback](#onfullscreenentercallback12) | Callback invoked when the **Web** component enters full screen mode. |
+| callback | [OnFullScreenEnterCallback](#onfullscreenentercallback12) | Callback invoked when the **Web** component enters full screen mode.|
 
 **Example**
 
@@ -4255,7 +4389,7 @@ Called when the **Web** component exits full screen mode.
 
 | Name     | Type      | Description         |
 | -------- | ---------- | ------------- |
-| callback | () => void | Callback invoked when the component exits full screen mode. |
+| callback | () => void | Callback invoked when the component exits full screen mode.|
 
 **Example**
 
@@ -4294,6 +4428,10 @@ Called to notify the user of a new window creation request, when **multiWindowAc
 If the **event.handler.setWebController** API is not called, the render process will be blocked.
 If opening a new window is not needed, set the parameter to **null** when calling the **event.handler.setWebController** API.
 
+The new window should not cover the original **Web** component, otherwise, users may be misled to other websites. If the application displays the URL of the home page, ensure that the URL of the new window is displayed in a similar way. Otherwise, new windows should be prohibited.
+
+Note that there is no reliable method to determine which page requests a new window. The request may be from a third-party iframe.
+
 **Parameters**
 
 | Name          | Type                                    | Description                         |
@@ -4306,7 +4444,7 @@ If opening a new window is not needed, set the parameter to **null** when callin
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
-  // There are two Web components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed.
+  // There are two **Web** components on the same page. When the **Web** component opens a new window, **NewWebViewComp** is displayed. 
   @CustomDialog
   struct NewWebViewComp {
     controller?: CustomDialogController;
@@ -4363,13 +4501,13 @@ If opening a new window is not needed, set the parameter to **null** when callin
 
 onWindowExit(callback: () => void)
 
-Called when this window is closed.
+Called when this window is closed. This API works in the same way as [onWindowNew](#onwindownew9). For security, applications should notify users that the pages they interact with are closed.
 
 **Parameters**
 
 | Name     | Type      | Description        |
 | -------- | ---------- | ------------ |
-| callback | () => void | Callback invoked when the window is closed. |
+| callback | () => void | Callback invoked when the window is closed.|
 
 **Example**
 
@@ -4440,7 +4578,7 @@ Called when the web form data can be resubmitted.
 
 | Name    | Type                                    | Description       |
 | ------- | ---------------------------------------- | ----------- |
-| callback | Callback\<[OnDataResubmittedEvent](#ondataresubmittedevent12)\> | Callback invoked when the web form data can be resubmitted. |
+| callback | Callback\<[OnDataResubmittedEvent](#ondataresubmittedevent12)\> | Callback invoked when the web form data can be resubmitted.|
 
 **Example**
 
@@ -4498,11 +4636,13 @@ onPageVisible(callback: Callback\<OnPageVisibleEvent\>)
 
 Called when the old page is not displayed and the new page is about to be visible.
 
+For details about the component lifecycle, see [Lifecycle of Web Components](../../web/web-event-sequence.md).
+
 **Parameters**
 
 | Name | Type  | Description                      |
 | ---- | ------ | -------------------------- |
-| callback  | Callback\<[OnPageVisibleEvent](#onpagevisibleevent12)\> | Callback invoked when the old page is not displayed and the new page is about to be visible. |
+| callback  | Callback\<[OnPageVisibleEvent](#onpagevisibleevent12)\> | Callback invoked when the old page is not displayed and the new page is about to be visible.|
 
 **Example**
 
@@ -4536,13 +4676,13 @@ Called when the key event is intercepted and before it is consumed by the webvie
 
 | Name  | Type                                    | Description          |
 | ----- | ---------------------------------------- | -------------- |
-| event | [KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent)  | Key event that is triggered. |
+| event | [KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent) | Key event that is triggered.|
 
 **Return value**
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Whether to continue to transfer the key event to the webview kernel. |
+| boolean | Whether to continue to transfer the key event to the webview kernel.|
 
 **Example**
 
@@ -4580,7 +4720,7 @@ Called when an apple-touch-icon URL is received.
 
 | Name        | Type   | Description                       |
 | ----------- | ------- | --------------------------- |
-| callback         | Callback\<[OnTouchIconUrlReceivedEvent](#ontouchiconurlreceivedevent12)\>  | Callback invoked when an apple-touch-icon URL is received. |
+| callback         | Callback\<[OnTouchIconUrlReceivedEvent](#ontouchiconurlreceivedevent12)\>  | Callback invoked when an apple-touch-icon URL is received.|
 
 **Example**
 
@@ -4614,7 +4754,7 @@ Called when this web page receives a new favicon.
 
 | Name    | Type                                    | Description                     |
 | ------- | ---------------------------------------- | ------------------------- |
-| callback | Callback\<[OnFaviconReceivedEvent](#onfaviconreceivedevent12)\> | Callback invoked when the current web page receives a new favicon. |
+| callback | Callback\<[OnFaviconReceivedEvent](#onfaviconreceivedevent12)\> | Callback invoked when the current web page receives a new favicon.|
 
 **Example**
 
@@ -4651,7 +4791,7 @@ Called when the audio playback status on the web page changes.
 
 | Name    | Type   | Description                              |
 | ------- | ------- | ---------------------------------- |
-| callback | Callback\<[OnAudioStateChangedEvent](#onaudiostatechangedevent12)\> | Callback invoked when the audio playback status on the web page changes. |
+| callback | Callback\<[OnAudioStateChangedEvent](#onaudiostatechangedevent12)\> | Callback invoked when the audio playback status on the web page changes.|
 
 **Example**
 
@@ -4719,13 +4859,13 @@ Called when the first content paint occurs on the web page.
 
 onFirstMeaningfulPaint(callback: [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12))
 
-Called when the First Meaningful Paint occurs on the web page.
+Called when the first meaningful paint occurs on the web page.
 
 **Parameters**
 
 | Name  | Type                                                        | Description                                  |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12) | Callback invoked when the First Meaningful Paint occurs on the web page. |
+| callback | [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12) | Callback invoked when the First Meaningful Paint occurs on the web page.|
 
 **Example**
 
@@ -4760,7 +4900,7 @@ Called when the largest content paint occurs on the web page.
 
 | Name  | Type                                                        | Description                                |
 | -------- | ------------------------------------------------------------ | ------------------------------------ |
-| callback | [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12) | Callback invoked when the largest content paint occurs on the web page. |
+| callback | [OnLargestContentfulPaintCallback](#onlargestcontentfulpaintcallback12) | Callback invoked when the largest content paint occurs on the web page.|
 
 **Example**
 
@@ -4799,7 +4939,7 @@ Called when the **Web** component is about to access a URL. This API is used to 
 
 | Name    | Type                                    | Description       |
 | ------- | ---------------------------------------- | ----------- |
-| callback | Callback\<[OnLoadInterceptEvent](#onloadinterceptevent12), boolean\> | Callback invoked when the **Web** component is about to access a URL.<br>Return value: boolean<br> Returns **true** if the access is blocked; returns **false** otherwise. |
+| callback | Callback\<[OnLoadInterceptEvent](#onloadinterceptevent12), boolean\> | Callback invoked when the **Web** component is about to access a URL.<br>Return value: boolean<br> Returns **true** if the access is blocked; returns **false** otherwise.|
 
 **Example**
 
@@ -4864,7 +5004,7 @@ Called when a screen capture request is received.
 
 | Name    | Type                                    | Description          |
 | ------- | ---------------------------------------- | -------------- |
-| callback | Callback\<[OnScreenCaptureRequestEvent](#onscreencapturerequestevent12)\> | Called when a screen capture request is received. |
+| callback | Callback\<[OnScreenCaptureRequestEvent](#onscreencapturerequestevent12)\> | Called when a screen capture request is received.|
 
 **Example**
 
@@ -4918,7 +5058,7 @@ Called when the web page is overscrolled. It is used to notify the user of the o
 
 | Name    | Type  | Description               |
 | ------- | ------ | ------------------- |
-| callback | Callback\<[OnOverScrollEvent](#onoverscrollevent12)\> | Callback invoked when the web page is overscrolled. |
+| callback | Callback\<[OnOverScrollEvent](#onoverscrollevent12)\> | Callback invoked when the web page is overscrolled.|
 
 **Example**
 
@@ -4949,6 +5089,8 @@ onControllerAttached(callback: () => void)
 
 Called when the controller is successfully bound to the **Web** component. The controller must be WebviewController.
 As the web page is not yet loaded when this callback is called, APIs for operating the web page, for example, [zoomIn](js-apis-webview.md#zoomin) and [zoomOut](js-apis-webview.md#zoomout), cannot be used in the callback. Other APIs, such as [loadUrl](js-apis-webview.md#loadurl) and [getWebId](js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
+
+For details about the component lifecycle, see [Lifecycle of Web Components](../../web/web-event-sequence.md).
 
 **Example**
 
@@ -5022,7 +5164,7 @@ Called when a web page redirection request is submitted.
 
 | Name         | Type                                                                        | Description                   |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| callback       | [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11) | Callback invoked when a web page redirection request is submitted. |
+| callback       | [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11) | Callback invoked when a web page redirection request is submitted.|
 
 **Example**
 
@@ -5108,7 +5250,7 @@ Called when the lifecycle of the Embed tag changes.
 
 | Name         | Type                                                                        | Description                   |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedDataInfo](#nativeembeddatainfo11) | Callback invoked when the lifecycle of the Embed tag changes. |
+| event       | [NativeEmbedDataInfo](#nativeembeddatainfo11) | Callback invoked when the lifecycle of the Embed tag changes.|
 
 **Example**
 
@@ -5282,7 +5424,7 @@ Called when a finger touches a same-layer rendering tag.
 
 | Name         | Type                                                                        | Description                   |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedTouchInfo](#nativeembedtouchinfo11) | Callback invoked when a finger touches a same-layer rendering tag. |
+| event       | [NativeEmbedTouchInfo](#nativeembedtouchinfo11) | Callback invoked when a finger touches a same-layer rendering tag.|
 
 **Example**
 
@@ -5439,7 +5581,7 @@ Called when the intelligent tracking prevention feature is enabled and the track
 
 | Name      | Type                                                                                        | Description                        |
 | ----------- | ------------------------------------------------------------------------------------------- | ---------------------------- |
-| callback    | [OnIntelligentTrackingPreventionCallback](#onintelligenttrackingpreventioncallback12) | Callback invoked when the intelligent tracking prevention feature is enabled and the tracker cookie is blocked. |
+| callback    | [OnIntelligentTrackingPreventionCallback](#onintelligenttrackingpreventioncallback12) | Callback invoked when the intelligent tracking prevention feature is enabled and the tracker cookie is blocked.|
 
 **Example**
 
@@ -5490,7 +5632,7 @@ Do not use the same URL to call the **loadUrl(String)** API and then return **tr
 
 | Name         | Type                                                                        | Description                   |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| callback       | [OnOverrideUrlLoadingCallback](#onoverrideurlloadingcallback12) | Callback for **onOverrideUrlLoading**. |
+| callback       | [OnOverrideUrlLoadingCallback](#onoverrideurlloadingcallback12) | Callback for **onOverrideUrlLoading**.|
 
 **Example**
 
@@ -5542,7 +5684,7 @@ Called when the **viewport-fit** configuration in the web page's **\<meta>** tag
 
 | Name  | Type                                                        | Description                                  |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnViewportFitChangedCallback](#onviewportfitchangedcallback12) | Callback invoked when the **viewport-fit** configuration in the web page's **\<meta>** tag changes. |
+| callback | [OnViewportFitChangedCallback](#onviewportfitchangedcallback12) | Callback invoked when the **viewport-fit** configuration in the web page's **\<meta>** tag changes.|
 
 **Example**
 
@@ -5598,7 +5740,7 @@ Called before any editable element (such as the **\<input>** tag) on the web pag
 
 | Name  | Type                                                        | Description                                  |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [WebKeyboardCallback](#webkeyboardcallback12) | Callback invoked for intercepting the soft keyboard invoking in the web page. |
+| callback | [WebKeyboardCallback](#webkeyboardcallback12) | Callback invoked for intercepting the soft keyboard invoking in the web page.|
 
 **Example**
 
@@ -5764,6 +5906,68 @@ Called before any editable element (such as the **\<input>** tag) on the web pag
     </html>
   ```
 
+### onNativeEmbedVisibilityChange<sup>12+</sup>
+
+onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
+
+Called when the visibility of a same-layer rendering tag (such as an **Embed** tag or an **Object** tag) on a web page changes in the viewport. By default, the same-layer rendering tag is invisible. If the rendering tag is visible when you access the page for the first time, the callback is triggered; otherwise, it is not triggered. That is, if the same-layer rendering tag changes from a non-zero value to **0 x 0**, the callback is triggered. If the rendering tag size changes from **0 x 0** to a non-zero value, the callback is not triggered. If all the same-layer rendering tags are invisible, they are reported as invisible. If all the same-layer rendering tags or part of them are visible, they are reported as invisible.
+
+**Parameters**
+
+| Name         | Type                                                                        | Description                   |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnNativeEmbedVisibilityChangeCallback](#onnativeembedvisibilitychangecallback12) | Called when the visibility of a same-layer rendering tag changes.|
+
+**Example**
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State embedVisibility: string = '';
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Stack() {
+          Web({ src: $rawfile("index.html"), controller: this.controller })
+            .enableNativeEmbedMode(true)
+            .onNativeEmbedVisibilityChange((embed) => {
+              if (embed.visibility) {
+                this.embedVisibility = 'Visible';
+              } else {
+                this.embedVisibility = 'Hidden';
+              }
+              console.log("embedId = " + embed.embedId);
+              console.log("visibility = " + embed.visibility);
+            })
+        }
+      }
+    }
+  }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Same-layer rendering test HTML</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeVideo" type = "native/video" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
+  ```
+
 ## WebKeyboardCallback<sup>12+</sup>
 
 type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => WebKeyboardOptions
@@ -5783,7 +5987,7 @@ Called to intercept the soft keyboard from editable elements on a web page. This
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| [WebKeyboardOptions](#webkeyboardoptions12) | [WebKeyboardOptions](#webkeyboardoptions12) instance, which is used to determine which type of soft keyboard to start by the ArkWeb rendering engine. |
+| [WebKeyboardOptions](#webkeyboardoptions12) | [WebKeyboardOptions](#webkeyboardoptions12) instance, which is used to determine which type of soft keyboard to start by the ArkWeb rendering engine.|
 
 ## WebKeyboardCallbackInfo<sup>12+</sup>
 
@@ -5791,7 +5995,7 @@ Represents the input parameter of the callback for intercepting the soft keyboar
 
 | Name            | Type     | Readable  | Writable  | Mandatory  | Description                                      |
 | -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
-| controller | [WebKeyboardController](#webkeyboardcontroller12)  | Yes   | No   | Yes   | Controller used to control the input, deletion, and closure of the custom keyboard. |
+| controller | [WebKeyboardController](#webkeyboardcontroller12)  | Yes   | No   | Yes   | Controller used to control the input, deletion, and closure of the custom keyboard.|
 | attributes | Record<string, string> | Yes   | No   | Yes   | Attributes of the web page element that triggered the soft keyboard to pop up.
 
 ## WebKeyboardOptions<sup>12+</sup>
@@ -5800,7 +6004,7 @@ Represents the return value of the callback that intercepts the soft keyboard fr
 
 | Name            | Type     | Readable  | Writable  | Mandatory  | Description                                      |
 | -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
-| useSystemKeyboard | boolean  | Yes   | Yes   | Yes   | Whether to use the system's default soft keyboard. |
+| useSystemKeyboard | boolean  | Yes   | Yes   | Yes   | Whether to use the system's default soft keyboard.|
 | enterKeyType | number | Yes   | Yes   | No   | Type of the Enter key of the system soft keyboard. For details about the value range, see [EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10). This parameter has effect only when **useSystemKeyboard** is set to **true** and **enterKeyType** is set to a valid value.|
 | customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | Yes   | Yes   | No   | Builder of a custom keyboard. This parameter is required when **useSystemKeyboard** is set to **false**. After it is set, the Web component starts the custom keyboard as configured.
 
@@ -5816,9 +6020,9 @@ Inserts a character.
 
 **Parameters**
 
-| Name | Type | Mandatory | Default Value | Description             |
+| Name| Type| Mandatory| Default Value| Description             |
 | ------ | -------- | ---- | ------ | --------------------- |
-| text   | string   | Yes  | -      | Character to insert into the **Web** component text box. |
+| text   | string   | Yes  | -      | Character to insert into the **Web** component text box.|
 
 ### deleteForward<sup>12+</sup>
 
@@ -5828,9 +6032,9 @@ Deletes characters from the end to the beginning for the length specified by the
 
 **Parameters**
 
-| Name | Type | Mandatory | Default Value | Description                |
+| Name| Type| Mandatory| Default Value| Description                |
 | ------ | -------- | ---- | ------ | ------------------------ |
-| length | number   | Yes  | -      | Length of characters to be deleted from the end to the beginning. |
+| length | number   | Yes  | -      | Length of characters to be deleted from the end to the beginning.|
 
 ### deleteBackward12+</sup>
 
@@ -5840,9 +6044,9 @@ Deletes characters from the beginning to the end for the length specified by the
 
 **Parameters**
 
-| Name | Type | Mandatory | Default Value | Description                |
+| Name| Type| Mandatory| Default Value| Description                |
 | ------ | -------- | ---- | ------ | ------------------------ |
-| length | number   | Yes  | -      | Length of characters to be deleted from the beginning to the end. |
+| length | number   | Yes  | -      | Length of characters to be deleted from the beginning to the end.|
 
 ### sendFunctionKey<sup>12+</sup>
 
@@ -5852,9 +6056,9 @@ Inserts a function key. Currently, only the Enter key type is supported. For det
 
 **Parameters**
 
-| Name | Type | Mandatory | Default Value | Description                                  |
+| Name| Type| Mandatory| Default Value| Description                                  |
 | ------ | -------- | ---- | ------ | ------------------------------------------ |
-| key    | number   | Yes  | -      | Function key to insert into the **Web** component text box. Currently, only the Enter key is supported. |
+| key    | number   | Yes  | -      | Function key to insert into the **Web** component text box. Currently, only the Enter key is supported.|
 
 ### close<sup>12+</sup>
 
@@ -5872,7 +6076,7 @@ Called after an ad is blocked on the web page to notify the user of detailed inf
 
 | Name         | Type                                                                        | Description                   |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | Callback for **onAdsBlocked**. |
+| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | Callback for **onAdsBlocked**.|
 
 **Example**
 
@@ -5916,7 +6120,7 @@ Obtains the number of rows in this console message.
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| number | Number of rows in the console message. |
+| number | Number of rows in the console message.|
 
 ### getMessage
 
@@ -5928,7 +6132,7 @@ Obtains the log information of this console message.
 
 | Type    | Description                    |
 | ------ | ---------------------- |
-| string | Log information of the console message. |
+| string | Log information of the console message.|
 
 ### getMessageLevel
 
@@ -5940,7 +6144,7 @@ Obtains the level of this console message.
 
 | Type                               | Description                    |
 | --------------------------------- | ---------------------- |
-| [MessageLevel](#messagelevel) | Level of the console message. |
+| [MessageLevel](#messagelevel)| Level of the console message.|
 
 ### getSourceId
 
@@ -5952,7 +6156,7 @@ Obtains the path and name of the web page source file.
 
 | Type    | Description           |
 | ------ | ------------- |
-| string | Path and name of the web page source file. |
+| string | Path and name of the web page source file.|
 
 ## JsResult
 
@@ -5980,7 +6184,7 @@ Notifies the **Web** component of the user's confirm operation in the dialog box
 
 | Name   | Type  | Mandatory  | Default Value | Description       |
 | ------ | ------ | ---- | ---- | ----------- |
-| result | string | Yes   | -    | User input in the dialog box. |
+| result | string | Yes   | -    | User input in the dialog box.|
 
 ## FullScreenExitHandler<sup>9+</sup>
 
@@ -6010,7 +6214,7 @@ Sets a **WebviewController** object. If opening a new window is not needed, set 
 
 | Name       | Type                                    | Mandatory  | Default Value | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **Web** component. If opening a new window is not needed, set it to **null**. |
+| controller | [WebviewController](js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **Web** component. If opening a new window is not needed, set it to **null**.|
 
 ## WebResourceError
 
@@ -6026,7 +6230,7 @@ Obtains the error code for resource loading.
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Error code for resource loading. For details about error codes, see [WebNetErrorList](js-apis-netErrorList.md). |
+| number | Error code for resource loading. For details about error codes, see [WebNetErrorList](js-apis-netErrorList.md).|
 
 ### getErrorInfo
 
@@ -6038,7 +6242,7 @@ Obtains error information about resource loading.
 
 | Type    | Description          |
 | ------ | ------------ |
-| string | Error information about resource loading. |
+| string | Error information about resource loading.|
 
 ## WebResourceRequest
 
@@ -6054,7 +6258,7 @@ Obtains the information about the resource request header.
 
 | Type                        | Description        |
 | -------------------------- | ---------- |
-| Array\<[Header](#header)\> | Information about the resource request header. |
+| Array\<[Header](#header)\> | Information about the resource request header.|
 
 ### getRequestUrl
 
@@ -6066,7 +6270,7 @@ Obtains the URL of the resource request.
 
 | Type    | Description           |
 | ------ | ------------- |
-| string | URL of the resource request. |
+| string | URL of the resource request.|
 
 ### isMainFrame
 
@@ -6078,7 +6282,7 @@ Checks whether the resource request is in the main frame.
 
 | Type     | Description              |
 | ------- | ---------------- |
-| boolean | Whether the resource request is in the main frame. |
+| boolean | Whether the resource request is in the main frame.|
 
 ### isRedirect
 
@@ -6090,7 +6294,7 @@ Checks whether the resource request is redirected by the server.
 
 | Type     | Description              |
 | ------- | ---------------- |
-| boolean | Whether the resource request is redirected by the server. |
+| boolean | Whether the resource request is redirected by the server.|
 
 ### isRequestGesture
 
@@ -6102,7 +6306,7 @@ Checks whether the resource request is associated with a gesture (for example, a
 
 | Type     | Description                  |
 | ------- | -------------------- |
-| boolean | Whether the resource request is associated with a gesture (for example, a tap). |
+| boolean | Whether the resource request is associated with a gesture (for example, a tap).|
 
 ### getRequestMethod<sup>9+</sup>
 
@@ -6114,7 +6318,7 @@ Obtains the request method.
 
 | Type    | Description     |
 | ------ | ------- |
-| string | Request method. |
+| string | Request method.|
 
 ## Header
 
@@ -6123,7 +6327,7 @@ Describes the request/response header returned by the **Web** component.
 | Name         | Type    | Description           |
 | ----------- | ------ | ------------- |
 | headerKey   | string | Key of the request/response header.  |
-| headerValue | string | Value of the request/response header. |
+| headerValue | string | Value of the request/response header.|
 
 ## WebResourceResponse
 
@@ -6139,7 +6343,7 @@ Obtains the status code description of the resource response.
 
 | Type    | Description           |
 | ------ | ------------- |
-| string | Status code description of the resource response. |
+| string | Status code description of the resource response.|
 
 ### getResponseCode
 
@@ -6151,7 +6355,7 @@ Obtains the status code of the resource response.
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Status code of the resource response. |
+| number | Status code of the resource response.|
 
 ### getResponseData
 
@@ -6163,7 +6367,7 @@ Obtains the data in the resource response.
 
 | Type    | Description       |
 | ------ | --------- |
-| string | Data in the resource response. |
+| string | Data in the resource response.|
 
 ### getResponseEncoding
 
@@ -6175,7 +6379,7 @@ Obtains the encoding string of the resource response.
 
 | Type    | Description        |
 | ------ | ---------- |
-| string | Encoding string of the resource response. |
+| string | Encoding string of the resource response.|
 
 ### getResponseHeader
 
@@ -6187,7 +6391,7 @@ Obtains the resource response header.
 
 | Type                        | Description      |
 | -------------------------- | -------- |
-| Array\<[Header](#header)\> | Resource response header. |
+| Array\<[Header](#header)\> | Resource response header.|
 
 ### getResponseMimeType
 
@@ -6199,7 +6403,7 @@ Obtains the MIME type of the resource response.
 
 | Type    | Description                |
 | ------ | ------------------ |
-| string | MIME type of the resource response. |
+| string | MIME type of the resource response.|
 
 ### setResponseData<sup>9+</sup>
 
@@ -6211,7 +6415,7 @@ Sets the data in the resource response.
 
 | Name | Type                                    | Mandatory  | Default Value | Description                                    |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **Web** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource. |
+| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **Web** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource.|
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -6223,7 +6427,7 @@ Sets the encoding string of the resource response.
 
 | Name     | Type  | Mandatory  | Default Value | Description        |
 | -------- | ------ | ---- | ---- | ------------ |
-| encoding | string | Yes   | -    | Encoding string to set. |
+| encoding | string | Yes   | -    | Encoding string to set.|
 
 ### setResponseMimeType<sup>9+</sup>
 
@@ -6235,7 +6439,7 @@ Sets the MIME type of the resource response.
 
 | Name     | Type  | Mandatory  | Default Value | Description                |
 | -------- | ------ | ---- | ---- | -------------------- |
-| mimeType | string | Yes   | -    | MIME type to set. |
+| mimeType | string | Yes   | -    | MIME type to set.|
 
 ### setReasonMessage<sup>9+</sup>
 
@@ -6247,7 +6451,7 @@ Sets the status code description of the resource response.
 
 | Name   | Type  | Mandatory  | Default Value | Description           |
 | ------ | ------ | ---- | ---- | --------------- |
-| reason | string | Yes   | -    | Status code description to set. |
+| reason | string | Yes   | -    | Status code description to set.|
 
 ### setResponseHeader<sup>9+</sup>
 
@@ -6259,7 +6463,7 @@ Sets the resource response header.
 
 | Name   | Type                      | Mandatory  | Default Value | Description      |
 | ------ | -------------------------- | ---- | ---- | ---------- |
-| header | Array\<[Header](#header)\> | Yes   | -    | Resource response header to set. |
+| header | Array\<[Header](#header)\> | Yes   | -    | Resource response header to set.|
 
 ### setResponseCode<sup>9+</sup>
 
@@ -6271,7 +6475,7 @@ Sets the status code of the resource response.
 
 | Name | Type  | Mandatory  | Default Value | Description         |
 | ---- | ------ | ---- | ---- | ------------- |
-| code | number | Yes   | -    | Status code to set. |
+| code | number | Yes   | -    | Status code to set.|
 
 ### setResponseIsReady<sup>9+</sup>
 
@@ -6283,7 +6487,7 @@ Sets whether the resource response data is ready.
 
 | Name    | Type   | Mandatory  | Default Value | Description         |
 | ------- | ------- | ---- | ---- | ------------- |
-| IsReady | boolean | Yes   | true | Whether the resource response data is ready. |
+| IsReady | boolean | Yes   | true | Whether the resource response data is ready.|
 
 ## FileSelectorResult<sup>9+</sup>
 
@@ -6299,7 +6503,7 @@ Instructs the **Web** component to select a file.
 
 | Name     | Type           | Mandatory  | Default Value | Description        |
 | -------- | --------------- | ---- | ---- | ------------ |
-| fileList | Array\<string\> | Yes   | -    | List of files to operate. |
+| fileList | Array\<string\> | Yes   | -    | List of files to operate.|
 
 ## FileSelectorParam<sup>9+</sup>
 
@@ -6315,7 +6519,7 @@ Obtains the title of this file selector.
 
 | Type    | Description        |
 | ------ | ---------- |
-| string | Title of the file selector. |
+| string | Title of the file selector.|
 
 ### getMode<sup>9+</sup>
 
@@ -6327,7 +6531,7 @@ Obtains the mode of the file selector.
 
 | Type                                      | Description         |
 | ---------------------------------------- | ----------- |
-| [FileSelectorMode](#fileselectormode9)  | Mode of the file selector. |
+| [FileSelectorMode](#fileselectormode9) | Mode of the file selector.|
 
 ### getAcceptType<sup>9+</sup>
 
@@ -6339,7 +6543,7 @@ Obtains the file filtering type.
 
 | Type             | Description       |
 | --------------- | --------- |
-| Array\<string\> | File filtering type. |
+| Array\<string\> | File filtering type.|
 
 ### isCapture<sup>9+</sup>
 
@@ -6351,7 +6555,7 @@ Checks whether multimedia capabilities are invoked.
 
 | Type     | Description          |
 | ------- | ------------ |
-| boolean | Whether multimedia capabilities are invoked. |
+| boolean | Whether multimedia capabilities are invoked.|
 
 ## HttpAuthHandler<sup>9+</sup>
 
@@ -6373,14 +6577,14 @@ Performs HTTP authentication with the user name and password provided by the use
 
 | Name     | Type  | Mandatory  | Default Value | Description      |
 | -------- | ------ | ---- | ---- | ---------- |
-| userName | string | Yes   | -    | HTTP authentication user name. |
+| userName | string | Yes   | -    | HTTP authentication user name.|
 | password      | string | Yes   | -    | HTTP authentication password. |
 
 **Return value**
 
 | Type     | Description                   |
 | ------- | --------------------- |
-| boolean | Returns **true** if the authentication is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the authentication is successful; returns **false** otherwise.|
 
 ### isHttpAuthInfoSaved<sup>9+</sup>
 
@@ -6392,7 +6596,7 @@ Sets whether to use the account name and password cached on the server for authe
 
 | Type     | Description                       |
 | ------- | ------------------------- |
-| boolean | Returns **true** if the authentication is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the authentication is successful; returns **false** otherwise.|
 
 ## SslErrorHandler<sup>9+</sup>
 
@@ -6425,7 +6629,7 @@ Uses the specified private key and client certificate chain.
 | Name          | Type  | Mandatory  | Description              |
 | ------------- | ------ | ---- | ------------------ |
 | priKeyFile    | string | Yes   | File that stores the private key, which is a directory including the file name. |
-| certChainFile | string | Yes   | File that stores the certificate chain, which is a directory including the file name. |
+| certChainFile | string | Yes   | File that stores the certificate chain, which is a directory including the file name.|
 
 ### confirm<sup>10+</sup>
 
@@ -6439,7 +6643,7 @@ Instructs the **Web** component to use the specified credentials (obtained from 
 
 | Name    | Type  | Mandatory  | Description   |
 | ------- | ------ | ---- | ------- |
-| authUri | string | Yes   | Key value of the credentials. |
+| authUri | string | Yes   | Key value of the credentials.|
 
 ### cancel<sup>9+</sup>
 
@@ -6473,7 +6677,7 @@ Obtains the origin of this web page.
 
 | Type    | Description          |
 | ------ | ------------ |
-| string | Origin of the web page that requests the permission. |
+| string | Origin of the web page that requests the permission.|
 
 ### getAccessibleResource<sup>9+</sup>
 
@@ -6485,7 +6689,7 @@ Obtains the list of accessible resources requested for the web page. For details
 
 | Type             | Description           |
 | --------------- | ------------- |
-| Array\<string\> | List of accessible resources requested by the web page. |
+| Array\<string\> | List of accessible resources requested by the web page.|
 
 ### grant<sup>9+</sup>
 
@@ -6497,7 +6701,7 @@ Grants the permission for resources requested by the web page.
 
 | Name      | Type           | Mandatory  | Default Value | Description           |
 | --------- | --------------- | ---- | ---- | --------------- |
-| resources | Array\<string\> | Yes   | -    | List of resources that can be requested by the web page with the permission to grant. |
+| resources | Array\<string\> | Yes   | -    | List of resources that can be requested by the web page with the permission to grant.|
 
 ## ScreenCaptureHandler<sup>10+</sup>
 
@@ -6519,7 +6723,7 @@ Obtains the origin of this web page.
 
 | Type    | Description          |
 | ------ | ------------ |
-| string | Origin of the web page that requests the permission. |
+| string | Origin of the web page that requests the permission.|
 
 ### grant<sup>10+</sup>
 
@@ -6533,7 +6737,7 @@ Grants the screen capture permission.
 
 | Name   | Type                                    | Mandatory  | Default Value | Description   |
 | ------ | ---------------------------------------- | ---- | ---- | ------- |
-| config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes   | -    | Screen capture configuration. |
+| config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes   | -    | Screen capture configuration.|
 
 ## EventResult<sup>12+</sup>
 
@@ -6547,7 +6751,7 @@ setGestureEventResult(result: boolean): void
 
 | Name    | Type  | Mandatory  | Description   |
 | ------- | ------ | ---- | ------- |
-| result | boolean | Yes   | Whether to consume the gesture event. |
+| result | boolean | Yes   | Whether to consume the gesture event.|
 
 **Example**
 
@@ -6555,25 +6759,25 @@ See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
 ## ContextMenuSourceType<sup>9+</sup>
 
-| Name      | Value | Description        |
+| Name      | Value| Description        |
 | --------- | -- |------------ |
-| None      | 0 | Other event sources. |
+| None      | 0 | Other event sources.|
 | Mouse     | 1 | Mouse event.  |
 | LongPress | 2 | Long press event.  |
 
 ## ContextMenuMediaType<sup>9+</sup>
 
-| Name   | Value | Description           |
+| Name   | Value| Description           |
 | ----- | -- | ------------- |
-| None  | 0 | Non-special media or other media types. |
+| None  | 0 | Non-special media or other media types.|
 | Image | 1 | Image.          |
 
 ## ContextMenuInputFieldType<sup>9+</sup>
 
-| Name       | Value | Description                         |
+| Name       | Value| Description                         |
 | --------- | -- | --------------------------- |
 | None      | 0 | Non-input field.                      |
-| PlainText | 1 | Plain text field, such as the text, search, or email field. |
+| PlainText | 1 | Plain text field, such as the text, search, or email field.|
 | Password  | 2 | Password field.                      |
 | Number    | 3 | Numeric field.                      |
 | Telephone | 4 | Phone number field.                    |
@@ -6583,13 +6787,13 @@ See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
 Supports using with a bitwise OR operator. For example, to support CAN_CUT, CAN_COPY, and CAN_SELECT_ALL at the same time, use CAN_CUT | CAN_COPY | CAN_SELECT_ALL or 11.
 
-| Name           | Value | Description    |
+| Name           | Value| Description    |
 | -------------- | -- | -------- |
-| NONE           | 0 | Editing is not allowed. |
-| CAN_CUT        | 1 | The cut operation is allowed. |
-| CAN_COPY       | 2 | The copy operation is allowed. |
-| CAN_PASTE      | 4 | The paste operation is allowed. |
-| CAN_SELECT_ALL | 8 | The select all operation is allowed. |
+| NONE           | 0 | Editing is not allowed.|
+| CAN_CUT        | 1 | The cut operation is allowed.|
+| CAN_COPY       | 2 | The copy operation is allowed.|
+| CAN_PASTE      | 4 | The paste operation is allowed.|
+| CAN_SELECT_ALL | 8 | The select all operation is allowed.|
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -6605,7 +6809,7 @@ Obtains the X coordinate of the context menu.
 
 | Type    | Description                |
 | ------ | ------------------ |
-| number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned. |
+| number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned.|
 
 ### y<sup>9+</sup>
 
@@ -6617,7 +6821,7 @@ Obtains the Y coordinate of the context menu.
 
 | Type    | Description                |
 | ------ | ------------------ |
-| number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned. |
+| number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned.|
 
 ### getLinkUrl<sup>9+</sup>
 
@@ -6629,7 +6833,7 @@ Obtains the URL of the destination link.
 
 | Type    | Description                       |
 | ------ | ------------------------- |
-| string | If it is a link that is being long pressed, the URL that has passed the security check is returned. |
+| string | If it is a link that is being long pressed, the URL that has passed the security check is returned.|
 
 ### getUnfilteredLinkUrl<sup>9+</sup>
 
@@ -6641,7 +6845,7 @@ Obtains the URL of the destination link.
 
 | Type    | Description                   |
 | ------ | --------------------- |
-| string | If it is a link that is being long pressed, the original URL is returned. |
+| string | If it is a link that is being long pressed, the original URL is returned.|
 
 ### getSourceUrl<sup>9+</sup>
 
@@ -6653,7 +6857,7 @@ Obtain the source URL.
 
 | Type    | Description                      |
 | ------ | ------------------------ |
-| string | If the selected element has the **src** attribute, the URL in the **src** is returned. |
+| string | If the selected element has the **src** attribute, the URL in the **src** is returned.|
 
 ### existsImageContents<sup>9+</sup>
 
@@ -6665,7 +6869,7 @@ Checks whether image content exists.
 
 | Type     | Description                       |
 | ------- | ------------------------- |
-| boolean | The value **true** means that there is image content in the element being long pressed, and **false** means the opposite. |
+| boolean | The value **true** means that there is image content in the element being long pressed, and **false** means the opposite.|
 
 ### getMediaType<sup>9+</sup>
 
@@ -6677,7 +6881,7 @@ Obtains the media type of this web page element.
 
 | Type                                      | Description       |
 | ---------------------------------------- | --------- |
-| [ContextMenuMediaType](#contextmenumediatype9)  | Media type of the web page element. |
+| [ContextMenuMediaType](#contextmenumediatype9) | Media type of the web page element.|
 
 ### getSelectionText<sup>9+</sup>
 
@@ -6689,7 +6893,7 @@ Obtains the selected text.
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| string | Selected text for the context menu. If no text is selected, null is returned. |
+| string | Selected text for the context menu. If no text is selected, null is returned.|
 
 ### getSourceType<sup>9+</sup>
 
@@ -6701,7 +6905,7 @@ Obtains the event source of the context menu.
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| [ContextMenuSourceType](#contextmenusourcetype9)  | Event source of the context menu. |
+| [ContextMenuSourceType](#contextmenusourcetype9) | Event source of the context menu.|
 
 ### getInputFieldType<sup>9+</sup>
 
@@ -6713,7 +6917,7 @@ Obtains the input field type of this web page element.
 
 | Type                                      | Description    |
 | ---------------------------------------- | ------ |
-| [ContextMenuInputFieldType](#contextmenuinputfieldtype9)  | Input field type. |
+| [ContextMenuInputFieldType](#contextmenuinputfieldtype9) | Input field type.|
 
 ### isEditable<sup>9+</sup>
 
@@ -6725,7 +6929,7 @@ Checks whether this web page element is editable.
 
 | Type     | Description                        |
 | ------- | -------------------------- |
-| boolean | Returns **true** if the web page element is editable; returns **false** otherwise. |
+| boolean | Returns **true** if the web page element is editable; returns **false** otherwise.|
 
 ### getEditStateFlags<sup>9+</sup>
 
@@ -6737,7 +6941,7 @@ Obtains the edit state flag of this web page element.
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Edit state flag of the web page element. For details, see [ContextMenuEditStateFlags](#contextmenueditstateflags9). |
+| number | Edit state flag of the web page element. For details, see [ContextMenuEditStateFlags](#contextmenueditstateflags9).|
 
 ## WebContextMenuResult<sup>9+</sup>
 
@@ -6799,64 +7003,64 @@ Sets the geolocation permission status of a web page.
 | ------ | ------- | ---- | ---- | ---------------------------------------- |
 | origin | string  | Yes   | -    | Index of the origin.                              |
 | allow  | boolean | Yes   | -    | Geolocation permission status.                            |
-| retain | boolean | Yes   | -    | Whether the geolocation permission status can be saved to the system. You can manage the geolocation permissions saved to the system through [GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions). |
+| retain | boolean | Yes   | -    | Whether the geolocation permission status can be saved to the system. You can manage the geolocation permissions saved to the system through [GeolocationPermissions<sup>9+</sup>](js-apis-webview.md#geolocationpermissions).|
 
 ## MessageLevel
 
-| Name   | Value | Description   |
+| Name   | Value| Description   |
 | ----- | -- | ---- |
-| Debug | 1 | Debug level. |
-| Error | 4 | Error level. |
-| Info  | 2 | Information level. |
-| Log   | 5 | Log level. |
-| Warn  | 3 | Warning level. |
+| Debug | 1 | Debug level.|
+| Error | 4 | Error level.|
+| Info  | 2 | Information level.|
+| Log   | 5 | Log level.|
+| Warn  | 3 | Warning level.|
 
 ## RenderExitReason<sup>9+</sup>
 
 Enumerates the reasons why the rendering process exits.
 
-| Name                        | Value | Description               |
+| Name                        | Value| Description               |
 | -------------------------- | -- | ----------------- |
 | ProcessAbnormalTermination | 0 | The rendering process exits abnormally.        |
-| ProcessWasKilled           | 1 | The rendering process receives a SIGKILL message or is manually terminated. |
+| ProcessWasKilled           | 1 | The rendering process receives a SIGKILL message or is manually terminated.|
 | ProcessCrashed             | 2 | The rendering process crashes due to segmentation or other errors.   |
 | ProcessOom                 | 3 | The program memory is running low.          |
 | ProcessExitUnknown         | 4 | Other reason.            |
 
 ## MixedMode
 
-| Name       | Value | Description                                |
+| Name       | Value| Description                                |
 | ---------- | -- | ---------------------------------- |
-| All        | undefined | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded. |
+| All        | 0 | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
 | Compatible | 1 | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
 | None       | 2 | HTTP and HTTPS hybrid content cannot be loaded.              |
 
 ## CacheMode<sup>9+</sup>
 
-| Name     | Value | Description                                  |
+| Name     | Value| Description                                  |
 | ------- | -- | ------------------------------------ |
-| Default | 0 | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet. |
+| Default | 0 | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
 | None    | 1 | The cache is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.    |
 | Online  | 2 | The cache is not used to load the resources. All resources are obtained from the Internet.              |
 | Only    | 3 | The cache alone is used to load the resources.                       |
 
 ## FileSelectorMode<sup>9+</sup>
 
-| Name                  | Value | Description        |
+| Name                  | Value| Description        |
 | -------------------- | -- | ---------- |
 | FileOpenMode         | 0 | Open and upload a file. |
 | FileOpenMultipleMode | 1 | Open and upload multiple files. |
-| FileOpenFolderMode   | 2 | Open and upload a folder. |
+| FileOpenFolderMode   | 2 | Open and upload a folder.|
 | FileSaveMode         | 3 | Save a file.   |
 
  ## HitTestType
 
-| Name           | Value | Description                      |
+| Name           | Value| Description                      |
 | ------------- | -- | ------------------------ |
 | EditText      | 0 | Editable area.                 |
 | Email         | 1 | Email address.                 |
 | HttpAnchor    | 2 | Hyperlink whose **src** is **http**.          |
-| HttpAnchorImg | 3 | Image with a hyperlink, where **src** is **http**. |
+| HttpAnchorImg | 3 | Image with a hyperlink, where **src** is **http**.|
 | Img           | 4 | HTML::img tag.            |
 | Map           | 5 | Geographical address.                   |
 | Phone         | 6 | Phone number.                   |
@@ -6864,10 +7068,10 @@ Enumerates the reasons why the rendering process exits.
 
  ## OverScrollMode<sup>11+</sup>
 
-| Name    | Value | Description         |
+| Name    | Value| Description         |
 | ------ | -- | ----------- |
-| NEVER  | 0 | The overscroll mode is disabled. |
-| ALWAYS | 1 | The overscroll mode is enabled. |
+| NEVER  | 0 | The overscroll mode is disabled.|
+| ALWAYS | 1 | The overscroll mode is enabled.|
 
 ## OnContextMenuHideCallback<sup>11+</sup>
 
@@ -6877,34 +7081,35 @@ Implements the callback context menu customizes the hidden callback.
 
 Enumerates the error codes returned by **onSslErrorEventReceive** API.
 
-| Name          | Value | Description         |
+| Name          | Value| Description         |
 | ------------ | -- | ----------- |
 | Invalid      | 0 | Minor error.      |
 | HostMismatch | 1 | The host name does not match.    |
 | DateInvalid  | 2 | The certificate has an invalid date.    |
-| Untrusted    | 3 | The certificate issuer is not trusted. |
+| Untrusted    | 3 | The certificate issuer is not trusted.|
 
 ## ProtectedResourceType<sup>9+</sup>
 
-| Name                         | Value | Description           | Remarks                        |
+| Name                         | Value| Description           | Remarks                        |
 | --------------------------- | --------------- | ------------- | -------------------------- |
-| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX resource. | Currently, only permission events can be reported. MIDI devices are not yet supported. |
+| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
 | VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | Video capture resource, such as a camera. |                            |
-| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | Audio capture resource, such as a microphone. |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | Audio capture resource, such as a microphone.|                            |
+| SENSOR<sup>12+</sup>        | TYPE_SENSOR | Sensor resource, such as an acceleration sensor.|                            |
 
 ## WebDarkMode<sup>9+</sup>
 
-| Name  | Value | Description          |
+| Name  | Value| Description          |
 | ---- | -- | ------------ |
 | Off  | 0 | The web dark mode is disabled.  |
 | On   | 1 | The web dark mode is enabled.  |
-| Auto | 2 | The web dark mode setting follows the system settings. |
+| Auto | 2 | The web dark mode setting follows the system settings.|
 
 ## WebCaptureMode<sup>10+</sup>
 
-| Name         | Value | Description     |
+| Name         | Value| Description     |
 | ----------- | -- | ------- |
-| HOME_SCREEN | 0 | Capture of the home screen. |
+| HOME_SCREEN | 0 | Capture of the home screen.|
 
 ## WebMediaOptions<sup>10+</sup>
 
@@ -6912,7 +7117,7 @@ Describes the web-based media playback policy.
 
 | Name            | Type     | Readable  | Writable  | Mandatory  | Description                                      |
 | -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
-| resumeInterval | number  | Yes   | Yes   | No   | Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second. |
+| resumeInterval | number  | Yes   | Yes   | No   | Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second.|
 | audioExclusive | boolean | Yes   | Yes   | No   | Whether the audio of multiple **Web** instances in an application is exclusive.                      |
 
 ## ScreenCaptureConfig<sup>10+</sup>
@@ -6921,30 +7126,30 @@ Provides the web screen capture configuration.
 
 | Name         | Type                                     | Readable  | Writable  | Mandatory  | Description        |
 | ----------- | --------------------------------------- | ---- | ---- | ---- | ---------- |
-| captureMode | [WebCaptureMode](#webcapturemode10)  | Yes   | Yes   | Yes   | Web screen capture mode. |
+| captureMode | [WebCaptureMode](#webcapturemode10) | Yes   | Yes   | Yes   | Web screen capture mode.|
 
 ## WebLayoutMode<sup>11+</sup>
 
-| Name         | Value | Description                |
+| Name         | Value| Description                |
 | ----------- | -- | ------------------ |
 | NONE        | 0 | The web layout follows the system.        |
-| FIT_CONTENT | 1 | The web layout adapts to the page size. |
+| FIT_CONTENT | 1 | The web layout adapts to the page size.|
 
 ## NestedScrollOptions<sup>11+</sup>
 
 | Name            | Type              | Description                  |
 | -------------- | ---------------- | -------------------- |
-| scrollForward  | [NestedScrollMode](#nestedscrollmode11)  | Nested scrolling options when the component scrolls forward. |
-| scrollBackward | [NestedScrollMode](#nestedscrollmode11)  | Nested scrolling options when the component scrolls backward. |
+| scrollForward  | [NestedScrollMode](#nestedscrollmode11) | Nested scrolling options when the component scrolls forward.|
+| scrollBackward | [NestedScrollMode](#nestedscrollmode11) | Nested scrolling options when the component scrolls backward.|
 
 ## NestedScrollMode<sup>11+</sup>
 
-| Name          | Value | Description                                      |
+| Name          | Value| Description                                      |
 | ------------ | -- | ---------------------------------------- |
 | SELF_ONLY    | 0 | The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component does not scroll when the component scrolling reaches the boundary.                          |
-| SELF_FIRST   | 1 | The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent component, the edge effect of the child component is displayed instead. |
-| PARENT_FIRST | 2 | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead. |
-| PARALLEL     | 3 | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead. |
+| SELF_FIRST   | 1 | The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent component, the edge effect of the child component is displayed instead.|
+| PARENT_FIRST | 2 | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
+| PARALLEL     | 3 | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -7032,7 +7237,7 @@ This API is deprecated since API version 9. You are advised to use [getCookie](j
 
 | Type       | Description                                      |
 | --------- | ---------------------------------------- |
-| WebCookie | Cookie management object. For details, see [WebCookie](#webcookiedeprecated). |
+| WebCookie | Cookie management object. For details, see [WebCookie](#webcookiedeprecated).|
 
 **Example**
 
@@ -7096,7 +7301,7 @@ This API is deprecated since API version 9. You are advised to use [accessBackwa
 
 | Type     | Description                   |
 | ------- | --------------------- |
-| boolean | Returns **true** if going to the previous page can be performed on the current page; returns **false** otherwise. |
+| boolean | Returns **true** if going to the previous page can be performed on the current page; returns **false** otherwise.|
 
 **Example**
 
@@ -7132,7 +7337,7 @@ This API is deprecated since API version 9. You are advised to use [accessForwar
 
 | Type     | Description                   |
 | ------- | --------------------- |
-| boolean | Returns **true** if going to the next page can be performed on the current page; returns **false** otherwise. |
+| boolean | Returns **true** if going to the next page can be performed on the current page; returns **false** otherwise.|
 
 **Example**
 
@@ -7168,13 +7373,13 @@ This API is deprecated since API version 9. You are advised to use [accessStep<s
 
 | Name | Type  | Mandatory  | Default Value | Description                 |
 | ---- | ------ | ---- | ---- | --------------------- |
-| step | number | Yes   | -    | Number of the steps to take. A positive number means to go forward, and a negative number means to go backward. |
+| step | number | Yes   | -    | Number of the steps to take. A positive number means to go forward, and a negative number means to go backward.|
 
 **Return value**
 
 | Type     | Description       |
 | ------- | --------- |
-| boolean | Whether going forward or backward from the current page is successful. |
+| boolean | Whether going forward or backward from the current page is successful.|
 
 **Example**
 
@@ -7269,7 +7474,7 @@ This API is deprecated since API version 9. You are advised to use [deleteJavaSc
 
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| name | string | Yes   | -    | Name of the registered JavaScript object, which can be used to invoke the corresponding object on the application side from the web side. |
+| name | string | Yes   | -    | Name of the registered JavaScript object, which can be used to invoke the corresponding object on the application side from the web side.|
 
 **Example**
 
@@ -7305,7 +7510,7 @@ This API is deprecated since API version 9. You are advised to use [getHitTest<s
 
 | Type                             | Description         |
 | ------------------------------- | ----------- |
-| [HitTestType](#hittesttype) | Element type of the area being clicked. |
+| [HitTestType](#hittesttype)| Element type of the area being clicked.|
 
 **Example**
 
@@ -7348,8 +7553,8 @@ This API is deprecated since API version 9. You are advised to use [loadData<sup
 | data       | string | Yes   | -    | Character string obtained after being Base64 or URL encoded.             |
 | mimeType   | string | Yes   | -    | Media type (MIME).                             |
 | encoding   | string | Yes   | -    | Encoding type, which can be Base64 or URL.               |
-| baseUrl    | string | No   | -    | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**. |
-| historyUrl | string | No   | -    | Historical record URL. If this parameter is not empty, it can be managed in historical records to implement page going backward and forward. This parameter is invalid when **baseUrl** is left empty. |
+| baseUrl    | string | No   | -    | URL (HTTP/HTTPS/data compliant), which is assigned by the **Web** component to **window.origin**.|
+| historyUrl | string | No   | -    | Historical record URL. If this parameter is not empty, it can be managed in historical records to implement page going backward and forward. This parameter is invalid when **baseUrl** is left empty.|
 
 **Example**
 
@@ -7393,7 +7598,7 @@ This API is deprecated since API version 9. You are advised to use [loadUrl<sup>
 | Name    | Type                      | Mandatory  | Default Value | Description          |
 | ------- | -------------------------- | ---- | ---- | -------------- |
 | url     | string \| Resource                     | Yes   | -    | URL to load.    |
-| headers | Array\<[Header](#header)\> | No   | []   | Additional HTTP request header of the URL. |
+| headers | Array\<[Header](#header)\> | No   | []   | Additional HTTP request header of the URL.|
 
 **Example**
 
@@ -7485,7 +7690,7 @@ This API is deprecated since API version 9. You are advised to use [zoom<sup>9+<
 
 | Name   | Type  | Mandatory  | Description                          |
 | ------ | ------ | ---- | ------------------------------ |
-| factor | number | Yes   | Zoom factor to set. A positive value indicates zoom-in, and a negative value indicates zoom-out. |
+| factor | number | Yes   | Zoom factor to set. A positive value indicates zoom-in, and a negative value indicates zoom-out.|
 
 **Example**
 
@@ -7550,8 +7755,8 @@ This API is deprecated since API version 9. You are advised to use [registerJava
 
 | Name       | Type           | Mandatory  | Default Value | Description                                    |
 | ---------- | --------------- | ---- | ---- | ---------------------------------------- |
-| object     | object          | Yes   | -    | Application-side JavaScript object to be registered. Methods and attributes can be declared, but cannot be directly called on HTML5. The parameters and return value can only be of the string, number, or Boolean type. |
-| name       | string          | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side. |
+| object     | object          | Yes   | -    | Application-side JavaScript object to be registered. Methods and attributes can be declared, but cannot be directly called on HTML5. The parameters and return value can only be of the string, number, or Boolean type.|
+| name       | string          | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side.|
 | methodList | Array\<string\> | Yes   | -    | Methods of the JavaScript object to be registered at the application side.                |
 
 **Example**
@@ -7626,7 +7831,7 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
 | Name     | Type                    | Mandatory  | Default Value | Description                                    |
 | -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
 | script   | string                   | Yes   | -    | JavaScript script.                           |
-| callback | (result: string) => void | No   | -    | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed or no value is returned. |
+| callback | (result: string) => void | No   | -    | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed or no value is returned.|
 
 **Example**
 
@@ -7759,20 +7964,20 @@ Describes the **ScriptItem** object injected to the **Web** component through th
 
 | Name         | Type            | Mandatory  | Description                   |
 | ----------- | -------------- | ---- | --------------------- |
-| script      | string         | Yes   | JavaScript script to be injected and executed. |
-| scriptRules | Array\<string> | Yes   | Matching rules for allowed sources.<br>1. To allow URLs from all sources, use the wildcard (*).<br>2. If exact match is required, specify the exact URL, for example, **https:\//www\.example.com**.<br>3. For fuzzy match, you can use a wildcard (*) in the website URL, for example, **https://*.example.com**. The following are not allowed: "x. * .y.com", " * foobar.com".<br>4. If the source is an IP address, follow rule 2.      |
+| script      | string         | Yes   | JavaScript script to be injected and executed.|
+| scriptRules | Array\<string> | Yes  | Matching rules for allowed sources.<br>1. To allow URLs from all sources, use the wildcard (\*).<br>2. If exact match is required, specify the exact URL, for example, **https:\//www\\.example.com**.<br>3. For fuzzy match, you can use a wildcard (\*) in the website URL, for example, **https://\*.example.com**. Websites such as "x,*.y.com" and "* foobar.com" are not allowed.  <br>4. If the source is an IP address, follow rule 2.<br>5. For protocols other than HTTP/HTTPS (user-defined protocols), exact match and fuzzy match are not supported, and the protocol must end with a slash (/), for example, **resource://**.<br>6. If one of the preceding rules is not met in the **scriptRules**, the **scriptRules** does not take effect.|
 
 ## WebNavigationType<sup>11+</sup>
 
 Defines the navigation type.
 
-| Name                          | Value | Description          |
+| Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
 | UNKNOWN                       | 0 | Unknown type.  |
 | MAIN_FRAME_NEW_ENTRY          | 1 | Navigation to a new history entry from the main document.  |
-| MAIN_FRAME_EXISTING_ENTRY     | 2 | Navigation to an existing history entry from the main document. |
-| NAVIGATION_TYPE_NEW_SUBFRAME  | 4 | User-triggered navigation from a subdocument. |
-| NAVIGATION_TYPE_AUTO_SUBFRAME | 5 | Non-user-triggered navigation from a subdocument. |
+| MAIN_FRAME_EXISTING_ENTRY     | 2 | Navigation to an existing history entry from the main document.|
+| NAVIGATION_TYPE_NEW_SUBFRAME  | 4 | User-triggered navigation from a subdocument.|
+| NAVIGATION_TYPE_AUTO_SUBFRAME | 5 | Non-user-triggered navigation from a subdocument.|
 
 ## LoadCommittedDetails<sup>11+</sup>
 
@@ -7780,7 +7985,7 @@ Provides detailed information about the web page that has been submitted for red
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| isMainFrame     | boolean                              | Yes   | Whether the document is the main document. |
+| isMainFrame     | boolean                              | Yes   | Whether the document is the main document.|
 | isSameDocument  | boolean                              | Yes   | Whether to navigate without changing the document. Example of navigation in the same document: 1. navigation shown in the example; 2. navigation triggered by **pushState** or **replaceState**; 3. navigation to a history entry on the same page. |
 | didReplaceEntry | boolean                              | Yes   | Whether the submitted new entry replaces the existing entry. In certain scenarios for navigation to a subdocument, although the existing entry is not replaced, some attributes are changed. |
 | navigationType  | [WebNavigationType](#webnavigationtype11)  | Yes   | Navigation type.      |
@@ -7790,12 +7995,12 @@ Provides detailed information about the web page that has been submitted for red
 
 Enumerates the website threat types.
 
-| Name            | Value | Description                  |
+| Name            | Value| Description                  |
 | ---------------- | -- | ----------------------|
 | THREAT_ILLEGAL  | 0 | Illegal website.             |
 | THREAT_FRAUD    | 1 | Fraudulent website.             |
 | THREAT_RISK     | 2 | Website that poses security risks.     |
-| THREAT_WARNING  | 3 | Website suspected to contain unsafe content. |
+| THREAT_WARNING  | 3 | Website suspected to contain unsafe content.|
 
 ## OnNavigationEntryCommittedCallback<sup>11+</sup>
 
@@ -7805,7 +8010,7 @@ Called when a navigation item is submitted.
 
 | Name               | Type                                          | Description               |
 | -------------------- | ------------------------------------------------ | ------------------- |
-| loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | Detailed information about the web page that has been submitted for redirection. |
+| loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | Detailed information about the web page that has been submitted for redirection.|
 
 ## OnSafeBrowsingCheckResultCallback<sup>11+</sup>
 
@@ -7819,13 +8024,13 @@ Called by a website safe browsing check.
 
 ## FullScreenEnterEvent<sup>12+</sup>
 
-Provides details about the callback event for the **Web** component to enter full screen mode.
+Provides details about the callback event for the **Web** component to enter the full-screen mode.
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| handler     | [FullScreenExitHandler](#fullscreenexithandler9) | Yes   | Function handle for exiting full screen mode. |
-| videoWidth  | number | No   | Video width, in px. If the element that enters fulls screen mode is a **\<video>** element, the value represents its width; if the element that enters fulls screen mode contains a **\<video>** element, the value represents the width of the first sub-video element; in other cases, the value is **0**. |
-| videoHeight  | number | No   | Video height, in px. If the element that enters fulls screen mode is a **\<video>** element, the value represents its height; if the element that enters fulls screen mode contains a **\<video>** element, the value represents the height of the first sub-video element; in other cases, the value is **0**. |
+| handler     | [FullScreenExitHandler](#fullscreenexithandler9) | Yes   | Function handle for exiting full screen mode.|
+| videoWidth  | number | No   | Video width, in px. If the element that enters fulls screen mode is a **\<video>** element, the value represents its width; if the element that enters fulls screen mode contains a **\<video>** element, the value represents the width of the first sub-video element; in other cases, the value is **0**.|
+| videoHeight  | number | No   | Video height, in px. If the element that enters fulls screen mode is a **\<video>** element, the value represents its height; if the element that enters fulls screen mode contains a **\<video>** element, the value represents the height of the first sub-video element; in other cases, the value is **0**.|
 
 ## OnFullScreenEnterCallback<sup>12+</sup>
 
@@ -7835,7 +8040,7 @@ Called when the **Web** component enters full screen mode.
 
 | Name     | Type                     | Description             |
 | ---------- | ---------------------------- | ------------------- |
-| event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Callback event for the **Web** component to enter full screen mode. |
+| event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Callback event for the **Web** component to enter full screen mode.|
 
 ## SslErrorEvent<sup>12+</sup>
 
@@ -7843,7 +8048,7 @@ Provides details about the callback invoked when an SSL error occurs during reso
 
 | Name    | Type                                | Description          |
 | ------- | ------------------------------------ | -------------- |
-| handler | [SslErrorHandler](#sslerrorhandler9) | User operation. |
+| handler | [SslErrorHandler](#sslerrorhandler9) | User operation.|
 | error   | [SslError](#sslerror9)          | Error code.          |
 | url   | string           | URL.          |
 | originalUrl   | string          | Original URL of the request.          |
@@ -7860,19 +8065,19 @@ Provides details about the callback invoked when an SSL error occurs during reso
 
 | Name     | Type                     | Description             |
 | ---------- | ---------------------------- | ------------------- |
-| sslErrorEvent | [SslErrorEvent](#sslerrorevent12)  | Details about the callback invoked when an SSL error occurs during resource loading. |
+| sslErrorEvent | [SslErrorEvent](#sslerrorevent12)  | Details about the callback invoked when an SSL error occurs during resource loading.|
 
 ## NativeEmbedStatus<sup>11+</sup>
 
-Defines the lifecycle of the **\<embed>** tag.
+Defines the lifecycle of the **embed** tag. When the same-layer rendering tag exists on the loaded page, **CREATE** is triggered. When the same-layer rendering tag is moved or is enlarged, **UPDATE **is triggered. When the page exits, **DESTROY** is triggered.
 
-| Name                          | Value | Description          |
+| Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
 | CREATE                        | 0 | The tag is created.  |
 | UPDATE                        | 1 | The tag is updated.  |
-| DESTROY                       | 2 | The tag is destroyed. |
+| DESTROY                       | 2 | The tag is destroyed.|
 | ENTER_BFCACHE<sup>12+</sup>   | 3 | The tag enters the BFCache.  |
-| LEAVE_BFCACHE<sup>12+</sup>   | 4 | The tag leaves the BFCache. |
+| LEAVE_BFCACHE<sup>12+</sup>   | 4 | The tag leaves the BFCache.|
 
 ## NativeEmbedInfo<sup>11+</sup>
 
@@ -7888,7 +8093,7 @@ Provides detailed information about the **\<embed>** tag.
 | url               | string                              | No   | URL of the tag.           |
 | tag<sup>12+</sup> | string              | No   | Name of the tag, which consists of uppercase letters.             |
 | params<sup>12+</sup>            | map<string, string> | No   | List of key-value pairs contained in the **object** tag that form a map of the Object type. Use the methods provided by the Object type to operate the map object. |
-| position<sup>12+</sup>          | Position            | No   | Position of the same-layer tag relative to the **Web** component in the screen coordinate system, which is different from the standard **Position**. The unit is px. |
+| position<sup>12+</sup>          | Position            | No   | Position of the same-layer tag relative to the **Web** component in the screen coordinate system, which is different from the standard **Position**. The unit is px.|
 
 ## NativeEmbedDataInfo<sup>11+</sup>
 
@@ -7896,7 +8101,7 @@ Provides detailed information about the lifecycle changes of the **\<embed>** ta
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| status     | [NativeEmbedStatus](#nativeembedstatus11)             | No   | Lifecycle status of the tag. |
+| status     | [NativeEmbedStatus](#nativeembedstatus11)             | No   | Lifecycle status of the tag.|
 | surfaceId  | string                              | No   | Surface ID of the native image. |
 | embedId | string                              | No   | Unique ID of the tag. |
 | info  | [NativeEmbedInfo](#nativeembedinfo11)  | No   | Detailed information about the tag.      |
@@ -7906,18 +8111,18 @@ Provides touch information of the **\<embed>** tag.
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| embedId     | string   | No   | Unique ID of the tag. |
-| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent)  | No   | Touch action information. |
-| result<sup>12+</sup>     | [EventResult](#eventresult12)   | No   | Gesture event consumption result. |
+| embedId     | string   | No   | Unique ID of the tag.|
+| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent)  | No   | Touch action information.|
+| result<sup>12+</sup>     | [EventResult](#eventresult12)   | No   | Gesture event consumption result.|
 
 ## FirstMeaningfulPaint<sup>12+</sup>
 
 Provides detailed information about the first meaningful paint.
 
-| Name                    | Type  | Mandatory | Description                                  |
+| Name                    | Type  | Mandatory| Description                                  |
 | ------------------------ | ------ | ---- | -------------------------------------- |
 | navigationStartTime      | number | No | Navigation bar loading time, in microseconds.      |
-| firstMeaningfulPaintTime | number | No  | Time taken for the first meaningful paint of the page, in milliseconds. |
+| firstMeaningfulPaintTime | number | No  | Time taken for the first meaningful paint of the page, in milliseconds.|
 
 ## OnFirstMeaningfulPaintCallback<sup>12+</sup>
 
@@ -7927,19 +8132,19 @@ Called when the first meaningful paint occurs on the web page.
 
 | Name              | Type                                       | Description                        |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
-| firstMeaningfulPaint | [FirstMeaningfulPaint](#firstmeaningfulpaint12) | Information about the first meaningful paint. |
+| firstMeaningfulPaint | [FirstMeaningfulPaint](#firstmeaningfulpaint12) | Information about the first meaningful paint.|
 
 ## LargestContentfulPaint<sup>12+</sup>
 
-Provides detailed information about the largest content paint on the web page.
+Provides detailed information about the largest content paint.
 
-| Name                     | Type  | Mandatory | Description                                    |
+| Name                     | Type  | Mandatory| Description                                    |
 | ------------------------- | ------ | ---- | ---------------------------------------- |
 | navigationStartTime       | number | No  | Navigation bar loading time, in microseconds.        |
 | largestImagePaintTime     | number | No  | Maximum image loading time, in milliseconds.  |
 | largestTextPaintTime      | number | No  | Maximum text loading time, in milliseconds.    |
-| largestImageLoadStartTime | number | No  | Maximum time for an image to start loading, expressed in milliseconds. |
-| largestImageLoadEndTime   | number | No  | Maximum time for an image to finish loading, in milliseconds. |
+| largestImageLoadStartTime | number | No  | Maximum time for an image to start loading, in milliseconds.|
+| largestImageLoadEndTime   | number | No  | Maximum time for an image to finish loading, in milliseconds.|
 | imageBPP                  | number | No  | Maximum number of image pixels.                          |
 
 ## OnLargestContentfulPaintCallback<sup>12+</sup>
@@ -7951,7 +8156,7 @@ Called when the largest content paint occurs on the web page.
 
 | Name                | Type                                           | Description                            |
 | ---------------------- | --------------------------------------------------- | ------------------------------------ |
-| largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | Information about the largest content paint. |
+| largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | Information about the largest content paint.|
 
 ## IntelligentTrackingPreventionDetails<sup>12+</sup>
 
@@ -7970,7 +8175,7 @@ Represents the callback invoked when the tracker cookie is intercepted.
 
 | Name  | Type                                                                         | Description                   |
 | ------- | -------------------------------------------------------------------------------- | ------------------------- |
-| details | [IntelligentTrackingPreventionDetails](#intelligenttrackingpreventiondetails12)  | Detailed information about intelligent tracking prevention. |
+| details | [IntelligentTrackingPreventionDetails](#intelligenttrackingpreventiondetails12)  | Detailed information about intelligent tracking prevention.|
 
 ## OnOverrideUrlLoadingCallback<sup>12+</sup>
 
@@ -7982,19 +8187,19 @@ Represents a callback for **onOverrideUrlLoading**.
 
 | Name               | Type                                          | Description               |
 | -------------------- | ------------------------------------------------ | ------------------- |
-| webResourceRequest | [WebResourceRequest](#webresourcerequest)  | Information about the URL request. |
+| webResourceRequest | [WebResourceRequest](#webresourcerequest)  | Information about the URL request.|
 
 **Return value**
 
 | Type     | Description                      |
 | ------- | ------------------------ |
-| boolean | Returns **true** if the access is blocked; returns **false** otherwise. |
+| boolean | Returns **true** if the access is blocked; returns **false** otherwise.|
 
 ## RenderMode<sup>12+</sup>
 
 Enumerates the rendering modes of the **Web** component.
 
-| Name                          | Value | Description          |
+| Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
 | ASYNC_RENDER                        | 0 | The **Web** component is rendered asynchronously.  |
 | SYNC_RENDER                        | 1 | The **Web** component is rendered synchronously within the current execution context.  |
@@ -8007,16 +8212,16 @@ Represents the configuration for [enabling the application to take over web page
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name | Type | Read Only | Mandatory | Description |
+| Name| Type| Read Only| Mandatory| Description|
 |------|------|------|------|------|
-|  enable  | boolean | No | Yes | Whether to enable the feature.<br> **true**: enabled<br> **false** (default): disabled |
-|  shouldOverlay | boolean | No | Yes | Whether the video player's display overlays the web page content when the application takes over the web page's video player.<br> **true**: The video player's display overlays the web page content. This means that the height of the video layer is adjusted to cover the web page content.<br> **false** (default): The video player's display does not overlay the web page content. This means that the video player maintains its original height and is embedded within the web page. |
+|  enable  | boolean | No| Yes| Whether to enable the feature.<br> **true**: enabled<br> **false** (default): disabled|
+|  shouldOverlay | boolean | No| Yes| Whether the video player's display overlays the web page content when the application takes over the web page's video player.<br> **true**: The video player's display overlays the web page content. This means that the height of the video layer is adjusted to cover the web page content.<br> **false** (default): The video player's display does not overlay the web page content. This means that the video player maintains its original height and is embedded within the web page.|
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
 Provides the reason why the rendering process does not respond.
 
-| Name                          | Value | Description          |
+| Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
 | INPUT_TIMEOUT                  | 0 | The response to the input event sent to the rendering process times out.  |
 | NAVIGATION_COMMIT_TIMEOUT      | 1 | The navigation for loading a new web page times out.  |
@@ -8025,17 +8230,17 @@ Provides the reason why the rendering process does not respond.
 
 Provides detailed information about the unresponsive rendering process.
 
-| Name                    | Type  | Mandatory | Description                                  |
+| Name                    | Type  | Mandatory| Description                                  |
 | ------------------------ | ------ | ---- | -------------------------------------- |
 | jsStack      | string | Yes | JavaScript call stack information of the web page.      |
-| pid | number | Yes  | Process ID of the web page. |
-| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | Yes  | The reason why the rendering process does not respond. |
+| pid | number | Yes  | Process ID of the web page.|
+| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | Yes  | The reason why the rendering process does not respond.|
 
 ## OnRenderProcessNotRespondingCallback<sup>12+</sup>
 
 type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingData) => void
 
-Called when the rendering process does not respond.
+Represents a callback invoked when the rendering process does not respond.
 
 | Name              | Type                                       | Description                        |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
@@ -8051,7 +8256,7 @@ Represents a callback invoked when the rendering process transitions back to a n
 
 Enumerates the viewport types available for **viewport-fit** in the web page **\<meta>** tag.
 
-| Name                          | Value | Description          |
+| Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
 | AUTO                  | 0 | The entire web page is visible. Default value.  |
 | CONTAINS      | 1 | The initial layout viewport and the visual viewport fit within the largest rectangle that adapts to the device's display screen.  |
@@ -8065,7 +8270,7 @@ Represents the callback invoked when the **viewport-fit** configuration in the w
 
 | Name              | Type                                       | Description                        |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
-| viewportFit | [ViewportFit](#viewportfit12) | Viewport type for **viewport-fit** in the web page **\<meta>** tag. |
+| viewportFit | [ViewportFit](#viewportfit12) | Viewport type for **viewport-fit** in the web page **\<meta>** tag.|
 
 ## ExpandedMenuItemOptions<sup>12+</sup>
 
@@ -8081,10 +8286,10 @@ Defines the custom expanded menu options.
 
 Enumerates the soft keyboard avoidance modes.
 
-| Name              | Value | Description          |
+| Name              | Value| Description          |
 | ------------------ | -- | ------------ |
 | RESIZE_VISUAL      | 0 | For soft keyboard avoidance, the visual viewport is resized, but not the layout viewport.  |
-| RESIZE_CONTENT     | 1 | For soft keyboard avoidance, both the visual viewport and layout viewport are resized. Default value. |
+| RESIZE_CONTENT     | 1 | For soft keyboard avoidance, both the visual viewport and layout viewport are resized. Default value.|
 | OVERLAYS_CONTENT   | 2 | No viewport is resized, and soft keyboard avoidance is not triggered.  |
 
 ## OnPageEndEvent<sup>12+</sup>
@@ -8093,7 +8298,7 @@ Represents the callback invoked when the web page loading ends.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | Yes | URL of the page.                      |
+| url | string | Yes| URL of the page.                      |
 
 ## OnPageBeginEvent<sup>12+</sup>
 
@@ -8101,7 +8306,7 @@ Represents the callback invoked when the web page loading begins.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | Yes | URL of the page.                      |
+| url | string | Yes| URL of the page.                      |
 
 ## OnProgressChangeEvent<sup>12+</sup>
 
@@ -8109,7 +8314,7 @@ Represents the callback invoked when the web page loading progress changes.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| newProgress | number | Yes | New loading progress. The value is an integer ranging from 0 to 100.                      |
+| newProgress | number | Yes| New loading progress. The value is an integer ranging from 0 to 100.                      |
 
 ## OnTitleReceiveEvent<sup>12+</sup>
 
@@ -8117,7 +8322,7 @@ Represents the callback invoked when the document title of the web page is chang
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| title | string | Yes | Document title.                      |
+| title | string | Yes| Document title.                      |
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 
@@ -8125,8 +8330,8 @@ Represents the callback invoked when a request to obtain the geolocation informa
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| origin | string | Yes | Index of the origin.                      |
-| geolocation | [JsGeolocation](#jsgeolocation) | Yes | User operation.                      |
+| origin | string | Yes| Index of the origin.                      |
+| geolocation | [JsGeolocation](#jsgeolocation) | Yes| User operation.                      |
 
 ## OnAlertEvent<sup>12+</sup>
 
@@ -8134,9 +8339,9 @@ Represents the callback invoked when **alert()** is invoked to display an alert 
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | Yes | URL of the web page where the dialog box is displayed.                      |
-| message | string | Yes | Message displayed in the dialog box.                      |
-| result | [JsResult](#jsresult) | Yes | User operation.                      |
+| url | string | Yes| URL of the web page where the dialog box is displayed.                      |
+| message | string | Yes| Message displayed in the dialog box.                      |
+| result | [JsResult](#jsresult) | Yes| User operation.                      |
 
 ## OnBeforeUnloadEvent<sup>12+</sup>
 
@@ -8144,9 +8349,9 @@ Represents the callback invoked when this page is about to exit after the user r
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | Yes | URL of the web page where the dialog box is displayed.                      |
-| message | string | Yes | Message displayed in the dialog box.                      |
-| result | [JsResult](#jsresult) | Yes | User operation.                      |
+| url | string | Yes| URL of the web page where the dialog box is displayed.                      |
+| message | string | Yes| Message displayed in the dialog box.                      |
+| result | [JsResult](#jsresult) | Yes| User operation.                      |
 
 ## OnConfirmEvent<sup>12+</sup>
 
@@ -8154,9 +8359,9 @@ Represents the callback invoked when **confirm()** is invoked by the web page.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | Yes | URL of the web page where the dialog box is displayed.                      |
-| message | string | Yes | Message displayed in the dialog box.                      |
-| result | [JsResult](#jsresult) | Yes | User operation.                      |
+| url | string | Yes| URL of the web page where the dialog box is displayed.                      |
+| message | string | Yes| Message displayed in the dialog box.                      |
+| result | [JsResult](#jsresult) | Yes| User operation.                      |
 
 ## OnPromptEvent<sup>12+</sup>
 
@@ -8164,9 +8369,9 @@ Represents the callback invoked when **prompt()** is invoked by the web page.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | Yes | URL of the web page where the dialog box is displayed.                      |
-| message | string | Yes | Message displayed in the dialog box.                      |
-| result | [JsResult](#jsresult) | Yes | User operation.                      |
+| url | string | Yes| URL of the web page where the dialog box is displayed.                      |
+| message | string | Yes| Message displayed in the dialog box.                      |
+| result | [JsResult](#jsresult) | Yes| User operation.                      |
 
 ## onConsoleEvent<sup>12+</sup>
 
@@ -8174,7 +8379,7 @@ Represents the callback invoked to notify the host application of a JavaScript c
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| message | [ConsoleMessage](#consolemessage) | Yes | Console message.                      |
+| message | [ConsoleMessage](#consolemessage) | Yes| Console message.                      |
 
 ## OnErrorReceiveEvent<sup>12+</sup>
 
@@ -8182,8 +8387,8 @@ Represents the callback invoked when an error occurs during web page loading.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| request | [WebResourceRequest](#webresourcerequest) | Yes | Encapsulation of a web page request.     |
-| error   | [WebResourceError](#webresourceerror)    | Yes | Encapsulation of a web page resource loading error. |
+| request | [WebResourceRequest](#webresourcerequest) | Yes| Encapsulation of a web page request.     |
+| error   | [WebResourceError](#webresourceerror)    | Yes| Encapsulation of a web page resource loading error.|
 
 ## OnHttpErrorReceiveEvent<sup>12+</sup>
 
@@ -8191,8 +8396,8 @@ Represents the callback invoked when an HTTP error occurs during web page resour
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| request | [WebResourceRequest](#webresourcerequest) | Yes | Encapsulation of a web page request.     |
-| response   | [WebResourceResponse](#webresourceresponse)    | Yes | Encapsulation of a resource response. |
+| request | [WebResourceRequest](#webresourcerequest) | Yes| Encapsulation of a web page request.     |
+| response   | [WebResourceResponse](#webresourceresponse)    | Yes| Encapsulation of a resource response.|
 
 ## OnDownloadStartEvent<sup>12+</sup>
 
@@ -8200,11 +8405,11 @@ Represents the callback invoked when the main application starts downloading a f
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| url                | string | Yes | URL for the download task.                          |
-| userAgent          | string | Yes | User agent used for download.                         |
-| contentDisposition | string | Yes | Content-Disposition response header returned by the server, which may be empty. |
-| mimetype           | string | Yes | MIME type of the content returned by the server.               |
-| contentLength      | number | Yes | Length of the content returned by the server.                        |
+| url                | string | Yes| URL for the download task.                          |
+| userAgent          | string | Yes| User agent used for download.                         |
+| contentDisposition | string | Yes| Content-Disposition response header returned by the server, which may be empty.|
+| mimetype           | string | Yes| MIME type of the content returned by the server.               |
+| contentLength      | number | Yes| Length of the content returned by the server.                        |
 
 ## OnRefreshAccessedHistoryEvent<sup>12+</sup>
 
@@ -8212,8 +8417,8 @@ Represents the callback invoked when the access history of the web page is refre
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| url         | string  | Yes | URL to be accessed.                                 |
-| isRefreshed | boolean | Yes | Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh<sup>9+</sup>](js-apis-webview.md#refresh) API, and **false** means the opposite. |
+| url         | string  | Yes| URL to be accessed.                                 |
+| isRefreshed | boolean | Yes| Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh<sup>9+</sup>](js-apis-webview.md#refresh) API, and **false** means the opposite.|
 
 ## OnRenderExitedEvent<sup>12+</sup>
 
@@ -8221,7 +8426,7 @@ Represents the callback invoked when the rendering process exits.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| renderExitReason | [RenderExitReason](#renderexitreason9)  | Yes | Cause for the abnormal exit of the rendering process. |
+| renderExitReason | [RenderExitReason](#renderexitreason9) | Yes| Cause for the abnormal exit of the rendering process.|
 
 ## OnShowFileSelectorEvent<sup>12+</sup>
 
@@ -8229,8 +8434,8 @@ Represents the callback invoked to notify the file selector result.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| result       | [FileSelectorResult](#fileselectorresult9) | Yes | File selection result to be sent to the **Web** component. |
-| fileSelector | [FileSelectorParam](#fileselectorparam9) | Yes | Information about the file selector.      |
+| result       | [FileSelectorResult](#fileselectorresult9) | Yes| File selection result to be sent to the **Web** component.|
+| fileSelector | [FileSelectorParam](#fileselectorparam9) | Yes| Information about the file selector.      |
 
 ## onResourceLoadEvent<sup>12+</sup>
 
@@ -8238,7 +8443,7 @@ Represents the callback invoked when the URL is loaded.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| url  | string | Yes | URL of the loaded resource file. |
+| url  | string | Yes| URL of the loaded resource file.|
 
 ## onScaleChangeEvent<sup>12+</sup>
 
@@ -8246,8 +8451,8 @@ Represents the callback invoked when the display scale of this page changes.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| oldScale | number | Yes | Display ratio of the page before the change. |
-| newScale | number | Yes | Display ratio of the page after the change. |
+| oldScale | number | Yes| Display ratio of the page before the change.|
+| newScale | number | Yes| Display ratio of the page after the change.|
 
 ## OnHttpAuthRequestEvent<sup>12+</sup>
 
@@ -8255,9 +8460,9 @@ Represents the callback invoked when an HTTP authentication request is received.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [HttpAuthHandler](#httpauthhandler9) | Yes | User operation.  |
-| host    | string                               | Yes | Host to which HTTP authentication credentials apply. |
-| realm   | string                               | Yes | Realm to which HTTP authentication credentials apply. |
+| handler | [HttpAuthHandler](#httpauthhandler9) | Yes| User operation.  |
+| host    | string                               | Yes| Host to which HTTP authentication credentials apply.|
+| realm   | string                               | Yes| Realm to which HTTP authentication credentials apply. |
 
 ## OnInterceptRequestEvent<sup>12+</sup>
 
@@ -8265,7 +8470,7 @@ Represents the callback invoked when the **Web** component is about to load a UR
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| request | [WebResourceRequest](#webresourcerequest) | Yes | Information about the URL request. |
+| request | [WebResourceRequest](#webresourcerequest) | Yes| Information about the URL request.|
 
 ## onPermissionRequestEvent<sup>12+</sup>
 
@@ -8273,7 +8478,7 @@ Represents the callback invoked when a permission request is received.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| request | [PermissionRequest](#permissionrequest9) | Yes | User operation. |
+| request | [PermissionRequest](#permissionrequest9) | Yes| User operation.|
 
 ## onScreenCaptureRequestEvent<sup>12+</sup>
 
@@ -8281,7 +8486,7 @@ Represents the callback invoked when a screen capture request is received.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [ScreenCaptureHandler](#screencapturehandler10) | Yes | User operation. |
+| handler | [ScreenCaptureHandler](#screencapturehandler10) | Yes| User operation.|
 
 ## onContextMenuShowEvent<sup>12+</sup>
 
@@ -8289,8 +8494,8 @@ Represents the callback invoked during a call to allow for the display of a cust
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| param  | [WebContextMenuParam](#webcontextmenuparam9) | Yes | Parameters related to the context menu.    |
-| result | [WebContextMenuResult](#webcontextmenuresult9) | Yes | Result of the context menu. |
+| param  | [WebContextMenuParam](#webcontextmenuparam9) | Yes| Parameters related to the context menu.    |
+| result | [WebContextMenuResult](#webcontextmenuresult9) | Yes| Result of the context menu.|
 
 ## onSearchResultReceiveEvent<sup>12+</sup>
 
@@ -8298,9 +8503,9 @@ Represents the callback invoked to notify the caller of the search result on the
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| activeMatchOrdinal | number  | Yes | Sequence number of the current match, which starts from 0.                      |
-| numberOfMatches    | number  | Yes | Total number of matches.                           |
-| isDoneCounting     | boolean | Yes | Whether the search operation on the current page is complete. This API may be called multiple times until **isDoneCounting** is **true**. |
+| activeMatchOrdinal | number  | Yes| Sequence number of the current match, which starts from 0.                      |
+| numberOfMatches    | number  | Yes| Total number of matches.                           |
+| isDoneCounting     | boolean | Yes| Whether the search operation on the current page is complete. This API may be called multiple times until **isDoneCounting** is **true**.|
 
 ## onScrollEvent<sup>12+</sup>
 
@@ -8308,8 +8513,8 @@ Represents the callback invoked when the scrollbar scrolls to a specified positi
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| xOffset | number | Yes | Position of the scrollbar on the x-axis relative to the leftmost of the web page. |
-| yOffset | number | Yes | Position of the scrollbar on the y-axis relative to the top of the web page. |
+| xOffset | number | Yes| Position of the scrollbar on the x-axis relative to the leftmost of the web page.|
+| yOffset | number | Yes| Position of the scrollbar on the y-axis relative to the top of the web page.|
 
 ## OnSslErrorEventReceiveEvent<sup>12+</sup>
 
@@ -8317,8 +8522,8 @@ Represents the callback invoked when the web page receives an SSL error.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [SslErrorHandler](#sslerrorhandler9) | Yes | User operation. |
-| error   | [SslError](#sslerror9)          | Yes | Error code.          |
+| handler | [SslErrorHandler](#sslerrorhandler9) | Yes| User operation.|
+| error   | [SslError](#sslerror9)          | Yes| Error code.          |
 
 ## onClientAuthenticationRequestEvent<sup>12+</sup>
 
@@ -8326,11 +8531,11 @@ Represents the callback invoked when an SSL client certificate is required from 
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | Yes | User operation. |
-| host     | string                                   | Yes | Host name of the server that requests a certificate.   |
-| port     | number                                   | Yes | Port number of the server that requests a certificate.   |
-| keyTypes | Array<string\>                           | Yes | Acceptable asymmetric private key types.   |
-| issuers  | Array<string\>                           | Yes | Issuer of the certificate that matches the private key. |
+| handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | Yes| User operation. |
+| host     | string                                   | Yes| Host name of the server that requests a certificate.   |
+| port     | number                                   | Yes| Port number of the server that requests a certificate.   |
+| keyTypes | Array<string\>                           | Yes| Acceptable asymmetric private key types.   |
+| issuers  | Array<string\>                           | Yes| Issuer of the certificate that matches the private key.|
 
 ## OnWindowNewEvent<sup>12+</sup>
 
@@ -8338,10 +8543,10 @@ Represents the callback invoked when the web page requests the user to create a 
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| isAlert       | boolean                                  | Yes | Whether to open the target URL in a new window. The value **true** means to open the target URL in a new window, and **false** means to open the target URL in a new tab.   |
-| isUserTrigger | boolean                                  | Yes | Whether the creation is triggered by the user. The value **true** means that the creation is triggered by the user, and **false** means the opposite.     |
-| targetUrl     | string                                   | Yes | Target URL.                       |
-| handler       | [ControllerHandler](#controllerhandler9) | Yes | **WebviewController** instance for setting the new window. |
+| isAlert       | boolean                                  | Yes| Whether to open the target URL in a new window. The value **true** means to open the target URL in a new window, and **false** means to open the target URL in a new tab.   |
+| isUserTrigger | boolean                                  | Yes| Whether the creation is triggered by the user. The value **true** means that the creation is triggered by the user, and **false** means the opposite.     |
+| targetUrl     | string                                   | Yes| Target URL.                       |
+| handler       | [ControllerHandler](#controllerhandler9) | Yes| **WebviewController** instance for setting the new window.|
 
 ## onTouchIconUrlReceivedEvent<sup>12+</sup>
 
@@ -8349,8 +8554,8 @@ Represents the callback invoked when an apple-touch-icon URL is received.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| url         | string  | Yes | Received apple-touch-icon URL. |
-| precomposed | boolean | Yes | Whether the apple-touch-icon is precomposed.  |
+| url         | string  | Yes| Received apple-touch-icon URL.|
+| precomposed | boolean | Yes| Whether the apple-touch-icon is precomposed.  |
 
 ## onFaviconReceivedEvent<sup>12+</sup>
 
@@ -8358,7 +8563,7 @@ Represents the callback invoked when this web page receives a new favicon.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes | **PixelMap** object of the received favicon. |
+| favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| **PixelMap** object of the received favicon.|
 
 ## onPageVisibleEvent<sup>12+</sup>
 
@@ -8366,7 +8571,7 @@ Represents the callback invoked when the old page is not displayed and the new p
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| url  | string | Yes | URL of the new page that is able to be visible when the old page is not displayed. |
+| url  | string | Yes| URL of the new page that is able to be visible when the old page is not displayed.|
 
 ## onDataResubmittedEvent<sup>12+</sup>
 
@@ -8374,7 +8579,7 @@ Represents the callback invoked when the web form data can be resubmitted.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | Yes | Handler for resubmitting web form data. |
+| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | Yes| Handler for resubmitting web form data.|
 
 ## onAudioStateChangedEvent<sup>12+</sup>
 
@@ -8382,7 +8587,7 @@ Represents the callback invoked when the audio playback status on the web page c
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| playing | boolean | Yes | Audio playback status on the current page. The value **true** means that audio is being played, and **false** means the opposite. |
+| playing | boolean | Yes| Audio playback status on the current page. The value **true** means that audio is being played, and **false** means the opposite.|
 
 ## onFirstContentfulPaintEvent<sup>12+</sup>
 
@@ -8390,8 +8595,8 @@ Represents the callback invoked when the first content paint occurs on the web p
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| navigationStartTick    | number | Yes | Navigation start time, in microseconds.         |
-| firstContentfulPaintMs | number | Yes | Time between navigation and when the content is first rendered, in milliseconds. |
+| navigationStartTick    | number | Yes| Navigation start time, in microseconds.         |
+| firstContentfulPaintMs | number | Yes| Time between navigation and when the content is first rendered, in milliseconds.|
 
 ## onLoadInterceptEvent<sup>12+</sup>
 
@@ -8399,7 +8604,7 @@ Represents the callback invoked when the **Web** component is about to access a 
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| data | [WebResourceRequest](#webresourcerequest) | Yes | Information about the URL request. |
+| data | [WebResourceRequest](#webresourcerequest) | Yes| Information about the URL request.|
 
 ## onOverScrollEvent<sup>12+</sup>
 
@@ -8407,8 +8612,8 @@ Represents the callback invoked when the web page is overscrolled.
 
 | Name            | Type     | Mandatory  | Description                                      |
 | -------------- | ---- | ---- | ---------------------------------------- |
-| xOffset | number | Yes | Horizontal overscroll offset based on the leftmost edge of the web page. |
-| yOffset | number | Yes | Vertical overscroll offset based on the top edge of the web page. |
+| xOffset | number | Yes| Horizontal overscroll offset based on the leftmost edge of the web page.|
+| yOffset | number | Yes| Vertical overscroll offset based on the top edge of the web page.|
 
 ## JavaScriptProxy<sup>12+</sup>
 
@@ -8419,7 +8624,7 @@ Defines the JavaScript object to be injected.
 | object     | object                                   | Yes   | Object to be registered. Methods can be declared, but attributes cannot.                  |
 | name       | string                                   | Yes   | Name of the object to be registered, which is the same as that invoked in the window.               |
 | methodList | Array\<string\>                          | Yes   | Synchronous methods of the JavaScript object to be registered at the application side.                |
-| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead. |
+| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | No   | Asynchronous methods of the JavaScript object to be registered at the application side. Asynchronous methods do not provide return values.  |
 | permission<sup>12+</sup>  | string  | No   | JSON string, which is empty by default. This string is used to configure JSBridge permission control and define the URL trustlist at the object and method levels.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md). |
 
@@ -8427,10 +8632,10 @@ Defines the JavaScript object to be injected.
 
 Provides detailed information about the blocked ads when ads are blocked.
 
-| Name | Type                                                                         | Description                   |
+| Name| Type                                                                         | Description                   |
 | ------- | -------------------------------------------------------------------------------- | ------------------------- |
-| url | string  | URL of the page where ads are blocked. |
-| adsBlocked | Array\<string\>  | URLs or DOMPath of the blocked ads. If ads have the same URLs, duplicate elements may exist. |
+| url | string  | URL of the page where ads are blocked.|
+| adsBlocked | Array\<string\>  | URLs or DOMPath of the blocked ads. If ads have the same URLs, duplicate elements may exist.|
 
 ## OnAdsBlockedCallback<sup>12+</sup>
 
@@ -8441,4 +8646,23 @@ Represents the callback invoked when ads are blocked on the web page.
 
 | Name              | Type                                       | Description                        |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
-| details | [AdsBlockedDetails](#adsblockeddetails12) | Detailed information about the blocked ads when ads are blocked. |
+| details | [AdsBlockedDetails](#adsblockeddetails12) | Detailed information about the blocked ads when ads are blocked.|
+
+## NativeEmbedVisibilityInfo<sup>12+</sup>
+
+Provides visibility information of the **embed** tag.
+
+| Name          | Type                               | Mandatory  | Description             |
+| -------------  | ------------------------------------| ----- | ------------------ |
+| visibility     | boolean                             | No    | Whether the **embed** tag is visible.        |
+| embedId        | string                              | No    | ID of the same-layer rendering tag. |
+
+## OnNativeEmbedVisibilityChangeCallback<sup>12+</sup>
+
+type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeEmbedVisibilityInfo) => void
+
+Represents the callback invoked when the visibility of an **embed** tag changes.
+
+| Name  | Type                                                                         | Description                   |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](#nativeembedvisibilityinfo12)  | The visibility information about the **embed** tag.|

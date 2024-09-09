@@ -52,6 +52,7 @@ import { camera } from '@kit.CameraKit';
 | PROFESSIONAL_VIDEO<sup>12+</sup>        | 6      | 专业录像模式。**系统接口：** 此接口为系统接口。             |
 | SLOW_MOTION_VIDEO<sup>12+</sup>        | 7   | 慢动作模式。**系统接口：** 此接口为系统接口。  |
 | HIGH_RESOLUTION_PHOTO<sup>12+</sup>        | 11     | 高像素拍照模式。 **系统接口：** 此接口为系统接口。          |
+| PANORAMA_PHOTO<sup>12+</sup>        | 15     | 全景拍照模式。 **系统接口：** 此接口为系统接口。          |
 
 ## SlowMotionStatus<sup>12+</sup>
 
@@ -119,6 +120,56 @@ lcd闪光灯信息项。
 ## CameraManager
 
 相机管理器类，使用前需要通过[getCameraManager](js-apis-camera.md#cameragetcameramanager)获取相机管理实例。
+
+### createDepthDataOutput<sup>12+</sup>
+
+createDepthDataOutput(profile: Profile): DepthDataOutput
+
+创建深度输出对象，同步返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                              |
+| -------- | ----------------------------------------------- | ---- | ------------------------------- |
+| profile  | [Profile](js-apis-camera.md#profile)                             | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11)接口获取。|
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+| [DepthDataOutput](#depthdataoutput12)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400101                |  Parameter missing or parameter type incorrect.               |
+| 7400201                |  Camera service fatal error.               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function createDepthDataOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager): camera.DepthDataOutput | undefined {
+  let profile: camera.Profile = cameraOutputCapability.depthProfiles[0];
+  let depthDataOutput: camera.DepthDataOutput | undefined = undefined;
+  try {
+    depthDataOutput = cameraManager.createDepthDataOutput(profile);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The createDepthDataOutput call failed. error code: ${err.code}`);
+  }
+  return depthDataOutput;
+}
+```
 
 ### isCameraMuteSupported
 
@@ -479,6 +530,310 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
     let err = error as BusinessError;
     console.error(`prelaunch error. Code: ${err.code}, message: ${err.message}`);
   }
+}
+```
+
+## CameraOutputCapability<sup>12+</sup>
+
+相机输出能力项。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                           | 类型                                                | 只读 | 可选 | 说明                |
+| ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
+| depthProfiles                 | Array\<[DepthProfile](#depthprofile12)\>              |  是  | 否 | 支持的深度流配置信息集合。        |
+
+## CameraFormat
+
+枚举，输出格式。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                     | 值        | 说明         |
+| ----------------------- | --------- | ------------ |
+| CAMERA_FORMAT_DEPTH_16<sup>12+</sup> |   3000   | DEPTH_16格式的深度图。      |
+| CAMERA_FORMAT_DEPTH_32<sup>12+</sup> |   3001   | DEPTH_32格式的深度图。      |
+
+## DepthDataAccuracy<sup>12+</sup>
+
+深度数据的精度。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称      | 类型                          | 只读 | 可选 | 说明            |
+| -------- | ----------------------------- |----- |---| -------------- |
+| DEPTH_DATA_ACCURACY_RELATIVE      | number                        |  是  | 否 | 相对精度，基于视差计算得到的深度图。      |
+| DEPTH_DATA_ACCURACY_ABSOLUTE      | number                        |  是  | 否 | 绝对精度，基于测距计算得到的深度图。      |
+
+## DepthProfile<sup>12+</sup>
+
+深度数据配置信息项，继承[Profile](js-apis-camera.md#profile)。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                       | 类型                                      | 只读 | 可选 | 说明        |
+| ------------------------- | ----------------------------------------- | --- | ---- |----------- |
+| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy12)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度 |
+
+## DepthDataQualityLevel<sup>12+</sup>
+
+深度数据的质量。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称      | 类型                          | 只读 | 可选 | 说明            |
+| -------- | ----------------------------- |----- |---| -------------- |
+| DEPTH_DATA_QUALITY_BAD     | number            |  是  | 否 | 深度图的质量很差，无法用于虚化等。      |
+| DEPTH_DATA_QUALITY_FAIR      | number          |  是  | 否 | 深度图的质量一般，无法生成高质量的虚化等。      |
+| DEPTH_DATA_QUALITY_GOOD      | number          |  是  | 否 | 深度图的质量较高，可以生成高质量的虚化等。      |
+
+## DepthData<sup>12+</sup>
+
+深度数据对象。
+
+### 属性
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称      | 类型                          | 只读 | 可选 | 说明            |
+| -------- | ----------------------------- |----- |---| -------------- |
+| format | [CameraFormat](#cameraformat)   | 是 |  否  | 深度图的格式。 |
+| depthMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | 是 |  否  | 深度图。 |
+| qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel12)   | 是 |  否  | 深度图的质量。 |
+| accuracy | [DepthDataAccuracy](#depthdataaccuracy12) | 是 |  否  | 深度图的精度。 |
+
+### release<sup>12+</sup>
+
+release(): void
+
+释放输出资源。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**示例：**
+
+```ts
+function releaseDepthData(depthData: camera.DepthData): void {
+  await depthData.release();
+}
+```
+
+## DepthDataOutput<sup>12+</sup>
+
+深度信息输出类。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
+
+### start<sup>12+</sup>
+
+start(): Promise\<void\>
+
+启动深度信息输出流，通过Promise获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.start().then(() => {
+    console.info('Promise returned to indicate that start method execution success.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to depth data output start, error code: ${error.code}.`);
+  });
+}
+```
+
+### stop<sup>12+</sup>
+
+stop(): Promise\<void\>
+
+结束深度信息输出，通过Promise获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function stopDepthDataOutput(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.stop().then(() => {
+    console.info('Promise returned to indicate that stop method execution success.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to depth data output stop, error code: ${error.code}.`);
+  });
+}
+```
+
+### on('depthDataAvailable')<sup>12+</sup>
+
+on(type: 'depthDataAvailable', callback: AsyncCallback\<DepthData\>): void
+
+注册监听深度数据上报。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明                                  |
+| -------- | ---------- | --- | ------------------------------------ |
+| type     | string     | 是   | 监听事件，固定为'depthDataAvailable'，depthDataOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[DepthData](#depthdata12)\> | 是   | 回调函数，用于监听深度信息上报。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, depthData: camera.DepthData): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+}
+
+function registerDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.on('depthDataAvailable', callback);
+}
+```
+
+### off('depthDataAvailable')<sup>12+</sup>
+
+off(type: 'depthDataAvailable', callback?: AsyncCallback\<DepthData\>): void
+
+注销监听深度信息上报。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                                       |
+| -------- | ---------------------- | ---- | ------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'depthDataAvailable'，depthDataOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[DepthData](#depthdata12)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, depthData: camera.DepthData): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+}
+
+function unRegisterDepthDataAvailable(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.off('depthDataAvailable', callback);
+}
+```
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+监听深度信息输出的错误事件，通过注册回调函数获取结果。使用callback异步回调。
+
+> **说明：**
+>
+> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| type     | string        | 是   | 监听事件，固定为'error'，depthDataOutput创建成功可监听。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(depthDataOutputError: BusinessError): void {
+  console.error(`Depth data output error code: ${depthDataOutputError.code}`);
+}
+
+function registerDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.on('error', callback)
+}
+```
+
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听深度信息输出的错误事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| type     | string        | 是   | 监听事件，固定为'error'，depthDataOutput创建成功可监听。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**示例：**
+
+```ts
+function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
+  depthDataOutput.off('error');
 }
 ```
 
@@ -911,11 +1266,71 @@ async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): P
 
 拍照会话中使用的输出信息，继承[CameraOutput](js-apis-camera.md#cameraoutput)。
 
+### burstCapture<sup>12+</sup>
+
+burstCapture(setting: PhotoCaptureSetting): Promise\<void\>
+
+开始连续拍照，一般用于拍照模式下，开始后底层持续上图，可以通过[confirmCapture](#confirmcapture11)取消连续拍照。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名  | 类型                                        | 必填 | 说明     |
+| ------- | ------------------------------------------- | ---- | -------- |
+| setting | [PhotoCaptureSetting](js-apis-camera.md#photocapturesetting) | 是   | 拍照设置，传入undefined类型数据按默认无参处理。 |
+
+**返回值：**
+
+| 类型            | 说明                      |
+| -------------- | ------------------------   |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
+| 7400101         |  Parameter missing or parameter type incorrect.          |
+| 7400104         |  Session not running.          |
+| 7400201         |  Camera service fatal error.   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function burstCapture(photoOutput: camera.PhotoOutput): void {
+  let captureLocation: camera.Location = {
+    latitude: 0,
+    longitude: 0,
+    altitude: 0
+  }
+  let settings: camera.PhotoCaptureSetting = {
+    quality: camera.QualityLevel.QUALITY_LEVEL_LOW,
+    rotation: camera.ImageRotation.ROTATION_0,
+    location: captureLocation,
+    mirror: false
+  }
+  photoOutput.burstCapture(settings).then(() => {
+    console.info('Promise returned to indicate that photo burstCapture request success.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to photo output burstCapture, error code: ${error.code}.`);
+  });
+}
+```
+
 ### confirmCapture<sup>11+</sup>
 
 confirmCapture()
 
 确认拍照，一般用于夜景模式下，在曝光倒计时过程中如需终止倒计时提前拍照的时候调用。
+
+已经调用[burstCapture](#burstcapture12)开始连续拍照后，调用该接口用于结束连续拍照。
 
 **系统接口：** 此接口为系统接口。
 

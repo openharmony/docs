@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager) (System API)
 
-The **bundleManager** module provides APIs for querying information about bundles, applications, abilities, ExtensionAbilities, and more.
+The bundleManager module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-BundleInfo-sys.md), [ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md), [Ability](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md).
 
 > **NOTE**
 >
@@ -140,7 +140,7 @@ Enumerates the application information flag, which describes the status between 
 **System API**: This is a system API.
 
 | Name| Value| Description|
-|:----------------:|:---:|:---:|
+|----------------|---|---|
 | FLAG_INSTALLED|  0x00000001 | Status between the application and user. The value **1** means that the application is installed by the specified user, and **0** means the opposite.|
 
 ## APIs

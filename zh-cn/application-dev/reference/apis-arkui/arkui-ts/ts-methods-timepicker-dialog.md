@@ -10,7 +10,9 @@
 >
 > 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTimePickerDialog](../js-apis-arkui-UIContext.md#showtimepickerdialog)来明确UI的执行上下文。
 
-## TimePickerDialog.show
+## TimePickerDialog
+
+### show
 
 static show(options?: TimePickerDialogOptions)
 

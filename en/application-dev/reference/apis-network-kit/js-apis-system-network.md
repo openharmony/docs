@@ -2,7 +2,8 @@
 
 > **NOTE**
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+>
+> - The APIs of this module are no longer maintained since API version 8. You are advised to use ['@ohos.net.connection'](js-apis-net-connection.md).
 
 ## Modules to Import
 

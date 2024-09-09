@@ -90,7 +90,7 @@
         main executed
     ```
     
-    如果在mian.ets内删除lazy关键字，执行顺序为：
+    如果在main.ets内删除lazy关键字，执行顺序为：
     
     ```typescript  
         mod1 a executed

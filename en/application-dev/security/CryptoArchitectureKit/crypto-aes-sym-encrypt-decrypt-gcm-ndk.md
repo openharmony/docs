@@ -29,7 +29,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
    Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
 
    - If a small amount of data is to be encrypted, you can use **OH_CryptoSymCipher_Final()** immediately after **OH_CryptoSymCipher_Init()**.
-   - If a large amount of data is to be encrypted, you can call **OH_CryptoSymCipher_Update()** multiple times to [pass in the data by segment](crypto-aes-sym-encrypt-decrypt-gcm-by-segment-ndk.md).
+   - If a large amount of data is to be encrypted, you can call **OH_CryptoSymCipher_Update()** multiple times to pass in the data by segment.
 
 6. Use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the ciphertext.
    - If data has been passed in by **OH_CryptoSymCipher_Update()**, pass in **null** in the **data** parameter of **OH_CryptoSymCipher_Final**.
@@ -50,6 +50,7 @@ In GCM mode, extract the last 16 bytes from the encrypted data as the authentica
 2. Use [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) to update the data (ciphertext) to be decrypted.
 
 3. Use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the plaintext.
+
 
 **Example **
 

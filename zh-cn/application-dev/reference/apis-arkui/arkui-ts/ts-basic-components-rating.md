@@ -149,7 +149,7 @@ onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名  | 类型    |    只读    |    可选      |  说明              |
+| 名称  | 类型    |    只读    |    可选      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | rating | number | 否 | 否 |评分条当前评分数。<br/>默认值：0 |
 | indicator | boolean | 否 | 否 | 评分条是否作为一个指示器。<br/>默认值：false |

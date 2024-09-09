@@ -3,15 +3,15 @@
 
 ## Overview
 
-Provides C interface for the telephony cellular data.
+Defines C APIs for cellular data module.
 
 **Library**: libtelephony_data.so
 
-**System capability** :SystemCapability.Telephony.CellularData
+**System capability**: SystemCapability.Telephony.CellularData
 
 **Since**: 13
 
-**Related module**:[Telephony data](ndk-apis-telephony-data.md)
+**Related module**: [Telephony Data](ndk-apis-telephony-data.md)
 
 
 ## Summary
@@ -19,6 +19,6 @@ Provides C interface for the telephony cellular data.
 
 ### Functions
 
-| Name                                                         | Description                                |
+| Name| Description|
 | -------- | -------- |
-| [OH_Telephony_GetDefaultCellularDataSlotId](ndk-apis-telephony-data.md#oh_telephony_getdefaultcellulardataslotid) | Obtains the default cellular data slot id. |
+| [OH_Telephony_GetDefaultCellularDataSlotId](ndk-apis-telephony-data.md#oh_telephony_getdefaultcellulardataslotid) | Obtains the default SIM card used for mobile data.|

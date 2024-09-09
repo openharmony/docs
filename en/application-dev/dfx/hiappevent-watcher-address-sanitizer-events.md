@@ -17,7 +17,7 @@ The **params** parameter in the event information is described as follows:
 | pid | number | Process ID of the application.|
 | uid | number | User ID of the application.|
 | type | string | Type of the address sanitizer error. For details, see the description of **type**.|
-| external_log | string[] | Path of the error log file.|
+| external_log | string[] | Path of the error log file. If the directory files exceed the threshold (for details, see **log_over_limit**), new log files may fail to be written. Therefore, delete the log files immediately after they are processed.|
 | log_over_limit | boolean | Whether the size of generated log files and existing log files exceeds the upper limit (5 MB). The value **true** indicates that the upper limit is exceeded and logs fail to be written. The value **false** indicates that the upper limit is not exceeded.|
 
 **type**:

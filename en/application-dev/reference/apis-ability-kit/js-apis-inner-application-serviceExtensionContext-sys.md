@@ -2553,3 +2553,73 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
   }
 }
 ```
+
+## ServiceExtensionContext.startUIServiceExtensionAbility<sup>13+<sup>
+startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
+
+Starts a new [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md). This API uses a promise to return the result.
+
+
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+>
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+| Name| Type| Read Only| Optional| Description                |
+| ------ | ---- | ---- | -------------------- | -------------------- |
+| want   | [Want](js-apis-app-ability-want.md) | Yes | No| [Want](js-apis-app-ability-want.md) used to pass the information about the ability to start, such as the ability name and bundle name.|
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+| ID| Error Message                                                             |
+| -------- | ---------------------------------------------------------------------|
+| 201      | The application does not have permission to call the interface.      |
+| 202      | The application is not system-app, can not use system-api.           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | The Ability is not supported.                       |
+| 16000001 | The specified ability does not exist.               |
+| 16000002 | Incorrect ability type.                             |
+| 16000004 | Can not start invisible component.                  |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed.              |
+| 16000008 | The crowdtesting application expires.               |
+| 16000011 | The context does not exist.                         |
+| 16000012 | The application is controlled.                      |
+| 16000013 | The application is controlled by EDM.               |
+| 16000019 | Can not match any component.                        |
+| 16000050 | Internal error.                                     |
+| 16200001 | The caller has been released.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+
+export default class MyServiceExtensionAbility extends ServiceExtensionAbility {
+  onRequest(want: Want, startId: number) {
+    const startWant: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'UIServiceExtensionAbility'
+    }
+    // Start a UIServiceExtensionAbility.
+    this.context.startUIServiceExtensionAbility(startWant).then(() => {
+      console.info('succeeded');
+    }).catch((error: BusinessError) => {
+      console.error(`error code: ${error.code}, error essage : ${error.message}`);
+    })
+  }
+}
+```

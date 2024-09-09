@@ -1,11 +1,11 @@
-# Using Hidebug (C/C++)
+# Using HiDebug (C/C++)
 
 HiDebug provides APIs for application debugging.
 
 ## Available APIs
 | API                         | Description                             |
 | ------------------------------- | --------------------------------- |
-| OH_HiDebug_GetSystemCpuUsage    | Obtains the CPU usage of the system. |
+| OH_HiDebug_GetSystemCpuUsage    | Obtains the CPU usage of the system.|
 | OH_HiDebug_GetAppCpuUsage       | Obtains the CPU usage of an application.      |
 | OH_HiDebug_GetAppThreadCpuUsage | Obtains the CPU usage of all threads of an application.    |
 | OH_HiDebug_FreeThreadCpuUsage   | Releases the thread data structure.               |
@@ -14,13 +14,14 @@ HiDebug provides APIs for application debugging.
 | OH_HiDebug_GetAppMemoryLimit    | Obtains the memory limit of an application.     |
 | OH_HiDebug_StartAppTraceCapture | Starts application trace collection.              |
 | OH_HiDebug_StopAppTraceCapture  | Stops application trace collection.              |
+| OH_HiDebug_GetGraphicsMemory    | Obtains the size of the GPU memory.         |
 
 For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiDebug](../reference/apis-performance-analysis-kit/_hi_debug.md).
 
 ## How to Develop
 The following describes how to add a button in the application and click the button to call the HiDebug APIs.
 
-1. Create a native C++ project and import the **jsoncpp** file to the project. The directory structure is as follows:
+1. Create a native C++ project. The directory structure is as follows:
 
    ```yml
    entry:
@@ -39,7 +40,7 @@ The following describes how to add a button in the application and click the but
                - Index.ets
    ```
 
-2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
+2. In the **CMakeLists.txt** file, add the dependencies.
 
    ```cmake
    # Add libhiappevent_ndk.z.so and libhilog_ndk.z.so (log output). 
@@ -51,12 +52,12 @@ The following describes how to add a button in the application and click the but
    The following calls **OH_HiDebug_GetSystemCpuUsage()** and outputs the return value. For details about how to use other APIs, see [HiDebug](../reference/apis-performance-analysis-kit/_hi_debug.md).
 
    ```c++
-   #include "napi/native_api.h"
-   #include "hilog/log.h"
-   #include "hidebug/hidebug.h"
+   # include "napi/native_api.h"
+   # include "hilog/log.h"
+   # include "hidebug/hidebug.h"
    
-   #undef LOG_TAG
-   #define LOG_TAG "testTag"
+   # undef LOG_TAG
+   # define LOG_TAG "testTag"
    
    static napi_value TestHidebugNdk(napi_env env, napi_callback_info info)
    {
@@ -87,7 +88,7 @@ The following describes how to add a button in the application and click the but
    export const testHidebugNdk: () => void;
    ```
 
-5. Edit the **Index.ets** file.
+5. In the **Index.ets** file, add a click event to the **Text** component. The sample code is as follows:
 
    ```ts
    import testNapi from 'libentry.so'
@@ -120,3 +121,5 @@ The following describes how to add a button in the application and click the but
    ```Text
    09-10 09:40:26.755 17221-17221/com.example.myapplication I A00000/testTag: GetSystemCpuUsage: 0.083904
    ```
+
+<!--no_check-->

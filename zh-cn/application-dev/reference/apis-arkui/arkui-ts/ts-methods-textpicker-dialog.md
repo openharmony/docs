@@ -10,7 +10,9 @@
 >
 > 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTextPickerDialog](../js-apis-arkui-UIContext.md#showtextpickerdialog)来明确UI的执行上下文。
 
-## TextPickerDialog.show
+## TextPickerDialog
+
+### show
 
 static show(options?: TextPickerDialogOptions)
 

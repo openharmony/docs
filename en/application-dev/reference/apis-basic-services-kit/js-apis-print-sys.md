@@ -2,15 +2,14 @@
 
 The **print** module provides APIs for basic print operations.
 
-> **NOTE**
->
+> **NOTE** 
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.print (Print)](./js-apis-print-sys.md).
 
 ## Modules to Import
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 ```
 
 
@@ -234,6 +233,20 @@ Enumerates the print error codes.
 | E_PRINT_INVALID_PRINT_JOB | 13100006 | Invalid print job.|
 | E_PRINT_FILE_IO | 13100007 | Incorrect file input/output.|
 
+## ApplicationEvent<sup>12+</sup>
+
+Enumerates print application events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| APPLICATION_CREATED | 0 | Starts the print application.|
+| APPLICATION_CLOSED_FOR_STARTED | 1 | Closes the print application by clicking **Start**.|
+| APPLICATION_CLOSED_FOR_CANCELED | 2 | Closes the print application by clicking **Cancel**.|
+
 ## PrinterExtensionInfo
 
 Provides the printer extension information.
@@ -268,10 +281,19 @@ Obtains the information of all installed printer extensions. This API uses an as
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryAllPrinterExtensionInfos((err: BusinessError, extensionInfos: print.PrinterExtensionInfo[]) => {
@@ -300,10 +322,19 @@ Obtains the information of all installed printer extensions. This API uses a pro
 | -------- | -------- |
 | Promise&lt;Array&lt;PrinterExtensionInfo&gt;&gt; | Promise used to return the result.used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryAllPrinterExtensionInfos().then((extensionInfos: print.PrinterExtensionInfo[]) => {
@@ -332,10 +363,20 @@ Starts discovering printers with the specified printer extensions. This API uses
 | extensionList | Array&lt;string&gt; | Yes| List of printer extensions to load.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let extensionList: string[] = [];
@@ -361,15 +402,30 @@ Starts discovering printers with the specified printer extensions. This API uses
 
 **System capability**: SystemCapability.Print.PrintFramework
 
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| extensionList | Array&lt;string&gt; | Yes| List of printer extensions to load.|
+
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let extensionList: string[] = [];
@@ -398,10 +454,19 @@ Stops discovering printers with the specified printer extensions. This API uses 
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.stopDiscoverPrinter((err: BusinessError, data : void) => {
@@ -430,10 +495,19 @@ Stops discovering printers with the specified printer extensions. This API uses 
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.stopDiscoverPrinter().then((data : void) => {
@@ -461,10 +535,20 @@ Connects to the specified printer. This API uses an asynchronous callback to ret
 | printerId | string | Yes| Printer ID.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -499,10 +583,20 @@ Connects to the specified printer. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -531,10 +625,20 @@ Disconnects from the specified printer. This API uses an asynchronous callback t
 | printerId | string | Yes| Printer ID.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -569,10 +673,20 @@ Disconnects from the specified printer. This API uses a promise to return the re
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -601,10 +715,20 @@ Queries the printer capability. This API uses an asynchronous callback to return
 | printerId | string | Yes| Printer ID.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -639,10 +763,20 @@ Queries the printer capability. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId: string = 'printerId_32';
@@ -671,10 +805,20 @@ Starts the specified print job. This API uses an asynchronous callback to return
 | jobInfo | PrintJob | Yes| Information about the print job.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobInfo : print.PrintJob = {
@@ -725,10 +869,20 @@ Starts the specified print job. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobInfo : print.PrintJob = {
@@ -773,10 +927,20 @@ Cancels the specified print job, which is on the print queue of the printer. Thi
 | jobId | string | Yes| Print job ID.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '121212';
@@ -811,10 +975,20 @@ Cancels the specified print job, which is on the print queue of the printer. Thi
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '121212';
@@ -843,10 +1017,20 @@ Requests print preview data. This API uses a callback to return the result.
 | jobInfo | PrintJob | Yes| Information about the print job.|
 | callback | Callback&lt;number&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 let jobInfo : print.PrintJob = {
     fdList : [0,1],
@@ -893,10 +1077,20 @@ Requests print preview data. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobInfo : print.PrintJob = {
@@ -941,10 +1135,20 @@ Registers a listener for printer state change events. This API uses a callback t
 | type | 'printerStateChange' | Yes| Listening type. The value is fixed at **'printerStateChange'**.|
 | callback | (state: PrinterState, info: PrinterInfo) => void | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.on('printerStateChange', (state: print.PrinterState, info: print.PrinterInfo) => {
     if (state === null || info === null) {
@@ -975,10 +1179,20 @@ Unregisters the listener for printer state change events. This API uses a callba
 | type | 'printerStateChange' | Yes| Listening type. The value is fixed at **'printerStateChange'**.|
 | callback | Callback&lt;boolean&gt; | No| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.off('printerStateChange', (data: boolean) => {
     console.log('off printerStateChange data : ' + JSON.stringify(data));
@@ -1003,10 +1217,20 @@ Registers a listener for print job state change events. This API uses a callback
 | type | 'jobStateChange' | Yes| Listening type. The value is fixed at **'jobStateChange'**.|
 | callback | (state: PrintJobState, job: PrintJob) => void | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.on('jobStateChange', (state: print.PrintJobState, job: print.PrintJob) => {
     console.log('onJobStateChange, state : ' + JSON.stringify(state) + ', job : ' + JSON.stringify(job));
@@ -1031,10 +1255,20 @@ Unregisters the listener for print job state change events. This API uses a call
 | type | 'jobStateChange' | Yes| Listening type. The value is fixed at **'jobStateChange'**.|
 | callback | Callback&lt;boolean&gt; | No| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.off('jobStateChange', (data: boolean) => {
     console.log('offJobStateChanged data : ' + JSON.stringify(data));
@@ -1059,10 +1293,20 @@ Registers a listener for printer extension information change events. This API u
 | type | 'extInfoChange' | Yes| Listening type. The value is fixed at **'extInfoChange'**.|
 | callback | (extensionId: string, info: string) => void | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.on('extInfoChange', (extensionId: string, info: string) => {
     console.log('onExtInfoChange, entensionId : ' + JSON.stringify(extensionId) + ', info : ' + JSON.stringify(info));
@@ -1087,10 +1331,20 @@ Unregisters the listener for printer extension information change events. This A
 | type | 'extInfoChange' | Yes| Listening type. The value is fixed at **'extInfoChange'**.|
 | callback | Callback&lt;boolean&gt; | No| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 
 print.off('extInfoChange', (data: boolean) => {
     console.log('offExtInfoChange data : ' + JSON.stringify(data));
@@ -1115,10 +1369,20 @@ Adds printers. This API uses an asynchronous callback to return the result.
 | printers | Array&lt;PrinterInfo&gt; | Yes| List of printers to add.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerInfo : print.PrinterInfo = {
@@ -1161,10 +1425,20 @@ Adds printers. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerInfo : print.PrinterInfo = {
@@ -1201,10 +1475,20 @@ Removes printers. This API uses an asynchronous callback to return the result.
 | printerIds | Array&lt;string&gt; | Yes| List of printers to remove.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
@@ -1239,10 +1523,20 @@ Removes printers. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
@@ -1271,10 +1565,20 @@ Updates information about the specified printers. This API uses an asynchronous 
 | printers | Array&lt;PrinterInfo&gt; | Yes| List of printers whose information is to be updated.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerInfo : print.PrinterInfo = {
@@ -1317,10 +1621,20 @@ Updates information about the specified printers. This API uses a promise to ret
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerInfo : print.PrinterInfo = {
@@ -1358,10 +1672,20 @@ Updates the printer state. This API uses an asynchronous callback to return the 
 | state | PrinterState | Yes| Printer state.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
@@ -1398,10 +1722,20 @@ Updates the printer state. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = '1212';
@@ -1433,10 +1767,20 @@ Updates the print job state. This API uses an asynchronous callback to return th
 | subState | PrintJobSubState | Yes| Substate of the print job.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '3434';
@@ -1475,10 +1819,20 @@ Updates the print job state. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '3434';
@@ -1509,10 +1863,20 @@ Updates the printer extension information. This API uses an asynchronous callbac
 | info | string | Yes| New printer extension information.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let info : string = 'WIFI_INACTIVE';
@@ -1547,10 +1911,20 @@ Updates the printer extension information. This API uses a promise to return the
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let info : string = 'WIFI_INACTIVE';
@@ -1581,10 +1955,19 @@ Queries all print jobs. This API uses an asynchronous callback to return the res
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryAllPrintJobs((err: BusinessError, data : void) => {
@@ -1603,7 +1986,7 @@ print.queryAllPrintJobs((err: BusinessError, data : void) => {
 
 queryAllPrintJobs(): Promise&lt;void&gt;
 
-Queries all print jobs. This API uses a promise used to return the result.
+Queries all print jobs. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_PRINT_JOB
 
@@ -1616,10 +1999,19 @@ Queries all print jobs. This API uses a promise used to return the result.
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryAllPrintJobs().then((data : void) => {
@@ -1646,10 +2038,19 @@ Queries all print jobs. This API uses an asynchronous callback to return the res
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;Array&lt;PrintJob&gt;&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryPrintJobList((err: BusinessError, printJobs : print.PrintJob[]) => {
@@ -1665,7 +2066,7 @@ print.queryPrintJobList((err: BusinessError, printJobs : print.PrintJob[]) => {
 
 queryPrintJobList(): Promise&lt;Array&lt;PrintJob&gt;&gt;
 
-Queries all print jobs. This API uses a promise used to return the result.
+Queries all print jobs. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_PRINT_JOB
 
@@ -1678,10 +2079,19 @@ Queries all print jobs. This API uses a promise used to return the result.
 | -------- | -------- |
 | Promise&lt;Array&lt;PrintJob&gt;&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 print.queryPrintJobList().then((printJobs : print.PrintJob[]) => {
@@ -1709,10 +2119,20 @@ Queries a print job by ID. This API uses an asynchronous callback to return the 
 | jobId | string | Yes| ID of the print job.|
 | callback | AsyncCallback&lt;PrintJob&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
@@ -1747,10 +2167,20 @@ Queries a print job by ID. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise&lt;PrintJob&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
@@ -1781,10 +2211,20 @@ Starts to obtain the print file. This API uses an asynchronous callback to retur
 | fd | number | Yes| File descriptor.|
 | onFileStateChanged | Callback&lt;PrintFileCreationState&gt; | Yes| Callback for updating the file state.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string= '1';
@@ -1846,10 +2286,20 @@ Notifies the print service of the spooler shutdown information. This API uses an
 | type | 'spooler_closed_for_cancelled' \| 'spooler_closed_for_started' | Yes| Spooler shutdown information.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
@@ -1866,7 +2316,7 @@ print.notifyPrintService(jobId, 'spooler_closed_for_started', (err: BusinessErro
 
 notifyPrintService(jobId: string, type: 'spooler_closed_for_cancelled' | 'spooler_closed_for_started'): Promise&lt;void&gt;
 
-Notifies the print service of the print spooler shutdown information. This API uses a promise to return the result.
+Notifies the print service of the spooler shutdown information. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_PRINT_JOB
 
@@ -1885,10 +2335,20 @@ Notifies the print service of the print spooler shutdown information. This API u
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
@@ -1896,5 +2356,137 @@ print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void)
     console.log('notifyPrintService data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
     console.log('notifyPrintService error : ' + JSON.stringify(error));
+})
+```
+
+## getAddedPrinters<sup>12+</sup>
+
+getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
+
+Obtains the list of printers that have been added to the CUPS. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.getAddedPrinters().then((printers: string[]) => {
+    console.log('getAddedPrinters success ' + JSON.stringify(printers));
+    // ...
+}).catch((error: BusinessError) => {
+    console.log('failed to getAddedPrinters bacause ' + JSON.stringify(error));
+})
+```
+
+## getPrinterInfoById<sup>12+</sup>
+
+getPrinterInfoById(printerId: string): Promise&lt;PrinterInfo&gt;
+
+Obtains printer information based on the printer ID. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| printerId | string | Yes| Printer ID.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;PrinterInfo&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerId : string = '1';
+print.getPrinterInfoById(printerId).then((printerInfo : print.PrinterInfo) => {
+    console.log('getPrinterInfoById data : ' + JSON.stringify(printerInfo));
+}).catch((error: BusinessError) => {
+    console.log('getPrinterInfoById error : ' + JSON.stringify(error));
+})
+```
+
+## notifyPrintServiceEvent<sup>12+</sup>
+
+notifyPrintServiceEvent(event: ApplicationEvent): Promise&lt;void&gt;
+
+Notifies the print service of the print application events. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| event | ApplicationEvent | Yes| Print application events.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let event : print.ApplicationEvent = print.ApplicationEvent.APPLICATION_CREATED;
+print.notifyPrintServiceEvent(event).then((data : void) => {
+    console.log('notifyPrintServiceEvent data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.log('notifyPrintServiceEvent error : ' + JSON.stringify(error));
 })
 ```
