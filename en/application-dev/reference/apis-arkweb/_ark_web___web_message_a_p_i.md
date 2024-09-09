@@ -15,15 +15,15 @@ Defines a native API struct of the post message data. Before calling an API, you
 
 ### Member Variables
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| size_t [size](#size) | Size of the struct. | 
-| [ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr)(\* [createWebMessage](#createwebmessage) )() | Pointer to the message to be created. | 
-| void(\* [destroyWebMessage](#destroywebmessage) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) \*webMessage) | Pointer to the message to be destroyed. | 
-| void(\* [setType](#settype) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype) type) | Pointer to the message type to be set. | 
-| [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype)(\* [getType](#gettype) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage) | Pointer to the message type to be get. | 
-| void(\* [setData](#setdata) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, void \*data, size_t dataLength) | Pointer to the data to be set. | 
-| void \*(\* [getData](#getdata) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, size_t \*dataLength) | Pointer to the data to be obtained. | 
+| size_t [size](#size) | Size of the struct. |
+| [ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr)(\* [createWebMessage](#createwebmessage) )() | Pointer to the message to create. |
+| void(\* [destroyWebMessage](#destroywebmessage) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) \*webMessage) | Pointer to the message to destroy. |
+| void(\* [setType](#settype) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype) type) | Pointer to the message type to set. |
+| [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype)(\* [getType](#gettype) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage) | Pointer to the message type to get. |
+| void(\* [setData](#setdata) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, void \*data, size_t dataLength) | Pointer to the data to set. |
+| void \*(\* [getData](#getdata) )([ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage, size_t \*dataLength) | Pointer to the data to obtain. |
 
 
 ## Member Variable Description
@@ -36,7 +36,7 @@ ArkWeb_WebMessagePtr(* ArkWeb_WebMessageAPI::createWebMessage) ()
 ```
 **Description**
 
-Pointer to the message to be created.
+Pointer to the message to create.
 
 **Returns**
 
@@ -50,13 +50,13 @@ void(* ArkWeb_WebMessageAPI::destroyWebMessage) (ArkWeb_WebMessagePtr *webMessag
 ```
 **Description**
 
-Pointer to the message to be destroyed.
+Pointer to the message to destroy.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| webMessage | Message to be destroyed. | 
+| webMessage | Message to be destroyed. |
 
 
 ### getData
@@ -66,14 +66,14 @@ void*(* ArkWeb_WebMessageAPI::getData) (ArkWeb_WebMessagePtr webMessage, size_t 
 ```
 **Description**
 
-Pointer to the data to be obtained.
+Pointer to the data to obtain.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| webMessage | Pointer to the message struct. | 
-| dataLength | Data length, which is an output parameter. | 
+| webMessage | Pointer to the message struct. |
+| dataLength | Data length, which is an output parameter. |
 
 **Returns**
 
@@ -87,13 +87,13 @@ ArkWeb_WebMessageType(* ArkWeb_WebMessageAPI::getType) (ArkWeb_WebMessagePtr web
 ```
 **Description**
 
-Pointer to the message type to be get.
+Pointer to the message type to get.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| webMessage | Pointer to the message struct. | 
+| webMessage | Pointer to the message struct. |
 
 **Returns**
 
@@ -107,15 +107,15 @@ void(* ArkWeb_WebMessageAPI::setData) (ArkWeb_WebMessagePtr webMessage, void *da
 ```
 **Description**
 
-Pointer to the data to be set.
+Pointer to the data to set.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| webMessage | Pointer to the message struct. | 
-| data | Pointer to the data. | 
-| dataLength | Data length. | 
+| webMessage | Pointer to the message struct. |
+| data | Pointer to the data. |
+| dataLength | Data length. |
 
 
 ### setType
@@ -125,14 +125,14 @@ void(* ArkWeb_WebMessageAPI::setType) (ArkWeb_WebMessagePtr webMessage, ArkWeb_W
 ```
 **Description**
 
-Pointer to the message type to be set.
+Pointer to the message type to set.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| webMessage | Pointer to the message struct. | 
-| type | Message type. | 
+| webMessage | Pointer to the message struct. |
+| type | Message type. |
 
 
 ### size
@@ -143,3 +143,5 @@ size_t ArkWeb_WebMessageAPI::size
 **Description**
 
 Size of the struct.
+
+<!--no_check-->

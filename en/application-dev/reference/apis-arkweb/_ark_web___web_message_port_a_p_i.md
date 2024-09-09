@@ -15,12 +15,12 @@ Defines a native API struct of the post message. Before calling an API, you are 
 
 ### Member Variables
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| size_t [size](#size) | Size of the struct. | 
-| [ArkWeb_ErrorCode](_web.md#arkweb_errorcode)(\* [postMessage](#postmessage) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag, const [ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage) | Pointer to the function used to send the message to the HTML page. | 
-| void(\* [close](#close) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag) | Pointer to the function used to close the message port. | 
-| void(\* [setMessageEventHandler](#setmessageeventhandler) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag, [ArkWeb_OnMessageEventHandler](_web.md#arkweb_onmessageeventhandler) messageEventHandler, void \*userData) | Pointer to the callback used to set the HTML messages received. | 
+| size_t [size](#size) | Size of the struct. |
+| [ArkWeb_ErrorCode](_web.md#arkweb_errorcode)(\* [postMessage](#postmessage) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag, const [ArkWeb_WebMessagePtr](_web.md#arkweb_webmessageptr) webMessage) | Pointer to the function used to send the message to the HTML page. |
+| void(\* [close](#close) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag) | Pointer to the function used to close the message port. |
+| void(\* [setMessageEventHandler](#setmessageeventhandler) )(const [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) webMessagePort, const char \*webTag, [ArkWeb_OnMessageEventHandler](_web.md#arkweb_onmessageeventhandler) messageEventHandler, void \*userData) | Pointer to the callback used to set the HTML messages received. |
 
 
 ## Member Variable Description
@@ -37,10 +37,10 @@ Pointer to the function used to close the message port.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| webMessagePort | Pointer to the message port. | 
-| webTag | Name of the **Web** component. | 
+| webMessagePort | Pointer to the message port. |
+| webTag | Name of the **Web** component. |
 
 
 ### postMessage
@@ -54,11 +54,11 @@ Pointer to the function used to send the message to the HTML page.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| webMessagePort | Pointer to the message port. | 
-| webTag | Name of the **Web** component. | 
-| webMessage | Message to be sent. | 
+| webMessagePort | Pointer to the message port. |
+| webTag | Name of the **Web** component. |
+| webMessage | Message to send. |
 
 **Returns**
 
@@ -76,12 +76,12 @@ Pointer to the callback used to set the HTML messages received.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| webMessagePort | Pointer to the message port. | 
-| webTag | Name of the **Web** component. | 
-| messageEventHandler | Callback used to handle messages. | 
-| userData | User-defined data. | 
+| webMessagePort | Pointer to the message port. |
+| webTag | Name of the **Web** component. |
+| messageEventHandler | Callback used to handle messages. |
+| userData | User-defined data. |
 
 
 ### size
@@ -92,3 +92,5 @@ size_t ArkWeb_WebMessagePortAPI::size
 **Description**
 
 Size of the struct.
+
+<!--no_check-->
