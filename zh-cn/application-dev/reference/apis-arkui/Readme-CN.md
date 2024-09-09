@@ -373,14 +373,14 @@
     <!--Del-->
     - [枚举说明 (系统接口)](arkui-ts/ts-appendix-enums-sys.md)
     <!--DelEnd-->
-  <!--Del-->
+    <!--Del-->
   - 其他类别
     - [EffectComponent (系统接口)](arkui-ts/ts-container-effectcomponent-sys.md)
     - [IsolatedComponent (系统接口)](arkui-ts/ts-container-isolated-component-sys.md)
     - [RemoteWindow (系统接口)](arkui-ts/ts-basic-components-remotewindow-sys.md)
     - [PluginComponent (系统接口)](arkui-ts/ts-basic-components-plugincomponent-sys.md)
     - [UIExtensionComponent (系统接口)](arkui-ts/ts-container-ui-extension-component-sys.md)
-  <!--DelEnd-->
+    <!--DelEnd-->
   - 已停止维护的组件与接口
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
@@ -398,6 +398,7 @@
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [WindowManager_NativeModule](_window_manager___native_module.md)
+    - [Native Accessibility](arkui_native_interface_accessibility.md)
   - 头文件
     - [drag_and_drop.h](drag__and__drop_8h.md)
     - [drawable_descriptor.h](drawable__descriptor_8h.md)
@@ -414,6 +415,7 @@
     - [ui_input_event.h](ui__input__event_8h.md)
     - [oh_window_comm.h](oh__window__comm_8h.md)
     - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
+    - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
   - 结构体
     - [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md)
     - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
