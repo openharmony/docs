@@ -34,7 +34,7 @@
   "app": {
     "icon": "$media:app_icon",
     "label": "$string:app_name"
-    ...
+    // ...
   }
 }
 ```
@@ -48,7 +48,7 @@ Stage模型支持对组件配置入口图标和入口标签。入口图标和入
 ```json
 {
   "module": {
-    ...
+    // ...
     "abilities": [
       {
         "icon": "$media:icon",
