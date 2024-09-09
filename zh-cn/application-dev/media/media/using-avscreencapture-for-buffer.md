@@ -90,7 +90,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
     ```
 
-5. 回调函数的设置，主要监听录屏过程中的错误事件的发生,音频流和视频流数据的产生事件。
+5. 回调函数的设置，主要监听录屏过程中的错误事件的发生，音频流和视频流数据的产生事件。
 
     ```c++
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
@@ -116,7 +116,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
-8. 在回调OnBufferAvailable()中获取并处理音频视频原始码流数据.
+8. 在回调OnBufferAvailable()中获取并处理音频视频原始码流数据。
 
     ```c++
     OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
