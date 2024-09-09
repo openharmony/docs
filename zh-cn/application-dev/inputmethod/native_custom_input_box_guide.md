@@ -1,113 +1,113 @@
-# ×Ô»æ±à¼­¿ò¿ª·¢Ö¸µ¼ (C/C++)
+# è‡ªç»˜ç¼–è¾‘æ¡†å¼€å‘æŒ‡å¯¼ (C/C++)
 
 
-## ³¡¾°½éÉÜ
+## åœºæ™¯ä»‹ç»
 
-IME KitÖ§³Ö¿ª·¢ÕßÊ¹ÓÃ×Ô»æ×é¼ş¿ª·¢×Ô¶¨Òå±à¼­¿ò£¬ÓëÊäÈë·¨Ó¦ÓÃ½»»¥£¬°üÀ¨ÏÔÊ¾¡¢Òş²ØÊäÈë·¨£¬½ÓÊÕÀ´×ÔÊäÈë·¨Ó¦ÓÃµÄÎÄ±¾±à¼­²Ù×÷Í¨ÖªµÈ£¬±¾ÎÄµµ½éÉÜ¿ª·¢ÕßÈçºÎÊ¹ÓÃC/C++Íê³É´Ë¹¦ÄÜ¿ª·¢¡£
+IME Kitæ”¯æŒå¼€å‘è€…ä½¿ç”¨è‡ªç»˜ç»„ä»¶å¼€å‘è‡ªå®šä¹‰ç¼–è¾‘æ¡†ï¼Œä¸è¾“å…¥æ³•åº”ç”¨äº¤äº’ï¼ŒåŒ…æ‹¬æ˜¾ç¤ºã€éšè—è¾“å…¥æ³•ï¼Œæ¥æ”¶æ¥è‡ªè¾“å…¥æ³•åº”ç”¨çš„æ–‡æœ¬ç¼–è¾‘æ“ä½œé€šçŸ¥ç­‰ï¼Œæœ¬æ–‡æ¡£ä»‹ç»å¼€å‘è€…å¦‚ä½•ä½¿ç”¨C/C++å®Œæˆæ­¤åŠŸèƒ½å¼€å‘ã€‚
 
-## ½Ó¿ÚËµÃ÷
+## æ¥å£è¯´æ˜
 
-ÏêÏ¸½Ó¿ÚËµÃ÷Çë²Î¿¼[InputMethod½Ó¿ÚÎÄµµ](../reference/apis-ime-kit/_input_method.md)¡£
+è¯¦ç»†æ¥å£è¯´æ˜è¯·å‚è€ƒ[InputMethodæ¥å£æ–‡æ¡£](../reference/apis-ime-kit/_input_method.md)ã€‚
 
-## Ìí¼Ó¶¯Ì¬Á´½Ó¿â
+## æ·»åŠ åŠ¨æ€é“¾æ¥åº“
 
-CMakeLists.txtÖĞÌí¼ÓÒÔÏÂlib¡£
+CMakeLists.txtä¸­æ·»åŠ ä»¥ä¸‹libã€‚
 
 ```txt
 libohinputmethod.z.so
 ```
 
-## ÒıÓÃÍ·ÎÄ¼ş
+## å¼•ç”¨å¤´æ–‡ä»¶
 
 ```c
 #include <inputmethod/inputmethod_controller_capi.h>
 ```
 
 
-## °ó¶¨ÊäÈë·¨
+## ç»‘å®šè¾“å…¥æ³•
 
-¿ª·¢ÕßĞèÒªÔÚÊäÈë¿ò»ñ½¹Ê±£¬Í¨¹ıµ÷ÓÃ½Ó¿Ú[OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach)°ó¶¨ÊäÈë·¨£¬°ó¶¨³É¹¦ºóÓÃ»§¿ÉÒÔÍ¨¹ıÊäÈë·¨ÊäÈëÎÄ×Ö¡£
+å¼€å‘è€…éœ€è¦åœ¨è¾“å…¥æ¡†è·ç„¦æ—¶ï¼Œé€šè¿‡è°ƒç”¨æ¥å£[OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach)ç»‘å®šè¾“å…¥æ³•ï¼Œç»‘å®šæˆåŠŸåç”¨æˆ·å¯ä»¥é€šè¿‡è¾“å…¥æ³•è¾“å…¥æ–‡å­—ã€‚
 
-1. ´´½¨InputMethod_TextEditorProxyÊµÀı£¬Ê¾Àı´úÂëÈçÏÂËùÊ¾£º
+1. åˆ›å»ºInputMethod_TextEditorProxyå®ä¾‹ï¼Œç¤ºä¾‹ä»£ç å¦‚ä¸‹æ‰€ç¤ºï¼š
 
    ```c
-   // ´´½¨InputMethod_TextEditorProxyÊµÀı
+   // åˆ›å»ºInputMethod_TextEditorProxyå®ä¾‹
    InputMethod_TextEditorProxy *textEditorProxy = OH_TextEditorProxy_Create();
    ```
    
-3. ´´½¨InputMethod_AttachOptionsÊµÀı£¬ÉèÖÃ°ó¶¨ÊäÈë·¨Ê±µÄÑ¡Ïî¡£Ê¾Àı´úÂëÈçÏÂËùÊ¾£º
+3. åˆ›å»ºInputMethod_AttachOptionså®ä¾‹ï¼Œè®¾ç½®ç»‘å®šè¾“å…¥æ³•æ—¶çš„é€‰é¡¹ã€‚ç¤ºä¾‹ä»£ç å¦‚ä¸‹æ‰€ç¤ºï¼š
 
    ```c
-   // ´´½¨InputMethod_AttachOptionsÊµÀı£¬Ñ¡ÏîshowKeyboardÓÃÓÚÖ¸¶¨´Ë´Î°ó¶¨³É¹¦ºóÊÇ·ñÏÔÊ¾¼üÅÌ£¬´Ë´¦ÒÔÄ¿±êÏÔÊ¾¼üÅÌÎªÀı
+   // åˆ›å»ºInputMethod_AttachOptionså®ä¾‹ï¼Œé€‰é¡¹showKeyboardç”¨äºæŒ‡å®šæ­¤æ¬¡ç»‘å®šæˆåŠŸåæ˜¯å¦æ˜¾ç¤ºé”®ç›˜ï¼Œæ­¤å¤„ä»¥ç›®æ ‡æ˜¾ç¤ºé”®ç›˜ä¸ºä¾‹
    bool showKeyboard = true;
    InputMethod_AttachOptions *options = OH_AttachOptions_Create(showKeyboard);
    ```
 
-4. µ÷ÓÃOH_InputMethodController_Attach·¢Æğ°ó¶¨ÊäÈë·¨·şÎñ£¬µ÷ÓÃ³É¹¦ºó£¬¿ÉÒÔ»ñÈ¡µ½ÓÃÓÚºÍÊäÈë·¨½»»¥µÄInputMethod_InputMethodProxy¡£Ê¾Àı´úÂëÈçÏÂËùÊ¾£º
+4. è°ƒç”¨OH_InputMethodController_Attachå‘èµ·ç»‘å®šè¾“å…¥æ³•æœåŠ¡ï¼Œè°ƒç”¨æˆåŠŸåï¼Œå¯ä»¥è·å–åˆ°ç”¨äºå’Œè¾“å…¥æ³•äº¤äº’çš„InputMethod_InputMethodProxyã€‚ç¤ºä¾‹ä»£ç å¦‚ä¸‹æ‰€ç¤ºï¼š
 
    ```c
    InputMethod_InputMethodProxy *inputMethodProxy = nullptr;
-   // ·¢Æğ°ó¶¨ÇëÇó
+   // å‘èµ·ç»‘å®šè¯·æ±‚
    if (OH_InputMethodController_Attach(textEditorProxy, options, &inputMethodProxy) != InputMethod_ErrorCode::IME_ERR_OK) {
        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "Attach failed!");
    }
    ```
 
-## ÏÔÊ¾/Òş²ØÃæ°å¹¦ÄÜ
+## æ˜¾ç¤º/éšè—é¢æ¿åŠŸèƒ½
 
-°ó¶¨³É¹¦ºó£¬¿ÉÒÔÊ¹ÓÃ»ñÈ¡µ½µÄ[InputMethod_InputMethodProxy](../reference/apis-ime-kit/_input_method.md#inputmethod_inputmethodproxy)¶ÔÏóÏòÊäÈë·¨·¢ËÍÏûÏ¢¡£Ê¾Àı´úÂëÈçÏÂËùÊ¾£º
+ç»‘å®šæˆåŠŸåï¼Œå¯ä»¥ä½¿ç”¨è·å–åˆ°çš„[InputMethod_InputMethodProxy](../reference/apis-ime-kit/_input_method.md#inputmethod_inputmethodproxy)å¯¹è±¡å‘è¾“å…¥æ³•å‘é€æ¶ˆæ¯ã€‚ç¤ºä¾‹ä»£ç å¦‚ä¸‹æ‰€ç¤ºï¼š
 
 ```c
-// ÏÔÊ¾¼üÅÌ
+// æ˜¾ç¤ºé”®ç›˜
 if (OH_InputMethodProxy_ShowKeyboard(inputMethodProxy) != InputMethod_ErrorCode::IME_ERR_OK) {
     OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "ShowKeyboard failed!");
 }
-// Òş²Ø¼üÅÌ
+// éšè—é”®ç›˜
 if (OH_InputMethodProxy_HideKeyboard(inputMethodProxy) != InputMethod_ErrorCode::IME_ERR_OK) {
     OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "HideKeyboard failed!");
 }
-// Í¨ÖªÊäÈë¿òÅäÖÃĞÅÏ¢±ä»¯
+// é€šçŸ¥è¾“å…¥æ¡†é…ç½®ä¿¡æ¯å˜åŒ–
 if (OH_InputMethodProxy_NotifyConfigurationChange(inputMethodProxy, InputMethod_EnterKeyType::IME_ENTER_KEY_GO, InputMethod_TextInputType::IME_TEXT_INPUT_TYPE_TEXT) != InputMethod_ErrorCode::IME_ERR_OK) {
     OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "NotifyConfigurationChange failed!");
 }
 ```
 
-## ¼àÌıÊäÈë·¨Ó¦ÓÃµÄÇëÇó/Í¨Öª
+## ç›‘å¬è¾“å…¥æ³•åº”ç”¨çš„è¯·æ±‚/é€šçŸ¥
 
-1. ĞèÒªÏÈÊµÏÖ¶ÔÊäÈë·¨Ó¦ÓÃ·¢ËÍµÄÇëÇó»òÍ¨ÖªµÄÏìÓ¦´¦Àíº¯Êı£¬Ê¾Àı´úÂëÈçÏÂËùÊ¾£º
+1. éœ€è¦å…ˆå®ç°å¯¹è¾“å…¥æ³•åº”ç”¨å‘é€çš„è¯·æ±‚æˆ–é€šçŸ¥çš„å“åº”å¤„ç†å‡½æ•°ï¼Œç¤ºä¾‹ä»£ç å¦‚ä¸‹æ‰€ç¤ºï¼š
 
    ```c
-   // ÊµÏÖInputMethod_TextEditorProxyÖĞµÄÊäÈë·¨Ó¦ÓÃÊÂ¼şÏìÓ¦º¯Êı
+   // å®ç°InputMethod_TextEditorProxyä¸­çš„è¾“å…¥æ³•åº”ç”¨äº‹ä»¶å“åº”å‡½æ•°
    void GetTextConfig(InputMethod_TextEditorProxy *textEditorProxy, InputMethod_TextConfig *config)
    {
-       // ´¦ÀíÊäÈë·¨·¢ËÍµÄ»ñÈ¡ÊäÈë¿òÅäÖÃÇëÇó
+       // å¤„ç†è¾“å…¥æ³•å‘é€çš„è·å–è¾“å…¥æ¡†é…ç½®è¯·æ±‚
    }
    void InsertText(InputMethod_TextEditorProxy *textEditorProxy, const char16_t *text, size_t length)
    {
-       // ´¦ÀíÊäÈë·¨·¢ËÍµÄ²åÈëÎÄ±¾ÇëÇó
+       // å¤„ç†è¾“å…¥æ³•å‘é€çš„æ’å…¥æ–‡æœ¬è¯·æ±‚
    }
    void DeleteForward(InputMethod_TextEditorProxy *textEditorProxy, int32_t length)
    {
-       // ´¦ÀíÊäÈë·¨·¢ËÍµÄÉ¾³ıÎÄ±¾ÇëÇó
+       // å¤„ç†è¾“å…¥æ³•å‘é€çš„åˆ é™¤æ–‡æœ¬è¯·æ±‚
    }
    // ......
    ```
 
-2. ½«ÊµÏÖºóµÄÏìÓ¦º¯Êı£¬ÉèÖÃµ½[InputMethod_TextEditorProxy](../reference/apis-ime-kit/_input_method.md#inputmethod_texteditorproxy)ÖĞ£¬ÔÙÍ¨¹ı°ó¶¨ÊäÈë·¨Ê±µ÷ÓÃµÄ[OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach)½«ÆäÉèÖÃµ½ÊäÈë·¨¿ò¼ÜÖĞ£¬Íê³É¼àÌı×¢²á¡£Ê¾Àı´úÂëÈçÏÂËùÊ¾
+2. å°†å®ç°åçš„å“åº”å‡½æ•°ï¼Œè®¾ç½®åˆ°[InputMethod_TextEditorProxy](../reference/apis-ime-kit/_input_method.md#inputmethod_texteditorproxy)ä¸­ï¼Œå†é€šè¿‡ç»‘å®šè¾“å…¥æ³•æ—¶è°ƒç”¨çš„[OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach)å°†å…¶è®¾ç½®åˆ°è¾“å…¥æ³•æ¡†æ¶ä¸­ï¼Œå®Œæˆç›‘å¬æ³¨å†Œã€‚ç¤ºä¾‹ä»£ç å¦‚ä¸‹æ‰€ç¤º
 
    ```c
-   // ½«ÊµÏÖºÃµÄÏìÓ¦´¦Àíº¯ÊıÉèÖÃµ½InputMethod_TextEditorProxyÖĞ
+   // å°†å®ç°å¥½çš„å“åº”å¤„ç†å‡½æ•°è®¾ç½®åˆ°InputMethod_TextEditorProxyä¸­
    OH_TextEditorProxy_SetGetTextConfigFunc(textEditorProxy, GetTextConfig);
    OH_TextEditorProxy_SetInsertTextFunc(textEditorProxy, InsertText);
    OH_TextEditorProxy_SetDeleteForwardFunc(textEditorProxy, DeleteForward);
    ```
 
-## ½â°óÊäÈë·¨
+## è§£ç»‘è¾“å…¥æ³•
 
-µ±±à¼­¿òÊ§½¹£¬ĞèÒª½áÊøÊ¹ÓÃÊäÈë·¨£¬Í¨¹ı½Ó¿Ú[OH_InputMethodController_Detach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_detach)ÓëÊäÈë·¨¿ò¼Ü½â°ó¡£
+å½“ç¼–è¾‘æ¡†å¤±ç„¦ï¼Œéœ€è¦ç»“æŸä½¿ç”¨è¾“å…¥æ³•ï¼Œé€šè¿‡æ¥å£[OH_InputMethodController_Detach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_detach)ä¸è¾“å…¥æ³•æ¡†æ¶è§£ç»‘ã€‚
 
 ```c
-// ·¢Æğ½â°óÇëÇó
+// å‘èµ·è§£ç»‘è¯·æ±‚
 if (OH_InputMethodController_Detach(inputMethodProxy) != InputMethod_ErrorCode::IME_ERR_OK) {
     OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "Detach failed!");
 }
