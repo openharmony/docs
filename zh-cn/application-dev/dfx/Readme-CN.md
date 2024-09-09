@@ -47,7 +47,7 @@
   - [使用HiDebug获取调试信息（ArkTS）](hidebug-guidelines-arkts.md)
   - [使用HiDebug获取调试信息（C/C++）](hidebug-guidelines-ndk.md)
 - HiCollie使用指导
-  - [使用HiCollie检测业务线程卡死卡顿问题（C/C++）](hiicollie-guidelines-ndk.md)
+  - [使用HiCollie检测业务线程卡死卡顿问题（C/C++）](hicollie-guidelines-ndk.md)
 - 错误管理
   - [错误管理开发指导](errormanager-guidelines.md)
   - [应用恢复开发指导](apprecovery-guidelines.md)
