@@ -19,7 +19,7 @@
 4. 调用[X509Cert.getPublicKey](../../reference/apis-device-certificate-kit/js-apis-cert.md#getpublickey)获取证书中的公钥，并调用[X509Cert.verify](../../reference/apis-device-certificate-kit/js-apis-cert.md#verify)校验签名。
    示例为自验签场景，因此获取的是本证书中的公钥。应用须结合自身场景获取用于验签的公钥。
 
-5. 调用[X509Cert.checkValidityWithDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkvaliditywithdate)，校验证书有效期。
+5. 调用[X509Cert.checkValidityWithDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#checkvaliditywithdate)校验证书有效期。
    入参date用于确认此日期是否在X509证书有效期内。
 
 ```ts
