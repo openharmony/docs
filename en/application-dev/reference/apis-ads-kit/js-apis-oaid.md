@@ -32,7 +32,7 @@ Obtains an OAID. This API uses a promise to return the result.
 
 | Type| Description| 
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the OAID.<br>1. If the application has configured the permission and obtained user authorization, the OAID is returned.<br>2. If the application has configured the permission but not obtained user authorization, 00000000-0000-0000-0000-000000000000 is returned.<br>3. If the application has not configured the permission, 00000000-0000-0000-0000-000000000000 is returned.| 
+| Promise&lt;string&gt; | Promise used to return the OAID.<br>1. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is allowed, the OAID is returned.<br>2. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is disallowed, 00000000-0000-0000-0000-000000000000 is returned.<br>3. If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.| 
 
 **Error codes**
 
@@ -77,7 +77,7 @@ Obtains an OAID. This API uses an asynchronous callback to return the result.
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the OAID.<br>1. If the application has configured the permission and obtained user authorization, the OAID is returned.<br>2. If the application has configured the permission but not obtained user authorization, 00000000-0000-0000-0000-000000000000 is returned.<br>3. If the application has not configured the permission, 00000000-0000-0000-0000-000000000000 is returned.| 
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the OAID.<br>1. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the is allowed, the OAID is returned.<br>2. If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is disallowed, 00000000-0000-0000-0000-000000000000 is returned.<br>3. If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.| 
 
 
 **Error codes**
