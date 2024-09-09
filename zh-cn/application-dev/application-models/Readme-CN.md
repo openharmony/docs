@@ -132,7 +132,6 @@
     - [LifecycleService接口切换](lifecycleservice-switch.md)
     - [LifecycleData接口切换](lifecycledata-switch.md)
     - [DataAbilityHelper接口切换](dataabilityhelper-switch.md)
-    - [mediaLibrary接口切换](medialibrary-switch.md)
     - [request接口切换](request-switch.md)
     - [resourceManager接口切换](resourcemanager-switch.md)
     - [window接口切换](window-switch.md)
