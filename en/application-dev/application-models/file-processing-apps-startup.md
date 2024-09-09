@@ -89,7 +89,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
     ```
 
 4. Call the API to start the target application.
-    
+   
     ```ts
     // xxx.ets
     export default class EntryAbility extends UIAbility {

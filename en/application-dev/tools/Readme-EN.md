@@ -10,7 +10,7 @@
 - [Advanced Notification Manager](anm-tool.md)
 - [Enterprise Device Manager](edm-tool.md)
 - [restool](restool.md)<!--Del-->
-- [Low Level Debugger](lldb-tool.md)<!--DelEnd-->
+- [LLDB](lldb-tool.md)<!--DelEnd-->
 - [param](param-tool.md)
 - Command Line Utilities
   - [Toybox](toybox.md)

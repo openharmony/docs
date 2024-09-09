@@ -44,11 +44,11 @@
       - [Using App Linking for Application Redirection](app-linking-startup.md)
       <!--DelEnd-->
       - [Switching from Explicit Want Redirection to Linking Redirection](uiability-startup-adjust.md)
-      - [Application URI Description] (app-uri-config.md)
+      - [Application URI Description](app-uri-config.md)
     - Common Intent Redirection
       - [Starting an Application of the Specified Type](start-intent-panel.md)
-      - [Starting an Image Editing Application with PhotoEditorExtensionAbility to Edit an Image](photoEditorExtensionAbility.md)
-      - [Using startAbility to Start a File Application](file-processing-apps-startup.md)
+      - [Starting an Image Editing Application](photoEditorExtensionAbility.md)
+      - [Starting a File Application](file-processing-apps-startup.md)
     - [Starting a System Application](system-app-startup.md)
   - [Process Model (Stage Model)](process-model-stage.md)
   - [Thread Model (Stage Model)](thread-model-stage.md)

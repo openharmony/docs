@@ -13,7 +13,7 @@
   - [Invoking Frontend Page Functions on the Application](web-in-app-frontend-page-function-invoking.md)
   - [Invoking Application Functions on the Frontend Page](web-in-page-app-function-invoking.md)
   - [Establishing a Data Channel Between the Application and Frontend Page](web-app-page-data-channel.md)
-  - [Mutual Invoking (C/C++) Between the Application Side and Frontend Pages](arkweb-ndk-jsbridge.md)
+  - [Mutual Invoking Between the Application Side and Frontend Pages (C/C++)](arkweb-ndk-jsbridge.md)
 - Managing Web Page Interactions
   - [Implementing Nested Scrolling](web-nested-scrolling.md)
 - Managing Cyber Security and Privacy for Web Components
