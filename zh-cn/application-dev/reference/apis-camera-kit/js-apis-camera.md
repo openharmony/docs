@@ -2090,13 +2090,9 @@ getPreviewRotation(imageRotation: ImageRotation): imageRotation
 
 获取预览旋转角度。
 
-> **说明：**
->
-> 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）
->
-> 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
->
-> 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致
+- 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
 
 
 
@@ -2126,7 +2122,7 @@ getPreviewRotation(imageRotation: ImageRotation): imageRotation
 **示例：**
 
 ```ts
-function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): void {
+function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
   let previewRotation: camera.ImageRotation;
   try {
     previewRotation = previewOutput.getPreviewRotation(imageRotation);
@@ -2140,13 +2136,9 @@ function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotati
 }
 ```
 ### setPreviewRotation<sup>12+</sup>
-setPreviewRotation(previewRotation: imagerotation, isDisplayLocked?: boolean): void
+setPreviewRotation(previewRotation: Imagerotation, isDisplayLocked?: boolean): void
 
 设置预览旋转角度。
-
-> **说明：**
->
-> 当前注册监听接口，不支持在on监听的回调方法里，调用off注销回调。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2154,7 +2146,7 @@ setPreviewRotation(previewRotation: imagerotation, isDisplayLocked?: boolean): v
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| previewRotation | ImageRotation  | 是   | 预览旋转角度 |
+| previewRotation | [ImageRotation](#imagerotation)  | 是   | 预览旋转角度 |
 | isDisplayLocked | boolean  | 否   | 是否旋转锁定 |
 
 **错误码：**
@@ -3217,13 +3209,9 @@ getPhotoRotation(imageRotation: ImageRotation): imageRotation
 
 获取拍照旋转角度。
 
-> **说明：**
->
-> 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）
->
-> 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
->
-> 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致
+- 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3231,7 +3219,7 @@ getPhotoRotation(imageRotation: ImageRotation): imageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | ImageRotation  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度)|
+| imageRotation | [ImageRotation](#imagerotation)  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度)|
 
 **返回值：**
 
@@ -3251,7 +3239,7 @@ getPhotoRotation(imageRotation: ImageRotation): imageRotation
 **示例：**
 
 ```ts
-function testGetPhotoRotation(photoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): void {
+function testGetPhotoRotation(photoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
   let photoRotation: camera.ImageRotation;
   try {
     photoRotation = photoOutput.getPhotoRotation(imageRotation);
@@ -3752,13 +3740,9 @@ getVideoRotation(imageRotation: ImageRotation): imageRotation
 
 获取录像旋转角度。
 
-> **说明：**
->
-> 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）
->
-> 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
->
-> 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致
+- 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3766,7 +3750,7 @@ getVideoRotation(imageRotation: ImageRotation): imageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | ImageRotation  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
+| imageRotation | [ImageRotation](#imagerotation)  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
 
 **返回值：**
 
@@ -3786,7 +3770,7 @@ getVideoRotation(imageRotation: ImageRotation): imageRotation
 **示例：**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): void {
+function testGetVideoRotation(videoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
   let videoRotation: camera.ImageRotation;
   try {
     videoRotation = videoOutput.getVideoRotation(imageRotation);
