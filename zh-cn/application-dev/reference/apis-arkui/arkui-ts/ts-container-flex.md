@@ -55,8 +55,8 @@ Flex(value?: FlexOptions)
 
 | 名称          | 类型        |  只读     | 可选      | 说明      |
 | ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 是 | Flex容器主轴上的space。 |
-| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | Flex容器交叉轴上的space。 |
+| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 是 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
+| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 是 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
 
 ## 示例
 
