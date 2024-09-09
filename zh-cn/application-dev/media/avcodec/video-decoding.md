@@ -10,6 +10,8 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
+每一种解码的能力范围，可以通过[能力查询](obtain-supported-codecs.md)获取。
+
 <!--RP1--><!--RP1End-->
 
 通过视频解码，应用可以实现以下重点能力，包括：

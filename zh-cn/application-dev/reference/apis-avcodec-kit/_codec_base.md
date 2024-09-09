@@ -421,10 +421,9 @@ typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *u
 **描述**
 当OH_AVCodec实例运行出错时，回调将上报具体的错误信息的函数指针。
 
-
 | 使用场景| 错误码 |
 | -------- | -------- |
-| 视频编解码 | AV_ERROR_NO_MEMORY：系统资源不足。<br>AV_ERROR_UNKNOWN：未知错误，请通过具体日志分析。  |
+| 视频编解码 | AV_ERROR_NO_MEMORY：系统资源不足。<br>AV_ERROR_UNKNOWN：未知错误，请通过具体日志分析。<br>AV_ERR_SERVICE_DIED：服务状态已消亡。  |
 | 视频解码 | AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：当前输入不支持颜色空间转换功能。  |
 | 音频编解码 | AV_ERR_DRM_DECRYPT_FAILED：DRM解密失败。  |
 

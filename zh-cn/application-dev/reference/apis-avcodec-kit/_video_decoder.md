@@ -66,13 +66,16 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 配置视频解码器，通常需要配置解码视频的描述信息，这些信息可以从OH_AVSource中提取。在调用OH_VideoDecoder_Prepare接口之前，必须调用此接口。
 
 参数校验规则：
+
+设置OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY接口时如果当前平台不支持，不报错，走正常解码流程。
+
 | Key                                                                          | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 <td rowspan=1> 备注</td>|
 | -----------------------------------------------------------------------------| -------- | -------- | ------ |
-| OH_MD_KEY_WIDTH                                                              | √        | ×        | × <td rowspan=5>建议按照该实例需要支持的最大分辨率来配置，否则可能会出现高于该分辨率的码流解码会触发异常。</td> |
-| OH_MD_KEY_HEIGHT                                                             | √        | ×        | ×      |
-| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat)    | √        | ×        | √      |
-| OH_MD_KEY_FRAME_RATE                                                         | √        | ×        | √      |
-| OH_MD_KEY_ROTATION 请参阅[OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation)| √        | ×        | √      |
+| OH_MD_KEY_WIDTH                                                              | √        | AV_ERR_INVALID_VAL      | AV_ERR_INVALID_VAL <td rowspan=5>建议按照该实例需要支持的最大分辨率来配置，否则可能会出现高于该分辨率的码流解码会触发异常。</td> |
+| OH_MD_KEY_HEIGHT                                                             | √        | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
+| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat)    | √        | AV_ERR_UNSUPPORT       | AV_ERR_OK      |
+| OH_MD_KEY_FRAME_RATE                                                         | √        | AV_ERR_INVALID_VAL       | AV_ERR_OK     |
+| OH_MD_KEY_ROTATION 请参阅[OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation)| √        | AV_ERR_INVALID_VAL       | AV_ERR_OK      |
 
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
@@ -98,7 +101,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。 
 
 AV_ERR_INVALID_STATE：本接口必须在OH_VideoDecoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码；
 
@@ -181,7 +184,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 
 ### OH_VideoDecoder_Flush()
@@ -214,7 +217,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
@@ -250,7 +253,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
@@ -277,7 +280,7 @@ OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec *codec)
 
 **返回：**
 
-返回指向OH_AVFormat实例的指针。当输入的codec指针非解码器实例，或者为空指针，则返回空指针。
+返回指向OH_AVFormat实例的指针。当输入的codec指针非解码器实例，或者为空指针，则返回NULL。
 
 
 ### OH_VideoDecoder_IsValid()
@@ -338,7 +341,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
@@ -381,7 +384,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
@@ -418,7 +421,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：本接口必须在OH_VideoDecoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
 
@@ -456,7 +459,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
@@ -499,7 +502,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
@@ -534,9 +537,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
-
-AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 
 ### OH_VideoDecoder_SetDecryptionConfig()
@@ -568,6 +569,11 @@ AV_ERR_OK：操作成功。
 AV_ERR_OPERATE_NOT_PERMIT：解码服务进程异常，或媒体密钥会话服务处于错误状态。
 
 AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例或为空指针，或者mediaKeySession为nullptr或无效。
+
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
+
+AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
+
 
 ### OH_VideoDecoder_SetParameter()
 
@@ -602,7 +608,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
@@ -644,8 +650,6 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
-
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
 
@@ -679,7 +683,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
@@ -719,7 +723,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
@@ -763,7 +767,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：本接口必须在OH_VideoDecoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
 
@@ -805,7 +809,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
@@ -850,7 +854,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
@@ -890,6 +894,6 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
