@@ -2084,6 +2084,93 @@ function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profi
 }
 ```
 
+### getPreviewRotation<sup>12+</sup>
+
+getPreviewRotation(imageRotation: ImageRotation): ImageRotation
+
+获取预览旋转角度。
+
+- 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| imageRotation | [ImageRotation](#imagerotation)  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [ImageRotation](#imagerotation) | 获取预览旋转角度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
+  let previewRotation: camera.ImageRotation;
+  try {
+    previewRotation = previewOutput.getPreviewRotation(imageRotation);
+    console.log(`Preview rotation is: ${previewRotation}`);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The previewOutput.getPreviewRotation call failed. error code: ${err.code}`);
+  }
+  return;
+}
+```
+### setPreviewRotation<sup>12+</sup>
+setPreviewRotation(previewRotation: Imagerotation, isDisplayLocked?: boolean): void
+
+设置预览旋转角度。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| previewRotation | [ImageRotation](#imagerotation)  | 是   | 预览旋转角度 |
+| isDisplayLocked | boolean  | 否   | 是否旋转锁定 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
+  let previewRotation: camera.ImageRotation;
+  try {
+    previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The previewOutput.setPreviewRotation call failed. error code: ${err.code}`);
+  }
+  return;
+}
+```
 ## ImageRotation
 
 枚举，图片旋转角度。
@@ -3114,6 +3201,55 @@ function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile |
   return activeProfile;
 }
 ```
+### getPhotoRotation<sup>12+</sup>
+
+getPhotoRotation(imageRotation: ImageRotation): ImageRotation
+
+获取拍照旋转角度。
+
+- 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| imageRotation | [ImageRotation](#imagerotation) | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度)|
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [ImageRotation](#imagerotation) | 获取拍照旋转角度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetPhotoRotation(photoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
+  let photoRotation: camera.ImageRotation;
+  try {
+    photoRotation = photoOutput.getPhotoRotation(imageRotation);
+    console.log(`Photo rotation is: ${photoRotation}`);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The photoOutput.getPhotoRotation call failed. error code: ${err.code}`);
+  }
+  return;
+}
+```
 
 ## FrameShutterInfo
 
@@ -3593,6 +3729,56 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
     console.error(`The videoOutput.getActiveProfile call failed. error code: ${err.code}`);
   }
   return activeProfile;
+}
+```
+
+### getVideoRotation<sup>12+</sup>
+
+getVideoRotation(imageRotation: ImageRotation): ImageRotation
+
+获取录像旋转角度。
+
+- 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
+- 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是竖屏安装的，所以需要顺时针旋转90度到设备自然方向。
+- 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| imageRotation | [ImageRotation](#imagerotation)  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
+
+**返回值：**
+
+|      类型      | 说明        |
+| -------------  |-----------|
+| [ImageRotation](#imagerotation) | 获取录像旋转角度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息                         |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function testGetVideoRotation(videoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
+  let videoRotation: camera.ImageRotation;
+  try {
+    videoRotation = videoOutput.getVideoRotation(imageRotation);
+    console.log(`Video rotation is: ${videoRotation}`);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
+  }
+  return;
 }
 ```
 
