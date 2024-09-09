@@ -297,7 +297,7 @@ class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
 
 onKeyEvent(keyEvent: KeyEvent): boolean;
 
-Called when a physical key is pressed. In this API, you can deterYesine whether to intercept an event based on the service.
+Called when a physical key is pressed. In this API, you can determine whether to intercept an event based on the service.
 
 > **NOTE**
 >

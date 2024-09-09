@@ -30,7 +30,7 @@ startAbilityByType接口中type字段为navigation，对应的wantParam参数：
 ```ts
 let wantParam: Record<string, Object> = {
       // 其他参数
-      ...,
+      // ...,
       'destinationPoiIds': {
           1: '1111',  // key为1代表花瓣地图，value需为花瓣地图POI
           2: '2222'   // key为2代表高德地图，value需为高德地图POI
