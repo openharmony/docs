@@ -4397,7 +4397,7 @@
 
 ### ohos.permission.CALLED_TRANSITION_ON_LOCK_SCREEN
 
-允许应用被其他锁屏之上应用拉起并直接跳转。
+允许应用被位于锁屏界面的其他应用拉起并直接跳转。
 
 **权限级别**：system_basic
 
@@ -4409,7 +4409,7 @@
 
 ### ohos.permission.CALLED_BELOW_LOCK_SCREEN
 
-允许应用在锁屏下被拉起。
+允许应用在处于锁屏状态时进行启动。
 
 **权限级别**：system_basic
 
