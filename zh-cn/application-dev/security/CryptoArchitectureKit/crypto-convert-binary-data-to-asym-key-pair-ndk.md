@@ -24,11 +24,11 @@
 
    公钥和私钥可只传入其中一个，此处示例以传入公钥为例。
 
-2. 调用[OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_create)，指定字符串参数'RSA1024'，创建RSA密钥类型为RSA1024，素数个数为2的非对称密钥生成器[OH_CryptoAsymKeyGenerator](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator)。
+2. 调用[OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_create)，指定字符串参数'RSA1024'，创建RSA密钥类型为RSA1024、素数个数为2的非对称密钥生成器（OH_CryptoAsymKeyGenerator）。
 
    生成RSA非对称密钥时，默认素数为2，此处省略了参数PRIMES_2。
 
-3. 调用[OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert)，传入二进制密钥数据，生成非对称密钥对象[OH_CryptoKeyPair](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptokeypair)。
+3. 调用[OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert)，传入二进制密钥数据，生成非对称密钥对象（OH_CryptoKeyPair）。
 
 - 以下以生成RSA密钥对为例：
 ```c++
@@ -76,7 +76,7 @@ static OH_Crypto_ErrCode doTestDataCovertAsymKey()
 
    公钥和私钥可只传入其中一个，此处示例以传入公钥、私钥为例。
 
-2. 调用[OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_create)，指定字符串参数'ECC256'，创建密钥算法为ECC，密钥长度为256位的非对称密钥生成器（OH_CryptoAsymKeyGenerator）。
+2. 调用[OH_CryptoAsymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_create)，指定字符串参数'ECC256'，创建密钥算法为ECC、密钥长度为256位的非对称密钥生成器（OH_CryptoAsymKeyGenerator）。
 
 3. 调用[OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert)，传入公钥二进制和私钥二进制，生成非对称密钥对象（OH_CryptoKeyPair）。
 

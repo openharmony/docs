@@ -15,7 +15,7 @@
    - iterations：重复运算的次数，需要为正整数。
    - keySize：目标密钥的字节长度，需要为正整数。
 
-2. 调用[cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11)，指定字符串参数'PBKDF2|SHA256'，创建密钥派生算法为PBKDF2，HMAC函数摘要算法为SHA256的密钥派生函数对象（Kdf）。
+2. 调用[cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11)，指定字符串参数'PBKDF2|SHA256'，创建密钥派生算法为PBKDF2、HMAC函数摘要算法为SHA256的密钥派生函数对象（Kdf）。
 
 3. 输入PBKDF2Spec对象，调用[Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2)进行密钥派生。
    

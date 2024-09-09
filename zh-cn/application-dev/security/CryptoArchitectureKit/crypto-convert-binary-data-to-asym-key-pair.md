@@ -21,7 +21,7 @@
 
    公钥和私钥可只传入其中一个，此处示例以传入公钥为例。
 
-2. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)，指定字符串参数'RSA1024'，创建RSA密钥类型为RSA1024，素数个数为2的非对称密钥生成器（AsyKeyGenerator）。
+2. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)，指定字符串参数'RSA1024'，创建RSA密钥类型为RSA1024、素数个数为2的非对称密钥生成器（AsyKeyGenerator）。
 
    生成RSA非对称密钥时，默认素数为2，此处省略了参数PRIMES_2。
 
@@ -73,7 +73,7 @@
 
    公钥和私钥可只传入其中一个，此处示例以传入公钥、私钥为例。
 
-2. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)，指定字符串参数'ECC256'，创建密钥算法为ECC，密钥长度为256位的非对称密钥生成器（AsyKeyGenerator）。
+2. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)，指定字符串参数'ECC256'，创建密钥算法为ECC、密钥长度为256位的非对称密钥生成器（AsyKeyGenerator）。
 
 3. 调用[AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3)，传入公钥二进制和私钥二进制，生成非对称密钥对象（KeyPair）。
 
