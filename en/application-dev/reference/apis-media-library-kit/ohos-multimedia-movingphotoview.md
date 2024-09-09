@@ -4,8 +4,8 @@ The **MovingPhotoView** component is used to play moving photos and control the 
 
 > **NOTE**
 >
-> - This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
-> - Currently, the **MovingPhotoView** component cannot be used in Previewer.
+> This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+> Currently, the **MovingPhotoView** component cannot be used in Previewer.
 
 ## Modules to Import
 
@@ -58,7 +58,7 @@ Sets whether to mute the player.
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isMuted | boolean | Yes  | Whether to mute the player.<br>Default value: **false**<br>The value **true** means to mute the player; the value **false** means the opposite. |
+| isMuted | boolean | Yes  | Whether to mute the player.<br>Default value: **false**<br>The value **true** means to mute the player;<br>the value **false** means the opposite.|
 
 ### objectFit
 
@@ -77,80 +77,9 @@ Set the display mode of the moving photo.
 | ------ | ----------------------------------------------------------------------------- | ---- | -------------------------------- |
 | value  | [ImageFit](../apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) | Yes  | Image scale type.<br>Default value: **Cover**|
 
-### autoPlayPeriod<sup>13+</sup>
-
-autoPlayPeriod(startTime: number, endTime: number)
-
-Sets the automatic play period, which is a configuration item of **autoPlay**.
-
-Before this method is called, [autoPlay](#autoplay13) must be set to **true**. Otherwise, the specified video play period (**startTime**, **endTime**) does not take effect.
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Parameters**
-
-
-| Name | Type   | Mandatory| Description                        |
-| ------- | ------- | ---- | ---------------------------- |
-| startTime| number| Yes  | Start playback time, in ms.<br>Value range: [0, 3000]|
-| endTime| number| Yes  | End playback time, in ms.<br>Value range: [0, 3000]|
-
-### autoPlay<sup>13+</sup>
-
-autoPlay(isAutoPlay: boolean)
-
-Sets autoplay. After the moving photo is played once, a static image is displayed.
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Parameters**
-
-
-| Name | Type   | Mandatory| Description                        |
-| ------- | ------- | ---- | ---------------------------- |
-| isAutoPlay| boolean| Yes  | Whether to enable autoplay.<br>The value **true** means to enable autoplay; the value **false** means the opposite.<br>Default value: **false** |
-
-### repeatPlay<sup>13+</sup>
-
-repeatPlay(isRepeatPlay: boolean)
-
-Sets repeated play. **repeatPlay** is mutually exclusive with **autoPlay** and **Long Press** feature, and takes precedence over **autoPlay** and **Long Press** feature.
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Parameters**
-
-
-| Name | Type   | Mandatory| Description                        |
-| ------- | ------- | ---- | ---------------------------- |
-| isRepeatPlay| boolean| Yes  | Whether to enable repeated play.<br>The value **true** means to enable repeated play; the value **false** means the opposite.<br>Default value: **false** |
-
 ## Events
 
 In addition to [universal events](../apis-arkui/arkui-ts/ts-universal-events-click.md), the following events are supported.
-
-### onComplete<sup>13+</sup>
-
-onComplete(callback: MovingPhotoViewEventCallback)
-
-Called when the image of a moving photo is loaded.
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Parameters**
-
-
-| Name  | Type                                                         | Mandatory| Description                          |
-| -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
-| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | Yes  | Callback invoked when the image of a moving photo is loaded.|
 
 ### onStart
 
@@ -334,13 +263,7 @@ struct MovingPhotoViewDemo {
             .width('100%')
             .height('100%')
             .muted(this.isMuted)
-            .autoPlay(true)
-            .repeatPlay(false)
-            .autoPlayPeriod(0, 600)
-            .objectFit(ImageFit.Cover)
-            .onComplete(() => {
-              console.log('Completed');
-            })
+            .objectFit(ImageFit.Contain)
             .onStart(() => {
               console.log('onStart')
             })
