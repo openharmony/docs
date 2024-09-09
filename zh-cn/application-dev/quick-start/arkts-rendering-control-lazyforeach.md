@@ -1163,7 +1163,7 @@ struct MyComponent {
 使用该接口时有如下注意事项。
 
 1. onDatasetChange与其它操作数据的接口不能混用。
-2. 传入onDatasetChange的operations，其中每一项operation的index均从修改前的原数组内寻找。因此，opeartions中的index跟操作Datasource中的index不是一一对应的。  
+2. 传入onDatasetChange的operations，其中每一项operation的index均从修改前的原数组内寻找。因此，opeartions中的index跟操作Datasource中的index不总是一一对应的,而且不能是负数。  
 第一个例子清楚地显示了这一点:
 ```ts
 // 修改之前的数组

@@ -1163,8 +1163,8 @@ struct MyComponent {
 Pay attention to the following when using the **onDatasetChange** API:
 
 1. The **onDatasetChange** API cannot be used together with other data operation APIs.
-2. Index of the **operations** passed in the **onDatasetChange** API is searched from the original array before modification. Therefore, the indexes in **operations** are not in one-to-one matching with the indexes in the **Datasource**, 
-which is shown in the following example:
+2. The input parameter of **onDatasetChange** is operations. The **index** of each operation is sourced from the original array. Therefore, the index in operations(input parameter of **onDatasetChange**) does not correspond exactly with the index in the operations on Datasource and is not negative.   
+The first example clearly illustrates this point:
 ```ts
 // Array before modification.
 ["Hello a","Hello b","Hello c","Hello d","Hello e","Hello f","Hello g","Hello h","Hello i","Hello j","Hello k","Hello l","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
