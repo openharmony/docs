@@ -1,6 +1,6 @@
 # @ohos.file.PhotoPickerComponent (PhotoPickerComponent)
 
-The **PhotoPickerComponent** component embedded in an application allows the application to access images or video files in the user directory without any permission. This component grants the application only the read permission.
+The **PhotoPickerComponent** component embedded in the UI of an application allows the application to access images or video files in the user directory without any permission. This component grants the application only the read permission.
 The user can directly tap this component to select images or videos.
 
 > **NOTE**
@@ -18,9 +18,9 @@ import {
 } from '@ohos.file.PhotoPickerComponent';
 ```
 
-## Name
+## Properties
 
-The [universal attributes](../apis-arkui/arkui-ts/ts-universal-attributes-size.md) are supported.
+The [universal properties](../apis-arkui/arkui-ts/ts-universal-attributes-size.md) are supported.
 
 ## PhotoPickerComponent
 
@@ -36,12 +36,11 @@ PhotoPickerComponent({
   pickerController: PickerController
 })
 
-The **PhotoPickerComponent** component embedded in an application allows the application to access images or video files in the user directory without any permission.
+Allows the application to access images or video files in the user directory without any permission.
 
 > **NOTE**
-> If **PhotoPickerComponent** is used with the **Tabs** component, the swipe gestures of the **Tabs** component conflict with those of the photo browser page.
->
-> To prevent this problem, you can disable the swipe operation for the **Tabs** component in **onEnterPhotoBrowser()** and enable it in **onExitPhotoBrowser()**. This conflict will be resolved in later versions.
+> 
+>If **PhotoPickerComponent** is used with the **Tabs** component, the swipe gestures of the **Tabs** component conflict with those of the photo browser page. To prevent this problem, you can disable the swipe operation for the **Tabs** component in **onEnterPhotoBrowser()** and enable it in **onExitPhotoBrowser()**. This conflict will be resolved in later versions.
 
 **Decorator**: @Component
 
@@ -56,7 +55,7 @@ The **PhotoPickerComponent** component embedded in an application allows the app
 | pickerOptions  | [PickerOptions](#pickeroptions)       | No  | - | Configuration of Picker. |
 | onSelect       | (uri: string) => void                 | No  | - | Callback to be invoked when an image is selected by using **PhotoPickerComponent**. This callback returns the URI of the image selected to the application.            |
 | onDeselect     | (uri: string) => void                 | No  | - | Callback to be invoked when an image is deselected by using **PhotoPickerComponent**. This callback returns the URI of the image deselected to the application. |
-| onItemClicked  | (itemInfo: [ItemInfo](#iteminfo), clickType: [ClickType](#clicktype)) => boolean  | No  | - | Callback to be invoked when an item in a Picker component is clicked.<br>For an image (thumbnail item) clicked, if **true** is returned, the image is selected; otherwise, the image is deselected. For a camera item clicked, if **true** is returned, the system camera is started; otherwise, the application continues the processing.|
+| onItemClicked  | (itemInfo: [ItemInfo](#iteminfo), clickType: [ClickType](#clicktype)) => boolean  | No  | - | Callback to be invoked when an item in a Picker component is clicked.<br>For an image (thumbnail item), if **true** is returned, the image is selected. Otherwise, the image is not selected and the URI is not granted with the permission. For a camera item, if **true** is returned, the system camera is started. Otherwise, the camera is not started and the application handles the request.|
 | onEnterPhotoBrowser | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean   | No  | - | Callback to be invoked when the photo browser page is displayed. The callback returns photo browser information to the application.  |
 | onExitPhotoBrowser | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean   | No  | - | Callback to be invoked when the photo browser page exits. The callback returns photo browser information to the application.          |
 | onPickerControllerReady | () => void   | No  | - | Callback to be invoked when **pickerController** is available.<br>The **PickerController** APIs can be called only after this callback is invoked.         |
@@ -82,9 +81,9 @@ Defines the configuration of Picker. It inherits from [BaseSelectOptions](js-api
 | photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | No  | Background color of the photo browser page. The options are **AUTO**, **LIGHT**, and **DARK**. The default value is **AUTO**.               |
 | maxSelectedReminderMode | [ReminderMode](#remindermode)           | No  | Mode of the reminder when the number of selected items reaches the maximum. The options are **NONE**, **TOAST**, and **MASK**. The default value **TOAST**.|
 | orientation                   | [PickerOrientation](#pickerorientation) | No  | Sliding preview direction of the grid page. The options are **HORIZONTAL** and **VERTICAL**. The default value is **VERTICAL**. (This capability is not supported currently.)                 |
-| selectMode                    | [SelectMode](#selectmode)               | No  | Select mode, which can be **SINGLE_SELECT** and **MULTI_SELECT**. The default value is **MULTI_SELECT**.                             |
-| maxPhotoSelectNumber          | number                                  | No  | Maximum number of images that can be selected. The maximum value is 500, which is limited by **MaxSelected**.                  |
-| maxVideoSelectNumber          | number                                  | No  | Maximum number of videos that can be selected. The maximum value is 500, which is limited by **MaxSelected**.                  |
+| selectMode                    | [SelectMode](#selectmode)               | No  | Select mode, which can be **SINGLE_SELECT** or **MULTI_SELECT**. The default value is **MULTI_SELECT**.                             |
+| maxPhotoSelectNumber          | number                                  | No  | Maximum number of images that can be selected. The maximum value is **500**, which is limited by **MaxSelected**.              |
+| maxVideoSelectNumber          | number                                  | No  | Maximum number of videos that can be selected. The maximum value is **500**, which is limited by **MaxSelected**.              |
 
 ## PickerController
 
@@ -111,7 +110,7 @@ Sends data to **PhotoPickerComponent**. **DataType** specifies the type of data 
 |  Name       | Type                                   | Mandatory | Description |
 | ------------------------- | ------------------ | ----- | --------------- |
 | dataType | [DataType](#datatype) | Yes| Type of the data to send.|
-| data | Object | Yes| Data to send.| 
+| data | Object | Yes| Data to send.|
 
 ### setMaxSelected
 
@@ -144,7 +143,7 @@ Switches from the Picker component to the photo browser page or from the photo b
 |  Name       | Type                                   | Mandatory | Description |
 | ------------------------- | ------------------ | ----- | --------------- |
 | uri | string | Yes| URI of the image to view. Only the images selected by the user are supported.|
-| photoBrowserRange | [PhotoBrowserRange](#photobrowserrange) | No| View range on the photo browser page. The value can be **ALL** or **SELECTED_ONLY**. The default value is **ALL**, which means to view all images and videos.| 
+| photoBrowserRange | [PhotoBrowserRange](#photobrowserrange) | No| View range on the photo browser page. The value can be **ALL** or **SELECTED_ONLY**. The default value is **ALL**, which means to view all images and videos.|
 
 ## BaseItemInfo
 
