@@ -4579,7 +4579,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 ## ImagePacker
 
-图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png、HEIF。
+图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png、heif。
 
 ### 属性
 
@@ -4587,7 +4587,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 | 名称             | 类型           | 可读 | 可写 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
-| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png、HEIF。 |
+| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png、heif。 |
 
 ### packing
 
