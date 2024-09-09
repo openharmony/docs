@@ -1,7 +1,7 @@
 # wrapBuilder：封装全局@Builder
 
 
- 全局\@Builder作为wrapBuilder的参数返回WrappedBuilder对象，实现[全局\@Builder](arkts-builder.md#全局自定义构建函数)可以进行赋值和传递。 
+ 当开发者在一个struct内使用了多个全局@Builder函数，来实现UI的不同效果，但多个全局@Builder函数使用位置会使的代码维护起来困难，页面不整洁。为了解决这些这一问题，引入wrapBuilder作为全局@Builder封装函数。wrapBuilder的参数返回WrappedBuilder对象，实现[全局\@Builder](arkts-builder.md#全局自定义构建函数)可以进行赋值和传递。 
 
 
 > **说明：**
