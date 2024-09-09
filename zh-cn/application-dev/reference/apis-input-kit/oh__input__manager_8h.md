@@ -22,6 +22,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[Input_InterceptorEventCallback](_input___interceptor_event_callback.md) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
+| struct&nbsp;&nbsp;[Input_DeviceListener](_input___device_listener.md) | 定义一个结构体用于监听设备热插拔。  | 
 
 
 ### 类型定义
@@ -46,8 +47,11 @@
 | typedef void(\* [Input_MouseEventCallback](input.md#input_mouseeventcallback)) (const [Input_MouseEvent](input.md#input_mouseevent) \*mouseEvent) | 鼠标事件的回调函数，mouseEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_TouchEventCallback](input.md#input_toucheventcallback)) (const [Input_TouchEvent](input.md#input_touchevent) \*touchEvent) | 触摸事件的回调函数，touchEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_AxisEventCallback](input.md#input_axiseventcallback)) (const [Input_AxisEvent](input.md#input_axisevent) \*axisEvent) | 轴事件的回调函数，axisEvent的生命周期为回调函数内。  | 
-| typedef void(\* [Input_HotkeyCallback](input.md#input_hotkeycallback)) ([Input_Hotkey](input.md#input_hotkey) \*hotkey) | 回调函数，用于回调快捷键事件。  | 
+| typedef void(\* [Input_HotkeyCallback](input.md#input_hotkeycallback)) ([Input_Hotkey](input.md#input_hotkey) \*hotkey) | 回调函数，用于回调快捷键事件。  |
+| typedef void(\* [Input_DeviceAddedCallback](input.md#input_deviceaddedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热插事件。  | 
+| typedef void(\* [Input_DeviceRemovedCallback](input.md#input_deviceremovedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热拔事件。  | 
 | typedef struct [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)[Input_InterceptorEventCallback](input.md#input_interceptoreventcallback) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
+| typedef struct [Input_DeviceListener](_input___device_listener.md)[Input_DeviceListener](input.md#input_devicelistener) | 定义一个结构体用于监听设备热插拔。  | 
 | typedef struct [Input_InterceptorOptions](input.md#input_interceptoroptions)[Input_InterceptorOptions](input.md#input_interceptoroptions) | 事件拦截选项。  | 
 | typedef struct [Input_Hotkey](input.md#input_hotkey)[Input_Hotkey](input.md#input_hotkey) | 定义快捷键结构体。  | 
 | typedef struct [Input_DeviceInfo](input.md#input_deviceinfo)[Input_DeviceInfo](input.md#input_deviceinfo) | 输入设备信息。  | 
@@ -177,3 +181,6 @@
 | [Input_Result](input.md#input_result)[OH_Input_GetDeviceProduct](input.md#oh_input_getdeviceproduct) ([Input_DeviceInfo](input.md#input_deviceinfo) \*deviceInfo, int32_t \*product) | 获取输入设备的产品信息。  | 
 | [Input_Result](input.md#input_result)[OH_Input_GetDeviceVendor](input.md#oh_input_getdevicevendor) ([Input_DeviceInfo](input.md#input_deviceinfo) \*deviceInfo, int32_t \*vendor) | 获取输入设备的厂商信息。  | 
 | [Input_Result](input.md#input_result)[OH_Input_GetDeviceAddress](input.md#oh_input_getdeviceaddress) ([Input_DeviceInfo](input.md#input_deviceinfo) \*deviceInfo, char \*\*address) | 获取输入设备的物理地址。  | 
+| [Input_Result](input.md#input_result)[OH_Input_RegisterDeviceListener](input.md#oh_input_registerdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 注册设备热插拔的监听器。  | 
+| [Input_Result](input.md#input_result)[OH_Input_UnregisterDeviceListener](input.md#oh_input_unregisterdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 取消注册设备热插拔的监听。  | 
+| [Input_Result](input.md#input_result)[OH_Input_UnregisterDeviceListeners](input.md#oh_input_unregisterdevicelisteners) () | 取消注册所有的设备热插拔的监听。  | 
