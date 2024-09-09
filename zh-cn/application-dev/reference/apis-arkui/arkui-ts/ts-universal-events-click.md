@@ -105,7 +105,7 @@ struct ClickExample {
               + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
               + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp;
             }
-          })
+          }, 20)
         Button('Click').width(200).height(50)
           .onClick((event?: ClickEvent) => {
             if(event){
@@ -114,7 +114,7 @@ struct ClickExample {
               + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
               + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp;
             }
-          })
+          }, 20)
       }.margin(20)
 
       Text(this.text).margin(15)
