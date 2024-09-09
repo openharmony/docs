@@ -109,11 +109,11 @@ struct WebComponent {
 }
 ```
 
-The domain names are set to **DisallowedList** of **AdsBlockManager** through **addAdsBlockDisallowedList()**. When the page is loaded, the system matches the suffix of the web page URL with the domain names in **DisallowedList**. If the matching is successful, ads blocking will be disabled on the page. In addition, [addAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockallowedlist12) is provided to be used with **DisallowedList()** to set domain names and determine whether to enable ads blocking.
+Add the domain name to **DisallowedList** of **AdsBlockManager** through [addAdsBlockDisallowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockdisallowedlist12). When the page is loaded, the system matches the suffix of the web page URL with the domain name in **DisallowedList**. If the matching is successful, the system does not block ads on the page. In addition, [addAdsBlockAllowedList()](../reference/apis-arkweb/js-apis-webview.md#addadsblockallowedlist12) is provided to be used with **DisallowedList()** to set domain names and determine whether to enable ads blocking.
 
-**AdsBlockManager** caches two lists of domain names, including **DisallowedList** and **AllowList**. **DisallowedList** is used to disable ads blocking on web pages, and **AllowList** is used to enable ads blocking disabled by **DisallowedList**. **AllowList** has a higher priority. When a web page is loaded, the system matches the web page URL with **AllowList**. If the matching is successful, the ad blocking is enabled. Otherwise, the system continues to match the web page URL with **DisallowedList**. If the matching is successful, the ads blocking is disabled. If the accessed web page is neither list in **AllowList** nor in **DisallowedList**, the ads blocking for this web page is enabled by default.
+**AdsBlockManager** caches two lists of domain names, including **DisallowedList** and **AllowList**. **DisallowedList** is used to disable ads blocking on web pages, and **AllowList** is used to enable ads blocking disabled by **DisallowedList**. **AllowList** has a higher priority. When a web page is loaded, the system matches the web page URL with **AllowList**. If the matching is successful, the ads blocking is enabled. Otherwise, the system continues to match the web page URL with **DisallowedList**. If the matching is successful, the ads blocking is disabled. If the accessed web page is neither list in **AllowList** nor in **DisallowedList**, the ads blocking for this web page is enabled by default.
 
-For example, if you want to enable ads blocking for the **news.example.com** and **sport.example.com** domain in an application, but need to disable ads blocking for other web pages under the **example.com** domain, you can use **addAdsBlockDisallowedList()** to add the **example.com** domain to **DisallowedList**, and then use **addAdsBlockAllowedList()** to add the **news.example.com** and **sport.example.com** domain to **AllowedList**.
+For example, if you want to enable ads blocking for** news.example.com** and **sport.example.com** in an application, but need to disable ads blocking for other web pages under the **example.com** domain, you can use **addAdsBlockDisallowedList()** to add **example.com** to **DisallowedList**, and then use **addAdsBlockAllowedList()** to add **news.example.com** and **sport.example.com** to **AllowedList**.
 
 ```ts
 // xxx.ets
@@ -170,7 +170,7 @@ struct WebComponent {
 ```
 
 Note that the **DisallowedList** and **AllowedList** of the **AdsBlockManager** are not persisted. Therefore, the lists are reset to empty when the application is restarted.
-If the ads blocking is not enabled through **enableAdsBlock()**, the preceding APIs do not take effect in the **Web** component.
+If the ads blocking function of the **Web** component is not enabled through [enableAdsBlock()](../reference/apis-arkweb/js-apis-webview.md#enableadsblock12), the preceding APIs do not take effect in the Web component.
 
 ## Collecting Ads Blocking Information
 When ads blocking is enabled on the **Web** component, if any ad is blocked on the accessed web page, the [onAdsBlocked()](../reference/apis-arkweb/ts-basic-components-web.md#onadsblocked12) callback of the **Web** component notifies the application. You can collect blocking information and statistics as needed.
