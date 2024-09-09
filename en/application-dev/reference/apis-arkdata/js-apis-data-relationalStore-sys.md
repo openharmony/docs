@@ -31,6 +31,18 @@ Defines the configuration of an RDB store.
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.|
 | vector<sup>12+</sup> | boolean | No| Whether the RDB store is a vector database. The value **true** means the RDB store is a vector database, and the value **false** means the opposite.<br>The vector database is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12. Currently, the [execute](js-apis-data-relationalStore.md#execute12-1), [querySql](js-apis-data-relationalStore.md#querysql-1), [beginTrans](js-apis-data-relationalStore.md#begintrans12), [commit](js-apis-data-relationalStore.md#commit12), [rollback](js-apis-data-relationalStore.md#rollback12), and [ResultSet](js-apis-data-relationalStore.md#resultset) APIs support vector databases.|
+| haMode<sup>12+</sup> | [HAMode](#hamode12) | No| High availability (HA) mode.<br>The value **SINGLE** means data can be written only to a single RDB store. The value **MAIN_REPLICA** means data can be written to the main and replica RDB stores to ensure HA. However, this mode is not supported in encryption and attach scenarios. The default value is **SINGLE**. The value **MAIN_REPLICA** may affect the database write performance.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12.<br>|
+
+## HAMode<sup>12+</sup>
+
+Enumerates the HA modes of an RDB store.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name                             | Value  | Description            |
+| ------------------------------- | --- | -------------- |
+| SINGLE      | 0 | Allows data to be written to a single RDB store.     |
+| MAIN_REPLICA | 1 | Allows data to be written to the main and replica RDB stores for HA. This mode is not supported in encryption and attach scenarios.|
 
 ## Reference<sup>11+</sup>
 
@@ -765,7 +777,7 @@ Queries the shared resource of the data matching the specified conditions. This 
 | Name  | Type                                                 | Mandatory| Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)              | Yes  | Query conditions.          |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result set. |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result set.|
 
 **Error codes**
 
@@ -835,7 +847,7 @@ Queries the shared resource of the data matching the specified conditions. This 
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Query conditions.          |
 | columns    | Array&lt;string&gt;              | Yes  | Columns to be searched for.          |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | Yes  | Callback used to return the result set. |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | Yes  | Callback used to return the result set.|
 
 **Error codes**
 
@@ -894,11 +906,11 @@ if(store != undefined) {
 
 lockCloudContainer(): Promise&lt;number&gt;
 
-Manually locks the cloud database of an application. This API uses a promise to return the result. The cloud sync function must be implemented. Otherwise, this API cannot be used.
+Manually locks the cloud database of an application. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> After the cloud database is locked, data of the same application logged in with the same account on other devices cannot be synced to the cloud.
+> After the cloud database is locked, data of the same application logged in with the same account on other devices cannot be synced to the cloud. The cloud sync function must be implemented. Otherwise, this API cannot be used.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -950,6 +962,65 @@ if(store != undefined) {
     console.info('unlockCloudContainer succeeded');
   }).catch((err: BusinessError) => {
     console.error(`unlockCloudContainer failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### restore<sup>12+</sup>
+
+restore(): Promise&lt;void&gt;
+
+Restores data from a replica RDB store file. This API uses a promise to return the result. This API can be used only when [HAMode](#hamode12) is **MAIN_REPLICA**, and cannot be used in transactions.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                                |
+|-----------| ------------------------------------------------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 14800000  | Inner error. |
+| 14800010  | Invalid database path. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+if(store != undefined) {
+  let promiseRestore = (store as relationalStore.RdbStore).restore();
+  promiseRestore.then(() => {
+    console.info('Succeeded in restoring.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to restore, code is ${err.code},message is ${err.message}`);
   })
 }
 ```
