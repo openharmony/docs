@@ -129,7 +129,7 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 设置OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY、OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT接口时如果当前平台不支持，不报错，走正常编码流程。
 
-| Key                                                                       | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |                                                                 ·
+| Key                                                                       | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
 | ------------------------------------------------------------------------- | -------- | -------- | ------ |
 | OH_MD_KEY_WIDTH                                                           | √        | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
 | OH_MD_KEY_HEIGHT                                                          | √        | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
