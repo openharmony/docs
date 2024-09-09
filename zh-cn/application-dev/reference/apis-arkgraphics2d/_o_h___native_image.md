@@ -203,6 +203,7 @@ OH_NativeImage* OH_ConsumerSurface_Create ()
 本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。
 
 本接口需要和[OH_NativeImage_Destroy](#oh_nativeimage_destroy)接口配合使用，否则会存在内存泄露。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -234,6 +235,7 @@ int32_t OH_NativeImage_AcquireNativeWindowBuffer (OH_NativeImage* image, OHNativ
 本接口需要和[OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer)接口配合使用，否则会存在内存泄露。
 
 当fenceFd使用完，用户需要将其close。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -267,6 +269,7 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer (OH_NativeImage* image, OHNativ
 通过**OH_NativeImage**实例将**OHNativeWindowBuffer**归还到buffer队列中。
 
 系统会将fenFd关闭，无需用户close。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -301,6 +304,7 @@ OHNativeWindow* OH_NativeImage_AcquireNativeWindow (OH_NativeImage * image)
 **描述**
 
 获取与OH_NativeImage相关联的OHNativeWindow指针。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -328,6 +332,7 @@ int32_t OH_NativeImage_AttachContext (OH_NativeImage * image, uint32_t textureId
 将OH_NativeImage实例附加到当前OpenGL ES上下文, 且该OpenGL ES纹理会绑定到
 
 GL_TEXTURE_EXTERNAL_OES, 并通过OH_NativeImage进行更新。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -354,6 +359,8 @@ OH_NativeImage* OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarge
 **描述**
 
 创建一个**OH_NativeImage**实例，该实例与OpenGL ES的纹理ID和纹理目标相关联。
+本接口需要与OH_NativeImage_Destroy接口配合使用，否则会存在内存泄露。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -382,6 +389,7 @@ void OH_NativeImage_Destroy (OH_NativeImage ** image)
 销毁通过OH_NativeImage_Create创建的**OH_NativeImage**实例, 销毁后该
 
 **OH_NativeImage**指针会被赋值为空。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -403,6 +411,7 @@ int32_t OH_NativeImage_DetachContext (OH_NativeImage * image)
 **描述**
 
 将OH_NativeImage实例从当前OpenGL ES上下文分离。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -428,6 +437,7 @@ int32_t OH_NativeImage_GetSurfaceId (OH_NativeImage * image, uint64_t * surfaceI
 **描述**
 
 获取OH_NativeImage的surface编号。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -454,6 +464,7 @@ int64_t OH_NativeImage_GetTimestamp (OH_NativeImage * image)
 **描述**
 
 获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的相关时间戳。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -506,6 +517,8 @@ int32_t OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage* image, float matrix
 ```
 **描述**
 根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。
+matrix在OH_NativeImage_UpdateSurfaceImage接口调用后，才会更新。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -531,6 +544,8 @@ int32_t OH_NativeImage_SetOnFrameAvailableListener (OH_NativeImage * image, OH_O
 **描述**
 
 设置帧可用回调。
+不允许在回调函数中调用本模块的其他接口。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -557,6 +572,7 @@ int32_t OH_NativeImage_UnsetOnFrameAvailableListener (OH_NativeImage * image)
 **描述**
 
 取消设置帧可用回调。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -582,6 +598,9 @@ int32_t OH_NativeImage_UpdateSurfaceImage (OH_NativeImage * image)
 **描述**
 
 通过OH_NativeImage获取最新帧更新相关联的OpenGL ES纹理。
+本接口需要在Opengl ES环境上下文的线程中调用。
+本接口需要在接收到OH_OnFrameAvailableListener回调后调用。
+本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
