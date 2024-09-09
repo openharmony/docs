@@ -1993,7 +1993,7 @@ setFrameRate(minFps: number, maxFps: number): void
 进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12)查询支持的帧率范围。
 
 > **说明：**
-> 仅在[VideoSession](#videosession11)模式下支持。
+> 仅在[PhotoSession](#photosession11)或[VideoSession](#videosession11)模式下支持。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3643,7 +3643,7 @@ setFrameRate(minFps: number, maxFps: number): void
 进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12-1)查询支持的帧率范围。
 
 > **说明：**
-> 仅在[VideoSession](#videosession11)模式下支持。
+> 仅在[PhotoSession](#photosession11)或[VideoSession](#videosession11)模式下支持。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3677,7 +3677,7 @@ getActiveFrameRate(): FrameRateRange
 
 获取已设置的帧率范围。
 
-使用[setFrameRate](#setframerate12-1)对预览流设置过帧率后可查询。
+使用[setFrameRate](#setframerate12-1)对录像流设置过帧率后可查询。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
