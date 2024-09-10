@@ -26,9 +26,9 @@
 
 3、设置相册名称setAlbumName&commitModify：
 
-原行为：直接修改该相册的album_name。
-
 差异点：
+
+原行为：直接修改该相册的album_name。
 
 新行为：删除该相册，并新建一条元数据相同的相册，命名为新名称。
 
