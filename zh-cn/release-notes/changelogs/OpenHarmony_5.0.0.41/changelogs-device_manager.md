@@ -1,6 +1,6 @@
 # 设备管理子系统Changelog
 
-## cl.device_manager.1 使用udid_hash+appid+盐值基于sha256混淆截断后保留前16位值作为deviceid，调用行为变更
+## cl.device_manager.1 使用udid-hash与appid和盐值基于sha256混淆截断后保留前16位值作为deviceid，调用行为变更
 
 **访问级别**
 
