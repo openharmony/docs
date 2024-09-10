@@ -56,7 +56,7 @@
 当密钥废弃不用时，需要调用[deleteKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksdeletekeyitem9)删除密钥，具体请参考[密钥删除](huks-delete-key-arkts.md)。
 ## 开发案例
 
-<a id="ecc256sha256"></a>**ECC256/SHA256**
+#### ECC256/SHA256
 ```ts
 /*
  * 密钥算法为ECC256、摘要算法为SHA256
@@ -216,7 +216,7 @@ async function testSignVerify() {
   await DeleteEccKey(keyAlias);
 }
 ```
-<a id="sm2sm3"></a>**SM2/SM3**
+#### SM2/SM3
 ```ts
 /*
  * 密钥算法为SM2、摘要算法为SM3
@@ -379,7 +379,7 @@ export async function testSignVerify() {
   await DeleteSm2Key(keyAlias);
 }
 ```
-<a id="rsasha256pss">**RSA/SHA256/PSS**
+#### RSA/SHA256/PSS
 ```ts
 /*
  * 密钥算法为RSA，摘要算法为SHA256，填充模式为PSS
@@ -551,7 +551,7 @@ export async function testSignVerify() {
   await DeleteRsaKey(keyAlias);
 }
 ```
-<a id="rsasha256pkcs1_v1_5"></a>**RSA/SHA256/PKCS1_V1_5**
+#### RSA/SHA256/PKCS1_V1_5
 ```ts
 /*
  * 密钥算法为RSA，摘要算法为SHA256，填充模式为PKCS1_V1_5
