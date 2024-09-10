@@ -17,11 +17,6 @@
         - [HSP](quick-start/in-app-hsp.md)
         - [动态import](quick-start/arkts-dynamic-import.md)
         - [延迟加载（lazy import）](quick-start/arkts-lazy-import.md)
-      - 典型场景的开发指导
-        - [集成态HSP](quick-start/integrated-hsp.md)
-        - [HAR转HSP指导](quick-start/har-to-hsp.md)
-        - [HSP转HAP指导](quick-start/hsp-to-har.md)
-        - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
     - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
@@ -2281,7 +2276,9 @@
           - [UIExtensionComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)
         <!--DelEnd-->
         - 已停止维护的组件与接口
+          <!--Del-->
           - [AbilityComponent](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
+          <!--DelEnd-->
           - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)
           - [Panel](reference/apis-arkui/arkui-ts/ts-container-panel.md)
           - [点击控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md)
