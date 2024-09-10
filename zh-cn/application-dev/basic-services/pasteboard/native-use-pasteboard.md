@@ -1,4 +1,4 @@
-# 分布式剪贴板开发指导 (C/C++)
+# 使用剪贴板进行复制粘贴 (C/C++)
 
 ## 场景介绍
 
@@ -42,16 +42,15 @@
 
 ## 开发步骤
 
-### 添加动态链接库
-
-CMakeLists.txt中添加以下lib。
+1. 添加动态链接库
 
 ```CMake
+# CMakeLists.txt中添加以下lib
 libudmf.so
 libpasteboard.so
 ```
 
-### 引用头文件
+2. 引用头文件
 
 ```c
 #include <cstdio>
@@ -60,7 +59,7 @@ libpasteboard.so
 #include <database/udmf/uds.h>
 ```
 
-### 定义剪贴板变化监听的回调函数
+3. 定义剪贴板变化监听的回调函数
 
 ```c
 // 定义剪贴板数据内容变更时的通知回调函数
@@ -75,7 +74,7 @@ static void Pasteboard_Finalize_impl2(void *context)
 }
 ```
 
-### 订阅剪贴板变化
+4. 订阅剪贴板变化
 
 ```c
 // 1. 创建一个剪贴板实例
@@ -88,7 +87,7 @@ OH_PasteboardObserver_SetData(observer, (void *)pasteboard, Pasteboard_Notify_im
 OH_Pasteboard_Subscribe(pasteboard, NOTIFY_LOCAL_DATA_CHANGE, observer);
 ```
 
-### 向剪贴板写入数据
+5. 向剪贴板写入数据
 
 ```c
 // 1. 创建一个剪贴板实例
@@ -114,7 +113,7 @@ OH_UdmfData_Destroy(data);
 OH_Pasteboard_Destroy(pasteboard);
 ```
 
-### 从剪贴板读取数据
+6. 从剪贴板读取数据
 
 ```c
 // 1. 创建一个剪贴板实例
