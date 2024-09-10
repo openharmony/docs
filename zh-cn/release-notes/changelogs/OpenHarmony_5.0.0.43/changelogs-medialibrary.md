@@ -14,6 +14,7 @@
 
 该变更为不兼容变更。
 无对外接口参数或返回值变更，仅因一对一方案部分接口内部实现差异导致XTS fail。
+
 1、向相册中添加资产addAssets：
 差异点：原行为添加的是查询得到的资产，新行为添加该资产的复制体，对外调用无变更，因复制资产与原资产内容和元数据一致，相册表现无差异。
 
@@ -29,6 +30,7 @@
 新行为：由于Add和Remove等操作变更，操作的对象均为复制体，故通知时通知复制体uri变更。
 
 SystemAPI：
+
 1、删除相册，使用Promise方式返回结果。删除相册前需先确保相册存在，只能删除用户相册deleteAlbums：
 原行为：删除相册不删除相册内资产。
 新行为：由于资产相册关系一对一，仅删除相册不处理资产的话会产生无归属资产导致不同版本同步异常。因此需要联通相册下的资产一并删除。
@@ -59,14 +61,13 @@ setAlbumName(name: string):void
 commitModify(callback: AsyncCallback<void>): void
 ```
 
-
 4、 注册对指定uri的监听，使用callback方式返回异步结果：
 ```
 registerChange(uri: string, forChildUris: boolean, callback: Callback<ChangeData>): void
 ```
 
-
 SystemAPI:
+
 1、 删除相册，使用Promise方式返回结果。删除相册前需先确保相册存在，只能删除用户相册。
 ```
 static deleteAlbums(context: Context, albums: Array<Album>): Promise<void>
@@ -74,4 +75,5 @@ static deleteAlbums(context: Context, albums: Array<Album>): Promise<void>
 
 
 **适配指导**
+
 无对外接口参数或返回值变更，仅因一对一方案部分接口内部实现差异导致XTS fail。
