@@ -1087,6 +1087,57 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_
 let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 pasteData.replaceRecord(0, record);
 ```
+
+### pasteStart<sup>12+</sup>
+
+pasteStart(): void
+
+读取剪贴板数据前，通知剪贴板服务保留上下文和资源。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+    if (err) {
+        console.error('Failed to get PasteData. Cause: ' + err.message);
+        return;
+    }
+    pasteData.pasteStart();
+    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    pasteData.pasteComplete();
+});
+```
+
+### pasteComplete<sup>12+</sup>
+
+pasteComplete(): void
+
+通知剪贴板服务数据使用已完成。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
+    if (err) {
+        console.error('Failed to get PasteData. Cause: ' + err.message);
+        return;
+    }
+    pasteData.pasteStart();
+    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    pasteData.pasteComplete();
+});
+```
+
 ### addHtmlRecord<sup>(deprecated)</sup>
 
 addHtmlRecord(htmlText: string): void
