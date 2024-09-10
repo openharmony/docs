@@ -2177,11 +2177,15 @@ next(): ReaderIteratorResult
 
   | 类型                    | 说明         |
   | --------------------- | ---------- |
-  | ReaderIteratorResult | 文件读取迭代器返回结果。 |
+  | [ReaderIteratorResult](#readeriteratorresult) | 文件读取迭代器返回结果。 |
 
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+> **说明**：
+>
+> 如果ReaderIterator读取的当前行的编码方式不是 'utf-8'，接口返回错误码13900037。
 
 **示例：**
 
