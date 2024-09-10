@@ -3331,11 +3331,21 @@ const char* OH_UdsAppItem_GetId (OH_UdsAppItem* pThis)
 
 从桌面图标类型[OH_UdsAppItem](#oh_udsappitem)实例中获取应用ID。
 
+**起始版本：** 12
+
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| pThis | 表示一个指向{桌面图标类型[}对象的指针。 输入有效入参时返回应用ID的字符串指针，否则返回nullptr。 OH_UdsAppItem 12](#oh_udsappitem) | 
+| pThis | 表示一个指向桌面图标类型[OH_UdsAppItem](#oh_udsappitem)对象的指针。| 
+
+**返回：**
+
+输入有效入参时返回应用ID的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsAppItem](#oh_udsappitem)
 
 
 ### OH_UdsAppItem_GetLabelId()
