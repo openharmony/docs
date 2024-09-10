@@ -224,7 +224,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     // 5.2 注册随帧参数回调
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
-    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, nullptr); // NULL:用户特定数据userData为空 
+    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, NULL); // NULL:用户特定数据userData为空
     ```
 
 6. 调用OH_VideoEncoder_Configure()配置编码器。
@@ -264,9 +264,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int64_t quality = 0;
 
     OH_AVFormat *format = OH_AVFormat_Create();
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width); // 必须配置
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // 必须配置
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT); // 必须配置
 
     OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
@@ -302,12 +302,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 获取需要输入的Surface，以进行编码
     OHNativeWindow *nativeWindow;
     int32_t ret = OH_VideoEncoder_GetSurface(videoEnc, &nativeWindow);
-    if (ret != AV_ERR_OK) {
-        // 异常处理
-    }
-    // 释放nativeWindow实例
-    ret = OH_NativeWindow_DestroyNativeWindow(nativeWindow);
-    nativeWindow = nullptr;
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -471,13 +465,23 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     > **说明：**
     >
     > 不能在回调函数中调用；
-    > 执行该步骤之后，需要开发者将videoEnc指向nullptr，防止野指针导致程序错误。
+    > 执行该步骤之后，需要开发者将videoEnc指向NULL，防止野指针导致程序错误。
     >
 
     ```c++
+    // 释放nativeWindow实例
+    if(nativeWindow != NULL){
+        int32_t ret = OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+        nativeWindow = NULL;
+    }
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
     // 调用OH_VideoEncoder_Destroy，注销编码器
-    int32_t ret = OH_VideoEncoder_Destroy(videoEnc);
-    videoEnc = nullptr;
+    if (videoEnc != NULL) {
+        ret = OH_VideoEncoder_Destroy(videoEnc);
+        videoEnc = NULL;
+    }
     if (ret != AV_ERR_OK) {
         // 异常处理
     }

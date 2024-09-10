@@ -131,12 +131,12 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 | Key                                                                       | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
 | ------------------------------------------------------------------------- | -------- | -------- | ------ |
-| OH_MD_KEY_WIDTH                                                           | √        | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
-| OH_MD_KEY_HEIGHT                                                          | √        | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
-| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat) | √        | AV_ERR_UNSUPPORT       | AV_ERR_UNSUPPORT    |
-| OH_MD_KEY_FRAME_RATE                                                       | √        | AV_ERR_INVALID_VAL       |AV_ERR_OK        |
-| OH_MD_KEY_PROFILE 请参阅[OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile)    | √        | AV_ERR_INVALID_VAL       |AV_ERR_OK       |
-| OH_MD_KEY_I_FRAME_INTERVAL                                                 | √        | \\       | AV_ERR_OK       |
+| OH_MD_KEY_WIDTH                                                           | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
+| OH_MD_KEY_HEIGHT                                                          | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
+| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat) | AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK    |
+| OH_MD_KEY_FRAME_RATE                                                       | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK        |
+| OH_MD_KEY_PROFILE 请参阅[OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile)    | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK       |
+| OH_MD_KEY_I_FRAME_INTERVAL                                                 | AV_ERR_OK       | \\       | AV_ERR_OK       |
 
 | OH_MD_KEY_<br>BITRATE | OH_MD_KEY_<br>QUALITY | OH_MD_KEY_<br>VIDEO_ENCODER_BITRATE_MODE | 返回值 | 说明                     |
 | :-------------------- | :-------------------- | :--------------------------------------- | ---- | ---------------------- |

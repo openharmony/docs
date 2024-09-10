@@ -281,8 +281,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width); // 必须配置
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // 必须配置
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
     // 可选，配置低时延解码
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
@@ -562,13 +562,15 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > **说明：**
     >
     > 不能在回调函数中调用；
-    > 执行该步骤之后，需要调用者将videoDec指向nullptr，防止野指针导致程序错误。
+    > 执行该步骤之后，需要调用者将videoDec指向NULL，防止野指针导致程序错误。
     >
 
     ```c++
     // 调用OH_VideoDecoder_Destroy，注销解码器
-    int32_t ret = OH_VideoDecoder_Destroy(videoDec);
-    videoDec = nullptr;
+    if (videoDec != NULL) {
+        int32_t ret = OH_VideoDecoder_Destroy(videoDec);
+        videoDec = NULL;
+    }
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
