@@ -214,7 +214,7 @@
 | int [OH_UdmfRecord_GetPlainText](#oh_udmfrecord_getplaintext) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取纯文本类型[OH_UdsPlainText](#oh_udsplaintext)数据。 | 
 | int [OH_UdmfRecord_GetHyperlink](#oh_udmfrecord_gethyperlink) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHyperlink](#oh_udshyperlink) \*hyperlink) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取超链接类型[OH_UdsHyperlink](#oh_udshyperlink)数据。 | 
 | int [OH_UdmfRecord_GetHtml](#oh_udmfrecord_gethtml) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHtml](#oh_udshtml) \*html) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取超文本标记语言类型[OH_UdsHtml](#oh_udshtml)数据。 | 
-| int [OH_UdmfRecord_GetAppItem](#oh_udmfrecord_getappitem) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsAppItem](#oh_udsappitem) \*appItem) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型{OH_UdsAppItem}数据。 | 
+| int [OH_UdmfRecord_GetAppItem](#oh_udmfrecord_getappitem) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsAppItem](#oh_udsappitem) \*appItem) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型[OH_UdsAppItem](#oh_udsappitem)数据。 | 
 | [OH_UdmfProperty](#oh_udmfproperty) \* [OH_UdmfProperty_Create](#oh_udmfproperty_create) ([OH_UdmfData](#oh_udmfdata) \*unifiedData) | 创建统一数据对象中数据记录属性[OH_UdmfProperty](#oh_udmfproperty)指针及实例对象。 | 
 | void [OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 销毁数据属性[OH_UdmfProperty](#oh_udmfproperty)指针指向的实例对象。 | 
 | const char \* [OH_UdmfProperty_GetTag](#oh_udmfproperty_gettag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取用户自定义标签值。 | 
@@ -3016,7 +3016,7 @@ int OH_UdmfRecord_GetAppItem (OH_UdmfRecord* pThis, OH_UdsAppItem* appItem )
 
 **描述**
 
-从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型{OH_UdsAppItem}数据。
+从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型[OH_UdsAppItem](#oh_udsappitem)数据。
 
 **起始版本：** 12
 
