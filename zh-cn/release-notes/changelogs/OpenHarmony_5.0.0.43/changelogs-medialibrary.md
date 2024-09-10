@@ -40,15 +40,6 @@
 
 新行为：由于Add和Remove等操作变更，操作的对象均为复制体，故通知时通知复制体uri变更。
 
-SystemAPI：
-
-1、删除相册，使用Promise方式返回结果。删除相册前需先确保相册存在，只能删除用户相册deleteAlbums：
-
-差异点：
-
-原行为：删除相册不删除相册内资产。
-
-新行为：由于资产相册关系一对一，仅删除相册不处理资产的话会产生无归属资产导致不同版本同步异常。因此需要联通相册下的资产一并删除。
 
 **起始API Level**
 
@@ -84,15 +75,6 @@ commitModify(callback: AsyncCallback<void>): void
 ```
 registerChange(uri: string, forChildUris: boolean, callback: Callback<ChangeData>): void
 ```
-
-SystemAPI:
-
-1、 删除相册，使用Promise方式返回结果。删除相册前需先确保相册存在，只能删除用户相册：
-
-```
-static deleteAlbums(context: Context, albums: Array<Album>): Promise<void>
-```
-
 
 **适配指导**
 
