@@ -10,7 +10,7 @@ HID DDK（HID Driver Develop Kit）是为开发者提供的HID设备驱动程序
 
 * HID DDK开放API使用范围内仅允许DriverExtensionAbilit生命周期内使用。
 
-* 使用HID DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_HID；
+* 使用HID DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_HID。
 
 ## 接口说明
 
@@ -39,7 +39,7 @@ libhid.z.so
 #include <hid/hid_ddk_types.h>
 ```
 
-1. **创建设备**。
+1. 创建设备。
 
     使用 **hid_ddk_api.h** 的 **OH_Hid_CreateDevice** 接口创建HID设备，成功返回设备deviceId（**非负数**），失败返回错误码（**负数**）。
 
@@ -75,7 +75,7 @@ libhid.z.so
     int32_t deviceId = OH_Hid_CreateDevice(&hidDevice, &hidEventProp);
     ```
 
-2. **向指定deviceId的HID设备发送事件**。
+2. 向指定deviceId的HID设备发送事件。
 
     使用 **hid_ddk_api.h** 的 **OH_Hid_EmitEvent** 向指定的deviceId的设备发送事件。
 
@@ -88,7 +88,7 @@ libhid.z.so
     int32_t ret = OH_Hid_EmitEvent(deviceId, itemVec.data(), (uint16_t)itemVec.size());
     ```
 
-3. **释放资源**。
+3. 释放资源。
 
     在所有请求处理完毕，程序退出前，使用 **hid_ddk_api.h** 的 **OH_Hid_DestroyDevice** 接口销毁HID设备。
 
