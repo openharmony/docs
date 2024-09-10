@@ -13,12 +13,16 @@
 
 表1 startAbility请求中[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)相关参数说明
 
-| 参数名称 | 类型   | 是否必填 | 说明                  |
-|----------|--------|----------|---------------------|
+| 参数名称 | 类型   | 是否必填 | 说明                                                                                                                                                                                   |
+|----------|--------|----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | uri      | string | 是       | 表示待打开文件的URI路径，一般配合type使用。<br />uri格式为：file:\/\/bundleName\/path<br />- file：文件URI的标志。<br />- bundleName：该文件资源的属主。<br />- path：文件资源在应用沙箱中的路径。 |
-| type     | string | 否       | 表示MIME type类型描述，打开文件的类型。比如：'text/xml' 、 'image/*'等，MIME定义请参见https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。                  |
-| parameters | Record<string, Object>       | 否         | 表示由系统定义，由开发者按需赋值的自定义参数，文件打开场景请参考表2。         |
+| type     | string | 否       | 表示[UTD类型](../database/uniform-data-type-descriptors.md)或[MIME type类型](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)描述，打开文件的类型。比如：'general.plain-text'、'general.image'、'text/xml' 、 'image/*'等
+| parameters | Record<string, Object>       | 否         | 表示由系统定义，由开发者按需赋值的自定义参数，文件打开场景请参考表2。                                                                                                                                                                                       |
 | flags | number | 否 | 表示处理方式，文件打开场景请参考表3。                                                                                                                                                                                       |
+
+> **说明：**
+> 
+> type若填写需要确保与uri的文件类型相对应，否则会出现无法匹配的问题，如果调用方不明确文件类型，可以不传type由系统判断文件类型。
 
 **表2** [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)相关参数说明
 
@@ -77,8 +81,9 @@
             let uri = fileUri.getUriFromPath(filePath);
             // 构造请求数据
             let want: Want = {
+            action: 'ohos.want.action.viewData', // 表示查看数据的操作，文件打开场景固定为此值
             uri: uri,
-            type: 'text/plain', // 表示待打开文件的类型
+            type: 'general.plain-text', // 表示待打开文件的类型
             // 配置被分享文件的读写权限，例如对文件打开应用进行读写授权
             flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
             };
@@ -99,8 +104,9 @@
             let uri = fileUri.getUriFromPath(filePath);
             // 构造请求数据
             let want: Want = {
+            action: 'ohos.want.action.viewData', // 表示查看数据的操作，文件打开场景固定为此值
             uri: uri,
-            type: 'text/plain', // 表示待打开文件的类型
+            type: 'general.plain-text', // 表示待打开文件的类型
             // 配置被分享文件的读写权限，例如对文件打开应用进行读写授权
             flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
             };
@@ -123,7 +129,7 @@
 
     支持打开文件的应用需要在[module.json5](../quick-start/module-configuration-file.md)配置文件中声明文件打开能力。其中uris字段表示接收URI的类型，其中scheme固定为file。type字段表示支持打开的文件类型（请参见[MIME定义](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)），如下举例中类型为txt文件。
 
-    ```ts
+    ```json
     {
     "module": {
         // ...
@@ -139,7 +145,7 @@
                 {
                     // 允许打开uri中以file://协议开头标识的本地文件
                     "scheme": "file", // 必填，声明协议类型为文件
-                    "type": "text/plain", // 必填，表示支持打开的文件类型
+                    "type": "general.plain-text", // 必填，表示支持打开的文件类型
                     "linkFeature": "FileOpen" // 必填，表示此URI的功能为文件打开
                 }
                 // ...
