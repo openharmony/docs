@@ -36,22 +36,22 @@
 1. 此处以获取相册图片为例，调用[@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) 实现相册图片文件的选择。
 
    ```ts
-   import { picker } from '@kit.CoreFileKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let uris: Array<string> = [];
    
    // 创建图片文件选择实例
-   let photoSelectOptions = new picker.PhotoSelectOptions();
+   let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
    
    // 设置选择媒体文件类型为IMAGE，设置选择媒体文件的最大数目
-   photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+   photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
    photoSelectOptions.maxSelectNumber = 1;
    
    // 创建图库选择器实例，调用select()接口拉起图库界面进行文件选择。文件选择成功后，返回photoSelectResult结果集。
-   let photoPicker = new picker.PhotoViewPicker();
+   let photoPicker = new photoAccessHelper.PhotoViewPicker();
    photoPicker.select(photoSelectOptions, async (
-     err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
+     err: BusinessError, photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
      if (err) {
        console.error('MS_LITE_ERR: PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
        return;
@@ -411,6 +411,10 @@ let maxIndexArray: Array<number> = [];
 console.info('MS_LITE_LOG: *** Start MSLite Demo ***');
 let output: Array<number> = msliteNapi.runDemo(Array.from(float32View), resMgr);
 // 取分类占比的最大值
+this.max = 0;
+this.maxIndex = 0;
+this.maxArray = [];
+this.maxIndexArray = [];
 let newArray = output.filter(value => value !== max);
 for (let n = 0; n < 5; n++) {
   max = output[0];
