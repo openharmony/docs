@@ -2,8 +2,6 @@
 
 ## 接口介绍
 
-接口文档链接：
-
 可通过API文档查看更新关键资产的接口[OH_Asset_Update](../../reference/apis-asset-store-kit/_asset_api.md#oh_asset_update)的详细介绍。
 
 在更新关键资产时，关键资产属性的内容参数如下表所示：
