@@ -60,7 +60,7 @@
 
 ### native侧API结构体获取
 
-ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_ark_web___any_native_a_p_i.md#arkweb_anynativeapi)获取，根据入参type不同，可分别获取[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)函数指针结构体。其中[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)对应ArkTS侧[web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md)，[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)对应ArkTS侧[ArkWeb组件API](../reference/apis-arkweb/ts-basic-components-web.md)。
+ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi())获取，根据入参type不同，可分别获取[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)函数指针结构体。其中[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)对应ArkTS侧[web_webview.WebviewController API](../reference/apis-arkweb/js-apis-webview.md)，[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)对应ArkTS侧[ArkWeb组件API](../reference/apis-arkweb/ts-basic-components-web.md)。
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
