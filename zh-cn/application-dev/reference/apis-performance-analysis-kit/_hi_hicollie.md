@@ -144,7 +144,6 @@ HiCollie_ErrorCode OH_HiCollie_Init_StuckDetection(OH_HiCollie_Task task)
 
 ```
 HiCollie_ErrorCode OH_HiCollie_Init_JankDetection(OH_HiCollie_BeginFunc* beginFunc, OH_HiCollie_EndFunc* endFunc, HiCollie_DetectionParam param);
-
 ```
 
 **描述**
@@ -159,7 +158,7 @@ HiCollie_ErrorCode OH_HiCollie_Init_JankDetection(OH_HiCollie_BeginFunc* beginFu
 | -------- | -------- |
 | beginFunc | 用户实现的回调函数, 调用位置：业务线程处理事件之前。如果用户想要取消检测，beginFunc和endFunc需要同时传空指针。 |
 | endFunc | 用户实现的回调函数, 调用位置：业务线程处理事件之后。如果用户想要取消检测，beginFunc和endFunc需要同时传空指针。 |
-| param | 用户自定义主线程卡顿参数，见[HiCollie_DetectionParam](_hi_hicollie___detection_param.md) |
+| param | 用户自定义线程卡顿参数，扩展参数以供后续开发使用。见[HiCollie_DetectionParam](_hi_hicollie___detection_param.md) |
 
 **返回：**
 
@@ -170,7 +169,6 @@ HiCollie_ErrorCode OH_HiCollie_Init_JankDetection(OH_HiCollie_BeginFunc* beginFu
 
 ```
 HiCollie_ErrorCode OH_HiCollie_Report(bool* isSixSecond);
-
 ```
 
 **描述**
