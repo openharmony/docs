@@ -42,7 +42,7 @@
 
 ## 开发步骤
 
-1. 添加动态链接库
+1. 添加动态链接库。
 
 ```CMake
 # CMakeLists.txt中添加以下lib
@@ -50,7 +50,7 @@ libudmf.so
 libpasteboard.so
 ```
 
-2. 引用头文件
+2. 引用头文件。
 
 ```c
 #include <cstdio>
@@ -59,22 +59,22 @@ libpasteboard.so
 #include <database/udmf/uds.h>
 ```
 
-3. 定义剪贴板变化监听的回调函数
+3. 定义剪贴板变化监听的回调函数。
 
 ```c
 // 定义剪贴板数据内容变更时的通知回调函数
 static void Pasteboard_Notify_impl2(void *context, Pasteboard_NotifyType type)
 {
-    printf("Pasteboard_NotifyType, type: %d", type);
+  printf("Pasteboard_NotifyType, type: %d", type);
 }
 // 定义剪贴板数据变更观察者对象销毁时的通知回调函数
 static void Pasteboard_Finalize_impl2(void *context)
 {
-    printf("callback: Pasteboard_Finalize");
+  printf("callback: Pasteboard_Finalize");
 }
 ```
 
-4. 订阅剪贴板变化
+4. 订阅剪贴板变化。
 
 ```c
 // 1. 创建一个剪贴板实例
@@ -87,7 +87,7 @@ OH_PasteboardObserver_SetData(observer, (void *)pasteboard, Pasteboard_Notify_im
 OH_Pasteboard_Subscribe(pasteboard, NOTIFY_LOCAL_DATA_CHANGE, observer);
 ```
 
-5. 向剪贴板写入数据
+5. 向剪贴板写入数据。
 
 ```c
 // 1. 创建一个剪贴板实例
@@ -113,7 +113,7 @@ OH_UdmfData_Destroy(data);
 OH_Pasteboard_Destroy(pasteboard);
 ```
 
-6. 从剪贴板读取数据
+6. 从剪贴板读取数据。
 
 ```c
 // 1. 创建一个剪贴板实例
@@ -121,20 +121,20 @@ OH_Pasteboard *pasteboard = OH_Pasteboard_Create();
 // 2. 判断剪贴板中有是否有文本类型数据
 bool hasPlainTextData = OH_Pasteboard_HasType(pasteboard, "text/plain");
 if (hasPlainTextData) {
-    // 3. 从剪贴板中获取统一类型数据OH_UdmfData
-    int ret = 0;
-    OH_UdmfData *udmfData = OH_Pasteboard_GetData(pasteboard, &ret);
-    // 4. 从OH_UdmfData中获取第一个数据记录
-    OH_UdmfRecord *record = OH_UdmfData_GetRecord(udmfData, 0);
-    // 5. 从数据记录中获取文本数据内容
-    OH_UdsPlainText *plainText = OH_UdsPlainText_Create();
-    OH_UdmfRecord_GetPlainText(record, plainText);
-    const char *content = OH_UdsPlainText_GetContent(plainText);
-    printf("Get plain text success. content: %s", content);
-    // 5. 使用完销毁指针
-    OH_UdsPlainText_Destroy(plainText);
-    OH_UdmfRecord_Destroy(record);
-    OH_UdmfData_Destroy(udmfData);
+  // 3. 从剪贴板中获取统一类型数据OH_UdmfData
+  int ret = 0;
+  OH_UdmfData *udmfData = OH_Pasteboard_GetData(pasteboard, &ret);
+  // 4. 从OH_UdmfData中获取第一个数据记录
+  OH_UdmfRecord *record = OH_UdmfData_GetRecord(udmfData, 0);
+  // 5. 从数据记录中获取文本数据内容
+  OH_UdsPlainText *plainText = OH_UdsPlainText_Create();
+  OH_UdmfRecord_GetPlainText(record, plainText);
+  const char *content = OH_UdsPlainText_GetContent(plainText);
+  printf("Get plain text success. content: %s", content);
+  // 5. 使用完销毁指针
+  OH_UdsPlainText_Destroy(plainText);
+  OH_UdmfRecord_Destroy(record);
+  OH_UdmfData_Destroy(udmfData);
 }
 OH_Pasteboard_Destroy(pasteboard);
 ```
