@@ -390,7 +390,7 @@ getLocalDeviceType(): number;
 
 getLocalDeviceId(): string;
 
-获取本地设备id，实际值为udid-hash与appid和盐值基于sha256方式进行加密后的值。
+获取本地设备id，实际值为udid-hash与appid和盐值基于sha256方式进行混淆后的值。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
