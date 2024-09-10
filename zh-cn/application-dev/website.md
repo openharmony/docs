@@ -248,7 +248,6 @@
           - [LifecycleService接口切换](application-models/lifecycleservice-switch.md)
           - [LifecycleData接口切换](application-models/lifecycledata-switch.md)
           - [DataAbilityHelper接口切换](application-models/dataabilityhelper-switch.md)
-          - [mediaLibrary接口切换](application-models/medialibrary-switch.md)
           - [request接口切换](application-models/request-switch.md)
           - [resourceManager接口切换](application-models/resourcemanager-switch.md)
           - [window接口切换](application-models/window-switch.md)
