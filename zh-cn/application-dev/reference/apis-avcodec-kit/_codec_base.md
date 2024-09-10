@@ -1006,7 +1006,7 @@ enum OH_AVSeekMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| SEEK_MODE_NEXT_SYNC  | 指定时间位置的下一I帧。   | 
+| SEEK_MODE_NEXT_SYNC  | 指定时间位置的下一I帧。若时间点后没有I帧，该模式可能跳转失败。   |
 | SEEK_MODE_PREVIOUS_SYNC  | 指定时间位置的上一I帧。   | 
 | SEEK_MODE_CLOSEST_SYNC  | 指定时间位置的最近I帧。   | 
 
