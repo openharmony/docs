@@ -52,7 +52,7 @@ SystemAPI：
 
 **起始API Level**
 
-API 12
+API 10和API 11
 
 **变更发生版本**
 
