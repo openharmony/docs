@@ -17,7 +17,7 @@
 - 当前支持的数据类型：纯文本类型(OH_UdsPlainText)、超文本标记语言类型(OH_UdsHtml)、文件Uri类型(OH_UdsFileUri)、像素图片类型(OH_UdsPixelMap)、自定义类型。
 - 自定义类型数据在复制粘贴时，指定的类型名称不能和已有的类型名称重复。
 - API version 12及之后，系统为提升用户隐私安全保护能力，剪贴板读取接口增加[权限管控](get-pastedata-permission-guidelines.md)。
-- API version 12中新增的[setUnifiedData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#setunifieddata12)/[getUnifiedData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getunifieddata12)函数复制、粘贴的数据和本套接口中复制、粘贴的数据无法互通，相关能力正在开发中，预计API 13提供。
+- API version 12中新增的[setUnifiedData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#setunifieddata12)/[getUnifiedData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getunifieddata12)函数复制、粘贴的数据和本套接口中复制、粘贴的数据无法互通，相关能力正在开发中。
 
 ## 接口说明
 
@@ -37,10 +37,12 @@
 | OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status)                                                                              | 获取剪贴板中的数据。                  |
 | int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data)                                                                                 | 向剪贴板中写入数据。                  |
 | int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard)                                                                                                  | 清空剪贴板中的数据。                  |
-| void (*Pasteboard_Notify)(void* context, Pasteboard_NotifyType type)                                                                                    | 剪贴板中数据变更回调函数。               |
-| void (*Pasteboard_Finalize)(void* context)                                                                                                              | 剪贴板数据变更观察者对象注销回调函数。         |
+| void (\*Pasteboard_Notify)(void\* context, Pasteboard_NotifyType type)                                                                                  | 剪贴板中数据变更回调函数。               |
+| void (\*Pasteboard_Finalize)(void\* context)                                                                                                            | 剪贴板数据变更观察者对象注销回调函数。         |
 
-## 添加动态链接库
+## 开发步骤
+
+### 添加动态链接库
 
 CMakeLists.txt中添加以下lib。
 
@@ -49,7 +51,7 @@ libudmf.so
 libpasteboard.so
 ```
 
-## 引用头文件
+### 引用头文件
 
 ```c
 #include <cstdio>
@@ -58,9 +60,7 @@ libpasteboard.so
 #include <database/udmf/uds.h>
 ```
 
-## 定义剪贴板变化监听的回调函数
-
-下面为剪贴板数据变更监听的回调函数定义示例。
+### 定义剪贴板变化监听的回调函数
 
 ```c
 // 定义剪贴板数据内容变更时的通知回调函数
@@ -75,14 +75,7 @@ static void Pasteboard_Finalize_impl2(void *context)
 }
 ```
 
-## 订阅剪贴板变化
-
-下面以监听本地剪贴板数据变更的场景，来说明如何订阅剪贴板数据变化。
-
-1. 创建一个剪贴板实例。
-2. 创建一个剪贴板数据变更观察者实例。
-3. 将两个回调函数设置到观察者实例。
-4. 设置对剪贴板本端数据变化的订阅。
+### 订阅剪贴板变化
 
 ```c
 // 1. 创建一个剪贴板实例
@@ -95,15 +88,7 @@ OH_PasteboardObserver_SetData(observer, (void *)pasteboard, Pasteboard_Notify_im
 OH_Pasteboard_Subscribe(pasteboard, NOTIFY_LOCAL_DATA_CHANGE, observer);
 ```
 
-## 向剪贴板写入数据
-
-下面以向剪贴板写入文本数据的场景为例，说明如何向剪贴板写入数据。
-
-1. 创建一个剪贴板实例。
-2. 创建OH_UdmfRecord对象，并向OH_UdmfRecord中添加文本类型数据。
-3. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
-4. 将创建OH_UdmfData对象数据写入剪贴板。
-5. 使用结束后，删除上述步骤产生的指针。
+### 向剪贴板写入数据
 
 ```c
 // 1. 创建一个剪贴板实例
@@ -129,16 +114,7 @@ OH_UdmfData_Destroy(data);
 OH_Pasteboard_Destroy(pasteboard);
 ```
 
-## 从剪贴板读取数据
-
-下面继续以获取文本类型数据场景为例，说明如何从剪贴板读取数据。
-
-1. 创建一个剪贴板实例。
-2. 判断剪贴板中有是否有文本类型数据。
-3. 从剪贴板中获取统一类型数据OH_UdmfData。
-4. 从OH_UdmfData中获取第一个数据记录。
-5. 从数据记录中获取文本数据内容。
-6. 使用结束后，删除上述步骤产生的指针。
+### 从剪贴板读取数据
 
 ```c
 // 1. 创建一个剪贴板实例
