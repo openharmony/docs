@@ -571,7 +571,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 Terminates this ability. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
 
 > **NOTE**
-> 
+>
 > After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -631,7 +631,7 @@ terminateSelf(): Promise&lt;void&gt;
 Terminates this ability. This API uses a promise to return the result. It can be called only by the main thread.
 
 > **NOTE**
-> 
+>
 > After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -693,7 +693,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
 > **NOTE**
-> 
+>
 > After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -768,7 +768,7 @@ Terminates this ability. This API uses a promise to return the result. It can be
 If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
 > **NOTE**
-> 
+>
 > After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate](../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -1632,7 +1632,7 @@ export default class EntryAbility extends UIAbility {
       if (err.code) {
         return;
       }
-      
+
       try {
         this.context.reportDrawnCompleted((err) => {
           if (err.code) {
@@ -1660,7 +1660,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
 
-Implicitly starts a given type of UIExtensionAbility. This API uses an asynchronous callback to return the result. It can be called only by the main thread.
+Implicitly starts a given type of UIExtensionAbility. This API uses an asynchronous callback to return the result. It can be called only in the main thread and by applications running in the foreground.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1719,7 +1719,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback) : Promise\<void>
 
-Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result. It can be called only by the main thread.
+Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result. It can be called only in the main thread and by applications running in the foreground.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1795,7 +1795,7 @@ To call this API, the current ability must be started through [UIAbilityContext.
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
@@ -1892,7 +1892,7 @@ To call this API, the current ability must be started through [UIAbilityContext.
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
@@ -1974,7 +1974,7 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
 moveAbilityToBackground(): Promise\<void>
 
-Moves this ability from the foreground to the background. This API uses a promise to return the result. It can be called only by the main thread.
+Moves this ability from the foreground to the background. This API uses a promise to return the result. It can be called only by the main thread.<br><!--RP1-->This API applies only to devices whose **deviceTypes** is **default**.<!--RP1End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2046,7 +2046,7 @@ The following situations may be possible for a started EmbeddableUIAbility:
 > **NOTE**
 >
 > For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
- 
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -2376,6 +2376,358 @@ export default class EntryAbility extends UIAbility {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
       hilog.error(0x0000, 'testTag', `backToCallerAbilityWithResult failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
+## UIAbilityContext.setRestoreEnabled<sup>13+</sup>
+
+setRestoreEnabled(enabled: boolean): Promise\<void>
+
+Sets whether to enable backup and restore for this UIAbility. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| enabled | boolean | Yes| Whether to enable backup and restore. The value **true** means to enable backup and restore, and **false** means the opposite.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+| 16000011 | The context does not exist. |
+
+**Example**
+
+```ts
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let enabled = true;
+    try {
+      this.context.setRestoreEnabled(enabled).then((data) => {
+        console.log('setRestoreEnabled success.');
+      }).catch((err: BusinessError) => {
+        console.error(`setRestoreEnabled fail, err: ${JSON.stringify(err)}`);
+      });
+    } catch (paramError) {
+      let code = (paramError as BusinessError).code;
+      let message = (paramError as BusinessError).message;
+      console.error(`[UIAbilityContext] error: ${code}, ${message}`);
+    }
+  }
+}
+```
+
+## UIAbilityContext.startUIServiceExtensionAbility<sup>13+<sup>
+
+startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
+
+Starts a [UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md).
+
+
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                    | Read Only| Optional| Description                    |
+| -------- | --------------------------------------- | ---- |  ---- | ------------------------ |
+| want     | [Want](js-apis-app-ability-want.md)     | Yes | No| Want information required for startup.|
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message                                                                                                   |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | The Ability is not supported. |
+| 16000001 | The specified ability does not exist.                                                                       |
+| 16000002 | Incorrect ability type.                                                                                     |
+| 16000004 | Can not start invisible component.                                                                          |
+| 16000005 | The specified process does not have the permission.                                                         |
+| 16000006 | Cross-user operations are not allowed.                                                                      |
+| 16000008 | The crowdtesting application expires.                                                                       |
+| 16000011 | The context does not exist.                                                                                 |
+| 16000012 | The application is controlled.                                                                              |
+| 16000013 | The application is controlled by EDM.                                                                       |
+| 16000050 | Internal error.                                                                                             |
+| 16200001 | The caller has been released.                                                                               |
+
+**Example**
+
+```ts
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row() {
+        // Create a Start button.
+        Button('start ability')
+          .enabled(true)
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+            let startWant: Want = {
+              bundleName: 'com.acts.uiserviceextensionability',
+              abilityName: 'UiServiceExtAbility',
+            };
+            try {
+              // Start the UIServiceExtensionAbility.
+              context.startUIServiceExtensionAbility(startWant).then(() => {
+                console.log('startUIServiceExtensionAbility success');
+              }).catch((error: BusinessError) => {
+                console.log('startUIServiceExtensionAbility error', JSON.stringify(error));
+              })
+            } catch (err) {
+              console.log('startUIServiceExtensionAbility failed', JSON.stringify(err));
+            }
+          })
+      }
+    }
+  }
+}
+```
+
+## UIAbilityContext.connectUIServiceExtensionAbility<sup>13+<sup>
+
+connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
+
+Connects to a UIServiceExtensionAbility. This API uses a promise to return the result.
+
+
+
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+>
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Read Only| Optional| Description                |
+| ------ | ---- | ---- | -------------------- | ---- |
+| want   |[Want](js-apis-app-ability-want.md) | Yes | No| Want information required for connection.|
+| callback | [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | No| Yes| Callback for connecting to the UIServiceExtensionAbility.|
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;UIServiceProxy&gt; | Promise used to return a [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md) object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message                                                                            |
+| -------- | ----------------------------------------------------------------------------------- |
+| 201      | The application does not have permission to call the interface.                                                                                 |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000001 | The specified ability does not exist.                                               |
+| 16000002 | Incorrect ability type.                                                             |
+| 16000004 | Can not start invisible component.                                                  |
+| 16000005 | The specified process does not have the permission.                                 |
+| 16000006 | Cross-user operations are not allowed.                                              |
+| 16000008 | The crowdtesting application expires.                                               |
+| 16000011 | The context does not exist.                                                         |
+| 16000050 | Internal error.                                                                     |
+| 16000053 | The ability is not on the top of the                                                |
+| 16000055 | Installation-free timed out.                                                        |
+
+**Example**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const TAG: string = '[Extension] ';
+
+@Entry
+@Component
+struct UIServiceExtensionAbility {
+  dataCallBack : common.UIServiceExtensionConnectCallback = {
+    // Receive data
+    onData: (data: Record<string, Object>) => {
+      console.log(`dataCallBack received data`, JSON.stringify(data));
+    },
+    // Disconnect from the UIServiceExtensionAbility.
+    onDisconnect: () => {
+      console.log(`dataCallBack onDisconnect`);
+    }
+  }
+
+  async myConnect() {
+    // Obtain the context.
+    let context = getContext(this) as common.UIAbilityContext;
+    let startWant: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'UiServiceExtAbility'
+    };
+
+    try {
+      // Connect to the UIServiceExtensionAbility.
+      context.connectUIServiceExtensionAbility(startWant, this.dataCallBack)
+        .then((proxy: common.UIServiceProxy) => {
+          console.log(TAG + `try to connectUIServiceExtensionAbility`, JSON.stringify(proxy));
+        }).catch((err: Error) => {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log(TAG + `connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.log(TAG + `connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+    };
+  }
+
+  build() {
+    RelativeContainer() {
+      // Create a Connect button.
+      Button('connectServiceExtensionAbility', { type: ButtonType.Capsule, stateEffect: true })
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          this.myConnect()
+        });
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+## UIAbilityContext.disconnectUIServiceExtensionAbility<sup>13+<sup>
+
+disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
+
+Disconnects from a UIServiceExtensionAbility.
+
+
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+>
+
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Read Only| Optional| Description                |
+| ------ | ---- | ---- | -------------------- | -------------------- |
+| proxy   | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md) | Yes |No| Proxy returned after [connectUIServiceExtensionAbility](#uiabilitycontextconnectuiserviceextensionability13) is called.|
+
+**Return value**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message                                                                               |
+| -------- | ------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000011 | The context does not exist.                                                                  |
+| 16000050 | Internal error.                                                                                 |
+
+**Example**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const TAG: string = '[Extension] ';
+
+@Entry
+@Component
+struct UIServiceExtensionAbility {
+  comProxy: common.UIServiceProxy | null = null;
+
+  build() {
+    Scroll() {
+      Column() {
+        // Create a Disconnect button.
+        Button('disconnectUIServiceExtensionAbility', { type: ButtonType.Capsule, stateEffect: true })
+          .margin({
+            top: 5,
+            left: 10,
+            right: 10,
+            bottom: 5
+          })
+          .alignRules({
+            center: { anchor: '__container__', align: VerticalAlign.Center },
+            middle: { anchor: '__container__', align: HorizontalAlign.Center }
+          })
+          .onClick(() => {
+            this.myDisconnectUIServiceExtensionAbility()
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+
+  myDisconnectUIServiceExtensionAbility() {
+    let context = getContext(this) as common.UIAbilityContext;
+
+    try {
+      // Disconnect from the UIServiceExtensionAbility.
+      context.disconnectUIServiceExtensionAbility(this.comProxy)
+        .then(() => {
+          console.log(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}}`);
+        }).catch((err: Error) => {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.log(TAG + `disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.log(TAG + `disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
     }
   }
 }

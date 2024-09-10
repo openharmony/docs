@@ -4,6 +4,10 @@
 
 After creating a thread using **pthread_create**, you can use **napi_create_ark_runtime** to create an ArkTS runtime environment and load the ArkTS module in the runtime environment. To destroy an ArkTS runtime environment that is not required, use **napi_destroy_ark_runtime**.
 
+## Constraints
+
+A maximum of 16 runtime environments can be created for a process.
+
 ## Example
 
 1. Declare the APIs, configure compile settings, and register the module.

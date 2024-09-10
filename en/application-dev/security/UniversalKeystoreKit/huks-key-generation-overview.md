@@ -33,3 +33,6 @@ The key management service specifications include mandatory specifications and o
 | <!--DelRow-->DH | 3072, 4096| 8+ | No|
 | SM2 | 256 | 9+ | Yes|
 | SM4 | 128 | 9+ | Yes|
+
+> **NOTE**<br>
+> The DH algorithm uses the FFDHE named safe prime groups.

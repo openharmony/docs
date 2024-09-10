@@ -18,7 +18,7 @@ The following table lists the APIs for manipulating ArkTS date in C/C++.
 | API| Description|
 | -------- | -------- |
 | napi_create_date | Creates an ArkTS **Date** object.|
-| napi_get_date_value | Obtains the C equivalent of the given ArkTS **Date** object.  |
+| napi_get_date_value | Obtains the C equivalent of the given ArkTS **Date** object.|
 | napi_is_date | Checks whether the given ArkTS value is a **Date** object. You can use this API to check the type of the parameter passed from ArkTS.|
 
 ## Example
@@ -86,7 +86,7 @@ static napi_value GetDateValue(napi_env env, napi_callback_info info)
     }
 
     // Print the obtained Unix timestamp.
-    OH_LOG_INFO(LOG_APP, "Node-API gets the incoming Green time:%{public}lf.", value);
+    OH_LOG_INFO(LOG_APP, "Node-API gets unix time stamp is:%{public}lf.", value);
 
     // Convert the Unix timestamp to an ArkTS double value and put it in returnValue.
     napi_value returnValue = nullptr;

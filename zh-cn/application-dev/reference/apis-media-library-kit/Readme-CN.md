@@ -2,8 +2,10 @@
 
 - ArkTS API
   - [@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)
+  - [@ohos.file.sendablePhotoAccessHelper (基于Sendable对象的相册管理模块)](js-apis-sendablePhotoAccessHelper.md)
   <!--Del-->
   - [@ohos.file.photoAccessHelper (相册管理模块)(系统接口)](js-apis-photoAccessHelper-sys.md)
+  - [@ohos.file.sendablePhotoAccessHelper (基于Sendable对象的相册管理模块)(系统接口)](js-apis-sendablePhotoAccessHelper-sys.md)
   <!--DelEnd-->
 - ArkTS组件
   - [@ohos.file.AlbumPickerComponent (Album Picker组件)](ohos-file-AlbumPickerComponent.md)

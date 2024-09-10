@@ -4980,7 +4980,9 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> - Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> 
+> - 该接口不支持轻量级智能穿戴。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5011,7 +5013,9 @@ update(input: DataBlob): Promise\<void>
 
 > **说明：**
 >
-> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> - Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> 
+> - 该接口不支持轻量级智能穿戴。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5075,6 +5079,10 @@ digest(callback: AsyncCallback\<DataBlob>): void
 
 通过注册回调函数返回Md的计算结果。
 
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
@@ -5115,6 +5123,10 @@ function mdByCallback() {
 digest(): Promise\<DataBlob>
 
 通过Promise返回Md的计算结果。
+
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5752,6 +5764,10 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 
 异步生成指定长度的随机数，通过注册回调函数返回。
 
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
@@ -5794,6 +5810,10 @@ rand.generateRandom(12, (err, randData) => {
 generateRandom(len: number): Promise\<DataBlob>
 
 异步生成指定长度的随机数，通过Promise返回。
+
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -7,6 +7,7 @@ When use @Builder to pass data, the parent-child relationship of components is c
 >
 > This decorator is supported since API version 12.
 >
+> 
 
 ## How to Use
 
@@ -210,6 +211,107 @@ struct Parent {
   build() {
     Column() {
       Child({ customBuilderParam: this.componentBuilder })
+    }
+  }
+}
+```
+
+## Use Scenarios
+
+### Using @LocalBuilder in @ComponentV2 Decorated Custom Components
+
+Call the @LocalBuilder in the custom component decorated by @ComponentV2 to change the variables, triggering the UI re-renders.
+
+```ts
+@ObservedV2
+class Info {
+  @Trace name: string = '';
+  @Trace age: number = 0;
+}
+
+@ComponentV2
+struct ChildPage {
+  @Require @Param childInfo: Info;
+  build() {
+    Column() {
+      Text(`Custom component name :${this.childInfo.name}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      Text(`Custom component age :${this.childInfo.age}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+struct ParentPage {
+  info1: Info = { name: "Tom", age: 25 };
+  @Local info2: Info = { name: "Tom", age: 25 };
+
+  @LocalBuilder
+  privateBuilder() {
+    Column() {
+      Text(`LocalBuilder@Builder name :${this.info1.name}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      Text(`LocalBuilder@Builder age :${this.info1.age}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  @LocalBuilder
+  privateBuilderSecond() {
+    Column() {
+      Text(`LocalBuilder@Builder name :${this.info2.name}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      Text(`LocalBuilder@Builder age :${this.info2.age}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+  build() {
+    Column() {
+      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      this.privateBuilder() // Call the local @Builder.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text1
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      this.privateBuilderSecond() // Call the local @Builder.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info1: ${this.info1.name}  ${this.info1.age}`) // Text1
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      ChildPage({childInfo: this.info1}) // Call the custom component.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      ChildPage({childInfo: this.info2}) // Call the custom component.
+      Line()
+        .width('100%')
+        .height(10)
+        .backgroundColor('#000000').margin(10)
+      Button("change info1&info2")
+        .onClick(() => {
+          this.info1 = { name: "Cat", age: 18} // Text1 is not re-rendered because no decorator is used to listen for value changes.
+          this.info2 = { name: "Cat", age: 18} // Text2 is re-rendered because a decorator is used to listen for value changes.
+        })
     }
   }
 }

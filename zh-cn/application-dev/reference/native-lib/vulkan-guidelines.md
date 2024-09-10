@@ -70,7 +70,7 @@ libvulkan.so
 
 2. **获取OHNativeWindow**。
 
-   OHNativeWindow需要从XComponent组件中获取，下面提供一份从XComponent组件中获取OHNativeWindow的代码示例，XComponent模块的具体使用方法请参考[XComponent模块的介绍文档](../../ui/arkts-common-components-xcomponent.md)和[XComponent开发指导](../../ui/napi-xcomponent-guidelines.md)。
+   OHNativeWindow需要从XComponent组件中获取，下面提供一份从XComponent组件中获取OHNativeWindow的代码示例，XComponent模块的具体使用方法请参考[XComponent模块的介绍文档](../../ui/napi-xcomponent-guidelines.md)。
 
    1. ets/pages/Index.ets中增加一个XComponent组件。
 

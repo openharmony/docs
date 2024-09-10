@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```ts
-import { BasicPrefetcher, IDataSourcePrefetching } from '@kit.ArkUI';
+import { BasicPrefetcher, IDataSourcePrefetching, IPrefetcher } from '@kit.ArkUI';
 ```
 
 
@@ -37,9 +37,13 @@ setDataSource(dataSource: IDataSourcePrefetching): void;
 ```typescript
 class MyPrefetcher implements IPrefetcher {
   private dataSource?: IDataSourcePrefetching;
-  
+
   setDataSource(dataSource: IDataSourcePrefetching): void {
     this.dataSource = dataSource;
+  }
+
+  visibleAreaChanged(minVisible: number, maxVisible: number): void {
+    this.dataSource?.prefetch(minVisible);
   }
 }
 ```
@@ -63,6 +67,10 @@ visibleAreaChanged(minVisible: number, maxVisible: number): void
 ```typescript
 class MyPrefetcher implements IPrefetcher {
   private dataSource?: IDataSourcePrefetching;
+
+  setDataSource(dataSource: IDataSourcePrefetching): void {
+    this.dataSource = dataSource;
+  }
 
   visibleAreaChanged(minVisible: number, maxVisible: number): void {
     this.dataSource?.prefetch(minVisible);

@@ -477,7 +477,7 @@ Scroller的构造函数。
 
 ### scrollTo
 
-scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration?: number, curve?: Curve | ICurve, canOverScroll?: boolean } | boolean })
+scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: ScrollAnimationOptions | boolean })
 
 
 滑动到指定位置。
@@ -748,7 +748,7 @@ getItemIndex(x: number, y: number): number
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 类型   | 必填   | 说明              |
+| 名称   | 类型   | 必填   | 说明              |
 | ----- | ------ | ------ | ----------------- |
 | duration | number | 否 | 设置滚动时长。<br/>默认值：1000。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9)<sup>9+ </sup> | 否 | 设置滚动曲线。<br/>默认值：Curve.Ease。 |

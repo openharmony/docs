@@ -6,7 +6,7 @@
     - [HTTP Data Request](http-request.md)
     - [WebSocket Connection](websocket-connection.md)
     - [Socket Connection](socket-connection.md)
-    - [MDNS](net-mdns.md)
+    - [MDNS Management](net-mdns.md)
 
 - Network Management Capabilities
     - [Network Connection Management](net-connection-manager.md)

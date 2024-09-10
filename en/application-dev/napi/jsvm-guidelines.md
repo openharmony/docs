@@ -6,11 +6,28 @@
 
 Each **JSVM_Value** belongs to a specific **HandleScope** instance, which is created by **OH_JSVM_OpenHandleScope** and closed by **OH_JSVM_CloseHandleScope**. After a **HandleScope** instance is closed, the corresponding **JSVM_Value** will be automatically released.
 
-> **NOTE**
->
-> - **JSVM_Value** can be created only after **HandleScope** is opened; otherwise, the application may crash. Node-API does not have this restriction.
-> - **JSVM_Value** cannot be used after the corresponding **HandleScope** is closed. To hold **JSVM_Value** persistently, call **OH_JSVM_CreateReference** to convert **JSVM_Value** to **JSVM_Ref**.
+**NOTE**
 
+- **JSVM_Value** can be created only after **HandleScope** is opened; otherwise, the application may crash. Node-API does not have this restriction.
+- **JSVM_Value** cannot be used after the corresponding **HandleScope** is closed. To hold **JSVM_Value** persistently, call **OH_JSVM_CreateReference** to convert **JSVM_Value** to **JSVM_Ref**.
+- The scopes (including **JSVM_VMScope**, **JSVM_EnvScope**, and **JSVM_HandleScope**) must be closed in reverse order. The scope opened first must be closed last. Otherwise, the application may crash.
+
+**Example (scope closing error)**
+```
+// If JSVM_VMScope is not closed in reverse order, the application may crash.
+JSVM_VM vm;
+JSVM_CreateVMOptions options;
+OH_JSVM_CreateVM(&options, &vm);
+
+JSVM_VMScope vmScope1, vmScope2;
+OH_JSVM_OpenVMScope(vm, &vmScope1);
+OH_JSVM_OpenVMScope(vm, &vmScope2);
+
+// You need to close vmScope2 and then vmScope1.
+OH_JSVM_CloseVMScope(vm, vmScope1);
+OH_JSVM_CloseVMScope(vm, vmScope2);
+OH_JSVM_DestroyVM(vm);
+```
 
 
 **Encapsulation in C++**
@@ -41,7 +58,7 @@ class HandleScopeWrapper {
 **Example**
 
 ```c++
-// When JSVM-API is frequently called to create JS objects in the for loop, use handle_scope to release resources in a timely manner when they are no longer used. 
+// When JSVM-API is frequently called to create JS objects in the for loop, use handle_scope to release resources in a timely manner when they are no longer used.
 // In the following example, the lifecycle of the local variable res ends at the end of each loop. To prevent memory leaks, scope is used to release the JS object in a timely manner.
 // After each for loop ends, trigger the destructor function of HandleScopeWrapper to release the JS object held by scope.
 for (int i = 0; i < 100000; i++)
@@ -263,120 +280,118 @@ static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
  Exception handling can be classified into the following types based on the primary/secondary relationship between the JS and native code:
 
 - If an exception occurs in the native code of a callback (JS is primary and native is secondary), throw an exception to the JSVM.
-  ```c++
-  // Native is primary, and JSVM is secondary.
-  void ThrowError() {
-  bool isPending = false;
-  if (JSVM_OK == OH_JSVM_IsExceptionPending((env), &isPending) && isPending) {
-      JSVM_Value error;
-      // Obtain and clear the JSVM exception.
-      if (JSVM_OK == OH_JSVM_GetAndClearLastException((env), &error)) {
-      // Obtain the exception stack.
-      JSVM_Value stack = nullptr;
-      CALL_JSVM(env, OH_JSVM_GetNamedProperty((env), error, "stack", &stack));
-  
-      JSVM_Value message = nullptr;
-      CALL_JSVM(env, OH_JSVM_GetNamedProperty((env), error, "message", &message));
-      
-      // Convert the JS string to the std::string of C++.
-      std::string stackstr = stack? GetValueString(stack) : "";
-      std::string messagestr = message? GetValueString(message) : "";
-      // Throw an exception. JSError needs to be implemented.
-      throw JSError(*this, messagestr, stackstr);
-      }
-  }
-  // Throw an exception. JSError needs to be implemented.
-  throw JSError(*this, "JSVM Runtime: unkown execption");
-  }
-  
-  status = OH_JSVM_SetNamedProperty(env, object, "foo", string);
-  // If the JSVM-API call fails, clear the pending exception of the JSVM instance and throw a C++ exception.
-  if (status != JSVM_OK) { 
-      ThrowError();
-  }
-  ```
+    ```c++
+    // Native is primary, and JSVM is secondary.
+    void ThrowError() {
+    bool isPending = false;
+    if (JSVM_OK == OH_JSVM_IsExceptionPending((env), &isPending) && isPending) {
+        JSVM_Value error;
+        // Obtain and clear the JSVM exception.
+        if (JSVM_OK == OH_JSVM_GetAndClearLastException((env), &error)) {
+        // Obtain the exception stack.
+        JSVM_Value stack = nullptr;
+        CALL_JSVM(env, OH_JSVM_GetNamedProperty((env), error, "stack", &stack));
+
+        JSVM_Value message = nullptr;
+        CALL_JSVM(env, OH_JSVM_GetNamedProperty((env), error, "message", &message));
+        
+        // Convert the JS string to the std::string of C++.
+        std::string stackstr = stack? GetValueString(stack) : "";
+        std::string messagestr = message? GetValueString(message) : "";
+        // Throw an exception. JSError needs to be implemented.
+        throw JSError(*this, messagestr, stackstr);
+        }
+    }
+    // Throw an exception. JSError needs to be implemented.
+    throw JSError(*this, "JSVM Runtime: unkown execption");
+    }
+
+    status = OH_JSVM_SetNamedProperty(env, object, "foo", string);
+    // If the JSVM-API call fails, clear the pending exception of the JSVM instance and throw a C++ exception.
+    if (status != JSVM_OK) { 
+        ThrowError();
+    }
+    ```
 
 - If JSVM-API (native is primary and JS is secondary) fails to be called from C++, clear the pending exceptions in JSVM to prevent the impact on subsequent JSVM-API execution and set a branch to handling C++ exception (or thrown a C++ exception).
-  ```
-  // JSVM is primary, and native is secondary.
-  void DoSomething() {
-      throw("Do something failed");
-  }
-  
-  // Demo 1: Capture a C++ exception and throw the exception to the JSVM.
-  JSVM_Value NativeFunctionExceptionDemo1(JSVM_Env env, JSVM_CallbackInfo info) {
-      try {
-          DoSomething();
-      } catch (const char *ex) {
-          OH_JSVM_ThrowError(env, nullptr, ex);
-          return nullptr;
-      }
-      return nullptr;
-  }
-  
-  // Demo 2: The JSVM-API call fails, and an exception is thrown to the JSVM.
-  JSVM_Value NativeFunctionExceptionDemo2(JSVM_Env env, JSVM_CallbackInfo info) {
-      JSVM_Value JSBool = nullptr;
-      bool value = false;
-      auto status = OH_JSVM_GetValueBool(env, JSBool, &value);
-      if (status != JSVM_OK) {
-          OH_JSVM_ThrowError(env, nullptr, "Get bool value failed");
-          return nullptr;
-      }
-      return nullptr;
-  }
-  
-  // Demo 3: The JSVM-API call fails, and an exception to be handled is added to the JSVM during the invocation. In this case, no exception needs to be thrown to the JSVM.
-  JSVM_Value NativeFunctionExceptionDemo3(JSVM_Env env, JSVM_CallbackInfo info) {
-      std::string sourcecodestr = R"JS(
-          throw Error('Error throw from js');
-      )JS";
-      JSVM_Value sourcecodevalue = nullptr;
-      OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue);
-      JSVM_Script script;
-      auto status = OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script);
-      JSVM_Value result;
-      // Execute the JS script. During the execution, a JS exception is thrown.
-      status = OH_JSVM_RunScript(env, script, &result);
-      if (status != JSVM_OK) {
-          bool isPending = false;
-          // If an exception already exists, do not throw the exception to the JSVM.
-          // If a new exception needs to be thrown, handle the pending exception in the JSVM first.
-          if (JSVM_OK == OH_JSVM_IsExceptionPending((env), &isPending) && isPending) {
-              return nullptr;
-          }
-          OH_JSVM_ThrowError(env, nullptr, "Runscript failed");
-          return nullptr;
-      }
-      return nullptr;
-  }
-  
-  // Bind NativeFunction to the JSVM. The process is omitted here.
-  std::string sourcecodestr = R"JS(
-      // The console log needs to be implemented.
-      try {
-          // Call the native function.
-          NativeFunction()
-      } catch (e) {
-          // Handle the exception in C/C++.
-          consolelog(e.message)
-      }
-  )JS";
-  JSVM_Value sourcecodevalue = nullptr;
-  OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue);
-  JSVM_Script script;
-  auto status = OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script);
-  OH_LOG_INFO(LOG_APP, "JSVM API TEST: %{public}d", (uint32_t)status);
-  JSVM_Value result;
-  // Execute the JS script to call native methods from JS.
-  status = OH_JSVM_RunScript(env, script, &result);
-  ```
+    ```
+    // JSVM is primary, and native is secondary.
+    void DoSomething() {
+        throw("Do something failed");
+    }
+
+    // Demo 1: Capture a C++ exception and throw the exception to the JSVM.
+    JSVM_Value NativeFunctionExceptionDemo1(JSVM_Env env, JSVM_CallbackInfo info) {
+        try {
+            DoSomething();
+        } catch (const char *ex) {
+            OH_JSVM_ThrowError(env, nullptr, ex);
+            return nullptr;
+        }
+        return nullptr;
+    }
+
+    // Demo 2: The JSVM-API call fails, and an exception is thrown to the JSVM.
+    JSVM_Value NativeFunctionExceptionDemo2(JSVM_Env env, JSVM_CallbackInfo info) {
+        JSVM_Value JSBool = nullptr;
+        bool value = false;
+        auto status = OH_JSVM_GetValueBool(env, JSBool, &value);
+        if (status != JSVM_OK) {
+            OH_JSVM_ThrowError(env, nullptr, "Get bool value failed");
+            return nullptr;
+        }
+        return nullptr;
+    }
+
+    // Demo 3: The JSVM-API call fails, and an exception to be handled is added to the JSVM during the invocation. In this case, no exception needs to be thrown to the JSVM.
+    JSVM_Value NativeFunctionExceptionDemo3(JSVM_Env env, JSVM_CallbackInfo info) {
+        std::string sourcecodestr = R"JS(
+            throw Error('Error throw from js');
+        )JS";
+        JSVM_Value sourcecodevalue = nullptr;
+        OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue);
+        JSVM_Script script;
+        auto status = OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script);
+        JSVM_Value result;
+        // Execute the JS script. During the execution, a JS exception is thrown.
+        status = OH_JSVM_RunScript(env, script, &result);
+        if (status != JSVM_OK) {
+            bool isPending = false;
+            // If an exception already exists, do not throw the exception to the JSVM.
+            // If a new exception needs to be thrown, handle the pending exception in the JSVM first.
+            if (JSVM_OK == OH_JSVM_IsExceptionPending((env), &isPending) && isPending) {
+                return nullptr;
+            }
+            OH_JSVM_ThrowError(env, nullptr, "Runscript failed");
+            return nullptr;
+        }
+        return nullptr;
+    }
+
+    // Bind NativeFunction to the JSVM. The process is omitted here.
+    std::string sourcecodestr = R"JS(
+        // The console log needs to be implemented.
+        try {
+            // Call the native function.
+            NativeFunction()
+        } catch (e) {
+            // Handle the exception in C/C++.
+            consolelog(e.message)
+        }
+    )JS";
+    JSVM_Value sourcecodevalue = nullptr;
+    OH_JSVM_CreateStringUtf8(env, sourcecodestr.c_str(), sourcecodestr.size(), &sourcecodevalue);
+    JSVM_Script script;
+    auto status = OH_JSVM_CompileScript(env, sourcecodevalue, nullptr, 0, true, nullptr, &script);
+    OH_LOG_INFO(LOG_APP, "JSVM API TEST: %{public}d", (uint32_t)status);
+    JSVM_Value result;
+    // Execute the JS script to call native methods from JS.
+    status = OH_JSVM_RunScript(env, script, &result);
+    ```
 
 > **NOTE**
 >
 > If JSVM-API fails to be called in a callback, you can determine whether to throw an exception to the JSVM. If an exception needs to be thrown to the JSVM, ensure that there is no pending exception in the JSVM. If no exception is thrown, JS **try-catch** can capture such JS exception. For details, see "NativeFunctionException Demo 3."
-
-
 
 ## Binding Object Context
 

@@ -24,7 +24,7 @@
 | 外挂字幕   | srt                        |字幕流：SRT|
 | 外挂字幕   | webvtt                     |字幕流：WEBVTT|
 
-DRM解密能力支持的解封装格式：mp4(H.264，AAC)、mpeg-ts(H264，AAC)。
+DRM解密能力支持的解封装格式：<!--RP7-->mp4(H.264，AAC)、mpeg-ts(H264，AAC)<!--RP7End-->。
 
 **适用场景**：
 

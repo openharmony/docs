@@ -566,7 +566,7 @@ Error: install failed due to grant request permissions failed.
 
 **处理步骤**
 
-1. 在UnsgnedDebugProfileTemplate.json文件中修改apl等级，调整成system_basic或system_core等级，重新签名打包即可。
+1. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，调整成system_basic或system_core等级，重新签名打包即可。
 
 
 ### 9568297 由于设备sdk版本较低导致安装失败
@@ -657,7 +657,7 @@ Error: install parse unexpected.
 * 场景二：查看本地hap与推送到设备上hap的md5值，若不一致则表示推送过程hap损毁，请尝试重传。
 
 
-### 9568316 数据代理中apl权限字段描述权限低
+### 9568316 数据代理中APL权限字段描述权限低
 **错误信息**
 
 Error: apl of required permission in proxy data is too low.

@@ -85,10 +85,3 @@
 > background-position仅支持背景图片的移动，不支持背景颜色（background-color）。
 
 ![zh-cn_image_background_img.gif](figures/zh-cn_image_background_img.gif)
-
-
-## 相关实例
-
-针对background-position样式动画开发，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
