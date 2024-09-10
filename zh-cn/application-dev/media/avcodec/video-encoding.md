@@ -149,7 +149,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     <!--RP2--><!--RP2End-->
 
-    示例如下所示
+    示例如下所示：
     ```c++
     int32_t qpAverage = 20;
     double mseValue = 0.0;
@@ -681,12 +681,21 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
     对跨距进行偏移，以NV12图像为例 示例如下：
 
-    添加头文件
+    以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
+
+    - OH_MD_KEY_VIDEO_PIC_WIDTH表示width；
+    - OH_MD_KEY_VIDEO_PIC_HEIGHT表示height；
+    - OH_MD_KEY_VIDEO_STRIDE表示wStride；
+    - OH_MD_KEY_VIDEO_SLICE_HEIGHT表示hStride。
+
+    ![copy by line](figures/copy-by-line.png)
+
+    添加头文件。
 
     ```c++
     #include <string.h>
     ```
-    使用示例
+    使用示例：
 
     ```c++
     struct Rect   // 源内存区域的宽，高
