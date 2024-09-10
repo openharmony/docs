@@ -2370,8 +2370,6 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 
 在订阅此监听时，建议参考[响应音频流输出设备变更](../../media/audio/audio-output-device-change.md)自行实现设备连接或者断开时的播放器行为。
 
-当不订阅或取消订阅后，系统会在音频设备变化时自动决策是否暂停播放，应用将收到[`on('stateChange') // state === 'paused', reason === media.StateChangeReason.BACKGROUND`](#onstatechange9)回调并建议同步刷新UI界面。
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
