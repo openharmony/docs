@@ -3004,7 +3004,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic（不同硬件设备支持情况不同） [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同） [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 
 **返回值：**
 
@@ -3037,7 +3037,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic（不同硬件设备支持情况不同）[.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同）[.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。|
 
 **返回值：**
@@ -3339,7 +3339,7 @@ imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLengt
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，dng，heif（不同硬件设备支持情况不同）。 |
+| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，dng，heif<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
 ### getImageInfo
 
@@ -3486,7 +3486,7 @@ if (imageInfo == undefined) {
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3541,7 +3541,7 @@ imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
 
 getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3579,7 +3579,7 @@ imageSourceApi.getImageProperty("BitsPerSample")
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
-获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3612,7 +3612,7 @@ imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: st
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-获取图片指定属性键的值，callback形式返回结果，仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+获取图片指定属性键的值，callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3647,7 +3647,7 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 
 getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
 
-批量获取图片中的指定属性键的值，用Promise形式返回结果。仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+批量获取图片中的指定属性键的值，用Promise形式返回结果。仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3693,7 +3693,7 @@ imageSourceApi.getImageProperties(key).then((data) => {
 
 modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
-通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3746,7 +3746,7 @@ imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(()
 
 modifyImageProperty(key: string, value: string): Promise\<void>
 
-通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3789,7 +3789,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
-通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG、PNG和<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3825,7 +3825,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => 
 
 modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
-批量通过指定的键修改图片属性的值，使用Promise形式返回结果。仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+批量通过指定的键修改图片属性的值，使用Promise形式返回结果。仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -4579,7 +4579,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 ## ImagePacker
 
-图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png、heif（不同硬件设备支持情况不同）。
+图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png、heif<sup>12+</sup>（不同硬件设备支持情况不同）。
 
 ### 属性
 
@@ -4587,7 +4587,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 | 名称             | 类型           | 可读 | 可写 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
-| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png、heif（不同硬件设备支持情况不同）。 |
+| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png、heif<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
 ### packing
 
@@ -5949,7 +5949,7 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heif"（不同硬件设备支持情况不同）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heif"<sup>12+</sup>（不同硬件设备支持情况不同）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | quality | number | 否   | 否   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
