@@ -123,7 +123,7 @@ Inserts an element at the specified position in this container.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
-| index | number | Yes| Index of the position where the element is to be inserted.|
+| index | number | Yes| Index of the position where the element is to be inserted. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Error codes**
 
@@ -284,7 +284,7 @@ Removes an element with the specified position from this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -763,7 +763,7 @@ Returns the element at the given index.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Index.|
+| index | number | Yes| Index. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 

@@ -11,7 +11,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| supportDoctype | boolean | No| Whether to ignore the document type. The default value is **false**, indicating that the document type is parsed.|
+| supportDoctype | boolean | No| Whether to ignore the document type. The default value is **false**, indicating that the document type is not parsed.|
 | ignoreNameSpace | boolean | No| Whether to ignore the namespace. The default value is **false**, indicating that the namespace is parsed.|
 | tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **tagValue**, which consists of a tag and its value. The default value is **null**, indicating that XML tags and tag values are not parsed.|
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **attributeValue**, which consists of an attribute and its value. The default value is **null**, indicating that XML attributes and attribute values are not parsed.|
