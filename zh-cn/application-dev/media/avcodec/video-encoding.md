@@ -11,6 +11,8 @@
 
 目前仅支持硬件编码，基于MimeType创建编码器时，支持配置为H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
+每一种编码的能力范围，可以通过[能力查询](obtain-supported-codecs.md)获取。
+
 <!--RP1--><!--RP1End-->
 
 通过视频编码，应用可以实现以下重点能力，包括：
@@ -273,12 +275,14 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
-    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
     //只有当OH_MD_KEY_BITRATE = CQ时，才需要配置OH_MD_KEY_QUALITY
     if (rateMode == static_cast<int32_t>(OH_VideoEncodeBitrateMode::CQ)) {
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
+    } else if (rateMode == static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR) ||
+               rateMode == static_cast<int32_t>(OH_VideoEncodeBitrateMode::VBR)){
+        OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
     }
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -298,6 +302,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 获取需要输入的Surface，以进行编码
     OHNativeWindow *nativeWindow;
     int32_t ret = OH_VideoEncoder_GetSurface(videoEnc, &nativeWindow);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 释放nativeWindow实例
+    ret = OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+    nativeWindow = nullptr;
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -426,7 +436,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 16. （可选）调用OH_VideoEncoder_Reset()重置编码器。
 
-    调用OH_VideoEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_VideoEncoder_Configure()重新配置。
+    调用OH_VideoEncoder_Reset()后，编码器将回到初始化的状态，需要调用OH_VideoEncoder_Configure()和OH_VideoEncoder_Prepare()重新配置。
 
     ```c++
     // 重置编码器videoEnc
@@ -436,6 +446,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     // 重新配置编码器参数
     ret = OH_VideoEncoder_Configure(videoEnc, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 编码器重新就绪
+    ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }

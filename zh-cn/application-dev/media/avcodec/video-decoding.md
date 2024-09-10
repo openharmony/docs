@@ -10,6 +10,8 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
+每一种解码的能力范围，可以通过[能力查询](obtain-supported-codecs.md)获取。
+
 <!--RP1--><!--RP1End-->
 
 通过视频解码，应用可以实现以下重点能力，包括：
@@ -512,11 +514,14 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > Flush之后，重新调用OH_VideoDecoder_Start接口时，需要重新传PPS/SPS。
+    >
+
 
 15. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
-    调用OH_VideoDecoder_Reset()后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure()、OH_VideoDecoder_SetSurface()重新配置。
-
+    调用OH_VideoDecoder_Reset接口后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure接口、OH_VideoDecoder_Prepare接口和OH_VideoDecoder_SetSurface接口重新配置。
     ```c++
     // 重置解码器videoDec
     int32_t ret = OH_VideoDecoder_Reset(videoDec);
@@ -525,6 +530,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 重新配置解码器参数
     ret = OH_VideoDecoder_Configure(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 解码器重新就绪
+    ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
