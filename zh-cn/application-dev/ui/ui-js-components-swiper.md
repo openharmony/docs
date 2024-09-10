@@ -56,7 +56,8 @@ text{
 ![zh-cn_image_0000001181495038](figures/zh-cn_image_0000001181495038.gif)
 
 
-> **说明：**
+> **说明：** 
+>
 > swiper组件支持除&lt;list&gt;之外的子组件。
 
 

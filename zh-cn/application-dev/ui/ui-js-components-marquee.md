@@ -146,7 +146,8 @@ export default {
 }
 ```
 
-> **说明：**
+> **说明：** 
+>
 > 当loop的值小于等于零时，跑马灯marquee将连续滚动。如果loop未指定，则默认为-1。
 
 ![zh-cn_image_0000001227701867](figures/zh-cn_image_0000001227701867.gif)
