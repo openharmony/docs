@@ -36,6 +36,7 @@
       "maxCount": 5
     },
     "hwasanEnabled": false,
+    "ubsanEnabled": false,
     "cloudFileSyncEnabled": false,
     "configuration": "$profile:configuration"
   },
@@ -79,6 +80,7 @@ app.json5配置文件包含以下标签。
 | maxChildProcess | 标识当前应用自身可创建的子进程的最大个数，取值范围为0到512，0表示不限制，当应用有多个模块时，以entry模块的配置为准。 | 数值 | 该标签可缺省，缺省时使用系统配置的默认值。 |
 | [multiAppMode](#multiappmode标签) | 标识当前应用配置的多开模式。仅bundleType为app的应用的entry或feature模块配置有效，存在多个模块时，以entry模块的配置为准。 | 对象 | 该标签可缺省，缺省值为空。 |
 | hwasanEnabled | 标识应用程序是否开启HWAsan检测。HWAsan(HardWare-assisted AddressSanitizer)是利用Top-Byte-Ignore特性实现的增强版Asan，与Asan相比HWAsan的内存开销更低，检测到的内存错误范围更大。<br/>-&nbsp;true：当前工程开启HWAsan检测。<br/>-&nbsp;false：当前工程不开启HWAsan检测。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| ubsanEnabled | 标识应用程序是否开启UBsan检测。<br/>UBsan(Undefined Behavior Sanitizer)是一个用于运行时检测程序中未定义行为的工具，旨在帮助开发人员发现代码中潜在的错误和漏洞。<br/>-&nbsp;true：当前工程开启UBsan检测。<br/>-&nbsp;false：当前工程不开启UBsan检测。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | cloudFileSyncEnabled | 标识当前应用是否启用端云文件同步能力。 <br/>-&nbsp;true：当前应用启用端云文件同步能力。<br/>-&nbsp;false：当前应用不启用端云文件同步能力。 | 布尔值 | 该标签可缺省，缺省值为false。  |
 | configuration | 标识当前应用字体大小跟随系统配置的能力。<br/>该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。| 字符串 | 该标签可缺省，跟随系统默认设定。 |
 
@@ -152,8 +154,8 @@ configuration标签示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| fontSizeScale | 应用字体大小是否跟随系统，枚举值, followSystem，nonFollowSystem，表示跟随和不跟随。| 字符串 | 该标签可缺省，缺省由系统决定。 |
-| fontSizeMaxScale | 应用字体大小选择跟随系统后，配置的最大比例，枚举值1，1.15，1.3，1.45，1.75，2，3.2。	 <br/> fontSizeScale为nonFollowSystem，则该项不生效。 | 字符串 | 该标签可缺省，缺省由系统决定。 |
+| fontSizeScale | 应用字体大小是否跟随系统，支持的取值如下：<br/>-&nbsp;followSystem：跟随系统。<br/>-&nbsp;nonFollowSystem：不跟随系统。| 字符串 | 该标签可缺省，缺省值为followSystem。 |
+| fontSizeMaxScale | 应用字体大小选择跟随系统后，配置的最大比例，支持的取值：1、1.15、1.3、1.45、1.75、2、3.2。	 <br/> fontSizeScale为nonFollowSystem时，该项不生效。 | 字符串 | 该标签可缺省，缺省值为3.2。 |
 
 resources/base/profile/configuration.json
 

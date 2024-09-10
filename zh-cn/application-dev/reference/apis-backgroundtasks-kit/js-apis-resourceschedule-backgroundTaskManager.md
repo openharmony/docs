@@ -522,7 +522,7 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| bgModes    | string[] | 是    | 长时任务模式，模式包括：dataTransfer, audioPlayback, audioRecording, location, bluetoothInteraction, multiDeviceConnection<br>dataTransfer：数据传输<br>audioPlayback：音频播放 <br>audioRecording：录音<br>location：定位导航<br>bluetoothInteraction：蓝牙相关<br>multiDeviceConnection：多设备互联<br>说明：可以传一个或者多个模式。|
+| bgModes    | string[] | 是    | 长时任务模式，模式包括：dataTransfer, audioPlayback, audioRecording, location, bluetoothInteraction, multiDeviceConnection<br>dataTransfer：数据传输<br>audioPlayback：音频播放 <br>audioRecording：录制<br>location：定位导航<br>bluetoothInteraction：蓝牙相关<br>multiDeviceConnection：多设备互联<br>说明：可以传一个或者多个模式。|
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 是    | 通知参数，用于指定点击长时任务通知后跳转的界面。                 |
 
 **返回值**：
@@ -652,7 +652,7 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| bgModes    | string[] | 是    | 长时任务模式，模式包括：dataTransfer, audioPlayback, audioRecording, location, bluetoothInteraction, multiDeviceConnection<br>dataTransfer：数据传输<br>audioPlayback：音频播放 <br>audioRecording：录音<br>location：定位导航<br>bluetoothInteraction：蓝牙相关<br>multiDeviceConnection：多设备互联<br>说明：可以传一个或者多个模式。
+| bgModes    | string[] | 是    | 长时任务模式，模式包括：dataTransfer, audioPlayback, audioRecording, location, bluetoothInteraction, multiDeviceConnection<br>dataTransfer：数据传输<br>audioPlayback：音频播放 <br>audioRecording：录制<br>location：定位导航<br>bluetoothInteraction：蓝牙相关<br>multiDeviceConnection：多设备互联<br>说明：可以传一个或者多个模式。
 
 **返回值**：
 
@@ -725,10 +725,11 @@ export default class EntryAbility extends UIAbility {
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | 数据传输。                  |
 | AUDIO_PLAYBACK          | 2    | 音频播放。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
-| AUDIO_RECORDING         | 3    | 录音。                    |
+| AUDIO_RECORDING         | 3    | 录制。                    |
 | LOCATION                | 4    | 定位导航。                  |
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| VOIP<sup>13+</sup> | 8    | 音视频通话。                 |
 | TASK_KEEPING            | 9    | 计算任务（仅对特定设备开放）。        |
 
 ## ContinuousTaskNotification<sup>12+</sup>

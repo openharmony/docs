@@ -2,7 +2,12 @@
 
 The packing tool packs compiled files for installation and release. You can use DevEco Studio or the JAR package of the packaging tool to pack files. The JAR package is usually stored in the **toolchains** directory of the SDK.
 
-The packing tool supports the generation of HAP (module package of the ability type), HAR (statically shared package), HSP (dynamically shared package), APP (application program package), HQF (quick fix module package), and APPQF (quick fix package) files.
+The packing tool supports the generation of HAP (module package of the ability type), HSP (dynamically shared package), APP (application program package), HQF (quick fix module package), and APPQF (quick fix package) files.
+
+
+## Constraints
+
+The packing tool must run in Java8 or later.
 
 
 ## HAP Packing Command
@@ -12,16 +17,16 @@ You can use the JAR package of the packing tool to generate an HAP file for a mo
 - Packing command example in the stage model:
 
 
-      ```
-      java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true --compress-level 5 --pkg-context-path <option>
-      ```
+    ```
+    java -jar app_packing_tool.jar --mode hap --json-path <path> [--resources-path <path>] [--ets-path <path>] [--index-path <path>] [--pack-info-path <path>] [--lib-path <path>] --out-path <path> [--force true] [--compress-level 5] [--pkg-context-path <path>] [--hnp-path <path>]
+    ```
 
 - Packing command example in the FA model:
 
 
-      ```
-      java -jar app_packing_tool.jar --mode hap --json-path <option> --maple-so-path [option] --profile-path [option] --maple-so-dir [option] --dex-path [option] --lib-path [option] --resources-path [option] --index-path [option] --out-path <option> --force [option] --compress-level 5
-      ```
+    ```
+    java -jar app_packing_tool.jar --mode hap --json-path <path> [--maple-so-path <path>] [--profile-path <path>] [--maple-so-dir <path>] [--dex-path <path>] [--lib-path <path>] [--resources-path <path>] [--index-path <path>] --out-path <path> [--force true] [--compress-level 5]
+    ```
 
 **Table 1** Parameters of the HAP packing command
 
@@ -55,7 +60,7 @@ HSP files enable file sharing among multiple HAPs. You can use the JAR package o
 
 Packing command example:
 ```
-java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path path\out\library.hsp --force true --compress-level 5 --pkg-context-path <option>
+java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <path>] [--ets-path <path>] [--index-path <path>] [--pack-info-path <path>] [--lib-path <path>] --out-path <path> [--force true] [--compress-level 5] [--pkg-context-path <path>]
 ```
 
 **Table 2** Parameters of the HSP packing command
@@ -81,7 +86,9 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 
 You can use the JAR package of the packing tool to generate an APP file for an application by passing in packing options and file paths. The APP file is used to release the application to the application market.
 
-**HAP validity check**: When packing the HAP files in a project to generate an APP file, ensure that the values of **bundleName**, **versionCode**, **minCompatibleVersionCode**, **debug**, **minAPIVersion**, **targetAPIVersion**, and **apiReleaseType** configured in each JSON file of the HAP are the same, and the value of **moduleName** is unique in all the JSON files. For the FA model, you must also ensure that the value of **package** is unique in all the JSON files.
+**HAP validity check**: When packing the HAP files in a project to generate an APP file, ensure that the values of **bundleName**, **versionCode**, **minCompatibleVersionCode**, **debug**, **minAPIVersion**, and **targetAPIVersion** configured in each JSON file of the HAP are the same, and the value of **moduleName** is unique in all the JSON files. For the FA model, you must also ensure that the value of **package** is unique in all the JSON files. The HAP modules must have the same **apiReleaseType**. The **apiReleaseType** of HSP modules is not checked.
+
+**Compression rules**: When packaging the APP files, the HAP and HSP files in release mode are compressed, but the HAP and HSP files in debug mode are not compressed.
 
 >**NOTE**
 >
@@ -90,7 +97,7 @@ You can use the JAR package of the packing tool to generate an APP file for an a
 Packing command example:
 
 ```
-java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option> --out-path <option> --signature-path [option] --certificate-path [option] --pack-info-path [option] --force [option]
+java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--force true]
 ```
 
 **Table 3** Parameters of the APP packing command
@@ -98,12 +105,13 @@ java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option
 | Name                | Mandatory| Option         | Description                                                          |
 |--------------------|-------|-------------|--------------------------------------------------------------|
 | --mode             | Yes    | app         | Packing mode. Each HAP file to pack into the APP file must pass the validity check.                                          |
-| --hap-path         | Yes    | NA          | Path of the HAP file. The file name extension must be .hap. If there are multiple HAP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HAP file is stored.|
+| --hap-path         | No    | NA          | Path of the HAP file. The file name extension must be .hap. If there are multiple HAP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HAP file is stored.|
 | --hsp-path         | No    | NA          | Path of the HSP file. The file name extension must be .hsp. If there are multiple HSP files, separate them with commas (,).<br>The value can also be the directory (folder) where the HSP file is stored.|
 | --pack-info-path   | Yes    | NA          | Path of the **pack.info** file. The file name must be **pack.info**.                                            |
 | --out-path         | Yes    | NA          | Path of the target file. The file name extension must be .app.                                       |
 | --signature-path   | No    | NA          | Path of the signature file.                                                       |
 | --certificate-path | No    | NA          | Path of the certificate file.                                                       |
+| --pack-res-path    | No    | NA          | Path of the **pack.res** file.                                |
 | --force            | No    | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.                          |
 
 
@@ -112,7 +120,7 @@ java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option
 
 If multiple teams develop the same application but it is inconvenient to share code, you can use multi-project packing, which packs the packed HAP, HSP, and APP files into a final APP file and releases it to the application market.
 
-**HAP validity check**: Ensure that the values of **bundleName**, **versionCode**, **minCompatibleVersionCode**, **debug**, **minAPIVersion**, **targetAPIVersion**, **apiReleaseType**, **compileSdkVersion**, and **compileSdkType** configured in each JSON file of the HAP are the same, the value of **moduleName** is unique in all the JSON files, and the value of **entry** is unique for the same device. For the FA model, you must also ensure that the value of **package** is unique in all the JSON files.
+**HAP validity check**: Ensure that the values of **bundleName**, **versionCode**, **minCompatibleVersionCode**, **debug**, **minAPIVersion**, **targetAPIVersion**, **compileSdkVersion**, and **compileSdkType** configured in each JSON file of the HAP are the same, the value of **moduleName** is unique in all the JSON files, and the value of **entry** is unique for the same device. For the FA model, you must also ensure that the value of **package** is unique in all the JSON files. The HAP modules must have the same **apiReleaseType**. The **apiReleaseType** of HSP modules is not checked.
 
 >**NOTE**
 >
@@ -121,7 +129,7 @@ If multiple teams develop the same application but it is inconvenient to share c
 Packing command example:
 
 ```
-java -jar app_packing_tool.jar --mode multiApp --hap-list [option] --hsp-list [option] --app-list [option] --out-path <option>
+java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <path>] [--app-list <path>] --out-path <option> [--force true]
 ```
 
 **Table 4** Parameters of the multi-project packing command
@@ -144,7 +152,7 @@ If you find detects in the application and want to rectify the defects quickly, 
 Packing command example:
 
 ```
-java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <option> --ets-path <option> --resources-path <option> --out-path <option>
+java -jar app_packing_tool.jar --mode hqf --json-path <path> [--lib-path <path>] [--ets-path <path>] [--resources-path <path>] --out-path <path> [--force true]
 ```
 
 **Table 5** Parameters of the HQF packing command
@@ -166,7 +174,7 @@ An APPQF file consists of one or more HQF files. These HQF files are split from 
 Packing command example:
 
 ```
-java -jar app_packing_tool.jar --mode appqf --hqf-list <option> --out-path <option>
+java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> [--force true]
 ```
 
 **Table 6** Parameters of the APPQF packing command
@@ -177,9 +185,6 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <option> --out-path <opti
 | --hqf-list | Yes    | NA          | Path of the HQF file. If there are multiple HQF files, separate them with commas (,).             |
 | --out-path | Yes    | NA          | Path of the target file. The file name extension must be .appqf.           |
 | --force    | No    | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.|
-
-
-           |
 
 ## versionNormalize Command
 
@@ -218,3 +223,51 @@ java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hs
 | --bundle-name  | Yes    | Bundle name           | New bundle name, to which the passed-in bundle name will be changed.                            |
 | --version-code | Yes    | Internal version number          | New version number, to which the passed-in version number will be changed. The value must be an integer greater than 0.                |
 | --out-path     | Yes    | NA            | Target file path, which must be a directory (folder).                                    |
+
+## RES Packing Command
+
+Used to generate an HAP file for the **pack.res** file.
+
+Packing command example:
+
+```
+java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-path <path> --out-path <path> [--force true]
+```
+
+**Table 9** Parameters of the RES packing command
+
+| Name              | Mandatory| Option           | Description                                |
+|------------------|-------|---------------|------------------------------------|
+| --mode           | Yes    | res           | Command type.                             |
+| --entrycard-path | Yes    | NA            | Path of the **pack.res** file.                          |
+| --pack-info-path | Yes    | NA            | Path of the **pack.info** file.             |
+| --out-path       | Yes    | NA            | Path of the target file. The file name extension must be .res.             |
+| --force          | No    | true or false  | The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.|
+
+## FastApp Packing Commands
+
+You can use the JAR package of the packing tool to generate an APP file for a fast application by passing in packing options and path of the HAP or HSP files. The APP file is used to release the application to the application market.
+
+**HAP validity check**: When packing the HAP files in a project to generate an APP file, ensure that the values of **bundleName**, **versionCode**, **minCompatibleVersionCode**, **debug**, **minAPIVersion**, and **targetAPIVersion** configured in each JSON file of the HAP are the same, and the value of **moduleName** is unique in all the JSON files. The HAP modules must have the same **apiReleaseType**. The **apiReleaseType** of HSP modules is not checked.
+
+**Compression rules**: When packaging the APP files, the HAP and HSP files in release mode are compressed, but the HAP and HSP files in debug mode are not compressed.
+
+Packing command example:
+
+```
+java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true]
+```
+
+**Table 10** Parameters of the FastApp packing command
+
+| Name                | Mandatory| Option        | Description                                                                                                   |
+|--------------------|-------|------------|-------------------------------------------------------------------------------------------------------|
+| --mode             | Yes    | fastApp    | Packing mode. Each HAP file to pack into the APP file must pass the validity check.                                                                                   |
+| --hap-path         | No    | NA         | Path of the HAP file directory, which contains all files of the HAP. If there are multiple HAP file directories, separate them with commas (,).                                             |
+| --hsp-path         | No    | NA         | Path of the HSP file. The file name extension must be .hsp. If there are multiple HSP files, separate them with commas (,). 2. Path of the HSP file directory, which contains all files of the HSP. If there are multiple HSP file directories, separate them with commas (,).|
+| --pack-info-path   | Yes    | NA         | Path of the **pack.info** file. The file name must be **pack.info**.                                                                                     |
+| --out-path         | Yes    | NA         | Path of the target file. The file name extension must be .app.                                                                                |
+| --signature-path   | No    | NA         | Path of the signature file.                                                                                                |
+| --certificate-path | No    | NA         | Path of the certificate file.                                                                                                |
+| --pack-res-path    | No    | NA         | Path of the **pack.res** file.                                                                         |
+| --force            | No    | true or false| The default value is **false**. If the value is **true**, an existing target file will be forcibly deleted during packing.                                                                   |

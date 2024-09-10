@@ -14,7 +14,7 @@
    import { osAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
-3. 获取获取系统账号管理对象。
+3. 获取系统账号管理对象。
 
    ```ts
    let osAccountMgr = osAccount.getAccountManager();
@@ -43,7 +43,7 @@
 
 ## 添加域账号
 
-用户在设置中添加其他域账号，允许其他域账号用户使用同一设备。开发者可以使用[createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain)完成此操作。
+用户在设置中添加其他域账号，允许其他域账号用户使用同一设备。开发者可以使用[createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain8)完成此操作。
 
 具体开发实例如下：
 
@@ -56,7 +56,7 @@
    };
    ```
 
-2. 指定类型和域账号信息，调用[createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain)接口在设备上创建一个域账号。
+2. 指定类型和域账号信息，调用[createOsAccountForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#createosaccountfordomain8)接口在设备上创建一个域账号。
 
    ```ts
    try {

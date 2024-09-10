@@ -415,7 +415,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAfter) (ArkUI_NodeHandle parent, Ark
 | -------- | -------- |
 | parent | 父节点指针。  | 
 | child | 子节点指针。  | 
-| sibling | 前一个兄弟节点指针，如果为空则插入位置在最前面。  | 
+| sibling | 前一个兄弟节点指针，如果为空则插入位置在最后面。  | 
 
 **返回：**
 

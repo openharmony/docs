@@ -4,20 +4,20 @@ The **AccessibilityExtensionAbility** module provides accessibility extension ca
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 ```
 
 ### Attributes
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name     | Type                                      | Readable  | Writable  | Description          |
-| ------- | ---------------------------------------- | ---- | ---- | ------------ |
+| Name     | Type                                                                                         | Readable  | Writable  | Description          |
+| ------- |---------------------------------------------------------------------------------------------| ---- | ---- | ------------ |
 | context | [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md) | Yes   | No   | Context of the accessibility extension ability.|
 
 ## AccessibilityEvent
@@ -28,37 +28,39 @@ Defines an accessibility event.
 
 ### Attributes
 
-| Name     | Type                                                        | Readable                                                                          | Writable                                | Description                                                        |
-| --------- | ------------------------------------------------------------ |------------------------------------------------------------------------------|------------------------------------| ------------------------------------------------------------ |
-| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | Yes  | No  | Event type.<br>**EventType**: accessibility event type.<br>**WindowUpdateType**: Window update type.<br>**TouchGuideType**: touch guide event type.<br>**GestureType**: gesture type.<br>**PageUpdateType**: page update type. This API is not supported yet.|
+| Name     | Type                                                            | Readable                                                                          | Writable                                | Description                                                        |
+| --------- |----------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------| ------------------------------------------------------------ |
+| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | Yes  | No  | Event type.<br>**EventType**: accessibility event type.<br>**WindowUpdateType**: Window update type.<br>**TouchGuideType**: touch guide event type.<br>**GestureType**: gesture type.<br>**PageUpdateType**: page update type.|
 | target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | Yes                                                                           | No                                 | Target component where the event occurs.                                        |
-| timeStamp | number                                                       | Yes                                                                           | No                                 | Timestamp of the event.                                                |
+| timeStamp | number                                                         | Yes                                                                           | No                                 | Timestamp of the event, in milliseconds.                                                |
+| elementId<sup>12+</sup> | number                                                         | Yes                                                                           | No                                 | Component ID for auto-focusing.                                                |
+| textAnnouncedForAccessibility<sup>12+</sup> | string                                                         | Yes                                                                           | No                                 | Content for auto-broadcasting.                                                |
 
 
 ## AccessibilityElement<sup>10+</sup>
 
-Level-2 module of [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9).
+Level-2 Module of [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 **Example**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
 
 let accessibilityElement: AccessibilityElement;
 ```
 
 ## ElementAttributeValues<sup>10+</sup>
 
-Level-2 module of [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues).
+Level-2 Module of [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 **Example**
 
 ```ts
-import { ElementAttributeValues } from '@ohos.application.AccessibilityExtensionAbility';
+import { ElementAttributeValues } from '@kit.AccessibilityKit';
 
 let elementAttributeValues: ElementAttributeValues;
 ```
@@ -72,7 +74,7 @@ Enumerates the focus directions. It is a level-2 module of [FocusDirection](js-a
 **Example**
 
 ```ts
-import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
+import { FocusDirection } from '@kit.AccessibilityKit';
 
 let focusDirection: FocusDirection;
 ```
@@ -81,15 +83,15 @@ let focusDirection: FocusDirection;
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name     | Type                                                                                                               | Readable  | Writable  | Description                                                |
-| ------- |-------------------------------------------------------------------------------------------------------------------| ---- | ---- |----------------------------------------------------|
+| Name     | Type                                                                                                                  | Readable  | Writable  | Description                                                |
+| ------- |----------------------------------------------------------------------------------------------------------------------| ---- | ---- |----------------------------------------------------|
 | ElementAttributeKeys | keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues) | Yes   | No   | Key of **ElementAttributeValues**.|
 
 
 **Example**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
 
 let elementAttributeKeys: ElementAttributeKeys;
 ```
@@ -103,7 +105,7 @@ Enumerates the focus types. It is a level-2 module of [FocusType](js-apis-inner-
 **Example**
 
 ```ts
-import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
+import { FocusType } from '@kit.AccessibilityKit';
 
 let focusType: FocusType;
 ```
@@ -117,7 +119,7 @@ Enumerates the window types. It is a level-2 module of [WindowType](js-apis-inne
 **Example**
 
 ```ts
-import { WindowType } from '@ohos.application.AccessibilityExtensionAbility';
+import { WindowType } from '@kit.AccessibilityKit';
 
 let windowType: WindowType;
 ```
@@ -131,7 +133,7 @@ Defines a rectangle. It is a level-2 module of [Rect](js-apis-inner-application-
 **Example**
 
 ```ts
-import { Rect } from '@ohos.application.AccessibilityExtensionAbility';
+import { Rect } from '@kit.AccessibilityKit';
 
 let rect: Rect;
 ```
@@ -186,38 +188,46 @@ Enumerates gesture types.
 
 ## PageUpdateType
 
-Enumerates the page update types. This API is not supported in the current version.
+type PageUpdateType = 'pageContentUpdate' | 'pageStateUpdate'
+
+Enumerates the page update types.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name               | Type               | Description              |
-| ----------------- | ----------------- | ---------------- |
-| pageContentUpdate | string | Update of the page content.|
-| pageStateUpdate   | string | Update of the page status.|
+| Type               | Description           |
+| ----------------- | ---------------- |
+| 'pageContentUpdate' | Update of the page content.|
+| 'pageStateUpdate' | Update of the page content.|
 
 ## TouchGuideType
+
+TouchGuideType = 'touchBegin' | 'touchEnd'
 
 Enumerates the touch guide event types.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name        | Type               | Description                 |
-| ---------- | ---------- | ------------------- |
-| touchBegin | string | Start of touch in touch guide mode.|
-| touchEnd   | string | End of touch in touch guide mode.|
+| Type               | Description                 |
+| ---------- | ------------------- |
+| 'touchBegin' | Start of touch in touch guide mode.|
+| 'touchEnd' | End of touch in touch guide mode.|
 
-## AccessibilityExtensionAbility.onConnect
+## AccessibilityExtensionAbility.onConnect<sup>(deprecated)</sup>
 
 onConnect(): void;
 
 Called when the **AccessibilityExtensionAbility** is enabled and connected to the system service. In this API, you can have the service logic initialized. This API can be overridden as required.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 **Example**
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
   onConnect(): void {
@@ -226,18 +236,22 @@ class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
 }
 ```
 
-## AccessibilityExtensionAbility.onDisconnect
+## AccessibilityExtensionAbility.onDisconnect<sup>(deprecated)</sup>
 
 onDisconnect(): void;
 
 Called when the **AccessibilityExtensionAbility** is disabled and disconnected from the system service. In this API, you can implement the service logic of resource release and exit. This API can be overridden as required.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 **Example**
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
   onDisconnect(): void {
@@ -246,11 +260,15 @@ class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
 }
 ```
 
-## AccessibilityExtensionAbility.onAccessibilityEvent
+## AccessibilityExtensionAbility.onAccessibilityEvent<sup>(deprecated)</sup>
 
 onAccessibilityEvent(event: AccessibilityEvent): void;
 
 Called when an event that matches the specified bundle and event type occurs. In this API, you can implement event-specific service logic. Generally, this API needs to be overridden.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -258,12 +276,12 @@ Called when an event that matches the specified bundle and event type occurs. In
 
 | Name  | Type                                      | Mandatory  | Description             |
 | ----- | ---------------------------------------- | ---- | --------------- |
-| event | [AccessibilityEvent](#accessibilityevent) | Yes   | Accessibility event. No value is returned.|
+| event | [AccessibilityEvent](#accessibilityevent) | Yes   | Accessibility event. No return value.|
 
 **Example**
 
 ```ts
-import AccessibilityExtensionAbility , { AccessibilityEvent } from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility, AccessibilityEvent } from '@kit.AccessibilityKit';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
   onAccessibilityEvent(event: AccessibilityEvent): void {
@@ -275,25 +293,29 @@ class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
 }
 ```
 
-## AccessibilityExtensionAbility.onKeyEvent
+## AccessibilityExtensionAbility.onKeyEvent<sup>(deprecated)</sup>
 
 onKeyEvent(keyEvent: KeyEvent): boolean;
 
 Called when a physical key is pressed. In this API, you can determine whether to intercept an event based on the service.
 
+> **NOTE**
+>
+> This API is deprecated since API version 12.
+
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description                     |
-| -------- | ---------------------------------------- | ---- | ----------------------- |
+| Name     | Type                                              | Mandatory  | Description                     |
+| -------- |--------------------------------------------------| ---- | ----------------------- |
 | keyEvent | [KeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent) | Yes   | Key event. If **true** is returned, the key is intercepted.|
 
 **Example**
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
-import { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { KeyEvent } from '@kit.InputKit';
 
 class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
   onKeyEvent(keyEvent: KeyEvent): boolean {

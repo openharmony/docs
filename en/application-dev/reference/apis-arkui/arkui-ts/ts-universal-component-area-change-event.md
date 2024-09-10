@@ -5,12 +5,16 @@ The area change event is triggered when the component's size, position, or any o
 >  **NOTE**
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> The **onAreaChange** callback is specific to the current component only. There is no strict execution order or guarantee of constraints for the **onAreaChange** callbacks on ancestor or descendant components.
 
 ## onAreaChange
 
 onAreaChange(event: (oldValue: Area, newValue: Area) => void): T
 
 Triggered when the component area changes in size or position due to layout updates. This event is not triggered for render attribute changes caused by re-rendering, such as changes of [translate](ts-universal-attributes-transformation.md#translate) and [offset](ts-types.md#offset).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

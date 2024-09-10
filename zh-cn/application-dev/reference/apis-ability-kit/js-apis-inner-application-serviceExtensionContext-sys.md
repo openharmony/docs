@@ -2553,3 +2553,73 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
   }
 }
 ```
+
+## ServiceExtensionContext.startUIServiceExtensionAbility<sup>13+<sup>
+startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
+
+启动一个新的[UIServiceExtensionAbility](js-apis-app-ability-uiServiceExtensionAbility-sys.md)（Promise形式）。
+
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+>
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+| 参数名 | 类型 | 只读 | 可选 | 说明                 |
+| ------ | ---- | ---- | -------------------- | -------------------- |
+| want   | [Want](js-apis-app-ability-want.md) | 是  | 否 | [Want](js-apis-app-ability-want.md)类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+| 错误码ID | 错误信息                                                              |
+| -------- | ---------------------------------------------------------------------|
+| 201      | The application does not have permission to call the interface.      |
+| 202      | The application is not system-app, can not use system-api.           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | The Ability is not supported.                       |
+| 16000001 | The specified ability does not exist.               |
+| 16000002 | Incorrect ability type.                             |
+| 16000004 | Can not start invisible component.                  |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed.              |
+| 16000008 | The crowdtesting application expires.               |
+| 16000011 | The context does not exist.                         |
+| 16000012 | The application is controlled.                      |
+| 16000013 | The application is controlled by EDM.               |
+| 16000019 | Can not match any component.                        |
+| 16000050 | Internal error.                                     |
+| 16200001 | The caller has been released.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+
+export default class MyServiceExtensionAbility extends ServiceExtensionAbility {
+  onRequest(want: Want, startId: number) {
+    const startWant: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'UIServiceExtensionAbility'
+    }
+    // 启动一个UIServiceExtensionAbility
+    this.context.startUIServiceExtensionAbility(startWant).then(() => {
+      console.info('succeeded');
+    }).catch((error: BusinessError) => {
+      console.error(`error code: ${error.code}, error essage : ${error.message}`);
+    })
+  }
+}
+```

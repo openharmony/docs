@@ -28,6 +28,8 @@ HiDebug对外提供系统调试相关功能的接口，包括应用进程的静�
 | hidebug.getSystemMemInfo           | 获取系统内存信息。                                           |
 | hidebug.getVMRuntimeStats          | 获取系统gc全部统计信息。                                     |
 | hidebug.getVMRuntimeStat           | 根据参数获取指定的系统gc统计信息。                           |
+| hidebug.getGraphicsMemory          | 使用异步方式获取应用显存大小。                    |
+| hidebug.getGraphicsMemorySync      | 使用同步方式获取应用显存大小。                    |
 
 HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 

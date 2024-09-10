@@ -95,7 +95,7 @@ PopupIconOptions定义icon（右上角图标）的属性。
 | image        | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 设置图标内容。                     |
 | width        | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标宽度。<br />默认值：32VP |
 | height       | [Dimension](ts-types.md#dimension10)                         | 否   | 设置图标高度。<br />默认值：32VP |
-| fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置图标填充颜色。                 |
+| fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 设置图标填充颜色。 <br />**说明：**<br />仅针对svg图源生效。|
 | borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置图标圆角。<br />默认值：`$r('sys.float.ohos_id_corner_radius_default_s')`  |
 
 ## 示例   

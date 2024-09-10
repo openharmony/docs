@@ -148,7 +148,7 @@ struct ListExample {
   }
 }
 ```
-点击下方空白区域后拖动，能够拖动List滑动；点击Button按钮，Button会响应onClick事件。
+点击List下方空白区域后拖动，能够拖动List滑动；点击Button按钮，Button会响应onClick事件。
 
 ![onchildtouchtest](figures/on-child-touch-test-competition.gif)
 
@@ -221,7 +221,7 @@ struct ListExample {
   }
 }
 ```
-点击下方空白区域后拖动，能够拖动List滑动；点击Button按钮，Button不会响应onClick事件。
+点击List下方空白区域后拖动，能够拖动List滑动；点击Button按钮，Button不会响应onClick事件。
 
 ![onchildtouchtest](figures/on-child-touch-test-forward.gif)
 
@@ -289,6 +289,6 @@ struct ListExample {
   }
 }
 ```
-点击下方空白区域后拖动，List不会滑动；点击Button按钮，Button会响应onClick事件。
+点击List下方空白区域后拖动，List不会滑动；点击Button按钮，Button会响应onClick事件。
 
 ![onchildtouchtest](figures/on-child-touch-test-default.gif)

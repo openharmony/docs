@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager模块)
 
-本模块提供应用信息查询能力，支持BundleInfo、ApplicationInfo、Ability、ExtensionAbility等信息的查询。
+本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-bundleInfo.md)、[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)、[Ability](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -46,7 +46,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
 | SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
-| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)：无障碍服务扩展能力，支持访问与操作前台界面。 |
+| ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/is-inner-application-accessibilityextensioncontext-V5)：无障碍服务扩展能力，支持访问与操作前台界面。 |
 | DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->：数据共享扩展能力，用于对外提供数据读写服务。 |
 | FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，仅系统应用支持。 |
 | STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
@@ -964,5 +964,46 @@ try {
 } catch (err) {
   let message = (err as BusinessError).message;
   hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
+}
+```
+
+### bundleManager.getLaunchWant<sup>13+</sup>
+
+getLaunchWant(): Want
+
+获取自身用于启动应用程序的Want参数。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                | 说明                                        |
+| ----------------------------------- | ------------------------------------------- |
+| [Want](js-apis-app-ability-want.md) | 返回包含Bundle名称和Ability名称的Want对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 17700072 | The launch want is not found. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+  let want = bundleManager.getLaunchWant();
+  hilog.info(0x0000, 'testTag', 'getLaunchWant ability name: %{public}s', want.abilityName);
+  hilog.info(0x0000, 'testTag', 'getLaunchWant bundle name: %{public}s', want.bundleName);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getLaunchWant failed: %{public}s', message);
 }
 ```

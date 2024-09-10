@@ -21,7 +21,9 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 > **说明：**
 >
-> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8)后调用。
+> 该接口需要申请通知弹窗权限[NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10)后调用。
+>
+> <!--RP1--><!--RP1End-->
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -70,7 +72,9 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 > **说明：**
 >
-> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8)后调用。
+> 该接口需要申请通知弹窗权限[NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10)后调用。
+>
+> <!--RP1--><!--RP1End-->
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 

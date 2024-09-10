@@ -10,6 +10,20 @@ Node-API insulates addons from changes in the underlying JS engine and allows th
 
 The OpenHarmony Node-API component optimizes the Node-API implementation and provides interaction with underlying engines such as ArkJS. Currently, the OpenHarmony Node-API component does not support all Node-API APIs.
 
+## Including Node-API Capabilities
+
+To use Node-API, include the following header file:
+
+```cpp
+#include <napi/native_api.h>
+```
+
+Add the following dynamic link library to **CMakeLists.txt**:
+
+```
+libace_napi.z.so
+```
+
 ## Symbols Exported from the Node-API Library
 
 The usage and behavior of the APIs exported from the Node-API standard library are the same as those of Node.js. For details about the API declaration and parameter constraints, see [Node-API](https://nodejs.org/docs/latest-v8.x/api/n-api.html) documentation.
@@ -114,11 +128,11 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_delete_async_work|Releases an async work object.|10|
 |FUNC|napi_queue_async_work|Adds an async work object to the queue so that it can be scheduled for execution.|10|
 |FUNC|napi_cancel_async_work|Cancels the queued async work if it has not been started.|10|
-|FUNC|napi_async_init|Creates an async context. The capabilities related to **async_hook** are not supported currently.|11|
-|FUNC|napi_make_callback|Allows a JS function to be called in the async context. The capabilities related to **async_hook** are not supported currently.|11|
-|FUNC|napi_async_destroy|Destroys the previously created async context. The capabilities related to **async_hook** are not supported currently.|11|
-|FUNC|napi_open_callback_scope|Opens a callback scope. The capabilities related to **async_hook** are not supported currently.|11|
-|FUNC|napi_close_callback_scope|Closes the callback scope. The capabilities related to **async_hook** are not supported currently.|11|
+|FUNC|napi_async_init|Creates an async context. The capabilities related to **async_hook** are not supported.|11|
+|FUNC|napi_make_callback|Allows a JS function to be called in the async context. The capabilities related to **async_hook** are not supported.|11|
+|FUNC|napi_async_destroy|Destroys an async context. The capabilities related to **async_hook** are not supported.|11|
+|FUNC|napi_open_callback_scope|Opens a callback scope. The capabilities related to **async_hook** are not supported.|11|
+|FUNC|napi_close_callback_scope|Closes a callback scope. The capabilities related to **async_hook** are not supported.|11|
 |FUNC|napi_get_node_version|Obtains the current Node-API version.|10|
 |FUNC|napi_get_version|Obtains the latest Node-API version supported when the Node.js runtime.|10|
 |FUNC|napi_create_promise|Creates a deferred object and a JS promise.|10|
@@ -182,11 +196,11 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_destroy_ark_runtime|Destroys the ArkTS runtime environment.|12|
 |FUNC|napi_run_event_loop|Runs the underlying event loop.|12|
 |FUNC|napi_stop_event_loop|Stops the underlying event loop.|12|
-|FUNC|napi_load_module_with_info|Loads an .abc file as a module. This API returns the namespace of the module. It can be used in the newly created ArkTS runtime environment.|12|
+|FUNC|napi_load_module_with_info|Loads an .abc file as a module. This API returns the namespace of the module. It can be used in a newly created ArkTS runtime environment.|12|
 |FUNC|napi_serialize|Converts an ArkTS object into native data.|12|
 |FUNC|napi_deserialize|Converts native data into an ArkTS object.|12|
 |FUNC|napi_delete_serialization_data|Deletes serialized data.|12|
-|FUNC|napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into an ArkTS thread.|12|
+|FUNC|napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into the ArkTS main thread.|12|
 |FUNC|napi_is_sendable|Checks whether the given JS value is sendable.|12|
 |FUNC|napi_define_sendable_class|Creates a sendable class.|12|
 |FUNC|napi_create_sendable_object_with_properties | Creates a sendable object with the given **napi_property_descriptor**.|12|
@@ -473,7 +487,7 @@ napi_status napi_load_module_with_info(napi_env env,
 
 **Description**
 
-Loads an .abc file as a module. This API returns the namespace of the module. It can be used in the newly created ArkTS runtime environment.
+Loads an .abc file as a module. This API returns the namespace of the module. It can be used in a newly created ArkTS runtime environment.
 
 **Parameters**
 
@@ -572,7 +586,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 
 **Description**
 
-Calls a task with the specified priority and enqueuing mode into an ArkTS thread.
+Calls a task with the specified priority and enqueuing mode into the ArkTS main thread.
 
 **Parameters**
 
@@ -887,3 +901,5 @@ Removes the native instance from an ArkTS object.
 **Return value**
 
 Returns **napi_ok** if the operation is successful.
+
+<!--no_check-->

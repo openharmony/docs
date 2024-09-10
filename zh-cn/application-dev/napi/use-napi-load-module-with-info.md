@@ -1,6 +1,6 @@
 # 使用Node-API接口进行模块加载
 
-Node-API中的napi_load_module_with_info接口的功能是进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTs基础运行时环境](use-napi-ark-runtime.md)中使用
+Node-API中的napi_load_module_with_info接口的功能是进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTS基础运行时环境](use-napi-ark-runtime.md)中使用
 
 ## 函数说明
 
@@ -73,6 +73,10 @@ export {value, test};
 ```
 
 2. 使用napi_load_module_with_info加载Test文件，调用函数test以及获取变量value
+
+> **注意**
+>
+> 开启seNormalizedOHMUrl后(即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true)，加载hap包内文件路径时，bundleName不会影响最终加载逻辑，会智能通过module名索引进程内对应的hap，例如：工程的bundleName为com.example.application，实际入参时填写为 com.example.application1，模块也能正常加载。
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {

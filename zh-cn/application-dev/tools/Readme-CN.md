@@ -8,6 +8,7 @@
 - [扫描工具](app-check-tool.md)
 - [cem工具](cem-tool.md)
 - [anm工具](anm-tool.md)
+- [edm工具](edm-tool.md)
 - [restool工具](restool.md)<!--Del-->
 - [LLDB工具](lldb-tool.md)<!--DelEnd-->
 - [param工具](param-tool.md)

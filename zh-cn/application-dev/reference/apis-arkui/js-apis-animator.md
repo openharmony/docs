@@ -51,6 +51,10 @@ create(options: AnimatorOptions): AnimatorResult
 
 **示例：** 
 
+> **说明：**
+>
+> 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)接口明确UI上下文。
+
   ```ts
 import {Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -64,7 +68,7 @@ let options: AnimatorOptions = {
    begin: 200.0,
    end: 400.0
 };
-animator.create(options);
+animator.create(options);// 建议使用 UIContext.creatAnimator()接口
   ```
 
 ## AnimatorResult
@@ -548,6 +552,10 @@ class DateT{
 
 ### 基于ArkTS扩展的声明式开发范式
 
+> **说明：**
+>
+> 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)接口明确UI上下文。
+
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
@@ -563,7 +571,7 @@ struct AnimatorTest {
 
   create() {
     let _this = this
-    this.backAnimator = animator.create({
+    this.backAnimator = animator.create({// 建议使用 this.getUIContext.creatAnimator()接口
       duration: 2000,
       easing: "ease",
       delay: 0,

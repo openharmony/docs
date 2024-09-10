@@ -2,7 +2,7 @@
 
 ## 概述
 
-[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)提供能够挂载原生组件的能力，支持通过无状态的UI方法[全局\@Builder](../quick-start/arkts-builder.md#全局自定义构建函数)生成组件树，并通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取组件树的根[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)节点。该节点可以通过[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)直接返回，挂载在[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)节点下，也可以在FrameNode树结构和[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)树结构嵌入声明式的组件结构，实现混合显示的能力。同时BuilderNode可以提供纹理导出的功能，导出的纹理用于在[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)中进行同层渲染显示。
+[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)提供能够挂载原生组件的能力，支持通过无状态的UI方法[全局自定义构建函数](../quick-start/arkts-builder.md#全局自定义构建函数)@Builder生成组件树，并通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取组件树的根[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)节点。该节点可以通过[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)直接返回，挂载在[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)节点下，也可以在FrameNode树结构和[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)树结构嵌入声明式的组件结构，实现混合显示的能力。同时BuilderNode可以提供纹理导出的功能，导出的纹理用于在[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)中进行同层渲染显示。
 
 BuilderNode创建的ArkTS原生控件树支持与自定义节点(例如：FrameNode、RenderNode)进行关联使用，实现了原生组件与自定义节点的混合显示。对于使用自定义节点的能力进行对接的三方框架，BuilderNode为其提供了嵌入原生组件的能力。
 
@@ -14,7 +14,7 @@ BuilderNode仅可作为叶子节点进行使用。如有更新需要，建议通
 
 > **说明：**
 > 
-> - BuilderNode只支持一个由[wrapBuilder](../quick-start/arkts-wrapBuilder.md)包装的[全局\@Builder](../quick-start/arkts-builder.md#全局自定义构建函数).
+> - BuilderNode只支持一个由[wrapBuilder](../quick-start/arkts-wrapBuilder.md)包装的[全局自定义构建函数](../quick-start/arkts-builder.md#全局自定义构建函数)@Builder。
 > 
 > - 一个新建的BuildNode在[build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build)之后才能通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取到一个指向根节点的FrameNode对象，否则返回null。
 > 
@@ -43,6 +43,8 @@ BuilderNode对象为一个模板类，需要在创建的时候指定类型。该
 > build中对于@Builder嵌套@Builder进行使用的场景，需要保证嵌套的参数与build的中提供的入参一致。
 > 
 > 对于@Builder嵌套@Builder进行使用的场景，如果入参类型不一致，则要求增加[BuilderOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12)字段作为[build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build12)的入参。
+> 
+> 需要操作BuilderNode中的对象时，需要保证其引用不被回收。当BuilderNode对象被虚拟机回收之后，它的FrameNode、RenderNode对象也会与后端节点解引用。即从BuilderNode中获取的FrameNode对象不对应任何一个节点。
 
 创建离线节点以及原生组件树，结合FrameNode进行使用。
 

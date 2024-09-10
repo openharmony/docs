@@ -415,7 +415,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the bus number and device address. You need to call **connectDevice** to obtain its value.|
-| iface | [USBInterface](#usbinterface)   | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its ID.|
+| iface | [USBInterface](#usbinterface)   | Yes| USB interface. You can use **getDevices** to obtain device information and identify the USB interface based on its **id** and **alternateSetting**.|
 
 **Error codes**
 
@@ -553,7 +553,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe. You need to call **connectDevice** to obtain its value.|
-| controlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters. Set the parameters as required.|
+| controlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters. Set the parameters as required. For details, see the USB protocol.|
 | timeout | number | No| Timeout period, in ms. This parameter is optional. The default value is **0**. You can set this parameter as required.|
 
 **Error codes**
@@ -583,12 +583,12 @@ class PARA {
 }
 
 let param: PARA = {
-  request: 0,
-  reqType: 0,
+  request: 0x06,
+  reqType: 0x80,
   target:0,
-  value: 0,
+  value: 0x01 << 8 | 0,
   index: 0,
-  data: new Uint8Array()
+  data: new Uint8Array(18)
 };
 
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
@@ -599,7 +599,7 @@ if (devicesList.length == 0) {
 usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
 usbManager.controlTransfer(devicepipe, param).then((ret: number) => {
- console.log(`controlTransfer = ${ret}`);
+console.log(`controlTransfer = ${ret}`);
 })
 ```
 
@@ -618,7 +618,7 @@ Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtai
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-| requestparam | [USBDeviceRequestParams](#usbdevicerequestparams12) | Yes| Control transfer parameters.|
+| requestparam | [USBDeviceRequestParams](#usbdevicerequestparams12) | Yes| Control transfer parameters. Set the parameters as required. For details, see the USB protocol.|
 | timeout | number | No| Timeout duration in ms. This parameter is optional. The default value is **0**, indicating no timeout.|
 
 **Error codes**
@@ -648,12 +648,13 @@ class PARA {
 }
 
 let param: PARA = {
-  bmRequestType: 0,
-  bRequest: 0,
-  wValue:0,
+  bmRequestType: 0x80,
+  bRequest: 0x06,
+
+  wValue:0x01 << 8 | 0,
   wIndex: 0,
-  wLength: 0,
-  data: new Uint8Array()
+  wLength: 18,
+  data: new Uint8Array(18)
 };
 
 let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
@@ -664,7 +665,7 @@ if (devicesList.length == 0) {
 usbManager.requestRight(devicesList[0].name);
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(devicesList[0]);
 usbManager.usbControlTransfer(devicepipe, param).then((ret: number) => {
- console.log(`usbControlTransfer = ${ret}`);
+console.log(`usbControlTransfer = ${ret}`);
 })
 ```
 
@@ -716,13 +717,17 @@ let device: usbManager.USBDevice = devicesList[0];
 usbManager.requestRight(device.name);
 
 let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
-let interfaces: usbManager.USBInterface = device.configs[0].interfaces[0];
-let endpoint: usbManager.USBEndpoint = device.configs[0].interfaces[0].endpoints[0];
-let ret: number = usbManager.claimInterface(devicepipe, interfaces);
-let buffer =  new Uint8Array(128);
-usbManager.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
-  console.log(`bulkTransfer = ${ret}`);
-});
+for (let i = 0; i < device.configs[0].interfaces.length; i++) {
+  if (device.configs[0].interfaces[i].endpoints[0].attributes == 2) {
+    let endpoint: usbManager.USBEndpoint = device.configs[0].interfaces[i].endpoints[0];
+    let interfaces: usbManager.USBInterface = device.configs[0].interfaces[i];
+    let ret: number = usbManager.claimInterface(devicepipe, interfaces);
+    let buffer =  new Uint8Array(128);
+    usbManager.bulkTransfer(devicepipe, endpoint, buffer).then((ret: number) => {
+      console.log(`bulkTransfer = ${ret}`);
+    });
+  }
+}
 ```
 
 ## usbManager.closePipe

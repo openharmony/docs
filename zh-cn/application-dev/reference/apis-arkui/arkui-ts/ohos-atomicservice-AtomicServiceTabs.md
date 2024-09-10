@@ -1,4 +1,4 @@
-# @ohos.atomicservice.AtomicServiceTabs (页签容器)
+# AtomicServiceTabs
 
 AtomicServiceTabs高级组件，对Tabs组件一些不需提供给用户自定义设计的属性进行简化，限制最多显示5个页签，固定页签样式，位置和大小。
 

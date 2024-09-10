@@ -18,6 +18,8 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 Obtains a **WantAgent** object. This API uses an asynchronous callback to return the result. If the creation fails, a null **WantAgent** object is returned.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -69,7 +71,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -95,6 +97,8 @@ try {
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 Obtains a **WantAgent** object. This API uses a promise to return the result. If the creation fails, a null **WantAgent** object is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -151,7 +155,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -174,6 +178,8 @@ try {
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
 Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -226,7 +232,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -265,6 +271,8 @@ try {
 getBundleName(agent: WantAgent): Promise\<string\>
 
 Obtains the bundle name of a **WantAgent** object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -322,7 +330,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -356,6 +364,8 @@ try {
 getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
 Obtains the user ID of a **WantAgent** object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -408,7 +418,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -447,6 +457,8 @@ try {
 getUid(agent: WantAgent): Promise\<number\>
 
 Obtains the user ID of a **WantAgent** object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -504,7 +516,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -539,6 +551,8 @@ try {
 cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
 Cancels a **WantAgent** object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -591,7 +605,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -630,6 +644,8 @@ try {
 cancel(agent: WantAgent): Promise\<void\>
 
 Cancels a **WantAgent** object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -687,7 +703,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -723,6 +739,8 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 
 Triggers a **WantAgent** object. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -752,10 +770,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let wantAgentData: WantAgent;
 // triggerInfo
 let triggerInfo: wantAgent.TriggerInfo = {
-  code: 0, //Custom result code.
-  startOptions: {
-    windowMode: 101
-  }
+  code: 0 // Custom result code.
 };
 // WantAgentInfo object
 let wantAgentInfo: wantAgent.WantAgentInfo = {
@@ -780,7 +795,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -820,6 +835,8 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 
 Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -827,7 +844,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | Name      | Type                    | Mandatory| Description                                   |
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | WantAgent                | Yes  | The second **WantAgent** object.                          |
+| otherAgent | WantAgent                | Yes  |  The second **WantAgent** object.                          |
 | callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the two **WantAgent** objects are equal, and **false** means the opposite.|
 
 **Error codes**
@@ -871,7 +888,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -912,6 +929,8 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -919,7 +938,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | Name      | Type     | Mandatory| Description         |
 | ---------- | --------- | ---- | ------------- |
 | agent      | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | WantAgent | Yes  | The second **WantAgent** object.|
+| otherAgent | WantAgent | Yes  |  The second **WantAgent** object.|
 
 **Return value**
 
@@ -968,7 +987,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1004,6 +1023,8 @@ try {
 getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 
 Obtains the operation type of a **WantAgent** object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1057,7 +1078,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1096,6 +1117,8 @@ try {
 getOperationType(agent: WantAgent): Promise\<number>
 
 Obtains the operation type of a **WantAgent** object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1156,7 +1179,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1190,6 +1213,8 @@ try {
 
 Enumerates the flags used by the **WantAgent** objects.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name               | Value            | Description                                                                     |
@@ -1211,6 +1236,8 @@ Enumerates the flags used by the **WantAgent** objects.
 
 Enumerates the operation types of the **WantAgent** objects.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name             | Value           | Description                     |
@@ -1218,7 +1245,7 @@ Enumerates the operation types of the **WantAgent** objects.
 | UNKNOWN_TYPE      | 0 | Unknown operation type.           |
 | START_ABILITY     | 1 | Starts an ability with a UI.|
 | START_ABILITIES   | 2 | Starts multiple abilities with a UI.|
-| START_SERVICE     | 3 | Starts an ability without a UI.|
+| START_SERVICE     | 3 | Starts an ability without a UI (valid only in the FA model).|
 | SEND_COMMON_EVENT | 4 | Sends a common event.       |
 
 
@@ -1227,12 +1254,14 @@ Enumerates the operation types of the **WantAgent** objects.
 
 Describes the data returned by the **WantAgent** object after being triggered.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| info           | WantAgent                       | No| Yes  | A triggered **WantAgent** object.      |
-| want           | [Want](js-apis-app-ability-want.md#properties)                           | No| Yes  | An existing triggered Want.    |
-| finalCode      | number                          | No| Yes  | Request code that triggers the **WantAgent** object.|
-| finalData      | string                          | No| Yes  | Final data collected by the common event. |
-| extraInfo      | Record\<string, Object>            | No|No  | Extra information.              |
+| info           | WantAgent                       | No| No  | A triggered **WantAgent** object.      |
+| want           | [Want](js-apis-app-ability-want.md#properties)                           | No| No  | An existing triggered Want.    |
+| finalCode      | number                          | No| No  | Request code that triggers the **WantAgent** object.|
+| finalData      | string                          | No| No  | Final data collected by the common event. |
+| extraInfo      | Record\<string, Object>            | No|Yes  | Extra information.              |

@@ -574,6 +574,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: Asyn
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -641,6 +642,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -674,7 +676,7 @@ try {
 }
 ```
 
-## abilityManager.on<sup>11+</sup>
+## abilityManager.on('abilityForegroundState')<sup>11+</sup>
 
 on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): void
 
@@ -724,7 +726,7 @@ try {
 }
 ```
 
-## abilityManager.off<sup>11+</sup>
+## abilityManager.off('abilityForegroundState')<sup>11+</sup>
 
 off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): void
 

@@ -2,11 +2,11 @@
 
 ## Overview
 
-[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) is an ExtensionAbility component of the service type that provides capabilities related to background services. It holds an internal [ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md), which provides a variety of APIs for external systems.
+[ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) is an [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) component of the SERVICE type that provides capabilities related to background services. It holds an internal [ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md), which provides a variety of APIs for external systems.
 
 In this document, the started ServiceExtensionAbility is called the server, and the component that starts the ServiceExtensionAbility is called the client.
 
-A [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) can be started or connected by other components to process transactions in the background based on the request of the caller. System applications can call the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) or call the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to a ServiceExtensionAbility. Third-party applications can call only [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to connect to a ServiceExtensionAbility. The differences between starting and connecting to a ServiceExtensionAbility are as follows:
+A ServiceExtensionAbility can be started or connected by other components to process transactions in the background based on the request of the caller. System applications can call the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start background services or call the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to background services. Third-party applications can call only **connectServiceExtensionAbility()** to connect to background services. The differences between starting and connecting to a ServiceExtensionAbility are as follows:
 
 - **Starting**: In the case that AbilityA starts ServiceB, they are weakly associated. After AbilityA exits, ServiceB remains running.
 
@@ -14,7 +14,7 @@ A [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-se
 
 Note the following:
 
-- If a ServiceExtensionAbility is started only by means of connecting, its lifecycle is controlled by the client. A new connection is set up each time the client calls the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method. When the client exits or calls the [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) method, the connection is interrupted. After all connections are interrupted, the ServiceExtensionAbility automatically exits.
+- If a ServiceExtensionAbility is started only by means of connecting, its lifecycle is controlled by the client. A new connection is set up each time the client calls the **connectServiceExtensionAbility()** method. When the client exits or calls the [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) method, the connection is interrupted. After all connections are interrupted, the ServiceExtensionAbility automatically exits.
 
 - Once a ServiceExtensionAbility is started by means of starting, it will not exit automatically. System applications can call the [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability) method to stop it.
 
@@ -30,7 +30,7 @@ Note the following:
 
 ## Lifecycle
 
-The [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) class provides the lifecycle callbacks **onCreate()**, **onRequest()**, **onConnect()**, **onDisconnect()**, and **onDestroy()**. Override them as required. The following figure shows the ServiceExtensionAbility lifecycle.
+The [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) class provides the lifecycle callbacks [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityoncreate), [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest), [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect), [onDisconnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityondisconnect), and [onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityondestroy). Override them as required. The following figure shows the ServiceExtensionAbility lifecycle.
 
 **Figure 1** ServiceExtensionAbility lifecycle
 
@@ -46,11 +46,11 @@ The [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-
 
 - **onRequest**
 
-  This callback is triggered when another component calls the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a ServiceExtensionAbility. After being started, the ServiceExtensionAbility runs in the background. This callback is triggered each time [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method is called.
+  This callback is triggered when another component calls the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a ServiceExtensionAbility. After being started, the ServiceExtensionAbility runs in the background. This callback is triggered each time the **startServiceExtensionAbility()** method is called.
 
 - **onConnect**
 
-  This callback is triggered when another component calls the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to a ServiceExtensionAbility. In this method, a remote proxy object, namely, IRemoteObject, is returned, through which the client communicates with the server by means of RPC. At the same time, the system stores the IRemoteObject. If another component calls [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to this ServiceExtensionAbility, the system returns the saved IRemoteObject, without triggering the callback.
+  This callback is triggered when another component calls the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to a ServiceExtensionAbility. In this method, a remote proxy object, namely, [IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject), is returned, through which the client communicates with the server by means of RPC. At the same time, the system stores the IRemoteObject. If another component calls the **connectServiceExtensionAbility()** method to connect to this ServiceExtensionAbility, the system returns the saved IRemoteObject, without triggering the callback.
 
 - **onDisconnect**
 
@@ -64,7 +64,7 @@ The [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-
 
 ### Preparations
 
-Only system applications can implement a ServiceExtensionAbility. You must make the following preparations before development:
+Only system applications can implement a [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md). You must make the following preparations before development:
 
 - **Switching to the full SDK**: All the APIs provided by the **ServiceExtensionAbility** class are marked as system APIs and hidden by default. Therefore, you must manually obtain the full SDK from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
 
@@ -142,212 +142,212 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
     └
     ```
 
-3. In the **ServiceExtAbility.ets** file, import the ServiceExtensionAbility module. Customize a class that inherits from **ServiceExtensionAbility** and implement the lifecycle callbacks. Return the previously defined **ServiceExtImpl** object in the **onConnect** lifecycle callback.
+3. In the **ServiceExtAbility.ets** file, import the [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) module. Customize a class that inherits from ServiceExtensionAbility and implement the lifecycle callbacks. Return the previously defined **ServiceExtImpl** object in the [onConnect](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityoncreate) lifecycle callback.
 
-   ```ts
-   import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
-   import { rpc } from '@kit.IPCKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
-   
-   const TAG: string = '[ServiceExtAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   
-   export default class ServiceExtAbility extends ServiceExtensionAbility {
-     serviceExtImpl: ServiceExtImpl = new ServiceExtImpl('ExtImpl');
-   
-     onCreate(want: Want): void {
-       let serviceExtensionContext = this.context;
-       hilog.info(DOMAIN_NUMBER, TAG, `onCreate, want: ${want.abilityName}`);
-     };
-   
-     onRequest(want: Want, startId: number): void {
-       hilog.info(DOMAIN_NUMBER, TAG, `onRequest, want: ${want.abilityName}`);
-     };
-   
-     onConnect(want: Want): rpc.RemoteObject {
-       hilog.info(DOMAIN_NUMBER, TAG, `onConnect, want: ${want.abilityName}`);
-       // Return the ServiceExtImpl object, through which the client can communicate with the ServiceExtensionAbility.
-       return this.serviceExtImpl as rpc.RemoteObject;
-     };
-   
-     onDisconnect(want: Want): void {
-       hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect, want: ${want.abilityName}`);
-     };
-   
-     onDestroy(): void {
-       hilog.info(DOMAIN_NUMBER, TAG, 'onDestroy');
-     };
-   };
-   ```
+    ```ts
+    import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+    import { rpc } from '@kit.IPCKit';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
+    
+    const TAG: string = '[ServiceExtAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+    
+    export default class ServiceExtAbility extends ServiceExtensionAbility {
+      serviceExtImpl: ServiceExtImpl = new ServiceExtImpl('ExtImpl');
+    
+      onCreate(want: Want): void {
+        let serviceExtensionContext = this.context;
+        hilog.info(DOMAIN_NUMBER, TAG, `onCreate, want: ${want.abilityName}`);
+      };
+    
+      onRequest(want: Want, startId: number): void {
+        hilog.info(DOMAIN_NUMBER, TAG, `onRequest, want: ${want.abilityName}`);
+      };
+    
+      onConnect(want: Want): rpc.RemoteObject {
+        hilog.info(DOMAIN_NUMBER, TAG, `onConnect, want: ${want.abilityName}`);
+        // Return the ServiceExtImpl object, through which the client can communicate with the ServiceExtensionAbility.
+        return this.serviceExtImpl as rpc.RemoteObject;
+      };
+    
+      onDisconnect(want: Want): void {
+        hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect, want: ${want.abilityName}`);
+      };
+    
+      onDestroy(): void {
+        hilog.info(DOMAIN_NUMBER, TAG, 'onDestroy');
+      };
+    };
+    ```
 
 4. Register the ServiceExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **"service"** and **srcEntry** to the code path of the ServiceExtensionAbility component.
 
-   ```json
-   {
-     "module": {
-       ...
-       "extensionAbilities": [
-         {
-           "name": "ServiceExtAbility",
-           "icon": "$media:icon",
-           "description": "service",
-           "type": "service",
-           "exported": true,
-           "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ets"
-         }
-       ]
-     }
-   }
-   ```
+    ```json
+    {
+      "module": {
+        // ...
+        "extensionAbilities": [
+          {
+            "name": "ServiceExtAbility",
+            "icon": "$media:icon",
+            "description": "service",
+            "type": "service",
+            "exported": true,
+            "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ets"
+          }
+        ]
+      }
+    }
+    ```
 
 ## Starting a Background Service (for System Applications Only)
 
-A system application uses the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstartserviceextensionability) method to start a background service. The [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest) callback is invoked, through which the background service receives the **Want** object passed by the caller. After the background service is started, its lifecycle is independent of that of the client. In other words, even if the client is destroyed, the background service remains alive. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstopserviceextensionability) to stop the background service.
+A system application uses the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a background service. The [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest) callback is invoked, through which the background service receives the **Want** object passed by the caller. After the background service is started, its lifecycle is independent of that of the client. In other words, even if the client is destroyed, the background service remains alive. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstopserviceextensionability) to stop the background service.
 
 > **NOTE**
-> [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstartserviceextensionability), [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstopserviceextensionability), and [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself) provided by the **ServiceExtensionContext** class are system APIs and cannot be called by third-party applications.
+> **startServiceExtensionAbility()**, **stopServiceExtensionAbility()**, and **terminateSelf()** provided by the **ServiceExtensionContext** class are system APIs and cannot be called by third-party applications.
 
-1. Start a new ServiceExtensionAbility in a system application. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+1. Start a new [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) in a system application. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
-   ```ts
-   import { common, Want } from '@kit.AbilityKit';
-   import { promptAction } from '@kit.ArkUI';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
+    ```ts
+    import { common, Want } from '@kit.AbilityKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   const TAG: string = '[Page_ServiceExtensionAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   
-   @Entry
-   @Component
-   struct Page_ServiceExtensionAbility {
-     build() {
-       Column() {
-         //...
-         List({ initialIndex: 0 }) {
-           ListItem() {
-             Row() {
-               //...
-             }
-             .onClick(() => {
-               let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-               let want: Want = {
-                 deviceId: '',
-                 bundleName: 'com.samples.stagemodelabilitydevelop',
-                 abilityName: 'ServiceExtAbility'
-               };
-               context.startServiceExtensionAbility(want).then(() => {
-                 hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ServiceExtensionAbility.');
-                 // The background service is started.
-                 promptAction.showToast({
-                   message: $r('app.string.SuccessfullyStartBackendService')
-                 });
-               }).catch((err: BusinessError) => {
-                 hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
-               });
-             })
-           }
-           //...
-         }
-         //...
-       }
-       //...
-     }
-   }
-   ```
+    const TAG: string = '[Page_ServiceExtensionAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+    
+    @Entry
+    @Component
+    struct Page_ServiceExtensionAbility {
+      build() {
+        Column() {
+          //...
+          List({ initialIndex: 0 }) {
+            ListItem() {
+              Row() {
+                //...
+              }
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let want: Want = {
+                  deviceId: '',
+                  bundleName: 'com.samples.stagemodelabilitydevelop',
+                  abilityName: 'ServiceExtAbility'
+                };
+                context.startServiceExtensionAbility(want).then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ServiceExtensionAbility.');
+                  // The background service is started.
+                  promptAction.showToast({
+                    message: 'SuccessfullyStartBackendService'
+                  });
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
+                });
+              })
+            }
+            //...
+          }
+          //...
+        }
+        //...
+      }
+    }
+    ```
 
-2. Stop the ServiceExtensionAbility in the system application.
+2. Stop the [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) in the system application.
 
-   ```ts
-   import { common, Want } from '@kit.AbilityKit';
-   import { promptAction } from '@kit.ArkUI';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   
-   const TAG: string = '[Page_ServiceExtensionAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   
-   @Entry
-   @Component
-   struct Page_ServiceExtensionAbility {
-     build() {
-       Column() {
-         //...
-         List({ initialIndex: 0 }) {
-           ListItem() {
-             Row() {
-               //...
-             }
-             .onClick(() => {
-               let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-               let want: Want = {
-                 deviceId: '',
-                 bundleName: 'com.samples.stagemodelabilitydevelop',
-                 abilityName: 'ServiceExtAbility'
-               };
-               context.stopServiceExtensionAbility(want).then(() => {
-                 hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping ServiceExtensionAbility.');
-                 promptAction.showToast({
-                   message: $r('app.string.SuccessfullyStoppedAStartedBackendService')
-                 });
-               }).catch((err: BusinessError) => {
-                 hilog.error(DOMAIN_NUMBER, TAG, `Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
-               });
-             })
-           }
-           //...
-         }
-         //...
-       }
-       //...
-     }
-   }
-   ```
+    ```ts
+    import { common, Want } from '@kit.AbilityKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    
+    const TAG: string = '[Page_ServiceExtensionAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+    
+    @Entry
+    @Component
+    struct Page_ServiceExtensionAbility {
+      build() {
+        Column() {
+          //...
+          List({ initialIndex: 0 }) {
+            ListItem() {
+              Row() {
+                //...
+              }
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let want: Want = {
+                  deviceId: '',
+                  bundleName: 'com.samples.stagemodelabilitydevelop',
+                  abilityName: 'ServiceExtAbility'
+                };
+                context.stopServiceExtensionAbility(want).then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping ServiceExtensionAbility.');
+                  promptAction.showToast({
+                    message: 'SuccessfullyStoppedAStartedBackendService'
+                  });
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
+                });
+              })
+            }
+            //...
+          }
+          //...
+        }
+        //...
+      }
+    }
+    ```
 
-3. Enable the ServiceExtensionAbility to stop itself.
+3. Enable the [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) to stop itself.
 
-   ```ts
-   import { common } from '@kit.AbilityKit';
-   import { promptAction } from '@kit.ArkUI';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
+    ```ts
+    import { common } from '@kit.AbilityKit';
+    import { promptAction } from '@kit.ArkUI';
+    import { hilog } from '@kit.PerformanceAnalysisKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   const TAG: string = '[Page_ServiceExtensionAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   
-   @Entry
-   @Component
-   struct Page_ServiceExtensionAbility {
-     build() {
-       Column() {
-         //...
-         List({ initialIndex: 0 }) {
-           ListItem() {
-             Row() {
-               //...
-             }
-             .onClick(() => {
-               let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-               context.terminateSelf().then(() => {
-                 hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in terminating self.');
-                 // The background service is stopped.
-                 promptAction.showToast({
-                   message: $r('app.string.SuccessfullyStopStartedBackendService')
-                 });
-               }).catch((err: BusinessError) => {
-                 hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
-               });
-             })
-           }
-           //...
-         }
-         //...
-       }
-       //...
-     }
-   }
-   ```
+    const TAG: string = '[Page_ServiceExtensionAbility]';
+    const DOMAIN_NUMBER: number = 0xFF00;
+    
+    @Entry
+    @Component
+    struct Page_ServiceExtensionAbility {
+      build() {
+        Column() {
+          //...
+          List({ initialIndex: 0 }) {
+            ListItem() {
+              Row() {
+                //...
+              }
+              .onClick(() => {
+                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                context.terminateSelf().then(() => {
+                  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in terminating self.');
+                  // The background service is stopped.
+                  promptAction.showToast({
+                    message: 'SuccessfullyStopStartedBackendService'
+                  });
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
+                });
+              })
+            }
+            //...
+          }
+          //...
+        }
+        //...
+      }
+    }
+    ```
 
 > **NOTE**
 >
@@ -359,11 +359,11 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 
 ## Connecting to a Background Service
 
-Either a system application or a third-party application can connect to a background service (specified in the **Want** object) through [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability). The [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect) callback is invoked, through which the background service receives the **Want** object passed by the caller. In this way, a persistent connection is established.
+Either a system application or a third-party application can connect to a background service (specified in the **Want** object) through [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability). The [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect) callback is invoked, through which the background service receives the [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) object passed by the caller. In this way, a persistent connection is established.
 
-The ServiceExtensionAbility returns an IRemoteObject in the [onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect) callback. Through this IRemoteObject, you can define communication interfaces for RPC interaction between the client and server. Multiple clients can simultaneously connect to the same background service. After a client finishes the interaction, it must call [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) to disconnect from the service. If all clients connected to a background service are disconnected, the system destroys the service.
+The ServiceExtensionAbility returns an [IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject) in the **onConnect()** callback. Through this IRemoteObject, you can define communication interfaces for RPC interaction between the client and server. Multiple clients can simultaneously connect to the same background service. After a client finishes the interaction, it must call [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) to disconnect from the service. If all clients connected to a background service are disconnected, the system destroys the service.
 
-- Call **connectServiceExtensionAbility()** to establish a connection to a background service. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+- Call [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to establish a connection to a background service. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
   
   ```ts
   import { common, Want } from '@kit.AbilityKit';
@@ -423,7 +423,7 @@ The ServiceExtensionAbility returns an IRemoteObject in the [onConnect()](../ref
               connectionId = context.connectServiceExtensionAbility(want, options);
               // The background service is connected.
               promptAction.showToast({
-                message: $r('app.string.SuccessfullyConnectBackendService')
+                message: 'SuccessfullyConnectBackendService'
               });
               // connectionId = context.connectAbility(want, options);
               hilog.info(DOMAIN_NUMBER, TAG, `connectionId is : ${connectionId}`);
@@ -438,7 +438,7 @@ The ServiceExtensionAbility returns an IRemoteObject in the [onConnect()](../ref
   }
   ```
 
-- Use **disconnectServiceExtensionAbility()** to disconnect from the background service.
+- Call [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) to disconnect from the background service.
   
   ```ts
   import { common } from '@kit.AbilityKit';
@@ -468,7 +468,7 @@ The ServiceExtensionAbility returns an IRemoteObject in the [onConnect()](../ref
                 hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
                 // The background service is disconnected.
                 promptAction.showToast({
-                  message: $r('app.string.SuccessfullyDisconnectBackendService')
+                  message: 'SuccessfullyDisconnectBackendService'
                 });
               }).catch((error: BusinessError) => {
                 hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');
@@ -487,7 +487,7 @@ The ServiceExtensionAbility returns an IRemoteObject in the [onConnect()](../ref
 
 ## Communication Between the Client and Server
 
-After obtaining the [rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject) from the **onConnect()** lifecycle callback, the client can communicate with the ServiceExtensionAbility in either of the following ways:
+After obtaining the [rpc.IRemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#iremoteobject) from the [onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect) lifecycle callback, the client can communicate with the ServiceExtensionAbility in either of the following ways:
 
 - Using the IDL APIs provided by the server for communication (recommended)
 

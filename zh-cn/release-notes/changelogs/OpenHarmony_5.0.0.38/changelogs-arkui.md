@@ -171,9 +171,9 @@ struct Index {
 
 该变更为不兼容变更。
 
-变更前：V2组件内的@Local,@Param,@Event,@Provider,@Consumer,@BuilderParam修饰的变量没有写类型不会被校验。
+变更前：V2组件内的@Local,@Param,@Event,@Provider,@Consumer,@BuilderParam修饰的变量没有写类型编译不会报错。
 
-变更后：V2组件内的@Local,@Param,@Event,@Provider,@Consumer,@BuilderParam修饰的变量没有写类型会被校验。
+变更后：V2组件内的@Local,@Param,@Event,@Provider,@Consumer,@BuilderParam修饰的变量没有写类型编译报错。
 
 
 **起始API Level**
@@ -213,3 +213,179 @@ struct V2ComponentMember {
   }
 }
 ```
+## cl.arkui.4 Tabs组件的选中页签为子页签且背板模式时，其默认字体颜色变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Tabs组件内TabContent子组件的tabbar属性为SubTabBarStyle对象，SubTabBarStyle对象的selectedMode为SelectedMode.BOARD情况下，选中页签的默认字体颜色与背板颜色一致，此时文本内容无法清晰可见，因此修改其默认字体颜色。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+变更前：选中子页签背板模式下默认字体颜色为'#ff007dff'
+
+变更后：选中子页签背板模式下默认字体颜色为'#ffffff'
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/tabs_before.png) | ![](figures/tabs_after.png) |
+
+**起始API Level**
+
+API 10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.38开始。
+
+**变更的接口/组件**
+
+Tabs组件
+
+**适配指导**
+
+若需要变更前的颜色，可以修改SubTabBarStyle对象的labelStyle属性中selectedColor值为变更前的默认颜色。
+
+```ts
+@Entry
+@Component
+struct TabBarStyleExample {
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar(new SubTabBarStyle('Pink')
+          .selectedMode(SelectedMode.BOARD)
+          .labelStyle({selectedColor:'#ff007dff'}))
+      }
+      .vertical(false)
+      .scrollable(true)
+      .barMode(BarMode.Fixed)
+      .width('100%')
+      .backgroundColor(0xF1F3F5)
+    }.width('100%').height(200)
+  }
+}
+```
+## cl.arkui.5 Text组件属性字符串支持超链接
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+为了提升Text组件的联合布局能力，StyledStringValue需要增加UrlStyle类型。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+新增属性字符串超链接功能，提升组件的联合布局能力。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.38开始
+
+**变更的接口/组件**
+
+StyledStringValue
+
+**适配指导**
+
+Text组件属性字符串支持超链接的示例代码：
+
+```ts
+@Entry
+@Component
+struct styled_string {
+  urlString: StyledStringValue = new UrlStyle( "https://www.example.com" );
+  mutableStyledString: MutableStyledString = new MutableStyledString("test hello world", [{
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.URL,
+    styledValue: this.urlString
+  }]);
+  controller: TextController = new TextController();
+  async onPageShow() {
+    this.controller.setStyledString(this.mutableStyledString)
+  }
+  build() {
+    Column() {
+      Column() {
+        Text(undefined, { controller: this.controller }).key('mutableStyledString')
+      }
+    }
+  }
+}
+```
+
+
+## cl.arkui.6 属性字符串支持设置背景色能力
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+为了提升组件的联合布局能力StyledStringValue需要增加BackgroundColorStyle类型。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+新增属性字符串支持设置背景色能力，提升了组件的联合布局能力。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.38开始
+
+**变更的接口/组件**
+
+StyledStringValue
+
+**适配指导**
+
+属性字符串支持设置背景色能力：
+
+```ts
+@Entry
+@Component
+struct styled_string_demo {
+  @State backColor: TextBackgroundStyle = {color: Color.Yellow, radius: "12vp"};
+  colorVal: BackgroundColorStyle = new BackgroundColorStyle(this.backColor);
+
+  mutableStyledString: MutableStyledString = new MutableStyledString("test hello world are you ok !", [{
+    start: 0,
+    length: 4,
+    styledKey: StyledStringKey.BACKGROUND_COLOR,
+    styledValue: this.colorVal}
+  ],)
+
+  controller: TextController = new TextController();
+
+  async onPageShow() {
+    this.controller.setStyledString(this.mutableStyledString)
+  }
+
+  build() {
+    Column() {
+        Text(undefined, { controller: this.controller }).key('mutableStyledString')
+    }
+  }
+}

@@ -28,7 +28,7 @@ An application package can contain either only one entry HAP or one entry HAP pl
 
 To create a HAP in DevEco Studio:
 
-1. Create a project. For details, see [Building the First ArkTS Application in Stage Model](start-with-ets-stage.md).
+1. Create a project to build the first ArkTS application.
 2. Right-click the project directory and choose **New** > **Module** from the shortcut menu.
 3. In the dialog box displayed, select **Empty Ability** as the template and click **Next**.
    
@@ -38,19 +38,19 @@ To create a HAP in DevEco Studio:
 
 ## Developing a HAP
 
-- You can add a UIAbility or ExtensionAbility to a HAP.  
+- You can add a UIAbility or ExtensionAbility to a HAP. For details, see <!--RP1-->[Adding an Ability to a Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/add_new_ability-0000001053183674-V2)<!--RP1End-->.
 
 - You can also configure a HAP to reference a HAR or HSP. For details, see [Using a HAR](./har-package.md#using-a-har) and [Using an HSP](./in-app-hsp.md#using-an-hsp).
 
 ## Debugging a HAP
 
-After building code into one or more HAPs and installing or updating these HAPs, you can debug them. You can leverage a single set of code and files to build multiple target editions for different audiences, deployment environments, operating environments, and more.
+After building code into one or more HAPs and installing or updating these HAPs, you can debug them. For details about how to build the same HAP into different versions based on the deployment environment, target user group, and running environment, see <!--RP2-->[Customizing Multi-Target and Multi-Product Builds](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/customized-multi-targets-and-products-0000001430013853-V2)<!--RP2End-->.
 
 To debug a HAP, use either of the following tools:
 
-- DevEco Studio
+- Method 1: Use DevEco Studio for debugging. For details, see <!--RP3-->[Debugging Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/ide_debug_device-0000001053822404-V2#section10491183521520)<!--RP3End-->.
 
-- [hdc](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md), which can be obtained from the **toolchains** folder in the OpenHarmony SDK
+- Method 2: Use <!--Del-->[<!--DelEnd-->hdc<!--Del-->](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> (obtained from the **toolchains** directory in the OpenHarmony SDK) for debugging.
 
    Before debugging a HAP, install or update it using either of the methods:
 

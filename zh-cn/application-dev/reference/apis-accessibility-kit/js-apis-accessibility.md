@@ -133,8 +133,8 @@ type CaptionsFontEdgeType = 'none' | 'raised' | 'depressed' | 'uniform' | 'dropS
 
 ## CaptionsFontFamily<sup>8+</sup>
 
-type CaptionsFontFamily = 'default' | 'monospacedSerif' | 'serif' |      
-  'monospacedSansSerif' | 'sansSerif' | 'casual' | 'cursive' | 'smallCapitals'
+type CaptionsFontFamily = 'default' | 'monospacedSerif' | 'serif' | 'monospacedSansSerif' |
+  'sansSerif' | 'casual' | 'cursive' | 'smallCapitals'
 
 字幕字体。
 

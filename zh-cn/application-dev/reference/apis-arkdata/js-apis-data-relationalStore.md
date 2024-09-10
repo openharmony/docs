@@ -1,7 +1,14 @@
 # @ohos.data.relationalStore (关系型数据库)
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。支持通过[ResultSet.getSendableRow](#getsendablerow12)方法获取Sendable数据，进行跨线程传递。
+
 为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
+
+大数据量场景下查询数据可能会导致耗时长甚至应用卡死，建议如下：
+- 单次查询数据量不超过5000条。
+- 在[TaskPool](../apis-arkts/js-apis-taskpool.md)中查询。
+- 拼接SQL语句尽量简洁。
+- 合理地分批次查询。
 
 该模块提供以下关系型数据库相关的常用功能：
 
@@ -74,7 +81,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
@@ -100,7 +107,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
         
     relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
@@ -173,7 +180,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -197,7 +204,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -401,7 +408,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
@@ -427,7 +434,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG, (err: BusinessError) => {
       if (err) {
@@ -492,7 +499,7 @@ let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+  securityLevel: relationalStore.SecurityLevel.S3
 };
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
@@ -516,7 +523,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     const STORE_CONFIG: relationalStore.StoreConfig = {
       name: "RdbTest.db",
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
       store = undefined;
@@ -634,8 +641,7 @@ type ValuesBucket = Record<string, ValueType>
 
 | 类型              | 说明                           |
 | ---------------- | ---------------------------- |
-| string | 表示键的类型为string。 |
-| ValueType | 表示值的类型为[ValueType](#valuetype)。 |
+| Record<string, [ValueType](#valuetype)> | 表示键值对类型。键的类型为string，值的类型为[ValueType](#valuetype)。 |
 
 ## PRIKeyType<sup>10+</sup> 
 
@@ -4084,6 +4090,8 @@ executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
+不支持分号分隔的多条语句。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -4143,6 +4151,8 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
+不支持分号分隔的多条语句。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4204,6 +4214,8 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 执行包含指定参数但不返回值的SQL语句，使用Promise异步回调。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
+不支持分号分隔的多条语句。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4272,6 +4284,8 @@ execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
+不支持分号分隔的多条语句。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4363,6 +4377,8 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
+不支持分号分隔的多条语句。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -4435,6 +4451,8 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
+
+不支持分号分隔的多条语句。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -6865,7 +6883,7 @@ let attachStore: relationalStore.RdbStore | undefined = undefined;
 
 const STORE_CONFIG1: relationalStore.StoreConfig = {
     name: "rdbstore1.db",
-    securityLevel: relationalStore.SecurityLevel.S1,
+    securityLevel: relationalStore.SecurityLevel.S3,
 }
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
@@ -6895,7 +6913,7 @@ let attachStore: relationalStore.RdbStore | undefined = undefined;
 const STORE_CONFIG2: relationalStore.StoreConfig = {
     name: "rdbstore2.db",
     encrypt: true,
-    securityLevel: relationalStore.SecurityLevel.S1,
+    securityLevel: relationalStore.SecurityLevel.S3,
 }
 
 relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {

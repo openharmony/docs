@@ -75,14 +75,14 @@ Shift+TAB键：与TAB键具有相反的焦点转移效果。
 5. 子组件优先：当子组件处理按键走焦事件，父组件将不再介入。
 
 - requestFocus
-详见[requestFocus](#主动获焦失焦)，可以主动将焦点转移到指定组件上。
+详见[主动获焦失焦](#主动获焦失焦)，可以主动将焦点转移到指定组件上。
 不可跨窗口，不可跨ArkUI实例申请焦点，可以跨层级页面申请焦点。
 
 - clearFocus
-详见[clearFocus](#主动获焦失焦)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
+详见[clearFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#clearfocus12)，会清除当前层级页面中的焦点，最终焦点停留在根容器上。
 
 - focusOnTouch
-详见[focusOnTouch](#设置组件是否可获焦)，使绑定组件具备点击后获得焦点的能力。若组件本身不可获焦，则此功能无效。若绑定的是容器组件，点击后优先将焦点转移给上一次获焦的子组件，否则转移给第一个可获焦的子组件。
+详见[focusOnTouch](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)，使绑定组件具备点击后获得焦点的能力。若组件本身不可获焦，则此功能无效。若绑定的是容器组件，点击后优先将焦点转移给上一次获焦的子组件，否则转移给第一个可获焦的子组件。
 
 
 **被动走焦**

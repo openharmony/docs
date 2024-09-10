@@ -15,14 +15,14 @@ JavaScript虚拟机（JSVM）的快照创建功能，将当前运行时的JavaSc
 | 接口                       | 功能说明                       |
 |----------------------------|-------------------------------|
 | OH_JSVM_CreateSnapshot     | 用于创建虚拟机的启动快照        |
-
+|OH_JSVM_CreateEnvFromSnapshot| 基于虚拟机的起始快照，创建一个新的环境 |
 ## 使用示例
 
 JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
 
 ### OH_JSVM_CreateSnapshot
 
-用于创建虚拟机的启动快照。
+用于创建和使用虚拟机的启动快照。
 
 cpp部分代码
 

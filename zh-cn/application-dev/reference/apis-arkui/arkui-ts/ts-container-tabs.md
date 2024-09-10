@@ -99,7 +99,7 @@ barMode(value: BarMode, options?: ScrollableBarModeOptions)
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                 | [BarMode](#barmode枚举说明)                                  | 是   | 布局模式。<br/>默认值：BarMode.Fixed                                                 |
-| options<sup>10+</sup> | [ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | 否   | Scrollable模式下的TabBar的布局样式。<br/>**说明：** <br/>仅Scrollable模式下有效 |
+| options<sup>10+</sup> | [ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | 否   | Scrollable模式下的TabBar的布局样式。<br/>**说明：** <br/>仅Scrollable且水平模式下有效。 |
 
 ### barMode<sup>10+</sup>
 
@@ -132,7 +132,7 @@ barMode(value: BarMode.Scrollable, options: ScrollableBarModeOptions)
 | 参数名    | 类型                              | 必填 | 说明                                    |
 | -------- | --------------------------------- | ---- | ------------------------------------- |
 | value    | [BarMode.Scrollable](#barmode枚举说明) | 是   | 所有TabBar都使用实际布局宽度，超过总宽度（横向Tabs的barWidth，纵向Tabs的barHeight）后可滑动。        |
-| options | [ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | 是   | Scrollable模式下的TabBar的布局样式。 |
+| options | [ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | 是   | Scrollable模式下的TabBar的布局样式。<br/>**说明：** <br/>仅水平模式下有效。  |
 
 ### barWidth
 
@@ -154,7 +154,7 @@ barWidth(value: Length)
 
 barHeight(value: Length)
 
-设置TabBar的高度值。设置为小于0或大于Tabs高度值时，按默认值显示。
+设置TabBar的高度值。设置为'auto'时，TabBar自适应子组件高度，仅在水平模式下有效。设置为小于0或大于Tabs高度值时，按默认值显示。若设置barHeight为固定值后，TabBar无法扩展底部安全区。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -250,7 +250,7 @@ fadingEdge(value: boolean)
 
 barOverlap(value: boolean)
 
-设置TabBar是否背后变模糊并叠加在TabContent之上。
+设置TabBar是否背后变模糊并叠加在TabContent之上。若设置barOverlap为true，TabBar默认背景色修改为'#F2F1F3F5'并添加模糊效果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -408,7 +408,7 @@ Scrollable模式下不滚动时的页签排布方式枚举。
 | 名称         | 值 | 描述                                       |
 | ---------- | -- | ---------------------------------------- |
 | ALWAYS_CENTER | 0 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，页签紧凑居中。|
-| ALWAYS_AVERAGE_SPLIT | 1 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。<br/>仅水平模式下有效，否则视为LayoutStyle.ALWAYS_CENTER。|
+| ALWAYS_AVERAGE_SPLIT | 1 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。|
 | SPACE_BETWEEN_OR_CENTER      | 2 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度但超过TabBar宽度一半时，TabBar不可滚动，页签紧凑居中。<br/>当页签内容不超过TabBar宽度一半时，TabBar不可滚动，保证页签居中排列在TabBar宽度一半，且间距相同。|
 
 ## 事件
@@ -581,7 +581,7 @@ Tabs组件动画相关信息集合。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型      | 只读 | 可选 | 描述                                       |
+| 名称            | 类型      | 只读 | 可选 | 说明                                       |
 | ------------- | ---------- | ---- | ---- | ------------------------ |
 | currentOffset | number | 否 | 否 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
 | targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
@@ -614,7 +614,7 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 
 ### 属性
 
-| 名称  | 类型     | 只读 | 可选 | 描述                         |
+| 名称  | 类型     | 只读 | 可选 | 说明                         |
 | ----- | ------- | ---- | ---- | --------------------------- |
 | from | number | 否 | 否 | 自定义动画起始页面对应的index值。|
 | to | number | 否 | 否 | 自定义动画目标页面对应的index值。|
@@ -699,7 +699,7 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 
 | 错误码ID   | 错误信息                                      |
 | --------   | -------------------------------------------- |
-| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
+| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 
 ## 示例
 
@@ -1460,8 +1460,6 @@ struct TabsExample {
 
 ```ts
 // xxx.ets
-import { ComponentUtils } from '@kit.ArkUI'
-
 @Entry
 @Component
 struct TabsExample {
@@ -1470,7 +1468,8 @@ struct TabsExample {
   @State indicatorLeftMargin: number = 0
   @State indicatorWidth: number = 0
   private tabsWidth: number = 0
-  private componentUtils: ComponentUtils = this.getUIContext().getComponentUtils()
+  private textInfos: [number, number][] = []
+  private isStartAnimateTo: boolean = false
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -1480,14 +1479,11 @@ struct TabsExample {
         .fontColor(this.currentIndex === index ? '#007DFF' : '#182431')
         .fontWeight(this.currentIndex === index ? 500 : 400)
         .id(index.toString())
-        .onAreaChange((oldValue: Area,newValue: Area) => {
-          if (this.currentIndex === index && (this.indicatorLeftMargin === 0 || this.indicatorWidth === 0)){
-            if (newValue.position.x != undefined) {
-              let positionX = Number.parseFloat(newValue.position.x.toString())
-              this.indicatorLeftMargin = Number.isNaN(positionX) ? 0 : positionX
-            }
-            let width = Number.parseFloat(newValue.width.toString())
-            this.indicatorWidth = Number.isNaN(width) ? 0 : width
+        .onAreaChange((oldValue: Area, newValue: Area) => {
+          this.textInfos[index] = [newValue.globalPosition.x as number, newValue.width as number]
+          if (this.currentIndex === index && !this.isStartAnimateTo) {
+            this.indicatorLeftMargin = this.textInfos[index][0]
+            this.indicatorWidth = this.textInfos[index][1]
           }
         })
     }.width('100%')
@@ -1512,9 +1508,8 @@ struct TabsExample {
           Column().width('100%').height('100%').backgroundColor('#E67C92')
         }.tabBar(this.tabBuilder(3, 'pink'))
       }
-      .onAreaChange((oldValue: Area,newValue: Area)=> {
-        let width = Number.parseFloat(newValue.width.toString())
-        this.tabsWidth = Number.isNaN(width) ? 0 : width
+      .onAreaChange((oldValue: Area, newValue: Area)=> {
+        this.tabsWidth = newValue.width as number
       })
       .barWidth('100%')
       .barHeight(56)
@@ -1523,22 +1518,21 @@ struct TabsExample {
       .backgroundColor('#F1F3F5')
       .animationDuration(this.animationDuration)
       .onChange((index: number) => {
-        this.currentIndex = index  // 监听索引index的变化，实现页签内容的切换。
+        this.currentIndex = index // 监听索引index的变化，实现页签内容的切换。
       })
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
         // 切换动画开始时触发该回调。下划线跟着页面一起滑动，同时宽度渐变。
         this.currentIndex = targetIndex
-        let targetIndexInfo = this.getTextInfo(targetIndex)
-        this.startAnimateTo(this.animationDuration, targetIndexInfo.left, targetIndexInfo.width)
+        this.startAnimateTo(this.animationDuration, this.textInfos[targetIndex][0], this.textInfos[targetIndex][1])
       })
-      .onAnimationEnd((index: number,event: TabsAnimationEvent) => {
+      .onAnimationEnd((index: number, event: TabsAnimationEvent) => {
         // 切换动画结束时触发该回调。下划线动画停止。
-        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index,event)
-        this.startAnimateTo(0,currentIndicatorInfo.left,currentIndicatorInfo.width)
+        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index, event)
+        this.startAnimateTo(0, currentIndicatorInfo.left, currentIndicatorInfo.width)
       })
-      .onGestureSwipe((index: number,event: TabsAnimationEvent) => {
+      .onGestureSwipe((index: number, event: TabsAnimationEvent) => {
         // 在页面跟手滑动过程中，逐帧触发该回调。
-        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index,event)
+        let currentIndicatorInfo = this.getCurrentIndicatorInfo(index, event)
         this.currentIndex = currentIndicatorInfo.index
         this.indicatorLeftMargin = currentIndicatorInfo.left
         this.indicatorWidth = currentIndicatorInfo.width
@@ -1552,11 +1546,6 @@ struct TabsExample {
     }.width('100%')
   }
 
-  private getTextInfo(index: number): Record<string, number> {
-    let rectangle = this.componentUtils.getRectangleById(index.toString())
-    return { 'left': px2vp(rectangle.windowOffset.x), 'width': px2vp(rectangle.size.width) }
-  }
-
   private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Record<string, number> {
     let nextIndex = index
     if (index > 0 && event.currentOffset > 0) {
@@ -1564,22 +1553,24 @@ struct TabsExample {
     } else if (index < 3 && event.currentOffset < 0) {
       nextIndex++
     }
-    let indexInfo = this.getTextInfo(index)
-    let nextIndexInfo = this.getTextInfo(nextIndex)
+    let indexInfo = this.textInfos[index]
+    let nextIndexInfo = this.textInfos[nextIndex]
     let swipeRatio = Math.abs(event.currentOffset / this.tabsWidth)
-    let currentIndex = swipeRatio > 0.5 ? nextIndex : index  // 页面滑动超过一半，tabBar切换到下一页。
-    let currentLeft = indexInfo.left + (nextIndexInfo.left - indexInfo.left) * swipeRatio
-    let currentWidth = indexInfo.width + (nextIndexInfo.width - indexInfo.width) * swipeRatio
+    let currentIndex = swipeRatio > 0.5 ? nextIndex : index // 页面滑动超过一半，tabBar切换到下一页。
+    let currentLeft = indexInfo[0] + (nextIndexInfo[0] - indexInfo[0]) * swipeRatio
+    let currentWidth = indexInfo[1] + (nextIndexInfo[1] - indexInfo[1]) * swipeRatio
     return { 'index': currentIndex, 'left': currentLeft, 'width': currentWidth }
   }
 
   private startAnimateTo(duration: number, leftMargin: number, width: number) {
+    this.isStartAnimateTo = true
     animateTo({
       duration: duration, // 动画时长
       curve: Curve.Linear, // 动画曲线
       iterations: 1, // 播放次数
       playMode: PlayMode.Normal, // 动画模式
       onFinish: () => {
+        this.isStartAnimateTo = false
         console.info('play end')
       }
     }, () => {

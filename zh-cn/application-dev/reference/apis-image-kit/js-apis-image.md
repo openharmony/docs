@@ -594,7 +594,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -635,7 +635,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，通过回调函数返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -674,7 +674,7 @@ async function Demo() {
 
 readPixelsToBufferSync(dst: ArrayBuffer): void
 
-以同步方法读取PixelMap到Buffer里。
+以同步方式读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -714,7 +714,13 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取区域内的图片数据，使用Promise形式返回。
+读取区域内的图像像素数据。使用Promise形式返回。
+
+可用公式计算PositionArea需要申请的内存大小。
+
+YUV的区域计算公式：读取区域（region.size{width * height}）* 1.5 （1倍的Y分量+0.25倍U分量+0.25倍V分量）
+
+RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （1倍的R分量+1倍G分量+1倍B分量+1倍A分量）
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -741,10 +747,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(8),
+    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  if (pixelMap != undefined) {
+    pixelMap.readPixels(area).then(() => {
+      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+    })
+  }
+}
+
+async function Demo() {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(6),  // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   if (pixelMap != undefined) {
     pixelMap.readPixels(area).then(() => {
@@ -760,7 +782,13 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取区域内的图片数据，使用callback形式返回读取结果。
+读取区域内的图像像素数据。使用callback形式返回。
+
+可用公式计算PositionArea需要申请的内存大小。
+
+YUV的区域计算公式：读取区域（region.size{width * height}）* 1.5 （1倍的Y分量+0.25倍U分量+0.25倍V分量）
+
+RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （1倍的R分量+1倍G分量+1倍B分量+1倍A分量）
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -782,10 +810,29 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(8),
+    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  if (pixelMap != undefined) {
+    pixelMap.readPixels(area, (error: BusinessError) => {
+      if (error) {
+        console.error(`Failed to read pixelmap from the specified area. code is ${error.code}, message is ${error.message}`);
+        return;
+      } else {
+        console.info('Succeeded in reading pixelmap from the specified area.');
+      }
+    })
+  }
+}
+
+async function Demo() {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   if (pixelMap != undefined) {
     pixelMap.readPixels(area, (error: BusinessError) => {
@@ -804,7 +851,7 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-读取区域内的图片数据并同步返回结果。
+以同步方式读取区域内的图像像素数据，并按照BGRA_8888格式写入缓冲区中。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -847,7 +894,13 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-将PixelMap写入指定区域内，使用Promise形式返回写入结果。
+读取区域内的图像像素数据。使用Promise形式返回。
+
+可用公式计算PositionArea需要申请的内存大小。
+
+YUV的区域计算公式：读取区域（region.size{width * height}）* 1.5 （1倍的Y分量+0.25倍U分量+0.25倍V分量）
+
+RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （1倍的R分量+1倍G分量+1倍B分量+1倍A分量）
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -874,10 +927,30 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(8),
+    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writePixels(area).then(() => {
+      console.info('Succeeded in writing pixelmap into the specified area.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+    })
+  }
+}
+
+async function Demo() {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   let bufferArr: Uint8Array = new Uint8Array(area.pixels);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -897,7 +970,13 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-将PixelMap写入指定区域内，使用callback形式返回写入结果。
+读取区域内的图像像素数据。使用callback形式返回。
+
+可用公式计算PositionArea需要申请的内存大小。
+
+YUV的区域计算公式：读取区域（region.size{width * height}）* 1.5 （1倍的Y分量+0.25倍U分量+0.25倍V分量）
+
+RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （1倍的R分量+1倍G分量+1倍B分量+1倍A分量）
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -918,10 +997,32 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-  const area: image.PositionArea = { pixels: new ArrayBuffer(8),
+  const area: image.PositionArea = { pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writePixels(area, (error : BusinessError) => {
+      if (error) {
+        console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+        return;
+      } else {
+        console.info('Succeeded in writing pixelmap into the specified area.');
+      }
+    })
+  }
+}
+
+async function Demo() {
+  const area: image.PositionArea = { pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   let bufferArr: Uint8Array = new Uint8Array(area.pixels);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -944,7 +1045,7 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-以同步方法将PixelMap写入指定区域内。
+以同步方式将BGRA_8888格式的图像像素数据写入指定区域内。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -993,7 +1094,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
+读取缓冲区中的图像像素数据，并按照PixelMap的像素格式将结果写入PixelMap，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1038,7 +1139,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取缓冲区中的图片数据，结果写入PixelMap中，使用callback形式返回。
+读取缓冲区中的图像像素数据，并按照PixelMap的像素格式将结果写入PixelMap，通过回调函数形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1081,7 +1182,7 @@ async function Demo() {
 
 writeBufferToPixelsSync(src: ArrayBuffer): void
 
-读取缓冲区中的图片数据，结果写入PixelMap并同步返回结果。
+读取缓冲区中的图像像素数据，按照PixelMap的像素格式将结果写入PixelMap并同步返回结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1309,7 +1410,7 @@ let getDensity: number = pixelMap.getDensity();
 
 opacity(rate: number, callback: AsyncCallback\<void>): void
 
-通过设置透明比率来让PixelMap达到对应的透明效果，使用callback形式返回。
+通过设置透明比率来让PixelMap达到对应的透明效果，yuv图片不支持设置透明度，使用callback形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1348,7 +1449,7 @@ async function Demo() {
 
 opacity(rate: number): Promise\<void>
 
-通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回。
+通过设置透明比率来让PixelMap达到对应的透明效果，yuv图片不支持设置透明度，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1389,7 +1490,7 @@ async function Demo() {
 
 opacitySync(rate: number): void
 
-设置PixelMap的透明比率，初始化PixelMap并同步返回结果。
+设置PixelMap的透明比率，yuv图片不支持设置透明度，初始化PixelMap并同步返回结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1427,7 +1528,7 @@ async function Demo() {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用Promise形式返回。
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，yuv格式不支持此接口，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1461,7 +1562,7 @@ async function Demo() {
 
 createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
-根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用callback形式返回。
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，yuv格式不支持此接口，使用callback形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1498,7 +1599,7 @@ async function Demo() {
 
 createAlphaPixelmapSync(): PixelMap
 
-根据Alpha通道的信息，生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，同步返回PixelMap类型的结果。
+根据Alpha通道的信息，生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，yuv格式不支持此接口，同步返回PixelMap类型的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1658,11 +1759,104 @@ async function Demo() {
 }
 ```
 
+### scale<sup>12+</sup>
+
+scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
+
+根据输入的宽高对图片进行缩放，使用Promise形式返回。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scale(scaleX, scaleY, image.AntiAliasingLevel.LOW).then(() => {
+      console.info('Succeeded in scaling pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+
+    })
+  }
+}
+```
+
+### scaleSync<sup>12+</sup>
+
+scaleSync(x: number, y: number, level: AntiAliasingLevel): void
+
+以同步方法根据输入的宽高对图片进行缩放。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
+| level  | [AntiAliasingLevel](#antialiasinglevel12) | 是   | 采用的缩放算法。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo() {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scaleSync(scaleX, scaleY, image.AntiAliasingLevel.LOW);
+  }
+}
+```
+
 ### translate<sup>9+</sup>
 
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
-根据输入的坐标对图片进行位置变换，使用callback形式返回。
+根据输入的坐标对图片进行位置变换，translate后的图片尺寸：width+X ，height+Y，使用callback形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1703,7 +1897,7 @@ async function Demo() {
 
 translate(x: number, y: number): Promise\<void>
 
-根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+根据输入的坐标对图片进行位置变换，translate后的图片尺寸：width+X ，height+Y，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2361,6 +2555,117 @@ if (pixelmap != undefined) {
 }
 ```
 
+### getMetadata<sup>12+</sup>
+
+getMetadata(key: HdrMetadataKey): HdrMetadataValue
+
+从PixelMap中获取元数据。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名        | 类型                             | 必填 | 说明             |
+| ------------- | -------------------------------- | ---- | ---------------- |
+| key | [HdrMetadataKey](#hdrmetadatakey12) | 是   | HDR元数据的关键字，可用于查询对应值。 |
+
+**返回值：**
+
+| 类型                              | 说明                              |
+| --------------------------------- | --------------------------------- |
+| [HdrMetadataValue](#hdrmetadatavalue12) | 返回元数据的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.          |
+| 501 | Resource unavailable.          |
+| 62980173 | The DMA memory does not exist.          |
+| 62980173 | Memory copy failed.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import image from '@ohos.multimedia.image'
+
+// 'app.media.test'需要替换为本地hdr图片。
+let img = await getContext(this).resourceManager.getMediaContent($r('app.media.test'));
+let imageSource = image.createImageSource(img.buffer.slice(0));
+let decodingOptions: image.DecodingOptions = {
+  desiredDynamicRange: image.DecodingDynamicRange.AUTO
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+if (pixelmap != undefined) {
+  console.info('Succeeded in creating pixelMap object.');
+  try {
+    let staticMetadata = pixelmap.getMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA);
+    console.info("getmetadata:" + JSON.stringify(staticMetadata));
+  } catch (e) {
+    console.info('pixelmap create failed' + e);
+  }
+} else {
+  console.info('Failed to create pixelMap.');
+}
+```
+
+### setMetadata<sup>12+</sup>
+
+setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
+
+设置PixelMap元数据。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名        | 类型                             | 必填 | 说明             |
+| ------------- | -------------------------------- | ---- | ---------------- |
+| key | [HdrMetadataKey](#hdrmetadatakey12) | 是   | HDR元数据的关键字，用于设置对应值 |
+| value | [HdrMetadataValue](#hdrmetadatavalue12) | 是   | 元数据的值 |
+
+**返回值：**
+
+| 类型           | 说明                  |
+| -------------- | --------------------- |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401|  Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
+| 501 | Resource unavailable.          |
+| 62980173 | The DMA memory does not exist.          |
+| 62980173 | Memory copy failed.          |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { BusinessError } from '@kit.BasicServicesKit';
+@State pixelmap: image.PixelMap | undefined = undefined;
+
+async Demo() {
+  let staticMetadata: image.HdrStaticMetadata = {
+    displayPrimariesX: [1.1, 1.1, 1.1],
+    displayPrimariesY: [1.2, 1.2, 1.2],
+    whitePointX: 1.1,
+    whitePointY: 1.2,
+    maxLuminance: 2.1,
+    minLuminance: 1.0,
+    maxContentLightLevel: 2.1,
+    maxFrameAverageLightLevel: 2.1,
+  }
+  this.pixelmap?.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata);
+}
+```
+
 ### setTransferDetached<sup>12+<sup>
 
 setTransferDetached(detached: boolean): void
@@ -2638,6 +2943,52 @@ async function Demo() {
 }
 ```
 
+### convertPixelFormat<sup>12+</sup>
+
+convertPixelFormat(targetPixelFormat: PixelMapFormat): Promise\<void>
+
+YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明               |
+| -------- | -------------------- | ---- | ------------------ |
+| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转。 |
+
+**返回值：**
+
+| 类型           | 说明                            |
+| -------------- | ------------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980115 | Invalid image parameter.              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (pixelMap != undefined) {
+  pixelMap.convertPixelFormat(targetPixelFormat).then(() => {
+    console.info('PixelMapFormat convert Succeeded'); //符合条件则进入
+  }).catch((error: BusinessError) => {
+    console.error(`PixelMapFormat convert Failed. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+  })
+}
+```
+
 ## image.createImageSource
 
 createImageSource(uri: string): ImageSource
@@ -2653,7 +3004,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同） [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 
 **返回值：**
 
@@ -2686,7 +3037,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同）[.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。|
 
 **返回值：**
@@ -2781,7 +3132,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(file.fd, sourc
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
-通过缓冲区创建图片源实例。
+通过缓冲区创建图片源实例。buf数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[image.createPixelMapSync](#createpixelmapsync12)这一类接口。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2813,7 +3164,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(buf);
 
 createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
-通过缓冲区创建图片源实例。
+通过缓冲区创建图片源实例。buf数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[image.createPixelMapSync](#createpixelmapsync12)这一类接口。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2988,7 +3339,7 @@ imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLengt
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，dng。 |
+| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，dng，heif<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
 ### getImageInfo
 
@@ -3135,7 +3486,7 @@ if (imageInfo == undefined) {
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3190,7 +3541,7 @@ imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
 
 getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3228,7 +3579,7 @@ imageSourceApi.getImageProperty("BitsPerSample")
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
-获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3261,7 +3612,7 @@ imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: st
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-获取图片指定属性键的值，callback形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+获取图片指定属性键的值，callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3296,7 +3647,7 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 
 getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
 
-批量获取图片中的指定属性键的值，用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
+批量获取图片中的指定属性键的值，用Promise形式返回结果。仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3342,7 +3693,7 @@ imageSourceApi.getImageProperties(key).then((data) => {
 
 modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
-通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3395,7 +3746,7 @@ imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(()
 
 modifyImageProperty(key: string, value: string): Promise\<void>
 
-通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3438,7 +3789,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
-通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG、PNG和<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3474,7 +3825,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => 
 
 modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
-批量通过指定的键修改图片属性的值，使用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
+批量通过指定的键修改图片属性的值，使用Promise形式返回结果。仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -4228,7 +4579,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 ## ImagePacker
 
-图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png。
+图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png、heif<sup>12+</sup>（不同硬件设备支持情况不同）。
 
 ### 属性
 
@@ -4236,7 +4587,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 | 名称             | 类型           | 可读 | 可写 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
-| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png。 |
+| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png、heif<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
 ### packing
 
@@ -5291,9 +5642,9 @@ creator.release().then(() => {
 | 名称     | 类型               | 可读 | 可写 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
-| size     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
+| size     | [Size](#size)      | 是   | 否   | 图像大小。如果image对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的size中的宽高分别对应YUV图像的宽高； 如果image对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的文件，size中的宽等于JPEG文件大小，高等于1。image对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。                                |
 | format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
-| timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。|
+| timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。时间戳以纳秒为单位，通常是单调递增的。时间戳的具体含义和基准取决于图像的生产者，在相机预览/拍照场景，生产者就是相机。来自不同生产者的图像的时间戳可能有不同的含义和基准，因此可能无法进行比较。如果要获取某张照片的生成时间，可以通过[getImageProperty](#getimageproperty11)接口读取相关的EXIF信息。|
 
 ### getComponent<sup>9+</sup>
 
@@ -5487,6 +5838,9 @@ img.release().then(() => {
 | RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16  |
 | NV21<sup>9+</sup>      | 8      | 格式为NV21      |
 | NV12<sup>9+</sup>      | 9      | 格式为NV12      |
+| RGBA_1010102<sup>12+</sup> | 10 | 格式为RGBA_1010102 |
+| YCBCR_P010<sup>12+</sup> | 11 | 格式为YCBCR_P010 |
+| YCRCB_P010<sup>12+</sup> | 12 | 格式为YCRCB_P010 |
 
 ## AlphaType<sup>9+</sup>
 
@@ -5595,7 +5949,7 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp" 和 "image/png"。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heif"<sup>12+</sup>（不同硬件设备支持情况不同）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | quality | number | 否   | 否   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
@@ -5807,6 +6161,14 @@ PixelMap的初始化选项。
 | DNG_VERSION <sup>12+</sup>                | "DNGVersion"                | **读写能力：** 可读写<br> DNG版本标签编码了符合DNG规范的四级版本号。|
 | DEFAULT_CROP_SIZE <sup>12+</sup>          | "DefaultCropSize"           | **读写能力：** 可读写<br> DefaultCropSize指定了原始坐标中的最终图像大小，考虑了额外的边缘像素。|
 | GIF_LOOP_COUNT <sup>12+</sup>             | "GIFLoopCount"              | **读写能力：** 只读<br> GIF图片循环次数。0表示无限循环，其他值表示循环次数。|
+| IS_XMAGE_SUPPORTED <sup>12+</sup> | "HwMnoteIsXmageSupported" | **读写能力：** 可读写<br>是否支持XMAGE。 |
+| XMAGE_MODE <sup>12+</sup> | "HwMnoteXmageMode" | **读写能力：** 可读写<br>XMAGE水印模式。 |
+| XMAGE_LEFT <sup>12+</sup> | "HwMnoteXmageLeft" | **读写能力：** 可读写<br>水印区域X1坐标。 |
+| XMAGE_TOP <sup>12+</sup> | "HwMnoteXmageTop" | **读写能力：** 可读写<br>水印区域Y1坐标。 |
+| XMAGE_RIGHT <sup>12+</sup> | "HwMnoteXmageRight" | **读写能力：** 可读写<br>水印区域X2坐标。 |
+| XMAGE_BOTTOM <sup>12+</sup> | "HwMnoteXmageBottom" | **读写能力：** 可读写<br>水印区域Y2坐标。 |
+| CLOUD_ENHANCEMENT_MODE <sup>12+</sup> | "HwMnoteCloudEnhancementMode" | **读写能力：** 可读写<br>云增强模式。 |
+| WIND_SNAPSHOT_MODE <sup>12+</sup> | "HwMnoteWindSnapshotMode" | **读写能力：** 只读<br>运动快拍模式。 |
 
 ## ImageFormat<sup>9+</sup>
 
@@ -5867,6 +6229,107 @@ PixelMap的初始化选项。
 | ------------- | ----------| ------------ |
 | AUTO          | 0    | 自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容编码。  |
 | SDR           | 1    | 按照标准动态范围处理图片。   |
+
+## HdrMetadataKey<sup>12+</sup>
+
+枚举，[pixelmap](#pixelmap7)使用的HDR相关元数据信息的关键字。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 值       | 说明         |
+| ------------- | ----------| ------------ |
+| HDR_METADATA_TYPE    | 0    | [pixelmap](#pixelmap7)使用的元数据类型。  |
+| HDR_STATIC_METADATA  | 1    | 静态元数据。   |
+| HDR_DYNAMIC_METADATA | 2    | 动态元数据。   |
+| HDR_GAINMAP_METADATA | 3    | Gainmap使用的元数据。   |
+
+## HdrMetadataType<sup>12+</sup>
+
+枚举，[HdrMetadataKey](#hdrmetadatakey12)中HDR_METADATA_TYPE关键字对应的值。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 值       | 说明         |
+| ------------- | ----------| ------------ |
+| NONE     | 0    | 无元数据内容。  |
+| BASE     | 1    | 表示用于基础图的元数据。   |
+| GAINMAP  | 2    | 表示用于Gainmap图的元数据。   |
+| ALTERNATE| 3    | 表示用于合成后HDR图的元数据。   |
+
+## HdrStaticMetadata<sup>12+</sup>
+
+静态元数据值，[HdrMetadataKey](#hdrmetadatakey12)中HDR_STATIC_METADATA关键字对应的值。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 类型       | 说明         |
+| ------------- | ----------| ------------ |
+| displayPrimariesX     | Array\<number>    | 归一化后显示设备三基色的X坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
+| displayPrimariesY     | Array\<number>    | 归一化后显示设备三基色的Y坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
+| whitePointX  | number    | 归一化后白点值的X坐标，以0.00002为单位，范围[0.0, 1.0]。   |
+| whitePointY  | number     | 归一化后白点值的Y坐标，以0.00002为单位，范围[0.0, 1.0]。   |
+| maxLuminance  | number    | 图像主监视器最大亮度。以1为单位，最大值为65535。   |
+| minLuminance  | number     | 图像主监视器最小亮度。以0.0001为单位，最大值6.55535。   |
+| maxContentLightLevel  | number    | 显示内容的最大亮度。以1为单位，最大值为65535。   |
+| maxFrameAverageLightLevel  | number     | 显示内容的最大平均亮度，以1为单位，最大值为65535。 |
+
+## GainmapChannel<sup>12+</sup>
+
+Gainmap图单个通道的数据内容，参考ISO 21496-1。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 类型       | 说明         |
+| ------------- | ----------| ------------ |
+| gainmapMax     | number   | 增强图像的最大值，参考ISO 21496-1。  |
+| gainmapMin     | number   | 增强图像的最小值，参考ISO 21496-1。  |
+| gamma  | number    | gamma值，参考ISO 21496-1。   |
+| baseOffset  | number     | 基础图的偏移，参考ISO 21496-1。   |
+| alternateOffset  | number    | 提取的可选择图像偏移量，参考ISO 21496-1。    |
+
+## HdrGainmapMetadata<sup>12+</sup>
+
+Gainmap使用的元数据值，[HdrMetadataKey](#hdrmetadatakey12)中HDR_GAINMAP_METADATA关键字对应的值，参考ISO 21496-1。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 类型       | 说明         |
+| ------------- | ----------| ------------ |
+| writerVersion     | number   | 元数据编写器使用的版本。  |
+| miniVersion     | number   | 元数据解析需要理解的最小版本。  |
+| gainmapChannelCount  | number    | Gainmap的颜色通道数，值为3时RGB通道的元数据值不同，值为1时各通道元数据值相同，参考ISO 21496-1。  |
+| useBaseColorFlag  | boolean     | 是否使用基础图的色彩空间，参考ISO 21496-1。   |
+| baseHeadroom  | number    |  基础图提亮比，参考ISO 21496-1。   |
+| alternateHeadroom  | number     |  提取的可选择图像提亮比，参考ISO 21496-1。  |
+| channels  | Array<[GainmapChannel](#gainmapchannel12)> | 各通道的数据，长度为3，参考ISO 21496-1。 |
+
+## HdrMetadataValue<sup>12+</sup>
+
+type HdrMetadataValue = HdrMetadataType | HdrStaticMetadata | ArrayBuffer | HdrGainmapMetadata
+
+PixelMap使用的HDR元数据值类型，和[HdrMetadataKey](#hdrmetadatakey12)关键字相对应。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 类型                | 说明                                            |
+| ------------------- | ----------------------------------------------- |
+| [HdrMetadataType](#hdrmetadatatype12) | [HdrMetadataKey](#hdrmetadatakey12)中HDR_GAINMAP_METADATA关键字对应的元数据值类型。 |
+| [HdrStaticMetadata](#hdrstaticmetadata12) | [HdrMetadataKey](#hdrmetadatakey12)中HDR_STATIC_METADATA关键字对应的元数据值类型。 |
+| ArrayBuffer | [HdrMetadataKey](#hdrmetadatakey12)中HDR_DYNAMIC_METADATA关键字对应的元数据值类型。 |
+| [HdrGainmapMetadata](#hdrgainmapmetadata12) | [HdrMetadataKey](#hdrmetadatakey12)中HDR_GAINMAP_METADATA关键字对应的元数据值类型。 |
+
+## AntiAliasingLevel<sup>12+</sup>
+
+缩放时的缩放算法。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称                   |   值   | 说明              |
+| ---------------------- | ------ | ----------------- |
+| NONE                | 0      | 默认为最近邻缩放算法。        |
+| LOW                 | 1      | 双线性缩放算法。     |
+| MEDIUM              | 2      | 双线性缩放算法，同步开启mipmap。|
+| HIGH                | 3      | cubic缩放算法。 |
 
 ## 补充说明
 ### SVG标签说明

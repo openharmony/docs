@@ -10,7 +10,9 @@
 >
 > 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTimePickerDialog](../js-apis-arkui-UIContext.md#showtimepickerdialog)来明确UI的执行上下文。
 
-## TimePickerDialog.show
+## TimePickerDialog
+
+### show
 
 static show(options?: TimePickerDialogOptions)
 
@@ -57,6 +59,10 @@ static show(options?: TimePickerDialogOptions)
 
 ## 示例
 
+>  **说明：**
+>
+> 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showTimePickerDialog](../js-apis-arkui-UIContext.md#showtimepickerdialog)来明确UI的执行上下文。
+
 ### 示例1
 
 TimePickerDialog基本使用
@@ -73,7 +79,7 @@ struct TimePickerDialogExample {
       Button("TimePickerDialog 12小时制")
         .margin(20)
         .onClick(() => {
-          TimePickerDialog.show({
+          TimePickerDialog.show({ // 建议使用 this.getUIContext().showTimePickerDialog()接口
             selected: this.selectTime,
             disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
             textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },

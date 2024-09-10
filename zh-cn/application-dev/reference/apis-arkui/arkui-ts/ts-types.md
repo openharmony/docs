@@ -491,7 +491,7 @@
 
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
-| SYSTEM   | 系统默认安全区域，包括状态栏、导航栏。   |
+| SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
 | CUTOUT   | 设备的非安全区域，例如刘海屏或挖孔屏区域。 |
 | KEYBOARD | 软键盘区域。                               |
 
@@ -584,7 +584,7 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
 | 名称            | 类型                  | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent11对象说明)) => void | hover事件的回调。 |
+| HoverCallback | (isHover: boolean, event: HoverEvent) => void | hover事件的回调。 |
 
 ## VisibleAreaEventOptions<sup>12+</sup>
 

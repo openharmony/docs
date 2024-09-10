@@ -28,7 +28,7 @@ Radio(options: RadioOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                  | 必填 | 描述               |
+| 参数名  | 类型                                  | 必填 | 说明               |
 | ------- | ------------------------------------- | ---- | ------------------ |
 | options | [RadioOptions](#radiooptions对象说明) | 是   | 配置单选框的参数。 |
 
@@ -44,6 +44,8 @@ Radio(options: RadioOptions)
 | indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置单选框的选中样式为自定义组件。自定义组件与Radio组件为中心点对齐显示。indicatorBuilder设置为undefined时，按照RadioIndicatorType.TICK进行显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## RadioIndicatorType<sup>12+</sup>枚举说明
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

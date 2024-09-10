@@ -8,7 +8,9 @@
 >
 > 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 
-## CalendarPickerDialog.show
+## CalendarPickerDialog
+
+### show
 
 static show(options?: CalendarDialogOptions)
 

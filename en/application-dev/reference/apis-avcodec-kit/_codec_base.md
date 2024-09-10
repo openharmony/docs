@@ -30,9 +30,9 @@ The table below lists the media codec formats. The type is a constant string.
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | MIME type of the AMR-WB audio decoder.                          |
 | [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | MIME type of the Opus audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->        |
 | [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | MIME type of the G.711 mu-law audio codec.                        |
-| [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) | MIME type of the low-bitrate audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd--> |
 | [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |MIME type of the APE audio decoder.                        |
 | [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |MIME type of the SRT subtitle demuxer.                        |
+| [OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT](#oh_avcodec_mimetype_subtitle_webvtt) |MIME type of the WEBVTT subtitle demuxer.                        |
 
 
 ### Media Data Key-Value Pairs
@@ -97,6 +97,7 @@ The table below lists the video-dedicated key-value pairs.
 | [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr)    | 	LTR frame referenced by the current frame. The value type is int32_t.|
 | [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr)      | Whether the current frame is marked as an LTR frame. The value type is int32_t. The value **1** means that the frame is an LTR frame, and **0** means the opposite.|
 | [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc)            | POC of the frame. The value type is int32_t.|
+| [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)    | Output color space of the video decoder. The value type is int32_t. The supported value is **OH_COLORSPACE_BT709_LIMIT**.|
 
 
 The table below lists the audio-dedicated key-value pairs.
@@ -139,6 +140,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | Decoder buffer timestamp, in microseconds. The value type is int64_t. This key is optional.           |
 | [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | Buffer duration, in microseconds. The value type is int64_t. This key is optional.           |
 | [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | File start time. The value type is int64_t. This key is optional.           |
+| [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | Track start time. The value type is int64_t. This key is optional.           |
 | [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | MIME type of the codec. The value type is string. This key is optional.        |
 | [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)                  | Aspect ratio of the sample. The value type is double.|
 
@@ -201,7 +203,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | -------- | -------- |
 | [AudioChannelSet](#audiochannelset) : uint64_t {<br>FRONT_LEFT = 1ULL &lt;&lt; 0U,<br>FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br>FRONT_CENTER = 1ULL &lt;&lt; 2U,<br>LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br>BACK_LEFT = 1ULL &lt;&lt; 4U,<br>BACK_RIGHT = 1ULL &lt;&lt; 5U,<br>FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br>FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br>BACK_CENTER = 1ULL &lt;&lt; 8U,<br>SIDE_LEFT = 1ULL &lt;&lt; 9U,<br>SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br>TOP_CENTER = 1ULL &lt;&lt; 11U,<br>TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br>TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br>TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br>TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br>TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br>TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br>STEREO_LEFT = 1ULL &lt;&lt; 29U,<br>STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br>WIDE_LEFT = 1ULL &lt;&lt; 31U,<br>WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br>SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br>SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br>LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br>TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br>TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br>BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br>BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br>BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U,<br>AMBISONICS_ACN0 = 1ULL &lt;&lt; 41U,<br>AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,<br>AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U,<br>AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U,<br>AMBISONICS_W = AMBISONICS_ACN0,<br>AMBISONICS_Y = AMBISONICS_ACN1,<br>AMBISONICS_Z = AMBISONICS_ACN2,<br>AMBISONICS_X = AMBISONICS_ACN3,<br>AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U,<br>AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,<br>AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U,<br>AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U,<br>AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U,<br>AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,<br>AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U,<br>AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U,<br>AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U,<br>AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,<br>AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U,<br>AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U<br>} | Enumerates the audio channel sets. Each channel number is mapped to a variable of int64.| 
 | [AudioChannelLayout](#audiochannellayout) : uint64_t {<br>UNKNOWN_CHANNEL_LAYOUT = 0,<br>MONO = (AudioChannelSet::FRONT_CENTER),<br>STEREO = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT),<br>CH_2POINT1 = (STEREO \| AudioChannelSet::LOW_FREQUENCY),<br>CH_2_1 = (STEREO \| AudioChannelSet::BACK_CENTER),<br>SURROUND = (STEREO \| AudioChannelSet::FRONT_CENTER),<br>CH_3POINT1 = (SURROUND \| AudioChannelSet::LOW_FREQUENCY),<br>CH_4POINT0 = (SURROUND \| AudioChannelSet::BACK_CENTER),<br>CH_4POINT1 = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br>CH_2_2 = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br>QUAD = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_5POINT0 = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br>CH_5POINT1 = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br>CH_5POINT0_BACK = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_5POINT1_BACK = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY),<br>CH_6POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT0_FRONT = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>HEXAGONAL = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1_BACK = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1_FRONT = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY),<br>CH_7POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_7POINT0_FRONT = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>CH_7POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_7POINT1_WIDE = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>CH_7POINT1_WIDE_BACK, CH_3POINT1POINT2 = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT),<br>CH_5POINT1POINT2 = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_5POINT1POINT4, CH_7POINT1POINT2 = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_7POINT1POINT4, CH_9POINT1POINT4 = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),<br>CH_9POINT1POINT6 = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_10POINT2, CH_22POINT2, OCTAGONAL = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),<br>HEXADECAGONAL, STEREO_DOWNMIX = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT),<br>HOA_FIRST,<br>HOA_SECOND,<br>HOA_THIRD<br>} | Enumerates the types of the audio channel sets. The output format of the decoder is represented as the channel type of the codec.| 
-| [OH_MediaType](#oh_mediatype-1) {<br>MEDIA_TYPE_AUD = 0,<br>MEDIA_TYPE_VID = 1<br>} | Enumerates the media types.| 
+| [OH_MediaType](#oh_mediatype-1) {<br>MEDIA_TYPE_AUD = 0,<br>MEDIA_TYPE_VID = 1,<br>MEDIA_TYPE_SUBTITILE = 2<br>} | Enumerates the media types.|
 | [OH_AACProfile](#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | Enumerates the AAC profiles.| 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br>AVC_PROFILE_BASELINE = 0,<br>AVC_PROFILE_HIGH = 4,<br>AVC_PROFILE_MAIN = 8<br>} | Enumerates the AVC profiles.| 
 | [OH_HEVCProfile](#oh_hevcprofile-1) {<br>HEVC_PROFILE_MAIN = 0,<br>HEVC_PROFILE_MAIN_10 = 1,<br>HEVC_PROFILE_MAIN_STILL = 2,<br>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br>} | Enumerates the HEVC profiles.| 
@@ -214,7 +216,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | [OH_MatrixCoefficient](#oh_matrixcoefficient-1) {<br>MATRIX_COEFFICIENT_IDENTITY = 0,<br>MATRIX_COEFFICIENT_BT709 = 1,<br>MATRIX_COEFFICIENT_UNSPECIFIED = 2,<br>MATRIX_COEFFICIENT_FCC = 4,<br>MATRIX_COEFFICIENT_BT601_625 = 5,<br>MATRIX_COEFFICIENT_BT601_525 = 6, MATRIX_COEFFICIENT_SMPTE_ST240 = 7,<br>MATRIX_COEFFICIENT_YCGCO = 8,<br>MATRIX_COEFFICIENT_BT2020_NCL = 9,<br>MATRIX_COEFFICIENT_BT2020_CL = 10,<br>MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,<br>MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,<br>MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,<br>MATRIX_COEFFICIENT_ICTCP = 14<br>} | Enumerates the matrix coefficients.| 
 | [OH_AVCLevel](#oh_avclevel-1) {<br>AVC_LEVEL_1 = 0, <br>AVC_LEVEL_1b = 1, <br>AVC_LEVEL_11 = 2, <br>AVC_LEVEL_12 = 3,<br>AVC_LEVEL_13 = 4, <br>AVC_LEVEL_2 = 5, <br>AVC_LEVEL_21 = 6, <br>AVC_LEVEL_22 = 7,<br>AVC_LEVEL_3 = 8, <br>AVC_LEVEL_31 = 9, <br>AVC_LEVEL_32 = 10, <br>AVC_LEVEL_4 = 11,<br>AVC_LEVEL_41 = 12, <br>AVC_LEVEL_42 = 13, <br>AVC_LEVEL_5 = 14, <br>AVC_LEVEL_51 = 15, <br>AVC_LEVEL_52 = 16, <br>AVC_LEVEL_6 = 17, <br>AVC_LEVEL_61 = 18, <br>AVC_LEVEL_62 = 19<br>} | Enumerates the AVC levels. | 
 | [OH_HEVCLevel](#oh_hevclevel-1) {<br>HEVC_LEVEL_1 = 0, <br>HEVC_LEVEL_2 = 1, <br>HEVC_LEVEL_21 = 2, <br>HEVC_LEVEL_3 = 3,<br>HEVC_LEVEL_31 = 4, <br>HEVC_LEVEL_4 = 5, <br>HEVC_LEVEL_41 = 6, <br>HEVC_LEVEL_5 = 7,<br>HEVC_LEVEL_51 = 8, <br>HEVC_LEVEL_52 = 9, <br>HEVC_LEVEL_6 = 10, <br>HEVC_LEVEL_61 = 11,<br>HEVC_LEVEL_62 = 12<br>} | Enumerates the HEVC levels. | 
-| [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) { <br>ADJACENT_REFERENCE = 0, <br>JUMP_REFERENCE = 1 <br>} | Enumerates the reference modes of temporal image groups. | 
+| [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) { <br>ADJACENT_REFERENCE = 0, <br>JUMP_REFERENCE = 1, <br>UNIFORMLY_SCALED_REFERENCE = 2 <br>} | Enumerates the reference modes of temporal image groups. | 
 
 
 ### Variables
@@ -236,9 +238,9 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | Pointer to the key that describes the MIME type of the AMR-WB audio decoder.|
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | Pointer to the key that describes the MIME type of the Opus audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->  |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | Pointer to the key that describes the MIME type of the G.711 mu-law audio codec.|
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) |Pointer to the key that describes the MIME type of the low-bitrate audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd--> |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |Pointer to the key that describes the MIME type of the APE audio decoder.                        |
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |Pointer to the key that describes the MIME type of the SRT subtitle demuxer.                        |
+| const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT](#oh_avcodec_mimetype_subtitle_webvtt) |Pointer to the key that describes the MIME type of the WEBVTT subtitle demuxer.                |
 | const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | Pointer to the key that describes the surface buffer timestamp. The value is of the int64 type. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
 | const char \* [OH_ED_KEY_EOS](#oh_ed_key_eos) | Pointer to the key that describes the end of stream for the surface buffer. The value type is int32_t. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
 | const char \* [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | Pointer to the key that describes the track type. The value type is int32_t. For details, see [OH_MediaType](#oh_mediatype).|
@@ -315,7 +317,9 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | Pointer to the key that describes the decoder buffer timestamp, in microseconds. The value type is int64_t. |
 | const char \* [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | Pointer to the key that describes the buffer duration, in microseconds. The value type is int64_t.      |
 | const char \* [OH_MD_KEY_START_TIME](#oh_md_key_start_time) | Pointer to the key that describes the file start time. The value type is int64_t.    |
+| const char \* [OH_MD_KEY_TRACK_START_TIME](#oh_md_key_track_start_time) | Pointer to the key that describes the track start time. The value type is int64_t.    |
 | const char \* [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)            | Pointer to the key that describes the aspect ratio of the sample. The value type is double.|
+| const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)   | Pointer to the key that describes the output color space of the video decoder. The value type is int32_t. The supported value is **OH_COLORSPACE_BT709_LIMIT**.|
 
 
 ## Type Description
@@ -1258,8 +1262,9 @@ Enumerates the reference modes of temporal image groups.
 
 | Value| Description| 
 | -------- | -------- |
-| ADJACENT_REFERENCE  | Refer to the nearest short-term reference frame.  | 
-| JUMP_REFERENCE  | Refer to the latest LTR frame.  | 
+| ADJACENT_REFERENCE  | Refers to the nearest short-term reference frame.  | 
+| JUMP_REFERENCE  | Refers to the latest LTR frame.  | 
+| UNIFORMLY_SCALED_REFERENCE  | Drops video frames at the highest level, and evenly distributes the remaining frames. The number of temporal image groups must be a power of 2.  | 
 
 
 ### OH_TransferCharacteristic
@@ -1315,6 +1320,21 @@ Pointer to the key that describes the MIME type of the SRT subtitle demuxer.
 **Since**: 12
 
 
+### OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT
+
+```
+const char* OH_AVCODEC_MIMETYPE_SUBTITLE_WEBVTT
+```
+
+**Description**
+
+Pointer to the key that describes the MIME type of the WEBVTT subtitle demuxer.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 12
+
+
 ### OH_AVCODEC_MIMETYPE_AUDIO_APE
 
 ```
@@ -1324,21 +1344,6 @@ const char* OH_AVCODEC_MIMETYPE_AUDIO_APE
 **Description**
 
 Pointer to the key that describes the MIME type of the APE audio decoder.
-
-**System capability**: SystemCapability.Multimedia.Media.CodecBase
-
-**Since**: 12
-
-
-### OH_AVCODEC_MIMETYPE_AUDIO_LBVC
-
-```
-const char* OH_AVCODEC_MIMETYPE_AUDIO_LBVC
-```
-
-**Description**
-
-Pointer to the key that describes the MIME type of the low-bitrate audio codec. <!--Del-->(This specification is not available yet.)<!--DelEnd-->
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2600,6 +2605,45 @@ const char* OH_MD_KEY_START_TIME
 **Description**
 
 Pointer to the key that describes the file start time. The value type is int64_t.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 12
+
+### OH_MD_KEY_TRACK_START_TIME
+
+```
+const char* OH_MD_KEY_TRACK_START_TIME
+```
+
+**Description**
+
+Pointer to the key that describes the track start time. The value type is int64_t.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 12
+
+
+### OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE
+
+```
+const char* OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE
+```
+
+**Description**
+
+Pointer to the key that describes the output color space of the video decoder. The value type is int32_t.
+
+The supported value is **OH_COLORSPACE_BT709_LIMIT**. For details, see [OH_NativeBuffer_ColorSpace](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace).
+
+It is used when [OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure) is called.
+
+If Color Space Conversion (CSC) is supported and this key is configured, the video decoder automatically transcodes the HDR Vivid video to the BT.709 SDR video.
+
+If CSC function not supported, the error code [AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION](_core.md#oh_averrcode-1) is returned when [OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure) is called.
+
+If the input video is not an HDR Vivid video, the callback function [OH_AVCodecOnError](#oh_avcodeconerror) is invoked to report the error code [AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION](_core.md#oh_averrcode-1).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 

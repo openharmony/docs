@@ -10,7 +10,9 @@
 >
 > 从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)来明确UI的执行上下文。
 
-## DatePickerDialog.show
+## DatePickerDialog
+
+### show
 
 static show(options?: DatePickerDialogOptions)
 
@@ -102,6 +104,10 @@ static show(options?: DatePickerDialogOptions)
 
 ## 示例
 
+>  **说明：**
+>
+> 推荐通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog)来明确UI的执行上下文。
+
 ### 示例1
 
 DatePickerDialog基本使用
@@ -118,7 +124,7 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({
+          DatePickerDialog.show({ // 建议使用 this.getUIContext().showDatePickerDialog()接口
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,

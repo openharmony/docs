@@ -3,11 +3,15 @@
 
 ## 概述
 
-OH_AVPlayer中所有回调函数指针的集合。注册此的实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
+包含了OH_AVPlayerOnInfo和OH_AVPlayerOnInfo回调函数指针的集合。应用需注册此实例结构体到OH_AVPlayer实例中，并对回调上报的信息进行处理，保证AVPlayer的正常运行。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **起始版本：** 11
+
+**废弃版本：** 12
+
+**替代接口：**[OH_AVPlayerOnInfoCallback](_a_v_player.md#oh_avplayeroninfocallback) [OH_AVPlayerOnErrorCallback](_a_v_player.md#oh_avplayeronerrorcallback)
 
 **相关模块：**[AVPlayer](_a_v_player.md)
 

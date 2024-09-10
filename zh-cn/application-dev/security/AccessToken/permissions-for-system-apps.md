@@ -579,7 +579,7 @@
 
 ### ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
-允许应用安装企业InHouse应用
+允许应用安装企业InHouse应用。
 
 **权限级别**：system_core
 
@@ -591,7 +591,7 @@
 
 ### ohos.permission.INSTALL_BUNDLE
 
-允许应用安装、卸载其他应用（除了企业相关应用，目前有企业InHouse应用，企业MDM应用和企业normal应用）
+允许应用安装、卸载其他应用（除了企业相关应用，目前有企业InHouse应用，企业MDM应用和企业normal应用）。
 
 **权限级别**：system_core
 
@@ -603,7 +603,7 @@
 
 ### ohos.permission.MANAGE_SHORTCUTS
 
-允许应用查询其他应用的快捷方式信息、启动其他应用的快捷方式
+允许应用查询其他应用的快捷方式信息、启动其他应用的快捷方式。
 
 **权限级别**：system_core
 
@@ -660,6 +660,18 @@
 **ACL使能**：true
 
 **起始版本**：8
+
+### ohos.permission.READ_DFX_XPOWER
+
+允许应用访问xpower的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.PERMISSION_USED_STATS
 
@@ -747,7 +759,7 @@
 
 ### ohos.permission.BACKUP
 
-允许应用拥有备份恢复能力
+允许应用拥有备份恢复能力。
 
 **权限级别**：system_basic
 
@@ -759,7 +771,7 @@
 
 ### ohos.permission.MOUNT_FORMAT_MANAGER
 
-允许应用对外卡进行格式化操作
+允许应用对外卡进行格式化操作。
 
 **权限级别**：system_basic
 
@@ -771,7 +783,7 @@
 
 ### ohos.permission.MOUNT_UNMOUNT_MANAGER
 
-允许应用对外卡进行挂载卸载操作
+允许应用对外卡进行挂载卸载操作。
 
 **权限级别**：system_basic
 
@@ -807,7 +819,7 @@
 
 ### ohos.permission.ACCESS_CAST_ENGINE_STREAM
 
-允许应用调用系统资源投射能力
+允许应用调用系统资源投射能力。
 
 **权限级别**：system_basic
 
@@ -879,7 +891,7 @@
 
 ### ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
-允许应用采集语音下行音频
+允许应用采集语音下行音频。
 
 **权限级别**：system_basic
 
@@ -891,7 +903,7 @@
 
 ### ohos.permission.GET_WIFI_INFO_INTERNAL
 
-允许系统进程获取Wi-Fi相关参数
+允许系统进程获取Wi-Fi相关参数。
 
 **权限级别**：system_core
 
@@ -2585,7 +2597,7 @@
 
 **ACL使能**：true
 
-起始版本: 11
+**起始版本**: 11
 
 ### ohos.permission.MANAGE_PRIVATE_PHOTOS
 
@@ -2623,7 +2635,7 @@
 
 **ACL使能**：true
 
-起始版本: 11
+**起始版本**: 11
 
 ### ohos.permission.MANAGE_APP_INSTALL_INFO
 
@@ -2647,7 +2659,7 @@
 
 **ACL使能**：true
 
-起始版本: 11
+**起始版本**: 11
 
 ### ohos.permission.ACCESS_HIVIEWX
 
@@ -3541,6 +3553,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_FUSION_MANAGER
+
+允许系统服务或系统应用访问融合服务。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.PUBLISH_LOCATION_EVENT
 
 允许应用发布位置管理相关的公共事件。
@@ -3767,7 +3791,91 @@
 
 **ACL使能**：true
 
+**起始版本**：13
+
+### ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
+
+允许模态UIExtension取消对不安全窗口的隐藏。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
 **起始版本**：12
+
+### ohos.permission.ACCESS_DISTRIBUTED_MODEM
+
+允许系统服务访问虚拟Modem。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.GET_TELEPHONY_ESIM_STATE
+
+允许系统应用获取eSIM profile信息及设备芯片开卡相关属性。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE
+
+允许系统应用修改eSIM profile文件，及eSIM升级。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.CAMERA_BACKGROUND
+
+允许系统应用在后台使用相机。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.CALLED_TRANSITION_ON_LOCK_SCREEN
+
+允许应用被位于锁屏界面的其他应用拉起并直接跳转。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.CALLED_BELOW_LOCK_SCREEN
+
+允许应用在处于锁屏状态时进行启动。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
 
 ## system_grant，不允许ACL跨级申请
 
@@ -3990,6 +4098,18 @@
 **ACL使能**：false
 
 **起始版本**：11
+
+### ohos.permission.GRANT_SHORT_TERM_WRITE_MEDIAVIDEO
+
+允许系统应用或者系统服务为三方应用授予存图片和视频的短时访问权限。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ## user_grant，允许ACL跨级申请
 
@@ -4286,3 +4406,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+
+允许应用保存图片、视频到用户公共目录。应用获取此权限后，最长可获得30分钟的短时授权，来保存图片/视频。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：12

@@ -14,11 +14,11 @@ Describes the extra parameters required by the device selection module in the co
 
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
-| Name | Type | Read Only | Mandatory | Description |
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| deviceType | Array\<string> | No | No | Device type.|
-| targetBundle | string | No | No | Name of the target bundle. |
-| description | string | No | No | Device filtering description. |
-| filter | any | No | No | Device filtering parameter. |
-| continuationMode | [continuationManager.ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | No | No | Continuation mode. |
-| authInfo | Record<string, Object> | No | No | Authentication information. |
+| deviceType | Array\<string> | No| Yes| Device type.|
+| targetBundle | string | No| Yes| Name of the target bundle.|
+| description | string | No| Yes| Device filtering description.|
+| filter | any | No| Yes| Device filtering parameter.|
+| continuationMode | [continuationManager.ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | No| Yes| Continuation mode.|
+| authInfo | Record<string, Object> | No| Yes| Authentication information.|

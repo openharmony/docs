@@ -1,7 +1,7 @@
 # wrapBuilder：封装全局@Builder
 
 
- 全局\@Builder作为wrapBuilder的参数返回WrappedBuilder对象，实现[全局\@Builder](arkts-builder.md#全局自定义构建函数)可以进行赋值和传递。 
+ 当开发者在一个struct内使用了多个全局@Builder函数，来实现UI的不同效果，但多个全局@Builder函数使用位置会使的代码维护起来困难，页面不整洁。为了解决这些这一问题，引入wrapBuilder作为全局@Builder封装函数。wrapBuilder的参数返回WrappedBuilder对象，实现[全局\@Builder](arkts-builder.md#全局自定义构建函数)可以进行赋值和传递。 
 
 
 > **说明：**
@@ -153,12 +153,13 @@ struct Parent{
 
 ## 错误场景
 
-```
+### wrapBuilder必须传入被@Builder修饰的全局函数。
+
+```ts
 function MyBuilder() {
 
 }
 
-// wrapBuilder必须传入被@Builder修饰的全局函数。
 const globalBuilder: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
 
 @Entry
@@ -181,3 +182,47 @@ struct Index {
 }
 ```
 
+### 重复定义wrapBuilder失效
+
+通过wrapBuilder(MyBuilderFirst)初始化定义builderObj之后，再次对builderObj进行赋值wrapBuilder(MyBuilderSecond)会不起作用，只生效第一次定义的wrapBuilder(MyBuilderFirst)。
+
+```ts
+@Builder
+function MyBuilderFirst(value: string, size: number) {
+  Text('MyBuilderFirst：' + value)
+    .fontSize(size)
+}
+
+@Builder
+function MyBuilderSecond(value: string, size: number) {
+  Text('MyBuilderSecond：' + value)
+    .fontSize(size)
+}
+
+interface BuilderModel {
+  globalBuilder: WrappedBuilder<[string, number]>;
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  @State builderObj: BuilderModel = { globalBuilder: wrapBuilder(MyBuilderFirst) };
+
+  aboutToAppear(): void {
+    setTimeout(() => {
+      this.builderObj.globalBuilder = wrapBuilder(MyBuilderSecond);
+    },1000)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        this.builderObj.globalBuilder.builder(this.message, 20)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```

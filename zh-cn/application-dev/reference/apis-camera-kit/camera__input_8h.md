@@ -23,7 +23,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[CameraInput_Callbacks](_camera_input___callbacks.md) | 相机输入错误事件的回调。  | 
+| struct  [CameraInput_Callbacks](_camera_input___callbacks.md) | 相机输入错误事件的回调。  | 
 
 
 ### 类型定义
@@ -44,4 +44,4 @@
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraInput_Open](_o_h___camera.md#oh_camerainput_open) ([Camera_Input](_o_h___camera.md#camera_input) \*cameraInput) | 打开相机。  | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraInput_OpenSecureCamera](_o_h___camera.md#oh_camerainput_opensecurecamera) ([Camera_Input](_o_h___camera.md#camera_input) \*cameraInput, uint64_t \*secureSeqId) | 打开安全相机。  | 
 | [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraInput_Close](_o_h___camera.md#oh_camerainput_close) ([Camera_Input](_o_h___camera.md#camera_input) \*cameraInput) | 关闭相机。  | 
-| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraInput_Release](_o_h___camera.md#oh_camerainput_release) ([Camera_Input](_o_h___camera.md#camera_input) \*cameraInput) | 释放相机输入实例。  | 
+| [Camera_ErrorCode](_o_h___camera.md#camera_errorcode) [OH_CameraInput_Release](_o_h___camera.md#oh_camerainput_release) ([Camera_Input](_o_h___camera.md#camera_input) \*cameraInput) | 释放相机输入实例。和[OH_CameraInput_Close](_o_h___camera.md#oh_camerainput_close)只需要调用其中一个，调用之后无须再调用[OH_CameraInput_Close](_o_h___camera.md#oh_camerainput_close)。  | 

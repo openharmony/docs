@@ -1,4 +1,4 @@
-# \@Provide and \@Consume Decorators: Creating a Two-Way Synchronization with Descendant Components
+# \@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components
 
 
 \@Provide and \@Consume are used for two-way data synchronization with descendant components when state data needs to be transferred between multiple levels. They do not involve passing a variable from component to component multiple times.
@@ -46,26 +46,24 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the variable is provided under the alias name only. If the alias is not specified, the variable is provided under the variable name.|
 | Synchronization type          | Two-way:<br>from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @Provide a: string \| undefined = undefined is recommended; **@Provide a: string = undefined** is not recommended.
-<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.|
-| Initial value for the decorated variable     | Mandatory.                                   |
-| Support for the **allowOverride** parameter         | Yes. After **allowOverride** is declared, both aliases and attribute names can be overridden. For details, see [Support for the allowOverride Parameter](#support-for-the-allowoverride-parameter).|
+| Allowed variable types | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor.<br>The type must be specified.<br/>The type of the provided and the consumed variables must be the same.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Provide a: string \| undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended. |
+| Initial value for the decorated variable | Mandatory. |
+| Support for the **allowOverride** parameter | Yes. After **allowOverride** is declared, both aliases and attribute names can be overridden. For details, see [Support for the allowOverride Parameter](#support-for-the-allowoverride-parameter). |
+
 
 | \@Consume Decorator| Description                                      |
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the alias name is used for matching with the \@Provide decorated variable. Otherwise, the variable name is used.|
 | Synchronization type          | Two-way: from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @Consume a: string \| undefined.
-<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>**any** is not supported.| The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.|
-| Initial value for the decorated variable     | Initialization of the decorated variables is forbidden.                              |
-
+| Allowed variable types | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor.<br/>The type must be specified.<br/>The type of the provided and the consumed variables must be the same.<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Consume a: string \| undefined**. |
+| Initial value for the decorated variable | Initialization of the decorated variables is forbidden. |
 
 ## Variable Transfer/Access Rules
 
 
 | \@Provide Transfer/Access| Description                                      |
 | -------------- | ---------------------------------------- |
-| Initialization and update from the parent component    | Optional. An @Provide decorated variable can be initialized from a regular variable (whose change does not trigger UI refresh) or an @State, @Link, @Prop, @Provide, @Consume, @ObjectLink, @StorageLink, @StorageProp, @LocalStorageLink, or @LocalStorageProp decorated variable in its parent component.|
+| Initialization and update from the parent component    | Optional. An @Provide decorated variable can be initialized from a regular variable (whose change does not trigger UI refresh) or an [\@State](./arkts-state.md), [\@Link](./arkts-link.md), [\@Prop](./arkts-prop.md), \@Provide, \@Consume, [\@ObjectLink](./arkts-observed-and-objectlink.md), [\@StorageLink](./arkts-appstorage.md#storagelink), [\@StorageProp](./arkts-appstorage.md#storageprop), [\@LocalStorageLink](./arkts-localstorage.md#localstoragelink), or [\@LocalStorageProp](./arkts-localstorage.md#localstorageprop) decorated variable in its parent component.|
 | Subnode initialization      | Supported; can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Synchronization with the parent component        | Not supported.                                      |
 | Synchronization with descendant components       | Two-way with @Consume decorated variables in descendant components.                         |
@@ -167,7 +165,7 @@ struct CompA {
 1. Initial render:
    1. The \@Provide decorated variable is passed to all child components of the owning component in map mode.
    2. If an \@Consume decorated variable is used in a child component, the system checks the map for a matching \@Provide decorated variable based on the variable name or alias. If no matching variable is found, the framework throws a JS error.
-   3. The process of initializing the \@Consume decorated variable is similar to that of initializing the \@State/\@Link decorated variable. The \@Consume decorated variable saves the matching \@Provide decorated variable found in the map and registers itself with the \@Provide decorated variable.
+   3. The process of initializing the @Consume decorated variable is similar to that of initializing the @State/@Link decorated variable. The @Consume decorated variable saves the matching @Provide decorated variable found in the map and registers itself with the @Provide decorated variable.
 
 2. When the \@Provide decorated variable is updated:
    1. The system traverses and updates all system components (**elementid**) and state variable (\@Consume) that depend on the \@Provide decorated variable, with which the \@Consume decorated variable has registered itself on initial render.  
@@ -180,11 +178,9 @@ struct CompA {
 ![Provide_Consume_framework_behavior](figures/Provide_Consume_framework_behavior.png)
 
 
-## Use Scenarios
+## Application Scenarios
 
 The following example shows the two-way synchronization between \@Provide and \@Consume decorated variables. When the buttons in the **CompA** and **CompD** components are clicked, the changes to **reviewVotes** are synchronized to the **CompA** and **CompD** components.
-
-
 
 ```ts
 @Component
@@ -241,7 +237,7 @@ struct CompA {
 >
 > \@Provide and \@Consume support the Map type since API version 11.
 
-In this example, the **message** variable is of the Map\<number, string> type. After the button is clicked, the value of **message** changes, and the UI is re-rendered.
+In this example, the **message** variable is of the Map<number, string> type. After the button is clicked, the value of **message** changes, and the UI is re-rendered.
 
 ```ts
 @Component
@@ -424,7 +420,7 @@ struct GrandSon {
 
   build() {
     Column() {
-      Text(`reviewVotes(${this.reviewVotes})`) // The <Text> component displays 10.
+      Text(`reviewVotes(${this.reviewVotes})`) // The Text component displays 10.
       Button(`reviewVotes(${this.reviewVotes}), give +1`)
         .onClick(() => this.reviewVotes += 1)
     }
@@ -471,7 +467,7 @@ In the preceding example:
 - The **@Provide("reviewVotes") reviewVotes: number = 40** variable is declared in **GrandParent**.
 - In **Parent**, a child component of **GrandParent**, **allowOverride** is declared for **@Provide** to override the **@Provide("reviewVotes") reviewVotes: number = 40** variable of **GrandParent**. If **allowOverride** is not declared, a runtime error is thrown to indicate that the @Provide decorated variable is already in use. The same case applies to **Child**.
 - The @Consume decorated variable of **GrandSon** is initialized from the @Provide decorated variable of its nearest ancestor under the same attribute name.
-- In this example, **GrandSon** finds in the ancestor **Child** the @Provide decorated variable with the same attribute name. Therefore, the initial value of **@Consume("reviewVotes") reviewVotes: number** is **10**. If an @Provide decorated variable with the same attribute name is not defined in **Child**, **GrandSon**continues its search until it finds the one with the same attribute name.
+- In this example, **GrandSon** finds in the ancestor **Child** the @Provide decorated variable with the same attribute name. Therefore, the initial value of **@Consume("reviewVotes") reviewVotes: number** is **10**. If an @Provide decorated variable with the same attribute name is not defined in **Child**, **GrandSon** continues its search until it finds the one with the same attribute name.
 - If no such a variable is found when **GrandSon** has reached the root node, an error is thrown to indicate that @Provide could not be found for @Consume initialization.
 
 
@@ -481,7 +477,7 @@ In the preceding example:
 
 In the following example, when **CustomWidget** executes **this.builder()** to create the child component **CustomWidgetChild**, **this** points to **HomePage**. As such, the \@Provide decorated variable of **CustomWidget** cannot be found, and an error is thrown. In light of this, exercise caution with **this** when using \@BuilderParam.
 
-Nonexample:
+Negative example:
 
 ```ts
 class Tmp {
@@ -493,7 +489,7 @@ class Tmp {
 struct HomePage {
   @Builder
   builder2($$: Tmp) {
-    Text(`${$$.a}Test`)
+    Text(`${$$.a}test`)
   }
 
   build() {
@@ -513,7 +509,7 @@ struct CustomWidget {
 
   build() {
     Column() {
-      Button('Hello').onClick((x) => {
+      Button('Hello').onClick(() => {
         if (this.a == 'ddd') {
           this.a = 'abc';
         }
@@ -536,6 +532,63 @@ struct CustomWidgetChild {
   build() {
     Column() {
       this.builder({ a: this.a })
+    }
+  }
+}
+```
+
+Positive example:
+
+```ts
+class Tmp {
+  name: string = ''
+}
+
+@Entry
+@Component
+struct HomePage {
+  @Provide('name') name: string = 'abc';
+
+  @Builder
+  builder2($$: Tmp) {
+    Text (`${$$.name}test`)
+  }
+
+  build() {
+    Column() {
+      Button('Hello').onClick(() => {
+        if (this.name == 'ddd') {
+          this.name = 'abc';
+        } else {
+          this.name = 'ddd';
+        }
+      })
+      CustomWidget() {
+        CustomWidgetChild({ builder: this.builder2 })
+      }
+    }
+  }
+}
+
+@Component
+struct CustomWidget {
+  @BuilderParam
+  builder: () => void;
+
+  build() {
+    this.builder()
+  }
+}
+
+@Component
+struct CustomWidgetChild {
+  @Consume('name') name: string;
+  @BuilderParam
+  builder: ($$: Tmp) => void;
+
+  build() {
+    Column() {
+      this.builder({ name: this.name })
     }
   }
 }

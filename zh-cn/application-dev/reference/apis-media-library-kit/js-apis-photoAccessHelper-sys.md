@@ -1444,7 +1444,7 @@ cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoP
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | appid | string | 是 | 应用标识，将取消appid标识应用对媒体资源的访问权限。 |
-| uri | sring | 是 | 媒体资源的uri，取消应用对uri表示的资源的访问权限。|
+| uri | string | 是 | 媒体资源的uri，取消应用对uri表示的资源的访问权限。|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，取消应用对媒体资源的访问权限为photoPermissionType。|
 
 **返回值：**
@@ -1478,6 +1478,75 @@ async function example() {
     console.info('cancelPhotoUriPermission success, result=' + result);
   } catch (err) {
     console.error('cancelPhotoUriPermission failed, error=' + err);
+  }
+}
+```
+
+### createAssetsForAppWithMode<sup>12+</sup>
+
+createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, tokenId: number, authorizationMode: AuthorizationMode, photoCreationConfigs:Array\<PhotoCreationConfig>): Promise\<Array\<string>>
+
+提供给应用保存短时授权，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| boundleName| string | 是 | 需要保存图片/视频文件的应用boundleName。 |
+| appName| string | 是 | 需要保存图片/视频文件的应用appName。|
+| appId| string | 是 | 需要保存图片/视频文件的应用app id。 |
+| tokenId| number| 是 | 需要短时授权应用的唯一标识。 |
+| authorizationMode| [AuthorizationMode](#authorizationmode12)| 是 | 授权模式。授予应用短期内再次保存无需重复弹框确认。 |
+| PhotoCreationConfig| Array\<[PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)> | 是 | 保存图片/视频到媒体库的配置。|
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise\<Array\<string>> | Promise对象，返回给接口调用方的媒体库文件uri列表。Uri已对appId对应的应用授权，支持应用写入数据。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+async function example() {
+  console.info('createAssetsForAppWithModeDemo.');
+
+  try {
+    let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+      {
+        title: '123456',
+        fileNameExtension: 'jpg',
+        photoType: photoAccessHelper.PhotoType.IMAGE,
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
+      }
+    ];
+    let bundleName: string = 'testBundleName';
+    let appName: string = 'testAppName';
+    let appId: string = 'testAppId';
+    let tokenId: number = 537197950;
+    let authorizationMode: photoAccessHelper.AuthorizationMode = photoAccessHelper.AuthorizationMode.SHORT_TIME_AUTHORIZATION;
+    let result: Array<string> = await phAccessHelper.createAssetsForAppWithMode(bundleName, appName, appId, tokenId, authorizationMode, photoCreationConfigs);
+    console.info(`result: ${JSON.stringify(result)}`);
+    console.info('Photo createAssetsForAppWithMode success.');
+  } catch (err) {
+    console.error(`createAssetsForAppWithMode failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5324,6 +5393,7 @@ async function example() {
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
 | PHOTO_PROXY |  3 |  表示照片代理资源。**系统接口**：此接口为系统接口。 |
+| PRIVATE_MOVING_PHOTO_RESOURCE<sup>13+</sup> |  4 |  表示私有动态照片资源。**系统接口**：此接口为系统接口。 |
 
 ## DefaultChangeUri
 
@@ -5347,6 +5417,17 @@ async function example() {
 | ----- |  ---- |  ---- |
 | ORIGINAL_MODE |  0 |  读取源文件。 |
 | EDITED_MODE |  1 |  读取编辑后的文件。|
+## AuthorizationMode<sup>12+</sup>
+
+枚举，授权模式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| SHORT_TIME_AUTHORIZATION|  0 |  短时授权。 |
 
 ## AnalysisType<sup>11+</sup>
 
@@ -5420,6 +5501,8 @@ async function example() {
 | LOOP\_PLAY       | 2  | 循环播放。|
 | LONG\_EXPOSURE   | 3  | 长曝光。  |
 | MULTI\_EXPOSURE  | 4  | 多曝光。  |
+| CINEMA\_GRAPH<sup>13+</sup>  | 5  | 微动瞬间。  |
+| IMAGE\_ONLY<sup>13+</sup>  | 10  | 关闭模式。  |
 
 ## PhotoPermissionType<sup>12+</sup>
 

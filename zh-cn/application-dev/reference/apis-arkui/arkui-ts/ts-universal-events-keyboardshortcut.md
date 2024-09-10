@@ -95,13 +95,11 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 以下组合键绑定为快捷键不生效。
 
-- `Ctrl` + `C`
-- `Ctrl` + `A`
-- `Ctrl` + `V`
-- `Ctrl` + `X`
-- `Ctrl` + `Shift` + `Z`
-- `Ctrl` + `Z`
-- `Ctrl` + `Y`
+- `Alt` + `F4`
+- `Alt` + `Shift` + `F4`
+- `Alt` + `TAB`
+- `Alt` + `Shift` + `TAB`
+- `Ctrl` + `Shift` + `ESC`
 
 ### 系统已存在的按键事件
 
