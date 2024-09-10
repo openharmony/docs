@@ -527,7 +527,7 @@ Defines the XML parsing options.
 
 | Name                          | Type                                                        | Mandatory| Description                                   |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | No  | Whether to ignore the document type. The default value is **false**, indicating that the document type is parsed.|
+| supportDoctype                 | boolean                                                      | No  | Whether to ignore the document type. The default value is **false**, indicating that the document type is not parsed. |
 | ignoreNameSpace                | boolean                                                      | No  | Whether to ignore the namespace. The default value is **false**, indicating that the namespace is parsed.|
 | tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Callback used to return **tagValue** for parsing the tag and tag value. The default value is **undefined**, indicating that the tag and tag value are not parsed.|
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Callback used to return **attributeValue** for parsing the attribute and attribute value. The default value is **undefined**, indicating that the attribute and attribute value are not parsed.|

@@ -32,7 +32,7 @@ Simulate a singleton class that contains synchronous calls.
 
 @Sendable
 export default class Handle {
-  private static instance: Handle = new Handle;
+  private static instance: Handle = new Handle();
   static getInstance(): Handle {
     // Return a singleton object.
     return Handle.instance;
@@ -61,7 +61,7 @@ export default class Handle {
 ```
 
 
-Use **TaskPool** to call the related synchronous methods.
+In the following example, **TaskPool** is used to call related synchronous methods. Specifically, define the concurrent function **func**, which is decorated using the [@Concurrent decorator](../arkts-utils/arkts-concurrent.md). Then define the **asyncGet** function, which is used to create a task, execute the task, and print the returned result. Finally, call the **asyncGet** function in the main thread and observe the execution process.
 
 
 ```ts

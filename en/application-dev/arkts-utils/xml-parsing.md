@@ -9,13 +9,13 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 
 **Table 1** XML parsing options
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| supportDoctype | boolean | No | Whether to ignore the document type. The default value is **false**, indicating that the document type is parsed. |
-| ignoreNameSpace | boolean | No | Whether to ignore the namespace. The default value is **false**, indicating that the namespace is parsed. |
-| tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | No | Callback used to return **tagValue**, which consists of a tag and its value. The default value is **null**, indicating that XML tags and tag values are not parsed. |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No | Callback used to return **attributeValue**, which consists of an attribute and its value. The default value is **null**, indicating that XML attributes and attribute values are not parsed. |
-| tokenValueCallbackFunction | (eventType: EventType, value: ParseInfo) =&gt; boolean | No | Callback used to return **tokenValue**, which consists of the event type and the attributes of **parseInfo**. The default value is **null**, indicating that the event type and the attributes of **parseInfo** are not parsed. |
+| supportDoctype | boolean | No| Whether to ignore the document type. The default value is **false**, indicating that the document type is not parsed.|
+| ignoreNameSpace | boolean | No| Whether to ignore the namespace. The default value is **false**, indicating that the namespace is parsed.|
+| tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **tagValue**, which consists of a tag and its value. The default value is **null**, indicating that XML tags and tag values are not parsed.|
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **attributeValue**, which consists of an attribute and its value. The default value is **null**, indicating that XML attributes and attribute values are not parsed.|
+| tokenValueCallbackFunction | (eventType: EventType, value: ParseInfo) =&gt; boolean | No| Callback used to return **tokenValue**, which consists of the event type and the attributes of **parseInfo**. The default value is **null**, indicating that the event type and the attributes of **parseInfo** are not parsed.|
 
 
 ## Precautions
@@ -200,7 +200,7 @@ let strXml: string =
   '<?xml version="1.0" encoding="UTF-8"?>' +
     '<book category="COOKING">' +
     '<title lang="en">Everyday</title>' +
-    '<author>Giada</author>' +
+    '<author>Giana</author>' +
     '</book>';
 let textEncoder: util.TextEncoder = new util.TextEncoder();
 let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml);
@@ -252,7 +252,7 @@ The output is as follows:
    token-3 2
    tag-author
    token-2 2
-   tag-Giada
+   tag-Giana
    token-4 2
    tag-author
    token-3 2
