@@ -14,7 +14,6 @@
       - [Data Synchronization Between UIAbility and UI Page](uiability-data-sync-with-ui.md)
       - [Starting UIAbility in the Same Application](uiability-intra-device-interaction.md)
     - [ExtensionAbility Component](extensionability-overview.md)
-      - 
       <!--Del-->
       - [ServiceExtensionAbility (for System Applications Only)](serviceextensionability.md)
       - [UIExtensionAbility (for System Applications Only)](uiextensionability.md)
@@ -47,9 +46,9 @@
       - [Switching from Explicit Want Redirection to Linking Redirection](uiability-startup-adjust.md)
       - [Application URI Description](app-uri-config.md)
     - [Starting an Application of the Specified Type](start-intent-panel.md)
-      - [Starting a Navigation Application](start-navigation-apps)
-      - [Starting an Email Application](start-email-apps)
-      - [Starting a Payment Application](start-payment-apps)
+      - [Starting a Navigation Application](start-navigation-apps.md)
+      - [Starting an Email Application](start-email-apps.md)
+      - [Starting a Financial Application](start-finance-apps.md)
       - [Starting an Image Editing Application](photoEditorExtensionAbility.md)
       - [Starting a File Application](file-processing-apps-startup.md)
     - [Starting a System Application](system-app-startup.md)
