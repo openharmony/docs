@@ -11,7 +11,7 @@ Currently, the following muxer capabilities are supported:
 | mp3      | -                     | MPEG (MP3)     | -              |
 > **NOTE**
 >
-> if Muxing Format is mp4 and Audio Codec Type is MPEG(MP3), The value of samplingRate must be greater than or equal to 16000.  
+> if Muxing Format is mp4 and Audio Codec Type is MPEG(MP3), The value of samplingRate must be greater than or equal to 16000Hz.  
 > if Muxing Format is mp4/m4a and Audio Codec Type is AAC, The number of channels ranges from 1 to 7.
 <!--RP2--><!--RP2End-->
 
