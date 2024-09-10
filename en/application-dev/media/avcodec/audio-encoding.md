@@ -159,22 +159,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    The maximum input length is optional.
 
-   For FLAC encoding, the compliance level and sampling precision are also mandatory.  
-
-   The range of values of Audio Encoding Type are described as follows:
-   | Audio Encoding Type/Sampling Rate(Hz) | 8000 | 11025 | 12000 | 16000 | 22050 | 24000 | 32000 | 44100 | 48000 | 64000 | 88200 | 96000 |
-   | ------------------------------------- | :--: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-   |                  AAC                  |   √  |   √   |   √   |   √   |   √   |   √   |   √   |   √   |   √   |   √   |   √   |   √   |
-   |                  Flac                 |   √  |   √   |   √   |   √   |   √   |   √   |   √   |   √   |   √   |   √   |   √   |   √   |
-   |                  MP3                  |   √  |   √   |   √   |   √   |   √   |   √   |   √   |   √   |   √   |       |       |       |
-   |                 G711mu                |   √  |       |       |       |       |       |       |       |       |       |       |       |
-
-   | Audio Encoding Type/Channels |   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |
-   | ---------------------------- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-   |              AAC             |   √   |   √   |   √   |   √   |   √   |   √   |       |   √   |
-   |              Flac            |   √   |   √   |   √   |   √   |   √   |   √   |   √   |   √   |
-   |              MP3             |   √   |   √   |       |       |       |       |       |       |
-   |             G711mu           |   √   |       |       |       |       |       |       |       |
+   For FLAC encoding, the compliance level and sampling precision are also mandatory.
 
    The code snippet below shows the API call process, where AAC encoding at the bit rate of 32000 bit/s is carried out on the PCM audio with the 44100 Hz sampling rate, 2-channel stereo, and SAMPLE_S16LE sampling format.
 

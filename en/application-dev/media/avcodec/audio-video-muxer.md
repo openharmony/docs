@@ -9,10 +9,6 @@ Currently, the following muxer capabilities are supported:
 | mp4      | AVC (H.264) <!--RP1--><!--RP1End-->    | AAC, MPEG (MP3)| jpeg, png, bmp|
 | m4a      | -                     | AAC              | jpeg, png, bmp|
 | mp3      | -                     | MPEG (MP3)     | -              |
-> **NOTE**
->
-> if Muxing Format is mp4 and Audio Codec Type is MPEG(MP3), The value of samplingRate must be greater than or equal to 16000Hz.  
-> if Muxing Format is mp4/m4a and Audio Codec Type is AAC, The number of channels ranges from 1 to 7.
 <!--RP2--><!--RP2End-->
 
 <!--RP3--><!--RP3End-->

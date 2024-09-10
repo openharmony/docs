@@ -20,10 +20,10 @@
 
 - 音频录制
 
-  通过录制传入PCM，然后编码出对应格式的码流，最后封装成想要的格式
+  通过录制传入PCM，然后编码出对应格式的码流，最后封装成想要的格式。
 - 音频编辑
 
-  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再封装成文件
+  编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再封装成文件。
 
 ## 开发指导
 
@@ -273,11 +273,11 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码器的数据。
-   如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
+   如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS。
 
-   aac： 每帧样点数(SAMPLES_PER_FRAME)建议使用20ms的PCM样点数，即采样率*0.02
+   aac： 每帧样点数(SAMPLES_PER_FRAME)建议使用20ms的PCM样点数，即采样率*0.02。
 
-   flac： 每帧样点数(SAMPLES_PER_FRAME)比较特殊需要，根据如下表格进行设置
+   flac： 每帧样点数(SAMPLES_PER_FRAME)比较特殊需要，根据如下表格进行设置。
 
    | 采样率 | 样点数 |
    | :----: | :----: |

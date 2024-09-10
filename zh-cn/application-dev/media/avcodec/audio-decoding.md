@@ -234,7 +234,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    |     AMR(amrwb)    |   √   |       |       |       |       |       |       |       |
    |        APE        |   √   |   √   |       |       |       |       |       |       |
 
-   > **提示：**
+   > **说明：**
    >
    > 通过MP3音频编码流程生成的码流无法直接通过MP3音频解码流程进行解码。建议通过（PCM码流->MP3音频编码->封装->解封装->MP3音频解码）流程进行。
 
