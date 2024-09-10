@@ -7,6 +7,8 @@
 >  从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 在attributeModifier中设置的属性尽量不要与其他方法设置的属性相同，避免在页面刷新时attributeModifier不生效。
+>
+> attributeModifier不支持自定义组件。
 
 ## attributeModifier
 
