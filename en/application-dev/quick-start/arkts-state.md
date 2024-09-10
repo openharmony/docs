@@ -30,8 +30,7 @@ An @State decorated variable, like all other decorated variables in the declarat
 | ------------------ | ------------------------------------------------------------ |
 | Decorator parameters        | None.                                                          |
 | Synchronization type          | Does not synchronize with any type of variable in the parent component.                            |
-| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>**undefined** or **null**.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @State: string \| undefined = undefined is recommended; **@State a: string = undefined** is not recommended.
-<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>**any** is not supported.|
+| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) [Map](#decorating-variables-of-the-map-type) or [Set](#decorating-variables-of-the-set-type) type.<br>**undefined** or **null**.<br>Union types defined by the ArkUI framework, for example, [Length](../reference/apis-arkui/arkui-ts/ts-types.md#length), [ResourceStr](../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr) and [ResourceColor](../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor).<br>The type must be specified.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@State a : string \| undefined = undefined** is recommended; **@State a: string = undefined** is not recommended. |
 | Initial value for the decorated variable| Local initialization is required.                                              |
 
 
@@ -39,9 +38,9 @@ An @State decorated variable, like all other decorated variables in the declarat
 
 | Transfer/Access         | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Initialization from the parent component    | Optional. Initialization from the parent component or local initialization can be used. The initial value specified in the parent component will overwrite the one defined locally.<br>An @State decorated variable can be initialized from a regular variable (whose change does not trigger UI refresh) or an @State, @Link, @Prop, @Provide, @Consume, @ObjectLink, @StorageLink, @StorageProp, @LocalStorageLink, or @LocalStorageProp decorated variable in its parent component.|
+| Initialization from the parent component    | Optional. Initialization from the parent component or local initialization can be used. The initial value specified in the parent component will overwrite the one defined locally.<br>Supports normal variables (value changes to the @State by normal variables trigger only initialization. Changes to the state variables can trigger UI re-rendering), \@State, [\@Link](arkts-link.md), [\@Prop](arkts-prop.md), [\@Provide](arkts-provide-and-consume.md), [\@Consume](arkts-provide-and-consume.md), [\@ObjectLink](arkts-observed-and-objectlink.md), [\@StorageLink](arkts-appstorage.md#storagelink), [\@StorageProp](arkts-appstorage.md#storageprop), and [\@LocalStorageLink](arkts-localstorage.md#localstoragelink) and [\@LocalStorageProp](arkts-localstorage.md#localstorageprop) decorated variables in the parent component to initialize the \@State of the child component.|
 | Child component initialization  | Supported. An \@State decorated variable can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access| Private, accessible only within the component.                                  |
+| Access from outside the component| Private, accessible only within the component.                                  |
 
   **Figure 1** Initialization rule 
 
@@ -220,16 +219,16 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 - Components or UI descriptions irrelevant to the state variable are not re-rendered, thereby implementing on-demand page updates.
 
 
-## Use Scenarios
+## Application Scenarios
 
 
 ### Decorating Variables of Simple Types
 
-In this example, \@State is used to decorate the **count** variable of the simple type, turning it into a state variable. The change of **count** causes the update of the **\<Button>** component.
+In this example, \@State is used to decorate the **count** variable of the simple type, turning it into a state variable. The change of **count** causes the update of the **Button** component.
 
-- When **count** changes, the framework searches for components bound to it, which include only the **\<Button>** component in this example.
+- When **count** changes, the framework searches for components bound to it, which include only the **Button** component in this example.
 
-- The framework executes the update method of the **\<Button>** component to implement on-demand update.
+- The framework executes the update method of the **Button** component to implement on-demand update.
 
 
 ```ts
@@ -253,8 +252,6 @@ struct MyComponent {
 - In this example, \@State is used to decorate the variables **count** and **title** in the custom component **MyComponent**. The type of **title** is **Model**, a custom class. If the value of **count** or **title** changes, the framework searches for all **MyComponent** instances that depend on these variables and triggers re-rendering of them.
 
 - The **EntryComponent** has multiple **MyComponent** instances. The internal state change of the first **MyComponent** instance does not affect the second **MyComponent** instance.
-
-
 
 ```ts
 class Model {
@@ -398,7 +395,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number]) => {
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
@@ -766,3 +763,223 @@ struct Test {
 ```
 
 In the preceding example, clicking **Button('change')** changes the second-line text from **'222'** to **'333'**, but does not change the first-line text. This is because **this.parent.son = new Son('444')'** is executed after the button is clicked, which means that a **Son** object is created, and then **this.parent.son.son = '333'** is executed. As a result, clicking the button changes the value of **son** in the new **Son** object, and the one in the original Son object is not affected.
+
+### Repeated Value Changes to State Variables by Complex Constants Trigger Re-rendering
+
+```ts
+class DataObj {
+  name: string = 'default name';
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  list: DataObj[] = [new DataObj('a'), new DataObj('b'), new DataObj('c')];
+  @State dataObjFromList: DataObj = this.list[0];
+
+  build() {
+    Column() {
+      ConsumerChild({ dataObj: this.dataObjFromList })
+      Button('change to self').onClick(() => {
+        this.dataObjFromList = this.list[0];
+      })
+    }
+  }
+}
+
+@Component
+struct ConsumerChild {
+  @Link @Watch('onDataObjChange') dataObj: DataObj;
+
+  onDataObjChange() {
+    console.log("dataObj changed");
+  }
+
+  build() {
+    Column() {
+      Text(this.dataObj.name).fontSize(30)
+    }
+  }
+}
+```
+
+In the preceding example, each time you click Button('change to self'), the same class constant is assigned to a state variable of the **Class** type, triggering re-rendering. In state management V1, a proxy is added to the class objects decorated by @Observed and the Class, Date, Map, Set, and Array decorated by @State to observe the changes of top-level attributes or API invoking. 
+**dataObjFromList** is of a **Proxy** type but **list[0]** is of an **Object** type. As a result, when **list[0]** is assigned to **dataObjFromList**, the value changes trigger re-rendering. 
+To avoid unnecessary value changes and re-renders, use @Observed to decorate the class, or use [UIUtils.getTarget()](./arkts-new-getTarget.md) to obtain the original value and determine whether the original and new values are the same. If they are the same, do not perform value changes. 
+Method 1: Add @Observed decorator.
+
+```ts
+@Observed
+class DataObj {
+  name: string = 'default name';
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  list: DataObj[] = [new DataObj('a'), new DataObj('b'), new DataObj('c')];
+  @State dataObjFromList: DataObj = this.list[0];
+
+  build() {
+    Column() {
+      ConsumerChild({ dataObj: this.dataObjFromList })
+      Button('change to self').onClick(() => {
+        this.dataObjFromList = this.list[0];
+      })
+    }
+  }
+}
+
+@Component
+struct ConsumerChild {
+  @Link @Watch('onDataObjChange') dataObj: DataObj;
+
+  onDataObjChange() {
+    console.log("dataObj changed");
+  }
+
+  build() {
+    Column() {
+      Text(this.dataObj.name).fontSize(30)
+    }
+  }
+}
+```
+
+In the preceding example, the @Observed decorator is added to decorate the class, **list[0]** is of the **Proxy** type. In this case, when reassign a value, the same object will not be re-rendered.
+
+Method 2: Use [UIUtils.getTarget()](./arkts-new-getTarget.md) to obtain the original object.
+
+```ts
+import { UIUtils } from '@ohos.arkui.StateManagement';
+
+class DataObj {
+  name: string = 'default name';
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  list: DataObj[] = [new DataObj('a'), new DataObj('b'), new DataObj('c')];
+  @State dataObjFromList: DataObj = this.list[0];
+
+  build() {
+    Column() {
+      ConsumerChild({ dataObj: this.dataObjFromList })
+      Button('change to self').onClick(() => {
+        // Obtain the original value and compare it with the new value.
+        if (UIUtils.getTarget(this.dataObjFromList) !== this.list[0]) {
+          this.dataObjFromList = this.list[0];
+        }
+      })
+    }
+  }
+}
+
+@Component
+struct ConsumerChild {
+  @Link @Watch('onDataObjChange') dataObj: DataObj;
+
+  onDataObjChange() {
+    console.log("dataObj changed");
+  }
+
+  build() {
+    Column() {
+      Text(this.dataObj.name).fontSize(30)
+    }
+  }
+}
+```
+
+In the preceding example, **getTarget** is used to obtain the original value of the corresponding state variable before value change. After comparison, if the original value is the same as the new value, re-rendering will not be triggered.
+
+### State Variables Modification in build Is Forbidden
+
+State variables cannot be changed in **build**. Otherwise, the state management framework reports error logs during runtime.
+
+The rendering process is as follows:
+
+1. Create a custom component **CompA**.
+
+2. Execute the **build** method of **CompA** as follows:
+
+    1. Create a **Column** component.
+
+    2. Create a Text component. **This.count++** is triggered when the **Text** component is created.
+
+    3. The value change of **count** triggers the re-render of the **Text** component.
+
+    4. Return value of **Text** is 2.
+
+```ts
+@Entry
+@Component
+struct CompA {
+  @State count: number = 1;
+
+  build() {
+    Column() {
+      // Avoid directly changing the value of count in the Text component.
+      Text(`${this.count++}`)
+        .width(50)
+        .height(50)
+    }
+  }
+}
+```
+
+During the first creation, the **Text** component is rendered twice. As a result, return value of the **Text** component is **2**.
+
+If the framework identifies that the state variable is changed in the **build**, an error log is generated. The error log is as follows:
+
+```ts
+FIX THIS APPLICATION ERROR: @Component 'CompA'[4]: State variable 'count' has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!
+```
+
+In the preceding example, this error does not cause serious consequences, for only the **Text** component is rendered one more time. Therefore, you may ignore this log.
+
+However, this behavior is a serious mistake. As the project becomes more complex, the potential risk becomes more and more serious.<br>Example:
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: number = 20;
+
+  build() {
+    Column() {
+      Text(`${this.message++}`)
+
+      Text(`${this.message++}`)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+The rendering process in the preceding example is as follows:
+
+1. Create the first **Text** component to trigger the change of **this.message**.
+
+2. The change of **this.message** triggers the re-render of the second **Text** component.
+
+3. The re-render of the second **Text** component triggers the change of **this.message**, which again triggers the re-render of the first **Text** component.
+
+4. Re-render is performed repeatedly.
+
+5. The system does not respond for a long time, causing an App Freeze.
+
+Therefore, you are not advised to change the state variables in **build**. When the error log **FIX THIS APPLICATION ERROR: @Component ...** **has changed during render!** **It's illegal to change @Component state while build (initial render or re-render) is on-going.** **Application error!** is reported, even if it does not bring serious consequences for now, you should pay attention to. Checking the application and modifying the corresponding error code to clear the error log are recommended.

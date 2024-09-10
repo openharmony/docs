@@ -18,13 +18,15 @@ Called when this component is mounted to the component tree.
 >
 > It is not allowed to make changes to the component tree in the callback, for example, initiating animations or altering the component tree structure with **if-else** statements.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Current component. |
+| T | Current component.|
 
 
 ## onDetach<sup>12+</sup>
@@ -33,13 +35,15 @@ onDetach(callback: Callback\<void>): T
 
 Called when this component is unmounted from the component tree.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Current component. |
+| T | Current component.|
 
 ## onAppear
 
@@ -59,9 +63,9 @@ Called when this component is displayed.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Current component. |
+| T | Current component.|
 
 
 ## onDisAppear
@@ -78,9 +82,9 @@ Triggered when the component is hidden.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Current component. |
+| T | Current component.|
 
 
 ## Example

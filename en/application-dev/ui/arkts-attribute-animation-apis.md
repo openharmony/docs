@@ -1,13 +1,13 @@
-# Property Animation APIs
+# Implementing Property Animation
 
 
 ArkUI provides two types of APIs, namely, [animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md) and [animation](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md), to implement a property animation – an illusion of continuity created by driving component properties to change over time based on animation parameters such as the animation curve.
 
 
-| Property Animation API| Scope| Principle| Use Scenario|
+| Property Animation API | Scope | Principle | Use Scenario |
 | -------- | -------- | -------- | -------- |
-| animateTo | UI changes caused by property changes in closures.<br>Transition for appearance and disappearance.| This API is a common function. It animates the differences between the UIs before and after the state variable in the closure is changed.<br>This API can be called multiple times and can be nested.| A single set of animation parameters is used to animate multiple properties.<br>Animations need to be nested.|
-| animation | GUI changes caused by attribute changes bound to components through attribute APIs.| This API identifies the change of the animatable properties of a component and automatically adds an animation.<br>As the API call sequence of the component is from bottom to top, this API applies only to the properties above it.<br>In a component, you can set **animation** for individual properties based on the API call sequence.| Different sets of animation parameters are used to animate different properties.|
+| animateTo | UI changes caused by property changes in closures.<br>Transition for appearance and disappearance. | This API is a common function. It animates the differences between the UIs before and after the state variable in the closure is changed.<br>This API can be called multiple times and can be nested. | A single set of animation parameters is used to animate multiple properties.<br>Animations need to be nested. |
+| animation | GUI changes caused by attribute changes bound to components through attribute APIs. | This API identifies the change of the animatable properties of a component and automatically adds an animation.<br>As the API call sequence of the component is from bottom to top, this API applies only to the properties above it.<br>In a component, you can set **animation** for individual properties based on the API call sequence. | Different sets of animation parameters are used to animate different properties. |
 
 ## animateTo
 
@@ -20,7 +20,7 @@ Among the parameters of [animateTo](../reference/apis-arkui/arkui-ts/ts-explicit
 
 
 ```ts
-import curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -85,7 +85,7 @@ Unlike the **animateTo** API, the [animation](../reference/apis-arkui/arkui-ts/t
 
 
 ```ts
-import curves from '@ohos.curves'
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -145,7 +145,7 @@ struct AnimationDemo {
 ![en-us_image_0000001649279705](figures/en-us_image_0000001649279705.gif)
 
 > **NOTE**
-> - When an animation is applied to the position or size change of a component, as layout measurement is involved, performance overheads are high. To reduce performance overheads, use the [scale](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md) attribute instead, whose value change does not involve layout re-measurement. This practice is applicable where the component location and size change continuously, for example, where the component size changes as a response to gestures.
+> - When an animation is applied to the position or size change of a component, as layout measurement is involved, performance overheads are high. To reduce performance overheads, use the [scale](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale) attribute instead, whose value change does not involve layout re-measurement. This practice is applicable where the component location and size change continuously, for example, where the component size changes as a response to gestures.
 > 
 > - Property animations should be applied to the components that are always visible. For those components whose visibility may change, use the [transition animation](arkts-transition-overview.md).
 > 

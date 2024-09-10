@@ -2,7 +2,7 @@
 
 >**NOTE**
 >
->The initial APIs of this module are supported since API version 12. They depend on [IPC Kit](../ipc/ipc-capi-development-guideline.md).
+> The initial APIs of this module are supported since API version 12. They depend on [IPC Kit](../ipc/ipc-capi-development-guideline.md).
 
 ## When to Use
 
@@ -13,6 +13,10 @@ This topic describes how to create a native child process in the main process an
 | Name                                                                                                                                                                                                                                                                                                                               | Description                                                                                   |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | int [OH_Ability_CreateNativeChildProcess](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_createnativechildprocess) (const char *libName, [OH_Ability_OnNativeChildProcessStarted](../reference/apis-ability-kit/c-apis-ability-childprocess.md#oh_ability_onnativechildprocessstarted) onProcessStarted) | Creates a child process, loads a specified dynamic link library, and returns the startup result asynchronously through a callback parameter. An independent thread is used to execute the callback function. When implementing the callback function, pay attention to thread synchronization issues and avoid performing time-consuming operations to prevent extended blocking.|
+
+> **NOTE**
+>
+> Currently, only 2-in-1 devices are supported, and only one native child process can be started for a process.
 
 ## How to Develop
 

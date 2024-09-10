@@ -90,7 +90,7 @@ You can use<!--Del-->[<!--DelEnd--> Trace<!--Del-->](https://gitee.com/openharmo
         main executed
     ```
     
-    If the keyword **lazy** is deleted from **mian.ets** file, the execution sequence is as follows:
+    If the keyword **lazy** is deleted from **main.ets** file, the execution sequence is as follows:
     
     ```typescript  
         mod1 a executed
@@ -117,10 +117,10 @@ Build error is reported if use the following syntax:
     export lazy default function f(){}; // The compiler reports an application compilation error.
     export lazy default function(){};   // The compiler reports an application compilation error.
     export lazy default 42;             // The compiler reports an application compilation error.
-    export lazy { x };                    // The compiler reports an application compilation error.
-    export lazy { x as v };               // The compiler reports an application compilation error.
-    export lazy { x } from "mod";         // The compiler reports an application compilation error.
-    export lazy { x as v } from "mod";    // The compiler reports an application compilation error.
+    export lazy { x };                  // The compiler reports an application compilation error.
+    export lazy { x as v };             // The compiler reports an application compilation error.
+    export lazy { x } from "mod";       // The compiler reports an application compilation error.
+    export lazy { x as v } from "mod";  // The compiler reports an application compilation error.
     export lazy * from "mod";           // The compiler reports an application compilation error.
     
     import lazy v from "mod";           // The compiler reports an application compilation error.
@@ -162,5 +162,3 @@ If the **type** keyword is added to the syntax, an error is reported.
     * Bugs occur when the **lazy** identifier is used but the module is not executed.
     
         You need to evaluate the impact of using the lazy import.
-
-<!--no_check-->

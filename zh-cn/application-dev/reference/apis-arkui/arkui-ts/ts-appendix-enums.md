@@ -240,6 +240,17 @@
 | On   | 常驻显示。              |
 | Auto | 按需显示(触摸时显示，2s后消失)。 |
 
+## TitleHeight<sup>9+</sup>
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 描述                         |
+| ----------- | -------------------------- |
+| MainOnly    | 只有主标题时标题栏的推荐高度（56vp）。      |
+| MainWithSub | 同时有主标题和副标题时标题栏的推荐高度（82vp）。 |
+
 ## EdgeEffect
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -544,16 +555,6 @@
 | LongPress  | 通过长按触发菜单弹出。   |
 | RightClick | 通过鼠标右键触发菜单弹出。 |
 
-## RichEditorResponseType<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称         | 描述            |
-| ---------- | ------------- |
-| LONG_PRESS  | 通过长按触发菜单弹出。   |
-| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
-| SELECT | 通过鼠标选中触发菜单弹出。 |
-
 ## HoverEffect<sup>8+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -616,18 +617,6 @@
 | --------- | --------------------------------- |
 | DEFAULT   | 白底蓝字（深色主题：白底=黑底）。 |
 | HIGHLIGHT | 蓝底白字。                        |
-
-## ThemeColorMode<sup>10+</sup>
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 描述         |
-| ------ | ---------- |
-| SYSTEM | 跟随系统深浅色模式。 |
-| LIGHT  | 固定使用浅色模式。  |
-| DARK   | 固定使用深色模式。  |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 
@@ -773,30 +762,6 @@ Nullable\<T> {
 | FIT_CONTENT | 设置该值时，下拉菜单宽度按默认2栅格显示。            |
 | FIT_TRIGGER | 设置下拉菜单继承下拉按钮宽度。 |
 
-## SelectionMenuOptions<sup>11+</sup>
-
-范围信息。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称 | 类型  | 只读 | 必填  | 描述                               |
-| ------ | ------ | ------ | ------ | -------------------------------------- |
-| onAppear | [MenuOnAppearCallback](ts-basic-components-richeditor.md#menuonappearcallback12) | 否 | 否 | 自定义选择菜单弹出时回调。 |
-| onDisappear | () => void | 否 | 否 | 自定义选择菜单关闭时回调。 |
-
-## DismissReason<sup>12+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称          | 值   | 描述                                                         |
-| ------------- | ---- | ------------------------------------------------------------ |
-| PRESS_BACK    | 0    | 点击三键back、左滑/右滑、键盘ESC。                           |
-| TOUCH_OUTSIDE | 1    | 点击遮障层时。                                               |
-| CLOSE_BUTTON  | 2    | 点击关闭按钮。                                               |
-| SLIDE_DOWN    | 3    | 下拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。 |
-
 ## ChainStyle<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -922,4 +887,4 @@ Nullable\<T> {
 | SURFACE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。背景色设置为黑色时会走显示子系统（DSS）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | COMPONENT<sup>(deprecated)</sup> | XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>**说明：**<br/>从API version 12 开始，该接口废弃，建议使用其他容器组件替代。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和原生组件统一。3、走图形处理器（GPU）合成，相比suface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| NODE                             | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NODE<sup>12+</sup>            | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |

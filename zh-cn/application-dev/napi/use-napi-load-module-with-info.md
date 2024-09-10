@@ -74,6 +74,10 @@ export {value, test};
 
 2. 使用napi_load_module_with_info加载Test文件，调用函数test以及获取变量value
 
+> **注意**
+>
+> 开启seNormalizedOHMUrl后(即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true)，加载hap包内文件路径时，bundleName不会影响最终加载逻辑，会智能通过module名索引进程内对应的hap，例如：工程的bundleName为com.example.application，实际入参时填写为 com.example.application1，模块也能正常加载。
+
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
     napi_value result;

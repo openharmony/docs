@@ -31,7 +31,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12)| No  | Rendering mode.<br>**RenderMode.ASYNC_RENDER** (default, cannot be dynamically adjusted): The **Web** component is rendered asynchronously.<br>**RenderMode.SYNC_RENDER**: The **Web** component is rendered synchronously within the current execution context.|
 | incognitoMode<sup>11+</sup> | boolean | No| Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false**|
-
+| sharedRenderProcessToken<sup>12+</sup> | string | No| The token of the shared rendering process specified by the **Web** component. In multi-rendering process mode, the **Web** component with the same token preferentially attempts to reuse the rendering process bound to the token. The token is bound to the rendering process when the rendering process is initialized. When the rendering process is not associated with a **Web** component, its binding to the token is removed.<br> Default value: **""** |
 **Example**
 
 Example of loading online web pages:
@@ -55,7 +55,7 @@ Example of loading online web pages:
 
 Example of loading online web pages in incognito mode:
 
-   ```ts
+  ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
@@ -70,11 +70,11 @@ Example of loading online web pages in incognito mode:
       }
     }
   }
-   ```
+  ```
 
 Example of rendering the **Web** component synchronously within the current execution context:
 
-   ```ts
+  ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
@@ -89,7 +89,27 @@ Example of rendering the **Web** component synchronously within the current exec
       }
     }
   }
-   ```
+  ```
+
+Example of using the **Web** component to specify the shared rendering process.
+
+   ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, sharedRenderProcessToken: "111" })
+        Web({ src: 'www.w3.org', controller: this.controller, sharedRenderProcessToken: "111" })
+      }
+    }
+  }
+  ```
 
 Example of loading local web pages:
 
@@ -1557,7 +1577,7 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
-  // There are two <Web> components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
+  // There are two Web components on the same page. When the Web Component object opens a new window, the NewWebViewComp object is displayed. 
   @CustomDialog
   struct NewWebViewComp {
     controller?: CustomDialogController;
@@ -1622,6 +1642,7 @@ Sets the web-based media playback policy, including the validity period for auto
 > - The media playback policy controls videos with an audio track.
 > - After the parameter settings are updated, the playback must be started again for the settings to take effect.
 > - It is recommended that you set the same **audioExclusive** value for all **Web** components.
+> - Audio and video interruption takes effect within an app and between apps, and playback resumption takes effect only between apps.
 
 **Parameters**
 
@@ -1726,7 +1747,7 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 
 javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
-Injects a JavaScript script into the **Web** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
+Injects a JavaScript script into the **Web** component. When the specified page or document has been loaded, the script is executed on any page whose source matches **scriptRules**.
 
 > **NOTE**
 >
@@ -1794,7 +1815,7 @@ Sets the web layout mode.
 > The following restrictions apply with the usage of **WebLayoutMode.FIT_CONTENT**:
 > - If the web content is wider or longer than 8000 px, specify the **RenderMode.SYNC_RENDER** mode when creating the **Web** component; otherwise, the screen may be blank.
 > - After the **Web** component is created, dynamic switching of the **layoutMode** is not supported.
-> - The width and height of the **Web** component cannot exceed 500,000 pixels each.
+> - The width and height of the **Web** component cannot exceed 500,000 px each.
 > - Frequent changes to the page width and height will trigger a re-layout of the **Web** component, which can affect the user experience.
 
 **Parameters**
@@ -1919,67 +1940,10 @@ Specifies whether to enable the same-layer rendering feature. By default, this f
     }
   }
   ```
-### forceDisplayScrollBar<sup>12+</sup>
-
-forceDisplayScrollBar(enabled: boolean)
-
-
-Sets whether the scroll bar is always visible. By default, it is not always visible. Under the always-visible settings, when the page size exceeds one page, the scroll bar appears and remains visible.
-
-
-**Parameters**
-
-| Name | Type| Mandatory| Default Value| Description          |
-| ------- | -------- | ---- | ------ | ------------------ |
-| enabled | boolean  | Yes  | false  | Whether the scroll bar is always visible.|
-
-
-**Example**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-
-    build() {
-      Column() {
-        Web({ src: $rawfile('index.html'), controller: this.controller })
-          .forceDisplayScrollBar(true)
-      }
-    }
-  }
-  ```
-
-  HTML file to be loaded:
-  ```html
-  <!--index.html-->
-  <!DOCTYPE html>
-  <html>
-  <head>
-      <title>Demo</title>
-      <style>
-        body {
-          width:2560px;
-          height:2560px;
-          padding-right:170px;
-          padding-left:170px;
-          border:5px solid blueviolet
-        }
-      </style>
-  </head>
-  <body>
-  Scroll Test
-  </body>
-  </html>
-  ```
 ### registerNativeEmbedRule<sup>12+</sup>
 registerNativeEmbedRule(tag: string, type: string)
 
-Registers the HTML tag name and type for same-layer rendering. The tag name only supports **object** and **embed**. The tag type can be any non-empty string, case-insensitive. If the standard type is the same as the standard type of **object** or **embed**, the ArkWeb engine will recognize it as a non-same-layer tag This API is also controlled by the **enableNativeEmbedMode** API and does not take effect if same-layer rendering is not enabled. When this API is not used, the ArkWeb engine recognizes the **embed** tags with the "native/" prefix as same-layer tags.
+Registers the HTML tag name and type for same-layer rendering. The tag name only supports **object** and **embed**. The tag type can be any non-empty string, case-insensitive. If the standard type is the same as the standard type of **object** or **embed**, the ArkWeb engine will recognize it as a non-same-layer tag. This API is also controlled by the **enableNativeEmbedMode** API and does not take effect if same-layer rendering is not enabled. When this API is not used, the ArkWeb engine recognizes the **embed** tags with the "native/" prefix as same-layer tags.
 
 **Parameters**
 
@@ -2034,7 +1998,7 @@ Sets the default character encoding for web pages.
     build() {
       Column() {
         Web({ src: $rawfile('index.html'), controller: this.controller })
-          // Set the height
+          // Set the height.
           .height(500)
           .defaultTextEncodingFormat("UTF-8")
           .javaScriptAccess(true)
@@ -2067,7 +2031,7 @@ Sets whether the **viewport** property of the **meta** tag is enabled.
 > - If this parameter is set to **false**, the **viewport** property of the **meta** tag is not enabled. This means that the property will not be parsed and a default layout will be used.
 > - If this parameter is set to **true**, the **viewport** property of the **meta** tag is enabled. This means that the property will be parsed and used for the layout.
 > - If set to an invalid value, this parameter does not take effect.
-> - If the device is 2-in-1, the viewport property is not supported. This means that, regardless of whether this parameter is set to **true** or **false**, the **viewport** property will not be parsed and a default layout will be used.
+> - If the device is 2-in-1, the **viewport** property is not supported. This means that, regardless of whether this parameter is set to **true** or **false**, the **viewport** property will not be parsed and a default layout will be used.
 
 **Parameters**
 
@@ -2183,7 +2147,7 @@ The API only supports the selection of plain text; if the selected content conta
 
 | Name             | Type                                                        | Description         |
 | ------------------- | ----------------------------------------------------------   | ------------- |
-| expandedMenuOptions | Array<[ExpandedMenuItemOptions](#expandedmenuitemoptions12)> | Extended options of the custom context menu on selection.<br>The number of menu items, menu content size, and start icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.|
+| expandedMenuOptions | Array<[ExpandedMenuItemOptions](#expandedmenuitemoptions12)> | Extended options of the custom context menu on selection.<br>The number of menu options, menu content size, and start icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.|
 
 **Example**
 
@@ -2276,6 +2240,108 @@ If the keyboard avoidance mode set in **UIContext** is [KeyboardAvoidMode.RESIZE
   </body>
   </html>
   ```
+
+### editMenuOptions<sup>12+</sup>
+editMenuOptions(editMenu: EditMenuOptions)
+
+Sets the custom menu options of the **Web** component.
+
+You can use this property to customize a text menu.
+
+You can use [onCreateMenu](../apis-arkui/arkui-ts/ts-text-common.md#oncreatemenu) to modify, add, and delete menu options. If you do not want to display text menus, return an empty array.
+
+You can use [onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick) to customize the callback for menu options. This function is triggered after a menu option is clicked and determines whether to execute the default callback based on the return value. If **true** is returned, the system callback is not executed. If **false** is returned, the system callback is executed.
+
+If this API is used together with [selectionMenuOptions](#selectionmenuoptions12), **selectionMenuOptions** does not take effect.
+
+**Parameters**
+| Name             | Type                             | Mandatory  | Description         |
+| ------------------- | ------------------------------   | ------ | ------------- |
+| editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions)| Yes    | Custom menu options of the **Web** component.<br>The number of menu options, menu content size, and icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.<br>The values of ([TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)) supported by the **Web** component are **CUT**, **COPY**, **PASTE**, and **SELECT_ALL**.<br>**textRange** in **onMenuItemClick()** is useless in the **Web** component. The input value is **-1**.|
+
+**Example**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
+    let items = menuItems.filter((menuItem) => {
+        // Filter the menu items as required.
+      return (
+        menuItem.id.equals(TextMenuItemId.CUT) ||
+        menuItem.id.equals(TextMenuItemId.COPY) ||
+        menuItem.id.equals((TextMenuItemId.PASTE))
+      )
+    });
+    let customItem1: TextMenuItem = {
+      content: 'customItem1',
+      id: TextMenuItemId.of('customItem1'),
+      icon: $r('app.media.icon')
+    };
+    let customItem2: TextMenuItem = {
+      content: $r('app.string.customItem2'),
+      id: TextMenuItemId.of('customItem2'),
+      icon: $r('app.media.icon')
+    };
+    items.push(customItem1);// Add an option to the end of the option list.
+    items.unshift(customItem2);// Add an option to the beginning of the option list.
+
+    return items;
+  }
+
+  onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
+    if (menuItem.id.equals(TextMenuItemId.CUT)) {
+      // User-defined behavior.
+      console.log ("Intercept ID: CUT")
+      return true; // Return true to not execute the system callback.
+    } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      // User-defined behavior.
+      console.log ("Do not intercept ID: COPY")
+      return false; // Return false to execute the system callback.
+    } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
+      // User-defined behavior.
+      console.log ("Intercept ID: customItem1")
+      return true;// Return true. There is no difference between true and false to the custom menu option, but true is recommended.
+    } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
+      // User-defined behavior.
+      console.log ("Intercept ID: app.string.customItem2")
+      return true;
+    }
+    return false;// Return the default value false.
+  }
+
+  @State EditMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }
+
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+        .editMenuOptions(this.EditMenuOptions)
+    }
+  }
+}
+```
+
+ HTML file to be loaded:
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Test Web Page</title>
+  </head>
+  <body>
+    <h1>editMenuOptions Demo</h1>
+    <span>edit menu options</span>
+  </body>
+</html>
+```
+
 ## Events
 
 The following universal events are supported: [onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear), [onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear), [onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur), [onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus), [onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend), [onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter), [onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart), [onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove), [onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave), [onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop), [onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover), [onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse), [onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent), [onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch), [onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)
@@ -2290,7 +2356,7 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | Called when **alert()** is invoked to display an alert dialog box on the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
+| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | Callback used when **alert()** is invoked to display an alert dialog box on the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2367,7 +2433,7 @@ Called when this page is about to exit after the user refreshes or closes the pa
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | Called when this page is about to exit after the user refreshes or closes the page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
+| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | Callback used when this page is about to exit after the user refreshes or closes the page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2444,7 +2510,7 @@ Called when **confirm()** is invoked by the web page.
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | Called when **confirm()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
+| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | Callback used when **confirm()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2530,7 +2596,7 @@ Called when **prompt()** is invoked by the web page.
 
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
-| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | Called when **prompt()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
+| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | Callback used when **prompt()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **Web** component to exit the current page based on the user operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -2914,7 +2980,7 @@ Called when the web page loading progress changes.
 
 onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
-Called when the document title of the web page is changed.
+Called when the document title of a web page is changed. If the <title\> element is not set for an HTML5 page, the corresponding URL is returned.
 
 **Parameters**
 
@@ -3041,13 +3107,13 @@ Called when the rendering process exits abnormally.
 
 onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
-Called when the web render process does not respond.
+Called when the rendering process does not respond.
 
 **Parameters**
 
 | Name  | Type                                                        | Description                                  |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | Called when the web render process does not respond.|
+| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | Callback triggered when the rendering process does not respond.|
 
 **Example**
 
@@ -3076,13 +3142,13 @@ Called when the web render process does not respond.
 
 onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
-Called when the web render process transitions back to a normal operating state from an unresponsive state. This callback indicates that the web page was not actually frozen or stuck.
+Called when the rendering process transitions back to a normal operating state from an unresponsive state. This callback indicates that the web page was not actually frozen.
 
 **Parameters**
 
 | Name  | Type                                                        | Description                                  |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | Callback triggered when the web render process transitions back to a normal operating state from an unresponsive state.|
+| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | Callback triggered when the rendering process transitions back to a normal operating state from an unresponsive state.|
 
 **Example**
 
@@ -3774,7 +3840,7 @@ Called when an SSL client certificate request is received.
 
 onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
 
-Called when a permission request is received.
+Called when a permission request is received. To call this API, you need to declare the **ohos.permission.CAMERA** and **ohos.permission.MICROPHONE** permissions.
 
 **Parameters**
 
@@ -3787,11 +3853,27 @@ Called when a permission request is received.
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { abilityAccessCtrl } from '@kit.AbilityKit';
 
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+
+    aboutToAppear() {
+      // Enable web frontend page debugging.
+      webview.WebviewController.setWebDebuggingAccess(true);
+      let atManager = abilityAccessCtrl.createAtManager();
+      atManager.requestPermissionsFromUser(getContext(this), ['ohos.permission.CAMERA', 'ohos.permission.MICROPHONE'])
+        .then((data) => {
+          console.info('data:' + JSON.stringify(data));
+          console.info('data permissions:' + data.permissions);
+          console.info('data authResults:' + data.authResults);
+        }).catch((error: BusinessError) => {
+        console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+      })
+    }
 
     build() {
       Column() {
@@ -4286,7 +4368,7 @@ If opening a new window is not needed, set the parameter to **null** when callin
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
-  // There are two Web components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
+  // There are two **Web** components on the same page. When the **Web** component opens a new window, **NewWebViewComp** is displayed. 
   @CustomDialog
   struct NewWebViewComp {
     controller?: CustomDialogController;
@@ -4699,7 +4781,7 @@ Called when the first content paint occurs on the web page.
 
 onFirstMeaningfulPaint(callback: [OnFirstMeaningfulPaintCallback](#onfirstmeaningfulpaintcallback12))
 
-Called when the First Meaningful Paint occurs on the web page.
+Called when the first meaningful paint occurs on the web page.
 
 **Parameters**
 
@@ -5190,7 +5272,7 @@ export default class EntryAbility extends UIAbility {
         })
 
 
-        // Added in API version 12: The web rendering engine does not allow web pages loaded with non-HTTP and non-HTTPS protocols to enter BFCache.
+        // Added in API version 12: The Web kernel does not allow web pages loaded with non-HTTP and non-HTTPS protocols to enter BFCache.
         // Therefore, to test the ENTER_BFCACHE/LEAVE_BFCACHE states, you need to place the index.html on a web server and load it using the HTTP or HTTPS protocol. Example:
         // Web({ src: "http://xxxx/index.html", controller: this.controller })
         Web({ src: $rawfile("index.html"), controller: this.controller })
@@ -5462,7 +5544,7 @@ Called to enable the host application to obtain control when the URL is about to
 
 POST requests do not trigger this callback.
 
-Subframe navigation that is not using HTTP(s) protocols will also trigger this callback. However, navigation actively initiated by calling **loadUrl(String)** will not trigger this callback.
+This callback is triggered when the **iframe** loads the redirection of a non-HTTP(s) protocol, but is not triggered when the **iframe** loads the HTTP(s) protocol or **about:blank** and when the redirection initiated by **loadUrl(String)** is called.
 
 Do not use the same URL to call the **loadUrl(String)** API and then return **true**. Doing so would unnecessarily cancel the current loading and start a new load with the same URL. The correct way to continue loading the given URL is to simply return **false**, rather than calling **loadUrl(String)**.
 
@@ -5744,6 +5826,68 @@ Called before any editable element (such as the **\<input>** tag) on the web pag
     </html>
   ```
 
+### onNativeEmbedVisibilityChange<sup>12+</sup>
+
+onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
+
+Called when the visibility of a same-layer rendering tag (such as an **Embed** tag or an **Object** tag) on a web page changes in the viewport. By default, the same-layer rendering tag is invisible. If the rendering tag is visible when you access the page for the first time, the callback is triggered; otherwise, it is not triggered. That is, if the same-layer rendering tag changes from a non-zero value to **0 x 0**, the callback is triggered. If the rendering tag size changes from **0 x 0** to a non-zero value, the callback is not triggered. If all the same-layer rendering tags are invisible, they are reported as invisible. If all the same-layer rendering tags or part of them are visible, they are reported as invisible.
+
+**Parameters**
+
+| Name         | Type                                                                        | Description                   |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnNativeEmbedVisibilityChangeCallback](#onnativeembedvisibilitychangecallback12) | Called when the visibility of a same-layer rendering tag changes.|
+
+**Example**
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State embedVisibility: string = '';
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Stack() {
+          Web({ src: $rawfile("index.html"), controller: this.controller })
+            .enableNativeEmbedMode(true)
+            .onNativeEmbedVisibilityChange((embed) => {
+              if (embed.visibility) {
+                this.embedVisibility = 'Visible';
+              } else {
+                this.embedVisibility = 'Hidden';
+              }
+              console.log("embedId = " + embed.embedId);
+              console.log("visibility = " + embed.visibility);
+            })
+        }
+      }
+    }
+  }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Same-layer rendering test HTML</title>
+      <meta name="viewport">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <embed id="nativeVideo" type = "native/video" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+      </div>
+  </div>
+  </body>
+  </html>
+  ```
+
 ## WebKeyboardCallback<sup>12+</sup>
 
 type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => WebKeyboardOptions
@@ -5776,7 +5920,7 @@ Represents the input parameter of the callback for intercepting the soft keyboar
 
 ## WebKeyboardOptions<sup>12+</sup>
 
-Represents the return value of the callback that intercepts the soft keyboard from editable elements on the web page. You can specify the type of the keyboard to be used, and it is returned to the web rendering engine to display a keyboard of the corresponding type.
+Represents the return value of the callback that intercepts the soft keyboard from editable elements on the web page. You can specify the type of the keyboard to be used, and it is returned to the Web kernel to display a keyboard of the corresponding type.
 
 | Name            | Type     | Readable  | Writable  | Mandatory  | Description                                      |
 | -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
@@ -6561,6 +6705,8 @@ See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
 ## ContextMenuEditStateFlags<sup>9+</sup>
 
+Supports using with a bitwise OR operator. For example, to support CAN_CUT, CAN_COPY, and CAN_SELECT_ALL at the same time, use CAN_CUT | CAN_COPY | CAN_SELECT_ALL or 11.
+
 | Name           | Value| Description    |
 | -------------- | -- | -------- |
 | NONE           | 0 | Editing is not allowed.|
@@ -6805,7 +6951,7 @@ Enumerates the reasons why the rendering process exits.
 
 | Name       | Value| Description                                |
 | ---------- | -- | ---------------------------------- |
-| All        | undefined | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
+| All        | 0 | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
 | Compatible | 1 | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
 | None       | 2 | HTTP and HTTPS hybrid content cannot be loaded.              |
 
@@ -6869,6 +7015,7 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 | MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
 | VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | Video capture resource, such as a camera. |                            |
 | AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | Audio capture resource, such as a microphone.|                            |
+| SENSOR<sup>12+</sup>        | TYPE_SENSOR | Sensor resource, such as an acceleration sensor.|                            |
 
 ## WebDarkMode<sup>9+</sup>
 
@@ -7721,7 +7868,7 @@ setCookie()
 
 Sets the cookie. This API returns the result synchronously. Returns **true** if the operation is successful; returns **false** otherwise.
 
-This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](js-apis-webview.md#setcookiedeprecated) instead.
+This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](js-apis-webview.md#setcookie) instead.
 
 ### saveCookie<sup>(deprecated)</sup>
 
@@ -7738,7 +7885,7 @@ Describes the **ScriptItem** object injected to the **Web** component through th
 | Name         | Type            | Mandatory  | Description                   |
 | ----------- | -------------- | ---- | --------------------- |
 | script      | string         | Yes   | JavaScript script to be injected and executed.|
-| scriptRules | Array\<string> | Yes   | Matching rules for allowed sources.<br>1. To allow URLs from all sources, use the wildcard (*).<br>2. If exact match is required, specify the exact URL, for example, **https:\//www\.example.com**.<br>3. For fuzzy match, you can use a wildcard (*) in the website URL, for example, **https://*.example.com**. The following are not allowed: "x. * .y.com", " * foobar.com".<br>4. If the source is an IP address, follow rule 2.      |
+| scriptRules | Array\<string> | Yes  | Matching rules for allowed sources.<br>1. To allow URLs from all sources, use the wildcard (\*).<br>2. If exact match is required, specify the exact URL, for example, **https:\//www\\.example.com**.<br>3. For fuzzy match, you can use a wildcard (\*) in the website URL, for example, **https://\*.example.com**. Websites such as "x,*.y.com" and "* foobar.com" are not allowed.  <br>4. If the source is an IP address, follow rule 2.       |
 
 ## WebNavigationType<sup>11+</sup>
 
@@ -7797,7 +7944,7 @@ Called by a website safe browsing check.
 
 ## FullScreenEnterEvent<sup>12+</sup>
 
-Details about the callback event for the web component to enter the full-screen mode.
+Provides details about the callback event for the **Web** component to enter the full-screen mode.
 
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
@@ -7838,11 +7985,11 @@ Provides details about the callback invoked when an SSL error occurs during reso
 
 | Name     | Type                     | Description             |
 | ---------- | ---------------------------- | ------------------- |
-| sslErrorEvent | [SslErrorEvent](#sslerrorevent12)  | Callback triggered when an SSL error occurs during resource loading.|
+| sslErrorEvent | [SslErrorEvent](#sslerrorevent12)  | Details about the callback invoked when an SSL error occurs during resource loading.|
 
 ## NativeEmbedStatus<sup>11+</sup>
 
-Defines the lifecycle of the **\<embed>** tag.
+Defines the lifecycle of the **embed** tag. When the same-layer rendering tag exists on the loaded page, **CREATE** is triggered. When the same-layer rendering tag is moved or is enlarged, **UPDATE **is triggered. When the page exits, **DESTROY** is triggered.
 
 | Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
@@ -7909,14 +8056,14 @@ Called when the first meaningful paint occurs on the web page.
 
 ## LargestContentfulPaint<sup>12+</sup>
 
-Provides detailed information about the largest content paint on the web page.
+Provides detailed information about the largest content paint.
 
 | Name                     | Type  | Mandatory| Description                                    |
 | ------------------------- | ------ | ---- | ---------------------------------------- |
 | navigationStartTime       | number | No  | Navigation bar loading time, in microseconds.        |
 | largestImagePaintTime     | number | No  | Maximum image loading time, in milliseconds.  |
 | largestTextPaintTime      | number | No  | Maximum text loading time, in milliseconds.    |
-| largestImageLoadStartTime | number | No  | Maximum time for an image to start loading, expressed in milliseconds.|
+| largestImageLoadStartTime | number | No  | Maximum time for an image to start loading, in milliseconds.|
 | largestImageLoadEndTime   | number | No  | Maximum time for an image to finish loading, in milliseconds.|
 | imageBPP                  | number | No  | Maximum number of image pixels.                          |
 
@@ -7944,7 +8091,7 @@ Provides detailed information about intelligent tracking prevention.
 
 type OnIntelligentTrackingPreventionCallback = (details: IntelligentTrackingPreventionDetails) => void
 
-Represents a callback invoked when the tracker cookie is intercepted.
+Represents the callback invoked when the tracker cookie is intercepted.
 
 | Name  | Type                                                                         | Description                   |
 | ------- | -------------------------------------------------------------------------------- | ------------------------- |
@@ -7992,38 +8139,38 @@ Represents the configuration for [enabling the application to take over web page
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
-Provides the reason why the web render process does not respond.
+Provides the reason why the rendering process does not respond.
 
 | Name                          | Value| Description          |
 | ----------------------------- | -- | ------------ |
-| INPUT_TIMEOUT                  | 0 | The response to the input event sent to the web render process times out.  |
+| INPUT_TIMEOUT                  | 0 | The response to the input event sent to the rendering process times out.  |
 | NAVIGATION_COMMIT_TIMEOUT      | 1 | The navigation for loading a new web page times out.  |
 
 ## RenderProcessNotRespondingData<sup>12+</sup>
 
-Provides detailed information about the not-responding issue of the web render process.
+Provides detailed information about the unresponsive rendering process.
 
 | Name                    | Type  | Mandatory| Description                                  |
 | ------------------------ | ------ | ---- | -------------------------------------- |
 | jsStack      | string | Yes | JavaScript call stack information of the web page.      |
 | pid | number | Yes  | Process ID of the web page.|
-| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | Yes  | Reason why the web render process does not respond.|
+| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | Yes  | The reason why the rendering process does not respond.|
 
 ## OnRenderProcessNotRespondingCallback<sup>12+</sup>
 
 type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingData) => void
 
-Called when the web render process does not respond.
+Represents a callback invoked when the rendering process does not respond.
 
 | Name              | Type                                       | Description                        |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
-| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | Detailed information about the not-responding issue of the web render process.|
+| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | Detailed information about the unresponsive rendering process. |
 
 ## OnRenderProcessRespondingCallback<sup>12+</sup>
 
 type OnRenderProcessRespondingCallback = () => void
 
-Represents a callback invoked when the web render process transitions back to a normal operating state from an unresponsive state.
+Represents a callback invoked when the rendering process transitions back to a normal operating state from an unresponsive state.
 
 ## ViewportFit<sup>12+</sup>
 
@@ -8399,6 +8546,7 @@ Defines the JavaScript object to be injected.
 | methodList | Array\<string\>                          | Yes   | Synchronous methods of the JavaScript object to be registered at the application side.                |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | No   | Asynchronous methods of the JavaScript object to be registered at the application side. Asynchronous methods do not provide return values.  |
+| permission<sup>12+</sup>  | string  | No   | JSON string, which is empty by default. This string is used to configure JSBridge permission control and define the URL trustlist at the object and method levels.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md). |
 
 ## AdsBlockedDetails<sup>12+</sup>
 
@@ -8419,4 +8567,22 @@ Represents the callback invoked when ads are blocked on the web page.
 | Name              | Type                                       | Description                        |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
 | details | [AdsBlockedDetails](#adsblockeddetails12) | Detailed information about the blocked ads when ads are blocked.|
-<!--no_check-->
+
+## NativeEmbedVisibilityInfo<sup>12+</sup>
+
+Provides visibility information of the **embed** tag.
+
+| Name          | Type                               | Mandatory  | Description             |
+| -------------  | ------------------------------------| ----- | ------------------ |
+| visibility     | boolean                             | No    | Whether the **embed** tag is visible.        |
+| embedId        | string                              | No    | ID of the same-layer rendering tag. |
+
+## OnNativeEmbedVisibilityChangeCallback<sup>12+</sup>
+
+type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeEmbedVisibilityInfo) => void
+
+Represents the callback invoked when the visibility of an **embed** tag changes.
+
+| Name  | Type                                                                         | Description                   |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](#nativeembedvisibilityinfo12)  | The visibility information about the **embed** tag.|

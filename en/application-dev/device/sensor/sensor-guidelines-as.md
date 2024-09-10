@@ -10,10 +10,10 @@ For details about the APIs, see [Sensor](../../reference/apis-sensor-service-kit
 
 ## Available APIs
 
-| Module| API| Description|
-| -------- | -------- | -------- |
-| ohos.sensor | sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to data changes of a type of sensor.|
-| ohos.sensor | sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.|
+| Name| Description|
+| -------- | -------- |
+| sensor.on(sensorId, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to data changes of a type of sensor.|
+| sensor.off(sensorId, callback?:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.|
 
 
 ## How to Develop

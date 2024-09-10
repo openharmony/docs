@@ -154,7 +154,7 @@ barWidth(value: Length)
 
 barHeight(value: Length)
 
-设置TabBar的高度值。设置为'auto'时，TabBar自适应子组件高度，仅在水平模式下有效。设置为小于0或大于Tabs高度值时，按默认值显示。
+设置TabBar的高度值。设置为'auto'时，TabBar自适应子组件高度，仅在水平模式下有效。设置为小于0或大于Tabs高度值时，按默认值显示。若设置barHeight为固定值后，TabBar无法扩展底部安全区。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -250,7 +250,7 @@ fadingEdge(value: boolean)
 
 barOverlap(value: boolean)
 
-设置TabBar是否背后变模糊并叠加在TabContent之上。
+设置TabBar是否背后变模糊并叠加在TabContent之上。若设置barOverlap为true，TabBar默认背景色修改为'#F2F1F3F5'并添加模糊效果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -581,7 +581,7 @@ Tabs组件动画相关信息集合。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型      | 只读 | 可选 | 描述                                       |
+| 名称            | 类型      | 只读 | 可选 | 说明                                       |
 | ------------- | ---------- | ---- | ---- | ------------------------ |
 | currentOffset | number | 否 | 否 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
 | targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
@@ -614,7 +614,7 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 
 ### 属性
 
-| 名称  | 类型     | 只读 | 可选 | 描述                         |
+| 名称  | 类型     | 只读 | 可选 | 说明                         |
 | ----- | ------- | ---- | ---- | --------------------------- |
 | from | number | 否 | 否 | 自定义动画起始页面对应的index值。|
 | to | number | 否 | 否 | 自定义动画目标页面对应的index值。|

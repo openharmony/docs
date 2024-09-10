@@ -65,7 +65,7 @@ void(* ArkWeb_ControllerAPI::deleteJavaScriptRegister) (const char *webTag, cons
 ### destroyWebMessagePorts
 
 ```
-void(* ArkWeb_ControllerAPI::destroyWebMessagePorts) (ArkWeb_WebMessagePortPtr **ports, size_t size)
+void(* ArkWeb_ControllerAPI::destroyWebMessagePorts) (ArkWeb_WebMessagePortPtr *ports, size_t *size)
 ```
 **描述：**
 
@@ -75,8 +75,8 @@ void(* ArkWeb_ControllerAPI::destroyWebMessagePorts) (ArkWeb_WebMessagePortPtr *
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| Post | Message端口结构体指针数组。  | 
-| 端口数量。 |  | 
+| ports | Message端口结构体指针数组。  | 
+| size | 端口数量。 | 
 
 
 ### postWebMessage

@@ -18,9 +18,9 @@ Set the callback for the [click event](./ts-universal-events-click.md#click-even
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)<[ClickEvent](./ts-universal-events-click.md#clickevent)> \| undefined | Yes  | Callback for the click event.|
+| callback  | [Callback](./ts-types.md#callback12)<[ClickEvent](./ts-universal-events-click.md#clickevent)> \| undefined | Yes  | Callback for the click event. |
 
 ### setOnTouch
 
@@ -34,9 +34,9 @@ Sets the callback for the [touch event](./ts-universal-events-touch.md#touch-eve
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)<[TouchEvent](./ts-universal-events-touch.md#touchevent)> \| undefined | Yes  | Callback for the touch event.|
+| callback  | [Callback](./ts-types.md#callback12)<[TouchEvent](./ts-universal-events-touch.md#touchevent)> \| undefined | Yes  | Callback for the touch event. |
 
 
 ### setOnAppear
@@ -51,9 +51,9 @@ Sets the callback for the [onAppear](./ts-universal-events-show-hide.md#onappear
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | Yes  | Callback for the **onAppear** event.|
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | Yes  | Callback for the **onAppear** event. |
 
 
 ### setOnDisappear
@@ -68,9 +68,9 @@ Sets the callback for the [onDisappear](./ts-universal-events-show-hide.md#ondis
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | Yes  | Callback for the **onDisappear** event.|
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | Yes  | Callback for the **onDisappear** event. |
 
 ### setOnKeyEvent
 
@@ -84,9 +84,9 @@ Sets the callback for the [key event](./ts-universal-events-key.md#key-event).
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)<[KeyEvent](./ts-universal-events-key.md#keyevent)> \| undefined | Yes  | Callback for the key event.|
+| callback  | [Callback](./ts-types.md#callback12)<[KeyEvent](./ts-universal-events-key.md#keyevent)> \| undefined | Yes  | Callback for the key event. |
 
 ### setOnFocus
 
@@ -100,9 +100,9 @@ Sets the callback for the [onFocus](./ts-universal-focus-event.md#onfocus) event
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | Yes  | Callback for the **onFocus** event.|
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | Yes  | Callback for the **onFocus** event. |
 
 ### setOnBlur
 
@@ -116,9 +116,9 @@ Sets the callback for the [onBlur](./ts-universal-focus-event.md#onblur) event.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | Yes  | Callback for the **onBlur** event.|
+| callback  | [Callback](./ts-types.md#callback12)\<void> \| undefined | Yes  | Callback for the **onBlur** event. |
 
 ### setOnHover
 
@@ -132,9 +132,9 @@ Sets the callback for the [onHover](./ts-universal-mouse-key.md#onhover) event.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [HoverCallback](./ts-types.md#hovercallback12)  \| undefined | Yes  | Callback for the **onHover** event.|
+| callback  | [HoverCallback](./ts-types.md#hovercallback12)  \| undefined | Yes  | Callback for the **onHover** event. |
 
 ### setOnMouse
 
@@ -148,9 +148,9 @@ Sets the callback for the [onMouse](./ts-universal-mouse-key.md#onmouse) event.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  |  [Callback](./ts-types.md#callback12)<[MouseEvent](./ts-universal-mouse-key.md#mouseevent)> \| undefined | Yes  | Callback for the **onMouse** event.|
+| callback  |  [Callback](./ts-types.md#callback12)<[MouseEvent](./ts-universal-mouse-key.md#mouseevent)> \| undefined | Yes  | Callback for the **onMouse** event. |
 
 ### setOnSizeChange
 
@@ -164,9 +164,9 @@ Sets the callback for the [onSizeChange](./ts-universal-component-size-change-ev
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [SizeChangeCallback](./ts-universal-component-size-change-event.md#sizechangecallback)   \| undefined | Yes  | Callback for the **onSizeChange** event.|
+| callback  | [SizeChangeCallback](./ts-universal-component-size-change-event.md#sizechangecallback)   \| undefined | Yes  | Callback for the **onSizeChange** event. |
 
 ### setOnVisibleAreaApproximateChange
 
@@ -180,10 +180,10 @@ Sets the [onVisibleAreaChange](./ts-universal-component-visible-area-change-even
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                      |
+| Name | Type  | Mandatory | Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| options  | [VisibleAreaEventOptions](./ts-types.md#visibleareaeventoptions12) | Yes  | Options of visible area changes.|
-| event  | [VisibleAreaChangeCallback](./ts-types.md#visibleareachangecallback12)   \| undefined | Yes  | Callback for the **onVisibleAreaChange** event. Called when the ratio of the component's visible area to its total area is greater than or less than the threshold.|
+| options  | [VisibleAreaEventOptions](./ts-types.md#visibleareaeventoptions12) | Yes  | Options of visible area changes. |
+| event  | [VisibleAreaChangeCallback](./ts-types.md#visibleareachangecallback12)   \| undefined | Yes  | Callback for the **onVisibleAreaChange** event. Called when the ratio of the component's visible area to its total area is greater than or less than the threshold. |
 
 >**NOTE**
 >

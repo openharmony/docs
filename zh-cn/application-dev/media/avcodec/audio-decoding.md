@@ -36,6 +36,11 @@
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
 如下为音频解码调用关系图：
+
+- 虚线表示可选。
+
+- 实线表示必选。
+
 ![Invoking relationship of audio decode stream](figures/audio-codec.png)
 
 ### 在 CMake 脚本中链接动态库
@@ -176,13 +181,18 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         printf("create media key system failed");
         return;
     }
-    // 进行DRM授权
+
     // 创建解密会话
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
+    if (ret != DRM_OK) {
+        // 如创建失败，请查看DRM接口文档及日志信息
+        printf("create media key session failed.");
+        return;
+    }
     if (session == nullptr) {
-        printf("create media key session failed");
+        printf("media key session is nullptr.");
         return;
     }
     // 获取许可证请求、设置许可证响应等

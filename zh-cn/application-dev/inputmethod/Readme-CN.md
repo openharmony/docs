@@ -5,3 +5,4 @@
 - [在自绘编辑框中使用输入法](custom_input_box_guide.md)
 - [切换输入法应用](switch_inputmehod_guide.md)
 - [输入法子类型开发指南](input_method_subtype_guide.md)
+- [自绘编辑框开发指导 (C/C++)](native_custom_input_box_guide.md)

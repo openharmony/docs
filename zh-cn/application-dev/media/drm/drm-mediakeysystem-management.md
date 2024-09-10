@@ -42,7 +42,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备DRM�
 
    > **说明：**
    >
-   > 如果如果创建失败则返回undefined，说明该设备不支持DRM能力。
+   > 如果创建失败则返回undefined，说明该设备不支持DRM能力。
 
    ```ts
    let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");

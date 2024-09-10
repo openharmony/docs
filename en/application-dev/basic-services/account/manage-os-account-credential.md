@@ -27,7 +27,7 @@ Credential types are further classified into the following subtypes:
 | FINGERPRINT_OPTICAL<sup>10+</sup>    | 30001 | Optical fingerprint.  |
 | FINGERPRINT_ULTRASONIC<sup>10+</sup>    | 30002 | Ultrasonic fingerprint.  |
 
-> **NOTE**<br>The credential types supported by the device depend on the hardware capability.
+**NOTE**<br>The credential types supported by the device depend on the hardware capability.
 
 ## Before You Start
 
@@ -77,7 +77,7 @@ Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.
 
 **Procedure**
 
-Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8) to open a session for credential management.
+1. Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8) to open a session for credential management.
 
    ```ts
    let challenge: Uint8Array = await userIDM.openSession();

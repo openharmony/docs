@@ -1,46 +1,22 @@
 # ForEach: Rendering Repeated Content
 
+For details about API parameters, see [ForEach](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md) APIs.
 
-**ForEach** enables rendering of repeated content based on array type data. It must be used in a container component, and the component it returns must be one allowed inside the container component. For example, for rendering of list items, **ForEach** must be used in the [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md) component.
+**ForEach** enables rendering of repeated content based on array type data. It must be used in a container component, and the component it returns must be one allowed inside the container component. For example, for rendering of list items, **ForEach** must be used in the [List](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md) component.
 
 > **NOTE**
 >
 > This API is supported in ArkTS widgets since API version 9.
 
-## Available APIs
-
-
-```ts
-ForEach(
-  arr: Array,
-  itemGenerator: (item: any, index: number) => void,
-  keyGenerator?: (item: any, index: number) => string
-)
-```
-
-The parameters are described in the table below.
-
-| Name       | Type                               | Mandatory| Description                                                    |
-| ------------- | --------------------------------------- | -------- | ------------------------------------------------------------ |
-| arr           | Array<any>                                   | Yes      | Data source, which is an array.<br>**NOTE**<br>- You can set this parameter to an empty array. In this case, no child component is created.<br>- You can also set this parameter to a function whose return value is an array, for example, **arr.slice (1, 3)**. However, the set function cannot change any state variables including the array itself. For example, **Array.splice**, **Array.sort**, and **Array.reverse** functions are not allowed, as they may change the array.|
-| itemGenerator | `(item: any, index: number) => void`   | Yes      | Component generator.<br>- It generates a component for each data item in an array. <br>- **item**: data item in the **arr** array.<br>- (Optional) **index**: index of the data item in the **arr** array.<br>**NOTE**<br>- The type of the created component must be the one allowed inside the parent container component of **ForEach**. For example, a **\<ListItem>** component is allowed only when the parent container component of **ForEach** is **\<List>**.|
-| keyGenerator  | `(item: any, index: number) => string` | No      | Key generator.<br>- It generates a unique and persistent key for each array item of the data source **arr**. The return value is the key generation rule you customize.<br>- **item**: data item in the **arr** array.<br>- (Optional) **index**: index of the data item in the **arr** array.<br>**NOTE**<br>- If this function is not specified, the default key generator of the framework is used: **(item: T, index: number) => { return index + '__' + JSON.stringify(item); }**.<br>- The key generator should not change any component state.|
-
-> **NOTE**
->
-> - The **itemGenerator** function can contain an **if/else** statement, and an **if/else** statement can contain **ForEach**.
-> - On initial rendering, **ForEach** loads all data of the data source, creates a component for each data item, and mounts the created components to the render tree. If the data source contains a large number of items or performance is a critical concern, you are advised to use **LazyForEach**.
-
 ## Key Generation Rules
 
 During **ForEach** rendering, the system generates a unique, persistent key for each array item to identify the corresponding component. When the key changes, the ArkUI framework considers that the array element has been replaced or modified and creates a new component based on the new key.
 
-**ForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. If no **keyGenerator** function is defined, the ArkUI framework uses the default key generator, that is, **(item: any, index: number) => { return index + '__' + JSON.stringify(item); }**.
+**ForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. If no **keyGenerator** function is defined, the ArkUI framework uses the default key generator, that is, **(item: Object, index: number) => { return index + '__' + JSON.stringify(item); }**.
 
 The ArkUI framework has a set of specific judgment rules for **ForEach** key generation, which are mainly associated with the second parameter **index** of the **itemGenerator** function and the second parameter **index** of the **keyGenerator** function. The following figure shows the logic of the key generation rules.
 
-**Figure 1** ForEach key generation rules
-
+**Figure 1** ForEach key generation rules 
 ![ForEach-Key-Generation-Rules](figures/ForEach-Key-Generation-Rules.png)
 
 > **NOTE**
@@ -89,8 +65,7 @@ struct ChildItem {
 
 The figure below shows the effect.
 
-**Figure 2** Initial rendering when the ForEach data sources do not have the same key
-
+**Figure 2** Initial rendering when the ForEach data sources do not have the same key 
 ![ForEach-CaseStudy-1stRender-NoDup](figures/ForEach-CaseStudy-1stRender-NoDup.png)
 
 In the preceding code snippets, the key generation rule is the return value **item** of the **keyGenerator** function. During **ForEach** rendering, keys (**one**, **two**, and **three**) are generated in sequence for data source array items, and corresponding child items are created and rendered to the UI.
@@ -131,8 +106,7 @@ When the keys generated for different data items are the same, the behavior of t
 
 The figure below shows the effect.
 
-**Figure 3** Initial rendering when the ForEach data sources have the same key
-
+**Figure 3** Initial rendering when the ForEach data sources have the same key 
 ![ForEach-CaseStudy-1stRender-Dup](figures/ForEach-CaseStudy-1stRender-Dup.png)
 
 In this example, the final key value generation rule is **item**. When **ForEach** traverses the data source **simpleList** and finds the key **two** whose index is **1**, **ForEach** creates a component whose key is **two** based on the final key value generation rule and marks the component. When **ForEach** finds the key **two** whose index is **2**, it does not create a component, because the key of the current item is also **two** according to the final key generation rule.
@@ -184,8 +158,7 @@ struct ChildItem {
 
 The figure below shows the effect.
 
-**Figure 4** Re-rendering with ForEach
-
+**Figure 4** Re-rendering with ForEach 
 ![ForEach-Non-Initial-Render-Case-Effect](figures/ForEach-Non-Initial-Render-Case-Effect.gif)
 
 From this example, you can see that @State can observe changes in the primitive array items of the **simpleList** data source.
@@ -210,10 +183,10 @@ struct ArticleList {
 
   build() {
     Column() {
-      ForEach(this.simpleList, (item: string) => {
+      ForEach(this.simpleList, (item: number) => {
         ArticleSkeletonView()
           .margin({ top: 20 })
-      }, (item: string) => item)
+      }, (item: number) => item.toString())
     }
     .padding(20)
     .width('100%')
@@ -258,8 +231,7 @@ struct ArticleSkeletonView {
 
 The figure below shows the effect.
 
-**Figure 5** Skeleton screen
-
+**Figure 5** Skeleton screen 
 ![ForEach-SkeletonScreen](figures/ForEach-SkeletonScreen.png)
 
 In this example, the data item **item** is used as the key generation rule. Because the array items of the data source **simpleList** are different, the uniqueness of the keys can be ensured.
@@ -365,8 +337,7 @@ struct ArticleCard {
 
 The following figure shows the initial screen (on the left) and the screen after a pull-to-refresh gesture (on the right).
 
-**Figure 6** When the data source is changed
-
+**Figure 6** When the data source is changed 
 ![ForEach-DataSourceArrayChange](figures/ForEach-DataSourceArrayChange.png)
 
 In this example, the **ArticleCard** component functions as a child component of the **ArticleListView** component and receives an **Article** object through the @Prop decorator to render article widgets.
@@ -477,8 +448,7 @@ struct ArticleCard {
 
 The following figure shows the initial screen (on the left) and the screen after the Like icon of Article 1 is clicked (on the right).
 
-**Figure 7** When properties of data source array items are changed
-
+**Figure 7** When properties of data source array items are changed 
 ![ForEach-DataSourceArraySubpropertyChange](figures/ForEach-DataSourceArraySubpropertyChange.png)
 
 In this example, the **Article** class is decorated by the @Observed decorator. The parent component **ArticleListView** passes an **Article** object instance to the child component **ArticleCard**, and the child component uses the @ObjectLink decorator to receive the instance.
@@ -489,11 +459,54 @@ In this example, the **Article** class is decorated by the @Observed decorator. 
 4. Here, the **ForEach** key generation rule is the **id** property value of the array item. If **ForEach** traverses the new data source and finds no changes in the **id** values, no component is created.
 5. When the **ArticleCard** component corresponding to the first array item is rendered, the obtained values of **isLiked** and** likesCount** are the new values.
 
+### Enabling Drag and Sort
+If **ForEach** is used in a list, and the **onMove** event is set, you can enable drag and sort for the list items. If an item changes the position after you drag and sort the data, the **onMove** event is triggered to report the original index and target index of the item. The data source needs to be modified in the **onMove** event based on the reported start index and target index. Before and after the data source is modified, the value of each item must remain unchanged to ensure that the drop animation can be executed properly.
+
+```ts
+@Entry
+@Component
+struct ForEachSort {
+  @State arr: Array<string> = [];
+
+  build() {
+    Row() {
+      List() {
+        ForEach(this.arr, (item: string) => {
+          ListItem() {
+            Text(item.toString())
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .size({height: 100, width: "100%"})
+          }.margin(10)
+          .borderRadius(10)
+          .backgroundColor("#FFFFFFFF")
+        }, (item: string) => item)
+          .onMove((from:number, to:number) => {
+            let tmp = this.arr.splice(from, 1);
+            this.arr.splice(to, 0, tmp[0])
+          })
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor("#FFDCDCDC")
+    }
+  }
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.arr.push(i.toString())
+    }
+  }
+}
+```
+
+**Figure 8** Drag and sort in ForEach 
+![ForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)
 ## Suggestions
 
-- Avoid including the data item **index** in the final key generation rule to prevent [unexpected rendering results](#rendering-result-not-as-expected) and [deteriorated rendering performance](#deteriorated-rendering-performance). If including **index** is required, for example, when the list needs to be rendered based on the index, prepare for the performance loss resulting from component creation by **ForEach** to account for data source changes.
 - To ensure unique keys for array items of the Object type, you are advised to use the unique IDs of objects as keys.
+- Avoid including the data item **index** in the final key generation rule to prevent [unexpected rendering results](#rendering-result-not-as-expected) and [deteriorated rendering performance](#deteriorated-rendering-performance). If including **index** is required, for example, when the list needs to be rendered based on the index, prepare for the performance loss resulting from component creation by **ForEach** to account for data source changes.
 - Data items of primitive data types do not have a unique ID. If you use the primitive data type itself as the key, you must ensure that the array items are not duplicate. In scenarios where the data source changes, you are advised to convert the array of a primitive data type into an array of the Object type with the **id** property, and then use the **id** property as the key generation rule.
+- For the preceding restriction rules, the **index** parameter is the final method for you to ensure the uniqueness of the keys. When modifying a data item, you need to use the index value to modify the data source because the **item** parameter in **itemGenerator** cannot be modified. In this way, the UI re-rendering is triggered.
 
 ## Common Pitfalls
 
@@ -540,10 +553,9 @@ struct ChildItem {
 }
 ```
 
-The following figure shows the initial screen (on the left) and the screen after **Insert Item After First Item** is clicked (on the right).
+The following figure shows the initial screen and the screen after **Insert Item After First Item** is clicked.
 
-**Figure 8** Rendering result not as expected
-
+**Figure 9** Rendering result not as expected  
 ![ForEach-UnexpectedRenderingResult](figures/ForEach-UnexpectedRenderingResult.gif)
 
 When **ForEach** is used for initial rendering, the created keys are **0**, **1**, and **2** in sequence.
@@ -600,19 +612,17 @@ struct ChildItem {
 }
 ```
 
-The following figure shows the initial screen (on the left) and the screen after **Insert Item After First Item** is clicked (on the right).
+The following figure shows the initial screen and the screen after **Insert Item After First Item** is clicked.
 
-**Figure 9** Deteriorated rendering performance
-
+**Figure 10** Deteriorated rendering performance 
 ![ForEach-RenderPerformanceDecrease](figures/ForEach-RenderPerformanceDecrease.gif)
 
 After **Insert Item After First Item** is clicked, DevEco Studio displays logs as shown in the figure below.
 
-**Figure 10** Logs indicating deteriorated rendering performance
-
+**Figure 11** Logs indicating deteriorated rendering performance 
 ![ForEach-RenderPerformanceDecreaseLogs](figures/ForEach-RenderPerformanceDecreaseLogs.png)
 
-After a new item is inserted, **ForEach** creates the corresponding child items for the **new item**, **two**, and **three** array items, and executes the [aboutToAppear()](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear) callback. Below are the reasons:
+After a new item is inserted, **ForEach** creates the corresponding child items for the **new item**, **two**, and **three** array items, and executes the [aboutToAppear()](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear) callback. Below are the reasons:
 
 1. When **ForEach** is used for initial rendering, the created keys are **0__one**, **1__two** and **2__three** in sequence.
 2. After a new item is inserted, the data source **simpleList** changes to ['one','new item', 'two', 'three']. The ArkUI framework detects changes in the length of the @State decorated data source and triggers **ForEach** for re-rendering.

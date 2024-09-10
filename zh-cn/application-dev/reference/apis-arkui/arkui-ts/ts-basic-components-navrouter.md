@@ -26,6 +26,8 @@ NavRouter()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### NavRouter<sup>10+</sup>
 
 NavRouter(value: RouteInfo)
@@ -34,11 +36,13 @@ NavRouter(value: RouteInfo)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名     | 类型                                | 必填   | 说明          |
 | ------- | ----------------------------------- | ---- | ------------- |
-| value   | [RouteInfo](#routeinfo10对象说明) | 否    | 路由信息 |
+| value   | [RouteInfo](#routeinfo10对象说明) | 是    | 路由信息 |
 
 ## 属性
 
@@ -63,6 +67,8 @@ mode(mode: NavRouteMode)
 ## RouteInfo<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                 | 类型                                                     | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |

@@ -418,7 +418,7 @@ childrenMainSize(value: ChildrenMainSize)
 
 ### maintainVisibleContentPosition<sup>12+</sup>
 
-maintainVisibleContentPosition(enabled: Optional\<boolean\>)
+maintainVisibleContentPosition(enabled: boolean)
 
 设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。
 
@@ -430,7 +430,7 @@ maintainVisibleContentPosition(enabled: Optional\<boolean\>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | Optional\<boolean\> | 是   | 设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。<br/>默认值：false，显示区域上方插入或删除数据时可见内容位置会跟随变化。 true：显示区域上方插入或删除数据时可见内容位置不变。|
+| enabled  | boolean | 是   | 设置显示区域上方插入或删除数据时是否要保持可见内容位置不变。<br/>默认值：false，显示区域上方插入或删除数据时可见内容位置会跟随变化。 true：显示区域上方插入或删除数据时可见内容位置不变。|
 
 > **说明：** 
 > - 只有使用LazyForEach在显示区域外插入或删除数据时，才能保持可见内容位置不变。使用ForEach插入或删除数据或使用LazyForEach重新加载数据时，即使maintainVisibleContentPosition属性设置为true，可见区内容位置也会跟随变化。
@@ -492,7 +492,7 @@ maintainVisibleContentPosition(enabled: Optional\<boolean\>)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型     | 必填 | 说明                   |
-| :------- | -------- | ---- | ---------------------- |
+| ------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
 
 ## 事件

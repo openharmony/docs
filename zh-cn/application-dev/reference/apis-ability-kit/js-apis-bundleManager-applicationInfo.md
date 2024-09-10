@@ -48,12 +48,10 @@
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
- **参数：**
-
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| multiAppModeType<sup>12+</sup> | bundleManager.MultiAppModeType | 是 | 否 |  应用多开模式的类型。  |
-| maxCount<sup>12+</sup> | number  | 是 | 否 |  应用多开的最大个数。  |
+| multiAppModeType | bundleManager.MultiAppModeType | 是 | 否 |  应用多开模式的类型。  |
+| maxCount | number  | 是 | 否 |  应用多开的最大个数。  |
 
 ## ModuleMetadata<sup>10+</sup>
 

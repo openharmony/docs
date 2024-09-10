@@ -19,4 +19,17 @@ You can use this struct to set options related to the media asset quality, deliv
 
 | Name| Description|
 | -------- | -------- |
-| [MediaLibrary_DeliveryMode](_media_asset_manager.md#medialibrary_deliverymode-1)[deliveryMode](_media_asset_manager.md#deliverymode) | Delivery mode.|
+| [MediaLibrary_DeliveryMode](_media_asset_manager.md#medialibrary_deliverymode) [deliveryMode](#deliverymode) | Delivery mode of the requested media asset. |
+
+
+## Member Variable Description
+
+
+### deliveryMode
+
+```
+MediaLibrary_DeliveryMode MediaLibrary_RequestOptions::deliveryMode
+```
+**Description**
+
+Specifies how the requested media asset is delivered.

@@ -8,7 +8,6 @@
 **库：** libohhicollie.so
 
 **系统能力：** SystemCapability.HiviewDFX.HiCollie
-**系统能力：** SystemCapability.HiviewDFX.HiCollie
 
 **起始版本：** 12
 

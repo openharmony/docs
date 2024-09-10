@@ -2353,12 +2353,12 @@ createNode(context: UIContext, nodeType: 'XComponent', options: XComponentOption
 **示例：**
 
 ```ts
-controller: XComponentController = new XComponentController();
-options: XComponentOptions = {
+let controller: XComponentController = new XComponentController();
+let options: XComponentOptions = {
   type: XComponentType.TEXTURE,
-  controller: this.controller
+  controller: controller
 };
-typeNode.createNode(uiContext, 'XComponent', this.options);
+typeNode.createNode(uiContext, 'XComponent', options);
 ```
 
 ## NodeAdapter<sup>12+</sup>

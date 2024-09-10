@@ -47,7 +47,7 @@ createModuleContext(context: Context, moduleName: string): Promise\<Context>
 **示例：**
 
 ```ts
-import { UIAbility, application} from '@kit.AbilityKit';
+import { UIAbility, application, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {

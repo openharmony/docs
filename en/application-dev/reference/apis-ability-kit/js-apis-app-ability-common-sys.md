@@ -22,9 +22,9 @@ import { common } from '@kit.AbilityKit';
 | Name | Type | Read Only | Optional | Description           |
 | ----- | ---- | ----- | ----- | -------------- |
 | ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md) | No | No | Level-2 module **ServiceExtensionContext**.<br>**System API**: This is a system API.|
-| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md) | No | No | Level-2 module **AutoFillExtensionContext**.<br>**System API**: This is a system API. |
-| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | No | No | Level-2 module **AutoStartupInfo**.<br>**System API**: This is a system API. |
-| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md) | No | No | Level-2 module **AutoStartupCallback**.<br>**System API**: This is a system API. |
+| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md) | No | No | Level-2 module **AutoFillExtensionContext**.<br>**System API**: This is a system API.|
+| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | No | No | Level-2 module **AutoStartupInfo**.<br>**System API**: This is a system API.|
+| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md) | No | No | Level-2 module **AutoStartupCallback**.<br>**System API**: This is a system API.|
 
 **Example**
 

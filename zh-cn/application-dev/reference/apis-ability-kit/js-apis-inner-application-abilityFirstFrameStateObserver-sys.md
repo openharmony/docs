@@ -1,6 +1,6 @@
 ## AbilityFirstFrameStateObserver(系统接口)
 
-定义Ability首帧绘制完成事件监听对象，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageron12)的入参监听Ability首帧绘制完成事件。
+定义Ability首帧绘制完成事件监听对象，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageronabilityfirstframestate12)的入参监听Ability首帧绘制完成事件。
 
 > **说明：**
 >
