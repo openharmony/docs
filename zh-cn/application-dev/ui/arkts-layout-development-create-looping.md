@@ -257,7 +257,7 @@ Swiper() {
 
 ## 每页显示多个子页面
 
-Swiper支持在一个页面内同时显示多个子组件，通过[displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#属性)属性设置。
+Swiper支持在一个页面内同时显示多个子组件，通过[displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#displaycount8)属性设置。
 
 ```ts
 Swiper() {
