@@ -211,7 +211,8 @@ export default {
 
 ![zh-cn_image_0000001227423251](figures/zh-cn_image_0000001227423251.gif)
 
-> **说明：**
+> **说明：** 
+>
 > chart不支持显示每个点的值。
 
 
