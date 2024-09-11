@@ -87,7 +87,7 @@
                     // 必填项：申请长时任务时entities和actions值
                     {
                         "entities": [
-                           "entity.system.home"
+                            "entity.system.home"
                         ],
                         "actions": [
                             "action.system.home"
@@ -96,7 +96,7 @@
                     // 可选项：添加deeplink、applink等跳转功能
                     {
                         "entities": [
-                           "test"
+                            "test"
                         ],
                         "actions": [
                             "test"
