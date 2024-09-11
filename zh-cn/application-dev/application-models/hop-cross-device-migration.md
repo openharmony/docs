@@ -405,6 +405,46 @@ export default class MigrationAbility extends UIAbility {
    }
    ```
 
+快速拉起目标应用时，应用的[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)和[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)回调会被依次触发。通常在onWindowStageCreate()中，开发者会调用[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)加载页面，该接口会抛出一个异步任务加载首页，该异步任务与onWindowStageRestore()无同步关系。如果在onWindowStageRestore()中使用UI接口（如路由接口），其调用时机可能早于首页加载。为保证正常加载顺序，可以使用[setTimeout()](../reference/common/js-apis-timer.md#settimeout)抛出异步任务执行相关操作。详细见示例代码。
+
+示例代码如下：
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { UIContext, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  private uiContext: UIContext | undefined = undefined;
+
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      this.uiContext = windowStage.getMainWindowSync().getUIContext();
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+    });
+  }
+
+  onWindowStageRestore(windowStage: window.WindowStage): void {
+    setTimeout(() => {
+      // 抛出异步任务执行路由，保证其执行位于首页加载之后。
+      this.uiContext?.getRouter().pushUrl({
+        url: 'pages/examplePage'
+      });
+    }, 0);
+  }
+
+  // ...
+}
+```
+
 ## 跨端迁移中的数据迁移
 
 当前推荐两种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
