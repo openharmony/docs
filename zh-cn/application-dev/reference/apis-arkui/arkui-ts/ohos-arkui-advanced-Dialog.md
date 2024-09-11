@@ -172,7 +172,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 
 ## PopoverDialog<sup>13+</sup>
 
-PopoverDialog({visible: boolean, popover: PopupOverOptions, targetBuilder: Callback\<void>})
+PopoverDialog({visible: boolean, popover: PopOverOptions, targetBuilder: Callback\<void>})
 
 跟手弹窗，基于目标组件位置弹出，上文中的各种CustomDialog也可作为弹窗内容。
 
@@ -185,7 +185,7 @@ PopoverDialog({visible: boolean, popover: PopupOverOptions, targetBuilder: Callb
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | visible | boolean | 是 | \@Link | 跟手弹出框显示状态。<br/>默认值为false，隐藏弹窗。 |
-| popover | [PopupoverOptions](#popupoveroptions13) | 是 | \@Prop | 配置跟手弹出框的参数。 |
+| popover | [PopoverOptions](#popoveroptions13) | 是 | \@Prop | 配置跟手弹出框的参数。 |
 | targetBuilder | Callback\<void> | 是 | - | 跟手弹出框基于的目标组件。 |
 
 
@@ -206,7 +206,7 @@ PopoverDialog({visible: boolean, popover: PopupOverOptions, targetBuilder: Callb
 >
 >  buttonStyle和role优先级高于fontColor和background。如果buttonStyle和role设置的是默认值，那么fontColor和background可生效。
 
-## PopupoverOptions<sup>13+</sup>
+## PopoverOptions<sup>13+</sup>
 
 继承自[CustomPopupOptions](../arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8)。
 
@@ -610,7 +610,7 @@ struct Index {
 跟手弹窗（警告弹窗为例）
 
 ```ts
-import { AlertDialog, PopoverDialog, PopupOverOptions } from '@kit.ArkUI';
+import { AlertDialog, PopoverDialog, PopOverOptions } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -648,9 +648,9 @@ struct Index {
 
   build() {
     Column() {
-      PopupDialog({
+      PopoverDialog({
         visible: this.isShow,
-        popover: this.popupOptions,
+        popover: this.popoverOptions,
         targetBuilder: () => {
           this.buttonBuilder();
         },
