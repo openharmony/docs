@@ -11,7 +11,7 @@ ExtensionAbility信息，三方应用可以通过[bundleManager.getBundleInfoFor
 
 **系统能力**: SystemCapability.BundleManager.BundleFramework.Core
 
-| 名称                 | 类型                                                         | 可读 | 可写 | 说明                                                 |
+| 名称                 | 类型                                                         | 只读 | 可选 | 说明                                                 |
 | -------------------- | ------------------------------------------------------------ | ---- | ---- | ---------------------------------------------------- |
 | bundleName           | string                                                       | 是   | 否   | 应用Bundle名称。                                     |
 | moduleName           | string                                                       | 是   | 否   | ExtensionAbility所属的HAP的名称。                    |

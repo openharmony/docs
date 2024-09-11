@@ -13,7 +13,7 @@
 
  **系统接口：** 此接口为系统接口。
 
-| 名称            | 类型                                                        | 可读 | 可写 | 说明                                 |
+| 名称            | 类型                                                        | 只读 | 可选 | 说明                                 |
 | --------------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------ |
 | applicationInfo | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | 是   | 否   | launcher ability的应用程序的配置信息。 |
 | elementName     | [ElementName](js-apis-bundleManager-elementName.md)         | 是   | 否   | launcher ability的ElementName信息。    |

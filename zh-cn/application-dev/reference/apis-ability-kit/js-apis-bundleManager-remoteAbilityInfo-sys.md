@@ -14,7 +14,7 @@
 
  **系统接口：**  此接口为系统接口。
 
-| 名称        | 类型                                         | 可读 | 可写 | 说明                    |
+| 名称        | 类型                                         | 只读 | 可选 | 说明                    |
 | ----------- | -------------------------------------------- | ---- | ---- | ----------------------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是   | 否   | 指明远程ability的ElementName信息。       |
 | label       | string                                       | 是   | 否   | 指明远程ability的标签信息。   |

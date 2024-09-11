@@ -16,7 +16,7 @@
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称             | 类型                           | 可读 | 可写 | 说明                   |
+| 名称             | 类型                           | 只读 | 可选 | 说明                   |
 | ---------------- | ------------------------------ | ---- | ---- | ---------------------- |
 | name             | string                         | 是   | 否   | 应用共享包名称。       |
 | compatiblePolicy | bundleManager.CompatiblePolicy | 是   | 否   | 共享包兼容策略的类型。 |
@@ -30,7 +30,7 @@
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称          | 类型   | 可读 | 可写 | 说明                       |
+| 名称          | 类型   | 只读 | 可选 | 说明                       |
 | ------------- | ------ | ---- | ---- | -------------------------- |
 | name          | string | 是   | 否   | 共享包模块名称。           |
 | versionCode   | number | 是   | 否   | 共享包的版本号。           |
