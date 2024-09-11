@@ -9,6 +9,8 @@
 | mp4      | AVC（H.264）<!--RP1--><!--RP1End-->    | AAC、MPEG（MP3） | jpeg、png、bmp |
 | m4a      | -                     | AAC              | jpeg、png、bmp |
 | mp3      | -                     | MPEG（MP3）      | -              |
+| amr      | -                     | AMR(amrnb、amrwb) | -             |
+| wav      | -                     | G711mu(pcm-mulaw) | -             |
 
 > **说明：**
 >
