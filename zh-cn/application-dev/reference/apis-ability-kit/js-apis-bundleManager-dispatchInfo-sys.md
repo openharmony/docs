@@ -1,12 +1,12 @@
 # DispatchInfo (系统接口)
 
+免安装结构体和接口版本信息类，通过接口[freeInstall.getDispatchInfo](js-apis-freeInstall-sys.md#getdispatchinfo)获取。
+
 > **说明：**
 >
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块为系统接口。
-
-免安装结构体和接口版本信息类，通过接口[freeInstall.getDispatchInfo](js-apis-freeInstall-sys.md#getdispatchinfo)获取。
 
 ## DispatchInfo
 
