@@ -306,7 +306,6 @@
         - 附录<!--appendixes-->
           - [Actor并发模型对比内存共享并发模型](arkts-utils/actor-model-development-samples.md)
           - [TaskPool和Worker支持的序列化类型](arkts-utils/serialization-support-types.md)
-          - [多线程安全注意事项](arkts-utils/multi-thread-safety.md)
           - [\@Concurrent装饰器：声明并校验并发函数](arkts-utils/arkts-concurrent.md)
           - [Sendable开发指导](arkts-utils/arkts-sendable.md)
           - [已接入Sendable的系统对象](arkts-utils/arkts-sendable-system-object-list.md)
