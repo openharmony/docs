@@ -2917,7 +2917,9 @@
           <!--DelEnd-->
         - 错误码<!--distributed-service-arkts-errcode-->
           - [设备管理错误码](reference/apis-distributedservice-kit/errorcode-device-manager.md)
+          <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
+          <!--DelEnd-->
       - Network Kit（网络服务）<!--network-api-->
         - ArkTS API<!--network-api-arkts-->
           - [@ohos.net.connection (网络连接管理)](reference/apis-network-kit/js-apis-net-connection.md)
