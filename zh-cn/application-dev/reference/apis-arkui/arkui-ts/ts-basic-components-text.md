@@ -1459,7 +1459,7 @@ struct TextExample8 {
         .width('100%')
         .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
       Row() {
-        Button('更改lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+        Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
           this.lineBreakStrategyIndex++
           if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
             this.lineBreakStrategyIndex = 0
