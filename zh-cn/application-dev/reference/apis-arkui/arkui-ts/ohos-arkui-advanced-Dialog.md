@@ -185,7 +185,7 @@ PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callbac
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | visible | boolean | 是 | \@Link | 跟手弹出框显示状态。<br/>默认值为false，隐藏弹窗。 |
-| popover | [PopoverOptions](#popoveroptions13) | 是 | \@Prop | 配置跟手弹出框的参数。 |
+| popover | [PopoverOptions](#popoveroptions) | 是 | \@Prop | 配置跟手弹出框的参数。 |
 | targetBuilder | Callback\<void> | 是 | - | 跟手弹出框基于的目标组件。 |
 
 
@@ -610,7 +610,7 @@ struct Index {
 跟手弹窗（警告弹窗为例）
 
 ```ts
-import { AlertDialog, PopoverDialog, PopOverOptions } from '@kit.ArkUI';
+import { AlertDialog, PopoverDialog, PopoverOptions } from '@kit.ArkUI';
 
 @Entry
 @Component
