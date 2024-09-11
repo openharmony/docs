@@ -158,7 +158,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 4. （可选）OH_AudioCodec_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
 
-    添加头文件
+    添加头文件:
 
     ```c++
     #include <multimedia/drm_framework/native_mediakeysystem.h>
@@ -166,13 +166,13 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
-    在 CMake 脚本中链接动态库
+    在 CMake 脚本中链接动态库:
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
     ```
 
-    使用示例
+    使用示例:
     ```c++
     // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例
     MediaKeySystem *system = nullptr;
