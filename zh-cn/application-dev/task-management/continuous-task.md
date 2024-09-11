@@ -84,7 +84,7 @@
                 "audioRecording"
                 ], 
                 "skills": [
-                    // 需添加隐式跳转的uris配置
+                    // 固定配置：使用长时任务
                     {
                         "entities": [
                            "entity.system.home"
@@ -93,7 +93,14 @@
                             "action.system.home"
                         ]    
                     },
+                    // 可选配置：如使用隐式跳转、applink等功能
                     {
+                        "entities": [
+                           "test"
+                        ],
+                        "actions": [
+                            "test"
+                        ],
                         "uris": [
                             {
                                 "scheme": "test"
