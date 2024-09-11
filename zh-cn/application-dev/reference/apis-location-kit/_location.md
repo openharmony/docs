@@ -23,42 +23,42 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[Location_BasicInfo](_location___basic_info.md) | 定义位置基本信息的结构体。  | 
+| struct [Location_BasicInfo](_location___basic_info.md) | 定义位置基本信息的结构体。  | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [Location_ResultCode](#location_resultcode)[Location_ResultCode](#location_resultcode) | 定义位置服务的错误码。  | 
-| typedef enum [Location_UseScene](#location_usescene)[Location_UseScene](#location_usescene) | 定义位置请求中的用户活动场景类型。  | 
-| typedef enum [Location_PowerConsumptionScene](#location_powerconsumptionscene)[Location_PowerConsumptionScene](#location_powerconsumptionscene) | 定义位置请求中的功耗场景类型。  | 
-| typedef enum [Location_SourceType](#location_sourcetype)[Location_SourceType](#location_sourcetype) | 定义位置信息的来源。  | 
-| typedef struct [Location_BasicInfo](_location___basic_info.md)[Location_BasicInfo](#location_basicinfo) | 定义位置基本信息的结构体。  | 
-| typedef struct [Location_Info](#location_info)[Location_Info](#location_info) | 定义位置信息的结构体。  | 
+| typedef enum [Location_ResultCode](#location_resultcode-1) [Location_ResultCode](#location_resultcode) | 定义位置服务的错误码。  | 
+| typedef enum [Location_UseScene](#location_usescene-1) [Location_UseScene](#location_usescene) | 定义位置请求中的用户活动场景类型。  | 
+| typedef enum [Location_PowerConsumptionScene](#location_powerconsumptionscene-1) [Location_PowerConsumptionScene](#location_powerconsumptionscene) | 定义位置请求中的功耗场景类型。  | 
+| typedef enum [Location_SourceType](#location_sourcetype-1) [Location_SourceType](#location_sourcetype) | 定义位置信息的来源。  | 
+| typedef struct [Location_BasicInfo](_location___basic_info.md) [Location_BasicInfo](#location_basicinfo) | 定义位置基本信息的结构体。  | 
+| typedef struct [Location_Info](#location_info) [Location_Info](#location_info) | 定义位置信息的结构体。  | 
 | typedef void(\* [Location_InfoCallback](#location_infocallback)) ([Location_Info](#location_info) \*location, void \*userData) | 用于接收位置上报的回调函数。  | 
-| typedef struct [Location_RequestConfig](#location_requestconfig)[Location_RequestConfig](#location_requestconfig) | 定义位置请求参数的结构体。  | 
+| typedef struct [Location_RequestConfig](#location_requestconfig) [Location_RequestConfig](#location_requestconfig) | 定义位置请求参数的结构体。  | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Location_ResultCode](#location_resultcode) {<br/>LOCATION_SUCCESS = 0, LOCATION_PERMISSION_DENIED = 201, LOCATION_INVALID_PARAM = 401, LOCATION_NOT_SUPPORTED = 801,<br/>LOCATION_SERVICE_UNAVAILABLE = 3301000, LOCATION_SWITCH_OFF = 3301100<br/>} | 定义位置服务的错误码。  | 
-| [Location_UseScene](#location_usescene) { LOCATION_USE_SCENE_NAVIGATION = 0x0401, LOCATION_USE_SCENE_SPORT = 0x0402, LOCATION_USE_SCENE_TRANSPORT = 0x0403, LOCATION_USE_SCENE_DAILY_LIFE_SERVICE = 0x0404 } | 定义位置请求中的用户活动场景类型。  | 
-| [Location_PowerConsumptionScene](#location_powerconsumptionscene) { LOCATION_HIGH_POWER_CONSUMPTION = 0x0601, LOCATION_LOW_POWER_CONSUMPTION = 0x0602, LOCATION_NO_POWER_CONSUMPTION = 0x0603 } | 定义位置请求中的功耗场景类型。  | 
-| [Location_SourceType](#location_sourcetype) { LOCATION_SOURCE_TYPE_GNSS = 1, LOCATION_SOURCE_TYPE_NETWORK = 2, LOCATION_SOURCE_TYPE_INDOOR = 3, LOCATION_SOURCE_TYPE_RTK = 4 } | 定义位置信息的来源。  | 
+| [Location_ResultCode](#location_resultcode-1) {<br/>LOCATION_SUCCESS = 0, LOCATION_PERMISSION_DENIED = 201, LOCATION_INVALID_PARAM = 401, LOCATION_NOT_SUPPORTED = 801,<br/>LOCATION_SERVICE_UNAVAILABLE = 3301000, LOCATION_SWITCH_OFF = 3301100<br/>} | 定义位置服务的错误码。  | 
+| [Location_UseScene](#location_usescene-1) { LOCATION_USE_SCENE_NAVIGATION = 0x0401, LOCATION_USE_SCENE_SPORT = 0x0402, LOCATION_USE_SCENE_TRANSPORT = 0x0403, LOCATION_USE_SCENE_DAILY_LIFE_SERVICE = 0x0404 } | 定义位置请求中的用户活动场景类型。  | 
+| [Location_PowerConsumptionScene](#location_powerconsumptionscene-1) { LOCATION_HIGH_POWER_CONSUMPTION = 0x0601, LOCATION_LOW_POWER_CONSUMPTION = 0x0602, LOCATION_NO_POWER_CONSUMPTION = 0x0603 } | 定义位置请求中的功耗场景类型。  | 
+| [Location_SourceType](#location_sourcetype-1) { LOCATION_SOURCE_TYPE_GNSS = 1, LOCATION_SOURCE_TYPE_NETWORK = 2, LOCATION_SOURCE_TYPE_INDOOR = 3, LOCATION_SOURCE_TYPE_RTK = 4 } | 定义位置信息的来源。  | 
 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Location_ResultCode](#location_resultcode)[OH_Location_IsLocatingEnabled](#oh_location_islocatingenabled) (bool \*enabled) | 查询位置开关是否开启。  | 
-| [Location_ResultCode](#location_resultcode)[OH_Location_StartLocating](#oh_location_startlocating) (const [Location_RequestConfig](#location_requestconfig) \*requestConfig) | 启动定位并订阅位置变化。  | 
-| [Location_ResultCode](#location_resultcode)[OH_Location_StopLocating](#oh_location_stoplocating) (const [Location_RequestConfig](#location_requestconfig) \*requestConfig) | 停止定位并取消订阅位置变化。  | 
-| [Location_BasicInfo](_location___basic_info.md)[OH_LocationInfo_GetBasicInfo](#oh_locationinfo_getbasicinfo) ([Location_Info](#location_info) \*location) | 获取位置基本信息。  | 
-| [Location_ResultCode](#location_resultcode)[OH_LocationInfo_GetAdditionalInfo](#oh_locationinfo_getadditionalinfo) ([Location_Info](#location_info) \*location, char \*additionalInfo, uint32_t length) | 获取位置信息中的附加信息。  | 
+| [Location_ResultCode](#location_resultcode-1) [OH_Location_IsLocatingEnabled](#oh_location_islocatingenabled) (bool \*enabled) | 查询位置开关是否开启。  | 
+| [Location_ResultCode](#location_resultcode-1) [OH_Location_StartLocating](#oh_location_startlocating) (const [Location_RequestConfig](#location_requestconfig) \*requestConfig) | 启动定位并订阅位置变化。  | 
+| [Location_ResultCode](#location_resultcode-1) [OH_Location_StopLocating](#oh_location_stoplocating) (const [Location_RequestConfig](#location_requestconfig) \*requestConfig) | 停止定位并取消订阅位置变化。  | 
+| [Location_BasicInfo](_location___basic_info.md) [OH_LocationInfo_GetBasicInfo](#oh_locationinfo_getbasicinfo) ([Location_Info](#location_info) \*location) | 获取位置基本信息。  | 
+| [Location_ResultCode](#location_resultcode-1) [OH_LocationInfo_GetAdditionalInfo](#oh_locationinfo_getadditionalinfo) ([Location_Info](#location_info) \*location, char \*additionalInfo, uint32_t length) | 获取位置信息中的附加信息。  | 
 | [Location_RequestConfig](#location_requestconfig) \* [OH_Location_CreateRequestConfig](#oh_location_createrequestconfig) (void) | 创建一个位置请求参数结构体实例。  | 
 | void [OH_Location_DestroyRequestConfig](#oh_location_destroyrequestconfig) ([Location_RequestConfig](#location_requestconfig) \*requestConfig) | 销毁位置请求参数实例并回收内存。  | 
 | void [OH_LocationRequestConfig_SetUseScene](#oh_locationrequestconfig_setusescene) ([Location_RequestConfig](#location_requestconfig) \*requestConfig, [Location_UseScene](#location_usescene) useScene) | 设置位置请求参数中的用户活动场景。<br/>位置请求参数[Location_RequestConfig](#location_requestconfig)中以useScene优先。<br/>如果设置了useScene，则powerConsumptionScene参数无效。<br/>如果未设置useScene，设置了powerConsumptionScene则该参数生效。<br/>如果两个参数都未设置，则默认useScene为LOCATION_USE_SCENE_DAILY_LIFE_SERVICE，<br/>powerConsumptionScene参数无效。 | 
@@ -73,7 +73,7 @@
 ### Location_BasicInfo
 
 ```
-typedef struct Location_BasicInfoLocation_BasicInfo
+typedef struct Location_BasicInfo Location_BasicInfo
 ```
 **描述**
 定义位置基本信息的结构体。
@@ -84,7 +84,7 @@ typedef struct Location_BasicInfoLocation_BasicInfo
 ### Location_Info
 
 ```
-typedef struct Location_InfoLocation_Info
+typedef struct Location_Info Location_Info
 ```
 **描述**
 定义位置信息的结构体。
@@ -113,7 +113,7 @@ typedef void(* Location_InfoCallback) (Location_Info *location, void *userData)
 ### Location_PowerConsumptionScene
 
 ```
-typedef enum Location_PowerConsumptionSceneLocation_PowerConsumptionScene
+typedef enum Location_PowerConsumptionScene Location_PowerConsumptionScene
 ```
 **描述**
 定义位置请求中的功耗场景类型。
@@ -124,7 +124,7 @@ typedef enum Location_PowerConsumptionSceneLocation_PowerConsumptionScene
 ### Location_RequestConfig
 
 ```
-typedef struct Location_RequestConfigLocation_RequestConfig
+typedef struct Location_RequestConfig Location_RequestConfig
 ```
 **描述**
 定义位置请求参数的结构体。
@@ -135,7 +135,7 @@ typedef struct Location_RequestConfigLocation_RequestConfig
 ### Location_ResultCode
 
 ```
-typedef enum Location_ResultCodeLocation_ResultCode
+typedef enum Location_ResultCode Location_ResultCode
 ```
 **描述**
 定义位置服务的错误码。
@@ -146,7 +146,7 @@ typedef enum Location_ResultCodeLocation_ResultCode
 ### Location_SourceType
 
 ```
-typedef enum Location_SourceTypeLocation_SourceType
+typedef enum Location_SourceType Location_SourceType
 ```
 **描述**
 定义位置信息的来源。
@@ -157,7 +157,7 @@ typedef enum Location_SourceTypeLocation_SourceType
 ### Location_UseScene
 
 ```
-typedef enum Location_UseSceneLocation_UseScene
+typedef enum Location_UseScene Location_UseScene
 ```
 **描述**
 定义位置请求中的用户活动场景类型。
@@ -197,12 +197,12 @@ enum Location_ResultCode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| LOCATION_SUCCESS  | 操作成功。&nbsp;&nbsp; | 
-| LOCATION_PERMISSION_DENIED  | 权限校验失败。&nbsp;&nbsp; | 
+| LOCATION_SUCCESS  | 操作成功。   | 
+| LOCATION_PERMISSION_DENIED  | 权限校验失败。   | 
 | LOCATION_INVALID_PARAM  | 参数错误。<br/>可能原因：1.输入参数为空指针；2.参数数值超出定义范围。 | 
-| LOCATION_NOT_SUPPORTED  | 该功能不支持。由于设备能力有限，无法调用该函数。&nbsp;&nbsp; | 
-| LOCATION_SERVICE_UNAVAILABLE  | 位置服务不可用。&nbsp;&nbsp; | 
-| LOCATION_SWITCH_OFF  | 位置开关处于关闭状态。&nbsp;&nbsp; | 
+| LOCATION_NOT_SUPPORTED  | 该功能不支持。由于设备能力有限，无法调用该函数。   | 
+| LOCATION_SERVICE_UNAVAILABLE  | 位置服务不可用。   | 
+| LOCATION_SWITCH_OFF  | 位置开关处于关闭状态。   | 
 
 
 ### Location_SourceType
@@ -217,10 +217,10 @@ enum Location_SourceType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| LOCATION_SOURCE_TYPE_GNSS  | 表示定位结果来自于GNSS定位技术。&nbsp;&nbsp; | 
-| LOCATION_SOURCE_TYPE_NETWORK  | 表示定位结果来自于网络定位技术。&nbsp;&nbsp; | 
-| LOCATION_SOURCE_TYPE_INDOOR  | 表示定位结果来自于室内高精度定位技术。&nbsp;&nbsp; | 
-| LOCATION_SOURCE_TYPE_RTK  | 表示定位结果来自于室外高精度定位技术。&nbsp;&nbsp; | 
+| LOCATION_SOURCE_TYPE_GNSS  | 表示定位结果来自于GNSS定位技术。   | 
+| LOCATION_SOURCE_TYPE_NETWORK  | 表示定位结果来自于网络定位技术。   | 
+| LOCATION_SOURCE_TYPE_INDOOR  | 表示定位结果来自于室内高精度定位技术。   | 
+| LOCATION_SOURCE_TYPE_RTK  | 表示定位结果来自于室外高精度定位技术。   | 
 
 
 ### Location_UseScene
