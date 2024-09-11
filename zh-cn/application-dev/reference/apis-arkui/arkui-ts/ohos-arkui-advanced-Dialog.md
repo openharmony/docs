@@ -172,7 +172,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 
 ## PopoverDialog<sup>13+</sup>
 
-PopoverDialog({visible: boolean, popover: PopOverOptions, targetBuilder: Callback\<void>})
+PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callback\<void>})
 
 跟手弹窗，基于目标组件位置弹出，上文中的各种CustomDialog也可作为弹窗内容。
 
