@@ -115,16 +115,16 @@
 | const char \* [OH_MD_KEY_I_FRAME_INTERVAL](_codec_base.md#oh_md_key_i_frame_interval) | 关键帧间隔的键，值类型为int32_t，单位为毫秒。 | 
 | const char \* [OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation) | surface旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。该键只在视频解码surface模式下使用。 |
 | const char \* [OH_MD_KEY_RANGE_FLAG](_codec_base.md#oh_md_key_range_flag) | 视频YUV值域标志的键，值类型为int32_t，1表示full range，0表示limited range。 |
-| const char \* [OH_MD_KEY_COLOR_PRIMARIES](_codec_base.md#oh_md_key_color_primaries) | 视频色域的键, 值类型为int32_t, 请参见[OH_ColorPrimary](_codec_base.md#oh_colorprimary)，遵循H.273标准Table2。 | 
-| const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](_codec_base.md#oh_md_key_transfer_characteristics) | 视频传递函数的键，值类型为int32_t,请参见[OH_TransferCharacteristic](_codec_base.md#oh_transfercharacteristic)，遵循H.273标准Table3。 | 
-| const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](_codec_base.md#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t,请参见[OH_MatrixCoefficient](_codec_base.md#oh_matrixcoefficient)，遵循H.273标准Table4。 | 
+| const char \* [OH_MD_KEY_COLOR_PRIMARIES](_codec_base.md#oh_md_key_color_primaries) | 视频色域的键，值类型为int32_t，请参见[OH_ColorPrimary](_codec_base.md#oh_colorprimary)，遵循H.273标准Table2。 | 
+| const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](_codec_base.md#oh_md_key_transfer_characteristics) | 视频传递函数的键，值类型为int32_t，请参见[OH_TransferCharacteristic](_codec_base.md#oh_transfercharacteristic)，遵循H.273标准Table3。 | 
+| const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](_codec_base.md#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t，请参见[OH_MatrixCoefficient](_codec_base.md#oh_matrixcoefficient)，遵循H.273标准Table4。 | 
 | const char \* [OH_MD_KEY_REQUEST_I_FRAME](_codec_base.md#oh_md_key_request_i_frame) | 请求立即编码I帧的键。值类型为int32_t。 |
 | const char \* [OH_MD_KEY_QUALITY](_codec_base.md#oh_md_key_quality) | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。 | 
 | const char \* [OH_MD_KEY_CODEC_CONFIG](_codec_base.md#oh_md_key_codec_config) | 编解码器特定数据的键，值类型为uint8_t\*。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_MD_KEY_TRACK_START_TIME](_codec_base.md#oh_md_key_track_start_time) | 轨道开始时间的键，值类型为int64_t。     |
 | const char \* [OH_MD_KEY_TITLE](_codec_base.md#oh_md_key_title) | 媒体文件的标题的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_ARTIST](_codec_base.md#oh_md_key_artist) | 媒体文件艺术家的键，值类型为string。 | 
-| const char \* [OH_MD_KEY_ALBUM](_codec_base.md#oh_md_key_album) | 专辑的媒体文件键，值类型为string。 | 
+| const char \* [OH_MD_KEY_ALBUM](_codec_base.md#oh_md_key_album) | 专辑的媒体文件的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_ALBUM_ARTIST](_codec_base.md#oh_md_key_album_artist) | 专辑艺术家的键，值类型为string。 | 
 | const char \* [OH_MD_KEY_DATE](_codec_base.md#oh_md_key_date) | 媒体文件日期的键，值类型为string，例如2024年。 | 
 | const char \* [OH_MD_KEY_COMMENT](_codec_base.md#oh_md_key_comment) | 媒体文件注释的键，值类型为string。 | 
@@ -165,9 +165,9 @@
 | const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](_codec_base.md#oh_md_key_video_slice_height) | 描述视频帧高跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](_codec_base.md#oh_md_key_video_pic_width) | 描述视频帧真实宽度的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_HEIGHT](_codec_base.md#oh_md_key_video_pic_height) | 描述视频帧真实高度的键，值类型为int32_t。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](_codec_base.md#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](_codec_base.md#oh_md_key_video_encoder_qp_max) | 描述视频编码器允许的最大量化参数的键, 值类型为int32_t。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](_codec_base.md#oh_md_key_video_encoder_qp_min) | 描述视频编码器允许的最小量化参数的键, 值类型为int32_t。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](_codec_base.md#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](_codec_base.md#oh_md_key_video_encoder_qp_max) | 描述视频编码器允许的最大量化参数的键，值类型为int32_t。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](_codec_base.md#oh_md_key_video_encoder_qp_min) | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE](_codec_base.md#oh_md_key_video_encoder_qp_average) | 描述视频帧平均量化参数的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_MSE](_codec_base.md#oh_md_key_video_encoder_mse)     |描述视频帧平方误差的键，值类型为double。  |
 | const char \* [OH_MD_KEY_DECODING_TIMESTAMP](_codec_base.md#oh_md_key_decoding_timestamp) | AVBuffer中携带的音视频或字幕的sample对应的解码时间戳的键，以微秒为单位，值类型为int64_t。  |
