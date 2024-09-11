@@ -354,7 +354,7 @@
 
 ### 数据提供方应用的开发
 
-数据提供方调用开启动态开启静默访问接口，来开启静默访问功能。此接口是搭配data_share_config.json文件中isSilentProxyEnable字段进行工作的。支持的配置可参考[data_share_config.json配置](./share-data-by-datashareextensionability.md#数据提供方应用的开发（仅限系统应用）)
+数据提供方调用开启动态开启静默访问接口，来开启静默访问功能。此接口是搭配data_share_config.json文件中isSilentProxyEnable字段进行工作的。支持的配置可参考[data_share_config.json配置](./share-data-by-datashareextensionability.md)
 
 > 注意：
 >
