@@ -159,7 +159,7 @@ RichEditor(this.options)
 
 ![alt text](figures/richeditor_image_placeholder.gif)
 
-更多属性使用请参考[属性](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#属性)。
+更多属性使用请参考[RichEditor属性](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#属性)。
 
 ## 添加事件
 ### 添加组件初始化完成后可触发的回调
@@ -407,7 +407,7 @@ RichEditor(this.options)
 ![alt text](figures/richeditor_image_oncut_paste_copy.gif)
 
 
-更多事件使用请参考[事件](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#事件)。
+更多事件使用请参考[RichEditor事件](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#事件)。
 
 ## 设置用户预设的样式
 
