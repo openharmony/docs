@@ -208,7 +208,7 @@ PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callbac
 
 ## PopoverOptions<sup>13+</sup>
 
-继承自[CustomPopupOptions](../arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8)。
+继承自[CustomPopupOptions](../arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8类型说明)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
