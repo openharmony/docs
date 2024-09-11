@@ -102,7 +102,7 @@ System applications can load the created WindowExtensionAbility through the Abil
      build() {
        Row() {
          Column() {
-           AbilityComponent({ abilityName: "WindowExtAbility", bundleName: "com.example.WindowExtAbility"})
+           AbilityComponent({want:{abilityName: "WindowExtAbility", bundleName: "com.example.WindowExtAbility"}})
              .width(500)
              .height(500)
          }
