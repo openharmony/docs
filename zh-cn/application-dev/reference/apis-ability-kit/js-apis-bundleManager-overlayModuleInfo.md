@@ -9,7 +9,7 @@ OverlayModuleInfo信息，三方应用可以通过[overlay.getOverlayModuleInfo]
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称                  | 类型                                                | 可读 | 可写 | 说明                                            |
+| 名称                  | 类型                                                | 只读 | 可选 | 说明                                            |
 | --------------------- | ---------------------------------------------------| ---- | ---- | ---------------------------------------------- |
 | bundleName            | string                                             | 是   | 否   | overlay特征module所属的应用的bundle名称。           |
 | moduleName            | string                                             | 是   | 否   | overlay特征module的名称。                       |
