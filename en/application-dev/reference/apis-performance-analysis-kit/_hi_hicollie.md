@@ -159,7 +159,7 @@ Registers a callback to detect service thread jank events. To monitor thread jan
 | -------- | -------- |
 | beginFunc | Callback used before the service thread processes the event. If you want to cancel the detection, pass a null pointer to **beginFunc** and **endFunc**.|
 | endFunc | Callback used after the service thread processed the event. If you want to cancel the detection, pass a null pointer to **beginFunc** and **endFunc**.|
-| param | Parameters of the user-defined jank event detection. For details, see [HiCollie_DetectionParam](_hi_hicollie___detection_param.md).|
+| param | Parameters of the user-defined jank event detection. Extended parameters for future development use. For details, see [HiCollie_DetectionParam](_hi_hicollie___detection_param.md).|
 
 **Returns**
 

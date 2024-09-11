@@ -9,7 +9,7 @@ Text是文本组件，通常用于展示用户视图，如显示文章的文字�
 Text可通过以下两种方式来创建：
 
 
-- string字符串
+- string字符串。
 
   ```ts
   Text('我是一段文本')
@@ -19,7 +19,7 @@ Text可通过以下两种方式来创建：
 ![zh-cn_image_0000001563060685](figures/zh-cn_image_0000001563060685.png)
 
 
-- 引用Resource资源
+- 引用Resource资源。
 
   资源引用类型可以通过$r创建Resource类型对象，文件位置为/resources/base/element/string.json。
 

@@ -1311,7 +1311,7 @@ currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastContr
 
 getAVCastController(): Promise\<AVCastController>
 
-设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
+设备建立连接后，获取投播控制器。结果通过Promise异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

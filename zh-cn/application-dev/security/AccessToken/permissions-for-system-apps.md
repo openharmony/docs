@@ -579,7 +579,7 @@
 
 ### ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
-允许应用安装企业InHouse应用
+允许应用安装企业InHouse应用。
 
 **权限级别**：system_core
 
@@ -591,7 +591,7 @@
 
 ### ohos.permission.INSTALL_BUNDLE
 
-允许应用安装、卸载其他应用（除了企业相关应用，目前有企业InHouse应用，企业MDM应用和企业normal应用）
+允许应用安装、卸载其他应用（除了企业相关应用，目前有企业InHouse应用，企业MDM应用和企业normal应用）。
 
 **权限级别**：system_core
 
@@ -603,7 +603,7 @@
 
 ### ohos.permission.MANAGE_SHORTCUTS
 
-允许应用查询其他应用的快捷方式信息、启动其他应用的快捷方式
+允许应用查询其他应用的快捷方式信息、启动其他应用的快捷方式。
 
 **权限级别**：system_core
 
@@ -759,7 +759,7 @@
 
 ### ohos.permission.BACKUP
 
-允许应用拥有备份恢复能力
+允许应用拥有备份恢复能力。
 
 **权限级别**：system_basic
 
@@ -771,7 +771,7 @@
 
 ### ohos.permission.MOUNT_FORMAT_MANAGER
 
-允许应用对外卡进行格式化操作
+允许应用对外卡进行格式化操作。
 
 **权限级别**：system_basic
 
@@ -783,7 +783,7 @@
 
 ### ohos.permission.MOUNT_UNMOUNT_MANAGER
 
-允许应用对外卡进行挂载卸载操作
+允许应用对外卡进行挂载卸载操作。
 
 **权限级别**：system_basic
 
@@ -819,7 +819,7 @@
 
 ### ohos.permission.ACCESS_CAST_ENGINE_STREAM
 
-允许应用调用系统资源投射能力
+允许应用调用系统资源投射能力。
 
 **权限级别**：system_basic
 
@@ -891,7 +891,7 @@
 
 ### ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
-允许应用采集语音下行音频
+允许应用采集语音下行音频。
 
 **权限级别**：system_basic
 
@@ -903,7 +903,7 @@
 
 ### ohos.permission.GET_WIFI_INFO_INTERNAL
 
-允许系统进程获取Wi-Fi相关参数
+允许系统进程获取Wi-Fi相关参数。
 
 **权限级别**：system_core
 
@@ -2597,7 +2597,7 @@
 
 **ACL使能**：true
 
-起始版本: 11
+**起始版本**: 11
 
 ### ohos.permission.MANAGE_PRIVATE_PHOTOS
 
@@ -2635,7 +2635,7 @@
 
 **ACL使能**：true
 
-起始版本: 11
+**起始版本**: 11
 
 ### ohos.permission.MANAGE_APP_INSTALL_INFO
 
@@ -2659,7 +2659,7 @@
 
 **ACL使能**：true
 
-起始版本: 11
+**起始版本**: 11
 
 ### ohos.permission.ACCESS_HIVIEWX
 
@@ -3846,6 +3846,30 @@
 允许系统应用在后台使用相机。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.CALLED_TRANSITION_ON_LOCK_SCREEN
+
+允许应用被位于锁屏界面的其他应用拉起并直接跳转。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.CALLED_BELOW_LOCK_SCREEN
+
+允许应用在处于锁屏状态时进行启动。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

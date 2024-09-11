@@ -1873,15 +1873,15 @@ layoutMode(mode: WebLayoutMode)
 
 ### nestedScroll<sup>11+</sup>
 
-nestedScroll(value: NestedScrollOptions)
+nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 
 调用以设置嵌套滚动选项。
 
 > **说明：**
 >
-> - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
-> - 支持设置不同的向前向后两个方向上的嵌套滚动模式。
-> - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
+> - 可以设置上下左右四个方向，或者设置向前、向后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
+> - value为NestedScrollOptionsExt（上下左右四个方向）类型时，scrollUp、scrollDown、scrollLeft、scrollRight默认滚动选项为NestedScrollMode.SELF_FIRST。
+> - value为NestedScrollOptions（向前、向后两个方向）类型时，scrollForward、scrollBackward默认滚动选项为NestedScrollMode.SELF_FIRST。
 > - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 > - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
@@ -1890,7 +1890,7 @@ nestedScroll(value: NestedScrollOptions)
 
 | 参数名   | 参数类型                                     | 必填   | 参数描述             |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](#nestedscrolloptions11对象说明) | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
+| value | [NestedScrollOptions](#nestedscrolloptions11对象说明) \| [NestedScrollOptionsExt](#nestedscrolloptionsext13对象说明)<sup>13+</sup> | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
 
 **示例：**
 
@@ -1912,6 +1912,65 @@ nestedScroll(value: NestedScrollOptions)
       }
     }
   }
+  ```
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController()
+    build() {
+      Scroll(){
+        Column() {
+          Text("嵌套Web")
+            .height("25%")
+            .width("100%")
+            .fontSize(30)
+            .backgroundColor(Color.Yellow)
+          Web({ src: $rawfile('index.html'),
+                controller: this.controller })
+            .nestedScroll({
+              scrollUp: NestedScrollMode.SELF_FIRST,
+              scrollDown: NestedScrollMode.PARENT_FIRST,
+              scrollLeft: NestedScrollMode.SELF_FIRST,
+              scrollRight: NestedScrollMode.SELF_FIRST,
+            })
+        }
+      }
+    }
+  }
+  ```
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <style>
+      .blue {
+        background-color: lightblue;
+      }
+      .green {
+        background-color: lightgreen;
+      }
+      .blue, .green {
+       width: 100%;
+  	 font-size:70px;
+  	 height:1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blue" align="center" >滚动1</div>
+    <div class="green" align="center">滚动2</div>
+    <div class="blue" align="center">滚动3</div>
+    <div class="green" align="center">滚动4</div>
+    <div class="blue" align="center">滚动5</div>
+    <div class="green" align="center">滚动6</div>
+    <div class="blue" align="center">滚动7</div>
+  </body>
+  </html>
   ```
 ### enableNativeEmbedMode<sup>11+</sup>
 enableNativeEmbedMode(mode: boolean)
@@ -7144,6 +7203,17 @@ Web屏幕捕获的配置。
 | -------------- | ---------------- | -------------------- |
 | scrollForward  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
 | scrollBackward | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
+
+## NestedScrollOptionsExt<sup>13+</sup>对象说明
+
+通过NestedScrollOptionsExt可以设置上下左右四个方向的嵌套滚动规则。
+
+| 名称             | 类型               | 描述                   |
+| -------------- | ---------------- | -------------------- |
+| scrollUp  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往上滚动时的嵌套滚动选项。 |
+| scrollDown | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往下滚动时的嵌套滚动选项。 |
+| scrollLeft  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往左滚动时的嵌套滚动选项。 |
+| scrollRight | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往右滚动时的嵌套滚动选项。 |
 
 ## NestedScrollMode<sup>11+</sup>枚举说明
 

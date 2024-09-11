@@ -14,7 +14,7 @@
    import { osAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
-3. 获取获取系统账号管理对象。
+3. 获取系统账号管理对象。
 
    ```ts
    let osAccountMgr = osAccount.getAccountManager();

@@ -2368,6 +2368,8 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 
 订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
 
+在订阅此监听时，建议参考[响应音频流输出设备变更](../../media/audio/audio-output-device-change.md)自行实现设备连接或者断开时的播放器行为。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
