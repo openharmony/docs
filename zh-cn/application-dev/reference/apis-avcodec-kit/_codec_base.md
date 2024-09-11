@@ -39,7 +39,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 用于描述媒体数据的键值对查找表如下。键的类型是常量字符串，值的类型可以是int32_t/int64_t/float/double/char */uint8_t *。
 
-使用以下key的主要接口是OH_AVFormat, 通过以下key可以进行参数配置或查询。
+使用以下key的主要接口是OH_AVFormat，通过以下key可以进行参数配置或查询。
 
 能力查询专有的键值对：
 
@@ -52,10 +52,10 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config)            | 编解码器特定数据的键，视频中表示传递SPS/PPS，音频中表示传递extraData，值类型为uint8_t\*。该键是可选的。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd--> |
-| [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | 最大输入缓冲区个数的键, 值类型为int32_t。该键是可选的。      |
-| [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | 最大输出缓冲区个数的键, 值类型int32_t。该键是可选的。        |
+| [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | 最大输入缓冲区个数的键，值类型为int32_t。该键是可选的。      |
+| [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | 最大输出缓冲区个数的键，值类型int32_t。该键是可选的。        |
 | [OH_MD_KEY_BITRATE](#oh_md_key_bitrate)                      | 比特率的键，值类型为int64_t。该键用于音视频编码场景。在视频编码场景下该键是可选的。 |
-| [OH_MD_KEY_PROFILE](#oh_md_key_profile)                      | 编码档次，值类型为int32_t，请参见[OH_AVCProfile](#oh_avcprofile)，[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。该键是可选的。 |
+| [OH_MD_KEY_PROFILE](#oh_md_key_profile)                      | 编码档次，值类型为int32_t，请参见[OH_AVCProfile](#oh_avcprofile)，[OH_HEVCProfile](#oh_hevcprofile)，[OH_AACProfile](#oh_aacprofile)。该键是可选的。 |
 | [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size)        | 设置解码输入码流大小最大值的键，值类型为int32_t。该键是可选的。           |
 
 
@@ -70,19 +70,19 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_PIXEL_FORMAT](#oh_md_key_pixel_format)            | 视频像素格式的键，值类型为int32_t，请参见[OH_AVPixelFormat](_core.md#oh_avpixelformat)。 |
 | [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate)                | 视频帧率的键，值类型为double。该键是可选的。                 |
 | [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag)                | 视频YUV值域标志的键，值类型为int32_t，1表示full range，0表示limited range。该键是可选的。 |
-| [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries)      | 视频色域的键, 值类型为int32_t, 请参见[OH_ColorPrimary](#oh_colorprimary)，遵循H.273标准Table2。该键是可选的。 |
-| [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | 视频传递函数的键，值类型为int32_t,请参见[OH_TransferCharacteristic](#oh_transfercharacteristic)，遵循H.273标准Table3。该键是可选的。 |
-| [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t,请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)，遵循H.273标准Table4。该键是可选的。 |
+| [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries)      | 视频色域的键，值类型为int32_t，请参见[OH_ColorPrimary](#oh_colorprimary)，遵循H.273标准Table2。该键是可选的。 |
+| [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | 视频传递函数的键，值类型为int32_t，请参见[OH_TransferCharacteristic](#oh_transfercharacteristic)，遵循H.273标准Table3。该键是可选的。 |
+| [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t，请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)，遵循H.273标准Table4。该键是可选的。 |
 | [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride)       | 描述视频帧宽跨距的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height)    | 描述视频帧高跨距的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width)       | 描述视频帧真实宽度的键，值类型为int32_t。该键是可选的。        |
 | [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height)    | 描述视频帧真实高度的键，值类型为int32_t。该键是可选的。        |
-| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选，在configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency)   | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。该键是可选，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)。该键是可选的。 |
 | [OH_MD_KEY_QUALITY](#oh_md_key_quality)                      | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。该键是可选的。 |
 | [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame)      | 请求立即编码I帧的键。值类型为int32_t。该键是可选的。            |
 | [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval)    | 关键帧间隔的键，值类型为int32_t，单位为毫秒。该键是可选的且只用于视频编码。 |
-| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability)          | 使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。该键是可选的且只用于视频编码，在configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability)          | 使能分层编码的键，值类型为int32_t，1表示使能，0表示其它情况。该键是可选的且只用于视频编码，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size)       | 描述图片组基本层图片的间隔大小的键，值类型为int32_t，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode)         | 描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1)，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count)        | 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。该键是可选的且只用于视频编码。|
@@ -96,7 +96,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_ENCODER_MSE](#oh_md_key_video_encoder_mse)     |描述视频帧平方误差的键，值类型为double。该键是可选的。  |
 | [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)    | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
 | [OH_MD_KEY_ROTATION](#oh_md_key_rotation)                    | surface旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。该键只在视频解码Surface模式下使用。该键是可选的。 |
-| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的且只用于视频解码Surface模式。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。|
+| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频缩放模式，值类型为int32_t，请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的且只用于视频解码Surface模式。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。|
 | [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top)       | 描述裁剪矩形顶部坐标(y)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom)        | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
@@ -132,7 +132,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_DURATION](#oh_md_key_duration)                    | 媒体文件持续时间的键，值类型为int64_t。该键是可选的。                  |
 | [OH_MD_KEY_TITLE](#oh_md_key_title)                          | 媒体文件标题的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_ARTIST](#oh_md_key_artist)                        | 艺术家的键，值类型为string。该键是可选的。             |
-| [OH_MD_KEY_ALBUM](#oh_md_key_album)                          | 专辑的媒体文件键，值类型为string。该键是可选的。               |
+| [OH_MD_KEY_ALBUM](#oh_md_key_album)                          | 专辑的媒体文件的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist)            | 专辑艺术家的键，值类型为string。该键是可选的。               |
 | [OH_MD_KEY_DATE](#oh_md_key_date)                            | 媒体文件日期的键，值类型为string，例如2024年。该键是可选的。    |
 | [OH_MD_KEY_COMMENT](#oh_md_key_comment)                      | 媒体文件注释的键，值类型为string。该键是可选的。               |
@@ -246,10 +246,10 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
 | const char \* [OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT](#oh_feature_property_key_video_encoder_max_ltr_frame_count) | 在视频编码中获取长期参考帧的最大个数的键，值类型为int32_t。  |
 | const char \* [OH_MD_KEY_CODEC_CONFIG](#oh_md_key_codec_config) | 编解码器特定数据的键，视频中表示传递SPS/PPS，音频中表示传递extraData，值类型为uint8_t\*。 <!--Del-->（视频编解码此功能暂未支持）<!--DelEnd--> |
-| const char \* [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | 最大输入缓冲区个数的键, 值类型为int32_t。 |
-| const char \* [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | 最大输出缓冲区个数的键, 值类型int32_t。 |
+| const char \* [OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | 最大输入缓冲区个数的键，值类型为int32_t。 |
+| const char \* [OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | 最大输出缓冲区个数的键，值类型int32_t。 |
 | const char \* [OH_MD_KEY_BITRATE](#oh_md_key_bitrate) | 比特率的键，值类型为int64_t。 |
-| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | 编码档次，值类型为int32_t，请参见[OH_AVCProfile](#oh_avcprofile), [OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。 |
+| const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | 编码档次，值类型为int32_t，请参见[OH_AVCProfile](#oh_avcprofile)，[OH_HEVCProfile](#oh_hevcprofile)，[OH_AACProfile](#oh_aacprofile)。 |
 | const char \* [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size) | 设置解码输入码流大小最大值的键，值类型为int32_t。 |
 | const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | 表示surfacebuffer时间戳的键，值类型为int64_t。 <!--Del-->（此功能暂未支持）<!--DelEnd--> |
 | const char \* [OH_ED_KEY_EOS](#oh_ed_key_eos) | 表示surfacebuffer流结束符的键，值类型为int32_t。 <!--Del-->（此功能暂未支持）<!--DelEnd--> |
@@ -259,10 +259,10 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_FRAME_RATE](#oh_md_key_frame_rate) | 视频帧率的键，值类型为double。 |
 | const char \* [OH_MD_KEY_ROTATION](#oh_md_key_rotation) | surface旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。该键只在视频解码Surface模式下使用。 |
 | const char \* [OH_MD_KEY_RANGE_FLAG](#oh_md_key_range_flag) | 视频YUV值域标志的键，值类型为int32_t，1表示full range，0表示limited range。 |
-| const char \* [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | 视频色域的键, 值类型为int32_t, 请参见[OH_ColorPrimary](#oh_colorprimary)，遵循H.273标准Table2。 |
-| const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | 视频传递函数的键，值类型为int32_t,请参见[OH_TransferCharacteristic](#oh_transfercharacteristic)，遵循H.273标准Table3。 |
-| const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t,请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)，遵循H.273标准Table4。 |
-| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | 视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的且只用于视频解码Surface模式。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。|
+| const char \* [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | 视频色域的键，值类型为int32_t，请参见[OH_ColorPrimary](#oh_colorprimary)，遵循H.273标准Table2。 |
+| const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | 视频传递函数的键，值类型为int32_t，请参见[OH_TransferCharacteristic](#oh_transfercharacteristic)，遵循H.273标准Table3。 |
+| const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | 视频矩阵系数的键，值类型为int32_t，请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)，遵循H.273标准Table4。 |
+| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | 视频缩放模式，值类型为int32_t，请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的且只用于视频解码Surface模式。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。|
 | const char \* [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top) | 描述裁剪矩形顶部坐标(y)值的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom) | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left) | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。  | 
@@ -271,21 +271,21 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height) | 描述视频帧高跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width) | 描述视频帧真实宽度的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height) | 描述视频帧真实高度的键，值类型为int32_t。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。   | 
+| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。   | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode)。 |
 | const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。 |
 | const char \* [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | 请求立即编码I帧的键。值类型为int32_t。 |
 | const char \* [OH_MD_KEY_I_FRAME_INTERVAL](#oh_md_key_i_frame_interval) | 关键帧间隔的键，值类型为int32_t，单位为毫秒。该键是可选的且只用于视频编码。 |
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability) | 使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size) | 描述图片组基本层图片的间隔大小的键, 值类型为int32_t，只在使能分层编码时生效。  |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability) | 使能分层编码的键，值类型为int32_t，1表示使能，0表示其它情况。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size) | 描述图片组基本层图片的间隔大小的键，值类型为int32_t，只在使能分层编码时生效。  |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode) | 描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode)，只在使能分层编码时生效。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count) | 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。该键是可选的且只用于视频编码。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr) | 标记当前帧为长期参考帧的键，值类型为int32_t，1表示被标记，0表示其它情况。该键是可选的且只用于视频编码。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr) | 描述当前帧参考的长期参考帧帧号的键，值类型为int32_t。该键是可选的且只用于视频编码。  | 
 | const char \* [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr) | 当前OH_AVBuffer中输出的码流对应的帧是否为长期参考帧的键，值类型为int32_t，1表示是LTR，0表示其它情况。该键是可选的且只用于视频编码。  | 
 | const char \* [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc) | 描述帧的POC的键，值类型为int32_t。该键是可选的且只用于视频编码。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max) | 描述视频编码器允许的最大量化参数的键, 值类型为int32_t。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min) | 描述视频编码器允许的最小量化参数的键, 值类型为int32_t。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max) | 描述视频编码器允许的最大量化参数的键，值类型为int32_t。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min) | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE](#oh_md_key_video_encoder_qp_average) | 描述视频帧平均量化参数的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_MSE](#oh_md_key_video_encoder_mse)     |描述视频帧平方误差的键，值类型为double。  |
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)   | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
@@ -309,7 +309,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_DURATION](#oh_md_key_duration) | 媒体文件持续时间的键，值类型为int64_t。 |
 | const char \* [OH_MD_KEY_TITLE](#oh_md_key_title) | 媒体文件标题的键，值类型为string。 |
 | const char \* [OH_MD_KEY_ARTIST](#oh_md_key_artist) | 媒体文件艺术家的键，值类型为string。 |
-| const char \* [OH_MD_KEY_ALBUM](#oh_md_key_album) | 专辑的媒体文件键，值类型为string。 |
+| const char \* [OH_MD_KEY_ALBUM](#oh_md_key_album) | 专辑的媒体文件的键，值类型为string。 |
 | const char \* [OH_MD_KEY_ALBUM_ARTIST](#oh_md_key_album_artist) | 专辑艺术家的键，值类型为string。 |
 | const char \* [OH_MD_KEY_DATE](#oh_md_key_date) | 媒体文件日期的键，值类型为string，例如2024年。 |
 | const char \* [OH_MD_KEY_COMMENT](#oh_md_key_comment) | 媒体文件注释的键，值类型为string。 |
@@ -425,7 +425,7 @@ typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *u
 | 使用场景| 错误码 |
 | -------- | -------- |
 | 视频编解码 | AV_ERROR_NO_MEMORY：系统资源不足。<br>AV_ERROR_UNKNOWN：未知错误，请通过具体日志分析。  |
-| 视频解码 | AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：当前输入不支持颜色空间转换功能。  |
+| 视频解码 | AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：当前输入不支持色彩空间转换功能。  |
 | 音频编解码 | AV_ERR_DRM_DECRYPT_FAILED：DRM解密失败。  |
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
@@ -438,7 +438,7 @@ typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *u
 | -------- | -------- |
 | codec | OH_AVCodec实例。  | 
 | errorCode | 特定错误代码。  | 
-| userData | 用户执行回到所依赖的数据。  | 
+| userData | 用户执行回调所依赖的数据。  |
 
 
 ### OH_AVCodecOnNeedInputBuffer
@@ -460,7 +460,7 @@ typedef void(* OH_AVCodecOnNeedInputBuffer) (OH_AVCodec *codec, uint32_t index, 
 | codec | OH_AVCodec实例。  | 
 | index | 与新可用的输入缓冲区相对应的索引。  | 
 | buffer | 新的可用输入缓冲区。  | 
-| userData | 用户执行回到所依赖的数据。  | 
+| userData | 用户执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNeedInputData
@@ -486,7 +486,7 @@ typedef void(* OH_AVCodecOnNeedInputData) (OH_AVCodec *codec, uint32_t index, OH
 | codec | OH_AVCodec实例。  | 
 | index | 与新可用的输入缓冲区相对应的索引。  | 
 | data | 新的可用输入缓冲区。  | 
-| userData | 用户执行回到所依赖的数据。  | 
+| userData | 用户执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNewOutputBuffer
@@ -508,7 +508,7 @@ typedef void(* OH_AVCodecOnNewOutputBuffer) (OH_AVCodec *codec, uint32_t index, 
 | codec | OH_AVCodec实例。  | 
 | index | 与新输出缓冲区对应的索引。  | 
 | buffer | 包含新输出数据的缓冲区。  | 
-| userData | 用户执行回到所依赖的数据。  | 
+| userData | 用户执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNewOutputData
@@ -535,7 +535,7 @@ typedef void(* OH_AVCodecOnNewOutputData) (OH_AVCodec *codec, uint32_t index, OH
 | index | 与新输出缓冲区对应的索引。  | 
 | data | 包含新输出数据的缓冲区。  | 
 | attr | 新输出缓冲区的说明，请参见**OH_AVCodecBufferAttr**。  | 
-| userData | 用户执行回到所依赖的数据。  | 
+| userData | 用户执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnStreamChanged
@@ -557,7 +557,7 @@ OH_AVFormat指针的生命周期只有在函数指针被调用时才有效，调
 | -------- | -------- |
 | codec | OH_AVCodec实例。  |
 | format | 新输出流描述信息。  |
-| userData | 用户执行回到所依赖的数据。  |
+| userData | 用户执行回调所依赖的数据。  |
 
 
 ### OH_AVCProfile
@@ -1532,7 +1532,7 @@ aac格式的键，aac格式分为ADTS格式和LATM格式。值类型为int32_t�
 const char* OH_MD_KEY_ALBUM
 ```
 **描述**
-专辑的媒体文件键，值类型为string。
+专辑的媒体文件的键，值类型为string。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1715,7 +1715,7 @@ const char* OH_MD_KEY_CODEC_MIME
 const char* OH_MD_KEY_COLOR_PRIMARIES
 ```
 **描述**
-视频色域的键, 值类型为int32_t, 请参见[OH_ColorPrimary](#oh_colorprimary)，遵循H.273标准Table2。
+视频色域的键，值类型为int32_t，请参见[OH_ColorPrimary](#oh_colorprimary)，遵循H.273标准Table2。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1900,7 +1900,7 @@ const char* OH_MD_KEY_LYRICS
 const char* OH_MD_KEY_MATRIX_COEFFICIENTS
 ```
 **描述**
-视频矩阵系数的键，值类型为int32_t,请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)，遵循H.273标准Table4。
+视频矩阵系数的键，值类型为int32_t，请参见[OH_MatrixCoefficient](#oh_matrixcoefficient)，遵循H.273标准Table4。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1939,7 +1939,7 @@ const char* OH_MD_KEY_PIXEL_FORMAT
 const char* OH_MD_KEY_PROFILE
 ```
 **描述**
-编码档次，值类型为int32_t，请参见[OH_AVCProfile](#oh_avcprofile)，[OH_HEVCProfile](#oh_hevcprofile), [OH_AACProfile](#oh_aacprofile)。
+编码档次，值类型为int32_t，请参见[OH_AVCProfile](#oh_avcprofile)，[OH_HEVCProfile](#oh_hevcprofile)，[OH_AACProfile](#oh_aacprofile)。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2017,7 +2017,7 @@ aac sbr模式的键，值类型为int32_t，aac编码器支持。
 const char* OH_MD_KEY_SCALING_MODE
 ```
 **描述**
-视频缩放模式, 值类型为int32_t, 请参见[OH_ScalingMode](#oh_scalingmode)。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。该键是可选的且只用于视频解码Surface模式。
+视频缩放模式，值类型为int32_t，请参见[OH_ScalingMode](#oh_scalingmode)。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。该键是可选的且只用于视频解码Surface模式。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2083,7 +2083,7 @@ const char* OH_MD_KEY_TRACK_TYPE
 const char* OH_MD_KEY_TRANSFER_CHARACTERISTICS
 ```
 **描述**
-视频传递函数的键，值类型为int32_t,请参见[OH_TransferCharacteristic](#oh_transfercharacteristic)，遵循H.273标准Table3。
+视频传递函数的键，值类型为int32_t，请参见[OH_TransferCharacteristic](#oh_transfercharacteristic)，遵循H.273标准Table3。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2147,7 +2147,7 @@ const char* OH_MD_KEY_VIDEO_CROP_TOP
 const char* OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY
 ```
 **描述**
-使能低时延视频编解码的键，值类型为int32_t：1表示使能，0表示其它情况。
+使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。
 
 如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。 
 
@@ -2176,7 +2176,7 @@ const char* OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE
 const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY
 ```
 **描述**
-使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。
+使能分层编码的键，值类型为int32_t，1表示使能，0表示其它情况。
 
 使用前可以通过[OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported)接口和枚举值
 [VIDEO_ENCODER_TEMPORAL_SCALABILITY](_a_v_capability.md#oh_avcapabilityfeature)来查询当前视频编码器是否支持分层编码。
@@ -2243,7 +2243,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR
 const char* OH_MD_KEY_VIDEO_ENCODER_QP_MAX
 ```
 **描述**
-描述视频编码器允许的最大量化参数的键, 值类型为int32_t。 
+描述视频编码器允许的最大量化参数的键，值类型为int32_t。 
 
 在configure/setparameter阶段使用，或随帧立即生效。
 
@@ -2258,7 +2258,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_QP_MAX
 const char* OH_MD_KEY_VIDEO_ENCODER_QP_MIN
 ```
 **描述**
-描述视频编码器允许的最小量化参数的键, 值类型为int32_t。 
+描述视频编码器允许的最小量化参数的键，值类型为int32_t。 
 
 在configure/setparameter阶段使用，或随帧立即生效。
 
@@ -2273,7 +2273,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_QP_MIN
 const char* OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE
 ```
 **描述**
-描述视频帧平均量化参数的键, 值类型为int32_t。
+描述视频帧平均量化参数的键，值类型为int32_t。
 
 表示当前帧编码块的平均qp值，随OH_AVBuffer输出。
 
@@ -2318,7 +2318,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE
 const char* OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE
 ```
 **描述**
-描述图片组基本层图片的间隔大小的键, 值类型为int32_t，只在使能分层编码时生效。
+描述图片组基本层图片的间隔大小的键，值类型为int32_t，只在使能分层编码时生效。
 
 该键是可选的且只用于视频编码，在configure阶段使用。
 
@@ -2407,7 +2407,7 @@ const char* OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE
 
 如果不支持色彩空间转换功能，则接口[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)返回错误码[AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION](_core.md#oh_averrcode-1)。
 
-如果输入视频不是HDR vivid视频，则会通过回调函数[OH_AVCodecOnError](#oh_avcodeconerror)报告错误码[AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION](_core.md#oh_averrcode-1)。
+如果输入视频不是HDR Vivid视频，则会通过回调函数[OH_AVCodecOnError](#oh_avcodeconerror)报告错误码[AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION](_core.md#oh_averrcode-1)。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2535,7 +2535,7 @@ const char* OH_MD_KEY_WIDTH
 const char* OH_MD_MAX_INPUT_BUFFER_COUNT
 ```
 **描述**
-最大输入缓冲区个数的键, 值类型为int32_t。
+最大输入缓冲区个数的键，值类型为int32_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2548,7 +2548,7 @@ const char* OH_MD_MAX_INPUT_BUFFER_COUNT
 const char* OH_MD_MAX_OUTPUT_BUFFER_COUNT
 ```
 **描述**
-最大输出缓冲区个数的键, 值类型int32_t。
+最大输出缓冲区个数的键，值类型int32_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
