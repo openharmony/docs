@@ -4,7 +4,7 @@
 在NDK工程中，可以通过CMake语法规则引入并使用预构建库。在引用预构建库时，模块libs目录中的预构建库，以及在CMakeList.txt编译脚本中声明的预构建库都会被打包。
 
 
-例如在项目中需要使用预构建库libavcodec_ffmpeg.so，其开发态存放路径如下图所示。
+例如在项目中需要使用预构建库libavcodec_ffmpeg.so，其开发态存放路径如下图所示：
 
 
 ![Snipaste_2023-10-30_14-39-27](figures/Snipaste_2023-10-30_14-39-27.png)
@@ -25,7 +25,7 @@ target_link_libraries(library PUBLIC libace_napi.z.so avcodec_ffmpeg)
 ```
 
 
-当在HAR中使用预构建库时，当前编译的库和链接所需预构建库会打包到HAR中的libs目录下，如下图所示。
+当在HAR中使用预构建库时，当前编译的库和链接所需预构建库会打包到HAR中的libs目录下，如下图所示：
 
 
 ![zh-cn_image_0000001693795070](figures/zh-cn_image_0000001693795070.png)
