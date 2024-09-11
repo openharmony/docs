@@ -1028,7 +1028,7 @@ Sends data to the host thread and triggers the registered callback. Before using
 
 | Name  | Type         | Mandatory| Description                                             |
 | -------- | ------------- | ---- | ------------------------------------------------- |
-| args     | Object[]      | Yes  | Data to be used as the input parameter of the registered callback. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| args     | Object[]      | No  | Data to be used as the input parameter of the registered callback. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
 
@@ -1137,9 +1137,9 @@ Adds dependent tasks for this task. Before using this API, you must create a **T
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| tasks  | [Task](#task)[] | Yes  | Array of tasks on which the current task depends.|
+| Name| Type            | Mandatory| Description              |
+| ------ | --------------- | ---- | ------------------ |
+| tasks  | [Task](#task)[] | No  | Array of tasks on which the current task depends. The default value is **undefined**.|
 
 **Error codes**
 
@@ -1198,7 +1198,7 @@ Removes dependent tasks for this task. Before using this API, you must create a 
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| tasks  | [Task](#task)[] | Yes  | Array of tasks on which the current task depends.|
+| tasks  | [Task](#task)[] | No  | Array of tasks on which the current task depends. The default value is **undefined**.|
 
 **Error codes**
 
@@ -1525,7 +1525,7 @@ Describes a callback function with an error message.
 
 **System capability**: SystemCapability.Utils.Lang
 
-Describes a continuous task. **LongTask** is inherited from [Task](#task).
+Describes a continuous task. **LongTask** inherits from [Task](#task).
 No upper limit is set for the execution time of a continuous task, and no timeout exception is thrown if a continuous task runs for a long period of time. However, a continuous task cannot be executed in a task group or executed for multiple times.
 The thread for executing a continuous task exists until [terminateTask](#taskpoolterminatetask12) is called after the execution is complete. The thread is reclaimed when it is idle.
 

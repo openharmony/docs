@@ -12,6 +12,8 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
+每一种解码的能力范围，可以通过[能力查询](obtain-supported-codecs.md)获取。
+
 <!--RP1--><!--RP1End-->
 
 通过视频解码，应用可以实现以下重点能力，包括：
@@ -215,7 +217,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 5. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Surface模式下，DRM解密能力既支持安全视频通路，也支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
 
-    添加头文件
+    添加头文件。
 
     ```c++
     #include <multimedia/drm_framework/native_mediakeysystem.h>
@@ -223,13 +225,13 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
-    在 CMake 脚本中链接动态库
+    在 CMake 脚本中链接动态库。
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
     ```
 
-    使用示例
+    使用示例：
     ```c++
     // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例
     MediaKeySystem *system = nullptr;
@@ -281,8 +283,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width); // 必须配置
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // 必须配置
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
     // 可选，配置低时延解码
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
@@ -300,7 +302,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     // 配置送显窗口参数
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从 XComponent 获取 window
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从XComponent获取window
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -347,18 +349,18 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     若当前播放的节目是DRM加密节目，应用自行实现媒体解封装功能而非使用系统[解封装](audio-video-demuxer.md)功能时，需调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置到AVBuffer，这样AVBuffer携带待解密的数据以及cencInfo，以实现AVBuffer中媒体数据的解密。当应用使用系统[解封装](audio-video-demuxer.md)功能时，则无需调用此接口。
 
-    添加头文件
+    添加头文件。
 
     ```c++
     #include <multimedia/player_framework/native_cencinfo.h>
     ```
-    在 CMake 脚本中链接动态库
+    在 CMake 脚本中链接动态库。
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
     ```
 
-    使用示例
+    使用示例：
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口获取图像虚拟地址。
     ```c++
     uint32_t keyIdLen = DRM_KEY_ID_SIZE;
@@ -447,7 +449,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识。
     - buffer：回调函数OnNewOutputBuffer传入的参数，Surface模式调用者无法通过OH_AVBuffer_GetAddr接口获取图像虚拟地址。
 
-    添加头文件
+    添加头文件。
 
     ```c++
     #include <chrono>
@@ -514,11 +516,14 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > Flush之后，重新调用OH_VideoDecoder_Start接口时，需要重新传PPS/SPS。
+    >
+
 
 15. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
-    调用OH_VideoDecoder_Reset()后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure()、OH_VideoDecoder_SetSurface()重新配置。
-
+    调用OH_VideoDecoder_Reset接口后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure接口、OH_VideoDecoder_Prepare接口和OH_VideoDecoder_SetSurface接口重新配置。
     ```c++
     // 重置解码器videoDec
     int32_t ret = OH_VideoDecoder_Reset(videoDec);
@@ -527,6 +532,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 重新配置解码器参数
     ret = OH_VideoDecoder_Configure(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 解码器重新就绪
+    ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -554,13 +564,15 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > **说明：**
     >
     > 不能在回调函数中调用；
-    > 执行该步骤之后，需要调用者将videoDec指向nullptr，防止野指针导致程序错误。
+    > 执行该步骤之后，需要调用者将videoDec指向NULL，防止野指针导致程序错误。
     >
 
     ```c++
     // 调用OH_VideoDecoder_Destroy，注销解码器
-    int32_t ret = OH_VideoDecoder_Destroy(videoDec);
-    videoDec = nullptr;
+    if (videoDec != NULL) {
+        int32_t ret = OH_VideoDecoder_Destroy(videoDec);
+        videoDec = NULL;
+    }
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -697,7 +709,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Buffer模式下，DRM解密能力仅支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
 
-    添加头文件
+    添加头文件。
 
     ```c++
     #include <multimedia/drm_framework/native_mediakeysystem.h>
@@ -705,13 +717,13 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
-    在 CMake 脚本中链接动态库
+    在 CMake 脚本中链接动态库。
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
     ```
 
-    使用示例
+    使用示例：
     ```c++
     // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例
     MediaKeySystem *system = nullptr;
@@ -790,7 +802,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     与Surface模式相同，此处不再赘述。
 
-    使用示例
+    使用示例：
     ```c++
     uint32_t keyIdLen = DRM_KEY_ID_SIZE;
     uint8_t keyId[] = {
@@ -893,20 +905,19 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
 
+    - OH_MD_KEY_VIDEO_PIC_WIDTH表示width；
+    - OH_MD_KEY_VIDEO_PIC_HEIGHT表示height；
+    - OH_MD_KEY_VIDEO_STRIDE表示wStride；
+    - OH_MD_KEY_VIDEO_SLICE_HEIGHT表示hStride。
+
     ![copy by line](figures/copy-by-line.png)
 
-   - OH_MD_KEY_VIDEO_PIC_WIDTH表示width；
-   - OH_MD_KEY_VIDEO_PIC_HEIGHT表示height；
-   - OH_MD_KEY_VIDEO_STRIDE表示wStride；
-   - OH_MD_KEY_VIDEO_SLICE_HEIGHT表示hStride。
-   
-
-    添加头文件
+    添加头文件。
 
     ```c++
     #include <string.h>
     ```
-    使用示例
+    使用示例：
 
     ```c++
     struct Rect   // 源内存区域的宽，高

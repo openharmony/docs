@@ -212,7 +212,7 @@ typedef enum {
 | -------- | -------- |
 | napi_qos_background | 低等级，用户不可见任务，例如数据同步、备份。 |
 | napi_qos_utility | 中低等级，不需要立即看到响应效果的任务，例如下载或导入数据。 |
-| napi_qos_default | 默认 |
+| napi_qos_default | 默认。 |
 | napi_qos_user_initiated | 高等级，用户触发并且可见进展，例如打开文档。 |
 
 ### 事件循环模式

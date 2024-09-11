@@ -17,11 +17,6 @@
         - [HSP](quick-start/in-app-hsp.md)
         - [动态import](quick-start/arkts-dynamic-import.md)
         - [延迟加载（lazy import）](quick-start/arkts-lazy-import.md)
-      - 典型场景的开发指导
-        - [集成态HSP](quick-start/integrated-hsp.md)
-        - [HAR转HSP指导](quick-start/har-to-hsp.md)
-        - [HSP转HAP指导](quick-start/hsp-to-har.md)
-        - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
     - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
@@ -253,7 +248,6 @@
           - [LifecycleService接口切换](application-models/lifecycleservice-switch.md)
           - [LifecycleData接口切换](application-models/lifecycledata-switch.md)
           - [DataAbilityHelper接口切换](application-models/dataabilityhelper-switch.md)
-          - [mediaLibrary接口切换](application-models/medialibrary-switch.md)
           - [request接口切换](application-models/request-switch.md)
           - [resourceManager接口切换](application-models/resourcemanager-switch.md)
           - [window接口切换](application-models/window-switch.md)
@@ -673,7 +667,9 @@
       - [在自绘编辑框中使用输入法](inputmethod/custom_input_box_guide.md)
       - [切换输入法应用](inputmethod/switch_inputmehod_guide.md)
       - [输入法子类型开发指南](inputmethod/input_method_subtype_guide.md)
+      <!--Del-->
       - [自绘编辑框开发指导 (C/C++)](inputmethod/native_custom_input_box_guide.md)
+      <!--DelEnd-->
     - IPC Kit（进程间通信服务）<!--ipc-kit-->
       - [IPC Kit简介](ipc/ipc-rpc-overview.md)
       - [IPC与RPC通信开发指导](ipc/ipc-rpc-development-guideline.md)
@@ -2279,7 +2275,9 @@
           - [UIExtensionComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)
         <!--DelEnd-->
         - 已停止维护的组件与接口
+          <!--Del-->
           - [AbilityComponent](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
+          <!--DelEnd-->
           - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)
           - [Panel](reference/apis-arkui/arkui-ts/ts-container-panel.md)
           - [点击控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-click.md)
