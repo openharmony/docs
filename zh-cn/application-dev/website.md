@@ -1236,6 +1236,7 @@
         - [拍照(ArkTS)](media/camera/camera-shooting.md)
         - [录像(ArkTS)](media/camera/camera-recording.md)
         - [元数据(ArkTS)](media/camera/camera-metadata.md)
+        - [适配不同折叠状态的摄像头变更(ArkTS)](media/camera/camera-foldable-display.md)
         <!--Del-->
         - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
         <!--DelEnd-->
