@@ -101,7 +101,7 @@ struct MyComponent {
   onBackPress() {
     console.info('Index onBackPress');
     this.btnColor ="#FFEE0606"
-    return true // The value true means that the page executes its own return logic instead of the , and false (default) means that the default return logic is used.
+    return true // The value true means that the page executes its own return logic, and false (default) means that the default return logic is used.
   }
 
   // Component lifecycle

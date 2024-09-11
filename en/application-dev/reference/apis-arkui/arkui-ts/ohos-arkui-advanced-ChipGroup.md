@@ -416,4 +416,4 @@ struct Index {
 }
 
 ```
-![](figures/chipGroupDemo3.jpeg)
+

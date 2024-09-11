@@ -22,7 +22,7 @@ As shown in Figure 1, in addition to native APIs, NNRt logically consists of the
 
 ** Figure 1** NNRt architecture
 
-!["NNRt architecture"](figures/neural_network_runtime_intro.jpg)
+!["NNRt architecture"](figures/neural_network_runtime_intro.png)
 
 ## Features
 
