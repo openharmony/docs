@@ -584,7 +584,7 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
 | 名称            | 类型                  | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent11对象说明)) => void | hover事件的回调。 |
+| HoverCallback | (isHover: boolean, event: HoverEvent) => void | hover事件的回调。 |
 
 ## VisibleAreaEventOptions<sup>12+</sup>
 

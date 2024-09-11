@@ -58,7 +58,7 @@
       return result;
   }
 
-  // 取消长时任务
+  // 取消短时任务
   static napi_value CancelSuspendDelay(napi_env env, napi_callback_info info)
   {
       napi_value result;
@@ -164,7 +164,7 @@
 
 ## 测试步骤
 
-1. 连接设备并运行程序
+1. 连接设备并运行程序。
 
 2. 点击 `申请短时任务` 按钮，控制台会打印日志，示例如下：
   ```
@@ -183,4 +183,4 @@
   ```
 > **说明**
 >
->申请短时任务的按钮，不可连续点击超过3次，否则会报错。使用过程中更多的约束与限制请参考[短时任务(ArkTS)](transient-task.md#约束与限制)
+>申请短时任务的按钮，不可连续点击超过3次，否则会报错。使用过程中更多的约束与限制请参考[短时任务(ArkTS)](transient-task.md#约束与限制)。

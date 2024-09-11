@@ -40,7 +40,7 @@ SaveButton(options:SaveButtonOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SaveButtonOptions](#savebuttonoptions) | 否 | 创建包含指定元素的保存按钮。 |
+| options | [SaveButtonOptions](#savebuttonoptions) | 是 | 创建包含指定元素的保存按钮。 |
 
 ## SaveButtonOptions
 

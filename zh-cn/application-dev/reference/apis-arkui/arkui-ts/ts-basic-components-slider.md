@@ -24,7 +24,7 @@ Slider(options?: SliderOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                    | 必填 | 描述               |
+| 参数名  | 类型                                    | 必填 | 说明               |
 | ------- | --------------------------------------- | ---- | ------------------ |
 | options | [SliderOptions](#slideroptions对象说明) | 否   | 配置滑动条的参数。 |
 
@@ -436,9 +436,9 @@ slideRange(value: SlideRange)
 
 **参数：**
 
-| 参数名 | 类型                                        | 必填 | 说明          |
-| ------ |-------------------------------------------| ---- |-------------|
-| value  | SlideRange                                | 是   | 设置有效滑动区间    |
+| 参数名 | 类型                                | 必填 | 说明             |
+| ------ | ----------------------------------- | ---- | ---------------- |
+| value  | [SlideRange](#sliderange12对象说明) | 是   | 设置有效滑动区间 |
 
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
@@ -490,7 +490,7 @@ Slider组件滑块形状枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型     | 必填 | 说明           |
+| 名称 | 类型     | 必填 | 说明           |
 |----|--------| ---- |--------------|
 | from | number | 是 | 设置有效滑动区间的开始。 |
 | to | number | 是 | 设置有效滑动区间的结束。 |
@@ -543,7 +543,7 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 | Begin | 0 | 手势/鼠标接触或者按下滑块。 |
 | Moving | 1 | 正在拖动滑块过程中。 |
 | End | 2 | 手势/鼠标离开滑块。<br/>**说明：** <br/>异常值恢复成默认值时触发，即value设置小于min或大于max。 |
-| Click    | 3    | 点击滑动条使滑块位置移动。 |
+| Click<sup>8+</sup> | 3    | 点击滑动条使滑块位置移动。 |
 
 ## SliderConfiguration<sup>12+</sup>对象说明
 
@@ -553,7 +553,7 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名  | 类型    | 只读  | 可选  | 说明              |
+| 名称  | 类型    | 只读  | 可选  | 说明              |
 | ------ | ------ | ---------------- | ---------------- | ---------------- |
 | value | number | 否 | 否 | 当前进度值。 |
 | min | number | 否 | 否 | 最小值。 |
@@ -563,13 +563,15 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 ## SliderTriggerChangeCallback<sup>12+</sup>对象说明
 
+type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => void
+
 定义SliderConfiguration中使用的回调类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型    | 只读 | 可选 | 说明              |
+| 参数名 | 类型    | 只读 | 可选 | 说明              |
 | ------ | ------ | ---- | ---------------- | ---------------- |
 | value | number | 否 | 否 | 设置当前的进度值。 |
 | mode | [SliderChangeMode](#sliderchangemode枚举说明) | 否 | 否 | 设置事件触发的相关状态值。 |

@@ -52,6 +52,10 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor | ImageContent)
 
 src新增[ImageContent](#imagecontent12)类型，可指定对应的图形内容。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -367,7 +371,8 @@ draggable(value: boolean)
 
 enableAnalyzer(enable:&nbsp;boolean)
 
-设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
+设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。<!--RP3--><!--RP3End-->
+
 不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。  
 
 分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例4](#示例4)。  

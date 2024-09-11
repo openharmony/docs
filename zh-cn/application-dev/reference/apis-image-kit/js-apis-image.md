@@ -714,7 +714,13 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取区域内的图像像素数据，并按照BGRA_8888格式写入缓冲区中，使用Promise形式返回。
+读取区域内的图像像素数据。使用Promise形式返回。
+
+可用公式计算PositionArea需要申请的内存大小。
+
+YUV的区域计算公式：读取区域（region.size{width * height}）* 1.5 （1倍的Y分量+0.25倍U分量+0.25倍V分量）
+
+RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （1倍的R分量+1倍G分量+1倍B分量+1倍A分量）
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -741,10 +747,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(8),
+    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  if (pixelMap != undefined) {
+    pixelMap.readPixels(area).then(() => {
+      console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+    })
+  }
+}
+
+async function Demo() {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(6),  // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   if (pixelMap != undefined) {
     pixelMap.readPixels(area).then(() => {
@@ -760,7 +782,13 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取区域内的图像像素数据，并按照BGRA_8888格式写入缓冲区中，通过回调函数返回。
+读取区域内的图像像素数据。使用callback形式返回。
+
+可用公式计算PositionArea需要申请的内存大小。
+
+YUV的区域计算公式：读取区域（region.size{width * height}）* 1.5 （1倍的Y分量+0.25倍U分量+0.25倍V分量）
+
+RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （1倍的R分量+1倍G分量+1倍B分量+1倍A分量）
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -782,10 +810,29 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(8),
+    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  if (pixelMap != undefined) {
+    pixelMap.readPixels(area, (error: BusinessError) => {
+      if (error) {
+        console.error(`Failed to read pixelmap from the specified area. code is ${error.code}, message is ${error.message}`);
+        return;
+      } else {
+        console.info('Succeeded in reading pixelmap from the specified area.');
+      }
+    })
+  }
+}
+
+async function Demo() {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   if (pixelMap != undefined) {
     pixelMap.readPixels(area, (error: BusinessError) => {
@@ -847,7 +894,13 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-将BGRA_8888格式的图像像素数据写入指定区域内，使用Promise形式返回写入结果。
+读取区域内的图像像素数据。使用Promise形式返回。
+
+可用公式计算PositionArea需要申请的内存大小。
+
+YUV的区域计算公式：读取区域（region.size{width * height}）* 1.5 （1倍的Y分量+0.25倍U分量+0.25倍V分量）
+
+RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （1倍的R分量+1倍G分量+1倍B分量+1倍A分量）
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -874,10 +927,30 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
   const area: image.PositionArea = {
-    pixels: new ArrayBuffer(8),
+    pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writePixels(area).then(() => {
+      console.info('Succeeded in writing pixelmap into the specified area.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+    })
+  }
+}
+
+async function Demo() {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   let bufferArr: Uint8Array = new Uint8Array(area.pixels);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -897,7 +970,13 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-将BGRA_8888格式的图像像素数据写入指定区域内，通过回调函数返回写入结果。
+读取区域内的图像像素数据。使用callback形式返回。
+
+可用公式计算PositionArea需要申请的内存大小。
+
+YUV的区域计算公式：读取区域（region.size{width * height}）* 1.5 （1倍的Y分量+0.25倍U分量+0.25倍V分量）
+
+RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （1倍的R分量+1倍G分量+1倍B分量+1倍A分量）
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -918,10 +997,32 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-  const area: image.PositionArea = { pixels: new ArrayBuffer(8),
+  const area: image.PositionArea = { pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
     stride: 8,
     region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writePixels(area, (error : BusinessError) => {
+      if (error) {
+        console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+        return;
+      } else {
+        console.info('Succeeded in writing pixelmap into the specified area.');
+      }
+    })
+  }
+}
+
+async function Demo() {
+  const area: image.PositionArea = { pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 2, width: 2 }, x: 0, y: 0 }
   };
   let bufferArr: Uint8Array = new Uint8Array(area.pixels);
   for (let i = 0; i < bufferArr.length; i++) {
@@ -1755,7 +1856,7 @@ async function Demo() {
 
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
-根据输入的坐标对图片进行位置变换，使用callback形式返回。
+根据输入的坐标对图片进行位置变换，translate后的图片尺寸：width+X ，height+Y，使用callback形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1796,7 +1897,7 @@ async function Demo() {
 
 translate(x: number, y: number): Promise\<void>
 
-根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+根据输入的坐标对图片进行位置变换，translate后的图片尺寸：width+X ，height+Y，使用Promise形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2842,6 +2943,52 @@ async function Demo() {
 }
 ```
 
+### convertPixelFormat<sup>12+</sup>
+
+convertPixelFormat(targetPixelFormat: PixelMapFormat): Promise\<void>
+
+YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明               |
+| -------- | -------------------- | ---- | ------------------ |
+| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转。 |
+
+**返回值：**
+
+| 类型           | 说明                            |
+| -------------- | ------------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 62980115 | Invalid image parameter.              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if (pixelMap != undefined) {
+  pixelMap.convertPixelFormat(targetPixelFormat).then(() => {
+    console.info('PixelMapFormat convert Succeeded'); //符合条件则进入
+  }).catch((error: BusinessError) => {
+    console.error(`PixelMapFormat convert Failed. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+  })
+}
+```
+
 ## image.createImageSource
 
 createImageSource(uri: string): ImageSource
@@ -2857,7 +3004,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同） [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 
 **返回值：**
 
@@ -2890,7 +3037,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同）[.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。|
 
 **返回值：**
@@ -2985,7 +3132,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(file.fd, sourc
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
-通过缓冲区创建图片源实例。
+通过缓冲区创建图片源实例。buf数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[image.createPixelMapSync](#createpixelmapsync12)这一类接口。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -3017,7 +3164,7 @@ const imageSourceApi: image.ImageSource = image.createImageSource(buf);
 
 createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
-通过缓冲区创建图片源实例。
+通过缓冲区创建图片源实例。buf数据应该是未解码的数据，不要传入类似于RBGA，YUV的像素buffer数据，如果想通过像素buffer数据创建pixelMap，可以调用[image.createPixelMapSync](#createpixelmapsync12)这一类接口。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -3192,7 +3339,7 @@ imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLengt
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，dng。 |
+| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，dng，heif<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
 ### getImageInfo
 
@@ -3339,7 +3486,7 @@ if (imageInfo == undefined) {
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3394,7 +3541,7 @@ imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
 
 getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3432,7 +3579,7 @@ imageSourceApi.getImageProperty("BitsPerSample")
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
-获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3465,7 +3612,7 @@ imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: st
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-获取图片指定属性键的值，callback形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+获取图片指定属性键的值，callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3500,7 +3647,7 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 
 getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
 
-批量获取图片中的指定属性键的值，用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
+批量获取图片中的指定属性键的值，用Promise形式返回结果。仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3546,7 +3693,7 @@ imageSourceApi.getImageProperties(key).then((data) => {
 
 modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
-通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3599,7 +3746,7 @@ imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(()
 
 modifyImageProperty(key: string, value: string): Promise\<void>
 
-通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3642,7 +3789,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
-通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
+通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG、PNG和<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3678,7 +3825,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => 
 
 modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
-批量通过指定的键修改图片属性的值，使用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
+批量通过指定的键修改图片属性的值，使用Promise形式返回结果。仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -4432,7 +4579,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 ## ImagePacker
 
-图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png。
+图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png、heif<sup>12+</sup>（不同硬件设备支持情况不同）。
 
 ### 属性
 
@@ -4440,7 +4587,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 
 | 名称             | 类型           | 可读 | 可写 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
-| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png。 |
+| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png、heif<sup>12+</sup>（不同硬件设备支持情况不同）。 |
 
 ### packing
 
@@ -5495,9 +5642,9 @@ creator.release().then(() => {
 | 名称     | 类型               | 可读 | 可写 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
-| size     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
+| size     | [Size](#size)      | 是   | 否   | 图像大小。如果image对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的size中的宽高分别对应YUV图像的宽高； 如果image对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的文件，size中的宽等于JPEG文件大小，高等于1。image对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。                                |
 | format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
-| timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。|
+| timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。时间戳以纳秒为单位，通常是单调递增的。时间戳的具体含义和基准取决于图像的生产者，在相机预览/拍照场景，生产者就是相机。来自不同生产者的图像的时间戳可能有不同的含义和基准，因此可能无法进行比较。如果要获取某张照片的生成时间，可以通过[getImageProperty](#getimageproperty11)接口读取相关的EXIF信息。|
 
 ### getComponent<sup>9+</sup>
 
@@ -5691,6 +5838,9 @@ img.release().then(() => {
 | RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16  |
 | NV21<sup>9+</sup>      | 8      | 格式为NV21      |
 | NV12<sup>9+</sup>      | 9      | 格式为NV12      |
+| RGBA_1010102<sup>12+</sup> | 10 | 格式为RGBA_1010102 |
+| YCBCR_P010<sup>12+</sup> | 11 | 格式为YCBCR_P010 |
+| YCRCB_P010<sup>12+</sup> | 12 | 格式为YCRCB_P010 |
 
 ## AlphaType<sup>9+</sup>
 
@@ -5799,7 +5949,7 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp" 和 "image/png"。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heif"<sup>12+</sup>（不同硬件设备支持情况不同）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | quality | number | 否   | 否   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
@@ -6011,6 +6161,14 @@ PixelMap的初始化选项。
 | DNG_VERSION <sup>12+</sup>                | "DNGVersion"                | **读写能力：** 可读写<br> DNG版本标签编码了符合DNG规范的四级版本号。|
 | DEFAULT_CROP_SIZE <sup>12+</sup>          | "DefaultCropSize"           | **读写能力：** 可读写<br> DefaultCropSize指定了原始坐标中的最终图像大小，考虑了额外的边缘像素。|
 | GIF_LOOP_COUNT <sup>12+</sup>             | "GIFLoopCount"              | **读写能力：** 只读<br> GIF图片循环次数。0表示无限循环，其他值表示循环次数。|
+| IS_XMAGE_SUPPORTED <sup>12+</sup> | "HwMnoteIsXmageSupported" | **读写能力：** 可读写<br>是否支持XMAGE。 |
+| XMAGE_MODE <sup>12+</sup> | "HwMnoteXmageMode" | **读写能力：** 可读写<br>XMAGE水印模式。 |
+| XMAGE_LEFT <sup>12+</sup> | "HwMnoteXmageLeft" | **读写能力：** 可读写<br>水印区域X1坐标。 |
+| XMAGE_TOP <sup>12+</sup> | "HwMnoteXmageTop" | **读写能力：** 可读写<br>水印区域Y1坐标。 |
+| XMAGE_RIGHT <sup>12+</sup> | "HwMnoteXmageRight" | **读写能力：** 可读写<br>水印区域X2坐标。 |
+| XMAGE_BOTTOM <sup>12+</sup> | "HwMnoteXmageBottom" | **读写能力：** 可读写<br>水印区域Y2坐标。 |
+| CLOUD_ENHANCEMENT_MODE <sup>12+</sup> | "HwMnoteCloudEnhancementMode" | **读写能力：** 可读写<br>云增强模式。 |
+| WIND_SNAPSHOT_MODE <sup>12+</sup> | "HwMnoteWindSnapshotMode" | **读写能力：** 只读<br>运动快拍模式。 |
 
 ## ImageFormat<sup>9+</sup>
 

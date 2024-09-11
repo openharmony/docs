@@ -1,4 +1,4 @@
-# Managing Arrays Using Node-API
+# Working with Array Using Node-API
 
 ## Introduction
 
@@ -21,22 +21,22 @@ The following table describes the APIs for managing ArkTS arrays.
 | -------- | -------- |
 | napi_create_array | Creates an ArkTS array.|
 | napi_create_array_with_length | Creates an ArkTS array of the specified length.|
-| napi_create_typedarray | Creates an ArkTS **TypedArray** object of the specified type, such as **Uint8Array** or **Int32Array**. You can use this API to convert a native value into a **TypedArray** object for performant data processing.  |
-| napi_create_dataview |  Creates a **DataView** object, which allows access to binary data.|
 | napi_get_array_length | Obtains the length of an ArkTS array.|
-| napi_get_typedarray_info | Obtains the properties of a **TypedArray** object.|
-| napi_get_dataview_info | Obtains the properties of a **DataView** object.|
 | napi_is_array | Checks whether the given **napi_value** is an array.|
 | napi_set_element | Sets an element at the specified index in the given ArkTS array.|
 | napi_get_element | Obtains the element at the specified index in the given ArkTS array.|
 | napi_has_element | Checks whether the element at the specified index exists.|
 | napi_delete_element | Deletes the element at the specified index of the given ArkTS array.|
-| napi_is_dataview | Checks whether the given **napi_value** is a **DataView** object in ArkTS.|
+| napi_create_typedarray | Creates an ArkTS **TypedArray** object of the specified type, such as **Uint8Array** or **Int32Array**. You can use this API to convert a native value into a **TypedArray** object for performant data processing.  |
 | napi_is_typedarray | Checks whether the given **napi_value** is a **TypedArray** object.|
+| napi_get_typedarray_info | Obtains the properties of a **TypedArray** object.|
+| napi_create_dataview |  Creates a **DataView** object, which allows access to binary data.|
+| napi_is_dataview | Checks whether the given **napi_value** is a **DataView** object in ArkTS.|
+| napi_get_dataview_info | Obtains the properties of a **DataView** object.|
 
 ## Example
 
-If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code for array management. The **napi_create_typedarray** API is different. For details, see the example.
+If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code for array management APIs.
 
 ### napi_create_array
 
@@ -226,7 +226,7 @@ try {
 ### napi_set_element
 
 Use **napi_set_element** to set an element at the specified index in an ArkTS array.
-For the object that uses the index value as the key, you can use **napi_set_property** to set the property value.
+For the object that uses the index value as the key, you can use **napi_set_element** to set the property value.
 
 CPP code:
 
@@ -567,46 +567,34 @@ EXTERN_C_END
 
 ```
 
-### napi_create_dataview
+### napi_is_typedarray
 
-Use **napi_create_dataview** to create a **DataView** object to facilitate access and operation of binary data. You need to specify a buffer pointing to the binary data and the number of bytes included.
+Use **napi_is_typedarray** to check whether the **napi_value** given from ArkTS is a **TypedArray** object.
 
 CPP code:
 
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreateDataView(napi_env env, napi_callback_info info) 
+static napi_value IsTypedarray(napi_env env, napi_callback_info info) 
 {
     // Obtain the parameters passed from ArkTS.
     size_t argc = 1;
     napi_value args[1] = {nullptr};
-    napi_value arraybuffer = nullptr;
-    napi_value result = nullptr;
-    // Byte length of DataView.
-    size_t byteLength = 12;
-    // Offset of the byte.
-    size_t byteOffset = 4;
-    // Obtain the parameters of the callback.
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // Convert the parameter into the object type.
-    napi_coerce_to_object(env, args[0], &arraybuffer);
-    // Create a DataView object with the specified byte length and offset.
-    napi_status status = napi_create_dataview(env, byteLength, arraybuffer, byteOffset, &result);
+    // Call napi_is_typedarray to check whether the input parameter type is TypedArray.
+    bool result = false;
+        napi_status status;
+    status = napi_is_typedarray(env, args[0], &result);
     if (status != napi_ok) {
-        // Throw an error indicating that the DataView fails to be created.
-        napi_throw_error(env, nullptr, "Failed to create DataView");
+        napi_throw_error(env, nullptr, "Node-API napi_is_typedarray fail");
         return nullptr;
     }
-    // Obtain the pointer to the DataView object and the length.
-    uint8_t *data = nullptr;
-    size_t length = 0;
-    napi_get_dataview_info(env, result, &length, (void **)&data, nullptr, nullptr);
-    // Assign values to DataView.
-    for (size_t i = 0; i < length; i++) {
-        data[i] = static_cast<uint8_t>(i + 1);
-    }
-    return result;
+    // Convert the result to napi_value and return it.
+    napi_value returnValue = nullptr;
+    napi_get_boolean(env, result, &returnValue);
+
+    return returnValue;
 }
 ```
 
@@ -614,7 +602,7 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const createDataView: (arraybuffer:ArrayBuffer) => DataView | void;
+export const isTypedarray: <T>(data: T) => boolean | void;
 ```
 
 ArkTS code:
@@ -622,11 +610,14 @@ ArkTS code:
 ```ts
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
-
-const arrayBuffer = new ArrayBuffer(16);
-const dataView = testNapi.createDataView(arrayBuffer);
-hilog.info(0x0000, 'testTag', 'Test Node-API dataView: %{public}d', dataView.byteLength);
-hilog.info(0x0000, 'testTag','Test Node-API dataView first data: %{public}d', dataView.getInt8(0));
+try {
+  let value = new Uint8Array([1, 2, 3, 4]);
+  let data = "123";
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<number>(value));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<string>(data));
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_typedarray error: %{public}s', error.message);
+}
 ```
 
 ### napi_get_typedarray_info
@@ -706,7 +697,7 @@ let int8Array = new Int8Array([15, 7]);
 // Define the InfoType enums, which are the properties of TypedArray.
 enum InfoType {
     TYPE = 1, // Type of the TypedArray.
-    LENGTH = 2, // Length of the TypedArray.
+    LENGTH = 2, // Length of the input TypedArray.
     ARRAY_BUFFER = 3, // ArrayBuffer under TypedArray.
     BYTE_OFFSET = 4 // Offset of the first ArrayBuffer element in the native array.
 };
@@ -719,52 +710,44 @@ hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNap
 hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
 ```
 
-### napi_get_dataview_info
+### napi_create_dataview
 
-Use **napi_get_dataview_info** to obtain properties of a **DataView** object.
+Use **napi_create_dataview** to create a **DataView** object to facilitate access and operation of binary data. You need to specify a buffer pointing to the binary data and the number of bytes included.
 
 CPP code:
 
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
-{ 
+static napi_value CreateDataView(napi_env env, napi_callback_info info) 
+{
     // Obtain the parameters passed from ArkTS.
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_value arraybuffer = nullptr;
+    napi_value result = nullptr;
+    // Byte length of DataView.
+    size_t byteLength = 12;
+    // Offset of the byte.
+    size_t byteOffset = 4;
+    // Obtain the parameters of the callback.
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // Convert the second parameter to an int32 number.
-    int32_t infoType;
-    napi_get_value_int32(env, args[1], &infoType);
-    size_t byteLength;
-    void *data;
-    napi_value arrayBuffer;
-    size_t byteOffset;
-    // Define the InfoType enums in the same sequence as those in ArkTS.
-    enum InfoType { BYTE_LENGTH = 0, ARRAY_BUFFER, BYTE_OFFSET };
-    // Obtain DataView information.
-    napi_get_dataview_info(env, args[0], &byteLength, &data, &arrayBuffer, &byteOffset);
-    napi_value result;
-    switch (infoType) {
-    case BYTE_LENGTH:
-        // Return the number of bytes of the DataView object.
-        napi_value napiByteLength;
-        napi_create_int32(env, byteLength, &napiByteLength);
-        result = napiByteLength;
-        break;
-    case ARRAY_BUFFER:
-        // Return the ArrayBuffer of the DataView object.
-        result = arrayBuffer;
-        break;
-    case BYTE_OFFSET:
-        // Return the byte offset of the DataView object.
-        napi_value napiByteOffset;
-        napi_create_int32(env, byteOffset, &napiByteOffset);
-        result = napiByteOffset;
-        break;
-    default:
-        break;
+    // Convert the parameter into the object type.
+    napi_coerce_to_object(env, args[0], &arraybuffer);
+    // Create a DataView object with the specified byte length and offset.
+    napi_status status = napi_create_dataview(env, byteLength, arraybuffer, byteOffset, &result);
+    if (status != napi_ok) {
+        // Throw an error indicating that the DataView fails to be created.
+        napi_throw_error(env, nullptr, "Failed to create DataView");
+        return nullptr;
+    }
+    // Obtain the pointer to the DataView object and the length.
+    uint8_t *data = nullptr;
+    size_t length = 0;
+    napi_get_dataview_info(env, result, &length, (void **)&data, nullptr, nullptr);
+    // Assign values to DataView.
+    for (size_t i = 0; i < length; i++) {
+        data[i] = static_cast<uint8_t>(i + 1);
     }
     return result;
 }
@@ -774,7 +757,7 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const getDataViewInfo: (dataView: DataView, infoType: number) => ArrayBuffer | number;
+export const createDataView: (arraybuffer:ArrayBuffer) => DataView | void;
 ```
 
 ArkTS code:
@@ -783,25 +766,10 @@ ArkTS code:
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 
-// Create an ArrayBuffer object.
-let arrayBuffer = new Int8Array([2, 5]).buffer;
-// Use arrayBuffer to create a DataView object.
-let dataView = new DataView(arrayBuffer);
-// Define an enum type.
-enum InfoType {
-    BYTE_LENGTH = 0,
-    ARRAY_BUFFER = 1,
-    BYTE_OFFSET = 2,
-};
-// Pass in the parameter of DataView to obtain the number of bytes in DataView.
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
-// Pass in the parameter of DataView to obtain the ArrayBuffer of DataView.
-let arrbuff = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
-// Convert arraybuffer to an array.
-let arr = Array.prototype.slice.call(new Int8Array(arrbuff));
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
-// Pass in the parameter of DataView to obtain the byte offset in the data buffer of DataView.
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
+const arrayBuffer = new ArrayBuffer(16);
+const dataView = testNapi.createDataView(arrayBuffer) as DataView;
+hilog.info(0x0000, 'testTag', 'Test Node-API dataView: %{public}d', dataView.byteLength);
+hilog.info(0x0000, 'testTag','Test Node-API dataView first data: %{public}d', dataView.getInt8(0));
 ```
 
 ### napi_is_dataview
@@ -859,34 +827,54 @@ try {
 }
 ```
 
-### napi_is_typedarray
+### napi_get_dataview_info
 
-Use **napi_is_typedarray** to check whether the **napi_value** given from ArkTS is a **TypedArray** object.
+Use **napi_get_dataview_info** to obtain properties of a **DataView** object.
 
 CPP code:
 
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value IsTypedarray(napi_env env, napi_callback_info info) 
-{
+static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
+{ 
     // Obtain the parameters passed from ArkTS.
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
+    size_t argc = 2;
+    napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // Call napi_is_typedarray to check whether the input parameter type is TypedArray.
-    bool result = false;
-        napi_status status;
-    status = napi_is_typedarray(env, args[0], &result);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "Node-API napi_is_typedarray fail");
-        return nullptr;
+    // Convert the second parameter to an int32 number.
+    int32_t infoType;
+    napi_get_value_int32(env, args[1], &infoType);
+    size_t byteLength;
+    void *data;
+    napi_value arrayBuffer;
+    size_t byteOffset;
+    // Define the InfoType enums in the same sequence as those in ArkTS.
+    enum InfoType { BYTE_LENGTH = 0, ARRAY_BUFFER, BYTE_OFFSET };
+    // Obtain DataView information.
+    napi_get_dataview_info(env, args[0], &byteLength, &data, &arrayBuffer, &byteOffset);
+    napi_value result;
+    switch (infoType) {
+        case BYTE_LENGTH:
+            // Return the number of bytes of the DataView object.
+            napi_value napiByteLength;
+            napi_create_int32(env, byteLength, &napiByteLength);
+            result = napiByteLength;
+            break;
+        case ARRAY_BUFFER:
+            // Return the ArrayBuffer of the DataView object.
+            result = arrayBuffer;
+            break;
+        case BYTE_OFFSET:
+            // Return the byte offset of the DataView object.
+            napi_value napiByteOffset;
+            napi_create_int32(env, byteOffset, &napiByteOffset);
+            result = napiByteOffset;
+            break;
+        default:
+            break;
     }
-    // Convert the result to napi_value and return it.
-    napi_value returnValue = nullptr;
-    napi_get_boolean(env, result, &returnValue);
-
-    return returnValue;
+    return result;
 }
 ```
 
@@ -894,7 +882,7 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const isTypedarray: <T>(data: T) => boolean | void;
+export const getDataViewInfo: (dataView: DataView, infoType: number) => ArrayBuffer | number;
 ```
 
 ArkTS code:
@@ -902,14 +890,26 @@ ArkTS code:
 ```ts
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
-try {
-  let value = new Uint8Array([1, 2, 3, 4]);
-  let data = "123";
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<number>(value));
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_typedarray: %{public}s', testNapi.isTypedarray<string>(data));
-} catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_typedarray error: %{public}s', error.message);
-}
+
+// Create an ArrayBuffer object.
+let arrayBuffer = new Int8Array([2, 5]).buffer;
+// Use arrayBuffer to create a DataView object.
+let dataView = new DataView(arrayBuffer);
+// Define an enum type.
+enum InfoType {
+    BYTE_LENGTH = 0,
+    ARRAY_BUFFER = 1,
+    BYTE_OFFSET = 2,
+};
+// Pass in the parameter of DataView to obtain the number of bytes in DataView.
+hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
+// Pass in the parameter of DataView to obtain the ArrayBuffer of DataView.
+let arrbuff = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
+// Convert arraybuffer to an array.
+let arr = Array.from(new Int8Array(arrbuff));
+hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
+// Pass in the parameter of DataView to obtain the byte offset in the data buffer of DataView.
+hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
 ```
 
 To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.

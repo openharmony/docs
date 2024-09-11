@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityManager (AbilityManager) (System API)
 
-The **AbilityManager** module provides APIs for obtaining, adding, and updating ability running information and state information.
+The AbilityManager module provides APIs for obtaining, adding, and updating ability running information and state information.
 
 > **NOTE**
 >
@@ -21,14 +21,14 @@ Enumerates the ability states. This enum can be used together with [AbilityRunni
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Value | Description |
+| Name| Value| Description| 
 | -------- | -------- | -------- |
-| INITIAL | 0 | The ability is in the initial state.|
-| FOCUS | 2 | The ability has the focus. |
-| FOREGROUND | 9 | The ability is in the foreground state. |
-| BACKGROUND | 10 | The ability is in the background state. |
-| FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. |
-| BACKGROUNDING | 12 | The ability is in the state of being switched to the background. |
+| INITIAL | 0 | The ability is in the initial state.| 
+| FOCUS | 2 | The ability has the focus.|
+| FOREGROUND | 9 | The ability is in the foreground state. | 
+| BACKGROUND | 10 | The ability is in the background state. | 
+| FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. | 
+| BACKGROUNDING | 12 | The ability is in the state of being switched to the background. | 
 
 ## UserStatus<sup>12+</sup>
 
@@ -38,11 +38,11 @@ Enumerates the assertion result for different user operations.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Value | Description |
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| ASSERT_TERMINATE | 0 | Assertion result of the terminate operation. |
-| ASSERT_CONTINUE | 1 | Assertion result of the continue operation. |
-| ASSERT_RETRY | 2 | Assertion result of the retry operation. |
+| ASSERT_TERMINATE | 0 | Assertion result of the terminate operation.|
+| ASSERT_CONTINUE | 1 | Assertion result of the continue operation.|
+| ASSERT_RETRY | 2 | Assertion result of the retry operation.|
 
 ## updateConfiguration
 
@@ -55,19 +55,19 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
+ 
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-app-ability-configuration.md)   | Yes   | New configuration. You only need to configure the items to be updated. |
+| config    | [Configuration](js-apis-app-ability-configuration.md)   | Yes   | New configuration. You only need to configure the items to be updated.|
 | callback  | AsyncCallback\<void>                   | Yes   | Callback used to return the API call result. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -120,19 +120,19 @@ Updates the configuration. This API uses a promise to return the result.
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| config    | [Configuration](js-apis-app-ability-configuration.md)   | Yes   | New configuration. You only need to configure the items to be updated. |
+| config    | [Configuration](js-apis-app-ability-configuration.md)   | Yes   | New configuration. You only need to configure the items to be updated.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in it. |
+| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -189,7 +189,7 @@ Obtains the UIAbility running information. This API uses an asynchronous callbac
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -232,13 +232,13 @@ Obtains the UIAbility running information. This API uses a promise to return the
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>> | Promise used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in it. |
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>> | Promise used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
@@ -278,14 +278,14 @@ Obtains the ExtensionAbility running information. This API uses an asynchronous 
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| upperLimit | number                                   | Yes | Maximum number of messages that can be obtained. The maximum value is 2<sup>31</sup>-1. |
+| upperLimit | number                                   | Yes| Maximum number of messages that can be obtained. The maximum value is 2<sup>31</sup>-1.|
 | callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo-sys.md)>>  | Yes   | Callback used to return the API call result and the ExtensionAbility running information. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -330,19 +330,19 @@ Obtains the ExtensionAbility running information. This API uses a promise to ret
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| upperLimit | number                                   | Yes | Maximum number of messages that can be obtained. The maximum value is 2<sup>31</sup>-1. |
+| upperLimit | number                                   | Yes| Maximum number of messages that can be obtained. The maximum value is 2<sup>31</sup>-1.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo-sys.md)>> | Promise used to return the API call result and the ExtensionAbility running information. You can perform error handling or custom processing in it. |
+| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo-sys.md)>> | Promise used to return the API call result and the ExtensionAbility running information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -389,7 +389,7 @@ Obtains the top ability, which is the ability that has the window focus. This AP
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -424,13 +424,13 @@ Obtains the top ability, which is the ability that has the window focus. This AP
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| Promise used to return the API call result and the element name of the top ability. You can perform error handling or custom processing in it. |
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| Promise used to return the API call result and the element name of the top ability. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
@@ -462,14 +462,14 @@ Called by a system dialog box to obtain shared data, which is set by the target 
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| missionId | number                                   | Yes | Mission ID on the target application. The maximum value is 2<sup>31</sup>-1. |
+| missionId | number                                   | Yes| Mission ID on the target application. The maximum value is 2<sup>31</sup>-1.|
 | callback  | AsyncCallback\<Record\<string, Object>>  | Yes   | Callback used to return the API call result and the shared data. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -510,19 +510,19 @@ Called by a system dialog box to obtain shared data, which is set by the target 
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| missionId | number                                   | Yes | Mission ID on the target application. The maximum value is 2<sup>31</sup>-1. |
+| missionId | number                                   | Yes| Mission ID on the target application. The maximum value is 2<sup>31</sup>-1.|
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<Record\<string, Object>>| Promise used to return the API call result and the shared data. You can perform error handling or custom processing in it. |
+| Promise\<Record\<string, Object>>| Promise used to return the API call result and the shared data. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -563,17 +563,18 @@ Used by the [Data Loss Prevention (DLP)](../apis-data-protection-kit/js-apis-dlp
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes | Information returned to the initiator UIAbility. |
-| requestCode | number                                        | Yes | Request code passed in by the DLP management application.         |
-| callback  | AsyncCallback<void\>                             | Yes | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.        |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the initiator UIAbility.|
+| requestCode | number                                        | Yes| Request code passed in by the DLP management application.         |
+| callback  | AsyncCallback<void\>                             | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.        |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -625,22 +626,23 @@ Used by the [Data Loss Prevention (DLP)](../apis-data-protection-kit/js-apis-dlp
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes | Information returned to the initiator UIAbility. |
-| requestCode | number                                        | Yes | Request code passed in by the DLP management application.         |
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the initiator UIAbility.|
+| requestCode | number                                        | Yes| Request code passed in by the DLP management application.         |
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise<void\>| Promise that returns no value. |
+| Promise<void\>| Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -674,7 +676,7 @@ try {
 }
 ```
 
-## abilityManager.on<sup>11+</sup>
+## abilityManager.on('abilityForegroundState')<sup>11+</sup>
 
 on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): void
 
@@ -688,16 +690,16 @@ Registers an observer to listen for ability start or exit events.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Event type. It is fixed at **'abilityForegroundState'**. |
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | Yes | Observer used to listen for ability start or exit events. |
+| type | string | Yes| Event type. It is fixed at **'abilityForegroundState'**.|
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | Yes| Observer used to listen for ability start or exit events.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -724,7 +726,7 @@ try {
 }
 ```
 
-## abilityManager.off<sup>11+</sup>
+## abilityManager.off('abilityForegroundState')<sup>11+</sup>
 
 off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): void
 
@@ -738,16 +740,16 @@ Unregisters the observer used to listen for ability start or exit events.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Event type. It is fixed at **'abilityForegroundState'**. |
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | No | Observer used to listen for ability start or exit events. If this parameter is not set, all observers associated with the specified event are deregistered. If this parameter is set, only the specified observer is deregistered. |
+| type | string | Yes| Event type. It is fixed at **'abilityForegroundState'**.|
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | No| Observer used to listen for ability start or exit events. If this parameter is not set, all observers associated with the specified event are deregistered. If this parameter is set, only the specified observer is deregistered.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -800,15 +802,15 @@ Obtains the information about the UIAbilities of an application that is running 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>>  | Yes |Callback used to return the API call result and the UIAbility information. You can perform error handling or custom processing in it. |
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>>  | Yes|Callback used to return the API call result and the UIAbility information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -844,7 +846,7 @@ Obtains the information about the UIAbilities of an application that is running 
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>> | Promise used to return the API call result and the UIAbility information. You can perform error handling or custom processing in it.|
 
@@ -852,7 +854,7 @@ Obtains the information about the UIAbilities of an application that is running 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -885,22 +887,22 @@ Notifies the application of the assertion result. This API uses a promise to ret
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------- | -------- | -------- | -------- |
-| sessionId | string | Yes | Session ID of the AssertFault. |
-| status | [UserStatus](#userstatus12) | Yes | Assertion result of the user operation. |
+| sessionId | string | Yes| Session ID of the AssertFault.|
+| status | [UserStatus](#userstatus12) | Yes| Assertion result of the user operation.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
@@ -941,22 +943,22 @@ Checks whether the [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------- | -------- | -------- | -------- |
-| context | [Context](js-apis-inner-application-context.md) | Yes | Context of the caller. |
-| appId | string | Yes | Unique ID of the application, which is allocated by the cloud. |
+| context | [Context](js-apis-inner-application-context.md) | Yes| Context of the caller.|
+| appId | string | Yes| Unique ID of the application, which is allocated by the cloud.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that embedded startup is allowed, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that embedded startup is allowed, and **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
@@ -996,22 +998,22 @@ Enables or disables the resident process of an application.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | ------- | -------- | -------- | -------- |
-| bundleName | string | Yes | Bundle name of the resident process. |
-| enable | boolean | Yes | Whether to enable or disable the resident process. The value **true** means to enable the resident process, and **false** means to disable the resident process.|
+| bundleName | string | Yes| Bundle name of the resident process.|
+| enable | boolean | Yes| Whether to enable or disable the resident process. The value **true** means to enable the resident process, and **false** means to disable the resident process.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 202 | Not a system application. |
 | 401 | Parameter error. Possible cause: 1.Non empty package name needs to be provided, 2.The second parameter needs to provide a Boolean type setting value |
@@ -1040,5 +1042,3 @@ try {
   console.error(`setResidentProcessEnabled failed, code is ${code}, message is ${message}`);
 }
 ```
-
- <!--no_check--> 

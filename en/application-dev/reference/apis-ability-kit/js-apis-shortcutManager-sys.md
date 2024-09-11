@@ -29,16 +29,16 @@ Adds [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) for a given user.
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description        |
+| Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
-| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information. |
-| userId     | number | Yes  | User ID. |
+| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information.|
+| userId     | number | Yes  | User ID.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -98,7 +98,7 @@ struct ShortcutExample {
 
 deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md), userId: number) : Promise\<void>
 
-Deletes the specified [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) for a given user.
+Deletes [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) for a given user.
 
 **Required permissions**: ohos.permission.MANAGE_SHORTCUTS
 
@@ -108,16 +108,16 @@ Deletes the specified [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) 
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description        |
+| Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
-| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information. |
-| userId     | number | Yes  | User ID. |
+| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information.|
+| userId     | number | Yes  | User ID.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -183,21 +183,21 @@ Obtains all [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) records of
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description        |
+| Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
-| userId     | number | Yes  | User ID. |
+| userId     | number | Yes  | User ID.|
 
 **Return value**
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)> | Array that holds the [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) objects. |
+| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)> | Array that holds the [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) objects.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
-| ID | Error Message                                |
+| ID| Error Message                                |
 | -------- | ---------------------------------------- |
 | 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |

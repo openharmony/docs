@@ -1,4 +1,4 @@
- # @ohos.data.distributedKVStore (分布式键值数据库)
+# @ohos.data.distributedKVStore (分布式键值数据库)
 
 分布式键值数据库为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式键值数据库各个接口，应用程序可将数据保存到分布式键值数据库中，并可对分布式键值数据库中的数据进行增加、删除、修改、查询、同步等操作。
 
@@ -41,7 +41,7 @@ import { distributedKVStore } from '@kit.ArkData';
 | --------------------- | ------- | --------------------------------------- |
 | MAX_KEY_LENGTH        | 1024    | 数据库中Key允许的最大长度，单位字节。   |
 | MAX_VALUE_LENGTH      | 4194303 | 数据库中Value允许的最大长度，单位字节。 |
-| MAX_KEY_LENGTH_DEVICE | 896     | 设备协同数据库中key允许的最大长度，单位字节。 |
+| MAX_KEY_LENGTH_DEVICE | 896     | 设备协同数据库中Key允许的最大长度，单位字节。 |
 | MAX_STORE_ID_LENGTH   | 128     | 数据库标识符允许的最大长度，单位字节。  |
 | MAX_QUERY_LENGTH      | 512000  | 最大查询长度，单位字节。                |
 | MAX_BATCH_SIZE        | 128     | 最大批处理操作数量。                    |
@@ -127,7 +127,7 @@ import { distributedKVStore } from '@kit.ArkData';
 | 名称                 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ |
 | DEVICE_COLLABORATION | 表示多设备协同数据库。<br> **数据库特点：** 数据以设备的维度管理，不存在冲突；支持按照设备的维度查询数据。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
-| SINGLE_VERSION       | 表示单版本数据库。<br> **数据库特点：** 数据不分设备，设备之间修改相同的key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| SINGLE_VERSION       | 表示单版本数据库。<br> **数据库特点：** 数据不分设备，设备之间修改相同的Key会覆盖。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
 
@@ -2462,7 +2462,7 @@ try {
 
 deviceId(deviceId:string):Query
 
-添加设备ID作为key的前缀。
+添加设备ID作为Key的前缀。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -2551,7 +2551,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| key    | string  | 是    |要添加数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
+| key    | string  | 是    |要添加数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 | value  | Uint8Array \| string \| number \| boolean | 是    |要添加数据的value，支持Uint8Array、number 、 string 、boolean，Uint8Array、string 的长度不大于[MAX_VALUE_LENGTH](#constants)。   |
 | callback | AsyncCallback&lt;void&gt; | 是    |回调函数。数据添加成功，err为undefined，否则为错误对象。   |
 
@@ -2604,7 +2604,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| key    | string  | 是    |要添加数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
+| key    | string  | 是    |要添加数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。   |
 | value  | Uint8Array \| string \| number \| boolean | 是    |要添加数据的value，支持Uint8Array、number 、 string 、boolean，Uint8Array、string 的长度不大于[MAX_VALUE_LENGTH](#constants)。   |
 
 **返回值：**
@@ -2809,7 +2809,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                    | 是   | 要删除数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| key      | string                    | 是   | 要删除数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。删除指定的数据成功，err为undefined，否则为错误对象。         |
 
 **错误码：**
@@ -2870,7 +2870,7 @@ delete(key: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| key    | string   | 是   | 要删除数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| key    | string   | 是   | 要删除数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
 
 **返回值：**
 
@@ -3204,7 +3204,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| key    |string   | 是    |要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。  |
+| key    |string   | 是    |要查询数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。  |
 | callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | 是    |回调函数。返回获取查询的值。  |
 
 **错误码：**
@@ -3261,7 +3261,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 | 参数名 | 类型 | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| key    | string   | 是   | 要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| key    | string   | 是   | 要查询数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
 
 **返回值：**
 
@@ -5418,7 +5418,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| key      | string                                                       | 是   | 要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| key      | string                                                       | 是   | 要查询数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
 | callback | AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | 是   | 回调函数。返回获取查询的值。                                 |
 
 **错误码：**
@@ -5474,7 +5474,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| key    | string | 是   | 要查询数据的key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| key    | string | 是   | 要查询数据的Key，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
 
 **返回值：**
 
@@ -5523,7 +5523,7 @@ try {
 
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
-获取与指定设备ID和key匹配的string值，使用callback异步回调。
+获取与指定设备ID和Key匹配的string值，使用callback异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -5536,7 +5536,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | 是    |标识要查询其数据的设备。    |
-| key       |string  | 是    |表示要查询key值的键, 不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。    |
+| key       |string  | 是    |表示要查询Key值的键, 不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。    |
 | callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | 是    |回调函数，返回匹配给定条件的字符串值。    |
 
 **错误码：**
@@ -5584,7 +5584,7 @@ try {
 
 get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
-获取与指定设备ID和key匹配的string值，使用Promise异步回调。
+获取与指定设备ID和Key匹配的string值，使用Promise异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -5597,7 +5597,7 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 | 参数名   | 类型 | 必填 | 说明                     |
 | -------- | -------- | ---- | ------------------------ |
 | deviceId | string   | 是   | 标识要查询其数据的设备。 |
-| key      | string   | 是   | 表示要查询key值的键, 不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。    |
+| key      | string   | 是   | 表示要查询Key值的键, 不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。    |
 
 **返回值：**
 
@@ -5782,7 +5782,7 @@ try {
 
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
-获取与指定设备ID和key前缀匹配的所有键值对，使用callback异步回调。
+获取与指定设备ID和Key前缀匹配的所有键值对，使用callback异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -5855,7 +5855,7 @@ try {
 
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
-获取与指定设备ID和key前缀匹配的所有键值对，使用Promise异步回调。
+获取与指定设备ID和Key前缀匹配的所有键值对，使用Promise异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -6377,7 +6377,7 @@ try {
 
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
-获取与指定设备ID和key前缀匹配的KVStoreResultSet对象，使用callback异步回调。
+获取与指定设备ID和Key前缀匹配的KVStoreResultSet对象，使用callback异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -6391,7 +6391,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
 | keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和Key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 
@@ -6438,7 +6438,7 @@ try {
 
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
-获取与指定设备ID和key前缀匹配的KVStoreResultSet对象，使用Promise异步回调。
+获取与指定设备ID和Key前缀匹配的KVStoreResultSet对象，使用Promise异步回调。
 > **说明：** 
 >
 > 其中deviceId通过调用[deviceManager.getAvailableDeviceListSync](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
@@ -6457,7 +6457,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 
 | 类型                                                   | 说明                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
+| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。返回与指定设备ID和Key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
 

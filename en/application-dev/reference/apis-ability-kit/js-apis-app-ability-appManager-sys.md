@@ -128,7 +128,7 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
 });
 ```
 
-## appManager.on
+## appManager.on('applicationState')
 
 on(type: 'applicationState', observer: ApplicationStateObserver): number
 
@@ -138,7 +138,7 @@ Registers an observer to listen for the state changes of all applications.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -204,7 +204,7 @@ try {
 }
 ```
 
-## appManager.on
+## appManager.on('applicationState')
 
 on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number
 
@@ -214,7 +214,7 @@ Registers an observer to listen for the state changes of a specified application
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -283,7 +283,7 @@ try {
 }
 ```
 
-## appManager.on<sup>11+</sup>
+## appManager.on('appForegroundState')<sup>11+</sup>
 
 on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
 
@@ -334,7 +334,7 @@ try {
 }
 ```
 
-## appManager.on<sup>12+</sup>
+## appManager.on('abilityFirstFrameState')<sup>12+</sup>
 
 on(type: 'abilityFirstFrameState', observer: AbilityFirstFrameStateObserver, bundleName?: string): void
 
@@ -386,7 +386,7 @@ try {
 }
 ```
 
-## appManager.off
+## appManager.off('applicationState')
 
 off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void
 
@@ -396,7 +396,7 @@ Deregisters the application state observer. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -477,7 +477,7 @@ try {
 }
 ```
 
-## appManager.off
+## appManager.off('applicationState')
 
 off(type: 'applicationState', observerId: number): Promise\<void>
 
@@ -487,7 +487,7 @@ Deregisters the application state observer. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -569,7 +569,7 @@ try {
 }
 ```
 
-## appManager.off<sup>11+</sup>
+## appManager.off('appForegroundState')<sup>11+</sup>
 
 off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
 
@@ -633,7 +633,7 @@ try {
 }
 ```
 
-## appManager.off<sup>12+</sup>
+## appManager.off('abilityFirstFrameState')<sup>12+</sup>
 
 off(type: 'abilityFirstFrameState', observer?: AbilityFirstFrameStateObserver): void
 
@@ -702,7 +702,7 @@ Obtains applications that are running in the foreground. This API uses an asynch
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -754,7 +754,7 @@ Obtains applications that are running in the foreground. This API uses a promise
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Return value**
 
@@ -799,7 +799,7 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -807,6 +807,12 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
 | accountId | number | Yes| ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
+
+**Return value**
+
+| Type            | Description             |
+| -------------- | --------------- |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -841,6 +847,71 @@ try {
 }
 ```
 
+## appManager.killProcessWithAccount<sup>13+</sup>
+
+killProcessWithAccount(bundleName: string, accountId: number, clearPageStack: boolean, appIndex?: number): Promise\<void\>
+
+Kills a process by bundle name and account ID. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| accountId | number | Yes| ID of a system account. For details, see [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
+| clearPageStack | boolean | Yes| Whether to clear the page stack. The value **true** means to clear the page stack, and **false** means the opposite.|
+| appIndex | number | No| Index of an application clone.|
+
+**Return value**
+
+| Type            | Description             |
+| -------------- | --------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName = 'bundleName';
+let accountId = 0;
+let isClearPageStack = false;
+let appIndex = 1;
+
+try {
+  appManager.killProcessWithAccount(bundleName, accountId, isClearPageStack, appIndex).then(() => {
+    console.log('killProcessWithAccount success');
+  }).catch((err: BusinessError) => {
+    console.error(`killProcessWithAccount fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
+}
+```
 
 ## appManager.killProcessWithAccount
 
@@ -856,7 +927,7 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -907,7 +978,7 @@ Kills a process by bundle name. This API uses an asynchronous callback to return
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -962,7 +1033,7 @@ Kills a process by bundle name. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -974,7 +1045,7 @@ Kills a process by bundle name. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1008,6 +1079,66 @@ try {
 }
 ```
 
+## appManager.killProcessesByBundleName<sup>13+</sup>
+
+killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?: number): Promise\<void>
+
+Kills a process by bundle name. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name.|
+| clearPageStack | boolean | Yes| Whether to clear the page stack. The value **true** means to clear the page stack, and **false** means the opposite.|
+| appIndex | number | No| Index of an application clone.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName = 'bundleName';
+let isClearPageStack = false;
+let appIndex = 1;
+
+try {
+  appManager.killProcessesByBundleName(bundleName, isClearPageStack, appIndex).then((data) => {
+    console.log('killProcessesByBundleName success.');
+  }).catch((err: BusinessError) => {
+    console.error(`killProcessesByBundleName fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message}`);
+}
+```
+
 ## appManager.clearUpApplicationData
 
 clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
@@ -1018,7 +1149,7 @@ Clears application data by bundle name. This API uses an asynchronous callback t
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1073,7 +1204,7 @@ Clears application data by bundle name. This API uses a promise to return the re
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -1544,7 +1675,7 @@ Enumerates the application states. This enum can be used together with [AbilityS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name                | Value | Description                              |
 | -------------------- | --- | --------------------------------- |
@@ -1693,7 +1824,7 @@ Obtains the information about running applications in multi-app mode. This API u
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name of the application.|
+| bundleName | string | Yes| Bundle name.|
 
 **Return value**
 
@@ -1747,7 +1878,7 @@ Checks whether an application is running. This API uses a promise to return the 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name of the application.|
+| bundleName | string | Yes| Bundle name.|
 | appCloneIndex | number | No| Index of the app clone.|
 
 **Return value**
@@ -1875,7 +2006,7 @@ Obtains the PIDs of processes that support quick startup after caching in a spec
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| bundleName    | string   | Yes   | Bundle name of the application.|
+| bundleName    | string   | Yes   | Bundle name.|
 
 **Return value**
 

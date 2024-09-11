@@ -43,8 +43,8 @@ Enterprise Device Manager（企业设备管理工具，简称为edm），为设�
 | error: -n, --bundle-name option requires an argument.        | 传入的bundleName为空。                                       |
 | error: -a, --ability-name option requires an argument.       | 传入的abilityName为空。                                      |
 | error: unknown option.                                       | 传入了未知的参数。                                           |
-| error: -n <bundle-name> is expected.                         | 未传入bundleName。                                           |
-| error: -a <ability-name> is expected.                        | 未传入abilityName。                                          |
+| error: -n \<bundle-name> is expected.                        | 未传入bundleName。                                           |
+| error: -a \<ability-name> is expected.                       | 未传入abilityName。                                          |
 | error: the administrator ability component is invalid.       | 传入的bundleName或者abilityName不正确或者不是enterpriseAdmin类型的ExtensionAbility。 |
 | error: failed to enable the administrator application of the device. | 激活失败。                                                   |
 
@@ -81,7 +81,7 @@ edm enable-admin -n com.example.mdmsample -a com.example.mdmsample.EnterpriseAdm
 | error: command requires option.                              | 未传入bundleName。     |
 | error: -n, --bundle-name option requires an argument.        | 传入的bundleName为空。 |
 | error: unknown option.                                       | 传入了未知的参数。     |
-| error: -n <bundle-name> is expected.                         | 未传入bundleName。     |
+| error: -n \<bundle-name> is expected.                        | 未传入bundleName。     |
 | error: failed to disable the administrator application of the device. | 解除激活失败。         |
 
   **使用方法**：

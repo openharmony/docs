@@ -162,12 +162,64 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 401 | 1. 未指定必须的参数 2. 参数类型与接口定义不匹配 |
+| 13900020 | 非法参数值 |
+
 **示例：**
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.access(filePath).then((res: boolean) => {
+    if (res) {
+      console.info("file exists");
+    } else {
+      console.info("file not exists");
+    }
+  }).catch((err: BusinessError) => {
+    console.error("access failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## fs.access
+
+access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boolean&gt;
+
+检查文件是否在本地，或校验相关权限，使用Promise异步返回。如果文件在云端，或者其它分布式设备上，返回false。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | 是   | 文件应用沙箱路径。                                   |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 是   | 文件校验的权限。|
+| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | 是| 文件校验的位置。 |
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;boolean&gt; | Promise对象。返回布尔值，true，表示文件存在本地且具有相关权限；false，表示文件不存在本地或不具有相关权限。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 401 | 1. 未指定必须的参数 2. 参数类型与接口定义不匹配 |
+| 13900020 | 非法参数值 |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let filePath = pathDir + "/test.txt";
+  fs.access(filePath, fs.AccessModeFlag.EXIST, fs.AccessFlagType.LOCAL).then((res: boolean) => {
     if (res) {
       console.info("file exists");
     } else {
@@ -198,6 +250,11 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 401 | 1. 未指定必须的参数 2. 参数类型与接口定义不匹配 |
+| 13900020 | 非法参数值 |
 
 **示例：**
 
@@ -244,6 +301,11 @@ accessSync(path: string, mode?: AccessModeType): boolean
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 401 | 1. 未指定必须的参数 2. 参数类型与接口定义不匹配 |
+| 13900020 | 非法参数值 |
+
 **示例：**
 
   ```ts
@@ -262,6 +324,54 @@ accessSync(path: string, mode?: AccessModeType): boolean
   }
   ```
 
+## fs.accessSync
+
+accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
+
+以同步方法检查文件是否在本地，或校验相关权限。如果文件在云端，或者其它分布式设备上，返回false。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| path   | string | 是   | 文件应用沙箱路径。                                   |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 是   | 文件校验的权限。|
+| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | 是   | 文件校验的位置。 |
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | boolean | 返回true，表示文件存在本地且具有相关权限；返回false，表示文件不存在本地或不具有相关权限。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 401 | 1. 未指定必须的参数 2. 参数类型与接口定义不匹配 |
+| 13900020 | 非法参数值 |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let filePath = pathDir + "/test.txt";
+  try {
+    let res = fs.accessSync(filePath, fs.AccessModeFlag.EXIST, fs.AccessFlagType.LOCAL);
+    if (res) {
+      console.info("file exists");
+    } else {
+      console.info("file not exists");
+    }
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+  }
+  ```
 
 ## fs.close
 
@@ -903,6 +1013,7 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs } from '@kit.CoreFileKit';
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
@@ -915,8 +1026,8 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise&lt;void&gt;
   }
   fs.connectDfs(networkId, listeners).then(() => {
     console.info("Success to connectDfs");
-  }).catch((err) => {
-    console.error('connectDfs failed with error message: ${JSON.stringify(err)}');
+  }).catch((err: BusinessError) => {
+    console.error("connectDfs failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -949,6 +1060,7 @@ disconnectDfs(networkId: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs } from '@kit.CoreFileKit';
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
@@ -956,7 +1068,7 @@ disconnectDfs(networkId: string): Promise&lt;void&gt;
   let networkId = deviceInfoList[0].networkId;
   fs.disconnectDfs(networkId).then(() => {
     console.info("Success to disconnectDfs");
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error('disconnectDfs failed with error message: ${JSON.stringify(err)}')
   })
   ```
@@ -2175,11 +2287,15 @@ next(): ReaderIteratorResult
 
   | 类型                    | 说明         |
   | --------------------- | ---------- |
-  | ReaderIteratorResult | 文件读取迭代器返回结果。 |
+  | [ReaderIteratorResult](#readeriteratorresult) | 文件读取迭代器返回结果。 |
 
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+> **说明**：
+>
+> 如果ReaderIterator读取的当前行的编码方式不是 'utf-8'，接口返回错误码13900037。
 
 **示例：**
 
@@ -4127,24 +4243,26 @@ cancel(): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { fileuri } from '@kit.CoreFileKit';
+import { fileUri } from '@kit.CoreFileKit';
+import common from '@ohos.app.ability.common';
 let context = getContext(this) as common.UIAbilityContext;
 let pathDir: string = context.filesDir;
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
-let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
-let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+let srcDirUriLocal: string = fileUri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
+let copySignal = new fs.TaskSignal;
 let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
   console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
   if (progress.processedSize / progress.totalSize > 0.5) {
-    options.copySignal.cancel();
+    copySignal.cancel();
   }
 };
 let options: fs.CopyOptions = {
   "progressListener" : progressListener,
   "copySignal" : new fs.TaskSignal,
 }
-console.info("copyFileWithCancel success.", + options.copySignal.onCancel());
+console.info("copyFileWithCancel success.");
 try {
   fs.copy(srcDirPathLocal, dstDirUriLocal, options, (err: BusinessError) => {
     if (err) {
@@ -4180,6 +4298,8 @@ onCancel(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { TaskSignal } from '@ohos.file.fs';
 let copySignal: fs.TaskSignal = new TaskSignal();
 copySignal.onCancel().then(() => {
     console.info("copyFileWithCancel success.");
@@ -5134,7 +5254,7 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&g
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo as fs, WriteOptions } from '@kit.CoreFileKit';
   let filePath = pathDir + "/test.txt";
-  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fsfileIo.OpenMode.READ_WRITE);
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength: number = 4096;
   let writeOption: WriteOptions = {
@@ -5565,6 +5685,16 @@ open接口flags参数常量。文件打开标签。
 | WRITE    | 2     | 文件是否具有写入权限 |
 | READ    | 4     | 文件是否具有读取权限 |
 | READ_WRITE    | 6     | 文件是否具有读写权限 |
+
+## AccessFlagType<sup>12+</sup>
+
+枚举，表示需要校验的文件位置
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称        | 值       | 说明                |
+| ----------- | --------------- | ------------------ |
+| LOCAL | 0     | 文件是否在本地          |
 
 ## ReadOptions<sup>11+</sup>
 

@@ -904,7 +904,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称                   | 值 | 说明     |
 | :--------------------- |:--|:-------|
 | DEACTIVATED_LOWER_PRIORITY | 0 | 应用焦点被抢占。 |
-| DEACTIVATED_TIME_OUT | 1 | 应用停流后超时。    |
+| DEACTIVATED_TIMEOUT | 1 | 应用停流后超时。    |
 
 ## AudioSessionStrategy<sup>12+</sup>
 
@@ -3333,7 +3333,7 @@ let capturerInfo: audio.AudioCapturerInfo = {
   capturerFlags: 0
 }
 
-audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
+audio.getAudioManager().getRoutingManager().getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
   audioVolumeGroupManager.getMaxAmplitudeForInputDevice(data[0]).then((value) => {
     console.info(`mic volatileume amplitude is: ${value}`);
   }).catch((err: BusinessError) => {
@@ -3384,7 +3384,7 @@ let rendererInfo: audio.AudioRendererInfo = {
   rendererFlags : 0
 }
 
-audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
+audio.getAudioManager().getRoutingManager().getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
   audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(data[0]).then((value) => {
     console.info(`mic volatileume amplitude is: ${value}`);
   }).catch((err: BusinessError) => {
@@ -4955,7 +4955,7 @@ activateAudioSession(strategy: AudioSessionStrategy): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters unspecified. 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed.|
 | 6800301 | System error. Returned by promise. |
 
@@ -5050,7 +5050,7 @@ on(type: 'audioSessionDeactivated', callback: Callback\<AudioSessionDeactivatedE
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters unspecified. 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -5082,7 +5082,7 @@ off(type: 'audioSessionDeactivated', callback?: Callback\<AudioSessionDeactivate
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**

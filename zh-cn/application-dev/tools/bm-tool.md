@@ -566,7 +566,7 @@ Error: install failed due to grant request permissions failed.
 
 **处理步骤**
 
-1. 在UnsgnedDebugProfileTemplate.json文件中修改apl等级，调整成system_basic或system_core等级，重新签名打包即可。
+1. 在UnsgnedDebugProfileTemplate.json文件中修改APL等级，调整成system_basic或system_core等级，重新签名打包即可。
 
 
 ### 9568297 由于设备sdk版本较低导致安装失败
@@ -613,6 +613,31 @@ Error: install sign info inconsistent.
 1. 请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
 
 
+### 9568329 签名信息验证失败
+**错误信息**
+
+Error: verify signature failed.
+
+![示例图](figures/zh-cn_image_155401.png)
+
+**错误描述**
+
+签名信息中的包名与应用的包名（bundleName）不一致。
+
+**可能原因**
+
+* 场景一：用户导入了三方提供的HSP模块，且该HSP既非[集成态HSP](../quick-start/integrated-hsp.md)，又非同包名的HSP，造成包名不一致。
+
+* 场景二：用户使用了错误的签名文件（后缀为.p7b）进行签名，造成包名不一致。
+
+
+**处理步骤**
+
+* 场景一：HSP只能给同包名的应用使用，只有集成态HSP可以给不同包名的应用使用。需要用户与三方开发者确认，三方开发者应提供集成态HSP、或同包名的HSP给用户使用。
+
+* 场景二：检查签名流程和签名证书，参考<!--RP8-->[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)<!--RP8End-->。
+
+
 ### 9568266 安装权限拒绝
 **错误信息**
 
@@ -657,7 +682,7 @@ Error: install parse unexpected.
 * 场景二：查看本地hap与推送到设备上hap的md5值，若不一致则表示推送过程hap损毁，请尝试重传。
 
 
-### 9568316 数据代理中apl权限字段描述权限低
+### 9568316 数据代理中APL权限字段描述权限低
 **错误信息**
 
 Error: apl of required permission in proxy data is too low.

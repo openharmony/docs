@@ -19,6 +19,7 @@
     - [ArkWeb_AnyNativeAPI](_ark_web___any_native_a_p_i.md)
     - [ArkWeb_ComponentAPI](_ark_web___component_a_p_i.md)
     - [ArkWeb_ControllerAPI](_ark_web___controller_a_p_i.md)
+    - [ArkWeb_CookieManagerAPI](_ark_web___cookie_manager_a_p_i.md)
     - [ArkWeb_JavaScriptBridgeData](_ark_web___java_script_bridge_data.md)
     - [ArkWeb_JavaScriptObject](_ark_web___java_script_object.md)
     - [ArkWeb_ProxyMethod](_ark_web___proxy_method.md)

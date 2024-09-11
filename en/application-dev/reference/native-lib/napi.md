@@ -196,11 +196,11 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_destroy_ark_runtime|Destroys the ArkTS runtime environment.|12|
 |FUNC|napi_run_event_loop|Runs the underlying event loop.|12|
 |FUNC|napi_stop_event_loop|Stops the underlying event loop.|12|
-|FUNC|napi_load_module_with_info|Loads an .abc file as a module. This API returns the namespace of the module. It can be used in the newly created ArkTS runtime environment.|12|
+|FUNC|napi_load_module_with_info|Loads an .abc file as a module. This API returns the namespace of the module. It can be used in a newly created ArkTS runtime environment.|12|
 |FUNC|napi_serialize|Converts an ArkTS object into native data.|12|
 |FUNC|napi_deserialize|Converts native data into an ArkTS object.|12|
 |FUNC|napi_delete_serialization_data|Deletes serialized data.|12|
-|FUNC|napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into an ArkTS thread.|12|
+|FUNC|napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into the ArkTS main thread.|12|
 |FUNC|napi_is_sendable|Checks whether the given JS value is sendable.|12|
 |FUNC|napi_define_sendable_class|Creates a sendable class.|12|
 |FUNC|napi_create_sendable_object_with_properties | Creates a sendable object with the given **napi_property_descriptor**.|12|
@@ -487,7 +487,7 @@ napi_status napi_load_module_with_info(napi_env env,
 
 **Description**
 
-Loads an .abc file as a module. This API returns the namespace of the module. It can be used in the newly created ArkTS runtime environment.
+Loads an .abc file as a module. This API returns the namespace of the module. It can be used in a newly created ArkTS runtime environment.
 
 **Parameters**
 
@@ -586,7 +586,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 
 **Description**
 
-Calls a task with the specified priority and enqueuing mode into an ArkTS thread.
+Calls a task with the specified priority and enqueuing mode into the ArkTS main thread.
 
 **Parameters**
 

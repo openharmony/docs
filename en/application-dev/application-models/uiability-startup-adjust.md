@@ -15,14 +15,10 @@ Since API version 12, you must use Linking to implement cross-application redire
     ```json
     {
       "module": {
+        // ...
         "abilities": [
           {
-            "name": "EntryAbility",
-            "srcEntry": "./ets/entryability/EntryAbility.ts",
-            "icon": "$media:icon",
-            "label": "$string:EntryAbility_label",
-            "startWindowIcon": "$media:icon",
-            "startWindowBackground": "$color:start_window_background",
+            // ...
             "skills": [
               {
                 "entities": [
@@ -120,14 +116,10 @@ Since API version 12, you must use Linking to implement cross-application redire
     ```json
     {
       "module": {
+        // ...
         "abilities": [
           {
-            "name": "EntryAbility",
-            "srcEntry": "./ets/entryability/EntryAbility.ts",
-            "icon": "$media:icon",
-            "label": "$string:EntryAbility_label",
-            "startWindowIcon": "$media:icon",
-            "startWindowBackground": "$color:start_window_background",
+            // ...
             "skills": [
               {
                 "entities": [

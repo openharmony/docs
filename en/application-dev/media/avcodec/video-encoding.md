@@ -55,7 +55,7 @@ The following figure shows the interaction between states.
 
 1. An encoder enters the Initialized state in either of the following ways:
    - When an encoder instance is initially created, the encoder enters the Initialized state.
-   - When **OH_VideoEncoder_Reset()** is called in any state, the encoder goes back to the Initialized state.
+   - When **OH_VideoEncoder_Reset()** is called in any state, the encoder returns to the Initialized state.
 
 2. When the encoder is in the Initialized state, you can call **OH_VideoEncoder_Configure()** to configure the encoder. After the configuration, the encoder enters the Configured state.
 3. When the encoder is in the Configured state, you can call **OH_VideoEncoder_Prepare()** to switch it to the Prepared state.
@@ -82,13 +82,17 @@ The figure below shows the call relationship of video encoding.
 
 ![Call relationship of video encoding](figures/video-encode.png)
 
-### Linking the Dynamic Library in the CMake Script
+### Linking the Dynamic Link Library in the CMake Script
 
 ```cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_venc.so)
 ```
+> **NOTE**
+>
+> The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
+>
 
 ### Surface Input
 
@@ -152,6 +156,8 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     - **OH_AVCodecOnNeedInputBuffer**, a callback used to report input data required. This callback does not take effect, since you input data through the obtained surface.
     - **OH_AVCodecOnNewOutputBuffer**, a callback used to report output data generated, which means that encoding is complete.
 
+    <!--RP2--><!--RP2End-->
+
     The following is an example:
     ```c++
     int32_t qpAverage = 20;
@@ -190,10 +196,10 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         // The encoded frame data (specified by buffer) is sent to outBufferQueue.
         // Obtain the average QP and MSE of the video frame.
         OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, qpAverage);
-        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, &qpAverage);
+        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, &mseValue);
         OH_AVFormat_Destroy(format);
-        // Perform data processing. For details, see
+        // Process the data.
         // Release the encoded frame.
     }
 
@@ -216,7 +222,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     {
         // The index of the input frame parameter is sent to InParameterIndexQueue.
         // The input frame data (specified by parameter) is sent to InParameterQueue.
-        // Perform data processing. For details, see
+        // Process the data.
         // Write the frame parameter.
         // The value of OH_MD_KEY_VIDEO_ENCODER_QP_MAX must be greater than or equal to that of OH_MD_KEY_VIDEO_ENCODER_QP_MIN.
         OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MAX, 30);
@@ -225,7 +231,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 
     // 5.2 Register the frame channel callback function.
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
-    OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr); // NULL: userData is null.
+    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, nullptr); // NULL: userData is null.
     ```
 
 6. Call **OH_VideoEncoder_Configure()** to configure the encoder.
@@ -308,15 +314,15 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     ```
     For details about how to use the **OHNativeWindow*** variable type, see [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow).
 
-8. Call **OH_VideoEncoder_Prepare()** to prepare internal resources for the encoder.
+8. Call **OH_VideoEncoder_Prepare()** to prepare internal resources for the encoder.  
 
-   ```c++
-   int32_t ret = OH_VideoEncoder_Prepare(videoEnc);
+    ```c++
+    int32_t ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-   ```
-   
+    ```
+
 9. Call **OH_VideoEncoder_Start()** to start the encoder.
 
     ```c++
@@ -369,7 +375,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     - **index**: index of the data queue, which is passed in by the callback function **OnNeedInputParameter**.
 
     ```c++
-    int32_t ret = OH_VideoEncoder_PushInputParameter(codec, index);
+    int32_t ret = OH_VideoEncoder_PushInputParameter(videoEnc, index);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
@@ -430,7 +436,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 
 16. (Optional) Call **OH_VideoEncoder_Reset()** to reset the encoder.
 
-    After **OH_VideoEncoder_Reset()** is called, the encoder returns to the Initialized state. To continue, you must call **OH_VideoEncoder_Configure()** again.
+    After **OH_VideoEncoder_Reset()** is called, the encoder returns to the Initialized state. To continue, you must call **OH_VideoEncoder_Configure()** and **OH_VideoEncoder_Prepare()** again.
 
     ```c++
     // Reset the encoder.
@@ -440,6 +446,11 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     }
     // Reconfigure the encoder.
     ret = OH_VideoEncoder_Configure(videoEnc, format);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // The encoder is ready again.
+    ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
@@ -515,6 +526,8 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 
     You need to process the callback functions to ensure that the encoder runs properly.
 
+    <!--RP2--><!--RP2End-->
+
     ```c++
     bool isFirstFrame = true;
     int32_t qpAverage = 20;
@@ -545,8 +558,8 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         // Obtain the video width, height, and stride.
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(codec);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
             OH_AVFormat_Destroy(format);
             isFirstFrame = false;
         }
@@ -562,8 +575,8 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         // The encoded frame data (specified by buffer) is sent to outBufferQueue.
         // Obtain the average QP and MSE of the video frame.
         OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, qpAverage);
-        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, &qpAverage);
+        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, &mseValue);
         OH_AVFormat_Destroy(format);
         // Process the data.
         // Release the encoded frame.
@@ -601,13 +614,13 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 
 5. Call **OH_VideoEncoder_Prepare()** to prepare internal resources for the encoder.  
 
-   ```c++
-   ret = OH_VideoEncoder_Prepare(videoEnc);
+    ```c++
+    ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-   ```
-   
+    ```
+
 6. Call **OH_VideoEncoder_Start()** to start the encoder.
 
     As soon as the encoder starts, the callback functions will be triggered to respond to events. Therefore, you must configure the input file and output file first.
@@ -680,7 +693,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     }
     ```
     Offset the stride. The following uses an NV12 image as an example:
-    
+
     Add the header file.
 
     ```c++
@@ -706,11 +719,12 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         int32_t wStride;
         int32_t hStride;
     };
-    struct Rect rect;
-    struct DstRect dstRect;
-    struct SrcRect srcRect;
-    uint8_t *dst; // Pointer to the target memory area.
-    uint8_t *src; // Pointer to the source memory area.
+
+    Rect rect = {320, 240};
+    DstRect dstRect = {320, 250};
+    SrcRect srcRect = {320, 250};
+    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // Pointer to the target memory area.
+    uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // Pointer to the source memory area.
 
     // Y: Copy the source data in the Y region to the target data in another region.
     for (int32_t i = 0; i < rect.height; ++i) {
@@ -731,9 +745,13 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         dst += dstRect.wStride;
         src += srcRect.wStride;
     }
+
+    delete[] dst;
+    dst = nullptr;
+    delete[] src;
+    src = nullptr;
     ```
     When processing buffer data (before pushing data) during hardware encoding, you must copy the image data after width and height alignment to the input callback AVBuffer. Generally, copy the image width, height, stride, and pixel format to ensure correct processing of the data to encode. For details, see step 3 in [Buffer Input](#buffer-input).
-
 
 9. Notify the encoder of EOS.
 

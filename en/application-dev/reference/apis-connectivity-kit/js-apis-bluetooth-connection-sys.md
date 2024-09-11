@@ -359,7 +359,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-    connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
+    connection.getLocalProfileUuids((err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getLocalProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
     });
 } catch (err) {
@@ -405,7 +405,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-    connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
+    connection.getLocalProfileUuids().then(() => {
         console.info('getLocalProfileUuids');
     }, (err: BusinessError) => {
         console.error('getLocalProfileUuids: errCode' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);

@@ -4,7 +4,7 @@
 
 当在module.json5文件的skills中声明uris时，主要包含如下字段。其中，scheme为必选字段，其他字段仅当scheme存在时才有意义。
 
-- scheme：协议名称。常见的取值有http、https、http、file、ftp等，也可以自定义。
+- scheme：协议名称。常见的取值有http、https、file、ftp等，也可以自定义。
 - host：域名或IP地址。例如域名`developer.huawei.com`或IP地址`127.0.0.1`。
 - port：端口号。例如`developer.huawei.com:80`后面的80即为端口号。
 - path：路径，表示域名服务器上的目录或文件路径，该字段在scheme存在时才有意义。例如`developer.huawei.com/consumer/`中`consumer`。
