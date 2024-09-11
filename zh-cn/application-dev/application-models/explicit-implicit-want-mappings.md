@@ -158,6 +158,9 @@
 >
 > 系统应用预留uri的scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的uri不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。
 
+**图5** want参数中uri的匹配规则示例
+![want-uri-case](figures/want-uri-case.png)
+
 ### type匹配规则
 
 > **说明：**
@@ -186,6 +189,6 @@
 
 
 
-**图5** want参数中linkFeature具体匹配规则
+**图6** want参数中linkFeature具体匹配规则
 ![want-linkFeature](figures/linkFeature.png)
 ![want-linkFeature-case](figures/want-linkFeature-case.png)
