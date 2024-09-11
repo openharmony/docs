@@ -73,7 +73,7 @@
 
 2. 声明后台模式类型，以及添加uris等配置。
    - 声明后台模式类型（必填项）：在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
-   - 添加uris等配置（可选项）：长时任务通过第一个元素获取通知标题，若使用隐式跳转等功能，具体格式请参考如下示例。其中，uris在配置项中的位置请严格遵循示例，"scheme"应根据实际业务场景进行修改。
+   - 添加uris等配置（可选项）：若使用deeplink、applink等跳转功能，具体请参考如下示例可选项。其中，必填项的配置不可更改，可选项的具体配置请参考[应用间跳转](../application-models/link-between-apps-overview.md)。
    
    ```json
     "module": {
@@ -84,7 +84,7 @@
                 "audioRecording"
                 ], 
                 "skills": [
-                    // 固定配置：使用长时任务
+                    // 必填项：申请长时任务时entities和actions值
                     {
                         "entities": [
                            "entity.system.home"
@@ -93,7 +93,7 @@
                             "action.system.home"
                         ]    
                     },
-                    // 可选配置：如使用隐式跳转、applink等功能
+                    // 可选项：添加deeplink、applink等跳转功能
                     {
                         "entities": [
                            "test"
