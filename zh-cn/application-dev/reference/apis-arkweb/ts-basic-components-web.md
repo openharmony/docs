@@ -5592,7 +5592,7 @@ iframe加载HTTP(s)协议或about:blank时不会触发该回调，加载非HTTP(
   </head>
   <body>
     <h1>onOverrideUrlLoading Demo</h1>
-    <a href="about:blank">Click here</a>访问about:blank。
+    <a href="about:blank">Click here</a>// 访问about:blank。
   </body>
   </html>
   ```
