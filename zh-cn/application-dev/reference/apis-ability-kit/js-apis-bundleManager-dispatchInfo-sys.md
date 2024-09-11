@@ -14,7 +14,7 @@
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
-| 名称        | 类型   | 可读 | 可写 | 说明                     |
+| 名称        | 类型   | 只读 | 可选 | 说明                     |
 | ----------- | ------ | ---- | ---- | ------------------------ |
 | version     | string | 是   | 否   | dispatchInfo结构体版本信息。 |
 | dispatchAPIVersion | string | 是   | 否   | 免安装接口版本信息。     |

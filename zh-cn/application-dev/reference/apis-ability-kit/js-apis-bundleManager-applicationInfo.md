@@ -9,7 +9,7 @@
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
-| 名称                       | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| 名称                       | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | name                       | string                                                       | 是   | 否   | 应用程序的名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                 |
 | description                | string                                                       | 是   | 否   | 标识应用的描述信息，使用示例："description": $string: mainability_description"。关于description的详细信息可参见descriptionResource字段说明。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -50,7 +50,7 @@
 
  **参数：**
 
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | multiAppModeType<sup>12+</sup> | bundleManager.MultiAppModeType | 是 | 否 |  应用多开模式的类型。  |
 | maxCount<sup>12+</sup> | number  | 是 | 否 |  应用多开的最大个数。  |
@@ -63,7 +63,7 @@
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | moduleName<sup>10+</sup>| string         | 是   | 否   | 模块名。   |
 | metadata<sup>10+</sup>  | Array\<[Metadata](js-apis-bundleManager-metadata.md)>      | 是   | 否   | 该模块下的元数据信息列表。 |

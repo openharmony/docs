@@ -9,7 +9,7 @@
 > 从API version 9开始不再维护，建议使用[bundleManager-HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)替代。
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
-| 名称            | 类型   | 可读 | 可写 | 说明     |
+| 名称            | 类型   | 只读 | 可选 | 说明     |
 | --------------- | ------ | ---- | ---- | -------- |
 | moduleName      | string | 是   | 否   | 模块名称。 |
 | moduleSourceDir | string | 是   | 否   | 安装目录。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源。 |
