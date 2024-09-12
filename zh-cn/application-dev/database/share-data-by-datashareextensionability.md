@@ -210,8 +210,9 @@
    
    ```ts
    import { UIAbility } from '@kit.AbilityKit';
-   import { dataShare, dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+   import { dataShare, dataSharePredicates, DataShareResultSet, ValuesBucket } from '@kit.ArkData';
    import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 定义与数据提供方通信的URI字符串。
