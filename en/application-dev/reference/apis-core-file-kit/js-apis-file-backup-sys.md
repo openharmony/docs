@@ -641,7 +641,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 | Name         | Type    | Mandatory| Description                      |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | Yes  | Name of the application, for which you want to set the backup or restore duration.|
-| timeout | number | Yes  | Maximum backup or restore duration, in ms.<br>Value range: (0, 3600000]|
+| timeout | number | Yes  | Maximum backup or restore duration, in ms.<br>Value range: [0, 14400000]|
 
 **Return value**
 
