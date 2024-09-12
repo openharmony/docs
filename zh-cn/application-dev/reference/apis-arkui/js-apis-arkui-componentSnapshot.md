@@ -191,7 +191,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | The builder is not a valid build function.                   |
-| 160001   | An image component in builder is not ready for taking a snapshot. The check for |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **示例：**
 
@@ -291,7 +291,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | ------ | ---------------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100001 | The builder is not a valid build function. |
-| 160001 | An image component in builder is not ready for taking a snapshot. The check for |
+| 160001 | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **示例：**
 
