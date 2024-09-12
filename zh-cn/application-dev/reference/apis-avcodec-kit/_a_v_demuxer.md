@@ -395,7 +395,7 @@ AV_ERR_OK：执行成功。
 
 AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
 
-AV_ERR_INVALID_VAL：解封装器实例为NULL或无效。
+AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例。
 
 
 ### OH_AVDemuxer_UnselectTrackByID()
