@@ -74,7 +74,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 - 媒体库file://data/storage
 
-  支持file://路径前缀的字符串，用于访问通过[媒体库](../reference/apis-core-file-kit/js-apis-file-picker.md)提供的图片路径。
+  支持file://路径前缀的字符串，用于访问通过[选择器](../reference/apis-core-file-kit/js-apis-file-picker.md)提供的图片路径。
 
   1. 调用接口获取图库的照片url。
       ```ts
@@ -153,13 +153,13 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 
    请求网络图片，解码编码PixelMap。
 
-   1. 引用网络权限与媒体库权限。
+   (1) 引用网络权限与媒体库权限。
        ```ts
        import { http } from '@kit.NetworkKit';
        import { image } from '@kit.ImageKit';
        import { BusinessError } from '@kit.BasicServicesKit';
        ```
-   2. 填写网络图片地址。
+   (2) 填写网络图片地址。
        ```ts
        let OutData: http.HttpResponse
        http.createHttp().request("https://www.example.com/xxx.png",
