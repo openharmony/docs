@@ -57,6 +57,8 @@ static show(value: ActionSheetOptions)
 | height<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | 否 | 设置弹窗背板的高度。<br />**说明：**<br />- 弹窗高度默认最大值：0.9 *（窗口高度 - 安全区域）。<br />- 百分比参数方式：弹窗参考高度为（窗口高度 - 安全区域），在此基础上调小或调大。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 <br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10) | 否 | 设置弹窗显示和退出的过渡效果。<br/>**说明：**<br/>1.如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| enableHoverMode<sup>13+</sup>              | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。|
+| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。|
 
 ## SheetInfo对象说明
 
@@ -361,3 +363,74 @@ struct ActionSheetExample {
 ```
 
 ![zh-cn_image_action_style](figures/zh-cn_image_action_style.gif)
+
+### 示例5
+
+该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
+
+```ts
+@Entry
+@Component
+struct ActionSheetExample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('Click to Show ActionSheet')
+        .onClick(() => {
+          ActionSheet.show({ // 建议使用 this.getUIContest().showActionSheet()接口
+            title: 'ActionSheet title',
+            subtitle: 'ActionSheet subtitle',
+            message: 'message',
+            autoCancel: true,
+            confirm: {
+              defaultFocus: true,
+              value: 'Confirm button',
+              action: () => {
+                console.log('Get Alert Dialog handled')
+              }
+            },
+            cancel: () => {
+              console.log('actionSheet canceled')
+            },
+            onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+              console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+              console.log("dialog onWillDismiss")
+              if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                dismissDialogAction.dismiss()
+              }
+              if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                dismissDialogAction.dismiss()
+              }
+            },
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
+            enableHoverMode: true,
+            hoverModeArea: HoverModeAreaType.TOP_SCREEN,
+            sheets: [
+              {
+                title: 'apples',
+                action: () => {
+                  console.log('apples')
+                }
+              },
+              {
+                title: 'bananas',
+                action: () => {
+                  console.log('bananas')
+                }
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.log('pears')
+                }
+              }
+            ]
+          })
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_action_style](figures/zh-cn_image_action_hovermode.gif)

@@ -143,9 +143,11 @@ The figure below shows the recommended API calling process of the dual-channel p
            }
            if (imgComponent && imgComponent.byteBuffer as ArrayBuffer) {
              // do something...
+             // If an asynchronous operation is performed on the buffer, call nextImage.release() to release the resource after the asynchronous operation is complete.
            } else {
              console.error('byteBuffer is null');
            }
+           // Release the resource when the buffer is not in use.
            nextImage.release();
          })
        })

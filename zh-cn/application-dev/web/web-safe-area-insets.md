@@ -14,7 +14,7 @@ ArkWeb内核会监听Web组件及系统安全区域的位置和尺寸，根据�
 
 ### Web组件开启沉浸式效果
 
-开发者可以通过[expandSafeArea](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md)来开启沉浸式效果。
+开发者可以通过[expandSafeArea](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#expandsafearea)来开启沉浸式效果。
 
   ```ts
   // xxx.ets

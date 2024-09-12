@@ -57,6 +57,8 @@ constructor(value: CustomDialogControllerOptions)
 | shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)   | 否 | 设置弹窗背板的阴影。 <br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | backgroundBlurStyle<sup>12+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 否   | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](../js-apis-promptAction.md#keyboardavoidmode12枚举说明) | 否 | 用于设置弹窗是否在拉起软键盘时进行自动避让。<br/>默认值：KeyboardAvoidMode.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| enableHoverMode<sup>13+</sup>              | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。|
+| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。|
 
 > **说明：**
 >
@@ -435,3 +437,100 @@ struct CustomDialogUser {
 ```
 
 ![zh-cn_image_custom_style](figures/zh-cn_image_custom_style.gif)
+
+### 示例4
+
+该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
+
+```ts
+@CustomDialog
+@Component
+struct CustomDialogExample {
+  @Link textValue: string;
+  @Link inputValue: string;
+  controller?: CustomDialogController;
+
+  build() {
+    Column() {
+      Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
+      TextInput({ placeholder: '', text: this.textValue }).height(60).width('90%')
+        .onChange((value: string) => {
+          this.textValue = value;
+        })
+      Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 })
+      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Button('cancel')
+          .onClick(() => {
+            if (this.controller != undefined) {
+              this.controller.close();
+            }
+          }).backgroundColor(0xffffff).fontColor(Color.Black)
+        Button('confirm')
+          .onClick(() => {
+            if (this.controller != undefined) {
+              this.inputValue = this.textValue;
+              this.controller.close();
+            }
+          }).backgroundColor(0xffffff).fontColor(Color.Red)
+      }.margin({ bottom: 10 })
+
+      Button('点我打开第二个弹窗')
+        .margin(20)
+    }.borderRadius(10)
+    // 如果需要使用border属性或cornerRadius属性，请和borderRadius属性一起使用。
+  }
+}
+@Entry
+@Component
+struct CustomDialogUser {
+  @State textValue: string = '';
+  @State inputValue: string = 'click me';
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+      textValue: $textValue,
+      inputValue: $inputValue
+    }),
+    cancel: this.exitApp,
+    autoCancel: true,
+    onWillDismiss: (dismissDialogAction: DismissDialogAction)=> {
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.log("dialog onWillDismiss");
+      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+        dismissDialogAction.dismiss();
+      }
+      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialogAction.dismiss();
+      }
+    },
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false,
+    cornerRadius: 10,
+    enableHoverMode: true,
+    hoverModeArea: HoverModeAreaType.TOP_SCREEN
+  })
+
+  // 在自定义组件即将析构销毁时将dialogController置空
+  aboutToDisappear() {
+    this.dialogController = null; // 将dialogController置空
+  }
+
+  exitApp() {
+    console.info('Click the callback in the blank area');
+  }
+
+  build() {
+    Column() {
+      Button(this.inputValue)
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open();
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![zh-cn_image_custom](figures/zh-cn_image_custom_hovermode.gif)

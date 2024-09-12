@@ -47,7 +47,7 @@
   - [Using HiDebug (ArkTS)](hidebug-guidelines-arkts.md)
   - [Using HiDebug (C/C++)](hidebug-guidelines-ndk.md)
 - HiCollie
-  - [Using HiCollie (C/C++)](hiicollie-guidelines-ndk.md)
+  - [Using HiCollie (C/C++)](hicollie-guidelines-ndk.md)
 - Error Management
   - [Development of Error Manager](errormanager-guidelines.md)
   - [Development of Application Recovery](apprecovery-guidelines.md)

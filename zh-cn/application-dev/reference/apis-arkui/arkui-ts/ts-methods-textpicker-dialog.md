@@ -56,6 +56,8 @@ static show(options?: TextPickerDialogOptions)
 | onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | onWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange)>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。<br />当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| enableHoverMode<sup>13+</sup>              | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。|
+| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。|
 
 ## TextPickerResult对象说明
 
@@ -202,3 +204,65 @@ struct TextPickerDialogExample {
 ```
 
 ![TextPickerDialog](figures/TextPickerDialog_CustomButton.png)
+
+### 示例3
+
+该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
+
+```ts
+@Entry
+@Component
+struct TextPickerDialogExample {
+  private select: number | number[] = 0;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
+  @State v: string = '';
+
+  build() {
+    Row() {
+      Column() {
+        Button("TextPickerDialog:" + this.v)
+          .margin(20)
+          .onClick(() => {
+            TextPickerDialog.show({ // 建议使用 this.getUIContext().showTextPickerDialog()接口
+              range: this.fruits,
+              selected: this.select,
+              disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter }},
+              textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal }},
+              selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder }},
+              onAccept: (value: TextPickerResult) => {
+                // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+                this.select = value.index;
+                console.log(this.select + '');
+                // 点击确定后，被选到的文本数据展示到页面
+                this.v = value.value as string;
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
+              },
+              onCancel: () => {
+                console.info("TextPickerDialog:onCancel()");
+              },
+              onChange: (value: TextPickerResult) => {
+                console.info("TextPickerDialog:onChange()" + JSON.stringify(value));
+              },
+              onDidAppear: () => {
+                console.info("TextPickerDialog:onDidAppear()");
+              },
+              onDidDisappear: () => {
+                console.info("TextPickerDialog:onDidDisappear()");
+              },
+              onWillAppear: () => {
+                console.info("TextPickerDialog:onWillAppear()");
+              },
+              onWillDisappear: () => {
+                console.info("TextPickerDialog:onWillDisappear()");
+              },
+              enableHoverMode: true,
+              hoverModeArea: HoverModeAreaType.TOP_SCREEN
+            })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![TextPickerDialog](figures/TextPickerDialog_HoverMode.gif)

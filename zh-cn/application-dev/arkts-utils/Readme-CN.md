@@ -17,7 +17,6 @@
   - 附录
     - [Actor并发模型对比内存共享并发模型](actor-model-development-samples.md)
     - [TaskPool和Worker支持的序列化类型](serialization-support-types.md)
-    - [多线程安全注意事项](multi-thread-safety.md)
     - [\@Concurrent装饰器：声明并校验并发函数](arkts-concurrent.md)
     - [Sendable开发指导](arkts-sendable.md)
     - [已接入Sendable的系统对象](arkts-sendable-system-object-list.md)
