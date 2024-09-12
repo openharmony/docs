@@ -42,7 +42,7 @@ AtomicServiceTabs ({
    barOverlap?: boolean,
    controller?: TabsController,
    onChange?: Callback<number>,
-   onTabBarClick?: Callback\<number>,
+   onTabBarClick?: Callback<number>,
    onContentWillChange?: OnContentWillChangeCallback,
 })
 ```
