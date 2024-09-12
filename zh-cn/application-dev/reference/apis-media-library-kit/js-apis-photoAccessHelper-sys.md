@@ -1444,7 +1444,7 @@ cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoP
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | appid | string | 是 | 应用标识，将取消appid标识应用对媒体资源的访问权限。 |
-| uri | sring | 是 | 媒体资源的uri，取消应用对uri表示的资源的访问权限。|
+| uri | string | 是 | 媒体资源的uri，取消应用对uri表示的资源的访问权限。|
 | photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | 是 | 权限类型，取消应用对媒体资源的访问权限为photoPermissionType。|
 
 **返回值：**
@@ -5393,7 +5393,7 @@ async function example() {
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
 | PHOTO_PROXY |  3 |  表示照片代理资源。**系统接口**：此接口为系统接口。 |
-| PRIVATE_MOVING_PHOTO_RESOURCE<sup>12+</sup> |  4 |  表示私有动态照片资源。**系统接口**：此接口为系统接口。 |
+| PRIVATE_MOVING_PHOTO_RESOURCE<sup>13+</sup> |  4 |  表示私有动态照片资源。**系统接口**：此接口为系统接口。 |
 
 ## DefaultChangeUri
 
@@ -5501,8 +5501,8 @@ async function example() {
 | LOOP\_PLAY       | 2  | 循环播放。|
 | LONG\_EXPOSURE   | 3  | 长曝光。  |
 | MULTI\_EXPOSURE  | 4  | 多曝光。  |
-| CINEMA\_GRAPH  | 5  | 微动瞬间。  |
-| IMAGE\_ONLY  | 10  | 关闭模式。  |
+| CINEMA\_GRAPH<sup>13+</sup>  | 5  | 微动瞬间。  |
+| IMAGE\_ONLY<sup>13+</sup>  | 10  | 关闭模式。  |
 
 ## PhotoPermissionType<sup>12+</sup>
 

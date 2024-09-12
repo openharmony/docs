@@ -16,8 +16,8 @@ The in-memory database fails to be created.
 
 **Possible Causes**
 
-An object with the same session ID already exists.
+The same session ID is set for another distributed data object.
 
 **Solution**
 
-Use the session ID created by [genSessionId](../../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid).
+Use [genSessionId](../../reference/apis-arkdata/js-apis-data-distributedobject.md#distributeddataobjectgensessionid) to generate a random session ID to avoid using an existing session ID.

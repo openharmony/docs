@@ -1,4 +1,4 @@
-# Starting an Image Editing Application with PhotoEditorExtensionAbility to Edit an Image
+# Starting an Image Editing Application
 ## When to Use
 If an application does not have the image editing capability but needs to edit an image, it can call **startAbilityByType** to start the vertical domain panel that displays available image editing applications, which can be used to edit the image. An image editing application can use the PhotoEditorExtensionAbility to implement an image editing page and register the page with the image editing panel. In this way, its image editing capability is opened to other applications.
 
@@ -12,17 +12,17 @@ For example, when a user chooses to edit an image in Gallery, the Gallery applic
 
 For details about the APIs, see [PhotoEditorExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md) and [PhotoEditorExtensionContext](../reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionContext.md).
 
-| **API** | **Description** |
+| **API** | **Description**|
 | -------- | -------- |
 | onStartContentEditing(uri: string, want:Want, session: UIExtensionContentSession):void       | Called when content editing starts. Operations such as reading original images and loading pages can be performed in the callback.|
-| saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | Saves the passed-in **PixelMap** object, which is an edited image.  |
+| saveEditedContentWithImage(pixelMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>  | Saves the passed-in **PixelMap** object, which is an edited image.  |
 
 ## Target Application (Image Editing Application): Implementing an Image Editing Page
 
 1. Manually create a PhotoEditorExtensionAbility in the DevEco Studio project.
     1. In the **ets** directory of the target module, right-click and choose **New > Directory** to create a directory named **PhotoEditorExtensionAbility**.
-    2. In the **PhotoEditorExtensionAbility** directory, right-click and choose **New > File** to create an .ets file, for example, **PhotoEditorUIExtAbility.ets**.
-2. Override the lifecycle callbacks of **onCreate**, **onForeground**, **onBackground**, **onDestroy**, and **onStartContentEditing** in the **PhotoEditorUIExtAbility.ets** file.
+    2. In the **PhotoEditorExtensionAbility** directory, right-click and choose **New > File** to create an .ets file, for example, **ExamplePhotoEditorAbility.ets**.
+2. Override the lifecycle callbacks of **onCreate**, **onForeground**, **onBackground**, **onDestroy**, and **onStartContentEditing** in the **ExamplePhotoEditorAbility.ets** file.
 
     Load the entry page file **pages/Index.ets** in **onStartContentEditing**, and save the session, URI, and instance objects in the LocalStorage, which passes them to the page.
 
@@ -192,7 +192,7 @@ For details about the APIs, see [PhotoEditorExtensionAbility](../reference/apis-
             "description": "ExamplePhotoEditorAbility",
             "type": "photoEditor",
             "exported": true,
-            "srcEntry": "./ets/PhotoEditorExtensionAbility/PhotoEditorUIExtAbility.ets",
+            "srcEntry": "./ets/PhotoEditorExtensionAbility/ExamplePhotoEditorAbility.ets",
             "label": "$string:EntryAbility_label",
             "extensionProcessMode": "bundle"
           },

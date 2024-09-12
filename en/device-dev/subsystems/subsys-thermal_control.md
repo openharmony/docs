@@ -24,11 +24,11 @@ For details about the requirements on the Linux environment, see [Quick Start](.
 
 ### Getting Started with Development
 
-The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568) as an example to illustrate thermal control customization.
+The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568) as an example to illustrate thermal control customization.
 
-1. Create the `thermal` folder in the product directory [/vendor/hihope/rk3568](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568).
+1. Create the `thermal` folder in the product directory [/vendor/hihope/rk3568](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568).
 
-2. Create a target folder by referring to the [default thermal control configuration folder](https://gitee.com/openharmony/powermgr_thermal_manager/tree/master/services/native/profile), and install it in `//vendor/hihope/rk3568/thermal`. The content is as follows:
+2. Create a target folder by referring to the [default thermal control configuration folder](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile), and install it in `//vendor/hihope/rk3568/thermal`. The content is as follows:
      
     ```text
     profile
@@ -42,37 +42,45 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
     | Configuration Item| Description| Parameter| Parameter Description| Data Type|Value Range|
     | -------- | -------- | -------- | -------- | -------- | -------- |
+    | name="airplane" | Airplane mode control| N/A| N/A| N/A| N/A|
     | name="cpu_big" | Big-core CPU control (big-core CPU frequency)| N/A| N/A| N/A| N/A|
     | name="cpu_med" | Medium-core CPU control (medium-core CPU frequency)| N/A| N/A| N/A| N/A|
     | name="cpu_lit" | Small-core CPU control (small-core CPU frequency)| N/A| N/A| N/A| N/A|
     | name="gpu" | GPU control (GPU frequency)| N/A| N/A| N/A| N/A|
+    | name="boost" | SOCPERF thermal level control| event | - **1**: event sending enabled<br>-**0**: event sending disabled| int | 0 or 1|
+    | name="isolate" | CPU frequency increase control| event | - **1**: event sending enabled<br>-**0**: event sending disabled| int | 0 or 1|
     | name="lcd" | LCD control (screen brightness)| N/A| N/A| N/A| N/A|
     | name="volume" | Sound control (volume)| uid | User ID| int | Product-specific| 
     | name="current_xxx" | Charging current control (charging current during fast charging and slow charging)| protocol<br>param | Set **protocol** to **current** and **param** to a supported charging protocol, that is, fast charging (**sc**) or slow charging (**buck**).| string |protocol="current" param="sc" |
     | name="current_xxx" | Charging current control | event | - **1**: event sending enabled<br>-**0**: event sending disabled| int | 0 or 1|
     | name="voltage_xxx" | Charging voltage control (charging voltage during fast charging and slow charging)| protocol<br>param | Set **protocol** to **voltage** and **param** to a charging protocol, that is, fast charging (**sc**) or slow charging (**buck**).| string | protocol="voltage" param="buck" |
     | name="voltage_xxx" | Charging voltage control | event | - **1**: event sending enabled<br>-**0**: event sending disabled| int | 0 or 1|
+    | name="process_ctrl" | Process control (survival status of foreground and background processes)| param | Set **param** to any string.| string | N/A|
     | name="process_ctrl" | Process control (survival status of foreground and background processes)| event | - **1**: event sending enabled<br>-**0**: event sending disabled<br>If this parameter is not set, the value is defaulted to **0**.| int | 0 or 1|
     | name="shut_down" | Shutdown control (device shutdown)| event | - **1**: event sending enabled<br>-**0**: event sending disabled| int | 0 or 1|
     | name="thermallevel" | Thermal level control (thermal level reporting)| event | - **1**: event sending enabled<br>-**0**: event sending disabled| int | 0 or 1|
     | name="popup" | Pop-up window control (pop-up window display)| N/A| N/A| N/A| N/A|
-    | name="xxx" | Node thermal control action| protocol<br>param | Set **protocol** to **node**.<br>Set **param** to the node path and rollback value, which are separated by a comma (,).| string | N/A|
+    | name="xxx" | Node thermal control action| protocol<br>param | Set **protocol** to **node**.<br>Set **param** to the node path and rollback value, which are separated by a|backslash (\).| string | N/A|
 
     ```shell
     <action>
+        <item name="airplane"/>
         <item name="cpu_big"/>
         <item name="cpu_med"/>
         <item name="cpu_lit"/>
         <item name="gpu"/>
+        <item name="boost" event="1"/>
+        <item name="isolate" event="1"/>
         <item name="lcd"/>
         <item name="volume" uid="2001,2002"/>
         <item name="current_sc" protocol="current" param="sc" event="1"/>
         <item name="voltage_buck" protocol="voltage" param="buck" event="1"/>
-        <item name="process_ctrl" event=""/>
+        <item name="process_ctrl" param="32,64,128,256" event=""/>
         <item name="shut_down" event="0"/>
-        <item name="thermallevel" event="0"/>
+        <item name="thermallevel" event="1"/>
         <item name="popup"/>
         <item name="(action_name)" protocol="node" param="/sys/class/thermal/xxx"/>
+        <item name="test"/>
     </action>
     ```
 
@@ -136,22 +144,29 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
 
     ----------------------------------ThermalService---------------------------------
+    name: airplane	strict: 0	enableEvent: 0
     name: cpu_big	strict: 0	enableEvent: 0
     name: cpu_med	strict: 0	enableEvent: 0
     name: cpu_lit	strict: 0	enableEvent: 0
     name: gpu	strict: 0	enableEvent: 0
-    name: boost	strict: 0	enableEvent: 0
+    name: boost	strict: 0	enableEvent: 1
+    name: isolate	strict: 0	enableEvent: 1
     name: lcd	strict: 0	enableEvent: 0
     name: volume	uid: 2001,2002	strict: 0	enableEvent: 0
-    name: current	protocol: sc,buck	strict: 0	enableEvent: 1
-    name: voltage	protocol: sc,buck	strict: 0	enableEvent: 1
-    name: process_ctrl	strict: 0	enableEvent: 0
+    name: current_sc    params: sc	protocol: current	strict: 0	enableEvent: 1
+    name: current_buck    params: buck	protocol: current	strict: 0	enableEvent: 1
+    name: voltage_sc   params: sc	protocol: voltage	strict: 0	enableEvent: 1
+    name: voltage_buck   params: buck	protocol: voltage	strict: 0	enableEvent: 1
+    name: process_ctrl  params: 32,64,128,256	strict: 0	enableEvent: 0
     name: shut_down	strict: 0	enableEvent: 0
-    name: thermallevel	strict: 0	enableEvent: 0
+    name: thermallevel	strict: 0	enableEvent: 1
     name: popup	strict: 0	enableEvent: 0
+    name: test	strict: 0	enableEvent: 0
     ```
 
 ## Reference
 During development, you can refer to the [default thermal control configuration](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml).
 
 Packing path: `/vendor/etc/thermal_config/hdf`
+
+<!--no_check-->

@@ -49,7 +49,7 @@ The domain account can be authenticated by password. You can use [auth](../../re
    }
    ```
 
-## Domain Account Authentication by a Dialog
+## Domain Account Authentication by Dialog
 
 If the domain account password is unavailable, display a dialog box to authentication the domain account. You can use [authWithPopup](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#authwithpopup10) to implement this operation.
 

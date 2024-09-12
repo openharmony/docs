@@ -3,7 +3,7 @@
 
 ## 概述
 
-捕获会话的平滑变焦参数信息回调。
+平滑变焦参数信息。
 
 **起始版本：** 12
 
@@ -15,9 +15,9 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| uint32_t [duration](#duration) | 平滑缩放的持续时间。 |
+| int32_t [duration](#duration) | 平滑变焦总时长（以毫秒为单位）。  | 
 
 
 ## 结构体成员变量说明
@@ -26,7 +26,7 @@
 ### duration
 
 ```
-uint32_t Camera_SmoothZoomInfo::duration
+int32_t Camera_SmoothZoomInfo::duration
 ```
 **描述**
-平滑缩放的持续时间。
+平滑变焦总时长（以毫秒为单位）。

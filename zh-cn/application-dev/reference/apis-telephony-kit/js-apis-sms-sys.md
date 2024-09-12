@@ -1691,7 +1691,7 @@ decodeMms\(mmsFilePathName: string | Array\<number\>, callback: AsyncCallback\<M
 
 | 参数名          | 类型                                                    | 必填 | 说明           |
 | --------------- | ------------------------------------------------------- | ---- | -------------- |
-| mmsFilePathName | string \|Array<number\>                                 | 是   | 彩信文件路径名。 |
+| mmsFilePathName | string \|Array<number\>                                 | 是   | 彩信文件路径。 |
 | callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | 是   | 获取｛@code MmsInformation｝的回调函数。     |
 
 **错误码：**
@@ -1739,7 +1739,7 @@ decodeMms\(mmsFilePathName: string | Array\<number\>\): Promise\<MmsInformation\
 
 | 参数名          | 类型                    | 必填 | 说明           |
 | --------------- | ----------------------- | ---- | -------------- |
-| mmsFilePathName | string \|Array<number\> | 是   | 彩信文件路径名 |
+| mmsFilePathName | string \|Array<number\> | 是   | 彩信文件路径。 |
 
 **返回值：**
 

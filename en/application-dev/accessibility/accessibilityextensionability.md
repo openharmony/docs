@@ -17,7 +17,7 @@ To create an independent accessibility extension service, create a project in th
 In the **ets** folder of a project, add the **AccessibilityExtAbility** folder and then create the **AccessibilityExtAbility.ets** file in the folder. You can implement some callbacks in the file to add service processing logic.
 
 ```ts
-import AccessibilityExtensionAbility, { AccessibilityEvent } from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility, AccessibilityEvent } from '@kit.AccessibilityKit';
 import AccessibilityManager from './AccessibilityManager';
 
 class AccessibilityExtAbility extends AccessibilityExtensionAbility {
@@ -45,7 +45,7 @@ export default AccessibilityExtAbility;
 
 The APIs defined in the file are as follows.
 
-| API| Description|
+| Name| Description|
 | ---- | ---- |
 | onConnect(): void | Called when a connection with the extension service is set up.|
 | onDisconnect(): void | Called when the connection with the extension service is severed.|
@@ -58,7 +58,7 @@ import {
   AccessibilityEvent,
   AccessibilityExtensionContext,
   ElementAttributeKeys
-} from '@ohos.application.AccessibilityExtensionAbility';
+} from '@kit.AccessibilityKit';
 
 interface Rect {
   left: number,
@@ -195,9 +195,14 @@ For an accessibility event, you can use the APIs of the [AccessibilityExtensionC
 
 You can also process physical key events in the accessibility extension service. For details, see [onKeyEvent](../reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md#accessibilityextensionabilityonkeyevent).
 
-## Declaring Capabilities of Accessibility Extension Services
+## Declaring the Capabilities of Accessibility Extension Service
 
-After developing the custom logic for an accessibility extension service, you must add the configuration information of the service to the corresponding module-level **module.json5** file in the project directory. In the file, the **srcEntry** tag indicates the path to the accessibility extension service. Make sure the value of the **type** tag is fixed at **accessibility**. Otherwise, the connection to the service will fail.
+After developing the custom logic for an accessibility extension service, you must add the configuration information of the service to the corresponding module-level **module.json5** file in the project directory. 
+
+The **srcEntry** tag indicates the path to the **extensionAbility**.
+The **label** tag indicates the name of the **extensionAbility** displayed in the list of installed extension services.
+The **description** tag indicates the help information about the **extensionAbility** displayed on the details page of the installed extension service.
+Make sure the value of the **type** tag is fixed at **accessibility**. Otherwise, the connection to the service will fail.
 
 ```json
 "extensionAbilities": [
@@ -226,12 +231,12 @@ In addition, **accessibility_config** is the specific configuration of the acces
   ]
 }
 ```
-## Enabling or Disabling a Custom Accessibility Extension Service
+## Enabling a Custom Accessibility Extension Service
 
 You can enable or disable a custom accessibility extension service through the device settings. 
 
-1. From the device settings screen, access the list of installed extension services under accessibility. If an extension service is not installed, it is grayed out, and "No service" is displayed.
+1. From the device settings screen, access the list of installed extended services under accessibility. If an extended service is not installed, it is grayed out, and "No service" is displayed.
 
 2. Locate the target extension service, and toggle on or off the switch to enable or disable it.
 
-3. If you opt to enable the service, a security reminder is displayed. Wait until the countdown ends and then select the check box indicating that you are aware of and willing to assume the listed risks.  
+3. If you opt to enable a service, a security reminder is displayed. Wait until the countdown ends and then select the check box indicating that you are aware of and willing to assume the listed risks. After that, you can toggle off the switch to the extended service.

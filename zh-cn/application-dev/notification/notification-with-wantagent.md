@@ -101,6 +101,7 @@
      },
      id: 6,
      label: 'TEST',
+     // wantAgentObj使用前需要保证已被赋值（即步骤3执行完成）
      wantAgent: wantAgentObj,
    }
    

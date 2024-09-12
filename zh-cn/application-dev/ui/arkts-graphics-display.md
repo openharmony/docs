@@ -78,7 +78,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   1. 调用接口获取图库的照片url。
       ```ts
-      import { picker } from '@kit.CoreFileKit';
+      import { photoAccessHelper } from '@kit.MediaLibraryKit';
       import { BusinessError } from '@kit.BasicServicesKit';
 
       @Entry
@@ -88,11 +88,11 @@ Image支持加载存档图、多媒体像素图两种类型。
         // 获取照片url集
         getAllImg() {
           try {
-            let PhotoSelectOptions:picker.PhotoSelectOptions = new picker.PhotoSelectOptions();
-            PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+            let PhotoSelectOptions:photoAccessHelper.PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+            PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
             PhotoSelectOptions.maxSelectNumber = 5;
-            let photoPicker:picker.PhotoViewPicker = new picker.PhotoViewPicker();
-            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:picker.PhotoSelectResult) => {
+            let photoPicker:photoAccessHelper.PhotoViewPicker = new photoAccessHelper.PhotoViewPicker();
+            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:photoAccessHelper.PhotoSelectResult) => {
               this.imgDatas = PhotoSelectResult.photoUris;
               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
             }).catch((err:Error) => {

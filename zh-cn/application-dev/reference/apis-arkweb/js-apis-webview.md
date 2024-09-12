@@ -1,5 +1,3 @@
-
-
 # @ohos.web.webview (Webview)
 
 @ohos.web.webview提供web控制能力，[Web](ts-basic-components-web.md)组件提供网页显示的能力。
@@ -680,7 +678,7 @@ struct WebComponent {
 
 static initializeWebEngine(): void
 
-在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
+在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。自动预连接历史访问过的高频网站。
 
 > **说明：**
 >
@@ -3707,6 +3705,7 @@ scrollBy(deltaX:number, deltaY:number,duration?:number): void
 | deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
 | deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
 | duration<sup>13+</sup> | number | 否 | 滚动动画时间。<br>单位：ms。<br>不传入为无动画，当传入数值为负数或传入0时，按照不传入处理。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
@@ -3779,7 +3778,7 @@ Scroll Test
 ```
 ### scrollByWithResult<sup>12+</sup>
 
-scrollByWithResult(deltaX:number, deltaY:number): boolean
+scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 将页面滚动指定的偏移量，返回值表示此次滚动是否执行成功。
 
@@ -3805,6 +3804,7 @@ scrollByWithResult(deltaX:number, deltaY:number): boolean
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 > **说明：**
 >
@@ -4671,7 +4671,6 @@ getCertificate(): Promise<Array<cert.X509Cert>>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a web component. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -4833,6 +4832,7 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -5893,7 +5893,7 @@ enableAdsBlock(enable: boolean): void
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. Parameter string is too long. 3.Parameter verification failed. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -7688,7 +7688,7 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
     // 恢复应用内播放器的状态信息。
   }
 
-  suspendPlayer(type: SuspendType) {
+  suspendPlayer(type: webview.SuspendType) {
     // 记录应用内播放器的状态信息。
     // 销毁应用内播放器。
   }
@@ -7750,7 +7750,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。
 资源的MIMEType通过提供的Content-Type响应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
 以此方式注入的资源，仅支持通过HTML中的标签加载。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。
-当调用`web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
+当调用`webview.WebviewController.SetRenderProcessMode(webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8466,6 +8466,58 @@ struct Index {
     }
     .height('100%')
     .width('100%')
+  }
+}
+```
+
+### trimMemoryByPressureLevel<sup>14+</sup>
+
+trimMemoryByPressureLevel(level: number): void
+
+根据指定的内存压力等级，主动清理Web组件占用的缓存。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| level | [PressureLevel](#pressurelevel14) | 是 | 需要清理内存的内存等级。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed. |
+
+**示例：**
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Row() {
+        Button('trim_Memory')
+          .onClick(() => {
+            try {
+              // 设置当前内存压力等级为适中，释放少量内存
+              webview.WebviewController.trimMemoryByPressureLevel(
+                webview.PressureLevel.MEMORY_PRESSURE_LEVEL_MODERATE);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+      }.height('10%')
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
   }
 }
 ```
@@ -14583,7 +14635,7 @@ struct WebComponent {
                 if (buf.length == 0) {
                   console.log("[schemeHandler] length 0");
                   resourceHandler.didReceiveResponse(response);
-                  resourceHandler.didReceiveResponseBody(buf.buffer);
+                  // 如果认为buf.length为0是正常情况，则调用resourceHandler.didFinish，否则调用resourceHandler.didFail
                   resourceHandler.didFail(WebNetErrorList.ERR_FAILED);
                 } else {
                   console.log("[schemeHandler] length 1");
@@ -15345,8 +15397,8 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| nativeEmbed | bool | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
-| mediaTakeOver | bool | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
+| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
+| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
 
 ## BackForwardCacheOptions<sup>12+<sup>
 
@@ -15975,3 +16027,14 @@ Scroll滚动类型，用于[setScrollable](#setscrollable12)。
 | 名称         | 值 | 说明                              |
 | ------------ | -- |--------------------------------- |
 | EVENT  | 0 | 滚动事件，表示通过触摸屏，触摸板，鼠标滚轮生成的网页滚动。|
+
+## PressureLevel<sup>14+</sup>
+
+内存压力等级。在应用主动清理Web组件占用的缓存时，Web内核会根据内存压力等级，进行缓存释放。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+| ------------------------------- | - | ---------- |
+| MEMORY_PRESSURE_LEVEL_MODERATE | 1 | 中等内存压力等级。这个等级下，Web内核会尝试释放重新分配开销较小且不需要立即使用的缓存。 |
+| MEMORY_PRESSURE_LEVEL_CRITICAL | 2 | 严重内存压力等级。这个等级下，Web内核会尝试释放所有可能的内存缓存。 |

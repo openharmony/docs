@@ -15,14 +15,23 @@
 
 ### 成员变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| bool [isTorchAvailable](#istorchavailable) | 手电筒是否可用。 |
-| bool [isTorchActive](#istorchactive) | 手电筒是否响应。 |
-| float [torchLevel](#torchlevel) | 当前手电筒亮度等级。 |
+| bool [isTorchAvailable](#istorchavailable) | 手电筒是否可用。  | 
+| bool [isTorchActive](#istorchactive) | 手电筒是否激活。  | 
+| float [torchLevel](#torchlevel) | 手电筒亮度等级。取值范围为[0,1]，越靠近1，亮度越大。  | 
 
 
 ## 结构体成员变量说明
+
+
+### isTorchActive
+
+```
+bool Camera_TorchStatusInfo::isTorchActive
+```
+**描述**
+手电筒是否激活。
 
 
 ### isTorchAvailable
@@ -34,19 +43,10 @@ bool Camera_TorchStatusInfo::isTorchAvailable
 手电筒是否可用。
 
 
-### isTorchActive
-
-```
-bool Camera_TorchStatusInfo::isTorchActive
-```
-**描述**
-手电筒是否响应。
-
 ### torchLevel
 
 ```
 float Camera_TorchStatusInfo::torchLevel
 ```
-
 **描述**
-当前手电筒亮度等级。
+手电筒亮度等级。取值范围为[0,1]，越靠近1，亮度越大。

@@ -65,7 +65,7 @@ BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-bu
 
 constructor(uiContext: UIContext, options?: RenderOptions)
 
-当将BuilderNode生成的内容嵌入到其它RenderNode中显示时，即将BuilderNode对应的RenderNode挂载到另一个RenderNode中显示，需要显式指定RenderOptions中的selfIdealSize，否则Builder内的节点默认父组件布局约束为[0,0],即不设置selfIdealSize则认为BuilderNode中子树的根节点大小为[0,0]。
+当将BuilderNode生成的内容嵌入到其它RenderNode中显示时，即将BuilderNode对应的RenderNode挂载到另一个RenderNode中显示，需要显式指定RenderOptions中的selfIdealSize，否则Builder内的节点默认父组件布局约束为[0,0]，即不设置selfIdealSize则认为BuilderNode中子树的根节点大小为[0,0]。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -74,7 +74,7 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 | 参数名    | 类型                                    | 必填 | 说明                                                              |
 | --------- | --------------------------------------- | ---- | ----------------------------------------------------------------- |
 | uiContext | [UIContext](js-apis-arkui-UIContext.md) | 是   | UI上下文，获取方式可参考[UIContext获取方法](./js-apis-arkui-node.md#uicontext获取方法)。 |
-| options   | [RenderOptions](#renderoptions)         | 否   | BuilderNode的构造可选参数。                                       |
+| options   | [RenderOptions](#renderoptions)         | 否   | BuilderNode的构造可选参数。默认值:undefined。   |
 
 > **说明**
 > uiContext的入参需要为一个有效的值，即UI上下文正确，如果传入非法值或者未设置，会导致创建失败。
@@ -91,6 +91,8 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 > @Builder嵌套使用的时候需要保证内外的@Builder方法的入参对象一致。
 >
 > 最外层的@Builder只支持一个入参。
+> 
+> 需要操作BuilderNode中的对象时，需要保证其引用不被回收。当BuilderNode对象被虚拟机回收之后，它的FrameNode、RenderNode对象也会与后端节点解引用。即从BuilderNode中获取的FrameNode对象不对应任何一个节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -143,7 +145,7 @@ build(builder: WrappedBuilder\<Args>, arg: Object, options: [BuildOptions](#buil
 
 **示例：**
 ```ts
-import { BuilderNode, NodeContent } from "@kit.ArkUI"
+import { BuilderNode, NodeContent } from "@kit.ArkUI";
 
 interface ParamsInterface {
   text: string;
@@ -223,7 +225,7 @@ getFrameNode(): FrameNode | null
 BuilderNode作为NodeContainer的根节点返回。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
   text: string = ""
@@ -285,7 +287,7 @@ struct Index {
 BuilderNode的FrameNode挂到其它FrameNode下。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
   text: string = ""
@@ -353,7 +355,7 @@ struct Index {
 BuilderNode的RenderNode挂到其它RenderNode下。由于RenderNode不传递布局约束，不推荐通过该方式挂载节点。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI";
 
 class Params {
   text: string = ""
@@ -440,7 +442,7 @@ update(arg: Object): void
 
 **示例：**
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
   text: string = ""
@@ -636,7 +638,7 @@ dispose(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { RenderNode, FrameNode, NodeController, BuilderNode } from "@kit.ArkUI"
+import { RenderNode, FrameNode, NodeController, BuilderNode } from "@kit.ArkUI";
 
 @Component
 struct TestComponent {
@@ -743,7 +745,7 @@ recycle(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI"
+import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
 
 class MyDataSource {
   private dataArray: string[] = [];
@@ -891,7 +893,7 @@ updateConfiguration(): void
 
 **示例：**
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
 
 class Params {

@@ -1,4 +1,4 @@
-# Working with Buffers Using Node-API
+# Working with Buffer Using Node-API
 
 ## Introduction
 
@@ -17,7 +17,7 @@ The following table lists the APIs for processing the binary data in the ArkTS l
 | API| Description|
 | -------- | -------- |
 | napi_create_buffer | Creates an ArkTS **Buffer** instance of the specified size.|
-| napi_create_buffer_copy | Creates an ArkTS **Buffer** instance of the specified size, and initializes it with data copied from the passed-in buffer.|
+| napi_create_buffer_copy | Creates and obtains an ArkTS **Buffer** instance of the specified size and initializes the **Buffer** instance with the given parameters.|
 | napi_create_external_buffer | Creates an ArkTS **Buffer** instance of the specified size, and initializes it with the given data. You can use this API to add extra data to the buffer. |
 | napi_get_buffer_info | Obtains the underlying data of an ArkTS **Buffer** instance and its length.|
 | napi_is_buffer | Checks whether the given ArkTS value is a **Buffer** object.|
@@ -295,6 +295,7 @@ napi_value CreateExternalArraybuffer(napi_env env, napi_callback_info info)
     // Create a C++ array with five elements.
     uint8_t *dataArray = new uint8_t[5]{1, 2, 3, 4, 5};
     napi_value externalBuffer = nullptr;
+    BufferData *bufferData = new BufferData{dataArray, 5};
 
     // Call napi_create_external_arraybuffer to create an external ArrayBuffer instance and specify the callback to be invoked when the ArrayBuffer object is garbage-collected.
     napi_status status =

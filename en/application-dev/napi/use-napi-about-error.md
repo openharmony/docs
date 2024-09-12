@@ -20,9 +20,9 @@ These concepts are important in exception and error handling. Properly using met
 The following table lists the APIs provided by the Node-API module for handling ArkTS errors and exceptions in C/C++.  
 | API| Description|
 | -------- | -------- |
-| napi_create_error<br/>napi_create_type_error<br/> napi_create_range_error | Creates an error, which can be thrown to ArkTS using **napi_throw**.|
+| napi_create_error, napi_create_type_error, napi_create_range_error| Creates an error, which can be thrown to ArkTS using **napi_throw**.|
 | napi_throw | Throws the ArkTS error object created by **napi_create_error** or obtained by **napi_get_last_error_info**.|
-| napi_throw_error<br/>napi_throw_type_error<br/>napi_throw_range_error | Throws an ArkTS error occurred in C/C++.|
+| napi_throw_error, napi_throw_type_error, napi_throw_range_error| Throws an ArkTS error occurred in C/C++.|
 | napi_is_error | Checks whether a **napi_value** is an error object.|
 | napi_get_and_clear_last_exception | Obtains and clears the latest exception.|
 | napi_is_exception_pending | Checks whether there is a pending exception.|
@@ -590,15 +590,6 @@ try {
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_fatal_error error');
 }
-```
-
-To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.
-
-```text
-// CMakeLists.txt
-add_definitions( "-DLOG_DOMAIN=0xd0d0" )
-add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
 
 ### napi_fatal_exception

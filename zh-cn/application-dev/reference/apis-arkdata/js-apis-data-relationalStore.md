@@ -1,7 +1,14 @@
 # @ohos.data.relationalStore (关系型数据库)
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。支持通过[ResultSet.getSendableRow](#getsendablerow12)方法获取Sendable数据，进行跨线程传递。
+
 为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
+
+大数据量场景下查询数据可能会导致耗时长甚至应用卡死，建议如下：
+- 单次查询数据量不超过5000条。
+- 在[TaskPool](../apis-arkts/js-apis-taskpool.md)中查询。
+- 拼接SQL语句尽量简洁。
+- 合理地分批次查询。
 
 该模块提供以下关系型数据库相关的常用功能：
 
@@ -6751,6 +6758,10 @@ attach(fullPath: string, attachName: string, waitTime?: number) : Promise&lt;num
 
 数据库文件来自文件，且此API不支持附加加密数据库。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。
 
+attach的时候，数据库会切换为非WAL模式，切换模式需要确保所有的ResultSet都已经Close，所有的写操作已经结束，否则会报错14800015。
+
+attach不能并发调用，可能出现未响应情况，报错14800015，需要重试。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
@@ -6818,6 +6829,10 @@ attach(context: Context, config: StoreConfig, attachName: string, waitTime?: num
 将一个当前应用的数据库附加到当前数据库中，以便在SQL语句中可以直接访问附加数据库中的数据。
 
 此API不支持加密数据库附加非加密数据库的场景。调用attach接口后，数据库切换为非WAL模式，性能会存在一定的劣化。
+
+attach的时候，数据库会切换为非WAL模式，切换模式需要确保所有的ResultSet都已经Close，所有的写操作已经结束，否则会报错14800015。
+
+attach不能并发调用，可能出现未响应情况，报错14800015，需要重试。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -6932,6 +6947,8 @@ detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
 将附加的数据库从当前数据库中分离。
 
 当所有的附加的数据库被分离后，数据库会重新切换为WAL模式。
+
+在detach之前，所有的数据库操作要确保已经结束，所有的ResultSet已经Close。并且不能并发调用，可能出现未响应情况，需要重试。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
