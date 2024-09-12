@@ -204,7 +204,7 @@
 | [OH_UdmfRecord](#oh_udmfrecord) \*\* [OH_UdmfData_GetRecords](#oh_udmfdata_getrecords) ([OH_UdmfData](#oh_udmfdata) \*pThis, unsigned int \*count) | 获取统一数据对象[OH_UdmfData](#oh_udmfdata)中包含的所有记录结果集。 | 
 | [OH_UdmfRecord](#oh_udmfrecord) \* [OH_UdmfRecord_Create](#oh_udmfrecord_create) () | 创建统一数据记录[OH_UdmfRecord](#oh_udmfrecord)指针及实例对象。 | 
 | void [OH_UdmfRecord_Destroy](#oh_udmfrecord_destroy) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis) | 销毁统一数据记录[OH_UdmfRecord](#oh_udmfrecord)指针指向的实例对象。 | 
-| int [OH_UdmfRecord_AddGeneralEntry](#oh_udmfrecord_addgeneralentry) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*typeId, unsigned char \*entry, unsigned int count) | 添加用户自定义的通用数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
+| int [OH_UdmfRecord_AddGeneralEntry](#oh_udmfrecord_addgeneralentry) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*typeId, unsigned char \*entry, unsigned int count) | 添加用户自定义的通用数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。对于已定义UDS的类型（比如PlainText、Link、Pixelmap等）不可使用该接口。 | 
 | int [OH_UdmfRecord_AddPlainText](#oh_udmfrecord_addplaintext) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | 增加纯文本类型[OH_UdsPlainText](#oh_udsplaintext)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
 | int [OH_UdmfRecord_AddHyperlink](#oh_udmfrecord_addhyperlink) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHyperlink](#oh_udshyperlink) \*hyperlink) | 增加超链接类型[OH_UdsHyperlink](#oh_udshyperlink)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
 | int [OH_UdmfRecord_AddHtml](#oh_udmfrecord_addhtml) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHtml](#oh_udshtml) \*html) | 增加超文本标记语言类型[OH_UdsHtml](#oh_udshtml)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
@@ -2844,7 +2844,7 @@ int OH_UdmfRecord_AddGeneralEntry (OH_UdmfRecord* pThis, const char* typeId, uns
 
 **描述**
 
-添加用户自定义的通用数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。
+添加用户自定义的通用数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。对于已定义UDS的类型（比如PlainText、Link、Pixelmap等）不可使用该接口。
 
 **起始版本：** 12
 
@@ -2853,7 +2853,7 @@ int OH_UdmfRecord_AddGeneralEntry (OH_UdmfRecord* pThis, const char* typeId, uns
 | 名称 | 描述 | 
 | -------- | -------- |
 | pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
-| typeId | 表示数据类型标识。 | 
+| typeId | 表示数据类型标识，为和系统定义的类型进行区分，建议以'ApplicationDefined'开头。| 
 | entry | 表示用户自定义数据。 | 
 | count | 表示用户自定义数据的大小。数据大小不超过4KB。 | 
 
