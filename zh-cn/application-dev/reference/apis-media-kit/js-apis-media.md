@@ -7400,10 +7400,10 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
-| 名称     | 类型   |  可读   |   可写    |  说明                   |
-| -------- | ------ |   ------| ------ | ---------------------- |
-| width     | number |  是   |  是   |  输出的缩略图宽度。         |
-| height | number |  是   |  是   | 输出的缩略图高度。 |
+| 名称   | 类型   | 可读 | 可写 | 说明                                                                            |
+|--------|--------|------|------|---------------------------------------------------------------------------------|
+| width  | number | 是   | 是   | 输出的缩略图宽度。应保证大于0且不大于原始视频宽度。否则返回的缩略图不会进行缩放。 |
+| height | number | 是   | 是   | 输出的缩略图高度。应保证大于0且不大于原始视频高度。否则返回的缩略图不会进行缩放。 |
 
 ## media.createMediaSourceWithUrl<sup>12+</sup>
 
