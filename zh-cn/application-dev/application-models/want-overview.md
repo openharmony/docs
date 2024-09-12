@@ -56,6 +56,6 @@
   >   - 匹配到一个满足条件的应用组件：直接启动该应用组件。
   >   - 匹配到多个满足条件的应用组件（[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)）：弹出选择框让用户选择。
   > 
-  > - 对于启动ServiceExtensionAbility的场景：
+  > - 对于启动ServiceExtensionAbility的场景。
   >   - 调用方传入的[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)参数中带有abilityName，则不允许通过隐式Want启动ServiceExtensionAbility。
   >   - 调用方传入的want参数中带有bundleName，则允许使用startServiceExtensionAbility()方法隐式Want启动ServiceExtensionAbility，默认返回优先级最高的ServiceExtensionAbility，如果优先级相同，返回第一个。
