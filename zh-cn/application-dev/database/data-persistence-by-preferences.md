@@ -55,7 +55,7 @@
 
 2. 获取Preferences实例。
 
-   Stage模型示例：
+   <!--Del-->Stage模型示例：<!--DelEnd-->
 
 
    ```ts
@@ -73,7 +73,7 @@
    }
    ```
 
-   FA模型示例：
+   <!--Del-->FA模型示例：
 
 
    ```ts
@@ -85,6 +85,7 @@
    let options: preferences.Options =  { name: 'myStore' };
    let dataPreferences: preferences.Preferences = preferences.getPreferencesSync(context, options);
    ```
+<!--DelEnd-->
 
 3. 写入数据。
 
