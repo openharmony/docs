@@ -113,7 +113,7 @@ EXTERN_C_END
         napi_value result = nullptr;
         napi_get_undefined(env, &result);
         
-        // 初始化PixelMap对象数据。
+        // 初始化NativePixelMap对象。
         NativePixelMap *native = OH_PixelMap_InitNativePixelMap(env, argValue[0]);
         if (native == nullptr) {
             return result;
