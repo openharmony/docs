@@ -637,6 +637,7 @@ Span类型信息。
 | TEXT  | 0 | Span为文字类型。   |
 | IMAGE | 1 | Span为图像类型。   |
 | MIXED | 2 | Span为图文混合类型。 |
+| BUILDER<sup>12+</sup> | 3 | Span为BuilderSpan类型。 |
 
 ## RichEditorResponseType<sup>11+</sup>
 
