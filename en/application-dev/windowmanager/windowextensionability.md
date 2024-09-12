@@ -100,7 +100,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        AbilityComponent({want:{abilityName: "WindowExtAbility", bundleName: "com.example.WindowExtAbility"}})
+        AbilityComponent({ abilityName: "WindowExtAbility", bundleName: "com.example.WindowExtAbility"})
           .width(500)
           .height(500)
       }
