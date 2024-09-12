@@ -27,14 +27,14 @@
 | colorEnabled                  | boolean                                                  |   否  | 是  | 通知背景颜色是否使能。预留能力，暂未支持。                                                 |
 | isAlertOnce                   | boolean                                                  |   否  | 是  | 设置是否仅有一次此通知提醒。                                                        |
 | isStopwatch                   | boolean                                                  |   否  | 是  | 是否显示已用时间。预留能力，暂未支持。                                                             |
-| isCountDown                   | boolean                                                  |   否  | 是  | 是否显示倒计时时间。                                                            |
+| isCountDown                   | boolean                                                  |   否  | 是  | 是否显示倒计时时间。预留能力，暂未支持。                                                            |
 | isFloatingIcon                | boolean                                                  |   否  | 是  | 是否显示状态栏图标。预留能力，暂未支持。                                                            |
 | label                         | string                                                   |   否  | 是  | 通知标签。                                                                 |
 | badgeIconStyle                | number                                                   |   否  | 是  | 通知角标类型。预留能力，暂未支持。                                                     |
 | showDeliveryTime              | boolean                                                  |   否  | 是  | 是否显示分发时间。预留能力，暂未支持。                                                             |
 | actionButtons                 | Array\<[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)\>             |   否  | 是  | 通知按钮，一条通知中最多包含两个按钮。                                                          |
-| smallIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   否  | 是  | 通知小图标。可选字段，图像像素的总字节数不超过100KB。实际显示效果依赖于设备能力和通知中心UI样式。                                                 |
-| largeIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   否  | 是  | 通知大图标。可选字段，图像像素的总字节数不超过100KB。实际显示效果依赖于设备能力和通知中心UI样式。                                                 |
+| smallIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   否  | 是  | 通知小图标。可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/js-apis-image.md#getpixelbytesnumber7)获取），建议图标像素长宽为128*128。实际显示效果依赖于设备能力和通知中心UI样式。                                                 |
+| largeIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   否  | 是  | 通知大图标。可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/js-apis-image.md#getpixelbytesnumber7)获取），建议图标像素长宽为128*128。实际显示效果依赖于设备能力和通知中心UI样式。                                                 |
 | creatorBundleName             | string                                                   |   是  | 是  | 创建通知的包名。                                                              |
 | creatorUid                    | number                                                   |   是  | 是  | 创建通知的UID。                                                             |
 | creatorPid                    | number                                                   |   是  | 是  | 创建通知的PID。                                                             |
