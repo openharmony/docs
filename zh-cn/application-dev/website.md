@@ -1055,8 +1055,9 @@
     - 硬件<!--system-hardware-->
       - Driver Development Kit（驱动开发服务）<!--driver-development-kit-->
         - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
-        - [驱动扩展框架DriverExtensionAbility](device/driver/driverextensionability.md)
-        - [扩展外设管理开发指导](device/driver/externaldevice-guidelines.md)
+        - [外设扩展驱动客户端开发指导](device/driver/externaldevice-guidelines.md)
+        - [外设扩展驱动开发指导](device/driver/driverextensionability.md)
+        - [常见问题](device/driver/externaldevice-faqs.md)
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-kit-->
         - [Multimodal Awareness Kit简介](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary开发指导](device/stationary/stationary-guidelines.md)
