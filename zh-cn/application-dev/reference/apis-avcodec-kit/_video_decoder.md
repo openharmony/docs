@@ -586,10 +586,6 @@ AV_ERR_INVALID_VAL：
 
 AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
 
-AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
-
-AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
-
 
 ### OH_VideoDecoder_SetParameter()
 
