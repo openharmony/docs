@@ -348,6 +348,7 @@
    ```
    <!--DelEnd-->
 
+<!--Del-->
 ### FA模型
 
 1. 启动并连接ServiceAbility。
@@ -495,7 +496,7 @@
 
     export default new ServiceAbility();
     ```
-
+<!--DelEnd-->
 
 ## 相关实例
 
