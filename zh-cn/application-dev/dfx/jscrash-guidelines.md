@@ -236,7 +236,7 @@ Error message:Cannot read property xxx of undefined
 
 2. 提取日志关键信息
 
-    通过日志信息可以确定为Type Error类问题，由异常信息得知是在读取needRenderTranslate对象时报错，该对象对undefined。最后可以通过异常代码调用栈，获取错误产生位置。
+    通过日志信息可以确定为Type Error类问题，由异常信息得知是在读取needRenderTranslate对象时报错，该对象为undefined。最后可以通过异常代码调用栈，获取错误产生位置。
 Cannot get SourceMap info, dump raw stack 信息表示该应用为release包安装，JS栈转换eTS行列号失败，可考虑使用[应用堆栈解析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-release-app-stack-analysis-V5)来解析行号。
 
 3. 定位到具体代码
