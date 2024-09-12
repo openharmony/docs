@@ -170,7 +170,14 @@ DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本�
 
 #### -enable-filename-obfuscation
 
-开启文件/文件夹名称混淆。如果使用这个选项，那么所有的文件/文件夹名称都会被混淆，除了下面场景:
+开启文件/文件夹名称混淆。如果使用这个选项，那么所有的文件/文件夹名称都会被混淆，例如：
+```
+// directory和filename都会混淆
+import func from '../directory/filename';
+import { foo } from '../directory/filename';
+const module = import('../directory/filename');
+```
+除了下面场景:
 
 * oh-package.json5文件中'main'、'types'字段配置的文件/文件夹名称不会被混淆。
 * 模块内module.json5文件中'srcEntry'字段配置的文件/文件夹名称不会被混淆。
@@ -180,7 +187,7 @@ DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本�
 
 **注意**：  
 
-由于系统会在应用运行时加载某些指定的文件，针对这类文件，开发者需要手动在[`-keep-file-name`]选项中配置相应的白名单，防止指定文件被混淆，导致运行失败。
+由于系统会在应用运行时加载某些指定的文件，针对这类文件，开发者需要手动在[-keep-file-name](#保留选项)选项中配置相应的白名单，防止指定文件被混淆，导致运行失败。
 上述需要手动配置白名单的情况，包括但不限于以下场景：  
 
 * 当模块中包含Ability组件时。用户需要将`src/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。  
@@ -344,6 +351,14 @@ Person
 printPersonName
 ```
 
+namespace中导出的名称也可以通过`-keep-global-name`保留。
+```
+export namespace Ns {
+  export const age = 18; // -keep-global-name age 保留变量age
+  export function myFunc () {}; // -keep-global-name myFunc 保留函数myFunc
+}
+```
+
 **哪些顶层作用域的名称应该被保留?**
 
 在JavaScript中全局变量是`globalThis`的属性。如果在代码中使用`globalThis`去访问全局变量，那么该变量名应该被保留。
@@ -367,6 +382,11 @@ class MyClass {}
 let d = new MyClass();      // MyClass 可以被正确地混淆
 ```
 
+当以命名导入的方式导入 so 库的 API时，若同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项，需要手动保留 API 的名称。
+
+```
+import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testNapi1 应该被保留
+```
 #### `-keep-file-name` [,identifiers,...]
 
 指定要保留的文件/文件夹的名称(不需要写文件后缀)，支持使用名称类通配符。例如，
@@ -422,7 +442,11 @@ export class exportClass {}
 ../oh_modules/json5          // 引用的三方库json5里所有文件中的名称都不混淆
 ```
 
-注：该功能不影响文件名混淆`-enable-filename-obfuscation`的功能
+**注意**：
+
+1. 被`-keep filepath`所保留的文件，其依赖链路上的文件中导出名称及其属性都会被保留。
+2. 该功能不影响文件名混淆`-enable-filename-obfuscation`的功能。
+
 
 #### 保留选项支持的通配符
 
@@ -682,6 +706,12 @@ end-for
 5. 应用运行时崩溃分析方法：
     1. 打开应用运行日志或者点击DevEco Studio中出现的Crash弹窗，找到运行时崩溃栈。
     2. 应用运行时崩溃栈中的行号为[编译产物](#如何查看混淆效果)的行号，方法名也可能为混淆后名称；因此排查时建议直接根据崩溃栈查看编译产物，进而分析哪些名称不能被混淆，然后将其配置进白名单中。
+6. 应用在运行时未崩溃但出现功能异常的分析方法（比如白屏）：
+    1. 打开应用运行日志：选择HiLog，检索与功能异常直接相关的日志，定位问题发生的上下文。
+    2. 定位异常代码段：通过分析日志，找到导致功能异常的具体代码块。
+    3. 增强日志输出：在疑似异常的功能代码中，对处理的数据字段增加日志记录。
+    4. 分析并确定关键字段：通过对新增日志输出的分析，识别是否由于混淆导致该字段的数据异常。
+    5. 配置白名单保护关键字段：将确认在混淆后对应用功能产生直接影响的关键字段添加到白名单中。
 
 ### 常见报错案例
 
