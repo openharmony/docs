@@ -13,9 +13,10 @@
 从API Version 10开始，推荐使用[NavPathStack](ts-basic-components-navigation.md#navpathstack10)进行页面路由。
 ## AtomicServiceNavigation
 
+```
 AtomicServiceNavigation({
     navPathStack?: NavPathStack,
-    navigationContent: Callback\<void\>,
+    navigationContent: Callback<void>,
     title?: ResourceStr,
     titleBackgroundColor?: ResourceColor,
     hideTitleBar?: boolean,
@@ -24,9 +25,10 @@ AtomicServiceNavigation({
     navDestinationBuilder?: NavDestinationBuilder,
     navBarWidthRange?: [Dimension, Dimension],
     minContentWidth?: Dimension,
-    stateChangeCallback?: Callback\<boolean\>,
-    modeChangeCallback?: Callback\<NavigationMode\>
+    stateChangeCallback?: Callback<boolean>,
+    modeChangeCallback?: Callback<NavigationMode>
 })
+```
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
