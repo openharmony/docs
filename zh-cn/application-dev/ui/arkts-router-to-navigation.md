@@ -166,6 +166,7 @@ struct Index {
       }.width('100%').height('100%')
     }
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 ```
@@ -261,6 +262,7 @@ struct Index {
         ...
     }.width('100%').height('100%')
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 
@@ -320,6 +322,7 @@ struct Index {
       }.width('100%').height('100%')
     }
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 
@@ -375,6 +378,7 @@ struct Index {
       }.width('100%').height('100%')
     }
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 
@@ -611,6 +615,7 @@ Navigation作为路由组件，默认支持跨包跳转。
    		  this.pageStack.pushPath({ name: "PageInHSP"});
    	 })
       }
+      .mode(NavigationMode.Stack)
       .navDestination(this.pageMap)
     }
    }
