@@ -331,6 +331,23 @@ The notification settings window is already displayed.
 
 确认通知设置页面是否拉起。
 
+## 1600019 没有对应勿扰模式编号的配置信息
+
+**错误信息**
+
+The do-not-disturb profile does not exist.
+
+**错误描述**
+
+勿扰模式编号对应的配置信息不存在时，将返回该错误码。
+
+**可能原因**
+
+没有对应勿扰模式编号的配置信息。
+
+**处理步骤**
+
+确认查询的勿扰模式编号是否正确。
 
 ## 2300007 网络无法访问
 
