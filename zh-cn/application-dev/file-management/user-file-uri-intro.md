@@ -31,7 +31,7 @@ uri类型可以归纳为文档类uri和媒体文件uri两类
 
 1. 通过[DocumentViewPicker接口](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)选择或保存文件，返回选择或保存的文件uri。
 
-2. 通过[AudioViewPicker接口](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)选择或保存文件，返回选择或保存的文件uri。
+2. 通过[AudioViewPicker接口](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)选择或保存文件，返回选择或保存的文件uri。<!--Del-->
 
 3. 通过[fileAccess模块](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)获取文档类目录下的文件得到对应文件的[FileInfo](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileinfo)对象，此对象中就包含对应文件或者目录的uri属性，此模块中的接口为系统接口，使用此模块需要注意应用是否为系统应用。支持获取文件uri的目录有：
    - 外部存储目录
