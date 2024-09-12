@@ -995,8 +995,8 @@ int main(int narg, char** argv)
 
 
 #### ffrt_get_current_queue
-<hr/>
-获取ArkTs Worker线程任务队列。
+
+获取ArkTS Worker线程任务队列。
 
 ##### 声明
 ```{.c}
@@ -1009,10 +1009,10 @@ NA
 
 ##### 返回值
 
-ArkTs Worker线程任务队列。
+ArkTS Worker线程任务队列。
 
 ##### 描述
-获取ArkTs Worker线程队列，用于FFRT线程与ArkTs Worker线程通信。
+获取ArkTS Worker线程队列，用于FFRT线程与ArkTS Worker线程通信。
 
 ##### 样例
 ```{.c}
