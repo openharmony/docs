@@ -98,7 +98,7 @@
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
-3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-6)接口拉起FilePicker应用界面进行文件选择。
+3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-5)接口拉起FilePicker应用界面进行文件选择。
    ```ts
    let uris: string = '';
    // 请确保 getContext(this) 返回结果为 UIAbilityContext

@@ -68,7 +68,7 @@ listener.on('change', onPortrait);
 
 - screen and (device-type: tv) or (resolution &lt; 2) ：表示包含多个媒体特征的多条件复杂语句查询，当设备类型为tv或设备分辨率小于2时条件成立。
 
-- (dark-mode: true) : 表示当系统为深色模式时成立。
+- (dark-mode: true) ：表示当系统为深色模式时成立。
 
 
 ### 媒体类型（media-type）

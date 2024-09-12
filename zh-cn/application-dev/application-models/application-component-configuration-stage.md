@@ -28,7 +28,7 @@
   "app": {
     "icon": "$media:app_icon",
     "label": "$string:app_name"
-    ...
+    // ...
   }
 }
 ```
@@ -52,7 +52,7 @@
 ```json
 {
   "module": {
-    ...
+    // ...
     "abilities": [
       {
         "icon": "$media:icon",
@@ -100,4 +100,4 @@ Module支持的设备类型需要在[module.json5配置文件](../quick-start/mo
 
 ## Module权限配置
 
-Module访问系统或其他应用受保护部分所需的权限信息需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置[requestPermissions标签](../quick-start/module-configuration-file.md#requestpermissions标签)。该标签用于声明需要申请权限的名称、申请权限的原因以及权限使用的场景。
+Module访问系统或其他应用受保护部分所需的权限信息需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中配置[requestPermissions标签](../security/AccessToken/declare-permissions.md)。该标签用于声明需要申请权限的名称、申请权限的原因以及权限使用的场景。

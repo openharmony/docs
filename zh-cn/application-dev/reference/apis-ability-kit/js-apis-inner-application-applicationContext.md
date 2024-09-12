@@ -568,7 +568,11 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(): Promise\<void\>
 
-杀死应用所在的进程。使用Promise异步回调。仅支持主线程调用。
+终止应用的所有进程，进程退出时不会正常走完应用生命周期。使用Promise异步回调。仅支持主线程调用。
+
+> **说明：**
+>
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -606,7 +610,11 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(callback: AsyncCallback\<void\>)
 
-杀死应用所在的进程。使用callback异步回调。仅支持主线程调用。
+终止应用的所有进程，进程退出时不会正常走完应用生命周期。使用callback异步回调。仅支持主线程调用。
+
+> **说明：**
+>
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

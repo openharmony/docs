@@ -4,6 +4,10 @@
 
 Unlike [LinkedList](js-apis-linkedlist.md), which is a doubly linked list, **List** is a singly linked list that does not support insertion or removal at both ends.
 
+> **NOTE**
+>
+> Although using \[index\] in **List** can obtain an element with the given index, this operation will result in undefined results. Due to this reason, **get()** method is recommended.
+
 **Recommended use case**: Use **List** for frequent insertion and removal operations.
 
 This topic uses the following to identify the use of generics:
@@ -121,7 +125,7 @@ Inserts an element at the specified position in this container.
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | element | T | Yes| Target element.|
-| index | number | Yes| Index of the position where the element is to be inserted.|
+| index | number | Yes| Index of the position where the element is to be inserted. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Error codes**
 
@@ -194,7 +198,7 @@ Obtains the element at the specified position in this container.
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -371,7 +375,7 @@ Searches for an element based on its index and then removes it.
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -670,7 +674,7 @@ Replaces an element at the specified position in this container with a given ele
 
 | Name| Value Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the target element.|
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 | element | T | Yes| Element to be used for replacement.|
 
 **Return value**

@@ -354,3 +354,4 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 - [Lottie动画](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)
 
 - [自定义抽奖转盘（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CanvasComponent)
+<!--RP1--><!--RP1End-->

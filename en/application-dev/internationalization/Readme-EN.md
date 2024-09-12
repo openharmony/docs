@@ -1,4 +1,4 @@
-# Internalization and Localization
+# Localization Kit
 
 - [Introduction to Localization Kit](i18n-l10n.md)
 - Application Internalization

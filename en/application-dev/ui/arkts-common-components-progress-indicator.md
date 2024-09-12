@@ -1,7 +1,7 @@
 # Progress Indicator (Progress)
 
 
-The **\<Progress>** component is used to provide an indicator that shows the progress of an operation. For details, see [Progress](../reference/arkui-ts/ts-basic-components-progress.md).
+The **Progress** component is used to provide an indicator that shows the progress of an operation. For details, see [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md).
 
 
 ## Creating a Progress Indicator
@@ -102,7 +102,7 @@ Progress indicators come in five styles. When creating a progress indicator, you
 
 ## Example Scenario
 
-In this example, the progress of the **\<Progress>** component is updated by clicking the button. After the button is clicked, the value of **progressValue** is incremented and passed by the **value** attribute to the **\<Progress>** component, which is then updated accordingly.
+In this example, the progress of the **Progress** component is updated by clicking the button. After the button is clicked, the value of **progressValue** is incremented and passed by the **value** attribute to the **Progress** component, which is then updated accordingly.
 
 ```ts
 @Entry

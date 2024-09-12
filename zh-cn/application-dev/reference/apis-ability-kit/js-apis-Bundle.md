@@ -1440,9 +1440,9 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework
 
-| 名称   | 类型   | 可读 | 可写 | 说明                                                  |
+| 名称   | 类型   | 只读 | 可选 | 说明                                                  |
 | ------ | ------ | ---- | ---- | ----------------------------------------------------- |
-| userId | number | 是   | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
+| userId | number | 否   | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 ## AbilityType<sup>deprecated<sup>
 

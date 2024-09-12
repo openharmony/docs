@@ -1,13 +1,13 @@
 # Binding Gesture Events
 
 
-The ArkUI development framework provides tap gestures, drag gestures, slide gestures, touch and hold gestures, pinch gestures, and rotate gestures in NDK interfaces. Different gestures are bound to specified components and corresponding callbacks are set to implement the expected gesture interaction capability.
+The ArkUI development framework provides tap, drag, swipe, long press, pinch, and rotation gestures through its NDK APIs. By binding different gestures to specified components and setting corresponding callbacks, you can achieve the desired gesture interaction capabilities.
 
 
-The following uses a simple example to describe how to implement gesture binding.
+The following is a simple example to illustrate how to implement gesture binding.
 
 
-1. Create a Column node to bind gestures.
+1. Create a **Column** node to which gestures will be bound.
    ```
    // Create a Column node.
    auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
@@ -25,70 +25,70 @@ The following uses a simple example to describe how to implement gesture binding
    nodeAPI->setAttribute(column, NODE_HEIGHT, &height);
    ```
 
-2. Create a touch and hold gesture with a single finger for 1 second and continuously respond to the touch and hold gesture.
+2. Create a single-finger long-press gesture with a 1-second activation threshold.
    ```
-   // Obtain the native interface set of gestures.
+   // Obtain the set of native gesture APIs.
    auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
                OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
    // Create a long press gesture.
    auto longPressGesture = gestureApi->createLongPressGesture(1, true, 1000);
    ```
 
-3. Bind the created gesture to the Column node created in step 1.
+3. Bind the created gesture to the **Column** node created in step 1.
    ```
-   // Set the callbacks.
+   // Set the callback.
    auto onActionCallBack = [](ArkUI_GestureEvent *event, void *extraParam) {
        // Callback content
    };
    
-   // Set the gesture on the component.
+   // Set the gesture to the component.
    gestureApi->setGestureEventTarget(longPressGesture, GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE | GESTURE_EVENT_ACTION_END, column, onActionCallBack);
    
    gestureApi->addGestureToNode(column, longPressGesture, PARALLEL, NORMAL_GESTURE_MASK);
    ```
 
 
-## Single gesture
+## Single Gestures
 
-If a gesture is bound to a node, the following describes how to create different gestures and which events can be called back.
+The following outlines how to create single gestures and the event callbacks they support:
 
-- Tap gesture.
-  You can bind a tap gesture to a widget to trigger the callback when the widget is tapped. You can specify the number of taps and the number of fingers required for triggering the callback.
+- Tap gesture
+  Triggers a callback on tap, set by the number of taps and fingers required.
 
   ```
   ArkUI_GestureRecognizer* (*createTapGesture)(int32_t countNum, int32_t fingersNum);
   ```
 
-- Pan gesture.
-  You can bind drag gestures to a widget to trigger callback when a user drags the widget. You can specify the number of fingers, drag direction, and drag distance required for triggering callback. The unit is px.
+- Pan gesture
+  Triggers a callback during dragging, set by the number of fingers, direction, and distance in px.
   ```
   ArkUI_GestureRecognizer* (*createPanGesture)(
   int32_t fingersNum, ArkUI_GestureDirectionMask directions, double distanceNum);
   ```
 
-- Long press gesture.
-  You can bind a touch and hold gesture to a widget to trigger callback when a user touches and holds the widget. You can specify the number of fingers required for triggering callback, touch and hold time (unit: ms), and whether to trigger callback continuously.
+- Long press gesture
+  Triggers a callback on long press, set by the number of fingers, hold-down time in milliseconds, and repeatability.
 
   ```
   ArkUI_GestureRecognizer* (*createLongPressGesture)(int32_t fingersNum, bool repeatResult, int32_t durationNum);
   ```
 
-- Pinch gesture.
-  You can bind a pinch gesture to a widget to trigger callback when a user pinches the widget. You can specify the number of fingers (minimum: 2) and pinch distance (unit: px) required for triggering callback.
+- Pinch gesture
+  Triggers a callback on pinching, set by the number of fingers (at least 2) and the pinch distance (in px).
 
   ```
   ArkUI_GestureRecognizer* (*createPinchGesture)(int32_t fingersNum, double distanceNum);
   ```
 
-- Rotation gesture.
-  You can bind a rotation gesture to a widget to trigger callback when a user rotates the widget. You can specify the number of fingers (minimum: 2) and rotation angle required for triggering callback.
+- Rotation gesture
+  Triggers a callback on rotation, set by the number of fingers (at least 2) and angle.
 
   ```
   ArkUI_GestureRecognizer* (*createRotationGesture)(int32_t fingersNum, double angleNum);
   ```
 
-- Swipe gesture.
-  You can bind a sliding gesture to a widget to trigger callback when a user slides the widget. You can specify the number of fingers (minimum: 1), sliding direction, and sliding speed (unit: px/s) required for triggering callback.
+- Swipe gesture
+  Triggers a callback on swiping, set by the number of fingers (at least 1), direction, and speed in px/s.
 
   ```
   ArkUI_GestureRecognizer* (*createSwipeGesture)(
@@ -98,22 +98,22 @@ If a gesture is bound to a node, the following describes how to create different
 
 ## Combined Gestures
 
-A combined gesture consists of multiple single gestures. Different ArkUI_GroupGestureModes are used in GroupGesture to declare the type of the combined gesture. Three types of combined gestures are supported: sequential recognition, parallel recognition, and mutually exclusive recognition.
+Combined gestures are created by combining multiple single gestures, and their types are declared with **ArkUI_GroupGestureMode** in **GroupGesture**.
 
-ArkUI_GroupGestureMode enumeration class, which is used to declare the type of the combined gesture. SEQUENTIAL_GROUP is identified in sequence, PARALLEL_GROUP is identified in parallel, and EXCLUSIVE_GROUP is identified in mutual exclusion.
+**ArkUI_GroupGestureMode** supports the following options: **SEQUENTIAL_GROUP** (sequential recognition), **PARALLEL_GROUP** (parallel recognition), **EXCLUSIVE_GROUP** (exclusive recognition).
 
 
 ### Sequential Recognition
 
-For sequential recognition, the value of **GestureMode** is **Sequence**. In this gesture recognition mode, gestures are recognized in the order in which they were registered until they are all recognized successfully. If any of the registered gestures fails to be recognized, all gestures fail to be recognized. Only the last gesture recognized responds to the **onActionEnd** event.
+For combined gestures with sequential recognition, the value of **ArkUI_GroupGestureMode** is **SEQUENTIAL_GROUP**. In this gesture recognition mode, gestures are recognized in the order they were registered until they are all recognized successfully. If any of the registered gestures fails to be recognized, subsequent gestures will also fail. Only the last gesture in a sequential group can respond to the **GESTURE_EVENT_ACTION_END** event.
 
-The following uses sequential recognition of touch and hold gestures and slide gestures as an example:
+The following demonstrates how to create a combined gesture that recognizes a long press followed by a swipe in sequence:
 
 ```
 ArkUI_NodeHandle testGestureExample() {
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
 
-    //Create a gesture and set a callback.
+    // Create a Column node.
     ArkUI_NumberValue value[] = {{.u32 = 0xff112233}};
     ArkUI_AttributeItem item = {value, 1};
     nodeAPI->setAttribute(column, NODE_BACKGROUND_COLOR, &item);
@@ -124,7 +124,7 @@ ArkUI_NodeHandle testGestureExample() {
     ArkUI_AttributeItem height = {heightValue, 1};
     nodeAPI->setAttribute(column, NODE_HEIGHT, &height);
 
-    // API for determining whether there is a gesture
+    // Check for the gesture API.
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     if (gestureApi->createGroupGesture) {
@@ -136,14 +136,14 @@ ArkUI_NodeHandle testGestureExample() {
     }
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::SEQUENTIAL_GROUP);
 
-    Creates a long press gesture.
+    // Create a long press gesture.
     auto longPressGesture = gestureApi->createLongPressGesture(1, true, 500);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(longPressGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
                      "onPanActionCallBack longPressGesture,ArkUI_GestureRecognizerType%{public}d", type);
     }
-    //Set the callback function for the touch and hold gesture.
+    // Set a callback for the long press gesture.
     auto onActionCallBackPanLongPress = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -174,19 +174,19 @@ ArkUI_NodeHandle testGestureExample() {
                                       GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE | GESTURE_EVENT_ACTION_CANCEL,
                                       column, onActionCallBackPanLongPress);
 
-    //Add the touch and hold gesture to the gesture group.
+    // Add the long press gesture to the gesture group.
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, longPressGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "onPanActionCallBack, addChildGesture longPressGesture");
     }
-    //Create a swipe gesture.
+    // Create a swipe gesture.
     auto swipeGesture = gestureApi->createSwipeGesture(1, GESTURE_DIRECTION_ALL, 100);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(swipeGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
                      "onPanActionCallBack, ArkUI_GestureRecognizerType %{public}d", type);
     }
-    //Bind the callback function to the sliding gesture.
+    // Set a callback for the swipe gesture.
     auto onActionCallBack = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -204,7 +204,7 @@ ArkUI_NodeHandle testGestureExample() {
         float repeat = OH_ArkUI_LongPress_GetRepeatCount(event);
 
 
-        //View logs.
+        // Print logs.
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
                      "onPanActionCallBack, swipeGesture callback actionType: %{public}d, velocity "
                      "%{public}f,velocityX "
@@ -225,13 +225,13 @@ ArkUI_NodeHandle testGestureExample() {
         swipeGesture, GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE | GESTURE_EVENT_ACTION_END, column,
         onActionCallBack);
 
-    //Add the slide gesture to the gesture group.
+    // Add the swipe press gesture to the gesture group.
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, swipeGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
                      "onPanActionCallBack, addChildGesture swipeGesture");
     }
-    //Set the gesture group on the component.
+    // Set the gesture group to the component.
     gestureApi->addGestureToNode(column, groupGesture, PRIORITY, NORMAL_GESTURE_MASK);
     return column;
 }
@@ -240,15 +240,15 @@ ArkUI_NodeHandle testGestureExample() {
 
 ### Parallel Recognition
 
-For parallel recognition, the value of **GestureMode** is **Parallel**. In this gesture recognition mode, gestures registered in the combined gestures will be recognized at the same time until they are all recognized successfully. The gestures are recognized in parallel without affecting each other.
+For combined gestures with parallel recognition, the value of **ArkUI_GroupGestureMode** is **PARALLEL_GROUP**. In this gesture recognition mode, gestures registered in the combined gestures will be recognized at the same time until they are all recognized successfully. The gestures are recognized in parallel without affecting each other.
 
-The following uses parallel recognition of touch and hold gestures and slide gestures as an example:
+The following demonstrates how to create a combined gesture that recognizes long press and swipe gestures in parallel:
 
 ```
 ArkUI_NodeHandle testGestureExample() {
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
 
-    //Create a gesture and set a callback.
+    // Create a Column node.
     ArkUI_NumberValue value[] = {{.u32 = 0xff112233}};
     ArkUI_AttributeItem item = {value, 1};
     nodeAPI->setAttribute(column, NODE_BACKGROUND_COLOR, &item);
@@ -259,7 +259,7 @@ ArkUI_NodeHandle testGestureExample() {
     ArkUI_AttributeItem height = {heightValue, 1};
     nodeAPI->setAttribute(column, NODE_HEIGHT, &height);
 
-    // API for determining whether there is a gesture
+    // Check for the gesture API.
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     if (gestureApi->createGroupGesture) {
@@ -270,17 +270,17 @@ ArkUI_NodeHandle testGestureExample() {
                      "onPanActionCallBack, createGroupGesture api not exist");
     }
 
-    Creates a gesture group.
+    // Create a gesture group.
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::PARALLEL_GROUP);
 
-    Creates a long press gesture.
+    // Create a long press gesture.
     auto longPressGesture = gestureApi->createLongPressGesture(1, true, 500);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(longPressGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
                      "onPanActionCallBack,ArkUI_GestureRecognizerType%{public}d", type);
     }
-    //Set the callback function for the touch and hold gesture.
+    // Set a callback for the long press gesture.
     auto onActionCallBackPanLongPress = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -312,19 +312,19 @@ ArkUI_NodeHandle testGestureExample() {
                                             GESTURE_EVENT_ACTION_CANCEL,
                                       column, onActionCallBackPanLongPress);
 
-    //Add the touch and hold gesture to the gesture group.
+    // Add the long press gesture to the gesture group.
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, longPressGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "onPanActionCallBack, addChildGesture longPressGesture");
     }
-    //Create a swipe gesture.
+    // Create a swipe gesture.
     auto swipeGesture = gestureApi->createSwipeGesture(1, GESTURE_DIRECTION_ALL, 100);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(swipeGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
                      "onPanActionCallBack, ArkUI_GestureRecognizerType %{public}d", type);
     }
-    //Bind the callback function to the sliding gesture.
+    // Set a callback for the swipe gesture.
     auto onActionCallBack = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -342,7 +342,7 @@ ArkUI_NodeHandle testGestureExample() {
         float repeat = OH_ArkUI_LongPress_GetRepeatCount(event);
 
 
-        //View logs.
+        // Print logs.
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
                      "onPanActionCallBack, swipeGesture callback actionType: %{public}d, velocity "
                      "%{public}f,velocityX "
@@ -363,13 +363,13 @@ ArkUI_NodeHandle testGestureExample() {
         swipeGesture, GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE | GESTURE_EVENT_ACTION_END, column,
         onActionCallBack);
 
-    //Add the slide gesture to the gesture group.
+    // Add the swipe press gesture to the gesture group.
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, swipeGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
                      "onPanActionCallBack, addChildGesture swipeGesture");
     }
-    //Set the gesture group on the component.
+    // Set the gesture group to the component.
     gestureApi->addGestureToNode(column, groupGesture, PRIORITY, NORMAL_GESTURE_MASK);
     return column;
 }
@@ -378,16 +378,16 @@ ArkUI_NodeHandle testGestureExample() {
 
 ### Exclusive Recognition
 
-For exclusive recognition, the value of **GestureMode** is **Exclusive**. In this gesture recognition mode, all registered gestures are recognized at once. Once any of the gestures is recognized successfully, the gesture recognition ends, and all other gestures fail to be recognized.
+For combined gestures with exclusive recognition, the value of **ArkUI_GroupGestureMode** is **EXCLUSIVE_GROUP**. In this gesture recognition mode, all registered gestures are recognized at once. Once any of the gestures is recognized successfully, the gesture recognition ends, and recognition for all other gestures fails.
 
-For example, a translation gesture and a pinch gesture are mutually exclusive.
+The following example illustrates the exclusive recognition of pan and pinch gestures:
 
 ```
 ArkUI_NodeHandle testGestureExample() {
     auto column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
     auto button = nodeAPI->createNode(ARKUI_NODE_BUTTON);
 
-    //Create a gesture and set a callback.
+    // Create a Column node.
     ArkUI_NumberValue value[] = {{.u32 = 0xff112233}};
     ArkUI_AttributeItem item = {value, 1};
     nodeAPI->setAttribute(column, NODE_BACKGROUND_COLOR, &item);
@@ -398,7 +398,7 @@ ArkUI_NodeHandle testGestureExample() {
     ArkUI_AttributeItem height = {heightValue, 1};
     nodeAPI->setAttribute(column, NODE_HEIGHT, &height);
 
-    // API for determining whether there is a gesture
+    // Check for the gesture API.
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
     if (gestureApi->createGroupGesture) {
@@ -410,14 +410,14 @@ ArkUI_NodeHandle testGestureExample() {
     }
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::EXCLUSIVE_GROUP);
 
-    Creates a pan gesture.
+    // Create a pan gesture.
     auto panGesture = gestureApi->createPanGesture(1, GESTURE_DIRECTION_VERTICAL, 5);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(panGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
                      "onPanActionCallBack panGesture, ArkUI_GestureRecognizerType %{public}d", type);
     }
-    //Bind the callback function to the drag gesture.
+    // Set a callback for the pan gesture.
     auto onActionCallBackPan = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -434,7 +434,7 @@ ArkUI_NodeHandle testGestureExample() {
         float angleR = OH_ArkUI_RotationGesture_GetAngle(event);
         float repeat = OH_ArkUI_LongPress_GetRepeatCount(event);
 
-        //View logs.
+        // Print logs.
         OH_LOG_Print(
             LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
             "onPanActionCallBack, panGesture callback actionType: %{public}d, velocity %{public}f,velocityX "
@@ -449,19 +449,19 @@ ArkUI_NodeHandle testGestureExample() {
                                       GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE |
                                           GESTURE_EVENT_ACTION_END | GESTURE_EVENT_ACTION_CANCEL,
                                       column, onActionCallBackPan);
-    //Add the drag gesture to the gesture group.
+    // Add the pan press gesture to the gesture group.
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, panGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "onPanActionCallBack, addChildGesture panGesture");
     }
-    Creates a pinch gesture.
+    // Create a pinch gesture.
     auto pinchGesture = gestureApi->createPinchGesture(0, 0);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(pinchGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
                      "onPanActionCallBack pinchGesture, ArkUI_GestureRecognizerType %{public}d", type);
     }
-    //Bind the callback function to the pinch gesture.
+    // Set a callback for the pinch gesture.
     auto onActionCallBack = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -499,12 +499,12 @@ ArkUI_NodeHandle testGestureExample() {
                                       GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE |
                                           GESTURE_EVENT_ACTION_END | GESTURE_EVENT_ACTION_CANCEL,
                                       column, onActionCallBack);
-    //Add the pinch gesture to the gesture group.
+    // Add the pinch press gesture to the gesture group.
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, pinchGesture);
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "onPanActionCallBack, addChildGesture pinchGesture");
     }
-    //Set the gesture group on the component.
+    // Set the gesture group to the component.
     gestureApi->addGestureToNode(column, groupGesture, PRIORITY, NORMAL_GESTURE_MASK);
     return column;
 }
@@ -513,38 +513,38 @@ ArkUI_NodeHandle testGestureExample() {
 
 ### Custom Gesture Judgment
 
-Supports user-defined gesture determination. When a component triggers a gesture, the component can determine whether to continue the current gesture based on the callback content.
+With support for custom gesture judgment, you can determine whether to continue executing a gesture based on callback content.
 
-In the foregoing example of binding a gesture event, a customized gesture may be determined by performing adjustment in the following manner.
+To implement custom gesture judgment, adjust the example of binding gesture events as follows:
 
 
-1. Creates a customized gesture determination callback function.
+1. Create a custom gesture judgment callback.
    ```
        auto onInterruptCallback = [](ArkUI_GestureInterruptInfo *info) -> ArkUI_GestureInterruptResult {
-           //Obtain whether the gesture is a system gesture.
+           // Check whether the gesture is a system gesture.
            auto systag = OH_ArkUI_GestureInterruptInfo_GetSystemFlag(info);
-           //Obtain the intercepted gesture pointer.
+           // Obtain the gesture recognizer for gesture interception.
            auto recognizer = OH_ArkUI_GestureInterruptInfo_GetRecognizer(info);
-           //Obtain the system gesture type.
+           // Obtain the system gesture type.
            auto systemRecognizerType = OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType(info);
-           //Obtain the gesture event.
+           // Obtain the gesture event.
            auto gestureEvent = OH_ArkUI_GestureInterruptInfo_GetGestureEvent(info);
            auto inputevent = OH_ArkUI_GestureEvent_GetRawInputEvent(gestureEvent);
    
            if (systag) {
-               //If the gesture is a system gesture, the gesture is not blocked.
+               // If the gesture is a system gesture, do not intercept it.
                return GESTURE_INTERRUPT_RESULT_CONTINUE;
            } else {
-               //Reject if the gesture is not a system gesture.
+               // If the gesture is not a system gesture, intercept and reject it.
                return GESTURE_INTERRUPT_RESULT_REJECT;
            }
        };
    ```
 
-2. Bind the gesture judgment and node.
+2. Bind the custom gesture interrupter to the node.
    ```
    gestureApi->setGestureInterrupterToNode(column, onInterruptCallback);
    ```
 
 
-After the foregoing modification, the touch-and-hold gesture that originally can take effect is intercepted. That is, in this case, touching and holding the Column node does not trigger callback of the touch-and-hold gesture.
+After the aforementioned modifications, the originally effective long press gesture is intercepted. Consequently, long pressing on the **Column** node will no longer trigger the long press gesture callback.

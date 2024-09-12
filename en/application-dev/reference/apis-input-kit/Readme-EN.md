@@ -26,7 +26,10 @@
     - [Input](input.md)
   - Header Files and Structs
     - Header Files
-        - [oh_input_manager.h](oh__input__manager_8h.md)
-        - [oh_key_code.h](oh__key__code_8h.md)
+      - [oh_axis_type.h](oh__axis__type_8h.md)
+      - [oh_input_manager.h](oh__input__manager_8h.md)
+      - [oh_key_code.h](oh__key__code_8h.md)
+  - Structs
+      - [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)
 - Error Codes
   - [Screen Hopping Error Codes](errorcode-multimodalinput.md)

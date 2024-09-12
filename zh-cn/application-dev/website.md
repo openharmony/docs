@@ -17,11 +17,6 @@
         - [HSP](quick-start/in-app-hsp.md)
         - [动态import](quick-start/arkts-dynamic-import.md)
         - [延迟加载（lazy import）](quick-start/arkts-lazy-import.md)
-      - 典型场景的开发指导
-        - [集成态HSP](quick-start/integrated-hsp.md)
-        - [HAR转HSP指导](quick-start/har-to-hsp.md)
-        - [HSP转HAP指导](quick-start/hsp-to-har.md)
-        - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
     - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
@@ -32,6 +27,11 @@
       - [app对象内部结构](quick-start/app-structure.md)
       - [deviceConfig内部结构](quick-start/deviceconfig-structure.md)
       - [module对象内部结构](quick-start/module-structure.md)
+    - 典型场景的开发指导
+      - [集成态HSP](quick-start/integrated-hsp.md)
+      - [HAR转HSP指导](quick-start/har-to-hsp.md)
+      - [HSP转HAR指导](quick-start/hsp-to-har.md)
+      - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言<!--learning-arkts-->
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
@@ -248,7 +248,6 @@
           - [LifecycleService接口切换](application-models/lifecycleservice-switch.md)
           - [LifecycleData接口切换](application-models/lifecycledata-switch.md)
           - [DataAbilityHelper接口切换](application-models/dataabilityhelper-switch.md)
-          - [mediaLibrary接口切换](application-models/medialibrary-switch.md)
           - [request接口切换](application-models/request-switch.md)
           - [resourceManager接口切换](application-models/resourcemanager-switch.md)
           - [window接口切换](application-models/window-switch.md)
@@ -307,7 +306,6 @@
         - 附录<!--appendixes-->
           - [Actor并发模型对比内存共享并发模型](arkts-utils/actor-model-development-samples.md)
           - [TaskPool和Worker支持的序列化类型](arkts-utils/serialization-support-types.md)
-          - [多线程安全注意事项](arkts-utils/multi-thread-safety.md)
           - [\@Concurrent装饰器：声明并校验并发函数](arkts-utils/arkts-concurrent.md)
           - [Sendable开发指导](arkts-utils/arkts-sendable.md)
           - [已接入Sendable的系统对象](arkts-utils/arkts-sendable-system-object-list.md)
@@ -668,6 +666,9 @@
       - [在自绘编辑框中使用输入法](inputmethod/custom_input_box_guide.md)
       - [切换输入法应用](inputmethod/switch_inputmehod_guide.md)
       - [输入法子类型开发指南](inputmethod/input_method_subtype_guide.md)
+      <!--Del-->
+      - [自绘编辑框开发指导 (C/C++)](inputmethod/native_custom_input_box_guide.md)
+      <!--DelEnd-->
     - IPC Kit（进程间通信服务）<!--ipc-kit-->
       - [IPC Kit简介](ipc/ipc-rpc-overview.md)
       - [IPC与RPC通信开发指导](ipc/ipc-rpc-development-guideline.md)
@@ -962,7 +963,7 @@
           - [Distributed Service Kit简介](distributedservice/distributedservice-kit-intro.md)
           - [分布式设备管理开发指南](distributedservice/devicemanager-guidelines.md)
       - Network Kit（网络服务）<!--network-kit-->
-        - [Network Kit开发概述](network/net-mgmt-overview.md)
+        - [Network Kit简介](network/net-mgmt-overview.md)
         - Network Kit数据传输能力<!--network-kit-data-transmission-->
             - [HTTP数据请求](network/http-request.md)
             - [WebSocket连接](network/websocket-connection.md)
@@ -1118,7 +1119,7 @@
           - [使用HiDebug获取调试信息（ArkTS）](dfx/hidebug-guidelines-arkts.md)
           - [使用HiDebug获取调试信息（C/C++）](dfx/hidebug-guidelines-ndk.md)
         - HiCollie使用指导<!--hicollie-->
-          - [使用HiCollie检测业务线程卡死卡顿问题（C/C++）](dfx/hiicollie-guidelines-ndk.md)
+          - [使用HiCollie检测业务线程卡死卡顿问题（C/C++）](dfx/hicollie-guidelines-ndk.md)
         - 错误管理<!--error-manager-->
           - [错误管理开发指导](dfx/errormanager-guidelines.md)
           - [应用恢复开发指导](dfx/apprecovery-guidelines.md)
@@ -1234,11 +1235,15 @@
         - [拍照(ArkTS)](media/camera/camera-shooting.md)
         - [录像(ArkTS)](media/camera/camera-recording.md)
         - [元数据(ArkTS)](media/camera/camera-metadata.md)
+        - [适配不同折叠状态的摄像头变更(ArkTS)](media/camera/camera-foldable-display.md)
         <!--Del-->
         - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
         <!--DelEnd-->
         - [分段式拍照(ArkTS)](media/camera/camera-deferred-capture.md)
         - [动态照片(ArkTS)](media/camera/camera-moving-photo.md)
+        <!--Del-->
+        - [深度信息(仅对系统应用开放)(ArkTS)](media/camera/camera-depth-data.md)
+        <!--DelEnd-->
       - 相机最佳实践(ArkTS)<!--Camera-best-practices-arkts-->
         - [拍照实现方案(ArkTS)](media/camera/camera-shooting-case.md)
         - [录像实现方案(ArkTS)](media/camera/camera-recording-case.md)
@@ -1786,7 +1791,6 @@
         - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)
         - [@ohos.data.ValuesBucket (数据集)](reference/apis-arkdata/js-apis-data-valuesBucket.md)
         <!--Del-->
-        - [@ohos.data.unifiedDataChannel (标准化数据通路)(系统接口)](reference/apis-arkdata/js-apis-data-unifiedDataChannel-sys.md)
         - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)
         - [@ohos.data.unifiedDataChannel (标准化数据通路)(系统接口)](reference/apis-arkdata/js-apis-data-unifiedDataChannel-sys.md)
         <!--DelEnd-->
@@ -2238,6 +2242,9 @@
           - [AtomicServiceWeb](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
           - [InterstitialDialogAction](reference/apis-arkui/arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)
           - [FullScreenLaunchComponent](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md) 
+          <!--Del-->
+          - [InnerFullScreenLaunchComponent (系统接口)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
+          <!--DelEnd-->
           - [NavPushPathHelper](reference/apis-arkui/arkui-ts/ohos-atomicservice-NavPushPathHelper.md)
         - 自定义占位组件
           - [NodeContainer](reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)
@@ -2910,7 +2917,9 @@
           <!--DelEnd-->
         - 错误码<!--distributed-service-arkts-errcode-->
           - [设备管理错误码](reference/apis-distributedservice-kit/errorcode-device-manager.md)
+          <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
+          <!--DelEnd-->
       - Network Kit（网络服务）<!--network-api-->
         - ArkTS API<!--network-api-arkts-->
           - [@ohos.net.connection (网络连接管理)](reference/apis-network-kit/js-apis-net-connection.md)

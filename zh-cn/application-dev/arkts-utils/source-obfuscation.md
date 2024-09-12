@@ -232,7 +232,7 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 3. 模块Module中的调用
 4. switch语句中的调用
 
-#### `-print-namecache` filepath
+#### -print-namecache *filepath*
 
 将名称缓存保存到指定的文件路径。名称缓存包含名称混淆前后的映射。  
 
@@ -240,7 +240,7 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 每次全量构建工程时都会生成新的namecache.json文件，因此您每次发布新版本时都要注意保存一个该文件的副本。
 
-#### `-apply-namecache` filepath
+#### -apply-namecache *filepath*
 
 复用指定的名称缓存文件。名字将会被混淆成缓存映射对应的名字，如果没有对应，将会被混淆成新的随机段名字。
 该选项应该在增量编译场景中被使用。
@@ -672,7 +672,7 @@ end-for
 ### 如何排查功能异常
 
 1. 先在obfuscation-rules.txt配置-disable-obfuscation选项关闭混淆，确认问题是否由混淆引起。
-2. 若确认是开启混淆后功能出现异常，请先阅读文档了解[-enable-property-obfuscation](#混淆选项)、[-enable-toplevel-obfuscation](#混淆选项)、[-enable-filename-obfuscation](#混淆选项)、[-enable-export-obfuscation](#混淆选项)等混淆规则的能力以及哪些语法场景需要[配置白名单](#保留选项)来保证应用功能正常。下文简要介绍默认开启的四项选项功能，细节还请阅读对应选项的完整描述。
+2. 若确认是开启混淆后功能出现异常，请先阅读文档了解[-enable-property-obfuscation](#混淆选项)、[-enable-toplevel-obfuscation](#混淆选项)、[-enable-filename-obfuscation](#混淆选项)、[-enable-export-obfuscation](#混淆选项)等混淆规则的能力以及哪些语法场景需要配置白名单来保证应用功能正常。下文简要介绍默认开启的四项选项功能，细节还请阅读对应选项的完整描述。
     1. [-enable-toplevel-obfuscation](#混淆选项)为顶层作用域名称混淆开关。
     2. [-enable-property-obfuscation](#混淆选项)为属性混淆开关，配置白名单的主要场景为网络数据访问、json字段访问、动态属性访问、调用so库接口等不能混淆场景，需要使用[-keep-property-name](#保留选项)来保留指定的属性名称。
     3. [-enable-export-obfuscation](#混淆选项)为导出名称混淆，一般与1、2选项配合使用；配置白名单的主要场景为模块对外接口不能混淆，需要使用[-keep-global-name](#保留选项)来指定保留导出/导入名称。

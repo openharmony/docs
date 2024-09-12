@@ -105,41 +105,6 @@ Grid布局：通过展示食物分类信息，创建Tabs页签展示不同分类
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/DefiningPageLayoutAndConnection)
 
-### 类Web开发范式
-
-#### JS组件集合
-##### 介绍
-本示例为ArkUI中组件、通用、动画、全局方法的集合。示例使用 [Tabs容器组件](reference/apis-arkui/arkui-js/js-components-container-tabs.md)搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-js/js-components-container-tab-content.md) 使用 [div容器组件](reference/apis-arkui/arkui-js/js-components-container-div.md) 嵌套布局，在每个 [div](reference/apis-arkui/arkui-js/js-components-container-div.md) 中使用 [循环渲染](reference/apis-arkui/arkui-js/js-components-common-attributes.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-js/js-components-container-tab-content.md) 设置自定义样式 。通过组件、通用、动画、全局方法四个大类展现了ArkUI的能力，并把四大类中的功能进行了分类，方便开发者查看，每个示例又结合了不同的展现方式，以契合实际应用场景为主生动的体现了ArkUI能力的用法。
-##### 使用
-1.点击组件、通用、动画、全局方法四个按钮或左右滑动切换不同Tab内容。
-
-2.点击二级导航（如通用属性、通用事件等），若存在三级导航则展开三级导航（如Border 边框、点击事件等）；若不存在三级导航，则点击跳转详情页面。
-
-3.若存在三级导航，点击三级导航则跳转详情页面。
-##### 基本原理
-示例使用 [Tabs容器组件](reference/apis-arkui/arkui-js/js-components-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-js/js-components-container-tab-content.md) 使用 [List容器组件](reference/apis-arkui/arkui-js/js-components-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/
-js-components-container-list-item.md) 中使用 [循环渲染](quick-start/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-js/js-components-container-tab-content.md) 设置自定义样式 。  
-将组件库分成四大类：  
-组件模块：  
-1、空白与分隔：使用全局组件TitleBar，CommonItemSlider，CommonItemSelect，引入全局样式搭建分隔器组件页面。  
-2、按钮与选择：使用全局组件TitleBar，引入全局样式搭建按钮，日期选择器，单选按钮，选择菜单，滑动条，切换按钮组件页面。  
-3、信息展示与功效：使用全局组件TitleBar，引入全局样式搭建二维码组件页面。  
-4、文本与输入：使用全局组件TitleBar，引入全局样式搭建行内文本，输入框，文本组件页面。  
-5、辅助：使用全局组件TitleBar，引入全局样式搭建标记组件页面。  
-通用模块：  
-1、通用事件：用到全局组件TitleBar，全局样式实现点击事件组件页面。  
-2、通用属性：使用全局组件TitleBar，全局样式实现组件页面，使用Math.trunc()方法将参数隐式转换成数字类型后，纯粹的去除小数部分。  
-动画模块：
-1、转场动画：用到全局组件TitleBar实现动画转场组件页面。  
-全局方法模块：  
-弹窗：使用全局组件TitleBar，全局样式实现弹窗组件页面。
-##### 约束与限制
-开发语言：JS
-
-配套版本：API9版本SDK，版本号：3.2.11.9
-
-[示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
-
 ## 基础特性
 
 ### 应用模型
@@ -446,7 +411,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 ##### 使用
 
-1. 进入应用前请先安装[VPNFoundation](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/VPN/lib)。
+1. 进入应用前请先安装[VPNFoundation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/VPN/lib/VPNFoundation-1.0.0.hap)。
 
 2. 进入应用后，主界面有启用VPN和停用VPN的选项,分别对应开启和关闭VPN功能。
 
@@ -983,7 +948,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了文件管理相关的功能，使用[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md) 、[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md) 、[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 、[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)
+本示例主要展示了文件管理相关的功能，使用[@ohos.filemanagement.userFileManager](reference/apis-core-file-kit/js-apis-userFileManager-sys.md) 、[@ohos.file.fileAccess](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)、[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md) 、[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)。
 
 等接口，实现了增添文件、删除文件、查找指定类型文件文件、复制并移动文件和预览图片、监听文件的功能。
 
@@ -1008,7 +973,7 @@ Preferences.flush()保存并刷新文件内容。
 
 开发语言：ArkTS
 
-配套版本：API11版本SDK，版本号：4.1.6.5
+配套版本：API10版本SDK，版本号：4.0.9.6
 
 [示例链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/FileManagement/FileManager)
 
@@ -1016,7 +981,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-应用使用[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)、[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)、[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md) 等接口，实现了picker拉起文档编辑保存、拉起系统相册图片查看、拉起视频并播放的功能。
+应用使用[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)、[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)、[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md) 等接口，实现了picker拉起文档编辑保存、拉起系统相册图片查看、拉起视频并播放的功能。
 
 ##### 使用
 
@@ -1028,7 +993,7 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 - 拉起picker选择文件、拉起picker保存文件、拉起picker选择图片或视频的功能封装在Index.ets
-  * 使用mediaLiabrary.getMediaLibrary来获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如视频、图片、文档等）；使用media.getFileAssets来获取文件资源；使用来fetchFileResult.getFirstObject获取文件检索结果中的头一个文件资产，接口参考：[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)
+  * 使用mediaLiabrary.getMediaLibrary来获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如视频、图片、文档等）；使用media.getFileAssets来获取文件资源；使用来fetchFileResult.getFirstObject获取文件检索结果中的头一个文件资产，接口参考：[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
   * 使用new picker.DocumentViewPicker来创建文件picker实例，使用documentPicker.select来拉起picker选择文件，使用documentPicker.save来拉起picker保存文件，接口参考：[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)
   * 使用new picker.PhotoViewPicker来创建图库picker实例，使用photoPicker.select来拉起picker选择图片或视频，接口参考：[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)
 
@@ -1037,7 +1002,7 @@ Preferences.flush()保存并刷新文件内容。
 
 - 拉起图片或视频并查看的功能封装在ViewMedia.ets
   * 使用new picker.PhotoViewPicker来创建图库picker实例，使用photoPicker.save来拉起picker保存图片或视频，接口参考：[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)
-  * 使用mediaLiabrary.getMediaLibrary来获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如视频、图片、文档等），然后使用media.getFileAssets来获取文件资源再使用fileAsset.displayName来获取图片或视频的名称，接口参考：[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)
+  * 使用mediaLiabrary.getMediaLibrary来获取媒体库的实例，用于访问和修改用户等个人媒体数据信息（如视频、图片、文档等），然后使用media.getFileAssets来获取文件资源再使用fileAsset.displayName来获取图片或视频的名称，接口参考：[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
 
 
 ##### 约束与限制
@@ -1235,7 +1200,7 @@ Preferences.flush()保存并刷新文件内容。
 * 录控功能接口调用实现参考工程目录中的音频录制页面和视频录制页面
   * 调用create()、prepare()、getInputSurface()、start()、pause()、resume()、stop()、reset()、release()接口实现录制器的创建、准备、录控操作、重置、销毁实例等功能；
   * 视频录制调用Camera接口实现相机出流功能配合视频录制功能，相机的实现方法参考自相机接口[@ohos.multimedia.camera](reference/apis-camera-kit/js-apis-camera.md)
-* 调用MediaLibrary实现创建录制，实现方法参考@ohos.multimedia.medialibrary接口说明。
+* 调用MediaLibrary实现创建录制，实现方法参考@ohos.multimedia.medialibrary接口说明
 
 ##### 约束与限制
 
@@ -1428,7 +1393,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-该示例通过[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)和[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)接口实现获取图片，以及图片裁剪分割的功能。
+该示例通过[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)和[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)接口实现获取图片，以及图片裁剪分割的功能。
 
 ##### 使用
 
@@ -1514,7 +1479,7 @@ Preferences.flush()保存并刷新文件内容。
 
   * 选择图片/照片模块
     * 调用依赖中ChoicePhotos方法打开相册，mediaquery媒体查询相册，getMediaLibrary获取媒体库的实例，访问用户等个人媒体数据信息并选中图片
-    * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.mediaquery](reference/apis-arkui/js-apis-system-mediaquery.md)，[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
+    * 参考接口：[@ohos.router](reference/apis-arkui/js-apis-router.md)，[@ohos.promptAction](reference/apis-arkui/js-apis-promptAction.md)，[@ohos.mediaquery](reference/apis-arkui/js-apis-system-mediaquery.md)，[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)，[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)
   
   * 提交模块
     * 选中图片后点击下一步按钮，回到发表评价页面，点击提交按钮进行提交
@@ -1532,7 +1497,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例使用媒体库管理、[相机管理](reference/apis-camera-kit/js-apis-camera.md)、[图片处理](reference/apis-image-kit/js-apis-image.md)、[文件管理](reference/apis-core-file-kit/js-apis-fileio.md)展示二维码扫描功能，包括相机扫描解析二维码和从相册中选择二维码图片解析。
+本示例使用[相册管理](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)、[相机管理](reference/apis-camera-kit/js-apis-camera.md)、[图片处理](reference/apis-image-kit/js-apis-image.md)、[文件管理](reference/apis-core-file-kit/js-apis-fileio.md)展示二维码扫描功能，包括相机扫描解析二维码和从相册中选择二维码图片解析。
 
 ##### 使用
 
@@ -4488,7 +4453,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 本示例主要展示了应用数据跨端迁移的能力，通过跨端迁移的能力实现了一个简单的随手记应用，可以响应系统迁移事件，控制应用的迁移能力、是否迁移页面栈以及迁移后是否退出源端等。同时实现了数据迁移以及ArkUI控件的迁移。
 
-本示例使用了权限管理接口[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)、分布式数据对象接口[@ohos.data.distributedDataObject](reference/apis-arkdata/js-apis-data-distributedobject.md)、基础文件操作接口[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md) 、相册管理模块接口[@ohos.file.photoAccessHelper](https://gitee.com/eileen-dxy/docs/blob/master/zh-cn/application-dev/reference/apis-core-file-kit/js-apis-file-fs.md)、图片处理接口[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)等接口，通过分布式数据对象以及分布式文件两种方式实现了图片数据的流转迁移。
+本示例使用了权限管理接口[@ohos.abilityAccessCtrl](reference/apis-ability-kit/js-apis-abilityAccessCtrl.md)、分布式数据对象接口[@ohos.data.distributedDataObject](reference/apis-arkdata/js-apis-data-distributedobject.md)、基础文件操作接口[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md) 、相册管理模块接口[@ohos.file.photoAccessHelper](reference/apis-core-file-kit/js-apis-fileAccess-sys.md)、图片处理接口[@ohos.multimedia.image](reference/apis-image-kit/js-apis-image.md)等接口，通过分布式数据对象以及分布式文件两种方式实现了图片数据的流转迁移。
 
 ##### 使用
 
@@ -5746,7 +5711,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[@ohos.multimedia.camera](reference/apis-basic-services-kit/js-apis-settings-sys.md)接口实现相机示例的主要功能：拍照、录像、参数配置等。使用[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md) 接口实现对媒体文件的存储。同时支持拍照角度旋转以及录制分辨率选择。
+本示例使用[@ohos.multimedia.camera](reference/apis-basic-services-kit/js-apis-settings-sys.md)接口实现相机示例的主要功能：拍照、录像、参数配置等。使用[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md) 接口实现对媒体文件的存储。同时支持拍照角度旋转以及录制分辨率选择。
 
 ##### 使用
 
@@ -5782,7 +5747,7 @@ return formInfo.FormState.READY }。
 
 ##### 介绍
 
-本示例使用[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)管理屏幕的一些基础能力，包括获取屏幕对象，监听屏幕变化，创建和销毁虚拟屏幕等。[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)和[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)完成视频编码并保存到文件中。[@ohos.display](reference/apis-arkui/js-apis-display.md)捕捉屏幕显示图像帧，展示设备屏幕（含音频）录制功能。屏幕录制的主要工作是通过创建一个虚拟屏，捕获屏幕显示图形帧，完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能，也可以通过此应用抓取屏幕帧用于问题复现录制。
+本示例使用[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)管理屏幕的一些基础能力，包括获取屏幕对象，监听屏幕变化，创建和销毁虚拟屏幕等。[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)和[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)完成视频编码并保存到文件中。[@ohos.display](reference/apis-arkui/js-apis-display.md)捕捉屏幕显示图像帧，展示设备屏幕（含音频）录制功能。屏幕录制的主要工作是通过创建一个虚拟屏，捕获屏幕显示图形帧，完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能，也可以通过此应用抓取屏幕帧用于问题复现录制。
 
 ##### 使用
 
@@ -5799,7 +5764,7 @@ return formInfo.FormState.READY }。
 ##### 基本原理
 
 * 该示例通过Screen方法获取屏幕实例，createVirtualScreen方法创建一个虚拟屏，getAllScreens方法获取获取所有的屏幕，makeMirror方法将屏幕设置为镜像模式，setVirtualScreenSurface方法设置虚拟屏幕的surface，display接口捕获屏幕显示图形帧，media，mediaLibrary接口完成视频编码并保存到文件中，帮助OEM设备厂家系统应用实现屏幕录制功能。
-* 接口参考：[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)，[@ohos.display](reference/apis-arkui/js-apis-display.md)
+* 接口参考：[@ohos.screen](reference/apis-arkui/js-apis-screen-sys.md)，[@ohos.multimedia.media](reference/apis-media-kit/js-apis-media.md)，[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)，[@ohos.display](reference/apis-arkui/js-apis-display.md)
 
 ##### 约束与限制
 
