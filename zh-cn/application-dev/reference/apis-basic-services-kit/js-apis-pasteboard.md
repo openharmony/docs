@@ -1092,7 +1092,7 @@ pasteData.replaceRecord(0, record);
 
 pasteStart(): void
 
-读取剪贴板数据前，通知剪贴板服务保留上下文和资源。
+读取剪贴板数据前，通知剪贴板服务保留跨设备通道。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
