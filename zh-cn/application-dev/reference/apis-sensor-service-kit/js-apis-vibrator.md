@@ -882,7 +882,7 @@ try {
 | type     | 'preset' |  是  | 值为'preset'，按照预置振动效果触发马达振动。 |
 | effectId | string   |  是  | 预置的振动效果ID。             |
 | count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
-| intensity<sup>12+</sup> | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
+| intensity<sup>12+</sup> | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。若振动效果不支持强度调节或设备不支持时，则按默认强度振动。 |
 
 ## VibrateFromFile<sup>10+</sup>
 
