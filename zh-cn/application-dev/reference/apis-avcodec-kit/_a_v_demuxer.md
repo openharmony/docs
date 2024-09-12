@@ -298,7 +298,10 @@ AV_ERR_OPERATE_NOT_PERMIT：
     2. demuxer没有正确的初始化；
     3. 资源无法seek。
 
-AV_ERR_UNKNOWN：seek失败。
+AV_ERR_UNKNOWN：
+
+    1. seek失败；
+    2. OH_AVSeekMode选择SEEK_MODE_NEXT_SYNC，并且时间点后无I帧，可能会跳转失败。
 
 
 ### OH_AVDemuxer_SelectTrackByID()

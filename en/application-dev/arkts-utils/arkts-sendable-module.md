@@ -2,7 +2,7 @@
 
 A shared module, marked with **use shared**, is loaded only once in a process.
 
-A non-shared module is loaded only once in the same thread and multiple times in different threads. New module objects are generated in all these threads.
+A non-shared module is loaded only once in the same thread and multiple times in different threads. New module objects are generated in all these threads. Therefore, a shared module can be used to implement a singleton of a process.
 
 ## Specifications
 

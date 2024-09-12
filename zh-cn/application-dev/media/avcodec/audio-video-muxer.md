@@ -9,6 +9,11 @@
 | mp4      | AVC（H.264）<!--RP1--><!--RP1End-->    | AAC、MPEG（MP3） | jpeg、png、bmp |
 | m4a      | -                     | AAC              | jpeg、png、bmp |
 | mp3      | -                     | MPEG（MP3）      | -              |
+
+> **说明：**
+>
+> - 封装格式为mp4，音频编解码类型为MPEG（MP3）时采样率需大于等于16000Hz。  
+> - 封装格式为mp4/m4a，音频编辑码类型为AAC时声道数范围为1~7。
 <!--RP2--><!--RP2End-->
 
 <!--RP3--><!--RP3End-->

@@ -2981,7 +2981,7 @@ int32_t OH_PixelMap_GetIsEditable (const NativePixelMap * native, int32_t * edit
 NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source )
 ```
 **描述**
-初始化**PixelMap**对象数据。
+初始化**NativePixelMap**对象。
 
 **起始版本：** 10
 
@@ -2990,7 +2990,7 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source 
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | napi的环境指针。  | 
-| source | **PixelMap** 数据设置项。  | 
+| source | **PixelMap** 对象。  |
 
 **返回：**
 

@@ -455,7 +455,7 @@ getPositionToScreenWithTransform(): Position
 
 getMeasuredSize(): Size
 
-获取FrameNode测量后的大小。
+获取FrameNode测量后的大小，单位为PX。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -465,7 +465,7 @@ getMeasuredSize(): Size
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Size](./js-apis-arkui-graphics.md#size) | 节点测量后的大小。 |
+| [Size](./js-apis-arkui-graphics.md#size) | 节点测量后的大小，单位为PX。 |
 
 **示例：**
 

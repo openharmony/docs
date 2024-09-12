@@ -66,6 +66,69 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 });
 ```
 
+
+## taskpool.execute<sup>13+</sup>
+
+execute<A extends Array\<Object>, R>(func: (...args: A) => R | Promise\<R>, ...args: A): Promise\<R>
+
+Verifies the passed-in parameter types and return value type of a concurrent function, and places the function to execute in the internal queue of the task pool.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**Parameters**
+
+| Name| Type     | Mandatory| Description                                                                  |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| func   | (...args: A) => R \| Promise\<R>  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| args   | A | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+
+**Return value**
+
+| Type             | Description                                |
+| ----------------- | ------------------------------------ |
+| Promise\<R>  | Promise used to return an object that carries the function execution result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200006 | An exception occurred during serialization.  |
+| 10200014 | The function is not marked as concurrent.      |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args: number): number {
+    console.info("printArgs: " + args);
+    return args;
+}
+
+@Concurrent
+function testWithThreeParams(a: number, b: string, c: number): string {
+  return b;
+}
+
+@Concurrent
+function testWithArray(args: [number, string]): string {
+  return "success";
+}
+
+taskpool.execute<[number], number>(printArgs, 100).then((value: number) => { // 100: test number
+  console.info("taskpool result: " + value);
+});
+
+taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {})
+
+taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {})
+```
+
+
 ## taskpool.execute
 
 execute(task: Task, priority?: Priority): Promise\<Object>
@@ -122,6 +185,65 @@ taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
   console.info("taskpool result3: " + value);
 });
 ```
+
+
+## taskpool.execute<sup>13+</sup>
+
+execute<A extends Array\<Object>, R>(task: GenericsTask<A, R>, priority?: Priority): Promise\<R>
+
+Verifies the passed-in parameter types and return value type of a concurrent function, and places the generic task in the internal queue of the task pool.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                      |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| task     | [GenericsTask](#genericstask13)         | Yes  | Generic task to be executed.                 |
+| priority | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
+
+**Return value**
+
+| Type             | Description             |
+| ----------------  | ---------------- |
+| Promise\<R> | Promise used to return an object that carries the function execution result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                                    |
+| -------- | ------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200006 | An exception occurred during serialization. |
+| 10200014 | The function is not marked as concurrent.     |
+| 10200051 | The periodic task cannot be executed again. |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args: number): number {
+    console.info("printArgs: " + args);
+    return args;
+}
+
+let task1: taskpool.Task = new taskpool.GenericsTask<[number], number>(printArgs, 100); // 100: test number
+let task2: taskpool.Task = new taskpool.GenericsTask<[number], number>(printArgs, 200); // 200: test number
+let task3: taskpool.Task = new taskpool.GenericsTask<[number], number>(printArgs, 300); // 300: test number
+taskpool.execute<[number], number>(task1, taskpool.Priority.LOW).then((value: number) => {
+  console.info("taskpool result1: " + value);
+});
+taskpool.execute<[number], number>(task2, taskpool.Priority.MEDIUM).then((value: number) => {
+  console.info("taskpool result2: " + value);
+});
+taskpool.execute<[number], number>(task3, taskpool.Priority.HIGH).then((value: number) => {
+  console.info("taskpool result3: " + value);
+});
+```
+
 
 ## taskpool.execute<sup>10+</sup>
 
@@ -241,6 +363,62 @@ taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
 })
 ```
 
+
+## taskpool.executeDelayed<sup>13+</sup>
+
+executeDelayed<A extends Array\<Object>, R>(delayTime: number, task: GenericsTask\<A, R>, priority?: Priority): Promise\<R>
+
+Verifies the passed-in parameter types and return value type of a concurrent function, and executes the generic task with a delay.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**Parameters**
+
+| Name      | Type         | Mandatory| Description                |
+| ----------- | ------------- | ---- | -------------------- |
+| delayTime   | number        | Yes  | Delay, in ms. |
+| task        | [GenericsTask](#genericstask13) | Yes  | Generic task to be executed with a delay.|
+| priority    | [Priority](#priority)       | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
+
+**Return value**
+
+| Type                | Description                              |
+| ----------------    | ---------------------------------- |
+| Promise\<R>  | Promise used to return an object that carries the function execution result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID  | Error Message                        |
+| --------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200028 | The delayTime is less than zero. |
+| 10200051 | The periodic task cannot be executed again. |
+
+**Example**
+
+```ts
+// import BusinessError
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Concurrent
+function printArgs(args: number): string {
+    console.info("printArgs: " + args);
+    return "success";
+}
+
+let task: taskpool.Task = new taskpool.GenericsTask<[number], string>(printArgs, 100); // 100: test number
+taskpool.executeDelayed<[number], string>(1000, task).then((res: string) => { // 1000:delayTime is 1000ms
+  console.info("taskpool execute success");
+}).catch((e: BusinessError) => {
+  console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
+})
+```
+
+
 ## taskpool.executePeriodically<sup>12+</sup>
 
 executePeriodically(period: number, task: Task, priority?: Priority): void
@@ -310,6 +488,81 @@ function taskpoolTest() {
     let periodicTask: taskpool.Task = new taskpool.Task(testExecutePeriodically, 200); // 200: test number
     periodicTask.onReceiveData(printResult);
     taskpool.executePeriodically(1000, periodicTask); // 1000: period is 1000ms
+  } catch (e) {
+    console.error(`taskpool execute-2: Code: ${e.code}, message: ${e.message}`);
+  }
+}
+
+taskpoolTest();
+```
+
+
+## taskpool.executePeriodically<sup>13+</sup>
+
+executePeriodically<A extends Array\<Object>, R>(period: number, task: GenericsTask\<A, R>, priority?: Priority): void
+
+Verifies the passed-in parameter types and return value type of a concurrent function, and executes the generic task periodically at an interval specified by **period**.
+
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**Parameters**
+
+| Name      | Type         | Mandatory | Description                |
+| -----------  | ------------- | ----- | -------------------- |
+| period       | number        | Yes   | Execution period, in ms. |
+| task         | [GenericsTask](#genericstask13) | Yes   | Generic task to be executed periodically.|
+| priority     | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID  | Error Message                        |
+| ---------- | -------------------------------- |
+| 401        | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200006   | An exception occurred during serialization. |
+| 10200014   | The function is not marked as concurrent. |
+| 10200028   | The period is less than zero. |
+| 10200050   | The concurrent task has been executed and cannot be executed periodically. |
+
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args: number): void {
+  console.info("printArgs: " + args);
+}
+
+@Concurrent
+function testExecutePeriodically(args: number): void {
+  let t = Date.now();
+  while ((Date.now() - t) < args) {
+    continue;
+  }
+  taskpool.Task.sendData(args); // Send a message to the main thread.
+}
+
+function printResult(data: number): void {
+  console.info("taskpool: data is: " + data);
+}
+
+function taskpoolTest() {
+  try {
+    let task: taskpool.Task = new taskpool.GenericsTask<[number], void>(printArgs, 100); // 100: test number
+    taskpool.executePeriodically<[number], void>(1000, task); // 1000: period is 1000ms
+  } catch (e) {
+    console.error(`taskpool execute-1: Code: ${e.code}, message: ${e.message}`);
+  }
+
+  try {
+    let periodicTask: taskpool.Task = new taskpool.GenericsTask<[number], void>(testExecutePeriodically, 200); // 200: test number
+    periodicTask.onReceiveData(printResult);
+    taskpool.executePeriodically<[number], void>(1000, periodicTask); // 1000: period is 1000ms
   } catch (e) {
     console.error(`taskpool execute-2: Code: ${e.code}, message: ${e.message}`);
   }
@@ -1028,7 +1281,7 @@ Sends data to the host thread and triggers the registered callback. Before using
 
 | Name  | Type         | Mandatory| Description                                             |
 | -------- | ------------- | ---- | ------------------------------------------------- |
-| args     | Object[]      | Yes  | Data to be used as the input parameter of the registered callback. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| args     | Object[]      | No  | Data to be used as the input parameter of the registered callback. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
 
@@ -1137,9 +1390,9 @@ Adds dependent tasks for this task. Before using this API, you must create a **T
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| tasks  | [Task](#task)[] | Yes  | Array of tasks on which the current task depends.|
+| Name| Type            | Mandatory| Description              |
+| ------ | --------------- | ---- | ------------------ |
+| tasks  | [Task](#task)[] | No  | Array of tasks on which the current task depends. The default value is **undefined**.|
 
 **Error codes**
 
@@ -1198,7 +1451,7 @@ Removes dependent tasks for this task. Before using this API, you must create a 
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| tasks  | [Task](#task)[] | Yes  | Array of tasks on which the current task depends.|
+| tasks  | [Task](#task)[] | No  | Array of tasks on which the current task depends. The default value is **undefined**.|
 
 **Error codes**
 
@@ -1525,7 +1778,7 @@ Describes a callback function with an error message.
 
 **System capability**: SystemCapability.Utils.Lang
 
-Describes a continuous task. **LongTask** is inherited from [Task](#task).
+Describes a continuous task. **LongTask** inherits from [Task](#task).
 No upper limit is set for the execution time of a continuous task, and no timeout exception is thrown if a continuous task runs for a long period of time. However, a continuous task cannot be executed in a task group or executed for multiple times.
 The thread for executing a continuous task exists until [terminateTask](#taskpoolterminatetask12) is called after the execution is complete. The thread is reclaimed when it is idle.
 
@@ -1539,6 +1792,108 @@ function printArgs(args: string): string {
 }
 
 let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first LongTask");
+```
+
+
+## GenericsTask<sup>13+</sup>
+
+**System capability**: SystemCapability.Utils.Lang
+
+Implements a generic task. **GenericsTask** inherits from [Task](#task).
+
+During the creation of a generic task, the passed-in parameter types and return value types of concurrent functions are verified in the compilation phase. Other behaviors are the same as those during the creation of a task.
+
+### constructor<sup>13+</sup>
+
+constructor(func: (...args: A) => R | Promise\<R>, ...args: A)
+
+A constructor used to create a **GenericsTask** object.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**Parameters**
+
+| Name| Type     | Mandatory| Description                                                                 |
+| ------ | --------- | ---- | -------------------------------------------------------------------- |
+| func   | (...args: A) => R \| Promise\<R>  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| args   | A | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                                |
+| -------- | --------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200014 | The function is not marked as concurrent. |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args: string): string {
+  console.info("printArgs: " + args);
+  return args;
+}
+
+@Concurrent
+function testWithThreeParams(a: number, b: string, c: number): string {
+  return b;
+}
+
+@Concurrent
+function testWithArray(args: [number, string]): string {
+  return "success";
+}
+
+let task1: taskpool.Task = new taskpool.GenericsTask<[string], string>(printArgs, "this is my first LongTask");
+
+let task2: taskpool.Task = new taskpool.GenericsTask<[number, string, number], string>(testWithThreeParams, 100, "test", 100);
+
+let task3: taskpool.Task = new taskpool.GenericsTask<[[number, string]], string>(testWithArray, [100, "test"]);
+```
+
+### constructor<sup>13+</sup>
+
+constructor(name: string, func: (...args: A) => R | Promise\<R>, ...args: A)
+
+A constructor used to create a **GenericsTask** instance, with the task name specified.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**Parameters**
+
+| Name| Type    | Mandatory| Description                                                        |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| name   | string   | Yes  | Name of the generic task.                                                  |
+| func   | (...args: A) => R \| Promise\<R>  | Yes  | Function to be executed. The function must be decorated using [@Concurrent decorator](../../arkts-utils/arkts-concurrent.md). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| args   | A | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 10200014 | The function is not marked as concurrent. |
+
+**Example**
+
+```ts
+@Concurrent
+function printArgs(args: string): string {
+  console.info("printArgs: " + args);
+  return args;
+}
+
+let taskName: string = "taskName";
+let task: taskpool.Task = new taskpool.GenericsTask<[string], string>(taskName, printArgs, "this is my first Task");
+let name: string = task.name;
 ```
 
 ## TaskGroup<sup>10+</sup>

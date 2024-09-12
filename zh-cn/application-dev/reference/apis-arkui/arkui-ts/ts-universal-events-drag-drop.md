@@ -100,7 +100,7 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 
 onDrop(event: (event: DragEvent, extraParams?: string) => void)
 
-绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。如果没有显式使用event.setResult()，则默认result为DRAG_SUCCESSFUL。
+绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。如果开发者没有在onDrop中主动调用event.setResult()设置拖拽接收的结果，则系统按照数据接收成功处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -565,7 +565,7 @@ ArkWeb 内核需要本地播放器的状态信息来更新到网页， 如视频
     }
   }
 
-  // 监听NativeMediaPlayer的状态, 然后通过 webview.NativeMediaPlayerHandler 将状态上报给 ArkWeb 内核。
+  // 监听NativeMediaPlayer的状态，然后通过 webview.NativeMediaPlayerHandler 将状态上报给 ArkWeb 内核。
   class AVPlayerListenerImpl implements AVPlayerListener {
     handler: webview.NativeMediaPlayerHandler;
     component: NativePlayerComponent;
@@ -784,7 +784,7 @@ ArkWeb 内核需要本地播放器的状态信息来更新到网页， 如视频
     width: number = 0;
     height: number = 0;
 
-    static toNodeRect(rectInPx: Rect) : Rect {
+    static toNodeRect(rectInPx: webview.RectEvent) : Rect {
       let rect = new Rect();
       rect.x = px2vp(rectInPx.x);
       rect.y = px2vp(rectInPx.x);
