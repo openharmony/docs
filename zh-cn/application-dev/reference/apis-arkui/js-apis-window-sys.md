@@ -3554,7 +3554,7 @@ promise.then(() => {
 
 requestFocus(isFocused: boolean): Promise&lt;void&gt;
 
-支持系统应用窗口主动请求获焦/失焦，使用Promise异步回调。
+支持当前窗口主动请求获焦/失焦，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
