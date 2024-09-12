@@ -217,19 +217,19 @@ OH_UdmfData_Destroy(readData);
 1. 定义OH_UdmfRecordProvider的数据提供回调函数以及OH_UdmfRecordProvider实例注销回调函数。
 ```c
 // 为了代码可读性，代码中省略了各个步骤操作结果的校验，实际开发中需要确认每次成功调用。
-// 1. 获取数据时触发的提供uds数据的回调函数。
+// 获取数据时触发的提供uds数据的回调函数。
 static void *GetDataCallback(void *context, const char *type) {
     if (strcmp(type, UDMF_META_PLAIN_TEXT)) {
-        // 2. 创建超链接hyperlink数据的UDS数据结构。
+        // 创建超链接hyperlink数据的UDS数据结构。
         OH_UdsHyperlink *hyperlink = OH_UdsHyperlink_Create();
-        // 3. 设置hyperlink中的URL和描述信息。
+        // 设置hyperlink中的URL和描述信息。
         OH_UdsHyperlink_SetUrl(hyperlink, "www.demo.com");
         OH_UdsHyperlink_SetDescription(hyperlink, "This is the description.");
         return hyperlink;
     }
     return nullptr;
 }
-// 2. OH_UdmfRecordProvider销毁时触发的回调函数。
+// OH_UdmfRecordProvider销毁时触发的回调函数。
 static void ProviderFinalizeCallback(void *context) { printf("OH_UdmfRecordProvider finalize."); }
 ```
 
@@ -237,25 +237,25 @@ static void ProviderFinalizeCallback(void *context) { printf("OH_UdmfRecordProvi
 
 ```c
 // 为了代码可读性，代码中省略了各个步骤操作结果的校验，实际开发中需要确认每次成功调用。
-// 1. 创建一个统一数据提供者，并配置它提供数据、销毁时的两个回调函数。
+// 创建一个统一数据提供者，并配置它提供数据、销毁时的两个回调函数。
 OH_UdmfRecordProvider *provider = OH_UdmfRecordProvider_Create();
 OH_UdmfRecordProvider_SetData(provider, (void *)provider, GetDataCallback, ProviderFinalizeCallback);
 
-// 2. 创建一个OH_UdmfRecord对象，并配置OH_UdmfRecord拥有一个数据提供者，能够提供超链接类型数据。
+// 创建一个OH_UdmfRecord对象，并配置OH_UdmfRecord拥有一个数据提供者，能够提供超链接类型数据。
 OH_UdmfRecord *record = OH_UdmfRecord_Create();
 const char *types[1] = {UDMF_META_HYPERLINK};
 OH_UdmfRecord_SetProvider(record, types, 1, provider);
 
-// 3. 建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
+// 建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
 OH_UdmfData *data = OH_UdmfData_Create();
 OH_UdmfData_AddRecord(data, record);
 
-// 4. 构建数据，将数据写入数据库中，得到返回的key值。
+// 构建数据，将数据写入数据库中，得到返回的key值。
 char key[UDMF_KEY_BUFFER_LEN] = {0};
 OH_Udmf_SetUnifiedData(Udmf_Intention::UDMF_INTENTION_DRAG, data, key, sizeof(key));
 printf("key = %s", key);
 
-// 5. 使用完成后销毁指针。
+// 使用完成后销毁指针。
 OH_UdmfRecord_Destroy(record);
 OH_UdmfData_Destroy(data);
 ```
