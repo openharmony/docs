@@ -3475,7 +3475,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 资源ID值对应的DrawableDescriptor对象。|
 
 **错误码：**
 
@@ -3538,7 +3538,7 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 | 类型      | 说明                |
 | ------- | ----------------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。 |
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 资源ID值对应的DrawableDescriptor对象。 |
 
 **错误码：**
 
@@ -3605,7 +3605,7 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 
 | 类型     | 说明        |
 | ------ | --------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。 |
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 资源ID值对应的DrawableDescriptor对象。 |
 
 **错误码：**
 
