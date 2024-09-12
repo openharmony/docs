@@ -14,15 +14,15 @@
 表1 startAbility请求中[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)相关参数说明
 
 | 参数名称 | 类型   | 是否必填 | 说明                                                                                                                                                                                   |
-|----------|--------|----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|----------|--------|----------|----------|
 | uri      | string | 是       | 表示待打开文件的URI路径，一般配合type使用。<br />uri格式为：file:\/\/bundleName\/path<br />- file：文件URI的标志。<br />- bundleName：该文件资源的属主。<br />- path：文件资源在应用沙箱中的路径。 |
-| type     | string | 否       | 表示[UTD类型](../database/uniform-data-type-descriptors.md)或[MIME type类型](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)描述，打开文件的类型。比如：'general.plain-text'、'general.image'、'text/xml' 、 'image/*'等
+| type     | string | 否       | 表示[UTD类型](../database/uniform-data-type-descriptors.md)或[MIME type类型](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)描述，打开文件的类型。比如：'general.plain-text'、'general.image'、'text/xml' 、 'image/*'等。
 | parameters | Record<string, Object>       | 否         | 表示由系统定义，由开发者按需赋值的自定义参数，文件打开场景请参考表2。                                                                                                                                                                                       |
 | flags | number | 否 | 表示处理方式，文件打开场景请参考表3。                                                                                                                                                                                       |
 
 > **说明：**
 > 
-> type若填写需要确保与uri的文件类型相对应，否则会出现无法匹配的问题，如果调用方不明确文件类型，可以不传type由系统判断文件类型。
+> type为可选字段。如果不传type，则会由系统判断文件类型；如果传入type，必须确保与uri的文件类型一致，否则会导致无法匹配。
 
 **表2** [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams)相关参数说明
 
