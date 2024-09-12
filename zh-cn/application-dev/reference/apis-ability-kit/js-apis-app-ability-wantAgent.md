@@ -9,10 +9,10 @@ app.ability.WantAgent模块提供了创建WantAgent实例、获取实例的用�
 ## 导入模块
 
 ```ts
-import { WantAgent } from '@kit.AbilityKit';
+import { wantAgent } from '@kit.AbilityKit';
 ```
 
-## WantAgent.getWantAgent
+## wantAgent.getWantAgent
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
@@ -90,7 +90,7 @@ try {
 }
 ```
 
-## WantAgent.getWantAgent
+## wantAgent.getWantAgent
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
@@ -169,7 +169,7 @@ try {
 
 
 
-## WantAgent.getBundleName
+## wantAgent.getBundleName
 
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
@@ -260,7 +260,7 @@ try {
 }
 ```
 
-## WantAgent.getBundleName
+## wantAgent.getBundleName
 
 getBundleName(agent: WantAgent): Promise\<string\>
 
@@ -351,7 +351,7 @@ try {
 }
 ```
 
-## WantAgent.getUid
+## wantAgent.getUid
 
 getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
@@ -442,7 +442,7 @@ try {
 }
 ```
 
-## WantAgent.getUid
+## wantAgent.getUid
 
 getUid(agent: WantAgent): Promise\<number\>
 
@@ -534,7 +534,7 @@ try {
 }
 ```
 
-## WantAgent.cancel
+## wantAgent.cancel
 
 cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
@@ -625,7 +625,7 @@ try {
 }
 ```
 
-## WantAgent.cancel
+## wantAgent.cancel
 
 cancel(agent: WantAgent): Promise\<void\>
 
@@ -717,7 +717,7 @@ try {
 }
 ```
 
-## WantAgent.trigger
+## wantAgent.trigger
 
 trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<CompleteData\>): void
 
@@ -811,7 +811,7 @@ try {
 }
 ```
 
-## WantAgent.equal
+## wantAgent.equal
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
@@ -903,7 +903,7 @@ try {
 }
 ```
 
-## WantAgent.equal
+## wantAgent.equal
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
@@ -996,7 +996,7 @@ try {
 }
 ```
 
-## WantAgent.getOperationType
+## wantAgent.getOperationType
 
 getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 
@@ -1088,7 +1088,7 @@ try {
 }
 ```
 
-## WantAgent.getOperationType
+## wantAgent.getOperationType
 
 getOperationType(agent: WantAgent): Promise\<number>
 
@@ -1183,7 +1183,7 @@ try {
 }
 ```
 
-## WantAgentFlags
+## wantAgentFlags
 
 表示使用WantAgent类型的枚举。
 
