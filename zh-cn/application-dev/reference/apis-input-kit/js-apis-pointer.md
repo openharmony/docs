@@ -349,8 +349,9 @@ getPointerStyleSync(windowId: number): PointerStyle
 **示例**：
 
 ```js
+let windowId = -1;
 try {
-  let style: pointer.PointerStyle = pointer.getPointerStyleSync(-1);
+  let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
   console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
 } catch (error) {
   console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
