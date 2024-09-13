@@ -620,6 +620,26 @@ getLongestLine(): number
 let longestLine = paragraph.getLongestLine();
 ```
 
+### getLongestLineWithIndent
+
+getLongestLineWithIndent(): number
+
+获取文本最长一行的宽度（该宽度包含当前行缩进的宽度）。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | ------------- |
+| number | 最长一行的宽度（该宽度包含当前行缩进的宽度），浮点数，单位为物理像素px。|
+
+**示例：**
+
+```ts
+let longestLineWithIndent = paragraph.getLongestLineWithIndent();
+```
+
 ### getMinIntrinsicWidth
 
 getMinIntrinsicWidth(): number
