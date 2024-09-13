@@ -123,7 +123,7 @@
    // 当获取的值为带有特殊字符的字符串时，需要将获取到的Uint8Array转换为字符串
    let uInt8Array2 : preferences.ValueType = dataPreferences.getSync('uInt8', new Uint8Array(0));
    let textDecoder = util.TextDecoder.create('utf-8');
-   val = textDecoder.decodeWithStream(uInt8Array2 as Uint8Array);
+   val = textDecoder.decodeToString(uInt8Array2 as Uint8Array);
    console.info("The 'uInt8' value is " + val);
    ```
 
