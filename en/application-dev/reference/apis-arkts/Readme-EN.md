@@ -4,7 +4,7 @@
   - [@arkts.collections (ArkTS Collections)](js-apis-arkts-collections.md)
   - [@arkts.lang (ArkTS Base Capability)](js-apis-arkts-lang.md)
   - [@arkts.math.Decimal (High-Precision Math Library Decimal)](js-apis-arkts-decimal.md)
-  - [@arkts.utils (ArkTS Utils)] (js-apis-arkts-utils.md)
+  - [@arkts.utils (ArkTS Utils)](js-apis-arkts-utils.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (XML-to-JavaScript Conversion)](js-apis-convertxml.md)
   - [@ohos.process (Obtaining Process Information)](js-apis-process.md)
