@@ -249,8 +249,8 @@ static void ProviderFinalizeCallback(void *context) { printf("OH_UdmfRecordProvi
 1. 创建一个OH_UdmfRecordProvider，并设置它的数据提供函数和销毁时的回调函数。
 2. 创建一个OH_UdmfRecord对象，并将OH_UdmfRecordProvider配置到其中。
 3. 创建一个OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord。
-4. 构建数据，将数据写入数据库中，得到返回的key值。
-5. 使用完成后销毁指针。
+4. 构建数据，将数据写入数据库中，得到返回的Key值。
+5. 使用结束后，删除上述步骤中产生的指针。
 
 ```c
 // 为了代码可读性，代码中省略了各个步骤操作结果的校验，实际开发中需要确认每次调用的成功。
@@ -267,7 +267,7 @@ OH_UdmfRecord_SetProvider(record, types, 1, provider);
 OH_UdmfData *data = OH_UdmfData_Create();
 OH_UdmfData_AddRecord(data, record);
 
-// 4. 构建数据，将数据写入数据库中，得到返回的key值。
+// 4. 构建数据，将数据写入数据库中，得到返回的Key值。
 char key[UDMF_KEY_BUFFER_LEN] = {0};
 OH_Udmf_SetUnifiedData(Udmf_Intention::UDMF_INTENTION_DRAG, data, key, sizeof(key));
 printf("key = %s", key);
