@@ -147,7 +147,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     <!--RP2--><!--RP2End-->
 
-    示例如下所示
+    示例如下所示：
 
     <!--RP5-->
     ```c++
@@ -201,6 +201,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     >
 
 5. （可选）调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调。
+
+    详情请参考[时域可分层视频编码](video-encoding-temporal-scalability.md)。
 
     <!--RP6-->
     ```c++
