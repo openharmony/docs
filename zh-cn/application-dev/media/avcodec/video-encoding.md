@@ -344,6 +344,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
+    OH_AVFormat_Destroy(format);
     ```
     <!--RP7End-->
 
@@ -642,6 +643,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
+    OH_AVFormat_Destroy(format);
     ```
     <!--RP9End-->
 
