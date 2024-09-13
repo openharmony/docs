@@ -1721,7 +1721,7 @@ Defines the behavior-triggered callbacks.
 | Name         | Type        | Mandatory  | Description           |
 | ----------- | ---------- | ---- | ------------- |
 | onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent)\> | No   | [ClickEvent](ts-universal-events-click.md#clickevent) indicates a user click event.<br>Called when a click is complete.<br>In the case of a double-click, this API is called upon the first click.|
-| onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent)\>  | No   | [GestureEvent] (ts-gesture-settings.md#gestureevent object description) indicates a long press event.<br>Called when a long press is complete. |
+| onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent)\>  | No   | [GestureEvent](ts-gesture-settings.md#gestureevent) indicates a long press event.<br>Called when a long press is complete. |
 
 ## KeyboardOptions<sup>12+</sup>
 

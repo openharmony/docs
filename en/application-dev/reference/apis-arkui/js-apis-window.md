@@ -5869,7 +5869,7 @@ enableLandscapeMultiWindow(): Promise&lt;void&gt;
 
 Enables the landscape multi-window mode for the UI page that supports the horizontal layout. You are not advised to call this API for the UI page that adopts the vertical layout.
 
-This API takes effect only for the main window of the application. In addition, **preferMultiWindowOrientation** must be set to **landscape_auto** in the [abilities] (../../quick-start/module-configuration-file.md#abilities) tag in the **module.json5** file.
+This API takes effect only for the main window of the application. In addition, **preferMultiWindowOrientation** must be set to **landscape_auto** in the [abilities](../../quick-start/module-configuration-file.md#abilities) tag in the **module.json5** file.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5927,7 +5927,7 @@ disableLandscapeMultiWindow(): Promise&lt;void&gt;
 
 Disables the landscape multi-window mode for the UI page that supports the horizontal layout.
 
-This API takes effect only for the main window of the application. In addition, **preferMultiWindowOrientation** must be set to **landscape_auto** in the [abilities] (../../quick-start/module-configuration-file.md#abilities) tag in the **module.json5** file.
+This API takes effect only for the main window of the application. In addition, **preferMultiWindowOrientation** must be set to **landscape_auto** in the [abilities](../../quick-start/module-configuration-file.md#abilities) tag in the **module.json5** file.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

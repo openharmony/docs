@@ -1029,7 +1029,7 @@
         - Pasteboard Service<!--pasteboard-->
           - [Using the Pasteboard to Copy and Paste](basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md)
           - [Delayed Copy and Paste Function of the Pasteboard](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
-          - [Requesting Permissions to Access the Pasteboard] (basic-services/pasteboard/get-pastedata-permission-guidelines.md)
+          - [Requesting Permissions to Access the Pasteboard](basic-services/pasteboard/get-pastedata-permission-guidelines.md)
         - Upload and Download<!--upload-download-->
           - [Uploading and Downloading Application Files](basic-services/request/app-file-upload-download.md)
       - Function Flow Runtime Kit<!--ffrt-kit-->
@@ -1118,7 +1118,7 @@
           - [Using HiDebug (ArkTS)](dfx/hidebug-guidelines-arkts.md)
           - [Using HiDebug (C/C++)](dfx/hidebug-guidelines-ndk.md)
         - HiCollie
-          - [Using HiCollie (C/C++)](dfx/hiicollie-guidelines-ndk.md)
+          - [Using HiCollie (C/C++)](dfx/hicollie-guidelines-ndk.md)
         - Error Management<!--error-manager-->
           - [Development of Error Manager](dfx/errormanager-guidelines.md)
           - [Development of Application Recovery](dfx/apprecovery-guidelines.md)
