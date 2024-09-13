@@ -25,9 +25,9 @@ Zips a file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type               | Mandatory | Description                                                        |
+| Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the folder or file to zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). |
+| inFile  | string              | Yes  | Path of the folder or file to zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md).|
 | outFile | string              | Yes  | Path of the zipped file. The file name extension is .zip.                 |
 | options | [Options](#options) | Yes  | Optional parameters for the zip operation.                                            |
 
@@ -35,7 +35,7 @@ Zips a file. This API uses a promise to return the result.
 
 | Type          | Description                                                        |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -72,9 +72,9 @@ Unzips a file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type               | Mandatory | Description                                                        |
+| Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the file to unzip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). |
+| inFile  | string              | Yes  | Path of the file to unzip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md).|
 | outFile | string              | Yes  | Path of the unzipped file.                                        |
 | options | [Options](#options) | Yes  | Optional parameters for the unzip operation.                                            |
 
@@ -82,7 +82,7 @@ Unzips a file. This API uses a promise to return the result.
 
 | Type          | Description                                                        |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -109,7 +109,7 @@ zlib.unzipFile(inFile, outFile, options).then((data: void) => {
 
 compressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void
 
-Compresses a file. This API uses an asynchronous callback to return the result.  
+Compresses a file. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -117,18 +117,18 @@ Compresses a file. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name                 | Type               | Mandatory | Description                                                        |
+| Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). The folder to compress cannot be empty. Otherwise, an error will be reported when [decompressFile](#zlibdecompressfile9) is used to decompress the folder. |
+| inFile                  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). The folder to compress cannot be empty. Otherwise, an error will be reported when [decompressFile](#zlibdecompressfile9) is used to decompress the folder.|
 | outFile                 | string              | Yes  | Path of the compressed file. When multiple threads compress files at the same time, the values of **outFile** must be different.                                          |
 | options                 | [Options](#options) | Yes  | Compression parameters.                                              |
-| callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.            |
+| callback | AsyncCallback\<void>            | Yes  | Callback used to return the result.              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | --------------------------------------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
@@ -165,7 +165,7 @@ try {
 
 compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
-Compresses a file. This API uses a promise to return the result.  
+Compresses a file. This API uses a promise to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -173,9 +173,9 @@ Compresses a file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type               | Mandatory | Description                                                        |
+| Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). The folder to compress cannot be empty. Otherwise, an error will be reported when [decompressFile](#zlibdecompressfile9) is used to decompress the folder. |
+| inFile  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). The folder to compress cannot be empty. Otherwise, an error will be reported when [decompressFile](#zlibdecompressfile9) is used to decompress the folder.|
 | outFile | string              | Yes  | Path of the compressed file. When multiple threads compress files at the same time, the values of **outFile** must be different.                                          |
 | options | [Options](#options) | Yes  | Compression parameters.                                              |
 
@@ -183,13 +183,13 @@ Compresses a file. This API uses a promise to return the result.
 
 | Type          | Description                   |
 | -------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | ------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
@@ -226,7 +226,7 @@ try {
 
 decompressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void
 
-Decompresses a file. This API uses an asynchronous callback to return the result.  
+Decompresses a file. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -234,23 +234,23 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 
 **Parameters**
 
-| Name                 | Type               | Mandatory | Description                                                        |
+| Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). |
-| outFile                 | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If a file or folder with the same name already exists in the path, they will be overwritten. When multiple threads decompress files at the same time, the values of **outFile** must be different. |
+| inFile                  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md).|
+| outFile                 | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If a file or folder with the same name already exists in the path, they will be overwritten. When multiple threads decompress files at the same time, the values of **outFile** must be different.|
 | options                 | [Options](#options) | Yes  | Decompression parameters.                                            |
-| callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.                                            |
+| callback | AsyncCallback\<void>            | Yes  | Callback used to return the result.                                              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | --------------------------------------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **Example**
 
@@ -289,28 +289,28 @@ Decompresses a file. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type               | Mandatory | Description                                                        |
+| Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). |
-| outFile | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If a file or folder with the same name already exists in the path, they will be overwritten. When multiple threads decompress files at the same time, the values of **outFile** must be different. |
+| inFile  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md).|
+| outFile | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If a file or folder with the same name already exists in the path, they will be overwritten. When multiple threads decompress files at the same time, the values of **outFile** must be different.|
 | options | [Options](#options) | No  | Decompression parameters.                                          |
 
 **Return value**
 
 | Type          | Description                   |
 | -------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | ------ | ------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001 | The input source file is invalid.      |
 | 900002 | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **Example**
 
@@ -341,7 +341,7 @@ try {
 
 decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>): void
 
-Decompresses a file. This API uses an asynchronous callback to return the result.  
+Decompresses a file. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -349,22 +349,22 @@ Decompresses a file. This API uses an asynchronous callback to return the result
 
 **Parameters**
 
-| Name                 | Type               | Mandatory | Description                                                        |
+| Name                 | Type               | Mandatory| Description                                                        |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). |
-| outFile                 | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If a file or folder with the same name already exists in the path, they will be overwritten. When multiple threads decompress files at the same time, the values of **outFile** must be different. |
-| callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.                                            |
+| inFile                  | string              | Yes  | Path of the file to decompress. The file name extension must be .zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md).|
+| outFile                 | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). If a file or folder with the same name already exists in the path, they will be overwritten. When multiple threads decompress files at the same time, the values of **outFile** must be different.|
+| callback | AsyncCallback\<void>            | Yes  | Callback used to return the result.                                              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | --------------------------------------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **Example**
 
@@ -398,25 +398,25 @@ Obtains the original size of a compressed file and uses a promise to asynchronou
 
 **Parameters**
 
-| Name | Type               | Mandatory | Description                                                        |
+| Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| compressedFile  | string              | Yes  | Specifies the path of the compressed file. Only .zip files are supported. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). |
+| compressedFile  | string              | Yes  | Specifies the path of the compressed file. Only .zip files are supported. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md).|
 
 **Return value**
 
 | Type          | Description                   |
 | -------------- | ----------------------- |
-| Promise\<number> | Promise object, which returns the original size of the compressed file, in bytes. |
+| Promise\<number> | Promise object, which returns the original size of the compressed file, in bytes.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | ------ | ------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 401 | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 900001 | The input source file is invalid.      |
-| 900003 | The input source file is not ZIP format or damaged. |
+| 900003 | The input source file is not in ZIP format or is damaged. |
 
 **Example**
 
@@ -443,29 +443,29 @@ try {
 
 compressFiles(inFiles: Array&lt;string&gt;, outFile: string, options: Options): Promise&lt;void&gt;
 
-Compresses multiple specified files and uses a promise to asynchronously return the result.  
+Compresses multiple specified files and uses a promise to asynchronously return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
 **Parameters**
 
-| Name | Type               | Mandatory | Description                                                        |
+| Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFiles | Array&lt;string&gt; | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). The folder to compress cannot be empty. Otherwise, an error will be reported when [decompressFile](#zlibdecompressfile9) is used to decompress the folder. |
-| outFile | string              | Yes  | Path of the compressed file. When multiple threads compress files at the same time, the values of **outFile** must be different. |
+| inFiles | Array&lt;string&gt; | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](../apis-ability-kit/js-apis-inner-app-context.md) and [Stage Model](../apis-ability-kit/js-apis-inner-application-context.md). The folder to compress cannot be empty. Otherwise, an error will be reported when [decompressFile](#zlibdecompressfile9) is used to decompress the folder.|
+| outFile | string              | Yes  | Path of the compressed file. When multiple threads compress files at the same time, the values of **outFile** must be different.|
 | options | [Options](#options) | Yes  | Compression parameters.                                            |
 
 **Return value**
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 900001   | The input source file is invalid.                            |
@@ -513,7 +513,7 @@ Creates a checksum object and uses a promise to asynchronously return the result
 
 | Type                                  | Description                           |
 | -------------------------------------- | ------------------------------- |
-| Promise&lt;[Checksum](#checksum12)&gt; | Promise used to return the result.   |
+| Promise&lt;[Checksum](#checksum12)&gt; | Promise used to return the result.  |
 
 **Example**
 
@@ -539,7 +539,7 @@ Creates a checksum object. A checksum object instance is returned upon a success
 
 | Type                   | Description          |
 | ----------------------- | -------------- |
-| [Checksum](#checksum12) | Checksum object instance. |
+| [Checksum](#checksum12) | Checksum object instance.|
 
 **Example**
 
@@ -557,7 +557,7 @@ Checksum object.
 
 adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
-Calculates the Adler-32 checksum and uses a promise to asynchronously return the result. The calculated Adler-32 checksum is returned upon a success. Otherwise, an error code is returned.
+Calculates the Adler-32 checksum. This API uses a promise to return the result. The calculated Adler-32 checksum is returned upon a success. Otherwise, an error code is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -565,22 +565,22 @@ Calculates the Adler-32 checksum and uses a promise to asynchronously return the
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                    |
+| Name| Type       | Mandatory| Description                    |
 | ------ | ----------- | ---- | ------------------------ |
-| adler  | number      | Yes  | Initial value of the Adler-32 checksum. |
+| adler  | number      | Yes  | Initial value of the Adler-32 checksum.|
 | buf    | ArrayBuffer | Yes  | Data buffer for calculating the checksum.  |
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result.   |
+| Promise&lt;number&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | --------------------------------------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -608,7 +608,7 @@ checksum.adler32(0, arrayBufferIn).then(data => {
 
 adler32Combine(adler1: number, adler2: number, len2: number): Promise&lt;number&gt;
 
-Combines two Adler-32 checksums and uses a promise to asynchronously return the result. The combined Adler-32 checksum is returned upon a success. Otherwise, an error code is returned.
+Combines two Adler-32 checksums. This API uses a promise to return the result. The combined Adler-32 checksum is returned upon a success. Otherwise, an error code is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -616,23 +616,23 @@ Combines two Adler-32 checksums and uses a promise to asynchronously return the 
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                |
+| Name| Type  | Mandatory| Description                                |
 | ------ | ------ | ---- | ------------------------------------ |
 | adler1 | number | Yes  | The first Adler-32 checksum to be combined.      |
 | adler2 | number | Yes  | The second Adler-32 checksum to be combined.      |
-| len2   | number | Yes  | Length of the data block of the second Adler-32 checksum. |
+| len2   | number | Yes  | Length of the data block of the second Adler-32 checksum.|
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result.   |
+| Promise&lt;number&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | --------------------------------------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -671,7 +671,7 @@ async function demo() {
 
 crc32(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
-Updates the CRC-32 checksum and uses a promise to asynchronously return the result. The updated CRC-32 checksum is returned upon a success. Otherwise, an error code is returned.
+Updates the CRC-32 checksum. This API uses a promise to return the result. The updated CRC-32 checksum is returned upon a success. Otherwise, an error code is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -679,22 +679,22 @@ Updates the CRC-32 checksum and uses a promise to asynchronously return the resu
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                |
+| Name| Type       | Mandatory| Description                |
 | ------ | ----------- | ---- | -------------------- |
-| crc    | number      | Yes  | Initial value of the CRC-32 checksum. |
-| buf    | ArrayBuffer | Yes  | Data buffer for calculating the checksum. |
+| crc    | number      | Yes  | Initial value of the CRC-32 checksum.|
+| buf    | ArrayBuffer | Yes  | Data buffer for calculating the checksum.|
 
 **Return value**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result.   |
+| Promise&lt;number&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | --------------------------------------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -732,23 +732,23 @@ Combines two CRC-32 checksums and uses a promise to asynchronously return the re
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                            |
+| Name| Type  | Mandatory| Description                            |
 | ------ | ------ | ---- | -------------------------------- |
 | crc1 | number | Yes  | The first CRC-32 checksum to be combined.      |
 | crc2 | number | Yes  | The second CRC-32 checksum to be combined.      |
-| len2   | number | Yes  | Indicates the length of the second data block checked by CRC-32 |
+| len2   | number | Yes  | Indicates the length of the second data block checked by CRC-32|
 
 **Return value**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result.   |
+| Promise&lt;number&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | --------------------------------------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -787,7 +787,7 @@ async function demo() {
 
 crc64(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
-Updates the CRC-64 checksum and uses a promise to asynchronously return the result. The updated CRC-64 checksum is returned upon a success. Otherwise, an error code is returned.
+Updates the CRC-64 checksum. This API uses a promise to return the result. The updated CRC-64 checksum is returned upon a success. Otherwise, an error code is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -795,22 +795,22 @@ Updates the CRC-64 checksum and uses a promise to asynchronously return the resu
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                |
+| Name| Type       | Mandatory| Description                |
 | ------ | ----------- | ---- | -------------------- |
-| crc    | number      | Yes  | Initial value of the CRC-64 checksum. |
-| buf    | ArrayBuffer | Yes  | Data buffer for calculating the checksum. |
+| crc    | number      | Yes  | Initial value of the CRC-64 checksum.|
+| buf    | ArrayBuffer | Yes  | Data buffer for calculating the checksum.|
 
 **Return value**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result.    |
+| Promise&lt;number&gt; | Promise used to return the result.   |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                              |
+| ID| Error Message                              |
 | -------- | --------------------------------------|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
@@ -850,7 +850,7 @@ Outputs the CRC-32 checksum table and uses a promise to asynchronously return th
 
 | Type                              | Description                           |
 | ---------------------------------- | ------------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the result.   |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the result.  |
 
 **Example**
 
@@ -880,7 +880,7 @@ Outputs the CRC-64 checksum table and uses a promise to asynchronously return th
 
 | Type                              | Description                           |
 | ---------------------------------- | ------------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the result.   |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the result.  |
 
 **Example**
 
@@ -910,7 +910,7 @@ Creates an instance of a compressed or decompressed object and uses a promise to
 
 | Type                        | Description                                 |
 | ---------------------------- | ------------------------------------- |
-| Promise&lt;[Zip](#zip12)&gt; | Promise used to return the result.   |
+| Promise&lt;[Zip](#zip12)&gt; | Promise used to return the result.  |
 
 **Example**
 
@@ -940,7 +940,7 @@ Creates an instance of a compressed or decompressed object. The instance of the 
 
 | Type         | Description                    |
 | ------------- | ------------------------ |
-| [Zip](#zip12) | Returned instance of a compressed or decompressed object. |
+| [Zip](#zip12) | Returned instance of a compressed or decompressed object.|
 
 **Example**
 
@@ -958,7 +958,7 @@ Compresses and decompresses an object instance.
 
 getZStream(): Promise&lt;ZStream&gt;
 
-Outputs a stream and uses a promise to asynchronously return the result. A zlib stream is returned upon success.
+Outputs a stream. This API uses a promise to return the result. A zlib stream is returned upon success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -968,7 +968,7 @@ Outputs a stream and uses a promise to asynchronously return the result. A zlib 
 
 | Type                                | Description                     |
 | ------------------------------------ | ------------------------- |
-| Promise&lt;[ZStream](#zstream12)&gt; | Promise used to return the result.   |
+| Promise&lt;[ZStream](#zstream12)&gt; | Promise used to return the result.  |
 
 **Example**
 
@@ -986,7 +986,7 @@ zip.getZStream().then(data => {
 
 zlibVersion(): Promise&lt;string&gt;
 
-Obtains the version information of the currently linked zlib library and uses a promise to asynchronously return the version information. The version of the current zlib library is returned upon success.
+Obtains the version information of the currently linked **zlib** library. This API uses a promise to return the result. The version information of the current **zlib** library is returned upon success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -996,7 +996,7 @@ Obtains the version information of the currently linked zlib library and uses a 
 
 | Type                 | Description                                   |
 | --------------------- | --------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result. Returns the version of the current zlib library. |
+| Promise&lt;string&gt; | Promise used to return the result.  |
 
 **Example**
 
@@ -1014,7 +1014,7 @@ zip.zlibVersion().then((data) => {
 
 zlibCompileFlags(): Promise&lt;number&gt;
 
-Returns a flag indicating a compile-time option, returned asynchronously using Promise. Returns a flag indicating compile-time options on success.
+Returns a flag indicating a compile-time option. This API uses a promise to return the result. The flag indicating compile-time options is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1024,7 +1024,7 @@ Returns a flag indicating a compile-time option, returned asynchronously using P
 
 | Type                 | Description                                   |
 | --------------------- | --------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. Returns a flag indicating compile-time options. |
+| Promise&lt;number&gt; | Promise used to return the result.  |
 
 **Example**
 
@@ -1042,7 +1042,7 @@ zip.zlibCompileFlags().then((data) => {
 
 compress(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt;ZipOutputInfo&gt;
 
-Compresses the source buffer to the target buffer and uses a promise to asynchronously return the result. On success, the result status and the total size of the destination buffer are returned.
+Compresses the source buffer to the destination buffer. This API uses a promise to return the result. The result state and total size of the destination buffer are returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1050,23 +1050,23 @@ Compresses the source buffer to the target buffer and uses a promise to asynchro
 
 **Parameters**
 
-| Name   | Type       | Mandatory | Description          |
+| Name   | Type       | Mandatory| Description          |
 | --------- | ----------- | ---- | -------------- |
-| dest      | ArrayBuffer | Yes  | Target buffer.  |
-| source    | ArrayBuffer | Yes  | Source data buffer. |
+| dest      | ArrayBuffer | Yes  | Destination buffer.  |
+| source    | ArrayBuffer | Yes  | Source buffer.|
 | sourceLen | number      | No  | Length of the source data.  |
 
 **Return value**
 
 | Type                                            | Description                                           |
 | ------------------------------------------------ | ----------------------------------------------- |
-| Promise&lt;[ZipOutputInfo](#zipoutputinfo12)&gt; | Promise used to return the result. Returns the result status and the total size of the destination buffer. |
+| Promise&lt;[ZipOutputInfo](#zipoutputinfo12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800007 | Buffer error.                                                |
@@ -1098,7 +1098,7 @@ zip.compress(arrayBufferOut, arrayBufferOut, 20).then((data) => {
 
 compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLen?: number): Promise&lt;ZipOutputInfo&gt;
 
-Compresses the source buffer to the target buffer and uses a promise to asynchronously return the result. On success, the result status and the total size of the destination buffer are returned.
+Compresses the source buffer to the destination buffer. This API uses a promise to return the result. The result state and total size of the destination buffer are returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1106,24 +1106,24 @@ Compresses the source buffer to the target buffer and uses a promise to asynchro
 
 **Parameters**
 
-| Name   | Type         | Mandatory | Description                                                |
+| Name   | Type         | Mandatory| Description                                                |
 | --------- | ------------- | ---- | ---------------------------------------------------- |
-| dest      | ArrayBuffer   | Yes  | Target buffer.                                        |
-| source    | ArrayBuffer   | Yes  | Source data buffer.                                      |
-| level     | CompressLevel | Yes  | See [zip.CompressLevel](#zipcompresslevel). |
+| dest      | ArrayBuffer   | Yes  | Destination buffer.                                        |
+| source    | ArrayBuffer   | Yes  | Source buffer.                                      |
+| level     | CompressLevel | Yes  | Compression level. For details, see [zip.CompressLevel](#zipcompresslevel).|
 | sourceLen | number        | No  | Length of the source data.                                        |
 
 **Return value**
 
 | Type                                            | Description                                           |
 | ------------------------------------------------ | ----------------------------------------------- |
-| Promise&lt;[ZipOutputInfo](#zipoutputinfo12)&gt; | Promise used to return the result. Returns the result status and the total size of the destination buffer. |
+| Promise&lt;[ZipOutputInfo](#zipoutputinfo12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -1156,7 +1156,7 @@ zip.compress2(arrayBufferOut, arrayBufferIn, zlib.CompressLevel.COMPRESS_LEVEL_B
 
 uncompress(dest:ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt;ZipOutputInfo&gt;
 
-Decompresses the compressed data into the original uncompressed form and returns the data asynchronously using Promise. On success, the result status and the total size of the destination buffer are returned.
+Decompresses the compressed data into the original form. This API uses a promise to return the result. The result state and total size of the destination buffer are returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1164,23 +1164,23 @@ Decompresses the compressed data into the original uncompressed form and returns
 
 **Parameters**
 
-| Name   | Type       | Mandatory | Description          |
+| Name   | Type       | Mandatory| Description          |
 | --------- | ----------- | ---- | -------------- |
-| dest      | ArrayBuffer | Yes  | Target buffer.  |
-| source    | ArrayBuffer | Yes  | Source data buffer. |
+| dest      | ArrayBuffer | Yes  | Destination buffer.  |
+| source    | ArrayBuffer | Yes  | Source buffer.|
 | sourceLen | number      | No  | Length of the source data.  |
 
 **Return value**
 
 | Type                                            | Description                                           |
 | ------------------------------------------------ | ----------------------------------------------- |
-| Promise&lt;[ZipOutputInfo](#zipoutputinfo12)&gt; | Promise used to return the result. Returns the result status and the total size of the destination buffer. |
+| Promise&lt;[ZipOutputInfo](#zipoutputinfo12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800005 | Data error.                                                  |
@@ -1217,7 +1217,7 @@ async function demo() {
 
 uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt;DecompressionOutputInfo&gt;
 
-Decompresses the compressed data into the original uncompressed form and returns the data asynchronously using Promise. If the operation is successful, the result status, total size of the destination buffer, and length of the source data are returned.
+Decompresses the compressed data into the original form. This API uses a promise to return the result. The result state, total size of the destination buffer, and the length of the source data are returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1225,23 +1225,23 @@ Decompresses the compressed data into the original uncompressed form and returns
 
 **Parameters**
 
-| Name   | Type       | Mandatory | Description          |
+| Name   | Type       | Mandatory| Description          |
 | --------- | ----------- | ---- | -------------- |
-| dest      | ArrayBuffer | Yes  | Target buffer.  |
-| source    | ArrayBuffer | Yes  | Source data buffer. |
+| dest      | ArrayBuffer | Yes  | Destination buffer.  |
+| source    | ArrayBuffer | Yes  | Source buffer.|
 | sourceLen | number      | No  | Length of the source data.  |
 
 **Return value**
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| Promise&lt;[DecompressionOutputInfo](#decompressionoutputinfo12)&gt; | Promise used to return the result. Returns the result status, total size of the destination buffer, and length of the source data. |
+| Promise&lt;[DecompressionOutputInfo](#decompressionoutputinfo12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800005 | Data error.                                                  |
@@ -1278,7 +1278,7 @@ async function demo() {
 
 compressBound(sourceLen: number): Promise&lt;number&gt;
 
-Calculate the upper limit of the returned compression size and use Promise to asynchronously return the size. The upper limit of the compression size is returned upon success.
+Calculates the maximum size of the compressed data to be returned. This API uses a promise to return the result. The maximum size of the compressed data is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1286,21 +1286,21 @@ Calculate the upper limit of the returned compression size and use Promise to as
 
 **Parameters**
 
-| Name   | Type  | Mandatory | Description        |
+| Name   | Type  | Mandatory| Description        |
 | --------- | ------ | ---- | ------------ |
-| sourceLen | number | Yes  | Length of the source data. |
+| sourceLen | number | Yes  | Length of the source data.|
 
 **Return value**
 
 | Type                 | Description                             |
 | --------------------- | --------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. Added the API for returning the upper limit of a buffer to hold the compressed data. |
+| Promise&lt;number&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 
@@ -1330,7 +1330,7 @@ zip.compressBound(str.length).then((data) => {
 
 inflateValidate(strm: ZStream, check: number): Promise&lt;ReturnStatus&gt;
 
-Verify the checksum inside the compressed stream structure and use Promise to asynchronously return the checksum. The result status is returned when the operation is successful.
+Verifies the checksum inside the compressed stream. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1338,22 +1338,22 @@ Verify the checksum inside the compressed stream structure and use Promise to as
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
-| check  | number  | Yes  | Indicates the expected checksum.                 |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
+| check  | number  | Yes  | Expected checksum.                 |
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -1390,7 +1390,7 @@ async function demo() {
 
 inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
-Finds the synchronization point of the current decompression stream and uses a promise to return the synchronization point asynchronously. The result status is returned when the operation is successful.
+Finds the synchronization point of the current decompressed stream. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1398,21 +1398,21 @@ Finds the synchronization point of the current decompression stream and uses a p
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -1449,7 +1449,7 @@ async function demo() {
 
 inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
-Skip invalid compressed data until a possible complete refresh point is found, and use Promise to return asynchronously. The result status is returned when the operation is successful.
+Skips invalid compressed data until a complete re-render point is found. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1457,21 +1457,21 @@ Skip invalid compressed data until a possible complete refresh point is found, a
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -1541,7 +1541,7 @@ async function demo() {
 
 inflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
-Resets the state of the decompressed stream to preserve the allocated Huffman decoding tree and preset dictionary, returned asynchronously using Promise. The result status is returned when the operation is successful.
+Resets the state of the decompressed stream to preserve the allocated Huffman Tree and preset dictionary. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1549,21 +1549,21 @@ Resets the state of the decompressed stream to preserve the allocated Huffman de
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -1600,7 +1600,7 @@ async function demo() {
 
 inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnStatus&gt;
 
-Initializes the decompression dictionary from a given sequence of uncompressed bytes, returned asynchronously using Promise. The result status is returned when the operation is successful.
+Initializes the decompression dictionary from a given uncompressed byte sequence. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1608,22 +1608,22 @@ Initializes the decompression dictionary from a given sequence of uncompressed b
 
 **Parameters**
 
-| Name    | Type       | Mandatory | Description                           |
+| Name    | Type       | Mandatory| Description                           |
 | ---------- | ----------- | ---- | ------------------------------- |
-| strm       | ZStream     | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm       | ZStream     | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 | dictionary | ArrayBuffer | Yes  | Dictionary data.                     |
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -1698,7 +1698,7 @@ async function demo() {
 
 inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
-Initializes the decompression dictionary from a given sequence of uncompressed bytes, returned asynchronously using Promise. The result status is returned when the operation is successful.
+Initializes the decompression dictionary from a given uncompressed byte sequence. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1706,22 +1706,22 @@ Initializes the decompression dictionary from a given sequence of uncompressed b
 
 **Parameters**
 
-| Name    | Type   | Mandatory | Description                           |
+| Name    | Type   | Mandatory| Description                           |
 | ---------- | ------- | ---- | ------------------------------- |
-| strm       | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
-| windowBits | number  | Yes  | The base-2 logarithm of the maximum window size.  |
+| strm       | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
+| windowBits | number  | Yes  | The logarithm with base 2 based on the maximum window size.  |
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -1758,7 +1758,7 @@ async function demo() {
 
 inflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
-This function is equivalent to calling inflateEnd and then inflateInit. However, this function does not release or reallocate the internal decompression status. Promise is used to asynchronously return the status. The result status is returned when the operation is successful.
+Equivalent to call the **inflateEnd** API and then **inflateInit** API. However, this API does not release or reallocate the internal decompression state. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1766,21 +1766,21 @@ This function is equivalent to calling inflateEnd and then inflateInit. However,
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -1817,7 +1817,7 @@ async function demo() {
 
 inflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatus&gt;
 
-Initializes the decompression dictionary from a given sequence of uncompressed bytes, returned asynchronously using Promise. The result status is returned when the operation is successful.
+Initializes the decompression dictionary from a given uncompressed byte sequence. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1825,23 +1825,23 @@ Initializes the decompression dictionary from a given sequence of uncompressed b
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
-| bits   | number  | Yes  | bit provided.                     |
-| value  | number  | Yes  | Indicates the provided value.                     |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
+| bits   | number  | Yes  | Given bits.                     |
+| value  | number  | Yes  | Given value.                     |
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -1878,7 +1878,7 @@ async function demo() {
 
 inflateMark(strm: ZStream): Promise&lt;number&gt;
 
-It is used to mark the location in the input data for random access and is returned asynchronously using Promise. The location information is returned when the operation is successful.
+Marks the location of the input data for random access. This API uses a promise to return the result. The location information is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1886,21 +1886,21 @@ It is used to mark the location in the input data for random access and is retur
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                 | Description                       |
 | --------------------- | --------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. Promise used to return the current location. |
+| Promise&lt;number&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 
@@ -1936,7 +1936,7 @@ async function demo() {
 
 inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
-Initializes the internal stream state for decompression and returns asynchronously using Promise. The result status is returned when the operation is successful.
+Initializes the internal stream state for decompression. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1944,22 +1944,22 @@ Initializes the internal stream state for decompression and returns asynchronous
 
 **Parameters**
 
-| Name    | Type   | Mandatory | Description                           |
+| Name    | Type   | Mandatory| Description                           |
 | ---------- | ------- | ---- | ------------------------------- |
-| strm       | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
-| windowBits | number  | Yes  | The base-2 logarithm of the maximum window size.  |
+| strm       | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
+| windowBits | number  | Yes  | The logarithm with base 2 based on the maximum window size.  |
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -1992,7 +1992,7 @@ zip.inflateInit2({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOu
 
 inflateInit(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
-Initializes the internal stream state for decompression and returns asynchronously using Promise. The result status is returned when the operation is successful.
+Initializes the internal stream state for decompression. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2000,21 +2000,21 @@ Initializes the internal stream state for decompression and returns asynchronous
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 
@@ -2046,7 +2046,7 @@ zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOu
 
 inflateGetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 
-Sets the gzip file header information before decompressing data. The information is returned asynchronously using Promise. The result status is returned when the operation is successful.
+Sets the header information of a gzip file before decompressing data. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2054,22 +2054,22 @@ Sets the gzip file header information before decompressing data. The information
 
 **Parameters**
 
-| Name | Type                   | Mandatory | Description                            |
+| Name| Type                   | Mandatory| Description                            |
 | ------ | ----------------------- | ---- | -------------------------------- |
-| strm   | ZStream                 | Yes  | For details, see [ZStream Definition](#zstream12). |
-| header | [GzHeader](#gzheader12) | Yes  | gzip header information extracted from the compressed data stream. |
+| strm   | ZStream                 | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12). |
+| header | [GzHeader](#gzheader12) | Yes  | Header information of a gzip file extracted from the compressed data stream.|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -2106,7 +2106,7 @@ async function demo() {
 
 inflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;DictionaryOutputInfo&gt;
 
-Obtains the content and length of the decompression dictionary used in the current decompression stream, and uses a promise to asynchronously return the content and length. When the operation is successful, the result status and dictionary length are returned.
+Obtains the content and length of the decompression dictionary used in the current decompression stream. This API uses a promise to return the result. The result state and length of the dictionary are returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2114,22 +2114,22 @@ Obtains the content and length of the decompression dictionary used in the curre
 
 **Parameters**
 
-| Name    | Type       | Mandatory | Description                           |
+| Name    | Type       | Mandatory| Description                           |
 | ---------- | ----------- | ---- | ------------------------------- |
-| strm       | ZStream     | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm       | ZStream     | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 | dictionary | ArrayBuffer | Yes  | Receives the actual contents of the decompression dictionary.     |
 
 **Return value**
 
 | Type                                                        | Description                                   |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise&lt;[DictionaryOutputInfo](#dictionaryoutputinfo12)&gt; | Promise used to return the result. Length of the returned result status and dictionary. |
+| Promise&lt;[DictionaryOutputInfo](#dictionaryoutputinfo12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -2166,7 +2166,7 @@ async function demo() {
 
 inflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
-All dynamically allocated data structures of the decompressed stream are released and returned asynchronously using Promise. The result status is returned when the operation is successful.
+Frees up all dynamically allocated data structures of the decompression stream. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2174,21 +2174,21 @@ All dynamically allocated data structures of the decompressed stream are release
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -2230,7 +2230,7 @@ async function demo() {
 
 inflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
-Copy the decompression stream and use Promise to asynchronously return the stream. The result status is returned when the operation is successful.
+Copies the decompression stream. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2238,21 +2238,21 @@ Copy the decompression stream and use Promise to asynchronously return the strea
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                   |
+| Name| Type| Mandatory| Description                   |
 | ------ | ---- | ---- | ----------------------- |
-| source | Zip  | Yes  | For details, see [Zip Definition](#zip12). |
+| source | Zip  | Yes  | For details, see [Zip<sup>12+</sup>](#zip12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -2289,7 +2289,7 @@ async function demo() {
 
 inflateCodesUsed(strm: ZStream): Promise&lt;number&gt;
 
-Number of Huffman coding trees used in the current decompressed stream, which is returned asynchronously using Promise. The number of used Huffman coding trees is returned on success.
+Describes the number of Huffman Trees used in the current decompression stream. This API uses a promise to return the result. The number of used Huffman Trees is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2297,21 +2297,21 @@ Number of Huffman coding trees used in the current decompressed stream, which is
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                 | Description                                         |
 | --------------------- | --------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. Returns the number of used Huffman coding trees. |
+| Promise&lt;number&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 
@@ -2347,7 +2347,7 @@ async function demo() {
 
 inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise&lt;ReturnStatus&gt;
 
-Initialize the internal stream state for decompression before using the inflateBack() function, and use Promise to return asynchronously. The result status is returned when the operation is successful.
+Initializes the internal stream state for decompression before using the **inflateBack()** function. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2355,34 +2355,34 @@ Initialize the internal stream state for decompression before using the inflateB
 
 **Parameters**
 
-| Name    | Type       | Mandatory | Description                                         |
+| Name    | Type       | Mandatory| Description                                         |
 | ---------- | ----------- | ---- | --------------------------------------------- |
-| strm       | ZStream     | Yes  | For details, see [ZStream Definition](#zstream12).              |
-| windowBits | number      | Yes  | Indicates the base-2 logarithm of the maximum window size. The value ranges from 8 to 15. |
+| strm       | ZStream     | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).              |
+| windowBits | number      | Yes  | The logarithm with base 2 based on the maximum window size. The value ranges from 8 to 15.|
 | window     | ArrayBuffer | Yes  | Preset window buffer.                           |
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 
-Example: See [inflateBack](#inflateback12).
+**Example**<br>For details, see [inflateBack<sup>12+</sup>](#inflateback12).
 
 ### inflateBackEnd<sup>12+</sup>
 
 inflateBackEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
-All memory allocated by the inflateBackInit() function is released and returned asynchronously using Promise. The result status is returned when the operation is successful.
+Releases all memory allocated by the **inflateBackInit()** function. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2390,32 +2390,32 @@ All memory allocated by the inflateBackInit() function is released and returned 
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 
-Example: See [inflateBack](#inflateback12).
+**Example**<br>For details, see [inflateBack<sup>12+</sup>](#inflateback12).
 
 ### inflateBack<sup>12+</sup>
 
 inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, backOut: InflateBackOutputCallback, outDesc: object): Promise&lt;ReturnStatus&gt;
 
-Implement original decompression, use callback APIs to process input and output, and use Promise to asynchronously return. The result status is returned when the operation is successful.
+Uses callback APIs to input and output data for raw decompression. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2423,43 +2423,43 @@ Implement original decompression, use callback APIs to process input and output,
 
 **Parameters**
 
-| Name | Type                     | Mandatory | Description                                                        |
+| Name | Type                     | Mandatory| Description                                                        |
 | ------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| strm    | ZStream                   | Yes  | For details, see [ZStream Definition](#zstream12).                             |
-| backIn  | InflateBackInputCallback  | Yes  | A function used to decompress data from the end to read raw compressed data from the input source. |
+| strm    | ZStream                   | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                             |
+| backIn  | InflateBackInputCallback  | Yes  | A function used to decompress data from the end of the array to read the original compressed data from the input source.|
 | inDesc  | object                    | Yes  | Common object.                                                  |
-| backOut | InflateBackOutputCallback | Yes  | Writes the decompressed data to the target output.                                |
+| backOut | InflateBackOutputCallback | Yes  | Writes the decompressed data to the destination buffer.                                |
 | outDesc | object                    | Yes  | Common object.                                                  |
 
 Description of InflateBackInputCallback:
 
 InflateBackInputCallback = (inDesc: object) => ArrayBuffer
 
-| Name  | Type  | Mandatory | Description            |
+| Name  | Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| inDesc | object | Yes  | User-defined Data Object |
+| inDesc | object | Yes  | User-defined data object.|
 
 Description of InflateBackOutputCallback:
 
 InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
 
-| Name   | Type       | Mandatory | Description                  |
+| Name   | Type       | Mandatory| Description                  |
 | ------- | ----------- | ---- | ---------------------- |
-| outDesc | object      | Yes  | User-defined Data Object      |
-| buf     | ArrayBuffer | Yes  | It is used to store the data to be written. |
-| length  | number      | Yes  | Length of the data written to the output buffer. |
+| outDesc | object      | Yes  | User-defined data object.      |
+| buf     | ArrayBuffer | Yes  | Stores the data to be written.|
+| length  | number      | Yes  | Length of the data written to the output buffer.|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -2605,7 +2605,7 @@ async function demo() {
 
 inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
-Decompress the data and use Promise to asynchronously return the data. The result status is returned when the operation is successful.
+Decompresses the data. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2613,22 +2613,22 @@ Decompress the data and use Promise to asynchronously return the data. The resul
 
 **Parameters**
 
-| Name | Type             | Mandatory | Description                                                  |
+| Name| Type             | Mandatory| Description                                                  |
 | ------ | ----------------- | ---- | ------------------------------------------------------ |
-| strm   | ZStream           | Yes  | For details, see [ZStream Definition](#zstream12).                       |
-| flush  | CompressFlushMode | Yes  | For details, see [Definition of CompressFlushMode](#zipcompressflushmode12). |
+| strm   | ZStream           | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                       |
+| flush  | CompressFlushMode | Yes  | For details, see [zip.CompressFlushMode<sup>12+<sup/>](#zipcompressflushmode12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -2692,7 +2692,7 @@ async function demo() {
 
 deflateInit(strm: ZStream, level: CompressLevel): Promise&lt;ReturnStatus&gt;
 
-Initializes the internal stream state for compression and returns asynchronously using Promise. The result status is returned when the operation is successful.
+Initializes the internal stream state for compression. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2700,22 +2700,22 @@ Initializes the internal stream state for compression and returns asynchronously
 
 **Parameters**
 
-| Name | Type         | Mandatory | Description                                                |
+| Name| Type         | Mandatory| Description                                                |
 | ------ | ------------- | ---- | ---------------------------------------------------- |
-| strm   | ZStream       | Yes  | For details, see [ZStream Definition](#zstream12).                     |
-| level  | CompressLevel | Yes  | See [zip.CompressLevel](#zipcompresslevel). |
+| strm   | ZStream       | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                     |
+| level  | CompressLevel | Yes  | For details, see [zip.CompressLevel](#zipcompresslevel).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -2752,7 +2752,7 @@ async function demo() {
 
 deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, windowBits: number, memLevel: MemLevel, strategy: CompressStrategy): Promise&lt;ReturnStatus&gt;
 
-Initializes the internal stream state for compression and returns asynchronously using Promise. The result status is returned when the operation is successful.
+Initializes the internal stream state for compression. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2760,26 +2760,26 @@ Initializes the internal stream state for compression and returns asynchronously
 
 **Parameters**
 
-| Name    | Type            | Mandatory | Description                                                      |
+| Name    | Type            | Mandatory| Description                                                      |
 | ---------- | ---------------- | ---- | ---------------------------------------------------------- |
-| strm       | ZStream          | Yes  | For details, see [ZStream Definition](#zstream12).                           |
-| level      | CompressLevel    | Yes  | See [zip.CompressLevel](#zipcompresslevel).      |
-| method     | CompressMethod   | Yes  | For details, see [zip.CompressMethod Enumeration Definition](#zipcompressmethod12).  |
-| windowBits | number           | Yes  | The base-2 logarithm of the maximum window size.                             |
-| memLevel   | MemLevel         | Yes  | See [zip.MemLevel](#zipmemlevel).                |
-| strategy   | CompressStrategy | Yes  | See [zip.CompressStrategy](#zipcompressstrategy). |
+| strm       | ZStream          | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                           |
+| level      | CompressLevel    | Yes  | For details, see [zip.CompressLevel](#zipcompresslevel).      |
+| method     | CompressMethod   | Yes  | For details, see [zip.CompressMethod<sup>12+</sup>](#zipcompressmethod12).  |
+| windowBits | number           | Yes  | The logarithm with base 2 based on the maximum window size.                             |
+| memLevel   | MemLevel         | Yes  | For details, see [zip.MemLevel](#zipmemlevel).                |
+| strategy   | CompressStrategy | Yes  | For details, see [zip.CompressStrategy](#zipcompressstrategy).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -2817,7 +2817,7 @@ async function demo() {
 
 deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
-Compresses data and uses a promise to asynchronously return the data. The result status is returned when the operation is successful.
+Compresses data. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2825,22 +2825,22 @@ Compresses data and uses a promise to asynchronously return the data. The result
 
 **Parameters**
 
-| Name | Type             | Mandatory | Description                                                  |
+| Name| Type             | Mandatory| Description                                                  |
 | ------ | ----------------- | ---- | ------------------------------------------------------ |
-| strm   | ZStream           | Yes  | For details, see [ZStream Definition](#zstream12).                       |
-| flush  | CompressFlushMode | Yes  | For details, see [Definition of CompressFlushMode](#zipcompressflushmode12). |
+| strm   | ZStream           | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                       |
+| flush  | CompressFlushMode | Yes  | For details, see [zip.CompressFlushMode<sup>12+</sup>](#zipcompressflushmode12). |
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -2883,7 +2883,7 @@ async function demo() {
 
 deflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
-All dynamically allocated data structures of the compressed stream are released and returned asynchronously using Promise. The result status is returned when the operation is successful.
+Frees up all dynamically allocated data structures of the compression stream. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2891,21 +2891,21 @@ All dynamically allocated data structures of the compressed stream are released 
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -2952,7 +2952,7 @@ async function demo() {
 
 deflateBound(strm: ZStream, sourceLength: number): Promise&lt;number&gt;
 
-Calculate the upper limit of the compression size and use Promise to asynchronously return the result. The upper limit of the compression size is returned upon success.
+Calculates the maximum size of the compressed data. This API uses a promise to return the result. The maximum size of the compressed data is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2960,22 +2960,22 @@ Calculate the upper limit of the compression size and use Promise to asynchronou
 
 **Parameters**
 
-| Name   | Type   | Mandatory | Description                           |
+| Name   | Type   | Mandatory| Description                           |
 | --------- | ------- | ---- | ------------------------------- |
-| strm      | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm      | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 | sourceLength | number  | Yes  | Length of the source data.                   |
 
 **Return value**
 
 | Type                 | Description                             |
 | --------------------- | --------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. Added the API for returning the upper limit of a buffer to hold the compressed data. |
+| Promise&lt;number&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 
@@ -3016,7 +3016,7 @@ async function demo() {
 
 deflateSetHeader(strm: ZStream, head: GzHeader): Promise&lt;ReturnStatus&gt;
 
-When deflateInit2() requests a gzip stream, the gzip header information is provided and returned asynchronously using Promise. The result status is returned when the operation is successful.
+Provides the header information of the gzip file when **deflateInit2()** requests a gzip stream. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3024,22 +3024,22 @@ When deflateInit2() requests a gzip stream, the gzip header information is provi
 
 **Parameters**
 
-| Name | Type                   | Mandatory | Description                            |
+| Name| Type                   | Mandatory| Description                            |
 | ------ | ----------------------- | ---- | -------------------------------- |
-| strm   | ZStream                 | Yes  | For details, see [ZStream Definition](#zstream12). |
-| head   | [GzHeader](#gzheader12) | Yes  | gzip header information extracted from the compressed data stream. |
+| strm   | ZStream                 | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12). |
+| head   | [GzHeader](#gzheader12) | Yes  | Header information of a gzip file extracted from the compressed data stream.|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -3082,7 +3082,7 @@ async function demo() {
 
 deflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
-Copy the compressed stream and use Promise to asynchronously return the stream. The result status is returned when the operation is successful.
+Copies the compression stream. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3090,21 +3090,21 @@ Copy the compressed stream and use Promise to asynchronously return the stream. 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                   |
+| Name| Type| Mandatory| Description                   |
 | ------ | ---- | ---- | ----------------------- |
-| source | Zip  | Yes  | For details, see [Zip Definition](#zip12). |
+| source | Zip  | Yes  | For details, see [Zip<sup>12+</sup>](#zip12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -3146,7 +3146,7 @@ async function demo() {
 
 deflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnStatus&gt;
 
-Initializes the compression dictionary from a given sequence of bytes, returned asynchronously using Promise. The result status is returned when the operation is successful.
+Initializes the compression dictionary from a given sequence of bytes. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3154,22 +3154,22 @@ Initializes the compression dictionary from a given sequence of bytes, returned 
 
 **Parameters**
 
-| Name    | Type       | Mandatory | Description                           |
+| Name    | Type       | Mandatory| Description                           |
 | ---------- | ----------- | ---- | ------------------------------- |
-| strm       | ZStream     | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm       | ZStream     | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 | dictionary | ArrayBuffer | Yes  | Dictionary data.                     |
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -3211,7 +3211,7 @@ async function demo() {
 
 deflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;DictionaryOutputInfo&gt;
 
-Obtains the content and length of the decompression dictionary used in the current decompression stream, and uses a promise to asynchronously return the content and length. When the operation is successful, the result status and dictionary length are returned.
+Obtains the content and length of the decompression dictionary used in the current decompression stream. This API uses a promise to return the result. The result state and length of the dictionary are returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3219,22 +3219,22 @@ Obtains the content and length of the decompression dictionary used in the curre
 
 **Parameters**
 
-| Name    | Type       | Mandatory | Description                           |
+| Name    | Type       | Mandatory| Description                           |
 | ---------- | ----------- | ---- | ------------------------------- |
-| strm       | ZStream     | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm       | ZStream     | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 | dictionary | ArrayBuffer | Yes  | Receives the actual contents of the decompression dictionary.     |
 
 **Return value**
 
 | Type                                                        | Description                                   |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise&lt;[DictionaryOutputInfo](#dictionaryoutputinfo12)&gt; | Promise used to return the result. Length of the returned result status and dictionary. |
+| Promise&lt;[DictionaryOutputInfo](#dictionaryoutputinfo12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -3281,7 +3281,7 @@ async function demo() {
 
 deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: number, maxChain: number): Promise&lt;ReturnStatus&gt;
 
-Fine-tunes the internal compression parameters of deflate and uses a promise to asynchronously return the parameters. The result status is returned when the operation is successful.
+Fine-tunes the internal compressed parameters of **deflate**. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3289,25 +3289,25 @@ Fine-tunes the internal compression parameters of deflate and uses a promise to 
 
 **Parameters**
 
-| Name    | Type   | Mandatory | Description                           |
+| Name    | Type   | Mandatory| Description                           |
 | ---------- | ------- | ---- | ------------------------------- |
-| strm       | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
-| goodLength | number  | Yes  | Indicates the matching length threshold.               |
-| maxLazy    | number  | Yes  | Indicates the maximum matching delay.             |
-| niceLength | number  | Yes  | Appropriate delay length threshold             |
-| maxChain   | number  | Yes  | Maximum Chain Length                   |
+| strm       | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
+| goodLength | number  | Yes  | Matching length threshold.               |
+| maxLazy    | number  | Yes  | Matching maximum delay.             |
+| niceLength | number  | Yes  | Appropriate delay length threshold.             |
+| maxChain   | number  | Yes  | Maximum chain length.                   |
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -3349,7 +3349,7 @@ async function demo() {
 
 deflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
-This function is equivalent to calling deflateEnd and then deflateInit. However, this function does not release or reallocate the internal decompression status. Promise is used to asynchronously return the status. The result status is returned when the operation is successful.
+Equivalent to call the **deflateEnd** API and then **deflateInit** API. However, this API does not release or reallocate the internal decompression state. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3357,21 +3357,21 @@ This function is equivalent to calling deflateEnd and then deflateInit. However,
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -3413,7 +3413,7 @@ async function demo() {
 
 deflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
-Resets the initialized deflate compression stream, but retains the compression parameters and dictionaries set by it, and returns asynchronously using Promise. The result status is returned when the operation is successful.
+Resets the initialized deflate compression stream, but retains the compression parameters and dictionaries set by it. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3421,21 +3421,21 @@ Resets the initialized deflate compression stream, but retains the compression p
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -3477,7 +3477,7 @@ async function demo() {
 
 deflatePending(strm: ZStream): Promise&lt;DeflatePendingOutputInfo&gt;
 
-Returns the number of bytes and bits of the output that has been generated but has not yet been provided in the available output, using Promise asynchronous return. If the operation is successful, the result status, number of output bits, and number of output bytes are returned.
+Returns the number of bytes and bits that has been generated but has not yet been output. This API uses a promise to return the result. The result state and the umber of output bytes and bits are returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3485,21 +3485,21 @@ Returns the number of bytes and bits of the output that has been generated but h
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12). |
 
 **Return value**
 
 | Type                                                        | Description                                             |
 | ------------------------------------------------------------ | ------------------------------------------------- |
-| Promise&lt;[DeflatePendingOutputInfo](#deflatependingoutputinfo12)&gt; | Promise used to return the result. Returns the result status, number of output bits, and number of output bytes. |
+| Promise&lt;[DeflatePendingOutputInfo](#deflatependingoutputinfo12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -3541,7 +3541,7 @@ async function demo() {
 
 deflateParams(strm: ZStream, level: CompressLevel, strategy: CompressStrategy): Promise&lt;ReturnStatus&gt;
 
-The compression level and compression policy are dynamically updated, and Promise is used for asynchronous return. The result status is returned when the operation is successful.
+Dynamically updates the compression level and compression strategy. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3549,23 +3549,23 @@ The compression level and compression policy are dynamically updated, and Promis
 
 **Parameters**
 
-| Name  | Type            | Mandatory | Description                                                      |
+| Name  | Type            | Mandatory| Description                                                      |
 | -------- | ---------------- | ---- | ---------------------------------------------------------- |
-| strm     | ZStream          | Yes  | For details, see [ZStream Definition](#zstream12).                           |
-| level    | CompressLevel    | Yes  | See [zip.CompressLevel](#zipcompresslevel).      |
-| strategy | CompressStrategy | Yes  | See [zip.CompressStrategy](#zipcompressstrategy). |
+| strm     | ZStream          | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).                           |
+| level    | CompressLevel    | Yes  | For details, see [zip.CompressLevel](#zipcompresslevel).      |
+| strategy | CompressStrategy | Yes  | For details, see [zip.CompressStrategy](#zipcompressstrategy).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -3607,7 +3607,7 @@ async function demo() {
 
 deflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatus&gt;
 
-Inserts bits and values into the compressed stream and returns them asynchronously using Promise. The result status is returned when the operation is successful.
+Inserts bits and values into the compression stream. This API uses a promise to return the result. The result state is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3615,23 +3615,23 @@ Inserts bits and values into the compressed stream and returns them asynchronous
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                           |
+| Name| Type   | Mandatory| Description                           |
 | ------ | ------- | ---- | ------------------------------- |
-| strm   | ZStream | Yes  | For details, see [ZStream Definition](#zstream12). |
-| bits   | number  | Yes  | Number of digits to be inserted. The value ranges from 0 to 16. |
+| strm   | ZStream | Yes  | For details, see [ZStream<sup>12+</sup>](#zstream12).|
+| bits   | number  | Yes  | Number of bits to be inserted. The value ranges from 0 to 16. |
 | value  | number  | Yes  | Bit value corresponding to the number of bits.           |
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result. Returned result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -3675,11 +3675,11 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name    | Type            | Readable | Writable | Description                                                      |
+| Name    | Type            | Readable| Writable| Description                                                      |
 | -------- | ---------------- | ---- | ---- | ---------------------------------------------------------- |
-| level    | CompressLevel     | Yes  | No  | See [zip.CompressLevel](#zipcompresslevel).      |
-| memLevel | MemLevel         | Yes  | No  | See [zip.MemLevel](#zipmemlevel).                |
-| strategy | CompressStrategy | Yes  | No  | See [zip.CompressStrategy](#zipcompressstrategy). |
+| level    | CompressLevel     | Yes  | No  | For details. see [zip.CompressLevel](#zipcompresslevel).      |
+| memLevel | MemLevel         | Yes  | No  | For details, see [zip.MemLevel](#zipmemlevel).                |
+| strategy | CompressStrategy | Yes  | No  | For details, see [zip.CompressStrategy](#zipcompressstrategy).|
 
 ## zip.CompressLevel
 
@@ -3689,7 +3689,7 @@ async function demo() {
 
 | Name                              | Value  | Description             |
 | ---------------------------------- | ---- | ----------------- |
-| COMPRESS_LEVEL_NO_COMPRESSION      | 0    | Compress level 0 that indicates uncompressed. |
+| COMPRESS_LEVEL_NO_COMPRESSION      | 0    | Compress level 0 that indicates uncompressed.|
 | COMPRESS_LEVEL_BEST_SPEED          | 1    | Compression level 1 that gives the best speed. |
 | COMPRESS_LEVEL_BEST_COMPRESSION    | 9    | Compression level 9 that gives the best compression.     |
 | COMPRESS_LEVEL_DEFAULT_COMPRESSION | -1   | Default compression level.     |
@@ -3702,9 +3702,9 @@ async function demo() {
 
 | Name             | Value  | Description                            |
 | ----------------- | ---- | -------------------------------- |
-| MEM_LEVEL_MIN     | 1    | Minimum memory used by the **zip** API during compression. |
-| MEM_LEVEL_MAX     | 9    | Maximum memory used by the **zip** API during compression. |
-| MEM_LEVEL_DEFAULT | 8    | Default memory used by the **zip** API during compression. |
+| MEM_LEVEL_MIN     | 1    | Minimum memory used by the **zip** API during compression.|
+| MEM_LEVEL_MAX     | 9    | Maximum memory used by the **zip** API during compression.|
+| MEM_LEVEL_DEFAULT | 8    | Default memory used by the **zip** API during compression.|
 
 ## zip.CompressStrategy
 
@@ -3715,7 +3715,7 @@ async function demo() {
 | Name                              | Value  | Description                    |
 | ---------------------------------- | ---- | ------------------------ |
 | COMPRESS_STRATEGY_DEFAULT_STRATEGY | 0    | Default compression strategy.            |
-| COMPRESS_STRATEGY_FILTERED         | 1    | Filtered compression strategy. |
+| COMPRESS_STRATEGY_FILTERED         | 1    | Filtered compression strategy.|
 | COMPRESS_STRATEGY_HUFFMAN_ONLY     | 2    | Huffman coding compression strategy.  |
 | COMPRESS_STRATEGY_RLE              | 3    | RLE compression strategy.        |
 | COMPRESS_STRATEGY_FIXED            | 4    | Fixed compression strategy.          |
@@ -3726,8 +3726,8 @@ async function demo() {
 
 | Name            | Value  | Description        |
 | ---------------- | ---- | ------------ |
-| ERROR_CODE_OK    | 0    | The API is successfully called. |
-| ERROR_CODE_ERRNO | -1   | Failed to call the API. |
+| ERROR_CODE_OK    | 0    | The API is successfully called.|
+| ERROR_CODE_ERRNO | -1   | Failed to call the API.|
 
 ## zip.CompressFlushMode<sup>12+</sup>
 
@@ -3738,12 +3738,12 @@ async function demo() {
 | Name         | Value  | Description                                        |
 | ------------- | ---- | -------------------------------------------- |
 | NO_FLUSH      | 0    | Default value, indicating a normal operation.                      |
-| PARTIAL_FLUSH | 1    | Some refresh points are generated in the stream.                      |
-| SYNC_FLUSH    | 2    | Forcibly outputs all compressed data while maintaining the compressed stream state. |
-| FULL_FLUSH    | 3    | Resets the compression status.                              |
-| FINISH        | 4    | The compression or decompression process ends.                      |
-| BLOCK         | 5    | Allow more precise control.                          |
-| TREES         | 6    | There are special purposes during the implementation.                      |
+| PARTIAL_FLUSH | 1    | Generates some refresh points in the stream.                      |
+| SYNC_FLUSH    | 2    | Forcibly outputs all compressed data while maintaining the compression stream state.|
+| FULL_FLUSH    | 3    | Resets the compression state.                              |
+| FINISH        | 4    | Ends the compression or decompression process.                      |
+| BLOCK         | 5    | Allows more precise control.                          |
+| TREES         | 6    | Implements special purposes.                      |
 
 ## zip.CompressMethod<sup>12+</sup>
 
@@ -3753,7 +3753,7 @@ async function demo() {
 
 | Name    | Value  | Description      |
 | -------- | ---- | ---------- |
-| DEFLATED | 8    | Compression method. |
+| DEFLATED | 8    | Compression method.|
 
 ## zip.ReturnStatus<sup>12+</sup>
 
@@ -3764,8 +3764,8 @@ async function demo() {
 | Name      | Value  | Description                                          |
 | ---------- | ---- | ---------------------------------------------- |
 | OK         | 0    | The API is successfully called.                                |
-| STREAM_END | 1    | If the function is successfully called, the entire data has been processed.          |
-| NEED_DICT  | 2    | If the function is successfully called, a dictionary needs to be preset to continue decompression. |
+| STREAM_END | 1    | The API is successfully called, indicating that the entire data has been processed.          |
+| NEED_DICT  | 2    | The API is successfully called, indicating that a preset dictionary is required to continue decompression.|
 
 ## ZStream<sup>12+</sup>
 
@@ -3773,16 +3773,16 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name        | Type       | Readable | Writable | Description                                                        |
+| Name        | Type       | Readable| Writable| Description                                                        |
 | ------------ | ----------- | ---- | ---- | ------------------------------------------------------------ |
-| nextIn       | ArrayBuffer | Yes  | No  | Input bytes to be compressed                                          |
-| availableIn  | number      | Yes  | No  | Number of bytes available for nextIn                                          |
-| totalIn      | number      | Yes  | No  | Total number of input bytes read so far                                |
-| nextOut      | ArrayBuffer | Yes  | No  | Output bytes after compression                                            |
-| availableOut | number      | Yes  | No  | Number of remaining bytes of nextOut                                     |
-| totalOut     | number      | Yes  | No  | Total number of output bytes so far                                      |
-| dataType     | number      | Yes  | No  | Best guesses about data types: binary or text of deflate, or decoding state of inflate |
-| adler        | number      | Yes  | No  | Adler-32 or CRC-32 value of uncompressed data                              |
+| nextIn       | ArrayBuffer | Yes  | No  | Input bytes to be compressed.                                          |
+| availableIn  | number      | Yes  | No  | Number of bytes available for **nextIn**.                                          |
+| totalIn      | number      | Yes  | No  | Total number of input bytes read so far.                                |
+| nextOut      | ArrayBuffer | Yes  | No  | Output bytes after compression.                                            |
+| availableOut | number      | Yes  | No  | Number of remaining bytes available for **nextOut**.                                     |
+| totalOut     | number      | Yes  | No  | Total number of output bytes.                                      |
+| dataType     | number      | Yes  | No  | Binary or text of **deflate**, or decoding state of **inflate**.|
+| adler        | number      | Yes  | No  | Adler-32 or CRC-32 value of uncompressed data.                              |
 
 ## ZipOutputInfo<sup>12+</sup>
 
@@ -3790,9 +3790,9 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name   | Type        | Readable | Writable | Description                                                 |
+| Name   | Type        | Readable| Writable| Description                                                 |
 | ------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status  | ReturnStatus | Yes  | No  | For details, see [zlib.ReturnStatus Enumeration Definition](#zipreturnstatus12). |
+| status  | ReturnStatus | Yes  | No  | For details, see [zip.ReturnStatus<sup>12+</sup>](#zipreturnstatus12).|
 | destLen | number       | Yes  | No  | Total length of the destination buffer.                                 |
 
 ## DictionaryOutputInfo<sup>12+</sup>
@@ -3801,9 +3801,9 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name            | Type        | Readable | Writable | Description                                                 |
+| Name            | Type        | Readable| Writable| Description                                                 |
 | ---------------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status           | ReturnStatus | Yes  | No  | For details, see [zlib.ReturnStatus Enumeration Definition](#zipreturnstatus12). |
+| status           | ReturnStatus | Yes  | No  | For details, see [zip.ReturnStatus<sup>12+</sup>](#zipreturnstatus12).|
 | dictionaryLength | number       | Yes  | No  | Length of a dictionary.                                         |
 
 ## DecompressionOutputInfo<sup>12+</sup>
@@ -3812,9 +3812,9 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name            | Type        | Readable | Writable | Description                                                 |
+| Name            | Type        | Readable| Writable| Description                                                 |
 | ---------------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status           | ReturnStatus | Yes  | No  | For details, see [zlib.ReturnStatus Enumeration Definition](#zipreturnstatus12). |
+| status           | ReturnStatus | Yes  | No  | For details, see [zip.ReturnStatus<sup>12+</sup>](#zipreturnstatus12).|
 | destLength       | number       | Yes  | No  | Length of the destination buffer.                                    |
 | sourceLength     | number       | Yes  | No  | Length of the source buffer.                                      |
 
@@ -3824,9 +3824,9 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name   | Type        | Readable | Writable | Description                                                 |
+| Name   | Type        | Readable| Writable| Description                                                 |
 | ------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status  | ReturnStatus | Yes  | No  | For details, see [zlib.ReturnStatus Enumeration Definition](#zipreturnstatus12). |
+| status  | ReturnStatus | Yes  | No  | For details, see [zip.ReturnStatus<sup>12+</sup>](#zipreturnstatus12).|
 | pending | number       | Yes  | No  | Number of output bytes that have been generated.                                 |
 | bits    | number       | Yes  | No  | Number of output bits that have been generated.                                   |
 
@@ -3836,24 +3836,24 @@ async function demo() {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name    | Type       | Readable | Writable | Description                                |
+| Name    | Type       | Readable| Writable| Description                                |
 | -------- | ----------- | ---- | ---- | ------------------------------------ |
-| isText   | boolean     | Yes  | No  | True if the compressed data is considered text. |
+| isText   | boolean     | Yes  | No  | Returns **True** if the compressed data is considered text.|
 | os       | number      | Yes  | No  | Operating system.                          |
-| time     | number      | Yes  | No  | Indicates the modification time.                          |
+| time     | number      | Yes  | No  | Modification time.                          |
 | xflags   | number      | Yes  | No  | Extra flag.                          |
 | extra    | ArrayBuffer | Yes  | No  | Extra field.                          |
 | extraLen | number      | Yes  | No  | Length of the extra field.                    |
 | name     | ArrayBuffer | Yes  | No  | File name.                            |
 | comment  | ArrayBuffer | Yes  | No  | Comment.                              |
-| hcrc     | boolean     | Yes  | No  | True if the crc header exists.         |
-| done     | boolean     | Yes  | No  | True after reading the gzip header.              |
+| hcrc     | boolean     | Yes  | No  | Returns **True** if the **crc** header exists.         |
+| done     | boolean     | Yes  | No  | Returns **True** after reading the gzip file header.              |
 
 ## zlib.createGZip<sup>12+</sup>
 
 createGZip(): Promise&lt;GZip&gt;
 
-Creates a GZip object and uses a promise to asynchronously return the object. On success, a Gzip object instance is returned.
+Creates a gzip object. This API uses a promise to return the result. The gzip object instance is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3863,7 +3863,7 @@ Creates a GZip object and uses a promise to asynchronously return the object. On
 
 | Type                          | Description                           |
 | ------------------------------ | ------------------------------- |
-| Promise&lt;[GZip](#gzip12)&gt; | Promise used to return the result. The GZip object instance is returned. |
+| Promise&lt;[GZip](#gzip12)&gt; | Promise used to return the result.  |
 
 **Example**
 
@@ -3879,7 +3879,7 @@ zlib.createGZip().then((data) => {
 
 createGZipSync():  GZip
 
-Create a GZip object. A GZip object instance is returned on success.
+Creates a gzip object. The gzip object instance is returned upon a success.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3889,7 +3889,7 @@ Create a GZip object. A GZip object instance is returned on success.
 
 | Type           | Description          |
 | --------------- | -------------- |
-| [GZip](#gzip12) | GZip object instance. |
+| [GZip](#gzip12) | gzip object instance.|
 
 **Example**
 
@@ -3901,13 +3901,13 @@ let gzip = zlib.createGZipSync();
 
 ## GZip<sup>12+</sup>
 
-Gzip-related APIs.
+Describes gzip-related APIs.
 
 ### gzdopen<sup>12+</sup>
 
 gzdopen(fd: number, mode: string): Promise&lt;void&gt;
 
-Associates gzFile with the file descriptor fd and opens the file for reading and decompressing, or compressing and writing.
+Associates gzip file with the file descriptor (fd) and opens the file for reading and decompressing, or compressing and writing. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3915,22 +3915,22 @@ Associates gzFile with the file descriptor fd and opens the file for reading and
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                                                        |
+| Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| fd     | number | Yes  | File descriptor. Generally, the value is obtained by invoking the open method or other methods. |
-| mode   | string | Yes  | This parameter specifies the access mode.                                          |
+| fd     | number | Yes  | File descriptor. Generally, the value is obtained by calling the **open** method or other methods.|
+| mode   | string | Yes  | Specifies the access mode.                                          |
 
 **Return value**
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800002 | No such file or access mode error.                           |
@@ -3977,7 +3977,7 @@ struct Index {
 
 gzbuffer(size: number):Promise&lt;number&gt;
 
-Sets the internal buffer size for the current library function.
+Sets the internal buffer size for the current library function. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3985,21 +3985,21 @@ Sets the internal buffer size for the current library function.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                      |
+| Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| size   | number | Yes  | Size of the internal buffer to be set. |
+| size   | number | Yes  | Size of the internal buffer to be set.|
 
 **Return value**
 
 | Type                 | Description                        |
 | --------------------- | ---------------------------- |
-| Promise&lt;number&gt; | Promise object. If the operation is successful, 0 is returned. |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, **0** is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 
@@ -4047,7 +4047,7 @@ struct Index {
 
 gzopen(path: string, mode: string): Promise&lt;void&gt;
 
-Opens the gzip (.gz) file in the specified path for reading and decompressing, or compressing and writing.
+Opens the gzip file in the specified path for reading and decompressing, or compressing and writing. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4055,25 +4055,25 @@ Opens the gzip (.gz) file in the specified path for reading and decompressing, o
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                |
+| Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| path   | string | Yes  | Path of the file to be opened. |
-| mode   | string | Yes  | Specifies the method of opening a file.  |
+| path   | string | Yes  | Path of the file to be opened.|
+| mode   | string | Yes  | Specifies a method for opening a file.  |
 
 **Return value**
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
-| 17800002 | No such file or No such file or access mode error.                           |
+| 17800002 | No such file or access mode error.                           |
 
 **Example**
 
@@ -4116,7 +4116,7 @@ struct Index {
 
 gzeof(): Promise&lt;number&gt;
 
-Check whether the read location of the gzip compressed file has reached the end of the file.
+Checks whether the read position (position from which data is read) of the gzip file has reached the end of the file. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4126,7 +4126,7 @@ Check whether the read location of the gzip compressed file has reached the end 
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise object. If the end-of-file indicator of the file is set when the file is read, 1 is returned. |
+| Promise&lt;number&gt; | Promise used to return the result. If the end-of-file indicator is set while reading, **1** is returned.|
 
 **Example**
 
@@ -4180,7 +4180,7 @@ struct Index {
 
 gzdirect(): Promise&lt;number&gt;
 
-Check whether the specified gzip file handle file directly accesses the original uncompressed data and reallocates the buffer.
+Checks whether the specified gzip file handle directly accesses the original uncompressed data and reallocates the buffer. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4190,7 +4190,7 @@ Check whether the specified gzip file handle file directly accesses the original
 
 | Type                 | Description                                              |
 | --------------------- | -------------------------------------------------- |
-| Promise&lt;number&gt; | Promise object. If the original uncompressed data is directly accessed, 1 is returned. |
+| Promise&lt;number&gt; | Promise used to return the result. If the original uncompressed data is directly accessed, **1** is returned.|
 
 **Example**
 
@@ -4234,7 +4234,7 @@ struct Index {
 
 gzclose(): Promise&lt;ReturnStatus&gt;
 
-Clears all pending output of the file, closes the file if necessary, and releases (decompresses) the compression state.
+Clears all pending output of the file. Closes the file and releases decompression or compression state if necessary. This API uses a promise to return the result. The result state is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4244,13 +4244,13 @@ Clears all pending output of the file, closes the file if necessary, and release
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise object, which returns the result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ------------------------- |
 | 17800004 | ZStream error.            |
 | 17800006 | Memory allocation failed. |
@@ -4296,7 +4296,7 @@ struct Index {
 
 gzclearerr(): Promise&lt;void&gt;
 
-Clears the errors and end-of-file flags of a file.
+Clears the errors and end-of-file flags of a file. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4306,7 +4306,7 @@ Clears the errors and end-of-file flags of a file.
 
 | Type               | Description                   |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
 
@@ -4362,7 +4362,7 @@ struct Index {
 
 gzerror(): Promise&lt;GzErrorOutputInfo&gt;
 
-Error message of the last error that occurred on the file.
+Describes the last error message that reported for the file. This API uses a promise to return the result. The result state and the last state message are returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4372,13 +4372,13 @@ Error message of the last error that occurred on the file.
 
 | Type                                                       | Description                                                     |
 | ----------------------------------------------------------- | --------------------------------------------------------- |
-| Promise&lt;[GzErrorOutputInfo](#zipgzerroroutputinfo12)&gt; | Promise object, which returns the result status and the status message of the last status that appears. |
+| Promise&lt;[GzErrorOutputInfo](#zipgzerroroutputinfo12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | -------------- |
 | 17800004 | ZStream error. |
 
@@ -4436,7 +4436,7 @@ struct Index {
 
 gzgetc(): Promise&lt;number&gt;
 
-Reads and decompresses a byte from a file.
+Reads and decompresses a byte from a file. This API uses a promise to return the result. The ASCII value of the read character is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4446,13 +4446,13 @@ Reads and decompresses a byte from a file.
 
 | Type                 | Description                                |
 | --------------------- | ------------------------------------ |
-| Promise&lt;number&gt; | Promise object, which returns the ASCII value of the read character. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ------------------------- |
 | 17800009 | Internal structure error. |
 
@@ -4501,7 +4501,7 @@ struct Index {
 
 gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
-Refreshes all suspended output to the file.
+Flushes all pending output into a compressed file. This API uses a promise to return the result. The result state is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4509,21 +4509,21 @@ Refreshes all suspended output to the file.
 
 **Parameters**
 
-| Name | Type             | Mandatory | Description                                                        |
+| Name| Type             | Mandatory| Description                                                        |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
-| flush  | CompressFlushMode | Yes  | Controls the refresh operation. For details, see the definition of [CompressFlushMode enumeration](#zipcompressflushmode12). |
+| flush  | CompressFlushMode | Yes  | Controls the flushing operation. For details, see [zip.CompressFlushMode<sup>12+</sup>](#zipcompressflushmode12).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise object, which returns the result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -4570,7 +4570,7 @@ struct Index {
 
 gzfwrite(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 
-Compresses data blocks whose size is size and quantity is nitems from the buffer and writes the data blocks to a file.
+Compresses data blocks that are declared with size and nitems from the buffer and writes the data blocks to a file. This API uses a promise to return the result. The number of complete data blocks that are declared with size are returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4578,23 +4578,23 @@ Compresses data blocks whose size is size and quantity is nitems from the buffer
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                  |
+| Name| Type       | Mandatory| Description                  |
 | ------ | ----------- | ---- | ---------------------- |
-| buf    | ArrayBuffer | Yes  | Buffer to which data is to be written. |
-| size   | number      | Yes  | Number of bytes in a single data block. |
+| buf    | ArrayBuffer | Yes  | Buffer to which data is to be written.|
+| size   | number      | Yes  | Number of bytes in a single data block.|
 | nitems | number      | Yes  | Number of data blocks to be written.    |
 
 **Return value**
 
 | Type                 | Description                                               |
 | --------------------- | --------------------------------------------------- |
-| Promise&lt;number&gt; | Promise object, which returns the number of complete data blocks whose size is size. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800009 | Internal structure error.                                    |
@@ -4646,7 +4646,7 @@ struct Index {
 
 gzfread(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 
-Decompresses and reads data from a gzip compressed file.
+Decompresses and reads data from a gzip file. This API uses a promise to return the result. The number of complete data blocks that are declared with size are returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4654,9 +4654,9 @@ Decompresses and reads data from a gzip compressed file.
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                          |
+| Name| Type       | Mandatory| Description                          |
 | ------ | ----------- | ---- | ------------------------------ |
-| buf    | ArrayBuffer | Yes  | Target buffer for storing read results. |
+| buf    | ArrayBuffer | Yes  | Destination buffer for storing read results.|
 | size   | number      | Yes  | Number of bytes in a single data block.        |
 | nitems | number      | Yes  | Number of data blocks to be written.            |
 
@@ -4664,13 +4664,13 @@ Decompresses and reads data from a gzip compressed file.
 
 | Type                 | Description                                               |
 | --------------------- | --------------------------------------------------- |
-| Promise&lt;number&gt; | Promise object, which returns the number of complete data blocks whose size is size. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800009 | Internal structure error.                                    |
@@ -4726,7 +4726,7 @@ struct Index {
 
 gzclosew(): Promise&lt;ReturnStatus&gt;
 
-It has the same function as gzclose() and applies only to writing or appending.
+Clears all pending output of the file. Closes the file and releases decompression or compression state if necessary. These features are applied only for writing or appending. This API uses a promise to return the result. The result state is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4736,13 +4736,13 @@ It has the same function as gzclose() and applies only to writing or appending.
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise object, which returns the result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ------------------------- |
 | 17800004 | ZStream error.            |
 | 17800006 | Memory allocation failed. |
@@ -4788,7 +4788,7 @@ struct Index {
 
 gzcloser(): Promise&lt;ReturnStatus&gt;
 
-It has the same function as gzclose () and is only applicable when reading.
+Clears all pending output of the file. Closes the file and releases decompression or compression state if necessary. These features are applied only for reading. This API uses a promise to return the result. The result state is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4798,13 +4798,13 @@ It has the same function as gzclose () and is only applicable when reading.
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise object, which returns the result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
-| ID | Error Message      |
+| ID| Error Message      |
 | -------- | -------------- |
 | 17800004 | ZStream error. |
 
@@ -4851,28 +4851,28 @@ struct Index {
 
 gzwrite(buf: ArrayBuffer, len: number): Promise&lt;number&gt;
 
-Compresses the uncompressed bytes of the len length in the buffer and writes them to the file.
+Compresses the uncompressed bytes of the declared length in the buffer and writes them to the file. This API uses a promise to return the result. The number of uncompressed bytes written is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name | Type       | Mandatory | Description                        |
+| Name| Type       | Mandatory| Description                        |
 | ------ | ----------- | ---- | ---------------------------- |
-| buf    | ArrayBuffer | Yes  | The object points to the data buffer to be written. |
+| buf    | ArrayBuffer | Yes  | Data buffer pointed by an object to be written.|
 | len    | number      | Yes  | Length of uncompressed bytes.            |
 
 **Return value**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
-| Promise&lt;number&gt; | Promise object, which returns the number of uncompressed bytes written. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800009 | Internal structure error.                                    |
@@ -4924,27 +4924,27 @@ struct Index {
 
 gzungetc(c: number): Promise&lt;number&gt;
 
-Pushes c back into the stream so that it will be read as the first character the next time the file is read.
+Pushes **c** back into the input stream so that it will be read as the first character the next time the file is read. This API uses a promise to return the result. The pushed characters are returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name | Type  | Mandatory | Description                    |
+| Name| Type  | Mandatory| Description                    |
 | ------ | ------ | ---- | ------------------------ |
-| c      | number | Yes  | Returns to the character before the input stream. |
+| c      | number | Yes  | Characters before being pushed into the input stream.|
 
 **Return value**
 
 | Type                 | Description                         |
 | --------------------- | ----------------------------- |
-| Promise&lt;number&gt; | Promise object, which returns the pushed characters. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800009 | Internal structure error.                                    |
@@ -4994,7 +4994,7 @@ struct Index {
 
 gztell(): Promise&lt;number&gt;
 
-Returns the start position of the next gzread or gzwrite in the file.
+Returns the start position of the next **gzread** or **gzwrite** in the file. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5004,13 +5004,13 @@ Returns the start position of the next gzread or gzwrite in the file.
 
 | Type                 | Description                                                    |
 | --------------------- | -------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise object, which returns the start position of the next gzread or gzwrite of a file. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ------------------------- |
 | 17800009 | Internal structure error. |
 
@@ -5056,7 +5056,7 @@ struct Index {
 
 gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;ReturnStatus&gt;
 
-Dynamically updates the compression level and policy of a file.
+Dynamically updates the compression level and compression policy of a file. This API uses a promise to return the result. The result state is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5064,22 +5064,22 @@ Dynamically updates the compression level and policy of a file.
 
 **Parameters**
 
-| Name  | Type            | Mandatory | Description                                                        |
+| Name  | Type            | Mandatory| Description                                                        |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| level    | CompressLevel    | Yes  | Compression level. For details, see [zip.CompressLevel enumeration definition](#zipcompresslevel). |
-| strategy | CompressStrategy | Yes  | Compression policy. For details, see [zip.CompressStrategy enumeration definition](#zipcompressstrategy). |
+| level    | CompressLevel    | Yes  | Compression level. For details, see [zip.CompressLevel](#zipcompresslevel).|
+| strategy | CompressStrategy | Yes  | Compression strategy. For details, see [zip.CompressStrategy](#zipcompressstrategy).|
 
 **Return value**
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise object, which returns the result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -5127,7 +5127,7 @@ struct Index {
 
 gzseek(offset: number, whence: OffsetReferencePoint): Promise&lt;number&gt;
 
-Sets the start position to the offset position relative to the next gzread or gzwrite in the file.
+Sets the start position to the offset position relative to the next **gzread** or **gzwrite** in the file. This API uses a promise to return the result. The result offset position measured in bytes from the beginning of an uncompressed stream is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5135,22 +5135,22 @@ Sets the start position to the offset position relative to the next gzread or gz
 
 **Parameters**
 
-| Name | Type                | Mandatory | Description                                                        |
+| Name| Type                | Mandatory| Description                                                        |
 | ------ | -------------------- | ---- | ------------------------------------------------------------ |
 | offset | number               | Yes  | Target offset position.                                              |
-| whence | OffsetReferencePoint | Yes  | Reference point for defining the offset. For details, see [zip.OffsetReferencePoint Enumeration Definition](#zipoffsetreferencepoint12). |
+| whence | OffsetReferencePoint | Yes  | Defines the reference point for the offset. For details, see [zip.OffsetReferencePoint<sup>12+</sup>](#zipoffsetreferencepoint12). |
 
 **Return value**
 
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise object, which returns the result offset position measured in bytes from the beginning of an uncompressed stream. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800009 | Internal structure error.                                    |
@@ -5197,7 +5197,7 @@ struct Index {
 
 gzrewind(): Promise&lt;ReturnStatus&gt;
 
-Repositions the file pointer to the beginning of the file. This function is used only for reading.
+Repositions the file pointer to the beginning of the file. This feature is applied only for reading. This API uses a promise to return the result. The result state is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5207,13 +5207,13 @@ Repositions the file pointer to the beginning of the file. This function is used
 
 | Type                                             | Description                       |
 | ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise object, which returns the result status. |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ------------------------- |
 | 17800009 | Internal structure error. |
 
@@ -5261,7 +5261,7 @@ struct Index {
 
 gzread(buf: ArrayBuffer): Promise&lt;number&gt;
 
-Reads up to len uncompressed bytes from a file and decompresses them into buf.
+Reads a maximum of **len** uncompressed bytes from a file and decompresses them into the buffer. This API uses a promise to return the result. The number of uncompressed bytes that are actually read is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5269,21 +5269,21 @@ Reads up to len uncompressed bytes from a file and decompresses them into buf.
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description          |
+| Name| Type       | Mandatory| Description          |
 | ------ | ----------- | ---- | -------------- |
-| buf    | ArrayBuffer | Yes  | Target offset position. |
+| buf    | ArrayBuffer | Yes  | Target offset position.|
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| Promise&lt;number&gt; | Promise object, which returns the number of uncompressed bytes that are actually read. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800009 | Internal structure error.                                    |
@@ -5339,7 +5339,7 @@ struct Index {
 
 gzputs(str: string): Promise&lt;number&gt;
 
-Compresses the given null-terminated string and writes it to the file, excluding the terminated null character.
+Compresses the given null-terminated strings and writes them to the file, excluding the terminating null characters. This API uses a promise to return the result. The number of written characters is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5347,21 +5347,21 @@ Compresses the given null-terminated string and writes it to the file, excluding
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                  |
+| Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
-| str    | string | Yes  | Format descriptors and plain text. |
+| str    | string | Yes  | Format descriptors and plain text.|
 
 **Return value**
 
 | Type                 | Description                           |
 | --------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise object, which returns the number of written characters. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800009 | Internal structure error.                                    |
@@ -5408,7 +5408,7 @@ struct Index {
 
 gzputc(char: number): Promise&lt;number&gt;
 
-Compresses c converted to an unsigned character and writes it to a file.
+Compresses **char** converted to an unsigned character and writes it to a file. This API uses a promise to return the result. The written value is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5416,21 +5416,21 @@ Compresses c converted to an unsigned character and writes it to a file.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description           |
+| Name| Type  | Mandatory| Description           |
 | ------ | ------ | ---- | --------------- |
-| char   | number | Yes  | Write character ASCII. |
+| char   | number | Yes  | Write character ASCII.|
 
 **Return value**
 
 | Type                 | Description                         |
 | --------------------- | ----------------------------- |
-| Promise&lt;number&gt; | Promise object, which returns the written value. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800009 | Internal structure error.                                    |
@@ -5477,7 +5477,7 @@ struct Index {
 
 gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;number&gt;
 
-After parameters are converted and formatted under the control of the string format, the parameters are compressed and written to a file, as shown in fprintf.
+Converts and formats the parameters under the control of the string format and then compresses and writes them into a file, as shown in the **fprintf()**. This API uses a promise to return the result. The number of uncompressed bytes that are actually written is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5485,22 +5485,22 @@ After parameters are converted and formatted under the control of the string for
 
 **Parameters**
 
-| Name | Type                         | Mandatory | Description                  |
+| Name| Type                         | Mandatory| Description                  |
 | ------ | ----------------------------- | ---- | ---------------------- |
-| format | string                        | Yes  | Format descriptors and plain text. |
+| format | string                        | Yes  | Format descriptors and plain text.|
 | args   | Array&lt;string \| number&gt; | No  | List of variable parameters.        |
 
 **Return value**
 
 | Type                 | Description                                     |
 | --------------------- | ----------------------------------------- |
-| Promise&lt;number&gt; | Promise object, which returns the number of uncompressed bytes that are actually written. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
@@ -5548,7 +5548,7 @@ struct Index {
 
 gzoffset(): Promise&lt;number&gt;
 
-Returns the current compressed (actual) read or write offset of the file.
+Returns the current compressed read or write offset of the file. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5558,13 +5558,13 @@ Returns the current compressed (actual) read or write offset of the file.
 
 | Type                 | Description                                                 |
 | --------------------- | ----------------------------------------------------- |
-| Promise&lt;number&gt; | Promise object, which returns the current compressed (actual) read or write offset of the file. |
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [zlib Error Codes](errorcode-zlib.md).
 
-| ID | Error Message                 |
+| ID| Error Message                 |
 | -------- | ------------------------- |
 | 17800009 | Internal structure error. |
 
@@ -5610,7 +5610,7 @@ struct Index {
 
 gzgets(buf: ArrayBuffer): Promise&lt;string&gt;
 
-Reads bytes from a file and decompresses them into buf until the len-1 character is read, or until a newline character is read and transferred to buf, or an end-of-file condition is encountered.
+Reads bytes from a compressed file until **len-1** characters are read, a newline character is read and transferred to a buffer, or an end-of-file condition is encountered. This API uses a promise to return the result. The null-terminated strings are returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5618,21 +5618,21 @@ Reads bytes from a file and decompresses them into buf until the len-1 character
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description              |
+| Name| Type       | Mandatory| Description              |
 | ------ | ----------- | ---- | ------------------ |
-| buf    | ArrayBuffer | Yes  | Stores the read row data. |
+| buf    | ArrayBuffer | Yes  | Stores the read row data.|
 
 **Return value**
 
 | Type                 | Description                                 |
 | --------------------- | ------------------------------------- |
-| Promise&lt;string&gt; | Promise object, which returns a null-terminated string. |
+| Promise&lt;string&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [zlib Error Codes](./errorcode-zlib.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed. |
 | 17800009 | Internal structure error.                                    |
@@ -5685,10 +5685,10 @@ struct Index {
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name     | Type        | Readable | Writable | Description                                            |
+| Name     | Type        | Readable| Writable| Description                                            |
 | --------- | ------------ | ---- | ---- | ------------------------------------------------ |
-| status    | ReturnStatus | Yes  | No  | Returns the zlib file status code. For details, see the definition of zip.ReturnStatus. |
-| statusMsg | string       | Yes  | No  | Status message of the last state that occurs on the zlib file.        |
+| status    | ReturnStatus | Yes  | No  | Returns the zlib file status code. For details, see [zip.ReturnStatus<sup>12+</sup>](#zipreturnstatus12).|
+| statusMsg | string       | Yes  | No  | The last status message reported on the zlib file.        |
 
 ## zip.OffsetReferencePoint<sup>12+</sup>
 
@@ -5698,5 +5698,5 @@ struct Index {
 
 | Name    | Value  | Description            |
 | -------- | ---- | ---------------- |
-| SEEK_SET | 0    | Searches from the beginning of a file. |
-| SEEK_CUR | 1    | Search from the current location. |
+| SEEK_SET | 0    | Searches from the beginning of a file.|
+| SEEK_CUR | 1    | Search from the current location.|

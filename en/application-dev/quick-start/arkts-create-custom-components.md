@@ -23,11 +23,7 @@ struct HelloComponent {
   @State message: string = 'Hello, World!';
 
   build() {
-<<<<<<< HEAD
-    // The HelloComponent custom component combines the <Row> and <Text> built-in components.
-=======
     // The HelloComponent custom component combines the Row and Text built-in components.
->>>>>>> 17a97a71f4ab2bfad5f90462b0bac3ed2b975f98
     Row() {
       Text(this.message)
         .onClick(() => {
@@ -77,7 +73,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
 
-- [build Function](#build-function)
+- [build() Function](#build-function)
 
 - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 
@@ -398,7 +394,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
     @State count: number = 1;
     build() {
       Column() {
-        // Avoid: directly changing the value of count in the <Text> component.
+        // Avoid: directly changing the value of count in the Text component.
         Text(`${this.count++}`)
           .width(50)
           .height(50)
@@ -422,11 +418,7 @@ Whatever declared in the **build()** function are called UI descriptions. UI des
   Therefore, do not change any state variable in the **build()** or \@Builder decorated method of a custom component. Otherwise, loop rendering may result. Depending on the update mode (full update or minimum update), **Text('${this.count++}')** imposes different effects:
 
   - Full update: ArkUI may fall into an infinite re-rendering loop because each rendering of the **Text** component changes the application state and causes a new round of re-renders. When **this.col2** is changed, the entire **build** function is executed. As a result, the text bound to **Text(${this.count++})** is also changed. Each time **Text(${this.count++})** is re-rendered, the **this.count** state variable is updated, and a new round of **build** execution follows, resulting in an infinite loop.
-<<<<<<< HEAD
-  - Minimized update: When **this.col2** is changed, only the **Column** component is updated, and the **Text** component is not changed. When **this.col1** is changed, the entire **Text** component is updated and all of its attribute functions are executed. As a result, the value of **${this.count++}** in the **Text** component is changed. Currently, the UI is updated by component. If an attribute of a component changes, the entire component is updated. Therefore, the overall update link is as follows: **this.col1** = **Color.Pink** - > **Text** component re-render - > **this.count++** - > **Text** component re-render. It should be noted that this way of writing causes the **Text** component to be rendered twice during the initial render, which affects the performance.
-=======
   - Minimum update: When **this.col2** is changed, only the **Column** component is updated, and the **Text** component is not changed. When **this.col1** is changed, the entire **Text** component is updated and all of its attribute functions are executed. As a result, the value of **${this.count++}** in the **Text** component is changed. Currently, the UI is updated by component. If an attribute of a component changes, the entire component is updated. Therefore, the overall update link is as follows: **this.col1** = **Color.Pink** - > **Text** component re-render - > **this.count++** - > **Text** component re-render. It should be noted that this way of writing causes the **Text** component to be rendered twice during the initial render, which affects the performance.
->>>>>>> 17a97a71f4ab2bfad5f90462b0bac3ed2b975f98
 
   The behavior of changing the application state in the **build** function may be more covert than that in the preceding example. The following are some examples:
 
