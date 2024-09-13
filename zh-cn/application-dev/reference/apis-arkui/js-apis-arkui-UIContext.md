@@ -1093,28 +1093,6 @@ getDragController(): DragController
 uiContext.getDragController();
 ```
 
-### getDragPreview<sup>11+</sup>
-
-getDragPreview(): dragController.DragPreview
-
-返回一个代表拖拽背板的对象。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：** 
-
-| 类型                                                         | 说明                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
-
-**错误码：** 通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
-
-**示例：**
-
-请参考[animate](js-apis-arkui-dragController.md#animate11)
-
 ### keyframeAnimateTo<sup>11+</sup>
 
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
@@ -5770,6 +5748,28 @@ struct DragControllerPage {
   }
 }
 ```
+
+### getDragPreview<sup>11+</sup>
+
+getDragPreview(): dragController.DragPreview
+
+返回一个代表拖拽背板的对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
+
+**错误码：** 通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
+
+**示例：**
+
+请参考[animate](js-apis-arkui-dragController.md#animate11)
 
 ### setDragEventStrictReportingEnabled<sup>12+</sup>
 
