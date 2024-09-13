@@ -2840,7 +2840,7 @@ export default class EntryAbility extends UIAbility {
 
 setShowOnLockScreen(showOnLockScreen: boolean): void
 
-设置应用显示在锁屏之上。
+设置应用显示在锁屏之上。应用窗口创建时，默认显示在锁屏之下。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2852,7 +2852,7 @@ setShowOnLockScreen(showOnLockScreen: boolean): void
 
 | 参数名           | 类型    | 必填 | 说明                         |
 | ---------------- | ------- | ---- | ---------------------------- |
-| showOnLockScreen | boolean | 是   | 是否设置应用显示在锁屏之上。true表示显示在锁屏之上；false表示不显示在锁屏之上。锁屏时不支持应用动态调整到锁屏下显示。|
+| showOnLockScreen | boolean | 是   | 是否设置应用显示在锁屏之上。true 表示设置应用显示在锁屏之上；false 表示设置应用显示在锁屏之下。<br> 当使用本接口设置应用显示在锁屏之上之后，锁屏时不支持应用动态调整到锁屏下显示，即此时若调用 setShowOnLockScreen(false) 不会立即生效，在屏幕解锁之后生效。|
 
 **错误码：**
 
