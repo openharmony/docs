@@ -545,7 +545,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 |  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103    | The image data is not supported |
 |  62980246    | Failed to read the pixelMap. |
-|  62980248    | PixelMap not allow modify. |
+|  62980248    | Pixelmap not allow modify. |
 
 **示例：**
 
@@ -1765,6 +1765,8 @@ scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
 
 根据输入的宽高对图片进行缩放，使用Promise形式返回。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -2391,7 +2393,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980111| If the operation invalid.        |
+| 62980111| The image source data is incomplete.        |
 | 62980115| If the image parameter invalid.             |
 
 **示例：**
@@ -2584,7 +2586,7 @@ getMetadata(key: HdrMetadataKey): HdrMetadataValue
 | 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.          |
 | 501 | Resource unavailable.          |
 | 62980173 | The DMA memory does not exist.          |
-| 62980173 | Memory copy failed.          |
+| 62980302 | Memory copy failed.          |
 
 **示例：**
 
@@ -2642,7 +2644,7 @@ setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
 | 401|  Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 501 | Resource unavailable.          |
 | 62980173 | The DMA memory does not exist.          |
-| 62980173 | Memory copy failed.          |
+| 62980302 | Memory copy failed.          |
 
 **示例：**
 
@@ -2949,10 +2951,6 @@ convertPixelFormat(targetPixelFormat: PixelMapFormat): Promise\<void>
 
 YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -2973,7 +2971,11 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980115 | Invalid image parameter.              |
+| 62980111 | The image source data is incomplete. |
+| 62980115 | Invalid input parameter.              |
+| 62980178 | Failed to create the PixelMap|
+| 62980274 | The conversion failed |
+| 62980276 | The type to be converted is an unsupported target pixel format|
 
 **示例：**
 
@@ -3721,7 +3723,7 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;    |
-| 62980123| Images in EXIF format are not supported.             |
+| 62980123| The image does not support EXIF decoding.             |
 | 62980133| The EXIF data is out of range.             |
 | 62980135| The EXIF value is invalid.             |
 | 62980146| The EXIF data failed to be written to the file.        |
@@ -3853,7 +3855,7 @@ modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;      |
-| 62980123| Images in EXIF format are not supported.             |
+| 62980123| The image does not support EXIF decoding.             |
 | 62980133| The EXIF data is out of range.             |
 | 62980135| The EXIF value is invalid.             |
 | 62980146| The EXIF data failed to be written to the file.             |
@@ -4145,7 +4147,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 | 62980115 | Invalid image parameter. |
 | 62980116 | Failed to decode the image. |
 | 62980118| Failed to create the image plugin.             |
-| 62980122 | The image decoding header is abnormal. |
+| 62980122 | Failed to decode the image header. |
 | 62980137 | Invalid media operation. |
 | 62980173 | The DMA memory does not exist. |
 | 62980174 | The DMA memory data is abnormal. |
@@ -4203,7 +4205,7 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.   |
-| 62980122 | The image decoding header is abnormal.   |
+| 62980122 | Failed to decode the image header.   |
 | 62980137 | Invalid media operation.     |
 | 62980173 | The DMA memory does not exist.        |
 | 62980174 | The DMA memory data is abnormal.    |
@@ -4256,7 +4258,7 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.  |
-| 62980122 | The image decoding header is abnormal.   |
+| 62980122 | Failed to decode the image header.   |
 | 62980137 | Invalid media operation.      |
 | 62980173 | The DMA memory does not exist.         |
 | 62980174 | The DMA memory data is abnormal.     |
@@ -4311,9 +4313,9 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 | 62980115 | Invalid image parameter. |
 | 62980116| Failed to decode the image. |
 | 62980118| Failed to create the image plugin. |
-| 62980122| The image decoding header is abnormal. |
+| 62980122| Failed to decode the image header. |
 | 62980137 | Invalid media operation. |
-| 62980149 | Invalid media parameter. |
+| 62980149 | Invalid MIME type for the image source. |
 
 **示例：**
 
@@ -4357,9 +4359,9 @@ getDelayTimeList(): Promise<Array\<number>>
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.          |
 | 62980118 | Failed to create the image plugin.  |
-| 62980122 | The image decoding header is abnormal.   |
+| 62980122 | Failed to decode the image header.   |
 | 62980137 | Invalid media operation.      |
-| 62980149 | Invalid media parameter.      |
+| 62980149 | Invalid MIME type for the image source.      |
 
 **示例：**
 
@@ -4401,7 +4403,7 @@ getFrameCount(callback: AsyncCallback\<number>): void
 | 62980115| Invalid image parameter. |
 | 62980116| Failed to decode the image. |
 | 62980118| Failed to create the image plugin. |
-| 62980122| The image decoding header is abnormal. |
+| 62980122| Failed to decode the image header. |
 | 62980137| Invalid media operation. |
 
 **示例：**
@@ -4446,7 +4448,7 @@ getFrameCount(): Promise\<number>
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.          |
 | 62980118 | Failed to create the image plugin.   |
-| 62980122 | The image decoding header is abnormal.  |
+| 62980122 | Failed to decode the image header.  |
 | 62980137 | Invalid media operation.      |
 
 **示例：**
@@ -4484,7 +4486,7 @@ getDisposalTypeList(): Promise\<Array\<number>>
 | 62980096 | The operation failed.      |
 | 62980101 | The image data is abnormal. |
 | 62980137 | Invalid media operation.        |
-| 62980149 | Invalid image source mime type.      |
+| 62980149 | Invalid MIME type for the image source.      |
 
 **示例：**
 
@@ -5821,23 +5823,19 @@ img.release().then(() => {
 
 枚举，图片像素格式。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                   |   值   | 说明              |
 | ---------------------- | ------ | ----------------- |
-| UNKNOWN                | 0      | 未知格式。        |
-| RGB_565                | 2      | 格式为RGB_565     |
-| RGBA_8888              | 3      | 格式为RGBA_8888 |
-| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888 |
-| RGB_888<sup>9+</sup>   | 5      | 格式为RGB_888   |
-| ALPHA_8<sup>9+</sup>   | 6      | 格式为ALPHA_8   |
-| RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16  |
-| NV21<sup>9+</sup>      | 8      | 格式为NV21      |
-| NV12<sup>9+</sup>      | 9      | 格式为NV12      |
+| UNKNOWN                | 0      | 未知格式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。        |
+| RGB_565                | 2      | 格式为RGB_565。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
+| RGBA_8888              | 3      | 格式为RGBA_8888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| RGB_888<sup>9+</sup>   | 5      | 格式为RGB_888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| ALPHA_8<sup>9+</sup>   | 6      | 格式为ALPHA_8。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
+| NV21<sup>9+</sup>      | 8      | 格式为NV21。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
+| NV12<sup>9+</sup>      | 9      | 格式为NV12。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
 | RGBA_1010102<sup>12+</sup> | 10 | 格式为RGBA_1010102 |
 | YCBCR_P010<sup>12+</sup> | 11 | 格式为YCBCR_P010 |
 | YCRCB_P010<sup>12+</sup> | 12 | 格式为YCRCB_P010 |
@@ -6262,16 +6260,16 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称          | 类型       | 说明         |
-| ------------- | ----------| ------------ |
-| displayPrimariesX     | Array\<number>    | 归一化后显示设备三基色的X坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
-| displayPrimariesY     | Array\<number>    | 归一化后显示设备三基色的Y坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
-| whitePointX  | number    | 归一化后白点值的X坐标，以0.00002为单位，范围[0.0, 1.0]。   |
-| whitePointY  | number     | 归一化后白点值的Y坐标，以0.00002为单位，范围[0.0, 1.0]。   |
-| maxLuminance  | number    | 图像主监视器最大亮度。以1为单位，最大值为65535。   |
-| minLuminance  | number     | 图像主监视器最小亮度。以0.0001为单位，最大值6.55535。   |
-| maxContentLightLevel  | number    | 显示内容的最大亮度。以1为单位，最大值为65535。   |
-| maxFrameAverageLightLevel  | number     | 显示内容的最大平均亮度，以1为单位，最大值为65535。 |
+| 名称          | 类型       | 只读 | 可选 | 说明         |
+| ------------- | ----------| -- | -- | ------------ |
+| displayPrimariesX     | Array\<number>  | 否 | 否 | 归一化后显示设备三基色的X坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
+| displayPrimariesY     | Array\<number>  | 否 | 否 | 归一化后显示设备三基色的Y坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
+| whitePointX  | number  | 否 | 否 | 归一化后白点值的X坐标，以0.00002为单位，范围[0.0, 1.0]。   |
+| whitePointY  | number   | 否 | 否 | 归一化后白点值的Y坐标，以0.00002为单位，范围[0.0, 1.0]。   |
+| maxLuminance  | number  | 否 | 否 | 图像主监视器最大亮度。以1为单位，最大值为65535。   |
+| minLuminance  | number   | 否 | 否 | 图像主监视器最小亮度。以0.0001为单位，最大值6.55535。   |
+| maxContentLightLevel  | number  | 否 | 否 | 显示内容的最大亮度。以1为单位，最大值为65535。   |
+| maxFrameAverageLightLevel  | number  | 否 | 否 | 显示内容的最大平均亮度，以1为单位，最大值为65535。 |
 
 ## GainmapChannel<sup>12+</sup>
 
@@ -6279,13 +6277,13 @@ Gainmap图单个通道的数据内容，参考ISO 21496-1。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称          | 类型       | 说明         |
-| ------------- | ----------| ------------ |
-| gainmapMax     | number   | 增强图像的最大值，参考ISO 21496-1。  |
-| gainmapMin     | number   | 增强图像的最小值，参考ISO 21496-1。  |
-| gamma  | number    | gamma值，参考ISO 21496-1。   |
-| baseOffset  | number     | 基础图的偏移，参考ISO 21496-1。   |
-| alternateOffset  | number    | 提取的可选择图像偏移量，参考ISO 21496-1。    |
+| 名称          | 类型       | 只读 | 可选 | 说明         |
+| ------------- | ----------| -- | -- | ------------ |
+| gainmapMax     | number   | 否 | 否 | 增强图像的最大值，参考ISO 21496-1。  |
+| gainmapMin     | number   | 否 | 否 | 增强图像的最小值，参考ISO 21496-1。  |
+| gamma  | number    | 否 | 否 | gamma值，参考ISO 21496-1。   |
+| baseOffset  | number     | 否 | 否 | 基础图的偏移，参考ISO 21496-1。   |
+| alternateOffset  | number    | 否 | 否 | 提取的可选择图像偏移量，参考ISO 21496-1。    |
 
 ## HdrGainmapMetadata<sup>12+</sup>
 
@@ -6293,15 +6291,15 @@ Gainmap使用的元数据值，[HdrMetadataKey](#hdrmetadatakey12)中HDR_GAINMAP
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称          | 类型       | 说明         |
-| ------------- | ----------| ------------ |
-| writerVersion     | number   | 元数据编写器使用的版本。  |
-| miniVersion     | number   | 元数据解析需要理解的最小版本。  |
-| gainmapChannelCount  | number    | Gainmap的颜色通道数，值为3时RGB通道的元数据值不同，值为1时各通道元数据值相同，参考ISO 21496-1。  |
-| useBaseColorFlag  | boolean     | 是否使用基础图的色彩空间，参考ISO 21496-1。   |
-| baseHeadroom  | number    |  基础图提亮比，参考ISO 21496-1。   |
-| alternateHeadroom  | number     |  提取的可选择图像提亮比，参考ISO 21496-1。  |
-| channels  | Array<[GainmapChannel](#gainmapchannel12)> | 各通道的数据，长度为3，参考ISO 21496-1。 |
+| 名称          | 类型       | 只读 | 可选 | 说明         |
+| ------------- | ----------| -- | -- | ------------ |
+| writerVersion     | number   | 否 | 否 | 元数据编写器使用的版本。  |
+| miniVersion     | number   | 否 | 否 | 元数据解析需要理解的最小版本。  |
+| gainmapChannelCount  | number    | 否 | 否 | Gainmap的颜色通道数，值为3时RGB通道的元数据值不同，值为1时各通道元数据值相同，参考ISO 21496-1。  |
+| useBaseColorFlag  | boolean     | 否 | 否 | 是否使用基础图的色彩空间，参考ISO 21496-1。   |
+| baseHeadroom  | number    | 否 | 否 |  基础图提亮比，参考ISO 21496-1。   |
+| alternateHeadroom  | number     | 否 | 否 |  提取的可选择图像提亮比，参考ISO 21496-1。  |
+| channels  | Array<[GainmapChannel](#gainmapchannel12)> | 否 | 否 | 各通道的数据，长度为3，参考ISO 21496-1。 |
 
 ## HdrMetadataValue<sup>12+</sup>
 
