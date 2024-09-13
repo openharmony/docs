@@ -160,7 +160,7 @@ exitPhotoBrowser(): void
 
 ### setPhotoBrowserUIElementVisibility<sup>13+</sup>
 
-setPhotoBrowserUIElementVisibility(elements: Array<PhotoBrowserUIElement>, isVisible: boolean): void
+setPhotoBrowserUIElementVisibility(elements: Array&lt;PhotoBrowserUIElement&gt;, isVisible: boolean): void
 
 应用可通过该接口，设置大图页大图预览组件外其他UI元素是否可见。不设置则默认可见。
 
