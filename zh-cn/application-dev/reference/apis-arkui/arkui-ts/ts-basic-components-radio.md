@@ -268,33 +268,33 @@ struct RadioExample {
 ```
 ![radio](figures/radio_2.gif)
 ### 示例3
-设置自定义单选样式
+设置自定义单选样式。
 ```ts
 class MyRadioStyle implements ContentModifier<RadioConfiguration> {
   type: number = 0
-  selectedColor:Color = Color.Black
+  selectedColor: ResourceColor = Color.Black
 
-  constructor(numberType: number, colorType:Color) {
+  constructor(numberType: number, colorType: ResourceColor) {
     this.type = numberType
     this.selectedColor = colorType
   }
 
-  applyContent() : WrappedBuilder<[RadioConfiguration]>
-  {
+  applyContent(): WrappedBuilder<[RadioConfiguration]> {
     return wrapBuilder(buildRadio)
   }
 }
 
-@Builder function buildRadio(config: RadioConfiguration) {
-  Row({ space:30 }) {
+@Builder
+function buildRadio(config: RadioConfiguration) {
+  Row({ space: 30 }) {
     Circle({ width: 50, height: 50 })
       .stroke(Color.Black)
       .fill(config.checked ? (config.contentModifier as MyRadioStyle).selectedColor : Color.White)
     Button(config.checked ? "off" : "on")
       .width(100)
       .type(config.checked ? (config.contentModifier as MyRadioStyle).type : ButtonType.Normal)
-      .backgroundColor(0xAABBCC)
-      .onClick(()=>{
+      .backgroundColor('#2787D9')
+      .onClick(() => {
         if (config.checked) {
           config.triggerChange(false)
         } else {
@@ -311,17 +311,18 @@ struct refreshExample {
     Column({ space: 50 }) {
       Row() {
         Radio({ value: 'Radio1', group: 'radioGroup' })
-          .contentModifier(new MyRadioStyle(1, Color.Red))
+          .contentModifier(new MyRadioStyle(1, '#004AAF'))
           .checked(false)
           .width(300)
           .height(100)
       }
+
       Row() {
         Radio({ value: 'Radio2', group: 'radioGroup' })
           .checked(true)
           .width(300)
           .height(60)
-          .contentModifier(new MyRadioStyle(2, Color.Red))
+          .contentModifier(new MyRadioStyle(2, '#004AAF'))
       }
     }
   }

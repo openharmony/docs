@@ -23,6 +23,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[Input_InterceptorEventCallback](_input___interceptor_event_callback.md) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
+| struct&nbsp;&nbsp;[Input_DeviceListener](_input___device_listener.md) | 定义一个结构体用于监听设备热插拔。  | 
 
 
 ### 类型定义
@@ -51,7 +52,10 @@
 | typedef void(\* [Input_TouchEventCallback](#input_toucheventcallback)) (const [Input_TouchEvent](#input_touchevent) \*touchEvent) | 触摸事件的回调函数，touchEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_AxisEventCallback](#input_axiseventcallback)) (const [Input_AxisEvent](#input_axisevent) \*axisEvent) | 轴事件的回调函数，axisEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_HotkeyCallback](#input_hotkeycallback)) ([Input_Hotkey](#input_hotkey) \*hotkey) | 回调函数，用于回调快捷键事件。  | 
+| typedef void(\* [Input_DeviceAddedCallback](#input_deviceaddedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热插事件。  | 
+| typedef void(\* [Input_DeviceRemovedCallback](#input_deviceremovedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热拔事件。  | 
 | typedef struct [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)[Input_InterceptorEventCallback](#input_interceptoreventcallback) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
+| typedef struct [Input_DeviceListener](_input___device_listener.md)[Input_DeviceListener](#input_devicelistener) |定义一个结构体用于监听设备热插拔。  | 
 | typedef struct [Input_InterceptorOptions](#input_interceptoroptions)[Input_InterceptorOptions](#input_interceptoroptions) | 事件拦截选项。  | 
 | typedef struct [Input_Hotkey](#input_hotkey)[Input_Hotkey](#input_hotkey) | 定义快捷键结构体。  | 
 | typedef struct [Input_DeviceInfo](#input_deviceinfo)[Input_DeviceInfo](#input_deviceinfo) | 输入设备信息。  | 
@@ -185,6 +189,9 @@
 | [Input_Result](#input_result)[OH_Input_GetDeviceProduct](#oh_input_getdeviceproduct) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*product) | 获取输入设备的产品信息。  | 
 | [Input_Result](#input_result)[OH_Input_GetDeviceVendor](#oh_input_getdevicevendor) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*vendor) | 获取输入设备的厂商信息。  | 
 | [Input_Result](#input_result)[OH_Input_GetDeviceAddress](#oh_input_getdeviceaddress) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, char \*\*address) | 获取输入设备的物理地址。  | 
+| [Input_Result](#input_result)[OH_Input_RegisterDeviceListener](#oh_input_registerdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 注册设备热插拔的监听器。  | 
+| [Input_Result](#input_result)[OH_Input_UnregisterDeviceListener](#oh_input_unregisterdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 取消注册设备热插拔的监听。  | 
+| [Input_Result](#input_result)[OH_Input_UnregisterDeviceListeners](#oh_input_unregisterdevicelisteners) () | 取消注册所有的设备热插拔的监听。  | 
 
 
 ## 类型定义说明
@@ -211,6 +218,21 @@ typedef void(* Input_AxisEventCallback) (const Input_AxisEvent *axisEvent)
 
 **起始版本：** 12
 
+### Input_DeviceAddedCallback
+
+```
+typedef void(* Input_DeviceAddedCallback) (int32_t deviceId)
+```
+**描述**
+回调函数，用于回调输入设备的热插事件。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| deviceId | 设备的ID。  | 
 
 ### Input_DeviceInfo
 
@@ -221,6 +243,32 @@ typedef struct Input_DeviceInfoInput_DeviceInfo
 输入设备信息。
 
 **起始版本：** 13
+
+### Input_DeviceListener
+
+```
+typedef struct Input_DeviceListenerInput_DeviceListener
+```
+**描述**
+定义一个结构体用于监听设备热插拔。
+
+**起始版本：** 13
+
+### Input_DeviceRemovedCallback
+
+```
+typedef void(* Input_DeviceRemovedCallback) (int32_t deviceId)
+```
+**描述**
+回调函数，用于回调输入设备的热拔事件。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| deviceId | 设备的ID。  | 
 
 
 ### Input_Hotkey
@@ -2429,6 +2477,29 @@ OH_Input_GetIsRepeat 函数错误码。 若获取成功，返回INPUT_SUCCESS；
 
 若获取失败，返回INPUT_PARAMETER_ERROR。
 
+### OH_Input_RegisterDeviceListener()
+
+```
+Input_Result OH_Input_RegisterDeviceListener (Input_DeviceListener * listener)
+```
+**描述**
+注册设备热插拔的监听器。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| listener | 指向设备热插拔监听器[Input_DeviceListener](_input___device_listener.md)的指针。  | 
+
+**返回：**
+
+OH_Input_RegisterDeviceListener 的返回值, 具体如下: INPUT_SUCCESS 表示注册成功。
+
+INPUT_PARAMETER_ERROR 表示listener 为NULL。
 
 ### OH_Input_RemoveAxisEventMonitor()
 
@@ -3221,3 +3292,48 @@ void OH_Input_SetTouchEventFingerId (struct Input_TouchEvent * touchEvent, int32
 | -------- | -------- |
 | touchEvent | 触屏事件对象  | 
 | id | 触屏的手指ID  | 
+
+### OH_Input_UnregisterDeviceListener()
+
+```
+Input_Result OH_Input_UnregisterDeviceListener (Input_DeviceListener * listener)
+```
+**描述**
+取消注册设备热插拔的监听。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| listener | 指向设备热插拔监听器[Input_DeviceListener](_input___device_listener.md)的指针。  | 
+
+**返回：**
+
+OH_Input_UnregisterDeviceListener 的返回值, 具体如下: INPUT_SUCCESS 表示取消注册成功。
+
+INPUT_PARAMETER_ERROR 表示listener 为 NULL 或者 listener 未被注册。
+
+INPUT_SERVICE_EXCEPTION 表示由于服务异常调用失败。
+
+
+### OH_Input_UnregisterDeviceListeners()
+
+```
+Input_Result OH_Input_UnregisterDeviceListeners ()
+```
+**描述**
+取消注册所有的设备热插拔的监听。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 13
+
+**返回：**
+
+OH_Input_UnregisterDeviceListener 的返回值, 具体如下: INPUT_SUCCESS 表示调用成功;
+
+INPUT_SERVICE_EXCEPTION 表示由于服务异常调用失败。

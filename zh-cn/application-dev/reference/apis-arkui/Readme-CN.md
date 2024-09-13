@@ -384,7 +384,9 @@
     - [UIExtensionComponent (系统接口)](arkui-ts/ts-container-ui-extension-component-sys.md)
   <!--DelEnd-->
   - 已停止维护的组件与接口
+    <!--Del-->
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
+    <!--DelEnd-->
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
     - [Panel](arkui-ts/ts-container-panel.md)
     - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)

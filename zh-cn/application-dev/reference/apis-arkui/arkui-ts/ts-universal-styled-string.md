@@ -872,7 +872,7 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 
 ### invalidate<sup>13+<sup>
 
-主动刷新使用CustomSpan的Text组件或者RichEditor组件。
+主动刷新使用CustomSpan的Text组件。
 
 invalidate(): void
 

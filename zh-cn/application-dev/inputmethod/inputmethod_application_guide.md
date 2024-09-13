@@ -128,7 +128,7 @@
          if(this.panel) {
            await this.panel.resize(dWidth, keyHeight);
            await this.panel.moveTo(0, nonBarPosition);
-           await this.panel.setUiContent('inputmethodextability/pages/Index');
+           await this.panel.setUiContent('inputMethodExtensionAbility/pages/Index');
          }
        });
      }

@@ -8496,6 +8496,7 @@ trimMemoryByPressureLevel(level: number): void
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -14634,7 +14635,7 @@ struct WebComponent {
                 if (buf.length == 0) {
                   console.log("[schemeHandler] length 0");
                   resourceHandler.didReceiveResponse(response);
-                  resourceHandler.didReceiveResponseBody(buf.buffer);
+                  // 如果认为buf.length为0是正常情况，则调用resourceHandler.didFinish，否则调用resourceHandler.didFail
                   resourceHandler.didFail(WebNetErrorList.ERR_FAILED);
                 } else {
                   console.log("[schemeHandler] length 1");

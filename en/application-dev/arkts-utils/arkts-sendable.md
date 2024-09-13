@@ -65,7 +65,7 @@ A sendable class must meet the following requirements:
 >
 > Since API version 12, the @Sendable decorator can be used to verify the sendable function.
 >
-> To use a sendable function in API version 12, you must configure "compatibleSdkVersionStage": "beta3" in the project. Otherwise, the function does not take effect. For details, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-0000001778834297-V5#section511142752919).
+> To use a sendable function in API version 12, you must configure "compatibleSdkVersionStage": "beta3" in the project. Otherwise, the function does not take effect. For details, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5).
 
 A sendable function must meet the following requirements:
 1. Be marked by and only by the [@Sendable decorator](#sendable-decorator-declaring-and-verifying-a-sendable-function).
@@ -579,6 +579,10 @@ class C {}
 @Sendable
 type D = C; // A compile-time error is reported.
 ```
+
+## Precautions
+
+When using **Sendable** in HAR, enable the configuration of generating TS files. For details, see [Building TS Files](../quick-start/har-package.md#building-ts-files).
 
 ## Rules for Interaction with TS/JS
 

@@ -101,9 +101,9 @@ fontSize(value: Length)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                              |
-| ------ | ---------------------------- | ---- | --------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：若controlSize的值为：controlSize.NORMAL，取'16fp'，若controlSize的值为：controlSize.SMALL，取'12fp' |
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 文本显示字号。<br/>默认值：当controlSize为ControlSize.NORMAL时，默认值为`$r('sys.float.Body_L')`<br/>当controlSize为ControlSize.SMALL时，默认值为`$r('sys.float.Body_S')`。 |
 
 ### fontColor
 
@@ -119,9 +119,9 @@ fontColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                  |
-| ------ | ------------------------------------------ | ---- | ------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本显示颜色。<br/>默认值：'\#ffffff' |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本显示颜色。<br/>默认值：$r('sys.color.font_on_primary')，显示为白色字体。 |
 
 ### fontWeight
 

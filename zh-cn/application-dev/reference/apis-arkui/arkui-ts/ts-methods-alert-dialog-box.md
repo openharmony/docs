@@ -57,6 +57,8 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 | borderStyle<sup>12+</sup>         | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-types.md#edgestyles9) | 否   | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle.Solid<br/>如果使用borderStyle属性，需要和borderWidth属性一起使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。 <br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | textStyle<sup>12+</sup>              | [TextStyle](#textstyle12对象说明) | 否   | 设置弹窗message内容的文本样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| enableHoverMode<sup>13+</sup>              | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。|
+| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。|
 
 ## AlertDialogParamWithConfirm对象说明
 
@@ -527,3 +529,54 @@ struct AlertDialogExample {
 ```
 
 ![zh-cn_image_alert_style](figures/zh-cn_image_alert_style.gif)
+
+### 示例5
+
+该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
+
+```ts
+@Entry
+@Component
+struct AlertDialogExample {
+  build() {
+    Column({ space: 5 }) {
+      Button('one button dialog')
+        .onClick(() => {
+          AlertDialog.show(
+            {
+              title: 'title',
+              message: 'text',
+              autoCancel: true,
+              alignment: DialogAlignment.Bottom,
+              gridCount: 3,
+              confirm: {
+                value: 'button',
+                action: () => {
+                  console.info('Button-clicking callback')
+                }
+              },
+              cancel: () => {
+                console.info('Closed callbacks')
+              },
+              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss();
+                }
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss();
+                }
+              },
+              enableHoverMode: true,
+              hoverModeArea: HoverModeAreaType.TOP_SCREEN
+            }
+          )
+        })
+        .backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![zh-cn_image_alert](figures/zh-cn_image_alert_hovermode.gif)

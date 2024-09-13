@@ -243,7 +243,6 @@
           - [LifecycleService接口切换](application-models/lifecycleservice-switch.md)
           - [LifecycleData接口切换](application-models/lifecycledata-switch.md)
           - [DataAbilityHelper接口切换](application-models/dataabilityhelper-switch.md)
-          - [mediaLibrary接口切换](application-models/medialibrary-switch.md)
           - [request接口切换](application-models/request-switch.md)
           - [resourceManager接口切换](application-models/resourcemanager-switch.md)
           - [window接口切换](application-models/window-switch.md)
@@ -302,7 +301,6 @@
         - 附录<!--appendixes-->
           - [Actor并发模型对比内存共享并发模型](arkts-utils/actor-model-development-samples.md)
           - [TaskPool和Worker支持的序列化类型](arkts-utils/serialization-support-types.md)
-          - [多线程安全注意事项](arkts-utils/multi-thread-safety.md)
           - [\@Concurrent装饰器：声明并校验并发函数](arkts-utils/arkts-concurrent.md)
           - [Sendable开发指导](arkts-utils/arkts-sendable.md)
           - [已接入Sendable的系统对象](arkts-utils/arkts-sendable-system-object-list.md)
@@ -355,8 +353,7 @@
             - [自定义弹窗 (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
             - [视频播放 (Video)](ui/arkts-common-components-video-player.md)
             - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
-            - [自定义渲染 (XComponent)](ui/arkts-common-components-xcomponent.md)
-            - [Native XComponent](ui/napi-xcomponent-guidelines.md)
+            - [自定义渲染 (XComponent)](ui/napi-xcomponent-guidelines.md)
           - 添加气泡和菜单<!--arkts-add-popup-menu-->
             - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
             - [菜单 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
@@ -1114,7 +1111,7 @@
           - [使用Hidebug获取调试信息（ArkTS）](dfx/hidebug-guidelines-arkts.md)
           - [使用Hidebug获取调试信息（C/C++）](dfx/hidebug-guidelines-ndk.md)
         - HiCollie使用指导<!--hicollie-->
-          - [使用HiCollie检测业务线程卡死卡顿问题（C/C++）](dfx/hiicollie-guidelines-ndk.md)
+          - [使用HiCollie检测业务线程卡死卡顿问题（C/C++）](dfx/hicollie-guidelines-ndk.md)
         - 错误管理<!--error-manager-->
           - [错误管理开发指导](dfx/errormanager-guidelines.md)
           - [应用恢复开发指导](dfx/apprecovery-guidelines.md)
