@@ -109,7 +109,7 @@ queryAssociatedBundleNames(domain: string): string[]
 import { appDomainVerify } from '@kit.AbilityKit';
 
 // 获取域名"test.com"应用所关联的包名列表
-let domain = "test.com";
+let domain = "example.com";
 let bundleNames = appDomainVerify.queryAssociatedBundleNames(domain);
 bundleNames.forEach(bundleName => {
   console.log(`domain:${domain} associate with app:${bundleName}`);
