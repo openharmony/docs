@@ -66,7 +66,7 @@
    }
    ```
 
-2. 通过controller控制弹窗样式。弹窗接口清单和描述可查看[native_dialog.h](../reference/apis-arkui/native__dialog_8h.md)
+2. 通过controller控制弹窗样式。弹窗接口清单和描述可查看[native_dialog.h](../reference/apis-arkui/native__dialog_8h.md)。
    ```
    void ShowDialog() {
        ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
