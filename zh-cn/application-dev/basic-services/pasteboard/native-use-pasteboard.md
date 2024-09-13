@@ -17,7 +17,7 @@
 - 当前支持的数据类型：纯文本类型(OH_UdsPlainText)、超文本标记语言类型(OH_UdsHtml)、文件Uri类型(OH_UdsFileUri)、像素图片类型(OH_UdsPixelMap)、超链接类型(OH_UdsHyperlink)、桌面图标类型(OH_UdsAppItem)、自定义类型。
 - 自定义类型数据在复制粘贴时，指定的类型名称不能和已有的类型名称重复。
 - API version 12及之后，系统为提升用户隐私安全保护能力，剪贴板读取接口增加[权限管控](get-pastedata-permission-guidelines.md)。
-- API version 12中新增的[setUnifiedData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#setunifieddata12)/[getUnifiedData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getunifieddata12)函数复制、粘贴的数据和本套接口中复制、粘贴的数据无法互通，相关能力正在开发中。
+- API version 12中新增的复制、粘贴接口[setUnifiedData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#setunifieddata12)/[getUnifiedData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getunifieddata12)，和本文档中的复制、粘贴接口`OH_Pasteboard_SetData`/`OH_Pasteboard_GetData`，当前相互独立，进行写入、读取操作时请使用对应配套接口。
 
 ## 接口说明
 
