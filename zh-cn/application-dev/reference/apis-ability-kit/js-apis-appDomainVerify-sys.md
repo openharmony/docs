@@ -108,7 +108,7 @@ queryAssociatedBundleNames(domain: string): string[]
 ```ts
 import { appDomainVerify } from '@kit.AbilityKit';
 
-// 获取域名"test.com"应用所关联的包名列表
+// 获取域名"example.com"应用所关联的包名列表
 let domain = "example.com";
 let bundleNames = appDomainVerify.queryAssociatedBundleNames(domain);
 bundleNames.forEach(bundleName => {
