@@ -1,6 +1,5 @@
 # oh_pasteboard_err_code.h
 
-
 ## 概述
 
 声明剪贴板框架错误码信息。 引用文件：&lt;database/pasteboard/oh_pasteboard_err_code.h&gt;
