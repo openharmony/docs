@@ -21,24 +21,24 @@
 
 ## 接口说明
 
-| 接口名称                                                                                                                                                    | 描述                          |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|
-| OH_PasteboardObserver* OH_PasteboardObserver_Create()                                                                                                   | 创建一个剪贴板数据变更观察者对象。           |
-| OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer)                                                                                          | 销毁剪贴板数据变更观察者对象。             |
-| int OH_PasteboardObserver_SetData(OH_PasteboardObserver* observer, void* context, const Pasteboard_Notify callback, const Pasteboard_Finalize finalize) | 将剪贴板变更回调函数设置到剪贴板数据变更观察者对象中。 |
-| OH_Pasteboard* OH_Pasteboard_Create()                                                                                                                   | 创建一个剪贴板实例。                  |
-| void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard)                                                                                                   | 销毁剪贴板实例。                    |
-| int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer)                                                 | 订阅剪贴板的数据变更。                 |
-| int OH_Pasteboard_Unsubscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer)                                               | 取消对剪贴板数据变更的订阅。              |
-| bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard)                                                                                              | 判断剪贴板中的数据是否来自远端设备。          |
-| int OH_Pasteboard_GetDataSource(OH_Pasteboard* pasteboard, char* source, unsigned int len)                                                              | 获取剪贴板中数据的数据源。               |
-| bool OH_Pasteboard_HasType(OH_Pasteboard* pasteboard, const char* type)                                                                                 | 判断剪贴板中是否有指定类型的数据。           |
-| bool OH_Pasteboard_HasData(OH_Pasteboard* pasteboard)                                                                                                   | 检查剪贴板中是否有数据。                |
-| OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status)                                                                              | 获取剪贴板中的数据。                  |
-| int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data)                                                                                 | 向剪贴板中写入数据。                  |
-| int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard)                                                                                                  | 清空剪贴板中的数据。                  |
-| void (\*Pasteboard_Notify)(void\* context, Pasteboard_NotifyType type)                                                                                  | 剪贴板中数据变更回调函数。               |
-| void (\*Pasteboard_Finalize)(void\* context)                                                                                                            | 剪贴板数据变更观察者对象注销回调函数。         |
+| 接口名称                                                                                                                                                    | 描述                              |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
+| OH_PasteboardObserver* OH_PasteboardObserver_Create()                                                                                                   | 创建一个剪贴板数据变更观察者对象。               |
+| OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer)                                                                                          | 销毁剪贴板数据变更观察者对象。                 |
+| int OH_PasteboardObserver_SetData(OH_PasteboardObserver* observer, void* context, const Pasteboard_Notify callback, const Pasteboard_Finalize finalize) | 将剪贴板变更回调函数设置到剪贴板数据变更观察者对象中。     |
+| OH_Pasteboard* OH_Pasteboard_Create()                                                                                                                   | 创建一个剪贴板实例。                      |
+| void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard)                                                                                                   | 销毁剪贴板实例。                        |
+| int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer)                                                 | 订阅剪贴板的数据变更。                     |
+| int OH_Pasteboard_Unsubscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer)                                               | 取消对剪贴板数据变更的订阅。                  |
+| bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard)                                                                                              | 判断剪贴板中的数据是否来自远端设备。              |
+| int OH_Pasteboard_GetDataSource(OH_Pasteboard* pasteboard, char* source, unsigned int len)                                                              | 获取剪贴板中数据的数据源。                   |
+| bool OH_Pasteboard_HasType(OH_Pasteboard* pasteboard, const char* type)                                                                                 | 判断剪贴板中是否有指定类型的数据。               |
+| bool OH_Pasteboard_HasData(OH_Pasteboard* pasteboard)                                                                                                   | 检查剪贴板中是否有数据。                    |
+| OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status)                                                                              | 获取剪贴板中的数据。                      |
+| int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data)                                                                                 | 向剪贴板中写入数据。                      |
+| int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard)                                                                                                  | 清空剪贴板中的数据。                      |
+| void (\*Pasteboard_Notify)(void\* context, Pasteboard_NotifyType type)                                                                                  | 剪贴板中数据变更回调函数。                   |
+| void (\*Pasteboard_Finalize)(void\* context)                                                                                                            | 剪贴板数据变更观察者对象销毁时，释放context上下文资源。 |
 
 ## 开发步骤
 
