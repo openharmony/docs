@@ -1346,7 +1346,8 @@
 
     - Calendar Kit（日历服务）<!--calendar-kit-->
       - [Calendar Kit简介](calendarmanager/calendarmanager-overview.md)
-      - [Calendar Kit开发指南](calendarmanager/calendarmanager-guidelines.md)
+      - [日历账户管理](calendarmanager/calendarmanager-calendar-developer.md)
+      - [日程管理](calendarmanager/calendarmanager-event-developer.md)
     - Contacts Kit（联系人服务）<!--contacts-kit-->
       - [Contacts Kit开发概述](contacts/contacts-intro.md)
     - Location Kit（位置服务）<!--location-kit-->
