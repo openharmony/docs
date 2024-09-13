@@ -2063,7 +2063,7 @@ closeBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>): Promi
 > 使用此接口关闭半模态页面时，不会触发shouldDismiss回调。
 >
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -7059,7 +7059,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | The builder is not a valid build function.                   |
-| 160001   | An image component in builder is not ready for taking a snapshot. The check for |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **示例：** 
 
@@ -7155,7 +7155,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | The builder is not a valid build function.                   |
-| 160001   | An image component in builder is not ready for taking a snapshot. The check for |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **示例：** 
 
@@ -7288,9 +7288,9 @@ struct SnapshotExample {
 
 ### onFrame<sup>12+</sup>
 
-在下一帧进行渲染时，该方法将被执行。
-
 onFrame(frameTimeInNano: number): void
+
+在下一帧进行渲染时，该方法将被执行。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7344,9 +7344,9 @@ struct Index {
 
 ### onIdle<sup>12+</sup>
 
-在下一帧渲染结束时，如果距离下一个Vsync信号到来还有1ms以上的剩余时间，该方法将被执行，否则将顺延至后面的帧。
-
 onIdle(timeLeftInNano: number): void
+
+在下一帧渲染结束时，如果距离下一个Vsync信号到来还有1ms以上的剩余时间，该方法将被执行，否则将顺延至后面的帧。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
