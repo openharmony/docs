@@ -1748,6 +1748,7 @@
             - [elementName](reference/apis-ability-kit/js-apis-bundle-ElementName.md)
             - [hapModuleInfo](reference/apis-ability-kit/js-apis-bundle-HapModuleInfo.md)
             - [moduleInfo](reference/apis-ability-kit/js-apis-bundle-ModuleInfo.md)
+            - [shortcutInfo](reference/apis-ability-kit/js-apis-bundle-ShortcutInfo.md)
             <!--Del-->
             - [bundleInstaller(系统接口)](reference/apis-ability-kit/js-apis-bundle-BundleInstaller-sys.md)
             - [bundleStatusCallback(系统接口)](reference/apis-ability-kit/js-apis-Bundle-BundleStatusCallback-sys.md)
