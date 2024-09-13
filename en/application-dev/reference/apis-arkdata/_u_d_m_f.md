@@ -2278,7 +2278,7 @@ Obtains an [OH_UdmfData](#oh_udmfdata) instance from the UDMF database.
 | Name | Description |
 | -------- | -------- |
 | key | Pointer to the identifier of the data in the database. |
-| intention | Type of the data channel. For details, see [Udmf_Intent] (#udmf_intention). |
+| intention | Type of the data channel. For details, see [Udmf_Intent](#udmf_intention). |
 | unifiedData | Pointer to the [OH_UdmfData](#oh_udmfdata) obtained. |
 
 **Returns**
@@ -2314,7 +2314,7 @@ Sets an [OH_UdmfData](#oh_udmfdata) instance in the UDMF database.
 
 | Name | Description |
 | -------- | -------- |
-| intention | Type of the data channel. For details, see [Udmf_Intent] (#udmf_intention). |
+| intention | Type of the data channel. For details, see [Udmf_Intent](#udmf_intention). |
 | unifiedData | Pointer to the [OH_UdmfData](#oh_udmfdata) data to set. |
 | Pointer to the key that uniquely identifies the data in the database. |  |
 | keyLen | Length of the key. The memory size must be greater than or equal to 512 bytes. |
