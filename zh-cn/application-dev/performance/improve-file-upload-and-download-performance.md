@@ -98,7 +98,7 @@ class ZipUpload {
   private waitList: Array<string> = [];
   // 需要上传的文件uri
   private fileUris: Array<string> = [];
-  ...
+  // ...
 }
 ```
 3. 建立用于接收图库图片的临时文件夹，并将整个临时文件夹打包添加到待上传list内：
@@ -175,7 +175,7 @@ class Upload {
   private backgroundTask: request.agent.Task | undefined = undefined;
   // 创建任务前存放的uri
   private waitList: Array<string> = [];
-  ...
+  // ...
 }
 ```
 3. 生成MD5码，上传到服务器进行校验：
@@ -193,7 +193,8 @@ async checkFileExist(fileUri: string): Promise<boolean> {
   let response = await httpRequest.request('http://XXX.XXX.XXX.XXX/XXXX', requestOption);
   let result = response.result;
   let flag = false;
-  ... // 根据服务器返回对应数据判断是否存在
+  // ... 
+  // 根据服务器返回对应数据判断是否存在
   if (flag) {
     return true;
   } else {
@@ -214,10 +215,10 @@ private config: request.agent.Config = {
   data: [],
   token: 'UPLOAD_TOKEN'
 }
-...
+// ...
 // 转换uri
 private async getFilesAndData(cacheDir: string, fileUris: Array<string>): Promise<Array<request.agent.FormItem>> {
-...
+// ...
 }
 // 创建文件上传后台任务
 async createBackgroundTask(fileUris: Array<string>) {
@@ -313,7 +314,7 @@ class Download {
   private downloadTask: request.agent.Task | undefined = undefined;
   // 后台任务下载列表
   private backgroundDownloadTaskList: Array<request.agent.Task> = [];
-  ...
+  // ...
 }
 ```
 3. 配置Config，创建后台下载任务：
@@ -339,9 +340,7 @@ async createBackgroundTask(downloadList: Array<string[]>) {
 ```
 4. 任务开始：
 ```ts
-...
 await downTask.start();
-...
 ```
 5. 任务暂停：
 ```ts

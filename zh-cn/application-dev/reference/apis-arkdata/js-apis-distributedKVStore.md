@@ -1,4 +1,4 @@
- # @ohos.data.distributedKVStore (分布式键值数据库)
+# @ohos.data.distributedKVStore (分布式键值数据库)
 
 分布式键值数据库为应用程序提供不同设备间数据库的分布式协同能力。通过调用分布式键值数据库各个接口，应用程序可将数据保存到分布式键值数据库中，并可对分布式键值数据库中的数据进行增加、删除、修改、查询、同步等操作。
 
@@ -385,6 +385,10 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 
 通过指定options和storeId，创建并获取分布式键值数据库，使用callback异步回调。
 
+> 注意：
+>
+> 在获取已有的分布式键值数据库时，若该数据库文件已损坏，将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。开发者可观测异常查询行为识别该现象，并进行备份数据恢复，异常查询行为例如数据被清空、已有数据无法查询等。
+
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 **参数：**
@@ -444,6 +448,10 @@ if (kvStore !== null) {
 getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
 通过指定options和storeId，创建并获取分布式键值数据库，使用Promise异步回调。
+
+> 注意：
+>
+> 在获取已有的分布式键值数据库时，若该数据库文件已损坏，将触发自动重建逻辑，并返回新创建的分布式键值数据库实例。开发者可观测异常查询行为识别该现象，并进行备份数据恢复，异常查询行为例如数据被清空、已有数据无法查询等。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 

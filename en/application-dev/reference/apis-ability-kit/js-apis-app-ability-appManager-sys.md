@@ -128,7 +128,7 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
 });
 ```
 
-## appManager.on
+## appManager.on('applicationState')
 
 on(type: 'applicationState', observer: ApplicationStateObserver): number
 
@@ -198,7 +198,7 @@ try {
 }
 ```
 
-## appManager.on
+## appManager.on('applicationState')
 
 on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number
 
@@ -271,7 +271,7 @@ try {
 }
 ```
 
-## appManager.on<sup>11+</sup>
+## appManager.on('appForegroundState')<sup>11+</sup>
 
 on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
 
@@ -322,7 +322,7 @@ try {
 }
 ```
 
-## appManager.on<sup>12+</sup>
+## appManager.on('abilityFirstFrameState')<sup>12+</sup>
 
 on(type: 'abilityFirstFrameState', observer: AbilityFirstFrameStateObserver, bundleName?: string): void
 
@@ -374,7 +374,7 @@ try {
 }
 ```
 
-## appManager.off
+## appManager.off('applicationState')
 
 off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void
 
@@ -459,7 +459,7 @@ try {
 }
 ```
 
-## appManager.off
+## appManager.off('applicationState')
 
 off(type: 'applicationState', observerId: number): Promise\<void>
 
@@ -545,7 +545,7 @@ try {
 }
 ```
 
-## appManager.off<sup>11+</sup>
+## appManager.off('appForegroundState')<sup>11+</sup>
 
 off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
 
@@ -609,7 +609,7 @@ try {
 }
 ```
 
-## appManager.off<sup>12+</sup>
+## appManager.off('abilityFirstFrameState')<sup>12+</sup>
 
 off(type: 'abilityFirstFrameState', observer?: AbilityFirstFrameStateObserver): void
 
@@ -775,7 +775,7 @@ Kills a process by bundle name and account ID. This API uses a promise to return
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -832,7 +832,7 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -879,7 +879,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 Kills a process by bundle name. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.KILL_APP_PROCESSES or ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -934,7 +934,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>
 
 Kills a process by bundle name. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.KILL_APP_PROCESSES or ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -950,7 +950,7 @@ Kills a process by bundle name. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1520,7 +1520,7 @@ Enumerates the application states. This enum can be used together with [AbilityS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name                | Value | Description                              |
 | -------------------- | --- | --------------------------------- |

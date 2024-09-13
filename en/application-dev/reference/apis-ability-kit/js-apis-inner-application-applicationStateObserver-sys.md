@@ -1,6 +1,6 @@
 # ApplicationStateObserver (System API)
 
-The **ApplicationStateObserver** module defines an observer to listen for application state changes. It can be used as an input parameter in [on](js-apis-app-ability-appManager-sys.md#appmanageron11) to listen for lifecycle changes of the current application.
+The ApplicationStateObserver module defines an observer to listen for application state changes. It can be used as an input parameter in [on](js-apis-app-ability-appManager-sys.md#appmanageronapplicationstate) to listen for lifecycle changes of the current application.
 
 > **NOTE**
 > 
@@ -19,9 +19,9 @@ import { appManager } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name                            | Type                   | Readable | Writable | Description  |
+| Name                            | Type                   | Readable| Writable| Description  |
 | -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onForegroundApplicationChanged   | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the foreground or background state of an application changes. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData-sys.md). |
+| onForegroundApplicationChanged   | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the foreground or background state of an application changes. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData-sys.md).|
 | onAbilityStateChanged            | AsyncCallback\<void>   | Yes  | No | Callback invoked when the ability state changes. The parameter type passed in is [AbilityStateData](js-apis-inner-application-abilityStateData-sys.md).  |
 | onProcessCreated                 | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is created. The parameter type passed in is [ProcessData](js-apis-inner-application-processData-sys.md).         |
 | onProcessDied                     | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is destroyed. The parameter type passed in is [ProcessData](js-apis-inner-application-processData-sys.md).         |

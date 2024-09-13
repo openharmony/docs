@@ -61,7 +61,7 @@ let serverSocket = (code: BusinessError, number: number) => {
   }
 }
 
-let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption:socket.SppOptions = {uuid: '00001101-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 try {
     socket.sppListen('server1', sppOption, serverSocket);
 } catch (err) {
@@ -170,7 +170,7 @@ let clientSocket = (code: BusinessError, number: number) => {
     clientNumber = number;
   }
 }
-let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
+let sppOption:socket.SppOptions = {uuid: '00001101-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 try {
     socket.sppConnect('XX:XX:XX:XX:XX:XX', sppOption, clientSocket);
 } catch (err) {

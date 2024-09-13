@@ -183,7 +183,7 @@ struct page {
     console.log("page onPageHide");
   }
 
-  onBackPress() {// If the value is not set, false is used.
+  onBackPress() { // If the value is not set, false is used.
     this.textColor = Color.Grey
     this.num = 0
   }

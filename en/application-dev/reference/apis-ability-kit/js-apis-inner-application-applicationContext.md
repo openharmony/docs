@@ -17,7 +17,7 @@ import { common } from '@kit.AbilityKit';
 
 Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **context** instance.
 
-## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
+## ApplicationContext.on('abilityLifecycle')
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
@@ -29,10 +29,10 @@ Registers a listener to monitor the ability lifecycle of the application. This A
 
 **Parameters**
 
-| Name                  | Type    | Mandatory | Description                          |
+| Name                  | Type    | Mandatory| Description                          |
 | ------------------------ | -------- | ---- | ------------------------------ |
-| type | 'abilityLifecycle' | Yes  | Event type. |
-| callback | [AbilityLifecycleCallback](js-apis-app-ability-abilityLifecycleCallback.md) | Yes  | Callback used to return the ID of the registered listener. |
+| type | 'abilityLifecycle' | Yes  | Event type.|
+| callback | [AbilityLifecycleCallback](js-apis-app-ability-abilityLifecycleCallback.md) | Yes  | Callback used to return the ID of the registered listener.|
 
 **Return value**
 
@@ -44,7 +44,7 @@ Registers a listener to monitor the ability lifecycle of the application. This A
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -106,7 +106,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
+## ApplicationContext.off('abilityLifecycle')
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
@@ -118,17 +118,17 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 
 **Parameters**
 
-| Name       | Type    | Mandatory | Description                      |
+| Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| type | 'abilityLifecycle' | Yes  | Event type. |
-| callbackId    | number   | Yes  | ID of the listener to deregister. |
+| type | 'abilityLifecycle' | Yes  | Event type.|
+| callbackId    | number   | Yes  | ID of the listener to deregister.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the deregistration is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -159,7 +159,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number)
+## ApplicationContext.off('abilityLifecycle')
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
@@ -171,22 +171,22 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 
 **Parameters**
 
-| Name       | Type    | Mandatory | Description                      |
+| Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| type | 'abilityLifecycle' | Yes  | Event type. |
-| callbackId    | number   | Yes  | ID of the listener to deregister. |
+| type | 'abilityLifecycle' | Yes  | Event type.|
+| callbackId    | number   | Yes  | ID of the listener to deregister.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -211,7 +211,7 @@ export default class MyAbility extends Ability {
 }
 ```
 
-## ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)
+## ApplicationContext.on('environment')
 
 on(type: 'environment', callback: EnvironmentCallback): number
 
@@ -223,10 +223,10 @@ Registers a listener for system environment changes. This API uses an asynchrono
 
 **Parameters**
 
-| Name                  | Type    | Mandatory | Description                          |
+| Name                  | Type    | Mandatory| Description                          |
 | ------------------------ | -------- | ---- | ------------------------------ |
-| type | 'environment' | Yes  | Event type. |
-| callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | Yes  | Callback used to return the system environment changes. |
+| type | 'environment' | Yes  | Event type.|
+| callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | Yes  | Callback used to return the system environment changes.|
 
 **Return value**
 
@@ -238,7 +238,7 @@ Registers a listener for system environment changes. This API uses an asynchrono
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -275,7 +275,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
+## ApplicationContext.off('environment')
 
 off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
@@ -287,9 +287,9 @@ Deregisters the listener for system environment changes. This API uses an asynch
 
 **Parameters**
 
-| Name        | Type    | Mandatory | Description                      |
+| Name        | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| type | 'environment' | Yes  | Event type. |
+| type | 'environment' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.  |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the deregistration is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
@@ -297,7 +297,7 @@ Deregisters the listener for system environment changes. This API uses an asynch
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -327,7 +327,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'environment', callbackId: number)
+## ApplicationContext.off('environment')
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
@@ -339,22 +339,22 @@ Deregisters the listener for system environment changes. This API uses a promise
 
 **Parameters**
 
-| Name        | Type    | Mandatory | Description                      |
+| Name        | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| type | 'environment' | Yes  | Event type. |
+| type | 'environment' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.  |
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -378,7 +378,7 @@ export default class MyAbility extends Ability {
 }
 ```
 
-## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
+## ApplicationContext.on('applicationStateChange')<sup>10+</sup>
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
@@ -390,16 +390,16 @@ Registers a listener for application foreground/background state changes. This A
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description            |
+| Name  | Type                                                        | Mandatory| Description            |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
-| type     | 'applicationStateChange'                                     | Yes  | Event type. |
+| type     | 'applicationStateChange'                                     | Yes  | Event type.|
 | callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | Yes  | Callback used to return the result. You can define a callback for switching from the background to the foreground and a callback for switching from the foreground to the background.      |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -435,7 +435,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback)<sup>10+</sup>
+## ApplicationContext.off('applicationStateChange')<sup>10+</sup>
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
@@ -447,16 +447,16 @@ Deregisters all the listeners for application foreground/background state change
 
 **Parameters**
 
-| Name | Type         | Mandatory | Description                |
+| Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| type   | 'applicationStateChange' | Yes  | Event type. |
+| type   | 'applicationStateChange' | Yes  | Event type.|
 | callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result. You can define a callback for switching from the background to the foreground and a callback for switching from the foreground to the background.      |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401 | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
@@ -490,15 +490,15 @@ Obtains information about the running processes. This API uses a promise to retu
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback. |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
@@ -534,15 +534,15 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 **Parameters**
 
-| Name       | Type    | Mandatory | Description                      |
+| Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | Yes  | Callback used to return the information about the running processes. |
+| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | Yes  | Callback used to return the information about the running processes.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
@@ -579,15 +579,15 @@ Kills all the processes where the application is located. This API uses a promis
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise that returns no value. |
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
@@ -617,15 +617,15 @@ Kills all the processes where the application is located. This API uses an async
 
 **Parameters**
 
-| Name       | Type    | Mandatory | Description                      |
+| Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<void\>   | Yes  | Callback used to return the result. If all the processes are killed, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback    | AsyncCallback\<void\>   | Yes  | Callback used to return the result. If all the processes are killed, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
@@ -658,15 +658,15 @@ Sets the color mode for the application.
 
 **Parameters**
 
-| Name | Type         | Mandatory | Description                |
+| Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | Yes  | Target color mode, including dark mode, light mode, and system theme mode (no setting). |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | Yes  | Target color mode, including dark mode, light mode, and system theme mode (no setting).|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
@@ -696,7 +696,7 @@ Sets the language for the application. This API can be called only by the main t
 
 **Parameters**
 
-| Name | Type         | Mandatory | Description                |
+| Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
 | language | string | Yes  | Target language. The list of supported languages can be obtained by calling [getSystemLanguages()](../apis-localization-kit/js-apis-i18n.md#getsystemlanguages9). |
 
@@ -704,7 +704,7 @@ Sets the language for the application. This API can be called only by the main t
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
@@ -737,15 +737,15 @@ Clears up the application data and revokes the permissions that the application 
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise that returns no value. |
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
@@ -776,7 +776,7 @@ Clears up the application data and revokes the permissions that the application 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
-| Name       | Type    | Mandatory | Description                      |
+| Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the application data is cleared up, **error** is **undefined**; otherwise, **error** is an error object. |
 
@@ -784,7 +784,7 @@ Clears up the application data and revokes the permissions that the application 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
@@ -818,15 +818,15 @@ Restarts the application and starts the specified UIAbility. The **onDestroy** c
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
-| Name       | Type    | Mandatory | Description                      |
+| Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes | Want information about the UIAbility to start. No verification is performed on the bundle name passed in. |
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the UIAbility to start. No verification is performed on the bundle name passed in.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | -------- |
 | 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |

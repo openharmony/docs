@@ -1980,7 +1980,7 @@ export default class EntryAbility extends UIAbility {
 ## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
 moveAbilityToBackground(): Promise\<void>
 
-Moves this ability from the foreground to the background. This API uses a promise to return the result. It can be called only by the main thread.
+Moves this ability from the foreground to the background. This API uses a promise to return the result. It can be called only by the main thread.<br/><!--RP1-->This API applies only to devices whose **deviceTypes** is **default**.<!--RP1End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

@@ -875,7 +875,7 @@ export default class MainAbility extends UIAbility {
 }
 ```
 
-### Caller.on
+### Caller.on('release')
 
 on(type: 'release', callback: OnReleaseCallback): void
 
@@ -930,7 +930,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.off
+### Caller.off('release')
 
 off(type: 'release', callback: OnReleaseCallback): void
 
@@ -986,7 +986,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.off
+### Caller.off('release')
 
 off(type: 'release'): void
 

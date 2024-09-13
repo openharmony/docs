@@ -66,12 +66,12 @@
    ```ts
    let subscriber:notificationSubscribe.NotificationSubscriber = {
      onConsume: (data:notificationSubscribe.SubscribeCallbackData) => {
-       let req = data.request;
-       console.info(`onConsume callback. req.id: ${req.id}`);
+       let req: notificationManager.NotificationRequest = data.request;
+       hilog.info(DOMAIN_NUMBER, TAG, `onConsume callback. req.id: ${req.id}`);
      },
      onCancel: (data:notificationSubscribe.SubscribeCallbackData) => {
-       let req = data.request;
-       console.info(`onCancel callback. req.id: ${req.id}`);
+       let req: notificationManager.NotificationRequest = data.request;
+       hilog.info(DOMAIN_NUMBER, TAG, `onCancel callback. req.id: ${req.id}`);
      },
      onUpdate: (data) => {
        console.info(`onUpdate callback. req.id: ${data.sortedHashCode}`);
