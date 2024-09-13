@@ -349,6 +349,8 @@ getPointerStyleSync(windowId: number): PointerStyle
 **示例**：
 
 ```js
+import { pointer } from '@kit.InputKit';
+
 let windowId = -1;
 try {
   let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
