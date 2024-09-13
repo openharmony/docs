@@ -798,6 +798,22 @@ fontWeight(weight: number | FontWeight | string, options?: FontSettingOptions)
 | weight | [FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是  | 设置文本字重。 |
 | options | [FontSettingOptions](ts-text-common.md#fontsettingoptions12对象说明) | 否  | 设置字体配置项。 |
 
+### enableHapticFeedback<sup>13+</sup>
+
+enableHapticFeedback(isEnabled: boolean)
+
+设置是否开启触控反馈。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+
 ## TextSpanType<sup>11+</sup>枚举说明
 
 [Span](ts-basic-components-span.md)类型信息。
