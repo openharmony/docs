@@ -237,6 +237,7 @@
       - [elementName](js-apis-bundle-ElementName.md)
       - [hapModuleInfo](js-apis-bundle-HapModuleInfo.md)
       - [moduleInfo](js-apis-bundle-ModuleInfo.md)
+      - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
       <!--Del-->
       - [bundleInstaller(系统接口)](js-apis-bundle-BundleInstaller-sys.md)
       - [bundleStatusCallback(系统接口)](js-apis-Bundle-BundleStatusCallback-sys.md)
