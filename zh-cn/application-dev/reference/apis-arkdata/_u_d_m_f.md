@@ -185,7 +185,7 @@
 | typedef struct [OH_UdsHtml](#oh_udshtml) [OH_UdsHtml](#oh_udshtml) | 描述超文本标记语言类型的统一数据结构。 | 
 | typedef struct [OH_UdsAppItem](#oh_udsappitem) [OH_UdsAppItem](#oh_udsappitem) | 描述桌面图标类型的统一数据结构。 | 
 | typedef struct [OH_UdsFileUri](#oh_udsfileuri) [OH_UdsFileUri](#oh_udsfileuri) | 描述文件Uri类型的统一数据结构。 | 
-| typedef struct [OH_UdsPixelMap](#oh_udspixelmap )[OH_UdsPixelMap](#oh_udspixelmap) | 描述像素图片类型的统一数据结构。 | 
+| typedef struct [OH_UdsPixelMap](#oh_udspixelmap) [OH_UdsPixelMap](#oh_udspixelmap) | 描述像素图片类型的统一数据结构。 | 
 | typedef struct [OH_UdsArrayBuffer](#oh_udsarraybuffer) [OH_UdsArrayBuffer](#oh_udsarraybuffer) | 描述ArrayBuffer类型的统一数据结构。 | 
 | typedef struct [OH_Utd](#oh_utd) [OH_Utd](#oh_utd) | 统一数据类型描述符。 | 
 
