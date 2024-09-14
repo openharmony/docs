@@ -84,6 +84,22 @@ app.json5配置文件包含以下标签。
 | cloudFileSyncEnabled | 标识当前应用是否启用端云文件同步能力。 <br/>-&nbsp;true：当前应用启用端云文件同步能力。<br/>-&nbsp;false：当前应用不启用端云文件同步能力。 | 布尔值 | 该标签可缺省，缺省值为false。  |
 | configuration | 标识当前应用字体大小跟随系统配置的能力。<br/>该标签是一个profile文件资源，用于指定描述应用字体大小跟随系统变更的配置文件。| 字符串 | 该标签可缺省，跟随系统默认设定。 |
 
+## icon标签
+
+此标签标识[应用的图标](../application-models/application-component-configuration-stage.md)。该图标可以分层处理，在AppScope\resources\base\media目录下，创建一个json文件（例如：test.json），将前景资源和背景资源配置到到该文件。
+
+icon标签示例：
+
+```bash
+{
+  "test"：
+    {
+      "background":"$media:background", //背景资源
+      "foreground":"$media:foreground" //前景资源 
+    }    
+}
+```
+
 ## appEnvironments标签
 
 此标签标识应用配置的环境变量。
