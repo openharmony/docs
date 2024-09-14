@@ -576,10 +576,11 @@
       - 后台任务管理
       <!--DelEnd-->
         - [后台任务总体概述](task-management/background-task-overview.md)
-        - [短时任务](task-management/transient-task.md)
-        - [长时任务](task-management/continuous-task.md)
-        - [延迟任务](task-management/work-scheduler.md)
-        - [代理提醒](task-management/agent-powered-reminder.md)
+        - [短时任务(ArkTS)](task-management/transient-task.md)
+        - [短时任务(C/C++)](task-management/native-transient-task.md)
+        - [长时任务(ArkTS)](task-management/continuous-task.md)
+        - [延迟任务(ArkTS)](task-management/work-scheduler.md)
+        - [代理提醒(ArkTS)](task-management/agent-powered-reminder.md)
         <!--Del-->
         - [能效资源申请（仅对系统特权应用开放）](task-management/efficiency-resource-request.md)
         <!--DelEnd-->
@@ -662,13 +663,11 @@
       - [服务卡片开发指导（FA模型）](form/widget-development-fa.md)
     - IME Kit（输入法开发服务）<!--ime-kit-->
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
-      - [实现一个输入法应用](inputmethod/inputmethod_application_guide.md)
-      - [在自绘编辑框中使用输入法](inputmethod/custom_input_box_guide.md)
-      - [切换输入法应用](inputmethod/switch_inputmehod_guide.md)
-      - [输入法子类型开发指南](inputmethod/input_method_subtype_guide.md)
-      <!--Del-->
-      - [自绘编辑框开发指导 (C/C++)](inputmethod/native_custom_input_box_guide.md)
-      <!--DelEnd-->
+      - [实现一个输入法应用](inputmethod/inputmethod-application-guide.md)
+      - [在自绘编辑框中使用输入法](inputmethod/use-inputmethod-in-custom-edit-box.md)
+      - [切换输入法应用](inputmethod/switch-inputmehod-guide.md)
+      - [输入法子类型开发指南](inputmethod/input-method-subtype-guide.md)
+      - [自绘编辑框开发指导 (C/C++)](inputmethod/native-custom-input-box-guide.md)
     - IPC Kit（进程间通信服务）<!--ipc-kit-->
       - [IPC Kit简介](ipc/ipc-rpc-overview.md)
       - [IPC与RPC通信开发指导](ipc/ipc-rpc-development-guideline.md)
@@ -1029,6 +1028,7 @@
         <!--DelEnd-->
         - 剪贴板服务<!--pasteboard-->
           - [使用剪贴板进行复制粘贴](basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md)
+          - [使用剪贴板进行复制粘贴（C/C++）](basic-services/pasteboard/native-use-pasteboard.md)
           - [使用剪贴板的延迟复制粘贴功能](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
           - [申请访问剪贴板权限](basic-services/pasteboard/get-pastedata-permission-guidelines.md)
         - 上传下载<!--upload-download-->
@@ -1216,6 +1216,7 @@
       - 本地媒体会话<!--local-avsession-->
         - [本地媒体会话概述](media/avsession/local-avsession-overview.md)
         - [媒体会话提供方](media/avsession/using-avsession-developer.md)
+        - [媒体会话提供方(C/C++)](media/avsession/using-ohavsession-developer.md)
         - [应用接入AVSession场景介绍](media/avsession/avsession-access-scene.md)
         <!--Del-->
         - [媒体会话控制方(仅对系统应用开放)](media/avsession/using-avsession-controller.md)
@@ -1471,8 +1472,6 @@
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
           - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](napi/use-call-threadsafe-function-with-priority.md)
-          - [使用Node-API接口进行错误处理开发](napi/use-napi-about-error.md)
-          - [使用Node-API扩展能力接口](napi/use-napi-about-extension.md)
         - [Node-API常见问题](napi/use-napi-faqs.md)
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
@@ -1818,6 +1817,7 @@
           - [Data](reference/apis-arkdata/_data.md)
           - [RDB](reference/apis-arkdata/_r_d_b.md)
           - [UDMF](reference/apis-arkdata/_u_d_m_f.md)
+          - [Preferences](reference/apis-arkdata/_preferences.md)
         - 头文件<!--arkdata-headerfile-->
           - [data_asset.h](reference/apis-arkdata/data__asset_8h.md)
           - [oh_cursor.h](reference/apis-arkdata/oh__cursor_8h.md)
@@ -1831,6 +1831,9 @@
           - [udmf_meta.h](reference/apis-arkdata/udmf__meta_8h.md)
           - [uds.h](reference/apis-arkdata/uds_8h.md)
           - [utd.h](reference/apis-arkdata/utd_8h.md)
+          - [oh_preferences.h](reference/apis-arkdata/oh__preferences_8h.md)
+          - [oh_preferences_option.h](reference/apis-arkdata/oh__preferences__option_8h.md)
+          - [oh_preferences_value.h](reference/apis-arkdata/oh__preferences__value_8h.md)
         - 结构体<!--arkdata-struct-->
           - [OH_Cursor](reference/apis-arkdata/_o_h___cursor.md)
           - [OH_Predicates](reference/apis-arkdata/_o_h___predicates.md)
@@ -2583,6 +2586,14 @@
           - [@ohos.backgroundTaskManager (后台任务管理)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager-sys.md)
           - [@ohos.bundleState (设备使用信息统计)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-deviceUsageStatistics-sys.md)
           <!--DelEnd-->
+      - C API<!--background-tasks-c-->
+        - 模块<!--background-tasks-module-->
+          - [TransientTask](reference/apis-backgroundtasks-kit/_transient_task.md)
+        - 头文件<!--background-tasks-headerfile-->
+          - [transient_task_api.h](reference/apis-backgroundtasks-kit/transient__task__api_8h.md)
+          - [transient_task_type.h](reference/apis-backgroundtasks-kit/transient__task__type_8h.md)
+        - 结构体<!--background-tasks-struct-->
+          - [TransientTask_DelaySuspendInfo](reference/apis-backgroundtasks-kit/_transient_task___delay_suspend_info.md)
       - 错误码<!--background-tasks-arkts-errcode-->
         - [backgroundTaskManager错误码](reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md)
         - [DeviceUsageStatistics错误码](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
@@ -3006,6 +3017,16 @@
           - [@ohos.telephony.sms (短信服务)（系统接口）](reference/apis-telephony-kit/js-apis-sms-sys.md)
           - [@ohos.telephony.vcard (VCard模块)（系统接口）](reference/apis-telephony-kit/js-apis-vcard-sys.md)
           <!--DelEnd-->
+        - C API<!--telephony-c-->
+          - 模块<!--telephony-module-->
+            - [Telephony Data](reference/apis-telephony-kit/ndk-apis-telephony-data.md)
+            - [Telephony Radio](reference/apis-telephony-kit/ndk-apis-telephony-radio.md)
+          - 头文件<!--telephony-headerfile-->
+            - [telephony_data.h](reference/apis-telephony-kit/telephony__data_8h.md)
+            - [telephony_radio.h](reference/apis-telephony-kit/telephony__radio_8h.md)
+            - [telephony_radio_type.h](reference/apis-telephony-kit/telephony__radio__type_8h.md)
+          - 结构体<!--telephony-struct-->
+            - [Telephony_NetworkState](reference/apis-telephony-kit/_telephony__network_state.md)
         - 错误码<!--telephony-arkts-errcode-->
           - [电话子系统错误码](reference/apis-telephony-kit/errorcode-telephony.md)
     - 基础功能<!--system-basicfun-api-->
@@ -3105,16 +3126,30 @@
             - [@ohos.systemTime(系统时间、时区)](reference/apis-basic-services-kit/js-apis-system-time.md)
         - C API<!--basic-services-c-->
           - 模块<!--basic-services-module-->
+            - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
+            - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
+            - [Pasteboard](reference/apis-basic-services-kit/_pasteboard.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
           - 头文件<!--basic-services-headerfile-->
+            - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
+            - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
+            - [oh_pasteboard.h](reference/apis-basic-services-kit/oh__pasteboard_8h.md)
+            - [oh_pasteboard_err_code.h](reference/apis-basic-services-kit/oh__pasteboard__err__code_8h.md)
             - [os_account.h](reference/apis-basic-services-kit/os__account_8h.md)
             - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
+            - [ohprint.h](reference/apis-basic-services-kit/ohprint_8h.md)
             - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
             - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
+          - 结构体<!--basic-services-struct-->
+            - [Print_Margin](reference/apis-basic-services-kit/_print___margin.md)
+            - [Print_PageSize](reference/apis-basic-services-kit/_print___page_size.md)
+            - [Print_PrintAttributes](reference/apis-basic-services-kit/_print___print_attributes.md)
+            - [Print_PrintDocCallback](reference/apis-basic-services-kit/_print___print_doc_callback.md)
+            - [Print_Range](reference/apis-basic-services-kit/_print___range.md)
         - 错误码<!--basic-services-arkts-errcode-->
           - [USB服务错误码](reference/apis-basic-services-kit/errorcode-usb.md)
           - [RunningLock锁错误码](reference/apis-basic-services-kit/errorcode-runninglock.md)
@@ -3194,7 +3229,8 @@
                 - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
                 - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
             - 结构体<!--input-struct-->
-                - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
+              - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
+              - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
         - 错误码<!--input-arkts-errcode-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
       - MDM Kit（企业设备管理服务）<!--mdm-api-->
@@ -3460,6 +3496,15 @@
         <!--DelEnd-->
       - ArkTS组件<!--avsession-comp-->
         - [@ohos.multimedia.avCastPicker (投播组件)](reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md)
+      - C API<!--avsession-c-->
+        - 模块<!--avsession-module-->
+          - [OHAVSession](reference/apis-avsession-kit/_o_h_a_v_session.md)
+        - 头文件<!--avsession-headerfile-->
+          - [native_avmetadata.h](reference/apis-avsession-kit/native__avmetadata_8h.md)
+          - [native_avsession.h](reference/apis-avsession-kit/native__avsession_8h.md)
+          - [native_avsession_errors.h](reference/apis-avsession-kit/native__avsession__errors_8h.md)
+        - 结构体<!--avsession-struct-->
+          - [AVSession_PlaybackPosition](reference/apis-avsession-kit/_a_v_session___playback_position.md)
       - 错误码<!--avsession-arkts-errcode-->
         - [媒体会话管理错误码](reference/apis-avsession-kit/errorcode-avsession.md)
     - Camera Kit（相机服务）<!--camera-api-->
@@ -3811,6 +3856,14 @@
         - 已停止维护的接口<!--location-arkts-dep-->
           - [@ohos.geolocation (位置服务)](reference/apis-location-kit/js-apis-geolocation.md)
           - [@system.geolocation (地理位置)](reference/apis-location-kit/js-apis-system-location.md)
+      - C API<!--location-c-->
+        - 模块<!--location-module-->
+          - [Location](reference/apis-location-kit/_location.md)
+        - 头文件<!--location-headerfile-->
+          - [oh_location.h](reference/apis-location-kit/oh__location_8h.md)
+          - [oh_location_type.h](reference/apis-location-kit/oh__location__type_8h.md)
+        - 结构体<!--location-struct-->
+          - [Location_BasicInfo](reference/apis-location-kit/_location___basic_info.md)
       - 错误码<!--location-arkts-errcode-->
         - [位置服务错误码](reference/apis-location-kit/errorcode-geoLocationManager.md)
     - Notification Kit（用户通知服务）<!--notification-api-->
