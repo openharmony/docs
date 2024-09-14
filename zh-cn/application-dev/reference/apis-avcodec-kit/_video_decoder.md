@@ -97,13 +97,16 @@ AV_ERR_OK：执行成功。
 
 AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
 
-AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针，或输入format参数不支持。
+AV_ERR_INVALID_VAL：
+
+    1. 输入的codec指针为非解码器实例，或者为空指针；
+    2. 输入format参数不支持。
 
 AV_ERR_UNKNOWN：未知错误。
 
 AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。 
 
-AV_ERR_INVALID_STATE：本接口必须在OH_VideoDecoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码；
+AV_ERR_INVALID_STATE：本接口必须在OH_VideoDecoder_Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
 
 AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：不支持色彩空间转换功能。
 
@@ -151,7 +154,7 @@ OH_AVCodec* OH_VideoDecoder_CreateByName (const char *name)
 
 **返回：**
 
-返回指向视频解码实例的指针。当输入的解码器名称不支持或者内存资源耗尽时，返回空指针。
+返回指向视频解码实例的指针。当输入的解码器名称不支持或者内存资源耗尽时，返回NULL。
 
 
 ### OH_VideoDecoder_Destroy()
@@ -249,7 +252,10 @@ AV_ERR_OK：执行成功。
 
 AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
 
-AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针，index非法或者连续给同一个index，该错误不影响后续解码流程。
+AV_ERR_INVALID_VAL：
+
+    1. 输入的codec指针为非解码器实例，或者为空指针；
+    2. index非法或者连续给同一个index，该错误不影响后续解码流程。
 
 AV_ERR_UNKNOWN：未知错误。
 
@@ -341,11 +347,12 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
-
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
-AV_ERR_OPERATE_NOT_PERMIT：配置了色彩空间转换功能，但解码器处于buffer模式。
+AV_ERR_OPERATE_NOT_PERMIT：
+
+    1. 内部执行错误；
+    2. 配置了色彩空间转换功能，但解码器处于Buffer模式。
 
 
 ### OH_VideoDecoder_PushInputBuffer()
@@ -566,11 +573,16 @@ OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig (OH_AVCodec *codec, MediaKeySes
 
 AV_ERR_OK：操作成功。
 
-AV_ERR_OPERATE_NOT_PERMIT：解码服务进程异常，或媒体密钥会话服务处于错误状态。
+AV_ERR_OPERATE_NOT_PERMIT：
+    
+    1. 内部执行错误；
+    2. 解码服务进程异常；
+    3. 媒体密钥会话服务处于错误状态。
 
-AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例或为空指针，或者mediaKeySession为nullptr或无效。
-
-AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
+AV_ERR_INVALID_VAL：
+   
+    1. 输入的codec指针为非解码器实例或为空指针；
+    2. mediaKeySession为nullptr或无效。
 
 AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
 
@@ -604,7 +616,10 @@ AV_ERR_OK：执行成功。
 
 AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
 
-AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针，或输入format参数不支持。
+AV_ERR_INVALID_VAL：
+
+    1. 输入的codec指针为非解码器实例，或者为空指针；
+    2. 输入format参数不支持。
 
 AV_ERR_UNKNOWN：未知错误。
 
@@ -646,7 +661,10 @@ AV_ERR_NO_MEMORY：输入的解码器实例已经销毁。
 
 AV_ERR_OPERATE_NOT_PERMIT：本接口仅支持在Surface模式下调用, 如果在Buffer模式调用, 则返回此错误码。
 
-AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指针，window为空指针。
+AV_ERR_INVALID_VAL：
+
+    1. 输入的codec指针为非解码器实例，或者为空指针；
+    2. window为空指针。
 
 AV_ERR_UNKNOWN：未知错误。
 
@@ -683,11 +701,12 @@ AV_ERR_INVALID_VAL：输入的codec指针为非解码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
-
 AV_ERR_INVALID_STATE：解码器状态不支持调用本接口时调用。
 
-AV_ERR_OPERATE_NOT_PERMIT：视频色彩空间转换功能已配置，但是没有调用Prepare接口。
+AV_ERR_OPERATE_NOT_PERMIT：
+
+    1. 内部执行错误；
+    2. 视频色彩空间转换功能已配置，但是没有调用OH_VideoDecoder_Prepare接口。
 
 
 ### OH_VideoDecoder_Stop()
@@ -697,7 +716,7 @@ OH_AVErrCode OH_VideoDecoder_Stop (OH_AVCodec *codec)
 ```
 **描述**
 
-停止解码器，释放输入输出buffer。停止后，可以通过调用OH_VideoDecoder_Start接口重新进入Started状态。
+停止解码器，释放输入输出buffer。停止后，可以通过调用OH_VideoDecoder_Start接口重新进入Executing状态。
 
 需要注意的是，如果编解码器特定数据以前已输入到解码器，则需要再次输入。
 
@@ -753,7 +772,7 @@ OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCall
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
 | callback | 所有回调函数的集合，请参阅[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)。  | 
-| userData | 用户特定数据。  | 
+| userData | 用户执行回调所依赖的数据。  |
 
 **返回：**
 
@@ -839,8 +858,8 @@ OH_AVErrCode OH_VideoDecoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
-| index | 输入buffer对应的索引值。  | 
-| attr | 描述缓冲区中包含的数据的信息。由[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)给出。  |
+| index | 输入buffer对应的索引值。由[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)给出。  |
+| attr | 描述缓冲区中包含的数据的信息。  |
 
 **返回：**
 
