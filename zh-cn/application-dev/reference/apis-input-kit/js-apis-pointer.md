@@ -351,7 +351,7 @@ getPointerStyleSync(windowId: number): PointerStyle
 ```js
 import { pointer } from '@kit.InputKit';
 
-let windowId = -1;
+let windowId = -1; // 默认ID，用于获取全局鼠标样式。
 try {
   let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
   console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
