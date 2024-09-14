@@ -1,6 +1,6 @@
 # Media Library Kit子系统Changelog
 
-## cl.medialibrary.1 @ohos.file.photoAccessHelper相册资产操作行为相关接口变更
+## cl.medialibrary.1 @ohos.file.photoAccessHelper相册添加资产、移除资产等操作转变为复制添加资产、删除资产到回收站
 
 **访问级别**
 
