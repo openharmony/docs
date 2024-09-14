@@ -788,8 +788,8 @@ enum Input_Result
 | INPUT_PARAMETER_ERROR  | 参数检查失败&nbsp;&nbsp; | 
 | INPUT_SERVICE_EXCEPTION  | 服务异常&nbsp;&nbsp; | 
 | INPUT_REPEAT_INTERCEPTOR  | 应用创建拦截后，再次执行创建拦截的操作&nbsp;&nbsp; | 
-| INPUT_OCCUPIED_BY_SYSTEM  | 已经被系统应用占用<br/>自从<br/>13 | 
-| INPUT_OCCUPIED_BY_OTHER  | 已经被其他应用占用<br/>自从<br/>13 | 
+| INPUT_OCCUPIED_BY_SYSTEM  | 已经被系统应用占用，**起始版本：** 13 | 
+| INPUT_OCCUPIED_BY_OTHER  | 已经被其他应用占用，**起始版本：** 13 | 
 
 
 ### Input_TouchEventAction
@@ -822,10 +822,10 @@ enum InputEvent_AxisAction
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AXIS_ACTION_CANCEL  | 取消轴输入事件。<br/>自从<br/>12 | 
-| AXIS_ACTION_BEGIN  | 开始轴输入事件。<br/>自从<br/>12 | 
-| AXIS_ACTION_UPDATE  | 轴输入事件中。<br/>自从<br/>12 | 
-| AXIS_ACTION_END  | 结束轴输入事件。<br/>自从<br/>12 | 
+| AXIS_ACTION_CANCEL  | 取消轴输入事件。| 
+| AXIS_ACTION_BEGIN  | 开始轴输入事件。| 
+| AXIS_ACTION_UPDATE  | 轴输入事件中。 | 
+| AXIS_ACTION_END  | 结束轴输入事件。| 
 
 
 ### InputEvent_AxisEventType
@@ -840,8 +840,8 @@ enum InputEvent_AxisEventType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AXIS_EVENT_TYPE_PINCH  | 双指捏合事件，包含AXIS_TYPE_PINCH和AXIS_TYPE_ROTATE两种轴类型。<br/>自从<br/>12 | 
-| AXIS_EVENT_TYPE_SCROLL  | 滚轴事件，包含AXIS_TYPE_SCROLL_VERTICAL和AXIS_TYPE_SCROLL_HORIZONTAL两种轴类型， 其中鼠标滚轮事件仅包含AXIS_TYPE_SCROLL_VERTICAL一种轴类型。<br/>自从<br/>12 | 
+| AXIS_EVENT_TYPE_PINCH  | 双指捏合事件，包含AXIS_TYPE_PINCH和AXIS_TYPE_ROTATE两种轴类型。| 
+| AXIS_EVENT_TYPE_SCROLL  | 滚轴事件，包含AXIS_TYPE_SCROLL_VERTICAL和AXIS_TYPE_SCROLL_HORIZONTAL两种轴类型， 其中鼠标滚轮事件仅包含AXIS_TYPE_SCROLL_VERTICAL一种轴类型。 | 
 
 
 ### InputEvent_AxisType
@@ -856,11 +856,11 @@ enum InputEvent_AxisType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AXIS_TYPE_UNKNOWN  | 未知轴类型，通常作为初始值。<br/>自从<br/>12 | 
-| AXIS_TYPE_SCROLL_VERTICAL  | 垂直滚动轴，当您滚动鼠标滚轮或在触摸板上进行单指或双指滑动时，垂直滚动轴的状态改变。<br/>自从<br/>12 | 
-| AXIS_TYPE_SCROLL_HORIZONTAL  | 水平滚动轴，当您滚动鼠标滚轮或在触摸板上进行双指滑动时，水平滚动轴的状态发生变化。<br/>自从<br/>12 | 
-| AXIS_TYPE_PINCH  | 捏合轴，用于描述触摸板上的双指捏合手势。<br/>自从<br/>12 | 
-| AXIS_TYPE_ROTATE  | 旋转轴，用于描述触摸板上的双指旋转手势。<br/>自从<br/>12 | 
+| AXIS_TYPE_UNKNOWN  | 未知轴类型，通常作为初始值。 | 
+| AXIS_TYPE_SCROLL_VERTICAL  | 垂直滚动轴，当您滚动鼠标滚轮或在触摸板上进行单指或双指滑动时，垂直滚动轴的状态改变。 | 
+| AXIS_TYPE_SCROLL_HORIZONTAL  | 水平滚动轴，当您滚动鼠标滚轮或在触摸板上进行双指滑动时，水平滚动轴的状态发生变化。 | 
+| AXIS_TYPE_PINCH  | 捏合轴，用于描述触摸板上的双指捏合手势。| 
+| AXIS_TYPE_ROTATE  | 旋转轴，用于描述触摸板上的双指旋转手势。 | 
 
 
 ### InputEvent_MouseAxis
@@ -891,9 +891,9 @@ enum InputEvent_SourceType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| SOURCE_TYPE_MOUSE  | 表示输入源生成鼠标光标移动、按钮按下和释放以及滚轮滚动的事件。<br/>自从<br/>12 | 
-| SOURCE_TYPE_TOUCHSCREEN  | 表示输入源产生触摸屏多点触摸事件。<br/>自从<br/>12 | 
-| SOURCE_TYPE_TOUCHPAD  | 表示输入源产生触摸板多点触摸事件。<br/>自从<br/>12 | 
+| SOURCE_TYPE_MOUSE  | 表示输入源生成鼠标光标移动、按钮按下和释放以及滚轮滚动的事件。| 
+| SOURCE_TYPE_TOUCHSCREEN  | 表示输入源产生触摸屏多点触摸事件。| 
+| SOURCE_TYPE_TOUCHPAD  | 表示输入源产生触摸板多点触摸事件。 | 
 
 
 ## 函数说明
