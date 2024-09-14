@@ -151,7 +151,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -194,7 +194,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -252,7 +252,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -269,7 +269,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -287,7 +287,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -304,7 +304,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -320,7 +320,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -334,7 +334,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -348,7 +348,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -365,7 +365,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -386,7 +386,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -403,7 +403,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -420,7 +420,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -438,7 +438,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -454,7 +454,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -471,7 +471,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -489,7 +489,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -505,7 +505,7 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -521,7 +521,7 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -538,7 +538,7 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -554,7 +554,7 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -570,7 +570,7 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -587,7 +587,7 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                |
 | ---- | ------ | ---- | ---- | ----------------------------------- |
@@ -605,7 +605,7 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
@@ -622,7 +622,7 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
@@ -639,7 +639,7 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
