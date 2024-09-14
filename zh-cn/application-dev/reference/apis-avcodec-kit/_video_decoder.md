@@ -69,13 +69,17 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 设置OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY接口时如果当前平台不支持，不报错，走正常解码流程。
 
-| Key                                                                          | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 <td rowspan=1> 备注</td>|
+| Key                                                                          | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
 | -----------------------------------------------------------------------------| -------- | -------- | ------ |
-| OH_MD_KEY_WIDTH                                                              | AV_ERR_OK       | AV_ERR_INVALID_VAL      | AV_ERR_INVALID_VAL <td rowspan=5>建议按照该实例需要支持的最大分辨率来配置，否则可能会出现高于该分辨率的码流解码会触发异常。</td> |
+| OH_MD_KEY_WIDTH                                                              | AV_ERR_OK       | AV_ERR_INVALID_VAL      | AV_ERR_INVALID_VAL  |
 | OH_MD_KEY_HEIGHT                                                             | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
 | OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat)    | AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK      |
 | OH_MD_KEY_FRAME_RATE                                                         | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_OK     |
 | OH_MD_KEY_ROTATION 请参阅[OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation)| AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_OK      |
+
+> **说明：**
+>
+> 建议按照该实例需要支持的最大分辨率来配置，否则可能会出现高于该分辨率的码流解码会触发异常。该设置直接影响应用的内存使用情况。
 
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
@@ -140,7 +144,7 @@ OH_AVCodec* OH_VideoDecoder_CreateByMime (const char *mime)
 OH_AVCodec* OH_VideoDecoder_CreateByName (const char *name)
 ```
 **描述**
-通过视频解码器名称创建视频解码器实例。使用此接口的前提是知道解码器的确切名称，解码器的名称可以通过能力查询获取。
+根据视频解码器名称创建视频解码器实例。使用此接口的前提是知道解码器的确切名称，解码器的名称可以通过能力查询获取。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 
