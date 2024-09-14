@@ -6793,6 +6793,14 @@ prepare(config: AudioRecorderConfig): void
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | config | [AudioRecorderConfig](#audiorecorderconfigdeprecated) | 是   | 配置录音的相关参数，包括音频输出URI、编码格式、采样率、声道数、输出格式等。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 201      | Permission denied     |
+
 **示例：**
 
 ```ts
