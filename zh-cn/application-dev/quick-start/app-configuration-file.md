@@ -90,7 +90,7 @@ app.json5配置文件包含以下标签。
 
 icon标签示例：
 
-```bash
+```json
 {
   "test"：
     {
