@@ -3,7 +3,7 @@
 
 ## 概述
 
-输入设备的轴事件结构和枚举。 \@kit InputKit
+输入设备的轴事件结构和枚举。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
