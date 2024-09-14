@@ -328,9 +328,9 @@ getPointerStyleSync(windowId: number): PointerStyle
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明     |
-| -------- | ------ | ---- | -------- |
-| windowId | number | 是   | 窗口id。 |
+| 参数名     | 类型   | 必填 | 说明     | 默认值     | 默认值说明     |
+| -------- | ------ | ---- | -------- | -------- | -------- |
+| windowId | number | 是   | 窗口id | -1 | 默认ID，用于获取全局鼠标样式。 |
 
 **返回值**：
 
@@ -351,7 +351,7 @@ getPointerStyleSync(windowId: number): PointerStyle
 ```js
 import { pointer } from '@kit.InputKit';
 
-let windowId = -1; // 默认ID，用于获取全局鼠标样式。
+let windowId = -1;
 try {
   let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
   console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
