@@ -52,6 +52,7 @@
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
+#include <string.h>
 
 static OH_Crypto_ErrCode doTestAesCcm()
 {
@@ -71,9 +72,8 @@ static OH_Crypto_ErrCode doTestAesCcm()
     Crypto_DataBlob aadData = {.data = aad, .len = sizeof(aad)};
     Crypto_DataBlob tagData = {.data = tag, .len = sizeof(tag)};
     Crypto_DataBlob tagOutPut = {.data = nullptr, .len = 0};
-    uint8_t plainText[] = "this is test!";
-    Crypto_DataBlob msgBlob = {.data = reinterpret_cast<uint8_t *>(plainText), .len = 13};
-
+    char *plainText = const_cast<char *>("this is test!");
+    Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
     // 生成对称密钥
     OH_Crypto_ErrCode ret;
     ret = OH_CryptoSymKeyGenerator_Create("AES128", &genCtx);
