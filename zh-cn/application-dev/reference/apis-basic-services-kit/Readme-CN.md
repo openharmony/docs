@@ -98,6 +98,7 @@
     - [OH_Print](_o_h___print.md)
     - [Pasteboard](_pasteboard.md)
     - [TimeService](_time_service.md)
+    - [CommonEvent](capi-common-event.md)
   - 头文件
     - [oh_commonevent.h](oh_commonevent_8h.md)
     - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)
