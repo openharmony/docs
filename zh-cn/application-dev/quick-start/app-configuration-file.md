@@ -110,8 +110,7 @@ icon标签示例：
 
 ```json
 {
-  "app":
-  {
+  "app":{
     "icon":"$media:layered-image"
   }
 }
