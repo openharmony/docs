@@ -330,7 +330,7 @@ getPointerStyleSync(windowId: number): PointerStyle
 
 | 参数名     | 类型   | 必填 | 说明     |
 | -------- | ------ | ---- | -------- |
-| windowId | number | 是   | 窗口id。 |
+| windowId | number | 是   | 窗口id。<br>默认值为-1，表示获取全局的鼠标样式。 |
 
 **返回值**：
 
