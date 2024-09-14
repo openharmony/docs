@@ -95,6 +95,7 @@
     - [CommonEvent](capi-common-event.md)
     - [OsAccount](_os_account.md)
     - [OH_Scan](c-apis-scan.md)
+    - [OH_Print](_o_h___print.md)
     - [Pasteboard](_pasteboard.md)
     - [TimeService](_time_service.md)
   - 头文件
@@ -104,7 +105,14 @@
     - [oh_pasteboard_err_code.h](oh__pasteboard__err__code_8h.md)
     - [os_account.h](os__account_8h.md)
     - [os_account_common.h](os__account__common_8h.md)
+    - [ohprint.h](ohprint_8h.md)
     - [time_service.h](time__service_8h.md)
+  - 结构体
+    - [Print_Margin](_print___margin.md)
+    - [Print_PageSize](_print___page_size.md)
+    - [Print_PrintAttributes](_print___print_attributes.md)
+    - [Print_PrintDocCallback](_print___print_doc_callback.md)
+    - [Print_Range](_print___range.md)
 - 错误码
   - [USB服务错误码](errorcode-usb.md)
   - [RunningLock锁错误码](errorcode-runninglock.md)
