@@ -106,6 +106,17 @@ app.json5配置文件包含以下标签。
 }
 ```
 
+icon标签示例：
+
+```json
+{
+  "app":
+  {
+    "icon":"$media:layered-image"
+  }
+}
+```
+
 ## appEnvironments标签
 
 此标签标识应用配置的环境变量。
