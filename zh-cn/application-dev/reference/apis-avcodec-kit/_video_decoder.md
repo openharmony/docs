@@ -776,7 +776,7 @@ OH_AVErrCode OH_VideoDecoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCall
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
 | callback | 所有回调函数的集合，请参阅[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 用户执行回调所依赖的数据。  |
 
 **返回：**
 
@@ -862,7 +862,7 @@ OH_AVErrCode OH_VideoDecoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  | 
-| index | 输入buffer对应的索引值。由[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)给出。  | 
+| index | 输入buffer对应的索引值。由[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)给出。  |
 | attr | 描述缓冲区中包含的数据的信息。  |
 
 **返回：**
