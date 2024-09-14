@@ -2086,7 +2086,7 @@ function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profi
 
 ### getPreviewRotation<sup>12+</sup>
 
-getPreviewRotation(imageRotation: ImageRotation): ImageRotation
+getPreviewRotation(displayRotation: number): ImageRotation
 
 获取预览旋转角度。
 
@@ -2100,7 +2100,7 @@ getPreviewRotation(imageRotation: ImageRotation): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation)  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
+| displayRotation | number  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
 
 **返回值：**
 
@@ -2134,7 +2134,7 @@ function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotati
 }
 ```
 ### setPreviewRotation<sup>12+</sup>
-setPreviewRotation(previewRotation: Imagerotation, isDisplayLocked?: boolean): void
+setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): void
 
 设置预览旋转角度。
 
@@ -3203,7 +3203,7 @@ function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile |
 ```
 ### getPhotoRotation<sup>12+</sup>
 
-getPhotoRotation(imageRotation: ImageRotation): ImageRotation
+getPhotoRotation(deviceDegree: number): ImageRotation
 
 获取拍照旋转角度。
 
@@ -3217,7 +3217,7 @@ getPhotoRotation(imageRotation: ImageRotation): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation) | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度)|
+| deviceDegree | number | 是   | 设备旋转角度 |
 
 **返回值：**
 
@@ -3734,7 +3734,7 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
 
 ### getVideoRotation<sup>12+</sup>
 
-getVideoRotation(imageRotation: ImageRotation): ImageRotation
+getVideoRotation(deviceDegree: number): ImageRotation
 
 获取录像旋转角度。
 
@@ -3748,7 +3748,7 @@ getVideoRotation(imageRotation: ImageRotation): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation)  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
+| deviceDegree | number | 是   | 设备旋转角度 |
 
 **返回值：**
 
@@ -7988,7 +7988,7 @@ VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 ### canPreconfig<sup>12+</sup>
 
-canPreconfig(preconfigType: PreconfigType), preconfigRatio?: PreconfigRatio): boolean
+canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
 查询当前Session是否支持指定的与配置类型。
 
