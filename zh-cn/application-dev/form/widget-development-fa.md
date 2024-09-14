@@ -80,7 +80,7 @@ FormProvider类有如下API接口，具体的API介绍详见[接口文档](../re
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData):&nbsp;Promise&lt;void&gt;; | 更新指定的卡片，以promise方式返回。 |
 
 
-formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formBindingData.md)。
+FormBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formBindingData.md)。
 
 
 | 接口名 | 描述 |
