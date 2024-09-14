@@ -7685,7 +7685,7 @@ avScreenCaptureRecorder.startRecording().then(() => {
 })
 ```
 
-### stopRecording+</sup>
+### stopRecording<sup>12+</sup>
 
 stopRecording(): Promise\<void>
 
@@ -7798,7 +7798,7 @@ avScreenCaptureRecorder.setMicEnabled(true).then(() => {
 })
 ```
 
-### release+</sup>
+### release<sup>12+</sup>
 
 release(): Promise\<void>
 
