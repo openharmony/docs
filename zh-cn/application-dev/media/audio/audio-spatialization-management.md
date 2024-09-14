@@ -118,8 +118,8 @@
 
 系统应用开发者可以通过[setSpatializationEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setspatializationenabled12)接口开启/关闭指定设备的空间音频渲染效果，该接口需要传递两个参数：AudioDeviceDescriptor和enabled。
 
-    AudioDeviceDescriptor：用于指定音频设备。建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。
-    enabled：布尔值类型，用于控制指定设备的空间音频渲染开关。入参为true时为开启空间音频渲染，入参为false时为关闭空间音频渲染。
+AudioDeviceDescriptor：用于指定音频设备。建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。
+enabled：布尔值类型，用于控制指定设备的空间音频渲染开关。入参为true时为开启空间音频渲染，入参为false时为关闭空间音频渲染。
 
 在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
@@ -208,8 +208,8 @@
 
 系统应用开发者可以通过[setHeadTrackingEnabled](../../reference/apis-audio-kit/js-apis-audio-sys.md#setheadtrackingenabled12)接口开启/关闭指定设备的空间音频渲染效果，该接口需要传递两个参数：AudioDeviceDescriptor和enabled。
 
-    AudioDeviceDescriptor：用于指定音频设备。建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。
-    enabled：布尔值类型，用于控制指定设备的头动跟踪开关。入参为true时为开启头动跟踪，入参为false时为关闭头动跟踪。
+AudioDeviceDescriptor：用于指定音频设备。建议通过音频框架中其他接口来获取当前已连接设备或当前发声设备的AudioDeviceDescriptor。AudioDeviceDescriptor的具体信息可以参考[AudioDeviceDescriptor](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)。
+enabled：布尔值类型，用于控制指定设备的头动跟踪开关。入参为true时为开启头动跟踪，入参为false时为关闭头动跟踪。
 
 在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
