@@ -14,7 +14,7 @@ import {
   PhotoPickerComponent, PickerController, PickerOptions,
   DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
-  SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange
+  SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement
 } from '@ohos.file.PhotoPickerComponent';
 ```
 
@@ -73,18 +73,20 @@ Picker配置选项。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称                     | 类型                                      | 必填  | 说明   |
-|-------------------------|-----------------------------------------|-----|--------|
-| checkBoxColor                 | string                                  | 否   | 勾选框的背景色。格式为8位十六进制颜色代码。                               |
-| backgroundColor               | string                                  | 否   | picker宫格页面背景色。格式为8位十六进制颜色代码。                         |
-| isRepeatSelectSupported       | boolean                                 | 否   | 是否支持单张图片重复选择。true表示支持。                               |
-| checkboxTextColor             | string                                  | 否   | 勾选框内文本颜色。格式为8位十六进制颜色代码。 （该能力暂不支持）                             |
-| photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | 否   | 大图背景颜色。包括跟随系统、浅色模式以及深色模式，默认为跟随系统。                |
-| maxSelectedReminderMode | [ReminderMode](#remindermode)           | 否   | 选择数量达到最大时的提示方式。包括弹toast提示、不提示以及蒙层提示，默认为弹toast提示。 |
-| orientation                   | [PickerOrientation](#pickerorientation) | 否   | 宫格页面滑动预览方向，包括水平和竖直两个方向，默认为竖直方向。（该能力暂不支持）                  |
-| selectMode                    | [SelectMode](#selectmode)               | 否   | 选择模式。包括多选和单选，默认为多选。                              |
-| maxPhotoSelectNumber          | number                                  | 否   | 图片最大的选择数量。最大值为500，受到最大选择总数的限制。                   |
-| maxVideoSelectNumber          | number                                  | 否   | 视频最大的选择数量。最大值为500，受到最大选择总数的限制。                   |
+| 名称                              | 类型                                      | 必填  | 说明                                                                       |
+|---------------------------------|-----------------------------------------|-----|--------------------------------------------------------------------------|
+| checkBoxColor                   | string                                  | 否   | 勾选框的背景色。格式为8位十六进制颜色代码。                                                   |
+| backgroundColor                 | string                                  | 否   | picker宫格页面背景色。格式为8位十六进制颜色代码。                                             |
+| isRepeatSelectSupported         | boolean                                 | 否   | 是否支持单张图片重复选择。true表示支持。                                                   |
+| checkboxTextColor               | string                                  | 否   | 勾选框内文本颜色。格式为8位十六进制颜色代码。 （该能力暂不支持）                                        |
+| photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | 否   | 大图背景颜色。包括跟随系统、浅色模式以及深色模式，默认为跟随系统。                                        |
+| maxSelectedReminderMode         | [ReminderMode](#remindermode)           | 否   | 选择数量达到最大时的提示方式。包括弹toast提示、不提示以及蒙层提示，默认为弹toast提示。                         |
+| orientation                     | [PickerOrientation](#pickerorientation) | 否   | 宫格页面滑动预览方向，包括水平和竖直两个方向，默认为竖直方向。（该能力暂不支持）                                 |
+| selectMode                      | [SelectMode](#selectmode)               | 否   | 选择模式。包括多选和单选，默认为多选。                                                      |
+| maxPhotoSelectNumber            | number                                  | 否   | 图片最大的选择数量。最大值为500，受到最大选择总数的限制。                                           |
+| maxVideoSelectNumber            | number                                  | 否   | 视频最大的选择数量。最大值为500，受到最大选择总数的限制。                                           |
+| isSlidingSelectionSupported<sup>13+</sup>     | boolean                                 | 否   | 是否支持滑动多选，默认不支持。重复选择场景不支持滑动多选。                                            |
+| photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | 否   | 设置大图页checkbox的位置。第一个参数为X方向偏移量，第二个参数为Y方向偏移量。传参范围0-1，代表距离组件左上角0%-100%的偏移量。 |
 
 ## PickerController
 
@@ -145,6 +147,33 @@ setPhotoBrowserItem(uri: string, photoBrowserRange?: PhotoBrowserRange): void
 | ------------------------- | ------------------ | ----- | --------------- |
 | uri | string | 是 | 指定大图浏览的图片uri。仅支持指定用户已选择的图片，未选择的图片不生效。|
 | photoBrowserRange | [PhotoBrowserRange](#photobrowserrange) | 否 | 打开大图浏览模式后，左右滑动切换浏览图片的范围，可配置仅浏览用户选择的或浏览全部图片，视频。默认：PhotoBrowserRange.ALL。浏览全部图片，视频。 | 
+
+### exitPhotoBrowser<sup>13+</sup>
+
+exitPhotoBrowser(): void
+
+应用可通过该接口，向picker发送退出大图的通知。
+
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### setPhotoBrowserUIElementVisibility<sup>13+</sup>
+
+setPhotoBrowserUIElementVisibility(elements: Array&lt;PhotoBrowserUIElement&gt;, isVisible: boolean): void
+
+应用可通过该接口，设置大图页大图预览组件外其他UI元素是否可见。不设置则默认可见。
+
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名         | 类型                                                             | 必填  | 说明                |
+|-------------|----------------------------------------------------------------| ----- |-------------------|
+| elements    | Array&lt;[PhotoBrowserUIElement](#photobrowseruielement13)&gt; | 是 | 大图页大图预览组件外其他UI元素。 |
+| isVisible | boolean                                                        | 是 | 是否可见。             |
 
 ## BaseItemInfo
 
@@ -334,6 +363,19 @@ Picker的颜色模式。
 | ALL | 0   | 全部图片，视频。                 |
 | SELECTED_ONLY | 1   | 仅用户已选择的图片，视频。 |
 
+## PhotoBrowserUIElement<sup>13+</sup>
+
+大图页大图预览组件外其他UI元素。
+
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称          | 值   | 说明       |
+|-------------|-----|----------|
+| CHECKBOX    | 0   | 大图页勾选框。  |
+| BACK_BUTTON | 1   | 大图页返回按钮。 |
+
 ## 示例
 
 ```ts
@@ -342,7 +384,7 @@ import {
   PhotoPickerComponent, PickerController, PickerOptions,
   DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
-  SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange
+  SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement
 } from '@ohos.file.PhotoPickerComponent';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
@@ -360,6 +402,7 @@ struct PickerDemo {
     this.pickerOptions.maxSelectNumber = 5;
     this.pickerOptions.isSearchSupported = false;
     this.pickerOptions.isPhotoTakingSupported = false;
+    this.pickerOptions.photoBrowserCheckboxPosition = [0.5, 0.5];
     // 其他属性.....
   }
   
@@ -422,6 +465,8 @@ struct PickerDemo {
   
   private onPickerControllerReady(): void {
     // 接收到该回调后，便可通过pickerController相关接口向picker发送数据，在此之前不生效。
+    let elements: number[] = [PhotoBrowserUIElement.BACK_BUTTON];
+    this.pickerController.setPhotoBrowserUIElementVisibility(elements, false); // 设置大图页不显示返回按钮
   }
 
   private onPhotoBrowserChanged(browserItemInfo: BaseItemInfo): boolean {
@@ -436,40 +481,50 @@ struct PickerDemo {
       justifyContent: FlexAlign.Center,
       alignItems: ItemAlign.Center
     }) {
-      PhotoPickerComponent({
-        pickerOptions: this.pickerOptions,
-        // onSelect: (uri: string): void => this.onSelect(uri),
-        // onDeselect: (uri: string): void => this.onDeselect(uri), 
-        onItemClicked: (itemInfo: ItemInfo, clickType: ClickType): boolean => this.onItemClicked(itemInfo, clickType), // 该接口可替代上面两个接口
-        onEnterPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onEnterPhotoBrowser(photoBrowserInfo),
-        onExitPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onExitPhotoBrowser(photoBrowserInfo),
-        onPickerControllerReady: (): void => this.onPickerControllerReady(),
-        onPhotoBrowserChanged: (browserItemInfo: BaseItemInfo): boolean => this.onPhotoBrowserChanged(browserItemInfo),
-        pickerController: this.pickerController,
-      }).height('60%').width('100%')
-
-
-      // 这里模拟应用侧底部的选择栏
-      if (this.isBrowserShow) {
-        Row() {
-          ForEach(this.selectUris, (uri: string) => {
-            if (uri === this.currentUri) {
-              Image(uri).height('10%').width('10%').onClick(() => {
-              }).borderWidth(1).borderColor('red')
-            } else {
-              Image(uri).height('10%').width('10%').onClick(() => {
-                this.pickerController.setData(DataType.SET_SELECTED_URIS, this.selectUris);
-                this.pickerController.setPhotoBrowserItem(uri, PhotoBrowserRange.ALL);
-              })
-            }
-          }, (uri: string) => JSON.stringify(uri))
+      Column() {
+        if (this.isBrowserShow) {
+          // 这里模拟应用自己的大图返回按钮
+          Row() {
+            Button("退出大图").width('33%').height('8%').onClick(() => {
+              this.pickerController.exitPhotoBrowser();
+            })
+          }.margin({ bottom: 20 })
         }
-      } else {
-        Button('预览').width('33%').height('5%').onClick(() => {
-          if (this.selectUris.length > 0) {
-            this.pickerController.setPhotoBrowserItem(this.selectUris[0], PhotoBrowserRange.SELECTED_ONLY);
+
+        PhotoPickerComponent({
+          pickerOptions: this.pickerOptions,
+          // onSelect: (uri: string): void => this.onSelect(uri),
+          // onDeselect: (uri: string): void => this.onDeselect(uri),
+          onItemClicked: (itemInfo: ItemInfo, clickType: ClickType): boolean => this.onItemClicked(itemInfo, clickType), // 该接口可替代上面两个接口
+          onEnterPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onEnterPhotoBrowser(photoBrowserInfo),
+          onExitPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onExitPhotoBrowser(photoBrowserInfo),
+          onPickerControllerReady: (): void => this.onPickerControllerReady(),
+          onPhotoBrowserChanged: (browserItemInfo: BaseItemInfo): boolean => this.onPhotoBrowserChanged(browserItemInfo),
+          pickerController: this.pickerController,
+        }).height('60%').width('100%')
+
+        // 这里模拟应用侧底部的选择栏
+        if (this.isBrowserShow) {
+          Row() {
+            ForEach(this.selectUris, (uri: string) => {
+              if (uri === this.currentUri) {
+                Image(uri).height('10%').width('10%').onClick(() => {
+                }).borderWidth(1).borderColor('red')
+              } else {
+                Image(uri).height('10%').width('10%').onClick(() => {
+                  this.pickerController.setData(DataType.SET_SELECTED_URIS, this.selectUris);
+                  this.pickerController.setPhotoBrowserItem(uri, PhotoBrowserRange.ALL);
+                })
+              }
+            }, (uri: string) => JSON.stringify(uri))
           }
-        })
+        } else {
+          Button('预览').width('33%').height('5%').onClick(() => {
+            if (this.selectUris.length > 0) {
+              this.pickerController.setPhotoBrowserItem(this.selectUris[0], PhotoBrowserRange.SELECTED_ONLY);
+            }
+          })
+        }
       }
     }
   }
