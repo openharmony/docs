@@ -68,7 +68,7 @@ PixelMapDrawableDescriptor的构造函数。
 
 ## LayeredDrawableDescriptor
 
-当传入资源id或name为包含前景和背景资源的json文件时，生成LayeredDrawableDescriptor对象。继承自[DrawableDescriptor](#drawabledescriptor)
+当传入资源id或name为包含前景和背景资源的json文件时，生成LayeredDrawableDescriptor对象。继承自[DrawableDescriptor](#drawabledescriptor)。
 
 drawable.json位于项目工程entry/src/main/resources/base/media目录下。定义请参考：
 
@@ -159,31 +159,6 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
       }
     }
     ```
-
-### getPixelMap
-
-getPixelMap(): image.PixelMap
-
-获取前景、背景和蒙版融合裁剪后的pixelMap。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型                                       | 说明       |
-| ---------------------------------------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap |
-
-**示例：**
-  ```ts
-import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI'
-let resManager = getContext().resourceManager
-let pixmap: LayeredDrawableDescriptor = (resManager.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let pixmapNew: object = pixmap.getPixelMap()
-  ```
 
 ### getForeground
 getForeground(): DrawableDescriptor;
