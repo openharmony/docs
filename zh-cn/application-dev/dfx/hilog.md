@@ -39,7 +39,7 @@ hilog命令行使用方式：
 | -L | --level | &lt;level&gt; | 指定级别的日志，示例：-L D/I/W/E/F。 | 
 | -t | --type | &lt;type&gt; | 指定类型的日志，示例：-t app core init。 | 
 | -D | --domain | &lt;domain&gt; | 指定domain。 | 
-| -T | --Tag | &lt;tag&gt; | 指定tag。 | 
+| -T | --tag | &lt;tag&gt; | 指定tag。 | 
 | -a | --head | &lt;n&gt; | 只显示前&lt;n&gt;行日志。 | 
 | -z | --tail | &lt;n&gt; | 只显示后&lt;n&gt;行日志。 | 
 | -P | --pid | &lt;pid&gt; | 标识不同的pid。 | 
