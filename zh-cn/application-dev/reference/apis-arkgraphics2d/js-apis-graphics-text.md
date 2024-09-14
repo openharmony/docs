@@ -606,11 +606,11 @@ getLongestLine(): number
 let longestLine = paragraph.getLongestLine();
 ```
 
-### getLongestLineWithIndent
+### getLongestLineWithIndent<sup>13+</sup>
 
 getLongestLineWithIndent(): number
 
-获取文本最长一行的宽度（该宽度包含当前行缩进的宽度）。
+获取文本最长一行的宽度（该宽度包含当前行缩进的宽度），建议实际使用时将返回值向上取整。当文本内容为空时，返回0。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
