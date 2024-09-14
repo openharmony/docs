@@ -87,7 +87,9 @@ app.json5配置文件包含以下标签。
 ## icon标签
 
 此标签标识[应用的图标](../application-models/application-component-configuration-stage.md)。
+
     1. 将图标的前景资源和背景资源放在AppScope\resources\base\media目录下。
+
     2. 在上述media目录下创建一个json文件（例如：test.json），在文件中引用前景资源和背景资源。
 
 icon标签示例：
