@@ -30,12 +30,12 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
 ## 开发步骤
 
 ### HCE应用前台刷卡
-1. 在module.json5文件中声明NFC卡模拟权限，以及声明HCE特定的action；
-2. import需要的NFC卡模拟模块和其他相关的模块；
-3. 判断设备是否支持NFC能力和HCE能力；
-4. 使能前台HCE应用程序优先处理NFC刷卡功能；
-5. 订阅HCE APDU数据的接收；
-6. 完成HCE刷卡APDU数据的接收和发送；
+1. 在module.json5文件中声明NFC卡模拟权限，以及声明HCE特定的action。
+2. import需要的NFC卡模拟模块和其他相关的模块。
+3. 判断设备是否支持NFC能力和HCE能力。
+4. 使能前台HCE应用程序优先处理NFC刷卡功能。
+5. 订阅HCE APDU数据的接收。
+6. 完成HCE刷卡APDU数据的接收和发送。
 7. 退出应用程序NFC刷卡页面时，退出前台优先功能。
 
 ```ts
@@ -157,11 +157,11 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ### HCE应用后台刷卡
-1. 在module.json5文件中声明NFC卡模拟权限，声明HCE特定的action，声明应用能够处理的AID；
-2. import需要的NFC卡模拟模块和其他相关的模块；
-3. 判断设备是否支持NFC能力和HCE能力；
-4. 订阅HCE APDU数据的接收；
-5. 完成HCE刷卡APDU数据的接收和发送；
+1. 在module.json5文件中声明NFC卡模拟权限，声明HCE特定的action，声明应用能够处理的AID。
+2. import需要的NFC卡模拟模块和其他相关的模块。
+3. 判断设备是否支持NFC能力和HCE能力。
+4. 订阅HCE APDU数据的接收。
+5. 完成HCE刷卡APDU数据的接收和发送。
 6. 退出应用程序时，退出订阅功能。
 
 ```ts
