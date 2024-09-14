@@ -41,6 +41,7 @@
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
+#include <string.h>
 
 static OH_Crypto_ErrCode doTestAesCbc()
 {
@@ -51,8 +52,8 @@ static OH_Crypto_ErrCode doTestAesCbc()
     OH_CryptoSymCipherParams *params = nullptr;
     Crypto_DataBlob outUpdate = {.data = nullptr, .len = 0};
     Crypto_DataBlob decUpdate = {.data = nullptr, .len = 0};
-    uint8_t plainText[] = "this is test!";
-    Crypto_DataBlob msgBlob = {.data = reinterpret_cast<uint8_t *>(plainText), .len = sizeof(plainText)};
+    char *plainText = const_cast<char *>("this is test!");
+    Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
     uint8_t iv[16] = {0};
     Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
     // 生成对称密钥
