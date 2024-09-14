@@ -3133,7 +3133,6 @@
             - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
             - [Pasteboard](reference/apis-basic-services-kit/_pasteboard.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
-            - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
           - 头文件<!--basic-services-headerfile-->
             - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
@@ -3143,8 +3142,6 @@
             - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
             - [ohprint.h](reference/apis-basic-services-kit/ohprint_8h.md)
             - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
-            - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
-            - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
           - 结构体<!--basic-services-struct-->
             - [Print_Margin](reference/apis-basic-services-kit/_print___margin.md)
             - [Print_PageSize](reference/apis-basic-services-kit/_print___page_size.md)
