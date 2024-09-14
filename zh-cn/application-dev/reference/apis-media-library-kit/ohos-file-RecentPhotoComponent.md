@@ -37,11 +37,11 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 
 **参数：**
 
-| 名称          | 类型            | 必填  | 装饰器说明      | 参数描述                 |
-|---------------|-----------------|-------|-----------------|--------------------------|
-| recentPhotoOptions         | [RecentPhotoOptions](#recentphotooptions)                             | 否   | - | 最近图片配置参数信息。  |
-| onRecentPhotoCheckResult   | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback)     | 否   | - | 最近图片查询结果回调函数。  |
-| onRecentPhotoClick         | [RecentPhotoClickCallback](#recentphotoclickcallback)                 | 是   | - | 选择最近图片回调函数。      |
+| 名称          | 类型            | 必填  | 参数描述                 |
+|---------------|-----------------|-------|--------------------------|
+| recentPhotoOptions         | [RecentPhotoOptions](#recentphotooptions)                             | 否   | 最近图片配置参数信息。  |
+| onRecentPhotoCheckResult   | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback)     | 否   | 最近图片查询结果回调函数。  |
+| onRecentPhotoClick         | [RecentPhotoClickCallback](#recentphotoclickcallback)                 | 是   | 选择最近图片回调函数。      |
 
 ## RecentPhotoOptions
 
@@ -51,11 +51,11 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称                    | 类型                                    | 必填  | 说明   |
-|-------------------------|-----------------------------------------|-------|--------|
-| period                  | number                                  | 否    | 配置显示多久时间段内的最近图片，单位为秒。最长可配置时长为1天(86400)。<br/>未配置最长时间段时，默认按最长时间段1天显示最近图片。当配置时间段内无符合的图片或视频时，组件不显示。|
-| MIMEType                | [PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes)   | 否    | 最近图片控件显示的文件类型，默认为PhotoViewMIMETypes.IMAGE_VIDEO_TYPE。                         |
-| photoSource             | [PhotoSource](#photosource)                                 | 否    | 配置最近图片视频显示内容的来源，比如拍照、截屏等。默认不限制来源。                               |
+| 名称                    | 类型                                                                                      | 必填  | 说明   |
+|-------------------------|-----------------------------------------------------------------------------------------|-------|--------|
+| period                  | number                                                                                  | 否    | 配置显示多久时间段内的最近图片，单位为秒。最长可配置时长为1天(86400)。<br/>未配置最长时间段时，默认按最长时间段1天显示最近图片。当配置时间段内无符合的图片或视频时，组件不显示。|
+| MIMEType                | [photoAccessHelper.PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes) | 否    | 最近图片控件显示的文件类型，默认为PhotoViewMIMETypes.IMAGE_VIDEO_TYPE。                         |
+| photoSource             | [PhotoSource](#photosource)                                                             | 否    | 配置最近图片视频显示内容的来源，比如拍照、截屏等。默认不限制来源。                               |
 
 ## RecentPhotoCheckResultCallback
 
