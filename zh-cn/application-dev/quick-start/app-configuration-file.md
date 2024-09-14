@@ -87,6 +87,7 @@ app.json5配置文件包含以下标签。
 ## icon标签
 
 此标签标识[应用的图标](../application-models/application-component-configuration-stage.md)。
+分层图标的配置方式如下：
 
 1. 将图标的前景资源和背景资源放在AppScope\resources\base\media目录下。
 
