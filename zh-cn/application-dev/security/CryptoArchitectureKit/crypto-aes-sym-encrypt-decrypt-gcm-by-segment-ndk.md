@@ -62,6 +62,7 @@
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
 
 #define OH_CRYPTO_GCM_TAG_LEN 16
+#define OH_CRYPTO_MAX_TEST_DATA_LEN 128
 static OH_Crypto_ErrCode doTestAesGcmSeg()
 {
     OH_CryptoSymKeyGenerator *genCtx = nullptr;
@@ -69,10 +70,10 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
     OH_CryptoSymCipher *decCtx = nullptr;
     OH_CryptoSymKey *keyCtx = nullptr;
     OH_CryptoSymCipherParams *params = nullptr;
-    
-    uint8_t plainText[] = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
-    Crypto_DataBlob msgBlob = {.data = reinterpret_cast<uint8_t *>(plainText), .len = sizeof(plainText)};
-    
+
+    char *plainText = const_cast<char *>("aaaaa.....bbbbb.....ccccc.....ddddd.....eee");
+    Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
+
     uint8_t aad[8] = {0};
     uint8_t tagArr[16] = {0};
     uint8_t iv[12] = {0};
@@ -84,11 +85,11 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
     Crypto_DataBlob tagInit = {.data = tagArr, .len = sizeof(tagArr)};
     int32_t cipherLen = 0;
     int blockSize = 20;
-    int32_t randomLen = sizeof(plainText);
+    int32_t randomLen = strlen(plainText);
     int cnt = randomLen / blockSize;
     int rem = randomLen % blockSize;
-    uint8_t cipherText[sizeof(plainText) + 16] = {0};
-    Crypto_DataBlob cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
+    uint8_t cipherText[OH_CRYPTO_MAX_TEST_DATA_LEN] = {0};
+    Crypto_DataBlob cipherBlob;
     
     // 生成密钥
     OH_Crypto_ErrCode ret;
@@ -148,15 +149,15 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
         memcpy(&cipherText[cipherLen], outUpdate.data, outUpdate.len);
         cipherLen += outUpdate.len;
     }
-    cipherBlob.len = cipherLen;
     ret = OH_CryptoSymCipher_Final(encCtx, nullptr, &tag);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
 
     // 解密
-    msgBlob.data -= sizeof(plainText) - rem;
-    msgBlob.len = sizeof(plainText);
+    cipherBlob = {.data = reinterpret_cast<uint8_t *>(cipherText), .len = (size_t)cipherLen};
+    msgBlob.data -= strlen(plainText) - rem;
+    msgBlob.len = strlen(plainText);
     ret = OH_CryptoSymCipher_Create("AES128|GCM|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
