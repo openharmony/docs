@@ -256,6 +256,7 @@ udid of current device is :
 bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b bundleName] 
 ```
 
+注：hqf文件制作方式可参考[HQF打包指令](packing-tool.md#hqf打包指令)。
 
   **表10** 快速修复命令列表
 
@@ -340,7 +341,7 @@ HAP包未经签名认证。
 
 **处理步骤**
 
-1. 使用<!--RP3-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP3End-->。在连接设备后，重新为应用进行签名。
+1. 使用<!--RP3-->[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)<!--RP3End-->。在连接设备后，重新为应用进行签名。
 2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)
 <br></br>
 
@@ -369,7 +370,7 @@ Error: install parse native so failed.
     hdc shell
     param get const.product.cpu.abilist
     ```
-4. 根据查询返回结果，检查<!--RP4-->[模块级build-profile.json5](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/build_config-0000001052902431-V3#section6887184182020)<!--RP4End-->文件中的“abiFilters”参数中的配置，规则如下：
+4. 根据查询返回结果，检查<!--RP4-->[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-compilation-options-customizing-sample-V5#section4322212200)<!--RP4End-->文件中的“abiFilters”参数中的配置，规则如下：
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
       ```
       cd /system/
@@ -400,7 +401,7 @@ Error: install parse profile prop check error.
 
 1. 获取新的签名指纹。
 
-    a. 在项目级build-profile.json5文件中，signingConfigs字段内的profile的值即为签名文件的存储路径。
+    a. 在[项目级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-compilation-options-customizing-sample-V5#section1448071082016)文件中，signingConfigs字段内的profile的值即为签名文件的存储路径。
 
     b. 打开该签名文件（后缀为.p7b），打开后在文件内搜索“development-certificate”，将“-----BEGIN CERTIFICATE-----”和“-----END CERTIFICATE-----”以及中间的信息拷贝到新的文本中，注意换行并去掉换行符，保存为一个新的.cer文件，如命名为xxx.cer。
 
@@ -541,7 +542,7 @@ Error: signature verification failed due to not trusted app source.
 **处理步骤**
 
 * 场景一：
-	1. 使用<!--RP5-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP5End-->。在连接设备后，重新为应用进行签名。
+	1. 使用<!--RP5-->[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)<!--RP5End-->。在连接设备后，重新为应用进行签名。
 	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
 		```
 		//UDID获取命令
@@ -612,6 +613,31 @@ Error: install sign info inconsistent.
 **处理步骤**
 
 1. 请卸载设备上已安装的应用，或取消勾选“Keep Application Data”后，重新安装新的应用。
+
+
+### 9568329 签名信息验证失败
+**错误信息**
+
+Error: verify signature failed.
+
+![示例图](figures/zh-cn_image_155401.png)
+
+**错误描述**
+
+签名信息中的包名与应用的包名（bundleName）不一致。
+
+**可能原因**
+
+* 场景一：用户导入了三方提供的HSP模块，且该HSP既非[集成态HSP](../quick-start/integrated-hsp.md)，又非同包名的HSP，造成包名不一致。
+
+* 场景二：用户使用了错误的签名文件（后缀为.p7b）进行签名，造成包名不一致。
+
+
+**处理步骤**
+
+* 场景一：HSP只能给同包名的应用使用，只有集成态HSP可以给不同包名的应用使用。需要用户与三方开发者确认，三方开发者应提供集成态HSP、或同包名的HSP给用户使用。
+
+* 场景二：检查签名流程和签名证书，参考<!--RP8-->[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)<!--RP8End-->。
 
 
 ### 9568266 安装权限拒绝

@@ -29,7 +29,7 @@ A child element does not necessarily adopt the dependency shown above to determi
 ### Setting the Anchor
 
 By setting the anchor, you set a position dependency relationship between a child element and its parent element or sibling elements. In the horizontal direction, you can set the left, middle, and right anchors. In the vertical direction, you can set the top, center, and bottom anchors.
-To specify anchors, you must set IDs for the **RelativeContainer** component and its child elements. The default ID is **__container__**. The ID is set through the **id** attribute. Child elements whose IDs are not set are not displayed in the **RelativeContainer** component. When a mutual or circular dependency occurs, none of the child components in the container are drawn. If anchors are set for more than two positions in a single direction but the anchor positions are reversed, the size of the child component is 0, which means that the child component is not drawn. 
+To specify anchors, you must set IDs for the **RelativeContainer** component and its child elements. The default ID is **\_\_container\_\_**, and the IDs for the remaining child elements are set through the **id** attribute.  Components without **id** set can be displayed but cannot be used as anchors by other child components; the relative layout container will generate an ID for them, and the pattern of this ID is not predictable by the application logic. When a mutual or circular dependency occurs, none of the child components in the container are drawn. If anchors are set for more than two positions in a single direction but the anchor positions are reversed, the size of the child component is 0, which means that the child component is not drawn. 
 
 >**NOTE**
 >
@@ -48,19 +48,26 @@ To specify anchors, you must set IDs for the **RelativeContainer** component and
   }
   let Mleft:Record<string,number> = { 'left': 20 }
   let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
-  RelativeContainer() {
-    Row().width(100).height(100)
-      .backgroundColor("#FF3333")
-      .alignRules(AlignRus)
-      .id("row1")
+ 
+  @Entry
+  @Component
+  struct Index {
+    build() {
+      RelativeContainer() {
+        Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FF3333")
+        .alignRules(AlignRus)
+        .id("row1")
 
-    Row().width(100).height(100)
-      .backgroundColor("#FFCC00")
-      .alignRules(AlignRue)
-      .id("row2")
-  }.width(300).height(300)
-  .margin(Mleft)
-  .border(BWC)
+        Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FFCC00")
+        .alignRules(AlignRue)
+        .id("row2")
+      }.width(300).height(300)
+      .margin(Mleft)
+      .border(BWC)
+    }
+  }
   ```
 
   ![en-us_image_0000001562820901](figures/en-us_image_0000001562820901.png)
@@ -78,19 +85,26 @@ To specify anchors, you must set IDs for the **RelativeContainer** component and
   }
   let Mleft:Record<string,number> = { 'left': 20 }
   let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
-  RelativeContainer() {
-    Row().width(100).height(100)
-      .backgroundColor("#FF3333")
-      .alignRules(AlignRus)
-      .id("row1")
 
-    Row().width(100).height(100)
-      .backgroundColor("#FFCC00")
-      .alignRules(RelConB)
-      .id("row2")
-  }.width(300).height(300)
-  .margin(Mleft)
-  .border(BWC)
+  @Entry
+  @Component
+  struct Index {
+    build() {
+      RelativeContainer() {
+        Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FF3333")
+        .alignRules(AlignRus)
+        .id("row1")
+
+        Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FFCC00")
+        .alignRules(RelConB)
+        .id("row2")
+      }.width(300).height(300)
+      .margin(Mleft)
+      .border(BWC)
+    }
+  }
   ```
 
   ![en-us_image_0000001562940613](figures/en-us_image_0000001562940613.png)
@@ -98,15 +112,13 @@ To specify anchors, you must set IDs for the **RelativeContainer** component and
 - Make sure the anchors of a child component do not depend on each other.
 
   ```ts
-
   @Entry
   @Component
   struct Index {
     build() {
       Row() {
-
         RelativeContainer() {
-          Row().width(100).height(100)
+          Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
             .backgroundColor('#ff3339ff')
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -114,7 +126,7 @@ To specify anchors, you must set IDs for the **RelativeContainer** component and
             })
             .id("row1")
 
-          Row().width(100)
+          Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100)
             .backgroundColor('#ff298e1e')
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -123,7 +135,7 @@ To specify anchors, you must set IDs for the **RelativeContainer** component and
             })
             .id("row2")
 
-          Row().height(100)
+          Row(){Text('row3')}.justifyContent(FlexAlign.Center).height(100)
             .backgroundColor('#ffff6a33')
             .alignRules({
               top: {anchor: "row1", align: VerticalAlign.Bottom},
@@ -132,7 +144,7 @@ To specify anchors, you must set IDs for the **RelativeContainer** component and
             })
             .id("row3")
 
-          Row()
+          Row(){Text('row4')}.justifyContent(FlexAlign.Center)
             .backgroundColor('#ffff33fd')
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -141,7 +153,6 @@ To specify anchors, you must set IDs for the **RelativeContainer** component and
               bottom: {anchor: "__container__", align: VerticalAlign.Bottom}
             })
             .id("row4")
-
         }
         .width(300).height(300)
         .margin({left: 50})
@@ -150,7 +161,6 @@ To specify anchors, you must set IDs for the **RelativeContainer** component and
       .height('100%')
     }
   }
-
   ```
   ![Simplify-Component-Layout](figures/arkts-simplify-component-layout-image1.png)
 
@@ -171,15 +181,13 @@ Alignment modes in the vertical direction can be top, center, or bottom, achieve
 After being aligned relative to the anchor, a child component may be still not at its target position. In this case, you can set the offset.
 
   ```ts
-
   @Entry
   @Component
   struct Index {
     build() {
       Row() {
-
         RelativeContainer() {
-          Row().width(100).height(100)
+          Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
             .backgroundColor("#FF3333")
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -187,7 +195,7 @@ After being aligned relative to the anchor, a child component may be still not a
             })
             .id("row1")
 
-          Row().width(100)
+          Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100)
             .backgroundColor("#FFCC00")
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -200,7 +208,7 @@ After being aligned relative to the anchor, a child component may be still not a
             })
             .id("row2")
 
-          Row().height(100)
+          Row(){Text('row3')}.justifyContent(FlexAlign.Center).height(100)
             .backgroundColor("#FF6633")
             .alignRules({
               top: {anchor: "row1", align: VerticalAlign.Bottom},
@@ -213,7 +221,7 @@ After being aligned relative to the anchor, a child component may be still not a
             })
             .id("row3")
 
-          Row()
+          Row(){Text('row4')}.justifyContent(FlexAlign.Center)
             .backgroundColor("#FF9966")
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -227,7 +235,7 @@ After being aligned relative to the anchor, a child component may be still not a
             })
             .id("row4")
 
-          Row()
+          Row(){Text('row5')}.justifyContent(FlexAlign.Center)
             .backgroundColor("#FF66FF")
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -241,7 +249,7 @@ After being aligned relative to the anchor, a child component may be still not a
             })
             .id("row5")
 
-          Row()
+          Row(){Text('row6')}.justifyContent(FlexAlign.Center)
             .backgroundColor('#ff33ffb5')
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -264,7 +272,6 @@ After being aligned relative to the anchor, a child component may be still not a
       .height('100%')
     }
   }
-
   ```
   ![Simplify-Component-Layout](figures/arkts-simplify-component-layout-image2.png)
 
@@ -273,7 +280,6 @@ After being aligned relative to the anchor, a child component may be still not a
 You can set components in multiple layout components, such as **Row**, **Column**, **Flex**, and **Stack**, to be aligned based on the relative layout rules.
 
   ```ts
-
   @Entry
   @Component
   struct Index {
@@ -333,7 +339,6 @@ You can set components in multiple layout components, such as **Row**, **Column*
       .height('100%')
     }
   }
-
   ```
   ![Simplify-Component-Layout](figures/arkts-simplify-component-layout-image3.png)
 
@@ -342,15 +347,14 @@ You can set components in multiple layout components, such as **Row**, **Column*
 The size of a child component is not affected by the relative layout rules. If two or more **alignRule** values are set for a child component in one direction, avoid setting the size in this direction. Otherwise, the component size determined by **alignRule** may conflict with the size you set.
 
   ```ts
-
   @Entry
   @Component
   struct Index {
     build() {
       Row() {
-
         RelativeContainer() {
-          Row().width(100).height(100)
+          Row(){Text('row1')}.justifyContent(FlexAlign.Center)
+            .width(100).height(100)
             .backgroundColor("#FF3333")
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -358,7 +362,7 @@ The size of a child component is not affected by the relative layout rules. If t
             })
             .id("row1")
 
-          Row().width(100)
+          Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100)
             .backgroundColor("#FFCC00")
             .alignRules({
               top: {anchor: "__container__", align: VerticalAlign.Top},
@@ -367,7 +371,7 @@ The size of a child component is not affected by the relative layout rules. If t
             })
             .id("row2")
 
-          Row().height(100)
+          Row(){Text('row3')}.justifyContent(FlexAlign.Center).height(100)
             .backgroundColor("#FF6633")
             .alignRules({
               top: {anchor: "row1", align: VerticalAlign.Bottom},
@@ -376,7 +380,7 @@ The size of a child component is not affected by the relative layout rules. If t
             })
             .id("row3")
 
-          Row()
+          Row(){Text('row4')}.justifyContent(FlexAlign.Center)
             .backgroundColor("#FF9966")
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -386,7 +390,7 @@ The size of a child component is not affected by the relative layout rules. If t
             })
             .id("row4")
 
-          Row()
+          Row(){Text('row5')}.justifyContent(FlexAlign.Center)
             .backgroundColor("#FF66FF")
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -396,7 +400,7 @@ The size of a child component is not affected by the relative layout rules. If t
             })
             .id("row5")
 
-          Row()
+          Row(){Text('row6')}.justifyContent(FlexAlign.Center)
             .backgroundColor('#ff33ffb5')
             .alignRules({
               top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -415,6 +419,5 @@ The size of a child component is not affected by the relative layout rules. If t
       .height('100%')
     }
   }
-
   ```
   ![Simplify-Component-Layout](figures/arkts-simplify-component-layout-image4.png)

@@ -421,7 +421,7 @@ Creates a **Buffer** instance based on the specified object.
 | -------- | -------- | -------- | -------- |
 | object | Object | Yes| Object that supports **Symbol.toPrimitive** or **valueOf()**.|
 | offsetOrEncoding | number&nbsp;\|&nbsp;string | Yes| Byte offset or encoding format.|
-| length | number | Yes| Length of the **Buffer** instance to create, in bytes. This parameter is valid only when the return value of **valueOf()** of **object** is **arraybuffer**. In other cases, you can set this parameter to any value of the number type. This parameter does not affect the result.|
+| length | number | Yes| Length of the **Buffer** instance to create, in bytes. This parameter is valid only when the return value of **valueOf()** of **object** is **ArrayBuffer**. The value range is [0, ArrayBuffer.byteLength]. Error 10200001 is reported if a value outside this range is reported. In other cases, you can set this parameter to any value of the number type. This parameter does not affect the result.|
 
 **Return value**
 
@@ -1896,7 +1896,7 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
-| byteLength | number | Yes| Number of bytes to read. The value range is [1, 6].|
+| byteLength | number | Yes| Number of bytes to read.  The value range is [1, 6].|
 
 
 **Return value**
@@ -1992,7 +1992,7 @@ Truncates this **Buffer** instance from the specified position to create a new *
 
 | Type| Description|
 | -------- | -------- |
-| Buffer | **Buffer** instance created.|
+| Buffer | **Buffer** instance created. When the value of **start** or **end** is less than **0**, an empty buffer is returned.|
 
 **Example**
 
@@ -2169,7 +2169,7 @@ Converts the data at the specified position in this **Buffer** instance into a s
 
 | Type| Description|
 | -------- | -------- |
-| string | String obtained.|
+| string | String obtained. When the value of **start** is greater than or equal to **Buffer.length** or **start** is greater than **end**, an empty string is returned.|
 
 **Error codes**
 

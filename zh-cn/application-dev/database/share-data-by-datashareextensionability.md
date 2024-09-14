@@ -78,7 +78,7 @@
        // 业务实现使用RDB
        relationalStore.getRdbStore(this.context, {
          name: DB_NAME,
-         securityLevel: relationalStore.SecurityLevel.S1
+         securityLevel: relationalStore.SecurityLevel.S3
        }, (err:BusinessError, data:relationalStore.RdbStore) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
@@ -210,8 +210,9 @@
    
    ```ts
    import { UIAbility } from '@kit.AbilityKit';
-   import { dataShare, dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+   import { dataShare, dataSharePredicates, DataShareResultSet, ValuesBucket } from '@kit.ArkData';
    import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 定义与数据提供方通信的URI字符串。

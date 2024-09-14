@@ -11,7 +11,7 @@ autoFillManager模块提供手动保存账号密码等功能。
 ## 导入模块
 
 ```ts
-import { AutoFillExtensionAbility } from '@kit.AbilityKit';
+import { autoFillManager } from '@kit.AbilityKit';
 ```
 
 ## AutoSaveCallback

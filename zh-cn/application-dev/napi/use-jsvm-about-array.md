@@ -527,7 +527,7 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
     // 将第二个参数转为int32类型便于比较
     int32_t infoTypeParam;
     OH_JSVM_GetValueInt32(env, args[1], &infoTypeParam);
-    // 定义枚举类型与ArkTs侧枚举类型infoType顺序含义一致
+    // 定义枚举类型与ArkTS侧枚举类型infoType顺序含义一致
     enum InfoType { INFO_TYPE, INFO_LENGTH, INFO_ARRAY_BUFFER, INFO_BYTE_OFFSET };
     void *data;
     JSVM_TypedarrayType type;
@@ -673,7 +673,7 @@ static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
     void *data;
     JSVM_Value arrayBuffer = nullptr;
     size_t byteOffset;
-    // 定义枚举类型与ArkTs侧枚举类型infoType顺序含义一致
+    // 定义枚举类型与ArkTS侧枚举类型infoType顺序含义一致
     enum infoTypeEnum { BYTE_LENGTHE, ARRAY_BUFFERE, BYTE_OFFSET };
     // 获取dataview信息
     JSVM_Status status = OH_JSVM_GetDataviewInfo(env, args[0], &byteLength, &data, &arrayBuffer, &byteOffset);

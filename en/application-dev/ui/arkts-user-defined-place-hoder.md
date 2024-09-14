@@ -1,4 +1,4 @@
-# Custom Placeholder Nodes
+# Custom Placeholder Node
 
 ArkUI provides ArkTS built-in components as placeholder nodes for custom nodes. These placeholder nodes have universal component attributes.
 

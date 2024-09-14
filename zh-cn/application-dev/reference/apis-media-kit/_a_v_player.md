@@ -28,7 +28,7 @@
 | struct  [AVPlayerCallback](_a_v_player_callback.md) | （已废弃）包含了OH_AVPlayerOnInfo和OH_AVPlayerOnInfo回调函数指针的集合。  | 
 
 
-### 类型定义输入player为空、callback为空、player SetDrmSystemInfoCallback执行失败。
+### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |

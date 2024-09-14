@@ -10,6 +10,9 @@
 
 - [specified（指定实例模式）](#specified启动模式)
 
+> **说明：**
+>
+> `standard`是`multiton`的曾用名，效果与多实例模式一致。
 
 ## singleton启动模式
 

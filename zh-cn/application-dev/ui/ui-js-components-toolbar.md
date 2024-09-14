@@ -79,8 +79,6 @@ toolbar-item{
 
 设置position样式控制toolbar组件的位置，并设置子组件toolbar-item的字体颜色、大小及背景色。
 
-
-
 ```html
 <!-- xxx.hml -->
 <div class="container">
@@ -167,7 +165,8 @@ export default {
 
 ![zh-cn_image_0000001218439306](figures/zh-cn_image_0000001218439306.gif)
 
-> **说明：**
+> **说明：** 
+>
 > toolbar组件不支持添加事件和方法，但其子组件toolbar-item支持。
 
 
@@ -223,10 +222,3 @@ export default {
 ```
 
 ![zh-cn_image_0000001263279105](figures/zh-cn_image_0000001263279105.gif)
-
-
-## 相关实例
-
-针对toolbar开发，有以下相关实例可供参考：
-
-- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)

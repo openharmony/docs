@@ -211,7 +211,7 @@ try {
     if (err != null) {
       console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
-      let uri: string = (cmResult.uri == undefined) ? '' : cmResult.uri;
+      let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
       console.info('Succeeded in installing private certificate.');
     }
   });
@@ -269,7 +269,7 @@ let keystore: Uint8Array = new Uint8Array([
 let keystorePwd: string = "123456";
 try {
   certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
-    let uri: string = (cmResult.uri == undefined) ? '' : cmResult.uri;
+    let uri: string = (cmResult?.uri == undefined) ? '' : cmResult.uri;
     console.info('Succeeded in installing private certificate.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
@@ -317,7 +317,7 @@ try {
     if (err != null) {
       console.error(`Failed to get private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
-      if (cmResult.credential == undefined) {
+      if (cmResult?.credential == undefined) {
         console.info('The result of getting private certificate is undefined.');
       } else {
         let list = cmResult.credential;
@@ -371,7 +371,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let uri: string = 'test'; /* URI of the credential installed. The process for installing the credential is omitted here. */
 try {
   certificateManager.getPrivateCertificate(uri).then((cmResult) => {
-    if (cmResult.credential == undefined) {
+    if (cmResult?.credential == undefined) {
       console.info('The result of getting private certificate is undefined.');
     } else {
       let list = cmResult.credential;
@@ -739,7 +739,7 @@ try {
     if (err != null) {
       console.error(`Failed to finish. Code: ${err.code}, message: ${err.message}`);
     } else {
-      if (cmResult.outData != undefined) {
+      if (cmResult?.outData != undefined) {
         let signRes: Uint8Array = cmResult.outData;
         console.info('Succeeded in finishing.');
       } else {
@@ -849,7 +849,7 @@ let cmHandle: Uint8Array = new Uint8Array([
 try {
   /* Finish the signing operation. */
   certificateManager.finish(cmHandle).then((cmResult) => {
-    if (cmResult.outData != undefined) {
+    if (cmResult?.outData != undefined) {
       let signRes1: Uint8Array = cmResult.outData;
       console.info('Succeeded in finishing signature.');
     } else {
@@ -1016,7 +1016,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let uri: string = 'test'; /* Unique identifier of the public credential. The process for installing the public credential is omitted here. */
 try {
   certificateManager.getPublicCertificate(uri).then((cmResult) => {
-    if (cmResult.credential == undefined) {
+    if (cmResult?.credential == undefined) {
       console.info('The result of getting public certificate is undefined.');
     } else {
       let cred = cmResult.credential;
@@ -1115,7 +1115,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
-    if (cmResult.certList == undefined) {
+    if (cmResult?.certList == undefined) {
       console.info('The result of getting all user trusted certificates is undefined.');
     } else {
       let list = cmResult.certList;
@@ -1170,7 +1170,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let certUri: string = 'testUserCert'; /* Unique identifier of the user root CA certificate. The process of installing the user root CA certificate is omitted here. */
 try {
   certificateManager.getUserTrustedCertificate(certUri).then((cmResult) => {
-    if (cmResult.certInfo == undefined) {
+    if (cmResult?.certInfo == undefined) {
       console.info('The result of getting user trusted certificate is undefined.');
     } else {
       let cert = cmResult.certInfo;

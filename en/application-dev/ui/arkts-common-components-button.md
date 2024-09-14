@@ -34,7 +34,7 @@ You can create a button that contains or does not contain child components.
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  The child component contained can either be a [basic component](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) or a [container component](../reference/apis-arkui/arkui-ts/ts-container-badge.md).
+  The child component contained can either be a basic component or a container component.
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {

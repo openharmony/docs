@@ -1,7 +1,7 @@
 # Custom Node Overview
 
 Custom nodes in the ArkUI framework are node objects that provide basic capabilities of underlying entity nodes through APIs, allowing these nodes to be mixed and displayed with built-in components.
-The attachment and display of custom nodes depend on [custom placeholder nodes](./arkts-user-defined-place-hoder.md#custom-placeholder-nodes). Existing custom nodes include three types of objects: [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md), [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md), [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md). The FrameNode represents a single custom component node, the RenderNode represents a more lightweight rendering node, and the BuilderNode provides the capability to create and update built-in components and component trees.
+The attachment and display of custom nodes depend on [custom placeholder nodes](./arkts-user-defined-place-hoder.md). Existing custom nodes include three types of objects: [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md), [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md), [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md). The FrameNode represents a single custom component node, the RenderNode represents a more lightweight rendering node, and the BuilderNode provides the capability to create and update built-in components and component trees.
 
 ![en-us_image_user-defined-node](figures/user-defined-node.png)
 

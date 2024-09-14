@@ -1993,7 +1993,7 @@ setFrameRate(minFps: number, maxFps: number): void
 进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12)查询支持的帧率范围。
 
 > **说明：**
-> 仅在[VideoSession](#videosession11)模式下支持。
+> 仅在[PhotoSession](#photosession11)或[VideoSession](#videosession11)模式下支持。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2086,7 +2086,7 @@ function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profi
 
 ### getPreviewRotation<sup>12+</sup>
 
-getPreviewRotation(imageRotation: ImageRotation): ImageRotation
+getPreviewRotation(displayRotation: number): ImageRotation
 
 获取预览旋转角度。
 
@@ -2102,7 +2102,7 @@ getPreviewRotation(imageRotation: ImageRotation): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation)  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
+| displayRotation | number  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
 
 **返回值：**
 
@@ -2136,7 +2136,7 @@ function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotati
 }
 ```
 ### setPreviewRotation<sup>12+</sup>
-setPreviewRotation(previewRotation: Imagerotation, isDisplayLocked?: boolean): void
+setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): void
 
 设置预览旋转角度。
 
@@ -3205,7 +3205,7 @@ function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile |
 ```
 ### getPhotoRotation<sup>12+</sup>
 
-getPhotoRotation(imageRotation: ImageRotation): ImageRotation
+getPhotoRotation(deviceDegree: number): ImageRotation
 
 获取拍照旋转角度。
 
@@ -3219,7 +3219,7 @@ getPhotoRotation(imageRotation: ImageRotation): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation)  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度)|
+| deviceDegree | number  | 是   | 设备旋转角度|
 
 **返回值：**
 
@@ -3643,7 +3643,7 @@ setFrameRate(minFps: number, maxFps: number): void
 进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12-1)查询支持的帧率范围。
 
 > **说明：**
-> 仅在[VideoSession](#videosession11)模式下支持。
+> 仅在[PhotoSession](#photosession11)或[VideoSession](#videosession11)模式下支持。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3677,7 +3677,7 @@ getActiveFrameRate(): FrameRateRange
 
 获取已设置的帧率范围。
 
-使用[setFrameRate](#setframerate12-1)对预览流设置过帧率后可查询。
+使用[setFrameRate](#setframerate12-1)对录像流设置过帧率后可查询。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3736,7 +3736,7 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
 
 ### getVideoRotation<sup>12+</sup>
 
-getVideoRotation(imageRotation: ImageRotation): ImageRotation
+getVideoRotation(deviceDegree: number): ImageRotation
 
 获取录像旋转角度。
 
@@ -3750,7 +3750,7 @@ getVideoRotation(imageRotation: ImageRotation): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation)  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
+| deviceDegree | number  | 是   | 设备旋转角度 |
 
 **返回值：**
 
@@ -7990,7 +7990,7 @@ VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 ### canPreconfig<sup>12+</sup>
 
-canPreconfig(preconfigType: PreconfigType), preconfigRatio?: PreconfigRatio): boolean
+canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
 查询当前Session是否支持指定的与配置类型。
 

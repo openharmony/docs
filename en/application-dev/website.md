@@ -17,9 +17,6 @@
         - [HSP](quick-start/in-app-hsp.md)
         - [Dynamic Import](quick-start/arkts-dynamic-import.md)
         - [Lazy Import](quick-start/arkts-lazy-import.md)
-      - Typical Scenario Development
-        - [Converting HAR to HSP](quick-start/har-to-hsp.md)
-        - [Converting HSP to HAR](quick-start/hsp-to-har.md)
       - [Application Installation, Uninstall, and Update](quick-start/application-package-install-uninstall.md)
     - Application Configuration Files in Stage Model<!--application-configuration-file-stage-->
       - [Overview of Application Configuration Files in Stage Model](quick-start/application-configuration-file-overview-stage.md)
@@ -30,6 +27,11 @@
       - [Structure of the app Tag](quick-start/app-structure.md)
       - [Structure of the deviceConfig Tag](quick-start/deviceconfig-structure.md)
       - [Structure of the module Tag](quick-start/module-structure.md)
+      - Typical Scenario Development
+      - [Integrated HSP](quick-start/integrated-hsp.md)
+        - [Converting HAR to HSP](quick-start/har-to-hsp.md)
+        - [Converting HSP to HAR](quick-start/hsp-to-har.md)
+      - [Creating a Static Shortcut of the Application](quick-start/typical-scenario-configuration.md)
   - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
   - Learning ArkTS<!--learning-arkts-->
     - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
@@ -158,6 +160,9 @@
             - [Switching from Explicit Want Redirection to Linking Redirection](application-models/uiability-startup-adjust.md)
             - [Application URI Description](application-models/app-uri-config.md)
           - [Starting an Application of the Specified Type](application-models/start-intent-panel.md)
+            - [Starting a Navigation Application](application-models/start-navigation-apps.md)
+            - [Starting an Email Application](application-models/start-email-apps.md)
+            - [Starting a Financial Application](application-models/start-finance-apps.md)
             - [Starting an Image Editing Application](application-models/photoEditorExtensionAbility.md)
             - [Starting a File Application](application-models/file-processing-apps-startup.md)
           - [Starting a System Application](application-models/system-app-startup.md)
@@ -538,6 +543,7 @@
         - [Invoking Application Functions on the Frontend Page](web/web-in-page-app-function-invoking.md)
         - [Establishing a Data Channel Between the Application and the Frontend Page](web/web-app-page-data-channel.md)
         - [Mutual Invoking Between the Application Side and Frontend Pages (C/C++)](web/arkweb-ndk-jsbridge.md)
+        - [Establishing a Data Channel Between the Application and the Frontend Page (C/C++)](web/arkweb-ndk-page-data-channel.md)
       - Managing Web Page Interactions<!--web-manage-page-interaction-->
         - [Implementing Nested Scrolling](web/web-nested-scrolling.md)
       - Managing Cyber Security and Privacy for the Web Component<!--web-manage-cyber-security-privacy-->
@@ -1039,6 +1045,8 @@
         - [Input Consumer Development](device/input/inputconsumer-guidelines.md)
         - [Shortcut Key Development](device/input/shortkey-guidelines.md)
         <!--DelEnd-->
+        - [Event Listening Development (C/C++)](device/input/monitor-guidelines.md)
+        - [Event Interception Development (C/C++)](device/input/interceptor-guidelines.md)
       - MDM Kit<!--mdm-kit-->
         - [Introduction to MDM Kit](mdm/mdm-kit-intro.md)
         - [MDM Kit Development](mdm/mdm-kit-guide.md)
@@ -1231,6 +1239,9 @@
         <!--DelEnd-->
         - [Deferred Photo Delivery (ArkTS)](media/camera/camera-deferred-capture.md)
         - [Moving Photos (ArkTS)](media/camera/camera-moving-photo.md)
+        <!--Del-->
+        - [Depth Data (for System Applications Only) (ArkTS)](media/camera/camera-depth-data.md)
+        <!--DelEnd-->
       - Camera Best Practices (ArkTS)<!--Camera-best-practices-arkts-->
         - [Camera Photographing Sample (ArkTS)](media/camera/camera-shooting-case.md)
         - [Camera Recording Sample (ArkTS)](media/camera/camera-recording-case.md)
@@ -1343,7 +1354,7 @@
       <!--Del-->
       - [Resetting OAID Information (for System Applications Only)](ads-service/oaid/oaid-service-sys.md)
       <!--DelEnd-->
-  
+
   - Calendar Kit<!--calendar-kit-->
       - [Introduction to Calendar Kit](calendarmanager/calendarmanager-overview.md)
       - [Calendar Kit Development](calendarmanager/calendarmanager-guidelines.md)
@@ -1471,7 +1482,7 @@
       - [OpenHarmony ABIs](napi/ohos-abi.md)
       - [CPU Features](napi/cpu-features.md)
       - [Using Neon Instructions](napi/neon-guide.md)
-  
+
 - API References
   - API Reference Overview<!--ref-overview-api-->
     - [SystemCapability](reference/syscap.md)
@@ -1753,7 +1764,6 @@
         - [@ohos.data.uniformTypeDescriptor (Standard Data Definition)](reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)
         - [@ohos.data.ValuesBucket (Value Bucket)](reference/apis-arkdata/js-apis-data-valuesBucket.md)
         <!--Del-->
-        - [@ohos.data.unifiedDataChannel (Uniform Data Channel) (System API)](reference/apis-arkdata/js-apis-data-unifiedDataChannel-sys.md)
         - [@ohos.application.DataShareExtensionAbility (DataShare ExtensionAbility) (System API)](reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)
         - [@ohos.data.unifiedDataChannel (Uniform Data Channel) (System API)](reference/apis-arkdata/js-apis-data-unifiedDataChannel-sys.md)
         <!--DelEnd-->
@@ -2204,6 +2214,9 @@
           - [AtomicServiceWeb](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceWeb.md)
           - [InterstitialDialogAction](reference/apis-arkui/arkui-ts/ohos-atomicservice-InterstitialDialogAction.md)
           - [FullScreenLaunchComponent](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md) 
+          <!--Del-->
+          - [InnerFullScreenLaunchComponent (System API)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-InnerFullScreenLaunchComponent-sys.md)
+          <!--DelEnd-->
           - [NavPushPathHelper](reference/apis-arkui/arkui-ts/ohos-atomicservice-NavPushPathHelper.md)
         - Custom Placeholder Components
           - [NodeContainer](reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)
@@ -2513,7 +2526,8 @@
             - [ArkWeb_JavaScriptObject](reference/apis-arkweb/_ark_web___java_script_object.md)
             - [ArkWeb_ProxyMethod](reference/apis-arkweb/_ark_web___proxy_method.md)
             - [ArkWeb_ProxyObject](reference/apis-arkweb/_ark_web___proxy_object.md)
-      
+            - [ArkWeb_WebMessageAPI](reference/apis-arkweb/_ark_web___web_message_a_p_i.md)
+            - [ArkWeb_WebMessagePortAPI](reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md)
       - Error Codes<!--arkweb-arkts-errcode-->
         - [Webview Error Codes](reference/apis-arkweb/errorcode-webview.md)
     - Background Tasks Kit<!--background-tasks-api-->
@@ -2558,6 +2572,7 @@
         - [@ohos.fileshare (File Sharing)](reference/apis-core-file-kit/js-apis-fileShare.md)
         - [@ohos.file.BackupExtensionContext (Backup and Restore Extension Capability)](reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)
         <!--Del-->
+        - [@ohos.application.BackupExtensionAbility (Backup and Restore Extension Capability) (System API)](reference/apis-core-file-kit/js-apis-application-backupExtensionAbility-sys.md)
         - [@ohos.file.backup (Backup and Restore) (System API)](reference/apis-core-file-kit/js-apis-file-backup-sys.md)
         - [@ohos.file.cloudSync (Device-Cloud Synchronization) (System API)](reference/apis-core-file-kit/js-apis-file-cloudsync-sys.md)
         - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management) (System API)](reference/apis-core-file-kit/js-apis-file-cloudsyncmanager-sys.md)
@@ -2689,13 +2704,13 @@
         - Asset Store Kit<!--asset-store-api-->
           - ArkTS APIs<!--asset-store-arkts-->
             - [@ohos.security.asset (Asset Store Service)](reference/apis-asset-store-kit/js-apis-asset.md)
-            <!--Del-->
+          <!--Del-->
             - [@ohos.security.asset (Asset Store Service) (System API)](reference/apis-asset-store-kit/js-apis-asset-sys.md)
-            <!--DelEnd-->
+          <!--DelEnd-->
           - C APIs<!--asset-store-c-->
             - Modules<!--asset-store-module-->
-              - [AssetApi](reference/apis-asset-store-kit/_asset_api.md)
-              - [AssetType](reference/apis-asset-store-kit/_asset_type.md)
+            - [AssetApi](reference/apis-asset-store-kit/_asset_api.md)
+            - [AssetType](reference/apis-asset-store-kit/_asset_type.md)
             - Header Files<!--asset-store-headerfile-->
             - [asset_api.h](reference/apis-asset-store-kit/asset__api_8h.md)
             - [asset_type.h](reference/apis-asset-store-kit/asset__type_8h.md)
@@ -2919,6 +2934,7 @@
         - Error Codes<!--network-arkts-errcode-->
           - [HTTP Error Codes](reference/apis-network-kit/errorcode-net-http.md)
           - [Socket Error Codes](reference/apis-network-kit/errorcode-net-socket.md)
+          - [WebSocket Error Codes](reference/apis-network-kit/errorcode-net-webSocket.md)
           - [Network Connection Management Error Codes](reference/apis-network-kit/errorcode-net-connection.md)
           - [Ethernet Connection Error Codes](reference/apis-network-kit/errorcode-net-ethernet.md)
           - [Network Sharing Error Codes](reference/apis-network-kit/errorcode-net-sharing.md)
@@ -2926,7 +2942,7 @@
           - [MDNS Error Codes](reference/apis-network-kit/errorcode-net-mdns.md)
           - [Traffic Management Error Codes](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN Error Codes](reference/apis-network-kit/errorcode-net-vpn.md)
-  
+
       - Telephony Kit<!--telephony-api-->
         - ArkTS APIs<!--telephony-arkts-->
           - [@ohos.telephony.call (Call)](reference/apis-telephony-kit/js-apis-call.md)
@@ -2981,7 +2997,7 @@
             - [@ohos.pasteboard (Pasteboard)](reference/apis-basic-services-kit/js-apis-pasteboard.md)
             - [@ohos.print (Print)](reference/apis-basic-services-kit/js-apis-print.md)
             - [@ohos.request (Upload and Download)](reference/apis-basic-services-kit/js-apis-request.md)
-  
+
             - [@ohos.zlib (Zip)](reference/apis-basic-services-kit/js-apis-zlib.md)
             <!--Del-->
             - [@ohos.app.ability.PrintExtensionAbility (Print Extension Ability) (System API)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility-sys.md)
@@ -3046,10 +3062,13 @@
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
+            - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
           - Header Files<!--basic-services-headerfile-->
             - [os_account.h](reference/apis-basic-services-kit/os__account_8h.md)
             - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
             - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
+            - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
+            - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
         - Error Codes<!--basic-services-arkts-errcode-->
           - [USB Error Codes](reference/apis-basic-services-kit/errorcode-usb.md)
           - [RunningLock Error Codes](reference/apis-basic-services-kit/errorcode-runninglock.md)
@@ -3125,8 +3144,11 @@
             - [Input](reference/apis-input-kit/input.md)
           - Header Files and Structs<!--input-headerfile-struct-->
             - Header Files<!--input-headerfile-->
+                - [oh_axis_type.h](reference/apis-input-kit/oh__axis__type_8h.md)
                 - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
                 - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
+            - Structs<!--input-struct-->
+                - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
         - Error Codes<!--input-arkts-errcode-->
           - [Screen Hopping Error Codes](reference/apis-input-kit/errorcode-multimodalinput.md)
       - MDM Kit<!--mdm-api-->
@@ -3261,6 +3283,7 @@
             - [HiDebug](reference/apis-performance-analysis-kit/_hi_debug.md)
             - [HiLog](reference/apis-performance-analysis-kit/_hi_log.md)
             - [Hitrace](reference/apis-performance-analysis-kit/_hitrace.md)
+            - [HiCollie](reference/apis-performance-analysis-kit/_hi_hicollie.md)
           - Header Files<!--performance-analysis-headerfile-->
             - [hiappevent.h](reference/apis-performance-analysis-kit/hiappevent_8h.md)
             - [hiappevent_cfg.h](reference/apis-performance-analysis-kit/hiappevent__cfg_8h.md)
@@ -3270,6 +3293,7 @@
             - [hidebug_type.h](reference/apis-performance-analysis-kit/hidebug__type_8h.md)
             - [log.h](reference/apis-performance-analysis-kit/log_8h.md)
             - [trace.h](reference/apis-performance-analysis-kit/trace_8h.md)
+            - [hicollie.h](reference/apis-performance-analysis-kit/hicollie_8h.md)
           - Structs<!--performance-analysis-struct-->
             - [HiAppEvent_AppEventGroup](reference/apis-performance-analysis-kit/_hi_app_event___app_event_group.md)
             - [HiAppEvent_AppEventInfo](reference/apis-performance-analysis-kit/_hi_app_event___app_event_info.md)
@@ -3278,11 +3302,13 @@
             - [HiDebug_SystemMemInfo](reference/apis-performance-analysis-kit/_hi_debug___system_mem_info.md)
             - [HiDebug_ThreadCpuUsage](reference/apis-performance-analysis-kit/_hi_debug___thread_cpu_usage.md)
             - [HiTraceId](reference/apis-performance-analysis-kit/_hi_trace_id.md)
+            - [HiCollie](reference/apis-performance-analysis-kit/_hi_hicollie___detection_param.md)
         - Error Codes<!--performance-analysis-errcode-->
           - [FaultLogger Error Codes](reference/apis-performance-analysis-kit/errorcode-faultlogger.md)
           - [Application Event Logging Error Codes](reference/apis-performance-analysis-kit/errorcode-hiappevent.md)
           - [HiDebug Error Codes](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug.md)
           - [Hidebug CpuUsage Error Codes](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
+          - [HiCollie Error Codes](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hicollie.md)
           <!--Del-->
           - [HiSysEvent Error Codes](reference/apis-performance-analysis-kit/errorcode-hisysevent-sys.md)
           - [Log Library Error Codes](reference/apis-performance-analysis-kit/errorcode-loglibrary-sys.md)
@@ -3407,13 +3433,16 @@
           - [camera_manager.h](reference/apis-camera-kit/camera__manager_8h.md)
           - [capture_session.h](reference/apis-camera-kit/capture__session_8h.md)
           - [metadata_output.h](reference/apis-camera-kit/metadata__output_8h.md)
+          - [photo_native.h](reference/apis-camera-kit/photo__native_8h.md)
           - [photo_output.h](reference/apis-camera-kit/photo__output_8h.md)
           - [preview_output.h](reference/apis-camera-kit/preview__output_8h.md)
           - [video_output.h](reference/apis-camera-kit/video__output_8h.md)
         - Structs<!--camera-struct-->
           - [Camera_CaptureEndInfo](reference/apis-camera-kit/_camera___capture_end_info.md)
+          - [Camera_CaptureStartInfo](reference/apis-camera-kit/_camera___capture_start_info.md)
           - [Camera_Device](reference/apis-camera-kit/_camera___device.md)
           - [Camera_FrameRateRange](reference/apis-camera-kit/_camera___frame_rate_range.md)
+          - [Camera_FrameShutterEndInfo](reference/apis-camera-kit/_camera___frame_shutter_end_info.md)
           - [Camera_FrameShutterInfo](reference/apis-camera-kit/_camera___frame_shutter_info.md)
           - [Camera_Location](reference/apis-camera-kit/_camera___location.md)
           - [Camera_MetadataObject](reference/apis-camera-kit/_camera___metadata_object.md)
@@ -3423,7 +3452,9 @@
           - [Camera_Profile](reference/apis-camera-kit/_camera___profile.md)
           - [Camera_Rect](reference/apis-camera-kit/_camera___rect.md)
           - [Camera_Size](reference/apis-camera-kit/_camera___size.md)
+          - [Camera_SmoothZoomInfo](reference/apis-camera-kit/_camera___smooth_zoom_info.md)
           - [Camera_StatusInfo](reference/apis-camera-kit/_camera___status_info.md)
+          - [Camera_TorchStatusInfo](reference/apis-camera-kit/_camera___torch_status_info.md)
           - [Camera_VideoProfile](reference/apis-camera-kit/_camera___video_profile.md)
           - [CameraInput_Callbacks](reference/apis-camera-kit/_camera_input___callbacks.md)
           - [CameraManager_Callbacks](reference/apis-camera-kit/_camera_manager___callbacks.md)
@@ -3561,17 +3592,24 @@
     - Media Library Kit<!--media-library-api-->
       - ArkTS APIs<!--media-library-arkts-->
         - [@ohos.file.photoAccessHelper (Album Management)](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)
+        - [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable object)](reference/apis-media-library-kit/js-apis-sendablePhotoAccessHelper.md)
+        <!--Del-->
         - [@ohos.file.photoAccessHelper (Album Management) (System API)](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)
+        - [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object) (System API)](reference/apis-media-library-kit/js-apis-sendablePhotoAccessHelper-sys.md)
         <!--DelEnd-->
       - ArkTS Components<!--media-library-comp-->
         - [@ohos.file.AlbumPickerComponent (AlbumPickerComponent)](reference/apis-media-library-kit/ohos-file-AlbumPickerComponent.md)
         - [@ohos.file.PhotoPickerComponent (PhotoPicker Component)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
+        - [@ohos.file.RecentPhotoComponent (RecentPhotoComponent)](reference/apis-media-library-kit/ohos-file-RecentPhotoComponent.md)
         - [@ohos.multimedia.movingphotoview (MovingPhotoView Component)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)
       - C APIs<!--media-library-c-->
         - Modules<!--media-library-module-->
           - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)
         - Header Files<!--media-library-headerfile-->
+          - [media_access_helper_capi.h](reference/apis-media-library-kit/media__access__helper__capi_8h.md)
           - [media_asset_base_capi.h](reference/apis-media-library-kit/media__asset__base__capi_8h.md)
+          - [media_asset_capi.h](reference/apis-media-library-kit/media__asset__capi_8h.md)
+          - [media_asset_change_request_capi.h](reference/apis-media-library-kit/media__asset__change__request__capi_8h.md)
           - [media_asset_manager_capi.h](reference/apis-media-library-kit/media__asset__manager__capi_8h.md)
         - Structs<!--media-library-struct-->
           - [MediaLibrary_RequestId](reference/apis-media-library-kit/_media_library___request_id.md)
@@ -3791,7 +3829,7 @@
           - [OH_NN_QuantParam](reference/apis-neural-network-runtime-kit/_o_h___n_n___quant_param.md)
           - [OH_NN_Tensor](reference/apis-neural-network-runtime-kit/_o_h___n_n___tensor.md)
           - [OH_NN_UInt32Array](reference/apis-neural-network-runtime-kit/_o_h___n_n___u_int32_array.md)
-  
+
   - Common Basic Capability<!--common-basic-api-->
     - ArkTS APIs<!--common-basic-arkts-->
       - [Console](reference/common/js-apis-logs.md)
@@ -3825,7 +3863,7 @@
     - [libuv](reference/native-lib/libuv.md)
     - [OpenSL ES](reference/native-lib/opensles.md)
     - [OpenGL ES](reference/native-lib/opengles.md)
-  - [EGL](reference/native-lib/egl.md)
+    - [EGL](reference/native-lib/egl.md)
     - [ICU4C](reference/native-lib/icu4c.md)
     - [Zlib](reference/native-lib/zlib.md)
     - Vulkan
