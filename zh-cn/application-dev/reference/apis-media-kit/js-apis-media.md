@@ -7679,7 +7679,7 @@ avScreenCaptureRecorder.startRecording().then(() => {
 })
 ```
 
-### stopRecordin<sup>12+</sup>
+### stopRecording<sup>12+</sup>
 
 stopRecording(): Promise\<void>
 
