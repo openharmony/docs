@@ -256,6 +256,7 @@ udid of current device is :
 bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b bundleName] 
 ```
 
+注：hqf文件制作方式可参考[HQF打包指令](packing-tool.md#hqf打包指令)。
 
   **表10** 快速修复命令列表
 
