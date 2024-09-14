@@ -7536,17 +7536,15 @@ setMimeType(mimeType: AVMimeTypes): void
 
 播放策略。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称  | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| preferredWidth| number | 否   | 播放策略首选宽度，int类型，如1080。 |
-| preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。 |
-| preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。 |
-| preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。 |
-| mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD |
+| preferredWidth| number | 否   | 播放策略首选宽度，int类型，如1080。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preferredHeight | number | 否   | 播放策略首选高度，int类型，如1920。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
