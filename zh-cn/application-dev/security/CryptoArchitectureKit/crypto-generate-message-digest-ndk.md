@@ -59,13 +59,14 @@
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_digest.h"
+#include <string.h>
 
 static OH_Crypto_ErrCode doTestMd()
 {
     OH_Crypto_ErrCode ret;
     OH_CryptoDigest *ctx = nullptr;
-    uint8_t testData[] = "0123456789";
-    Crypto_DataBlob in = {.data = reinterpret_cast<uint8_t *>(testData), .len = sizeof(testData)};
+    char *testData = const_cast<char *>("0123456789");
+    Crypto_DataBlob in = {.data = (uint8_t *)(testData), .len = strlen(testData)};
     Crypto_DataBlob out = {.data = nullptr, .len = 0};
     int mdLen = 0;
     ret = OH_CryptoDigest_Create("SHA256", &ctx);
