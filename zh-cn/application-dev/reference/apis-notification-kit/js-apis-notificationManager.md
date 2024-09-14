@@ -772,7 +772,7 @@ notificationManager.removeAllSlots().then(() => {
 });
 ```
 
-## notificationManager.isNotificationEnabled
+## notificationManager.isNotificationEnabled<sup>11+</sup>
 
 isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
@@ -815,7 +815,7 @@ let isNotificationEnabledCallback = (err: BusinessError, data: boolean): void =>
 notificationManager.isNotificationEnabled(isNotificationEnabledCallback);
 ```
 
-## notificationManager.isNotificationEnabled
+## notificationManager.isNotificationEnabled<sup>11+</sup>
 
 isNotificationEnabled(): Promise\<boolean\>
 

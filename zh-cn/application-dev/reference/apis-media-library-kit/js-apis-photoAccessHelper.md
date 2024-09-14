@@ -962,7 +962,7 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件，在应用沙箱中的uri。 |
+| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：** 仅支持处理图片、视频uri。 |
 | photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | 是 | 保存图片/视频到媒体库的配置，包括保存的文件名等，与srcFileUris保持一一对应。 |
 
 **返回值：**
@@ -1016,8 +1016,6 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 
 接口提供给应用调用，支持首次调用后拉起保存确认弹框。在用户同意保存后返回已创建并授予保存权限的uri，支持应用使用uri写入图片/视频；
 在用户"同意"后的5min之内，同一个应用再次调用接口，支持无需弹框确认自动返回已授权的uri给应用，支持应用保存图片/视频。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 

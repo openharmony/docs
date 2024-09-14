@@ -6,9 +6,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
 
 ## 创建自定义弹窗
 
-1. 使用\@CustomDialog装饰器装饰自定义弹窗。
-
-2. \@CustomDialog装饰器用于装饰自定义弹框，此装饰器内进行自定义内容（也就是弹框内容）。
+1. 使用\@CustomDialog装饰器装饰自定义弹窗，可在此装饰器内自定义弹窗内容。
 
    ```ts
    @CustomDialog
@@ -16,7 +14,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
      controller: CustomDialogController = new CustomDialogController({
        builder: CustomDialogExample({}),
      })
-
+   
      build() {
        Column() {
          Text('我是内容')

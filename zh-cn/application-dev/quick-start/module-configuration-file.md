@@ -108,7 +108,7 @@ module.json5配置文件包含以下标签。
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 标识当前Module的名称，确保该名称在整个应用中唯一。取值为长度不超过31字节的字符串，不支持中文。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopydir10)。 | 字符串 | 该标签不可缺省。 |
+| name | 标识当前Module的名称，确保该名称在整个应用中唯一。取值为长度不超过128字节的字符串（当前DevEco新建Module时，name最大长度31字节。后续DevEco版本支持name长度最大128字节），不支持中文。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopydir10)。 | 字符串 | 该标签不可缺省。 |
 | type | 标识当前Module的类型。支持的取值如下：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。<br/>-&nbsp;har：静态共享包模块。<br/>-&nbsp;shared：动态共享包模块。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识当前Module所对应的代码路径，取值为长度不超过127字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | description | 标识当前Module的描述信息，取值为长度不超过255字节的字符串，可以采用字符串资源索引格式。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -282,7 +282,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | -------- | -------- | -------- | -------- |
 | name | 标识当前UIAbility组件的名称，确保该名称在整个应用中唯一。取值为长度不超过127字节的字符串，不支持中文。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识入口UIAbility的代码路径，取值为长度不超过127字节的字符串。 | 字符串 | 该标签不可缺省。 |
-| [launchType](../application-models/uiability-launch-type.md) | 标识当前UIAbility组件的启动模式，支持的取值如下：<br/>-&nbsp;multiton：多实例模式，每次启动创建一个新实例。<br/>-&nbsp;singleton：单实例模式，仅第一次启动创建新实例。<br/>-&nbsp;specified：指定实例模式，运行时由开发者决定是否创建新实例。 | 字符串 | 该标签可缺省，该标签缺省为“singleton”。 |
+| [launchType](../application-models/uiability-launch-type.md) | 标识当前UIAbility组件的启动模式，支持的取值如下：<br/>-&nbsp;multiton：多实例模式，每次启动创建一个新实例。<br/>-&nbsp;singleton：单实例模式，仅第一次启动创建新实例。<br/>-&nbsp;specified：指定实例模式，运行时由开发者决定是否创建新实例。<br/>-&nbsp;standard：multiton的曾用名，效果与多实例模式一致。 | 字符串 | 该标签可缺省，该标签缺省为“singleton”。 |
 | description | 标识当前UIAbility组件的描述信息，取值为长度不超过255字节的字符串。要求采用描述信息的资源索引，以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前UIAbility组件的图标，取值为图标资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
 | label | 标识当前UIAbility组件对用户显示的名称，要求采用该名称的资源索引，以支持多语言。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |

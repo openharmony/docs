@@ -935,6 +935,18 @@ enablePreviewText(enable: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
 
+>  **说明：**
+>
+>  该接口在CAPI场景使用时下，默认关闭。可以在工程的module.json5中配置[metadata](../../../../application-dev/quick-start/module-structure.md#metadata对象内部结构)字段控制是否启用预上屏，配置如下：
+> ```json
+> "metadata": [
+>  {
+>     "name": "can_preview_text",
+>     "value": "true",
+>  }
+> ]
+> ```
+
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

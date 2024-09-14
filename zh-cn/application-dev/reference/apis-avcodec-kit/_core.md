@@ -311,10 +311,10 @@ enum OH_AudioChannelLayout
 | -------- | -------- |
 | CH_LAYOUT_UNKNOWN | 未知声道布局 | 
 | CH_LAYOUT_MONO | 单声道布局， 共1个声道 | 
-| CH_LAYOUT_STEREO | 立体声布局, 共2个声道 | 
-| CH_LAYOUT_STEREO_DOWNMIX | 立体声下混布局, 共2个声道 | 
-| CH_LAYOUT_2POINT1 | 2.1布局, 共3个声道 | 
-| CH_LAYOUT_3POINT0 | 3.0布局, 共3个声道 | 
+| CH_LAYOUT_STEREO | 立体声布局，共2个声道 | 
+| CH_LAYOUT_STEREO_DOWNMIX | 立体声下混布局，共2个声道 | 
+| CH_LAYOUT_2POINT1 | 2.1布局，共3个声道 | 
+| CH_LAYOUT_3POINT0 | 3.0布局，共3个声道 | 
 | CH_LAYOUT_SURROUND | 环绕布局，共3个声道 | 
 | CH_LAYOUT_3POINT1 | 3.1布局，共4个声道 | 
 | CH_LAYOUT_4POINT0 | 4.0布局，共4个声道 | 

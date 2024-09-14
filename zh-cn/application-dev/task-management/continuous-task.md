@@ -1,4 +1,4 @@
-# 长时任务
+# 长时任务(ArkTS)
 
 
 ## 概述
@@ -24,7 +24,7 @@
 | BLUETOOTH_INTERACTION | 蓝牙相关 | bluetoothInteraction | 通过蓝牙传输分享的文件。 |
 | MULTI_DEVICE_CONNECTION | 多设备互联 | multiDeviceConnection | 分布式业务连接。<br>支持在原子化服务中使用。 |
 | <!--DelRow-->WIFI_INTERACTION | WLAN相关（仅对系统应用开放） | wifiInteraction  | 通过WLAN传输分享的文件。 |
-| <!--DelRow-->VOIP | 音视频通话（仅对系统应用开放） | voip  | 系统聊天类应用后台音频电话。 |
+| VOIP | 音视频通话 | voip  | 聊天类应用后台音视频电话。 |
 | TASK_KEEPING | <!--RP1-->计算任务（仅对特定设备开放）<!--RP1End--> | taskKeeping  | 杀毒软件。 |
 
 - 如果使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行，无论是否申请DATA_TRANSFER，应用都会被挂起。使用下载类型的长时任务，应用需要更新下载进度。如果进度长时间（超过10分钟）不更新，下载类型的长时任务会被取消。推荐使用API 12申请下载类型的长时任务，并更新通知进度。
@@ -73,7 +73,7 @@
 
 2. 声明后台模式类型，以及添加uris等配置。
    - 声明后台模式类型（必填项）：在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
-   - 添加uris等配置（可选项）：长时任务通过第一个元素获取通知标题，若使用隐式跳转等功能，具体格式请参考如下示例。其中，uris在配置项中的位置请严格遵循示例，"scheme"应根据实际业务场景进行修改。
+   - 添加uris等配置（可选项）：若使用deeplink、applink等跳转功能，具体请参考如下示例可选项。其中，必填项的配置不可更改，可选项的具体配置请参考[应用间跳转](../application-models/link-between-apps-overview.md)。
    
    ```json
     "module": {
@@ -84,16 +84,23 @@
                 "audioRecording"
                 ], 
                 "skills": [
-                    // 需添加隐式跳转的uris配置
+                    // 必填项：申请长时任务时entities和actions值
                     {
                         "entities": [
-                           "entity.system.home"
+                            "entity.system.home"
                         ],
                         "actions": [
                             "action.system.home"
                         ]    
                     },
+                    // 可选项：添加deeplink、applink等跳转功能
                     {
+                        "entities": [
+                            "test"
+                        ],
+                        "actions": [
+                            "test"
+                        ],
                         "uris": [
                             {
                                 "scheme": "test"
@@ -341,6 +348,7 @@
    ```
    <!--DelEnd-->
 
+<!--Del-->
 ### FA模型
 
 1. 启动并连接ServiceAbility。
@@ -488,7 +496,7 @@
 
     export default new ServiceAbility();
     ```
-
+<!--DelEnd-->
 
 ## 相关实例
 

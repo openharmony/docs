@@ -231,7 +231,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
    };
    ```
 
-3. 调用[updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8)更新凭据。其中：
+3. 调用[updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8)更新凭据。
 
    ```ts
    userIDM.updateCredential(credentialInfo, {

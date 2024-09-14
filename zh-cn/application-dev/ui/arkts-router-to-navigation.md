@@ -11,13 +11,13 @@
 
 3. 整合UX设计和一多能力，默认提供统一的标题显示、页面切换和单双栏适配能力；
 
-4. 基于通用UIBuilder能力，由开发者决定页面别名和页面UI对应关系，提供更加灵活的页面配置能力；
+4. 基于通用[UIBuilder](../quick-start/arkts-builder.md)能力，由开发者决定页面别名和页面UI对应关系，提供更加灵活的页面配置能力；
 
 5. 基于组件属性动效和共享元素动效能力，将页面切换动效转换为组件属性动效实现，提供更加丰富和灵活的切换动效；
 
 6. 开放了页面栈对象，开发者可以继承，能更好的管理页面显示。
 
-## 能力对标
+## 能力对比
 
 | 业务场景                                      | Navigation                            | Router                                 |
 | --------------------------------------------- | ------------------------------------- | -------------------------------------- |
@@ -165,6 +165,7 @@ struct Index {
       }.width('100%').height('100%')
     }
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 ```
@@ -260,6 +261,7 @@ struct Index {
         ...
     }.width('100%').height('100%')
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 
@@ -319,6 +321,7 @@ struct Index {
       }.width('100%').height('100%')
     }
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 
@@ -374,6 +377,7 @@ struct Index {
       }.width('100%').height('100%')
     }
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 
@@ -610,6 +614,7 @@ Navigation作为路由组件，默认支持跨包跳转。
    		  this.pageStack.pushPath({ name: "PageInHSP"});
    	 })
       }
+      .mode(NavigationMode.Stack)
       .navDestination(this.pageMap)
     }
    }

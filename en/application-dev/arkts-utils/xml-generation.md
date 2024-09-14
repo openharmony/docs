@@ -69,7 +69,7 @@ To generate an XML file, proceed as follows:
    ```ts
    let view: Uint8Array = new Uint8Array(arrayBuffer); // Use Uint8Array to read data from the object of the ArrayBuffer type.
    let textDecoder: util.TextDecoder = util.TextDecoder.create(); // Call the TextDecoder class of the util module.
-   let res: string = textDecoder.decodeWithStream(view); // Decode the view.
+   let res: string = textDecoder.decodeToString(view); // Decode the view.
    console.info(res);
    ```
 

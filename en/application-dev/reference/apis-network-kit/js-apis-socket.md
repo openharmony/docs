@@ -134,7 +134,7 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
 Sends data from a **UDPSocket** connection. This API uses an asynchronous callback to return the result.
 
-Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and port.
+Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and port. Call the API in the worker thread or taskpool thread as this operation is time-consuming.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -184,7 +184,7 @@ send(options: UDPSendOptions): Promise\<void\>
 
 Sends data from a **UDPSocket** connection. This API uses a promise to return the result.
 
-Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and port.
+Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and port. Call the API in the worker thread or taskpool thread as this operation is time-consuming.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -542,8 +542,6 @@ Obtains the local socket address of a **UDPSocket** connection. This API uses a 
 
 > **NOTE**
 > This API can be called only after **bind** is successfully called.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1441,8 +1439,6 @@ Obtains the local socket address for multicast communication. This API uses a pr
 > **NOTE**
 > This API can be called only after **bind** is successfully called.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Return value**
@@ -1886,7 +1882,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 Sends data from a **TCPSocket** connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This API can be called only after **connect** is successfully called.
+> This API can be called only after **connect** is successfully called. Call the API in the worker thread or taskpool thread as this operation is time-consuming.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1943,7 +1939,7 @@ send(options: TCPSendOptions): Promise\<void\>
 Sends data from a **TCPSocket** connection. This API uses a promise to return the result.
 
 > **NOTE**
-> This API can be called only after **connect** is successfully called.
+> This API can be called only after **connect** is successfully called. Call the API in the worker thread or taskpool thread as this operation is time-consuming.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -2515,8 +2511,6 @@ Obtains the local socket address of a **TCPSocket** connection. This API uses a 
 > **NOTE**
 > This API can be called only after **bind** is successfully called.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Return value**
@@ -2847,7 +2841,7 @@ Binds the IP address and port number. The port number can be specified or random
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2301009  | Bad file number.                            |
+| 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -2905,7 +2899,7 @@ Binds the IP address and port number. The port number can be specified or random
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2301009  | Bad file number.                            |
+| 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -3196,8 +3190,6 @@ Obtains the local socket address of a **TCPSocketServer** connection. This API u
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -3670,8 +3662,6 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 getLocalAddress(): Promise\<NetAddress\>
 
 Obtains the local socket address of a **TCPSocketConnection** connection. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -4394,8 +4384,6 @@ Obtains the local socket address of a **LocalSocket** connection. This API uses 
 > **NOTE**
 > This API can be called only after **bind** is successfully called.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Return value**
@@ -4826,7 +4814,7 @@ Binds the address of the local socket file. The server listens to and accepts **
 | ID| Error Message                     |
 | -------- | --------------------------- |
 | 401      | Parameter error.            |
-| 2301009  | Bad file number.            |
+| 2303109  | Bad file number.            |
 | 2301013  | Insufficient permissions.   |
 | 2301022  | Invalid argument.           |
 | 2301098  | Address already in use.     |
@@ -4998,8 +4986,6 @@ Obtains the local socket address of a **LocalSocketServer** connection. This API
 
 > **NOTE**
 > This API can be called only after **listen** is successfully called.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -5289,8 +5275,6 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 getLocalAddress(): Promise\<string\>
 
 Obtains the local socket address of a **LocalSocketConnection** connection. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -6245,7 +6229,7 @@ Sets up a **TLSSocket** connection, and creates and initializes a TLS session af
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
-| 2301009 | Bad file number.                             |
+| 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Incorrect socket protocol type.              |
@@ -6351,7 +6335,7 @@ Sets up a **TLSSocket** connection, and creates and initializes a TLS session af
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
-| 2301009 | Bad file number.                             |
+| 2303109 | Bad file number.                             |
 | 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
 | 2303191 | Incorrect socket protocol type.              |
@@ -6892,8 +6876,6 @@ Obtains the local socket address of a **TLSSocket** connection. This API uses a 
 
 > **NOTE**
 > Call this API only after the **TLSSocketServer** connection is successfully established.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -7869,8 +7851,6 @@ Obtains the local socket address of a **TLSSocketServer** connection. This API u
 
 > **NOTE**
 > Call this API only after the **TLSSocketServer** connection is successfully established.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -8958,8 +8938,6 @@ Obtains the local socket address of a **TLSSocketConnection** connection. This A
 
 > **NOTE**
 > Call this API only after the **TLSSocketServer** connection is successfully established.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Communication.NetStack
 

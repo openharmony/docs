@@ -6,7 +6,7 @@
 
 **添加依赖**
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加image的libace_napi.z.so libpixelmap_ndk.z.so以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加image的libace_napi.z.so、libpixelmap_ndk.z.so以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
@@ -34,7 +34,7 @@ EXTERN_C_END
 
 **Native接口调用**
 
-具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)
+具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)。
 
 在hello.cpp文件中获取JS的资源对象，并转为Native的资源对象，即可调用Native接口，调用方式示例代码如下：
 
@@ -113,7 +113,7 @@ EXTERN_C_END
         napi_value result = nullptr;
         napi_get_undefined(env, &result);
         
-        // 初始化PixelMap对象数据。
+        // 初始化NativePixelMap对象。
         NativePixelMap *native = OH_PixelMap_InitNativePixelMap(env, argValue[0]);
         if (native == nullptr) {
             return result;
@@ -209,7 +209,7 @@ EXTERN_C_END
     export const transform: (a: image.PixelMap) => image.PixelMap;
     ```
 
-2. 打开src\main\ets\pages\index.ets, 导入"libentry.so"(根据工程名生成)；调用Native接口，传入JS的资源对象。示例如下:
+2. 打开src\main\ets\pages\index.ets, 导入"libentry.so"(根据工程名生成)，调用Native接口，传入JS的资源对象。示例如下:
 
     ```js
     import testNapi from 'libentry.so'

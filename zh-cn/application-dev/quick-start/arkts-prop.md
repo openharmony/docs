@@ -1019,4 +1019,127 @@ struct Parent {
 }
 ```
 
+### 使用a.b(this.object)形式调用，不会触发UI刷新
+
+在build方法内，当@Prop装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Score.changeScore1或者this.changeScore2修改自定义组件Child中的this.score.value时，UI不会刷新。
+
+【反例】
+
+```ts
+class Score {
+  value: number;
+  constructor(value: number) {
+    this.value = value;
+  }
+
+  static changeScore1(param1:Score) {
+    param1.value += 1;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State score: Score = new Score(1);
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Parent is ${this.score.value}.`)
+        .fontSize(30)
+        .fontColor(Color.Red)
+      Child({ score: this.score })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @Prop score: Score;
+
+  changeScore2(param2:Score) {
+    param2.value += 2;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Child is ${this.score.value}.`)
+        .fontSize(30)
+      Button(`changeScore1`)
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Score.changeScore1(this.score);
+        })
+      Button(`changeScore2`)
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.changeScore2(this.score);
+        })
+    }
+  }
+}
+```
+
+可以通过如下先赋值、再调用新赋值的变量的方式为this.score加上Proxy代理，实现UI刷新。
+
+【正例】
+
+```ts
+class Score {
+  value: number;
+  constructor(value: number) {
+    this.value = value;
+  }
+
+  static changeScore1(score:Score) {
+    score.value += 1;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State score: Score = new Score(1);
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Parent is ${this.score.value}.`)
+        .fontSize(30)
+        .fontColor(Color.Red)
+      Child({ score: this.score })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Component
+struct Child {
+  @Prop score: Score;
+
+  changeScore2(score:Score) {
+    score.value += 2;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The value in Child is ${this.score.value}.`)
+        .fontSize(30)
+      Button(`changeScore1`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let score1 = this.score;
+          Score.changeScore1(score1);
+        })
+      Button(`changeScore2`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let score2 = this.score;
+          this.changeScore2(score2);
+        })
+    }
+  }
+}
+```
 <!--no_check-->
