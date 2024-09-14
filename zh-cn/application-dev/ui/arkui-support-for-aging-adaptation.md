@@ -39,7 +39,7 @@
 
 ## 示例
 
-SideBarContainer组件通过长按控制按钮触发适老化弹窗。在系统字体为1倍的情况下，长按控制按钮不能弹窗；在系统字体大于1倍的情况下，长按控制按钮可以弹窗。
+SideBarContainer组件通过长按控制按钮触发适老化弹窗。在系统字体为1倍的情况下，长按控制按钮不能弹窗。在系统字体大于1倍的情况下，长按控制按钮可以弹窗。
 
 ```ts
 import { abilityManager, Configuration } from '@kit.AbilityKit';
