@@ -12,7 +12,7 @@
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",
-    "icon": "$media:app_icon",
+    "icon": "$media:test",
     "label": "$string:app_name",
     "description": "$string:description_application",
     "minAPIVersion": 9,
@@ -86,7 +86,9 @@ app.json5配置文件包含以下标签。
 
 ## icon标签
 
-此标签标识[应用的图标](../application-models/application-component-configuration-stage.md)。该图标可以分层处理，在AppScope\resources\base\media目录下，创建一个json文件（例如：test.json），将前景资源和背景资源配置到到该文件。
+此标签标识[应用的图标](../application-models/application-component-configuration-stage.md)。
+    1. 将图标的前景资源和背景资源放在AppScope\resources\base\media目录下。
+    2. 在上述media目录下创建一个json文件（例如：test.json），在文件中引用前景资源和背景资源。
 
 icon标签示例：
 
