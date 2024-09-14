@@ -663,7 +663,7 @@
     - IME Kit（输入法开发服务）<!--ime-kit-->
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
       - [实现一个输入法应用](inputmethod/inputmethod-application-guide.md)
-      - [在自绘编辑框中使用输入法](inputmethod/custom-input-box-guide.md)
+      - [在自绘编辑框中使用输入法](inputmethod/use-inputmethod-in-custom-edit-box.md)
       - [切换输入法应用](inputmethod/switch-inputmehod-guide.md)
       - [输入法子类型开发指南](inputmethod/input-method-subtype-guide.md)
       - [自绘编辑框开发指导 (C/C++)](inputmethod/native-custom-input-box-guide.md)
