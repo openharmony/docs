@@ -2076,7 +2076,7 @@ try {
 
 hasDataType(mimeType: string): boolean
 
-检查剪贴板内容中是否有指定类型的数据。该接口使用时，可不申请[ohos.permission.READ_PASTEBOARD](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md#-2)权限。
+检查剪贴板内容中是否有指定类型的数据。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
