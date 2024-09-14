@@ -1458,6 +1458,8 @@ moveWindowToGlobal(x: number, y: number): Promise&lt;void&gt;
 
 基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回。
 
+全屏模式窗口不支持该操作。
+在非2in1设备下，子窗会跟随主窗移动。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
