@@ -92,7 +92,7 @@ icon标签示例：
 
 ```json
 {
-  "test"：
+  "layered-image"：
     {
       "background":"$media:background", //背景资源
       "foreground":"$media:foreground" //前景资源 
