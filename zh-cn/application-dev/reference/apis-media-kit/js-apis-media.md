@@ -207,7 +207,7 @@ media.createAVRecorder().then((recorder: media.AVRecorder) => {
 
 ## media.createAVTranscoder<sup>12+</sup>
 
-createAVTranscoder(): Promise\<AVTrancoder>
+createAVTranscoder(): Promise\<AVTranscoder>
 
 异步方式创建视频转码实例，通过Promise获取返回值。
 
@@ -221,7 +221,7 @@ createAVTranscoder(): Promise\<AVTrancoder>
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVTrancoder](#avtranscoder12)> | Promise对象。异步返回AVtranscoder实例，失败时返回null。可用于视频转码。 |
+| Promise\<[AVTranscoder](#avtranscoder12)> | Promise对象。异步返回AVtranscoder实例，失败时返回null。可用于视频转码。 |
 
 **错误码：**
 
@@ -284,6 +284,40 @@ media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetada
   } else {
     console.error(`Failed to create AVMetadataExtractor, error message:${error.message}`);
   }
+});
+```
+
+## media.createAVMetadataExtractor<sup>11+</sup>
+
+createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
+
+异步方式创建AVMetadataExtractor实例，通过Promise获取返回值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Returned by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let avMetadataExtractor: media.AVMetadataExtractor;
+media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) => {
+  if (extractor != null) {
+    avMetadataExtractor = extractor;
+    console.info('Succeeded in creating AVMetadataExtractor');
+  } else {
+    console.error(`Failed to create AVMetadataExtractor`);
+  }
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create AVMetadataExtractor, error message:${error.message}`);
 });
 ```
 
@@ -508,11 +542,11 @@ Codec MIME类型枚举。
 
 | 名称                     | 值              | 说明                                                         |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
-| SERVER_IP_ADDRESS        | 'server_ip_address'    | 表示服务器IP地址，其对应键值类型为string。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| AVG_DOWNLOAD_RATE        | 'average_download_rate'| 表示平均下载速率，其对应键值类型为number，单位为比特率（bps）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| DOWNLOAD_RATE            | 'download_rate'        | 表示1s的下载速率，其对应键值类型为number，单位为比特率（bps）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| IS_DOWNLOADING           | 'is_downloading'       | 表示下载状态，1表示在下载状态，0表示非下载状态（下载完成），其对应键值类型为number。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| BUFFER_DURATION          | 'buffer_duration'      | 表示缓存数据的可播放时长，其对应键值类型为number，单位为秒（s）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| SERVER_IP_ADDRESS        | 'server_ip_address'    | 表示服务器IP地址，其对应键值类型为string。 |
+| AVG_DOWNLOAD_RATE        | 'average_download_rate'| 表示平均下载速率，其对应键值类型为number，单位为比特率（bps）。 |
+| DOWNLOAD_RATE            | 'download_rate'        | 表示1s的下载速率，其对应键值类型为number，单位为比特率（bps）。|
+| IS_DOWNLOADING           | 'is_downloading'       | 表示下载状态，1表示在下载状态，0表示非下载状态（下载完成），其对应键值类型为number。|
+| BUFFER_DURATION          | 'buffer_duration'      | 表示缓存数据的可播放时长，其对应键值类型为number，单位为秒（s）。|
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -680,7 +714,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 201      | Permission denied     |
 | 401      | The parameter check failed. |
 | 801      | Capability not supported. |
-| 5400101  | No Memory. |
+| 5400101  | No memory. |
 | 5400102  | Operation not allowed.|
 | 5400103  | I/O error             |
 | 5400104  | Time out              |
@@ -1396,7 +1430,7 @@ getSelectedTracks(): Promise\<Array\<number>>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 5400102  | Operation not allowed. Return by promise. |
+| 5400102  | Operation not allowed. |
 
 **示例：**
 
@@ -1416,8 +1450,6 @@ getPlaybackInfo(): Promise\<PlaybackInfo>
 
 获取播放过程信息，可以在prepared/playing/paused状态调用。通过Promise获取返回值。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **返回值：**
@@ -1425,14 +1457,6 @@ getPlaybackInfo(): Promise\<PlaybackInfo>
 | 类型                                                   | 说明                                              |
 | ------------------------------------------------------ | ------------------------------------------------- |
 | Promise<[PlaybackInfo](#playbackinfo12)> | Promise对象，返回播放器信息PlaybackInfo。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 5400102  | Operation not allowed. Return by promise. |
 
 **示例：**
 
@@ -1489,8 +1513,8 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
-| 5400102  | Operation not allowed. Return by callback. |
+| 401      | The parameter check failed. Return by promise.      |
+| 5400102  | Operation not allowed. Return by promise. |
 
 **示例：**
 
@@ -1545,8 +1569,8 @@ deselectTrack(index: number): Promise\<void>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
-| 5400102  | Operation not allowed. Return by callback. |
+| 401      | The parameter check failed. Return by promise.        |
+| 5400102  | Operation not allowed. Return by promise. |
 
 **示例：**
 
@@ -1698,7 +1722,7 @@ avPlayer.on('seekDone', (seekDoneTime:number) => {
 
 ### off('seekDone')<sup>9+</sup>
 
-off(type: 'seekDone', callback?: Callback\<void>): void
+off(type: 'seekDone', callback?: Callback\<number>): void
 
 取消监听seek生效的事件。
 
@@ -1887,6 +1911,8 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 
 取消监听HLS协议流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -4229,7 +4255,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 5400103  | I/O error. Return by callback.             |
+| 5400103  | IO error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
 
 **示例：**
@@ -4465,7 +4491,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 ### prepare<sup>12+</sup>
 
-prepare(config: AVTranscoderConfig): Promise<\void>
+prepare(config: AVTranscoderConfig): Promise\<void>
 
 异步方式进行视频转码的参数设置。通过Promise获取返回值。
 
@@ -4473,9 +4499,9 @@ prepare(config: AVTranscoderConfig): Promise<\void>
 
 **参数：**
 
-| 参数名 | 类型                                   | 可选 | 说明                       |
+| 参数名 | 类型                                   | 必填 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVTranscoderConfig](#avtranscoderconfig12) | 否   | 配置视频转码的相关参数。 |
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 |
 
 **返回值：**
 
@@ -4489,7 +4515,8 @@ prepare(config: AVTranscoderConfig): Promise<\void>
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-| 5400102  | Operate not permit. Return by promise. |
+| 401  | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 | 5400106  | Unsupported format. Returned by promise.  |
 
@@ -4538,7 +4565,7 @@ start(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-| 5400102  | Operate not permit. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise.  |
 | 5400103  | IO error. Return by promise.           |
 | 5400105  | Service died. Return by promise.       |
 
@@ -4576,7 +4603,7 @@ pause(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-| 5400102  | Operate not permit. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise.  |
 | 5400103  | IO error. Return by promise.           |
 | 5400105  | Service died. Return by promise.       |
 
@@ -4614,7 +4641,7 @@ resume(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-| 5400102  | Operate not permit. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise.  |
 | 5400103  | IO error. Return by promise.           |
 | 5400105  | Service died. Return by promise.       |
 
@@ -4652,7 +4679,7 @@ cancel(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-| 5400102  | Operate not permit. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise.  |
 | 5400103  | IO error. Return by promise.           |
 | 5400105  | Service died. Return by promise.       |
 
@@ -4772,14 +4799,14 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 401      | The Parameter check faild. |
+| 401      | The parameter check failed. |
 | 801      | Capability not supported. |
-| 5400101  | No memory. Return by callback.             |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
-| 5400104  | Time out. Return by callback.              |
-| 5400105  | Service died. Return by callback.          |
-| 5400106  | Unsupport format. Return by callback.      |
+| 5400101  | No memory.            |
+| 5400102  | Operation not allowed. |
+| 5400103  | I/O error.              |
+| 5400104  | Time out.            |
+| 5400105  | Service died.           |
+| 5400106  | Unsupport format.      |
 
 **示例：**
 
@@ -4864,15 +4891,15 @@ avTranscoder.off('complete');
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
-| 名称            | 类型                                    | 只读 | 必填 | 说明                                                         |
+| 名称            | 类型                                    | 只读 | 可选 | 说明                                                         |
 | --------------- | ---------------------------------------- |---- | ---- | ------------------------------------------------------------ |
-| audioBitrate | number     | 否 | 否 | 输出音频的码率，单位为比特率（bps）。用户不设置，则默认设置为48Kbps|
-| audioCodec | [CodecMimeType](#codecmimetype8)     | 否 | 否  | 输出音频的编码格式，当前仅支持AAC。                   |
-| fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 是   | 输出视频文件的封装格式，当前视频文件仅支持MP4。|
-| videoBitrate         | number | 否 |  否   | 输出视频的码率，单位为比特率（bps）。用户不设置，则默认码率按输出视频的分辨率设置，[240p，480P]默认码率值为1Mbps，(480P,720P]默认码率值为2Mbps，(720P,1080P]默认码率值为4Mbps，1080P及以上默认值为8Mbps。|
-| videoCodec        | [CodecMimeType](#codecmimetype8) | 否 | 否   | 输出视频的编码格式，当前仅支持AVC和HEVC。|
-| videoFrameWidth        | number | 否 |  否   | 输出视频帧的宽，单位为像素（px）。用户不设置，则默认设置为源视频帧的宽|
-| videoFrameHeight        | number | 否 |  否   | 输出视频帧的高，单位为像素（px）。用户不设置，则默认设置为源视频帧的高|
+| audioBitrate | number     | 否 | 是 | 输出音频的码率，单位为比特率（bps）。用户不设置，则默认设置为48Kbps|
+| audioCodec | [CodecMimeType](#codecmimetype8)     | 否 | 是  | 输出音频的编码格式，当前仅支持AAC。                   |
+| fileFormat         | [ContainerFormatType](#containerformattype8) | 否 | 否   | 输出视频文件的封装格式，当前视频文件仅支持MP4。|
+| videoBitrate         | number | 否 |  是  | 输出视频的码率，单位为比特率（bps）。用户不设置，则默认码率按输出视频的分辨率设置，[240p，480P]默认码率值为1Mbps，(480P,720P]默认码率值为2Mbps，(720P,1080P]默认码率值为4Mbps，1080P及以上默认值为8Mbps。|
+| videoCodec        | [CodecMimeType](#codecmimetype8) | 否 | 是   | 输出视频的编码格式，当前仅支持AVC和HEVC。|
+| videoFrameWidth        | number | 否 |  是   | 输出视频帧的宽，单位为像素（px）。用户不设置，则默认设置为源视频帧的宽|
+| videoFrameHeight        | number | 否 |  是   | 输出视频帧的高，单位为像素（px）。用户不设置，则默认设置为源视频帧的高|
 
 
 
