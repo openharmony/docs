@@ -86,7 +86,7 @@ app.json5配置文件包含以下标签。
 
 ## icon标签
 
-此标签标识[应用的图标](../application-models/application-component-configuration-stage.md)和和对分层图标配置文件的索引。
+此标签标识[应用的图标](../application-models/application-component-configuration-stage.md)和对分层图标配置文件的索引。
 
 支持分层图标的配置，具体方式如下：
 
