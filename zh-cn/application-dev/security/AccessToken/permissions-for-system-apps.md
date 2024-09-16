@@ -2845,6 +2845,18 @@
 
 **起始版本**：12
 
+### ohos.permission.REGISTER_FINDNETWORK_ACCESSORY
+
+允许应用和系统服务发起查找网络配件注册流程。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ### ohos.permission.MANAGE_RGM
 
 允许系统服务或系统应用管理RGM。
