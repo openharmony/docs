@@ -48,7 +48,7 @@ Ability Kit（程序框架服务）提供了应用程序开发和运行的应用
 
 ## 与相关Kit的关系
 
-ArkUI: Ability Kit在UIAbility组件可以使用ArkUI提供的组件、事件、动效、状态管理等能力。
+ArkUI: 在Ability Kit的UIAbility组件中，可以使用ArkUI提供的组件、事件、动效、状态管理等能力。
 
 ArkTS: ArkTS提供了语言运行时相关能力。
 
