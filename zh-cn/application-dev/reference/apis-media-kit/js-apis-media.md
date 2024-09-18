@@ -2610,7 +2610,7 @@ on(type: 'trackChange', callback: OnTrackChangeHandler): void
 
 ```ts
 avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
-  console.info('trackChange info: number=' + number + ' isSelect=' + isSelect)
+  console.info('trackChange info: index=' + index + ' isSelect=' + isSelect)
 })
 ```
 
@@ -2659,9 +2659,9 @@ on(type: 'trackInfoUpdate', callback: Callback\<Array\<MediaDescription>>): void
 ```ts
 avPlayer.on('trackInfoUpdate', (info: Array<media.MediaDescription>) => {
   if (info) {
-    for (let i = 0; i < info.len; i++) {
-      let propertyIndex: Object = info[i][media.MediaDescription.MD_KEY_TRACK_INDEX];
-      let propertyType: Object = info[i][media.MediaDescription.MD_KEY_TRACK_TYPE];
+    for (let i = 0; i < info.length; i++) {
+      let propertyIndex: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+      let propertyType: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
       console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType)
     }
   } else {
