@@ -966,7 +966,7 @@ router.replaceNamedRoute({
 
 back(options?: RouterOptions ): void
 
-返回上一页面或指定的页面。
+返回上一页面或指定的页面，会删除当前页面与指定页面之间的所有页面。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -988,7 +988,7 @@ router.back({url:'pages/detail'});
 
 back(index: number, params?: Object): void;
 
-返回指定的页面。
+返回指定的页面，会删除当前页面与指定页面之间的所有页面。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
