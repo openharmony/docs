@@ -6516,6 +6516,34 @@ getResponseMimeType(): string
 | ------ | ------------------ |
 | string | 返回资源响应的媒体（MIME）类型。 |
 
+### getResponseDataEx
+
+getResponseDataEx(): string | number | ArrayBuffer | Resource | undefined
+
+获取响应数据。
+
+**返回值：**
+
+|类型|说明|
+|---|---|
+|string|返回HTML格式的字符串。|
+|number|返回文件句柄。|
+|ArrayBuffer|返回二进制数据。|
+|Resource|返回`$rawfile`资源。|
+|undefined|如果没有可用数据，返回`undefined`。|
+
+### getResponseIsReady
+
+getResponseIsReady(): boolean
+
+获取响应数据是否已准备就绪。
+
+**返回值：**
+
+|类型|说明|
+|---|---|
+|boolean|`true`表示响应数据已准备好，`false`表示未准备好。|
+
 ### setResponseData<sup>9+</sup>
 
 setResponseData(data: string \| number \| Resource \| ArrayBuffer): void
