@@ -1443,8 +1443,8 @@ struct Index {
           this.clipHeight = this.targetInfo.clipHeight;
           // 修正因半模态高度和缩放导致的高度差
           this.translateY = this.targetInfo.translateY +
-            (px2vp(WindowUtils.windowHeight_px) - this.bindSheetHeight
-              - px2vp(WindowUtils.navigationIndicatorHeight_px) - px2vp(WindowUtils.topAvoidAreaHeight_px));
+            (this.getUIContext().px2vp(WindowUtils.windowHeight_px) - this.bindSheetHeight
+              - this.getUIContext().px2vp(WindowUtils.navigationIndicatorHeight_px) - this.getUIContext().px2vp(WindowUtils.topAvoidAreaHeight_px));
           // 修正因缩放导致的圆角差异
           this.radius = this.sheetRadius / this.scaleValue
         })
@@ -1476,15 +1476,15 @@ struct Index {
     let itemTranslateY: number = 0;
 
     if (isUseWidthScale) {
-      itemTranslateX = px2vp(itemInfo.left - (WindowUtils.windowWidth_px - itemInfo.width) / 2);
+      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidth_px - itemInfo.width) / 2);
       itemClipWidth = '100%';
-      itemClipHeight = px2vp((itemInfo.height) / itemScale);
-      itemTranslateY = px2vp(itemInfo.top - ((vp2px(itemClipHeight) - vp2px(itemClipHeight) * itemScale) / 2));
+      itemClipHeight = this.getUIContext().px2vp((itemInfo.height) / itemScale);
+      itemTranslateY = this.getUIContext().px2vp(itemInfo.top - ((this.getUIContext().vp2px(itemClipHeight) - this.getUIContext().vp2px(itemClipHeight) * itemScale) / 2));
     } else {
-      itemTranslateY = px2vp(itemInfo.top - (WindowUtils.windowHeight_px - itemInfo.height) / 2);
+      itemTranslateY = this.getUIContext().px2vp(itemInfo.top - (WindowUtils.windowHeight_px - itemInfo.height) / 2);
       itemClipHeight = '100%';
-      itemClipWidth = px2vp((itemInfo.width) / itemScale);
-      itemTranslateX = px2vp(itemInfo.left - (WindowUtils.windowWidth_px / 2 - itemInfo.width / 2));
+      itemClipWidth = this.getUIContext().px2vp((itemInfo.width) / itemScale);
+      itemTranslateX = this.getUIContext().px2vp(itemInfo.left - (WindowUtils.windowWidth_px / 2 - itemInfo.width / 2));
     }
 
     return {
