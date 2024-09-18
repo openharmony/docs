@@ -134,7 +134,7 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
 通过UDPSocket连接发送数据。使用callback方式作为异步方法。
 
-发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。
+发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -184,7 +184,7 @@ send(options: UDPSendOptions): Promise\<void\>
 
 通过UDPSocket连接发送数据。使用Promise方式作为异步方法。
 
-发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。
+发送数据前，需要先调用[UDPSocket.bind()](#bind)绑定IP地址和端口。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -543,8 +543,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > bind方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -558,7 +556,7 @@ getLocalAddress(): Promise\<NetAddress\>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file descriptor.                            |
+| 2301009  | Bad file descriptor.                            |
 | 2303188  | Socket operation on non-socket. |
 
 **示例：**
@@ -1441,8 +1439,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > bind方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -1456,7 +1452,7 @@ getLocalAddress(): Promise\<NetAddress\>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file descriptor.                            |
+| 2301009  | Bad file descriptor.                            |
 | 2303188  | Socket operation on non-socket. |
 
 **示例：**
@@ -1886,7 +1882,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 通过TCPSocket连接发送数据。使用callback方式作为异步方法。
 
 > **说明：**
-> connect方法调用成功后，才可调用此方法。
+> connect方法调用成功后，才可调用此方法。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1943,7 +1939,7 @@ send(options: TCPSendOptions): Promise\<void\>
 通过TCPSocket连接发送数据。使用Promise方式作为异步方法。
 
 > **说明：**
-> connect方法调用成功后，才可调用此方法。
+> connect方法调用成功后，才可调用此方法。该接口为耗时操作，请在Worker线程或taskpool线程调用该接口。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -2515,8 +2511,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > bind方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -2530,7 +2524,7 @@ getLocalAddress(): Promise\<NetAddress\>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file descriptor.                            |
+| 2301009  | Bad file descriptor.                            |
 | 2303188  | Socket operation on non-socket. |
 
 **示例：**
@@ -3197,8 +3191,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -3212,7 +3204,7 @@ getLocalAddress(): Promise\<NetAddress\>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file descriptor.                            |
+| 2301009  | Bad file descriptor.                            |
 | 2303188  | Socket operation on non-socket. |
 
 **示例：**
@@ -3671,8 +3663,6 @@ getLocalAddress(): Promise\<NetAddress\>
 
 获取TCPSocketConnection连接的本地Socket地址。使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -3686,7 +3676,7 @@ getLocalAddress(): Promise\<NetAddress\>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file descriptor.                            |
+| 2301009  | Bad file descriptor.                            |
 | 2303188  | Socket operation on non-socket. |
 
 **示例：**
@@ -4394,8 +4384,6 @@ getLocalAddress(): Promise\<string\>
 > **说明：**
 > bind方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -4409,7 +4397,7 @@ getLocalAddress(): Promise\<string\>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file descriptor.                            |
+| 2301009  | Bad file descriptor.                            |
 | 2303188  | Socket operation on non-socket. |
 
 **示例：**
@@ -4999,8 +4987,6 @@ getLocalAddress(): Promise\<string\>
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -5014,7 +5000,7 @@ getLocalAddress(): Promise\<string\>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file descriptor.                            |
+| 2301009  | Bad file descriptor.                            |
 | 2303188  | Socket operation on non-socket. |
 
 **示例：**
@@ -5290,8 +5276,6 @@ getLocalAddress(): Promise\<string\>
 
 获取LocalSocketConnection连接中的本地Socket地址。使用Promise方式作为异步方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -5305,7 +5289,7 @@ getLocalAddress(): Promise\<string\>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file descriptor.                            |
+| 2301009  | Bad file descriptor.                            |
 | 2303188  | Socket operation on non-socket. |
 
 **示例：**
@@ -6893,8 +6877,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > 在TLSSocketServer通信连接成功之后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -6908,7 +6890,7 @@ getLocalAddress(): Promise\<NetAddress\>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file descriptor.                            |
+| 2301009  | Bad file descriptor.                            |
 | 2303188  | Socket operation on non-socket. |
 
 **示例：**
@@ -7188,7 +7170,7 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file number.                            |
+| 2301009  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -7259,7 +7241,7 @@ listen(options: TLSConnectOptions): Promise\<void\>
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file number.                            |
+| 2301009  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -7870,8 +7852,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > 在TLSSocketServer通信连接成功之后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -7885,7 +7865,7 @@ getLocalAddress(): Promise\<NetAddress\>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file descriptor.                            |
+| 2301009  | Bad file descriptor.                            |
 | 2303188  | Socket operation on non-socket. |
 
 **示例：**
@@ -8959,8 +8939,6 @@ getLocalAddress(): Promise\<NetAddress\>
 > **说明：**
 > 在TLSSocketServer通信连接成功之后，才可调用此方法。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -8974,7 +8952,7 @@ getLocalAddress(): Promise\<NetAddress\>
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
-| 2303109  | Bad file descriptor.                            |
+| 2301009  | Bad file descriptor.                            |
 | 2303188  | Socket operation on non-socket. |
 
 **示例：**

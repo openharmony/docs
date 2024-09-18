@@ -53,7 +53,7 @@ XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml
    thatSer.setText('Everyday'); // 写入标签值
    thatSer.endElement(); // 写入结束标记
    thatSer.startElement('author');
-   thatSer.setText('Giada');
+   thatSer.setText('Giana');
    thatSer.endElement();
    thatSer.startElement('year');
    thatSer.setText('2005');
@@ -67,12 +67,12 @@ XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml
    ```ts
    let view: Uint8Array = new Uint8Array(arrayBuffer); // 使用Uint8Array读取arrayBuffer的数据
    let textDecoder: util.TextDecoder = util.TextDecoder.create(); // 调用util模块的TextDecoder类
-   let res: string = textDecoder.decodeWithStream(view); // 对view解码
+   let res: string = textDecoder.decodeToString(view); // 对view解码
    console.info(res);
    ```
 
    输出结果如下：
 
    ```
-   <?xml version=\"1.0\" encoding=\"utf-8\"?><bookstore>\r\n  <book category=\"COOKING\">\r\n    <title lang=\"en\">Everyday</title>\r\n    <author>Giada</author>\r\n    <year>2005</year>\r\n  </book>\r\n</bookstore>
+   <?xml version=\"1.0\" encoding=\"utf-8\"?><bookstore>\r\n  <book category=\"COOKING\">\r\n    <title lang=\"en\">Everyday</title>\r\n    <author>Giana</author>\r\n    <year>2005</year>\r\n  </book>\r\n</bookstore>
    ```

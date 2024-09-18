@@ -7,6 +7,7 @@ The **AVCastPicker** component provides a unified entry for device discovery and
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.<!--Del-->
 > - This component can only be used from the device selection screen, which needs to be implemented by OEM vendors.<!--DelEnd-->
+> <!--RP2--><!--RP2End-->
 
 ## Modules to Import
 

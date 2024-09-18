@@ -19,7 +19,7 @@
 
 2. 调用[OH_CryptoAsymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_generate)，随机生成非对称密钥对象（OH_CryptoKeyPair）。
 
-3. 调用[OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode)分别获取密钥对象的二进制数据。
+3. 调用[OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode)获取公钥密钥对象的二进制数据。
 
 
 ```c++
@@ -71,7 +71,7 @@ static OH_Crypto_ErrCode randomGenerateAsymKey()
 
 2. 调用[OH_CryptoAsymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_generate)，随机生成非对称密钥对象（OH_CryptoKeyPair）。
 
-3. 调用[OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode)和[PriKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded)，分别获取密钥对象的二进制数据。
+3. 调用[OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode)获取公钥密钥对象的二进制数据。
 
 
 ```c++

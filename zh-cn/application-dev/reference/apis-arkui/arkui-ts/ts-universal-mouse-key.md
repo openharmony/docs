@@ -7,29 +7,6 @@
 >  - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  - 目前仅支持通过外接鼠标触发。
 
-## onHover
-
-onHover(event: (isHover: boolean, event: HoverEvent) => void): T
-
-鼠标进入或退出组件时触发该回调。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名              | 类型                                | 必填 | 说明                                                         |
-| ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| isHover             | boolean                             | 是   | 表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。 |
-| event<sup>11+</sup> | [HoverEvent](#hoverevent11对象说明) | 是   | 设置阻塞事件冒泡属性。                                       |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| T | 返回当前组件。 |
-
 ## onMouse
 
 onMouse(event: (event: MouseEvent) => void)
@@ -60,27 +37,13 @@ onMouse(event: (event: MouseEvent) => void)
 | button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | 鼠标按键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
 | action                 | [MouseAction](ts-appendix-enums.md#mouseaction) | 鼠标动作。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
 | stopPropagation        | () => void                               | 阻塞事件冒泡。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
-| timestamp | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | target    | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
-| source    | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                   |
 | windowX<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的x轴坐标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | windowY<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的y轴坐标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | displayX<sup>10+</sup> | number                         | 鼠标位置相对于应用屏幕左上角的x轴坐标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | displayY<sup>10+</sup> | number                         | 鼠标位置相对于应用屏幕左上角的y轴坐标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | screenX<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的x轴坐标。<br>从API Version 10开始不再维护，建议使用windowX代替。 |
 | screenY<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的y轴坐标。<br>从API Version 10开始不再维护，建议使用windowY代替。 |
-
-## HoverEvent<sup>11+</sup>对象说明
-
-继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称              | 属性类型       | 描述      |
-| --------------- | ---------- | ------- |
-| stopPropagation | () => void | 阻塞事件冒泡。 |
 
 ## 示例
 
@@ -159,11 +122,7 @@ struct MouseEventExample {
 }
 ```
 
-示意图：
-
-鼠标悬浮时改变文本内容与背景颜色：
-
- ![mouse](figures/mouse.png) 
+示意图： 
 
 鼠标点击时：
 

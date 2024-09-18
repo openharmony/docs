@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **Description**
 
@@ -36,7 +36,7 @@ Check whether the system services are running properly.
 
 **Error Message**
 
-Operation failed. System is shutting down.
+Operation failed. The system is shutting down.
 
 **Description**
 

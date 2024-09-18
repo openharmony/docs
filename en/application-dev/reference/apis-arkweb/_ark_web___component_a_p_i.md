@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines a struct for native APIs of the component.
+Defines a native component API.
 
 **Since**: 12
 

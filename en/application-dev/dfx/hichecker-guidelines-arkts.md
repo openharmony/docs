@@ -23,11 +23,11 @@ HiChecker is provided to check issues that may be easily ignored during applicat
 
 The check APIs are provided by the HiChecker module. For details about the APIs, see [HiChecker](../reference/apis-performance-analysis-kit/js-apis-hichecker.md).
 
-| API| Description|
+| API | Description |
 | -------- | -------- |
-| hichecker.addCheckRule(rule: bigint) | Adds a rule.|
-| hichecker.removeCheckRule(rule: bigint) | Removes a rule.|
-| hichecker.containsCheckRule(rule: bigint) | Queries a rule.|
+| hichecker.addCheckRule(rule: bigint) | Adds a rule. |
+| hichecker.removeCheckRule(rule: bigint) | Removes a rule. |
+| hichecker.containsCheckRule(rule: bigint) | Queries a rule. |
 
 ## How to Develop
 
@@ -36,13 +36,10 @@ After the application startup execution page is loaded, the check starts. After 
 1. Create an ArkTS application project. In the **Project** window, click **entry > src > main > ets > entryability** to open the **EntryAbility.ets** file. After the page is loaded, call the HiChecker to add check rules. The sample code is as follows:
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import hilog from '@ohos.hilog';
-   import window from '@ohos.window';
-   import hichecker from '@ohos.hichecker';
-   import image from '@ohos.multimedia.image';
-   import Want from '@ohos.app.ability.Want';
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import { window } from '@kit.ArkUI';
+   import { image } from '@kit.ImageKit';
+   import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+   import { hichecker, hilog } from '@kit.PerformanceAnalysisKit';
    
    export default class EntryAbility extends UIAbility {
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {

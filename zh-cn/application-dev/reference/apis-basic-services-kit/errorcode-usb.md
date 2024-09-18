@@ -39,3 +39,21 @@ HDC被系统禁用。
 **处理步骤**
 
 申请USB调试权限。
+
+## 14400003 不支持的端口角色切换
+
+**错误信息**
+
+Unsupported operation. The current device does not support port role switching.
+
+**错误描述**
+
+不支持的操作。当前设备不支持端口角色切换。
+
+**可能原因**
+
+不是正确的端口角色。
+
+**处理步骤**
+
+使用正确的端口角色。

@@ -230,7 +230,9 @@ plural.json文件的内容如下：
   ![create-resource-file-3](figures/create-resource-file-3.png)
 
 ## 资源可翻译特性
+
 ### 功能介绍
+
 资源需要翻译时，可使用attr属性标记字符串翻译范围和翻译状态。attr属性不参与资源编译，只标记字符串是否翻译。
 
 未配置attr属性，默认需要翻译。
@@ -296,19 +298,19 @@ string资源配置attr属性示例如下：
 
   ```ts
     Text('Hello')
-    .fontColor($r('sys.color.ohos_id_color_emphasize'))
-    .fontSize($r('sys.float.ohos_id_text_size_headline1'))
-    .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
-    .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
+    .fontColor($r('app.color.ohos_id_color_emphasize'))
+    .fontSize($r('app.float.ohos_id_text_size_headline1'))
+    .fontFamily($r('app.string.ohos_id_text_font_family_medium'))
+    .backgroundColor($r('app.color.ohos_id_color_palette_aux1'))
 
-    Image($r('sys.media.ohos_app_icon'))
+    Image($r('app.media.ohos_app_icon'))
     .border({
-      color: $r('sys.color.ohos_id_color_palette_aux1'),
-      radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2
+      color: $r('app.color.ohos_id_color_palette_aux1'),
+      radius: $r('app.float.ohos_id_corner_radius_button'), width: 2
     })
     .margin({
-      top: $r('sys.float.ohos_id_elements_margin_horizontal_m'),
-      bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')
+      top: $r('app.float.ohos_id_elements_margin_horizontal_m'),
+      bottom: $r('app.float.ohos_id_elements_margin_horizontal_l')
     })
     .height(200)
     .width(300)
@@ -526,7 +528,7 @@ struct Index {
 
 ### overlay机制
 
-overylay是一种资源替换机制，针对不同品牌、产品的显示风格，开发者可以在不重新打包业务逻辑hap的情况下，通过配置和使用overlay资源包，实现应用界面风格变换。overlay资源包只包含资源文件、资源索引文件和配置文件。
+overlay是一种资源替换机制，针对不同品牌、产品的显示风格，开发者可以在不重新打包业务逻辑hap的情况下，通过配置和使用overlay资源包，实现应用界面风格变换。overlay资源包只包含资源文件、资源索引文件和配置文件。
 
 - 动态overlay使用方式
 

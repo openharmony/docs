@@ -21,7 +21,9 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 > **说明：**
 >
-> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8)后调用。
+> 该接口需要申请通知弹窗权限[NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10)后调用。
+>
+> <!--RP1--><!--RP1End-->
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -40,6 +42,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
@@ -69,7 +72,9 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 > **说明：**
 >
-> 该接口需要申请通知弹窗权限[Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8)后调用。
+> 该接口需要申请通知弹窗权限[NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10)后调用。
+>
+> <!--RP1--><!--RP1End-->
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -91,6 +96,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
@@ -132,6 +138,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700003    | The reminder does not exist. |
 | 1700004    | The bundle name does not exist. |
 
@@ -176,6 +183,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700003    | The reminder does not exist. |
 | 1700004    | The bundle name does not exist. |
 
@@ -218,6 +226,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **示例**：
@@ -282,6 +291,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **示例**：
@@ -338,6 +348,7 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **示例**：
@@ -374,6 +385,7 @@ cancelAllReminders(): Promise\<void>
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **示例**：

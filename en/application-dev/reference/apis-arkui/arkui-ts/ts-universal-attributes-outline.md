@@ -12,7 +12,9 @@ outline(value: OutlineOptions)
 
 Sets the outline attributes in one declaration.
 
-**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -22,13 +24,29 @@ Sets the outline attributes in one declaration.
 | ------ | ----------------------------------------- | ---- | ---- |
 | value  | [OutlineOptions](#outlineoptions) | Yes  |   Outline attributes.  |
 
+## OutlineStyle<sup>11+</sup>
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| SOLID  | Solid border.                     |
+| DASHED | Dashed border.                |
+| DOTTED | Dotted border. The radius of a dot is half of **outlineWidth**.|
+
 ## outlineStyle
 
 outlineStyle(value: OutlineStyle | EdgeOutlineStyles)
 
 Sets the style of the outline.
 
-**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -36,7 +54,7 @@ Sets the style of the outline.
 
 | Name| Type                                                        | Mandatory| Description                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| value  | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) \| [EdgeOutlineStyles](#edgeoutlinestyles) | Yes  | Outline style.<br>Default value: **OutlineStyle.SOLID**|
+| value  | [OutlineStyle](#outlinestyle11) \| [EdgeOutlineStyles](#edgeoutlinestyles) | Yes  | Outline style.<br>Default value: **OutlineStyle.SOLID**|
 
 ## outlineWidth
 
@@ -44,7 +62,9 @@ outlineWidth(value: Dimension | EdgeOutlineWidths)
 
 Sets the thickness of the outline.
 
-**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -60,7 +80,9 @@ outlineColor(value: ResourceColor | EdgeColors)
 
 Sets the color of the outline.
 
-**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,7 +98,9 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 Sets the rounded corner radius of the outline.
 
-**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -88,16 +112,24 @@ Sets the rounded corner radius of the outline.
 
 ## OutlineOptions
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
 | Name  | Type                  |Mandatory                                     | Description                                                        |
 | ------ | ----------------------|-------------------------------------- | ------------------------------------------------------------ |
 | width  | [Dimension](ts-types.md#dimension10) \| [EdgeOutlineWidths](#edgeoutlinewidths) | No| Outline thickness. This parameter cannot be set in percentage.<br>Default value: **0**|
-| color  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors) |No| Outline color.<br>Default value: **Color.Black**                  |
+| color  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors) \| [LocalizedEdgeColors](#localizededgecolors12)<sup>12+</sup> |No| Outline color.<br>Default value: **Color.Black**                  |
 | radius | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses) | No| Rounded corner radius of the outline. This parameter cannot be set in percentage.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth|
-| style  | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) \| [EdgeOutlineStyles](#edgeoutlinestyles) |No| Outline style.<br>Default value: **OutlineStyle.SOLID**           |
+| style  | [OutlineStyle](#outlinestyle11) \| [EdgeOutlineStyles](#edgeoutlinestyles) |No| Outline style.<br>Default value: **OutlineStyle.SOLID**           |
 
 ## EdgeOutlineWidths
 
 To reference this object, at least one parameter must be passed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 | Name    | Type                        | Mandatory  | Description     |
 | ------ | ---------------------------- | ---- | ------- |
@@ -110,6 +142,12 @@ To reference this object, at least one parameter must be passed.
 
 To reference this object, at least one parameter must be passed.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
 | Name    | Type                                    | Mandatory  | Description     |
 | ------ | ---------------------------------------- | ---- | ------- |
 | left   | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the left outline.|
@@ -117,9 +155,28 @@ To reference this object, at least one parameter must be passed.
 | top    | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the top outline.|
 | bottom | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the bottom outline.|
 
+## LocalizedEdgeColors<sup>12+</sup>
+
+To reference this object, at least one parameter must be passed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+| Name    | Type                                    | Mandatory  | Description     |
+| ------ | ---------------------------------------- | ---- | ------- |
+| left   | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the left outline.<br>Color of the right outline for right-to-left scripts.|
+| right  | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the right outline.<br>Color of the left outline for right-to-left scripts.|
+| top    | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the top outline.|
+| bottom | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the bottom outline.|
+
 ## OutlineRadiuses
 
 To reference this object, at least one parameter must be passed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 | Name         | Type                        | Mandatory  | Description      |
 | ----------- | ---------------------------- | ---- | -------- |
@@ -132,14 +189,20 @@ To reference this object, at least one parameter must be passed.
 
 To reference this object, at least one parameter must be passed.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
 | Name    | Type                                    | Mandatory  | Description     |
 | ------ | ---------------------------------------- | ---- | ------- |
-| left   | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) | No   | Style of the left outline.|
-| right  | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) | No   | Style of the right outline.|
-| top    | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) | No   | Style of the top outline.|
-| bottom | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) | No   | Style of the bottom outline.|
+| left   | [OutlineStyle](#outlinestyle11) | No   | Style of the left outline.|
+| right  | [OutlineStyle](#outlinestyle11) | No   | Style of the right outline.|
+| top    | [OutlineStyle](#outlinestyle11) | No   | Style of the top outline.|
+| bottom | [OutlineStyle](#outlinestyle11) | No   | Style of the bottom outline.|
 
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -183,3 +246,55 @@ struct OutlineExample {
 ```
 
 ![en-us_image_0000001219982706](figures/en-us_image_0000001219982706.png)
+
+### Example 2
+```ts
+// xxx.ets
+// The color parameter of the outline attribute is of the LocalizedEdgeColors type.
+
+@Entry
+@Component
+struct OutlineExample {
+  build() {
+    Column() {
+      Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
+        // Dashed line
+        Text('DASHED')
+          .backgroundColor(Color.Pink)
+          .outlineStyle(OutlineStyle.DASHED).outlineWidth(5).outlineColor(0xAFEEEE).outlineRadius(10)
+          .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
+        // Dotted line
+        Text('DOTTED')
+          .backgroundColor(Color.Pink)
+          .outline({ width: 5, color: 0x317AF7, radius: 10, style: OutlineStyle.DOTTED })
+          .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
+      }.width('100%').height(150)
+
+      Text('.outline')
+        .backgroundColor(Color.Pink)
+        .fontSize(50)
+        .width(300)
+        .height(300)
+        .outline({
+          width: { left: 3, right: 6, top: 10, bottom: 15 },
+          color: { start: '#e3bbbb', end: Color.Blue, top: Color.Red, bottom: Color.Green },
+          radius: { topLeft: 10, topRight: 20, bottomLeft: 40, bottomRight: 80 },
+          style: {
+            left: OutlineStyle.DOTTED,
+            right: OutlineStyle.DOTTED,
+            top: OutlineStyle.SOLID,
+            bottom: OutlineStyle.DASHED
+          }
+        }).textAlign(TextAlign.Center)
+    }
+  }
+}
+```
+
+The following shows how the example is represented with left-to-right scripts.
+
+![en-us_image_outling_ltr](figures/en-us_image_outling_ltr.png)
+
+The following shows how the example is represented with right-to-left scripts.
+
+![en-us_image_outling_rtl](figures/en-us_image_outling_rtl.png)

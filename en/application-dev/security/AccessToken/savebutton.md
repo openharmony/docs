@@ -12,7 +12,7 @@ The following figure shows the effect of the **SaveButton** component.
 
 ## Constraints
 
-- When a user clicks **SaveButton** in the application for the first time, a dialog box will be displayed to request user authorization. If the user clicks **Deny**, the dialog box will be closed and the application does not have the permission. When the user clicks **LocationButton** again, the user authroziation dialog box will be displayed again. If the user clicks **Allow**, the dialog box will be closed and the application is granted the temporary location permission. After that, if the user clicks **LocationButton** again, no dialog box will be displayed.
+- When a user clicks **SaveButton** in the application for the first time, a dialog box will be displayed to request user authorization. If the user clicks **Deny**, the dialog box will be closed and the application does not have the permission. When the user clicks **LocationButton** again, the user authorization dialog box will be displayed again. If the user clicks **Allow**, the dialog box will be closed and the application is granted the temporary location permission. After that, if the user clicks **LocationButton** again, no dialog box will be displayed.
 
 - The interval for calling **onClick()** to trigger a **mediaLibrary** API cannot exceed 10 seconds after **SaveButton** is tapped.
 
@@ -35,7 +35,7 @@ For example, to save the image in the dialog box shown above, the application on
    
    The **SaveButton** component is a button-like component consisting of an icon, text, and background. Either the icon or text is mandatory, and the background is optional. The icon and text cannot be customized. You can only select from the existing options. When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created.
 
-   The following example uses the default parameters. For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).<br>In addition, all security components inherit the [Security Component Universal Attributes](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
+   The following example uses the default parameters. For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).<br>In addition, all security components inherit from the [Security Component Universal Attributes](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
    
    ```ts
    import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -51,7 +51,8 @@ For example, to save the image in the dialog box shown above, the application on
        let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg');
        // Open the file based on its URI. The write process is not time bound.
        let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-       context.resourceManager.getMediaContent($r('app.media.icon').id, 0)
+       // Replace $r('app.media.startIcon') with the image resource file you use.
+       context.resourceManager.getMediaContent($r('app.media.startIcon').id, 0)
          .then(async value => {
            let media = value.buffer;
            // Write data to the file in the media library.
@@ -72,7 +73,8 @@ For example, to save the image in the dialog box shown above, the application on
      build() {
        Row() {
          Column({ space: 10 }) {
-           Image($r('app.media.icon'))
+           // Replace $r('app.media.startIcon') with the image resource file you use.
+           Image($r('app.media.startIcon'))
              .height(400)
              .width('100%')
    

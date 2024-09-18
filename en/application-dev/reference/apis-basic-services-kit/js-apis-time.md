@@ -141,7 +141,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+</sup> <sup>(deprecated)</sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -183,7 +183,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+</sup> <sup>(deprecated)</sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -224,7 +224,7 @@ try {
 }
 ```
 
-## systemTime.getRealActiveTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealActiveTime<sup>8+</sup> <sup>(deprecated)</sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -269,7 +269,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+</sup> <sup>(deprecated)</sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -311,7 +311,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+</sup> <sup>(deprecated)</sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -352,7 +352,7 @@ try {
 }
 ```
 
-## systemTime.getRealTime<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getRealTime<sup>8+</sup> <sup>(deprecated)</sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -397,7 +397,7 @@ try {
 }
 ```
 
-## systemTime.getDate<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getDate<sup>8+</sup> <sup>(deprecated)</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
@@ -438,7 +438,7 @@ try {
 }
 ```
 
-## systemTime.getDate<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getDate<sup>8+</sup> <sup>(deprecated)</sup>
 
 getDate(): Promise&lt;Date&gt;
 
@@ -477,7 +477,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getTimezone<sup>8+</sup> <sup>(deprecated)</sup>
 
 getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
@@ -518,7 +518,7 @@ try {
 }
 ```
 
-## systemTime.getTimezone<sup>8+<sup> <sup>(deprecated)</sup>
+## systemTime.getTimezone<sup>8+</sup> <sup>(deprecated)</sup>
 
 getTimezone(): Promise&lt;string&gt;
 

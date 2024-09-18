@@ -189,6 +189,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 
 **返回值：**
 
@@ -480,7 +481,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 

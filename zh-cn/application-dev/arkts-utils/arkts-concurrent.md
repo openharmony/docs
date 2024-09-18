@@ -5,7 +5,7 @@
 
 > **说明：**
 >
-> 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
+> 从API version 9开始，支持使用@Concurrent装饰器声明并校验并发函数。
 
 
 ## 装饰器说明

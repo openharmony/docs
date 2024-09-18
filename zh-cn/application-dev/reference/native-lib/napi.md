@@ -196,11 +196,11 @@ libace_napi.z.so
 |FUNC|napi_destroy_ark_runtime|销毁基础运行时环境。|12|
 |FUNC|napi_run_event_loop|触发底层的事件循环。|12|
 |FUNC|napi_stop_event_loop|停止底层的事件循环。|12|
-|FUNC|napi_load_module_with_info|将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTs基础运行时环境中使用。|12|
+|FUNC|napi_load_module_with_info|将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTS基础运行时环境中使用。|12|
 |FUNC|napi_serialize|将ArkTS对象转换为native数据。|12|
 |FUNC|napi_deserialize|将native数据转为ArkTS对象。|12|
 |FUNC|napi_delete_serialization_data|删除序列化数据。|12|
-|FUNC|napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS线程。|12|
+|FUNC|napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS主线程。|12|
 |FUNC|napi_is_sendable|判断给定JS value是否是Sendable的。|12|
 |FUNC|napi_define_sendable_class|创建一个sendable类。|12|
 |FUNC|napi_create_sendable_object_with_properties | 使用给定的napi_property_descriptor创建一个sendable对象。|12|
@@ -487,7 +487,7 @@ napi_status napi_load_module_with_info(napi_env env,
 
 **描述：**
 
-将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTs基础运行时环境中使用。
+将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTS基础运行时环境中使用。
 
 **参数：**
 
@@ -586,7 +586,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 
 **描述：**
 
-将指定优先级和入队方式的任务投递到ArkTS线程。
+将指定优先级和入队方式的任务投递到ArkTS主线程。
 
 **参数：**
 
@@ -901,3 +901,5 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 **返回：**
 
 如果API成功，则返回napi_ok。
+
+<!--no_check-->

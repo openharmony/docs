@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.TreeView (树视图)
+# TreeView
 
 
 树视图作为一种分层显示的列表，适合显示嵌套结构。拥有父列表项和子列表项，可展开或折叠。

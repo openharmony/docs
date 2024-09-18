@@ -16,6 +16,8 @@ import { Action, Key, KeyEvent } from '@kit.InputKit';
 
 Key event type.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name  | Value | Description    |
@@ -28,6 +30,8 @@ Key event type.
 
 Defines a key.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name       | Type| Readable| Writable| Description          |
@@ -39,6 +43,8 @@ Defines a key.
 ## KeyEvent
 
 Key event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 

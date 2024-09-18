@@ -9,8 +9,36 @@ OpenGL ES 3.2
 ## 标准库中导出的符号列表
 
 [native api中导出的OpenGL ES 3.2符号列表](openglesv3-symbol.md)
+
+## 引入OpenGL能力
+
+如果开发者需要使用OpenGL的相关能力，需要添加相关动态链接库和头文件。
+
+**添加动态链接库**
+
+CMakeLists.txt中添加以下lib。
+
+```txt
+libace_ndk.z.so
+libace_napi.z.so
+libGLESv3.so
+libEGL.so
+```
+
+**头文件**
+
+```c++
+#include <ace/xcomponent/native_interface_xcomponent.h>
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
+#include <EGL/eglplatform.h>
+#include <GLES3/gl3.h>
+```
+
 ## 相关参考
+
 针对OpenGL ES的使用和相关开发，需要同步了解NDK的开发过程，以及XComponent组件等的使用，具体可参考:
+
 - [NDK开发参考](../../napi/ndk-development-overview.md)
 
 - [NodeAPI参考](./napi.md)

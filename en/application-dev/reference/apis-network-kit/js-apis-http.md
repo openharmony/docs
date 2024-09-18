@@ -58,7 +58,7 @@ httpRequest.request( // Customize EXAMPLE_URL in extraData on your own. It is up
         publicKeyHash: 'Pin2', // Certificate PIN passed by the application. This attribute is supported since API version 12.
         hashAlgorithm: 'SHA-256' // Encryption algorithm. Currently, it can only be set to SHA-256. This attribute is supported since API version 12.
       }
-    ]
+    ],
     multiFormDataList: [ // Optional. This field is valid only when content-Type in the header is multipart/form-data. It is supported since API version 11.
       {
         name: "Part1", // Data name. This field is supported since API version 11.
@@ -190,6 +190,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
@@ -272,6 +273,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
@@ -382,6 +384,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
@@ -491,6 +494,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
@@ -565,6 +569,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
@@ -666,6 +671,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 | 2300077 | The SSL CA certificate does not exist or is inaccessible.      |
 | 2300078 | Remote file not found.                                         |
 | 2300094 | Authentication error.                                          |
+| 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Unknown error.                                                 |
 
 > **NOTE**
@@ -852,9 +858,6 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 Registers an observer for events indicating receiving of HTTP streaming responses.
 
-> **NOTE**
-> Currently, listening for events related to HTTP streaming data upload is not supported.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -912,9 +915,6 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 
 Registers an observer for events indicating completion of receiving HTTP streaming responses.
 
-> **NOTE**
-> Currently, listening for events related to HTTP streaming data upload is not supported.
-
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -971,9 +971,6 @@ httpRequest.off("dataEnd");
 on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
-
-> **NOTE**
-> Currently, listening for events related to HTTP streaming data upload is not supported.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -1530,7 +1527,7 @@ Defines the dynamic configuration of certificate pinning.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-|  Name |  Type |   Description    |
-| ------------------  | -- | ----------- |
-| publicKeyHash       | string | Certificate PIN of the string type.|
-| hashAlgorithm        | 'SHA-256' | Encryption algorithm. Currently, only SHA-256 is supported.|
+|  Name |  Type |  Mandatory |Description    |
+| ------------------  |---- |-- | ----------- |
+| publicKeyHash       | string | Yes|Certificate PIN of the string type.|
+| hashAlgorithm        | 'SHA-256' |  Yes |Encryption algorithm. Currently, only SHA-256 is supported.|

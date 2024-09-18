@@ -1,6 +1,6 @@
 # @ohos.net.socket (Socket Connection)
 
-The **socket** module implements data transfer over **TCPSocket**, **UDPSocket**, **WebSocket**, and**TLSSocket** connections.
+The **socket** module implements data transfer over **TCPSocket**, **UDPSocket**, **WebSocket**, and **TLSSocket** connections.
 
 > **NOTE**
 >
@@ -2405,13 +2405,19 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   let tcpExtraOptions: socket.TCPExtraOptions = {
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
-    socketLinger: { on: true, linger: 10 },
+    socketLinger: { on: true, linger: 10 } as SocketLinger,
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: true,
@@ -2474,13 +2480,19 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
   address: netAddress,
   timeout: 6000
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   let tcpExtraOptions: socket.TCPExtraOptions = {
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
-    socketLinger: { on: true, linger: 10 },
+    socketLinger: { on: true, linger: 10 } as SocketLinger,
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: true,
@@ -3075,11 +3087,16 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
   console.log("listen success");
 })
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -3140,6 +3157,12 @@ let listenAddr: socket.NetAddress = {
   port: 8080,
   family: 1
 }
+
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
     console.log("listen fail");
@@ -3152,7 +3175,7 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -3208,7 +3231,7 @@ tcpServer.listen(listenAddr).then(() => {
   tcpServer.getLocalAddress().then((localAddress: socket.NetAddress) => {
     console.info("SUCCESS! Address:" + JSON.stringify(localAddress));
   }).catch((err: BusinessError) => {
-    console.("FerrorAILED! Error:" + JSON.stringify(err));
+    console.error("FerrorAILED! Error:" + JSON.stringify(err));
   })
 }).catch((err: BusinessError) => {
   console.error('listen fail');
@@ -4364,7 +4387,7 @@ client.connect(connectOpt).then(() => {
 
 ### getLocalAddress<sup>12+</sup>
 
-getLocalAddress(): Promise\<String\>
+getLocalAddress(): Promise\<string\>
 
 Obtains the local socket address of a **LocalSocket** connection. This API uses a promise to return the result.
 
@@ -4399,7 +4422,7 @@ let address : socket.LocalAddress = {
 }
 client.bind(address).then(() => {
   console.error('bind success');
-  client.getLocalAddress().then((localPath) => {
+  client.getLocalAddress().then((localPath: string) => {
     console.info("SUCCESS " + JSON.stringify(localPath));
   }).catch((err: BusinessError) => {
     console.error("FAIL " + JSON.stringify(err));
@@ -5004,7 +5027,7 @@ let listenAddr: socket.LocalAddress = {
 }
 server.listen(listenAddr).then(() => {
   console.info("listen success");
-  server.getLocalAddress().then((localPath) => {
+  server.getLocalAddress().then((localPath: string) => {
     console.info("SUCCESS " + JSON.stringify(localPath));
   }).catch((err: BusinessError) => {
     console.error("FAIL " + JSON.stringify(err));
@@ -5301,8 +5324,8 @@ server.listen(localAddr).then(() => {
     timeout: 6000
   }
   client.connect(connectOpt).then(() => {
-    server.getLocalAddress().then((localPath) => {
-      console.info("success, localPath is"JSON.stringify(localPath));
+    server.getLocalAddress().then((localPath: string) => {
+      console.info("success, localPath is" + JSON.stringify(localPath));
     }).catch((err: BusinessError) => {
       console.error("FAIL " + JSON.stringify(err));
     })
@@ -5577,6 +5600,64 @@ import { socket } from '@kit.NetworkKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 ```
 
+## socket.constructTLSSocketInstance<sup>12+</sup>
+
+constructTLSSocketInstance(tcpSocket: TCPSocket): TLSSocket
+
+Upgrades a **TCPSocket** connection to a **TLSSocket** connection.
+
+> **NOTE**
+> Before calling **constructTLSSocketInstance**, ensure that a **TCPSocket** connection has been established and no data is transmitted. After a successful upgrade, you do not need to call the **close** API for the **TCPSocket** object.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name      | Type| Mandatory| Description                    |
+|-----------|----| ---- |------------------------|
+| tcpSocket | [TCPSocket](#tcpsocket)   | Yes  | **TCPSocket** connection to be upgraded.|
+
+**Return value**
+
+| Type                              | Description                   |
+|  --------------------------------- |  ---------------------- |
+| [TLSSocket](#tlssocket9) | **TLSSocket** connection.|
+
+**Error codes**
+
+| ID  | Error Message                            |
+|---------|----------------------------------|
+| 401     | Parameter error.  |
+| 2300002 | System internal error.  |
+| 2303601 | Invalid socket FD.     |
+| 2303602 | Socket is not connected.  |
+
+**Example**
+
+```ts
+import { socket } from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let tcpconnectoptions: socket.TCPConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  timeout: 6000
+}
+tcp.connect(tcpconnectoptions, (err: BusinessError) => {
+  if (err) {
+    console.log('connect fail');
+    return;
+  }
+  console.log('connect success');
+
+  // Ensure that a TCPSocket connection has been established before upgrading it to a TLSSocket connection.
+  let tls: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
+})
+```
+
 ## TLSSocket<sup>9+</sup>
 
 Defines a **TLSSocket** connection. Before calling **TLSSocket** APIs, you need to call [socket.constructTLSSocketInstance](#socketconstructtlssocketinstance9) to create a **TLSSocket** connection.
@@ -5586,6 +5667,9 @@ Defines a **TLSSocket** connection. Before calling **TLSSocket** APIs, you need 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 Binds the IP address and port number. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> If the **TLSSocket** object is upgraded from a **TCPSocket** object, you do not need to execute the **bind** API.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -5632,6 +5716,9 @@ tls.bind(bindAddr, (err: BusinessError) => {
 bind(address: NetAddress): Promise\<void\>
 
 Binds the IP address and port number. This API uses a promise to return the result.
+
+> **NOTE**
+> If the **TLSSocket** object is upgraded from a **TCPSocket** object, you do not need to execute the **bind** API.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -5812,11 +5899,16 @@ tls.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -5878,11 +5970,16 @@ tls.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -6126,6 +6223,7 @@ tls.on('error', callback);
 // You can pass the callback of the on function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
 tls.off('error', callback);
 ```
+
 ### connect<sup>9+</sup>
 
 connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
@@ -7003,10 +7101,11 @@ Defines TLS connection options.
 | address        | [NetAddress](#netaddress)             | Yes |  Gateway address.      |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | Yes| TLS security options.|
 | ALPNProtocols  | Array\<string\>                         | No| ALPN protocol. The value range is ["spdy/1", "http/1.1"]. The default value is **[]**.     |
+| skipRemoteValidation  | boolean                         | No| Whether to perform certificate authentication on the server. The default value is **false**.     |
 
 ## TLSSecureOptions<sup>9+</sup>
 
-Defines TLS security options. The CA certificate is mandatory, and other parameters are optional. When **cert** (local certificate) and **key** (private key) are not empty, the two-way authentication mode is enabled. If **cert** or **key** is empty, one-way authentication is enabled.
+TLS security options. When **cert** (local certificate) and **key** (private key) are not empty, the two-way authentication mode is enabled. If **cert** or **key** is empty, one-way authentication is enabled.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -7123,7 +7222,8 @@ let tlsSecureOptions: socket.TLSSecureOptions = {
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: netAddress,
   secureOptions: tlsSecureOptions,
-  ALPNProtocols: ["spdy/1", "http/1.1"]
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  skipRemoteValidation: false
 }
 tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
   console.log("listen callback error" + err);
@@ -7193,7 +7293,8 @@ let tlsSecureOptions: socket.TLSSecureOptions = {
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: netAddress,
   secureOptions: tlsSecureOptions,
-  ALPNProtocols: ["spdy/1", "http/1.1"]
+  ALPNProtocols: ["spdy/1", "http/1.1"],
+  skipRemoteValidation: false
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
@@ -7387,11 +7488,16 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed: " + JSON.stringify(err));
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -7469,11 +7575,16 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed: " + JSON.stringify(err));
 });
 
+interface SocketLinger {
+  on: boolean;
+  linger: number;
+}
+
 let tcpExtraOptions: socket.TCPExtraOptions = {
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: { on: true, linger: 10 },
+  socketLinger: { on: true, linger: 10 } as SocketLinger,
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,

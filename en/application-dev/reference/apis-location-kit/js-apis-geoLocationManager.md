@@ -155,8 +155,8 @@ Defines the satellite status information.
 | altitudes | Array&lt;number&gt; | No| No| Satellite altitude angle information. The value ranges from **-90** to **90**, in degrees.|
 | azimuths | Array&lt;number&gt; | No| No| Azimuth information. The value ranges from **0** to **360**, in degrees.|
 | carrierFrequencies | Array&lt;number&gt; | No| No| Carrier frequency, in Hz. The specified value must be greater than or equal to **0**.|
-| satelliteConstellation<sup>12+</sup> | Array&lt;[SatelliteConstellationCategory](#satelliteconstellationcategory12)&gt; | No| No| Satellite constellation type.|
-| satelliteAdditionalInfo<sup>12+</sup> | Array&lt;number&gt; | No| No| Additional satellite information.<br>Each bit has a different meaning. For details, see [SatelliteAdditionalInfo](#satelliteadditionalinfo12).|
+| satelliteConstellation<sup>12+</sup> | Array&lt;[SatelliteConstellationCategory](#satelliteconstellationcategory12)&gt; | No| Yes| Satellite constellation type.|
+| satelliteAdditionalInfo<sup>12+</sup> | Array&lt;number&gt; | No| Yes| Additional satellite information.<br>Each bit has a different meaning. For details, see [SatelliteAdditionalInfo](#satelliteadditionalinfo12).|
 
 
 ## CachedGnssLocationsRequest
@@ -228,12 +228,12 @@ Location information.
 | timeSinceBoot | number | No| No| Location timestamp since boot.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | additions | Array&lt;string&gt;| No| Yes| Additional description.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | additionSize | number| No| Yes| Number of additional descriptions. The specified value must be greater than or equal to **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| additionsMap<sup>12+</sup> | Map&lt;string, string&gt;| No| Yes| Additional description. The content and sequence are the same as those of **additions**. This field is reserved.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| altitudeAccuracy<sup>12+</sup> |number | No| No| Height accuracy, in meters.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| speedAccuracy<sup>12+</sup> | number| No| No| Speed accuracy, in meters per second.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| directionAccuracy<sup>12+</sup> | number| No| No| Direction accuracy. The value ranges from **0** to **360**, in degrees.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| uncertaintyOfTimeSinceBoot<sup>12+</sup> | number| No| No| Uncertainty of the location timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| sourceType<sup>12+</sup> | [LocationSourceType](#locationsourcetype12) | No| No| Source of the location result.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| additionsMap<sup>12+</sup> | Map&lt;string, string&gt;| No| Yes| Additional description. The content and sequence are the same as those of **additions**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| altitudeAccuracy<sup>12+</sup> |number | No| Yes| Height accuracy, in meters.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| speedAccuracy<sup>12+</sup> | number| No| Yes| Speed accuracy, in meters per second.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| directionAccuracy<sup>12+</sup> | number| No| Yes| Direction accuracy. The value ranges from **0** to **360**, in degrees.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| uncertaintyOfTimeSinceBoot<sup>12+</sup> | number| No| Yes| Uncertainty of the location timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| sourceType<sup>12+</sup> | [LocationSourceType](#locationsourcetype12) | No| Yes| Source of the location result.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
 ## GeofenceTransition<sup>12+</sup>
@@ -429,7 +429,7 @@ Enumerates priority types in a single location request.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| PRIORITY_ACCURACY  | 0x501 | Location accuracy.<br>This policy uses both the GNSS positioning and network positioning technologies and provides the most accurate location result within the specified period of time, which is the smaller one between SingleLocationRequest](#singlelocationrequest12).locatingTimeoutMs and 30 seconds.<br>This policy can lead to significant hardware resource consumption and power consumption. |
+| PRIORITY_ACCURACY  | 0x501 | Location accuracy.<br>This policy uses both the GNSS positioning and network positioning technologies and provides the most accurate location result within the specified period of time, which is the smaller one between [SingleLocationRequest](#singlelocationrequest12).locatingTimeoutMs and 30 seconds.<br>This policy can lead to significant hardware resource consumption and power consumption. |
 | PRIORITY_LOCATING_SPEED  | 0x502 | Fast location preferred. Use this policy if you want to obtain a location as fast as possible.<br>This policy uses the GNSS positioning and network positioning technologies simultaneously to obtain the device location in both the indoor and outdoor scenarios and provides the first obtained location result to your application. This policy can lead to significant hardware resource consumption and power consumption.|
 
 
@@ -545,7 +545,7 @@ Unregisters the listener for location change events with the corresponding locat
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationChange** indicates a location change.|
-  | callback | Callback&lt;[Location](#location)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;[Location](#location)&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
@@ -652,7 +652,7 @@ Unregisters the listener for error codes generated during continuous location.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. To subscribe to error codes generated during continuous location, set the value to **locationError**.|
-  | callback | Callback&lt;[LocationError](#locationerror12)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;[LocationError](#locationerror12)&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
@@ -736,7 +736,7 @@ Unsubscribes from location service status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **locationEnabledChange** indicates a location service status change.|
-  | callback | Callback&lt;boolean&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;boolean&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
@@ -828,7 +828,7 @@ Unsubscribes from cached GNSS location reports. This API is supported only by ce
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **cachedGnssLocationsChange** indicates reporting of cached GNSS locations.|
-  | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;Array&lt;[Location](#location)&gt;&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
@@ -922,7 +922,7 @@ Unsubscribes from GNSS satellite status change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **satelliteStatusChange** indicates a GNSS satellite status change.|
-  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfo)&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
@@ -1016,7 +1016,7 @@ Unsubscribes from GNSS NMEA message change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **nmeaMessage** indicates a GNSS NMEA message change.|
-  | callback | Callback&lt;string&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;string&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 
@@ -1231,7 +1231,7 @@ Unsubscribes from country code change events.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value **countryCodeChange** indicates a country code change.|
-  | callback | Callback&lt;[CountryCode](#countrycode)&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
+  | callback | Callback&lt;[CountryCode](#countrycode)&gt; | No| Callback to unregister. The callback must be the same as that passed by the **on** API. If this parameter is not specified, all callbacks of the specified event type are unregistered.|
 
 **Error codes**
 

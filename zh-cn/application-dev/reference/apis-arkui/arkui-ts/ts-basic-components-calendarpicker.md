@@ -23,7 +23,7 @@ CalendarPicker(options?: CalendarOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                        | 必填 | 描述                       |
+| 参数名  | 类型                                        | 必填 | 说明                       |
 | ------- | ------------------------------------------- | ---- | -------------------------- |
 | options | [CalendarOptions](#calendaroptions对象说明) | 否   | 配置日历选择器组件的参数。 |
 
@@ -88,6 +88,8 @@ onChange(callback: (value: Date) => void)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称      | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
 | hintRadius | number \| [Resource](ts-types.md#resource) | 否    | 描述日期选中态底板样式。<br/>默认值：底板样式为圆形。<br />**说明：**<br />hintRadius为0，底板样式为直角矩形。hintRadius为0 ~ 16，底板样式为圆角矩形。hintRadius>=16，底板样式为圆形 |
@@ -96,6 +98,8 @@ onChange(callback: (value: Date) => void)
 ## CalendarAlign枚举说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 描述                     |
 | ------ | ------------------------ |

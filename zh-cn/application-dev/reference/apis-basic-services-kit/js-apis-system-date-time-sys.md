@@ -334,6 +334,86 @@ try {
 }
 ```
 
+## systemDateTime.updateNtpTime<sup>13+</sup>
+
+updateNtpTime(): Promise&lt;void&gt;
+
+使用异步方式从NTP服务器更新NTP时间。该方法一小时内只会从NTP服务器更新一次NTP时间。
+
+**系统接口：** 此接口为系统接口
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**返回值：**
+
+| 类型                | 说明                 |
+| ------------------- | -------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                    |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 13000001    | Network connection error or OS error.                                                                 |
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  systemDateTime.updateNtpTime().then(() => {
+    console.info(`Succeeded in update ntp time.`);
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to update ntp time. message: ${error.message}, code: ${error.code}`);
+  });
+} catch(e) {
+  let error = e as BusinessError;
+  console.error(`Failed to update ntp time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getNtpTime<sup>13+</sup>
+
+getNtpTime(): number
+
+使用同步方式获取基于上次更新的NTP时间所计算出的真实时间。
+
+**系统接口：** 此接口为系统接口
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**返回值**：
+
+| 类型   | 说明                             |
+| ------ |--------------------------------|
+| number | 基于上次更新的NTP时间所计算出的Unix纪元时间（ms）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                    |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 13000002    | updateNtpTime() is not called successfully.                                                           |
+| 202   | Permission verification failed. A non-system application calls a system API.                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let time = systemDateTime.getNtpTime();
+} catch(e) {
+  let error = e as BusinessError;
+  console.error(`Failed to get ntp time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
 ## 支持的系统时区
 
 支持的系统时区参考接口[I18n.SystemLocaleManager.getTimeZoneCityItemArray()](../apis-localization-kit/js-apis-i18n-sys.md#gettimezonecityitemarray10)。

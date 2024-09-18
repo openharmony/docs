@@ -1,4 +1,4 @@
-#  @ohos.arkui.advanced.Dialog (弹出框)
+#  弹出框 (Dialog)
 
 
 弹出框是一种模态窗口，通常用于在保持当前的上下文环境时，临时展示用户需关注的信息或待处理的操作，用户在模态弹出框内完成上述交互任务。模态弹出框需要用户进行交互才能够退出模态模式。
@@ -74,7 +74,7 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 | content             | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 选择弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | selectedIndex       | number                                                       | 否   | 选择弹出框的选中项。<br/>默认值：-1<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | confirm             | [ButtonOptions](#buttonoptions)                              | 否   | 选择弹出框底部按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| radioContent        | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo接口说明)&gt; | 是   | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| radioContent        | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo对象说明)&gt; | 是   | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | theme<sup>12+</sup> | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ConfirmDialog
@@ -170,6 +170,25 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。 |
 
 
+## PopoverDialog<sup>13+</sup>
+
+PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callback\<void>})
+
+跟手弹窗，基于目标组件位置弹出，上文中的TipsDialog、SelectDialog、ConfirmDialog、AlertDialog、LoadingDialog、CustomContentDialog都可作为弹窗内容。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| visible | boolean | 是 | \@Link | 跟手弹出框显示状态。<br/>默认值为false，隐藏弹窗。 |
+| popover | [PopoverOptions](#popoveroptions13) | 是 | \@Prop | 配置跟手弹窗的参数。 |
+| targetBuilder | Callback\<void> | 是 | - | 跟手弹出框基于的目标组件。 |
+
+
 ## ButtonOptions
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -186,6 +205,16 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 >  **说明：**
 >
 >  buttonStyle和role优先级高于fontColor和background。如果buttonStyle和role设置的是默认值，那么fontColor和background可生效。
+
+## PopoverOptions<sup>13+</sup>
+
+跟手弹窗参数，用于设置弹窗内容、位置属性等。
+
+继承自[CustomPopupOptions](../arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8类型说明)。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 事件
 
@@ -579,3 +608,60 @@ struct Index {
 ```
 
 ![custom_content_dialog](figures/advanced_dialog_custom_content_dialog.png)
+
+### 示例8
+
+跟手弹窗（警告弹窗为例）
+
+```ts
+import { AlertDialog, PopoverDialog, PopoverOptions } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State isShow: boolean = false;
+  @State popoverOptions: PopoverOptions = {
+    builder: () => {
+      this.dialogBuilder();
+    }
+  }
+
+  @Builder dialogBuilder() {
+    AlertDialog({
+      content: '跟手弹出框',
+      primaryButton: {
+        value: '取消',
+        action: () => {
+          this.isShow = false;
+        },
+      },
+      secondaryButton: {
+        value: '确认',
+        action: () => {
+          this.isShow = false;
+        },
+      },
+    });
+  }
+
+  @Builder buttonBuilder() {
+    Button('跟手弹窗目标组件').onClick(() => {
+      this.isShow = true;
+    });
+  }
+
+  build() {
+    Column() {
+      PopoverDialog({
+        visible: this.isShow,
+        popover: this.popoverOptions,
+        targetBuilder: () => {
+          this.buttonBuilder();
+        },
+      })
+    }
+  }
+}
+```
+
+![popover_dialog](figures/advanced_dialog_popover_dialog.png)

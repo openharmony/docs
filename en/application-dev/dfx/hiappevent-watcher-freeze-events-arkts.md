@@ -24,9 +24,8 @@ The following describes how to subscribe to the freeze event triggered by a butt
 1. Create an ArkTS application project. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, import the dependent modules.
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
-   import hilog from '@ohos.hilog';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
 2. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, set the custom parameters in **onCreate()**. The sample code is as follows:
@@ -135,7 +134,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
    HiAppEvent eventInfo.params.process_name=com.example.myapplication
    HiAppEvent eventInfo.params.pid=3197
    HiAppEvent eventInfo.params.uid=20010043
-   HiAppEvent eventInfo.params.uuid=...
+   HiAppEvent eventInfo.params.uuid=27fac7098da46efe1cae9904946ec06c5acc91689c365efeefb7a23a0c37df77
    HiAppEvent eventInfo.params.exception={"message":"App main thread is not response!","name":"THREAD_BLOCK_6S"}
    HiAppEvent eventInfo.params.hilog.size=77
    HiAppEvent eventInfo.params.event_handler.size=6

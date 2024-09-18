@@ -3,7 +3,9 @@
 When handling a touch event, ArkUI performs a touch test on the touch point and the component area before the event is triggered – to determine the components targeted by the event – and dispatches the event based on the test result. You can use **onChildTouchTest** on a parent node to specify how to perform the touch test on child nodes and thereby exert an impact on touch event dispatch. For details about the impact, see [TouchTestStrategy](#touchteststrategy).
 
 >  **NOTE**
+>
 >  - This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
 >  - With use of **onChildTouchTest**, the **onClick**, rotation, and pinch gesture events may receive no response due to the touch target not being hit.
 
 ## onChildTouchTest
@@ -11,6 +13,8 @@ When handling a touch event, ArkUI performs a touch test on the touch point and 
 onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 Called to specify how to perform the touch test on the children of this component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -27,10 +31,15 @@ Called to specify how to perform the touch test on the children of this componen
 | T | Current component.|
 
 >**NOTE**
+>
 >The array of child components contains only components for which **id** is set.
 
 
 ## TouchTestInfo
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Type  | Description                                      |
 | ------------- | ------ | ---------------------------------------- |
@@ -45,13 +54,22 @@ Called to specify how to perform the touch test on the children of this componen
 
 ## TouchResult
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name     | Type                                    | Mandatory  | Description                               |
 | --------- | --------- | ---- |--------------------------------------- |
 | strategy  | [TouchTestStrategy](#touchteststrategy) | Yes   | Event dispatch strategy.                    |
-| id ?   | string | No   | Component ID.<br>If **strategy** is set to **TouchTestStrategy.DEFAULT**, **id** is optional. If **strategy** is set to **TouchTestStrategy.FORWARD_COMPEITION** or **TouchTestStrategy.FORWARD**, **id** is mandatory. If **id** is not returned, the strategy **TouchTestStrategy.DEFAULT** is used.|
+| id  | string | No   | Component ID.<br>If **strategy** is set to **TouchTestStrategy.DEFAULT**, **id** is optional. If **strategy** is set to **TouchTestStrategy.FORWARD_COMPETITION** or **TouchTestStrategy.FORWARD**, **id** is mandatory. If **id** is not returned, the strategy **TouchTestStrategy.DEFAULT** is used.|
 
 ## TouchTestStrategy
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Description                                      |
 | ------------| ----------------------------------------- |
@@ -65,7 +83,7 @@ Called to specify how to perform the touch test on the children of this componen
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -95,7 +113,7 @@ struct ListExample {
         console.info('first' + start)
         console.info('last' + end)
       })
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
       })
       .width('100%')
@@ -138,7 +156,7 @@ After you touch the blank area in the lower part and drag the list, the list scr
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -211,7 +229,7 @@ After you touch the blank area in the lower part and drag the list, the list scr
 
 ```ts
 // xxx.ets
-import promptAction from '@ohos.promptAction';
+import { promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component

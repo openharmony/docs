@@ -2,7 +2,7 @@
 
 保存控件是一种特殊的安全控件，它允许用户通过点击按钮临时获取存储权限，而无需通过权限弹框进行授权确认。
 
-集成保存控件后，当用户点击该控件时，应用会获得10秒内单次访问媒体库特权接口的授权。这适用于任何需要将文件保存到媒体库的应用场景，例如保存图片或视频等。
+集成保存控件后，当用户点击该控件时，应用会获得10秒内访问媒体库特权接口的授权。这适用于任何需要将文件保存到媒体库的应用场景，例如保存图片或视频等。
 
 与需要触发系统应用并由用户选择具体保存路径的Picker不同，保存控件可以直接保存到指定的媒体库路径，使得操作更为便捷。
 
@@ -33,7 +33,7 @@
 
 2. 设置图片资源，并添加保存控件。
    
-   保存控件是一种类似于按钮的安全控件，由图标、文本和背景组成。其中，图标和文本至少需要有一个，背景是可选的。图标和文本不能自定义，只能从已有的选项中选择。在声明安全控件的接口时，有传参和不传参两种方式。不传参将默认创建一个包含图标、文字和背景的按钮，传参则根据参数创建，不包含未配置的元素。
+   保存控件是一种类似于按钮的安全控件，由图标、文本和背景组成。其中，图标和文本至少需要有一个，背景是必选的。图标和文本不能自定义，只能从已有的选项中选择。在声明安全控件的接口时，有传参和不传参两种方式。不传参将默认创建一个包含图标、文字和背景的按钮，传参则根据参数创建，不包含未配置的元素。
 
    当前示例使用默认参数。具体请参见[SaveButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
    
@@ -51,7 +51,8 @@
        let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg');
        // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制
        let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-       context.resourceManager.getMediaContent($r('app.media.icon').id, 0)
+       // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
+       context.resourceManager.getMediaContent($r('app.media.startIcon').id, 0)
          .then(async value => {
            let media = value.buffer;
            // 写到媒体库文件中
@@ -72,19 +73,22 @@
      build() {
        Row() {
          Column({ space: 10 }) {
-           Image($r('app.media.icon'))
+           // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件
+           Image($r('app.media.startIcon'))
              .height(400)
              .width('100%')
    
-           SaveButton().onClick(async (event: ClickEvent, result: SaveButtonOnClickResult) => {
-             if (result === SaveButtonOnClickResult.SUCCESS) {
-               const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-               // 免去权限申请和权限请求等环节，获得临时授权，保存对应图片
-               savePhotoToGallery(context);
-             } else {
-               promptAction.showToast({ message: '设置权限失败！' })
-             }
-           })
+           SaveButton()
+             .padding({top: 12, bottom: 12, left: 24, right: 24})
+             .onClick(async (event: ClickEvent, result: SaveButtonOnClickResult) => {
+               if (result === SaveButtonOnClickResult.SUCCESS) {
+                 const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+                 // 免去权限申请和权限请求等环节，获得临时授权，保存对应图片
+                 savePhotoToGallery(context);
+               } else {
+                 promptAction.showToast({ message: '设置权限失败！' })
+               }
+             })
          }
          .width('100%')
        }

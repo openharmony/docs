@@ -7,4 +7,6 @@
 - [事件注入开发指导](inputeventclient-guidelines.md)
 - [组合按键开发指导](inputconsumer-guidelines.md)
 - [快捷键开发指导](shortkey-guidelines.md)
+- [事件监听开发指导（C/C++）](monitor-guidelines.md)
+- [事件拦截开发指导（C/C++）](interceptor-guidelines.md)
 <!--DelEnd-->

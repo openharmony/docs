@@ -348,6 +348,18 @@ createCustomizedToneAttrs(): ToneAttrs
 ```ts
 let toneAttrs: systemSoundManager.ToneAttrs = systemSoundManager.createCustomizedToneAttrs();
 ```
+## ToneHapticsFeature<sup>12+</sup>
+
+枚举，系统振动风格定义。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 名称                          | 值 | 说明                 |
+| ----------------------------- | -- | -------------------- |
+| STANDARD| 0  | 标准振动风格。 |
+| GENTLE   | 1  | 轻柔振动风格。 |
 
 ## systemSoundManager.getSystemSoundManager
 

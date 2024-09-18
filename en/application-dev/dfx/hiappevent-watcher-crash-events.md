@@ -22,7 +22,7 @@ The **params** parameter in the event information is described as follows.
 | exception | object | Exception information. For details, see **exception**. <br>For details about the NativeCrash events, see **exception (NativeCrash)**.|
 | hilog | string[] | Log information.|
 | threads | object[] | Full thread call stack. For details, see **thread**. This field applies only to NativeCrash events.|
-| external_log<sup>12+</sup> | string[] | Path of the error log file.|
+| external_log<sup>12+</sup> | string[] | Path of the error log file. If the directory files exceed the threshold (for details, see **log_over_limit**), new log files may fail to be written. Therefore, delete the log files immediately after they are processed.|
 | log_over_limit<sup>12+</sup> | boolean | Whether the size of generated log files and existing log files exceeds the upper limit (5 MB). The value **true** indicates that the upper limit is exceeded and logs fail to be written. The value **false** indicates that the upper limit is not exceeded.|
 
 **exception**
@@ -47,8 +47,11 @@ The **params** parameter in the event information is described as follows.
 
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
-| signo | number | Signal value.|
-| code | number | Signal error code.|
+| signo | number | Signal value (**si_signo** in **siginfo_t**)|
+| code | number | Level-2 classification of signal values (**si_code** in **siginfo_t**)|
+| address | string | Signal error address (**si_address** attribute in **siginfo_t**)|
+
+[Signal Value & Level-2 Classification of Signal Values](cppcrash-guidelines.md)
 
 **thread**
 

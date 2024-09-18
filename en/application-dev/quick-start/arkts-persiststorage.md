@@ -1,4 +1,4 @@
-# PersistentStorage: Persisting Application State
+# PersistentStorage: Application State Persistence
 
 
 During application development, you may want selected attributes to persist even when the application is closed. In this case, you'll need PersistentStorage.
@@ -18,22 +18,38 @@ PersistentStorage creates a two-way synchronization with attributes in AppStorag
 PersistentStorage accepts the following types and values:
 
 - Primitive types such as number, string, boolean, and enum.
-- Objects that can be reconstructed by **JSON.stringify()** and **JSON.parse()**. In other words, built-in types such as Date, Map, and Set, as well as object attribute methods, are not supported.
+- Objects that can be reconstructed by **JSON.stringify()** and **JSON.parse()**, but not property methods of the objects.
+- Map type since API version 12: The overall value changes of the Map instance can be observed; you can call the **set**, **clear**, and **delete** APIs to update the instance; the updated value is persisted. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
+- Set type since API version 12: The overall value changes of the Set instance can be observed; you can call the **add**, **clear**, and **delete** APIs to update the instance; the updated value is persisted. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
+- Date type since API version 12: The overall value changes of the Date instance can be observed; you can call the following APIs to update the Date properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**. the updated value is persisted. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
+- **undefined** and **null** since API version 12.
+- [Union types](#union-types) since API version 12.
 
 PersistentStorage does not accept the following types and values:
 
 - Nested objects (object arrays and object attributes), because the framework cannot detect the value changes of nested objects (including arrays) in AppStorage.
-- **undefined** and **null**.
 
-Data persistence is an operation that takes time. Applications should avoid the following situations:
+Data persistence is a time-consuming operation. As such, avoid the following situations whenever possible:
 
 - Persistence of large data sets
 
 - Persistence of variables that change frequently
 
-It is recommended that the persistent variables of PersistentStorage be less than 2 KB. As PersistentStorage flushes data synchronously, a large amount of persistent data may result in time-consuming local data read and write operations in the UI thread, affecting UI rendering performance. If you need to store a large amount of data, consider using the database API.
+It is recommended that the persistent variables of PersistentStorage be less than 2 KB. As PersistentStorage flushes data synchronously, a large amount of persistent data may result in simultaneous time-consuming read and write operations in the UI thread, affecting UI rendering performance. If you need to store a large amount of data, consider using the database API.
 
-PersistentStorage can be called to persist data only when the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext), which can be obtained through [runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask), is specified.  
+PersistentStorage is associated with UI instances. Data persistence can succeed only when a UI instance has been initialized (that is, when the callback passed in by [loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9-2) is called).
+
+```ts
+// EntryAbility.ets
+onWindowStageCreate(windowStage: window.WindowStage): void {
+  windowStage.loadContent('pages/Index', (err) => {
+    if (err.code) {
+      return;
+    }
+    PersistentStorage.persistProp('aProp', 47);
+  });
+}
+```
 
 ## Use Scenarios
 
@@ -136,3 +152,218 @@ if (AppStorage.get('aProp') > 50) {
 ```
 
 After reading the data stored in PersistentStorage, the sample code checks whether the value of **aProp** is greater than 50 and, if it is, sets **aProp** to **47** through an API in AppStorage.
+
+
+### Union Types
+
+PersistentStorage supports union types, **undefined**, and **null**. In the following example, the **persistProp** API is used to initialize **"P"** to **undefined**. **@StorageLink("P")** is used to bind variable **p** of the number | undefined | null type to the component. After the button is clicked, the value of **P** changes, and the UI is re-rendered. In addition, the value of **P** is persisted.
+
+```ts
+PersistentStorage.persistProp("P", undefined);
+
+@Entry
+@Component
+struct TestCase6 {
+  @StorageLink("P") p: number | undefined | null = 10;
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.p + "")
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button("changeToNumber").onClick(() => {
+          this.p = 10;
+        })
+        Button("changeTo undefined").onClick(() => {
+          this.p = undefined;
+        })
+        Button("changeTo null").onClick(() => {
+          this.p = null;
+        })
+      }  
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+### Decorating Variables of the Date Type
+
+In this example, the **persistedDate** variable decorated by @StorageLink is of the Date type. After the button is clicked, the value of **persistedDate** changes, and the UI is re-rendered. In addition, the value of **persistedDate** is persisted.
+
+```ts
+PersistentStorage.persistProp("persistedDate", new Date());
+
+@Entry
+@Component
+struct PersistedDate {
+  @StorageLink("persistedDate") persistedDate: Date = new Date();
+
+  updateDate() {
+    this.persistedDate = new Date();
+  }
+
+  build() {
+    List() {
+      ListItem() {
+        Column() {
+          Text(`Persisted Date is ${this.persistedDate.toString()}`)
+            .margin(20)
+
+          Text(`Persisted Date month is ${this.persistedDate.getMonth()}`)
+            .margin(20)
+
+          Text(`Persisted Date day is ${this.persistedDate.getDay()}`)
+            .margin(20)
+
+          Text(`Persisted Date time is ${this.persistedDate.toLocaleTimeString()}`)
+            .margin(20)
+
+          Button() {
+            Text('Update Date')
+              .fontSize(25)
+              .fontWeight(FontWeight.Bold)
+              .fontColor(Color.White)
+          }
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('60%')
+          .height('5%')
+          .onClick(() => {
+            this.updateDate();
+          })
+
+        }.width('100%')
+      }
+    }
+  }
+}
+```
+
+### Decorating Variables of the Map Type
+
+In this example, the **persistedMapString** variable decorated by @StorageLink is of the Map\<number, string\> type. After the button is clicked, the value of **persistedMapString** changes, and the UI is re-rendered. In addition, the value of **persistedMapString** is persisted.
+
+```ts
+PersistentStorage.persistProp("persistedMapString", new Map<number, string>([]));
+
+@Entry
+@Component
+struct PersistedMap {
+  @StorageLink("persistedMapString") persistedMapString: Map<number, string> = new Map<number, string>([]);
+
+  persistMapString() {
+    this.persistedMapString = new Map<number, string>([[3, "one"], [6, "two"], [9, "three"]]);
+  }
+
+  build() {
+    List() {
+      ListItem() {
+        Column() {
+          Text(`Persisted Map String is `)
+            .margin(20)
+          ForEach(Array.from(this.persistedMapString.entries()), (item: [number, string]) => {
+            Text(`${item[0]} ${item[1]}`)
+          })
+
+          Button() {
+            Text('Persist Map String')
+              .fontSize(25)
+              .fontWeight(FontWeight.Bold)
+              .fontColor(Color.White)
+          }
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('60%')
+          .height('5%')
+          .onClick(() => {
+            this.persistMapString();
+          })
+
+        }.width('100%')
+      }
+    }
+  }
+}
+```
+
+### Decorating Variables of the Set Type
+
+In this example, the **persistedSet** variable decorated by @StorageLink is of the Set\<number\> type. After the button is clicked, the value of **persistedSet** changes, and the UI is re-rendered. In addition, the value of **persistedSet** is persisted.
+
+```ts
+PersistentStorage.persistProp("persistedSet", new Set<number>([]));
+
+@Entry
+@Component
+struct PersistedSet {
+  @StorageLink("persistedSet") persistedSet: Set<number> = new Set<number>([]);
+
+  persistSet() {
+    this.persistedSet = new Set<number>([33, 1, 3]);
+  }
+
+  clearSet() {
+    this.persistedSet.clear();
+  }
+
+  build() {
+    List() {
+      ListItem() {
+        Column() {
+          Text(`Persisted Set is `)
+            .margin(20)
+          ForEach(Array.from(this.persistedSet.entries()), (item: [number, string]) => {
+            Text(`${item[1]}`)
+          })
+
+          Button() {
+            Text('Persist Set')
+              .fontSize(25)
+              .fontWeight(FontWeight.Bold)
+              .fontColor(Color.White)
+          }
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('60%')
+          .height('5%')
+          .onClick(() => {
+            this.persistSet();
+          })
+
+          Button() {
+            Text('Persist Clear')
+              .fontSize(25)
+              .fontWeight(FontWeight.Bold)
+              .fontColor(Color.White)
+          }
+          .type(ButtonType.Capsule)
+          .margin({
+            top: 20
+          })
+          .backgroundColor('#0D9FFB')
+          .width('60%')
+          .height('5%')
+          .onClick(() => {
+            this.clearSet();
+          })
+
+        }
+        .width('100%')
+      }
+    }
+  }
+}
+```

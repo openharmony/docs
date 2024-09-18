@@ -54,7 +54,7 @@
 3. 在DataShareExtAbility.ets文件中，导入DataShareExtensionAbility模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块；如果需要增加权限校验，可以在重写的回调方法中使用IPC提供的[getCallingPid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingpid)、[getCallingUid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid)、[getCallingTokenId](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8)方法获取访问者信息来进行权限校验。
    
    ```ts
-   import { DataShareExtensionAbility, dataShare, dataSharePredicates, relationalStore } from '@kit.ArkData';
+   import { DataShareExtensionAbility, dataShare, dataSharePredicates, relationalStore, DataShareResultSet } from '@kit.ArkData';
    import { Want } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit'
    ```
@@ -78,7 +78,7 @@
        // 业务实现使用RDB
        relationalStore.getRdbStore(this.context, {
          name: DB_NAME,
-         securityLevel: relationalStore.SecurityLevel.S1
+         securityLevel: relationalStore.SecurityLevel.S3
        }, (err:BusinessError, data:relationalStore.RdbStore) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
@@ -210,8 +210,9 @@
    
    ```ts
    import { UIAbility } from '@kit.AbilityKit';
-   import { dataShare, dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+   import { dataShare, dataSharePredicates, DataShareResultSet, ValuesBucket } from '@kit.ArkData';
    import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 定义与数据提供方通信的URI字符串。
@@ -283,7 +284,7 @@
        console.info(`dsHelper update result:${data}`);
      });
      // 查询数据
-     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err:BusinessError, data:number) => {
+     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err:BusinessError, data:DataShareResultSet) => {
        console.info(`dsHelper query result:${data}`);
      });
      // 删除指定的数据
@@ -291,7 +292,7 @@
        console.info(`dsHelper delete result:${data}`);
      });
      // 批量更新数据
-     (dsHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array>) => {
+     (dsHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
         // 遍历data获取每条数据的更新结果， value为更新成功的数据记录数，若小于0，说明该次更新失败
         let a = Object.entries(data);
         for (let i = 0; i < a.length; i++) {

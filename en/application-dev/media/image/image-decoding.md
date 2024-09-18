@@ -116,9 +116,9 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       ```ts
       
       resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
-         console.log("Succeeded in getting resourceManager")
+         console.log("Succeeded in getting RawFileDescriptor")
       }).catch((err : BusinessError) => {
-         console.error("Failed to get resourceManager")
+         console.error("Failed to get RawFileDescriptor")
       });
       ```
 
@@ -151,21 +151,43 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       ```
 
 4. Set **DecodingOptions** and decode the image to obtain a pixel map.
-
-   ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-   let decodingOptions : image.DecodingOptions = {
-       editable: true,
-       desiredPixelFormat: 3,
-   }
-   // Create a pixel map.
-   imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
-      console.log("Succeeded in creating PixelMap")
-   }).catch((err : BusinessError) => {
-      console.error("Failed to create PixelMap")
-   });
-   ```
-
+   - Set the expected format for decoding.
+      ```ts
+      import { BusinessError } from '@kit.BasicServicesKit';
+      import image from '@ohos.multimedia.image';
+      let img = await getContext(this).resourceManager.getMediaContent($r('app.media.image'));
+      let imageSource:image.ImageSource = image.createImageSource(img.buffer.slice(0));
+      let decodingOptions : image.DecodingOptions = {
+         editable: true,
+         desiredPixelFormat: 3,
+      }
+      // Create a pixel map.
+      imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
+         console.log("Succeeded in creating PixelMap")
+      }).catch((err : BusinessError) => {
+         console.error("Failed to create PixelMap")
+      });
+      ```
+   - Decode an HDR image.
+      ```ts
+      import { BusinessError } from '@kit.BasicServicesKit';
+      import image from '@ohos.multimedia.image';
+      let img = await getContext(this).resourceManager.getMediaContent($r('app.media.CUVAHdr'));
+      let imageSource:image.ImageSource = image.createImageSource(img.buffer.slice(0));
+      let decodingOptions : image.DecodingOptions = {
+         // If IMAGE_DYNAMIC_RANGE_AUTO is passed in, decoding is performed based on the image format. If the image is an HDR resource, an HDR pixel map is obtained after decoding.
+         desiredDynamicRange: image.DecodingDynamicRange.AUTO,
+      }
+      // Create a pixel map.
+      imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
+         console.log("Succeeded in creating PixelMap")
+         // Check whether the pixel map is the HDR content.
+         let info = pixelMap.getImageInfoSync();
+         console.log("pixelmap isHdr:" + info.isHdr);
+      }).catch((err : BusinessError) => {
+         console.error("Failed to create PixelMap")
+      });
+      ```
    After the decoding is complete and the pixel map is obtained, you can perform subsequent [image processing](image-transformation.md).
 
 5. Release the **PixelMap** instance.

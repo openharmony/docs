@@ -33,3 +33,9 @@ Performance Analysis Kit provides the event, log, and tracing analysis tools to 
 - Classifies logs by level and category and supports multiple languages, privacy processing, and traffic control. 
 - Provides a complete event framework and mechanisms for event logging, recording, and reporting. 
 - Traces process tracks for performance analysis.
+
+## Fault Analysis
+
+Performance Analysis Kit provides comprehensive capabilities such as fault detection and exception handling. As faults vary in causes and symptoms, locating faults is challenging for developers. High stability leads to high efficiency and low cost in application development, and also improves application quality and user experience. Generally, quality can be improved by designing a fault management system, which includes the detection, analysis, locating and rectification of faults, and quality measurement.
+
+To help developers locate and rectify application stability faults, common fault locating methods and fault analysis are introduced, including cases of JS Crash, CppCrash, AppFreeze, and resource leak events. To use this kit effectively, you need to understand programming languages and operating systems. Besides, you need to know how to use DevEco Studio and SDK in practice.

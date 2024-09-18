@@ -7,7 +7,8 @@
 > **NOTE**
 >
 > Since API version 9, this decorator is supported in ArkTS widgets.
-
+>
+> This decorator can be used in atomic services since API version 11.
 
 ## Overview
 
@@ -20,19 +21,19 @@ An application can request to be notified whenever the value of the \@Watch deco
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Mandatory. Constant string, which is quoted. Reference to a (string) => void custom component member function.|
 | Custom component variables that can be decorated   | All decorated state variables. Regular variables cannot be watched.              |
-| Order of decorators        | It is recommended that the \@State, \@Prop, \@Link, or other decorators precede the \@Watch decorator.|
+| Order of decorators        | Place the [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md), or [\@Link](./arkts-link.md) decorator in front of the \@Watch decorator.|
 
 
 ## Syntax
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| (changedPropertyName? : string) =&gt; void | This function is a member function of the custom component. **changedPropertyName** indicates the name of the watched attribute.<br>It is useful when you use the same function as a callback to several watched attributes.<br>It takes the attribute name as a string input parameter and returns nothing.|
+| (changedPropertyName?&nbsp;:&nbsp;string)&nbsp;=&gt;&nbsp;void | This function is a member function of the custom component. **changedPropertyName** indicates the name of the watched attribute.<br>It is useful when you use the same function as a callback to several watched attributes.<br>It takes the attribute name as a string input parameter and returns nothing.|
 
 
 ## Observed Changes and Behavior
 
-1. When a state variable change (including the change of the named attribute in AppStorage or LocalStorage) is observed, the corresponding \@Watch callback is triggered.
+1. \@Watch callback is triggered when a change of a state variable (including the change of a key in [AppStorage](./arkts-appstorage.md) and [LocalStorage](./arkts-localstorage.md) that are bound in a two-way manner) is observed.
 
 2. The \@Watch callback is executed synchronously after the variable change in the custom component.
 
@@ -50,7 +51,7 @@ An application can request to be notified whenever the value of the \@Watch deco
 - Calling **async await** from an \@Watch function is not recommended, because asynchronous behavior may cause performance issues of re-rendering.
 
 
-## Use Scenarios
+## Application Scenarios
 
 ### \@Watch and Custom Component Update
 

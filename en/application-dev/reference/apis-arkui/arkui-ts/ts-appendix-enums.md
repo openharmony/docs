@@ -39,6 +39,16 @@
 | Fill      | The image is scaled to fill the display area, and its aspect ratio is not retained.       |
 | ScaleDown | The image is displayed with its aspect ratio retained, in a size smaller than or equal to the original size.            |
 | None      | The original size is retained.                      |
+| TOP_START<sup>12+</sup> | The image is displayed at the top start corner of the **Image** component, keeping its original size.|
+| TOP<sup>12+</sup>       | The image is displayed horizontally centered at the top of the **Image** component, keeping its original size.|
+| TOP_END<sup>12+</sup>   | The image is displayed at the top end corner of the **Image** component, keeping its original size.|
+| START<sup>12+</sup>     | The image is displayed vertically centered at the start of the **Image** component, keeping its original size.|
+| CENTER<sup>12+</sup>    | The image is displayed at the center of the **Image** component both horizontally and vertically, keeping its original size.|
+| END<sup>12+</sup>       | The image is displayed vertically centered at the end of the **Image** component, keeping its original size.|
+| BOTTOM_START<sup>12+</sup> | The image is displayed at the bottom start corner of the **Image** component, keeping its original size.|
+| BOTTOM<sup>12+</sup>    | The image is displayed horizontally centered at the bottom of the **Image** component, keeping its original size.|
+| BOTTOM_END<sup>12+</sup>| The image is displayed at the bottom end corner of the **Image** component, keeping its original size.|
+
 
 ## BorderStyle
 
@@ -51,17 +61,6 @@
 | Dotted | Dotted border. The radius of a dot is half of **borderWidth**.|
 | Dashed | Dashed border.                |
 | Solid  | Solid border.                     |
-
-## OutlineStyle<sup>11+</sup>
-**Widget capability**: This API can be used in ArkTS widgets since API version 11.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| DOTTED | Dotted border. The radius of a dot is half of **outlineWidth**.|
-| DASHED | Dashed border.                |
-| SOLID  | Solid border.                     |
 
 ## LineJoinStyle
 
@@ -428,7 +427,7 @@
 | Cover   | Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br> **Atomic service API**: This API can be used in atomic services since API version 11.     |
 | Auto    | The original image aspect ratio is retained.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                        |
-| FILL<sup>12+</sup> | The image is scaled to fill the display area, and its aspect ratio is not retained.|
+| FILL<sup>12+</sup> | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## GradientDirection
 
@@ -456,15 +455,6 @@
 | -------- | ---------------------------------------- |
 | Static   | The element position remains unchanged on the target page, and transition opacity can be configured. Currently, this effect is only valid in redirecting to the target page.|
 | Exchange | The element is relocated and scaled properly on the target page.                 |
-
-## ShadowType<sup>10+<sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name      | Description                                  |
-| -------- | ---------------------------------------- |
-| COLOR    | Color.                                   |
-| BLUR     | Blur.                                   |
 
 ## FontStyle
 
@@ -614,44 +604,28 @@
 | Transparent | Both the node and its child node respond to the hit test of a touch event, and its sibling node is also considered during the hit test.|
 | None        | The node does not respond to the hit test of a touch event, but its child node and sibling node are considered during the hit test.     |
 
-## BlurStyle<sup>9+</sup>
+## DialogButtonStyle<sup>10+</sup>
 
-This API is supported in ArkTS widgets.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                  | Description       |
-| -------------------- | --------- |
-| Thin                 | Thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| Regular              | Regular material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Thick                | Thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 11.   |
-| BACKGROUND_THIN       | Material that creates the minimum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| BACKGROUND_REGULAR    | Material that creates a medium shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| BACKGROUND_THICK      | Material that creates a high shallow depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| BACKGROUND_ULTRA_THICK | Material that creates the maximum depth of field effect.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| NONE<sup>10+</sup> | No blur.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| COMPONENT_ULTRA_THIN<sup>11+</sup> | Component ultra-thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| COMPONENT_THIN<sup>11+</sup> | Component thin material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| COMPONENT_REGULAR<sup>11+</sup> | Component regular material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| COMPONENT_THICK<sup>11+</sup> | Component thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| COMPONENT_ULTRA_THICK<sup>11+</sup> | Component ultra-thick material.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+| Name     | Description                             |
+| --------- | --------------------------------- |
+| DEFAULT   | Blue text on white background (black background under the dark theme).|
+| HIGHLIGHT | White text on blue background.                       |
 
 ## ThemeColorMode<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Description        |
 | ------ | ---------- |
 | SYSTEM | Following the system color mode.|
 | LIGHT  | Light color mode. |
 | DARK   | Dark color mode. |
-
-## AdaptiveColor<sup>10+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name     | Description                       |
-| ------- | ------------------------- |
-| DEFAULT | Adaptive color mode is not used. The default color is used as the mask color.   |
-| AVERAGE | Adaptive color mode is used. The average color value of the color picking area is used as the mask color.|
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 
@@ -663,6 +637,19 @@ This API is supported in ArkTS widgets.
 | MIN_FONT_SIZE_FIRST     | Prioritize the **minFontSize** settings.    |
 | LAYOUT_CONSTRAINT_FIRST | Prioritize the layout constraint settings in terms of height.|
 
+## NestedScrollMode<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description                            |
+| ------ | ------------------------------ |
+| SELF_ONLY   | The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component does not scroll when the component scrolling reaches the boundary. |
+| SELF_FIRST | The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent component, the edge effect of the child component is displayed instead.       |
+| PARENT_FIRST  | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
+| PARALLEL  | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
+
 ## ObscuredReasons<sup>10+</sup>
 
 This API is supported in ArkTS widgets.
@@ -673,20 +660,11 @@ This API is supported in ArkTS widgets.
 | ----------- | ------------------------ |
 | PLACEHOLDER | The content is replaced by a placeholder.|
 
-## TransitionEdge<sup>10+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name    | Description    |
-| ------ | ------ |
-| TOP    | Top edge of the window.|
-| BOTTOM | Bottom edge of the window.|
-| START  | Left edge of the window.|
-| END    | Right edge of the window.|
-
 ## ClickEffectLevel<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name  | Description              | Animation Settings                         | Default Zoom Ratio                    |
 | ------ | --------------------------------- | --------------------------------- | --------------------------------- |
@@ -714,14 +692,6 @@ This API is supported in ArkTS widgets.
 | DEFAULT | Default style. The caret width is fixed at 1.5 vp, and the caret height is subject to the background height and font size of the selected text.|
 | INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.|
 
-## MenuPreviewMode<sup>11+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| NONE  | No preview is displayed.                      |
-| IMAGE | The preview is a screenshot of the component on which a long-press triggers the context menu.|
 
 ## Nullable <sup>11+</sup>
 
@@ -752,6 +722,9 @@ The object of this type can be of a custom type or **undefined**.
 | BREAK_WORD | This option has the same effect as **BREAK_ALL** for non-CJK text, except that if it preferentially wraps lines at appropriate characters (for example, spaces) whenever possible. CJK text behavior is the same as for **NORMAL**.|
 
 ## LineBreakStrategy<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name        | Description                                                        |
 | ------------ | ------------------------------------------------------------ |
 | GREEDY       | Places as many words on a line as possible and moves to the next line only if no more words can fit into the same line.|
@@ -765,68 +738,6 @@ The object of this type can be of a custom type or **undefined**.
 | SELECTABLE_FOCUSABLE | The text is selectable and focusable. It obtains focus when touched.|
 | UNSELECTABLE     | The text is not selectable nor focusable. The **selection**, **bindSelectionMenu**, and **copyOption** attributes do not work in this case. |
 
-## GestureJudgeResult<sup>11+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| CONTINUE  | The system gesture recognition process continues.|
-| REJECT  | Recognition of the custom gesture is determined as failed.|
-
-## GestureType<sup>11+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| TAP_GESTURE   | Tap gesture.|
-| LONG_PRESS_GESTURE  | Long press gesture.|
-| PAN_GESTURE    | Pan gesture.|
-| PINCH_GESTURE   | Pinch gesture.|
-| SWIPE_GESTURE    | Swipe gesture.|
-| ROTATION_GESTURE   | Rotation gesture.|
-| DRAG    | Drag and drop.|
-| CLICK   | Click.|
-## FinishCallbackType<sup>11+</sup>
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 11.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name      | Description                                                        |
-| --------- | ------------------------------------------------------------ |
-| REMOVED   | The callback is invoked when the entire animation is removed once it has finished.                        |
-| LOGICALLY | The callback is invoked when the animation logically enters the falling state, though it may still be in its long tail state.|
-
-## BlurOptions<sup>11+</sup>
-Describes the grayscale blur parameters.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name       |   Type  |   Mandatory| Description                       |
-| ----        |  ----   |   ---- | --------------------------  |
-| grayscale   |  [number, number]   |   Yes  |  Grayscale blur, with two parameters in the value range of [0, 127]. The color gradation of the black and white in the image is adjusted to create different shades of gray. The first parameter indicates the brightness of the black color, and the second parameter indicates the darkness of the white color. A larger value indicates a more obvious adjustment effect (the black and white colors become grayer). For example, if the value specified is (20,20), the RGB value [0, 0, 0] (black) is converted to [20, 20, 20], RGB value [255, 255, 255] (white) is converted to [235, 235, 235] (255-20), and the color pixels remain unchanged.|
-
-## ForegroundEffectOptions<sup>12+</sup>
-Describes the foreground effect.
-| Name       |   Type        |   Mandatory|  Description                       |
-| ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   Yes  |   Blur radius.<br>Value range: [0, +∞)<br>Default value: **0**<br> This parameter takes effect only within the component scope. When it is used with other APIs, the effect beyond the component scope does not apply.    |
-
-## BackgroundEffectOptions<sup>11+</sup>
-Describes the background effect.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name       |   Type        |   Mandatory|  Description                       |
-| ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   Yes  |   Blur radius.<br>Value range: [0, +∞)<br>Default value: **0**    |
-| saturation   | number        |   No  |   Saturation.<br>Value range: [0, +∞)<br>Default value: **0**    |
-| brightness   | number        |   No  |   Brightness.<br>Value range: [0, +∞)<br>Default value: **0**      |
-| color        | [Color](ts-appendix-enums.md#color)        |   No  |   Color.<br>Default value: transparent |
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT**  |
-| blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0,0]** |
 ## EllipsisMode<sup>11+</sup>
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 11.
@@ -849,38 +760,16 @@ Describes the background effect.
 | CENTER | In the center of the parent component.|
 | END | On the rightmost side of the parent component in the horizontal layout; at the bottom of the parent component in the vertical layout.|
 
-## TextDataDetectorType<sup>11+</sup>
+## OptionWidthMode<sup>11+</sup>
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| PHONE_NUMBER  | Phone number.|
-| URL | URL.|
-| EMAIL | Email.|
-| ADDRESS | Address.|
-
-## TextSpanType<sup>11+</sup>
-
-Provides the [span](ts-basic-components-span.md) type information.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name| Description|
-| -------- | -------- |
-| TEXT | Text span.|
-| IMAGE | Image span.|
-| MIXED | Mixed span, which contains both text and imagery.|
-
-## TextResponseType<sup>11+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name        | Description           |
-| ---------- | ------------- |
-| RIGHT_CLICK | The menu is displayed when the component is right-clicked.|
-| LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
-| SELECT | The menu is displayed when the component is selected.|
+| Name       | Description                          |
+| ----------- | ------------------------------ |
+| FIT_CONTENT | Uses the default width, that is, width of two columns.           |
+| FIT_TRIGGER | Inherits the width of the drop-down list button.|
 
 ## SelectionMenuOptions<sup>11+</sup>
 
@@ -893,40 +782,11 @@ Provides the span range information.
 | onAppear | [MenuOnAppearCallback](ts-basic-components-richeditor.md#menuonappearcallback12) | No| No| Callback invoked when the custom context menu on selection is displayed.|
 | onDisappear | () => void | No| No| Callback invoked when the custom context menu on selection is closed.|
 
-## SymbolEffectStrategy<sup>11+</sup>
-
-Enumerates the symbol effects. The setting takes effect immediately once saved.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| NONE | No effect (default value).|
-| SCALE | Overall scale effect.                |
-| HIERARCHICAL  | Hierarchical effect. |
-
-## SymbolRenderingStrategy<sup>11+</sup>
-
-Enumerates the symbol rendering modes.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| SINGLE  | Symbols are rendered with one specified color. This is the default value.<br> The default color is black.<br> If you set multiple colors, only the first color is used.|
-| MULTIPLE_COLOR  |  Symbols are rendered with layer-specific colors.<br> A maximum of three colors can be set. If you set only one color, it is used at the first layer and the default colors at other layers are retained.<br> The sequence in which the colors are set must match the sequence of symbol layers. If the number of colors is greater than that of the layers, the extra colors do not take effect.<br> Only color values are accepted. Opacity settings do not take effect.|
-|  MULTIPLE_OPACITY   | Symbols are rendered as multiple layers with one specified color and layer-specific opacity.<br> The default color is black. If you set multiple colors, only the first color is used.<br> The opacity is 100% for the first layer, 50% for the second layer, and 20% for the third layer. |
-
-## BlendApplyType<sup>11+</sup>
-
-Defines how the specified blend mode is applied.
-
-| Name          | Description                                                            |
-| ---------------| ---------------------------------------------------------------- |
-| FAST           |   The content of the view is blended in sequence on the target image.                       |
-| OFFSCREEN      |   The content of the component and its child components are drawn on the offscreen canvas, and then blended with the existing content on the canvas.   |
-
 ## DismissReason<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name         | Value  | Description                                                        |
 | ------------- | ---- | ------------------------------------------------------------ |
@@ -944,8 +804,8 @@ Defines the chain style.
 | Name    | Description                           |
 | ------ | ----------------------------- |
 | SPREAD | Child components are evenly distributed among constraint anchors. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).|
-| SPREAD_INSIDE | All child components except the first and last ones are evenly distributed among constraint anchors. For details, see [Example 8 in RelativeContainer](ts-container-relativecontainer.md#example-8).                |
-| PACKED  | There is no gap between child components in the chain. For details, see [Example 9 in RelativeContainer](ts-container-relativecontainer.md#example-9).                     |
+| SPREAD_INSIDE | All child components except the first and last ones are evenly distributed among constraint anchors. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).                |
+| PACKED  | There is no gap between child components in the chain. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).                     |
 
 ## BarrierDirection<sup>12+</sup>
 
@@ -972,23 +832,9 @@ Defines the pixel-level rounding policy for component boundaries.
 | FORCE_CEIL | The value is rounded up to the nearest integer.|
 | FORCE_FLOOR | The value is rounded down to the nearest integer.|
 
-## StyledStringKey<sup>12+</sup>
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| FONT | Font style key, applicable to [TextStyle](./ts-universal-styled-string.md#textstyle).|
-| DECORATION | Text decorative line style key, applicable to [DecorationStyle](./ts-universal-styled-string.md#decorationstyle).|
-| BASELINE_OFFSET | Text baseline offset style key, applicable to [BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle).|
-| LETTER_SPACING | Text letter spacing style key, applicable to [LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle).|
-| LINE_HEIGHT | Text line height style key, applicable to [LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle).|
-| TEXT_SHADOW | Text shadow style key, applicable to [TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle).|
-| GESTURE | Gesture key, applicable to [GestureStyle](./ts-universal-styled-string.md#gesturestyle).|
-| PARAGRAPH_STYLE | Paragraph style key, applicable to [ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle).|
-| IMAGE | Image key, applicable to [ImageAttachment](./ts-universal-styled-string.md#imageattachment).|
-| CUSTOM_SPAN | Custom span key, applicable to [CustomSpan](./ts-universal-styled-string.md#customspan).|
-| USER_DATA | User data span key, applicable to [UserDataSpan](./ts-universal-styled-string.md#userdataspan).|
-
 ## TextDecorationStyle<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name         | Description       |
 | ----------- | --------- |
@@ -1002,12 +848,16 @@ Defines the pixel-level rounding policy for component boundaries.
 
 | Name         | Type       |  Read Only    | Mandatory     | Description     |
 | ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | No| No| Space on the main axis of the flex container.<br> space: {main: LengthMetrics.unit(value)} |
-| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | No| No| Space on the cross axis of the flex container.<br> space: {cross: LengthMetrics.unit(value)} |
+| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | No| No| Space on the main axis of the flex container.<br> space: {main: LengthMetrics.unit(value)} |
+| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| No| Space on the cross axis of the flex container.<br> space: {cross: LengthMetrics.unit(value)} |
 
 ## MenuPolicy<sup>12+</sup>
 
 Defines the menu display policy.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name   | Value  | Description                              |
 | ------- | ---- | ---------------------------------- |
@@ -1018,25 +868,26 @@ Defines the menu display policy.
 ## EmbeddedType<sup>12+</sup>
 Enumerates the types of the providers that can be started by the **\<EmbeddedComponent>**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name                 | Value| Description                                               |
 | --------------------- | - | ---------------------------------------------------- |
 | EMBEDDED_UI_EXTENSION | 0 | EmbeddedUIExtensionAbility.|
 
 ## MarqueeUpdateStrategy<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name      | Value     | Description                    |
 | ---------- | ------------------------ | ------------------------ |
 | DEFAULT | 0 | After the marquee attributes are updated, the marquee scrolls from the start position.    |
 | PRESERVE_POSITION  | 1 | After the marquee attributes are updated, the marquee scrolls from the current position.|
 
-## FocusPriority<sup>12+</sup>
-
-| Name         | Description       |
-| ----------- | --------- |
-| AUTO | Default priority, that is, the focus priority assigned by default.|
-| PRIOR | Priority that indicates the component is prioritized in the container. This level is higher than **AUTO**.|
-| PREVIOUS | Priority of a previously focused node in the container. This level is higher than **PRIOR**.|
-
 ## AppRotation<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
@@ -1045,12 +896,57 @@ Enumerates the types of the providers that can be started by the **\<EmbeddedCom
 | ROTATION_180 | 180 degrees.|
 | ROTATION_270 | 270 degrees.|
 
-## TextDeleteDirection<sup>12+</sup>
+## BlurStyleActivePolicy<sup>13+</sup>
 
-Defines the direction for deleting text.
+**Atomic service API**: This API can be used in atomic services since API version 13.
 
-| Name   | Value  | Description                              |
-| ------- | ---- | ---------------------------------- |
-| BACKWARD | 0    | Backward delete.|
-| FORWARD    | 1    | Forward delete.|
-<!--no_check-->
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| ALWAYS_ACTIVE | The blur effect is always active.|
+| FOLLOWS_WINDOW_ACTIVE_STATE | The blur effect changes according to the window's focus state; it is inactive when the window is not in focus and active when the window is in focus.|
+| ALWAYS_INACTIVE | The blur effect is always inactive.|
+
+## BlurType<sup>13+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| WITHIN_WINDOW | The blur effect is applied within the window.|
+| BEHIND_WINDOW | The blur effect is applied behind the window.|
+
+## ScrollSource<sup>12+</sup>
+
+Enumerates the sources of scroll operations.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    |  Value | Description                                      |
+| ------ | ------ | ---------------------------------------- |
+| DRAG   |  0  | Drag event.|
+| FLING |  1  | Inertia scrolling after the drag ends.|
+| EDGE_EFFECT  |  2  | Edge scrolling effect with **EdgeEffect.Spring**.|
+| OTHER_USER_INPUT  |  3  | Other user inputs aside from dragging, such as those from the mouse wheel and keyboard events.|
+| SCROLL_BAR  |  4  | Drag event from the scrollbar.|
+| SCROLL_BAR_FLING  |  5  | Inertia scrolling with velocity after the scrollbar is released.|
+| SCROLLER  |  6  | Non-animated methods of the **Scroller** object.|
+| SCROLLER_ANIMATION  |  7  | Animated methods of the **Scroller** object.|
+
+## ImageSpanAlignment<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description                          |
+| -------- | ------------------------------ |
+| TOP      | The image is top aligned with the line.  |
+| CENTER   | The image is centered aligned with the line.      |
+| BOTTOM   | The image is bottom aligned with the line.  |
+| BASELINE | The image is bottom aligned with the text baseline.|

@@ -1,17 +1,16 @@
 # hdc
 
-OpenHarmony Device Connector (hdc) is a command line tool used for debugging. You can use it on a Windows, Linux, or macOS system to interact with real devices.
+OpenHarmony Device Connector (hdc) is a command line tool used for debugging. You can use it on a Windows, Linux, or macOS system to interact with devices.
 
 ## Environment Setup
 
-Obtain hdc from the **toolchains** folder in OpenHarmony SDK. For first-time use, configure the environment variables as follows. 
+Obtain hdc from the **toolchains** folder in OpenHarmony SDK. For first-time use, configure the environment variables as follows.
 
 ### Setting the Environment Variable **HDC_SERVER_PORT**
 
 **Windows**
 
 1. Choose **This PC > Properties >Advanced system settings > Advanced > Environment Variables**, add the variable **HDC_SERVER_PORT**, and set its value to any port number not in use, such as **7035**.
-
 
 ![Create system variable](figures/hdc_image_001.png)
 
@@ -66,20 +65,17 @@ Obtain hdc from the **toolchains** folder in OpenHarmony SDK. For first-time use
 ### (Optional) Setting Global Environment Variables
 
 > **NOTE**
->
 > If global environment variables are not set, you can run commands to go to the **toolchains** directory in the SDK and run hdc commands in the directory for debugging.
 
 **Windows**
 
 Choose **This PC > Properties > Advanced system settings > Advances > Environment Variables**, add the **toolchains** path of the SDK to the value of **Path**.
 
-In the following example, the **toolchains** path of the local SDK is <!--RP1-->**_/User/username/sdk/openharmony/10/toolchains_**<!--RP1End-->.
+In the following example, the **toolchains** path of the local SDK is <!--RP1-->**/User/username/sdk/openharmony/10/toolchains**<!--RP1End-->.
 
 ![System Variables](figures/hdc_img_002.png)
 
 ![Edit Environment Variable](figures/hdc_image_003.png)
-
-
 
 **Linux/macOS**
 
@@ -117,7 +113,7 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
 
 5. Run the following command for the environment variable to take effect.
 
-   - If the **.bash_profile** file is opened in step 1, run the following command:
+   - If the **.bash_profile** file is opened in step 1, run the following command: 
 
       ```shell
       source ~/.bash_profile
@@ -159,7 +155,6 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
         ```
 
 > **NOTE**
->
 > A non-root user cannot find the device using hdc in Linux. Granting USB operation permission for non-root users can solve this problem. However, granting the full permission may pose potential security risks. You need to determine whether to grant the permission based on actual requirements.
 
 ## Precautions
@@ -168,28 +163,28 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
 
 - If no device information is obtained after the **hdc list targets** command is executed, check whether the hdc process exists in the **Task Manager**. If the process exists, run the **hdc kill -r** command to kill the process and restart the hdc service.
 
+
+## How to Use
 > **NOTE**
 >
 > - The parameters enclosed in [] in a command are optional.
-> - The parameters in italics are variables. Replace them with actual values when running the command. For example, when running the **file send \_local remote_** command, replace **local** and **remote** with the path of the local file to be sent and the destination path on the remote device, respectively.
+> - The parameters in italics are variables. Replace them with actual values when running the command. 
 <!--DelEnd-->
-
-## How to Use
 
 ### Global Option Commands
 
 | Option | Description|
 | -------- | -------- |
-| -t [key] [command] | Specifies the device to connect. You can run the **hdc list targets** command to obtain the list of available devices.|
-| help/-h | Displays hdc help information.|
-| version/-v | Displays hdc version information.|
+| -h/help | Displays hdc help information.|
+| -v/version | Displays hdc version information.|
+| -t [connect-key] [command] | Connects to the specified device. You can run the **hdc list targets** command to obtain the **connect-key**.|
 | -l [level] | Sets the levels of the logs generated during the running of the tool. The default value is **LOG_INFO**.|
 | checkserver | Obtains the **client-server** version.|
 
 1. Display hdc help information.
 
    ```shell
-   hdc -h
+   hdc -h/help
    ```
 
    **Return value**
@@ -200,13 +195,13 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
    **Usage**
 
    ```shell
-   hdc -h
+   hdc -h or hdc help
    ```
 
 2. Display hdc version information.
 
    ```shell
-   hdc -v
+   hdc -v/version
    ```
 
    **Return value**
@@ -217,41 +212,41 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
    **Usage**
 
    ```shell
-   hdc -v
+   hdc -v or hdc version
    ```
 
-3. Connect to a device. If there is only one device available, you do not need to specify **key**. If there are multiple devices available, only one can be connected at a time, and you must specify **key** each time.
+3. Connect to a device. If there is only one device connected, you do not need to specify **connect-key**. If there are multiple devices connected, you must specify **connect-key** each time.
 
    ```shell
-   hdc -t [key] [command]
+   hdc -t [connect-key] [command]
    ```
 
    **Parameters**
    | Name| Description|
    | -------- | -------- |
-   | key | ID of the device to connect. It can be an IP address or USB serial number (SN).|
+   | connect-key| Device ID.|
    | command | Command to be executed.|
 
+> **NOTE**
+   > The **connect-key** uniquely identifies a device. If the device is connected over the network, the **connect-key** is the IP address. If the device is connected through USB, the **connect-key** is the USB SN.
+
    **Return value**
-   | Return Value| Description|
-   | -------- | -------- |
-   | Command output| Command execution result, which may vary with the command.|
-   | [Fail]Not match target founded, check connect-key please | The device does not exist.|
-   | [Fail]ExecuteCommand need connect-key? | The device to be connected does not exist, or the **key** is not specified when there are multiple devices available.|
-   | Unknown operation command... | The command is not supported.|
+| Return Value| Description|
+| -------- | -------- |
+| Command output| Command execution result, which may vary with the command.|
+| [Fail]Not match target founded, check connect-key please | No device matches the *connect-key*.|
+| [Fail]Device not founded or connected | The device is not found or connected.|
+| [Fail]ExecuteCommand need connect-key? please confirm a device by help info | You must specify one device if there are multiple devices available.|
+| Unknown operation command... | The command is not supported.|
 
    **Usage**
 
    This option must be used with a command. The following uses the **shell** command as an example.
 
    ```shell
-   hdc list targets // Obtain the device information.
-   hdc -t [key] shell // Replace key with the device ID obtained. The following uses shell command for debugging.
+   hdc list targets  // Display connect-key of all connected devices.
+   hdc -t [connect-key] shell // Replace connect-key with the specified device ID.
    ```
-
-   > **NOTE**
-   >
-   > You can connect the device used for development to multiple devices. The **key** uniquely identifies a device. If the device is connected over the network, the **key** is the IP address. If the device is connected through USB, the **key** is the USB SN. A specific command must be used with this command.
 
 4. Specify the runtime log level. The default value is **LOG_INFO**. 
 
@@ -263,7 +258,7 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
    | Parameter| Description|
    | -------- | -------- |
    | [level] | Log level.<br>0: LOG_OFF<br>1: LOG_FATAL<br>2: LOG_WARN<br>3: LOG_INFO<br>4: LOG_DEBUG<br>5: LOG_ALL|
-   | command | Command supported by hdc.|
+   | command | Command to be executed.|
 
    **Return value**
    | Return Value| Description|
@@ -286,7 +281,7 @@ In the following example, the **toolchains** path of the local SDK is <!--RP1-->
    **Return value**
    | Return Value| Description|
    | -------- | -------- |
-   | Client version: Ver: X.X.Xa, server version: Ver: X.X.Xa | Client-server version information.|
+   | Client version: Ver: X.X.Xa, Server version: Ver: X.X.Xa | Client-server version information.|
 
    **Usage**
 
@@ -323,9 +318,9 @@ hdc list targets -v
 
 | Command| Description|
 | -------- | -------- |
-| target mount | Mounts the system partition in read/write mode(unavailable to user). |
-| target boot | Restarts a device. You can run the **list targets** command to display all devices.|
-| smode [-r] | Grants the **root** permission to the background hdc service running on the device. You can use the **-r** option to revoke the granted permission(unavailable to user). |
+| target mount | Mounts the system partition in read/write mode(unavailable to user).|
+| target boot | Restarts the target device.|
+| smode [-r] | Grants the **root** permission to the background hdc service running on the device. You can use the **-r** option to revoke the granted permission(unavailable to user).|
 | kill [-r] | Terminates the hdc process. You can use the **-r** option to restart the process.|
 | start [-r] | Starts the hdc process. You can use the **-r** option to restart the process.|
 
@@ -339,7 +334,7 @@ hdc list targets -v
    | Return Value| Description|
    | -------- | -------- |
    | Mount finish | Mounting succeeded.|
-   | [Fail]Error information| Mounting failed.|
+   | [Fail]Mount failed | Mounting failed.|
 
    **Usage**
 
@@ -409,13 +404,13 @@ hdc list targets -v
 | Command| Description|
 | -------- | -------- |
 | fport ls | Lists all port forwarding tasks.|
-| fport _local remote_ | Sets up a local port forwarding, which forwards data from a local port to a remote port.|
-| fport rm _local__remote_ | Removes a local port forwarding.|
-| rport _remote local_ | Sets up a remote port forwarding, which forwards data from a remote port to a local port.|
-| rport rm _remote local_ | Removes a remote port forwarding. |
-| tmode usb | Restarts the daemon process and connects to the device using USB preferentially.|
-| tmode port [port-number] | Restarts the daemon process and connects to the device over the network preferentially. If the network connection fails, a USB connection will be initiated.|
-| tconn_ host_[:port] [-remove] | Specifies a connection to a device in *IP address: port number* format. Use the **-remove** option to disconnect from the specified device.|
+| fport _localnode remotenode_ | Sets up a local port forwarding, which forwards data from a local port to a remote port.|
+| rport _remotenode localnode_ | Sets up a remote port forwarding, which forwards data from a remote port to a local port.|
+| fport rm _taskstr_ | Removes a port forwarding task.|
+| tmode usb | This command cannot be used to enable the USB connection channel. You need to enable it on the device setting page.|
+| tmode port [port-number] | Enable the network connection channel of the device. Then the daemon process on the device restarts, and the USB connection is interrupted. You need to reconnect the device.|
+| tmode port close | Disable the network connection channel of the device. Then the daemon process on the device restarts, and the USB connection is interrupted. You need to reconnect the device.|
+| tconn [IP]:[port] [-remove] | Specifies a connection to a device in *IP address: port number* format. Use the **-remove** option to disconnect from the specified device.|
 
 1. List all port forwarding tasks.
 
@@ -426,8 +421,8 @@ hdc list targets -v
    **Return value**
    | Return Value| Description|
    | -------- | -------- |
-   | 'tcp:1234 tcp:1080' [Forward] | Local port forwarding.|
-   | 'tcp:2080 tcp:2345' [Reverse] | Remote port forwarding.|
+   | tcp:1234 tcp:1080 [Forward] | Local port forwarding.|
+   | tcp:2080 tcp:2345 [Reverse] | Remote port forwarding.|
    | [empty] | No port forwarding.|
 
    **Usage**
@@ -439,7 +434,7 @@ hdc list targets -v
 2. Set up a local port forwarding, which forwards data from a local port to a remote port.
 
    ```shell
-   hdc fport local remote
+   hdc fport localnode remotenode
    ```
 
    **Return value**
@@ -455,28 +450,11 @@ hdc list targets -v
    hdc fport tcp:1234 tcp:1080
    ```
 
-3. Remove the local port forwarding.
+
+3. Set up a remote port forwarding, which forwards data from a remote port to a local port.
 
    ```shell
-   hdc fport rm localremote
-   ```
-
-   **Return value**
-   | Return Value| Description|
-   | -------- | -------- |
-   | Remove forward ruler success, ruler:tcp:XXXX tcp:XXXX | The port forwarding is removed successfully.|
-   | [Fail]Remove forward ruler failed, ruler is not exist tcp:XXXX tcp:XXXX | Failed to remove the port forwarding because the specified forwarding does not exist.|
-
-   **Usage**
-
-   ```shell
-   hdc fport rm tcp:1234 tcp:1080
-   ```
-
-4. Set up a remote port forwarding, which forwards data from a remote port to a local port.
-
-   ```shell
-   hdc rport remote local
+   hdc rport remotenode localnode
    ```
 
    **Return value**
@@ -491,12 +469,16 @@ hdc list targets -v
    ```shell
    hdc rport tcp:1234 tcp:1080
    ```
-
-5. Remove the remote port forwarding.
+4. Remove the specified port forwarding.
 
    ```shell
-   hdc rport rm remote local
+   hdc fport rm taskstr
    ```
+
+   **Parameters**
+   | Parameter| Description|
+   | -------- | -------- |
+   | _taskstr_ | Port forwarding task, in the format of tcp:XXXX tcp:XXXX.|
 
    **Return value**
    | Return Value| Description|
@@ -507,28 +489,25 @@ hdc list targets -v
    **Usage**
 
    ```shell
-   hdc rport rm tcp:1234 tcp:1080
+   hdc fport rm tcp:1234 tcp:1080
    ```
 
-6. Reconnect to the device using USB.
+
+5. Enable the USB connection channel of the device.
 
    ```shell
    hdc tmode usb
    ```
-
-   **Return value**
-   | Return Value| Description|
-   | -------- | -------- |
-   | N/A| The connection mode is changed successfully.|
-   | [Fail]ExecuteCommand need connect-key | Failed to change the device connection mode because no network-connected device exists.|
 
    **Usage**
 
    ```shell
    hdc tmode usb
    ```
+   > **NOTE**
+   > This command cannot be used to enable the USB connection channel. You need to enable it on the device setting page.
 
-7. Reconnect to the device over the network.
+6. Enable the network connection channel of the device.
 
    ```shell
    hdc tmode port [port-number]
@@ -542,8 +521,8 @@ hdc list targets -v
    **Return value**
    | Return Value| Description|
    | -------- | -------- |
-   | N/A| The connection mode is changed successfully.|
-   | [Fail]ExecuteCommand need connect-key | Failed to change the device connection mode because no device exists in the list.|
+   | Set device run mode successful. | The network connection channel is enabled successfully.|
+   | [Fail]ExecuteCommand need connect-key | Failed to enable the network connection channel because no device exists in the list. |
    | [Fail]Incorrect port range | The port number is out of range (1 to 65536).|
 
    **Usage**
@@ -553,29 +532,42 @@ hdc list targets -v
    ```
 
    > **NOTE**
-   >
    > Before changing the connection mode, ensure that the remote device and the local executor are on the same network, and the executor can ping the IP address of the remote device.
    >
    > Otherwise, do not run this command.
 
    > **NOTE**
-   >
-   > After the command is executed, the remote daemon exits and restarts, and the USB connection is disconnected. By default, the TCP connection is enabled, and only the TCP connection can be used. To restore the USB connection, use either of the following methods:
-   >
-   > - Run the **hdc tmode usb** command after the **hdc tconn [ip]:[port]** command is executed. 
-   >
-   > - Restore the factory settings of the device.
+   > After the command is executed, the remote daemon process exits and restarts, and the USB connection is disconnected. You need to reconnect the USB connection.
 
-8. Specify the device to be connected.
+7. Disable the network connection channel of the device.
 
    ```shell
-   hdc tconn host[:port] [-remove]
+   hdc tmode port close
+   ```
+
+   **Return value**
+   | Return Value| Description|
+   | -------- | -------- |
+   | [Fail]ExecuteCommand need connect-key | Failed to disable the network connection channel because no device exists in the list.|
+
+   **Usage**
+
+   ```shell
+   hdc tmode port close
+   ```
+   > **NOTE**
+   > After the command is executed, the remote daemon process exits and restarts, and the USB connection is disconnected. You need to reconnect the USB connection.
+
+8. Connect to the specified device through TCP.
+
+   ```shell
+   hdc tconn [IP]:[port] [-remove]
    ```
 
    **Parameters**
    | Parameter| Description|
    | -------- | -------- |
-   | host[:port] | Device IP address and port number, in the *IP address*:*Port number* format.|
+   | [IP]:[port]  | Device IP address and port number.|
    | -remove | (Optional) Disconnects from the specified device.|
 
    **Return value**
@@ -596,20 +588,20 @@ hdc list targets -v
 
 | Command| Description|
 | -------- | -------- |
-| file send _local remote_ | Sends a local file to a remote device.|
-| file recv _remote local_ | Sends a file from a remote device to the local device.|
+| file send _localpath remotepath_ | Sends a local file to a remote device.|
+| file recv _remotepath localpath_ | Sends a file from a remote device to the local device.|
 
 1. Send a local file to a remote device.
 
    ```shell
-   hdc file send local remote
+   hdc file send localpath remotepath
    ```
 
    **Parameters**
    | Name| Description|
    | -------- | -------- |
-   | local | Path of the file to send on the local device.|
-   | remote | Destination path on the remote device.|
+   | _localpath_ | Path of the file to send on the local device.|
+   | _remotepath_ | Destination path on the remote device.|
 
    **Return value**
 
@@ -624,14 +616,14 @@ hdc list targets -v
 2. Send a file from a remote device to the local device.
 
    ```shell
-   hdc file recv remote local
+   hdc file recv remotepath localpath
    ```
 
    **Parameters**
    | Name| Description|
    | -------- | -------- |
-   | local | Destination path on the local device.|
-   | remote | Path of the file to send on the remote device.|
+   | _localpath_ | Destination path on the local device.|
+   | _remotepath_ | Path of the file to send on the remote device.|
 
    **Return value**
 
@@ -647,52 +639,53 @@ hdc list targets -v
 
 | Command| Description|
 | -------- | -------- |
-| install [-r/-g] _packageFile_ | Installs an app.|
-| uninstall_ packageName_ | Uninstalls an app.|
+| install _src_ | Installs an app.|
+| uninstall _packageName_ | Uninstalls an app.|
 
 1. Install an app.
 
    ```shell
-   hdc install [-r/-g] packageFile
+   hdc install [-r|-s] src
    ```
 
    **Parameters**
    | Name| Description|
    | -------- | -------- |
-   | packageFile | Installation package name.|
-   | -r | Replaces the existing app.|
-   | -g | Grants permissions dynamically.|
+   | src| Installation package name.|
+   | -r | Replaces the existing app (.hap).|
+   | -s | Install a shared package (.hsp).|
 
    **Return value**
    | Return Value| Description|
    | -------- | -------- |
-   | No return value| The installation is successful.|
+   | AppMod finish | The installation is successful.|
    | Error information| The installation fails.|
 
    **Usage**
 
-   For example, install **com.example.hello**.
+   For example, install **example.hap**.
 
    ```shell
-   hdc install E:\com.example.hello.hap
+   hdc install E:\example.hap
    ```
 
 2. Uninstall the app.
 
    ```shell
-   hdc uninstall [-k] packageName
+   hdc uninstall [-k|-s] packageName
    ```
 
    **Parameters**
    | Name| Description|
    | -------- | -------- |
    | packageName | App installation package.|
-   | -k | Retains **/data/cache**.|
+   | -k | Retains **/data** and **/cache**.|
+   | -s | Uninstalls a shared package.|
 
    **Return value**
    | Return Value| Description|
    | -------- | -------- |
-   | No return value| The installation is successful.|
+   | AppMod finish | The uninstallation is successful.|
    | Error information| The uninstallation fails.|
 
    **Usage**
@@ -708,13 +701,13 @@ hdc list targets -v
 | Command| Description|
 | -------- | -------- |
 | jpid | Displays the apps that can be debugged.|
-| hilog [options] | Obtains the log information of the device. **options** indicates the parameters supported by HiLog. You can run the **hdc hilog -h** command to obtain the parameter information.|
-| shell [COMMAND] | Runs a debugging command specified by **COMMAND**. The supported commands vary with the system type or version. You can run the **hdc shell ls /system/bin** command to view the supported commands.|
+| hilog [options] | Obtains the log information of the device. **options** indicates the parameters supported by HiLog. You can run the **hdc hilog -h** command to obtain the parameter information. |
+| shell [command] | Runs a debugging command specified by *command*. The supported commands vary with the system type or version. You can run the **hdc shell ls /system/bin** command to view the supported commands. |
 
 1. Obtain log information about the device.
 
    ```shell
-   hdc hilog[options]
+   hdc hilog [options]
    ```
 
    **Parameters**
@@ -755,13 +748,13 @@ hdc list targets -v
 3. Run a command.
 
    ```shell
-   hdc shell [COMMAND]
+   hdc shell [command]
    ```
 
    **Parameters**
    | Parameter| Description|
    | -------- | -------- |
-   | [COMMAND] | Debugging command to be executed. You can run the **help** command to obtain all debugging commands.|
+   | [command] | Debugging command to be executed. You can run the **help** command to obtain all debugging commands.|
 
    **Return value**
    | Return Value| Description|
@@ -785,8 +778,8 @@ hdc list targets -v
 | -------- | -------- | -------- |
 | USB debugging| USB debugging is enabled.| If the USB debugging mode is not automatically enabled, restart the device.|
 | USB data cable connection| The PC used for debugging is connected to the device USB port using a USB cable.| If you use a USB cable with low bandwidth and no data communication function, the device may fail to be identified. You are advised to use an officially recommended USB cable.|
-| USB port | A USB port on the mainboard (USB port on the rear panel of a desktop computer or USB port on a laptop computer) is used.| If you use a conversion adapter, docking station, or USB port on the front panel of a desktop computer, issues such as low bandwidth and USB sync problems may occur, which results in frequent disconnections. Therefore, direct connection between the PC and the device is recommended.|
-| hdc environment variable| The help information is displayed after the **hdc -h** command is executed.| For details, see "Environment Setup."|
+| USB port| A USB port on the mainboard (USB port on the rear panel of a desktop computer or USB port on a laptop computer) is used.| If you use a conversion adapter, docking station, or USB port on the front panel of a desktop computer, issues such as low bandwidth and USB sync problems may occur, which results in frequent disconnections. Therefore, direct connection between the PC and the device is recommended.|
+| hdc environment variable| The help information is displayed after the **hdc -h** command is executed.| For details, see "Environment Setup".|
 | Driver| After the device is connected via hdc, **HDC Device** or **HDC Interface** is displayed in **Device Manager**.| Install the driver.|
 
 **Procedure**
@@ -801,44 +794,37 @@ hdc shell // For USB direct connection, ensure that the device is not in TCP con
 | Item| Normal| Exception Handling|
 | -------- | -------- | -------- |
 | Network connection| The PC and the device are on the same network.| Connect the PC and device to the same Wi-Fi network or enable the Wi-Fi hotspot on your device.|
-| Network Status| Use **telnet ip:port** to check that the network connection between the PC and the device is normal.| Connect the PC and the device over a stable network.|
-| hdc environment variable| The help information is displayed after the **hdc -h** command is executed.| For details, see "Environment Setup".|
+| Network Status| Use **telnet IP:port** to check that the network connection between the PC and the device is normal.| Connect the PC and the device over a stable network.|
+| hdc environment variable| The help information is displayed after the **hdc** command is executed.| For details, see "Environment Setup".|
 
 **Procedure**
 
 1. Connect the PC to the device through a USB port.
 
-2. Turn on the device screen.
 
-   ```shell
-   hdc shell "power-shell setmode 602"
-   ```
-
-   Keep the screen on to avoid Wi-Fi disconnection. If the device is disconnected, run the **tconn** command again quickly.
-
-3. Change the connection mode from USB mode to the TCP mode.
+2. Change the connection mode from USB mode to the TCP mode.
 
    ```shell
    hdc tmode port 8710// Add a port number after port. The default port number is 8710.
    ```
 
-4. Connect to the device over TCP (the device IP address must be obtained in advance).
+3. Connect to the device over TCP (the device IP address must be obtained in advance).
 
    ```shell
-   hdc tconn ip:8710
+   hdc tconn IP:8710
    ```
 
    You can view the IP address on the device. The port number is the one specified in the previous step. The default port number is 8710.
 
-5. Check the connection.
+4. Check the connection.
 
    ```shell
    hdc list targets
    ```
 
-   If the return value is in the *ip:port* format, the connection is successful. If there are multiple devices connected to the local PC, use **-t** to specify the target device.
+   If the return value is in the *IP:port* format, the connection is successful.
 
-6. (Optional) Change the TCP mode to the USB mode.
+5. (Optional) Change the TCP mode to the USB mode.
 
    ```shell
    hdc tmode usb
@@ -858,8 +844,8 @@ Connect the server to the device using a USB cable and run the following command
 
 ```shell
 hdc kill          // Terminate the local hdc service.
-hdc -s ip:8710 -m // Enable the hdc service for network forwarding.
-                  // In the command, ip indicates the IP address of the server. To query the IP address, you can run the **ipconfig** command on Windows and run the **ifconfig** command on Unix.
+hdc -s IP:8710 -m // Enable the hdc service for network forwarding.
+                  // In the command, IP indicates the IP address of the server. To query the IP address, you can run the ipconfig command on Windows and run the ifconfig command on Unix.
                   // 8710 is the default port number. You can also set it to another port number, for example, 18710.
                   // After startup, the server prints logs.
 ```
@@ -868,7 +854,7 @@ hdc -s ip:8710 -m // Enable the hdc service for network forwarding.
 
 Ensure that the client can connect to the server IP address, and then run the following command:
 ```shell
-hdc -s ip:8710 [command] // ip indicates the IP address of the server,
+hdc -s IP:8710 [command] // IP indicates the IP address of the server,
                          // and command can be any available hdc command, for example, list targets.
 ```
 
@@ -887,7 +873,7 @@ The collected logs are stored in the following path.
 
 | OS| Path| Remarks|
 | -------- | -------- | -------- |
-| Windows | %temp%\hdc.log | The following is an example. Replace *Username* with the actual one.<br>C:\Users\Username\AppData\Local\Temp\hdc.log<br>**NOTE**<br>In a Windows path, backslashes (\) are used.|
+| Windows | %temp%\hdc.log | The following is an example. Replace *Username* with the actual one.<br>C:\Users\Username\AppData\Local\Temp\hdc.log|
 | Linux | /tmp/hdc.log | - |
 | MacOS | $TMPDIR/hdc.log | - |
 
@@ -896,9 +882,9 @@ The collected logs are stored in the following path.
 Enable HiLog to obtain the corresponding logs.
 
 ```shell
-hdc shell hilog -w start        // Enable the function of storing HiLog logs.
-hdc shell ls /data/log/hilog    // View the stored HilLog logs.
-hdc file recv /data/log/hilog   // Obtain the stored HilLog logs (including kernel logs).
+hdc shell hilog -w start                             // Enable the function of storing HiLog logs.
+hdc shell ls /data/log/hilog                     // View the stored HilLog logs.
+hdc file recv /data/log/hilog                  // Obtain the stored HilLog logs (including kernel logs).
 ```
 
 ## FAQs
@@ -965,12 +951,12 @@ Perform the following operations to locate the fault.
 
   When "[Fail]Failed to communicate with daemon" is displayed after a hdc command is executed, possible causes are as follows:
 
-  - The hdc SDK does not match the device. If the device is the latest version, update the hdc (SDK) tool to the latest version.
-  
+
+  - The hdc or SDK does not match the device. If the device is the latest version, update the hdc or SDK tool to the latest version.
   - The port is occupied.
-    
-      This problem usually occurs when hdc and hdc_std use the same **HDC_SERVER_PORT** or the same default port **8710**. Ensure that either hdc or hdc_std is running. This problem also occurs when other software occupies the default hdc port.
-  
+
+    This problem usually occurs when hdc and hdc_std use the same **HDC_SERVER_PORT** or the same default port **8710**. Ensure that either hdc or hdc_std is running. This problem also occurs when other software occupies the default hdc port.
+
 - Case 4: "Connect server failed" is displayed when the device is connected.
 
   The possible causes are as follows:

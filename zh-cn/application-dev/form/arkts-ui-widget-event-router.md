@@ -91,19 +91,23 @@
   
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       // 获取router事件中传递的targetPage参数
-      hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate, ${JSON.stringify(want)}`);
-      if (want.parameters !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters));
-        this.selectPage = params.targetPage;
+      hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate: ${JSON.stringify(want?.parameters)}`);
+      if (want?.parameters?.params) {
+        // want.parameters.params 对应 postCardAction() 中 params 内容
+        let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+        this.selectPage = params.targetPage as string;
+        hilog.info(DOMAIN_NUMBER, TAG, `onCreate selectPage: ${this.selectPage}`);
       }
     }
   
     // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-      hilog.info(DOMAIN_NUMBER, TAG, `onNewWant Want: ${JSON.stringify(want)}`);
-      if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters));
-        this.selectPage = params.targetPage;
+      hilog.info(DOMAIN_NUMBER, TAG, `Ability onNewWant: ${JSON.stringify(want?.parameters)}`);
+      if (want?.parameters?.params) {
+        // want.parameters.params 对应 postCardAction() 中 params 内容
+        let params: Record<string, Object> = JSON.parse(want.parameters.params as string);
+        this.selectPage = params.targetPage as string;
+        hilog.info(DOMAIN_NUMBER, TAG, `onNewWant selectPage: ${this.selectPage}`);
       }
       if (this.currentWindowStage !== null) {
         this.onWindowStageCreate(this.currentWindowStage);

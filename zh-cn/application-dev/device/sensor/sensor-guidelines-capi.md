@@ -1,4 +1,4 @@
-# Capi传感器开发指导
+# 传感器开发指导(C/C++)
 
 
 ## 场景介绍
@@ -55,6 +55,7 @@
          {
            "name": "ohos.permission.ACCELEROMETER",
          },
+       ]
    ```
 
 3. CMakeLists.txt文件中引入动态依赖库。
@@ -62,7 +63,7 @@
    ```c
    target_link_libraries(entry PUBLIC libace_napi.z.so)
    target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
-   target_link_libraries(entry PUBLIC libohsensor.z.so)
+   target_link_libraries(entry PUBLIC libohsensor.so)
    ```
 
 4. 导入模块。
@@ -229,4 +230,12 @@
        }
    }
    ```
+   
+9. 在types/libentry路径下index.d.ts文件中引入Napi接口。
 
+   ```c
+   export const getSensorInfos: () => number;
+   export const subscriber: () => number;
+   ```
+
+10. 编写Js用例调用接口。

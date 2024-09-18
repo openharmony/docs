@@ -47,7 +47,7 @@
                 } else if (typeof (result) === 'object') {
                   if (result instanceof ArrayBuffer) {
                     console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
-                    msg = msg + 'lenght is ' + result.byteLength;
+                    msg = msg + 'length is ' + result.byteLength;
                   } else {
                     console.info('not support');
                   }
@@ -117,7 +117,7 @@
                 } else if (typeof(result) === 'object') {
                   if (result instanceof ArrayBuffer) {
                     console.info(`received arraybuffer from html5, length is: ${result.byteLength}`);
-                    msg = msg + 'lenght is ' + result.byteLength;
+                    msg = msg + 'length is ' + result.byteLength;
                   } else {
                     console.info('not support');
                   }

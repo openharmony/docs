@@ -1,6 +1,6 @@
 # 应用触发数据备份/恢复（仅对系统应用开放）
 
-备份恢复是为设备上应用数据、公共数据和系统服务提供的完整的数据备份和恢复解决方案。系统应用开发者可以根据需求，按下述指导开发应用，以触发备份/恢复数据。
+备份恢复框架是为设备上的应用、服务提供自身数据备份和恢复的解决方案。系统应用开发者可以根据需求，按下述指导开发应用，以触发备份/恢复数据。
 
 - [获取能力文件](#获取能力文件)：获取当前系统用户内所有应用与备份恢复相关基础信息的能力文件。能力文件在应用备份/恢复数据时不可缺少。
 
@@ -28,7 +28,7 @@
 
 该文件包含设备类型、设备版本、应用的基础性信息，如应用名称、应用数据大小、应用版本信息、是否支持备份恢复、是否在恢复时安装应用。
 
-调用`backup.getLocalCapabilities()`获取能力文件。
+调用[backup.getLocalCapabilities()](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#backupgetlocalcapabilities)获取能力文件。
 
 ```ts
 import backup from '@ohos.file.backup';
@@ -150,12 +150,13 @@ async function getLocalCapabilities(): Promise<void> {
       onBackupServiceDied: () => {
         console.info('onBackupServiceDied');
       },
-      onResultReport: (err: BusinessError, result: string) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('onResultReport success, result: ' + result);
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport  bundleName: ' + bundleName);
+        console.info('onResultReport  result: ' + result);
+      },
+      onProcess:(bundleName: string, process: string) => { 
+        console.info('onPross bundleName: ' + JSON.stringify(bundleName));
+        console.info('onPross result: ' + JSON.stringify(process));
       }
     }
     let sessionBackup = new backup.SessionBackup(generalCallbacks);
@@ -244,12 +245,13 @@ async function getLocalCapabilities(): Promise<void> {
       onBackupServiceDied: () => {
         console.info('service died');
       },
-      onResultReport: (err: BusinessError, result: string) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('onResultReport success, result: ' + result);
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport  bundleName: ' + bundleName);
+        console.info('onResultReport  result: ' + result);
+      },
+      onProcess:(bundleName: string, process: string) => { 
+        console.info('onPross bundleName: ' + JSON.stringify(bundleName));
+        console.info('onPross result: ' + JSON.stringify(process));
       }
     }
     let sessionRestore = new backup.SessionRestore(generalCallbacks);

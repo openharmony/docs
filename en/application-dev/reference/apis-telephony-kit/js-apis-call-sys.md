@@ -4222,15 +4222,15 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 
 **Example**
 
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+<!--code_no_check-->
 
+```ts
 let slotId: number = 0;
 try {
     let isEnabled: boolean = call.isImsSwitchEnabledSync(slotId);
     console.log(`isImsSwitchEnabledSync success : ${isEnabled}`);
-} catch (err: BusinessError) {
-    console.error(`isImsSwitchEnabledSync fail : err->${JSON.stringify(err)}`);  
+} catch (error) {
+    console.error(`isImsSwitchEnabledSync fail : err->${JSON.stringify(error)}`);  
 }
 ```
 
@@ -4657,7 +4657,7 @@ Performs a secret code broadcast. This API uses an asynchronous callback to retu
 
 | Name     | Type                        | Mandatory| Description                                      |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | Yes  | Secret code, for example, **2846579** (project menu).|
+| inputCode   | string                       | Yes  | Secret code, for example, *#*#2846579#*#* (project menu).|
 | callback    | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.             |
 
 **Error codes**
@@ -4678,7 +4678,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
+call.inputDialerSpecialCode('*#*#2846579#*#*', (err: BusinessError) => {
     if (err) {
         console.error(`inputDialerSpecialCode fail, err->${JSON.stringify(err)}`);
     } else {
@@ -4703,7 +4703,7 @@ Performs a secret code broadcast. This API uses a promise to return the result.
 
 | Name     | Type                        | Mandatory| Description                                      |
 | ----------- | ---------------------------- | ---- | ----------------------------------------- |
-| inputCode   | string                       | Yes  | Secret code, for example, **2846579** (project menu).|
+| inputCode   | string                       | Yes  | Secret code, for example, *#*#2846579#*#* (project menu).|
 
 **Return value**
 
@@ -4730,7 +4730,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    call.inputDialerSpecialCode('2846579');
+    call.inputDialerSpecialCode('*#*#2846579#*#*');
     console.log(`inputDialerSpecialCode success`);
 } catch (error) {
     console.error(`inputDialerSpecialCode fail, promise: err->${JSON.stringify(error)}`);
@@ -5090,6 +5090,8 @@ Defines the VoIP call information.
 | abilityName      | string     | Yes  |  Ability name of the third-party application. |
 | voipBundleName    | string     | Yes  |  Bundle name of the third-party application. |
 | showBannerForIncomingCall<sup>12+</sup>    | boolean     | No  |  Whether to display the incoming call banner. |
+| isConferenceCall<sup>12+</sup>    | boolean     | No  |  Whether the call is a conference call. |
+| isVoiceAnswerSupported<sup>12+</sup>    | boolean     | No  |  Whether call answering with voice commands is supported. |
 
 ## ConferenceState<sup>7+</sup>
 

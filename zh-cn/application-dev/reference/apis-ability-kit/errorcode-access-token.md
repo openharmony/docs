@@ -198,7 +198,7 @@ The permission list contains the permission that has not been revoked by the use
 
 **处理步骤**
 
-请先调用requestPermissionFromUser向用户申请权限。
+请先调用requestPermissionsFromUser向用户申请权限。
 
 
 ## 12100013 全局开关已开启

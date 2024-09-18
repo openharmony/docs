@@ -416,3 +416,88 @@ ListItem横滑动态跟手比按新实现后，手指滑动相同距离，组件
 **适配指导**
 
 默认效果变更：默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.11 TipsDialog的imageRes/imageSize/title变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+TipsDialog 原来只支持 resource 类型的图片，现扩展 TipsDialog 支持 pixelMap 和 string 类型的图片，方便用户根据使用场景选用图片类型，提升用户使用体验。同时变更 TipsDialog 图片大小和中间标题由必填改为非必填，方便用户根据使用场景决定是否选用默认样式。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：
+1. TipsDialog不支持pixelMap和string类型的图片
+2. TipsDialog的图片大小为必填
+3. TipsDialog必须有中间标题
+
+变更后：
+1. TipsDialog支持pixelMap和string类型的图片
+2. TipsDialog图片大小非必填，默认大小64vp*64vp
+3. TipsDialog中间标题可为非必填，未填不展示标题
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.28开始。
+
+**适配指导**
+
+TipsDialg组件创建函数变更：无需适配，但应注意变更后的属性范围扩展是否符合开发者预期，如不符合可具体参考：
+```ts
+import { TipsDialog } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  isChecked = false;
+  dialogControllerImage: CustomDialogController = new CustomDialogController({
+    builder: TipsDialog({
+      imageRes: $r('sys.media.ohos_ic_public_voice'),
+      content: '想要卸载这个APP嘛?',
+      primaryButton: {
+        value: '取消',
+        action: () => {
+          console.info('Callback when the first button is clicked')
+        },
+      },
+      secondaryButton: {
+        value: '删除',
+        role: ButtonRole.ERROR,
+        action: () => {
+          console.info('Callback when the second button is clicked')
+        }
+      },
+      onCheckedChange: () => {
+        console.info('Callback when the checkbox is clicked')
+      }
+    }),
+  })
+
+  build() {
+    Row() {
+      Stack() {
+        Column(){
+          Button("上图下文弹出框")
+            .width(96)
+            .height(40)
+            .onClick(() => {
+              this.dialogControllerImage.open()
+            })
+        }.margin({bottom: 300})
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
+}
+```

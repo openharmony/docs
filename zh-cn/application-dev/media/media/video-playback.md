@@ -279,12 +279,13 @@ export class AVPlayerDemo {
   async multiTrackDemo() {
     // 创建avPlayer实例对象
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    let audioTrackIndex: Object = 0;
     avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
         for (let i = 0; i < arrList.length; i++) {
           if (i != 0) {
             // 获取音频轨道列表
-            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+            audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
           }
         }
       } else {

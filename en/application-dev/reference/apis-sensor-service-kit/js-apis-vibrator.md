@@ -868,7 +868,7 @@ Describes the fixed-duration vibration.
 
 | Name    | Type   | Mandatory| Description                          |
 | -------- | ------ | ----- | ------------------------------ |
-| type     | "time" |  Yes  | The value **time** means vibration with the specified duration.|
+| type     | 'time' |  Yes  | The value **time** means vibration with the specified duration.|
 | duration | number |  Yes  | Vibration duration, in ms.        |
 
 ## VibratePreset<sup>9+</sup>
@@ -879,10 +879,10 @@ Describes the preset vibration.
 
 | Name    | Type     | Mandatory| Description                          |
 | -------- | -------- | ---- |------------------------------ |
-| type     | "preset" |  Yes | The value **preset** means vibration with the specified effect.|
+| type     | 'preset' |  Yes | The value **preset** means vibration with the specified effect.|
 | effectId | string   |  Yes | Preset vibration effect ID.            |
 | count    | number   |  No | Number of repeated vibrations. The default value is **1**. This parameter is optional.|
-| intensity | number | No| Vibration intensity. The value ranges from 0 to 100. The default value is **100**. This parameter is optional.|
+| intensity<sup>12+</sup> | number | No| Vibration intensity. The value ranges from 0 to 100. The default value is **100**. This parameter is optional.|
 
 ## VibrateFromFile<sup>10+</sup>
 
@@ -892,7 +892,7 @@ Describes the custom vibration type, which is supported only by certain devices.
 
 | Name    | Type      | Mandatory| Description                          |
 | -------- | --------  | ---- | ------------------------------ |
-| type     | "file" |  Yes | The value **file** means vibration according to a vibration configuration file.|
+| type     | 'file' |  Yes | The value **file** means vibration according to a vibration configuration file.|
 | hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | Yes| File descriptor (FD) of the vibration configuration file.|
 
 ## HapticFileDescriptor<sup>10+</sup>
@@ -922,25 +922,26 @@ Describes the vibration attribute.
 
 ## Usage<sup>9+</sup>
 
-type Usage = 'unknown'|'alarm'|'ring'|'notification'|'communication'|'touch'|'media'|'physicalFeedback'|'simulateReality'
+type Usage = 'unknown' | 'alarm' | 'ring' | 'notification' | 'communication' | 'touch' | 'media' | 'physicalFeedback' | 'simulateReality'
 
 Enumerates the vibration scenarios.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
-
-| Name            | Type  | Mandatory| Description                          |
-| ---------------- | ------ | ------------------------------ | ------------------------------ |
-| unknown          | string | Yes| Unknown scenario, with the lowest priority.|
-| alarm            | string | Yes| Vibration for alarms.          |
-| ring             | string | Yes| Vibration for incoming calls.          |
-| notification     | string | Yes| Vibration for notifications.          |
-| communication    | string | Yes| Vibration for communication.          |
-| touch            | string | Yes| Touch vibration scenario.          |
-| media            | string | Yes| Multimedia vibration scenario.        |
-| physicalFeedback | string | Yes| Physical feedback vibration scenario.      |
-| simulateReality  | string | Yes| Simulated reality vibration scenario.      |
+<!--RP1-->
+| Type    | Description                          |
+| ---------------- | ------------------------------ |
+| 'unknown'     | Unknown scenario, with the lowest priority. This parameter has a fixed value of **unknown**.|
+| 'alarm'      | Vibration for alarms. This parameter has a fixed value of **alarm**.|
+| 'ring'         | Vibration for ringing. This parameter has a fixed value of **ring**.|
+| 'notification' | Vibration for notification. This parameter has a fixed value of **notification**.|
+| 'communication' | Vibration for communication. This parameter has a fixed value of **communication**.|
+| 'touch'        | Vibration for touch. This parameter has a fixed value of **touch**.|
+| 'media'        | Vibration for media. This parameter has a fixed value of **media**.|
+| 'physicalFeedback' | Vibration for physical feedback. This parameter has a fixed value of **physicalFeedback**.|
+| 'simulateReality' | Vibration for simulated reality. This parameter has a fixed value of **simulateReality**.|
+<!--RP1End-->
 
 ## vibrator.vibrate<sup>(deprecated)</sup>
 

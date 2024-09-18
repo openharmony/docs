@@ -1,4 +1,4 @@
-# Signing and Signature Verification with an ECDSA Key Pair
+# Signing and Signature Verification with an ECDSA Key Pair (ArkTS)
 
 
 For details about the algorithm specifications, see [ECDSA](crypto-sign-sig-verify-overview.md#ecdsa).
@@ -16,8 +16,9 @@ For details about the algorithm specifications, see [ECDSA](crypto-sign-sig-veri
 3. Use [Sign.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-3) to initialize the **Sign** instance with the private key (**PriKey**).
 
 4. Use [Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3) to pass in the data to be signed.
-   Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
-
+   
+   Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
+   
 5. Use [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-2) to generate a signature.
 
 
@@ -29,8 +30,9 @@ For details about the algorithm specifications, see [ECDSA](crypto-sign-sig-veri
 2. Use [Verify.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
 
 3. Use [Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.
-   Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
-
+   
+   Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
+   
 4. Use [Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-2) to verify the data signature.
 
 

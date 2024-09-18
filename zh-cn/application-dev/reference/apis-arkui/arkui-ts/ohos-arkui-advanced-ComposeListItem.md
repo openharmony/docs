@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.ComposeListItem (列表)
+# ComposeListItem
 
 
 列表包含一系列相同宽度的列表项。内容包括适合连续、多行呈现同类数据的组合，例如图片和文本。

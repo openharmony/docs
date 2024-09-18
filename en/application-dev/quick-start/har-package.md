@@ -14,7 +14,7 @@ A Harmony Archive (HAR) is a static shared package that can contain code, C++ li
 - A HAR can depend on other HARs, but does not support cyclic dependency or dependency transfer.
 
 ## Creating a HAR
-You can create a HAR module in DevEco Studio.
+Create an HAR module through DevEco Studio. For details, see <!--RP1-->[Creating a HAR Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/creating_har_api9-0000001518082393-V2#section143510369612)<!--RP1End-->.
 
 
 ## Developing a HAR
@@ -94,9 +94,9 @@ export { func2 } from './src/main/ts/test';
 ```
 
 ### Exporting Native Methods
-The HAR can contain .so files written in C++. Native methods in the .so file can be exported from the HAR in the following way. In the example, the **add** API in the **libnative.so** file is exported.
+The HAR can contain .so files written in C++. Native methods in the .so file can be exported from the HAR in the following way. In the example, the **add** API in the **liblibrary.so** file is exported.
 ```ts
-// library/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeAdd(a: number, b: number): number {
@@ -111,7 +111,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 ```
 
 ### Resources
-Resources are packed into the HAR during building. Specifically, DevEco Studio collects resource files from the HAP module and its dependent modules, and overwrites the resource files with the same name (if any) based on the following priorities (in descending order):
+Specifically, DevEco Studio collects resource files from the HAP module and its dependent modules, and overwrites the resource files with the same name (if any) based on the following priorities (in descending order):
 - AppScope (only for the stage model of API version 9)
 - Modules in the HAP
 - Dependent HAR modules<br>If resource conflicts occur between dependent HAR modules, they are overwritten based on the dependency sequence indicated under **dependencies** in the **oh-package.json5** file. The module that is higher in the dependency sequence list has a higher priority. For example, in the following example, if **dayjs** and **lottie** folders contain files with the same name, resources in **dayjs** are used preferentially.
@@ -130,9 +130,9 @@ Resources are packed into the HAR during building. Specifically, DevEco Studio c
 
 ## Using a HAR
 
-Using a HAR means referencing its ArkUI components, APIs, and resources.
+You can reference the ArkUI components, APIs, and resources in a HAR.
 
-To start with, configure dependency on the HAR.
+Before referencing the HAR, configure the dependency on the HAR. For details, see <!--RP2-->[Referencing HAR Files and Resources](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/creating_har_api9-0000001518082393-V2#section611662614153)<!--RP2End-->.
 
 ### Referencing ArkUI Components
 
@@ -294,11 +294,11 @@ To better protect your source code, enable obfuscation for the HAR so that DevEc
 
 > **NOTE**
 > 
+> If the obfuscation capability is not enabled during HAR building, the build product is the source code file.<br>
 > Obfuscation is only available for ArkTS projects in the stage model. 
 > When obfuscation is enabled, the resource ID is **-1**, and APIs that obtain resources by ID, such as [ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md), do not take effect.
 
-
-Since API version 10, obfuscation is enabled by default, and can be set through the **enable** field under **ruleOptions** in the **build-profile.json5** file of the HAR. The configuration is as follows:
+The obfuscation capability is enabled by default for the HAR module. When the compilation module is release, simple code obfuscation is automatically performed for the HAR module of API version 10 or later. **Since DevEco Studio 5.0.3.600, the code obfuscation is disabled by default when a project is created.** You can enable this feature by setting **enable** in the **ruleOptions** field in the **build-profile.json5** file of the HAR module. For details, see [Code Obfuscation](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-build-obfuscation-0000001731754312-V5). The configuration is as follows:
 
   ```json
   {
@@ -331,7 +331,38 @@ Since API version 10, obfuscation is enabled by default, and can be set through 
   }
   ```
 
-## Releasing a HAR
+### Building TS Files
 
-Follow the [instructions](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section1213451811512) to release a HAR.
+> **Scenario Description**
+>
+>Enable this configuration when the **Sendable** class is used in HAR.
 
+> **Restrictions**
+>
+>When depend on TS HAR, the ArkUI component in TS HAR cannot be referenced.
+
+After the arkts file in the HAR module is built, the default product is a JS file. To change the product to a TS file, set **UseTsHar** in **HAR module** > **src/main directory** > **module.json5 file** > **metadata field**. The configuration is as follows:
+
+  ```json
+  {
+    "module": {
+      "name": "TsClosedHar",
+      "type": "har",
+      "deviceTypes": [
+        "default",
+        "tablet",
+        "2in1"
+      ],
+      "metadata": [
+        {
+          "name": "UseTsHar",
+          "value": "true"
+        }
+      ]
+    }
+  }
+  ```
+
+## Publishing a HAR
+
+For details, see <!--RP3-->[Publishing a HAR](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/creating_har_api9-0000001518082393-V2#section1213451811512)<!--RP3End-->.

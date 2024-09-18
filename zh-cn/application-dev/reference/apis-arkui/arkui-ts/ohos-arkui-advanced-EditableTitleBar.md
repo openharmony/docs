@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)
+# EditableTitleBar
 
 
 编辑型标题栏，适用于多选界面或者内容的编辑界面，一般采取左叉右勾的形式。
@@ -82,7 +82,7 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | backgroundColor | [ResourceStr](ts-types.md#resourcestr) | 否 | 标题栏背景色。 |
-| backgroundBlurstyle | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 标题栏背景模糊样式。 |
+| backgroundBlurstyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 标题栏背景模糊样式。 |
 | safeAreaTypes | Array <[SafeAreaType](ts-types.md#safeareatype10)> | 否   | 非必填，配置扩展安全区域的类型。<br />默认值: [SafeAreaType.SYSTEM] |
 | safeAreaEdges  | Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | 否   | 非必填，配置扩展安全区域的方向。<br />默认值: [SafeAreaEdge.TOP] |
 

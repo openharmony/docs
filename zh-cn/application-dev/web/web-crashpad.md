@@ -27,7 +27,7 @@ Web组件支持使用crashpad记录进程崩溃信息。crashpad是chromium内�
      Crash address: 0x0
      Process uptime: 12 seconds
 
-     Thread 0 (crashed)                     表示Thraed 0发生crash
+     Thread 0 (crashed)                     表示Thread 0发生crash
       0  libweb_engine.so + 0x2e0b340       0层调用栈，0x2e0b340为so偏移地址，可用来反编译解析crash源码（依赖unstripped so）
           x0 = 0x00000006a5719ff8    x1 = 0x000000019a5a28c0
           x2 = 0x0000000000020441    x3 = 0x00000000000001b6

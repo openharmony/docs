@@ -6,7 +6,7 @@
 
 ### 添加链接库
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添libimage_packer.so 以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libimage_packer.so 以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
@@ -21,6 +21,9 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 **编码接口使用示例**
 
 在创建ImagePacker实例，指定打包参数后将ImageSource或Pixelmap图片源打包至文件或者缓冲区。
+
+> **说明：**
+> 根据MIME标准，标准编码格式为image/jpeg。当使用image编码时，打包参数中的编码格式image_MimeType设置为image/jpeg，image编码后的文件扩展名可设为.jpg或.jpeg，可在支持image/jpeg解码的平台上使用。
 
    ```c++
 

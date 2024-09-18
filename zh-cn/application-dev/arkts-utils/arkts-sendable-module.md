@@ -1,7 +1,7 @@
 # 共享模块开发指导
 
 共享模块是进程内只会加载一次的模块，使用"use shared"这一指令来标记一个模块是否为共享模块。
-非共享模块在同一线程内只加载一次，在不同线程间会加载多次，在不同的线程内都会产生新的模块对象。
+非共享模块在同一线程内只加载一次，在不同线程间会加载多次，在不同的线程内都会产生新的模块对象。因此可以使用共享模块来实现进程单例。
 
 ## 使用规格
 
@@ -57,83 +57,72 @@
 
     // 共享模块，SingletonA全局唯一
     @Sendable
-    class SingletonA {
+    export class SingletonA {
       private count_: number = 0;
-      lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock()
+      lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
+      private static instance: SingletonA = new SingletonA();
+      static getInstance(): SingletonA {
+        // 返回单例对象
+        return SingletonA.instance;
+      }
 
       public async getCount(): Promise<number> {
         return this.lock_.lockAsync(() => {
           return this.count_;
         })
       }
-    
+
       public async increaseCount() {
         await this.lock_.lockAsync(() => {
           this.count_++;
         })
       }
     }
-
-    export let singletonA = new SingletonA();
     ```
 
 2. 在多个线程中操作共享模块导出的对象。
 
     ```ts
     import { ArkTSUtils, taskpool } from '@kit.ArkTS';
-    import { singletonA } from './sharedModule'
-    
-    @Sendable
-    export class A {
-      private count_: number = 0;
-      lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock()
-
-      public async getCount(): Promise<number> {
-        return this.lock_.lockAsync(() => {
-          return this.count_;
-        })
-      }
-    
-      public async increaseCount() {
-        await this.lock_.lockAsync(() => {
-          this.count_++;
-        })
-      }
-    }
+    import { SingletonA } from './sharedModule'
 
     @Concurrent
     async function increaseCount() {
-      await singletonA.increaseCount();
-      console.info("SharedModule: count is:" + await singletonA.getCount());
+      await SingletonA.getInstance().increaseCount();
+      console.info("SharedModule: count is:" + await SingletonA.getInstance().getCount());
     }
 
     @Concurrent
     async function printCount() {
-      console.info("SharedModule: count is:" + await singletonA.getCount());
+      console.info("SharedModule: count is:" + await SingletonA.getInstance().getCount());
     }
-    
+
     @Entry
     @Component
     struct Index {
       @State message: string = 'Hello World';
-    
+
       build() {
         Row() {
           Column() {
             Button("MainThread print count")
               .onClick(async () => {
-                await printCount()
+                console.info("this is MainThread print count");
+                await printCount();
               })
             Button("Taskpool print count")
               .onClick(async () => {
+                console.info("this is Taskpool print count");
                 await taskpool.execute(printCount);
               })
             Button("MainThread increase count")
               .onClick(async () => {
-                await increaseCount()
+                console.info("this is MainThread increase count");
+                await increaseCount();
               })
             Button("Taskpool increase count")
               .onClick(async () => {
+                console.info("this is Taskpool increase count");
                 await taskpool.execute(increaseCount);
               })
           }

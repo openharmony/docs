@@ -20,10 +20,10 @@ The application recovery APIs are provided by the **appRecovery** module, which 
 | API                                                      | Description                                                |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
 | enableAppRecovery(restart?: RestartFlag, saveOccasion?: SaveOccasionFlag, saveMode?: SaveModeFlag) : void;<sup>9+</sup> | Enables application recovery. After this API is called, the first ability that is displayed when the application is started from the initiator can be restored.|
-| saveAppState(): boolean;<sup>9+</sup> | Saves the state of the ability that supports recovery in the current application.|
-| restartApp(): void;<sup>9+</sup> | Restarts the current process and starts the ability specified by **setRestartWant**. If no ability is specified, a foreground ability that supports recovery is restarted.|
-| saveAppState(context?: UIAbilityContext): boolean;<sup>10+</sup> | Saves the ability state specified by **Context**.|
-| setRestartWant(want: Want): void;<sup>10+</sup> | Sets the abilities to restart when **restartApp** is actively called and **RestartFlag** is not **NO_RESTART**. The abilities must be under the same bundle name and must be a **UIAbility**.|
+| saveAppState(): boolean;<sup>9+</sup> | Saves the state of the ability that supports recovery in the current application. |
+| restartApp(): void;<sup>9+</sup> | Restarts the current process and starts the ability specified by **setRestartWant**. If no ability is specified, a foreground ability that supports recovery is restarted. |
+| saveAppState(context?: UIAbilityContext): boolean;<sup>10+</sup> | Saves the ability state specified by **Context**. |
+| setRestartWant(want: Want): void;<sup>10+</sup> | Sets the abilities to restart when **restartApp** is actively called and **RestartFlag** is not **NO_RESTART**. The abilities must be under the same bundle name and must be a **UIAbility**. |
 
 No error will be thrown if the preceding APIs are used in the troubleshooting scenario. The following are some notes on API usage:
 
@@ -33,7 +33,7 @@ No error will be thrown if the preceding APIs are used in the troubleshooting sc
 
 **setRestartWant**: This API specifies the ability to be restarted by **appRecovery**.
 
-**restartApp**: After this API is called, the recovery framework kills the current process and restarts the ability specified by **setRestartWant**, with **APP_RECOVERY** set as the startup cause. In API version 9 and scenarios where an ability is not specified by **setRestartWant**, the last foreground ability that supports recovery is started. If the no foreground ability supports recovery, the application crashes. If a saved state is available for the restarted ability, the saved state is passed as the **wantParam** attribute in the **want** parameter of the ability's **onCreate** callback.
+**restartApp**: After this API is called, the recovery framework kills the current process and restarts the ability specified by **setRestartWant**, with **APP_RECOVERY** set as the startup cause. In API version 9 and scenarios where an ability is not specified by **setRestartWant**, the last foreground ability that supports recovery is started. If the no foreground ability supports recovery, the application crashes. If a saved state is available for the restarted ability, the saved state is passed as the **wantParam** attribute in the **want** parameter of the ability's **onCreate** callback. The interval between two restarts must be greater than 1 minute. If this API is called repeatedly within 1 minute, the application exits but does not restart. The behavior of automatic restart is the same as that of proactive restart.
 
 ### Application State Management
 Since API version 10, application recovery is not limited to automatic restart in the case of an exception. Therefore, you need to understand when the application will load the saved state.
@@ -62,13 +62,13 @@ The figure below does not illustrate the time when [faultLogger](../reference/ap
 ![Fault rectification process](./figures/fault_rectification.png)
 It is recommended that you call [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md) to handle the exception. After the processing is complete, you can call the **saveAppState** API and restart the application.
 If you do not register an [ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md) instance or enable application recovery, the application process will exit according to the default processing logic of the system. Users can restart the application from the home screen.
-If you have enabled application recovery, the recovery framework first checks whether application state saving is supported and whether the application state saving is enabled. If so, the recovery framework invokes [onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the [Ability](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md). Finally, the application is restarted.
+If you have enabled application recovery, the recovery framework first checks whether application state saving is supported and whether the application state saving is enabled. If so, the recovery framework invokes [onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the [ability](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md). Finally, the application is restarted.
 
 ### Supported Application Recovery Scenarios
 
 Common fault types include JavaScript application crash, application freezing, and C++ application crash. Generally, an application is closed when a crash occurs. Application freezing occurs when the application does not respond. The fault type can be ignored for the upper layer of an application. The recovery framework implements fault management in different scenarios based on the fault type.
 
-| Fault  | Fault Listening | State Saving| Automatic Restart| Log Query|
+| Fault  | Fault Listening | State Saving | Automatic Restart | Log Query |
 | ----------|--------- |--------- |--------- |--------- |
 | [JS_CRASH](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Supported|Supported|Supported|Supported|
 | [APP_FREEZE](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Not supported|Supported|Supported|Supported|
@@ -88,12 +88,12 @@ Common fault types include JavaScript application crash, application freezing, a
 import { AbilityStage, appRecovery } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    console.info("[Demo] MyAbilityStage onCreate");
-    appRecovery.enableAppRecovery(appRecovery.RestartFlag.ALWAYS_RESTART,
-      appRecovery.SaveOccasionFlag.SAVE_WHEN_ERROR | appRecovery.SaveOccasionFlag.SAVE_WHEN_BACKGROUND,
-      appRecovery.SaveModeFlag.SAVE_WITH_FILE);
-  }
+    onCreate() {
+        console.info("[Demo] MyAbilityStage onCreate");
+        appRecovery.enableAppRecovery(appRecovery.RestartFlag.ALWAYS_RESTART,
+            appRecovery.SaveOccasionFlag.SAVE_WHEN_ERROR | appRecovery.SaveOccasionFlag.SAVE_WHEN_BACKGROUND,
+            appRecovery.SaveModeFlag.SAVE_WITH_FILE);
+    }
 }
 ```
 ### Enabling Application Recovery for the Specified Abilities
@@ -117,7 +117,7 @@ The following is an example of **EntryAbility**:
 #### Importing the Service Package
 
 ```ts
-import { AbilityConstant, appRecovery, errorManager} from '@kit.AbilityKit';
+import { AbilityConstant, appRecovery, errorManager } from '@kit.AbilityKit';
 ```
 
 #### Actively Saving the Application State and Restoring Data
@@ -130,27 +130,27 @@ import { window } from '@kit.ArkUI';
 
 let registerId = -1;
 let callback: errorManager.ErrorObserver = {
-  onUnhandledException(errMsg) {
+    onUnhandledException(errMsg) {
     console.log(errMsg);
     appRecovery.saveAppState();
     appRecovery.restartApp();
-  }
+    }
 }
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     console.log("[Demo] EntryAbility onWindowStageCreate");
     registerId = errorManager.on('error', callback);
 
     windowStage.loadContent("pages/index", (err, data) => {
-      if (err.code) {
+        if (err.code) {
         console.error('Failed to load the content. Cause:' + JSON.stringify(err));
         return;
-      }
-      console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+        }
+        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
     })
-  }
+    }
 }
 ```
 
@@ -162,12 +162,12 @@ After the callback triggers **appRecovery.saveAppState()**, **onSaveState(state,
 import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-  onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
-    // Ability has called to save app data
-    console.log("[Demo] EntryAbility onSaveState");
-    wantParams["myData"] = "my1234567";
-    return AbilityConstant.OnSaveResult.ALL_AGREE;
-  }
+    onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
+        // Ability has called to save app data
+        console.log("[Demo] EntryAbility onSaveState");
+        wantParams["myData"] = "my1234567";
+        return AbilityConstant.OnSaveResult.ALL_AGREE;
+    }
 }
 ```
 
@@ -181,20 +181,20 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage | undefined = undefined;
+    storage: LocalStorage | undefined = undefined;
 
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log("[Demo] EntryAbility onCreate");
-    abilityWant = want;
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
-      this.storage = new LocalStorage();
-      if (want.parameters) {
-        let recoveryData = want.parameters["myData"];
-        this.storage.setOrCreate("myData", recoveryData);
-        this.context.restoreWindowStage(this.storage);
-      }
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("[Demo] EntryAbility onCreate");
+        abilityWant = want;
+        if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
+            this.storage = new LocalStorage();
+            if (want.parameters) {
+                let recoveryData = want.parameters["myData"];
+                this.storage.setOrCreate("myData", recoveryData);
+                this.context.restoreWindowStage(this.storage);
+            }
+        }
     }
-  }
 }
 ```
 
@@ -206,14 +206,14 @@ import { errorManager, UIAbility } from '@kit.AbilityKit';
 let registerId = -1;
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageDestroy() {
-    // Main window is destroyed, release UI related resources
-    console.log("[Demo] EntryAbility onWindowStageDestroy");
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] EntryAbility onWindowStageDestroy");
 
-    errorManager.off('error', registerId, (err) => {
-      console.error("[Demo] err:", err);
-    });
-  }
+        errorManager.off('error', registerId, (err) => {
+            console.error("[Demo] err:", err);
+        });
+    }
 }
 ```
 
@@ -227,26 +227,26 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
-  storage: LocalStorage | undefined = undefined
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    storage: LocalStorage | undefined = undefined
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log("[Demo] EntryAbility onCreate");
-    abilityWant = want;
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
-      this.storage = new LocalStorage();
-      if (want.parameters) {
-        let recoveryData = want.parameters["myData"];
-        this.storage.setOrCreate("myData", recoveryData);
-        this.context.restoreWindowStage(this.storage);
-      }
+        abilityWant = want;
+        if (launchParam.launchReason == AbilityConstant.LaunchReason.APP_RECOVERY) {
+            this.storage = new LocalStorage();
+            if (want.parameters) {
+                let recoveryData = want.parameters["myData"];
+                this.storage.setOrCreate("myData", recoveryData);
+                this.context.restoreWindowStage(this.storage);
+            }
+        }
     }
-  }
 
-  onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
-    // Ability has called to save app data
-    console.log("[Demo] EntryAbility onSaveState");
-    wantParams["myData"] = "my1234567";
-    return AbilityConstant.OnSaveResult.ALL_AGREE;
-  }
+    onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
+        // Ability has called to save app data
+        console.log("[Demo] EntryAbility onSaveState");
+        wantParams["myData"] = "my1234567";
+        return AbilityConstant.OnSaveResult.ALL_AGREE;
+    }
 }
 ```
 
@@ -258,14 +258,14 @@ If the failed ability is restarted again, the [ABILITY_RECOVERY_RESTART](../refe
 import { AbilityConstant, UIAbility, Want, wantConstant } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    if (want.parameters === undefined) {
-      return;
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        if (want.parameters === undefined) {
+            return;
+        }
+        if (want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] != undefined &&
+            want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] == true) {
+            console.log("This ability need to recovery");
+        }
     }
-    if (want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] != undefined &&
-      want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] == true) {
-      console.log("This ability need to recovery");
-    }
-  }
 }
 ```

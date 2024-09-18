@@ -78,11 +78,11 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 **框架行为**
 
 
-- 当\@StorageProp(key)装饰的数值改变被观察到时，修改不会被同步回AppStorage对应属性键值key的属性中。
+- 当\@StorageProp(key)装饰的数值改变被观察到时，修改不会被同步回AppStorage对应key的属性中。
 
-- 当前\@StorageProp(key)单向绑定的数据会被修改，即仅限于当前组件的私有成员变量改变，其他的绑定该key的数据不会同步改变。
+- 当前\@StorageProp(key)单向绑定的数据会被修改，即仅限于当前组件的私有成员变量改变，其他绑定该key的数据不会同步改变。
 
-- 当\@StorageProp(key)装饰的数据本身是状态变量，它的改变虽然不会同步回AppStorage中，但是会引起所属的自定义组件的重新渲染。
+- 当\@StorageProp(key)装饰的数据本身是状态变量，它的改变虽然不会同步回AppStorage中，但是会引起所属的自定义组件重新渲染。
 
 - 当AppStorage中key对应的属性发生改变时，会同步给所有\@StorageProp(key)装饰的数据，\@StorageProp(key)本地的修改将被覆盖。
 

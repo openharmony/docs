@@ -52,9 +52,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
             // 开发者可以获取到主线程超时应用的pid、uid
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
-            // 开发者可以主线程处理开始和结束时间
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.crash_type=${eventInfo.params['begin_time']}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['end_time']}`);
+            // 开发者可以获取主线程处理开始和结束时间
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.begin_time=${eventInfo.params['begin_time']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.end_time=${eventInfo.params['end_time']}`);
             // 开发者可以获取到主线程超时事件发生时的故障日志文件
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
@@ -72,9 +72,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      .fontWeight(FontWeight.Bold)
      .onClick(() => {
          let t = Date.now();
-         while (Date.now() - t <= 350){
-         
-         }
+         while (Date.now() - t <= 350) {}
      })
    ```
 
@@ -95,8 +93,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      HiAppEvent eventInfo.params.bundle_name=com.example.main_thread_jank
      HiAppEvent eventInfo.params.pid=40986
      HiAppEvent eventInfo.params.uid=20020150
-     HiAppEvent eventInfo.params.crash_type=1717593620016
-     HiAppEvent eventInfo.params.foreground=1717593620518
+     HiAppEvent eventInfo.params.begin_time=1717593620016
+     HiAppEvent eventInfo.params.end_time=1717593620518
      HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_20240613211739_40986.txt"]
      HiAppEvent eventInfo.params.log_over_limit=false
     ```

@@ -5,6 +5,7 @@ The **request** module provides applications with basic upload, download, and ba
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.request](js-apis-request.md).
 
 
@@ -19,8 +20,6 @@ import { request } from '@kit.BasicServicesKit';
 ## Filter<sup>10+</sup>
 Defines the filter criteria.
 
-**Required permissions**: ohos.permission.INTERNET
-
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 | Name| Type| Mandatory| Description|
@@ -30,8 +29,6 @@ Defines the filter criteria.
 
 ## TaskInfo<sup>10+</sup> 
 Defines the data structure of the task information for query. The fields available vary depending on the query type.
-
-**Required permissions**: ohos.permission.INTERNET
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 

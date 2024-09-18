@@ -4,7 +4,9 @@
 
 ## 系统音量
 
-管理系统音量的接口是AudioVolumeManager，在使用之前，需要使用getVolumeManager()获取AudioVolumeManager实例。目前该接口只能获取音量信息及监听音量变化，不能主动调节系统音量。
+管理系统音量的接口是AudioVolumeManager，在使用之前，需要使用getVolumeManager()获取AudioVolumeManager实例。
+
+通过AudioVolumeManager只能获取音量信息及监听音量变化，不能主动调节系统音量。如果应用需要调节系统音量，可以[使用音量面板调节系统音量](#使用音量面板调节系统音量)。
 
 ```ts
 import { audio } from '@kit.AudioKit';

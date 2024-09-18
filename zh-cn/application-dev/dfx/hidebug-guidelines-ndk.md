@@ -1,4 +1,4 @@
-# 使用Hidebug获取调试信息（C/C++）
+# 使用HiDebug获取调试信息（C/C++）
 
 HiDebug模块对外提供应用调试功能。
 
@@ -14,13 +14,14 @@ HiDebug模块对外提供应用调试功能。
 | OH_HiDebug_GetAppMemoryLimit    | 获取应用程序进程的内存限制。      |
 | OH_HiDebug_StartAppTraceCapture | 启动应用trace采集。               |
 | OH_HiDebug_StopAppTraceCapture  | 停止应用trace采集。               |
+| OH_HiDebug_GetGraphicsMemory    | 获取应用显存大小。          |
 
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[Hidebug](../reference/apis-performance-analysis-kit/_hi_debug.md)。
+API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiDebug](../reference/apis-performance-analysis-kit/_hi_debug.md)。
 
 ## 开发步骤
 下文将展示如何在应用内增加一个按钮，并单击该按钮以调用Hidebug Ndk接口。
 
-1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下：
+1. 新建Native C++工程，目录结构如下：
 
    ```yml
    entry:
@@ -39,7 +40,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                - Index.ets
    ```
 
-2. 编辑"CMakeLists.txt"文件，添加源文件及动态库：
+2. 编辑"CMakeLists.txt"文件，添加库依赖：
 
    ```cmake
    # 新增动态库依赖libhiappevent_ndk.z.so和libhilog_ndk.z.so(日志输出)
@@ -48,7 +49,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG及测试方法：
 
-   本示例中以OH_HiDebug_GetSystemCpuUsage接口为例，调用该接口并输出返回值，其他接口请参考[Hidebug](../reference/apis-performance-analysis-kit/_hi_debug.md)。
+   本示例中以OH_HiDebug_GetSystemCpuUsage接口为例，调用该接口并输出返回值，其他接口请参考[HiDebug](../reference/apis-performance-analysis-kit/_hi_debug.md)。
 
    ```c++
    #include "napi/native_api.h"
@@ -87,7 +88,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    export const testHidebugNdk: () => void;
    ```
 
-5. 编辑"Index.ets"文件：
+5. 编辑"Index.ets"文件，给文本Text组件添加一个点击事件，示例代码如下：
 
    ```ts
    import testNapi from 'libentry.so'

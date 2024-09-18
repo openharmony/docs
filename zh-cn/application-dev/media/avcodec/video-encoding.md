@@ -2,6 +2,8 @@
 
 开发者可以调用本模块的Native API接口，完成视频编码，即将未压缩的视频数据压缩成视频码流。
 
+<!--RP3--><!--RP3End-->
+
 当前支持的编码能力如下：
 
 | 容器规格 | 视频编码类型                 |
@@ -11,17 +13,17 @@
 
 目前仅支持硬件编码，基于MimeType创建编码器时，支持配置为H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
+每一种编码的能力范围，可以通过[能力查询](obtain-supported-codecs.md)获取。
+
 <!--RP1--><!--RP1End-->
 
 通过视频编码，应用可以实现以下重点能力，包括：
 
+<!--RP4-->
 |          支持的能力                       |                              使用简述                                            |
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
-| 动态配置编码器参数，重置帧率、码率、最大和最小量化参数         | 通过调用OH_VideoEncoder_SetParameter()配置， 具体可参考下文中：Surface模式的步骤-10     |
-| 随帧设置编码QP                 | 通过调用OH_VideoEncoder_RegisterParameterCallback()注册随帧参数回调时配置，具体可参考下文中：Surface模式的步骤-5  |
 | 分层编码，LTR设置                        | 具体可参考：[时域可分层视频编码](video-encoding-temporal-scalability.md)        |
-| 获取编码每帧平均量化参数，平方误差            | 在配置回调函数OnNewOutputBuffer()时获取，具体可参考下文中：Surface模式的步骤-4   |
-
+<!--RP4End-->
 
 ## 限制约束
 1. buffer模式不支持10bit的图像数据。
@@ -33,7 +35,7 @@
 
 1. 两者的数据来源不同。
 
-2. 两者的适用场景不同。
+2. 两者的适用场景不同：
 - Surface输入是指用OHNativeWindow来传递输入数据，可以与其他模块对接，例如相机模块。
 - Buffer输入是指有一块预先分配好的内存区域，调用者需要将原始数据拷贝进这块内存区域中。更适用于从文件中读取视频数据等场景。
 
@@ -50,16 +52,16 @@
 
 
 1. 有两种方式可以使编码器进入Initialized状态：
-   - 初始创建编码器实例时，编码器处于Initialized状态
-   - 任何状态下调用OH_VideoEncoder_Reset()方法，编码器将会移回Initialized状态
+   - 初始创建编码器实例时，编码器处于Initialized状态。
+   - 任何状态下调用OH_VideoEncoder_Reset()方法，编码器将会移回Initialized状态。
 
 2. Initialized状态下，调用OH_VideoEncoder_Configure()方法配置编码器，配置成功后编码器进入Configured状态。
 3. Configured状态下调用OH_VideoEncoder_Prepare()进入Prepared状态。
-4. Prepared状态调用OH_VideoEncoder_Start()方法使编码器进入Executing状态。
-   - 处于Executing状态时，调用OH_VideoEncoder_Stop()方法可以使编码器返回到Prepared状态
+4. Prepared状态调用OH_VideoEncoder_Start()方法使编码器进入Executing状态：
+   - 处于Executing状态时，调用OH_VideoEncoder_Stop()方法可以使编码器返回到Prepared状态。
 
-5. 在极少数情况下，编码器可能会遇到错误并进入Error状态。编码器的错误传递，可以通过队列操作返回无效值或者抛出异常。
-   - Error状态下可以调用OH_VideoEncoder_Reset()方法将编码器移到Initialized状态；或者调用OH_VideoEncoder_Destroy()方法移动到最后的Released状态
+5. 在极少数情况下，编码器可能会遇到错误并进入Error状态。编码器的错误传递，可以通过队列操作返回无效值或者抛出异常：
+   - Error状态下可以调用OH_VideoEncoder_Reset()方法将编码器移到Initialized状态；或者调用OH_VideoEncoder_Destroy()方法移动到最后的Released状态。
 
 6. Executing 状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoEncoder_Start()之后，编码器立即进入Running子状态。
@@ -81,6 +83,10 @@ target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_venc.so)
 ```
+> **说明：**
+>
+> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
+>
 
 ### Surface模式
 
@@ -143,10 +149,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - OH_AVCodecOnNeedInputBuffer 输入回调无作用，用户通过获取的surface输入数据；
     - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。
 
-    示例如下所示
+    <!--RP2--><!--RP2End-->
+
+    示例如下所示：
+
+    <!--RP5-->
     ```c++
-    int32_t qpAverage = 20;
-    double mseValue = 0.0;
     // 设置OH_AVCodecOnError 回调函数，编码异常
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -155,7 +163,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         (void)errorCode;
         (void)userData;
     }
+    ```
+    <!--RP5End-->
 
+    ```c++
     // 设置OH_AVCodecOnStreamChanged 回调函数，编码数据流变化
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
@@ -164,7 +175,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         (void)format;
         (void)userData;
     }
+    ```
 
+    ```c++
     // 设置 OH_AVCodecOnNeedInputBuffer 回调函数，编码输入帧送入数据队列
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
@@ -173,21 +186,22 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         (void)index;
         (void)buffer;
     }
+    ```
 
+    <!--RP6-->
+    ```c++
     // 设置 OH_AVCodecOnNewOutputBuffer 回调函数，编码完成帧送入输出队列
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
-        // 获取视频帧的平均量化参数,平方误差
-        OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, qpAverage);
-        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
-        OH_AVFormat_Destroy(format);
-        // 数据处理，请参考:
+        // 数据处理
         // 释放编码帧
     }
+    ```
+    <!--RP6End-->
 
+    ```c++
     // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback()接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, NULL); // NULL:用户特定数据userData为空 
@@ -195,29 +209,31 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
+
     > **说明：**
     > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     >
 
 5. （可选）调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调。
 
+    详情请参考[时域可分层视频编码](video-encoding-temporal-scalability.md)。
+
+    <!--RP7-->
     ```c++
     // 5.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
     static void OnNeedInputParameter(OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
     {
         // 输入帧parameter对应的index，送入InParameterIndexQueue队列
         // 输入帧的数据parameter送入InParameterQueue队列
-        // 数据处理，请参考:
+        // 数据处理
         // 随帧参数写入
-        // 配置OH_MD_KEY_VIDEO_ENCODER_QP_MAX 的值应大于等于OH_MD_KEY_VIDEO_ENCODER_QP_MIN
-        OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MAX, 30);
-        OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
     }
 
     // 5.2 注册随帧参数回调
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
-    OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr); // NULL:用户特定数据userData为空 
+    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, NULL); // NULL:用户特定数据userData为空
     ```
+    <!--RP7End-->
 
 6. 调用OH_VideoEncoder_Configure()配置编码器。
 
@@ -256,9 +272,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int64_t quality = 0;
 
     OH_AVFormat *format = OH_AVFormat_Create();
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width); // 必须配置
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // 必须配置
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT); // 必须配置
 
     OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_RANGE_FLAG, rangeFlag);
@@ -267,12 +283,14 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_MATRIX_COEFFICIENTS, matrix);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, iFrameInterval);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
-    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
     //只有当OH_MD_KEY_BITRATE = CQ时，才需要配置OH_MD_KEY_QUALITY
     if (rateMode == static_cast<int32_t>(OH_VideoEncodeBitrateMode::CQ)) {
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
+    } else if (rateMode == static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR) ||
+               rateMode == static_cast<int32_t>(OH_VideoEncodeBitrateMode::VBR)){
+        OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
     }
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -327,26 +345,18 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 10. （可选）OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
+    <!--RP8-->
     ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // 支持动态请求IDR帧
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
-    // 支持动态重置比特率
-    int64_t bitRate = 2000000;
-    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
-    // 支持动态重置视频帧速率
-    double frameRate = 60.0;
-    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
-    // 支持动态设置QP值
-    // 配置OH_MD_KEY_VIDEO_ENCODER_QP_MAX 的值应大于等于OH_MD_KEY_VIDEO_ENCODER_QP_MIN
-    OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MAX, 30);
-    OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
-
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
+    OH_AVFormat_Destroy(format);
     ```
+    <!--RP8End-->
 
 11. 写入编码图像。
     在之前的第7步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
@@ -359,7 +369,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - index：回调函数OnNeedInputParameter传入的参数，数据队列的索引。
 
     ```c++
-    int32_t ret = OH_VideoEncoder_PushInputParameter(codec, index);
+    int32_t ret = OH_VideoEncoder_PushInputParameter(videoEnc, index);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -420,7 +430,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 16. （可选）调用OH_VideoEncoder_Reset()重置编码器。
 
-    调用OH_VideoEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_VideoEncoder_Configure()重新配置。
+    调用OH_VideoEncoder_Reset()后，编码器将回到初始化的状态，需要调用OH_VideoEncoder_Configure()和OH_VideoEncoder_Prepare()重新配置。
 
     ```c++
     // 重置编码器videoEnc
@@ -430,6 +440,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     // 重新配置编码器参数
     ret = OH_VideoEncoder_Configure(videoEnc, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 编码器重新就绪
+    ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -450,13 +465,23 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     > **说明：**
     >
     > 不能在回调函数中调用；
-    > 执行该步骤之后，需要开发者将videoEnc指向nullptr，防止野指针导致程序错误。
+    > 执行该步骤之后，需要开发者将videoEnc指向NULL，防止野指针导致程序错误。
     >
 
     ```c++
+    // 释放nativeWindow实例
+    if(nativeWindow != NULL){
+        int32_t ret = OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+        nativeWindow = NULL;
+    }
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
     // 调用OH_VideoEncoder_Destroy，注销编码器
-    int32_t ret = OH_VideoEncoder_Destroy(videoEnc);
-    videoEnc = nullptr;
+    if (videoEnc != NULL) {
+        ret = OH_VideoEncoder_Destroy(videoEnc);
+        videoEnc = NULL;
+    }
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -505,10 +530,15 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     开发者可以通过处理该回调报告的信息，确保编码器正常运转。
 
+    <!--RP2--><!--RP2End-->
+
+    <!--RP9-->
     ```c++
     bool isFirstFrame = true;
-    int32_t qpAverage = 20;
-    double mseValue = 0.0;
+    ```
+    <!--RP9End-->
+    
+    ```c++
     // 编码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -517,7 +547,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         (void)errorCode;
         (void)userData;
     }
+    ```
     
+    ```c++
     // 编码数据流变化回调OH_AVCodecOnStreamChanged实现
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
@@ -526,7 +558,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         (void)format;
         (void)userData;
     }
+    ```
     
+    ```c++
     // 编码输入回调OH_AVCodecOnNeedInputBuffer实现
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
@@ -535,8 +569,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 获取视频宽高跨距
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(codec);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
             OH_AVFormat_Destroy(format);
             isFirstFrame = false;
         }
@@ -544,21 +578,22 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 写入编码图像
         // 通知编码器码流结束
     }
+    ```
     
+    <!--RP10-->
+    ```c++
     // 编码输出回调OH_AVCodecOnNewOutputBuffer实现
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
-        // 获取视频帧的平均量化参数,平方误差
-        OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, qpAverage);
-        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
-        OH_AVFormat_Destroy(format);
         // 数据处理
         // 释放编码帧
     }
+    ```
+    <!--RP10End-->
     
+    ```c++
     // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback 接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, NULL);
@@ -566,6 +601,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
+
     > **说明：**
     >
     > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
@@ -621,22 +657,18 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 7. （可选）在运行过程中动态配置编码器参数。
 
+   <!--RP11-->
     ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // 支持动态请求IDR帧
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
-    // 支持动态重置比特率
-    int64_t bitRate = 2000000;
-    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
-    // 支持动态重置视频帧速率
-    double frameRate = 60.0;
-    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
-    
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
+    OH_AVFormat_Destroy(format);
     ```
+    <!--RP11End-->
 
 8. 调用OH_VideoEncoder_PushInputBuffer()写入编码图像。
 
@@ -673,12 +705,21 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
     对跨距进行偏移，以NV12图像为例 示例如下：
 
-    添加头文件
+    以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
+
+    - OH_MD_KEY_VIDEO_PIC_WIDTH表示width；
+    - OH_MD_KEY_VIDEO_PIC_HEIGHT表示height；
+    - OH_MD_KEY_VIDEO_STRIDE表示wStride；
+    - OH_MD_KEY_VIDEO_SLICE_HEIGHT表示hStride。
+
+    ![copy by line](figures/copy-by-line.png)
+
+    添加头文件。
 
     ```c++
     #include <string.h>
     ```
-    使用示例
+    使用示例：
 
     ```c++
     struct Rect   // 源内存区域的宽，高
@@ -698,11 +739,12 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         int32_t wStride;
         int32_t hStride;
     };
-    struct Rect rect;
-    struct DstRect dstRect;
-    struct SrcRect srcRect;
-    uint8_t *dst; // 目标内存区域的指针
-    uint8_t *src; // 源内存区域的指针
+
+    Rect rect = {320, 240};
+    DstRect dstRect = {320, 250};
+    SrcRect srcRect = {320, 250};
+    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // 目标内存区域的指针
+    uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // 源内存区域的指针
 
     // Y 将Y区域的源数据复制到另一个区域的目标数据中
     for (int32_t i = 0; i < rect.height; ++i) {
@@ -723,6 +765,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         dst += dstRect.wStride;
         src += srcRect.wStride;
     }
+
+    delete[] dst;
+    dst = nullptr;
+    delete[] src;
+    src = nullptr;
     ```
     硬件编码在处理buffer数据时（推送数据前），需要用户拷贝宽高对齐后的图像数据到输入回调的AVbuffer中。
     一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理。

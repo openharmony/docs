@@ -10,14 +10,14 @@
 
 当组件满足以下任意条件时，镜像能力生效：
 
-1. 组件的direction属性设置为Direction.Rtl；
+1. 组件的direction属性设置为Direction.Rtl。
 
 2. 组件的direction属性设置为Direction.Auto，且当前的系统语言（如维吾尔语）的阅读习惯是从右向左。
 
 ## 基本概念
 
-- LTR：顺序为从左向右
-- RTL：顺序为从右向左
+- LTR：顺序为从左向右。
+- RTL：顺序为从右向左。
 
 ## 使用约束
 
@@ -32,7 +32,7 @@ ArkUI 如下能力已默认适配镜像：
 
 但如下三种场景还需要进行适配：
 
-1. 界面布局、边框设置：关于方向类的通用属性，如果需要支持镜像能力，使用泛化的方向指示词 start/end 入参类型 替换 left/right、x/y等绝对方向指示词的入参类型，来表示自适应镜像能力。
+1. 界面布局、边框设置：关于方向类的通用属性，如果需要支持镜像能力，使用泛化的方向指示词 start/end入参类型替换 left/right、x/y等绝对方向指示词的入参类型，来表示自适应镜像能力。
 
 2. Canvas组件只有限支持文本绘制的镜像能力。
 
@@ -42,7 +42,7 @@ ArkUI 如下能力已默认适配镜像：
 
 目前，以下三类通用属性需要使用新入参类型适配：
 
-位置设置：[position](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#position)、[markAnchor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[alignRules](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#alignrules)
+位置设置：[position](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#position)、[markAnchor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[alignRules](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#alignrules12)
 
 边框设置：[borderWidth](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[borderColor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)
 

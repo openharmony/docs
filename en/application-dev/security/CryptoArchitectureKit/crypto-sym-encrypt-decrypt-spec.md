@@ -16,7 +16,9 @@ AES is a block cipher, with a fixed block size of 128 bits. If the last block is
 Because the data is padded to the block size, **PKCS5** and **PKCS7** used in the Crypto framework use the block size as the padding length. That is, data is padded to 16 bytes for AES encryption.
 
 > **NOTE**
-> In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 128 bits.
+>
+> - In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 128 bits.
+> - In CCM encryption mode, the additional authentication data (AAD) must be specified and its length must be greater than 1 byte and less than 2048 bytes.
 
 The AES encryption and decryption can be implemented based a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the symmetric key type (algorithm and key length), cipher block mode, and padding mode with a vertical bar (|) in between.
 
@@ -27,15 +29,15 @@ The AES encryption and decryption can be implemented based a string parameter. W
   
   - If the cipher block mode is CFB and padding mode is **NoPadding** for a 256-bit AES key, the string parameter is **AES256|CFB|NoPadding**.
 
-  | Cipher Mode| Key Length (Bit)| Padding Mode| API Version| 
+  | Cipher Mode | Key Length (Bit) | Padding Mode | API Version |
   | -------- | -------- | -------- | -------- |
-  | ECB | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ | 
-  | CBC | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ | 
-  | CTR | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ | 
-  | OFB | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ | 
-  | CFB | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ | 
-  | GCM | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ | 
-  | CCM | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ | 
+  | ECB | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ |
+  | CBC | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ |
+  | CTR | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ |
+  | OFB | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ |
+  | CFB | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ |
+  | GCM | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ |
+  | CCM | [128\|192\|256] | [NoPadding\|PKCS5\|PKCS7] | 9+ |
 
 - Since API version 10, symmetric encryption and decryption support the algorithm specifications without the key length. If the symmetric key type does not contain the key length, the encryption and decryption operations vary with the actual key length.
   
@@ -53,6 +55,7 @@ DES is a block cipher, with a fixed block size of 64 bits. If the last block is 
 Because the data is padded to the block size, **PKCS5** and **PKCS7** used in the Crypto framework use the block size as the padding length. That is, data is padded to 8 bytes for 3DES encryption.
 
 > **NOTE**
+>
 > In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 64 bits.
 
 The 3DES encryption and decryption can be implemented based a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the symmetric key type (algorithm and key length), cipher block mode, and padding mode with a vertical bar (|) in between.
@@ -64,12 +67,12 @@ The 3DES encryption and decryption can be implemented based a string parameter. 
   
   - If the cipher block mode is OFB and padding mode is **NoPadding** for a 192-bit 3DES key, the string parameter is **3DES192|OFB|NoPadding**.
 
-  | Cipher Mode| Key Length (Bit)| Padding Mode| API Version| 
+  | Cipher Mode | Key Length (Bit) | Padding Mode | API Version |
   | -------- | -------- | -------- | -------- |
-  | ECB | 192 | [NoPadding\|PKCS5\|PKCS7] | 9+ | 
-  | CBC | 192 | [NoPadding\|PKCS5\|PKCS7] | 9+ | 
-  | OFB | 192 | [NoPadding\|PKCS5\|PKCS7] | 9+ | 
-  | CFB | 192 | [NoPadding\|PKCS5\|PKCS7] | 9+ | 
+  | ECB | 192 | [NoPadding\|PKCS5\|PKCS7] | 9+ |
+  | CBC | 192 | [NoPadding\|PKCS5\|PKCS7] | 9+ |
+  | OFB | 192 | [NoPadding\|PKCS5\|PKCS7] | 9+ |
+  | CFB | 192 | [NoPadding\|PKCS5\|PKCS7] | 9+ |
 
 - Since API version 10, symmetric encryption and decryption support the algorithm specifications without the key length. If the symmetric key type does not contain the key length, the encryption and decryption operations vary with the actual key length.
   For example, if the block mode is CFB and the padding mode is **NoPadding** for a 3DES key with key length not specified, the string parameter is **3DES|CFB|NoPadding**.
@@ -84,6 +87,7 @@ SM4 is a block cipher, with a fixed block size of 128 bits. If the last block is
 Because the data is padded to the block size, **PKCS5** and **PKCS7** used in the Crypto framework use the block size as the padding length. That is, data is padded to 16 bytes for SM4 encryption.
 
 > **NOTE**
+>
 > In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 128 bits.
 
 The SM4 encryption and decryption can be implemented based a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the symmetric key type (algorithm_key length), cipher block mode, and padding mode with a vertical bar (|) in between.
@@ -97,15 +101,15 @@ The SM4 encryption and decryption can be implemented based a string parameter. W
 
   - If the cipher block mode is GCM and padding mode is **NoPadding** for a 128-bit SM4 key, the string parameter is **SM4_128|GCM|NoPadding**.
 
-  | Cipher Mode| Key Length (Bit)| Padding Mode| API Version| 
+  | Cipher Mode | Key Length (Bit) | Padding Mode | API Version |
   | -------- | -------- | -------- | -------- |
-  | ECB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
-  | CBC | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
-  | CTR | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
-  | OFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
-  | CFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
-  | CFB128 | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
-  | GCM | 128 | [NoPadding\|PKCS5\|PKCS7] | 12+ | 
+  | ECB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ |
+  | CBC | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ |
+  | CTR | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ |
+  | OFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ |
+  | CFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ |
+  | CFB128 | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ |
+  | GCM | 128 | [NoPadding\|PKCS5\|PKCS7] | 12+ |
 
 
 ## Padding Mode

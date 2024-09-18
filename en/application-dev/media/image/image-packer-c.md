@@ -22,6 +22,10 @@ Implement the C APIs in **hello.cpp**. Refer to the sample code below.
 
 After an **ImagePacker** instance is created and packing parameters are specified, the ImageSource or Pixelmap image source is packed to a file or buffer.
 
+> **NOTE**
+>
+> According to the MIME protocol, the standard encoding format is image/jpeg. When the APIs provided by the image module are used for encoding, **image_MimeType** of the packing parameters must be set to **image/jpeg**. The file name extension of the encoded image file can be .jpg or .jpeg, and the file can be used on platforms that support image/jpeg decoding.
+
    ```c++
 
       #include <linux/kd.h>
@@ -61,6 +65,8 @@ After an **ImagePacker** instance is created and packing parameters are specifie
           char type[] = "image/jpeg";
           Image_MimeType image_MimeType = {type, strlen(type)};
           OH_PackingOptions_SetMimeType(option, &image_MimeType);
+          // Encode the content as HDR content. (The resource must be HDR resource and the JPEG format must be supported.)
+          OH_PackingOptions_SetDesiredDynamicRange(option, IMAGE_PACKER_DYNAMIC_RANGE_AUTO);
           errCode = OH_ImagePackerNative_PackToFileFromImageSource(testPacker, option, imageSource, fd);
           if (errCode != IMAGE_SUCCESS) {
               OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest OH_ImagePackerNative_PackToFileFromImageSource failed, errCode: %{public}d.", errCode);

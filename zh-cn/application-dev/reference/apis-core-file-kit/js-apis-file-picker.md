@@ -334,6 +334,50 @@ async function example12(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
+### getSelectedIndex<sup>13+</sup>;
+
+getSelectedIndex(): number
+
+**原子化服务API:** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+通过getSelectedIndex()方法获取保存成功后的文件后缀类型的下标。
+  > **注意**：
+  > <br>**1**、getSelectedIndex()方法只在调用 [save()](#save)时使用生效，其他场景下不可以使用。
+  > <br>**2**、getSelectedIndex()方法需要配置参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)使用。
+  > <br>**3**、getSelectedIndex()方法返回的是所选后缀类型的下标(number)，所选的后缀类型是开发者所传的参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)里的某个后缀类型，如果没有传参，并且调用了getSelectedIndex()方法，返回值为-1。
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import  { picker } from '@kit.CoreFileKit';
+async function exampleIndex(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+  try {
+    let documentSaveOptions = new picker.DocumentSaveOptions();
+    //保存文件的名字
+    documentSaveOptions.newFileNames = ['DocumentViewPicker01'];
+    //保存文件的后缀类型
+    documentSaveOptions.fileSuffixChoices = ['txt', 'mp4', 'pdf'];
+    let documentPicker = new picker.DocumentViewPicker(context);
+    documentPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
+      if (documentSaveOptions.fileSuffixChoices != undefined && documentSaveResult != undefined) {
+        //获取保存文件的后缀类型的下标
+        let index = documentPicker.getSelectedIndex();
+        //获取保存文件的后缀类型。
+        let selectedsuffix = documentSaveOptions.fileSuffixChoices[index];
+        console.info ('DocumentViewPicker.save selectedsuffix is ' + selectedsuffix);
+      }
+      console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
+    }).catch((err: BusinessError) => {
+      console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error('DocumentViewPicker failed with err: ' + JSON.stringify(err));
+  }
+}
+```
 ## AudioViewPicker
 
 音频选择器对象，用来支撑选择和保存音频类文件等用户场景。在使用前，需要先创建AudioViewPicker实例。
@@ -399,7 +443,7 @@ select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 
 通过选择模式拉起audioPicker界面，用户可以选择一个或多个音频文件。接口采用Promise异步返回形式，传入可选参数AudioSelectOptions对象，返回选择音频文件的uri数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[媒体类uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri介绍)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -445,7 +489,7 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 
 通过选择模式拉起audioPicker界面，用户可以选择一个或多个音频文件。接口采用callback异步返回形式，传入参数AudioSelectOptions对象，返回选择音频文件的uri数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[媒体类uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri介绍)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -486,7 +530,7 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 通过选择模式拉起audioPicker界面，用户可以选择一个或多个音频文件。接口采用callback异步返回形式，返回选择音频文件的uri数组。
 
-**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
+**注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[媒体类uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri介绍)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -741,8 +785,6 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 ### constructor<sup>12+</sup>
 
 constructor(context: Context)
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 

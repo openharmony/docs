@@ -580,7 +580,7 @@ notificationSubscribe.remove(hashCode, reason).then(() => {
 });
 ```
 
-## notificationSubscribe.remove<sup>10+<sup>
+## notificationSubscribe.remove<sup>10+</sup>
 
 remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
@@ -630,7 +630,7 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(hashCodes, reason, removeCallback);
 ```
 
-## notificationSubscribe.remove<sup>10+<sup>
+## notificationSubscribe.remove<sup>10+</sup>
 
 remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 

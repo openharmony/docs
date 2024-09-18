@@ -24,6 +24,20 @@ outline(value: OutlineOptions)
 | ------ | ----------------------------------------- | ---- | ---- |
 | value  | [OutlineOptions](#outlineoptions对象说明) | 是   |   外描边样式。   |
 
+## OutlineStyle<sup>11+</sup>
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| SOLID  | 显示为一条实线。                      |
+| DASHED | 显示为一系列短的方形虚线。                 |
+| DOTTED | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
+
 ## outlineStyle
 
 outlineStyle(value: OutlineStyle | EdgeOutlineStyles)
@@ -40,7 +54,7 @@ outlineStyle(value: OutlineStyle | EdgeOutlineStyles)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                  |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| value  | [OutlineStyle](ts-appendix-enums.md#outlinestyle11)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明) | 是   | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID |
+| value  | [OutlineStyle](#outlinestyle11)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明) | 是   | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID |
 
 ## outlineWidth
 
@@ -107,7 +121,7 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 | width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明)| 否| 设置外描边宽度，不支持百分比。<br/>默认值：0，外描边效果width为必设项，否则不显示外描边。 |
 | color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明)&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors对象说明12)<sup>12+</sup> |否 | 设置外描边颜色。<br/>默认值：Color.Black。                   |
 | radius | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明)| 否| 设置外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。 |
-| style  | [OutlineStyle](ts-appendix-enums.md#outlinestyle11)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明)|否| 设置外描边样式。<br/>默认值：OutlineStyle.SOLID。            |
+| style  | [OutlineStyle](#outlinestyle11)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明)|否| 设置外描边样式。<br/>默认值：OutlineStyle.SOLID。            |
 
 ## EdgeOutlineWidths对象说明
 
@@ -181,10 +195,10 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
-| left   | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) | 否    | 左侧外描边样式。 |
-| right  | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) | 否    | 右侧外描边样式。 |
-| top    | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) | 否    | 上侧外描边样式。 |
-| bottom | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) | 否    | 下侧外描边样式。 |
+| left   | [OutlineStyle](#outlinestyle11) | 否    | 左侧外描边样式。 |
+| right  | [OutlineStyle](#outlinestyle11) | 否    | 右侧外描边样式。 |
+| top    | [OutlineStyle](#outlinestyle11) | 否    | 上侧外描边样式。 |
+| bottom | [OutlineStyle](#outlinestyle11) | 否    | 下侧外描边样式。 |
 
 ## 示例
 

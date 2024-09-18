@@ -1,4 +1,4 @@
-# Capi Vibrator Development
+# Vibrator Development (C/C++)
 
 
 ## When to Use
@@ -42,6 +42,7 @@ Custom vibration enables you to design desired vibration effects by customizing 
          {
            "name": "ohos.permission.VIBRATE",
          },
+       ]
    ```
 
 3. Add the dynamic dependency libraries into the **CMakeLists.txt** file.
@@ -127,3 +128,12 @@ Custom vibration enables you to design desired vibration effects by customizing 
        OH_Vibrator_Cancel(); // Stop vibration.
    }
    ```
+   
+8. Introduce the NAPI APIs to the **index.d.ts** file in **types/libentry**.
+
+   ```c
+   export const vibration_Test: () => number;
+   export const vibrationCustom_Test: () => number;
+   ```
+
+9. Write JavaScript test cases to test the APIs.

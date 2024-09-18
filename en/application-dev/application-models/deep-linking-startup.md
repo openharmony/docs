@@ -16,29 +16,17 @@ A configuration example is as follows:
 ```json
 {
   "module": {
+    // ...
     "abilities": [
       {
-        "name": "EntryAbility",
-        "srcEntry": "./ets/entryability/EntryAbility.ts",
-        "icon": "$media:icon",
-        "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
+        // ...
         "skills": [
           {
-            "entities": [
-              // entities must contain "entity.system.browsable".
-              "entity.system.browsable"
-            ],
-            "actions": [
-              // actions must contain "ohos.want.action.viewData".
-              "ohos.want.action.viewData"
-            ],
             "uris": [
               {
-                // scheme can be customized.
-                "scheme": "http",
-                // host must be set to the associated domain name.
+                // scheme is mandatory and can be customized. The following uses link as an example. Replace it with the actual scheme.
+                "scheme": "link",
+                // host is mandatory. Configure the domain name to be matched.
                 "host": "www.example.com",
                 // path is optional. To distinguish between applications that are associated with the same domain name, you are advised to configure this field.
                 "path": "path1"
@@ -83,7 +71,7 @@ struct Index {
       .margin({ bottom: '12vp' })
       .onClick(() => {
         let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
-        let link: string = "http://www.example.com";
+        let link: string = "link://www.example.com";
         let openLinkOptions: OpenLinkOptions = {
           appLinkingOnly: false
         };
@@ -105,13 +93,13 @@ struct Index {
 
 ### Using startAbility() to Implement Application Redirection
 
-Pass in the target application's link into **want** of **startAbility()**, which then uses [implicit Want](explicit-implicit-want-mappings.md#matching-rules-of-implicit-want) to trigger application redirection. In addition, you must pass in the **action** and **entity** fields to be matched.
+Pass in the target application's link into **want** of [startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability), which then uses [implicit Want](explicit-implicit-want-mappings.md#matching-rules-of-implicit-want) to trigger application redirection. In addition, you must pass in the **action** and **entity** fields to be matched.
 
 
 The sample code is as follows:
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
@@ -130,7 +118,7 @@ struct Index {
       .onClick(() => {
         let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
         let want: Want = {
-            uri: "https://www.example.com"
+            uri: "link://www.example.com"
         };
 
         try {

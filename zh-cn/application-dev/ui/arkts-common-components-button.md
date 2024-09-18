@@ -34,7 +34,7 @@ Button通过调用接口来创建，接口调用有以下两种形式：
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  只支持包含一个子组件，子组件可以是[基础组件](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md)或者[容器组件](../reference/apis-arkui/arkui-ts/ts-container-badge.md)。
+  只支持包含一个子组件，子组件可以是基础组件或者容器组件。
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {
@@ -181,19 +181,19 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
       List({ space: 4 }) {
         ListItem() {
           Button("First").onClick(() => {
-            router.pushUrl(this.FurL)
+            this.getUIContext().getRouter().pushUrl(this.FurL)
           })
             .width('100%')
         }
         ListItem() {
           Button("Second").onClick(() => {
-            router.pushUrl(this.SurL)
+            this.getUIContext().getRouter().pushUrl(this.SurL)
           })
             .width('100%')
         }
         ListItem() {
           Button("Third").onClick(() => {
-            router.pushUrl(this.TurL)
+            this.getUIContext().getRouter().pushUrl(this.TurL)
           })
             .width('100%')
         }

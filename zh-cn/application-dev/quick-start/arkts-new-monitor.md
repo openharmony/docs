@@ -396,6 +396,10 @@ struct Index {
 
 - 对象整体改变，但监听的属性不变时，不触发\@Monitor回调。
 
+下面的示例按照Step1-Step2-Step3的顺序点击，表现为代码注释中的行为。
+
+如果只点击Step2或Step3，改变name、age的值，此时会触发onNameChange和onAgeChange方法。
+
 ```ts
 @ObservedV2
 class Info {
@@ -427,15 +431,15 @@ struct Index {
   info: Info = new Info("Tom", 25);
   build() {
     Column() {
-      Button("1、Only change name")
+      Button("Step1、Only change name")
         .onClick(() => {
           this.info.person = new Person("Jack", 25);  // 能够触发onNameChange方法，不触发onAgeChange方法
         })
-      Button("2、Only change age")
+      Button("Step2、Only change age")
         .onClick(() => {
           this.info.person = new Person("Jack", 18);  // 能够触发onAgeChange方法，不触发onNameChange方法
         })
-      Button("3、Change name and age")
+      Button("Step3、Change name and age")
         .onClick(() => {
           this.info.person = new Person("Lucy", 19);  // 能够触发onNameChange、onAgeChange方法
         })
@@ -662,6 +666,351 @@ struct Index {
         .onClick(() => {
           this.textStyle.info.value = Math.floor(Math.random() * 100) + 1;
         })
+    }
+  }
+}
+```
+
+## 常见问题
+
+### 自定义组件中\@Monitor对变量监听的生效及失效时间
+
+当\@Monitor定义在\@ComponentV2装饰的自定义组件中时，\@Monitor会在状态变量初始化完成之后生效，并在组件销毁时失效。
+
+```ts
+@ObservedV2
+class Info {
+  @Trace message: string = "not initialized";
+
+  constructor() {
+    console.log("in constructor message change to initialized");
+    this.message = "initialized";
+  }
+}
+@ComponentV2
+struct Child {
+  @Param info: Info = new Info();
+  @Monitor("info.message")
+  onMessageChange(monitor: IMonitor) {
+    console.log(`Child message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+  aboutToAppear(): void {
+    this.info.message = "Child aboutToAppear";
+  }
+  aboutToDisappear(): void {
+    console.log("Child aboutToDisappear");
+    this.info.message = "Child aboutToDisappear";
+  }
+  build() {
+    Column() {
+      Text("Child")
+      Button("change message in Child")
+        .onClick(() => {
+          this.info.message = "Child click to change Message";
+        })
+    }
+    .borderColor(Color.Red)
+    .borderWidth(2)
+
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  @Local info: Info = new Info();
+  @Local flag: boolean = false;
+  @Monitor("info.message")
+  onMessageChange(monitor: IMonitor) {
+    console.log(`Index message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+
+  build() {
+    Column() {
+      Button("show/hide Child")
+        .onClick(() => {
+          this.flag = !this.flag
+        })
+      Button("change message in Index")
+        .onClick(() => {
+          this.info.message = "Index click to change Message";
+        })
+      if (this.flag) {
+        Child({ info: this.info })
+      }
+    }
+  }
+}
+```
+
+在上面的例子中，可以通过创建和销毁Child组件来观察定义在自定义组件中的\@Monitor的生效和失效时机。推荐按如下顺序进行操作：
+
+- 当Index组件创建Info类实例时，日志输出`in constructor message change to initialized`。此时Index组件的\@Monitor还未初始化成功，因此不会监听到message的变化。
+- 当Index组件创建完成，页面加载完成后，点击按钮“change message in Index”，此时Index组件中的\@Monitor能够监听到变化，日志输出`Index message change from initialized to Index click to change Message`。
+- 点击按钮“show/hide Child”，创建Child组件，在Child组件初始化\@Param装饰的变量以及\@Monitor之后，调用Child组件的aboutToAppear回调，改变message。此时Index组件与Child组件的\@Monitor均能监听到变化，日志输出`Index message change from Index click to change Message to Child aboutToAppear`以及`Child message change from Index click to change Message to Child aboutToAppear`。
+- 点击按钮“change message in Child”，改变message。此时Index组件与Child组件的\@Monitor均能监听到变化，日志输出`Index message change from Child aboutToAppear to Child click to change Message`以及`Child message change from Child aboutToAppear to Child click to change Message`。
+- 点击按钮”show/hide Child“，销毁Child组件，调用Child组件的aboutToDisappear回调，改变message。此时Index组件与Child组件的\@Monitor均能监听到变化，日志输出`Child aboutToDisappear`，`Index message change from Child click to change Message to Child aboutToDisappear`以及`Child message change from Child click to change Message to Child aboutToDisappear`。
+- 点击按钮“change message in Index”，改变message。此时Child组件已销毁，其注册的\@Monitor监听也被解注册，仅有Index组件的\@Monitor能够监听到变化，日志输出`Index message change from Child aboutToDisappear to Index click to change Message`。
+
+这表明Child组件中定义的\@Monitor监听随着Child组件的创建初始化生效，随着Child组件的销毁失效。
+
+### 类中\@Monitor对变量监听的生效及失效时间
+
+当\@Monitor定义在\@ObservedV2装饰的类中时，\@Monitor会在类创建完成后生效，在类销毁时失效。
+
+```ts
+@ObservedV2
+class Info {
+  @Trace message: string = "not initialized";
+
+  constructor() {
+    this.message = "initialized";
+  }
+  @Monitor("message")
+  onMessageChange(monitor: IMonitor) {
+    console.log(`message change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+  }
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  info: Info = new Info();
+
+  aboutToAppear(): void {
+    this.info.message = "Index aboutToAppear";
+  }
+
+  build() {
+    Column() {
+      Button("change message")
+        .onClick(() => {
+          this.info.message = "Index click to change message";
+        })
+    }
+  }
+}
+```
+
+上面的例子中，\@Monitor会在info创建完成后生效，这个时机晚于类的constructor，早于自定义组件的aboutToAppear。当界面加载完成后，点击“change message”，修改message变量。此时日志输出信息如下：
+
+```ts
+message change from initialized to Index aboutToAppear
+message change from Index aboutToAppear to Index click to change message
+```
+
+类中定义的\@Monitor随着类的销毁失效。而由于类的实际销毁释放依赖于垃圾回收机制，因此会出现即使所在自定义组件已经销毁，类确还未及时销毁，导致类中定义的\@Monitor仍在监听变化的情况。
+
+```ts
+@ObservedV2
+class InfoWrapper {
+  info?: Info;
+  constructor(info: Info) {
+    this.info = info;
+  }
+  @Monitor("info.age")
+  onInfoAgeChange(monitor: IMonitor) {
+    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`)
+  }
+}
+@ObservedV2
+class Info {
+  @Trace age: number;
+  constructor(age: number) {
+    this.age = age;
+  }
+}
+@ComponentV2
+struct Child {
+  @Param @Require infoWrapper: InfoWrapper;
+  aboutToDisappear(): void {
+    console.log("Child aboutToDisappear", this.infoWrapper.info?.age)
+  }
+  build() {
+    Column() {
+      Text(`${this.infoWrapper.info?.age}`)
+    }
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  dataArray: Info[] = [];
+  @Local showFlag: boolean = true;
+  aboutToAppear(): void {
+    for (let i = 0; i < 5; i++) {
+      this.dataArray.push(new Info(i));
+    }
+  }
+  build() {
+    Column() {
+      Button("change showFlag")
+        .onClick(() => {
+          this.showFlag = !this.showFlag;
+        })
+      Button("change number")
+        .onClick(() => {
+          console.log("click to change age")
+          this.dataArray.forEach((info: Info) => {
+            info.age += 100;
+          })
+        })
+      if (this.showFlag) {
+        Column() {
+          Text("Childs")
+          ForEach(this.dataArray, (info: Info) => {
+            Child({ infoWrapper: new InfoWrapper(info) })
+          })
+        }
+        .borderColor(Color.Red)
+        .borderWidth(2)
+      }
+    }
+  }
+}
+```
+
+在上面的例子中，当点击“change showFlag”切换if组件的条件时，Child组件会被销毁。此时，点击“change number”修改age的值时，可以通过日志观察到InfoWrapper中定义的\@Monitor回调仍然被触发了。这是因为此时自定义组件Child虽然执行了aboutToDisappear，但是其成员变量infoWrapper还没有被立刻回收，当变量发生变化时，依然能够调用到infoWrapper中定义的onInfoAgeChange方法，所以从现象上看\@Monitor回调仍会被触发。
+
+借助垃圾回收机制去取消\@Monitor的监听是不稳定的，开发者可以采用以下两种方式去管理\@Monitor的失效时间：
+
+1、将\@Monitor定义在自定义组件中。由于自定义组件在销毁时，状态管理框架会手动取消\@Monitor的监听，因此在自定义组件调用完aboutToDisappear，尽管自定义组件的数据不一定已经被释放，但\@Monitor回调已不会再被触发。
+
+```ts
+@ObservedV2
+class InfoWrapper {
+  info?: Info;
+  constructor(info: Info) {
+    this.info = info;
+  }
+}
+@ObservedV2
+class Info {
+  @Trace age: number;
+  constructor(age: number) {
+    this.age = age;
+  }
+}
+@ComponentV2
+struct Child {
+  @Param @Require infoWrapper: InfoWrapper;
+  @Monitor("infoWrapper.info.age")
+  onInfoAgeChange(monitor: IMonitor) {
+    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`)
+  }
+  aboutToDisappear(): void {
+    console.log("Child aboutToDisappear", this.infoWrapper.info?.age)
+  }
+  build() {
+    Column() {
+      Text(`${this.infoWrapper.info?.age}`)
+    }
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  dataArray: Info[] = [];
+  @Local showFlag: boolean = true;
+  aboutToAppear(): void {
+    for (let i = 0; i < 5; i++) {
+      this.dataArray.push(new Info(i));
+    }
+  }
+  build() {
+    Column() {
+      Button("change showFlag")
+        .onClick(() => {
+          this.showFlag = !this.showFlag;
+        })
+      Button("change number")
+        .onClick(() => {
+          console.log("click to change age")
+          this.dataArray.forEach((info: Info) => {
+            info.age += 100;
+          })
+        })
+      if (this.showFlag) {
+        Column() {
+          Text("Childs")
+          ForEach(this.dataArray, (info: Info) => {
+            Child({ infoWrapper: new InfoWrapper(info) })
+          })
+        }
+        .borderColor(Color.Red)
+        .borderWidth(2)
+      }
+    }
+  }
+}
+```
+
+2、主动置空监听的对象。当自定义组件即将销毁时，主动置空\@Monitor的监听目标，这样\@Monitor无法再监听原监听目标的变化，达到取消\@Monitor监听的效果。
+
+```ts
+@ObservedV2
+class InfoWrapper {
+  info?: Info;
+  constructor(info: Info) {
+    this.info = info;
+  }
+  @Monitor("info.age")
+  onInfoAgeChange(monitor: IMonitor) {
+    console.log(`age change from ${monitor.value()?.before} to ${monitor.value()?.now}`)
+  }
+}
+@ObservedV2
+class Info {
+  @Trace age: number;
+  constructor(age: number) {
+    this.age = age;
+  }
+}
+@ComponentV2
+struct Child {
+  @Param @Require infoWrapper: InfoWrapper;
+  aboutToDisappear(): void {
+    console.log("Child aboutToDisappear", this.infoWrapper.info?.age)
+    this.infoWrapper.info = undefined; // 使InfoWrapper对info.age的监听失效
+  }
+  build() {
+    Column() {
+      Text(`${this.infoWrapper.info?.age}`)
+    }
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  dataArray: Info[] = [];
+  @Local showFlag: boolean = true;
+  aboutToAppear(): void {
+    for (let i = 0; i < 5; i++) {
+      this.dataArray.push(new Info(i));
+    }
+  }
+  build() {
+    Column() {
+      Button("change showFlag")
+        .onClick(() => {
+          this.showFlag = !this.showFlag;
+        })
+      Button("change number")
+        .onClick(() => {
+          console.log("click to change age")
+          this.dataArray.forEach((info: Info) => {
+            info.age += 100;
+          })
+        })
+      if (this.showFlag) {
+        Column() {
+          Text("Childs")
+          ForEach(this.dataArray, (info: Info) => {
+            Child({ infoWrapper: new InfoWrapper(info) })
+          })
+        }
+        .borderColor(Color.Red)
+        .borderWidth(2)
+      }
     }
   }
 }

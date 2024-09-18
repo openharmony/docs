@@ -8,7 +8,7 @@ The following demuxing formats are supported:
 
 | Media Format | Muxing Format                     | Stream Format                     |
 | -------- | :----------------------------| :----------------------------|
-| Audio/Video    | mp4                        |<!--RP1-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP1End-->|
+| Audio/Video    | mp4                        |<!--RP1-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3); subtitle stream: WEBVTT<!--RP1End-->|
 | Audio/Video    | fmp4                       |<!--RP2-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP2End-->|
 | Audio/Video    | mkv                        |<!--RP3-->Video stream: AVC (H.264); audio stream: AAC, MPEG (MP3), and OPUS<!--RP3End-->|
 | Audio/Video    | mpeg-ts                    |<!--RP4-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP4End-->|
@@ -18,10 +18,13 @@ The following demuxing formats are supported:
 | Audio      | mp3                        |Audio stream: MPEG (MP3)|
 | Audio      | ogg                        |Audio stream: OGG|
 | Audio      | flac                       |Audio stream: FLAC|
-| Audio      | wav                        |Audio stream: PCM|
+| Audio      | wav                        |Audio stream: PCM and PCM-MULAW|
 | Audio      | amr                        |Audio stream: AMR (AMR-NB and AMR-WB)|
 | Audio      | ape                        |Audio stream: APE|
 | External subtitle  | srt                        |Subtitle stream: SRT|
+| External subtitle  | webvtt                     |Subtitle stream: WEBVTT|
+
+The DRM demuxting capability supports the following formats: <!--RP7-->mp4 (H.264 and AAC) and mpeg-ts (H.264 and AAC)<!--RP7End-->.
 
 **Usage Scenario**
 
@@ -55,6 +58,11 @@ target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
 target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 ```
+
+> **NOTE**
+>
+> The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
+>
 
 ### How to Develop
 
@@ -174,21 +182,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_drm.so)
    ```
-   Register the callback to obtain the media key system information in either of the following ways:
+   There are two types of APIs for setting DRM information listeners. The callback function shown in example 1 can return a demuxer instance and therefore is recommended in the scenario where multiple demuxer instances are used. The callback function shown in example 2 does not return a demuxer instance and is applicable to the scenario where a single demuxer instance is used.
 
-   Sample code for the first method:
-   ```c++
-   // Implement the OnDrmInfoChanged callback.
-   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
-   {
-      // Parse the media key system information, including the quantity, DRM type, and corresponding PSSH.
-   }
-
-   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
-   int32_t ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
-   ```
-
-   Sample code for the second method:
+   Example 1:
    ```c++
    // Implement the OnDrmInfoChangedWithObj callback.
    static void OnDrmInfoChangedWithObj(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *drmInfo)
@@ -197,26 +193,43 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
 
    Demuxer_MediaKeySystemInfoCallback callback = &OnDrmInfoChangedWithObj;
-   int32_t ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback)
+   Drm_ErrCode ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback);
 
    ```
-   After the callback is invoked, you can call the API to proactively obtain the media key system information.
+
+   Example 2:
+   ```c++
+   // Implement the OnDrmInfoChanged callback.
+   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
+   {
+      // Parse the media key system information, including the quantity, DRM type, and corresponding PSSH.
+   }
+
+   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
+   Drm_ErrCode ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
+   ```
+
+   After the callback is invoked, you can call the API to proactively obtain the media key system information (UUID and corresponding PSSH).
    ```c++
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
+   After obtaining and parsing DRM information, create [MediaKeySystem](../drm/native-drm-mediakeysystem-management.md) and [MediaKeySession](../drm/native-drm-mediakeysession-management.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](./audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 [Surface Output in Video Decoding](./video-decoding.md#surface-mode) or step 4 in [Buffer Output in Video Decoding](./video-decoding.md#buffer mode).
 
 5. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
 
    ```c++
-   // Obtain the number of tracks from the file source information.
+   // Obtain the number of tracks from the file source information. You can call the API to obtain file-level attributes. For details, see Table 1 in Appendix 1.
    OH_AVFormat *sourceFormat = OH_AVSource_GetSourceFormat(source);
    if (sourceFormat == nullptr) {
       printf("get source format failed");
       return;
    }
    int32_t trackCount = 0;
-   OH_AVFormat_GetIntValue(sourceFormat, OH_MD_KEY_TRACK_COUNT, &trackCount);
+   if (!OH_AVFormat_GetIntValue(sourceFormat, OH_MD_KEY_TRACK_COUNT, &trackCount)) {
+      printf("get track count from source format failed");
+      return;
+   }
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
@@ -229,18 +242,27 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    int32_t h = 0;
    int32_t trackType;
    for (uint32_t index = 0; index < (static_cast<uint32_t>(trackCount)); index++) {
-      // Obtain the track format.
+      // Obtain the track information. You can call the API to obtain track-level attributes. For details, see Table 2 in Appendix.
       OH_AVFormat *trackFormat = OH_AVSource_GetTrackFormat(source, index);
       if (trackFormat == nullptr) {
          printf("get track format failed");
          return;
       }
-      OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_TRACK_TYPE, &trackType);
+      if (!OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_TRACK_TYPE, &trackType)) {
+         printf("get track type from track format failed");
+         return;
+      }
       static_cast<OH_MediaType>(trackType) == OH_MediaType::MEDIA_TYPE_AUD ? audioTrackIndex = index : videoTrackIndex = index;
       // Obtain the width and height of the video track.
       if (trackType == OH_MediaType::MEDIA_TYPE_VID) {
-         OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_WIDTH, &w);
-         OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_HEIGHT, &h);
+         if (!OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_WIDTH, &w)) {
+            printf("get track width from track format failed");
+            return;
+         }
+         if (!OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_HEIGHT, &h)) {
+            printf("get track height from track format failed");
+            return;
+         }
       }
       OH_AVFormat_Destroy(trackFormat);
    }
@@ -327,3 +349,65 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       demuxer = NULL;
       close(fd);
       ```
+
+## Appendix
+### Supported File-Level Attributes
+
+> **NOTE**
+>
+> Attribute data can be obtained only when the file is parsed normally. If the file information is incorrect or missing, the parsing is abnormal and the corresponding data cannot be obtained.
+> 
+> For details about the data type and value range, see [Media Data Key-Value Pairs](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
+
+**Table 1** Supported file-level attributes
+| Attribute| Description|
+| -- | -- |
+|OH_MD_KEY_TITLE|Title.|
+|OH_MD_KEY_ARTIST|Artist.|
+|OH_MD_KEY_ALBUM|Album.|
+|OH_MD_KEY_ALBUM_ARTIST|Album artist.|
+|OH_MD_KEY_DATE|Date.|
+|OH_MD_KEY_COMMENT|Comment.|
+|OH_MD_KEY_GENRE|Genre.|
+|OH_MD_KEY_COPYRIGHT|Copyright.|
+|OH_MD_KEY_LANGUAGE|Language.|
+|OH_MD_KEY_DESCRIPTION|Description.|
+|OH_MD_KEY_LYRICS|Lyrics.|
+|OH_MD_KEY_TRACK_COUNT|Track count.|
+|OH_MD_KEY_DURATION|Duration.|
+|OH_MD_KEY_START_TIME|Start time.|
+
+### Supported Track-Level Attributes
+
+> **NOTE**
+>
+> Attribute data can be obtained only when the file is parsed normally. If the file information is incorrect or missing, the parsing is abnormal and the corresponding data cannot be obtained.
+> 
+> For details about the data type and value range, see [Media Data Key-Value Pairs](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
+
+**Table 2** Supported track-level attributes
+| Name| Description| Supported by Video Tracks| Supported by Audio Tracks| Supported by Subtitle Tracks|
+| -- | -- | -- | -- | -- |
+|OH_MD_KEY_CODEC_MIME|Stream codec type.|Supported|Supported|Supported|
+|OH_MD_KEY_TRACK_TYPE|Stream track type.|Supported|Supported|Supported|
+|OH_MD_KEY_TRACK_START_TIME|Start time of the stream.|Supported|Supported|Supported|
+|OH_MD_KEY_BITRATE|Stream bit rate.|Supported|Supported|Not supported|
+|OH_MD_KEY_LANGUAGE|Stream language type.|Supported|Supported|Not supported|
+|OH_MD_KEY_CODEC_CONFIG|Codec-specific data. In the case of video, data carried in **xps** is transferred. In the case of audio, data carried in **extraData** is transferred.|Supported|Supported|Not supported|
+|OH_MD_KEY_WIDTH|Video stream width.|Supported|Not supported|Not supported|
+|OH_MD_KEY_HEIGHT|Video stream height.|Supported|Not supported|Not supported|
+|OH_MD_KEY_FRAME_RATE|Video stream frame rate.|Supported|Not supported|Not supported|
+|OH_MD_KEY_ROTATION|Rotation angle of the video stream.|Supported|Not supported|Not supported|
+|OH_MD_KEY_VIDEO_SAR|Aspect ratio of the video stream sample.|Supported|Not supported|Not supported|
+|OH_MD_KEY_PROFILE|Encoding profile of the video stream. This key is valid only for H.265 streams.|Supported|Not supported|Not supported|
+|OH_MD_KEY_RANGE_FLAG|Video YUV value range flag of the video stream. This key is valid only for H.265 streams.|Supported|Not supported|Not supported|
+|OH_MD_KEY_COLOR_PRIMARIES|Video primary color of the video stream. This key is valid only for H.265 streams.|Supported|Not supported|Not supported|
+|OH_MD_KEY_TRANSFER_CHARACTERISTICS|Video transfer characteristics of the video stream. This key is valid only for H.265 streams.|Supported|Not supported|Not supported|
+|OH_MD_KEY_MATRIX_COEFFICIENTS|Video matrix coefficient. This key is valid only for H.265 streams.|Supported|Not supported|Not supported|
+|OH_MD_KEY_VIDEO_IS_HDR_VIVID|Flag indicating whether the video stream is HDR Vivid. This key is valid only for HDR Vivid streams.|Supported|Not supported|Not supported|
+|OH_MD_KEY_AUD_SAMPLE_RATE|Audio stream sampling rate.|Not supported|Supported|Not supported|
+|OH_MD_KEY_AUD_CHANNEL_COUNT|Number of audio stream channels.|Not supported|Supported|Not supported|
+|OH_MD_KEY_CHANNEL_LAYOUT|Encoding channel layout required by the audio stream.|Not supported|Supported|Not supported|
+|OH_MD_KEY_AUDIO_SAMPLE_FORMAT|Audio stream sample format.|Not supported|Supported|Not supported|
+|OH_MD_KEY_AAC_IS_ADTS|AAC format. This key is valid only for AAC streams.|Not supported|Supported|Not supported|
+|OH_MD_KEY_BITS_PER_CODED_SAMPLE|Number of bits per coded sample in the audio stream.|Not supported|Supported|Not supported|

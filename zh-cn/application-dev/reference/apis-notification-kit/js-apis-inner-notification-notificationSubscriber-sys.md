@@ -288,7 +288,7 @@ onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notific
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notification-sys.md#donotdisturbdate)) => void | 是 | 回调返回免打扰时间选项变更。 |
+| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notification-sys.md#donotdisturbdate8-deprecated)) => void | 是 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 
@@ -345,7 +345,7 @@ let subscribeCallback = (err: BusinessError) => {
 };
 
 let onDoNotDisturbChangedCallback = (mode: notificationManager.DoNotDisturbDate) => {
-  console.info('===> onDoNotDisturbChanged:' + mode);
+  console.info('===> onDoNotDisturbChanged:' + JSON.stringify(mode));
 }
 
 let subscriber: notificationSubscribe.NotificationSubscriber = {

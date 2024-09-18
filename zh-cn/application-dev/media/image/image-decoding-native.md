@@ -8,7 +8,7 @@
 
 ### 添加依赖
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libace_napi.z.so，libpixelmap_ndk.z.so，libimage_source_ndk.z.so，librawfile.z.so 以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libace_napi.z.so、libpixelmap_ndk.z.so、libimage_source_ndk.z.so、librawfile.z.so以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so libimage_source_ndk.z.so librawfile.z.so)
@@ -77,7 +77,7 @@ EXTERN_C_END
 
 ### Native接口调用
 
-具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)
+具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)。
 
 在hello.cpp文件中获取JS的资源对象，并转为Native的资源对象，即可调用Native接口，调用方式示例代码如下：
 
@@ -85,6 +85,8 @@ EXTERN_C_END
 
    ```c++
       // 引入图片框架、raw文件、raw文件管理和日志打印头文件
+      #include <cstdlib>
+      #include <cstring>
       #include <multimedia/image_framework/image_source_mdk.h>
       #include <multimedia/image_framework/image_pixel_map_mdk.h>
       #include <rawfile/raw_file.h>
@@ -173,6 +175,8 @@ EXTERN_C_END
 
    ```c++
       // 引入图片框架、raw文件、raw文件管理和日志打印头文件
+      #include <cstdlib>
+      #include <cstring>
       #include <multimedia/image_framework/image_source_mdk.h>
       #include <multimedia/image_framework/image_pixel_map_mdk.h>
       #include <rawfile/raw_file.h>

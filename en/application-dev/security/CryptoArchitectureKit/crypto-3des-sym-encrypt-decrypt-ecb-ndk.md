@@ -1,0 +1,119 @@
+# Encryption and Decryption with a 3DES Symmetric Key (ECB Mode) (C/C++)
+
+For details about the algorithm specifications, see [3DES](crypto-sym-encrypt-decrypt-spec.md#3des).
+
+
+## Adding the Dynamic Library in the CMake Script
+```txt
+   target_link_libraries(entry PUBLIC libohcrypto.so)
+```
+
+## How to Develop
+
+
+**Encryption**
+
+
+1. Use [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) and [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to generate a 192-bit 3DES symmetric key (**OH_CryptoSymKey**).
+   
+   In addition to the example in this topic, [3DES](crypto-sym-key-generation-conversion-spec.md#3des) and [Converting Binary Data into a Symmetric Key](crypto-convert-binary-data-to-sym-key-ndk.md) may help you better understand how to generate a 3DES symmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
+
+2. Use [OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create) with the string parameter **'3DES192|ECB|PKCS7'** to create a **Cipher** instance. The key type is **3DES192**, block cipher mode is **ECB**, and the padding mode is **PKCS7**.
+
+3. Use [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to **CRYPTO_ENCRYPT_MODE**, and specify the key for encryption (**OH_CryptoSymKey**).
+   
+   When ECB mode is used, pass in **null** in **params**.
+
+4. Use [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) to update the data (plaintext) to be encrypted.
+   
+   - If a small amount of data is to be encrypted, you can use **OH_CryptoSymCipher_Final()** immediately after **OH_CryptoSymCipher_Init()**.
+   - If a large amount of data is to be encrypted, you can call **OH_CryptoSymCipher_Update()** multiple times to pass in the data by segment.
+
+5. Use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the ciphertext.
+   
+   - If data has been passed in by **OH_CryptoSymCipher_Update()**, pass in **null** in the **data** parameter of **OH_CryptoSymCipher_Final**.
+   - The output of **OH_CryptoSymCipher_Final** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
+
+
+**Decryption**
+
+
+1. Use [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to **CRYPTO_DECRYPT_MODE**, and specify the key for decryption (**OH_CryptoSymKey**). When ECB mode is used, pass in **null** in **params**.
+
+2. Use [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) to update the data (ciphertext) to be decrypted.
+
+3. Use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the plaintext.
+**Example**
+
+
+```c++
+#include "CryptoArchitectureKit/crypto_common.h"
+#include "CryptoArchitectureKit/crypto_sym_cipher.h"
+
+static OH_Crypto_ErrCode doTest3DesEcb()
+{
+    OH_CryptoSymKeyGenerator *genCtx = nullptr;
+    OH_CryptoSymCipher *encCtx = nullptr;
+    OH_CryptoSymCipher *decCtx = nullptr;
+    OH_CryptoSymKey *keyCtx = nullptr;
+    OH_CryptoSymCipherParams *params = nullptr;
+    uint8_t plainText[] = "this is test";
+    Crypto_DataBlob input = {.data = reinterpret_cast<uint8_t *>(plainText), .len = sizeof(plainText)};
+    Crypto_DataBlob outUpdate = {.data = nullptr, .len = 0};
+    Crypto_DataBlob decUpdate = {.data = nullptr, .len = 0};
+
+    // Generate a symmetric key randomly.
+    OH_Crypto_ErrCode ret;
+    ret = OH_CryptoSymKeyGenerator_Create("3DES192", &genCtx);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    ret = OH_CryptoSymKeyGenerator_Generate(genCtx, &keyCtx);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    // Create a params instance.
+    ret = OH_CryptoSymCipherParams_Create(&params);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+
+    // Encrypt data.
+    ret = OH_CryptoSymCipher_Create("3DES192|ECB|PKCS7", &encCtx);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    ret = OH_CryptoSymCipher_Init(encCtx, CRYPTO_ENCRYPT_MODE, keyCtx, params);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    ret = OH_CryptoSymCipher_Final(encCtx, &input, &outUpdate);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+
+    // Decrypt data.
+    ret = OH_CryptoSymCipher_Create("3DES192|ECB|PKCS7", &decCtx);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    ret = OH_CryptoSymCipher_Init(decCtx, CRYPTO_DECRYPT_MODE, keyCtx, params);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+    ret = OH_CryptoSymCipher_Final(decCtx, &outUpdate, &decUpdate);
+    if (ret != CRYPTO_SUCCESS) {
+        goto end;
+    }
+
+end:
+    OH_CryptoSymCipherParams_Destroy(params);
+    OH_CryptoSymCipher_Destroy(encCtx);
+    OH_CryptoSymCipher_Destroy(decCtx);
+    OH_CryptoSymKeyGenerator_Destroy(genCtx);
+    OH_CryptoSymKey_Destroy(keyCtx);
+    OH_Crypto_FreeDataBlob(&outUpdate);
+    OH_Crypto_FreeDataBlob(&decUpdate);
+    return ret;
+}
+```

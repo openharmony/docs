@@ -146,7 +146,7 @@ napi_remove_wrap(env, jsobject, result1)
 开发者可以通过如下示例将耗时任务用异步方式实现，大概逻辑包括以下三步： 
 * 用 napi_create_promise 接口创建 promise，将创建一个 deferred 对象并与 promise 一起返回，deferred 对象会绑定到已创建的 promise；
 * 执行耗时任务，并将执行结果传递给 promise；
-* 使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。
+* 使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。此处不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。  
 
 ```cpp
 // 在executeCB、completeCB之间传递数据
@@ -165,7 +165,7 @@ static void addExecuteCB(napi_env env, void *data) {
     addonData->result = addonData->args[0] + addonData->args[1];
 };
 
-// 3、使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象;
+// 3、使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。此处不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。  
 static void addPromiseCompleteCB(napi_env env, napi_status status, void *data) {
     AddonData *addonData = (AddonData *)data;
     napi_value result = nullptr;
@@ -225,7 +225,7 @@ static napi_value addPromise(napi_env env, napi_callback_info info) {
 }
 ```
 
-在异步操作完成后，回调函数将被调用，并将结果传递给 Promise 对象。在 JavaScript 中，可以使用 Promise 对象的 then() 方法来处理异步操作的结果。 
+在异步操作完成后，回调函数将被调用，并将结果传递给 Promise 对象。在 JavaScript 中，可以使用 Promise 对象的 then() 方法来处理异步操作的结果。then() 方法中不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。   
 
 ```js
 import hilog from '@ohos.hilog';

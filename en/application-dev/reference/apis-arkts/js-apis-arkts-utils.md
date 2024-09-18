@@ -40,9 +40,9 @@ A class that implements an asynchronous lock and allows asynchronous operations 
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Type  | Readable | Writable | Description      |
+| Name| Type  | Readable| Writable| Description      |
 | ---- | ------ | ---- | ---- | ---------- |
-| name | string | Yes  | No  | Name of the lock. |
+| name | string | Yes  | No  | Name of the lock.|
 
 **Example**
 
@@ -102,7 +102,7 @@ Default constructor used to create an asynchronous lock.
 
 | Type                   | Description              |
 | ----------------------- | ------------------ |
-| [AsyncLock](#asynclock) | **AsyncLock** instance created. |
+| [AsyncLock](#asynclock) | **AsyncLock** instance created.|
 
 **Example**
 
@@ -122,15 +122,15 @@ Finds or creates (if not found) an **AsyncLock** instance with the specified nam
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                            |
+| Name| Type  | Mandatory| Description                            |
 | ---- | ------ | ---- | -------------------------------- |
-| name | string | Yes  | Name of the lock. |
+| name | string | Yes  | Name of the lock.|
 
 **Return value**
 
 | Type                   | Description                            |
 | ----------------------- | -------------------------------- |
-| [AsyncLock](#asynclock) | **AsyncLock** instance found or created. |
+| [AsyncLock](#asynclock) | **AsyncLock** instance found or created.|
 
 **Example**
 
@@ -151,21 +151,21 @@ Queries information about an asynchronous lock.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description      |
+| Name| Type  | Mandatory| Description      |
 | ---- | ------ | ---- | ---------- |
-| name | string | Yes  | Name of the lock. |
+| name | string | Yes  | Name of the lock.|
 
 **Return value**
 
 | Type                             | Description                              |
 | --------------------------------- | ---------------------------------- |
-| [AsyncLockState](#asynclockstate) | **AsyncLockState** instance that contains the lock state information. |
+| [AsyncLockState](#asynclockstate) | **AsyncLockState** instance that contains the lock state information.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 10200030 | The lock does not exist. |
 
@@ -196,7 +196,7 @@ Queries information about all existing asynchronous locks.
 
 | Type                               | Description                            |
 | ----------------------------------- | -------------------------------- |
-| [AsyncLockState](#asynclockstate)[] | **AsyncLockState** array that contains the lock state information. |
+| [AsyncLockState](#asynclockstate)[] | **AsyncLockState** array that contains the lock state information.|
 
 **Example**
 
@@ -219,21 +219,21 @@ Performs an operation exclusively under a lock. This API acquires the lock, exec
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory | Description                  |
+| Name    | Type                                   | Mandatory| Description                  |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired. |
+| callback | [AsyncLockCallback](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired.|
 
 **Return value**
 
 | Type       | Description                       |
 | ----------- | --------------------------- |
-| Promise\<T> | Promise that will be resolved after the callback is executed. |
+| Promise\<T> | Promise that will be resolved after the callback is executed.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 10200030 | The lock does not exist. |
 
@@ -258,22 +258,22 @@ Performs an operation under a lock. This API acquires the lock, executes the cal
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory | Description                  |
+| Name    | Type                                   | Mandatory| Description                  |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired. |
+| callback | [AsyncLockCallback](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired.|
 | mode     | [AsyncLockMode](#asynclockmode)         | Yes  | Mode of the lock.        |
 
 **Return value**
 
 | Type       | Description                       |
 | ----------- | --------------------------- |
-| Promise\<T> | Promise that will be resolved after the callback is executed. |
+| Promise\<T> | Promise that will be resolved after the callback is executed.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 10200030 | The lock does not exist. |
 
@@ -298,9 +298,9 @@ Performs an operation under a lock. This API acquires the lock, executes the cal
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory | Description                  |
+| Name    | Type                                     | Mandatory| Description                  |
 | -------- | ----------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback)   | Yes  | Callback to be executed after a lock is acquired. |
+| callback | [AsyncLockCallback](#asynclockcallback)   | Yes  | Callback to be executed after a lock is acquired.|
 | mode     | [AsyncLockMode](#asynclockmode)           | Yes  | Mode of the lock.        |
 | options  | [AsyncLockOptions\<U>](#asynclockoptions) | Yes  | Options of the lock.        |
 
@@ -308,13 +308,13 @@ Performs an operation under a lock. This API acquires the lock, executes the cal
 
 | Type            | Description                                              |
 | ---------------- | -------------------------------------------------- |
-| Promise\<T \| U> | Promise that will be resolved after the callback is executed, or rejected in the case of timeout. |
+| Promise\<T \| U> | Promise that will be resolved after the callback is executed, or rejected in the case of timeout.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message         |
+| ID| Error Message         |
 | -------- | ----------------- |
 | 10200030 | The lock does not exist.     |
 | 10200031 | Timeout exceeded. |
@@ -344,8 +344,8 @@ Enumerates the modes of an asynchronous lock.
 
 | Name     | Value | Description                                                    |
 | --------- | --- | -------------------------------------------------------- |
-| SHARED    | 1   | Shared lock. An operation can be reentrant in the same thread. |
-| EXCLUSIVE | 2   | Exclusive lock. An operation is performed only when the lock is exclusively acquired. |
+| SHARED    | 1   | Shared lock. An operation can be reentrant in the same thread.|
+| EXCLUSIVE | 2   | Exclusive lock. An operation is performed only when the lock is exclusively acquired.|
 
 ### AsyncLockOptions
 
@@ -371,7 +371,7 @@ Default constructor used to create an **AsyncLockOptions** instance with the def
 
 | Type                                 | Description                  |
 | ------------------------------------- | ---------------------- |
-| [AsyncLockOptions](#asynclockoptions) | **AsyncLockOptions** instance created. |
+| [AsyncLockOptions](#asynclockoptions) | **AsyncLockOptions** instance created.|
 
 **Example**
 
@@ -384,9 +384,9 @@ options.signal = s;
 
 #### Attributes
 
-| Name       | Type                                 | Readable | Writable | Description                                                                                                                     |
+| Name       | Type                                 | Readable| Writable| Description                                                                                                                     |
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
-| isAvailable | boolean                               | Yes  | Yes  | Whether the lock is available. If the value is **true**, a lock is granted only when it is not held. If the value is **false**, a lock is granted once it is released. The default value is **false**. |
+| isAvailable | boolean                               | Yes  | Yes  | Whether the lock is available. If the value is **true**, a lock is granted only when it is not held. If the value is **false**, a lock is granted once it is released. The default value is **false**.|
 | signal      | [AbortSignal\<T>](#abortsignal)\|null | Yes  | Yes  | Signal used to abort an asynchronous operation. If **signal.aborted** is **true**, the lock request is discarded. If **signal.aborted** is **null**, the request is queued normally. The default value is **null**.              |
 | timeout     | number                                | Yes  | Yes  | Timeout interval of the lock request, in milliseconds. If the value is greater than zero and a lock is not acquired before time, [lockAsync](#lockasync) returns a rejected Promise. The default value is **0**.     |
 
@@ -400,10 +400,10 @@ A class used to store information about all lock operations currently performed 
 
 #### Attributes
 
-| Name   | Type                             | Readable | Writable | Description            |
+| Name   | Type                             | Readable| Writable| Description            |
 | ------- | --------------------------------- | ---- | ---- | ---------------- |
 | held    | [AsyncLockInfo[]](#asynclockinfo) | Yes  | Yes  | Information about the lock being held.  |
-| pending | [AsyncLockInfo[]](#asynclockinfo) | Yes  | Yes  | Information about the lock in the waiting state. |
+| pending | [AsyncLockInfo[]](#asynclockinfo) | Yes  | Yes  | Information about the lock in the waiting state.|
 
 ### AsyncLockInfo
 
@@ -415,11 +415,11 @@ Describes the information about a lock.
 
 #### Attributes
 
-| Name     | Type                           | Readable | Writable | Description                                                     |
+| Name     | Type                           | Readable| Writable| Description                                                     |
 | --------- | ------------------------------- | ---- | ---- | --------------------------------------------------------- |
 | name      | string                          | Yes  | Yes  | Name of the lock.                                               |
 | mode      | [AsyncLockMode](#asynclockmode) | Yes  | Yes  | Mode of the lock.                                               |
-| contextId | number                          | Yes  | Yes  | Context identifier of the caller of [AsyncLockMode](#asynclockmode). |
+| contextId | number                          | Yes  | Yes  | Context identifier of the caller of [AsyncLockMode](#asynclockmode).|
 
 ### AbortSignal
 
@@ -431,10 +431,10 @@ A class that implements a signal used to abort an asynchronous operation. An ins
 
 #### Attributes
 
-| Name   | Type   | Readable | Writable | Description                                                            |
+| Name   | Type   | Readable| Writable| Description                                                            |
 | ------- | ------- | ---- | ---- | ---------------------------------------------------------------- |
 | aborted | boolean | Yes  | Yes  | Whether to abort the operation. The value **true** means to abort the operation, and **false** means the opposite.                                          |
-| reason  | \<T>    | Yes  | Yes  | Reason for abort. This value will be used in the rejected Promise returned by [lockAsync](#lockasync). |
+| reason  | \<T>    | Yes  | Yes  | Reason for abort. This value will be used in the rejected Promise returned by [lockAsync](#lockasync).|
 
 ## ArkTSUtils.ASON
 
@@ -450,9 +450,9 @@ type ISendable = lang.ISendable
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Type | Description  |
+| Type| Description  |
 | ------ | ------ |
-| [lang.ISendable](js-apis-arkts-lang.md#langisendable)   | Parent type of all sendable types. |
+| [lang.ISendable](js-apis-arkts-lang.md#langisendable)   | Parent type of all sendable types.|
 
 ### Transformer
 
@@ -466,15 +466,15 @@ Defines the type of the conversion result function.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description           |
+| Name| Type  | Mandatory| Description           |
 | ------ | ------ | ---- | --------------- |
-| this   | [ISendable](#isendable) | Yes | Object to which the key-value pair to parse belongs.|
-| key  | string | Yes | Key to parse.|
-| value  | [ISendable](#isendable) | Yes | Value of the key.|
+| this   | [ISendable](#isendable) | Yes| Object to which the key-value pair to parse belongs.|
+| key  | string | Yes| Key to parse.|
+| value  | [ISendable](#isendable) | Yes| Value of the key.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | [ISendable](#isendable) \| undefined \| null | **ISendable** object, undefined, or null.|
 
@@ -486,7 +486,7 @@ Enumerates the modes for processing BigInt.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Value| Description           |
+| Name| Value| Description           |
 | ------ | ------ | --------------- |
 | DEFAULT   | 0 |BigInt is not supported.|
 | PARSE_AS_BIGINT   | 1 |Parses an integer that is less than -(2^53-1) or greater than (2^53-1) as BigInt.|
@@ -496,13 +496,12 @@ Enumerates the modes for processing BigInt.
 
 Enumerates the return types of the parsing result.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Value| Description           |
+| Name| Value| Description           |
 | ------ | ------ | --------------- |
-| OBJECT   | 0 |**Sendable** object.|
+| OBJECT   | 0 |Returns a **SendableObject** object.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MAP<sup>13+</sup>   | 1 |Returns a **SendableMap** object.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ### ParseOptions
 
@@ -512,10 +511,10 @@ Describes the parsing options, which defines the BigInt processing mode and the 
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Type| Mandatory | Description           |
+| Name| Type| Mandatory| Description           |
 | ------ | ------ | ---- | --------------- |
-| bigIntMode   | [BigIntMode](#bigintmode) | Yes |Mode for processing BigInt.|
-| parseReturnType   | [ParseReturnType](#parsereturntype) | Yes |Return type of the parsing result.|
+| bigIntMode   | [BigIntMode](#bigintmode) | Yes|Mode for processing BigInt.|
+| parseReturnType   | [ParseReturnType](#parsereturntype) | Yes|Return type of the parsing result.|
 
 ### parse
 
@@ -529,15 +528,15 @@ Parses a JSON string to generate ISendable data or null.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description           |
+| Name| Type  | Mandatory| Description           |
 | ------ | ------ | ---- | --------------- |
-| text   | string | Yes | Valid JSON string.|
-| reviver   | [Transformer](#transformer) | No | Conversion function. This parameter can be used to modify the value generated after parsing. The default value is undefined. Currently, only undefined can be passed in.|
-| options   | [ParseOptions](#parseoptions) | No | Parsing options. This parameter is used to control the type of the parsing result. The default value is undefined.|
+| text   | string | Yes| Valid JSON string.|
+| reviver   | [Transformer](#transformer) | No| Conversion function. This parameter can be used to modify the value generated after parsing. The default value is undefined. Currently, only undefined can be passed in.|
+| options   | [ParseOptions](#parseoptions) | No| Parsing options. This parameter is used to control the type of the parsing result. The default value is undefined.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | [ISendable](#isendable) \| null | ISendable data or **null** (if **null** is passed in).|
 
@@ -565,6 +564,17 @@ let numberObj = ArkTSUtils.ASON.parse(numberText,undefined,options) as ISendable
 
 console.info((numberObj as object)?.["largeNumber"]);
 // Expected output: 112233445566778899
+
+let options2: ArkTSUtils.ASON.ParseOptions = {
+    bigIntMode: ArkTSUtils.ASON.BigIntMode.PARSE_AS_BIGINT,
+    parseReturnType: ArkTSUtils.ASON.ParseReturnType.MAP,
+  }
+let mapText = '{"largeNumber":112233445566778899}';
+let map  = ArkTSUtils.ASON.parse(mapText,undefined,options2);
+console.info("map is " + map);
+// Expected output: map is [object SendableMap]
+console.info("largeNumber is " + (map as collections.Map<string,bigint>).get("largeNumber"));
+// Expected output: largeNumber is 112233445566778899
 ```
 
 ### stringify
@@ -579,13 +589,13 @@ Converts ISendable data into a JSON string.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [ISendable](#isendable) \| null \| undefined  | Yes | ISendable data.|
+| value | [ISendable](#isendable) \| null \| undefined  | Yes| ISendable data.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
 | string | JSON string.|
 
@@ -598,4 +608,45 @@ let arr = new collections.Array(1, 2, 3);
 let str = ArkTSUtils.ASON.stringify(arr);
 console.info(str);
 // Expected output: '[1,2,3]'
+```
+
+### isSendable
+
+isSendable(value: Object | null | undefined): boolean
+
+Checks whether the passed-in value is of the sendable data type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object \| null \| undefined  | Yes| Object to check.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Check result. The value **true** means that the passed-in value is of the sendable data type, and **false** means the opposite.|
+
+**Example**
+
+```ts
+import { ArkTSUtils } from '@kit.ArkTS'
+
+@Sendable
+function sendableFunc()
+{
+  console.info("sendableFunc")
+}
+
+if (ArkTSUtils.isSendable(sendableFunc)) {
+  console.info("sendableFunc is Sendable");
+} else {
+  console.info("sendableFunc is not Sendable");
+}
+// Expected output: 'SendableFunc is Sendable'
 ```

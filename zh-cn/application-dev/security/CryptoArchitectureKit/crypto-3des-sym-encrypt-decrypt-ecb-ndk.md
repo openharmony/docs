@@ -16,7 +16,7 @@
 
 1. 调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create)、[OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate)，生成密钥算法为3DES、密钥长度为192位的对称密钥（OH_CryptoSymKey）。
    
-   如何生成3DES对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：3DES](crypto-sym-key-generation-conversion-spec.md#3des)和[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key-ndk.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
+   如何生成3DES对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：3DES](crypto-sym-key-generation-conversion-spec.md#3des)和[指定二进制数据转换对称密钥](crypto-convert-binary-data-to-sym-key-ndk.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
 2. 调用[OH_CryptoSymCipher_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_create)，指定字符串参数'3DES192|ECB|PKCS7'，创建对称密钥类型为3DES192、分组模式为ECB、填充模式为PKCS7的Cipher实例，用于完成加解密操作。
 
@@ -27,7 +27,7 @@
 4. 调用[OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update)，更新数据（明文）。
    
    - 当数据量较小时，可以在init完成后直接调用final。
-   - 当数据量较大时，可以多次调用update，即[分段加解密](crypto-aes-sym-encrypt-decrypt-gcm-by-segment-ndk.md)。
+   - 当数据量较大时，可以多次调用update，即分段加解密。
 
 5. 调用[OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final)，获取加密后的数据。
    
@@ -48,6 +48,7 @@
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_sym_cipher.h"
+#include <string.h>
 
 static OH_Crypto_ErrCode doTest3DesEcb()
 {
@@ -56,8 +57,8 @@ static OH_Crypto_ErrCode doTest3DesEcb()
     OH_CryptoSymCipher *decCtx = nullptr;
     OH_CryptoSymKey *keyCtx = nullptr;
     OH_CryptoSymCipherParams *params = nullptr;
-    uint8_t plainText[] = "this is test";
-    Crypto_DataBlob input = {.data = reinterpret_cast<uint8_t *>(plainText), .len = sizeof(plainText)};
+    char *plainText = const_cast<char *>("this is test!");
+    Crypto_DataBlob input = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
     Crypto_DataBlob outUpdate = {.data = nullptr, .len = 0};
     Crypto_DataBlob decUpdate = {.data = nullptr, .len = 0};
 

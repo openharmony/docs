@@ -27,7 +27,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | options |  [ListItemGroupOptions](#listitemgroupoptions对象说明)| 否 | 列表item分组组件参数。 |
 
@@ -37,10 +37,12 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名              | 参数类型                                            | 必填 | 参数描述                                                     |
+| 名称              | 类型                                            | 必填 | 说明                                                     |
 | ------------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| header              | [CustomBuilder](ts-types.md#custombuilder8)         | 否   | 设置ListItemGroup头部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。               |
-| footer              | [CustomBuilder](ts-types.md#custombuilder8)         | 否   | 设置ListItemGroup尾部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。               |
+| header              | [CustomBuilder](ts-types.md#custombuilder8) &nbsp;   | 否   | 设置ListItemGroup头部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。               |
+| headerComponent<sup>13+</sup>              | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 使用ComponentContent类型参数设置ListItemGroup头部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。 该参数的优先级高于参数header。即同时设置header和headerComponent时，以headerComponent设置的值为准。              |
+| footer              | [CustomBuilder](ts-types.md#custombuilder8) &nbsp;     | 否   | 设置ListItemGroup尾部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。               |
+| footerComponent<sup>13+</sup>              | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 使用ComponentContent类型参数设置ListItemGroup尾部组件。<br/>**说明：**<br/>可以放单个子组件或不放子组件。该参数的优先级高于参数footer。 即同时设置footer和footerComponent时，以footerComponent设置的值为准。                           |
 | space               | number&nbsp;\|&nbsp;string                          | 否   | 列表项间距。只作用于ListItem与ListItem之间，不作用于header与ListItem、footer与ListItem之间。<br/>默认值：0<br/>单位：vp  |
 | style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10枚举说明) | 否   | 设置List组件卡片样式。<br/>默认值: ListItemGroupStyle.NONE<br/>设置为ListItemGroupStyle.NONE时无样式。<br/>设置为ListItemGroupStyle.CARD时，建议配合[ListItem](ts-container-listitem.md)的ListItemStyle.CARD同时使用，显示默认卡片样式。 <br/>卡片样式下，ListItemGroup默认规格：左右外边距12vp，上下左右内边距4vp。<br/>卡片样式下, 为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。<br/>**说明：**<br/>当前卡片模式下，使用默认Axis.Vertical排列方向，如果listDirection属性设置为Axis.Horizontal，会导致显示混乱;List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。 |
 
@@ -80,7 +82,7 @@ childrenMainSize(value: ChildrenMainSize)
 
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
-| value | [ChildrenMainSize](ts-container-list.md#childrenmainsize12对象说明) | 是   | 1.通过ChildrenMainSize对象向ListItemGroup组件准确提供所有ListItem在主轴方向的大小信息。<br/>2.提供的主轴方向大小必须与子组件实际在主轴方向的大小一致。<br/>3. 必须同时设置List的childrenMainSize属性使用。<br/>4.子组件主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ListItemGroup组件。|
+| value | [ChildrenMainSize](ts-container-scrollable-common.md#childrenmainsize12对象说明) | 是   | 1.通过ChildrenMainSize对象向ListItemGroup组件准确提供所有ListItem在主轴方向的大小信息。<br/>2.提供的主轴方向大小必须与子组件实际在主轴方向的大小一致。<br/>3. 必须同时设置List的childrenMainSize属性使用。<br/>4.子组件主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ListItemGroup组件。|
 
 ## ListItemGroupStyle<sup>10+</sup>枚举说明
 
@@ -231,3 +233,119 @@ interface ArrObject {
 }
 ```
 ![ListItemGroupStyle](figures/listItemGroup2.jpeg)
+
+- 示例3
+
+该示例通过ComponentContent设置Header/Footer。
+
+```ts
+// xxx.ets
+import { ComponentContent } from '@kit.ArkUI';
+class Params {
+  text: string = ""
+  fontSize:string|number=20
+  fontWeight:number | FontWeight | string =FontWeight.Bold
+  margin: Margin | Length | LocalizedMargin=20
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Text(params.text)
+    .fontSize(params.fontSize)
+    .fontWeight(params.fontWeight)
+    .margin(params.margin)
+}
+
+@Entry
+@Component
+struct ListItemGroupExample {
+  uiContext :UIContext= this.getUIContext();
+  private timeTable: TimeTable[] = [
+    {
+      title: '星期一',
+      projects: ['语文', '数学', '英语'],
+      num:0
+    },
+    {
+      title: '星期二',
+      projects: ['物理', '化学', '生物'],
+      num:1
+    },
+    {
+      title: '星期三',
+      projects: ['历史', '地理', '政治'],
+      num:2
+    },
+    {
+      title: '星期四',
+      projects: ['美术', '音乐', '体育'],
+      num:3
+    }
+  ]
+  private headerList:TimeTableHeader[]=[
+    {
+      headerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期一")),
+      footerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
+    },
+    {
+      headerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期二")),
+      footerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
+    },
+    {
+      headerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期三")),
+      footerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
+    },
+    {
+      headerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期四")),
+      footerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
+    }
+  ]
+
+  build() {
+    Column() {
+      Button("test").width(100).height(50).onClick(()=>{
+        this.headerList[0].headerNode.update(new Params('Update Header text value'))
+        this.headerList[0].footerNode.update(new Params('Update Footer text value'))
+      })
+      List({ space: 20 }) {
+        ForEach(this.timeTable, (item: TimeTable) => {
+          ListItemGroup({headerComponent:this.headerList[item.num].headerNode,
+            footerComponent:this.headerList[item.num].footerNode
+          }) {
+            ForEach(item.projects, (project: string) => {
+              ListItem() {
+                Text(project)
+                  .width("100%")
+                  .height(100)
+                  .fontSize(20)
+                  .textAlign(TextAlign.Center)
+                  .backgroundColor(0xFFFFFF)
+              }
+            }, (item: string) => item)
+          }
+          .divider({ strokeWidth: 1, color: Color.Blue }) // 每行之间的分界线
+        })
+      }
+      .id("test")
+      .width('90%')
+      .sticky(StickyStyle.Header | StickyStyle.Footer)
+      .scrollBar(BarState.Off)
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
+  }
+}
+
+interface TimeTable {
+  title: string;
+  projects: string[];
+  num:number
+}
+interface TimeTableHeader {
+  headerNode: ComponentContent<Params>
+  footerNode: ComponentContent<Params>
+}
+```
+
+![zh-cn_image_listitemgroup_example03](figures/zh-cn_image_listitemgroup_example03.gif)

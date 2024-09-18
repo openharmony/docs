@@ -62,12 +62,10 @@ The table below lists the APIs changes of the application framework subsystem in
 | ohos.settings | general | const DEBUGGER_WAITING: string | Added|
 | ohos.settings | general | const USB_STORAGE_STATUS: string | Added|
 | ohos.settings | general | const DEVICE_NAME: string | Added|
-| ohos.settings | general | const DEVELOPMENT_SETTINGS_STATUS: string | Added|
 | ohos.settings | general | const CONTACT_METADATA_SYNC_STATUS: string | Added|
 | ohos.settings | general | const BOOT_COUNTING: string | Added|
 | ohos.settings | general | const HDC_STATUS: string | Added|
 | ohos.settings | general | const DEVICE_PROVISION_STATUS: string | Added|
-| ohos.settings | general | const AIRPLANE_MODE_STATUS: string | Added|
 | ohos.settings | general | const ACCELEROMETER_ROTATION_STATUS: string | Added|
 | ohos.settings | general | const END_BUTTON_ACTION: string | Added|
 | ohos.settings | general | const SETUP_WIZARD_FINISHED: string | Added|

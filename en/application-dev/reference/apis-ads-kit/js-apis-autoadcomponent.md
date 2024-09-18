@@ -30,12 +30,12 @@ Component used to automatically play ads.
 **Parameters**
 
 
-| Name | Type | Mandatory | Description | 
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| adParam | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams) | Yes | Ad request parameters. | 
-| adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | Yes | Ad configuration. | 
-| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | Yes | Ad display parameters. | 
-| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes | Ad status change callback. | 
+| adParam | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams) | Yes| Ad request parameters.| 
+| adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | Yes| Ad configuration.| 
+| displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | Yes| Ad display parameters.| 
+| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes| Ad status change callback.| 
 
 
 **Example**

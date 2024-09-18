@@ -9,6 +9,10 @@
 ## shouldBuiltInRecognizerParallelWith
 shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWithCallback): T
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
@@ -34,7 +38,7 @@ type ShouldBuiltInRecognizerParallelWithCallback = (current: GestureRecognizer, 
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| current | [GestureRecognizer](#gesturerecognizer) | 是   | 当前组件的系统内置手势识别器，当前版本只提供内置的[PAN_GESTURE](./ts-appendix-enums.md#gesturejudgeresult11)类型的手势识别器。 |
+| current | [GestureRecognizer](#gesturerecognizer) | 是   | 当前组件的系统内置手势识别器，当前版本只提供内置的[PAN_GESTURE](ts-gesture-customize-judge.md#gesturejudgeresult11)类型的手势识别器。 |
 | others | Array\<[GestureRecognizer](#gesturerecognizer)\> | 是   | 响应链上更高优先级的其他组件相同类别的手势识别器。 |
 
 **返回值：**
@@ -55,6 +59,8 @@ getTag(): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型     | 说明        |
@@ -69,11 +75,13 @@ getType(): GestureControl.GestureType
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [GestureControl.GestureType](ts-appendix-enums.md#gesturetype11) | 当前手势识别器的类型。 |
+| [GestureControl.GestureType](ts-gesture-customize-judge.md#gesturetype11) | 当前手势识别器的类型。 |
 
 ### isBuiltIn
 
@@ -82,6 +90,8 @@ isBuiltIn(): boolean
 返回当前手势识别器是否为系统内置手势。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
@@ -97,6 +107,8 @@ setEnabled(isEnabled: boolean): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名     | 类型                           | 必填   | 说明  |
@@ -110,6 +122,8 @@ isEnabled(): boolean
 返回当前手势识别器的使能状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
@@ -125,6 +139,8 @@ getState(): GestureRecognizerState
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型     | 说明        |
@@ -139,17 +155,37 @@ getEventTargetInfo(): EventTargetInfo
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型     | 说明        |
 | ------ | --------- |
 | [EventTargetInfo](#eventtargetinfo) | 当前手势识别器对应组件的信息。 |
 
+### isValid
+
+isValid(): boolean;
+
+返回当前手势识别器是否有效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| boolean | 当前手势识别器是否有效。当该识别器绑定的组件被析构或者该识别器不在响应链上时返回false。 |
+
 ## GestureRecognizerState
 
 定义手势识别器状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 值   | 描述                               |
 | ------- | ---- | ---------------------------------- |
@@ -172,6 +208,8 @@ getId(): string
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型     | 说明        |
@@ -190,6 +228,8 @@ isBegin(): boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型     | 说明        |
@@ -203,6 +243,8 @@ isEnd(): boolean
 返回当前滚动类容器组件是否在底部，如果为Swiper组件且在循环模式下返回false。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
@@ -222,6 +264,8 @@ getPanGestureOptions(): PanGestureOptions
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型     | 说明        |
@@ -231,6 +275,10 @@ getPanGestureOptions(): PanGestureOptions
 ## onGestureRecognizerJudgeBegin
 
 onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback): T
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
@@ -265,8 +313,7 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [GestureJudgeResult](./ts-appendix-enums.md#gesturejudgeresult11) | 手势是否裁决成功的判定结果。 |
-
+| [GestureJudgeResult](ts-gesture-customize-judge.md#gesturejudgeresult11) | 手势是否裁决成功的判定结果。 |
 
 ## 示例
 

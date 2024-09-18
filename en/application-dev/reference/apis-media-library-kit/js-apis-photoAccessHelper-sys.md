@@ -24,7 +24,7 @@ Creates an image or video asset with the specified file name. This API uses an a
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -37,7 +37,7 @@ The file name must comply with the following specifications:
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | displayName  | string        | Yes  | File name of the image or video to create.             |
-| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback used to return the image or video created.|
+| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback invoked to return the image or video created.|
 
 **Error codes**
 
@@ -46,7 +46,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -78,7 +78,7 @@ Creates an image or video asset with the specified file name. This API uses a pr
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -105,7 +105,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -136,7 +136,7 @@ Creates an image or video asset with the specified file name and options. This A
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -150,7 +150,7 @@ The file name must comply with the following specifications:
 | -------- | ------------------------ | ---- | ------------------------- |
 | displayName  | string        | Yes  | File name of the image or video to create.             |
 | options  | [PhotoCreateOptions](#photocreateoptions)        | Yes  | Options for creating an image or video asset.             |
-| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback used to return the image or video created.|
+| callback |  AsyncCallback&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Callback invoked to return the image or video created.|
 
 **Error codes**
 
@@ -159,7 +159,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -194,7 +194,7 @@ Creates an image or video asset with the specified file name and options. This A
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -222,7 +222,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -255,7 +255,7 @@ Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -274,7 +274,7 @@ The album name must meet the following requirements:
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | name  | string         | Yes  | Name of the album to create.             |
-| callback |  AsyncCallback&lt;[Album](#album)&gt; | Yes  | Callback used to return the created album instance.|
+| callback |  AsyncCallback&lt;[Album](#album)&gt; | Yes  | Callback invoked to return the created album instance.|
 
 **Error codes**
 
@@ -283,7 +283,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900015       |  File exists.         |
 | 13900020     | Invalid argument.         |
@@ -313,7 +313,7 @@ Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -346,7 +346,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900015       |  File exists.         |
 | 13900020     | Invalid argument.         |
@@ -400,7 +400,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -469,7 +469,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -518,7 +518,7 @@ Obtains hidden albums based on the specified display mode and retrieval options.
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | Yes  |  Options for retrieving the hidden files. |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
+| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
@@ -528,7 +528,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201      |  Permission verification failed, usually the result returned by VerifyAccessToken.         |
 | 202      |  Permission verification failed, application which is not a system application uses system API.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -575,7 +575,7 @@ Obtains hidden albums based on the specified display mode. This API uses an asyn
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | Yes  | Display mode of hidden files. |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the result.|
+| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback invoked to return the result.|
 
 **Error codes**
 
@@ -585,7 +585,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201      |  Permission verification failed, usually the result returned by VerifyAccessToken.         |
 | 202      |  Permission verification failed, application which is not a system application uses system API.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -667,7 +667,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201      |  Permission verification failed, usually the result returned by VerifyAccessToken.         |
 | 202      |  Permission verification failed, application which is not a system application uses system API.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -754,7 +754,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000002       | Invalid uri.         |
@@ -827,7 +827,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000002       | Invalid uri.         |
@@ -879,7 +879,7 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
 | options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search criteria or sorting modes are set, the API cannot be called successfully.     |
-| callback | AsyncCallback&lt;number&gt;| Yes  | Callback used to return the index obtained.|
+| callback | AsyncCallback&lt;number&gt;| Yes  | Callback invoked to return the index obtained.|
 
 **Error codes**
 
@@ -888,7 +888,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -966,7 +966,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1036,7 +1036,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
 | 202   | Permission verification failed, application which is not a system application uses system API.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 
@@ -1104,7 +1104,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
 | 202   | Permission verification failed, application which is not a system application uses system API.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -1153,7 +1153,7 @@ Removes a Gallery widget. This API uses an asynchronous callback to return the r
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| info  | [FormInfo](#forminfo11)        | Yes  |  Information about the Gallery widget to remove, which includes the ID of the widget and the URI of the image bound to the widget.             |
+| info  | [FormInfo](#forminfo11)        | Yes  |  Information about the Gallery widget to save, which includes the ID of the widget and the URI of the image bound to the widget.             |
 | callback |  AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Error codes**
@@ -1164,7 +1164,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
 | 202   | Permission verification failed, application which is not a system application uses system API.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -1206,7 +1206,7 @@ Removes a Gallery widget. This API uses a promise to return the result.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| info  | [FormInfo](#forminfo11)        | Yes  |  Information about the Gallery widget to remove, which includes the ID of the widget and the URI of the image bound to the widget.             |
+| info  | [FormInfo](#forminfo11)        | Yes  |  Information about the Gallery widget to save, which includes the ID of the widget and the URI of the image bound to the widget.             |
 
 **Return value**
 
@@ -1222,7 +1222,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
 | 202   | Permission verification failed, application which is not a system application uses system API.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -1246,6 +1246,311 @@ async function example() {
 }
 ```
 
+### createAssetsForApp<sup>12+</sup>
+
+createAssetsForApp(bundleName: string, appName: string, appId: string, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
+
+Creates media assets for an application. The returned URIs has been granted with the permission for writing the media assets (images or vides).
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| bundleName | string | Yes| Bundle name of the target application.|
+| appName | string | Yes| Name of the target application.|
+| appId | string | Yes| ID of the target application.|
+| photoCreationConfigs | Array&lt;[PhotoCreationConfig](./js-apis-photoAccessHelper.md#photocreationconfig12)&gt; | Yes| Configuration for creating (saving) the media assets in the media library.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the media assets based on the URIs without requesting the write permission.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('createAssetsForAppDemo.');
+
+  try {
+    let bundleName: string = 'testBundleName';
+    let appName: string = 'testAppName';
+    let appId: string = 'testAppId';
+    let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+      {
+        title: 'test',
+        fileNameExtension: 'jpg',
+        photoType: photoAccessHelper.PhotoType.IMAGE,
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
+      }
+    ];
+    let desFileUris: Array<string> = await phAccessHelper.createAssetsForApp(bundleName, appName, appId, photoCreationConfigs);
+    console.info('createAssetsForApp success, data is ' + desFileUris);
+  } catch (err) {
+    console.error(`createAssetsForApp failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### grantPhotoUriPermission<sup>12+</sup>
+
+grantPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
+
+Grants an application the permission to access a URI. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| appid | string | Yes| ID of the target application.|
+| uri | string | Yes| URI of the media asset.|
+| photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Type of the permission to be granted. For details, see the enum.|
+| hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | Yes| Type of the information to hide. This parameter is reserved. Currently, any enumerated value of **HideSensitiveType** can be passed in.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt; | Promise used to return the result. The value **0** indicates means the permission is granted to the application. The value **1** means the application already has the permission. The value **-1** means the permission fails to be granted.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('grantPhotoUriPermissionDemo');
+
+  try {
+    let result = await phAccessHelper.grantPhotoUriPermission('com.example.myapplication01',
+        'file://media/Photo/1/IMG_datetime_0001/displayName.jpg',
+        photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
+        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
+
+    console.info('grantPhotoUriPermission success, result=' + result);
+  } catch (err) {
+    console.error('grantPhotoUriPermission failed, error=' + err);
+  }
+}
+```
+
+### grantPhotoUrisPermission<sup>12+</sup>
+
+grantPhotoUrisPermission(appid: string, uriList: Array&lt;string&gt;, photoPermissionType: PhotoPermissionType, hideSensitiveType: HideSensitiveType): Promise&lt;number&gt;
+
+Grants an application the permission to access multiple URIs. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| appid | string | Yes| ID of the target application.|
+| uriList | Array&lt;string&gt; | Yes| A list of URIs, which cannot exceed 1000.|
+| photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Type of the permission to be granted. For details, see **PhotoPermissionType**.|
+| hideSensitiveType | [HideSensitiveType](#hidesensitivetype12) | Yes| Type of the information to hide. This parameter is reserved. Currently, any enumerated value of **HideSensitiveType** can be passed in.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt; | Promise used to return the result. The value **0** indicates means the operation is successful; and the value **-1** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('grantPhotoUrisPermissionDemo');
+
+  try {
+    // URIs of the media assets.
+    let uris: Array<string> = [
+      'file://media/Photo/11/IMG_datetime_0001/displayName1.jpg',
+      'file://media/Photo/22/IMG_datetime_0002/displayName2.jpg'];
+    let result = await phAccessHelper.grantPhotoUrisPermission('com.example.myapplication01', uris,
+        photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
+        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
+
+    console.info('grantPhotoUrisPermission success, result=' + result);
+  } catch (err) {
+    console.error('grantPhotoUrisPermission failed, error=' + err);
+  }
+}
+```
+
+### cancelPhotoUriPermission<sup>12+</sup>
+
+cancelPhotoUriPermission(appid: string, uri: string, photoPermissionType: PhotoPermissionType): Promise&lt;number&gt;
+
+Cancels the permission for accessing an URI from an appliction. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| appid | string | Yes| ID of the target application.|
+| uri | sring | Yes| URI of the media asset.|
+| photoPermissionType | [PhotoPermissionType](#photopermissiontype12) | Yes| Permission type.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt; | Promise used to return the result. The value **0** means the operation is successful; the value  **-1** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('cancelPhotoUriPermissionDemo');
+
+  try {
+    let result = await phAccessHelper.cancelPhotoUriPermission('com.example.myapplication01',
+        'file://media/Photo/11/IMG_datetime_0001/displayName.jpg',
+        photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO);
+
+    console.info('cancelPhotoUriPermission success, result=' + result);
+  } catch (err) {
+    console.error('cancelPhotoUriPermission failed, error=' + err);
+  }
+}
+```
+
+### createAssetsForAppWithMode<sup>12+</sup>
+
+createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, tokenId: number, authorizationMode: AuthorizationMode, photoCreationConfigs:Array\<PhotoCreationConfig>): Promise\<Array\<string>>
+
+Creates assets with a temporary permission. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**Parameters**
+
+| Name  | Type                                                                  | Mandatory| Description                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| boundleName| string | Yes| Bundle name of the target application.|
+| appName| string | Yes| Name of the target application.|
+| appId| string | Yes| ID of the target application.|
+| tokenId| number| Yes| Unique identifier for the temporary authorization.|
+| authorizationMode| [AuthorizationMode](#authorizationmode12)| Yes| Authorization mode. No confirmation dialog box is displayed when the application with the temporary permission saves media assets in the give period of time.|
+| PhotoCreationConfig| Array\<[PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)> | Yes| Configuration for creating (saving) the media assets in the media library.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise\<Array\<string>> | Promise used to return the URIs of the media asset files in the media library. The target application (identified by **appid**) can write the assets based on the URIs without has been authorized to the application specified by appId to allow the application to write data.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**Example**
+
+```ts
+async function example() {
+  console.info('createAssetsForAppWithModeDemo.');
+
+  try {
+    let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+      {
+        title: '123456',
+        fileNameExtension: 'jpg',
+        photoType: photoAccessHelper.PhotoType.IMAGE,
+        subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
+      }
+    ];
+    let bundleName: string = 'testBundleName';
+    let appName: string = 'testAppName';
+    let appId: string = 'testAppId';
+    let tokenId: number = 537197950;
+    let authorizationMode: photoAccessHelper.AuthorizationMode = photoAccessHelper.AuthorizationMode.SHORT_TIME_AUTHORIZATION;
+    let result: Array<string> = await phAccessHelper.createAssetsForAppWithMode(bundleName, appName, appId, tokenId, authorizationMode, photoCreationConfigs);
+    console.info(`result: ${JSON.stringify(result)}`);
+    console.info('Photo createAssetsForAppWithMode success.');
+  } catch (err) {
+    console.error(`createAssetsForAppWithMode failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## PhotoAsset
 
 Provides APIs for encapsulating file asset attributes.
@@ -1258,8 +1563,9 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 
 > **NOTE**
 >
-> - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
-> - A file can be opened in only one mode at a time. Use **close()** to close the FD returned when it is not required.
+> This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
+
+> **NOTE**<br>A file can be opened in only one mode at a time. Use **close()** to close the FD returned when it is not required.
 
 **System API**: This is a system API.
 
@@ -1272,7 +1578,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | Mode for opening the file, which can be **'r'** (read-only), **'w'** (write-only), or **'rw'** (read/write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file descriptor (FD) of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
 
 **Error codes**
 
@@ -1281,7 +1587,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1312,8 +1618,9 @@ Opens this file asset. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> - This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
-> - A file can be opened in only one mode at a time. Use **close()** to close the FD returned when it is not required.
+> This API is supported since API version 10 and deprecated since API version 11. For security purposes, the API for obtaining the media file handle is no longer provided.
+
+> **NOTE**<br>A file can be opened in only one mode at a time. Use **close()** to close the FD returned when it is not required.
 
 **System API**: This is a system API.
 
@@ -1340,7 +1647,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1396,7 +1703,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1460,7 +1767,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1520,7 +1827,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1586,7 +1893,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1625,7 +1932,7 @@ Obtains the exchangeable image file format (EXIF) data from a JPG image. This AP
 
 The EXIF information obtained are provided by the [image](../apis-image-kit/js-apis-image.md) module. For details about the EXIF information, see [image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7).
 
-> **NOTE**<br>This API returns a JSON string consisting of EXIF data. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys), which are passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -1637,7 +1944,7 @@ The EXIF information obtained are provided by the [image](../apis-image-kit/js-a
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-| Promise&lt;string&gt; | Promise used to return the EXIF data, in the form of a JSON string.|
+| Promise&lt;string&gt; | Promise used to return the EXIF data, in JSON strings.|
 
 **Error codes**
 
@@ -1681,11 +1988,11 @@ async function example() {
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the EXIF data from a JPG image. This API uses an asynchronous callback to return the result.
+Obtains the exchangeable image file format (EXIF) data from a JPG image. This API uses an asynchronous callback to return the result.
 
-The EXIF data obtained are provided by the [image](../apis-image-kit/js-apis-image.md) module. For details about the EXIF data, see [image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7).
+The EXIF data obtained are provided by the [image](../apis-image-kit/js-apis-image.md) module. For details about the EXIF information, see [image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7).
 
-> **NOTE**<br>This API returns a JSON string consisting of EXIF data. The complete EXIF data consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys), which are passed in via **fetchColumns**.
+> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -1697,7 +2004,7 @@ The EXIF data obtained are provided by the [image](../apis-image-kit/js-apis-ima
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the EXIF data, in JSON strings.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the EXIF data, in JSON strings.|
 
 **Error codes**
 
@@ -1752,8 +2059,9 @@ Sets user comment information of an image or video. This API uses a promise to r
 
 > **NOTE**
 >
-> - This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setUserComment](#setusercomment11) instead.
-> - This API can be used to modify the comment information of only images or videos.
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setUserComment](#setusercomment11) instead.
+
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
 **System API**: This is a system API.
 
@@ -1780,7 +2088,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1816,9 +2124,9 @@ Sets user comment information of an image or video. This API uses an asynchronou
 
 > **NOTE**
 >
-> - This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setUserComment](#setusercomment11) instead.
->
-> - This API can be used to modify the comment information of only images or videos.
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setUserComment](#setusercomment11) instead.
+
+**NOTE**<br>This API can be used to modify the comment information of only images or videos.
 
 **System API**: This is a system API.
 
@@ -1840,7 +2148,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1882,7 +2190,7 @@ Sets the pending state for this image or video asset. This API uses an asynchron
 
 The pending state can be removed only through **setPending(false)**. You can use **photoAsset.get(photoAccessHelper.PhotoKeys.PENDING)** to check whether the asset state is pending. If the asset is in pending state, **true** is returned. Otherwise, **false** is returned.
 
-> **NOTE**<br>**setPending** can be used only during the file creation process. Once the FD is closed, **setPending(true)** cannot be used to set the pending state for the file.
+**NOTE**<br>**setPending** can be used only during the file creation process. Once the FD is closed, **setPending(true)** cannot be used to set the pending state for the file.
 
 **System API**: This is a system API.
 
@@ -1905,7 +2213,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **Example**
@@ -1945,7 +2253,7 @@ Sets the pending state for this image or video asset. This API uses a promise to
 
 The pending state can be removed only through **setPending(false)**. You can use **photoAsset.get(photoAccessHelper.PhotoKeys.PENDING)** to check whether the asset state is pending. If the asset is in pending state, **true** is returned. Otherwise, **false** is returned.
 
-> **NOTE**<br>**setPending** can be used only during the file creation process. Once the FD is closed, **setPending(true)** cannot be used to set the pending state for the file.
+**NOTE**<br>**setPending** can be used only during the file creation process. Once the FD is closed, **setPending(true)** cannot be used to set the pending state for the file.
 
 **System API**: This is a system API.
 
@@ -1973,7 +2281,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **Example**
@@ -2011,7 +2319,7 @@ Checks whether this image or video asset is edited. This API uses an asynchronou
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback invoked to return the result.|
 
 **Error codes**
 
@@ -2131,7 +2439,7 @@ If the asset has never been edited, an empty string is returned.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the edit data obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the edit data obtained.|
 
 **Error codes**
 
@@ -2298,7 +2606,7 @@ Opens the source file to obtain the FD. This API uses an asynchronous callback t
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the FD.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the FD.|
 
 **Error codes**
 
@@ -2399,7 +2707,7 @@ Commits the edited image or video asset. This API uses an asynchronous callback 
 
 The edited file is transferred to the media library based on the URI, which is **FileUri** of the edited file in the application sandbox directory. For details, see [File URI](../apis-core-file-kit/js-apis-file-fileuri.md).
 
-> **NOTE**<br>The commit operation overwrites the previous edited data.
+**NOTE**<br>The commit operation overwrites the previous edited data.
 
 **System API**: This is a system API.
 
@@ -2423,7 +2731,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **Example**
@@ -2464,7 +2772,7 @@ Commits the edited image or video asset. This API uses a promise to return the r
 
 The edited file is transferred to the media library based on the URI, which is **FileUri** of the edited file in the application sandbox directory. For details, see [File URI](../apis-core-file-kit/js-apis-file-fileuri.md).
 
-> **NOTE**<br>The commit operation overwrites the previous edited data.
+**NOTE**<br>The commit operation overwrites the previous edited data.
 
 **System API**: This is a system API.
 
@@ -2493,7 +2801,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **Example**
@@ -2527,7 +2835,7 @@ revertToOriginal(callback: AsyncCallback&lt;void&gt;)
 
 Reverts to the state of the file before being edited. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>This API deletes the edited data and edited image or video asset, and the deleted data cannot be restored. Exercise caution when using this API.
+**NOTE**<br>This API deletes the edited data and edited image or video asset, and the deleted data cannot be restored. Exercise caution when using this API.
 
 **System API**: This is a system API.
 
@@ -2586,7 +2894,7 @@ revertToOriginal(): Promise&lt;void&gt;
 
 Reverts to the state of the file before being edited. This API uses a promise to return the result.
 
-> **NOTE**<br>This API deletes the edited data and edited image or video asset, and the deleted data cannot be restored. Exercise caution when using this API.
+**NOTE**<br>This API deletes the edited data and edited image or video asset, and the deleted data cannot be restored. Exercise caution when using this API.
 
 **System API**: This is a system API.
 
@@ -2717,7 +3025,7 @@ Obtains the thumbnails of an asset based on the specified options. This API uses
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
 | options | [RequestPhotoOptions](#requestphotooptions11) | Yes   | Options for obtaining the asset thumbnail.|
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback used to return the thumbnails obtained. The callback may be invoked more than once, depending on **options**.|
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked to return the thumbnails obtained. The callback may be invoked more than once, depending on **options**.|
 
 **Return value**
 
@@ -2733,7 +3041,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission verification failed, usually the result returned by VerifyAccessToken.        |
 | 202   | Permission verification failed, application which is not a system application uses system API.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **Example**
@@ -2797,7 +3105,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission verification failed, usually the result returned by VerifyAccessToken.        |
 | 202   | Permission verification failed, application which is not a system application uses system API.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **Example**
@@ -2862,7 +3170,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | :------- | :-------------------------------- |
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011 | System inner fail.                |
 
 **Example**
@@ -2926,7 +3234,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2996,7 +3304,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3040,7 +3348,7 @@ Deletes image or video assets from the trash. Before the operation, ensure that 
 >
 > This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.deleteAssets](#deleteassets11) instead.
 
-> **NOTE**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
+**NOTE**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
 **System API**: This is a system API.
 
@@ -3062,7 +3370,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3105,9 +3413,9 @@ Deletes image or video assets from the trash. Before the operation, ensure that 
 
 > **NOTE**
 >
-> - This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.deleteAssets](#deleteassets11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.deleteAssets](#deleteassets11) instead.
 
-> - This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
+**NOTE**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
 **System API**: This is a system API.
 
@@ -3134,7 +3442,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3176,9 +3484,9 @@ Sets the album cover. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> - This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.setCoverUri](#setcoveruri11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.setCoverUri](#setcoveruri11) instead.
 
-> - This API can be used to set the user album cover, but not the system album cover.
+**NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
 
 **System API**: This is a system API.
 
@@ -3200,7 +3508,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3243,9 +3551,9 @@ Sets the album cover. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> - This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.setCoverUri](#setcoveruri11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAlbumChangeRequest.setCoverUri](#setcoveruri11) instead.
 
-> - This API can be used to set the user album cover, but not the system album cover.
+**NOTE**<br>This API can be used to set the user album cover, but not the system album cover.
 
 **System API**: This is a system API.
 
@@ -3272,7 +3580,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3317,9 +3625,9 @@ Represents the edited media asset data.
 
 | Name          | Type   | Readable  | Writable | Description  |
 | ------------ | ------ | ---- | ---- | ------- |
-| compatibleFormat | string | Yes   | Yes   | Format of the edited data.<br>**System API**: This is a system API.   |
-| formatVersion | string | Yes   | Yes  | Version of the data format.<br>**System API**: This is a system API.   |
-| data | string | Yes   | Yes  | Content edited.<br>**System API**: This is a system API.   |
+| compatibleFormat | string | Yes   | Yes   | Format of the edited data. **System API**: This is a system API.   |
+| formatVersion | string | Yes   | Yes  | Version of the data format. **System API**: This is a system API.   |
+| data | string | Yes   | Yes  | Content edited. **System API**: This is a system API.   |
 
 ### constructor<sup>11+</sup>
 
@@ -3345,7 +3653,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.          |
 
 **Example**
@@ -3369,7 +3677,7 @@ Creates an asset change request with the specified file name.
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -3396,7 +3704,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000001      | Invalid display name.         |
 | 14000011       | System inner fail.         |
 
@@ -3442,7 +3750,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -3493,7 +3801,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -3544,7 +3852,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -3596,7 +3904,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -3655,8 +3963,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID   | Error Message                             |
 |----------|-----------------------------------|
 | 202      | Called by non-system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 14000011 | System inner fail.                |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | System inner fail.                | 
 | 14000016 | Operation Not Support.            |
 
 **Example**
@@ -3706,7 +4014,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      | Called by non-system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011 |  System inner fail.         |
 
 **Example**
@@ -3757,7 +4065,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -3800,7 +4108,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016       | Operation Not Support.         |
 
@@ -3856,7 +4164,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.   |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.          |
 
 **Example**
@@ -3900,7 +4208,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -3951,7 +4259,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -4002,7 +4310,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -4044,7 +4352,7 @@ Creates a **MediaAlbumChangeRequest** instance.
 
 The album name must comply with the following specifications:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -4072,7 +4380,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **Example**
@@ -4126,7 +4434,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied.         |
 | 202   |  Called by non-system application.  |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011 |  System inner fail.         |
 
 **Example**
@@ -4175,7 +4483,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -4230,7 +4538,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016 |  Operation Not Support.     |
 
@@ -4290,7 +4598,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016 |  Operation Not Support.     |
 
@@ -4328,7 +4636,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 Permanently deletes assets from the trash.
 
-> **NOTE**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
+**NOTE**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
 **System API**: This is a system API.
 
@@ -4347,7 +4655,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016 |  Operation Not Support.     |
 
@@ -4402,7 +4710,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -4498,7 +4806,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016       | Operation Not support.         |
 
@@ -4559,7 +4867,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016       | Operation Not support.         |
 
@@ -4618,7 +4926,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **Example**
@@ -4687,7 +4995,7 @@ async function example() {
 
 ## HighlightAlbum<sup>12+</sup>
 
-Provides APIs for managing a highlights album, which is an automatically generated collection of memorable photos or videos.
+Provides APIs for managing the **Highlights** album, which is an automatically generated collection of memorable photos or videos.
 
 **System API**: This is a system API.
 
@@ -4697,7 +5005,7 @@ Provides APIs for managing a highlights album, which is an automatically generat
 
 constructor(album: Album)
 
-A constructor used to create a highlights album instance.
+A constructor used to create a **Highlights** album instance.
 
 **System API**: This is a system API.
 
@@ -4707,7 +5015,7 @@ A constructor used to create a highlights album instance.
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| album | [Album](#album) | Yes  | Highlights album to create.|
+| album | [Album](#album) | Yes  | **Highlights** album to create.|
 
 **Error codes**
 
@@ -4716,7 +5024,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.   |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011 | Internal system error.            |
 
 **Example**
@@ -4743,7 +5051,7 @@ async function example() {
 
 getHighlightAlbumInfo(type: HighlightAlbumInfoType): Promise&lt;string&gt;
 
-Obtains specific information about this highlights album.
+Obtains specific information about the **Highlights** album.
 
 **System API**: This is a system API.
 
@@ -4765,7 +5073,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | :------- | :-------------------------------- |
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011 | Internal system error.            |
 
 **Example**
@@ -4823,7 +5131,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | :------- | :-------------------------------- |
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011 | Internal system error.            |
 
 **Example**
@@ -4857,7 +5165,7 @@ async function example() {
 
 setHighlightUserActionData(type: HighlightUserActionType, actionData: number): Promise&lt;void&gt;
 
-Sets the user action data for this highlights album.
+Sets the user behavior data for the **Highlights** album.
 
 **System API**: This is a system API.
 
@@ -4869,8 +5177,8 @@ Sets the user action data for this highlights album.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| type       | [HighlightUserActionType](#highlightuseractiontype12) | Yes   | Type of the user action data to set. |
-| actionData | number | Yes   | Action data to set. |
+| type       | [HighlightUserActionType](#highlightuseractiontype12) | Yes   | Type of the user behavior data to set.|
+| actionData | number | Yes   | Behavior data.|
 
 **Error codes**
 
@@ -4880,7 +5188,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | :------- | :-------------------------------- |
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011 | Internal system error.            |
 
 **Example**
@@ -4917,7 +5225,7 @@ Enumerates the [PhotoAsset](#photoasset) types.
 
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| SCREENSHOT |  1 |  Screenshot and screen recording file.<br>**System API**: This is a system API.|
+| SCREENSHOT |  1 |  Screenshot and screen recording file. **System API**: This is a system API.|
 
 ## PositionType
 
@@ -4940,7 +5248,7 @@ Enumerates the album types.
 
 | Name                 | Value   | Description                       |
 | ------------------- | ---- | ------------------------- |
-| SMART<sup>11+</sup> | 4096 | Smart analysis album.<br>**System API**: This is a system API.|
+| SMART<sup>11+</sup> | 4096 | Smart analysis album. **System API**: This is a system API.|
 
 ## AlbumSubtype
 
@@ -4950,20 +5258,19 @@ Enumerate the album subtypes.
 
 | Name                               | Value         | Description                             |
 | --------------------------------- | ---------- | ------------------------------- |
-| HIDDEN                            | 1027       | Hidden album.<br>**System API**: This is a system API.        |
-| TRASH                             | 1028       | Trash.<br>**System API**: This is a system API.         |
-| SCREENSHOT                        | 1029       | Album for screenshots and screen recording files.<br>**System API**: This is a system API.     |
-| CAMERA                            | 1030       | Album for photos and videos taken by the camera.<br>**System API**: This is a system API.|
-| IMAGE<sup>11+</sup>               | 1031       | Album for images.<br>**System API**: This is a system API.      |
-| SOURCE\_GENERIC<sup>11+</sup>     | 2049       | Source album.<br>**System API**: This is a system API.        |
-| CLASSIFY<sup>11+</sup>            | 4097       | Classified album.<br>**System API**: This is a system API.        |
-| GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | Geographic location album.<br>**System API**: This is a system API.        |
-| GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | City album.<br>**System API**: This is a system API.        |
-| SHOOTING\_MODE<sup>11+</sup>      | 4101       | Shooting mode album.<br>**System API**: This is a system API.      |
-| PORTRAIT<sup>11+</sup>            | 4102       | Portrait album.<br>**System API**: This is a system API.        |
-| GROUP_PHOTO<sup>12+</sup>         | 4103       | Group photo album.<br>**System API**: This is a system API.        |
-| HIGHLIGHT<sup>12+</sup>           | 4104       | Highlights album.<br>**System API**: This is a system API.    |
-| HIGHLIGHT_SUGGESTIONS<sup>12+</sup> | 4105     | Recommended highlights album.<br>**System API**: This is a system API. |
+| HIDDEN                            | 1027       | Hidden album. **System API**: This is a system API.        |
+| TRASH                             | 1028       | Trash. **System API**: This is a system API.         |
+| SCREENSHOT                        | 1029       | Album for screenshots and screen recording files. **System API**: This is a system API.     |
+| CAMERA                            | 1030       | Album for photos and videos taken by the camera. **System API**: This is a system API.|
+| SOURCE\_GENERIC<sup>11+</sup>     | 2049       | Source album. **System API**: This is a system API.        |
+| CLASSIFY<sup>11+</sup>            | 4097       | Classified album. **System API**: This is a system API.        |
+| GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | Geographic location album. **System API**: This is a system API.        |
+| GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | City album. **System API**: This is a system API.        |
+| SHOOTING\_MODE<sup>11+</sup>      | 4101       | Shooting mode album. **System API**: This is a system API.      |
+| PORTRAIT<sup>11+</sup>            | 4102       | Portrait album. **System API**: This is a system API.        |
+| GROUP_PHOTO<sup>12+</sup>         | 4103       | Group photo album. **System API**: This is a system API.        |
+| HIGHLIGHT<sup>12+</sup>           | 4104       | Highlights album. **System API**: This is a system API.        |
+| HIGHLIGHT_SUGGESTIONS<sup>12+</sup> | 4105     | Highlights suggestion album. **System API**: This is a system API.        |
 
 ## RequestPhotoType<sup>11+</sup>
 
@@ -4987,17 +5294,17 @@ Defines the key information about an image or video file.
 
 | Name         | Value             | Description                                                      |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| POSITION  | 'position'            | File location type.<br>**System API**: This is a system API.                              |
-| DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time.<br>**System API**: This is a system API.                |
-| HIDDEN  | 'hidden'            | Whether the file is hidden.<br>**System API**: This is a system API.                              |
+| POSITION  | 'position'            | File location type. <br>**System API**: This is a system API.                              |
+| DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time. <br>**System API**: This is a system API.                |
+| HIDDEN  | 'hidden'            | Whether the file is hidden. <br>**System API**: This is a system API.                              |
 | CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) <br>**System API**: This is a system API.           |
-| USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information.<br>**System API**: This is a system API.          |
-| DATE_YEAR<sup>11+</sup>  | 'date_year'            | Year when the file was created.<br>**System API**: This is a system API.          |
-| DATE_MONTH<sup>11+</sup>  | 'date_month'            | Month when the file was created.<br>**System API**: This is a system API.          |
-| DATE_DAY<sup>11+</sup>  | 'date_day'            | Date when the file was created.<br>**System API**: This is a system API.          |
-| PENDING<sup>11+</sup>  | 'pending'            | Pending state.<br>**System API**: This is a system API.          |
+| USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information. <br>**System API**: This is a system API.          |
+| DATE_YEAR<sup>11+</sup>  | 'date_year'            | Year when the file was created. <br>**System API**: This is a system API.          |
+| DATE_MONTH<sup>11+</sup>  | 'date_month'            | Month when the file was created. <br>**System API**: This is a system API.          |
+| DATE_DAY<sup>11+</sup>  | 'date_day'            | Date when the file was created. <br>**System API**: This is a system API.          |
+| PENDING<sup>11+</sup>  | 'pending'            | Pending state. <br>**System API**: This is a system API.          |
 | DATE_TRASHED_MS<sup>12+</sup>  | 'date_trashed_ms'  | Date when the file was deleted. The value is the number of milliseconds elapsed since the Epoch time. **System API**: This is a system API.<br>**NOTE**: The photos queried cannot be sorted based on this field.|
-| MOVING_PHOTO_EFFECT_MODE<sup>12+</sup>  | 'moving_photo_effect_mode' | Effect of the moving photo.<br>**System API**: This is a system API.|
+| MOVING_PHOTO_EFFECT_MODE<sup>12+</sup>  | 'moving_photo_effect_mode' | Effect of the moving photo. <br>**System API**: This is a system API.|
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -5046,7 +5353,7 @@ Represents request options.
 
 | Name                  | Type                             | Readable| Writable| Description                                             |
 | ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
-| sourceMode           | [SourceMode](#sourcemode11)     | Yes  | Yes  | Type of the asset file requested, which can be the original file or edited file.<br>**System API**: This is a system API.|
+| sourceMode           | [SourceMode](#sourcemode11)     | Yes  | Yes  | Type of the asset file requested, which can be the original file or edited file. <br>**System API**: This is a system API.|
 
 ## PhotoProxy<sup>11+</sup>
 
@@ -5085,7 +5392,8 @@ Enumerates the types of the resources to write.
 
 | Name |  Value|  Description|
 | ----- |  ---- |  ---- |
-| PHOTO_PROXY |  3 |  Photo proxy.<br>**System API**: This is a system API.|
+| PHOTO_PROXY |  3 |  Photo proxy. <br>**System API**: This is a system API.|
+| PRIVATE_MOVING_PHOTO_RESOURCE<sup>12+</sup> |  4 |  Private moving photo. <br>**System API**: This is a system API.|
 
 ## DefaultChangeUri
 
@@ -5095,7 +5403,7 @@ Enumerates the **DefaultChangeUri** subtypes.
 
 | Name             | Value                     | Description                                                        |
 | ----------------- | ----------------------- | ------------------------------------------------------------ |
-| DEFAULT_HIDDEN_ALBUM_URI<sup>11+</sup>  | 'file://media/HiddenAlbum' | URI of an album in the hidden albums that are displayed by album, that is, the URI of an album with hidden files. Such albums do not include the preset hidden album and the albums in the trash. This URI is used to subscribe to the change notifications of the hidden albums displayed by album.<br>**System API**: This is a system API.|
+| DEFAULT_HIDDEN_ALBUM_URI<sup>11+</sup>  | 'file://media/HiddenAlbum' | URI of an album in the hidden albums that are displayed by album, that is, the URI of an album with hidden files. Such albums do not include the preset hidden album and the albums in the trash. This URI is used to subscribe to the change notifications of the hidden albums displayed by album. <br>**System API**: This is a system API.|
 
 ## SourceMode<sup>11+</sup>
 
@@ -5109,6 +5417,17 @@ Enumerates the types of the file to read.
 | ----- |  ---- |  ---- |
 | ORIGINAL_MODE |  0 |  Original file.|
 | EDITED_MODE |  1 |  Edited file.|
+## AuthorizationMode<sup>12+</sup>
+
+Enumerates the authorization modes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| SHORT_TIME_AUTHORIZATION|  0 |  Temporary authorization.|
 
 ## AnalysisType<sup>11+</sup>
 
@@ -5118,20 +5437,20 @@ Enumerates the smart analysis types.
 
 | Name                           | Value | Description      |
 | :---------------------------- | :- | :------- |
-| ANALYSIS\_AESTHETICS\_SCORE   | 0  | Aesthetics score.<br>**System API**: This is a system API.   |
-| ANALYSIS\_LABEL               | 1  | Label.<br>**System API**: This is a system API.   |
-| ANALYSIS\_OCR                 | 2  | Optical character recognition (OCR) analysis.<br>**System API**: This is a system API.   |
-| ANALYSIS\_FACE                | 3  | Facial detection analysis.<br>**System API**: This is a system API.   |
-| ANALYSIS\_OBJECT              | 4  | Object detection analysis.<br>**System API**: This is a system API.   |
-| ANALYSIS\_RECOMMENDATION      | 5  | Recommendation analysis.<br>**System API**: This is a system API.   |
-| ANALYSIS\_SEGMENTATION        | 6  | Segmentation analysis.<br>**System API**: This is a system API.   |
-| ANALYSIS\_COMPOSITION         | 7  | Aesthetic composition analysis.<br>**System API**: This is a system API.  |
-| ANALYSIS\_SALIENCY            | 8  | Salience analysis.<br>**System API**: This is a system API.  |
-| ANALYSIS\_DETAIL\_ADDRESS     | 9  | Detailed address analysis.<br>**System API**: This is a system API.   |
-| ANALYSIS\_HUMAN\_FACE\_TAG<sup>12+</sup>    | 10 | Face clustering analysis.<br>**System API**: This is a system API.   |
-| ANALYSIS\_HEAD\_POSITION<sup>12+</sup>      | 11 | Analysis of the position of a person's or pet's head.<br>**System API**: This is a system API.   |
-| ANALYSIS\_BONE\_POSE<sup>12+</sup>        | 12 | Analysis of the position of skeletal elements (bones) in a human body.<br>**System API**: This is a system API.   |
-| ANALYSIS\_VIDEO\_LABEL<sup>12+</sup>        | 13 | Video label analysis.<br>**System API**: This is a system API.   |
+| ANALYSIS\_AESTHETICS\_SCORE   | 0  | Aesthetics score. <br>**System API**: This is a system API.   |
+| ANALYSIS\_LABEL               | 1  | Label. <br>**System API**: This is a system API.   |
+| ANALYSIS\_OCR                 | 2  | Optical character recognition (OCR) analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_FACE                | 3  | Facial detection analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_OBJECT              | 4  | Object detection analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_RECOMMENDATION      | 5  | Recommendation analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_SEGMENTATION        | 6  | Segmentation analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_COMPOSITION         | 7  | Aesthetic composition analysis. <br>**System API**: This is a system API.  |
+| ANALYSIS\_SALIENCY            | 8  | Salience analysis. <br>**System API**: This is a system API.  |
+| ANALYSIS\_DETAIL\_ADDRESS     | 9  | Detailed address analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_HUMAN\_FACE\_TAG<sup>12+</sup>    | 10 | Face clustering analysis. <br>**System API**: This is a system API.   |
+| ANALYSIS\_HEAD\_POSITION<sup>12+</sup>      | 11 | Analysis of the position of a person's or pet's head. <br>**System API**: This is a system API.   |
+| ANALYSIS\_BONE\_POSE<sup>12+</sup>        | 12 | Analysis of the position of skeletal elements (bones) in a human body. <br>**System API**: This is a system API.   |
+| ANALYSIS\_VIDEO\_LABEL<sup>12+</sup>        | 13 | Video label analysis. <br>**System API**: This is a system API.   |
 
 ## HighlightAlbumInfoType<sup>12+</sup>
 
@@ -5148,7 +5467,7 @@ Enumerates the types of the highlights album information.
 
 ## HighlightUserActionType<sup>12+</sup>
 
-Enumerates the types of the user action data.
+Enumerates the user behavior types of the highlights album.
 
 **System API**: This is a system API.
 
@@ -5158,14 +5477,14 @@ Enumerates the types of the user action data.
 | :---------------------------- | :- | :------- |
 | INSERTED\_PIC\_COUNT          | 0  | Number of inserted pictures.   |
 | REMOVED\_PIC\_COUNT           | 1  | Number of removed pictures.   |
-| SHARED\_SCREENSHOT\_COUNT     | 2  | Number of times that a full-length image in a highlights album is shared. |
+| SHARED\_SCREENSHOT\_COUNT     | 2  | Number of times that a full-length image in a highlights album is shared.   |
 | SHARED\_COVER\_COUNT          | 3  | Number of times that a highlights cover is shared.   |
 | RENAMED\_COUNT                | 4  | Number of times that a highlights album is renamed.   |
-| CHANGED\_COVER\_COUNT         | 5  | Number of times that a cover is changed.  |
-| RENDER\_VIEWED\_TIMES         | 100  | Number of times that the pictures in a highlights album are played. |
-| RENDER\_VIEWED\_DURATION      | 101  | Time used to play the pictures in a highlights album. |
-| ART\_LAYOUT\_VIEWED\_TIMES    | 102  | Number of times that a highlights album is viewed. |
-| ART\_LAYOUT\_VIEWED\_DURATION | 103  | Time used to view a highlights album. |
+| CHANGED\_COVER\_COUNT         | 5  | Number of times that a cover is changed.   |
+| RENDER\_VIEWED\_TIMES         | 100  | Number of times that the pictures in a highlights album are played.   |
+| RENDER\_VIEWED\_DURATION      | 101  | Time used to play the pictures in a highlights album.  |
+| ART\_LAYOUT\_VIEWED\_TIMES    | 102  | Number of times that a highlights album is viewed.  |
+| ART\_LAYOUT\_VIEWED\_DURATION | 103  | Time used to view a highlights album.   |
 
 ## MovingPhotoEffectMode<sup>12+</sup>
 
@@ -5179,6 +5498,40 @@ Enumerates the effects of a moving photo.
 | :---------------------------- | :- | :------- |
 | DEFAULT          | 0  | Default effect.|
 | BOUNCE\_PLAY     | 1  | Back-and-forth motion.|
-| LOOP\_PLAY       | 2  | Continuously repeated animation. |
+| LOOP\_PLAY       | 2  | Continuously repeated animation.|
 | LONG\_EXPOSURE   | 3  | Long exposure. |
 | MULTI\_EXPOSURE  | 4  | Multiple exposures. |
+| CINEMA\_GRAPH  | 5  | Cinemagraph. |
+| IMAGE\_ONLY  | 10  | Image only. |
+
+## PhotoPermissionType<sup>12+</sup>
+
+Enumerates the types of permissions for accessing media assets.
+
+The permissions include temporary read permission and persistent read permission. The temporary read permission will be removed when the application exits, while the persisten read permission will not.
+
+For the same media asset and application, the persistent read permission overwrites the temporary read permission. The temporary read permission does not overwrite the persistent read permission.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| TEMPORARY_READ_IMAGEVIDEO |  0 |  Temporary read permission.|
+| PERSISTENT_READ_IMAGEVIDEO |  1 |  Persistent read permission.|
+
+## HideSensitiveType<sup>12+</sup>
+
+Enumerates the types of media resource information to be hidden from an application.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| HIDE_LOCATION_AND_SHOOTING_PARAM |  0 |  Geographical location and shooting parameters.|
+| HIDE_LOCATION_ONLY |  1 |  Geographical location information.|
+| HIDE_SHOOTING_PARAM_ONLY |  2 |  Shooting parameters.|
+| NO_HIDE_SENSITIVE_TYPE |  3 |  Do not hide any information.|

@@ -1,5 +1,3 @@
-
-
 # @ohos.web.webview (Webview)
 
 @ohos.web.webview提供web控制能力，[Web](ts-basic-components-web.md)组件提供网页显示的能力。
@@ -75,7 +73,7 @@ struct WebComponent {
 
 postMessageEvent(message: WebMessage): void
 
-发送消息。完整示例代码参考[postMessage](#postmessage)。
+发送消息，必须先调用[onMessageEvent](#onmessageevent)，否则会发送失败。完整示例代码参考[postMessage](#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -92,6 +90,7 @@ postMessageEvent(message: WebMessage): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100010 | Failed to post messages through the port. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -145,6 +144,7 @@ onMessageEvent(callback: (result: WebMessage) => void): void
 | 错误码ID | 错误信息                                        |
 | -------- | ----------------------------------------------- |
 | 17100006 | Failed to register a message event for the port.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.|
 
 **示例：**
 
@@ -200,7 +200,7 @@ struct WebComponent {
 
 postMessageEventExt(message: WebMessageExt): void
 
-发送消息。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+发送消息，必须先调用[onMessageEventExt](#onmessageeventext10)，否则会发送失败。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -217,6 +217,7 @@ postMessageEventExt(message: WebMessageExt): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100010 | Failed to post messages through the port. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### onMessageEventExt<sup>10+</sup>
 
@@ -239,6 +240,7 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 | 错误码ID | 错误信息                                        |
 | -------- | ----------------------------------------------- |
 | 17100006 | Failed to register a message event for the port. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -384,7 +386,7 @@ struct WebComponent {
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .onPageEnd(() => {
-          console.log("In ArkTS side message onPageEnd init mesaage channel");
+          console.log("In ArkTS side message onPageEnd init message channel");
           // 1. 创建消息端口
           this.ports = this.controller.createWebMessagePorts(true);
           // 2. 发送端口1到HTML5
@@ -676,7 +678,12 @@ struct WebComponent {
 
 static initializeWebEngine(): void
 
-在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。
+在 Web 组件初始化之前，通过此接口加载 Web 引擎的动态库文件，以提高启动性能。自动预连接历史访问过的高频网站。
+
+> **说明：**
+>
+> - initializeWebEngine不支持在异步线程中调用，否则会造成崩溃。
+> - initializeWebEngine全局生效，在整个APP生命周期中调用一次即可，不需要重复调用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -748,7 +755,9 @@ export default class EntryAbility extends UIAbility {
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-设置是否启用网页调试功能。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+设置是否启用网页调试功能，默认不开启。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
+
+安全提示：启用网页调试功能可以让用户检查修改Web页面内部状态，存在安全隐患，不建议在应用正式发布版本中启用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -818,6 +827,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100002 | Invalid url.                                                 |
 | 17100003 | Invalid resource path or file type.                          |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -905,7 +915,7 @@ struct WebComponent {
 }
 ```
 
-2.resources协议。
+2.resources协议，适用Webview加载带有"#"路由的链接。
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
@@ -968,7 +978,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 >
 > 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
 > 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
-> 若html中的富文本中带有注入#等特殊字符，建议使用带有两个空格的loadData函数，将baseUrl和historyUrl置为空。
+> 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
 
 **错误码：**
 
@@ -977,6 +987,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -1279,6 +1290,8 @@ onInactive(): void
 
 调用此接口通知Web组件进入未激活状态。开发者可以在此回调中实现应用失去焦点时应表现的恰当行为。
 
+此状态下会尽可能的暂停任何可以安全暂停的内容，例如动画和地理位置。但不会暂停JavaScript，要全局暂停JavaScript，请使用[pauseAllTimers](#pausealltimers12)。要重新激活Web组件，请调用[onActive](#onactive)。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **错误码：**
@@ -1387,6 +1400,7 @@ accessStep(step: number): boolean
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -1525,6 +1539,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 > - 请尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册。在非可信的Web组件中注入JavaScript对象，可能会导致应用被恶意攻击。
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 > - 同一方法在同步与异步列表中重复注册，将默认异步调用。
+> - 同步函数列表和异步函数列表不可同时为空，否则此次调用接口注册失败。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1545,6 +1560,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -1694,6 +1710,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -1775,6 +1792,7 @@ runJavaScript(script: string): Promise\<string>
 | 类型            | 说明                                                |
 | --------------- | --------------------------------------------------- |
 | Promise\<string> | Promise实例，返回脚本执行的结果，执行失败返回null。 |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **错误码：**
 
@@ -1783,6 +1801,7 @@ runJavaScript(script: string): Promise\<string>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -1861,6 +1880,7 @@ runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessa
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -2075,6 +2095,7 @@ runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -2271,6 +2292,7 @@ deleteJavaScriptRegister(name: string): void
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100008 | Failed to delete JavaScriptProxy because it does not exist.                               |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -2373,6 +2395,7 @@ zoom(factor: number): void
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enabled.                                         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -2425,6 +2448,7 @@ searchAllAsync(searchString: string): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -2539,6 +2563,7 @@ searchNext(forward: boolean): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -2685,6 +2710,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -2739,6 +2765,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -3119,6 +3146,8 @@ struct WebComponent {
 getUserAgent(): string
 
 获取当前默认用户代理。
+
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3546,6 +3575,7 @@ backOrForward(step: number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -3578,9 +3608,9 @@ struct WebComponent {
 
 ### scrollTo
 
-scrollTo(x:number, y:number): void
+scrollTo(x:number, y:number, duration?:number): void
 
-将页面滚动到指定的绝对位置。
+在指定时间内，将页面滚动到指定的绝对位置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3590,6 +3620,7 @@ scrollTo(x:number, y:number): void
 | ------ | -------- | ---- | ---------------------- |
 | x   | number   | 是   | 绝对位置的水平坐标，当传入数值为负数时，按照传入0处理。 |
 | y   | number   | 是   | 绝对位置的垂直坐标，当传入数值为负数时，按照传入0处理。|
+| duration<sup>13+</sup> | number | 否 | 滚动动画时间。<br>单位：ms。<br>不传入为无动画，当传入数值为负数或传入0时，按照不传入处理。 |
 
 **错误码：**
 
@@ -3598,6 +3629,7 @@ scrollTo(x:number, y:number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -3616,7 +3648,15 @@ struct WebComponent {
       Button('scrollTo')
         .onClick(() => {
           try {
-            this.controller.scrollTo(50, 50);
+            this.controller.scrollTo(50, 50, 500);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Button('stopScroll')
+        .onClick(() => {
+          try {
+            this.controller.scrollBy(0, 0, 1); //如果想停止当前scroll产生的动画，可再次生成一个1ms的动画去打断该动画。
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3636,8 +3676,8 @@ struct WebComponent {
     <title>Demo</title>
     <style>
         body {
-            width:3000px;
-            height:3000px;
+            width:2000px;
+            height:2000px;
             padding-right:170px;
             padding-left:170px;
             border:5px solid blueviolet
@@ -3652,9 +3692,9 @@ Scroll Test
 
 ### scrollBy
 
-scrollBy(deltaX:number, deltaY:number): void
+scrollBy(deltaX:number, deltaY:number,duration?:number): void
 
-将页面滚动指定的偏移量。
+在指定时间内将页面滚动指定的偏移量。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3664,6 +3704,7 @@ scrollBy(deltaX:number, deltaY:number): void
 | ------ | -------- | ---- | ---------------------- |
 | deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
 | deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+| duration<sup>13+</sup> | number | 否 | 滚动动画时间。<br>单位：ms。<br>不传入为无动画，当传入数值为负数或传入0时，按照不传入处理。 |
 
 **错误码：**
 
@@ -3672,6 +3713,11 @@ scrollBy(deltaX:number, deltaY:number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
+> **说明：**
+>
+> 嵌套滚动场景中，调用scrollBy不会触发父组件的嵌套滚动。
 
 **示例：**
 
@@ -3690,7 +3736,102 @@ struct WebComponent {
       Button('scrollBy')
         .onClick(() => {
           try {
-            this.controller.scrollBy(50, 50);
+            this.controller.scrollBy(50, 50, 500);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('stopScroll')
+        .onClick(() => {
+          try {
+            this.controller.scrollBy(0, 0, 1); //如果想停止当前scroll产生的动画，可再次生成一个1ms的动画去打断该动画。
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+    }
+  }
+}
+```
+
+加载的html文件。
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        body {
+            width:2000px;
+            height:2000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+        }
+    </style>
+</head>
+<body>
+Scroll Test
+</body>
+</html>
+```
+### scrollByWithResult<sup>12+</sup>
+
+scrollByWithResult(deltaX: number, deltaY: number): boolean
+
+将页面滚动指定的偏移量，返回值表示此次滚动是否执行成功。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明               |
+| ------ | -------- | ---- | ---------------------- |
+| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。 |
+| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。 |
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| boolean | 当前网页是否可以滑动，默认为false。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
+> **说明：**
+>
+> - 返回值场景：Web页面处于触摸中状态时，返回false，否则返回true。
+> - 同层渲染场景中，Web的同层渲染区域处于触摸中状态时，返回值为true。
+> - 嵌套滚动场景中，调用scrollByWithResult不会触发父组件的嵌套滚动。
+> - 此接口不保证滑动帧率性能。
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('scrollByWithResult')
+        .onClick(() => {
+          try {
+          let result = this.controller.scrollByWithResult(50, 50);
+          console.log("original result: " + result);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -3710,8 +3851,8 @@ struct WebComponent {
     <title>Demo</title>
     <style>
         body {
-            width:3000px;
-            height:3000px;
+            width:2000px;
+            height:2000px;
             padding-right:170px;
             padding-left:170px;
             border:5px solid blueviolet
@@ -3723,7 +3864,6 @@ Scroll Test
 </body>
 </html>
 ```
-
 ### slideScroll
 
 slideScroll(vx:number, vy:number): void
@@ -3746,6 +3886,7 @@ slideScroll(vx:number, vy:number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -3923,6 +4064,7 @@ setNetworkAvailable(enable: boolean): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -3995,6 +4137,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -4051,6 +4194,7 @@ hasImage(): Promise\<boolean>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -4105,6 +4249,7 @@ removeCache(clearRom: boolean): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -4155,6 +4300,7 @@ pageUp(top: boolean): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -4205,6 +4351,7 @@ pageDown(bottom: boolean): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -4379,6 +4526,7 @@ restoreWebState(state: Uint8Array): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -4684,6 +4832,7 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -5083,6 +5232,8 @@ setCustomUserAgent(userAgent: string): void
 
 当Web组件src设置为空字符串时，建议先调用setCustomUserAgent方法设置UserAgent，再通过loadUrl加载具体页面。
 
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
+
 > **说明：**
 >
 >当Web组件src设置了url，且未在onControllerAttached回调事件中设置UserAgent。再调用setCustomUserAgent方法时，可能会出现加载的页面与实际设置UserAgent不符的异常现象。
@@ -5102,6 +5253,7 @@ setCustomUserAgent(userAgent: string): void
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5249,6 +5401,8 @@ struct WebComponent {
 getCustomUserAgent(): string
 
 获取自定义用户代理。
+
+默认UserAgent定义与使用场景请参考[UserAgent详情参考](../../web/web-default-userAgent.md)
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -5739,7 +5893,7 @@ enableAdsBlock(enable: boolean): void
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -5959,7 +6113,7 @@ terminateRenderProcess(): boolean
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 |
+| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 如果渲染进程已被销毁则直接返回true。|
 
 **错误码：**
 
@@ -6016,6 +6170,7 @@ postUrl(url: string, postData: ArrayBuffer): void
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100002 | Invalid url.                                                 |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -6219,7 +6374,7 @@ struct WebComponent {
 
 ### setScrollable<sup>12+</sup>
 
-setScrollable(enable: boolean): void
+setScrollable(enable: boolean, type?: ScrollType): void
 
 设置网页是否允许滚动。
 
@@ -6230,6 +6385,7 @@ setScrollable(enable: boolean): void
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
 | enable     | boolean   | 是   | 表示是否将网页设置为允许滚动，true表示设置为允许滚动，false表示禁止滚动。 |
+| type       | [ScrollType](#scrolltype12) |  否 | 网页可触发的滚动类型，支持缺省配置。<br/> - enable为false时，表示禁止ScrollType类型的滚动，当ScrollType缺省时表示禁止所有类型网页滚动。<br/> - enable为true时，ScrollType缺省与否，都表示允许所有类型的网页滚动。|
 
 **错误码：**
 
@@ -7532,7 +7688,7 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
     // 恢复应用内播放器的状态信息。
   }
 
-  suspendPlayer(type: SuspendType) {
+  suspendPlayer(type: webview.SuspendType) {
     // 记录应用内播放器的状态信息。
     // 销毁应用内播放器。
   }
@@ -7594,7 +7750,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。
 资源的MIMEType通过提供的Content-Type响应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
 以此方式注入的资源，仅支持通过HTML中的标签加载。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。
-当调用`web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
+当调用`webview.WebviewController.SetRenderProcessMode(webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8064,7 +8220,7 @@ setUrlTrustList(urlTrustList: string): void
         Button('Access the trust web')
           .onClick(() => {
             try {
-              // 白名单生效，可以访问untrust网页
+              // 白名单生效，可以访问trust网页
               this.controller.loadUrl('http://trust.example.com/test');
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -8124,7 +8280,7 @@ setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -8218,6 +8374,306 @@ element.textContent = 'success';
 body.appendChild(element);
 ```
 
+### enableBackForwardCache<sup>12+</sup>
+
+static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
+
+开启Web组件前进后退缓存功能，通过参数指定是否允许使用特定的页面进入前进后退缓存。
+
+需要在[initializeWebEngine()](#initializewebengine)初始化内核之前调用。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| features     |  [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12) | 是   | 允许使用特定的页面进入前进后退缓存中。|
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let features = new webview.BackForwardCacheSupportedFeatures();
+        features.nativeEmbed = true;
+        features.mediaTakeOver = true;
+        // 如果一个页面同时使用了同层渲染和视频托管的能力，需要 nativeEmbed 和
+        // mediaTakeOver 同时设置为 true，该页面才可以进入前进后退缓存中。
+        webview.WebviewController.enableBackForwardCache(features);
+        webview.WebviewController.initializeWebEngine();
+        AppStorage.setOrCreate("abilityWant", want);
+    }
+}
+```
+
+### setBackForwardCacheOptions<sup>12+</sup>
+
+setBackForwardCacheOptions(options: BackForwardCacheOptions): void
+
+可以设置Web组件中前进后退缓存的相关选项。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| options     |  [BackForwardCacheOptions](#backforwardcacheoptions12) | 是   | 用来控制web组件前进后退缓存相关选项。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Row() {
+        Button("Add options").onClick((event: ClickEvent) => {
+          let options = new webview.BackForwardCacheOptions();
+          options.size = 3;
+          options.timeToLive = 10;
+          this.controller.setBackForwardCacheOptions(options);
+        })
+        Button("Backward").onClick((event: ClickEvent) => {
+          this.controller.backward();
+        })
+        Button("Forward").onClick((event: ClickEvent) => {
+          this.controller.forward();
+        })
+      }
+      Web({ src: "https://www.example.com", controller: this.controller })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### trimMemoryByPressureLevel<sup>14+</sup>
+
+trimMemoryByPressureLevel(level: number): void
+
+根据指定的内存压力等级，主动清理Web组件占用的缓存。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| level | [PressureLevel](#pressurelevel14) | 是 | 需要清理内存的内存等级。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed. |
+
+**示例：**
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Row() {
+        Button('trim_Memory')
+          .onClick(() => {
+            try {
+              // 设置当前内存压力等级为适中，释放少量内存
+              webview.WebviewController.trimMemoryByPressureLevel(
+                webview.PressureLevel.MEMORY_PRESSURE_LEVEL_MODERATE);
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
+      }.height('10%')
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### createPdf<sup>14+</sup>
+
+createPdf(configuration: PdfConfiguration, callback: AsyncCallback\<PdfData\>): void
+
+异步callback方式获取指定网页的数据流。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 类型                                    | 必填 | 说明                    |
+| ------------- | --------------------------------------- | ---- | ----------------------- |
+| configuration | [PdfConfiguration](#pdfconfiguration14) | 是   | 生成PDF所需参数。       |
+| callback      | AsyncCallback<[PdfData](#pdfdata14)>    | 是   | 回调返回网页PDF数据流。 |
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例**:
+
+```ts
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  pdfConfig: webview.PdfConfiguration = {
+    width: 8.27,
+    height: 11.69,
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 0,
+    marginLeft: 0,
+    shouldPrintBackground: true
+  }
+
+  build() {
+    Column() {
+      Button('SavePDF')
+        .onClick(() => {
+          this.controller.createPdf(
+            this.pdfConfig,
+            (error, result: webview.PdfData) => {
+              try {
+                // 获取组件上下文
+                let context = getContext(this) as common.UIAbilityContext;
+                // 获取沙箱路径，设置pdf文件名
+                let filePath = context.filesDir + "/test.pdf";
+                let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                fs.write(file.fd, result.pdfArrayBuffer().buffer).then((writeLen: number) => {
+                  console.info("createPDF write data to file succeed and size is:" + writeLen);
+                }).catch((err: BusinessError) => {
+                  console.error("createPDF write data to file failed with error message: " + err.message +
+                    ", error code: " + err.code);
+                }).finally(() => {
+                  fs.closeSync(file);
+                });
+              } catch (resError) {
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+              }
+            });
+        })
+      Web({ src: "www.example.com", controller: this.controller })
+    }
+  }
+}
+```
+
+### createPdf<sup>14+</sup>
+
+createPdf(configuration: PdfConfiguration): Promise\<PdfData\>
+
+以Promise方式异步获取指定网页的数据流。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 类型                                    | 必填 | 说明              |
+| ------------- | --------------------------------------- | ---- | ----------------- |
+| configuration | [PdfConfiguration](#pdfconfiguration14) | 是   | 生成PDF所需参数。 |
+
+**返回值：**
+
+| 类型                           | 说明                          |
+| ------------------------------ | ----------------------------- |
+| Promise<[PdfData](#pdfdata14)> | Promise实例，返回网页数据流。 |
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例**:
+
+```ts
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  pdfConfig: webview.PdfConfiguration = {
+    width: 8.27,
+    height: 11.69,
+    marginTop: 0,
+    marginBottom: 0,
+    marginRight: 0,
+    marginLeft: 0,
+    shouldPrintBackground: true
+  }
+
+  build() {
+    Column() {
+      Button('SavePDF')
+        .onClick(() => {
+          this.controller.createPdf(this.pdfConfig)
+            .then((result: webview.PdfData) => {
+              try {
+                // 获取组件上下文
+                let context = getContext(this) as common.UIAbilityContext;
+                // 获取沙箱路径，设置pdf文件名
+                let filePath = context.filesDir + "/test.pdf";
+                let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                fs.write(file.fd, result.pdfArrayBuffer().buffer).then((writeLen: number) => {
+                  console.info("createPDF write data to file succeed and size is:" + writeLen);
+                }).catch((err: BusinessError) => {
+                  console.error("createPDF write data to file failed with error message: " + err.message +
+                    ", error code: " + err.code);
+                }).finally(() => {
+                  fs.closeSync(file);
+                });
+              } catch (resError) {
+                console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
+              }
+            })
+        })
+      Web({ src: "www.example.com", controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。
@@ -8253,6 +8709,7 @@ static getCookie(url: string): string
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -8311,6 +8768,7 @@ static fetchCookieSync(url: string, incognito?: boolean): string
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -8492,6 +8950,7 @@ static setCookie(url: string, value: string): void
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -8551,6 +9010,7 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 | -------- | ------------------------------------------------------ |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -9180,7 +9640,7 @@ static clearAllCookies(): Promise\<void>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -9421,6 +9881,7 @@ static deleteOrigin(origin: string): void
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -9518,6 +9979,7 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>): void
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100012 | Invalid web storage origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -9582,6 +10044,7 @@ static getOrigins(): Promise\<Array\<WebStorageOrigin>>
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100012 | Invalid web storage origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -9647,6 +10110,7 @@ static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -9714,6 +10178,7 @@ static getOriginQuota(origin: string): Promise\<number>
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -9776,6 +10241,7 @@ static getOriginUsage(origin: string, callback: AsyncCallback\<number>): void
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -9843,6 +10309,7 @@ static getOriginUsage(origin: string): Promise\<number>
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
 | 17100011 | Invalid origin.                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -10162,6 +10629,7 @@ static allowGeolocation(origin: string, incognito?: boolean): void
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -10214,6 +10682,7 @@ static deleteGeolocation(origin: string, incognito?: boolean): void
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -10267,6 +10736,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -10331,6 +10801,7 @@ static getAccessibleGeolocation(origin: string, incognito?: boolean): Promise\<b
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
 
@@ -10957,6 +11428,7 @@ setType(type: WebMessageType): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setString<sup>10+</sup>
 
@@ -10977,6 +11449,7 @@ setString(message: string): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setNumber<sup>10+</sup>
 
@@ -10997,6 +11470,7 @@ setNumber(message: number): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setBoolean<sup>10+</sup>
 
@@ -11017,6 +11491,7 @@ setBoolean(message: boolean): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setArrayBuffer<sup>10+</sup>
 
@@ -11039,6 +11514,7 @@ setArrayBuffer(message: ArrayBuffer): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setArray<sup>10+</sup>
 
@@ -11061,6 +11537,7 @@ setArray(message: Array\<string | number | boolean\>): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ### setError<sup>10+</sup>
 
@@ -11083,6 +11560,7 @@ setError(message: Error): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type and value of the message do not match. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 ## WebStorageOrigin
 
@@ -11192,7 +11670,7 @@ struct WebComponent {
 | schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-', 同时需要以字母开头。        |
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
-| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合[RFC 1738](http://www.ietf.org/rfc/rfc1738.txt)第3.1节中定义的URL规范化和解析规则。           |
+| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。           |
 | isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“FILE”的安全规则相同的安全规则来处理。           |
 | isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。           |
 | isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。           |
@@ -14170,7 +14648,7 @@ didReceiveResponseBody(data: ArrayBuffer): void
 
 didFinish(): void
 
-通知Web组件被拦截的请求已经完成，并且没有更多的数据可用。
+通知Web组件被拦截的请求已经完成，并且没有更多的数据可用，调用前需要优先调用[didReceiveResponse](#didreceiveresponse12)将构造的响应头传递给被拦截的请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14190,7 +14668,7 @@ didFinish(): void
 
 didFail(code: WebNetErrorList): void
 
-通知ArkWeb内核被拦截请求应该返回失败。
+通知ArkWeb内核被拦截请求应该返回失败，调用前需要优先调用[didReceiveResponse](#didreceiveresponse12)将构造的响应头传递给被拦截的请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -14303,10 +14781,13 @@ struct WebComponent {
                 console.error(`[schemeHandler] ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
 
+              // 调用 didFinish/didFail 前需要优先调用 didReceiveResponse 将构造的响应头传递给被拦截的请求。
               let buf = buffer.from(this.htmlData)
               try {
                 if (buf.length == 0) {
                   console.log("[schemeHandler] length 0");
+                  resourceHandler.didReceiveResponse(response);
+                  // 如果认为buf.length为0是正常情况，则调用resourceHandler.didFinish，否则调用resourceHandler.didFail
                   resourceHandler.didFail(WebNetErrorList.ERR_FAILED);
                 } else {
                   console.log("[schemeHandler] length 1");
@@ -15068,8 +15549,8 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| nativeEmbed | bool | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
-| mediaTakeOver | bool | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
+| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
+| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
 
 ## BackForwardCacheOptions<sup>12+<sup>
 
@@ -15081,100 +15562,6 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 |------|------|------|------|
 | size | number | 是 | 设置每个Web组件允许缓存的最大页面个数。默认为1，最大可设置为50。设置为0或负数时，前进后退缓存功能不生效。Web会根据内存压力对缓存进行回收。 |
 | timeToLive | number | 是 | 设置每个Web组件允许页面在前进后退缓存中停留的时间，默认为600秒。设置为0或负数时，前进后退缓存功能不生效。|
-
-### enableBackForwardCache<sup>12+</sup>
-
-static enableBackForwardCache(features: BackForwardCacheSupportedFeatures): void
-
-开启Web组件前进后退缓存功能，通过参数指定是否允许使用特定特定的页面进入前进后退缓存。
-
-**系统能力：**  SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名          | 类型    |  必填  | 说明                                            |
-| ---------------| ------- | ---- | ------------- |
-| features     |  BackForwardCacheSupportedFeatures | 是   | 允许使用特定特性的页面进入前进后退缓存中。|
-
-**示例：**
-
-```ts
-// EntryAbility.ets
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
-import { webview } from '@kit.ArkWeb';
-
-export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        let features = new webview.BackForwardCacheSupportedFeatures();
-        features.nativeEmbed = true;
-        features.mediaTakeOver = true;
-        // 如果一个页面同时使用了同层渲染和视频托管的能力，需要 nativeEmbed 和
-        // mediaTakeOver 同时设置为 true，该页面才可以进入前进后退缓存中。
-        webview.WebviewController.enableBackForwardCache(features);
-        webview.WebviewController.initializeWebEngine();
-        AppStorage.setOrCreate("abilityWant", want);
-    }
-}
-```
-
-### setBackForwardCacheOptions<sup>12+</sup>
-
-setBackForwardCacheOptions(options: BackForwardCacheOptions): void
-
-可以设置Web组件中前进后退缓存的相关选项。
-
-**系统能力：**  SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名          | 类型    |  必填  | 说明                                            |
-| ---------------| ------- | ---- | ------------- |
-| options     |  BackForwardCacheOptions | 是   | 用来控制web组件前进后退缓存相关选项。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web component. |
-
-**示例：**
-
-```ts
-// xxx.ts
-import { webview } from '@kit.ArkWeb';
-
-@Entry
-@Component
-struct Index {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Row() {
-        Button("Add options").onClick((event: ClickEvent) => {
-          let options = new webview.BackForwardCacheOptions();
-          options.size = 3;
-          options.timeToLive = 10;
-          this.controller.setBackForwardCacheOptions(options);
-        })
-        Button("Backward").onClick((event: ClickEvent) => {
-          this.controller.backward();
-        })
-        Button("Forward").onClick((event: ClickEvent) => {
-          this.controller.forward();
-        })
-      }
-      Web({ src: "https://www.example.com", controller: this.controller })
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
-```
 
 ## AdsBlockManager<sup>12+</sup>
 
@@ -15782,3 +16169,67 @@ struct WebComponent {
 | status | boolean | 否 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 全量绘制结果image.pixelMap格式。|
+
+## ScrollType<sup>12+</sup>
+
+Scroll滚动类型，用于[setScrollable](#setscrollable12)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 值 | 说明                              |
+| ------------ | -- |--------------------------------- |
+| EVENT  | 0 | 滚动事件，表示通过触摸屏，触摸板，鼠标滚轮生成的网页滚动。|
+
+## PressureLevel<sup>14+</sup>
+
+内存压力等级。在应用主动清理Web组件占用的缓存时，Web内核会根据内存压力等级，进行缓存释放。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+| ------------------------------- | - | ---------- |
+| MEMORY_PRESSURE_LEVEL_MODERATE | 1 | 中等内存压力等级。这个等级下，Web内核会尝试释放重新分配开销较小且不需要立即使用的缓存。 |
+| MEMORY_PRESSURE_LEVEL_CRITICAL | 2 | 严重内存压力等级。这个等级下，Web内核会尝试释放所有可能的内存缓存。 |
+
+##  PdfConfiguration<sup>14+</sup>
+
+createPdf函数输入参数。
+
+> **说明：**
+>
+> 英寸与像素之间转换公式：像素 = 96 * 英寸。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称                  | 类型    | 必填 | 说明                                                         |
+| --------------------- | ------- | ---- | ------------------------------------------------------------ |
+| width                 | number  | 是   | 页面宽度。单位：英寸。<br />推荐值：A4纸页面宽度8.27英寸。   |
+| height                | number  | 是   | 页面高度。单位：英寸。<br />推荐值：A4纸页面高度11.69英寸。  |
+| scale                 | number  | 否   | 放大倍数。取值范围：[0.0, 2.0]。如果不在取值范围内，小于0.0设置为0.0，大于2.0设置为2.0。默认值：1.0。 |
+| marginTop             | number  | 是   | 上边距。取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| marginBottom          | number  | 是   | 下边距。取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| marginRight           | number  | 是   | 右边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| marginLeft            | number  | 是   | 左边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
+| shouldPrintBackground | boolean | 否   | 是否打印背景颜色。默认值：false。                            |
+
+## PdfData<sup>14+</sup>
+
+createPdf函数输出数据流类。
+
+> **说明：**
+>
+> 在网页生成PDF过程中，返回的是数据流，由PdfData类封装。
+
+### pdfArrayBuffer<sup>14+</sup>
+
+pdfArrayBuffer(): Uint8Array
+
+获取网页生成的数据流。完整示例代码参考[createPdf](#createpdf14)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型       | 说明     |
+| ---------- | -------- |
+| Uint8Array | 数据流。 |

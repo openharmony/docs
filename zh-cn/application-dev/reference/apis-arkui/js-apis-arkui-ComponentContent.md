@@ -19,7 +19,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 ### constructor
 
-constructor(uiContext: UIContext, builder: WrappedBuilder<[]>)
+constructor(uiContext: UIContext, builder: WrappedBuilder\<[]>)
 
 ComponentContent的构造函数。
 
@@ -32,11 +32,11 @@ ComponentContent的构造函数。
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
-| builder  | [WrappedBuilder<[]>](../../quick-start/arkts-wrapBuilder.md) | 是   |   封装不带参builder函数的WrappedBuilder对象。 |
+| builder  | [WrappedBuilder\<[]>](../../quick-start/arkts-wrapBuilder.md) | 是   |   封装不带参builder函数的WrappedBuilder对象。 |
 
 ### constructor
 
-constructor(uiContext: UIContext, builder: WrappedBuilder<[T]>, args: T)
+constructor(uiContext: UIContext, builder: WrappedBuilder\<[T]>, args: T)
 
 ComponentContent的构造函数。
 
@@ -49,8 +49,88 @@ ComponentContent的构造函数。
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
-| builder  | [WrappedBuilder<[T]>](../../quick-start/arkts-wrapBuilder.md) | 是   |   封装带参builder函数的WrappedBuilder对象。 |
+| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | 是   |   封装带参builder函数的WrappedBuilder对象。 |
 | args     |     T     |   是   |   WrappedBuilder对象封装的builder函数的参数。 |
+
+### constructor
+
+  constructor(uiContext: UIContext, builder: WrappedBuilder\<[T]>, args: T, options: BuildOptions)
+
+ComponentContent的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                      | 必填 | 说明                               |
+| --------- | ----------------------------------------- | ---- | ---------------------------------- |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | 是   |   封装带参builder函数的WrappedBuilder对象。 |
+| args     |     T     |   是   |   WrappedBuilder对象封装的builder函数的参数。 |
+| options | [BuildOptions](./js-apis-arkui-builderNode.md#buildoptions12)                                                    | 是   |  build的配置参数，判断是否支持@Builder中嵌套@Builder的行为。                                         |
+
+**示例：**
+``` ts
+import { ComponentContent, NodeContent, typeNode } from "@kit.ArkUI"
+
+interface ParamsInterface {
+  text: string;
+  func: Function;
+}
+
+@Builder
+function buildTextWithFunc(fun: Function) {
+  Text(fun())
+    .fontSize(50)
+    .fontWeight(FontWeight.Bold)
+    .margin({ bottom: 36 })
+}
+
+@Builder
+function buildText(params: ParamsInterface) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+    buildTextWithFunc(params.func)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "HELLO"
+  private content: NodeContent = new NodeContent();
+
+  build() {
+    Row() {
+      Column() {
+        Button('addComponentContent')
+          .onClick(() => {
+            let column = typeNode.createNode(this.getUIContext(), "Column");
+            column.initialize();
+            column.addComponentContent(new ComponentContent<ParamsInterface>(this.getUIContext(),
+              wrapBuilder<[ParamsInterface]>(buildText), {
+                text: this.message, func: () => {
+                  return "FUNCTION"
+                }
+              }, { nestingBuilderSupported: true }))
+            this.content.addFrameNode(column);
+          })
+        ContentSlot(this.content)
+      }
+      .id("column")
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
 
 ### update
 

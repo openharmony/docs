@@ -173,6 +173,70 @@ async function example() {
 }
 ```
 
+### getBurstAssets<sup>12+</sup>
+
+getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
+
+获取连拍照片资源，使用Promise方式返回结果。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明             |
+| ------- | ------------------- | ---- | ---------------- |
+| burstKey | string   | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](#photokeys)的BURST_KEY)     |
+| options | [FetchOptions](#fetchoptions)   | 是   | 连拍照片检索选项。     |
+
+**返回值：**
+
+| 类型                        | 说明           |
+| --------------------------- | -------------- |
+| Promise&lt;[FetchResult](#fetchresult)&lt;[PhotoAsset](#photoasset)&gt;&gt; | Promise对象，返回连拍照片数据结果集。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } form '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  console.info('getBurstAssets');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  // burstKey为36位的uuid，可以根据photoAccessHelper.PhotoKeys获取。
+  let burstKey: string = "e719d696-09fa-44f8-ec3f215aa62a";
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await 
+      phAccessHelper.getBurstAssets(burstKey, fetchOptions);
+    if (fetchResult !== undefined) {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      if (photoAsset !== undefined) {
+        console.info('photoAsset.displayName :' + photoAsset.displayName);
+      }
+    }
+  } catch (err) {
+    console.error(`getBurstAssets failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ### createAsset
 
 createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void
@@ -898,7 +962,7 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件，在应用沙箱中的uri。 |
+| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：** 仅支持处理图片、视频uri。 |
 | photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | 是 | 保存图片/视频到媒体库的配置，包括保存的文件名等，与srcFileUris保持一一对应。 |
 
 **返回值：**
@@ -940,28 +1004,84 @@ async function example() {
     ];
     let desFileUris: Array<string> = await phAccessHelper.showAssetsCreationDialog(srcFileUris, photoCreationConfigs);
     console.info('showAssetsCreationDialog success, data is ' + desFileUris);
-
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    predicates.equalTo('uri', desFileUris[0]);
-    let fetchOptions: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
-      predicates: predicates
-    };
-
-    // 通过返回的媒体库uri获取对应的PhotoAsset对象
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(
-      fetchOptions);
-    let photoAssets: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
-
-    for (let i = 0; i < photoAssets.length; i++) {
-      // 将应用沙箱文件内容写入到媒体库
-      let changeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAssets[i]);
-      changeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, srcFileUris[i]);
-      phAccessHelper.applyChanges(changeRequest);
-    }
-} catch (err) {
+  } catch (err) {
     console.error('showAssetsCreationDialog failed, errCode is ' + err.code + ', errMsg is ' + err.message);
   }
+}
+```
+
+### createAssetWithShortTermPermission<sup>12+</sup>
+
+createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Promise&lt;string&gt;
+
+接口提供给应用调用，支持首次调用后拉起保存确认弹框。在用户同意保存后返回已创建并授予保存权限的uri，支持应用使用uri写入图片/视频；
+在用户"同意"后的5min之内，同一个应用再次调用接口，支持无需弹框确认自动返回已授权的uri给应用，支持应用保存图片/视频。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| photoCreationConfig | [PhotoCreationConfig](#photocreationconfig12); | 是 | 保存图片/视频到媒体库的配置，包括保存的文件名等。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;string&gt; | Promise对象，返回给应用的媒体库文件uri。Uri已对应用授权，支持应用写入数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14000011 |  Internal system error |
+
+**示例：**
+
+```ts
+import fs from '@ohos.file.fs';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+async function example() {
+    console.info('createAssetWithShortTermPermissionDemo.');
+    
+    try {
+        let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.contenxt);
+        let photoCreationConfig: photoAccessHelper.PhotoCreationConfig = {
+            title: '123456', 
+            fileNameExtension: 'jpg',
+            photoType: photoAccessHelper.PhotoType.IMAGE,
+            subtype: photoAccessHelper.PhotoSubtype.DEFAULT, 
+        };
+
+        let resultUri: string = await phAccessHelper.createAssetWithShortTermPermission(photoCreationConfig);
+        let resultFile: fs.File = fs.openSync(resultUri, fs.OpenMode.READ_WRITE);
+        // 实际场景请使用真实的uri和文件大小
+        let srcFile:  fs.File = fs.openSync("file://test.jpg", fs.OpenMode.READ_ONLY);
+        let bufSize: number = 2000000;
+        let readSize: number = 0;
+        let buf = new ArrayBuffer(bufSize);
+        let readLen = fs.readSync(srcFile.fd, buf, {
+            offset: readSize,
+            length: bufSize
+        });
+        if (rendLen > 0) {
+            readSize += readLen;
+            fs.writeSync(resultFile.fd, buf, { length: readLen });
+        }
+        fs.closeSync(srcFile);
+        fs.closeSync(resultFile);
+    } catch (err) {
+        console.error('createAssetWithShortTermPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
+    }
+    
 }
 ```
 
@@ -4068,7 +4188,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   try {
     let requestId: string = 'xxx-xxx'; // 应用需使用requestImage等接口返回的有效requestId
-    await photoAccessHelper.MediaAssetManager.cancelRequest(requestId);
+    await photoAccessHelper.MediaAssetManager.cancelRequest(context, requestId);
     console.info("request cancelled successfully");
   } catch (err) {
     console.error(`cancelRequest failed with error: ${err.code}, ${err.message}`);
@@ -4538,6 +4658,7 @@ PhotoAsset的成员类型。
 | ----- |  ---- |  ---- |
 | DEFAULT |  0 |  默认照片类型。 |
 | MOVING_PHOTO |  3 |  动态照片文件类型。 |
+| BURST |  4 |  连拍照片文件类型。 |
 
 ## DynamicRangeType<sup>12+</sup>
 
@@ -4593,7 +4714,7 @@ PhotoAsset的成员类型。
 | WIDTH         | 'width'               | 图片宽度（单位：像素）。                                    |
 | HEIGHT        | 'height'              | 图片高度（单位：像素）。                                      |
 | DATE_TAKEN    | 'date_taken'          | 拍摄日期（文件拍照时间距1970年1月1日的秒数值）。                |
-| ORIENTATION   | 'orientation'         | 图片文件的方向。                                             |
+| ORIENTATION   | 'orientation'         | 文件的旋转角度，单位为度。                                             |
 | FAVORITE      | 'is_favorite'            | 收藏。                                                    |
 | TITLE         | 'title'               | 文件标题。                                                   |
 | DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | 添加日期（添加文件时间距1970年1月1日的毫秒数值）。<br>注意：查询照片时，不支持基于该字段排序。  |
@@ -4601,6 +4722,9 @@ PhotoAsset的成员类型。
 | PHOTO_SUBTYPE<sup>12+</sup>   | 'subtype'               | 媒体文件的子类型。                                                   |
 | DYNAMIC_RANGE_TYPE<sup>12+</sup>   | 'dynamic_range_type'               | 媒体文件的动态范围类型。                                                  |
 | COVER_POSITION<sup>12+</sup>   | 'cover_position'               | 动态照片的封面位置，具体表示封面帧所对应的视频时间戳（单位：微秒）。 |
+| BURST_KEY<sup>12+</sup>   | 'burst_key'               | 一组连拍照片的唯一标识：uuid。 |
+| LCD_SIZE<sup>12+</sup>  | 'lcd_size'  | LCD图片的宽高，值为width:height拼接而成的字符串。|
+| THM_SIZE<sup>12+</sup>  | 'thm_size'  | THUMB图片的宽高，值为width:height拼接而成的字符串。|
 
 ## AlbumKeys
 
@@ -4843,6 +4967,7 @@ async function example() {
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 是否支持搜索，true表示支持，false表示不支持，默认为true。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 图片推荐相关配置参数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isPreviewForSingleSelectionSupported<sup>12+</sup> | boolean  | 否   | 单选模式下是否需要进大图预览，true表示需要，false表示不需要，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## PhotoSelectOptions
 
@@ -4855,6 +4980,8 @@ async function example() {
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 是否支持编辑照片，true表示支持，false表示不支持，默认为true。     |
+| isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| subWindowName<sup>12+</sup>       | string | 否   | 子窗窗口名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 
 ## PhotoSelectResult
 

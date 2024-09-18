@@ -77,7 +77,7 @@ struct Child {
   build() {
     Column() {
       Text(`ObjectLink region: ${this.region.x}-${this.region.y}`)
-      Text(`Prop region: ${this.region.x}-${this.region.y}`)
+      Text(`Prop regionProp: ${this.regionProp.x}-${this.regionProp.y}`)
     }
   }
 }

@@ -1,4 +1,4 @@
-# Encryption and Decryption by Segment with an SM4 Symmetric Key (GCM Mode)
+# Encryption and Decryption by Segment with an SM4 Symmetric Key (GCM Mode) (ArkTS)
 
 
 For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-decrypt-spec.md#sm4).
@@ -17,7 +17,7 @@ For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-dec
 
 4. Set the size of the data to be passed in each time to 20 bytes, and call [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) multiple times to pass in the data (plaintext) to be encrypted.
    
-   - Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
+   - Currently, the amount of data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
    - You are advised to check the result of each **update()**. If the result is not **null**, obtain the data and combine the data segments into complete ciphertext. The **update()** result may vary with the key specifications.
       
       If a block cipher mode (ECB or CBC) is used, data is encrypted and output based on the block size. That is, if the data of an **update()** operation matches the block size, the ciphertext is output. Otherwise, **null** is output, and the plaintext will be combined with the input data of the next **update()** to form a block. When **doFinal()** is called, the unencrypted data is padded to the block size based on the specified padding mode, and then encrypted. The **update()** API works in the same way in decryption.

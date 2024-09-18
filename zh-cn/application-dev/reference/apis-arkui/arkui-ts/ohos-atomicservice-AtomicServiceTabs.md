@@ -1,4 +1,4 @@
-# @ohos.atomicservice.AtomicServiceTabs (页签容器)
+# AtomicServiceTabs
 
 AtomicServiceTabs高级组件，对Tabs组件一些不需提供给用户自定义设计的属性进行简化，限制最多显示5个页签，固定页签样式，位置和大小。
 
@@ -22,29 +22,30 @@ import { AtomicServiceTabs, TabBarOptions, TabBarPosition, OnContentWillChangeCa
 
 ## AtomicServiceTabs
 
-AtomicServiceTabs ({\
-&nbsp;&nbsp;tabContents?: [ TabContentBuilder?,
+```
+AtomicServiceTabs ({
+   tabContents?: [ TabContentBuilder?,
                     TabContentBuilder?,
                   TabContentBuilder?,
                   TabContentBuilder?,
                   TabContentBuilder?
-                ],\
-&nbsp;&nbsp;tabBarOptionsArray: [ TabBarOptions,
+                ],
+   tabBarOptionsArray: [ TabBarOptions,
                         TabBarOptions,
                         TabBarOptions?,
                         TabBarOptions?,
                         TabBarOptions?
-                      ],\
-&nbsp;&nbsp;tabBarPosition?: TabBarPosition,\
-&nbsp;&nbsp;barBackgroundColor?: ResourceColor,\
-&nbsp;&nbsp;index?: number,\
-&nbsp;&nbsp;barOverlap?: boolean,\
-&nbsp;&nbsp;controller?: TabsController,\
-&nbsp;&nbsp;onChange?: Callback\<number>,\
-&nbsp;&nbsp;onTabBarClick?: Callback\<number>,\
-&nbsp;&nbsp;onContentWillChange?: OnContentWillChangeCallback,\
+                      ],
+   tabBarPosition?: TabBarPosition,
+   barBackgroundColor?: ResourceColor,
+   index?: number,
+   barOverlap?: boolean,
+   controller?: TabsController,
+   onChange?: Callback<number>,
+   onTabBarClick?: Callback<number>,
+   onContentWillChange?: OnContentWillChangeCallback,
 })
-
+```
 **装饰器类型：**\@Component
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。

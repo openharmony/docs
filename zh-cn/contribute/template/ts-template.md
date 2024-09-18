@@ -1,4 +1,4 @@
-# TS组件接口说明模板
+# ArkTS组件接口说明模板
 
 ## 总体写作说明
 
@@ -75,7 +75,7 @@
 >
 
 ```js
-import Curves from '@ohos.curves'
+import { font } from '@kit.ArkUI';
 ```
 
 ## 子组件

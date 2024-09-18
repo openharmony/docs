@@ -1,8 +1,28 @@
 # OpenSL ES
 
+> **说明：**
+> OpenHarmony上的OpenSL ES接口，是早期SDK8版本开始提供，用于支持应用Native层音频开发的接口。但随着版本演进，接口定义的可扩展性不足，不再能满足音频系统的能力拓展，因此当前已不再推荐应用开发者继续使用此接口进行音频功能开发，
+> 请开发者[从OpenSL ES切换到OHAudio](../../media/audio/replace-opensles-by-ohaudio.md)。
+
 ## 简介
 
-OpenSL ES（Open Sound Library for Embedded System）即嵌入式音频加速标准。为开发者提供了标准化、高性能以及低响应时间的音频功能开发的对象和接口。相对于开源免费的OpenSL ES，OpenHarmony基于[OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API规范实现了部分Native API，相关接口开放情况介绍如下：
+OpenSL ES（Open Sound Library for Embedded System）即嵌入式音频加速标准。为开发者提供了标准化、高性能以及低响应时间的音频功能开发的对象和接口。相对于开源免费的OpenSL ES，OpenHarmony基于[OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API规范实现了部分Native API，相关接口开放情况如表[支持的API](#支持的api)所示。
+
+## 引入OpenSL ES能力
+
+如果开发者需要使用OpenSL ES相关功能，首先请添加头文件：
+
+```
+#include <SLES/OpenSLES.h>
+#include <SLES/OpenSLES_OpenHarmony.h>
+#include <SLES/OpenSLES_Platform.h>
+```
+
+其次在CMakeLists.txt中添加以下链接动态库
+
+```
+libOpenSLES.so
+```
 
 ## 支持的API
 

@@ -332,8 +332,8 @@ sendableImage下的PixelMap支持sendable属性，支持worker线程共享。sen
 
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isStrideAlignment | boolean | 是   | 否   | 设定图像内存是否为DMA内存，DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
+| isEditable        | boolean | 是   | 否   | 图像像素是否可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isStrideAlignment | boolean | 是   | 否   | 图像内存是否为DMA内存，DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
 
 ### readPixelsToBuffer
 
@@ -1849,6 +1849,8 @@ createImageReceiver(size: image.Size, format: image.ImageFormat, capacity: numbe
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
+
 let size: image.Size = {
     height: 8192,
     width: 8
@@ -1971,6 +1973,7 @@ getComponent是线程不安全的。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -2008,6 +2011,7 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -2058,6 +2062,7 @@ getReceivingSurfaceId(): Promise\<string>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2089,6 +2094,7 @@ readLatestImage(): Promise\<Image>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2120,6 +2126,7 @@ readNextImage(): Promise\<Image>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2152,6 +2159,7 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2182,6 +2190,7 @@ release是线程不安全的。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,

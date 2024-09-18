@@ -1,12 +1,12 @@
 # 使用PBKDF2进行密钥派生
 
-对应的算法规格请查看[密钥派生算法规格：PBKDF2](crypto-key-derivation-overview.md#pbkdf2算法)
+对应的算法规格请查看[密钥派生算法规格：PBKDF2](crypto-key-derivation-overview.md#pbkdf2算法)。
 
 ## 开发步骤
 
 1. 构造[PBKDF2Spec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pbkdf2spec11)对象，作为密钥派生参数进行密钥派生。
    
-   PBKDF2Spec是KdfSpec的子类，需要指定：
+   PBKDF2Spec是[KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11)的子类，需要指定：
 
    - algName：指定算法'PBKDF2'。
    - password：用于生成派生密钥的原始密码。

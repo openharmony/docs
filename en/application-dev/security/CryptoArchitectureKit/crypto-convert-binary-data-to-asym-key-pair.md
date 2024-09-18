@@ -1,4 +1,4 @@
-# Converting Binary Data into an Asymmetric Key Pair
+# Converting Binary Data into an Asymmetric Key Pair (ArkTS)
 
 
 This topic uses RSA, ECC, and SM2 as an example to describe how to convert binary data into an asymmetric key pair (**KeyPair**). That is, convert a piece of external or internal binary data into a **KeyPair** object for subsequent operations, such as encryption and decryption.
@@ -45,7 +45,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
   }
   ```
 
-- Synchronously return the result ([convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)):
+- Example: Convert binary data into an RSA key pair (using the synchronous API [convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)).
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
@@ -97,7 +97,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
   }
   ```
 
-- Synchronously return the result ([convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)):
+- Example: Convert binary data into an ECC key pair (using the synchronous API [convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)).
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
@@ -118,17 +118,18 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
   }
   ```
 
-## Converting PKCS #8 Binary Data into an ECC Private Key
+## Converting PKCS#8 Binary Data into an ECC Private Key
 
 For details about the algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc).
 
-Obtain the binary data of the ECC public or private key, encapsulate the data into a **DataBlob** object, and converts the data into the ECC key format. Example:
+Obtain the binary data of the ECC public or private key, encapsulate the data into a **DataBlob** object, and convert the data into the ECC key format.
 
 1. Use [cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator) with the string parameter **'ECC256'** to create an asymmetric key generator (**AsyKeyGenerator**) object for a 256-bit ECC key pair.
 
 2. Use [PubKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the byte stream of the public key data, and use [PriKey.getEncodeDer](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedder12-1) with **format** set to **'PKCS8'** to obtain the byte stream of the private key data. The binary data of the key object is obtained.
 
 3. Use [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair.
+**Example**
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -188,7 +189,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
   }
   ```
 
-- Synchronously return the result ([convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)):
+- Example: Convert binary data into an SM2 key pair (using the synchronous API [convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)).
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 

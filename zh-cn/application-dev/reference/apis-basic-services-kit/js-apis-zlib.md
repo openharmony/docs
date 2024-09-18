@@ -4006,6 +4006,7 @@ gzbuffer(size: number):Promise&lt;number&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800009   | Internal structure error. |
 
 **示例：**
 

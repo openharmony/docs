@@ -52,7 +52,7 @@
    - 卷设备正在弹出："usual.event.data.VOLUME_EJECT"
 
    ```ts
-   import { commonEventManager } from '@kit.BasicServiceKit';
+   import { commonEventManager } from '@kit.BasicServicesKit';
    import { volumeManager } from '@kit.CoreFileKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -74,17 +74,21 @@
 3. 收到广播通知后获取卷设备信息。
 
    ```ts
-   commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
-     if (data.event === 'usual.event.data.VOLUME_MOUNTED') {
-       // 开发者可以通过广播传递的卷设备信息来管理卷设备
-       let volId: string = data.parameters.id;
-       volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
-         if (error) {
-           console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
-         } else {
-           console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
-         }
-       })
-     }
-   })
+   let subscriber: commonEventManager.CommonEventSubscriber|undefined;
+   //注意： 参数subscriber 是从步骤2订阅广播事件 中 await commonEventManager.createSubscriber(subscribeInfo) 获取到的。
+   if (subscriber !== undefined) {
+    commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
+      if (data.event === 'usual.event.data.VOLUME_MOUNTED' && data.parameters !== undefined) {
+        // 开发者可以通过广播传递的卷设备信息来管理卷设备
+        let volId: string = data.parameters.id;
+        volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
+          if (error) {
+            console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
+          } else {
+            console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
+          }
+        })
+      }
+    })
+   }
    ```

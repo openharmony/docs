@@ -438,7 +438,7 @@ options.signal = s;
 
 ## ArkTSUtils.ASON
 
-为支持将JSON字符串解析成共享数据，ArkTS语言基础库新增了ASON工具。ASON支持开发者解析JSON字符串，并生成共享数据进行跨并发域传输，同时ASON也支持将共享数据转换成JSON字符串。
+为支持将JSON字符串解析成共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON支持开发者解析JSON字符串，并生成共享数据进行跨并发域传输，同时ASON也支持将共享数据转换成JSON字符串。
 
 ### ISendable
 
@@ -496,13 +496,12 @@ type Transformer = (this: ISendable, key: string, value: ISendable | undefined |
 
 定义解析结果的返回类型。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 值| 说明            |
 | ------ | ------ | --------------- |
-| OBJECT   | 0 |返回Sendable Object对象。|
+| OBJECT   | 0 |返回 SendableObject 对象。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| MAP<sup>13+</sup>   | 1 |返回 SendableMap 对象。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 
 ### ParseOptions
 
@@ -565,6 +564,17 @@ let numberObj = ArkTSUtils.ASON.parse(numberText,undefined,options) as ISendable
 
 console.info((numberObj as object)?.["largeNumber"]);
 // 期望输出: 112233445566778899
+
+let options2: ArkTSUtils.ASON.ParseOptions = {
+    bigIntMode: ArkTSUtils.ASON.BigIntMode.PARSE_AS_BIGINT,
+    parseReturnType: ArkTSUtils.ASON.ParseReturnType.MAP,
+  }
+let mapText = '{"largeNumber":112233445566778899}';
+let map  = ArkTSUtils.ASON.parse(mapText,undefined,options2);
+console.info("map is " + map);
+// 期望输出: map is [object SendableMap]
+console.info("largeNumber is " + (map as collections.Map<string,bigint>).get("largeNumber"));
+// 期望输出: largeNumber is 112233445566778899
 ```
 
 ### stringify
@@ -598,4 +608,45 @@ let arr = new collections.Array(1, 2, 3);
 let str = ArkTSUtils.ASON.stringify(arr);
 console.info(str);
 // 期望输出: '[1,2,3]'
+```
+
+### isSendable
+
+isSendable(value: Object | null | undefined): boolean
+
+该方法用于判断value是否为Sendable数据类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | Object \| null \| undefined  | 是 | 待校验的对象。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | value是否为Sendable数据类型，true表示value是Sendable数据类型，否则为false。|
+
+**示例：**
+
+```ts
+import { ArkTSUtils } from '@kit.ArkTS'
+
+@Sendable
+function sendableFunc()
+{
+  console.info("sendableFunc")
+}
+
+if (ArkTSUtils.isSendable(sendableFunc)) {
+  console.info("sendableFunc is Sendable");
+} else {
+  console.info("sendableFunc is not Sendable");
+}
+// 期望输出: 'SendableFunc is Sendable'
 ```

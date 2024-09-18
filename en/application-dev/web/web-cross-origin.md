@@ -1,14 +1,14 @@
 # Resolving Cross-Origin Resource Access
 
 ## Background
-For security purposes, the ArkWeb kernel does not allow for cross-origin requests using the file or resource protocol in the URL context. As such, the **\<Web>** component blocks such requests when loading local offline resources, and an error message similar to the following is displayed on the DevTools console:
+For security purposes, the ArkWeb kernel does not allow for cross-origin requests using the file or resource protocol in the URL context. As such, the **Web** component blocks such requests when loading local offline resources, and an error message similar to the following is displayed on the DevTools console:
 
 ```
 Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: http, arkweb, data, chrome-extension, chrome, https, chrome-untrusted.
 ```
 
 ## Solutions to Local Cross-Origin Resource Access
-For the **\<Web>** component to load local resources across origins, use HTTP or HTTPS, instead of file or resource, as the protocol. The domain name of the URL to use should be one that you customize for individuals or organizations. Make sure it does not conflict with any existing domain name in the real world. You also need to use the [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9) API of the **\<Web>** component to intercept and replace local resources.
+For the **Web** component to load local resources across origins, use HTTP or HTTPS, instead of file or resource, as the protocol. The domain name of the URL to use should be one that you customize for individuals or organizations. Make sure it does not conflict with any existing domain name in the real world. You also need to use the [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9) API of the **Web** component to intercept and replace local resources.
 
 In the following example, the **index.html** and **js/script.js** files are stored in the **rawfile** folder of the project directory. If the resource protocol is used to access **index.html**, loading **js/script.js** will fail due to cross-origin blocking. To resolve this issue, the HTTPS protocol is used instead, as in **https:\//www\.example.com/**, and the [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9) API is used to replace resources. In this way, **js/script.js** can be successfully loaded.
 

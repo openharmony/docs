@@ -412,6 +412,8 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+不支持该接口与preference其他接口并发调用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
@@ -482,6 +484,8 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+
+不支持该接口与preference其他接口并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -556,6 +560,8 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+
+不支持该接口与preference其他接口并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -633,6 +639,8 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+
+不支持该接口与preference其他接口并发调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

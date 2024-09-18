@@ -16,15 +16,15 @@
 | S    | number，boolean，string。                 |
 
 
+## 导入模块
+
+```ts
+import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
+```
+
 ## AppStorageV2
 
 AppStorageV2具体UI使用说明，详见[AppStorageV2(应用全局的UI状态存储)](../../quick-start/arkts-new-appstoragev2.md)
-
-### 导入模块
-
-```ts
-import { AppStorageV2 } from '@kit.ArkUI';
-```
 
 ### connect<sup>12+</sup>
 
@@ -104,9 +104,6 @@ static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithAr
 >
 >删除AppStorageV2中不存在的key会报警告。
 
-**返回值：**
-
-无。
 
 **示例：**
 
@@ -157,12 +154,6 @@ const keys: Array<string> = AppStorageV2.keys();
 ## PersistenceV2
 
 PersistenceV2具体UI使用说明，详见[PersistenceV2(持久化存储UI状态)](../../quick-start/arkts-new-persistencev2.md)
-
-### 导入模块
-
-```ts
-import { PersistenceV2 } from '@kit.ArkUI';
-```
 
 ### connect<sup>12+</sup>
 
@@ -269,9 +260,6 @@ static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithAr
 >
 >删除PersistenceV2中不存在的key会报警告。
 
-**返回值：**
-
-无。
 
 **示例：**
 
@@ -339,9 +327,6 @@ static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs
 >
 >手动持久化当前内存中不处于connect状态的key是无意义的。
 
-**返回值：**
-
-无。
 
 **示例：**
 
@@ -359,12 +344,6 @@ PersistenceV2.remove('key_as1');
 ## UIUtils
 
 UIUtils提供一些方法，用于处理状态管理相关的数据转换。
-
-### 导入模块
-
-```ts
-import { UIUtils } from '@kit.ArkUI';
-```
 
 ### getTarget<sup>12+</sup>
 
@@ -405,6 +384,55 @@ struct Index {
       Text(`this.someClass === nonObservedClass: ${this.someClass === nonObservedClass}`) // false
       Text(`UIUtils.getTarget(this.someClass) === nonObservedClass: ${UIUtils.getTarget(this.someClass) ===
         nonObservedClass}`) // true
+    }
+  }
+}
+```
+### makeObserved<sup>12+</sup>
+
+static makeObserved\<T extends object\>(source: T): T;
+
+将普通不可观察数据变为可观察数据。详见[makeObserved接口：将非观察数据变为可观察数据](../../quick-start/arkts-new-makeObserved.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 参数描述     |
+| ------ | ---- | ---- | ------------ |
+| source | T    | 是   | 数据源对象。支持非@Observed和@ObserveV2修饰的class，JSON.parse返回的Object和@Sendable修饰的class。</br>支持Array、Map、Set和Date。</br>支持collection.Array, collection.Set和collection.Map。</br>具体使用规则，详见[makeObserved接口：将非观察数据变为可观察数据](../../quick-start/arkts-new-makeObserved.md)。 |
+
+**返回值：**
+
+| 类型 | 描述                                             |
+| ---- | ------------------------------------------------ |
+| T    | 可观察的数据。 |
+
+**示例：**
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+class NonObservedClass {
+  name: string = 'Tom';
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  observedClass: NonObservedClass = UIUtils.makeObserved(new NonObservedClass());
+  nonObservedClass: NonObservedClass = new NonObservedClass();
+  build() {
+    Column() {
+      Text(`observedClass: ${this.observedClass.name}`)
+        .onClick(() => {
+          this.observedClass.name = 'Jane'; // 刷新
+        })
+      Text(`observedClass: ${this.nonObservedClass.name}`)
+        .onClick(() => {
+          this.nonObservedClass.name = 'Jane'; // 不刷新
+        })
     }
   }
 }

@@ -1,4 +1,4 @@
-# @ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)
+# GridObjectSortComponent
 
 
 网格对象的编辑排序是用于网格对象的编辑、拖动排序、新增和删除。

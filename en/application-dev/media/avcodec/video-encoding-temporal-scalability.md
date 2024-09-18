@@ -60,11 +60,13 @@ If your development scenario does not involve dynamic adjustment of the temporal
 
 - The callback using **OH_AVBuffer** is supported, but the callback using **OH_AVMemory** is not.
 
-   Temporal scalability depends on the frame feature. Do not use **OH_AVMemory** to trigger **OH_AVCodecAsyncCallback**. Instead, use **OH_AVBuffer** to trigger **OH_AVCodecCallback**.
+  Temporal scalability depends on the frame feature. Do not use **OH_AVMemory** to trigger **OH_AVCodecAsyncCallback**. Instead, use **OH_AVBuffer** to trigger **OH_AVCodecCallback**.
 
 - Temporal scalability employs P-pictures, but not B-pictures.
 
   Temporal scalability can be hierarchical-P or hierarchical-B. Currently, this feature can only be hierarchical-P.
+
+- In the case of **UNIFORMLY_SCALED_REFERENCE**, TGOP can only be 2 or 4.
 
 ## Global Temporal Scalability
 
@@ -82,7 +84,11 @@ Global temporal scalability is suitable for encoding frames into a stable and si
 
 - **OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE**: This parameter is optional and specifies the distance between two I-frames. You need to customize the I-frame density based on the frame extraction requirements. The value range is [2, GopSize). If no value is passed in, the default value is used.
 
-- **OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE**: This parameter is optional and affects the reference mode of non-I-frames. The value can be **ADJACENT_REFERENCE** and **JUMP_REFERENCE**. **ADJACENT_REFERENCE** provides better compression performance, whereas **JUMP_REFERENCE** is more flexible in dropping frames. If no value is passed in, the default value is used.
+- **OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE**: This parameter is optional and affects the reference mode of non-I-frames. The value can be **ADJACENT_REFERENCE**, **JUMP_REFERENCE**, or **UNIFORMLY_SCALED_REFERENCE**. **ADJACENT_REFERENCE** provides better compression performance, whereas **JUMP_REFERENCE** is more flexible in dropping frames. **UNIFORMLY_SCALED_REFERENCE** enables streams to be distributed more evenly in the case of frame loss. If no value is passed in, the default value is used.
+
+    > **NOTE**
+    >
+    > In the case of **UNIFORMLY_SCALED_REFERENCE**, TGOP can only be 2 or 4.
 
 Example 1: TGOP=4, ADJACENT_REFERENCE
 
@@ -91,6 +97,10 @@ Example 1: TGOP=4, ADJACENT_REFERENCE
 Example 2: TGOP=4, JUMP_REFERENCE
 
 ![TGOP4 jump reference](figures/temporal-scalability-tgop4-jump.png)
+
+Example 3: TGOP = 4, UNIFORMLY_SCALED_REFERENCE
+
+![TGOP4 uniformly scaled reference](figures/temporal-scalability-tgop4-uniformly.png)
 
 ### How to Develop
 
@@ -279,10 +289,10 @@ This section describes only the steps that are different from the basic encoding
         // The encoded frame data (specified by buffer) is sent to outBufferQueue.
         // Perform data processing. For details, see:
         // - Release the encoded frame.
-        // - Record POC and LTR effectiveness.
+        // - Record POC and the enabled status of LTR.
     }
 
-    // 2.3 Register the callback function.
+    // 2.3 Register the callback functions.
     OH_AVCodecCallback cb;
     cb.onNewOutputBuffer = OnNewOutputBuffer;
     OH_VideoEncoder_RegisterCallback(codec, cb, nullptr);

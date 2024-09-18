@@ -1,7 +1,7 @@
 # Opening Pages in a New Window
 
 
-The **\<Web>** component provides the capability of opening pages in a new window. You can call [multiWindowAccess()](../reference/apis-arkweb/ts-basic-components-web.md#multiwindowaccess9) to specify whether to allow a web page to be opened in a new window. When a new window is opened in the **\<Web>** component, the application will receive a window opening event through [onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9). You need to add the code for processing the window opening request in the event callback.
+The **Web** component provides the capability of opening pages in a new window. You can call [multiWindowAccess()](../reference/apis-arkweb/ts-basic-components-web.md#multiwindowaccess9) to specify whether to allow a web page to be opened in a new window. When a new window is opened in the **Web** component, the application will receive a window opening event through [onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9). You need to add the code for processing the window opening request in the event callback.
 
 
 > **NOTE**
@@ -18,13 +18,13 @@ In the following example, when a user clicks the **Open Page in New Window** but
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
-  // There are two <Web> components on the same page. When a new window is opened in WebComponent, NewWebViewComp is displayed.
+  // There are two Web components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
   @CustomDialog
   struct NewWebViewComp {
-    controller?: CustomDialogController
-    webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
+    controller?: CustomDialogController;
+    webviewController1: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -32,9 +32,9 @@ In the following example, when a user clicks the **Open Page in New Window** but
           .javaScriptAccess(true)
           .multiWindowAccess(false)
           .onWindowExit(() => {
-            console.info("NewWebViewComp onWindowExit")
+            console.info("NewWebViewComp onWindowExit");
             if (this.controller) {
-              this.controller.close()
+              this.controller.close();
             }
           })
       }
@@ -44,8 +44,8 @@ In the following example, when a user clicks the **Open Page in New Window** but
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController | null = null;
 
     build() {
       Column() {
@@ -58,15 +58,15 @@ In the following example, when a user clicks the **Open Page in New Window** but
             if (this.dialogController) {
               this.dialogController.close()
             }
-            let popController: web_webview.WebviewController = new web_webview.WebviewController()
+            let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
               builder: NewWebViewComp({ webviewController1: popController })
             })
-            this.dialogController.open()
-            // Return the WebviewController corresponding to the new window to the web kernel.
-            // If you do not need to open a new window, call event.handler.setWebController and set the value to null.
-            // If event.handler.setWebController is not called, the render process will be blocked.
-            event.handler.setWebController(popController)
+            this.dialogController.open();
+            // Return the WebviewController object corresponding to the new window to the Web kernel.
+            // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
+            // If the event.handler.setWebController API is not called, the render process will be blocked.
+            event.handler.setWebController(popController);
           })
       }
     }
@@ -89,7 +89,7 @@ In the following example, when a user clicks the **Open Page in New Window** but
       function OpenNewWindow()
       {
           let openedWindow = window.open("about:blank", "", "location=no,status=no,scrollvars=no");
-          openedWindow.document.write (" <p>This is my window </p>");
+          openedWindow.document.write (" <p>This is my window</p>");
           openedWindow.focus();
 
       }
@@ -97,3 +97,8 @@ In the following example, when a user clicks the **Open Page in New Window** but
   </body>
   </html>
   ```
+## Samples
+
+The following samples are provided to help you better understand how to create a window:
+
+- [Browser (ArkTS) (Full SDK) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Web/Browser)

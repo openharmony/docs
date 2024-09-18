@@ -25,7 +25,7 @@ The **image_pixel_map_napi.h** file declares the APIs used to lock, access, and 
 
 | Name| Description| 
 | -------- | -------- |
-| [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | Defines the information about a pixel map.| 
+| struct  [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) | Defines the information about a pixel map. | 
 
 
 ### Enums
@@ -41,8 +41,6 @@ The **image_pixel_map_napi.h** file declares the APIs used to lock, access, and 
 
 | Name| Description| 
 | -------- | -------- |
-| [OHOS::Media::OH_GetImageInfo](image.md#oh_getimageinfo) (napi_env env, napi_value value, [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) \*info) | Obtains the information about a **PixelMap** object and stores the information to the [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) struct.| 
-| [OHOS::Media::OH_AccessPixels](image.md#oh_accesspixels) (napi_env env, napi_value value, void \*\*addrPtr) | Obtains the memory address of a **PixelMap** object and locks the memory.| 
-| [OHOS::Media::OH_UnAccessPixels](image.md#oh_unaccesspixels) (napi_env env, napi_value value) | Unlocks the memory of a **PixelMap** object. This function is used with **OH_AccessPixels** in pairs.| 
-
-<!--no_check-->
+| int32_t [OH_GetImageInfo](image.md#oh_getimageinfo) (napi_env env, napi_value value, [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) \*info) | Obtains the information about a **PixelMap** object and stores the information to the [OhosPixelMapInfo](_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md) struct. | 
+| int32_t [OH_AccessPixels](image.md#oh_accesspixels) (napi_env env, napi_value value, void \*\*addrPtr) | Obtains the memory address of a **PixelMap** object and locks the memory. | 
+| int32_t [OH_UnAccessPixels](image.md#oh_unaccesspixels) (napi_env env, napi_value value) | Unlocks the memory of a **PixelMap** object. This function is used with **OH_AccessPixels** in pairs. | 

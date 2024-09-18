@@ -62,17 +62,6 @@
 | Dashed | 显示为一系列短的方形虚线。                 |
 | Solid  | 显示为一条实线。                      |
 
-## OutlineStyle<sup>11+</sup>
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| DOTTED | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
-| DASHED | 显示为一系列短的方形虚线。                 |
-| SOLID  | 显示为一条实线。                      |
-
 ## LineJoinStyle
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -251,6 +240,17 @@
 | On   | 常驻显示。              |
 | Auto | 按需显示(触摸时显示，2s后消失)。 |
 
+## TitleHeight<sup>9+</sup>
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 描述                         |
+| ----------- | -------------------------- |
+| MainOnly    | 只有主标题时标题栏的推荐高度（56vp）。      |
+| MainWithSub | 同时有主标题和副标题时标题栏的推荐高度（82vp）。 |
+
 ## EdgeEffect
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -385,6 +385,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称            | 描述               |
 | ------------- | ---------------- |
 | Row           | 主轴与行方向一致作为布局模式。  |
@@ -435,9 +437,9 @@
 
 | 类型      | 描述                                  |
 | ------- | ----------------------------------- |
-| Cover   | 默认值，保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Cover   | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
-| Auto    | 保持原图的比例不变。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
+| Auto    | 默认值，保持原图的比例不变。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
 | FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## GradientDirection
@@ -467,15 +469,6 @@
 | Static   | 目标页面元素的位置保持不变，可以配置透明度动画。目前，只有为重定向到目标页面而配置的静态效果才会生效。 |
 | Exchange | 将源页面元素移动到目标页面元素位置并适当缩放。                  |
 
-## ShadowType<sup>10+<sup>
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称       | 描述                                   |
-| -------- | ---------------------------------------- |
-| COLOR    | 颜色。                                    |
-| BLUR     | 模糊。                                    |
-
 ## FontStyle
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -493,14 +486,14 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述      |
-| ------- | ------- |
-| Lighter | 字体较细。   |
-| Normal  | 字体粗细正常。 |
-| Regular | 字体粗细正常。 |
-| Medium  | 字体粗细适中。 |
-| Bold    | 字体较粗。   |
-| Bolder  | 字体非常粗。  |
+| 名称    |  值   |    描述      |
+| ------- | ----- | ----------- |
+| Lighter |  100  |   字体较细。 |
+| Normal  |  400  |   字体粗细正常。 |
+| Regular |  400  |   字体粗细正常。 |
+| Medium  |  500  |   字体粗细适中。 |
+| Bold    |  700  |   字体较粗。   |
+| Bolder  |  900  |   字体非常粗。 |
 
 ## TextAlign
 
@@ -562,16 +555,6 @@
 | LongPress  | 通过长按触发菜单弹出。   |
 | RightClick | 通过鼠标右键触发菜单弹出。 |
 
-## RichEditorResponseType<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称         | 描述            |
-| ---------- | ------------- |
-| LONG_PRESS  | 通过长按触发菜单弹出。   |
-| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
-| SELECT | 通过鼠标选中触发菜单弹出。 |
-
 ## HoverEffect<sup>8+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -624,26 +607,6 @@
 | Transparent | 自身节点和子节点响应触摸事件的命中测试，并允许对被该节点屏蔽的其他节点进行命中测试。 |
 | None        | 自身节点不会响应触摸事件的命中测试，但子节点会对触摸事件进行命中测试。      |
 
-## BlurStyle<sup>9+</sup>
-
-该接口支持在ArkTS卡片中使用。
-
-| 名称                   | 描述        |
-| -------------------- | --------- |
-| Thin                 | 轻薄材质模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| Regular              | 普通厚度材质模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Thick                | 厚材质模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
-| BACKGROUND_THIN       | 近距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| BACKGROUND_REGULAR    | 中距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| BACKGROUND_THICK      | 远距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| BACKGROUND_ULTRA_THICK | 超远距景深模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| NONE<sup>10+</sup> | 关闭模糊。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-
 ## DialogButtonStyle<sup>10+</sup>枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -654,25 +617,6 @@
 | --------- | --------------------------------- |
 | DEFAULT   | 白底蓝字（深色主题：白底=黑底）。 |
 | HIGHLIGHT | 蓝底白字。                        |
-
-## ThemeColorMode<sup>10+</sup>
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述         |
-| ------ | ---------- |
-| SYSTEM | 跟随系统深浅色模式。 |
-| LIGHT  | 固定使用浅色模式。  |
-| DARK   | 固定使用深色模式。  |
-
-## AdaptiveColor<sup>10+</sup>
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称      | 描述                        |
-| ------- | ------------------------- |
-| DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。采用非DEFAULT方式较耗时。    |
-| AVERAGE | 使用取色模糊。将取色区域的颜色平均值作为蒙版颜色。 |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 
@@ -707,20 +651,11 @@
 | ----------- | ------------------------ |
 | PLACEHOLDER | 显示的数据为通用占位符。 |
 
-## TransitionEdge<sup>10+</sup>
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述     |
-| ------ | ------ |
-| TOP    | 窗口的上边缘 |
-| BOTTOM | 窗口的下边缘 |
-| START  | 窗口的左边缘 |
-| END    | 窗口的右边缘 |
-
 ## ClickEffectLevel<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 描述               | 动效参数                          | 默认缩放比                     |
 | ------ | --------------------------------- | --------------------------------- | --------------------------------- |
@@ -746,7 +681,7 @@
 | 名称    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
 | DEFAULT | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。 |
-| INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。 |
+| INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。<br/>内联模式下，不支持拖入文本。 |
 
 
 ## Nullable <sup>11+</sup>
@@ -794,71 +729,6 @@ Nullable\<T> {
 | SELECTABLE_FOCUSABLE | 文本可选择，可获焦并Touch后获得焦点。 |
 | UNSELECTABLE     | 文本不可选择，不可获焦，设置属性selection、bindSelectionMenu、copyOption都不生效。  |
 
-## GestureJudgeResult<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称  | 描述                                   |
-| ----- | -------------------------------------- |
-| CONTINUE  | 不影响系统手势判定流程。|
-| REJECT  | 对于用户自定义的手势判定结果为失败。|
-
-## GestureType<sup>11+</sup>
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称  | 描述                                   |
-| ----- | -------------------------------------- |
-| TAP_GESTURE   | 点击手势|
-| LONG_PRESS_GESTURE  | 长按手势|
-| PAN_GESTURE    | 拖动手势|
-| PINCH_GESTURE   | 捏合手势|
-| SWIPE_GESTURE    | 滑动手势|
-| ROTATION_GESTURE   | 旋转手势|
-| DRAG    | 拖拽|
-| CLICK   | 点击|
-## FinishCallbackType<sup>11+</sup>
-
-**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称       | 描述                                                         |
-| --------- | ------------------------------------------------------------ |
-| REMOVED   | 当整个动画结束并立即删除时，将触发回调。                         |
-| LOGICALLY | 当动画在逻辑上处于下降状态，但可能仍处于其长尾状态时，将触发回调。 |
-
-## BlurOptions<sup>11+</sup>
-灰阶模糊参数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称        |   类型   |   必填 | 说明                        |
-| ----        |  ----   |   ---- | --------------------------  |
-| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，两参数取值范围均为[0,127] 。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。参数一表示对黑色的提亮程度，参数二表示对白色的压暗程度，参数值越大调整效果越明显（黑白色变得越灰），有效值范围0-127。例如：设置参数为（20,20），图片中的黑色像素RGB:[0, 0, 0]会调整为[20,20,20]，白色像素RGB:[255,255,255]会调整为[235,235,235]（255-20），图像中的彩色像素维持不变。 |
-
-## ForegroundEffectOptions<sup>12+</sup>
-前景效果参数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称        |   类型         |   必填 |  说明                        |
-| ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。<br/> 仅在组件范围内生效，与其他接口连用时超出组件范围的效果无法生效。     |
-
-## BackgroundEffectOptions<sup>11+</sup>
-背景效果参数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称        |   类型         |   必填 |  说明                        |
-| ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。  |
-| saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 50]。     |
-| brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 2]。 |
-| color        | [Color](ts-appendix-enums.md#color)        |   否   |   颜色，默认透明色。  |
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
-| blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
@@ -881,39 +751,6 @@ Nullable\<T> {
 | CENTER | 位于父组件居中位置。 |
 | END | 水平方向：位于父组件最右侧，垂直方向：位于父组件最下侧。 |
 
-## TextDataDetectorType<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称  | 描述                                   |
-| ----- | -------------------------------------- |
-| PHONE_NUMBER  | 电话号码 |
-| URL | 链接 |
-| EMAIL | 邮箱 |
-| ADDRESS | 地址 |
-
-## TextSpanType<sup>11+</sup>
-
-[Span](ts-basic-components-span.md)类型信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称 | 说明 |
-| -------- | -------- |
-| TEXT | Span为文字类型。 |
-| IMAGE | Span为图像类型。|
-| MIXED | Span为图文混合类型。|
-
-## TextResponseType<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称         | 描述            |
-| ---------- | ------------- |
-| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
-| LONG_PRESS  | 通过长按触发菜单弹出。   |
-| SELECT | 通过鼠标选中触发菜单弹出。 |
-
 ## OptionWidthMode<sup>11+</sup>枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -925,63 +762,6 @@ Nullable\<T> {
 | FIT_CONTENT | 设置该值时，下拉菜单宽度按默认2栅格显示。            |
 | FIT_TRIGGER | 设置下拉菜单继承下拉按钮宽度。 |
 
-## SelectionMenuOptions<sup>11+</sup>
-
-范围信息。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称 | 类型  | 只读 | 必填  | 描述                               |
-| ------ | ------ | ------ | ------ | -------------------------------------- |
-| onAppear | [MenuOnAppearCallback](ts-basic-components-richeditor.md#menuonappearcallback12) | 否 | 否 | 自定义选择菜单弹出时回调。 |
-| onDisappear | () => void | 否 | 否 | 自定义选择菜单关闭时回调。 |
-
-## SymbolEffectStrategy<sup>11+</sup>
-
-动效类型的枚举值。设置动效后启动即生效，无需触发。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| NONE | 无动效（默认值）。 |
-| SCALE | 整体缩放动效。                 |
-|  HIERARCHICAL  | 层级动效。  |
-
-## SymbolRenderingStrategy<sup>11+</sup>
-
-渲染模式的枚举值。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| SINGLE  | 单色模式（默认值）。<br/> 默认为黑色，可以设置一个颜色。<br/> 当用户设置多个颜色时，仅生效第一个颜色。 |
-| MULTIPLE_COLOR  |  多色模式。<br/> 最多可以设置三个颜色。当用户只设置一个颜色时，修改第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。<br/> 仅支持设置颜色，不透明度设置不生效。|
-|  MULTIPLE_OPACITY   | 分层模式。<br/> 默认为黑色，可以设置一个颜色。当用户设置多个颜色时，仅生效第一个颜色。<br/> 不透明度与图层相关，第一层100%、第二层50%、第三层20%。  |
-
-## BlendApplyType<sup>11+</sup>
-
-指示如何将指定的混合模式应用于视图的内容。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称           | 描述                                                             |
-| ---------------| ---------------------------------------------------------------- |
-| FAST           |   在目标图像上按顺序混合视图的内容。                        |
-| OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
-
-## DismissReason<sup>12+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称          | 值   | 描述                                                         |
-| ------------- | ---- | ------------------------------------------------------------ |
-| PRESS_BACK    | 0    | 点击三键back、左滑/右滑、键盘ESC。                           |
-| TOUCH_OUTSIDE | 1    | 点击遮障层时。                                               |
-| CLOSE_BUTTON  | 2    | 点击关闭按钮。                                               |
-| SLIDE_DOWN    | 3    | 下拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。 |
-
 ## ChainStyle<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -991,21 +771,8 @@ Nullable\<T> {
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | SPREAD | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
-| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例8](ts-container-relativecontainer.md#示例8)。                 |
-| PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例9](ts-container-relativecontainer.md#示例9)。                      |
-
-## BarrierDirection<sup>12+</sup>
-
-定义屏障线的方向。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最左侧。    |
-| RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最右侧。   |
-| TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最上方。    |
-| BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最下方。 |
+| SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                 |
+| PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                      |
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
@@ -1019,24 +786,6 @@ Nullable\<T> {
 | FORCE_CEIL | 取上整计算。|
 | FORCE_FLOOR | 取下整计算。|
 
-## StyledStringKey<sup>12+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
-| DECORATION | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。|
-| BASELINE_OFFSET | 文本基线偏移量样式键。[BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle)所属键。|
-| LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。|
-| LINE_HEIGHT | 文本行高样式键。[LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle)所属键。|
-| TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
-| GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
-| PARAGRAPH_STYLE | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。|
-| IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
-| CUSTOM_SPAN | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。|
-| USER_DATA | UserDataSpan键。[UserDataSpan](./ts-universal-styled-string.md#userdataspan)所属键。|
-
 ## TextDecorationStyle<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -1049,18 +798,13 @@ Nullable\<T> {
 | DASHED        | 虚线。 |
 | WAVY        | 波浪线。 |
 
-## FlexSpaceOptions<sup>12+</sup>
-
-| 名称          | 类型        |  只读     | 必填      | 说明      |
-| ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 否 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
-| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 否 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
-
 ## MenuPolicy<sup>12+</sup>
 
 菜单弹出的策略。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 值   | 描述                               |
 | ------- | ---- | ---------------------------------- |
@@ -1073,6 +817,8 @@ Nullable\<T> {
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称                  | 值 | 说明                                                |
 | --------------------- | - | ---------------------------------------------------- |
 | EMBEDDED_UI_EXTENSION | 0 | 表示当前拉起的提供方类型为EmbeddedUIExtensionAbility。|
@@ -1081,20 +827,12 @@ Nullable\<T> {
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称       | 值      | 描述                     |
 | ---------- | ------------------------ | ------------------------ |
 | DEFAULT | 0 | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
 | PRESERVE_POSITION  | 1 | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
-
-## FocusPriority<sup>12+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称          | 描述        |
-| ----------- | --------- |
-| AUTO | 默认的优先级，缺省时组件的获焦优先级。 |
-| PRIOR | 容器内优先获焦的优先级。优先级高于AUTO。 |
-| PREVIOUS | 上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
 
 ## AppRotation<sup>12+</sup>
 
@@ -1107,16 +845,28 @@ Nullable\<T> {
 | ROTATION_180 | 应用方向为180度。|
 | ROTATION_270 | 应用方向为270度。|
 
-## TextDeleteDirection<sup>12+</sup>
+## BlurStyleActivePolicy<sup>13+</sup>
 
-定义删除文本方向。
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 值   | 描述                               |
-| ------- | ---- | ---------------------------------- |
-| BACKWARD | 0    | 向后删除。 |
-| FORWARD    | 1    | 向前删除。 |
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| ALWAYS_ACTIVE | 一直有模糊效果。|
+| FOLLOWS_WINDOW_ACTIVE_STATE | 模糊效果跟随窗口焦点状态变化，非焦点不模糊，焦点模糊。|
+| ALWAYS_INACTIVE | 一直无模糊效果。|
+
+## BlurType<sup>13+</sup>
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| WITHIN_WINDOW | 透控件下层模糊。|
+| BEHIND_WINDOW | 透窗口下层模糊。|
 
 ## ScrollSource<sup>12+</sup>枚举说明
 
@@ -1136,3 +886,41 @@ Nullable\<T> {
 | SCROLL_BAR_FLING  |  5  | 滚动条拖拽结束后的带速度的惯性滑动。 |
 | SCROLLER  |  6  | Scroller的不带动效方法。 |
 | SCROLLER_ANIMATION  |  7  | Scroller的带动效方法。 |
+
+## ImageSpanAlignment<sup>10+</sup>枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                           |
+| -------- | ------------------------------ |
+| TOP      | 图片上边沿与行上边沿对齐。   |
+| CENTER   | 图片中间与行中间对齐。       |
+| BOTTOM   | 图片下边沿与行下边沿对齐。   |
+| BASELINE | 图片下边沿与文本BaseLine对齐。 |
+
+
+## XComponentType<sup>10+</sup>枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                             | 描述                                                         |
+| -------------------------------- | ------------------------------------------------------------ |
+| SURFACE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。背景色设置为黑色时会走显示子系统（DSS）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| COMPONENT<sup>(deprecated)</sup> | XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>**说明：**<br/>从API version 12 开始，该接口废弃，建议使用其他容器组件替代。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和原生组件统一。3、走图形处理器（GPU）合成，相比suface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NODE<sup>12+</sup>            | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+## HoverModeAreaType<sup>13+</sup>
+
+悬停态显示区域类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| TOP_SCREEN | 上半屏。|
+| BOTTOM_SCREEN | 下半屏。|

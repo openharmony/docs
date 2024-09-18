@@ -106,6 +106,14 @@ createService(): Promise\<SEService>;
 | :-------- | :--------- |
 | Promise\<[SEService](#seservice)> | 以Promise形式异步返回可用的SE服务实例。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
 ```js
@@ -370,6 +378,7 @@ isSecureElementPresent(): boolean
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
@@ -412,6 +421,7 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
@@ -454,6 +464,7 @@ function secureElementDemo() {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
@@ -564,6 +575,7 @@ getATR(): number[]
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
@@ -599,6 +611,7 @@ close(): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
@@ -674,6 +687,7 @@ closeChannels(): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
@@ -720,6 +734,8 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -776,6 +792,8 @@ function secureElementDemo() {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -840,6 +858,8 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -898,6 +918,8 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -962,6 +984,8 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -1018,6 +1042,8 @@ function secureElementDemo() {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -1082,6 +1108,8 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -1140,6 +1168,8 @@ openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>)
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -1405,6 +1435,8 @@ transmit(command: number[]): Promise\<number[]>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
 | 3300103  | SecurityError, the command is filtered by the security policy. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
@@ -1453,6 +1485,8 @@ transmit(command: number[], callback: AsyncCallback\<number[]>): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
 | 3300103  | SecurityError, the command is filtered by the security policy. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |

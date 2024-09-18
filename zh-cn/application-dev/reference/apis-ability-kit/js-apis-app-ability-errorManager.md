@@ -11,7 +11,7 @@ ErrorManager模块提供对错误观察器的注册和注销的能力。
 import { errorManager } from '@kit.AbilityKit';
 ```
 
-## ErrorManager.on
+## ErrorManager.on('error')
 
 on(type: 'error', observer: ErrorObserver): number
 
@@ -72,7 +72,7 @@ try {
 }
 ```
 
-## ErrorManager.off
+## ErrorManager.off('error')
 
 off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
@@ -122,7 +122,7 @@ try {
 }
 ```
 
-## ErrorManager.off
+## ErrorManager.off('error')
 
 off(type: 'error', observerId: number): Promise\<void>
 
@@ -177,7 +177,7 @@ try {
 }
 ```
 
-## ErrorManager.on<sup>12+</sup>
+## ErrorManager.on('loopObserver')<sup>12+</sup>
 
 on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 
@@ -217,7 +217,7 @@ let observer: errorManager.LoopObserver = {
 errorManager.on("loopObserver", 1, observer);
 ```
 
-## ErrorManager.on<sup>12+</sup>
+## ErrorManager.on('unhandledRejection')<sup>12+</sup>
 
 on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
@@ -266,7 +266,7 @@ let promise1 = new Promise<void>(() => {}).then(() => {
 });
 ```
 
-## ErrorManager.off<sup>12+</sup>
+## ErrorManager.off('loopObserver')<sup>12+</sup>
 
 off(type: 'loopObserver', observer?: LoopObserver): void
 
@@ -299,7 +299,7 @@ import { errorManager } from '@kit.AbilityKit';
 errorManager.off("loopObserver");
 ```
 
-## ErrorManager.off<sup>12+</sup>
+## ErrorManager.off('unhandledRejection')<sup>12+</sup>
 
 off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 

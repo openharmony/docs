@@ -29,30 +29,30 @@ This function allows your application to record fault events, statistics events,
 
 | Name| Description| 
 | -------- | -------- |
-| struct  [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) | Defines information about a single event, including the event domain, event name, event type, and custom parameter list in JSON string format. | 
-| struct  [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) | Event array with the same event name. | 
+| struct&nbsp;&nbsp;[HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) | Defines information about a single event, including the event domain, event name, event type, and custom parameter list in JSON string format. | 
+| struct&nbsp;&nbsp;[HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) | Event array with the same event name. | 
 
 
 ### Macros
 
 | Name| Description| 
 | -------- | -------- |
-| [DISABLE](#disable)   "disable" | Whether to disable event logging. | 
-| [MAX_STORAGE](#max_storage)   "max_storage" | Storage quota of the event file directory. | 
-| [EVENT_USER_LOGIN](#event_user_login)   "hiappevent.user_login" | User login event. | 
-| [EVENT_USER_LOGOUT](#event_user_logout)   "hiappevent.user_logout" | User logout event. | 
-| [EVENT_DISTRIBUTED_SERVICE_START](#event_distributed_service_start)   "hiappevent.distributed_service_start" | Distributed service event. | 
-| [EVENT_APP_CRASH](#event_app_crash)   "APP_CRASH" | Application crash event. | 
-| [EVENT_APP_FREEZE](#event_app_freeze)   "APP_FREEZE" | Application freeze event. | 
-| [EVENT_APP_LAUNCH](#event_app_launch)   "APP_LAUNCH" | Application loading event. | 
-| [EVENT_SCROLL_JANK](#event_scroll_jank)   "SCROLL_JANK" | Event indicating application freeze during swiping. | 
-| [EVENT_CPU_USAGE_HIGH](#event_cpu_usage_high)   "CPU_USAGE_HIGH" | Event indicating high CPU usage of an application. | 
-| [EVENT_BATTERY_USAGE](#event_battery_usage)   "BATTERY_USAGE" | Application power usage event. | 
-| [EVENT_RESOURCE_OVERLIMIT](#event_resource_overlimit)   "RESOURCE_OVERLIMIT" | Application resource threshold-crossing event. | 
-| [DOMAIN_OS](#domain_os)   "OS" | OS scope. | 
-| [PARAM_USER_ID](#param_user_id)   "user_id" | User ID. | 
-| [PARAM_DISTRIBUTED_SERVICE_NAME](#param_distributed_service_name)   "ds_name" | Distributed service name. | 
-| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](#param_distributed_service_instance_id)   "ds_instance_id" | Distributed service instance ID. | 
+| [DISABLE](#disable)&nbsp;&nbsp;&nbsp;"disable" | Whether to disable event logging. The default value is **false**. The value **true** means to disable the event logging function, and the value **false** means the opposite. | 
+| [MAX_STORAGE](#max_storage)&nbsp;&nbsp;&nbsp;"max_storage" | Storage quota of the event file directory. The default value is **10M**. | 
+| [EVENT_USER_LOGIN](#event_user_login)&nbsp;&nbsp;&nbsp;"hiappevent.user_login" | User login event. | 
+| [EVENT_USER_LOGOUT](#event_user_logout)&nbsp;&nbsp;&nbsp;"hiappevent.user_logout" | User logout event. | 
+| [EVENT_DISTRIBUTED_SERVICE_START](#event_distributed_service_start)&nbsp;&nbsp;&nbsp;"hiappevent.distributed_service_start" | Distributed service event. | 
+| [EVENT_APP_CRASH](#event_app_crash)&nbsp;&nbsp;&nbsp;"APP_CRASH" | Application crash event. | 
+| [EVENT_APP_FREEZE](#event_app_freeze)&nbsp;&nbsp;&nbsp;"APP_FREEZE" | Application freeze event. | 
+| [EVENT_APP_LAUNCH](#event_app_launch)&nbsp;&nbsp;&nbsp;"APP_LAUNCH" | Application loading event. | 
+| [EVENT_SCROLL_JANK](#event_scroll_jank)&nbsp;&nbsp;&nbsp;"SCROLL_JANK" | Event indicating application freeze during swiping. | 
+| [EVENT_CPU_USAGE_HIGH](#event_cpu_usage_high)&nbsp;&nbsp;&nbsp;"CPU_USAGE_HIGH" | Event indicating high CPU usage of an application. | 
+| [EVENT_BATTERY_USAGE](#event_battery_usage)&nbsp;&nbsp;&nbsp;"BATTERY_USAGE" | Application power usage event. | 
+| [EVENT_RESOURCE_OVERLIMIT](#event_resource_overlimit)&nbsp;&nbsp;&nbsp;"RESOURCE_OVERLIMIT" | Application resource threshold-crossing event. | 
+| [DOMAIN_OS](#domain_os)&nbsp;&nbsp;&nbsp;"OS" | OS scope. | 
+| [PARAM_USER_ID](#param_user_id)&nbsp;&nbsp;&nbsp;"user_id" | User ID. | 
+| [PARAM_DISTRIBUTED_SERVICE_NAME](#param_distributed_service_name)&nbsp;&nbsp;&nbsp;"ds_name" | Distributed service name. | 
+| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](#param_distributed_service_instance_id)&nbsp;&nbsp;&nbsp;"ds_instance_id" | Distributed service instance ID. | 
 
 
 ### Types
@@ -72,7 +72,7 @@ This function allows your application to record fault events, statistics events,
 
 | Name| Description| 
 | -------- | -------- |
-| [EventType](#eventtype) { FAULT = 1, STATISTIC = 2, SECURITY = 3, BEHAVIOR = 4 } | Event type.| 
+| [EventType](#eventtype) { **FAULT** = 1, **STATISTIC** = 2, **SECURITY** = 3, **BEHAVIOR** = 4 } | Event type. | 
 
 
 ### Functions
@@ -120,7 +120,7 @@ This function allows your application to record fault events, statistics events,
 #define DISABLE   "disable"
 ```
 **Description**
-Whether to disable event logging.
+Whether to disable event logging. The default value is **false**. The value **true** means to disable the event logging function, and the value **false** means the opposite.
 
 **Since**: 8
 
@@ -252,7 +252,7 @@ User logout event.
 #define MAX_STORAGE   "max_storage"
 ```
 **Description**
-Storage quota of the event file directory.
+Storage quota of the event file directory. The default value is **10M**.
 
 **Since**: 8
 
@@ -862,12 +862,12 @@ This function is used to configure the event logging function and the storage qu
 
 | Name| Description| 
 | -------- | -------- |
-| name | Configuration item name. | 
-| value | Configuration item value. | 
+| name | Configuration item name. The value can be set to [DISABLE](#disable) or [MAX_STORAGE](#max_storage). | 
+| value | Configuration item value. If the configuration item name is [DISABLE](#disable), the value can be **true** or **false**. If the configuration item name is [MAX_STORAGE](#max_storage), the quota value can contain only digits and a unit, which can be one of [b\|k\|kb\|m\|mb\|g\|gb\|t\|tb] and is case insensitive. The quota value string must start with a digit and can end with or without a unit. If no unit is specified, byte is used by default. | 
 
 **Returns**
 
-Configuration result.
+Configuration result. The value **true** indicates that the configuration is successful, and the value **false** indicates the opposite.
 
 
 ### OH_HiAppEvent_CreateParamList()
@@ -993,7 +993,7 @@ This function can be called repeatedly. You can add multiple filtering condition
 | -------- | -------- |
 | watcher | Pointer to the watcher (that is, the pointer returned by OH_HiAppEvent_CreateWatcher). | 
 | domain | Domain of events to be listened for. | 
-| eventTypes | Types of events to be listened for. | 
+| eventTypes | Types of events to be listened for. The bitwise AND matching mode is used. Multiple types of events can be intercepted. If the first bit is 1 (the value is 1), fault events can be intercepted. If the second bit is 1 (the value is 2), statistics events can be intercepted. If the third bit is 1 (the value is 4), security events can be intercepted, if the fourth digit is 1 (the value is 8), events of the listening behavior type are supported. If the fourth digit is 1 (the value is 15) or 0 (the value is 0), events of all types are supported. | 
 | names | Array of the event names. | 
 | namesLen | Length of the event name array. | 
 
@@ -1117,13 +1117,11 @@ Before application event logging, use this API to verify parameters of the event
 
 | Name| Description| 
 | -------- | -------- |
-| domain | Event domain. You can customize event domains as required. | 
-| name | Event name. You can customize event names as required. | 
+| domain | Event domain. You can customize event domains as required. The value is a string of up to 32 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter and cannot end with an underscore (_). | 
+| name | Event name. You can customize event names as required. The value is string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter. | 
 | type | Event type, which is defined in [EventType](#eventtype). | 
-| list | List of event parameters. Each parameter consists of a parameter name and a parameter value. | 
+| list | List of event parameters, each of which consists of a parameter name and a parameter value. The specifications are as follows:<br>1. A parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>2. The parameter value can be string, number, Boolean, or array. The length of a parameter of the string type must be less than 8 × 1024 characters. If this limit is exceeded, the parameter will be discarded. The element type of an array parameter can only be string, number, or Boolean, and the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.<br>3. The maximum number of parameters is 32. If this limit is exceeded, excess parameters will be discarded.| 
 
 **Returns**
 
-The value **0** indicates that the event parameter verification is successful, and the event will be written to the event file asynchronously. A value greater than **0** indicates that invalid parameters are present in the event, and the event will be written to the event file asynchronously after the invalid parameters are ignored. A value smaller than **0** indicates that the event parameter verification fails, and the event will not be written to the event file.
-
-<!--no_check-->
+The value **0** indicates that the event parameter is valid, and the event will be written to the event file asynchronously. A value greater than **0** indicates that invalid parameters are present in the event, and the event will be written to the event file asynchronously after the invalid parameters are ignored. A value smaller than **0** indicates that the event parameter verification fails, and the event will not be written to the event file. 0 The event parameter is valid. -1 The event name is invalid. -4 The event domain name is invalid. -99 The application event logging is disabled. 1 The event parameter name is invalid. 4 The length of the event parameter string is invalid. 5 The number of event parameters is invalid. 6 The length of the event parameter array is invalid. 8 The event parameter name is duplicate.

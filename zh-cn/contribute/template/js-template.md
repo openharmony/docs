@@ -93,12 +93,12 @@ ArrayList和LinkedList相比，ArrayList的随机访问效率更高。但由于A
 >    在使用AbilityContext的功能前，需要通过\[getContext()]\(链接到对应的接口说明文件中.md)先获取Context对象。
 >
 > ```js
->    import ability_featureAbility from '@ohos.ability.featureAbility';
->    let context = ability_featureAbility.getContext();
+>    import { featureAbility } from '@kit.AbilityKit';
+>    let context = featureAbility.getContext();
 > ```
 
 ```js
-import call from '@ohos.telephony.call';
+import { call } from '@kit.TelephonyKit';
 ```
 
 ## 属性
@@ -288,7 +288,7 @@ import call from '@ohos.telephony.call';
 
 > *写作说明*
 >
-> 除标题使用三级标题外，其余要求同[属性](#属性)，如仅有属性，可删除。
+> 除标题使用三级标题外，其余要求同[属性](#属性)，如仅有属性，可删除“属性”小标题，直接写interface名称作为二级标题。
 
 ### Class/Interface中的方法
 

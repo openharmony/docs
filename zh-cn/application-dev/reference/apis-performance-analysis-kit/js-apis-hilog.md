@@ -77,7 +77,7 @@ DEBUG级别的日志在正式发布版本中默认不被打印，只有在调试
 | domain | number | 是   | 日志对应的领域标识，范围是0x0~0xFFFF。<br/>建议开发者在应用内根据需要自定义划分。 |
 | tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 |
 | format | string | 是   | 格式字符串，用于日志的格式化输出。格式字符串中可以设置多个参数，参数需要包含参数类型、隐私标识。<br>隐私标识分为{public}和{private}，缺省为{private}。标识{public}的内容明文输出，标识{private}的内容以\<private>过滤回显。 |
-| args   | any[]  | 是   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
+| args   | any[]  | 否   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
 **示例：**
 
@@ -110,7 +110,7 @@ info(domain: number, tag: string, format: string, ...args: any[]) : void
 | domain | number | 是   | 日志对应的领域标识，范围是0x0~0xFFFF。<br/>建议开发者在应用内根据需要自定义划分。  |
 | tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 |
 | format | string | 是   | 格式字符串，用于日志的格式化输出。格式字符串中可以设置多个参数，参数需要包含参数类型、隐私标识。<br/>隐私标识分为{public}和{private}，缺省为{private}。标识{public}的内容明文输出，标识{private}的内容以\<private>过滤回显。 |
-| args   | any[]  | 是   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
+| args   | any[]  | 否   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
 **示例：**
 
@@ -143,7 +143,7 @@ warn(domain: number, tag: string, format: string, ...args: any[]) : void
 | domain | number | 是   | 日志对应的领域标识，范围是0x0~0xFFFF。<br/>建议开发者在应用内根据需要自定义划分。  |
 | tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 |
 | format | string | 是   | 格式字符串，用于日志的格式化输出。格式字符串中可以设置多个参数，参数需要包含参数类型、隐私标识。<br/>隐私标识分为{public}和{private}，缺省为{private}。标识{public}的内容明文输出，标识{private}的内容以\<private>过滤回显。 |
-| args   | any[]  | 是   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
+| args   | any[]  | 否   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
 **示例：**
 
@@ -176,7 +176,7 @@ error(domain: number, tag: string, format: string, ...args: any[]) : void
 | domain | number | 是   | 日志对应的领域标识，范围是0x0~0xFFFF。<br/>建议开发者在应用内根据需要自定义划分。  |
 | tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 |
 | format | string | 是   | 格式字符串，用于日志的格式化输出。格式字符串中可以设置多个参数，参数需要包含参数类型、隐私标识。<br/>隐私标识分为{public}和{private}，缺省为{private}。标识{public}的内容明文输出，标识{private}的内容以\<private>过滤回显。 |
-| args   | any[]  | 是   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
+| args   | any[]  | 否   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
 **示例：**
 
@@ -209,7 +209,7 @@ fatal(domain: number, tag: string, format: string, ...args: any[]) : void
 | domain | number | 是   | 日志对应的领域标识，范围是0x0~0xFFFF。<br/>建议开发者在应用内根据需要自定义划分。  |
 | tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 |
 | format | string | 是   | 格式字符串，用于日志的格式化输出。格式字符串中可以设置多个参数，参数需要包含参数类型、隐私标识。<br/>隐私标识分为{public}和{private}，缺省为{private}。标识{public}的内容明文输出，标识{private}的内容以\<private>过滤回显。 |
-| args   | any[]  | 是   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
+| args   | any[]  | 否   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
 **示例：**
 

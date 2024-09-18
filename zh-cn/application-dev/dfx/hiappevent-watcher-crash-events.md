@@ -19,11 +19,11 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | pid | number | 应用的进程id。|
 | uid | number | 应用的用户id。 |
 | uuid | string | 故障id。 |
-| exception | object | 异常信息，详见exception属性。NativeCrash类型的崩溃事件详见exception属性（NativeCrash类型）。 |
+| exception | object | 异常信息，详见exception属性。NativeCrash类型的崩溃事件详见exception属性（NativeCrash类型）。exception只包含故障简要信息，具体的故障定位信息见external_log文件。 |
 | hilog | string[] | 日志信息。|
 | threads | object[] | 全量线程调用栈，详见thread属性。仅NativeCrash类型的崩溃事件提供。 |
-| external_log<sup>12+</sup> | string[] | 故障日志文件路径。 |
-| log_over_limit<sup>12+</sup> | boolean | 生成的日志文件与已存在的日志文件总大小是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
+| external_log<sup>12+</sup> | string[] | 故障日志文件路径。**为避免目录空间超限（限制参考log_over_limit），导致新生成的日志文件写入失败，日志文件处理完后请及时删除。** |
+| log_over_limit<sup>12+</sup> | boolean | 生成的故障日志文件与已存在的日志文件总大小是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。 |
 
 **exception属性：**
 

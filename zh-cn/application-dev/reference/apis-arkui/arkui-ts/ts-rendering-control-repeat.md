@@ -153,7 +153,7 @@ templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| totalCount | number | 否   | 定义数据源长度为arr.length，以下为totalCount的判断规则：<br/>1) totalCount不设置 \|\| totalCount不是整数 \|\| totalCount <= 0 \|\| totalCount == arr.length时，totalCount为数据源长度，列表正常滚动<br/>2) 0 < totalCount < arr.length时，界面中只渲染“totalCount”个数据<br/>3) totalCount > arr.length时，滚动条样式正常，无数据项的位置显示空白，当滚动动画停止时，滚动条停留在最后一个数据项的位置。这样用户可以不同步请求所有数据，也能实现正确的滚动条样式。 |
+| totalCount | number | 否   | 数据源的总长度，可以大于已加载数据项的数量<br/>令arr.length表示数据源长度，以下为totalCount的判断规则：<br/>1) totalCount不设置 \|\| totalCount不是整数 \|\| totalCount <= 0 \|\| totalCount == arr.length时，totalCount为数据源长度，列表正常滚动<br/>2) 0 < totalCount < arr.length时，界面中只渲染“totalCount”个数据<br/>3) totalCount > arr.length时，滚动条样式正常，无数据项的位置显示空白，当滚动动画停止时，滚动条停留在最后一个数据项的位置。这样用户可以不同步请求所有数据，也能实现正确的滚动条样式。 |
 
 > **注意：** 当totalCount < arr.length时，totalCount建议设置能铺满父组件容器，否则会有父组件容器留空的体验问题。
 

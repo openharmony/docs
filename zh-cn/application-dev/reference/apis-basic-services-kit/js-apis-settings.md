@@ -76,12 +76,10 @@ import settings from '@ohos.settings';
 | SETUP_WIZARD_FINISHED            | string | 是   | 是   | 是否已运行启动向导。<br>值为0，表示启动向导尚未运行；<br/>值不是0，表示启动向导已运行。 |
 | END_BUTTON_ACTION                | string | 是   | 是   | 在用户不在呼叫中时，用户按下呼叫结束按钮会发生的情况。<br/>值为0，表示没有任何反应；<br/>值为1，表示显示主屏幕；<br/>值为2，表示设备进入睡眠状态，屏幕锁定；<br/>值为3，表示显示主屏幕。如果用户已在主屏幕上，设备将进入睡眠状态。 |
 | ACCELEROMETER_ROTATION_STATUS    | string | 是   | 是   | 是否使用加速计更改屏幕方向，即是否启用自动旋转。<br>值为1，表示启用加速度计；<br/>值为0，表示不启用加速计。 |
-| AIRPLANE_MODE_STATUS             | string | 是   | 是   | 是否启用飞行模式。<br>值为1，表示启用飞行模式；<br/>值为0，表示不启用飞行模式。 |
 | DEVICE_PROVISION_STATUS          | string | 是   | 是   | 是否预配设备。<br>在具有单个系统用户的多用户设备上，当值为true时，屏幕可能会被锁定。此外，其他功能无法在系统用户上启动，除非它们被标记为在屏幕锁定上显示。 |
 | HDC_STATUS                       | string | 是   | 是   | 是否启用USB设备上的硬盘控制器（HDC）。<br>值为true，表示启用HDC；<br/>值为false，表示不启用HDC。 |
 | BOOT_COUNTING                    | string | 是   | 是   | 设备开机后的启动操作数。                                     |
 | CONTACT_METADATA_SYNC_STATUS     | string | 是   | 是   | 是否启用联系人元数据同步。<br>值为true，表示启用同步；<br/>值为false，表示不启用同步。 |
-| DEVELOPMENT_SETTINGS_STATUS      | string | 是   | 是   | 是否启用开发人员选项。<br>值为true，表示启用开发人员选项；<br/>值为false，表示不启用开发人员选项。 |
 | DEVICE_NAME                      | string | 是   | 是   | 设备名称。                                                   |
 | USB_STORAGE_STATUS               | string | 是   | 是   | 是否启用USB大容量存储。<br>值为true，表示启用USB大容量存储；<br/>值为false，表示不启用USB大容量存储。 |
 | DEBUGGER_WAITING                 | string | 是   | 是   | 设备在启动应用程序进行调试时是否等待调试器进行调试。<br>值为1，表示设备等待调试器；<br/>值为0，表示系统不会等待调试器，因此应用程序会正常运行。 |
@@ -216,7 +214,7 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                 | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| context  | Context                 | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                  | 是   | 数据项值。取值范围随业务变动。                               |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
@@ -249,7 +247,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| context | Context | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name    | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value   | string  | 是   | 数据项值。取值范围随业务变动。                               |
 
@@ -287,7 +285,7 @@ setValue(context: Context, name: string, value: string, domainName: string): Pro
 
 | 参数名   | 类型                   | 必填 | 说明                                                                                                                                                                                                                                                                  |
 | -------- | ---------------------- | ---- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。                                                                                                                                                                |
+| context  | Context                | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。                                                                                                                                                                |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。                                                                                                                                                                                                      |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                                                                                                                                                                                                                                                     |
 |domainName| string                 | 是   | 指定要设置的域名                <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;表示设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域（仅对系统应用开放） |
@@ -324,7 +322,7 @@ getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| context  | Context                | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | callback | AsyncCallback\<string> | 是   | 使用callback方式获取数据项的值。                             |
 
@@ -356,7 +354,7 @@ getValue(context: Context, name: string): Promise\<string>
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| context | Context | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name    | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 
 **返回值**：
@@ -389,7 +387,7 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>;
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| context  | Context                | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 |domainName| string                 | 是   | 指定要设置的域名                <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域（仅对系统应用开放）|
 
@@ -425,7 +423,7 @@ getValueSync(context: Context, name: string, defValue: string): string;
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| context  | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| context  | Context | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | defValue | string  | 是   | 默认值。由开发者设置，当未从数据库中查询到该数据时，表示返回该默认值。 |
 
@@ -459,7 +457,7 @@ getValueSync(context: Context, name: string, defValue: string, domainName: strin
 
 | 参数名        | 类型                   | 必填 | 说明                                                         |
 |------------| ---------------------- | ---- | ------------------------------------------------------------ |
-| context    | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| context    | Context                | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name       | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | defValue   | string                 | 是   | 数据项值。取值范围随业务变动。                   |
 | domainName | string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域（仅对系统应用开放）|
@@ -499,7 +497,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
-| context | Context | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| context | Context | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name    | string  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value   | string  | 是   | 数据项的具体数值。取值范围随业务变动。                       |
 
@@ -537,7 +535,7 @@ setValueSync(context: Context, name: string, value: string, domainName: string):
 
 | 参数名     | 类型                   | 必填 | 说明                                                         |
 |---------| ---------------------- | ---- | ------------------------------------------------------------ |
-| context | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| context | Context                | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name    | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value   | string                 | 是   | 数据项值。取值范围随业务变动。                   |
 | domainName | string                 | 是   | 指定要设置的域名                <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域（仅对系统应用开放）|
@@ -572,7 +570,7 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| context  | Context                | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 |domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域（仅对系统应用开放）|
 |observer  |  AsyncCallback\<void>  | 是   | 使用collback方式获取数据项的值。                   |
@@ -607,7 +605,7 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
+| context  | Context                | 是   | 应用上下文（仅支持UIAbilityContext和ExtensionContext）。<br />Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
 |domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域（仅对系统应用开放）|

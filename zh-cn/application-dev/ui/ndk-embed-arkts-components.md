@@ -11,16 +11,16 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
 >
 > - 通过OH_ArkUI_GetNodeHandleFromNapiValue接口获得的ArkUI_NodeHandle对象只能作为子组件参数使用，如[addChild](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#addchild)接口的第二个参数，将该对象使用在其他场景下，如[setAttribute](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md#setattribute)设置属性将不生效并返回错误码。
 > 
-> - 针对Native侧修改ArkTS组件的场景，需要在Native侧通过Node-API方式构建ArkTS侧的更新数据，再通过ConmponnetContent的[update](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#update)接口更新。
+> - 针对Native侧修改ArkTS组件的场景，需要在Native侧通过Node-API方式构建ArkTS侧的更新数据，再通过ComponentContent的[update](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#update)接口更新。
 > 
-> - [自定义场景](ndk-build-custom-components.md)下，相关函数如measureNode等无法对ArkTS模块内部的组件进行调用。
+> - [构建自定义组件](ndk-build-custom-components.md)时，相关函数如measureNode等无法对ArkTS模块内部的组件进行调用。
 
 
 以下示例代码在[接入ArkTS页面](ndk-access-the-arkts-page.md)章节基础上引入ArkTS的Refresh组件。
 
 
 **图1** Refresh组件挂载文本列表
-  
+
 ![refresh_text_list](figures/refresh_text_list.gif)
 
 
@@ -53,7 +53,7 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
      onOffsetChange?: (offset: number) => void;
    }
    
-   // ComponnetContent封装ArkTS组件依赖全局@Builder函数，涉及复杂自定义组件场景，可以在@Builder函数中嵌套@Component自定义组件。
+   // ComponentContent封装ArkTS组件依赖全局@Builder函数，涉及复杂自定义组件场景，可以在@Builder函数中嵌套@Component自定义组件。
    // @Builder函数提供入参方式，方便后续通过ComponentContent的update接口进行参数更新。
    @Builder
    function mixedRefresh(attribute: RefreshAttribute) {
@@ -414,7 +414,7 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
    protected:
        void OnAddChild(const std::shared_ptr<ArkUIBaseNode> &child) override {
            assert(contentHandle_);
-           // 使用NodeContent挂载组件（可以使用ArkTS在Native侧通过ComponnetContent的转化对象，也可以是纯Native组件）到ArkTS组件下面。
+           // 使用NodeContent挂载组件（可以使用ArkTS在Native侧通过ComponentContent的转化对象，也可以是纯Native组件）到ArkTS组件下面。
            OH_ArkUI_NodeContent_AddNode(contentHandle_, child->GetHandle());
        }
    

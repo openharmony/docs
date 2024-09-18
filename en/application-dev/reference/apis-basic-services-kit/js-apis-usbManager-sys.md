@@ -3,8 +3,9 @@
 The **usbManager** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control on the host side as well as port management, and function switch and query on the device side.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.usbManager (USB Manager)](js-apis-usbManager.md).
 
 ## Modules to Import
@@ -22,7 +23,7 @@ Adds the device access permission for the application. System applications are g
 **usbManager.requestRight** triggers a dialog box to request for user authorization, whereas **addRight** adds the access permission directly without displaying a dialog box. 
 
 > **NOTE**
-
+>
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [addDeviceAccessRight](#adddeviceaccessright12).
 
 **System API**: This is a system API.
@@ -42,7 +43,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -68,7 +69,7 @@ usbFunctionsFromString(funcs: string): number
 Converts the USB function list in the string format to a numeric mask in Device mode.
 
 > **NOTE**
-
+>
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getFunctionsFromString](#getfunctionsfromstring12).
 
 **System API**: This is a system API.
@@ -87,7 +88,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -110,7 +111,7 @@ usbFunctionsToString(funcs: FunctionType): string
 Converts the USB function list in the numeric mask format to a string in Device mode.
 
 > **NOTE**
-
+>
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getStringFromFunctions](#getstringfromfunctions12).
 
 **System API**: This is a system API.
@@ -129,7 +130,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -152,7 +153,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 Sets the current USB function list in Device mode.
 
 > **NOTE**
-
+>
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [setDeviceFunctions](#setdevicefunctions12).
 
 **System API**: This is a system API.
@@ -171,7 +172,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 14400002 | Permission denied. The HDC is disabled by the system.                                                   |
 
 **Return value**
@@ -199,7 +200,7 @@ getCurrentFunctions(): FunctionType
 Obtains the numeric mask combination for the USB function list in Device mode.
 
 > **NOTE**
-
+>
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getDeviceFunctions](#getdevicefunctions12).
 
 **System API**: This is a system API.
@@ -234,7 +235,7 @@ getPorts(): Array\<USBPort\>
 Obtains the list of all physical USB ports.
 
 > **NOTE**
-
+>
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getPortList](#getportlist12).
 
 **System API**: This is a system API.
@@ -269,7 +270,7 @@ getSupportedModes(portId: number): PortModeType
 Obtains the mask combination for the supported mode list of a given USB port.
 
 > **NOTE**
-
+>
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getPortSupportModes](#getportlist12).
 
 **System API**: This is a system API.
@@ -288,7 +289,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -310,7 +311,7 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 Sets the role types supported by a specified port, which can be **powerRole** (for charging) and **dataRole** (for data transfer).
 
 > **NOTE**
-
+>
 > This API is supported since API version 9 and deprecated since API version 12. You are advised to use [setPortRoleTypes](#setportroletypes12).
 
 **System API**: This is a system API.
@@ -331,7 +332,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Return value**
 
@@ -360,7 +361,7 @@ Adds the device access permission for the application. System applications are g
 **usbManager.requestRight** triggers a dialog box to request for user authorization, whereas **addDeviceAccessRight** adds the access permission directly without displaying a dialog box.
 
 > **NOTE**
-
+>
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -382,7 +383,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -423,7 +424,7 @@ getFunctionsFromString(funcs: string): number
 Converts the USB function list in the string format to a numeric mask in Device mode.
 
 > **NOTE**
-
+>
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -444,7 +445,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                       |
 | -------- | ------------------------------------------------------------------------------- |
-| 401      | Parameter error. No parameters are required.                                    |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **Return value**
@@ -467,7 +468,7 @@ getStringFromFunctions(funcs: FunctionType): string
 Converts the USB function list in the numeric mask format to a string in Device mode.
 
 > **NOTE**
-
+>
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -488,7 +489,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -511,7 +512,7 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 Sets the current USB function list in Device mode.
 
 > **NOTE**
-
+>
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -532,7 +533,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -560,7 +561,7 @@ getDeviceFunctions(): FunctionType
 Obtains the numeric mask combination for the USB function list in Device mode.
 
 > **NOTE**
-
+>
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -597,7 +598,7 @@ getPortList(): Array\<USBPort\>
 Obtains the list of all physical USB ports.
 
 > **NOTE**
-
+>
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -612,7 +613,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -651,7 +651,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
@@ -673,7 +673,7 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 Sets the role types supported by a specified port, which can be **powerRole** (for charging) and **dataRole** (for data transfer).
 
 > **NOTE**
-
+>
 > This API is supported since API version 12.
 
 **System API**: This is a system API.
@@ -696,9 +696,9 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
-| 14400003 | Unsupported operation. The current device does not support port role switching                          |
+| 14400003 | Unsupported operation. The current device does not support port role switching.                         |
 
 **Return value**
 
@@ -760,12 +760,12 @@ Enumerates USB device function types.
 | ACM          | 1   | ACM function. |
 | ECM          | 2   | ECM function. |
 | HDC          | 4   | HDC function. |
-| MTP          | 8   | Not supported currently.|
-| PTP          | 16  | Not supported currently.|
-| RNDIS        | 32  | Not supported currently.|
-| MIDI         | 64  | Not supported currently.|
-| AUDIO_SOURCE | 128 | Not supported currently.|
-| NCM          | 256 | Not supported currently.|
+| MTP          | 8   | Media transmission.|
+| PTP          | 16  | Image transmission.|
+| RNDIS        | 32  | Network sharing.|
+| MIDI         | 64  | MIDI function.|
+| AUDIO_SOURCE | 128 | Audio function.|
+| NCM          | 256 | NCM transmission. |
 
 ## PortModeType
 
@@ -794,8 +794,8 @@ Enumerates power role types.
 | Name  | Value| Description      |
 | ------ | -- | ---------- |
 | NONE   | 0  | None      |
-| SOURCE | 1  | External power supply.|
-| SINK   | 2  | Internal power supply.|
+| SOURCE | 1  | Power supply for external devices.|
+| SINK   | 2  | External power supply.|
 
 ## DataRoleType
 
