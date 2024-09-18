@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](_drawing.md#oh_drawing_createfontcollection) (void) | 创建字体集对象[OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)。 | 
+| [OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](_drawing.md#oh_drawing_createfontcollection) (void) | 创建字体集对象[OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)。该接口创建的指针为裸指针，无法全局使用。如需全局使用FontCollection，请使用[OH_Drawing_CreateSharedFontCollection()](_drawing.md#oh_drawing_createsharedfontcollection)接口。 | 
 | void [OH_Drawing_DestroyFontCollection](_drawing.md#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \*) | 释放被字体集对象占据的内存。 | 
 | void [OH_Drawing_DisableFontCollectionFallback](_drawing.md#oh_drawing_disablefontcollectionfallback) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \*fontCollection) | 禁用备用字体。 | 
 | void [OH_Drawing_DisableFontCollectionSystemFont](_drawing.md#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \*fontCollection) | 禁用系统字体。 | 

@@ -381,7 +381,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | bool [OH_Drawing_FontIsEmbeddedBitmaps](#oh_drawing_fontisembeddedbitmaps) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形是否转换成位图处理。 | 
 | void [OH_Drawing_FontDestroy](#oh_drawing_fontdestroy) ([OH_Drawing_Font](#oh_drawing_font) \*) | 用于销毁字体对象并回收该对象占有的内存。 | 
 | float [OH_Drawing_FontGetMetrics](#oh_drawing_fontgetmetrics) ([OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | 获取字体度量信息。 | 
-| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection) (void) | 创建字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。 | 
+| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection) (void) | 创建字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。该接口创建的指针为裸指针，无法全局使用。如需全局使用FontCollection，请使用[OH_Drawing_CreateSharedFontCollection()](#oh_drawing_createsharedfontcollection)接口。 | 
 | void [OH_Drawing_DestroyFontCollection](#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | 释放被字体集对象占据的内存。 | 
 | void [OH_Drawing_DisableFontCollectionFallback](#oh_drawing_disablefontcollectionfallback) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用备用字体。 | 
 | void [OH_Drawing_DisableFontCollectionSystemFont](#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用系统字体。 | 
@@ -7286,7 +7286,7 @@ OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection (void )
 
 **描述**
 
-创建字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。
+创建字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。该接口创建的指针为裸指针，无法全局使用。如需全局使用FontCollection，请使用[OH_Drawing_CreateSharedFontCollection()](#oh_drawing_createsharedfontcollection)接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
