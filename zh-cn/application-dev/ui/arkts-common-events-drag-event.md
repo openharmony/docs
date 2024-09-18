@@ -115,7 +115,7 @@
           }
         }
         private getComponentSnapshot(): void {
-        componentSnapshot.createFromBuilder(()=>{this.pixelMapBuilder()},
+        this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
         (error: Error, pixmap: image.PixelMap) => {
             if(error){
               console.log("error: " + JSON.stringify(error))
@@ -292,7 +292,7 @@ API version 12开始[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md
         this.isSelectedGrid[idx] = !this.isSelectedGrid[idx]
         if (this.isSelectedGrid[idx]) {
             let gridItemName = 'grid' + idx
-            componentSnapshot.get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+            this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
                 this.pixmap = pixmap
                 this.previewData[idx] = {
                     pixelMap:this.pixmap
@@ -348,7 +348,7 @@ API version 12开始[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md
 
 ```ts
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
-import { promptAction, componentSnapshot } from '@kit.ArkUI';
+import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
@@ -399,7 +399,7 @@ struct Index {
   }
   // 调用componentSnapshot中的createFromBuilder接口截取自定义builder的截图
   private getComponentSnapshot(): void {
-    componentSnapshot.createFromBuilder(()=>{this.pixelMapBuilder()},
+    this.getUIContext().getComponentSnapshot().createFromBuilder(()=>{this.pixelMapBuilder()},
       (error: Error, pixmap: image.PixelMap) => {
         if(error){
           console.log("error: " + JSON.stringify(error))
@@ -507,7 +507,6 @@ struct Index {
 ### 多选拖拽适配案例
 
 ```ts
-import { componentSnapshot } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 
 @Entry
@@ -574,7 +573,7 @@ struct GridEts {
               this.numberBadge++;
               let gridItemName = 'grid' + idx
               // 选中状态下提前调用componentSnapshot中的get接口获取pixmap
-              componentSnapshot.get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
                 this.pixmap = pixmap
                 this.previewData[idx] = {
                   pixelMap:this.pixmap
