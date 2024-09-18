@@ -69,7 +69,7 @@ API 12
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.0.1.1开始。
+从OpenHarmony SDK 5.0.0.41开始。
 
 **变更的接口/组件**
 
