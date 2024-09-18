@@ -4268,7 +4268,7 @@ let photoAsset: photoAccessHelper.PhotoAsset;
 async saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
-    let phAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     assetChangeRequest.saveCameraPhoto();
     await phAccessHelper.applyChanges(assetChangeRequest);
