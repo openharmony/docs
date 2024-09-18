@@ -2537,7 +2537,7 @@ import resourceManager from '@ohos.resourceManager'
 import { BusinessError } from '@kit.BasicServicesKit';
 
 //此处'hdr.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-let img = await getContext(this).resourceManager.getMediaContent($r('app.media.hdr'));
+let img = getContext().resourceManager.getMediaContentSync($r('app.media.hdr'));
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -2545,13 +2545,12 @@ let decodingOptions: image.DecodingOptions = {
 let pixelmap = imageSource.createPixelMapSync(decodingOptions);
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
-  try {
-    await pixelmap.toSdr();
+  pixelmap.toSdr().then(() => {
     let imageInfo = pixelmap.getImageInfoSync();
     console.info("after toSdr ,imageInfo isHdr:" + imageInfo.isHdr);
-  } catch (e) {
-    console.info('toSdr failed' + e);
-  }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set sdr. code is ${err.code}, message is ${err.message}`);
+  });
 } else {
   console.info('Failed to create pixelMap.');
 }
@@ -2595,7 +2594,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import image from '@ohos.multimedia.image'
 
 // 'app.media.test'需要替换为本地hdr图片。
-let img = await getContext(this).resourceManager.getMediaContent($r('app.media.test'));
+let img = getContext().resourceManager.getMediaContentSync($r('app.media.test'));
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -2651,21 +2650,29 @@ setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
 ```ts
 import image from '@ohos.multimedia.image'
 import { BusinessError } from '@kit.BasicServicesKit';
-@State pixelmap: image.PixelMap | undefined = undefined;
 
-async Demo() {
-  let staticMetadata: image.HdrStaticMetadata = {
-    displayPrimariesX: [1.1, 1.1, 1.1],
-    displayPrimariesY: [1.2, 1.2, 1.2],
-    whitePointX: 1.1,
-    whitePointY: 1.2,
-    maxLuminance: 2.1,
-    minLuminance: 1.0,
-    maxContentLightLevel: 2.1,
-    maxFrameAverageLightLevel: 2.1,
-  }
-  this.pixelmap?.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata);
+let staticMetadata: image.HdrStaticMetadata = {
+  displayPrimariesX: [1.1, 1.1, 1.1],
+  displayPrimariesY: [1.2, 1.2, 1.2],
+  whitePointX: 1.1,
+  whitePointY: 1.2,
+  maxLuminance: 2.1,
+  minLuminance: 1.0,
+  maxContentLightLevel: 2.1,
+  maxFrameAverageLightLevel: 2.1,
 }
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+  pixelMap.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata).then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in setting pixelMap metadata.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to set the metadata.code ${error.code},message is ${error.message}`);
+  })
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
+})
+
 ```
 
 ### setTransferDetached<sup>12+<sup>
@@ -3470,7 +3477,7 @@ getImageInfoSync(index?: number): ImageInfo
 ```ts
 import { image } from '@kit.ImageKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -4087,7 +4094,7 @@ createPixelMapSync(options?: DecodingOptions): PixelMap
 ```ts
 import { image } from '@kit.ImageKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);

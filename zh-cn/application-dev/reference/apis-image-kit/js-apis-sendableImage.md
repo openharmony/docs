@@ -1849,6 +1849,8 @@ createImageReceiver(size: image.Size, format: image.ImageFormat, capacity: numbe
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
+
 let size: image.Size = {
     height: 8192,
     width: 8
@@ -1971,6 +1973,7 @@ getComponent是线程不安全的。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -2008,6 +2011,7 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 async function Demo() {
   let size: image.Size = {
@@ -2058,6 +2062,7 @@ getReceivingSurfaceId(): Promise\<string>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2089,6 +2094,7 @@ readLatestImage(): Promise\<Image>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2120,6 +2126,7 @@ readNextImage(): Promise\<Image>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2152,6 +2159,7 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
@@ -2182,6 +2190,7 @@ release是线程不安全的。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let size: image.Size = {
     height: 8192,
