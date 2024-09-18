@@ -15,11 +15,11 @@
 
 API参考中，每个接口（包括方法和组件）均需要提供示例代码。如果多个API存在关联关系，则需要在一个场景化的代码示例中体现。
 
-### 【规则】API接口示例代码不包含异常处理
+### 【规则】API参考示例代码不包含异常处理
 
 【描述】
 
-API接口文档的主要目的是展示如何调用和使用API。为了保持示例代码的简洁性和易读性，API接口示例中无需添加异常处理逻辑。这使得开发者可以快速理解API的基本用法。
+API参考文档的主要目的是展示如何调用和使用API。为了保持示例代码的简洁性和易读性，API参考示例中无需添加异常处理逻辑。这使得开发者可以快速理解API的基本用法。
 
 【正例】
 
@@ -52,12 +52,12 @@ try {
     .then(() => {
     })
     .catch((err: BusinessError) => {
-      console.error(`Failed to do sthing. Code is ${err.code}, message is ${err.message}`);
+      console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
     });
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   // 处理入参错误异常
-  console.error(`Failed to do sthing. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
 }
 
 // 反例2：在API示例代码中，同步场景，无须增加`try...catch...`
@@ -98,7 +98,7 @@ doSthAsync1()
   .then(() => {
   })
   .catch((err: BusinessError) => {
-    console.error(`Failed to do sthing. Code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
   });
 
 // 正例2：异步接口，结合async/await使用，增加`try...catch...`包裹
@@ -110,7 +110,7 @@ async () => {
   } catch (error) {
     const err: BusinessError = error as BusinessError;
     // 处理入参错误异常
-    console.error(`Failed to do sthing. Code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
   }
 }
 
@@ -121,7 +121,7 @@ try {
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   // 处理入参错误异常
-  console.error(`Failed to do sthing. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
 }
 
 // 正例4：对于同步接口增加`try...catch...`包裹，按需增加对应的异常错误码判断
@@ -139,7 +139,7 @@ try {
     case 12300002:
     case 12300003:
     case 12300004:
-      console.error(`Failed to do sthing. Code is ${err.code}, message is ${err.message}`);
+      console.error(`Failed to do sth. Code is ${err.code}, message is ${err.message}`);
       break;
   }
 }
@@ -348,7 +348,7 @@ export default class EntryAbility extends UIAbility {
 // ...
 
 // 正例2
-// To do sthing.
+// To do sth.
 ```
 
 【反例】
@@ -554,7 +554,7 @@ if (err !== undefined) {
 
 ```ts
 // 模板
-console.error(`Failed to do sthing. Code: ${err.code}, message: ${err.message}`);
+console.error(`Failed to do sth. Code: ${err.code}, message: ${err.message}`);
 
 // 正例1
 notificationManager.publish(notificationRequest, (err: BusinessError) => {
@@ -635,38 +635,33 @@ console.error('Failed to publish notification, err: ' + JSON.stringify(err));
 
 ```ts
 // 模板
-console.info('Succeeded in doing sthing.');
+console.info('Succeeded in doing sth.');
 
 // 正例
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.info('Succeeded in publishing notification.');
-});
+declare function doSthAsync1(): Promise<void>;
+
+doSthAsync1()
+  .then(() => {
+    console.info('Succeeded in publishing notification.');
+  })
 ```
 
 【反例】
 
 ```ts
+declare function doSthAsync1(): Promise<void>;
+
 // 反例1：使用console.log(...)可能会让程序员产生困惑，无法明确该日志信息是正常日志还是错误日志
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.log('Succeeded in publishing notification.');
-});
+doSthAsync1()
+  .then(() => {
+    console.log('Succeeded in publishing notification.');
+  })
 
 // 反例2：使用了console.error(...)而不是console.info(...)来打印正常日志信息。console.error通常用于打印错误信息，而不是正常的日志信息
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.error('Succeeded in publishing notification.');
-});
+doSthAsync1()
+  .then(() => {
+    console.error('Succeeded in publishing notification.');
+  })
 ```
 
 ### 【规则】使用`Succeeded`表示成功的日志信息
@@ -679,47 +674,39 @@ notificationManager.publish(notificationRequest, (err: BusinessError) => {
 
 ```ts
 // 模板
-console.info('Succeeded in doing sthing.');
+console.info('Succeeded in doing sth.');
 
 // 正例
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.info('Succeeded in publishing.');
-});
+declare function doSthAsync1(): Promise<void>;
+
+doSthAsync1()
+  .then(() => {
+    console.info('Succeeded in doing sth.');
+  })
 ```
 
 【反例】
 
 ```ts
+declare function doSthAsync1(): Promise<void>;
+
 // 反例1
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.info('Invoke publish success.');
-});
+doSthAsync1()
+  .then(() => {
+    console.info('Invoke do sth success.');
+  })
 
 // 反例2
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.info('Invoke publish successful.');
-});
+doSthAsync1()
+  .then(() => {
+    console.info('Invoke do sth successful.');
+  })
 
 // 反例3
-notificationManager.publish(notificationRequest, (err: BusinessError) => {
-  if (err) {
-    // ...
-    return;
-  }
-  console.info('Invoke publish successfully.');
-});
+doSthAsync1()
+  .then(() => {
+    console.info('Invoke do sth successfully.');
+  })
 ```
 
 ## 代码逻辑
