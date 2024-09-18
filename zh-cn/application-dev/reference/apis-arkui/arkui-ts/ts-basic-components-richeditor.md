@@ -322,9 +322,9 @@ onReady(callback:Callback\<void\>)
 
 onSelect(callback:Callback\<[RichEditorSelection](#richeditorselection)\>)
 
-鼠标左键按下选择，松开左键后触发回调。
+鼠标左键双击选中内容时，会触发回调；松开鼠标左键后，会再次触发回调。
 
-用手指选择时，松开手指触发回调。
+手指长按选中内容时，会触发回调；松开手指后，会再次触发回调。
 
 使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
