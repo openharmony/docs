@@ -30,23 +30,23 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [InputEvent_AxisType](#inputevent_axistype)[InputEvent_AxisType](#inputevent_axistype) | 输入设备的轴类型。  | 
-| typedef enum [InputEvent_AxisEventType](#inputevent_axiseventtype)[InputEvent_AxisEventType](#inputevent_axiseventtype) | 输入设备的轴事件类型。  | 
-| typedef enum [InputEvent_AxisAction](#inputevent_axisaction)[InputEvent_AxisAction](#inputevent_axisaction) | 轴事件动作。  | 
-| typedef enum [Input_KeyStateAction](#input_keystateaction)[Input_KeyStateAction](#input_keystateaction) | 按键状态的枚举值。  | 
-| typedef enum [Input_KeyEventAction](#input_keyeventaction)[Input_KeyEventAction](#input_keyeventaction) | 按键事件类型的枚举值。  | 
-| typedef enum [Input_MouseEventAction](#input_mouseeventaction)[Input_MouseEventAction](#input_mouseeventaction) | 鼠标动作的枚举值。  | 
-| typedef enum [InputEvent_MouseAxis](#inputevent_mouseaxis)[InputEvent_MouseAxis](#inputevent_mouseaxis) | 鼠标轴事件类型。  | 
-| typedef enum [Input_MouseEventButton](#input_mouseeventbutton)[Input_MouseEventButton](#input_mouseeventbutton) | 鼠标按键的枚举值。  | 
-| typedef enum [Input_TouchEventAction](#input_toucheventaction)[Input_TouchEventAction](#input_toucheventaction) | 触摸动作的枚举值。  | 
-| typedef enum [InputEvent_SourceType](#inputevent_sourcetype)[InputEvent_SourceType](#inputevent_sourcetype) | 输入事件源类型。  | 
-| typedef enum [Input_KeyboardType](#input_keyboardtype)[Input_KeyboardType](#input_keyboardtype) | 输入设备的键盘类型。  | 
-| typedef struct [Input_KeyState](#input_keystate)[Input_KeyState](#input_keystate) | 定义按键信息，用于标识按键行为。例如，“Ctrl”按键信息包含键值和键类型。  | 
-| typedef struct [Input_KeyEvent](#input_keyevent)[Input_KeyEvent](#input_keyevent) | 要注入的按键事件。  | 
-| typedef struct [Input_MouseEvent](#input_mouseevent)[Input_MouseEvent](#input_mouseevent) | 要注入的鼠标事件。  | 
-| typedef struct [Input_TouchEvent](#input_touchevent)[Input_TouchEvent](#input_touchevent) | 要注入的触摸事件。  | 
-| typedef struct [Input_AxisEvent](#input_axisevent)[Input_AxisEvent](#input_axisevent) | 轴事件。  | 
-| typedef enum [Input_Result](#input_result)[Input_Result](#input_result) | 错误码枚举值。  | 
+| typedef enum [InputEvent_AxisType](#inputevent_axistype) [InputEvent_AxisType](#inputevent_axistype) | 输入设备的轴类型。  | 
+| typedef enum [InputEvent_AxisEventType](#inputevent_axiseventtype) [InputEvent_AxisEventType](#inputevent_axiseventtype) | 输入设备的轴事件类型。  | 
+| typedef enum [InputEvent_AxisAction](#inputevent_axisaction) [InputEvent_AxisAction](#inputevent_axisaction) | 轴事件动作。  | 
+| typedef enum [Input_KeyStateAction](#input_keystateaction) [Input_KeyStateAction](#input_keystateaction) | 按键状态的枚举值。  | 
+| typedef enum [Input_KeyEventAction](#input_keyeventaction) [Input_KeyEventAction](#input_keyeventaction) | 按键事件类型的枚举值。  | 
+| typedef enum [Input_MouseEventAction](#input_mouseeventaction) [Input_MouseEventAction](#input_mouseeventaction) | 鼠标动作的枚举值。  | 
+| typedef enum [InputEvent_MouseAxis](#inputevent_mouseaxis) [InputEvent_MouseAxis](#inputevent_mouseaxis) | 鼠标轴事件类型。  | 
+| typedef enum [Input_MouseEventButton](#input_mouseeventbutton) [Input_MouseEventButton](#input_mouseeventbutton) | 鼠标按键的枚举值。  | 
+| typedef enum [Input_TouchEventAction](#input_toucheventaction) [Input_TouchEventAction](#input_toucheventaction) | 触摸动作的枚举值。  | 
+| typedef enum [InputEvent_SourceType](#inputevent_sourcetype) [InputEvent_SourceType](#inputevent_sourcetype) | 输入事件源类型。  | 
+| typedef enum [Input_KeyboardType](#input_keyboardtype) [Input_KeyboardType](#input_keyboardtype) | 输入设备的键盘类型。  | 
+| typedef struct [Input_KeyState](#input_keystate) [Input_KeyState](#input_keystate) | 定义按键信息，用于标识按键行为。例如，“Ctrl”按键信息包含键值和键类型。  | 
+| typedef struct [Input_KeyEvent](#input_keyevent) [Input_KeyEvent](#input_keyevent) | 要注入的按键事件。  | 
+| typedef struct [Input_MouseEvent](#input_mouseevent) [Input_MouseEvent](#input_mouseevent) | 要注入的鼠标事件。  | 
+| typedef struct [Input_TouchEvent](#input_touchevent) [Input_TouchEvent](#input_touchevent) | 要注入的触摸事件。  | 
+| typedef struct [Input_AxisEvent](#input_axisevent) [Input_AxisEvent](#input_axisevent) | 轴事件。  | 
+| typedef enum [Input_Result](#input_result) [Input_Result](#input_result) | 错误码枚举值。  | 
 | typedef void(\* [Input_KeyEventCallback](#input_keyeventcallback)) (const [Input_KeyEvent](#input_keyevent) \*keyEvent) | 按键事件的回调函数，keyEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_MouseEventCallback](#input_mouseeventcallback)) (const [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 鼠标事件的回调函数，mouseEvent的生命周期为回调函数内。  | 
 | typedef void(\* [Input_TouchEventCallback](#input_toucheventcallback)) (const [Input_TouchEvent](#input_touchevent) \*touchEvent) | 触摸事件的回调函数，touchEvent的生命周期为回调函数内。  | 
@@ -54,11 +54,11 @@
 | typedef void(\* [Input_HotkeyCallback](#input_hotkeycallback)) ([Input_Hotkey](#input_hotkey) \*hotkey) | 回调函数，用于回调快捷键事件。  | 
 | typedef void(\* [Input_DeviceAddedCallback](#input_deviceaddedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热插事件。  | 
 | typedef void(\* [Input_DeviceRemovedCallback](#input_deviceremovedcallback)) (int32_t deviceId) | 回调函数，用于回调输入设备的热拔事件。  | 
-| typedef struct [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)[Input_InterceptorEventCallback](#input_interceptoreventcallback) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
-| typedef struct [Input_DeviceListener](_input___device_listener.md)[Input_DeviceListener](#input_devicelistener) |定义一个结构体用于监听设备热插拔。  | 
-| typedef struct [Input_InterceptorOptions](#input_interceptoroptions)[Input_InterceptorOptions](#input_interceptoroptions) | 事件拦截选项。  | 
-| typedef struct [Input_Hotkey](#input_hotkey)[Input_Hotkey](#input_hotkey) | 定义快捷键结构体。  | 
-| typedef struct [Input_DeviceInfo](#input_deviceinfo)[Input_DeviceInfo](#input_deviceinfo) | 输入设备信息。  | 
+| typedef struct [Input_InterceptorEventCallback](_input___interceptor_event_callback.md) [Input_InterceptorEventCallback](#input_interceptoreventcallback) | 拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。  | 
+| typedef struct [Input_DeviceListener](_input___device_listener.md) [Input_DeviceListener](#input_devicelistener) |定义一个结构体用于监听设备热插拔。  | 
+| typedef struct [Input_InterceptorOptions](#input_interceptoroptions) [Input_InterceptorOptions](#input_interceptoroptions) | 事件拦截选项。  | 
+| typedef struct [Input_Hotkey](#input_hotkey) [Input_Hotkey](#input_hotkey) | 定义快捷键结构体。  | 
+| typedef struct [Input_DeviceInfo](#input_deviceinfo) [Input_DeviceInfo](#input_deviceinfo) | 输入设备信息。  | 
 
 
 ### 枚举
@@ -84,7 +84,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Input_Result](#input_result)[OH_Input_GetKeyState](#oh_input_getkeystate) (struct [Input_KeyState](#input_keystate) \*keyState) | 查询按键状态的枚举对象。  | 
+| [Input_Result](#input_result) [OH_Input_GetKeyState](#oh_input_getkeystate) (struct [Input_KeyState](#input_keystate) \*keyState) | 查询按键状态的枚举对象。  | 
 | struct [Input_KeyState](#input_keystate) \* [OH_Input_CreateKeyState](#oh_input_createkeystate) () | 创建按键状态的枚举对象。  | 
 | void [OH_Input_DestroyKeyState](#oh_input_destroykeystate) (struct [Input_KeyState](#input_keystate) \*\*keyState) | 销毁按键状态的枚举对象。  | 
 | void [OH_Input_SetKeyCode](#oh_input_setkeycode) (struct [Input_KeyState](#input_keystate) \*keyState, int32_t keyCode) | 设置按键状态对象的键值。  | 
@@ -134,64 +134,64 @@
 | int64_t [OH_Input_GetTouchEventActionTime](#oh_input_gettoucheventactiontime) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触摸事件发生的时间  | 
 | void [OH_Input_CancelInjection](#oh_input_cancelinjection) () | 取消事件注入并撤销授权  | 
 | [Input_AxisEvent](#input_axisevent) \* [OH_Input_CreateAxisEvent](#oh_input_createaxisevent) (void) | 创建轴事件对象实例。  | 
-| [Input_Result](#input_result)[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent) ([Input_AxisEvent](#input_axisevent) \*\*axisEvent) | 销毁轴事件对象实例。  | 
-| [Input_Result](#input_result)[OH_Input_SetAxisEventAction](#oh_input_setaxiseventaction) ([Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisAction](#inputevent_axisaction) action) | 设置轴事件的动作。  | 
-| [Input_Result](#input_result)[OH_Input_GetAxisEventAction](#oh_input_getaxiseventaction) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisAction](#inputevent_axisaction) \*action) | 获取轴事件的动作。  | 
-| [Input_Result](#input_result)[OH_Input_SetAxisEventDisplayX](#oh_input_setaxiseventdisplayx) ([Input_AxisEvent](#input_axisevent) \*axisEvent, float displayX) | 设置轴事件的X坐标。  | 
-| [Input_Result](#input_result)[OH_Input_GetAxisEventDisplayX](#oh_input_getaxiseventdisplayx) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, float \*displayX) | 获取轴事件的X坐标。  | 
-| [Input_Result](#input_result)[OH_Input_SetAxisEventDisplayY](#oh_input_setaxiseventdisplayy) ([Input_AxisEvent](#input_axisevent) \*axisEvent, float displayY) | 设置轴事件的Y坐标。  | 
-| [Input_Result](#input_result)[OH_Input_GetAxisEventDisplayY](#oh_input_getaxiseventdisplayy) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, float \*displayY) | 获取轴事件的Y坐标。  | 
-| [Input_Result](#input_result)[OH_Input_SetAxisEventAxisValue](#oh_input_setaxiseventaxisvalue) ([Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisType](#inputevent_axistype) axisType, double axisValue) | 设置轴事件指定轴类型的轴值。  | 
-| [Input_Result](#input_result)[OH_Input_GetAxisEventAxisValue](#oh_input_getaxiseventaxisvalue) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisType](#inputevent_axistype) axisType, double \*axisValue) | 获取轴事件指定轴类型的轴值。  | 
-| [Input_Result](#input_result)[OH_Input_SetAxisEventActionTime](#oh_input_setaxiseventactiontime) ([Input_AxisEvent](#input_axisevent) \*axisEvent, int64_t actionTime) | 设置轴事件发生的时间。  | 
-| [Input_Result](#input_result)[OH_Input_GetAxisEventActionTime](#oh_input_getaxiseventactiontime) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, int64_t \*actionTime) | 获取轴事件发生的时间。  | 
-| [Input_Result](#input_result)[OH_Input_SetAxisEventType](#oh_input_setaxiseventtype) ([Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType) | 设置轴事件类型。  | 
-| [Input_Result](#input_result)[OH_Input_GetAxisEventType](#oh_input_getaxiseventtype) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisEventType](#inputevent_axiseventtype) \*axisEventType) | 获取轴事件类型。  | 
-| [Input_Result](#input_result)[OH_Input_SetAxisEventSourceType](#oh_input_setaxiseventsourcetype) ([Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_SourceType](#inputevent_sourcetype) sourceType) | 设置轴事件源类型。  | 
-| [Input_Result](#input_result)[OH_Input_GetAxisEventSourceType](#oh_input_getaxiseventsourcetype) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_SourceType](#inputevent_sourcetype) \*sourceType) | 获取轴事件源类型。  | 
-| [Input_Result](#input_result)[OH_Input_AddKeyEventMonitor](#oh_input_addkeyeventmonitor) ([Input_KeyEventCallback](#input_keyeventcallback) callback) | 添加按键事件监听。  | 
-| [Input_Result](#input_result)[OH_Input_AddMouseEventMonitor](#oh_input_addmouseeventmonitor) ([Input_MouseEventCallback](#input_mouseeventcallback) callback) | 添加鼠标事件监听,包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。  | 
-| [Input_Result](#input_result)[OH_Input_AddTouchEventMonitor](#oh_input_addtoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | 添加触摸事件监听。  | 
-| [Input_Result](#input_result)[OH_Input_AddAxisEventMonitorForAll](#oh_input_addaxiseventmonitorforall) ([Input_AxisEventCallback](#input_axiseventcallback) callback) | 添加所有类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
-| [Input_Result](#input_result)[OH_Input_AddAxisEventMonitor](#oh_input_addaxiseventmonitor) ([InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](#input_axiseventcallback) callback) | 添加指定类型的轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
-| [Input_Result](#input_result)[OH_Input_RemoveKeyEventMonitor](#oh_input_removekeyeventmonitor) ([Input_KeyEventCallback](#input_keyeventcallback) callback) | 移除按键事件监听。  | 
-| [Input_Result](#input_result)[OH_Input_RemoveMouseEventMonitor](#oh_input_removemouseeventmonitor) ([Input_MouseEventCallback](#input_mouseeventcallback) callback) | 移除鼠标事件监听。  | 
-| [Input_Result](#input_result)[OH_Input_RemoveTouchEventMonitor](#oh_input_removetoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | 移除触摸事件监听。  | 
-| [Input_Result](#input_result)[OH_Input_RemoveAxisEventMonitorForAll](#oh_input_removeaxiseventmonitorforall) ([Input_AxisEventCallback](#input_axiseventcallback) callback) | 移除所有类型轴事件监听。  | 
-| [Input_Result](#input_result)[OH_Input_RemoveAxisEventMonitor](#oh_input_removeaxiseventmonitor) ([InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](#input_axiseventcallback) callback) | 移除指定类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
-| [Input_Result](#input_result)[OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加按键事件的拦截,重复添加只有第一次生效。  | 
-| [Input_Result](#input_result)[OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。  | 
-| [Input_Result](#input_result)[OH_Input_RemoveKeyEventInterceptor](#oh_input_removekeyeventinterceptor) () | 移除按键事件拦截。  | 
-| [Input_Result](#input_result)[OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) () | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
+| [Input_Result](#input_result) [OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent) ([Input_AxisEvent](#input_axisevent) \*\*axisEvent) | 销毁轴事件对象实例。  | 
+| [Input_Result](#input_result) [OH_Input_SetAxisEventAction](#oh_input_setaxiseventaction) ([Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisAction](#inputevent_axisaction) action) | 设置轴事件的动作。  | 
+| [Input_Result](#input_result) [OH_Input_GetAxisEventAction](#oh_input_getaxiseventaction) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisAction](#inputevent_axisaction) \*action) | 获取轴事件的动作。  | 
+| [Input_Result](#input_result) [OH_Input_SetAxisEventDisplayX](#oh_input_setaxiseventdisplayx) ([Input_AxisEvent](#input_axisevent) \*axisEvent, float displayX) | 设置轴事件的X坐标。  | 
+| [Input_Result](#input_result) [OH_Input_GetAxisEventDisplayX](#oh_input_getaxiseventdisplayx) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, float \*displayX) | 获取轴事件的X坐标。  | 
+| [Input_Result](#input_result) [OH_Input_SetAxisEventDisplayY](#oh_input_setaxiseventdisplayy) ([Input_AxisEvent](#input_axisevent) \*axisEvent, float displayY) | 设置轴事件的Y坐标。  | 
+| [Input_Result](#input_result) [OH_Input_GetAxisEventDisplayY](#oh_input_getaxiseventdisplayy) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, float \*displayY) | 获取轴事件的Y坐标。  | 
+| [Input_Result](#input_result) [OH_Input_SetAxisEventAxisValue](#oh_input_setaxiseventaxisvalue) ([Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisType](#inputevent_axistype) axisType, double axisValue) | 设置轴事件指定轴类型的轴值。  | 
+| [Input_Result](#input_result) [OH_Input_GetAxisEventAxisValue](#oh_input_getaxiseventaxisvalue) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisType](#inputevent_axistype) axisType, double \*axisValue) | 获取轴事件指定轴类型的轴值。  | 
+| [Input_Result](#input_result) [OH_Input_SetAxisEventActionTime](#oh_input_setaxiseventactiontime) ([Input_AxisEvent](#input_axisevent) \*axisEvent, int64_t actionTime) | 设置轴事件发生的时间。  | 
+| [Input_Result](#input_result) [OH_Input_GetAxisEventActionTime](#oh_input_getaxiseventactiontime) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, int64_t \*actionTime) | 获取轴事件发生的时间。  | 
+| [Input_Result](#input_result) [OH_Input_SetAxisEventType](#oh_input_setaxiseventtype) ([Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType) | 设置轴事件类型。  | 
+| [Input_Result](#input_result) [OH_Input_GetAxisEventType](#oh_input_getaxiseventtype) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisEventType](#inputevent_axiseventtype) \*axisEventType) | 获取轴事件类型。  | 
+| [Input_Result](#input_result) [OH_Input_SetAxisEventSourceType](#oh_input_setaxiseventsourcetype) ([Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_SourceType](#inputevent_sourcetype) sourceType) | 设置轴事件源类型。  | 
+| [Input_Result](#input_result) [OH_Input_GetAxisEventSourceType](#oh_input_getaxiseventsourcetype) (const [Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_SourceType](#inputevent_sourcetype) \*sourceType) | 获取轴事件源类型。  | 
+| [Input_Result](#input_result) [OH_Input_AddKeyEventMonitor](#oh_input_addkeyeventmonitor) ([Input_KeyEventCallback](#input_keyeventcallback) callback) | 添加按键事件监听。  | 
+| [Input_Result](#input_result) [OH_Input_AddMouseEventMonitor](#oh_input_addmouseeventmonitor) ([Input_MouseEventCallback](#input_mouseeventcallback) callback) | 添加鼠标事件监听,包含鼠标点击，移动，不包含滚轮事件，滚轮事件归属于轴事件。  | 
+| [Input_Result](#input_result) [OH_Input_AddTouchEventMonitor](#oh_input_addtoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | 添加触摸事件监听。  | 
+| [Input_Result](#input_result) [OH_Input_AddAxisEventMonitorForAll](#oh_input_addaxiseventmonitorforall) ([Input_AxisEventCallback](#input_axiseventcallback) callback) | 添加所有类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
+| [Input_Result](#input_result) [OH_Input_AddAxisEventMonitor](#oh_input_addaxiseventmonitor) ([InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](#input_axiseventcallback) callback) | 添加指定类型的轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveKeyEventMonitor](#oh_input_removekeyeventmonitor) ([Input_KeyEventCallback](#input_keyeventcallback) callback) | 移除按键事件监听。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveMouseEventMonitor](#oh_input_removemouseeventmonitor) ([Input_MouseEventCallback](#input_mouseeventcallback) callback) | 移除鼠标事件监听。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveTouchEventMonitor](#oh_input_removetoucheventmonitor) ([Input_TouchEventCallback](#input_toucheventcallback) callback) | 移除触摸事件监听。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitorForAll](#oh_input_removeaxiseventmonitorforall) ([Input_AxisEventCallback](#input_axiseventcallback) callback) | 移除所有类型轴事件监听。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveAxisEventMonitor](#oh_input_removeaxiseventmonitor) ([InputEvent_AxisEventType](#inputevent_axiseventtype) axisEventType, [Input_AxisEventCallback](#input_axiseventcallback) callback) | 移除指定类型轴事件监听，轴事件类型定义在[InputEvent_AxisEventType](#inputevent_axiseventtype)中。  | 
+| [Input_Result](#input_result) [OH_Input_AddKeyEventInterceptor](#oh_input_addkeyeventinterceptor) ([Input_KeyEventCallback](#input_keyeventcallback) callback, [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加按键事件的拦截,重复添加只有第一次生效。  | 
+| [Input_Result](#input_result) [OH_Input_AddInputEventInterceptor](#oh_input_addinputeventinterceptor) ([Input_InterceptorEventCallback](_input___interceptor_event_callback.md) \*callback [Input_InterceptorOptions](#input_interceptoroptions) \*option) | 添加输入事件拦截，包括鼠标、触摸和轴事件，重复添加只有第一次生效。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveKeyEventInterceptor](#oh_input_removekeyeventinterceptor) () | 移除按键事件拦截。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveInputEventInterceptor](#oh_input_removeinputeventinterceptor) () | 移除输入事件拦截，包括鼠标、触摸和轴事件。  | 
 | int32_t [OH_Input_GetIntervalSinceLastInput](#oh_input_getintervalsincelastinput) (int64_t \*timeInterval) | 获取距离上次系统输入事件的时间间隔。  | 
 | [Input_Hotkey](#input_hotkey) \* [OH_Input_CreateHotkey](#oh_input_createhotkey) () | 创建快捷键对象的实例。  | 
 | void [OH_Input_DestroyHotkey](#oh_input_destroyhotkey) ([Input_Hotkey](#input_hotkey) \*\*hotkey) | 销毁快捷键对象的实例。  | 
 | void [OH_Input_SetPreKeys](#oh_input_setprekeys) ([Input_Hotkey](#input_hotkey) \*hotkey, int32_t \*preKeys, int32_t size) | 设置修饰键。  | 
-| [Input_Result](#input_result)[OH_Input_GetPreKeys](#oh_input_getprekeys) (const [Input_Hotkey](#input_hotkey) \*hotkey, int32_t \*\*preKeys, int32_t \*preKeyCount) | 获取修饰键。  | 
+| [Input_Result](#input_result) [OH_Input_GetPreKeys](#oh_input_getprekeys) (const [Input_Hotkey](#input_hotkey) \*hotkey, int32_t \*\*preKeys, int32_t \*preKeyCount) | 获取修饰键。  | 
 | void [OH_Input_SetFinalKey](#oh_input_setfinalkey) ([Input_Hotkey](#input_hotkey) \*hotkey, int32_t finalKey) | 设置被修饰键。  | 
-| [Input_Result](#input_result)[OH_Input_GetFinalKey](#oh_input_getfinalkey) (const [Input_Hotkey](#input_hotkey) \*hotkey, int32_t \*finalKeyCode) | 获取被修饰键。  | 
+| [Input_Result](#input_result) [OH_Input_GetFinalKey](#oh_input_getfinalkey) (const [Input_Hotkey](#input_hotkey) \*hotkey, int32_t \*finalKeyCode) | 获取被修饰键。  | 
 | [Input_Hotkey](#input_hotkey) \*\* [OH_Input_CreateAllSystemHotkeys](#oh_input_createallsystemhotkeys) (int32_t count) | 创建[Input_Hotkey](#input_hotkey)类型实例的数组。  | 
 | void [OH_Input_DestroyAllSystemHotkeys](#oh_input_destroyallsystemhotkeys) ([Input_Hotkey](#input_hotkey) \*\*hotkeys, int32_t count) | 销毁[Input_Hotkey](#input_hotkey)实例数组并回收内存。  | 
-| [Input_Result](#input_result)[OH_Input_GetAllSystemHotkeys](#oh_input_getallsystemhotkeys) ([Input_Hotkey](#input_hotkey) \*\*hotkey, int32_t \*count) | 获取设置的所有快捷键。  | 
+| [Input_Result](#input_result) [OH_Input_GetAllSystemHotkeys](#oh_input_getallsystemhotkeys) ([Input_Hotkey](#input_hotkey) \*\*hotkey, int32_t \*count) | 获取设置的所有快捷键。  | 
 | void [OH_Input_SetRepeat](#oh_input_setrepeat) ([Input_Hotkey](#input_hotkey) \*hotkey, bool isRepeat) | 设置是否上报重复key事件。  | 
-| [Input_Result](#input_result)[OH_Input_GetRepeat](#oh_input_getrepeat) (const [Input_Hotkey](#input_hotkey) \*hotkey, bool \*isRepeat) | 获取是否上报重复key事件。  | 
-| [Input_Result](#input_result)[OH_Input_AddHotkeyMonitor](#oh_input_addhotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 订阅快捷键事件。  | 
-| [Input_Result](#input_result)[OH_Input_RemoveHotkeyMonitor](#oh_input_removehotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 取消订阅快捷键。  | 
-| [Input_Result](#input_result)[OH_Input_GetDeviceIds](#oh_input_getdeviceids) (int32_t \*deviceIds, int32_t inSize, int32_t \*outSize) | 获取所有输入设备的ID列表。  | 
-| [Input_Result](#input_result)[OH_Input_GetDevice](#oh_input_getdevice) (int32_t deviceId, [Input_DeviceInfo](#input_deviceinfo) \*\*deviceInfo) | 获取输入设备信息。  | 
+| [Input_Result](#input_result) [OH_Input_GetRepeat](#oh_input_getrepeat) (const [Input_Hotkey](#input_hotkey) \*hotkey, bool \*isRepeat) | 获取是否上报重复key事件。  | 
+| [Input_Result](#input_result) [OH_Input_AddHotkeyMonitor](#oh_input_addhotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 订阅快捷键事件。  | 
+| [Input_Result](#input_result) [OH_Input_RemoveHotkeyMonitor](#oh_input_removehotkeymonitor) (const [Input_Hotkey](#input_hotkey) \*hotkey, [Input_HotkeyCallback](#input_hotkeycallback) callback) | 取消订阅快捷键。  | 
+| [Input_Result](#input_result) [OH_Input_GetDeviceIds](#oh_input_getdeviceids) (int32_t \*deviceIds, int32_t inSize, int32_t \*outSize) | 获取所有输入设备的ID列表。  | 
+| [Input_Result](#input_result) [OH_Input_GetDevice](#oh_input_getdevice) (int32_t deviceId, [Input_DeviceInfo](#input_deviceinfo) \*\*deviceInfo) | 获取输入设备信息。  | 
 | [Input_DeviceInfo](#input_deviceinfo) \* [OH_Input_CreateDeviceInfo](#oh_input_createdeviceinfo) (void) | 创建输入设备信息的对象。  | 
 | void [OH_Input_DestroyDeviceInfo](#oh_input_destroydeviceinfo) ([Input_DeviceInfo](#input_deviceinfo) \*\*deviceInfo) | 销毁输入设备信息的对象。  | 
-| [Input_Result](#input_result)[OH_Input_GetKeyboardType](#oh_input_getkeyboardtype) (int32_t deviceId, int32_t \*keyboardType) | 获取输入设备的键盘类型。  | 
-| [Input_Result](#input_result)[OH_Input_GetDeviceId](#oh_input_getdeviceid) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*id) | 获取输入设备的id。  | 
-| [Input_Result](#input_result)[OH_Input_GetDeviceName](#oh_input_getdevicename) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, char \*\*name) | 获取输入设备的名称。  | 
-| [Input_Result](#input_result)[OH_Input_GetCapabilities](#oh_input_getcapabilities) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*capabilities) | 获取有关输入设备能力信息，比如设备是触摸屏、触控板、键盘等。  | 
-| [Input_Result](#input_result)[OH_Input_GetDeviceVersion](#oh_input_getdeviceversion) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*version) | 获取输入设备的版本信息。  | 
-| [Input_Result](#input_result)[OH_Input_GetDeviceProduct](#oh_input_getdeviceproduct) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*product) | 获取输入设备的产品信息。  | 
-| [Input_Result](#input_result)[OH_Input_GetDeviceVendor](#oh_input_getdevicevendor) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*vendor) | 获取输入设备的厂商信息。  | 
-| [Input_Result](#input_result)[OH_Input_GetDeviceAddress](#oh_input_getdeviceaddress) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, char \*\*address) | 获取输入设备的物理地址。  | 
-| [Input_Result](#input_result)[OH_Input_RegisterDeviceListener](#oh_input_registerdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 注册设备热插拔的监听器。  | 
-| [Input_Result](#input_result)[OH_Input_UnregisterDeviceListener](#oh_input_unregisterdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 取消注册设备热插拔的监听。  | 
-| [Input_Result](#input_result)[OH_Input_UnregisterDeviceListeners](#oh_input_unregisterdevicelisteners) () | 取消注册所有的设备热插拔的监听。  | 
+| [Input_Result](#input_result) [OH_Input_GetKeyboardType](#oh_input_getkeyboardtype) (int32_t deviceId, int32_t \*keyboardType) | 获取输入设备的键盘类型。  | 
+| [Input_Result](#input_result) [OH_Input_GetDeviceId](#oh_input_getdeviceid) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*id) | 获取输入设备的id。  | 
+| [Input_Result](#input_result) [OH_Input_GetDeviceName](#oh_input_getdevicename) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, char \*\*name) | 获取输入设备的名称。  | 
+| [Input_Result](#input_result) [OH_Input_GetCapabilities](#oh_input_getcapabilities) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*capabilities) | 获取有关输入设备能力信息，比如设备是触摸屏、触控板、键盘等。  | 
+| [Input_Result](#input_result) [OH_Input_GetDeviceVersion](#oh_input_getdeviceversion) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*version) | 获取输入设备的版本信息。  | 
+| [Input_Result](#input_result) [OH_Input_GetDeviceProduct](#oh_input_getdeviceproduct) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*product) | 获取输入设备的产品信息。  | 
+| [Input_Result](#input_result) [OH_Input_GetDeviceVendor](#oh_input_getdevicevendor) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, int32_t \*vendor) | 获取输入设备的厂商信息。  | 
+| [Input_Result](#input_result) [OH_Input_GetDeviceAddress](#oh_input_getdeviceaddress) ([Input_DeviceInfo](#input_deviceinfo) \*deviceInfo, char \*\*address) | 获取输入设备的物理地址。  | 
+| [Input_Result](#input_result) [OH_Input_RegisterDeviceListener](#oh_input_registerdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 注册设备热插拔的监听器。  | 
+| [Input_Result](#input_result) [OH_Input_UnregisterDeviceListener](#oh_input_unregisterdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 取消注册设备热插拔的监听。  | 
+| [Input_Result](#input_result) [OH_Input_UnregisterDeviceListeners](#oh_input_unregisterdevicelisteners) () | 取消注册所有的设备热插拔的监听。  | 
 
 
 ## 类型定义说明
@@ -788,8 +788,8 @@ enum Input_Result
 | INPUT_PARAMETER_ERROR  | 参数检查失败&nbsp;&nbsp; | 
 | INPUT_SERVICE_EXCEPTION  | 服务异常&nbsp;&nbsp; | 
 | INPUT_REPEAT_INTERCEPTOR  | 应用创建拦截后，再次执行创建拦截的操作&nbsp;&nbsp; | 
-| INPUT_OCCUPIED_BY_SYSTEM  | 已经被系统应用占用<br/>自从<br/>13 | 
-| INPUT_OCCUPIED_BY_OTHER  | 已经被其他应用占用<br/>自从<br/>13 | 
+| INPUT_OCCUPIED_BY_SYSTEM  | 已经被系统应用占用，**起始版本：** 13 | 
+| INPUT_OCCUPIED_BY_OTHER  | 已经被其他应用占用，**起始版本：** 13 | 
 
 
 ### Input_TouchEventAction
@@ -822,10 +822,10 @@ enum InputEvent_AxisAction
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AXIS_ACTION_CANCEL  | 取消轴输入事件。<br/>自从<br/>12 | 
-| AXIS_ACTION_BEGIN  | 开始轴输入事件。<br/>自从<br/>12 | 
-| AXIS_ACTION_UPDATE  | 轴输入事件中。<br/>自从<br/>12 | 
-| AXIS_ACTION_END  | 结束轴输入事件。<br/>自从<br/>12 | 
+| AXIS_ACTION_CANCEL  | 取消轴输入事件。| 
+| AXIS_ACTION_BEGIN  | 开始轴输入事件。| 
+| AXIS_ACTION_UPDATE  | 轴输入事件中。 | 
+| AXIS_ACTION_END  | 结束轴输入事件。| 
 
 
 ### InputEvent_AxisEventType
@@ -840,8 +840,8 @@ enum InputEvent_AxisEventType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AXIS_EVENT_TYPE_PINCH  | 双指捏合事件，包含AXIS_TYPE_PINCH和AXIS_TYPE_ROTATE两种轴类型。<br/>自从<br/>12 | 
-| AXIS_EVENT_TYPE_SCROLL  | 滚轴事件，包含AXIS_TYPE_SCROLL_VERTICAL和AXIS_TYPE_SCROLL_HORIZONTAL两种轴类型， 其中鼠标滚轮事件仅包含AXIS_TYPE_SCROLL_VERTICAL一种轴类型。<br/>自从<br/>12 | 
+| AXIS_EVENT_TYPE_PINCH  | 双指捏合事件，包含AXIS_TYPE_PINCH和AXIS_TYPE_ROTATE两种轴类型。| 
+| AXIS_EVENT_TYPE_SCROLL  | 滚轴事件，包含AXIS_TYPE_SCROLL_VERTICAL和AXIS_TYPE_SCROLL_HORIZONTAL两种轴类型， 其中鼠标滚轮事件仅包含AXIS_TYPE_SCROLL_VERTICAL一种轴类型。 | 
 
 
 ### InputEvent_AxisType
@@ -856,11 +856,11 @@ enum InputEvent_AxisType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AXIS_TYPE_UNKNOWN  | 未知轴类型，通常作为初始值。<br/>自从<br/>12 | 
-| AXIS_TYPE_SCROLL_VERTICAL  | 垂直滚动轴，当您滚动鼠标滚轮或在触摸板上进行单指或双指滑动时，垂直滚动轴的状态改变。<br/>自从<br/>12 | 
-| AXIS_TYPE_SCROLL_HORIZONTAL  | 水平滚动轴，当您滚动鼠标滚轮或在触摸板上进行双指滑动时，水平滚动轴的状态发生变化。<br/>自从<br/>12 | 
-| AXIS_TYPE_PINCH  | 捏合轴，用于描述触摸板上的双指捏合手势。<br/>自从<br/>12 | 
-| AXIS_TYPE_ROTATE  | 旋转轴，用于描述触摸板上的双指旋转手势。<br/>自从<br/>12 | 
+| AXIS_TYPE_UNKNOWN  | 未知轴类型，通常作为初始值。 | 
+| AXIS_TYPE_SCROLL_VERTICAL  | 垂直滚动轴，当您滚动鼠标滚轮或在触摸板上进行单指或双指滑动时，垂直滚动轴的状态改变。 | 
+| AXIS_TYPE_SCROLL_HORIZONTAL  | 水平滚动轴，当您滚动鼠标滚轮或在触摸板上进行双指滑动时，水平滚动轴的状态发生变化。 | 
+| AXIS_TYPE_PINCH  | 捏合轴，用于描述触摸板上的双指捏合手势。| 
+| AXIS_TYPE_ROTATE  | 旋转轴，用于描述触摸板上的双指旋转手势。 | 
 
 
 ### InputEvent_MouseAxis
@@ -891,9 +891,9 @@ enum InputEvent_SourceType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| SOURCE_TYPE_MOUSE  | 表示输入源生成鼠标光标移动、按钮按下和释放以及滚轮滚动的事件。<br/>自从<br/>12 | 
-| SOURCE_TYPE_TOUCHSCREEN  | 表示输入源产生触摸屏多点触摸事件。<br/>自从<br/>12 | 
-| SOURCE_TYPE_TOUCHPAD  | 表示输入源产生触摸板多点触摸事件。<br/>自从<br/>12 | 
+| SOURCE_TYPE_MOUSE  | 表示输入源生成鼠标光标移动、按钮按下和释放以及滚轮滚动的事件。| 
+| SOURCE_TYPE_TOUCHSCREEN  | 表示输入源产生触摸屏多点触摸事件。| 
+| SOURCE_TYPE_TOUCHPAD  | 表示输入源产生触摸板多点触摸事件。 | 
 
 
 ## 函数说明
