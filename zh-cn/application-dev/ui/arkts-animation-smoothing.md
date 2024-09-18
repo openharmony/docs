@@ -89,7 +89,7 @@ struct SpringMotionDemo {
             if(event){
               if (event.type === TouchType.Move) {
                 // 跟手过程，使用responsiveSpringMotion曲线
-                animateTo({ curve: curves.responsiveSpringMotion() }, () => {
+                this.getUIContext()?.animateTo({ curve: curves.responsiveSpringMotion() }, () => {
                   // 减去半径，以使球的中心运动到手指位置
                   this.positionX = event.touches[0].windowX - this.diameter / 2;
                   this.positionY = event.touches[0].windowY - this.diameter / 2;
@@ -97,7 +97,7 @@ struct SpringMotionDemo {
                 })
               } else if (event.type === TouchType.Up) {
                 // 第四步：在离手过程设定状态变量终点值，并且用springMotion动画运动到新的值，springMotion动画将继承跟手阶段的动画速度
-                animateTo({ curve: curves.springMotion() }, () => {
+                this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
                   this.positionX = 100;
                   this.positionY = 100;
                   console.info(`touchUp, animateTo x:100, y:100`);
