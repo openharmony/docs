@@ -51,7 +51,7 @@ static napi_value GetArgvDemo2(napi_env env, napi_callback_info info) {
     size_t argc = 2;
     napi_value argv[2] = {nullptr};
     // napi_get_cb_info 会向 argv 中写入 argc 个 JS 传入参数或 undefined
-    napi_get_cb_info(env, info, &argc, nullptr, nullptr, nullptr);
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // 业务代码
     // ... ...
     return nullptr;
