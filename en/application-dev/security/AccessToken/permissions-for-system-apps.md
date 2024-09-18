@@ -2845,6 +2845,18 @@ Allows an application to query the location of an offline device.
 
 **Valid since**: 12
 
+### ohos.permission.REGISTER_FINDNETWORK_ACCESSORY
+
+Allows an application or system ability to initiate the process for registering the Find Network accessories.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ### ohos.permission.MANAGE_RGM
 
 Allows a system service or system application to manage RGM.
