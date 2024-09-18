@@ -214,6 +214,10 @@ Dialog关闭的信息。
 
 ### 示例1
 
+> **说明：**
+> 
+> 直接使用AlertDialog可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)调用绑定实例的AlertDialog.show()。
+
 分别弹出一、二、三个按钮的弹窗。
 
 ```ts
@@ -225,6 +229,7 @@ struct AlertDialogExample {
     Column({ space: 5 }) {
       Button('one button dialog')
         .onClick(() => {
+          // 建议使用this.getUIContext().showAlertDialog()
           AlertDialog.show(
             {
               title: 'title',
@@ -258,6 +263,7 @@ struct AlertDialogExample {
         .backgroundColor(0x317aff)
       Button('two button dialog')
         .onClick(() => {
+          // 建议使用this.getUIContext().showAlertDialog()
           AlertDialog.show(
             {
               title: 'title',
@@ -300,6 +306,7 @@ struct AlertDialogExample {
         }).backgroundColor(0x317aff)
         Button('three button dialog')
         .onClick(() => {
+          // 建议使用this.getUIContext().showAlertDialog()
           AlertDialog.show(
             {
               title: 'title',
@@ -360,6 +367,10 @@ struct AlertDialogExample {
 
 弹出可展示在主窗外的弹窗。
 
+> **说明：**
+> 
+> 直接使用AlertDialog可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)调用绑定实例的AlertDialog.show()。
+
 ```ts
 // xxx.ets
 @Entry
@@ -369,6 +380,7 @@ struct AlertDialogExample {
     Column({ space: 5 }) {
       Button('one button dialog')
         .onClick(() => {
+          // 建议使用this.getUIContext().showAlertDialog()
           AlertDialog.show(
             {
               title: 'title',
@@ -428,6 +440,11 @@ struct AlertDialogExample {
 
 ### 示例3
 AlertDialog显示动画持续3秒，退出动画持续100毫秒
+
+> **说明：**
+> 
+> 直接使用AlertDialog可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)调用绑定实例的AlertDialog.show()。
+
 ```ts
 // xxx.ets
 import { router } from '@kit.ArkUI';
@@ -438,6 +455,7 @@ struct AlertDialogExample {
     Column({ space: 5 }) {
       Button('AlertDialog Set Duration')
         .onClick(()=>{
+            // 建议使用this.getUIContext().showAlertDialog()
             AlertDialog.show(
               {
                 title: 'AlertDialog 1',
@@ -472,6 +490,11 @@ struct AlertDialogExample {
 
 ### 示例4
 该示例定义了AlertDialog的样式，如宽度、高度、背景色、阴影等等
+
+> **说明：**
+> 
+> 直接使用AlertDialog可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog)调用绑定实例的AlertDialog.show()。
+
 ```ts
 // xxx.ets
 @Entry
@@ -481,6 +504,7 @@ struct AlertDialogExample {
     Column({ space: 5 }) {
       Button('one button dialog')
         .onClick(() => {
+          // 建议使用this.getUIContext().showAlertDialog()
           AlertDialog.show(
             {
               title: 'title',
