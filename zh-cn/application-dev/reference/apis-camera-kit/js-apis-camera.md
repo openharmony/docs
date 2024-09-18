@@ -553,7 +553,7 @@ function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapabili
 
 createPreviewOutput(surfaceId: string): PreviewOutput
 
-创建无配置信息的预览输出对象，同步返回结果。该接口需配合[Preconfig](#preconfig12)功能一起使用。
+创建无配置信息的预览输出对象，同步返回结果。该接口需配合[preconfig](#preconfig12)一起使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -657,7 +657,7 @@ createPhotoOutput(profile?: Profile): PhotoOutput
 
 | 参数名     | 类型                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------- |----| ----------------------------------- |
-| profile  | [Profile](#profile)                         | 否  | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。<br>API 11时，该参数必填；从API version 12开始，如果使用Preconfig进行预配置，传入profile参数会覆盖Preconfig的预配置参数。|
+| profile  | [Profile](#profile)                         | 否  | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。<br>API 11时，该参数必填；从API version 12开始，如果使用[preconfig](#preconfig12)进行预配置，传入profile参数会覆盖preconfig的预配置参数。|
 
 **返回值：**
 
@@ -746,7 +746,7 @@ function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability
 
 createVideoOutput(surfaceId: string): VideoOutput
 
-创建无配置信息的录像输出对象，同步返回结果。该接口需配合[Preconfig](#preconfig12)功能一起使用。
+创建无配置信息的录像输出对象，同步返回结果。该接口需配合[preconfig](#preconfig12-1)功能一起使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3029,7 +3029,7 @@ function registerPhotoOutputCaptureReady(photoOutput: camera.PhotoOutput): void 
 
 off(type: 'captureReady', callback?: AsyncCallback\<void\>): void
 
-注销监听监听可拍下一张。
+注销监听可拍下一张。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
