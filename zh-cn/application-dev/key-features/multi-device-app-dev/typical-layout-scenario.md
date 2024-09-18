@@ -46,12 +46,16 @@
 
 
 ```ts
-import { BreakpointSystem, BreakPointType } from '../common/breakpointsystem'
+import { BreakpointSystem, BreakpointState } from '../common/breakpointsystem'
 
 interface TabBar  {
   name: string
   icon: Resource
   selectIcon: Resource
+}
+interface marginGenerate {
+  top: number,
+  left?:number
 }
 
 @Entry
@@ -71,14 +75,37 @@ struct Home {
                                   icon: $r('app.media.ic_music_me_nor'),
                                   selectIcon: $r('app.media.ic_music_me_selected')
                                 }]
+  @State compStr: BreakpointState<string> = BreakpointState.of({ sm: "sm", md: "md", lg: "lg" })
+  @State compDirection: BreakpointState<FlexDirection> = BreakpointState.of({
+    sm: FlexDirection.Column,
+    md: FlexDirection.Row,
+    lg: FlexDirection.Column
+  });
+  @State compBarPose: BreakpointState<BarPosition> = BreakpointState.of({
+    sm: BarPosition.End,
+    md: BarPosition.End,
+    lg: BarPosition.Start
+  });
+  @State compVertical: BreakpointState<boolean> = BreakpointState.of({
+    sm: false,
+    md: false,
+    lg: true
+  });
+  @State compBarWidth: BreakpointState<string> = BreakpointState.of({
+    sm: '100%', md: '100%', lg: '96vp'
+  });
+  @State compBarHeight: BreakpointState<string> = BreakpointState.of({
+    sm: '72vp', md: '56vp', lg: '60%'
+  });
+  @State compMargin: BreakpointState<marginGenerate> = BreakpointState.of({
+    sm: ({ top: 4 } as marginGenerate),
+    md: ({ left: 8 } as marginGenerate),
+    lg: ({ top: 4 } as marginGenerate)
+  });
 
   @Builder TabBarBuilder(index: number, tabBar: TabBar) {
     Flex({
-      direction: new BreakPointType({
-        sm: FlexDirection.Column,
-        md: FlexDirection.Row,
-        lg: FlexDirection.Column
-      }).getValue(this.currentBreakpoint),
+      direction: this.compDirection.value,
       justifyContent: FlexAlign.Center,
       alignItems: ItemAlign.Center
     }) {
@@ -86,34 +113,37 @@ struct Home {
         .size({ width: 36, height: 36 })
       Text(tabBar.name)
         .fontColor(this.currentIndex === index ? '#FF1948' : '#999')
-        .margin(new BreakPointType<(Length|Padding)>({
-          sm: { top: 4 },
-          md: { left: 8 },
-          lg: { top: 4 } }).getValue(this.currentBreakpoint)!)
+        .margin(this.compMargin.value)
         .fontSize(16)
     }
     .width('100%')
     .height('100%')
   }
-
-  @StorageLink('currentBreakpoint') currentBreakpoint: string = 'md'
-  private breakpointSystem: BreakpointSystem = new BreakpointSystem()
-
   aboutToAppear() {
-    this.breakpointSystem.register()
+    BreakpointSystem.getInstance().attach(this.compStr)
+    BreakpointSystem.getInstance().attach(this.compDirection)
+    BreakpointSystem.getInstance().attach(this.compBarPose)
+    BreakpointSystem.getInstance().attach(this.compVertical)
+    BreakpointSystem.getInstance().attach(this.compBarWidth)
+    BreakpointSystem.getInstance().attach(this.compBarHeight)
+    BreakpointSystem.getInstance().attach(this.compMargin)
+    BreakpointSystem.getInstance().start()
   }
 
   aboutToDisappear() {
-    this.breakpointSystem.unregister()
+    BreakpointSystem.getInstance().detach(this.compStr)
+    BreakpointSystem.getInstance().detach(this.compDirection)
+    BreakpointSystem.getInstance().detach(this.compBarPose)
+    BreakpointSystem.getInstance().detach(this.compVertical)
+    BreakpointSystem.getInstance().detach(this.compBarWidth)
+    BreakpointSystem.getInstance().detach(this.compBarHeight)
+    BreakpointSystem.getInstance().detach(this.compMargin)
+    BreakpointSystem.getInstance().stop()
   }
 
   build() {
     Tabs({
-      barPosition: new BreakPointType({
-        sm: BarPosition.End,
-        md: BarPosition.End,
-        lg: BarPosition.Start
-      }).getValue(this.currentBreakpoint)
+      barPosition:this.compBarPose.value
     }) {
       ForEach(this.tabs, (item:TabBar, index) => {
         TabContent() {
@@ -123,9 +153,9 @@ struct Home {
         }.tabBar(this.TabBarBuilder(index!, item))
       })
     }
-    .vertical(new BreakPointType({ sm: false, md: false, lg: true }).getValue(this.currentBreakpoint)!)
-    .barWidth(new BreakPointType({ sm: '100%', md: '100%', lg: '96vp' }).getValue(this.currentBreakpoint)!)
-    .barHeight(new BreakPointType({ sm: '72vp', md: '56vp', lg: '60%' }).getValue(this.currentBreakpoint)!)
+    .vertical(this.compVertical.value)
+    .barWidth(this.compBarWidth.value)
+    .barHeight(this.compBarHeight.value)
     .animationDuration(0)
     .onChange((index: number) => {
       this.currentIndex = index
