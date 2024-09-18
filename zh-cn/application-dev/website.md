@@ -1212,9 +1212,9 @@
         - [视频编码](media/avcodec/video-encoding.md)
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
         - [视频解码](media/avcodec/video-decoding.md)
-      - 文件解析封装<!--file-muxing-demuxing-->
-        - [音视频封装](media/avcodec/audio-video-muxer.md)
-        - [音视频解封装](media/avcodec/audio-video-demuxer.md)
+      - 媒体数据封装与解析<!--file-muxing-demuxing-->
+        - [媒体数据封装](media/avcodec/audio-video-muxer.md)
+        - [媒体数据解析](media/avcodec/audio-video-demuxer.md)
     - AVSession Kit（音视频播控服务）<!--avsession-kit-->
       - [AVSession Kit简介](media/avsession/avsession-overview.md)
       - 本地媒体会话<!--local-avsession-->
