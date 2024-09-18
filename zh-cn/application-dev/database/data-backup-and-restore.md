@@ -192,7 +192,8 @@
    })
    ```
 
-## 关系型数据库双写备份与恢复(仅系统应用可用)
+<!--Del-->
+## 关系型数据库双写备份与恢复（仅系统应用可用）
 
 关系型数据库，可以通过在[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#storeconfig)中配置haMode参数实现数据库双写备份，通过[restore](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#restore12)接口实现数据库恢复。
 
@@ -290,6 +291,7 @@
      })
     }
    ```
+<!--DelEnd-->
 
 ## 关系型数据库备份与恢复
 
