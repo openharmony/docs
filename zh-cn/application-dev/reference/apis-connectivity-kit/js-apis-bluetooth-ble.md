@@ -3913,7 +3913,7 @@ try {
 
 | 名称                | 类型                             | 可读  | 可写  | 说明                      |
 | ------------------- | ------------------------------- | ----- | ----- | ------------------------ |
-| advertisingSettings<sup>11+</sup> | AdvertiseSetting                | 是    | 是    | 表示发送广播的相关参数。    |
+| advertisingSettings<sup>11+</sup> | [AdvertiseSetting](#advertisesetting) | 是    | 是    | 表示发送广播的相关参数。    |
 | advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | 是    | 是    | 表示广播的数据包内容。      |
 | advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | 是    | 是    | 表示回复扫描请求的响应内容。 |
 | duration<sup>11+</sup>    | number   | 是    | 是    | 表示发送广播持续的时间。单位为10ms，有效范围为1(10ms)到65535(655350ms)，如果未指定此参数或者将其设置为0，则会连续发送广播。    |
