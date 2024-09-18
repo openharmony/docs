@@ -287,11 +287,21 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime (OH_AVDemuxer *demuxer, int64_t millisecond
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例，或demuxer没有正确的初始化，或毫秒值超出范围。
+AV_ERR_INVALID_VAL：
 
-AV_ERR_OPERATE_NOT_PERMIT：轨道的索引没有被选中，或者资源无法seek。
+    1. 输入的demuxer指针为空或为非解封装器实例；
+    2. demuxer没有正确的初始化；
+    3. 毫秒值超出范围。
 
-AV_ERR_UNKNOWN：seek失败。
+AV_ERR_OPERATE_NOT_PERMIT：
+
+    1. 轨道的索引没有被选中；
+    2. 资源无法seek。
+
+AV_ERR_UNKNOWN：
+
+    1. seek失败；
+    2. OH_AVSeekMode选择SEEK_MODE_NEXT_SYNC，并且时间点后无I帧，可能会跳转失败。
 
 
 ### OH_AVDemuxer_SelectTrackByID()
