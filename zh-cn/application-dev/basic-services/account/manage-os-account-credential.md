@@ -94,7 +94,7 @@
    ```ts
    let credentialInfo: osAccount.CredentialInfo = {
      credType: osAccount.AuthType.PIN,
-     credSubType: osAccount.AuthSubType.PIN_SIX;
+     credSubType: osAccount.AuthSubType.PIN_SIX,
      token: new Uint8Array([0])
    };
    ```
