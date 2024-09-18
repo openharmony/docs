@@ -69,6 +69,10 @@ animateTo(value: AnimateParam, event: () => void): void
 
 ## 示例
 
+> **说明：**
+> 
+> 直接使用animateTo可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[animateTo](../js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
+
 ```ts
 // xxx.ets
 @Entry
@@ -87,6 +91,7 @@ struct AnimateToExample {
         .margin(30)
         .onClick(() => {
           if (this.flag) {
+            // 建议使用this.getUIContext()?.animateTo()
             animateTo({
               duration: 2000,
               curve: Curve.EaseOut,
@@ -100,6 +105,7 @@ struct AnimateToExample {
               this.heightSize = 60
             })
           } else {
+            // 建议使用this.getUIContext()?.animateTo()
             animateTo({}, () => {
               this.widthSize = 250
               this.heightSize = 100
@@ -111,6 +117,7 @@ struct AnimateToExample {
         .margin(50)
         .rotate({ x: 0, y: 0, z: 1, angle: this.rotateAngle })
         .onClick(() => {
+          // 建议使用this.getUIContext()?.animateTo()
           animateTo({
             duration: 1200,
             curve: Curve.Friction,
