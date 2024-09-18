@@ -1639,7 +1639,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 > **说明：**<br/>
 > 从API version 9开始支持，从API version 10开始废弃。建议使用[ble.getConnectedBLEDevices](js-apis-bluetooth-ble.md#blegetconnectedbledevices)替代。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH-*
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
