@@ -116,7 +116,7 @@ struct Index {
     if (this.selectedIndex < 0) {
       return;
     }
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {
@@ -201,7 +201,7 @@ export default struct  Post {
     .onClick(() => {
       this.selecteIndex = -1;
       this.selecteIndex = this.index;
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: 350,
         curve: Curve.Friction
       }, () => {
@@ -330,7 +330,7 @@ struct ExpandPage {
     .translate({ x: this.AnimationProperties.translateX, y: this.AnimationProperties.translateY })
     .position({ x: this.AnimationProperties.positionX, y: this.AnimationProperties.positionY })
     .onClick(() => {
-      animateTo({ curve: curves.springMotion(0.6, 0.9),
+      this.getUIContext()?.animateTo({ curve: curves.springMotion(0.6, 0.9),
         onFinish: () => {
           if (this.nodeController != undefined) {
             // 执行回调，折叠态节点获取卡片组件
@@ -1427,7 +1427,7 @@ struct Index {
       if (this.targetInfo.scale != 0 && this.targetInfo.clipWidth != 0 && this.targetInfo.clipHeight != 0 && !this.isAnimating) {
         this.isAnimating = true;
         // 用于一镜到底的模态页的属性动画
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 1000,
           curve: Curve.Friction,
           onFinish: () => {
@@ -1449,7 +1449,7 @@ struct Index {
           this.radius = this.sheetRadius / this.scaleValue
         })
         // 原图从透明到出现的动画
-        animateTo({
+        this.getUIContext()?.animateTo({
           duration: 2000,
           curve: Curve.Friction,
         }, () => {
@@ -1946,7 +1946,7 @@ struct IfElseGeometryTransition {
       }
     }
     .onClick(() => {
-      animateTo({
+      this.getUIContext()?.animateTo({
         curve: curves.springMotion()
       }, () => {
         this.isShow = !this.isShow;
@@ -1988,7 +1988,7 @@ struct Index {
 
   private onAvatarClicked(index: number): void {
     this.selectedIndex = index;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {
@@ -1998,7 +1998,7 @@ struct Index {
   }
 
   private onPersonalPageBack(index: number): void {
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 350,
       curve: Curve.Friction
     }, () => {
