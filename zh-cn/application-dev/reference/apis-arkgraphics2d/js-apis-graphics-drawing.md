@@ -537,7 +537,7 @@ path.rCubicTo(200, 0, 0, 200, -20, 0);
 addArc(rect: common2D.Rect, startAngle: number, sweepAngle: number): void
 
 向路径添加一段圆弧。
-当startAngle和sweepAngle同时满足以下两种情况时，添加整个椭圆而不是圆弧；
+当startAngle和sweepAngle同时满足以下两种情况时，添加整个椭圆而不是圆弧:
 1.startAngle对90取余接近于0；
 2.sweepAngle不在(-360, 360)区间内。
 其余情况sweepAngle会对360取余后添加圆弧。
@@ -892,7 +892,7 @@ addPolygon(points: Array\<common2D.Point>, close: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明                    |
 | ------ | ------ | ---- | ----------------------- |
-| points | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point)   | 是   | 坐标点数组。 |
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | 是   | 坐标点数组。 |
 | close  | boolean                                                        | 是   | 表示是否将路径闭合，即是否添加路径起始点到终点的连线，true表示将路径闭合，false表示不将路径闭合。 |
 
 **错误码：**
@@ -3483,7 +3483,7 @@ static makeFromPosText(text: string, len: number, points: common2D.Point[], font
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string             | 是   | 绘制字形的文本内容。                   |
 | len      | number             | 是   | 字形个数，由[countText](#counttext12)获取，该参数为整数。 |
-| points   |[common2D.Point[]](js-apis-graphics-common2D.md#point)      | 是   |点数组，用于指定每个字形的坐标，长度必须为len。|
+| points   |[common2D.Point](js-apis-graphics-common2D.md#point)[]     | 是   |点数组，用于指定每个字形的坐标，长度必须为len。|
 | font     | [Font](#font)      | 是   | 字型对象。 |
 
 **返回值：**
@@ -7329,13 +7329,13 @@ mapPoints(src: Array\<common2D.Point>): Array\<common2D.Point>
 
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | 是   | 源点数组。 |
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 源点数组。 |
 
 **返回值：**
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | 源点数组经矩阵变换后的点数组。 |
+| Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 源点数组经矩阵变换后的点数组。 |
 
 **错误码：**
 
@@ -7479,8 +7479,8 @@ setPolyToPoly(src: Array\<common2D.Point>, dst: Array\<common2D.Point>, count: n
 
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | 是   | 源点数组，长度必须为count。 |
-| dst | [Array\<common2D.Point>](js-apis-graphics-common2D.md#point) | 是   | 目标点数组，长度必须为count。 |
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 源点数组，长度必须为count。 |
+| dst | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | 是   | 目标点数组，长度必须为count。 |
 | count | number | 是   | 在src和dst点的数量，该参数为整数。 |
 
 **返回值：**
