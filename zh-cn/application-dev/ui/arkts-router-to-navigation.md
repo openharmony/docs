@@ -259,7 +259,7 @@ struct Index {
   build() {
     // 设置NavPathStack并传入Navigation
     Navigation(this.pathStack) {
-        ...
+        // ...
     }.width('100%').height('100%')
     .title("Navigation")
     .mode(NavigationMode.Stack)
@@ -301,7 +301,7 @@ this.pathStack.getParamByName("pageOne")
 
 // 获取PageOne页面的索引集合
 this.pathStack.getIndexByName("pageOne")
-...
+// ...
 ```
 
 Router作为全局通用模块，可以在任意页面中调用，Navigation作为组件，子页面想要做路由需要拿到Navigation持有的页面栈对象NavPathStack，可以通过如下几种方式获取：
@@ -318,7 +318,7 @@ struct Index {
 
   build() {
     Navigation(this.pathStack) {
-        ...
+        // ...
       }.width('100%').height('100%')
     }
     .title("Navigation")
@@ -334,7 +334,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .title("PageOne")
   }
@@ -350,7 +350,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }.title('PageOne')
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack
@@ -374,7 +374,7 @@ struct Index {
 
   build() {
     Navigation(this.pathStack) {
-        ...
+        // ...
       }.width('100%').height('100%')
     }
     .title("Navigation")
@@ -390,7 +390,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .title("PageOne")
   }
@@ -465,7 +465,7 @@ struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .onWillAppear(()=>{
     })
@@ -578,7 +578,7 @@ Navigation作为路由组件，默认支持跨包跳转。
    export struct PageInHSP {
      build() {
        NavDestination() {
-           ...
+           // ...
        }
      }
    }
@@ -684,11 +684,11 @@ Navigation同样可以通过在observer中实现注册监听。
 
 ```ts
 export default class EntryAbility extends UIAbility {
-  ...
+  // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    ...
+    // ...
     windowStage.getMainWindow((err: BusinessError, data) => {
-      ...
+      // ...
       windowClass = data;
       // 获取UIContext实例。
       let uiContext: UIContext = windowClass.getUIContext();
