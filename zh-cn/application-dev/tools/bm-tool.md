@@ -25,7 +25,7 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 | copy-ap | 把应用的ap文件拷贝到/data/local/pgo目录下，供shell用户读取文件。 |
 | dump-dependencies | 查询应用依赖的模块信息。 |
 | dump-shared | 查询应用间HSP应用信息。 |
-| dump-overlay | 打印overlay应用的的overlayModuleInfo。 |
+| dump-overlay | 打印overlay应用的overlayModuleInfo。 |
 | dump-target-overlay | 打印目标应用的所有关联overlay应用的overlayModuleInfo。 |
 
 
@@ -66,8 +66,8 @@ bm install [-h] [-p filePath] [-u userId] [-r] [-w waitingTime] [-s hspDirPath]
 | bm install -p \<filePath\> -u \<userId\>   |给指定用户安装一个应用。-u非必选字段，默认为当前活跃用户。 |
 | bm install -p \<filePath\> -r | 覆盖安装一个应用，-r为非必选字段，默认支持覆盖安装。 |
 | bm install -p \<filePath\> -r -u \<userId\> | 给指定用户覆盖安装一个应用。 |
-| bm install -p \<filePath\> -r -u \<userId\> -w \<waitingTime\> | 安装时指定bm工具等待时间，-w非必选字段，最小的等待时长为180s，最大的等待时长为600s, 默认缺省为5s。 |
-| bm install -s \<hspDirPath\> | 安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。-s为安装应用间HSP时为必选字段，其他场景为可选字段。 |
+| bm install -p \<filePath\> -r -u \<userId\> -w \<waitingTime\> | 安装时指定bm工具等待时间，-w非必选字段，最小的等待时长为180s，最大的等待时长为600s， 默认缺省为5s。 |
+| bm install -s \<hspDirPath\> | 安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。-s为安装应用间HSP时必选字段，其他场景为可选字段。 |
 | bm install -p \<filePath\> -s \<hspDirPath\> | 同时安装使用方应用和其依赖的应用间共享库。 |
 
 
@@ -414,7 +414,7 @@ bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId] [-t targetModul
 | bm dump-overlay -b \<bundleName\>| 获取指定应用的所有OverlayModuleInfo信息。-b为必选字段。 |
 | bm dump-overlay -b \<bundleName\> -m \<moduleName\>| 根据指定的包名和module名查询OverlayModuleInfo信息。-m为非必选字段。 |
 | bm dump-overlay -b \<bundleName\> -t \<target-moduleName\>| 根据指定的包名和目标module名查询OverlayModuleInfo信息。-t为非必选字段。 |
-| bm dump-overlay -b \<bundleName\> -t \<target-moduleName\> -u \<userId\>| 根据指定的包名\目标module名和用户查询OverlayModuleInfo信息。-u为非必选字段，默认为当前活跃用户。 |
+| bm dump-overlay -b \<bundleName\> -t \<target-moduleName\> -u \<userId\>| 根据指定的包名、目标module名和用户查询OverlayModuleInfo信息。-u为非必选字段，默认为当前活跃用户。 |
 
 示例：
 
@@ -880,13 +880,13 @@ bundleType错误导致应用安装失败。
 
 **可能原因**
 
-新安装应用的的bundleType与已安装的有相同bundleName应用不一致。
+新安装应用的bundleType与已安装的有相同bundleName应用不一致。
        
 **处理步骤**
 
 * 方法一：卸载已安装的应用，重新安装新应用。
 
-* 方法二：修改应用的bundleType,与已安装应用保持一致。
+* 方法二：修改应用的bundleType，与已安装应用保持一致。
 
 
 ### 9568292 UserID为0的用户只能安装singleton应用
