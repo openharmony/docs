@@ -371,6 +371,9 @@
         - 显示图形<!--arkts-draw-graphics-->
           - [绘制几何图形 (Shape)](ui/arkts-geometric-shape-drawing.md)
           - [使用画布绘制自定义图形 (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
+        - 使用弹窗
+          - [模态弹窗 (ModelDialog)](ui/arkts-modal-dialog.md)
+          - [自定义弹窗 (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
         - 使用动画<!--arkts-use-animation-->
           - [动画概述](ui/arkts-animation.md)
           - 属性动画<!--arkts-animation-attribute-->
@@ -1464,13 +1467,11 @@
           - [使用Node-API接口进行线程安全开发](napi/use-napi-thread-safety.md)
           - [Native与ArkTS对象绑定](napi/use-napi-object-wrap.md)
           - [非ArkTS线程调用ArkTS函数](napi/use-uv-queue-work.md)
-          - [使用Node-API接口创建ArkTs运行时环境](napi/use-napi-ark-runtime.md)
+          - [使用Node-API接口创建ArkTS运行时环境](napi/use-napi-ark-runtime.md)
           - [使用Node-API接口在主线程中进行模块加载](napi/use-napi-load-module.md)
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
           - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](napi/use-call-threadsafe-function-with-priority.md)
-          - [使用Node-API接口进行错误处理开发](napi/use-napi-about-error.md)
-          - [使用Node-API扩展能力接口](napi/use-napi-about-extension.md)
         - [Node-API常见问题](napi/use-napi-faqs.md)
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
@@ -3118,10 +3119,14 @@
           - [USB服务错误码](reference/apis-basic-services-kit/errorcode-usb.md)
           - [RunningLock锁错误码](reference/apis-basic-services-kit/errorcode-runninglock.md)
           - [zlib子系统错误码](reference/apis-basic-services-kit/errorcode-zlib.md)  
+          <!--Del-->
           - [电量信息错误码](reference/apis-basic-services-kit/errorcode-battery-info.md)
           - [耗电统计错误码](reference/apis-basic-services-kit/errorcode-batteryStatistics.md)
+          <!--DelEnd-->
           - [剪贴板错误码](reference/apis-basic-services-kit/errorcode-pasteboard.md)
+          <!--Del-->
           - [屏幕亮度错误码](reference/apis-basic-services-kit/errorcode-brightness.md)
+          <!--DelEnd-->
           - [热管理错误码](reference/apis-basic-services-kit/errorcode-thermal.md)
           - [上传下载错误码](reference/apis-basic-services-kit/errorcode-request.md)
           - [时间时区错误码](reference/apis-basic-services-kit/errorcode-time.md)
@@ -3129,13 +3134,11 @@
           - [系统参数错误码](reference/apis-basic-services-kit/errorcode-system-parameterV9.md)
           - [系统电源管理错误码](reference/apis-basic-services-kit/errorcode-power.md)
           - [账号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
-          <!--Del-->
           - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
-          <!--DelEnd-->
+          <!--Del-->
           - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
           - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
           - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
-          <!--Del-->
           - [智能语音错误码](reference/apis-basic-services-kit/errorcode-intelligentVoice.md)
           <!--DelEnd-->
       - Function Flow Runtime Kit（任务并发调度服务）<!--function-flow-runtime-api-->
