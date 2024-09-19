@@ -252,9 +252,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
-    let ret = typeObj.belongsTo('general.plain-text');
+    let ret = typeObj.belongsTo('general.source-code');
     if(ret) {
-        console.info('type general.type-script belongs to type general.plain-text');
+        console.info('type general.type-script belongs to type general.source-code');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -298,9 +298,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
-    let ret = typeObj.isLowerLevelType('general.plain-text');
+    let ret = typeObj.isLowerLevelType('general.source-code');
     if(ret) {
-        console.info('type general.type-script is lower level type of type general.plain-text');
+        console.info('type general.type-script is lower level type of type general.source-code');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -343,10 +343,10 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
-    let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.plain-text');
+    let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.source-code');
     let ret = typeObj.isHigherLevelType('general.type-script');
     if(ret) {
-        console.info('type general.plain-text is higher level type of type general.type-script');
+        console.info('type general.source-code is higher level type of type general.type-script');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
