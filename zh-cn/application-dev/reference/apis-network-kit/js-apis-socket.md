@@ -5619,8 +5619,8 @@ constructTLSSocketInstance(tcpSocket: TCPSocket): TLSSocket
 **示例：**
 
 ```ts
-import { socket } from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let tcpconnectoptions: socket.TCPConnectOptions = {
@@ -8988,7 +8988,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
-  tls.getLocalAddress().then((localAddress: socket.NetAddress) => {
+  client.getLocalAddress().then((localAddress: socket.NetAddress) => {
     console.info("Family IP Port: " + JSON.stringify(localAddress));
   }).catch((err: BusinessError) => {
     console.error("TLS Client Get Family IP Port failed, error: " + JSON.stringify(err));
