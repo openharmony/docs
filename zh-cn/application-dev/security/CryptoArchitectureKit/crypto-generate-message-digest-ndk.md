@@ -44,7 +44,7 @@
 
 ### 摘要算法（一次性传入）
 
-1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法SHA256，生成摘要操作实例[OH_CryptoDigest](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest)。
+1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法SHA256，生成摘要实例(OH_CryptoDigest)。
 
 2. 调用[OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update)，传入自定义消息，进行摘要更新计算。单次update长度没有限制。
 
@@ -52,7 +52,7 @@
 
 4. 调用[OH_CryptoDigest_GetLength](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_getlength)，获取摘要计算长度，单位为字节。
 
-5. 调用[OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy)，销毁摘要操作实例[OH_CryptoDigest](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest)。
+5. 调用[OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy)，销毁摘要实例(OH_CryptoDigest)。
 
 - 以下使用单次传入数据，获取摘要计算结果为例：
 
@@ -92,7 +92,7 @@ static OH_Crypto_ErrCode doTestMd()
 
 ### 分段摘要算法
 
-1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法SHA256，生成摘要操作实例[OH_CryptoDigest](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest)。
+1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法SHA256，生成摘要实例(OH_CryptoDigest)。
 
 2. 传入自定义消息，将一次传入数据量设置为20字节，多次调用[OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update)，进行摘要更新计算。
 
@@ -100,7 +100,7 @@ static OH_Crypto_ErrCode doTestMd()
 
 4. 调用[OH_CryptoDigest_GetLength](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_getlength)，获取摘要计算长度，单位为字节。
 
-5. 调用[OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy)，销毁摘要操作实例[OH_CryptoDigest](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest)。
+5. 调用[OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy)，销毁摘要实例(OH_CryptoDigest)。
 
 - 以下使用分段传入数据，获取摘要计算结果为例：
 
