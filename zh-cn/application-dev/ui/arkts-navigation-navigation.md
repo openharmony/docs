@@ -18,7 +18,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```
   Navigation() {
-    ...
+    // ...
   }
   .mode(NavigationMode.Auto)
   ```
@@ -34,7 +34,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .mode(NavigationMode.Stack)
   ```
@@ -188,7 +188,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .titleMode(NavigationTitleMode.Mini)
   ```
@@ -205,7 +205,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .titleMode(NavigationTitleMode.Full)
   ```
@@ -222,7 +222,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -234,7 +234,7 @@ Navigation() {
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "resources/base/media/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -248,7 +248,7 @@ Navigation() {
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -270,7 +270,7 @@ Navigation() {
 let TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 let TooBar: ToolbarItem[] = [TooTmp,TooTmp,TooTmp]
 Navigation() {
-  ...
+  // ...
 }
 .toolbarConfiguration(TooBar)
 ```
@@ -602,7 +602,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     // 起始页配置共享元素id
     NavDestination() {
     Column() {
-        ...
+        // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(100)
@@ -614,7 +614,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     // 目的页配置共享元素id
     NavDestination() {
     Column() {
-        ...
+        // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(200)
