@@ -538,6 +538,22 @@ postTouchEvent(event: TouchEvent): boolean
 
 将原始事件派发到某个BuilderNode创建出的FrameNode上。
 
+postTouchEvent是从组件树的中间节点往下分发，需要变换到父组件坐标系才能分发成功，参考下图。
+
+OffsetA为buildNode相对于父组件的偏移量，可以通过FrameNode中的[getPositionToParent](js-apis-arkui-frameNode.md#getpositiontoparent12)获取。OffsetB为point点相对于buildNode的偏移量，可以通过[TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明) 获取。OffsetC为OffsetA与OffsetB的和，是传给postTouchEvent的最终结果。
+
+![postTouchEvent](figures/postTouchEvent.PNG)
+
+> **说明：** 
+>
+> 传入的坐标值需要转换为px，如果builderNode有仿射变换，则需要再叠加仿射变换。
+>
+> 在[webview](../apis-arkweb/js-apis-webview.md)中，内部已经处理过坐标系变换，可以将TouchEvent事件直接下发。
+>
+> 同一时间戳，postTouchEvent只能调用一次。
+>
+> 不支持[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -552,7 +568,7 @@ postTouchEvent(event: TouchEvent): boolean
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 派发事件是否成功。 |
+| boolean | 派发事件是否成功。true为已命中响应事件的组件，false为未命中任何可响应事件的组件。<br/>**说明：** <br/>如果未按照预期命中组件，需要确认以下几点：<br/>1.坐标系是否转换正确。<br/>2.组件是否可交互状态。<br/>3.是否绑定事件。 |
 
 **示例：**
 
@@ -593,12 +609,25 @@ class MyNodeController extends NodeController {
     return this.rootNode.getFrameNode();
   }
 
-  postTouchEvent(touchEvent: TouchEvent): void {
-    if(this.rootNode == null){
-      return;
+  // 坐标转换示例
+  postTouchEvent(event: TouchEvent): boolean {
+    if (this.rootNode == null) {
+      return false;
     }
-    let result = this.rootNode.postTouchEvent(touchEvent);
+    let node: FrameNode | null = this.rootNode.getFrameNode();
+    let offsetX: number | null | undefined = node?.getPositionToParent().x;
+    let offsetY: number | null | undefined = node?.getPositionToParent().y;
+    ;
+    let changedTouchLen = event.changedTouches.length;
+    for (let i = 0; i < changedTouchLen; i++) {
+      if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
+        event.changedTouches[i].x = vp2px(offsetX + event.changedTouches[i].x);
+        event.changedTouches[i].y = vp2px(offsetY + event.changedTouches[i].y);
+      }
+    }
+    let result = this.rootNode.postTouchEvent(event);
     console.log("result " + result);
+    return result;
   }
 }
 
@@ -618,7 +647,7 @@ struct MyComponent {
         .height(300)
         .backgroundColor(Color.Pink)
         .onTouch((event) => {
-          if(event != undefined){
+          if (event != undefined) {
             this.nodeController.postTouchEvent(event);
           }
         })
