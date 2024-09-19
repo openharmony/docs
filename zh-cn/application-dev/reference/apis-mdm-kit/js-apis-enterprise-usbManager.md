@@ -269,7 +269,7 @@ try {
 }
 ```
 
-## usbManager.addDisallowedUsbDevices<sup>13+</sup>
+## usbManager.addDisallowedUsbDevices<sup>14+</sup>
 
 addDisallowedUsbDevices(admin: Want, usbDevices: Array\<UsbDeviceType>): void
 
@@ -286,7 +286,7 @@ addDisallowedUsbDevices(admin: Want, usbDevices: Array\<UsbDeviceType>): void
 | 参数名     | 类型                                                    | 必填 | 说明                                                   |
 | ---------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
 | admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                         |
-| usbDevices | Array<[UsbDeviceType](#usbdevicetype13)>                | 是   | 要添加的USB设备类型的数组。添加后的数组长度上限为200。 |
+| usbDevices | Array<[UsbDeviceType](#usbdevicetype14)>                | 是   | 要添加的USB设备类型的数组。添加后的数组长度上限为200。 |
 
 **错误码**：
 
@@ -322,7 +322,7 @@ try {
 }
 ```
 
-## usbManager.removeDisallowedUsbDevices<sup>13+</sup>
+## usbManager.removeDisallowedUsbDevices<sup>14+</sup>
 
 removeDisallowedUsbDevices(admin: Want, usbDevices: Array\<UsbDeviceType>): void
 
@@ -339,7 +339,7 @@ removeDisallowedUsbDevices(admin: Want, usbDevices: Array\<UsbDeviceType>): void
 | 参数名     | 类型                                                    | 必填 | 说明                        |
 | ---------- | ------------------------------------------------------- | ---- | --------------------------- |
 | admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。              |
-| usbDevices | Array<[UsbDeviceType](#usbdevicetype13)>                | 是   | 要移除的USB设备类型的数组。 |
+| usbDevices | Array<[UsbDeviceType](#usbdevicetype14)>                | 是   | 要移除的USB设备类型的数组。 |
 
 **错误码**：
 
@@ -374,7 +374,7 @@ try {
 }
 ```
 
-## usbManager.getDisallowedUsbDevices<sup>13+</sup>
+## usbManager.getDisallowedUsbDevices<sup>14+</sup>
 
 getDisallowedUsbDevices(admin: Want): Array\<UsbDeviceType>
 
@@ -396,7 +396,7 @@ getDisallowedUsbDevices(admin: Want): Array\<UsbDeviceType>
 
 | 类型                                     | 说明                    |
 | ---------------------------------------- | ----------------------- |
-| Array<[UsbDeviceType](#usbdevicetype13)> | 禁止使用的USB设备类型。 |
+| Array<[UsbDeviceType](#usbdevicetype14)> | 禁止使用的USB设备类型。 |
 
 **错误码**：
 
@@ -436,7 +436,7 @@ USB设备ID信息。
 | vendorId  | number | 是   | 厂商ID。 |
 | productId | number | 是   | 产品ID。 |
 
-## UsbDeviceType<sup>13+</sup>
+## UsbDeviceType<sup>14+</sup>
 
 USB设备类型信息。其中具体编号可查询：https://www.usb.org/defined-class-codes
 
@@ -447,7 +447,7 @@ USB设备类型信息。其中具体编号可查询：https://www.usb.org/define
 | baseClass  | number                      | 是   | 类型编号。   |
 | subClass   | number                      | 是   | 子类型编号。 |
 | protocol   | number                      | 是   | 协议编号。   |
-| descriptor | [Descriptor](#descriptor13) | 是   | USB描述符。  |
+| descriptor | [Descriptor](#descriptor14) | 是   | USB描述符。  |
 
 ## UsbPolicy
 
@@ -461,7 +461,7 @@ USB读写策略的枚举。
 | READ_ONLY  | 1    | 只读。     |
 | DISABLED   | 2    | 禁用。     |
 
-## Descriptor<sup>13+</sup>
+## Descriptor<sup>14+</sup>
 
 USB描述符的枚举。
 
