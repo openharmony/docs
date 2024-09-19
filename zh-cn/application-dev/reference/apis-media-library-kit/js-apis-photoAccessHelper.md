@@ -1053,7 +1053,7 @@ async function example() {
     console.info('createAssetWithShortTermPermissionDemo.');
     
     try {
-        let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.contenxt);
+        let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
         let photoCreationConfig: photoAccessHelper.PhotoCreationConfig = {
             title: '123456', 
             fileNameExtension: 'jpg',
@@ -1072,7 +1072,7 @@ async function example() {
             offset: readSize,
             length: bufSize
         });
-        if (rendLen > 0) {
+        if (readLen > 0) {
             readSize += readLen;
             fs.writeSync(resultFile.fd, buf, { length: readLen });
         }
