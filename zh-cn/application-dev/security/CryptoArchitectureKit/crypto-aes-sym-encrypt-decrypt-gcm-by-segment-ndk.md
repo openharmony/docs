@@ -74,9 +74,9 @@ static OH_Crypto_ErrCode doTestAesGcmSeg()
     char *plainText = const_cast<char *>("aaaaa.....bbbbb.....ccccc.....ddddd.....eee");
     Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
 
-    uint8_t aad[8] = {0};
+    uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     uint8_t tagArr[16] = {0};
-    uint8_t iv[12] = {0};
+    uint8_t iv[12] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4}; // iv使用安全随机数生成
     Crypto_DataBlob tag = {.data = nullptr, .len = 0};
     Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
     Crypto_DataBlob aadBlob = {.data = aad, .len = sizeof(aad)};
