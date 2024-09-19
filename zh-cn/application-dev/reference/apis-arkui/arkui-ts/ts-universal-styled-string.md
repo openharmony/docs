@@ -982,7 +982,6 @@ struct styled_string_demo1 {
         Column() {
           // 显示属性字符串
           Text(undefined, { controller: this.controller1 })
-          Text(undefined, { controller: this.controller2 }).key('mutableStyledString1')
           Text(undefined, { controller: this.controller3 }).key('mutableStyledString2')
           Button('修改string1的值')
             .onClick(() => {
@@ -1090,7 +1089,7 @@ struct styled_string_demo1 {
 }
 ```
 
-![](figures/styledstring_1.jpeg)
+![](figures/styledstring_1.PNG)
 
 ### 示例2
 
