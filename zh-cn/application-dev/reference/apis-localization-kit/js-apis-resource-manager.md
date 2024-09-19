@@ -19,7 +19,7 @@ FA模型仍需要先导入包，再调用[getResourceManager](#resourcemanagerge
 Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../application-models/application-context-stage.md)。
 
 ```ts
-import { UIAbility } from '@kit.abilityKit';
+import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
