@@ -54,7 +54,7 @@ static OH_Crypto_ErrCode doTestAesCbc()
     Crypto_DataBlob decUpdate = {.data = nullptr, .len = 0};
     char *plainText = const_cast<char *>("this is test!");
     Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
-    uint8_t iv[16] = {0};
+    uint8_t iv[16] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4, 3, 1, 0, 10}; // iv使用安全随机数生成
     Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
     // 生成对称密钥
     OH_Crypto_ErrCode ret;

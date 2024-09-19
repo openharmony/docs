@@ -65,9 +65,9 @@ static OH_Crypto_ErrCode doTestAesCcm()
     Crypto_DataBlob outUpdate = {.data = nullptr, .len = 0};
     Crypto_DataBlob decUpdate = {.data = nullptr, .len = 0};
 
-    uint8_t aad[8] = {0};
+    uint8_t aad[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     uint8_t tag[12] = {0};
-    uint8_t iv[7] = {0};
+    uint8_t iv[7] = {1, 2, 4, 12, 3, 4, 2}; // iv使用安全随机数生成
     Crypto_DataBlob ivData = {.data = iv, .len = sizeof(iv)};
     Crypto_DataBlob aadData = {.data = aad, .len = sizeof(aad)};
     Crypto_DataBlob tagData = {.data = tag, .len = sizeof(tag)};
