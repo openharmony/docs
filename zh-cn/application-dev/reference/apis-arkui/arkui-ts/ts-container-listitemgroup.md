@@ -243,9 +243,9 @@ interface ArrObject {
 import { ComponentContent } from '@kit.ArkUI';
 class Params {
   text: string = ""
-  fontSize:string|number=20
-  fontWeight:number | FontWeight | string =FontWeight.Bold
-  margin: Margin | Length | LocalizedMargin=20
+  fontSize: string | number = 20
+  fontWeight: number | FontWeight | string = FontWeight.Normal
+  margin: Margin | Length | LocalizedMargin = 0
   constructor(text: string) {
     this.text = text;
   }
@@ -255,65 +255,69 @@ class Params {
 function buildText(params: Params) {
   Text(params.text)
     .fontSize(params.fontSize)
+    .backgroundColor(0xAABBCC)
     .fontWeight(params.fontWeight)
     .margin(params.margin)
+    .width("100%")
+    .padding(10)
 }
 
 @Entry
 @Component
 struct ListItemGroupExample {
-  uiContext :UIContext= this.getUIContext();
+  uiContext: UIContext = this.getUIContext();
   private timeTable: TimeTable[] = [
     {
       title: '星期一',
       projects: ['语文', '数学', '英语'],
-      num:0
+      num: 0
     },
     {
       title: '星期二',
       projects: ['物理', '化学', '生物'],
-      num:1
+      num: 1
     },
     {
       title: '星期三',
       projects: ['历史', '地理', '政治'],
-      num:2
+      num: 2
     },
     {
       title: '星期四',
       projects: ['美术', '音乐', '体育'],
-      num:3
+      num: 3
     }
   ]
-  private headerList:TimeTableHeader[]=[
+  private headerList: TimeTableHeader[] = [
     {
-      headerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期一")),
-      footerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
+      headerNode: new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期一")),
+      footerNode: new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
     },
     {
-      headerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期二")),
-      footerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
+      headerNode: new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期二")),
+      footerNode: new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
     },
     {
-      headerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期三")),
-      footerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
+      headerNode: new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期三")),
+      footerNode: new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
     },
     {
-      headerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期四")),
-      footerNode:new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
+      headerNode: new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("星期四")),
+      footerNode: new ComponentContent<Params>(this.uiContext, wrapBuilder<[Params]>(buildText), new Params("共三节课")),
     }
   ]
 
   build() {
     Column() {
-      Button("test").width(100).height(50).onClick(()=>{
-        this.headerList[0].headerNode.update(new Params('Update Header text value'))
-        this.headerList[0].footerNode.update(new Params('Update Footer text value'))
+      Button("update").width(100).height(50).onClick(() => {
+        this.headerList[0].headerNode.update(new Params('Updated Header text value'))
+        this.headerList[0].footerNode.update(new Params('Updated Footer text value'))
       })
       List({ space: 20 }) {
         ForEach(this.timeTable, (item: TimeTable) => {
-          ListItemGroup({headerComponent:this.headerList[item.num].headerNode,
-            footerComponent:this.headerList[item.num].footerNode
+          ListItemGroup({
+            headerComponent: this.headerList[item.num].headerNode,
+            footerComponent: this.headerList[item.num].footerNode
           }) {
             ForEach(item.projects, (project: string) => {
               ListItem() {
@@ -331,6 +335,7 @@ struct ListItemGroupExample {
       }
       .id("test")
       .width('90%')
+      .height('90%')
       .sticky(StickyStyle.Header | StickyStyle.Footer)
       .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
@@ -340,7 +345,7 @@ struct ListItemGroupExample {
 interface TimeTable {
   title: string;
   projects: string[];
-  num:number
+  num: number
 }
 interface TimeTableHeader {
   headerNode: ComponentContent<Params>
