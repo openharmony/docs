@@ -194,7 +194,7 @@ path.moveTo(10,10);
 
 lineTo(x: number, y: number) : void
 
-用于添加一条从路径的最后点位置到目标点位置的线段。
+用于添加一条从路径的最后点位置（若路径没有内容则默认为 (0, 0)）到目标点位置的线段。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -262,7 +262,7 @@ path.arcTo(10, 15, 10, 10, 10, 10);
 
 quadTo(ctrlX: number, ctrlY: number, endX: number, endY: number): void
 
-用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线。
+用于添加一条从路径最后点位置（若路径没有内容则默认为 (0, 0)）到目标点位置的二阶贝塞尔圆滑曲线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -296,7 +296,7 @@ path.quadTo(10, 15, 10, 10);
 
 conicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: number): void
 
-在当前路径上添加一条路径终点到目标点位置的圆锥曲线段，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。若路径没有内容则将起始点设置为 (0, 0)。
+在当前路径上添加一条路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的圆锥曲线，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -331,7 +331,7 @@ path.conicTo(200, 400, 100, 200, 0);
 
 cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
-用于添加一条从路径最后点位置到目标点位置的三阶贝塞尔圆滑曲线。
+用于添加一条从路径最后点位置（若路径没有内容则默认为 (0, 0)）到目标点位置的三阶贝塞尔圆滑曲线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -367,7 +367,7 @@ path.cubicTo(10, 10, 10, 10, 15, 15);
 
 rMoveTo(dx : number, dy : number): void
 
-设置一个相对于当前路径终点的路径起始点位置。
+设置一个相对于当前路径终点（若路径没有内容则默认为 (0, 0)）的路径起始点位置。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -399,7 +399,7 @@ path.rMoveTo(10, 10);
 
 rLineTo(dx : number, dy : number): void
 
-使用相对位置在当前路径上添加一条当前路径终点到目标点位置的线段。
+使用相对位置在当前路径上添加一条当前路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的线段。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -431,7 +431,7 @@ path.rLineTo(400, 200);
 
 rQuadTo(dx1: number, dy1: number, dx2: number, dy2: number): void
 
-使用相对位置在当前路径上添加一条当前路径终点到目标点位置的二阶贝塞尔曲线。
+使用相对位置在当前路径上添加一条当前路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的二阶贝塞尔曲线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -465,7 +465,7 @@ path.rQuadTo(100, 0, 0, 200);
 
 rConicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: number): void
 
-使用相对位置在当前路径上添加一条当前路径终点到目标点位置的二阶贝塞尔曲线。
+使用相对位置在当前路径上添加一条路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的圆锥曲线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -477,7 +477,7 @@ rConicTo(ctrlX: number, ctrlY: number, endX: number, endY: number, weight: numbe
 | ctrlY  | number | 是   | 控制点相对于路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
 | endX   | number | 是   | 目标点相对于路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 |
 | endY   | number | 是   | 目标点相对于路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 |
-| weight | number | 是   | 表示曲线的权重，决定了曲线的形状，越大越接近控制点。若小于等于0则等同于使用[lineTo](#lineto)添加一条到结束点的线段，若为1则等同于[quadTo](#quadto)，该参数为浮点数。 |
+| weight | number | 是   | 表示曲线的权重，决定了曲线的形状，越大越接近控制点。若小于等于0则等同于使用[rLineTo](#rlineto12)添加一条到结束点的线段，若为1则等同于[rQuadTo](#rquadto12)，该参数为浮点数。 |
 
 **错误码：**
 
@@ -500,7 +500,7 @@ path.rConicTo(200, 400, 100, 200, 0);
 
 rCubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: number, endY: number): void
 
-使用相对位置在当前路径上添加一条当前路径终点到目标点位置的三阶贝塞尔曲线。
+使用相对位置在当前路径上添加一条当前路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的三阶贝塞尔曲线。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
