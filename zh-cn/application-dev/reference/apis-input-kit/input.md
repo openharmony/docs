@@ -93,46 +93,46 @@
 | int32_t [OH_Input_GetKeyPressed](#oh_input_getkeypressed) (const struct [Input_KeyState](#input_keystate) \*keyState) | 获取按键状态对象的按键是否按下。  | 
 | void [OH_Input_SetKeySwitch](#oh_input_setkeyswitch) (struct [Input_KeyState](#input_keystate) \*keyState, int32_t keySwitch) | 设置按键状态对象的按键开关。  | 
 | int32_t [OH_Input_GetKeySwitch](#oh_input_getkeyswitch) (const struct [Input_KeyState](#input_keystate) \*keyState) | 获取按键状态对象的按键开关。  | 
-| int32_t [OH_Input_InjectKeyEvent](#oh_input_injectkeyevent) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 注入按键事件  | 
-| struct [Input_KeyEvent](#input_keyevent) \* [OH_Input_CreateKeyEvent](#oh_input_createkeyevent) () | 创建按键事件对象  | 
-| void [OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent) (struct [Input_KeyEvent](#input_keyevent) \*\*keyEvent) | 销毁按键事件对象  | 
-| void [OH_Input_SetKeyEventAction](#oh_input_setkeyeventaction) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int32_t action) | 设置按键事件类型  | 
+| int32_t [OH_Input_InjectKeyEvent](#oh_input_injectkeyevent) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 注入按键事件。  | 
+| struct [Input_KeyEvent](#input_keyevent) \* [OH_Input_CreateKeyEvent](#oh_input_createkeyevent) () | 创建按键事件对象。  | 
+| void [OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent) (struct [Input_KeyEvent](#input_keyevent) \*\*keyEvent) | 销毁按键事件对象。 | 
+| void [OH_Input_SetKeyEventAction](#oh_input_setkeyeventaction) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int32_t action) | 设置按键事件类型。  | 
 | int32_t [OH_Input_GetKeyEventAction](#oh_input_getkeyeventaction) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件类型  | 
-| void [OH_Input_SetKeyEventKeyCode](#oh_input_setkeyeventkeycode) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int32_t keyCode) | 设置按键事件的键值  | 
-| int32_t [OH_Input_GetKeyEventKeyCode](#oh_input_getkeyeventkeycode) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件的键值  | 
-| void [OH_Input_SetKeyEventActionTime](#oh_input_setkeyeventactiontime) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int64_t actionTime) | 设置按键事件发生的时间  | 
-| int64_t [OH_Input_GetKeyEventActionTime](#oh_input_getkeyeventactiontime) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件发生的时间  | 
-| int32_t [OH_Input_InjectMouseEvent](#oh_input_injectmouseevent) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 注入鼠标事件  | 
-| struct [Input_MouseEvent](#input_mouseevent) \* [OH_Input_CreateMouseEvent](#oh_input_createmouseevent) () | 创建鼠标事件对象  | 
-| void [OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent) (struct [Input_MouseEvent](#input_mouseevent) \*\*mouseEvent) | 销毁鼠标事件对象  | 
-| void [OH_Input_SetMouseEventAction](#oh_input_setmouseeventaction) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t action) | 设置鼠标事件的动作  | 
-| int32_t [OH_Input_GetMouseEventAction](#oh_input_getmouseeventaction) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的动作  | 
-| void [OH_Input_SetMouseEventDisplayX](#oh_input_setmouseeventdisplayx) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t displayX) | 设置鼠标事件的屏幕X坐标  | 
-| int32_t [OH_Input_GetMouseEventDisplayX](#oh_input_getmouseeventdisplayx) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的屏幕X坐标  | 
-| void [OH_Input_SetMouseEventDisplayY](#oh_input_setmouseeventdisplayy) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t displayY) | 设置鼠标事件的屏幕Y坐标  | 
-| int32_t [OH_Input_GetMouseEventDisplayY](#oh_input_getmouseeventdisplayy) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的屏幕Y坐标  | 
-| void [OH_Input_SetMouseEventButton](#oh_input_setmouseeventbutton) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t button) | 设置鼠标事件的按键  | 
-| int32_t [OH_Input_GetMouseEventButton](#oh_input_getmouseeventbutton) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的按键  | 
-| void [OH_Input_SetMouseEventAxisType](#oh_input_setmouseeventaxistype) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t axisType) | 设置鼠标轴事件的类型  | 
-| int32_t [OH_Input_GetMouseEventAxisType](#oh_input_getmouseeventaxistype) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标轴事件的类型  | 
-| void [OH_Input_SetMouseEventAxisValue](#oh_input_setmouseeventaxisvalue) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, float axisValue) | 设置鼠标轴事件的值  | 
-| float [OH_Input_GetMouseEventAxisValue](#oh_input_getmouseeventaxisvalue) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标轴事件的值  | 
-| void [OH_Input_SetMouseEventActionTime](#oh_input_setmouseeventactiontime) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int64_t actionTime) | 设置鼠标事件发生的时间  | 
-| int64_t [OH_Input_GetMouseEventActionTime](#oh_input_getmouseeventactiontime) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件发生的时间  | 
-| int32_t [OH_Input_InjectTouchEvent](#oh_input_injecttouchevent) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 注入触摸事件  | 
-| struct [Input_TouchEvent](#input_touchevent) \* [OH_Input_CreateTouchEvent](#oh_input_createtouchevent) () | 创建触屏事件对象  | 
-| void [OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent) (struct [Input_TouchEvent](#input_touchevent) \*\*touchEvent) | 销毁触屏事件对象  | 
-| void [OH_Input_SetTouchEventAction](#oh_input_settoucheventaction) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t action) | 设置触屏事件的动作  | 
-| int32_t [OH_Input_GetTouchEventAction](#oh_input_gettoucheventaction) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的动作  | 
-| void [OH_Input_SetTouchEventFingerId](#oh_input_settoucheventfingerid) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t id) | 设置触屏事件的手指ID  | 
-| int32_t [OH_Input_GetTouchEventFingerId](#oh_input_gettoucheventfingerid) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的手指ID  | 
-| void [OH_Input_SetTouchEventDisplayX](#oh_input_settoucheventdisplayx) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t displayX) | 设置触屏事件的屏幕X坐标  | 
-| int32_t [OH_Input_GetTouchEventDisplayX](#oh_input_gettoucheventdisplayx) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的屏幕X坐标  | 
-| void [OH_Input_SetTouchEventDisplayY](#oh_input_settoucheventdisplayy) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t displayY) | 设置触屏事件的屏幕Y坐标  | 
-| int32_t [OH_Input_GetTouchEventDisplayY](#oh_input_gettoucheventdisplayy) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的屏幕Y坐标  | 
-| void [OH_Input_SetTouchEventActionTime](#oh_input_settoucheventactiontime) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int64_t actionTime) | 设置触摸事件发生的时间  | 
-| int64_t [OH_Input_GetTouchEventActionTime](#oh_input_gettoucheventactiontime) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触摸事件发生的时间  | 
-| void [OH_Input_CancelInjection](#oh_input_cancelinjection) () | 取消事件注入并撤销授权  | 
+| void [OH_Input_SetKeyEventKeyCode](#oh_input_setkeyeventkeycode) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int32_t keyCode) | 设置按键事件的键值。  | 
+| int32_t [OH_Input_GetKeyEventKeyCode](#oh_input_getkeyeventkeycode) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件的键值。  | 
+| void [OH_Input_SetKeyEventActionTime](#oh_input_setkeyeventactiontime) (struct [Input_KeyEvent](#input_keyevent) \*keyEvent, int64_t actionTime) | 设置按键事件发生的时间。  | 
+| int64_t [OH_Input_GetKeyEventActionTime](#oh_input_getkeyeventactiontime) (const struct [Input_KeyEvent](#input_keyevent) \*keyEvent) | 获取按键事件发生的时间。  | 
+| int32_t [OH_Input_InjectMouseEvent](#oh_input_injectmouseevent) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 注入鼠标事件。  | 
+| struct [Input_MouseEvent](#input_mouseevent) \* [OH_Input_CreateMouseEvent](#oh_input_createmouseevent) () | 创建鼠标事件对象。  | 
+| void [OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent) (struct [Input_MouseEvent](#input_mouseevent) \*\*mouseEvent) | 销毁鼠标事件对象 。 | 
+| void [OH_Input_SetMouseEventAction](#oh_input_setmouseeventaction) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t action) | 设置鼠标事件的动作。  | 
+| int32_t [OH_Input_GetMouseEventAction](#oh_input_getmouseeventaction) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的动作。  | 
+| void [OH_Input_SetMouseEventDisplayX](#oh_input_setmouseeventdisplayx) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t displayX) | 设置鼠标事件的屏幕X坐标。  | 
+| int32_t [OH_Input_GetMouseEventDisplayX](#oh_input_getmouseeventdisplayx) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的屏幕X坐标。  | 
+| void [OH_Input_SetMouseEventDisplayY](#oh_input_setmouseeventdisplayy) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t displayY) | 设置鼠标事件的屏幕Y坐标。  | 
+| int32_t [OH_Input_GetMouseEventDisplayY](#oh_input_getmouseeventdisplayy) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的屏幕Y坐标。  | 
+| void [OH_Input_SetMouseEventButton](#oh_input_setmouseeventbutton) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t button) | 设置鼠标事件的按键。  | 
+| int32_t [OH_Input_GetMouseEventButton](#oh_input_getmouseeventbutton) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件的按键。  | 
+| void [OH_Input_SetMouseEventAxisType](#oh_input_setmouseeventaxistype) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int32_t axisType) | 设置鼠标轴事件的类型。  | 
+| int32_t [OH_Input_GetMouseEventAxisType](#oh_input_getmouseeventaxistype) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标轴事件的类型。  | 
+| void [OH_Input_SetMouseEventAxisValue](#oh_input_setmouseeventaxisvalue) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, float axisValue) | 设置鼠标轴事件的值。  | 
+| float [OH_Input_GetMouseEventAxisValue](#oh_input_getmouseeventaxisvalue) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标轴事件的值。  | 
+| void [OH_Input_SetMouseEventActionTime](#oh_input_setmouseeventactiontime) (struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent, int64_t actionTime) | 设置鼠标事件发生的时间。  | 
+| int64_t [OH_Input_GetMouseEventActionTime](#oh_input_getmouseeventactiontime) (const struct [Input_MouseEvent](#input_mouseevent) \*mouseEvent) | 获取鼠标事件发生的时间。  | 
+| int32_t [OH_Input_InjectTouchEvent](#oh_input_injecttouchevent) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 注入触摸事件。  | 
+| struct [Input_TouchEvent](#input_touchevent) \* [OH_Input_CreateTouchEvent](#oh_input_createtouchevent) () | 创建触屏事件对象。  | 
+| void [OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent) (struct [Input_TouchEvent](#input_touchevent) \*\*touchEvent) | 销毁触屏事件对象。  | 
+| void [OH_Input_SetTouchEventAction](#oh_input_settoucheventaction) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t action) | 设置触屏事件的动作。  | 
+| int32_t [OH_Input_GetTouchEventAction](#oh_input_gettoucheventaction) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的动作。  | 
+| void [OH_Input_SetTouchEventFingerId](#oh_input_settoucheventfingerid) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t id) | 设置触屏事件的手指ID。  | 
+| int32_t [OH_Input_GetTouchEventFingerId](#oh_input_gettoucheventfingerid) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的手指ID。  | 
+| void [OH_Input_SetTouchEventDisplayX](#oh_input_settoucheventdisplayx) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t displayX) | 设置触屏事件的屏幕X坐标。 | 
+| int32_t [OH_Input_GetTouchEventDisplayX](#oh_input_gettoucheventdisplayx) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的屏幕X坐标。  | 
+| void [OH_Input_SetTouchEventDisplayY](#oh_input_settoucheventdisplayy) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int32_t displayY) | 设置触屏事件的屏幕Y坐标。  | 
+| int32_t [OH_Input_GetTouchEventDisplayY](#oh_input_gettoucheventdisplayy) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触屏事件的屏幕Y坐标。  | 
+| void [OH_Input_SetTouchEventActionTime](#oh_input_settoucheventactiontime) (struct [Input_TouchEvent](#input_touchevent) \*touchEvent, int64_t actionTime) | 设置触摸事件发生的时间。  | 
+| int64_t [OH_Input_GetTouchEventActionTime](#oh_input_gettoucheventactiontime) (const struct [Input_TouchEvent](#input_touchevent) \*touchEvent) | 获取触摸事件发生的时间。  | 
+| void [OH_Input_CancelInjection](#oh_input_cancelinjection) () | 取消事件注入并撤销授权。  | 
 | [Input_AxisEvent](#input_axisevent) \* [OH_Input_CreateAxisEvent](#oh_input_createaxisevent) (void) | 创建轴事件对象实例。  | 
 | [Input_Result](#input_result) [OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent) ([Input_AxisEvent](#input_axisevent) \*\*axisEvent) | 销毁轴事件对象实例。  | 
 | [Input_Result](#input_result) [OH_Input_SetAxisEventAction](#oh_input_setaxiseventaction) ([Input_AxisEvent](#input_axisevent) \*axisEvent, [InputEvent_AxisAction](#inputevent_axisaction) action) | 设置轴事件的动作。  | 
@@ -705,9 +705,9 @@ enum Input_KeyEventAction
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| KEY_ACTION_CANCEL  | 按键动作取消&nbsp;&nbsp; | 
-| KEY_ACTION_DOWN  | 按键按下&nbsp;&nbsp; | 
-| KEY_ACTION_UP  | 按键抬起&nbsp;&nbsp; | 
+| KEY_ACTION_CANCEL  | 按键动作取消。| 
+| KEY_ACTION_DOWN  | 按键按下。 | 
+| KEY_ACTION_UP  | 按键抬起。 | 
 
 
 ### Input_KeyStateAction
@@ -722,11 +722,11 @@ enum Input_KeyStateAction
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| KEY_DEFAULT  | 默认状态&nbsp;&nbsp; | 
-| KEY_PRESSED  | 按键按下&nbsp;&nbsp; | 
-| KEY_RELEASED  | 按键抬起&nbsp;&nbsp; | 
-| KEY_SWITCH_ON  | 按键开关使能&nbsp;&nbsp; | 
-| KEY_SWITCH_OFF  | 按键开关去使能&nbsp;&nbsp; | 
+| KEY_DEFAULT  | 默认状态。 | 
+| KEY_PRESSED  | 按键按下。 | 
+| KEY_RELEASED  | 按键抬起。 | 
+| KEY_SWITCH_ON  | 按键开关使能。 | 
+| KEY_SWITCH_OFF  | 按键开关去使能。 | 
 
 
 ### Input_MouseEventAction
@@ -741,13 +741,13 @@ enum Input_MouseEventAction
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| MOUSE_ACTION_CANCEL  | 取消鼠标动作&nbsp;&nbsp; | 
-| MOUSE_ACTION_MOVE  | 移动鼠标&nbsp;&nbsp; | 
-| MOUSE_ACTION_BUTTON_DOWN  | 按下鼠标&nbsp;&nbsp; | 
-| MOUSE_ACTION_BUTTON_UP  | 抬起鼠标按键&nbsp;&nbsp; | 
-| MOUSE_ACTION_AXIS_BEGIN  | 鼠标轴事件开始&nbsp;&nbsp; | 
-| MOUSE_ACTION_AXIS_UPDATE  | 更新鼠标轴事件&nbsp;&nbsp; | 
-| MOUSE_ACTION_AXIS_END  | 鼠标轴事件结束&nbsp;&nbsp; | 
+| MOUSE_ACTION_CANCEL  | 取消鼠标动作。 | 
+| MOUSE_ACTION_MOVE  | 移动鼠标。 | 
+| MOUSE_ACTION_BUTTON_DOWN  | 按下鼠标。| 
+| MOUSE_ACTION_BUTTON_UP  | 抬起鼠标按键。 | 
+| MOUSE_ACTION_AXIS_BEGIN  | 鼠标轴事件开始。 | 
+| MOUSE_ACTION_AXIS_UPDATE  | 更新鼠标轴事件。 | 
+| MOUSE_ACTION_AXIS_END  | 鼠标轴事件结束。 | 
 
 
 ### Input_MouseEventButton
@@ -975,7 +975,9 @@ Input_Result OH_Input_AddHotkeyMonitor (const Input_Hotkey * hotkey, Input_Hotke
 
 **返回：**
 
-OH_Input_AddHotkeyMonitor 函数错误码。 INPUT_SUCCESS 表示订阅组合按键成功。
+OH_Input_AddHotkeyMonitor 函数错误码。 
+
+INPUT_SUCCESS 表示订阅组合按键成功。
 
 INPUT_PARAMETER_ERROR 表示参数检查失败。
 
@@ -1009,7 +1011,15 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若添加输入事件的拦截成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空，则返回INPUT_PARAMETER_ERROR；若重复添加拦截器，则返回INPUT_REPEAT_INTERCEPTOR； 若服务异常；则返回INPUT_SERVICE_EXCEPTION。
+若添加输入事件的拦截成功，则返回**INTO_SUCCESS**；
+
+若权限校验失败，则返回INPUT_PERMISSION_DENIED；
+
+若callback为空，则返回INPUT_PARAMETER_ERROR；
+
+若重复添加拦截器，则返回INPUT_REPEAT_INTERCEPTOR；
+ 
+若服务异常；则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_AddKeyEventInterceptor()
@@ -1037,7 +1047,15 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 
 **返回：**
 
-若添加按键事件的拦截成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空，则返回INPUT_PARAMETER_ERROR；若重复添加拦截器，则返回INPUT_REPEAT_INTERCEPTOR； 若服务异常；则返回INPUT_SERVICE_EXCEPTION。
+若添加按键事件的拦截成功，则返回**INTO_SUCCESS**；
+
+若权限校验失败，则返回INPUT_PERMISSION_DENIED； 
+
+若callback为空，则返回INPUT_PARAMETER_ERROR；
+
+若重复添加拦截器，则返回INPUT_REPEAT_INTERCEPTOR； 
+
+若服务异常；则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_AddKeyEventMonitor()
@@ -1064,7 +1082,13 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加按键事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加按键事件监听成功，则返回**INTO_SUCCESS**；
+
+若权限校验失败，则返回INPUT_PERMISSION_DENIED； 
+
+若callback为空，则返回INPUT_PARAMETER_ERROR；
+
+若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_AddMouseEventMonitor()
@@ -1091,7 +1115,13 @@ ohos.permission.INPUT_MONITORING
 
 **返回：**
 
-若添加鼠标事件监听成功，则返回**INTO_SUCCESS**；若权限校验失败，则返回INPUT_PERMISSION_DENIED； 若callback为空，则返回INPUT_PARAMETER_ERROR；若服务异常，则返回INPUT_SERVICE_EXCEPTION。
+若添加鼠标事件监听成功，则返回**INTO_SUCCESS**；
+
+若权限校验失败，则返回INPUT_PERMISSION_DENIED； 
+
+若callback为空，则返回INPUT_PARAMETER_ERROR；
+
+若服务异常，则返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_AddTouchEventMonitor()
@@ -1239,9 +1269,7 @@ struct Input_KeyState* OH_Input_CreateKeyState ()
 
 **返回：**
 
-如果操作成功，
-
-返回一个[Input_KeyState](#input_keystate)指针对象， 否则返回空指针。
+如果操作成功，返回一个[Input_KeyState](#input_keystate)指针对象， 否则返回空指针。
 
 
 ### OH_Input_CreateMouseEvent()
@@ -1318,7 +1346,7 @@ Input_Result OH_Input_DestroyAxisEvent (Input_AxisEvent ** axisEvent)
 
 **返回：**
 
-若销毁成功，则返回**INTO_SUCCESS**；若axisEvent为NULL或者\*axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
+若销毁成功，则返回INTO_SUCCESS；若axisEvent为NULL或者\*axisEvent为NULL，则返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_DestroyDeviceInfo()
@@ -1375,7 +1403,7 @@ void OH_Input_DestroyKeyEvent (struct Input_KeyEvent ** keyEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象  | 
+| keyEvent | 按键事件对象。  | 
 
 
 ### OH_Input_DestroyKeyState()
@@ -1394,7 +1422,7 @@ void OH_Input_DestroyKeyState (struct Input_KeyState ** keyState)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction) | 
+| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction)。 | 
 
 
 ### OH_Input_DestroyMouseEvent()
@@ -1413,7 +1441,7 @@ void OH_Input_DestroyMouseEvent (struct Input_MouseEvent ** mouseEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
+| mouseEvent | 鼠标事件对象。  | 
 
 
 ### OH_Input_DestroyTouchEvent()
@@ -1432,7 +1460,7 @@ void OH_Input_DestroyTouchEvent (struct Input_TouchEvent ** touchEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象  | 
+| touchEvent | 触屏事件对象。  | 
 
 
 ### OH_Input_GetAllSystemHotkeys()
@@ -1456,9 +1484,9 @@ Input_Result OH_Input_GetAllSystemHotkeys (Input_Hotkey ** hotkey, int32_t * cou
 
 **返回：**
 
-OH_Input_GetAllSystemHotkeys 函数错误码。 若获取成功，返回INPUT_SUCCESS；
+OH_Input_GetAllSystemHotkeys 函数错误码。 
 
-若获取失败，返回INPUT_PARAMETER_ERROR。
+若获取成功，返回INPUT_SUCCESS；若获取失败，返回INPUT_PARAMETER_ERROR。
 
 
 ### OH_Input_GetAxisEventAction()
@@ -1674,9 +1702,9 @@ Input_Result OH_Input_GetDevice (int32_t deviceId, Input_DeviceInfo ** deviceInf
 
 **返回：**
 
-INPUT_SUCCESS 表示操作成功。 INPUT_PARAMETER_ERROR 表示deviceInfo为空指针或deviceId无效。
+INPUT_SUCCESS 表示操作成功。 
 
-可以通过 [OH_Input_GetDeviceIds](#oh_input_getdeviceids) 表示接口查询系统支持的设备ID。
+INPUT_PARAMETER_ERROR 表示deviceInfo为空指针或deviceId无效，可以通过 [OH_Input_GetDeviceIds](#oh_input_getdeviceids) 表示接口查询系统支持的设备ID。
 
 
 ### OH_Input_GetDeviceAddress()
@@ -1894,7 +1922,9 @@ int32_t OH_Input_GetIntervalSinceLastInput (int64_t * timeInterval)
 
 **返回：**
 
-OH_Input_GetIntervalSinceLastInput 函数错误码。 若获取时间间隔成功，则返回INPUT_SUCCESS； 若获取失败，返回INPUT_SERVICE_EXCEPTION。
+OH_Input_GetIntervalSinceLastInput 函数错误码。 
+
+若获取时间间隔成功，则返回INPUT_SUCCESS； 若获取失败，返回INPUT_SERVICE_EXCEPTION。
 
 
 ### OH_Input_GetKeyboardType()
@@ -1937,7 +1967,7 @@ int32_t OH_Input_GetKeyCode (const struct Input_KeyState * keyState)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction) | 
+| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction)。 | 
 
 **返回：**
 
@@ -1960,7 +1990,7 @@ int32_t OH_Input_GetKeyEventAction (const struct Input_KeyEvent * keyEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象  | 
+| keyEvent | 按键事件对象。 | 
 
 **返回：**
 
@@ -1983,11 +2013,11 @@ int64_t OH_Input_GetKeyEventActionTime (const struct Input_KeyEvent * keyEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象  | 
+| keyEvent | 按键事件对象。  | 
 
 **返回：**
 
-返回按键事件发生的时间
+返回按键事件发生的时间。
 
 
 ### OH_Input_GetKeyEventKeyCode()
@@ -1996,7 +2026,7 @@ int64_t OH_Input_GetKeyEventActionTime (const struct Input_KeyEvent * keyEvent)
 int32_t OH_Input_GetKeyEventKeyCode (const struct Input_KeyEvent * keyEvent)
 ```
 **描述**
-获取按键事件的键值
+获取按键事件的键值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2006,7 +2036,7 @@ int32_t OH_Input_GetKeyEventKeyCode (const struct Input_KeyEvent * keyEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象  | 
+| keyEvent | 按键事件对象。  | 
 
 **返回：**
 
@@ -2029,7 +2059,7 @@ int32_t OH_Input_GetKeyPressed (const struct Input_KeyState * keyState)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction) | 
+| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction)。 | 
 
 **返回：**
 
@@ -2052,7 +2082,7 @@ Input_Result OH_Input_GetKeyState (struct Input_KeyState * keyState)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction) | 
+| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction)。 | 
 
 **返回：**
 
@@ -2077,7 +2107,7 @@ int32_t OH_Input_GetKeySwitch (const struct Input_KeyState * keyState)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction) | 
+| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction)。 | 
 
 **返回：**
 
@@ -2100,7 +2130,7 @@ int32_t OH_Input_GetMouseEventAction (const struct Input_MouseEvent * mouseEvent
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
+| mouseEvent | 鼠标事件对象。  | 
 
 **返回：**
 
@@ -2113,7 +2143,7 @@ int32_t OH_Input_GetMouseEventAction (const struct Input_MouseEvent * mouseEvent
 int64_t OH_Input_GetMouseEventActionTime (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
-获取鼠标事件发生的时间
+获取鼠标事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2123,11 +2153,11 @@ int64_t OH_Input_GetMouseEventActionTime (const struct Input_MouseEvent * mouseE
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 鼠标事件对象  | 
+| keyEvent | 鼠标事件对象。  | 
 
 **返回：**
 
-返回鼠标事件发生的时间
+返回鼠标事件发生的时间。
 
 
 ### OH_Input_GetMouseEventAxisType()
@@ -2136,7 +2166,7 @@ int64_t OH_Input_GetMouseEventActionTime (const struct Input_MouseEvent * mouseE
 int32_t OH_Input_GetMouseEventAxisType (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
-获取鼠标轴事件的类型
+获取鼠标轴事件的类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2146,7 +2176,7 @@ int32_t OH_Input_GetMouseEventAxisType (const struct Input_MouseEvent * mouseEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
+| mouseEvent | 鼠标事件对象。  | 
 
 **返回：**
 
@@ -2169,11 +2199,11 @@ float OH_Input_GetMouseEventAxisValue (const struct Input_MouseEvent * mouseEven
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
+| mouseEvent | 鼠标事件对象。  | 
 
 **返回：**
 
-轴事件的值
+轴事件的值。
 
 
 ### OH_Input_GetMouseEventButton()
@@ -2182,7 +2212,7 @@ float OH_Input_GetMouseEventAxisValue (const struct Input_MouseEvent * mouseEven
 int32_t OH_Input_GetMouseEventButton (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
-获取鼠标事件的按键
+获取鼠标事件的按键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2192,11 +2222,11 @@ int32_t OH_Input_GetMouseEventButton (const struct Input_MouseEvent * mouseEvent
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
+| mouseEvent | 鼠标事件对象。  | 
 
 **返回：**
 
-鼠标按键
+鼠标按键。
 
 
 ### OH_Input_GetMouseEventDisplayX()
@@ -2205,7 +2235,7 @@ int32_t OH_Input_GetMouseEventButton (const struct Input_MouseEvent * mouseEvent
 int32_t OH_Input_GetMouseEventDisplayX (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
-获取鼠标事件的屏幕X坐标
+获取鼠标事件的屏幕X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2215,7 +2245,7 @@ int32_t OH_Input_GetMouseEventDisplayX (const struct Input_MouseEvent * mouseEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
+| mouseEvent | 鼠标事件对象。  | 
 
 **返回：**
 
@@ -2228,7 +2258,7 @@ int32_t OH_Input_GetMouseEventDisplayX (const struct Input_MouseEvent * mouseEve
 int32_t OH_Input_GetMouseEventDisplayY (const struct Input_MouseEvent * mouseEvent)
 ```
 **描述**
-获取鼠标事件的屏幕Y坐标
+获取鼠标事件的屏幕Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2238,11 +2268,11 @@ int32_t OH_Input_GetMouseEventDisplayY (const struct Input_MouseEvent * mouseEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
+| mouseEvent | 鼠标事件对象。  | 
 
 **返回：**
 
-屏幕Y坐标
+屏幕Y坐标。
 
 
 ### OH_Input_GetPreKeys()
@@ -2302,7 +2332,7 @@ OH_Input_GetIsRepeat 函数错误码。 若获取成功，返回INPUT_SUCCESS；
 int32_t OH_Input_GetTouchEventAction (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
-获取触屏事件的动作
+获取触屏事件的动作。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2312,11 +2342,11 @@ int32_t OH_Input_GetTouchEventAction (const struct Input_TouchEvent * touchEvent
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象  | 
+| touchEvent | 触屏事件对象。  | 
 
 **返回：**
 
-触屏的动作
+触屏的动作。
 
 
 ### OH_Input_GetTouchEventActionTime()
@@ -2325,7 +2355,7 @@ int32_t OH_Input_GetTouchEventAction (const struct Input_TouchEvent * touchEvent
 int64_t OH_Input_GetTouchEventActionTime (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
-获取触摸事件发生的时间
+获取触摸事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2335,11 +2365,11 @@ int64_t OH_Input_GetTouchEventActionTime (const struct Input_TouchEvent * touchE
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 触屏事件对象  | 
+| keyEvent | 触屏事件对象。  | 
 
 **返回：**
 
-返回触摸事件发生的时间
+返回触摸事件发生的时间。
 
 
 ### OH_Input_GetTouchEventDisplayX()
@@ -2348,7 +2378,7 @@ int64_t OH_Input_GetTouchEventActionTime (const struct Input_TouchEvent * touchE
 int32_t OH_Input_GetTouchEventDisplayX (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
-获取触屏事件的屏幕X坐标
+获取触屏事件的屏幕X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2358,11 +2388,11 @@ int32_t OH_Input_GetTouchEventDisplayX (const struct Input_TouchEvent * touchEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象  | 
+| touchEvent | 触屏事件对象。  | 
 
 **返回：**
 
-触屏的屏幕X坐标
+触屏的屏幕X坐标。
 
 
 ### OH_Input_GetTouchEventDisplayY()
@@ -2371,7 +2401,7 @@ int32_t OH_Input_GetTouchEventDisplayX (const struct Input_TouchEvent * touchEve
 int32_t OH_Input_GetTouchEventDisplayY (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
-获取触屏事件的屏幕Y坐标
+获取触屏事件的屏幕Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2381,11 +2411,11 @@ int32_t OH_Input_GetTouchEventDisplayY (const struct Input_TouchEvent * touchEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象  | 
+| touchEvent | 触屏事件对象。  | 
 
 **返回：**
 
-触屏的屏幕Y坐标
+触屏的屏幕Y坐标。
 
 
 ### OH_Input_GetTouchEventFingerId()
@@ -2394,7 +2424,7 @@ int32_t OH_Input_GetTouchEventDisplayY (const struct Input_TouchEvent * touchEve
 int32_t OH_Input_GetTouchEventFingerId (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
-获取触屏事件的手指ID
+获取触屏事件的手指ID。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2404,11 +2434,11 @@ int32_t OH_Input_GetTouchEventFingerId (const struct Input_TouchEvent * touchEve
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象  | 
+| touchEvent | 触屏事件对象。  | 
 
 **返回：**
 
-触屏的手指ID
+触屏的手指ID。
 
 
 ### OH_Input_InjectKeyEvent()
@@ -2417,7 +2447,7 @@ int32_t OH_Input_GetTouchEventFingerId (const struct Input_TouchEvent * touchEve
 int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)
 ```
 **描述**
-注入按键事件
+注入按键事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2427,7 +2457,7 @@ int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | - 要注入的按键事件  | 
+| keyEvent | 要注入的按键事件。  | 
 
 **返回：**
 
@@ -2450,7 +2480,7 @@ int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | - 要注入的鼠标事件  | 
+| mouseEvent |  要注入的鼠标事件。  | 
 
 **返回：**
 
@@ -2463,7 +2493,7 @@ int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
 int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
 ```
 **描述**
-注入触摸事件
+注入触摸事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2473,7 +2503,7 @@ int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | - 要注入的触摸事件  | 
+| touchEvent | 要注入的触摸事件。  | 
 
 **返回：**
 
@@ -2499,9 +2529,9 @@ Input_Result OH_Input_RegisterDeviceListener (Input_DeviceListener * listener)
 
 **返回：**
 
-OH_Input_RegisterDeviceListener 的返回值, 具体如下: INPUT_SUCCESS 表示注册成功。
+OH_Input_RegisterDeviceListener 的返回值。 
 
-INPUT_PARAMETER_ERROR 表示listener 为NULL。
+INPUT_SUCCESS 表示注册成功，INPUT_PARAMETER_ERROR 表示listener 为NULL。
 
 ### OH_Input_RemoveAxisEventMonitor()
 
@@ -2911,7 +2941,7 @@ void OH_Input_SetKeyCode (struct Input_KeyState * keyState, int32_t keyCode )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction) | 
+| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction)。 | 
 | keyCode | 按键键值。  | 
 
 
@@ -2931,8 +2961,8 @@ void OH_Input_SetKeyEventAction (struct Input_KeyEvent * keyEvent, int32_t actio
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象  | 
-| action | 按键事件类型  | 
+| keyEvent | 按键事件对象。  | 
+| action | 按键事件类型。 | 
 
 
 ### OH_Input_SetKeyEventActionTime()
@@ -2941,7 +2971,7 @@ void OH_Input_SetKeyEventAction (struct Input_KeyEvent * keyEvent, int32_t actio
 void OH_Input_SetKeyEventActionTime (struct Input_KeyEvent * keyEvent, int64_t actionTime )
 ```
 **描述**
-设置按键事件发生的时间
+设置按键事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2951,8 +2981,8 @@ void OH_Input_SetKeyEventActionTime (struct Input_KeyEvent * keyEvent, int64_t a
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象  | 
-| actionTime | 按键事件发生的时间  | 
+| keyEvent | 按键事件对象。 | 
+| actionTime | 按键事件发生的时间。  | 
 
 
 ### OH_Input_SetKeyEventKeyCode()
@@ -2961,7 +2991,7 @@ void OH_Input_SetKeyEventActionTime (struct Input_KeyEvent * keyEvent, int64_t a
 void OH_Input_SetKeyEventKeyCode (struct Input_KeyEvent * keyEvent, int32_t keyCode )
 ```
 **描述**
-设置按键事件的键值
+设置按键事件的键值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -2971,8 +3001,8 @@ void OH_Input_SetKeyEventKeyCode (struct Input_KeyEvent * keyEvent, int32_t keyC
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 按键事件对象  | 
-| keyCode | 按键的键值  | 
+| keyEvent | 按键事件对象。  | 
+| keyCode | 按键的键值。  | 
 
 
 ### OH_Input_SetKeyPressed()
@@ -2991,8 +3021,8 @@ void OH_Input_SetKeyPressed (struct Input_KeyState * keyState, int32_t keyAction
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction) | 
-| keyAction | 按键是否按下，具体请参考[Input_KeyEventAction](#input_keyeventaction) | 
+| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction)。 | 
+| keyAction | 按键是否按下，具体请参考[Input_KeyEventAction](#input_keyeventaction)。 | 
 
 
 ### OH_Input_SetKeySwitch()
@@ -3011,7 +3041,7 @@ void OH_Input_SetKeySwitch (struct Input_KeyState * keyState, int32_t keySwitch 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction) | 
+| keyState | 按键状态的枚举对象，具体请参考[Input_KeyStateAction](#input_keystateaction)。 | 
 | keySwitch | 按键开关。  | 
 
 
@@ -3021,7 +3051,7 @@ void OH_Input_SetKeySwitch (struct Input_KeyState * keyState, int32_t keySwitch 
 void OH_Input_SetMouseEventAction (struct Input_MouseEvent * mouseEvent, int32_t action )
 ```
 **描述**
-设置鼠标事件的动作
+设置鼠标事件的动作。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3031,8 +3061,8 @@ void OH_Input_SetMouseEventAction (struct Input_MouseEvent * mouseEvent, int32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
-| action | 鼠标的动作  | 
+| mouseEvent | 鼠标事件对象。  | 
+| action | 鼠标的动作。  | 
 
 
 ### OH_Input_SetMouseEventActionTime()
@@ -3041,7 +3071,7 @@ void OH_Input_SetMouseEventAction (struct Input_MouseEvent * mouseEvent, int32_t
 void OH_Input_SetMouseEventActionTime (struct Input_MouseEvent * mouseEvent, int64_t actionTime )
 ```
 **描述**
-设置鼠标事件发生的时间
+设置鼠标事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3051,8 +3081,8 @@ void OH_Input_SetMouseEventActionTime (struct Input_MouseEvent * mouseEvent, int
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
-| actionTime | 鼠标事件发生的时间  | 
+| mouseEvent | 鼠标事件对象。  | 
+| actionTime | 鼠标事件发生的时间。  | 
 
 
 ### OH_Input_SetMouseEventAxisType()
@@ -3061,7 +3091,7 @@ void OH_Input_SetMouseEventActionTime (struct Input_MouseEvent * mouseEvent, int
 void OH_Input_SetMouseEventAxisType (struct Input_MouseEvent * mouseEvent, int32_t axisType )
 ```
 **描述**
-设置鼠标轴事件的类型
+设置鼠标轴事件的类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3071,7 +3101,7 @@ void OH_Input_SetMouseEventAxisType (struct Input_MouseEvent * mouseEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
+| mouseEvent | 鼠标事件对象。 | 
 | axisType | 轴类型，比如垂直轴、水平轴。  | 
 
 
@@ -3081,7 +3111,7 @@ void OH_Input_SetMouseEventAxisType (struct Input_MouseEvent * mouseEvent, int32
 void OH_Input_SetMouseEventAxisValue (struct Input_MouseEvent * mouseEvent, float axisValue )
 ```
 **描述**
-设置鼠标轴事件的值
+设置鼠标轴事件的值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3091,7 +3121,7 @@ void OH_Input_SetMouseEventAxisValue (struct Input_MouseEvent * mouseEvent, floa
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
+| mouseEvent | 鼠标事件对象。  | 
 | axisValue | 轴事件的值，正数向前滚动，负数向后滚动。  | 
 
 
@@ -3101,7 +3131,7 @@ void OH_Input_SetMouseEventAxisValue (struct Input_MouseEvent * mouseEvent, floa
 void OH_Input_SetMouseEventButton (struct Input_MouseEvent * mouseEvent, int32_t button )
 ```
 **描述**
-设置鼠标事件的按键
+设置鼠标事件的按键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3111,8 +3141,8 @@ void OH_Input_SetMouseEventButton (struct Input_MouseEvent * mouseEvent, int32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
-| button | 鼠标按键  | 
+| mouseEvent | 鼠标事件对象。  | 
+| button | 鼠标按键。  | 
 
 
 ### OH_Input_SetMouseEventDisplayX()
@@ -3121,7 +3151,7 @@ void OH_Input_SetMouseEventButton (struct Input_MouseEvent * mouseEvent, int32_t
 void OH_Input_SetMouseEventDisplayX (struct Input_MouseEvent * mouseEvent, int32_t displayX )
 ```
 **描述**
-设置鼠标事件的屏幕X坐标
+设置鼠标事件的屏幕X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3131,8 +3161,8 @@ void OH_Input_SetMouseEventDisplayX (struct Input_MouseEvent * mouseEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
-| displayX | 屏幕X坐标  | 
+| mouseEvent | 鼠标事件对象。  | 
+| displayX | 屏幕X坐标。  | 
 
 
 ### OH_Input_SetMouseEventDisplayY()
@@ -3141,7 +3171,7 @@ void OH_Input_SetMouseEventDisplayX (struct Input_MouseEvent * mouseEvent, int32
 void OH_Input_SetMouseEventDisplayY (struct Input_MouseEvent * mouseEvent, int32_t displayY )
 ```
 **描述**
-设置鼠标事件的屏幕Y坐标
+设置鼠标事件的屏幕Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3151,8 +3181,8 @@ void OH_Input_SetMouseEventDisplayY (struct Input_MouseEvent * mouseEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mouseEvent | 鼠标事件对象  | 
-| displayY | 屏幕Y坐标  | 
+| mouseEvent | 鼠标事件对象。  | 
+| displayY | 屏幕Y坐标。  | 
 
 
 ### OH_Input_SetPreKeys()
@@ -3202,7 +3232,7 @@ void OH_Input_SetRepeat (Input_Hotkey * hotkey, bool isRepeat )
 void OH_Input_SetTouchEventAction (struct Input_TouchEvent * touchEvent, int32_t action )
 ```
 **描述**
-设置触屏事件的动作
+设置触屏事件的动作。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3212,8 +3242,8 @@ void OH_Input_SetTouchEventAction (struct Input_TouchEvent * touchEvent, int32_t
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象  | 
-| 触屏的动作 |  | 
+| touchEvent | 触屏事件对象。  | 
+|  action| 触屏的动作。 | 
 
 
 ### OH_Input_SetTouchEventActionTime()
@@ -3222,7 +3252,7 @@ void OH_Input_SetTouchEventAction (struct Input_TouchEvent * touchEvent, int32_t
 void OH_Input_SetTouchEventActionTime (struct Input_TouchEvent * touchEvent, int64_t actionTime )
 ```
 **描述**
-设置触摸事件发生的时间
+设置触摸事件发生的时间。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3232,8 +3262,8 @@ void OH_Input_SetTouchEventActionTime (struct Input_TouchEvent * touchEvent, int
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| keyEvent | 触屏事件对象  | 
-| actionTime | 触摸事件发生的时间  | 
+| keyEvent | 触屏事件对象。 | 
+| actionTime | 触摸事件发生的时间。  | 
 
 
 ### OH_Input_SetTouchEventDisplayX()
@@ -3242,7 +3272,7 @@ void OH_Input_SetTouchEventActionTime (struct Input_TouchEvent * touchEvent, int
 void OH_Input_SetTouchEventDisplayX (struct Input_TouchEvent * touchEvent, int32_t displayX )
 ```
 **描述**
-设置触屏事件的屏幕X坐标
+设置触屏事件的屏幕X坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3252,8 +3282,8 @@ void OH_Input_SetTouchEventDisplayX (struct Input_TouchEvent * touchEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象  | 
-| 触屏的屏幕X坐标 |  | 
+| touchEvent | 触屏事件对象。  | 
+|   displayX| 触屏的屏幕X坐标。 |
 
 
 ### OH_Input_SetTouchEventDisplayY()
@@ -3262,7 +3292,7 @@ void OH_Input_SetTouchEventDisplayX (struct Input_TouchEvent * touchEvent, int32
 void OH_Input_SetTouchEventDisplayY (struct Input_TouchEvent * touchEvent, int32_t displayY )
 ```
 **描述**
-设置触屏事件的屏幕Y坐标
+设置触屏事件的屏幕Y坐标。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3272,8 +3302,8 @@ void OH_Input_SetTouchEventDisplayY (struct Input_TouchEvent * touchEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象  | 
-| 触屏的屏幕Y坐标 |  | 
+| touchEvent | 触屏事件对象。  | 
+|  displayY | 触屏的屏幕Y坐标。 |
 
 
 ### OH_Input_SetTouchEventFingerId()
@@ -3282,7 +3312,7 @@ void OH_Input_SetTouchEventDisplayY (struct Input_TouchEvent * touchEvent, int32
 void OH_Input_SetTouchEventFingerId (struct Input_TouchEvent * touchEvent, int32_t id )
 ```
 **描述**
-设置触屏事件的手指ID
+设置触屏事件的手指ID。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -3292,8 +3322,8 @@ void OH_Input_SetTouchEventFingerId (struct Input_TouchEvent * touchEvent, int32
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| touchEvent | 触屏事件对象  | 
-| id | 触屏的手指ID  | 
+| touchEvent | 触屏事件对象。 | 
+| id | 触屏的手指ID。 | 
 
 ### OH_Input_UnregisterDeviceListener()
 
@@ -3315,7 +3345,9 @@ Input_Result OH_Input_UnregisterDeviceListener (Input_DeviceListener * listener)
 
 **返回：**
 
-OH_Input_UnregisterDeviceListener 的返回值, 具体如下: INPUT_SUCCESS 表示取消注册成功。
+OH_Input_UnregisterDeviceListener 的返回值。
+
+INPUT_SUCCESS 表示取消注册成功。
 
 INPUT_PARAMETER_ERROR 表示listener 为 NULL 或者 listener 未被注册。
 
@@ -3336,6 +3368,6 @@ Input_Result OH_Input_UnregisterDeviceListeners ()
 
 **返回：**
 
-OH_Input_UnregisterDeviceListener 的返回值, 具体如下: INPUT_SUCCESS 表示调用成功;
+OH_Input_UnregisterDeviceListener 的返回值。 
 
-INPUT_SERVICE_EXCEPTION 表示由于服务异常调用失败。
+INPUT_SUCCESS 表示调用成功，INPUT_SERVICE_EXCEPTION 表示由于服务异常调用失败。
