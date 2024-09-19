@@ -44,6 +44,8 @@ XComponent设置为“surface“类型时，其可以和其他组件一起进行
 > **说明 :**
 >
 > 上述接口不支持跨线程访问。
+>
+> XComponent销毁（onSurfaceDestroyed回调触发后）时会释放上述接口中获取的OH_NativeXComponent和window对象。如果在之后再次使用获取的这些对象有可能会导致出现使用野指针或空指针的崩溃问题，需要开发者避免。
 
 **开发步骤**
 
