@@ -7083,7 +7083,7 @@ TLS连接的操作。
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
 | ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
-| skipRemoteValidation  | boolean                         | 否 | 是否对服务端进行证书认证，默认为false。      |
+| skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否对服务端进行证书认证，默认为false。      |
 
 ## TLSSecureOptions<sup>9+</sup>
 
@@ -7170,7 +7170,7 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2301009  | Bad file number.                            |
+| 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
@@ -7241,7 +7241,7 @@ listen(options: TLSConnectOptions): Promise\<void\>
 | 401      | Parameter error.                            |
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
-| 2301009  | Bad file number.                            |
+| 2303109  | Bad file number.                            |
 | 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
