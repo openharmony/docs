@@ -6516,11 +6516,11 @@ getResponseMimeType(): string
 | ------ | ------------------ |
 | string | 返回资源响应的媒体（MIME）类型。 |
 
-### getResponseDataEx
+### getResponseDataEx<sup>13+</sup>
 
 getResponseDataEx(): string | number | ArrayBuffer | Resource | undefined
 
-获取响应数据。
+获取资源响应数据，支持多种数据类型。
 
 **返回值：**
 
@@ -6529,10 +6529,10 @@ getResponseDataEx(): string | number | ArrayBuffer | Resource | undefined
 |string|返回HTML格式的字符串。|
 |number|返回文件句柄。|
 |ArrayBuffer|返回二进制数据。|
-|Resource|返回`$rawfile`资源。|
+|[Resource](../apis-arkui/arkui-ts/ts-types.md)|返回`$rawfile`资源。|
 |undefined|如果没有可用数据，返回`undefined`。|
 
-### getResponseIsReady
+### getResponseIsReady<sup>13+</sup>
 
 getResponseIsReady(): boolean
 
