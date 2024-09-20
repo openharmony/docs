@@ -235,7 +235,7 @@ export class AVScreenCaptureDemo {
     
     // 豁免隐私窗口
     let windowIDs = [57, 86];
-    await screenCapture?.skipPrivacyMode(windowIDs);
+    await this.screenCapture?.skipPrivacyMode(windowIDs);
     
     await this.screenCapture?.startRecording();
   }
@@ -249,7 +249,7 @@ export class AVScreenCaptureDemo {
     await this.screenCapture?.stopRecording();
     
     // 调用release()方法销毁实例，释放资源。
-    await screenCapture?.release();
+    await this.screenCapture?.release();
 
     // 最后需要关闭创建的录屏文件fd, fs.close(fd);
   }
