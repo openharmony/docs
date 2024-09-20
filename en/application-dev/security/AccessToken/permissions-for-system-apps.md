@@ -3865,6 +3865,18 @@ Allows a system application to use the camera in the background.
 
 **Valid since**：13
 
+### ohos.permission.ACCESS_ANALYTICS
+
+Allow a system service to access and read files in the /data/log/faultlog/faultlogger directory.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
