@@ -94,7 +94,6 @@ import certManager from '@ohos.security.certManager';
 | uri          | string         | 是   | 是   | 表示证书的唯一标识符。 |
 | certAlias          | string   | 是   | 是   | 表示证书的别名。 |
 | state          | boolean     | 是   | 是   | 表示证书的状态，true为启用状态、false为禁用状态。 |
-| issuerName          | string         | 是   | 是   | 表示证书的颁发者名称。 |
 | subjectName          | string   | 是   | 是   | 表示证书的使用者名称。 |
 
 ## Credential
@@ -136,7 +135,7 @@ import certManager from '@ohos.security.certManager';
 | certInfo?          | [CertInfo](#certinfo) | 是   | 是   | 表示证书详情。 |
 | credentialList?          | Array<[CredentialAbstract](#credentialabstract)> | 是   | 是   | 表示凭据简要信息的列表。 |
 | credential?         | [Credential](#credential) | 是   | 是   | 表示凭据详情。 |
-| appUidList?        | Array<string>     | 是   | 是   | 表示授权应用列表。 |
+| appUidList?        | Array\<string>     | 是   | 是   | 表示授权应用列表。 |
 | uri?         | string    | 是   | 是   | 表示证书或凭据的唯一标识符。 |
 | outData?         | Uint8Array    | 是   | 是   | 表示签名结果。 |
 
