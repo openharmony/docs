@@ -40,8 +40,8 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | PHP_SCRIPT<sup>11+</sup>         | 'general.php-script'           | PHP脚本类型，归属类型为SHELL_SCRIPT。        |
 | PYTHON_SCRIPT<sup>11+</sup>        | 'general.python-script'          | Python脚本类型，归属类型为SHELL_SCRIPT。     |
 | RUBY_SCRIPT<sup>11+</sup>                         | 'general.ruby-script'                   | Ruby脚本类型，归属类型为SHELL_SCRIPT。       |
-| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript源代码类型，归属类型为SCRIPT。 |
-| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript源代码类型，归属类型为SCRIPT。 |
+| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript源代码类型，归属类型为SOURCE_CODE。 |
+| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript源代码类型，归属类型为SOURCE_CODE。 |
 | CSS<sup>12+</sup>    | 'general.css'                   | CSS样式表类型，归属类型为SCRIPT。                |
 | C_HEADER<sup>11+</sup>                        | 'general.c-header'                  | C头文件类型，归属类型为SOURCE_CODE。          |
 | C_SOURCE<sup>11+</sup>                       | 'general.c-source'                 | C源代码类型，归属类型为SOURCE_CODE。          |
