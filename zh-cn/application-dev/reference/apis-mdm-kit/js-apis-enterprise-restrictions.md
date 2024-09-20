@@ -212,3 +212,149 @@ try {
   console.error(`Failed to set fingerprintForAccount disabled. Code is ${err.code}, message is ${err.message}`);
 }
 ```
+
+## restrictions.addDisallowedListForAccount<sup>14+</sup>
+
+addDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, accountId: number): void
+
+为用户添加禁用某特征的名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| feature  | string                                                  | 是   | 特征名称。<br/>- snapshot_skip：屏幕快照跳过。|
+| list | Array\<string>                                                 | 是   | 包名等内容的名单集合。                      |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |                   |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let valueList:Array<string> = ["com.xx.aa.", "com.xx.bb"];
+try {
+  restrictions.addDisallowedListForAccount(wantTemp, 'snapshot_skip', valueList, 100);
+  console.info('Succeeded in adding disallowed snapshot_skip feature');
+} catch (err) {
+  console.error(`Failed to add disallowed snapshot_skip feature. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## restrictions.removeDisallowedListForAccount<sup>14+</sup>
+
+removeDisallowedListForAccount(admin: Want, feature: string, list: Array\<string>, accountId: number): void
+
+为用户移除禁用的某特征的名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| feature  | string                                                  | 是   | 特征名称。<br/>- snapshot_skip：屏幕快照跳过。|
+| list | Array\<string>                                                 | 是   | 包名等内容的名单集合。                       |
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |                    |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let valueList:Array<string> = ["com.xx.aa.", "com.xx.bb"];
+try {
+  restrictions.removeDisallowedListForAccount(wantTemp, 'snapshot_skip', valueList, 100);
+  console.info('Succeeded in removing disallowed snapshot_skip feature');
+} catch (err) {
+  console.error(`Failed to remove disallowed snapshot_skip feature. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## restrictions.getDisallowedListForAccount<sup>14+</sup>
+
+getDisallowedListForAccount(admin: Want, feature: string, accountId: number): Array\<string>
+
+获取用户禁用某特征的名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名  | 类型                                                    | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| feature | string                                                  | 是   | 特征名称。<br/>- snapshot_skip：屏幕快照跳过。|
+| accountId | number                                                 | 是   | 用户ID，取值范围：大于等于0。                     |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| Array\<string> | 用户已添加的禁用某特征的名单。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+
+try {
+  let result: Array<string> = restrictions.getDisallowedListForAccount(wantTemp, 'snapshot_skip', 100);
+  console.info('Succeeded in querying disallowed list for account');
+} catch (err) {
+  console.error(`Failed to query disallowed list for account. Code is ${err.code}, message is ${err.message}`);
+}
+```
