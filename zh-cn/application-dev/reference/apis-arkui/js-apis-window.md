@@ -1116,7 +1116,7 @@ export default class EntryAbility extends UIAbility {
 
 ## window.getWindowFromPoint<sup>14+</sup>
 
-getWindowFromPoint(displayId: number, windowNumber?: number, x?: number, y?: number): Promise<Array<Window>>
+getWindowFromPoint(displayId: number, windowNumber?: number, x?: number, y?: number): Promise&lt;Array&lt;Window&gt;&gt;
 
 查询指定坐标位置本应用的可见窗口，使用Promise异步回调。
 
