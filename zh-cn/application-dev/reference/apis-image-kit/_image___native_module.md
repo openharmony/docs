@@ -192,9 +192,6 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetNativeBuffer](#oh_pixelmapnative_getnativebuffer) (OH_PixelmapNative \*pixelmap, OH_NativeBuffer \*\*nativeBuffer) | 从DMA内存的PixelMap中，获取NativeBuffer对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata) (OH_PixelmapNative \*pixelmap, [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*\*value) | 获取元数据。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) (OH_PixelmapNative \*pixelmap, [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*value) | 设置元数据。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetColorSpaceNative](#oh_pixelmapnative_setcolorspacenative) (OH_PixelmapNative \*pixelmap, OH_NativeColorSpaceManager \*colorSpaceNative) | 设置NativeColorSpaceManager对象。  | 
-| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetColorSpaceNative](#oh_pixelmapnative_getcolorspacenative) (OH_PixelmapNative \*pixelmap, OH_NativeColorSpaceManager \*\*colorSpaceNative) | 获取NativeColorSpaceManager对象。  | 
-//shenshiyi: todo
 
 
 ### 变量
@@ -3025,52 +3022,6 @@ Image_ErrorCode OH_PixelmapNative_GetNativeBuffer (OH_PixelmapNative * pixelmap,
 **返回：**
 
 如果操作成功返回IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，如果不是DMA内存返回IMAGE_DMA_NOT_EXIST，如果DMA内存操作失败返回IMAGE_DMA_OPERATION_FAILED。具体请参考 [Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PixelmapNative_SetColorSpaceNative()
-
-```
-Image_ErrorCode OH_PixelmapNative_SetColorSpaceNative (OH_PixelmapNative * pixelmap, OH_NativeColorSpaceManager * colorSpaceNative )
-```
-
-**描述**
-设置NativeColorSpaceManager对象。
-
-**起始版本：** 13
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| pixelmap | 要设置NativeColorSpaceManager的目标PixelMap。 | 
-| colorSpaceNative | 设置的NativeColorSpaceManager对象。  | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
-
-
-### OH_PixelmapNative_GetColorSpaceNative()
-
-```
-Image_ErrorCode OH_PixelmapNative_GetColorSpaceNative (OH_PixelmapNative * pixelmap, OH_NativeColorSpaceManager ** colorSpaceNative )
-```
-
-**描述**
-获取NativeColorSpaceManager对象。
-
-**起始版本：** 13
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| pixelmap | 要获取NativeColorSpaceManager的源PixelMap。 | 
-| colorSpaceNative | 获取的NativeColorSpaceManager对象。 | 
-
-**返回：**
-
-如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapNative_Opacity()
