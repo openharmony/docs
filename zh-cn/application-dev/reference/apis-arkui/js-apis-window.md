@@ -5495,11 +5495,12 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 
 ### setSubWindowModal<sup>12+</sup>
 
-setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
+setSubWindowModal(isModal: boolean, modalityType?: ModalityType<sup>14+</sup>): Promise&lt;void&gt;
 
 设置子窗的模态属性是否启用，使用Promise异步回调。
 
 子窗口调用该接口时，设置子窗口模态属性是否启用。启用子窗口模态属性后，其父级窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态属性被禁用。
+当设置子窗口模态类型为模应用子窗口，其同进程应用窗口不能响应用户操作，直到子窗口关闭或者子窗口模应用模态类型被禁用。
 
 子窗口之外的窗口调用该接口时，会报错。
 
@@ -5512,6 +5513,7 @@ setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
 | isModal | boolean | 是   | 设置子窗口模态属性是否启用，true为启用，false为不启用。 |
+| modalityType<sup>14+</sup> | [ModalityType](#ModalityType14) | 否   | 当子窗口模态属性启用时，设置子窗口模态类型，WINDOW_MODALITY表示模窗口子窗，APPLICATION_MODALITY表示模应用子窗。不设置，则默认为WINDOW_MODALITY。 |
 
 
 **返回值：**
@@ -5552,7 +5554,7 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         windowClass = data;
-        let promise = windowClass.setSubWindowModal(true);
+        let promise = windowClass.setSubWindowModal(true, window.ModalityType.WINDOW_MODALITY);
         promise.then(() => {
           console.info('Succeeded in setting subwindow modal');
         }).catch((err: BusinessError) => {
@@ -8170,7 +8172,20 @@ WindowStage生命周期。
 | INACTIVE   | 3      | 失焦状态。 |
 | HIDDEN     | 4      | 切到后台。 |
 | RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如从多任务列表中，点击应用后返回到前台的状态。 |
-| PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态，例如从屏幕底部上划，应用进入到多任务界面后的状态。 |
+| PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态，例如从屏幕底modal部上划，应用进入到多任务界面后的状态。 |
+
+## ModalityType<sup>14+</sup>
+
+子窗口模态类型枚举。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+| 名称                 | 值      | 说明       |
+| -------------------- | ------ | ---------- |
+| WINDOW_MODALITY      | 0      | 模态子窗类型为模窗口子窗。 |
+| APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗。<br> **API适用设备：** 仅支持2in1设备。 |
 
 ## SubWindowOptions<sup>11+</sup>
 
@@ -8185,6 +8200,7 @@ WindowStage生命周期。
 | title    | string | 否 | 否 | 子窗口标题。       |
 | decorEnabled | boolean | 否 | 否 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
 | isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，其父级窗口不能响应用户操作，false表示子窗口禁用模态属性，其父级窗口能响应用户操作。不设置，则默认为false。       |
+| modalityType<sup>14+</sup>    | [ModalityType](#ModalityType14) | 否 | 是 | 子窗口模态类型，仅当子窗口启用模态属性时生效。WINDOW_MODALITY表示子窗口模态类型为模窗口子窗，APPLICATION_MODALITY表示子窗口模态类型为模应用子窗。不设置，则默认为WINDOW_MODALITY。       |
 
 ## WindowStage<sup>9+</sup>
 
