@@ -483,18 +483,18 @@ struct ViewB {
 
 ```ts
 @Observed
-class StringArray extends Array<String> {
+class StringArray extends Array<string> {
 }
 ```
 
 使用new StringArray()来构造StringArray的实例，new运算符使得\@Observed生效，\@Observed观察到StringArray的属性变化。
 
-声明一个从Array扩展的类class StringArray extends Array&lt;String&gt; {}，并创建StringArray的实例。\@Observed装饰的类需要使用new运算符来构建class实例。
+声明一个从Array扩展的类class StringArray extends Array&lt;string&gt; {}，并创建StringArray的实例。\@Observed装饰的类需要使用new运算符来构建class实例。
 
 
 ```ts
 @Observed
-class StringArray extends Array<String> {
+class StringArray extends Array<string> {
 }
 
 @Component
@@ -534,7 +534,7 @@ struct IndexPage {
         (itemArr: StringArray) => {
           ItemPage({ itemArr: itemArr })
         },
-        (itemArr: string) => itemArr[0]
+        (itemArr: StringArray) => itemArr[0]
       )
 
       Divider()
@@ -542,7 +542,7 @@ struct IndexPage {
       Button('update')
         .onClick(() => {
           console.error('Update all items in arr');
-          if ((this.arr[0] as Array<String>)[0] !== undefined) {
+          if ((this.arr[0] as StringArray)[0] !== undefined) {
             // 正常情况下需要有一个真实的ID来与ForEach一起使用，但此处没有
             // 因此需要确保推送的字符串是唯一的。
             this.arr[0].push(`${this.arr[0].slice(-1).pop()}${this.arr[0].slice(-1).pop()}`);
