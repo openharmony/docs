@@ -32,6 +32,7 @@
       - [HAR转HSP指导](quick-start/har-to-hsp.md)
       - [HSP转HAR指导](quick-start/hsp-to-har.md)
       - [创建应用静态快捷方式](quick-start/typical-scenario-configuration.md)
+      - [创建应用分身](quick-start/app-clone.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言<!--learning-arkts-->
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
