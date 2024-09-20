@@ -2784,10 +2784,6 @@ TCPSocket连接的其他属性。
 | OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。                                 |
 | TCPNoDelay        | boolean | 否   | TCPSocket连接是否无时延。默认为false。                       |
 | socketLinger      | \{on:boolean, linger:number\}  | 否   | socket是否继续逗留。<br />- on：是否逗留（true：逗留；false：不逗留）。<br />- linger：逗留时长，单位毫秒（ms），取值范围为0~65535。<br />当入参on设置为true时，才需要设置。 |
-| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte），默认为0。                               |
-| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte），默认为0。                               |
-| reuseAddress      | boolean | 否   | 是否重用地址。默认为false。                                  |
-| socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms），默认为0。                             |
 
 ## socket.constructTCPSocketServerInstance<sup>10+</sup>
 
