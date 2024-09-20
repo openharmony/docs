@@ -2273,7 +2273,7 @@ Allows a system application to be hidden on the Privacy & Security page.
 
 **Enable via ACL**: true
 
-**Valid since**: 12
+**Valid since**: 13
 
 ### ohos.permission.GET_SUPER_PRIVACY
 

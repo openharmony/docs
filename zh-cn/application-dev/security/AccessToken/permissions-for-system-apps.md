@@ -2225,7 +2225,7 @@
 
 **ACL使能**：true
 
-**起始版本**：12
+**起始版本**：13
 
 ### ohos.permission.EXEMPT_CAMERA_PRIVACY_INDICATOR
 
