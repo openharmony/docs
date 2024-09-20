@@ -1135,7 +1135,7 @@ getWindowFromPoint(displayId: number, windowNumber?: number, x?: number, y?: num
 
 | 类型                             | 说明                      |
 | -------------------------------- |-------------------------|
-| Promise<Array<[Window](#window)>> | Promise对象。返回获取到的窗口对象数组。 |
+| Promise&lt;Array&lt;[Window](#window)&gt;&gt; | Promise对象。返回获取到的窗口对象数组。 |
 
 **错误码：**
 
