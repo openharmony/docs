@@ -1307,7 +1307,7 @@
         - [视频播放](media/media/video-playback.md)
         - [添加视频外挂字幕](media/media/video-subtitle.md)
         - [视频录制](media/media/video-recording.md)
-        - [使用AVScreenCaptureRecorder录屏保存到文件(ArkTs)](media/media/using-avscreencapture-ArkTs.md)
+        - [使用AVScreenCaptureRecorder录屏保存到文件(ArkTS)](media/media/using-avscreencapture-ArkTs.md)
         - [使用AVScreenCapture录屏取原始码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
         - [使用AVScreenCapture录屏保存到文件(C/C++)](media/media/using-avscreencapture-for-file.md)
         - [获取视频缩略图](media/media/avimagegenerator.md)
