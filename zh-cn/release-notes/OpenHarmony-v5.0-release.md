@@ -728,8 +728,6 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
 | I9S5ZN | 进程com.ohos.settings小概率出现因THREAD_BLOCK_6S卡在libunwind.z.so导致的appfrreze。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 10.15 | 
-| I9SXZ8 | 进程com.ohos.contacts小概率出现因THREAD_BLOCK_6S卡在libark_jsruntime.so导致的appfreeze。 | 联系人应用进入通话记录查询通话记录时卡顿。<br/>规避措施：重启联系人应用。 | 10.15 | 
-| I9S5ZN | 进程com.ohos.settings小概率出现因THREAD_BLOCK_6S卡在libunwind.z.so导致的appfrreze。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 10.15 | 
 | I9S600 | 进程com.ohos.settings小概率出现因THREAD_BLOCK_6S卡在libark_jsruntime.so导致的appfrreze。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 10.15 | 
 | IAB2U3 | 进程audio_server下的OS_APAsyncRunne线程小概率出现因libaudio_client.z.so崩溃导致的cppcrash。 | 对用户无影响，无需规避。 | 10.15 | 
 | IAIRFB | 进程com.ohos.note下的com.ohos.note线程小概率出现因libweb_engine.so崩溃导致的cppcrash。 | 异常出现后应用会闪退，重启应用可恢复。 | 10.15 | 
