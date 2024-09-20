@@ -1,12 +1,12 @@
 # power-shell工具
 
 
-power-shell工具是实现设备电源状态转换等功能的工具，power-shell为开发者提供基本的设备电源状态调试能力，例如：息屏、唤醒、设置电源模式等。
+power-shell是实现设备电源状态转换等功能的工具，为开发者提供基本的设备电源状态调试能力，例如：息屏、唤醒、设置电源模式等。
 
 ## 环境要求
-
-在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
-
+<!--RP1-->
+在使用本工具前，开发者需要先获取[hdc工具](../dfx/hdc.md)，执行hdc shell。
+<!--RP1End-->
 
 ## 命令列表
 
