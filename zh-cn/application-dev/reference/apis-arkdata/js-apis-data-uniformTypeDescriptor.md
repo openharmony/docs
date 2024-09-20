@@ -458,7 +458,7 @@ try {
 
 getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string
 
-根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型的ID。
+根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型ID，若有多个符合条件的标准化数据类型ID，则返回第一个。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -490,7 +490,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
+    let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.source-code');
     if(typeId) {
         console.info('typeId is general.type-script');
     }
@@ -515,7 +515,7 @@ try {
 
 getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
 
-根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型的ID。
+根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型ID，若有多个符合条件的标准化数据类型ID，则返回第一个。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
