@@ -2949,7 +2949,7 @@ async function Demo() {
 
 convertPixelFormat(targetPixelFormat: PixelMapFormat): Promise\<void>
 
-YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转。
+YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2983,6 +2983,7 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (pixelMap != undefined) {
+  let targetPixelFormat = image.PixelFormat.NV12  
   pixelMap.convertPixelFormat(targetPixelFormat).then(() => {
     console.info('PixelMapFormat convert Succeeded'); //符合条件则进入
   }).catch((error: BusinessError) => {
@@ -3791,7 +3792,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
-通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG、PNG和<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
