@@ -31,11 +31,11 @@ OpenHarmony 5.0 Release版本标准系统能力持续完善。相比OpenHarmony 
 
 - 进一步增强了组件自定义能力，新增组件modifier、ContentModifier和DrawModifier，支持基于已有组件新增属性、自定义组件内容和完全自绘制。
 
-- 开放了自定义节点和Native的渲染节点。自定义节点是指具备底层实体节点的部分基础能力的节点对象，这些节点能够通过自定义占位节点与原生组件进行混合显示。自定义节点可以具备单个节点的测算布局、设置基础属性、设置事件监听、自定义绘制渲染内容的自定义能力。包括FrameNode、RenderNode、BuilderNode三类对象。详细如下：
+- 开放了自定义节点和Native的渲染节点。[自定义节点](https://gitee.com/OpenHarmony/docs/blob/master/zh-cn/application-dev/ui/arkts-user-defined.md)是指具备底层实体节点的部分基础能力的节点对象，这些节点能够通过自定义占位节点与原生组件进行混合显示。自定义节点可以具备单个节点的测算布局、设置基础属性、设置事件监听、自定义绘制渲染内容的自定义能力。包括FrameNode、RenderNode、BuilderNode三类对象。详细如下：
   - BuilderNode：提供能够挂载原生组件的自定义节点BuilderNode。
-  - FrameNode：提供自定义节点FrameNode，表示组件树的实体节点。NodeController可通过BuilderNode持有的FrameNode将其挂载到[NodeContainer](https://wiki.huawei.com/domains/827/wiki/8/WIKI202408164334648)上，也可通过FrameNode获取RenderNode，挂载到其他FrameNode上。
+  - FrameNode：提供自定义节点FrameNode，表示组件树的实体节点。NodeController可通过BuilderNode持有的FrameNode将其挂载到NodeContainer上，也可通过FrameNode获取RenderNode，挂载到其他FrameNode上。
   - RenderNode：提供自绘制渲染节点RenderNode，支持在Native侧完成自定义绘制需求。
-  - NodeController：提供NodeController用于实现自定义节点的创建、显示、更新等操作，并负责将自定义节点挂载到[NodeContainer](https://wiki.huawei.com/domains/827/wiki/8/WIKI202408164334648)上。
+  - NodeController：提供NodeController用于实现自定义节点的创建、显示、更新等操作，并负责将自定义节点挂载到NodeContainer上。
 
 - 适用于三方框架的组件NDK能力增强，涵盖组件创建、属性设置、事件注册、自定义能力、组件树构建。
 
@@ -616,10 +616,10 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 | 软件 | 版本 | 备注 | 
 | -------- | -------- | -------- |
-| OpenHarmony | 4.1 Beta1 | NA | 
-| Public SDK | Ohos_sdk_public 4.1.5.5 (API Version 11 Beta1) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
-| HUAWEI DevEco Studio（可选） | 4.1 Beta1 | OpenHarmony应用开发推荐使用。 | 
-| HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。 | 
+| OpenHarmony | 5.0 Release | NA | 
+| Public SDK | Ohos_sdk_public 5.0.0.70 (API Version 12 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。 | 
+| HUAWEI DevEco Studio（可选） | 5.0 Release | OpenHarmony应用开发推荐使用。获取方式：*待发布后提供* | 
+| HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[请点击这里获取](https://device.harmonyos.com/cn/develop/ide#download)。  | 
 
 
 ## 源码获取
@@ -651,31 +651,56 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
-```
-repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Beta5 --no-repo-verify
-repo sync -c
-repo forall -c 'git lfs pull'
-```
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-5.0-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v5.0-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
 
 **方式二**
 
 通过repo + https 下载。
 
-```
-repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Beta5 --no-repo-verify
-repo sync -c
-repo forall -c 'git lfs pull'
-```
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-5.0-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v5.0-Release --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
 
 
 ### 从镜像站点获取
 
+
 **表2** 获取源码路径
 
-| 版本源码 | **版本信息** | **下载站点** | **SHA256校验码** | 
-| -------- | -------- | -------- | -------- |
-|  |  |  |  | 
-|  |  |  |  | 
+| 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
+| --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
+| 全量代码（标准、轻量和小型系统）        | 5.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/code-v5.0-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/code-v5.0-Release.tar.gz.sha256) | 31.6 GB |
+| Hi3861解决方案（二进制）        | 5.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_pegasus.tar.gz.sha256) | 29.2 MB |
+| Hi3516解决方案-LiteOS（二进制） | 5.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 318.7 MB |
+| Hi3516解决方案-Linux（二进制）  | 5.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_taurus_Linux.tar.gz.sha256) | 215.8 MB |
+| RK3568标准系统解决方案（二进制）        | 5.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/dayu200_standard_arm32.tar.gz.sha256) | 8.4 GB |
+| 标准系统Public SDK包（Mac）             | 5.0.0.70 | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/ohos-sdk-mac-public-signed.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/ohos-sdk-mac-public-signed.tar.gz.sha256) | 1.1 GB |
+| 标准系统Public SDK包（Mac-M1）             | 5.0.0.70  | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/L2-SDK-MAC-M1-PUBLIC-signed.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/L2-SDK-MAC-M1-PUBLIC-signed.tar.gz.sha256) | 1.1 GB |
+| 标准系统Public SDK包（Windows/Linux）   | 5.0.0.70   | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.2 GB |
+
+
 
 
 ## 修复缺陷列表
@@ -684,17 +709,16 @@ repo forall -c 'git lfs pull'
 
 | ISSUE单 | 问题描述 | 
 | -------- | -------- |
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
+| IA686U | 进程com.ohos.photos下的OS_FFRT_2_0线程有较高概率导致libace_napi.z.so出现cppcrash。 |
+| I9YC9X | 进程com.ohos.camera有较高概率由于LIFECYCLE_TIMEOUT卡在libark_jsruntime.so出现sysfreeze。 |
+| I9TE52 | 进程com.ohos.photos有一定概率由于THREAD_BLOCK_6S卡在libark_jsruntime.so出现appfreeze。 |
+| I9TDUU | 关键应用: ohos.samples.distributedcalc小概率由于THREAD_BLOCK_6S卡在libace_compatible.z.so出现appfrreze问题。 |
+| I9TE5K | 进程com.ohos.photos小概率由于THREAD_BLOCK_6S卡在libunwind.z.so出现appfreeze。 |
+| I9TJGB | 进程com.ohos.camera下的RSRenderThread进程有小概率导致libmali-bifrost-g52-g7p0-ohos.so出现cppcrash。 |
+| IA5EC3 | 进程com.ohos.updateapp小概率由于THREAD_BLOCK_6S卡在libskia_canvaskit.z.so出现appfreeze。 |
+| IA5I3D | 进程com.ohos.smartperf小概率由于THREAD_BLOCK_6S卡在librender_service_base.z.so出现appfreeze。 |
+| IA4G47 | 进程av_codec_service下的av_codec_service线程极小概率出现cppcrash，崩溃栈：libhcodec.z.so。 |
+| I9TDMQ | 关键应用: com.ohos.settings极小概率由于THREAD_BLOCK_6S卡在libskia_canvaskit.z.so出现appfrreze问题。 |
 
 
 ## 遗留缺陷列表
@@ -703,6 +727,10 @@ repo forall -c 'git lfs pull'
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
+| I9S5ZN | 进程com.ohos.settings小概率出现因THREAD_BLOCK_6S卡在libunwind.z.so导致的appfrreze。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 10.15 | 
+| I9SXZ8 | 进程com.ohos.contacts小概率出现因THREAD_BLOCK_6S卡在libark_jsruntime.so导致的appfreeze。 | 联系人应用进入通话记录查询通话记录时卡顿。<br/>规避措施：重启联系人应用。 | 10.15 | 
+| I9S5ZN | 进程com.ohos.settings小概率出现因THREAD_BLOCK_6S卡在libunwind.z.so导致的appfrreze。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 10.15 | 
+| I9S600 | 进程com.ohos.settings小概率出现因THREAD_BLOCK_6S卡在libark_jsruntime.so导致的appfrreze。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 10.15 | 
 | IAB2U3 | 进程audio_server下的OS_APAsyncRunne线程小概率出现因libaudio_client.z.so崩溃导致的cppcrash。 | 对用户无影响，无需规避。 | 10.15 | 
 | IAIRFB | 进程com.ohos.note下的com.ohos.note线程小概率出现因libweb_engine.so崩溃导致的cppcrash。 | 异常出现后应用会闪退，重启应用可恢复。 | 10.15 | 
 | I9SXZ8 | 进程com.ohos.contacts小概率出现因THREAD_BLOCK_6S卡在libark_jsruntime.so导致的appfreez。 | 异常出现后联系人应用进入通话记录查询通话记录卡顿，重启联系人应用可恢复。 | 10.15 | 
@@ -711,7 +739,7 @@ repo forall -c 'git lfs pull'
 | IA56CU | 进程com.ohos.note下的com.ohos.note线程小概率出现因libweb_engine.so导致的cppcrash。 | 异常出现后应用会闪退，重启应用可恢复。 | 9.30 | 
 | IA5AMJ | 进程com.ohos.launcher小概率出现因THREAD_BLOCK_6S卡在libark_jsruntime.so导致的appfreeze。 | 异常出现后进入多任务界面时会感知到获取应用截图卡顿约3秒左右，加载完成后恢复正常。 | 9.30 | 
 | IA5AIT | render_service小概率出现因SERVICE_BLOCK导致的sysfreeze。 | 异常出现后应用页面冻屏无响应，重启设备可恢复。 | 10.15 | 
-| IA6RH6 | com.ohos.settings有较高概率出现因THREAD_BLOCK_6S卡在libbtframework.z.so导致的appfreeze。 | 会又低概率造成“设置”应用卡死，重新打开“设置”可恢复。 | 10.15 | 
+| IA6RH6 | 进程com.ohos.settings有较高概率出现因THREAD_BLOCK_6S卡在libbtframework.z.so导致的appfreeze。 | 会又低概率造成“设置”应用卡死，重新打开“设置”可恢复。 | 10.15 | 
 | IA6RFX | 进程bluetooth_service下的OSaInit0线程有较高概率出现因libbtservice.z.so崩溃导致的cppcrash。 | 会有低概率造成蓝牙相关应用crash，重启应用可恢复。 | 10.15 | 
 | IA8KGR | 进程bluetooth_service下的OS_IPC_12_22172线程小概率出现因libbluetooth_server.z.so崩溃导致的cppcrash。 | 会有低概率造成蓝牙相关应用crash，重启应用可恢复。 | 10.15 | 
 | IAM7DN | 进程audio_server在压测下出现内存泄露，15小时内存增长80M。 | 该问题可能导致设备性能略有下降，重启音频相关应用可恢复。 | 10.15 | 
