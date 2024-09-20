@@ -2263,6 +2263,18 @@ Allows an application to use the location service without displaying the privacy
 
 **Valid since**: 12
 
+### ohos.permission.EXEMPT_PRIVACY_SECURITY_CENTER
+
+Allows a system application to be hidden on the Privacy & Security page.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ### ohos.permission.GET_SUPER_PRIVACY
 
 Allows a system application to obtain the status of the super privacy mode.
