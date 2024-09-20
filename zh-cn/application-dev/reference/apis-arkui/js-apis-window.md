@@ -1114,6 +1114,78 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+## window.getWindowFromPoint<sup>14+</sup>
+
+getWindowFromPoint(displayId: number, windowNumber?: number, x?: number, y?: number): Promise<Array<Window>>
+
+查询指定坐标位置本应用的可见窗口，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                      |
+| ------ | ---------- |----|-------------------------|
+| displayId   | number| 是  | 查询窗口所在的display id。      |
+| windowNumber    | number| 否  | 查询的窗口数量，未设置返回所有满足条件的窗口。 |
+| x    | number | 否  | 查询的x坐标，未设置返回所有可见窗口。     |
+| y    | number| 否  | 查询的y坐标，未设置返回所有可见窗口。     |
+
+**返回值：**
+
+| 类型                             | 说明                      |
+| -------------------------------- |-------------------------|
+| Promise<Array<[Window](#window)>> | Promise对象。返回获取到的窗口对象数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID    | 错误信息 |
+|----------| ------------------------------ |
+| 401      | Parameter error. Possible cause: Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300003 | This window manager service works abnormally. |
+
+```ts
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let storage = LocalStorage.getShared();
+
+try {
+    let windowStage = storage.get<window.WindowStage>("windowStage") as window.WindowStage;
+    let mainWindow = windowStage.getMainWindowSync();
+    let properties = mainWindow.getWindowProperties();
+    window.getWindowFromPoint(properties.displayId).then((data) => {
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        for (let window of data) {
+            // do something with window
+        }
+    }).catch((err: BusinessError) => {
+        console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
+    });
+} catch (exception) {
+    console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+
+try {
+    let windowStage = storage.get<window.WindowStage>("windowStage") as window.WindowStage;
+    let mainWindow = windowStage.getMainWindowSync();
+    let properties = mainWindow.getWindowProperties();
+    window.getWindowFromPoint(properties.displayId, 2, 500, 500).then((data) => {
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        for (let window of data) {
+            // do something with window
+        }
+    }).catch((err: BusinessError) => {
+        console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
+    });
+} catch (exception) {
+    console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ## SpecificSystemBar<sup>11+</sup>
 
 type SpecificSystemBar = 'status' \| 'navigation' \| 'navigationIndicator'
