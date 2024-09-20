@@ -31,6 +31,7 @@
     - [HAR转HSP指导](har-to-hsp.md)
     - [HSP转HAR指导](hsp-to-har.md)
     - [创建应用静态快捷方式](typical-scenario-configuration.md)
+    - [创建应用分身](app-clone.md)
 
 - [资源分类与访问](resource-categories-and-access.md)
 
