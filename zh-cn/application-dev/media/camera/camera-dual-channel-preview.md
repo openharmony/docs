@@ -135,9 +135,6 @@
 
      // 释放会话
      await photoSession.release();
-
-     // 会话置空
-     photoSession = undefined;
    }
    ```
 
