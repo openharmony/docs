@@ -6033,9 +6033,9 @@ PixelMap的初始化选项。
 | SPECTRAL_SENSITIVITY <sup>12+</sup>       | "SpectralSensitivity"       | **读写能力：** 可读写<br> 表示所用相机的每个通道的光谱灵敏度。|
 | GPS_VERSION_ID <sup>12+</sup>             | "GPSVersionID"              | **读写能力：** 可读写<br> GPSInfoIFD的版本。|
 | GPS_LATITUDE_REF                          | "GPSLatitudeRef"            | **读写能力：** 可读写<br> 纬度引用，例如N或S。|
-| GPS_LATITUDE                              | "GPSLatitude"               | **读写能力：** 可读写<br> 图片纬度。|
+| GPS_LATITUDE                              | "GPSLatitude"               | **读写能力：** 可读写<br> 图片纬度。修改时应按"度,分,秒"格式传入，如"39,54,7.542"|
 | GPS_LONGITUDE_REF                         | "GPSLongitudeRef"           | **读写能力：** 可读写<br> 经度引用，例如W或E。|
-| GPS_LONGITUDE                             | "GPSLongitude"              | **读写能力：** 可读写<br> 图片经度。|
+| GPS_LONGITUDE                             | "GPSLongitude"              | **读写能力：** 可读写<br> 图片经度。修改时应按"度,分,秒"格式传入，如"116,19,42.16"|
 | GPS_ALTITUDE_REF <sup>12+</sup>           | "GPSAltitudeRef"            | **读写能力：** 可读写<br> 用于GPS高度的参照高度。|
 | GPS_ALTITUDE <sup>12+</sup>               | "GPSAltitude"               | **读写能力：** 可读写<br> 基于GPSAltitudeRef的高度。|
 | GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"              | **读写能力：** 可读写<br> GPS时间戳。|
