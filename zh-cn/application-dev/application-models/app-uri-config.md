@@ -1,6 +1,5 @@
 # 应用链接说明
 
-
 ## uris标签说明
 当在module.json5文件的skills中声明uris时，主要包含如下字段。
 
