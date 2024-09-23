@@ -41,8 +41,8 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
-| type        | [XComponentType](ts-appendix-enums#xcomponenttype10枚举说明)   | 是   | 用于指定XComponent组件类型。                                 |
-| libraryname | string                                        | 否   | 用Native层编译输出动态库名称，仅类型为SURFACE或TEXTURE时有效。 |
+| type        | [XComponentType](ts-appendix-enums.md#xcomponenttype10枚举说明)   | 是   | 用于指定XComponent组件类型。                                 |
+| libraryname | string                                        | 否   | 用Native层编译输出动态库名称（对应的动态库不支持跨模块加载），仅类型为SURFACE或TEXTURE时有效。 |
 | controller  | [XComponentController](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 
 ### XComponent<sup>(deprecated)</sup>
@@ -61,7 +61,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
 | type        | string                                        | 是   | 用于指定XComponent组件类型，可选值仅有两个为：<br/>-"surface"：用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。<br/>-"component"<sup>9+</sup> ：XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>其他值均会被视为"surface"类型 |
-| libraryname | string                                        | 否   | 应用Native层编译输出动态库名称，仅XComponent类型为"surface"时有效。 |
+| libraryname | string                                        | 否   | 应用Native层编译输出动态库名称（对应的动态库不支持跨模块加载），仅XComponent类型为"surface"时有效。 |
 | controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅XComponent类型为"surface"时有效。 |
 
 ## XComponentOptions<sup>12+</sup>
@@ -74,7 +74,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | [XComponentType](ts-appendix-enums#xcomponenttype10枚举说明)         | 是   | 用于指定XComponent组件类型。 |
+| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10枚举说明)         | 是   | 用于指定XComponent组件类型。 |
 | controller | [XComponentController](#xcomponentcontroller) | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 | imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
@@ -444,6 +444,11 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 | surfaceWidth  | number | 是   | Surface显示区域的宽度，单位：px。                            |
 | surfaceHeight | number | 是   | Surface显示区域的高度，单位：px。                            |
 
+> **说明：**
+>
+> surfaceWidth和surfaceHeight属性在未调用[setXComponentSurfaceRect](ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)也未设置[border](ts-universal-attributes-border.md#border)和[padding](ts-universal-attributes-size.md#padding)等属性时，其取值大小为XComponent组件的大小。
+> 
+> surfaceWidth和surfaceHeight属性的取值都不可超过8192px，否则会导致渲染异常。
 
 ## 示例
 

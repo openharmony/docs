@@ -113,7 +113,7 @@ try {
 }
 ```
 
-## restrictions.setDisallowedPolicyForAccount<sup>13+</sup>
+## restrictions.setDisallowedPolicyForAccount<sup>14+</sup>
 
 setDisallowedPolicyForAccount(admin: Want, feature: string, disallow: boolean, accountId: number): void
 
@@ -161,7 +161,7 @@ try {
 }
 ```
 
-## restrictions.getDisallowedPolicyForAccount<sup>13+</sup>
+## restrictions.getDisallowedPolicyForAccount<sup>14+</sup>
 
 getDisallowedPolicyForAccount(admin: Want, feature: string, accountId: number): boolean
 

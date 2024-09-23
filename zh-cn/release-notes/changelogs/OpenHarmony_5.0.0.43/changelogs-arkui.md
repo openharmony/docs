@@ -98,7 +98,7 @@ struct node_geometry {
 }
 ```
 
-## cl.arkui.2  backgroundEffect在modifier中radius参数单位修改
+## cl.arkui.2 showToast接口TOP_MOST模式行为变更
 
 **访问级别**
 
@@ -106,23 +106,80 @@ struct node_geometry {
 
 **变更原因**
 
- 直接使用backgroundEffect时对应的模糊参数radius单位为vp。通过modifier或者CAPI使用时，单位为px。现将单位同一为vp。
+toast层级过高，会挡住权限弹窗等敏感内容，存在安全隐患。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前：backgroundEffect通过modifier使用时单位为px。<br/>
-![addComponentContent_before](figures/backgroundEffect_before.png)
+API version 12及以后，TOP_MOST模式弹出的Toast的层级发生改变，即：
 
-变更后：backgroundEffect通过modifier使用时单位为vp。<br/>
-![addComponentContent_after](figures//backgroundEffect_after.png)
+变更前：Toast层级较高，可以悬浮显示在输入法、系统授权弹窗之上。输入法弹出后不避让，保持在原来的位置。
+
+变更后：
+
+1. Toast不能悬浮显示在输入法之上，如果Toast与输入法有重叠，则将Toast避让到输入法上方固定80vp处。
+2. Toast在系统敏感内容显示时不显示或被覆盖。
+3. 在画中画窗口和悬浮窗中不支持创建TOP_MOST模式的Toast。
+
+| 变更前                                   | 变更后                                   |
+| ---------------------------------------- | ---------------------------------------- |
+| ![zh-cn_image_alert](figures/41.1.6.png) | ![zh-cn_image_alert](figures/41.1.7.png) |
 
 
+
+| 变更前                                   | 变更后                                   |
+| ---------------------------------------- | ---------------------------------------- |
+| ![zh-cn_image_alert](figures/41.1.8.png) | ![zh-cn_image_alert](figures/41.1.9.png) |
+
+
+
+| 变更前                                   | 变更后                                   |
+| ---------------------------------------- | ---------------------------------------- |
+| ![zh-cn_image_alert](figures/41.1.10.png) | ![zh-cn_image_alert](figures/41.1.11.png) |
 
 **起始API Level**
 
-API 12
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.43 版本开始。
+
+**变更的接口/组件**
+
+showToast接口
+
+**适配指导**
+
+1. 对于输入法的场景，开发者可以设置高度将Toast放到合适的位置，主动避开输入法。
+2. 对于敏感内容的场景，开发者无法适配。
+3. 对于画中画和悬浮窗的场景，开发者可以改为使用DEFAULT模式。
+
+## cl.arkui.3 在2in1设备上bindsheet视觉效果变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+2in1设备上，半模态样式优化。
+
+**变更影响**
+
+该变更为兼容性变更。
+
+| 变更前 | 变更后 |
+|------ |--------|
+|默认圆角为32vp|2in1设备中，默认圆角为16vp|
+|关闭按钮默认有底板|2in1设备中，关闭按钮默认没有底板|
+|默认没有阴影|2in1设备中，默认有阴影|
+|默认没有内外描边|2in1设备中，默认有内外描边|
+
+**起始API Level**
+
+11
 
 **变更发生版本**
 
@@ -130,41 +187,8 @@ API 12
 
 **变更的接口/组件**
 
-backgroundEffect
+bindSheet属性。
 
 **适配指导**
 
-在modifier中使用px2vp方法把radius参数转换为vp。
-
-```ts
-
-import { CommonModifier } from '@kit.ArkUI';
-
-class ColumnModifier extends CommonModifier {
-  public radius: number = 0;
-  applyNormalAttribute(instance: CommonAttribute): void {
-    instance.backgroundEffect({ radius: this.radius })
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  @State testSize: number = 200;
-  @State modifier:ColumnModifier = new ColumnModifier();
-  onPageShow(): void {
-    // 变更前
-    // this.modifier.radius = 10;
-    // 变更后适配
-    this.modifier.radius = px2vp(10);
-  }
-  build() {
-    Column() {
-      Stack() {
-        Image($r('app.media.test')).width(this.testSize).height(this.testSize)
-        Column().width(this.testSize).height(this.testSize).attributeModifier(this.modifier)
-      }.width('100%')
-    }
-  }
-}
-```
+默认行为变更，无需适配。

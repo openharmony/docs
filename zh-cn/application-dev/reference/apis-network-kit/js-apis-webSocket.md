@@ -947,7 +947,7 @@ type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 | ------  |------------------------- |
 | 'system'   |  使用系统默认网络代理。 |
 | 'no-proxy' |  不使用网络代理。 |
-| HttpProxy  | 使用指定的网络代理。 |
+| [HttpProxy](js-apis-net-connection.md#httpproxy10)  | 使用指定的网络代理。 |
 
 ## WebSocketCloseOptions
 
@@ -984,9 +984,7 @@ type ResponseHeaders = {[k: string]: string | string[] | undefined;}
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [k:string]:string | header数据类型为键值对 |
-| string[]  | header数据类型为字符串 |
-| undefined | header数据类型为undefined |
+| [k:string]:string \| string[] \| undefined | header数据类型为键值对、字符串或者undefined |
 
 ## close错误码说明
 

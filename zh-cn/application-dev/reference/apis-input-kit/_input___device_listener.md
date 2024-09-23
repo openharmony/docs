@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| Input_DeviceAddedCallback deviceAddedCallback | 定义一个回调函数用于回调设备热插事件  | 
-| Input_DeviceRemovedCallback deviceRemovedCallback| 定义一个回调函数用于回调设备热拔事件  | 
+| [Input_DeviceAddedCallback](input.md#input_deviceaddedcallback) [deviceAddedCallback](#deviceaddedcallback) | 定义一个回调函数用于回调设备热插事件  | 
+| [Input_DeviceRemovedCallback](input.md#input_deviceremovedcallback) [deviceRemovedCallback](#deviceremovedcallback) | 定义一个回调函数用于回调设备热拔事件  | 
 
 
 ## 结构体成员变量说明

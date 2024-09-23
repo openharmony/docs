@@ -966,7 +966,7 @@ router.replaceNamedRoute({
 
 back(options?: RouterOptions ): void
 
-返回上一页面或指定的页面。
+返回上一页面或指定的页面，会删除当前页面与指定页面之间的所有页面。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -988,7 +988,7 @@ router.back({url:'pages/detail'});
 
 back(index: number, params?: Object): void;
 
-返回指定的页面。
+返回指定的页面，会删除当前页面与指定页面之间的所有页面。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1238,7 +1238,7 @@ getParams(): Object
 
 **示例：**
 
-```
+```ts
 router.getParams();
 ```
 
@@ -1319,6 +1319,10 @@ export default {
 
 ### 基于TS扩展的声明式开发范式
 
+> **说明：**
+> 
+> 直接使用router可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+
 ```ts
 // 通过router.pushUrl跳转至目标页携带params参数
 import { router } from '@kit.ArkUI';
@@ -1352,6 +1356,7 @@ struct Index {
       params: new routerParams('这是第一页的值' ,[12, 45, 78])
     }
     try {
+      // 建议使用this.getUIContext().getRouter().pushUrl()
       await router.pushUrl(options)
     } catch (err) {
       console.info(` fail callback, code: ${(err as BusinessError).code}, msg: ${(err as BusinessError).message}`)
@@ -1406,6 +1411,7 @@ class routerParams {
 @Component
 struct Second {
   private content: string = "这是第二页"
+  // 建议使用this.getUIContext().getRouter().getParams()
   @State text: string = (router.getParams() as routerParams).text
   @State data: object = (router.getParams() as routerParams).data
   @State secondData: string = ''

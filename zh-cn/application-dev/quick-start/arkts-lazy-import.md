@@ -50,6 +50,7 @@
     执行结果为：
     
     ```typescript    
+        mod2 executed
         main executed
     ```
 

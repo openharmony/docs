@@ -1375,7 +1375,7 @@
 
 ### ohos.permission.ACCESS_BOOSTER_SERVICE
 
-允许系统服务或系统应用调用网络增强服务中的网络质量感知，网络场景预测、或网络加速等功能接口。
+允许系统服务或系统应用调用网络增强服务中的网络质量感知、网络场景预测、网络加速等功能接口。
 
 **权限级别**：system_basic
 
@@ -2263,6 +2263,18 @@
 
 **起始版本**：12
 
+### ohos.permission.EXEMPT_PRIVACY_SECURITY_CENTER
+
+允许系统应用在“隐私和安全”中的权限详情页不展示。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ### ohos.permission.GET_SUPER_PRIVACY
 
 允许获取超级隐私模式的状态。
@@ -2844,6 +2856,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.REGISTER_FINDNETWORK_ACCESSORY
+
+允许应用和系统服务发起查找网络配件注册流程。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
 
 ### ohos.permission.MANAGE_RGM
 
@@ -3876,6 +3900,18 @@
 **ACL使能**：true
 
 **起始版本**：13
+
+### ohos.permission.ACCESS_ANALYTICS
+
+允许系统服务访问并读取路径/data/log/faultlog/faultlogger下文件的内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ## system_grant，不允许ACL跨级申请
 

@@ -186,7 +186,7 @@ struct MediaQueryExample {
   // 改变设备横竖屏状态函数
   private changeOrientation(isLandscape: boolean) {
     // 获取UIAbility实例的上下文信息
-    let context:common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+    let context:common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 调用该接口手动改变设备横竖屏状态
     window.getLastWindow(context).then((lastWindow) => {
       lastWindow.setPreferredOrientation(isLandscape ? window.Orientation.LANDSCAPE : window.Orientation.PORTRAIT)

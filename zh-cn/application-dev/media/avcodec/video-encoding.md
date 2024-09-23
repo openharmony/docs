@@ -41,7 +41,7 @@
 - buffer输入是指有一块预先分配好的内存区域，调用者需要将原始数据拷贝进这块内存区域中。更适用于从文件中读取视频数据等场景。
 
 3. 在接口调用的过程中，两种方式的接口调用方式基本一致，但存在以下差异点：
- - Buffer模式下，应用调用OH_VideoEncoder_PushInputBuffer接口输入数据；Surface模式下，应用应在编码器就绪前调用OH_VideoEncoder_GetSurface接口，获取OHNativeWindow用于传递视频数据。
+ - Buffer模式下，调用者通过OH_VideoEncoder_PushInputBuffer接口输入数据；Surface模式下，调用者应在编码器就绪前调用OH_VideoEncoder_GetSurface接口，获取OHNativeWindow用于传递视频数据。
  - Buffer模式下，调用者通过OH_AVBuffer中的attr传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream接口通知编码器输入流结束。
 
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。

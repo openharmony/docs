@@ -389,9 +389,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let srcPixelmap = image.createPixelMapSync(color, optsForUnpre);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let dstPixelMap = image.createPixelMapSync(optsForPre);
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
       console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
@@ -407,7 +408,7 @@ async function Demo() {
 
 createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
-将PixelMap数据按照透明度不前乘格式转为前乘格式，转换后的数据存入另一个PixelMap，通过Promise返回结果。
+将PixelMap数据按照透明度非预乘格式转为预乘格式，转换后的数据存入另一个PixelMap，通过Promise返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -449,9 +450,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let srcPixelmap = image.createPixelMapSync(color, optsForUnpre);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let dstPixelMap = image.createPixelMapSync(optsForPre);
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
   }).catch((error: BusinessError) => {
@@ -501,9 +503,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let srcPixelmap = image.createPixelMapSync(color, optsForPre);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let dstPixelMap = image.createPixelMapSync(optsForUnpre);
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
       console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
@@ -561,9 +564,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let srcPixelmap = image.createPixelMapSync(color, optsForPre);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let dstPixelMap = image.createPixelMapSync(optsForUnpre);
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
   }).catch((error: BusinessError) => {
@@ -2537,7 +2541,7 @@ import resourceManager from '@ohos.resourceManager'
 import { BusinessError } from '@kit.BasicServicesKit';
 
 //此处'hdr.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-let img = await getContext(this).resourceManager.getMediaContent($r('app.media.hdr'));
+let img = getContext().resourceManager.getMediaContentSync($r('app.media.hdr'));
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -2545,13 +2549,12 @@ let decodingOptions: image.DecodingOptions = {
 let pixelmap = imageSource.createPixelMapSync(decodingOptions);
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
-  try {
-    await pixelmap.toSdr();
+  pixelmap.toSdr().then(() => {
     let imageInfo = pixelmap.getImageInfoSync();
     console.info("after toSdr ,imageInfo isHdr:" + imageInfo.isHdr);
-  } catch (e) {
-    console.info('toSdr failed' + e);
-  }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set sdr. code is ${err.code}, message is ${err.message}`);
+  });
 } else {
   console.info('Failed to create pixelMap.');
 }
@@ -2595,7 +2598,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import image from '@ohos.multimedia.image'
 
 // 'app.media.test'需要替换为本地hdr图片。
-let img = await getContext(this).resourceManager.getMediaContent($r('app.media.test'));
+let img = getContext().resourceManager.getMediaContentSync($r('app.media.test'));
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -2651,21 +2654,29 @@ setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
 ```ts
 import image from '@ohos.multimedia.image'
 import { BusinessError } from '@kit.BasicServicesKit';
-@State pixelmap: image.PixelMap | undefined = undefined;
 
-async Demo() {
-  let staticMetadata: image.HdrStaticMetadata = {
-    displayPrimariesX: [1.1, 1.1, 1.1],
-    displayPrimariesY: [1.2, 1.2, 1.2],
-    whitePointX: 1.1,
-    whitePointY: 1.2,
-    maxLuminance: 2.1,
-    minLuminance: 1.0,
-    maxContentLightLevel: 2.1,
-    maxFrameAverageLightLevel: 2.1,
-  }
-  this.pixelmap?.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata);
+let staticMetadata: image.HdrStaticMetadata = {
+  displayPrimariesX: [1.1, 1.1, 1.1],
+  displayPrimariesY: [1.2, 1.2, 1.2],
+  whitePointX: 1.1,
+  whitePointY: 1.2,
+  maxLuminance: 2.1,
+  minLuminance: 1.0,
+  maxContentLightLevel: 2.1,
+  maxFrameAverageLightLevel: 2.1,
 }
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+  pixelMap.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata).then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in setting pixelMap metadata.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to set the metadata.code ${error.code},message is ${error.message}`);
+  })
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
+})
+
 ```
 
 ### setTransferDetached<sup>12+<sup>
@@ -2949,7 +2960,7 @@ async function Demo() {
 
 convertPixelFormat(targetPixelFormat: PixelMapFormat): Promise\<void>
 
-YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转。
+YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2983,6 +2994,7 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (pixelMap != undefined) {
+  let targetPixelFormat = image.PixelFormat.NV12  
   pixelMap.convertPixelFormat(targetPixelFormat).then(() => {
     console.info('PixelMapFormat convert Succeeded'); //符合条件则进入
   }).catch((error: BusinessError) => {
@@ -3470,7 +3482,7 @@ getImageInfoSync(index?: number): ImageInfo
 ```ts
 import { image } from '@kit.ImageKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -3791,7 +3803,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
-通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG、PNG和<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -4087,7 +4099,7 @@ createPixelMapSync(options?: DecodingOptions): PixelMap
 ```ts
 import { image } from '@kit.ImageKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -5854,8 +5866,8 @@ img.release().then(() => {
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | 未知透明度。            |
 | OPAQUE   | 1      | 没有alpha或图片不透明。 |
-| PREMUL   | 2      | RGB前乘alpha。         |
-| UNPREMUL | 3      | RGB不前乘alpha。       |
+| PREMUL   | 2      | RGB预乘alpha。         |
+| UNPREMUL | 3      | RGB非预乘alpha。       |
 
 ## ScaleMode<sup>9+</sup>
 
@@ -6026,9 +6038,9 @@ PixelMap的初始化选项。
 | SPECTRAL_SENSITIVITY <sup>12+</sup>       | "SpectralSensitivity"       | **读写能力：** 可读写<br> 表示所用相机的每个通道的光谱灵敏度。|
 | GPS_VERSION_ID <sup>12+</sup>             | "GPSVersionID"              | **读写能力：** 可读写<br> GPSInfoIFD的版本。|
 | GPS_LATITUDE_REF                          | "GPSLatitudeRef"            | **读写能力：** 可读写<br> 纬度引用，例如N或S。|
-| GPS_LATITUDE                              | "GPSLatitude"               | **读写能力：** 可读写<br> 图片纬度。|
+| GPS_LATITUDE                              | "GPSLatitude"               | **读写能力：** 可读写<br> 图片纬度。修改时应按"度,分,秒"格式传入，如"39,54,7.542"|
 | GPS_LONGITUDE_REF                         | "GPSLongitudeRef"           | **读写能力：** 可读写<br> 经度引用，例如W或E。|
-| GPS_LONGITUDE                             | "GPSLongitude"              | **读写能力：** 可读写<br> 图片经度。|
+| GPS_LONGITUDE                             | "GPSLongitude"              | **读写能力：** 可读写<br> 图片经度。修改时应按"度,分,秒"格式传入，如"116,19,42.16"|
 | GPS_ALTITUDE_REF <sup>12+</sup>           | "GPSAltitudeRef"            | **读写能力：** 可读写<br> 用于GPS高度的参照高度。|
 | GPS_ALTITUDE <sup>12+</sup>               | "GPSAltitude"               | **读写能力：** 可读写<br> 基于GPSAltitudeRef的高度。|
 | GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"              | **读写能力：** 可读写<br> GPS时间戳。|

@@ -27,9 +27,8 @@
 | VOIP<sup>13+</sup> | 音视频通话 | voip  | 聊天类应用后台音视频电话。 |
 | TASK_KEEPING | <!--RP1-->计算任务（仅对特定设备开放）<!--RP1End--> | taskKeeping  | 杀毒软件。 |
 
-- 如果使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行，无论是否申请DATA_TRANSFER，应用都会被挂起。使用下载类型的长时任务，应用需要更新下载进度。如果进度长时间（超过10分钟）不更新，下载类型的长时任务会被取消。推荐使用API 12申请下载类型的长时任务，并更新通知进度。
+- 如果使用[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行，无论是否申请DATA_TRANSFER，应用都会被挂起。使用下载类型的长时任务，应用需要更新下载进度。如果进度长时间（超过10分钟）不更新，下载类型的长时任务会被取消。推荐使用[新接口](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning12)申请下载类型的长时任务，并更新通知进度。
 - 使用了媒体会话服务（[AVSession](../media/avsession/avsession-overview.md)）的音视频应用，才能通过申请AUDIO_PLAYBACK长时任务实现后台播放。
-- 仅xx类型和xx类型支持在元服务中使用
 
 ### 约束与限制
 
