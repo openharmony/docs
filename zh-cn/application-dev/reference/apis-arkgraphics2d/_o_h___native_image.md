@@ -303,7 +303,11 @@ OHNativeWindow* OH_NativeImage_AcquireNativeWindow (OH_NativeImage * image)
 **描述**
 
 获取与OH_NativeImage相关联的OHNativeWindow指针。
+
 本接口为非线程安全类型接口。
+
+OH_NativeImage析构时会将对应的OHNativeWindow实例释放。若从本接口获取OHNativeWindow指针，当OH_NativeImage实例释放时，请将获取到的OHNativeWindow指针置空，防止后续产生野指针。
+
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
