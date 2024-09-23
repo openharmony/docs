@@ -1,11 +1,13 @@
 # power-shell工具
 
 
-power-shell工具是实现设备电源状态转换等功能的工具，power-shell为开发者提供基本的设备电源状态调试能力，例如：息屏、唤醒、设置电源模式等。
+power-shell是实现设备电源状态转换等功能的工具，为开发者提供基本的设备电源状态调试能力，例如：熄屏、唤醒、设置电源模式等。
 
 ## 环境要求
 
-在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
+<!--RP1-->
+在使用本工具前，开发者需要先获取[hdc工具](../dfx/hdc.md)，执行hdc shell。
+<!--RP1End-->
 
 
 ## 命令列表
@@ -17,8 +19,8 @@ power-shell工具是实现设备电源状态转换等功能的工具，power-she
 | help | 帮助命令，显示power-shell支持的命令信息。 |
 | setmode | 设置电源模式命令，用来设置当前设备的电源模式。 |
 | wakeup | 亮屏命令，用来唤醒系统并亮屏。 |
-| suspend | 息屏命令，用来暂停系统并息屏。|
-| timeout | 自动息屏命令，用来覆盖或恢复系统设置中自动息屏时间。 |
+| suspend | 熄屏命令，用来暂停系统并熄屏。|
+| timeout | 自动熄屏命令，用来覆盖或恢复系统设置中自动熄屏时间。 |
 
 
 ## 帮助命令
@@ -92,45 +94,45 @@ power-shell wakeup
 ```
 
 
-## 息屏命令
+## 熄屏命令
 
 ```bash
 power-shell suspend
 ```
 
 
-  **表5** 息屏命令列表
+  **表5** 熄屏命令列表
 
 | 命令       | 描述                       |
 | ---------- | -------------------------- |
-| power-shell suspend  | 息屏。 |
+| power-shell suspend  | 熄屏。 |
 
 
 示例：
 
 ```bash
-# shell命令息屏
+# shell命令熄屏
 power-shell suspend
 ```
 
-## 自动息屏命令
+## 自动熄屏命令
 
 ```bash
 power-shell timeout
 ```
 
-  **表6** 自动息屏命令列表
+  **表6** 自动熄屏命令列表
 | 命令       | 描述                       |
 | ---------- | -------------------------- |
-| power-shell timeout -o [time] | 设置自动息屏时间。[time]单位为毫秒。 |
-| power-shell timeout -r | 恢复到当前系统设置中的自动息屏时间。 |
+| power-shell timeout -o [time] | 设置自动熄屏时间。[time]单位为毫秒。 |
+| power-shell timeout -r | 恢复到当前系统设置中的自动熄屏时间。 |
 
 示例：
 
 ```bash
-# 当前系统设置中自动息屏时间为30秒
-# shell命令设置自动息屏时间为15000毫秒
+# 当前系统设置中自动熄屏时间为30秒
+# shell命令设置自动熄屏时间为15000毫秒
 power-shell timeout -o 15000
-# 恢复系统设置的自动息屏时间，此时自动息屏时间为30秒
+# 恢复系统设置的自动熄屏时间，此时自动熄屏时间为30秒
 power-shell timeout -r
 ```
