@@ -104,7 +104,7 @@ customHeight(value: Dimension | PanelHeight)
 
 fullHeight(value: string | number)
 
-指定PanelType.CUSTOM状态下的高度。
+指定PanelType.Full状态下的高度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -120,7 +120,7 @@ fullHeight(value: string | number)
 
 halfHeight(value: string | number)
 
-指定PanelMode.Full状态下的高度。
+指定PanelMode.Half状态下的高度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -136,7 +136,7 @@ halfHeight(value: string | number)
 
 miniHeight(value: string | number)
 
-指定PanelMode.Half状态下的高度。
+指定PanelMode.Mini状态下的高度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -228,7 +228,7 @@ showCloseIcon(value: boolean)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
-| -------- | -------- | 
+| -------- | -------- |
 | WRAP_CONTENT | 类型为CUSTOM时，自适应内容高度。 |
 ## 事件
 
