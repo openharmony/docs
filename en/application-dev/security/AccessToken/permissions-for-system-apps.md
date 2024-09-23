@@ -4429,7 +4429,7 @@ Allows an application to save images and videos to the user's directory within u
 
 **Enable via ACL**: true
 
-**Valid since**: 12
+**Valid since**: 13
 
 ### ohos.permission.ACCESS_SUPER_HUB
 
@@ -4445,4 +4445,4 @@ Allows an application to start SuperHub.
 
 **Enable via ACL**: false
 
-**Valid since**: 12
+**Valid since**: 13
