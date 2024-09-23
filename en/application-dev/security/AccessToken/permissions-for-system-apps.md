@@ -4429,7 +4429,7 @@ Allows an application to save images and videos to the user's directory within u
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 12
 
 ### ohos.permission.ACCESS_SUPER_HUB
 
