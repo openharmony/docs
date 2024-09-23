@@ -203,7 +203,7 @@ zh-cn/application-dev/ui/arkts-common-components-text-display.md	@crazyracing072
 zh-cn/application-dev/ui/arkts-common-components-text-input.md	@crazyracing0726	@ileft2019	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-custom-dialog.md		@zhangfanfan2	@zhang-jian008	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-video-player.md	@keerecles	@seaside_wu	@pangxinyu10128	@HelloCrease
-zh-cn/application-dev/ui/arkts-common-components-xcomponent.md	@keerecles	@seaside_wu	@zhang-jian008	@HelloCrease
+zh-cn/application-dev/ui/arkts-common-components-xcomponent.md	@keerecles	@laigerendaqiu	@zhang-jian008	@HelloCrease
 zh-cn/application-dev/ui/arkts-popup-and-menu-components-popup.md		@zhangfanfan2	@zhang-jian008	@HelloCrease
 zh-cn/application-dev/ui/arkts-popup-and-menu-components-menu.md		@zhangfanfan2	@zhang-jian008	@HelloCrease
 zh-cn/application-dev/ui/arkts-routing.md	@raulnaruto_admin	@zhang-jian008	@HelloCrease
@@ -694,7 +694,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-textpick
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-texttimer.md	@ileft201	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md	@zhangfanfan2	@youzhi92	@zhang-jian008	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md	@zhangfanfan2	@youzhi92	@pangxinyu10128	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md	@seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md	@laigerendaqiu	@keerecles	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-component3d-sys.md @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@arondave  @hehe9876		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md @ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
@@ -840,7 +840,7 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md  @sunfei20
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-graphics.md  @sunfei2021 @tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-nodeController.md  @lightningHo @tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-renderNode.md  @lightningHo @tomatodevboy	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-xcomponentNode.md  @sunfei2021 @tomatodevboy	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-xcomponentNode.md  @laigerendaqiu @sunfei2021 @tomatodevboy	@HelloCrease
 
 
 [API参考-ArkUI-Window]
