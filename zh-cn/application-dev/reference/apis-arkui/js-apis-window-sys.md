@@ -3967,7 +3967,7 @@ try {
 }
 ```
 
-## ExtensionWindowAttribute<sup>12+</sup>
+## ExtensionWindowAttribute<sup>14+</sup>
 
 扩展窗口的属性枚举。
 
@@ -3982,7 +3982,7 @@ try {
 | SYSTEM_WINDOW  | 0 | 系统窗口。|
 | SUB_WINDOW  | 1 | 子窗口。|
 
-## SystemWindowOptions<sup>12+</sup>
+## SystemWindowOptions<sup>14+</sup>
 
 系统窗口的创建参数。
 
@@ -3992,11 +3992,11 @@ try {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 参数名 | 类型                      | 只读  |可选 | 说明       |
+| 名称 | 类型                      | 只读  |可选 | 说明       |
 | ------ | ------------------------- | ---- | ---- |---------- |
-| windowType   | [WindowType](#windowtype7) | 否   | 否   | 窗口类型。无默认类型，不配置会导致窗口创建失败。 |
+| windowType   | [WindowType](#windowtype7) | 否   | 否   | 窗口类型。无默认类型，不配置会导致窗口创建失败。不支持TYPE_DIALOG类型。 |
 
-## ExtensionWindowConfig<sup>12+</sup>
+## ExtensionWindowConfig<sup>14+</sup>
 
 创建扩展窗口时需要配置的参数。
 
@@ -4006,10 +4006,10 @@ try {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 参数名 | 类型                      | 只读  |可选 | 说明       |
+| 名称 | 类型                      | 只读  |可选 | 说明       |
 | ------ | ------------------------- | ---- | ---- |---------- |
 | windowName   | string | 否 | 否  | 窗口名。 |
-| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute12) | 否 | 否   | 窗口的属性。用于配置创建的窗口是子窗口还是系统窗口。当windowAttribute配置为SUB_WINDOW时须配置subWindowOptions，当windowAttribute配置为SYSTEM_WINDOW时须配置systemWindowOptions，否则创建窗口失败。|
+| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute14) | 否 | 否   | 窗口的属性。用于配置创建的窗口是子窗口还是系统窗口。当windowAttribute配置为SUB_WINDOW时须配置subWindowOptions，当windowAttribute配置为SYSTEM_WINDOW时须配置systemWindowOptions，否则创建窗口失败。|
 | windowRect   | [Rect](js-apis-window.md#rect7) | 否 | 否   | 窗口矩形区域。 |
 | subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | 否 | 是 | 创建子窗口的参数。无默认参数，当windowAttribute配置为SUB_WINDOW时必选，否则会导致窗口创建失败。 |
-| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions12) | 否 | 是 | 创建系统窗口的参数。无默认参数，当windowAttribute配置为SYSTEM_WINDOW时必选，否则会导致窗口创建失败。 |
+| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions14) | 否 | 是 | 创建系统窗口的参数。无默认参数，当windowAttribute配置为SYSTEM_WINDOW时必选，否则会导致窗口创建失败。 |
