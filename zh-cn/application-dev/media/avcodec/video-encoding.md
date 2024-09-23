@@ -17,18 +17,18 @@
 
 <!--RP1--><!--RP1End-->
 
-通过视频编码，应用可以实现以下重点能力，包括：
+视频编码支持以下能力：
 
 <!--RP4-->
 |          支持的能力                       |                              使用简述                                            |
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
-| 分层编码，LTR设置                        | 具体可参考：[时域可分层视频编码](video-encoding-temporal-scalability.md)        |
+| 分层编码 <br> 设置LTR帧、参考帧                      | 具体可参考：[时域可分层视频编码](video-encoding-temporal-scalability.md)        |
 <!--RP4End-->
 
 ## 限制约束
 1. Buffer模式不支持10bit的图像数据。
 2. 由于硬件编码器资源有限，每个编码器在使用完毕后都必须调用OH_VideoEncoder_Destroy接口来销毁实例并释放资源。
-3. 在调用Flush，Reset，Stop的过程中，调用者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
+3. 一旦调用Flush，Reset，Stop接口，会触发系统回收OH_AVBuffer，调用者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
 4. Buffer模式和Surface模式使用方式一致的接口，所以只提供了Surface模式的示例。
 
 
@@ -42,7 +42,7 @@
 
 3. 在接口调用的过程中，两种方式的接口调用方式基本一致，但存在以下差异点：
  - Buffer模式下，应用调用OH_VideoEncoder_PushInputBuffer接口输入数据；Surface模式下，应用应在编码器就绪前调用OH_VideoEncoder_GetSurface接口，获取OHNativeWindow用于传递视频数据。
- - Buffer模式下，应用调用OH_VideoEncoder_PushInputBuffer接口传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream接口通知编码器输入流结束。
+ - Buffer模式下，调用者通过OH_AVBuffer中的attr传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream接口通知编码器输入流结束。
 
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 
@@ -144,7 +144,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     ```c++
     // 通过MIME TYPE创建编码器，只能创建系统推荐的特定编解码器
-    // 涉及创建多路编解码器时，优先创建硬件编码器实例，硬件资源不够时再创建软件编码器实例
+    // 只能创建硬件编码器
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
     ```
 
@@ -222,7 +222,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     > 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     >
 
-5. （可选）调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调。
+5. （可选）调用OH_VideoEncoder_RegisterParameterCallback()在Configur接口之前注册随帧通路回调。
 
     详情请参考[时域可分层视频编码](video-encoding-temporal-scalability.md)。
 
