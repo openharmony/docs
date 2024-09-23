@@ -4433,7 +4433,7 @@ Allows an application to save images and videos to the user's directory within u
 
 ### ohos.permission.ACCESS_SUPER_HUB
 
-Allows an application to start SuperHub。
+Allows an application to start SuperHub.
 
 **权限级别**：system_basic
 
