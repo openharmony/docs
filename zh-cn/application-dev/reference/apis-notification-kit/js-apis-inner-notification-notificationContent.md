@@ -31,7 +31,7 @@
 | title          | string |  否  |  否  | 通知标题（不可为空字符串，大小不超过200字节，超出部分会被截断）。         |
 | text           | string |  否  |  否  | 通知内容（不可为空字符串，大小不超过200字节，超出部分会被截断）。         |
 | additionalText | string |  否  |  是  | 通知附加内容，是对通知内容的补充（大小不超过200字节，超出部分会被截断）。   |
-| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  是  | 通知在锁屏界面显示的图片。   |
+| lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  是  | 通知在锁屏界面显示的图片。当前仅支持实况窗类型通知。   |
 
 ## NotificationLongTextContent
 
