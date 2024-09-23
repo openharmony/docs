@@ -559,7 +559,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
 
 ## 页面转场
 
-Navigation默认提供了页面切换的转场动画，通过页面栈操作时，会触发不同的转场效果（Dialog类型的页面默认无转场动画），Navigation也提供了关闭系统转场、自定义转场以及共享元素转场的能力。
+Navigation默认提供了页面切换的转场动画，通过页面栈操作时，会触发不同的转场效果（API version 13之前，Dialog类型的页面默认无转场动画。从API version13开始，Dialog类型的页面支持系统转场动画。），Navigation也提供了关闭系统转场、自定义转场以及共享元素转场的能力。
 
 ### 关闭转场
 
