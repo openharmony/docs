@@ -4430,3 +4430,15 @@ Allows an application to save images and videos to the user's directory within u
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.ACCESS_SUPER_HUB
+
+Allows an application to start SuperHub。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：12
