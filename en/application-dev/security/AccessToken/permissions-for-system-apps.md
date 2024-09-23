@@ -4441,7 +4441,7 @@ Allows an application to start SuperHub.
 
 **Permission level**: system_basic
 
-**Authorization mode**: user_grant
+**Authorization mode**: system_grant
 
 **Enable via ACL**: false
 
