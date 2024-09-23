@@ -33,11 +33,11 @@ API 11
 
 [@ohos.bundle.bundleManager.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.bundle.bundleManager.d.ts)中如下接口：
 
-1. function verifyAbc(abcPaths: Array<string>, deleteOriginalFiles: boolean, callback: AsyncCallback<void>): void;
+1. function verifyAbc(abcPaths: Array\<string\>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void\>): void;
 
-2. function verifyAbc(abcPaths: Array<string>, deleteOriginalFiles: boolean): Promise<void>;
+2. function verifyAbc(abcPaths: Array\<string\>, deleteOriginalFiles: boolean): Promise\<void\>;
 
-3. function deleteAbc(abcPath: string): Promise<void>;
+3. function deleteAbc(abcPath: string): Promise\<void\>;
 
 **适配指导**
 
