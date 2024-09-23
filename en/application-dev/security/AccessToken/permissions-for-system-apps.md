@@ -4435,10 +4435,14 @@ Allows an application to save images and videos to the user's directory within u
 
 Allows an application to start SuperHub.
 
-**权限级别**：system_basic
+### ohos.permission.ACCESS_SUPER_HUB
 
-**授权方式**：system_grant
+Allows an application to start SuperHub.
 
-**ACL使能**：false
+**Permission level**: system_basic
 
-**起始版本**：12
+**Authorization mode**: user_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 12
