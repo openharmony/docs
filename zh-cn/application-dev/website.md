@@ -1162,6 +1162,7 @@
         - [LLDB工具](tools/lldb-tool.md)
         <!--DelEnd-->
         - [param工具](tools/param-tool.md)
+        - [power-shell工具](tools/power-shell.md)
         - 命令行工具<!--command-line-utilities-->
           - [toybox工具](tools/toybox.md)
           - [mediatool工具](tools/mediatool.md)
