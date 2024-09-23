@@ -389,9 +389,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let srcPixelmap = image.createPixelMapSync(color, optsForUnpre);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let dstPixelMap = image.createPixelMapSync(optsForPre);
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
       console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
@@ -407,7 +408,7 @@ async function Demo() {
 
 createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
-将PixelMap数据按照透明度不前乘格式转为前乘格式，转换后的数据存入另一个PixelMap，通过Promise返回结果。
+将PixelMap数据按照透明度非预乘格式转为预乘格式，转换后的数据存入另一个PixelMap，通过Promise返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -449,9 +450,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let srcPixelmap = image.createPixelMapSync(color, optsForUnpre);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let dstPixelMap = image.createPixelMapSync(optsForPre);
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
   }).catch((error: BusinessError) => {
@@ -501,9 +503,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let srcPixelmap = image.createPixelMapSync(color, optsForPre);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let dstPixelMap = image.createPixelMapSync(optsForUnpre);
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
       console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
@@ -561,9 +564,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let srcPixelmap = image.createPixelMapSync(color, optsForPre);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let dstPixelMap = image.createPixelMapSync(optsForUnpre);
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
   }).catch((error: BusinessError) => {
@@ -5861,8 +5865,8 @@ img.release().then(() => {
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | 未知透明度。            |
 | OPAQUE   | 1      | 没有alpha或图片不透明。 |
-| PREMUL   | 2      | RGB前乘alpha。         |
-| UNPREMUL | 3      | RGB不前乘alpha。       |
+| PREMUL   | 2      | RGB预乘alpha。         |
+| UNPREMUL | 3      | RGB非预乘alpha。       |
 
 ## ScaleMode<sup>9+</sup>
 
