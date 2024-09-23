@@ -3889,6 +3889,18 @@ Allow a system service to access and read files in the /data/log/faultlog/faultl
 
 **Valid since**：12
 
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+Allows a system application to subscribe to the restore start event.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：13
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
