@@ -1114,9 +1114,9 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## window.getWindowFromPoint<sup>14+</sup>
+## window.getWindowsByCoordinate<sup>14+</sup>
 
-getWindowFromPoint(displayId: number, windowNumber?: number, x?: number, y?: number): Promise&lt;Array&lt;Window&gt;&gt;
+getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?: number): Promise&lt;Array&lt;Window&gt;&gt;
 
 查询指定坐标位置本应用的可见窗口，使用Promise异步回调。
 
@@ -1157,7 +1157,7 @@ try {
     let windowStage = storage.get<window.WindowStage>("windowStage") as window.WindowStage;
     let mainWindow = windowStage.getMainWindowSync();
     let properties = mainWindow.getWindowProperties();
-    window.getWindowFromPoint(properties.displayId).then((data) => {
+    window.getWindowsByCoordinate(properties.displayId).then((data) => {
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         for (let window of data) {
             // do something with window
@@ -1173,7 +1173,7 @@ try {
     let windowStage = storage.get<window.WindowStage>("windowStage") as window.WindowStage;
     let mainWindow = windowStage.getMainWindowSync();
     let properties = mainWindow.getWindowProperties();
-    window.getWindowFromPoint(properties.displayId, 2, 500, 500).then((data) => {
+    window.getWindowsByCoordinate(properties.displayId, 2, 500, 500).then((data) => {
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         for (let window of data) {
             // do something with window
