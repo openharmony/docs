@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](_drawing.md#oh_drawing_createfontcollection) (void) | 创建字体集对象[OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)。 | 
+| [OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](_drawing.md#oh_drawing_createfontcollection) (void) | 创建字体集对象[OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)。该函数创建的字体集指针对象[OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)只能被一个[OH_Drawing_TypographyCreate](_drawing.md#oh_drawing_typographycreate)对象使用，无法被多个[OH_Drawing_TypographyCreate](_drawing.md#oh_drawing_typographycreate)对象共享使用。如需在多个[OH_Drawing_TypographyCreate](_drawing.md#oh_drawing_typographycreate)对象间共享同一个[OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)，请使用[OH_Drawing_CreateSharedFontCollection](_drawing.md#oh_drawing_createsharedfontcollection)函数创建[OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection)对象。 | 
 | void [OH_Drawing_DestroyFontCollection](_drawing.md#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \*) | 释放被字体集对象占据的内存。 | 
 | void [OH_Drawing_DisableFontCollectionFallback](_drawing.md#oh_drawing_disablefontcollectionfallback) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \*fontCollection) | 禁用备用字体。 | 
 | void [OH_Drawing_DisableFontCollectionSystemFont](_drawing.md#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \*fontCollection) | 禁用系统字体。 | 
