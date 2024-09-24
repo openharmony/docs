@@ -3945,7 +3945,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待判断的bit值，0表示0，其余值表示1。 |
 | fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
-| toIndex   | number | 是   | 范围终止索引，不包含本索引值。       |
+| toIndex   | number | 是   | 范围终止索引，包含本索引值。       |
 
 **返回值：**
 
