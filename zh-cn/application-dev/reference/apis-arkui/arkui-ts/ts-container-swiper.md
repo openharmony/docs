@@ -44,7 +44,7 @@ Swiper(controller?: SwiperController)
 | 名称                                    | 参数类型                                     | 描述                                       |
 | ------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | index                                 | number                                   | 设置当前在容器中显示的子组件的索引值。<br/>默认值：0<br/>**说明：** <br/>设置小于0或大于等于子组件数量时，按照默认值0处理。<br />从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| autoPlay                              | boolean                                  | 子组件是否自动播放。<br/>默认值：false<br/>**说明：** <br/>loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。 |
+| autoPlay                              | boolean                                  | 子组件是否自动播放。<br/>默认值：false<br/>**说明：** <br/>loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。当Swiper不可见时会停止轮播。 |
 | interval                              | number                                   | 使用自动播放时播放的时间间隔，单位为毫秒。<br/>默认值：3000       |
 | indicator                             | [DotIndicator](#dotindicator10)<sup>10+</sup>  \| [DigitIndicator](#digitindicator10)<sup>10+</sup>  \| boolean | 设置可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
 | loop                                  | boolean                                  | 是否开启循环。<br>设置为true时表示开启循环，在LazyForEach懒循环加载模式下，加载的组件数量建议大于5个。<br/>默认值：true |
@@ -301,6 +301,7 @@ struct SwiperExample {
 ![swiper](figures/swiper.gif)
 
 ### 示例2
+该示例演示了使用数字指示器的效果和功能。
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -385,6 +386,7 @@ struct SwiperExample {
 ![swiper](figures/swiper-digit.gif)
 
 ### 示例3
+该示例通过dislayCount属性实现了按组翻页的效果。
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
