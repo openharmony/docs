@@ -446,9 +446,9 @@ struct PickerDemo {
   @State selectUris: Array<string> = new Array<string>();
   @State currentUri: string = '';
   @State isBrowserShow: boolean = false;
-  private selectedItemsDeletedCallback: ItemsDeletedCallback = (recentPhotoExists: boolean) => this.onSelectedItemsDeleted(recentPhotoExists);
-  private exceedMaxSeletedCallback: ExceedMaxSeletedCallback = (recentPhotoInfo: BaseItemInfo) => this.onExceedMaxSelected(recentPhotoInfo);
-  private currentAlbumDeletedCallback: CurrentAlbumDeletedCallback = () => this.onRecentPhotoCheckInfo(recentPhotoExists, info);
+  private selectedItemsDeletedCallback: ItemsDeletedCallback = (baseItemInfos: Array<BaseItemInfo>) => this.onSelectedItemsDeleted(recentPhotoExists);
+  private exceedMaxSeletedCallback: ExceedMaxSeletedCallback = (exceedMaxCountType: MaxCountType) => this.onExceedMaxSelected(recentPhotoInfo);
+  private currentAlbumDeletedCallback: CurrentAlbumDeletedCallback = () => this.onCurrentAlbumDeleted();
 
   aboutToAppear() {
     this.pickerOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;

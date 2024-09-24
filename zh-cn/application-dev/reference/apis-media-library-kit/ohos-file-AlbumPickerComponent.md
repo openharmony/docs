@@ -83,7 +83,7 @@ type EmptyAreaClickCallbck = () => void
 
 ```ts
 // xxx.ets
-import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, photoAccessHelper } from '@kit.MediaLibraryKit';
+import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo, PickerColorMode, photoAccessHelper } from '@kit.MediaLibraryKit';
 import { EmptyAreaClickCallbck } from '@ohos.file.AlbumPickerComponent';
 
 @Entry
