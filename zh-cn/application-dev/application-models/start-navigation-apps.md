@@ -6,20 +6,40 @@
 
 ## 导航类应用扩展面板参数说明
 
-startAbilityByType接口中type字段为navigation，对应的wantParam参数：
+startAbilityByType接口中type字段为navigation，支持路线规划、导航、位置搜索三种场景，对应的wantParam如下：
 
-| 属性名称             | 含义                                                         | 数据类型 | 是否必填 |
-| -------------------- | ------------------------------------------------------------ | -------- | -------- |
-| destinationLatitude  | 终点纬度                                                    | number   | sceneType=1或2时必填 |
-| destinationLongitude | 终点经度                                                     | number   | sceneType=1或2时必填 |
-| sceneType            | 意图取值 ：1：路线规划 2：导航 3： 地点搜索                                | number   | 否，缺省时默认为1   |
-| destinationName      | 终点名称                                                     | string   | sceneType=3时必填   |
-| destinationPoiIds      | 终点POI ID列表（路线规划或导航场景有效）                                                       | Record<number, string>   | 否   |
-| originName           | 起点名称（路线规划场景有效）                                   | string   | 否   |
-| originLatitude       | 起点纬度（路线规划场景有效）                                   | number   | 否   |
-| originLongitude      | 起点经度（路线规划场景有效）                                   | number   | 否   |
-| originPoiIds      | 起点POI ID列表（路线规划场景有效）                                                      | Record<number, string>   | 否   |
-| vehicleType          | 交通出行工具：0：驾车 1：步行 2：骑行 3：公交（路线规划场景有效） | number   | 否，缺省时由应用自行处理   |
+- 路线规划场景
+
+| 属性名称             | 含义                                                 | 是否必填          | 数据类型               |
+| -------------------- | ---------------------------------------------------- | ----------------- | ---------------------- |
+| sceneType            | 意图取值：1-路线规划                                 | 否，缺省时默认为1 | number                 |
+| originName           | 起点名称                                             | 否                | string                 |
+| originLatitude       | 起点纬度                                             | 否                | number                 |
+| originLongitude      | 起点经度                                             | 否                | number                 |
+| originPoiIds         | 起点POI ID列表                                       | 否                | Record<number, string> |
+| destinationName      | 终点名称                                             | 否                | string                 |
+| destinationLatitude  | 终点纬度                                             | 是                | number                 |
+| destinationLongitude | 终点经度                                             | 是                | number                 |
+| destinationPoiIds    | 终点POI ID列表                                       | 否                | Record<number, string> |
+| vehicleType          | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交； | 否                | number                 |
+
+- 导航场景
+
+| 属性名称             | 含义             | 是否必填 | 数据类型               |
+| -------------------- | ---------------- | -------- | ---------------------- |
+| sceneType            | 意图取值：2-导航 | 是       | number                 |
+| destinationName      | 终点名称         | 否       | string                 |
+| destinationLatitude  | 终点纬度         | 是       | number                 |
+| destinationLongitude | 终点经度         | 是       | number                 |
+| destinationPoiIds    | 终点POI ID列表   | 否       | Record<number, string> |
+
+- 位置搜索场景
+
+| 属性名称        | 含义                 | 是否必填 | 数据类型 |
+| --------------- | -------------------- | -------- | -------- |
+| sceneType       | 意图取值：3-位置搜索 | 是       | number   |
+| destinationName | 终点名称             | 是       | string   |
+
 
 > **说明：**
 > 
@@ -143,21 +163,38 @@ let wantParam: Record<string, Object> = {
 
     在参数**want.uri**中会携带目标方配置的linkFeature对应的uri;
 
-    在参数**want.parameters**中会携带Caller方传入的参数（与调用方传入的有些差异），如下表所示：
+    在参数**want.parameters**中会携带Caller方传入的参数，不同场景参数如下所示
 
-    | 属性名称             | 含义                                                         | 数据类型 | 是否必填 |
-    | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-    | destinationLatitude  | 终点纬度                                                     | number   | 路径规划或导航场景必填 |
-    | destinationLongitude | 终点经度                                                     | number   | 路径规划或导航场景必填 |
-    | destinationName      | 终点名称                                                     | string   | 位置搜索场景必填   |
-    | destinationPoiId      | 终点POI ID                                                     | string   | 否，存在时可用于展示路线规划或导航页面   |
-    | originName           | 起点名称                                   | string   | 否，存在时可用于展示路线规划页面   |
-    | originLatitude       | 起点纬度                                 | number   | 否，存在时可用于展示路线规划页面   |
-    | originLongitude      | 起点经度                                  | number   | 否，存在时可用于展示路线规划页面   |
-    | originPoiId      | 起点POI ID                                                     | string   | 否，存在时可用于展示路线规划页面   |
-    | vehicleType          | 交通出行工具：0：驾车 1：步行 2：骑行 3：公交（路线规划场景有效） | number   | 否，缺省时由应用自行处理   |
+    - 路线规划场景
+    
+    | 属性名称             | 含义                                                 | 是否必填 | 数据类型 |
+    | -------------------- | ---------------------------------------------------- | -------- | -------- |
+    | originName           | 起点名称                                             | 否       | string   |
+    | originLatitude       | 起点纬度                                             | 否       | number   |
+    | originLongitude      | 起点经度                                             | 否       | number   |
+    | originPoiId          | 起点POI ID                                           | 否       | string   |
+    | destinationName      | 终点名称                                             | 否       | string   |
+    | destinationLatitude  | 终点纬度                                             | 是       | number   |
+    | destinationLongitude | 终点经度                                             | 是       | number   |
+    | destinationPoiId     | 终点POI ID                                           | 否       | string   |
+    | vehicleType          | 交通出行工具，取值：0-驾车，1-步行，2-骑行，3-公交； | 否       | number   |
+    
+    - 导航场景
+    
+    | 属性名称             | 含义       | 是否必填 | 数据类型 |
+    | -------------------- | ---------- | -------- | -------- |
+    | destinationName      | 终点名称   | 否       | string   |
+    | destinationLatitude  | 终点纬度   | 是       | number   |
+    | destinationLongitude | 终点经度   | 是       | number   |
+    | destinationPoiId     | 终点POI ID | 否       | string   |
 
-    应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如路线规划、导航和位置搜索，结合接收到的uri开发不同的样式页面。
+    - 位置搜索场景
+    
+    | 属性名称        | 含义     | 是否必填 | 数据类型 |
+    | --------------- | -------- | -------- | -------- |
+    | destinationName | 终点名称 | 是       | string   |
+
+    应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如路线规划、导航和位置搜索，结合接收到的uri和参数开发不同的样式页面。
 
 **完整示例：**
 
