@@ -33,7 +33,7 @@ PhotoPickerComponent({
   onExitPhotoBrowser?: (photoBrowserInfo: PhotoBrowserInfo) => boolean,
   onPickerControllerReady?: () => void,
   onPhotoBrowserChanged?: (browserItemInfo: BaseItemInfo) => boolean,
-  onSelectedItemsDeleted?: (baseItemInfos: Array<BaseItemInfo>) => void,
+  onSelectedItemsDeleted?: (baseItemInfos: Array&lt;BaseItemInfo&gt;) => void,
   onExceedMaxSelected?: (exceedMaxCountType: MaxCountType) => void,
   onCurrentAlbumDeleted?: () => void,
   pickerController: PickerController
