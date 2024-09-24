@@ -10846,7 +10846,7 @@ type WebMessage = ArrayBuffer | string
 
 ## JsMessageType<sup>10+</sup>
 
-[runJavaScirptExt](#runjavascriptext10)接口脚本执行后返回的结果的类型。
+[runJavaScriptExt](#runjavascriptext10)接口脚本执行后返回的结果的类型。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10902,7 +10902,7 @@ ArkWeb渲染子进程模式类型。
 
 ## JsMessageExt<sup>10+</sup>
 
-[runJavaScirptExt](#runjavascriptext10)接口执行脚本返回的数据对象。
+[runJavaScriptExt](#runjavascriptext10)接口执行脚本返回的数据对象。
 
 ### getType<sup>10+</sup>
 
@@ -10916,7 +10916,7 @@ getType(): JsMessageType
 
 | 类型           | 说明                                                      |
 | --------------| --------------------------------------------------------- |
-| [JsMessageType](#jsmessagetype10) | [runJavaScirptExt](#runjavascriptext10)接口脚本执行后返回的结果的类型。 |
+| [JsMessageType](#jsmessagetype10) | [runJavaScriptExt](#runjavascriptext10)接口脚本执行后返回的结果的类型。 |
 
 ### getString<sup>10+</sup>
 
