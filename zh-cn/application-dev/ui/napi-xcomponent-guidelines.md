@@ -397,7 +397,7 @@ XComponent设置为“surface“类型时，其可以和其他组件一起进行
       }
    }
    
-   // 定义一个OnMouseEvent()方法
+   // 定义一个OnKeyEvent()方法
    void PluginRender::OnKeyEvent(OH_NativeXComponent *component, void *window) {
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnKeyEvent");
    
