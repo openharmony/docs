@@ -565,9 +565,9 @@ struct PickerDemo {
           onExitPhotoBrowser: (photoBrowserInfo: PhotoBrowserInfo): boolean => this.onExitPhotoBrowser(photoBrowserInfo),
           onPickerControllerReady: (): void => this.onPickerControllerReady(),
           onPhotoBrowserChanged: (browserItemInfo: BaseItemInfo): boolean => this.onPhotoBrowserChanged(browserItemInfo),
-          onSelectedItemsDeleted?: (baseItemInfos: Array<BaseItemInfo>) => void,
-          onExceedMaxSelected?: (exceedMaxCountType: MaxCountType) => void,
-          onCurrentAlbumDeleted?: () => void,
+          onSelectedItemsDeleted?: this.selectedItemsDeletedCallback,
+          onExceedMaxSelected?: this.exceedMaxSeletedCallback,
+          onCurrentAlbumDeleted?: this.currentAlbumDeletedCallback,
           pickerController: this.pickerController,
         }).height('60%').width('100%')
 
