@@ -36,12 +36,12 @@
 1. 两者的数据来源不同。
 
 2. 两者的适用场景不同：
-- Surface输入是指用OHNativeWindow来传递输入数据，可以与其他模块对接，例如相机模块。
-- Buffer输入是指有一块预先分配好的内存区域，调用者需要将原始数据拷贝进这块内存区域中。更适用于从文件中读取视频数据等场景。
+   - Surface输入是指用OHNativeWindow来传递输入数据，可以与其他模块对接，例如相机模块。
+   - Buffer输入是指有一块预先分配好的内存区域，调用者需要将原始数据拷贝进这块内存区域中。更适用于从文件中读取视频数据等场景。
 
 3. 在接口调用的过程中，两种方式的接口调用方式基本一致，但存在以下差异点：
- - Buffer模式下，应用调用OH_VideoEncoder_PushInputBuffer()输入数据；Surface模式下，应用应在编码器就绪前调用OH_VideoEncoder_GetSurface()，获取OHNativeWindow用于传递视频数据。
- - Buffer模式下，应用调用OH_VideoEncoder_PushInputBuffer()传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream()通知编码器输入流结束。
+   - Buffer模式下，应用调用OH_VideoEncoder_PushInputBuffer()输入数据；Surface模式下，应用应在编码器就绪前调用OH_VideoEncoder_GetSurface()，获取OHNativeWindow用于传递视频数据。
+   - Buffer模式下，应用调用OH_VideoEncoder_PushInputBuffer()传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream()通知编码器输入流结束。
 
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 

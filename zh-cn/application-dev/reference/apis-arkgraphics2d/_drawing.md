@@ -85,6 +85,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| typedef struct [OH_Drawing_FontArguments](#oh_drawing_fontarguments) [OH_Drawing_FontArguments](#oh_drawing_fontarguments) | 用于描述字型参数。 | 
 | typedef struct [OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils)[OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) | 定义指令录制工具，用于生成录制指令。 | 
 | typedef struct [OH_Drawing_RecordCmd](#oh_drawing_recordcmd)[OH_Drawing_RecordCmd](#oh_drawing_recordcmd) | 定义录制指令类, 用于存储录制指令的集合。 |
 | typedef enum [OH_Drawing_ErrorCode](#oh_drawing_errorcode)  [OH_Drawing_ErrorCode](#oh_drawing_errorcode) | 枚举本模块可能产生的错误码。 | 
@@ -235,6 +236,11 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateFromFileWithArguments](#oh_drawing_typefacecreatefromfilewitharguments) (const char \*path, const [OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments) | 从指定文件路径创建带有字型参数的字体对象。 如果字体对象不支持字型参数中描述的可变维度，此函数将会创建默认字型参数的字体对象。 在这种情况下，此函数将提供与[OH_Drawing_TypefaceCreateFromFile](#oh_drawing_typefacecreatefromfile)相同的功能。 | 
+| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_TypefaceCreateFromCurrent](#oh_drawing_typefacecreatefromcurrent) (const [OH_Drawing_Typeface](#oh_drawing_typeface) \*current, const [OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments) | 通过已存在的字体对象创建带有字型参数的字体对象。 | 
+| [OH_Drawing_FontArguments](#oh_drawing_fontarguments) \* [OH_Drawing_FontArgumentsCreate](#oh_drawing_fontargumentscreate) (void) | 用于创建一个字型参数对象。字型参数用于创建带有自定义属性的字体对象。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontArgumentsAddVariation](#oh_drawing_fontargumentsaddvariation) ([OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments, const char \*axis, float value) | 给字型参数对象添加可变维度。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontArgumentsDestroy](#oh_drawing_fontargumentsdestroy) ([OH_Drawing_FontArguments](#oh_drawing_fontarguments) \*fontArguments) | 用于销毁一个字型参数对象。 | 
 | double [OH_Drawing_TypographyGetLongestLineWithIndent](#oh_drawing_typographygetlongestlinewithindent) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取最长行的宽度（该宽度包含当前行缩进的宽度），建议实际使用时将返回值向上取整。当文本内容为空时，返回0.0。 | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode)[OH_Drawing_CanvasDrawRecordCmd](#oh_drawing_canvasdrawrecordcmd) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*canvas, [OH_Drawing_RecordCmd](#oh_drawing_recordcmd) \*recordCmd) | 用于绘制录制指令对象。 | 
 | [OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) \* [OH_Drawing_RecordCmdUtilsCreate](#oh_drawing_recordcmdutilscreate) (void) | 创建一个录制指令工具对象。 | 
@@ -391,7 +397,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | bool [OH_Drawing_FontIsEmbeddedBitmaps](#oh_drawing_fontisembeddedbitmaps) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形是否转换成位图处理。 | 
 | void [OH_Drawing_FontDestroy](#oh_drawing_fontdestroy) ([OH_Drawing_Font](#oh_drawing_font) \*) | 用于销毁字体对象并回收该对象占有的内存。 | 
 | float [OH_Drawing_FontGetMetrics](#oh_drawing_fontgetmetrics) ([OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | 获取字体度量信息。 | 
-| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection) (void) | 创建字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。 | 
+| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection) (void) | 创建字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。该函数创建的字体集指针对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)只能被一个[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)对象使用，无法被多个[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)对象共享使用。如需在多个[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)对象间共享同一个[OH_Drawing_FontCollection](#oh_drawing_fontcollection)，请使用[OH_Drawing_CreateSharedFontCollection](#oh_drawing_createsharedfontcollection)函数创建[OH_Drawing_FontCollection](#oh_drawing_fontcollection)对象。| 
 | void [OH_Drawing_DestroyFontCollection](#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | 释放被字体集对象占据的内存。 | 
 | void [OH_Drawing_DisableFontCollectionFallback](#oh_drawing_disablefontcollectionfallback) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用备用字体。 | 
 | void [OH_Drawing_DisableFontCollectionSystemFont](#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | 禁用系统字体。 | 
@@ -755,6 +761,18 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 
 ## 类型定义说明
+
+### OH_Drawing_FontArguments
+
+```
+typedef struct OH_Drawing_FontArguments OH_Drawing_FontArguments
+```
+
+**描述**
+
+用于描述字型参数。
+
+**起始版本：** 13
 
 ### OH_Drawing_RecordCmd
 
@@ -2897,6 +2915,129 @@ enum OH_Drawing_WordBreakType
 
 
 ## 函数说明
+
+
+### OH_Drawing_TypefaceCreateFromFileWithArguments()
+
+```
+OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromFileWithArguments (const char* path, const OH_Drawing_FontArguments* fontArguments )
+```
+
+**描述**
+
+从指定文件路径创建带有字型参数的字体对象。 如果字体对象不支持字型参数中描述的可变维度，此函数将会创建默认字型参数的字体对象。 在这种情况下，此函数将提供与[OH_Drawing_TypefaceCreateFromFile](#oh_drawing_typefacecreatefromfile)相同的功能。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| path | 指向字体对象所在文件路径的指针。 | 
+| fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](#oh_drawing_fontarguments)的指针。 | 
+
+**返回：**
+
+函数返回一个指针，指针指向创建的字体对象[OH_Drawing_Typeface](#oh_drawing_typeface)。 如果返回的对象指针为空，则表示字体对象创建失败。失败的原因可能为：没有可用的内存、 传入的文件路径对象指针或字型参数为空、传入的路径无效。
+
+
+### OH_Drawing_TypefaceCreateFromCurrent()
+
+```
+OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromCurrent (const OH_Drawing_Typeface* current, const OH_Drawing_FontArguments* fontArguments )
+```
+
+**描述**
+
+通过已存在的字体对象创建带有字型参数的字体对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| current | 指向字体对象[OH_Drawing_Typeface](#oh_drawing_typeface)的指针。 | 
+| fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](#oh_drawing_fontarguments)的指针。 | 
+
+**返回：**
+
+函数返回一个指针，指针指向创建的字体对象[OH_Drawing_Typeface](#oh_drawing_typeface)。 如果返回的对象指针为空，则表示字体对象创建失败。失败的原因可能为：没有可用的内存、 传入的文件路径对象指针或字型参数为空、传入的字体对象不支持字型参数对象中描述的可变维度。
+
+
+### OH_Drawing_FontArgumentsAddVariation()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontArgumentsAddVariation (OH_Drawing_FontArguments* fontArguments, const char* axis, float value )
+```
+
+**描述**
+
+给字型参数对象添加可变维度。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](#oh_drawing_fontarguments)的指针。 | 
+| axis | 字型参数对象可变维度的标签，必须为4个ASCII字符。具体可支持的标签取决于加载的字体文件，如'wght'即为字重标签。 | 
+| value | 可变维度标签对应的取值。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数fontArguments或axis任意一个为NULL或者axis的长度不为4。
+
+
+### OH_Drawing_FontArgumentsCreate()
+
+```
+OH_Drawing_FontArguments* OH_Drawing_FontArgumentsCreate (void)
+```
+
+**描述**
+
+用于创建一个字型参数对象。字型参数用于创建带有自定义属性的字体对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 13
+
+**返回：**
+
+返回一个指针，指针指向创建的字型参数对象。
+
+
+### OH_Drawing_FontArgumentsDestroy()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontArgumentsDestroy (OH_Drawing_FontArguments* fontArguments)
+```
+
+**描述**
+
+用于销毁一个字型参数对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| fontArguments | 指向字型参数对象[OH_Drawing_FontArguments](#oh_drawing_fontarguments)的指针。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数fontArguments为NULL。
 
 
 ### OH_Drawing_TypographyGetLongestLineWithIndent()
@@ -7507,7 +7648,7 @@ OH_Drawing_FontCollection* OH_Drawing_CreateFontCollection (void )
 
 **描述**
 
-创建字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。
+创建字体集对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)。该函数创建的字体集指针对象[OH_Drawing_FontCollection](#oh_drawing_fontcollection)只能被一个[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)对象使用，无法被多个[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)对象共享使用。如需在多个[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)对象间共享同一个[OH_Drawing_FontCollection](#oh_drawing_fontcollection)，请使用[OH_Drawing_CreateSharedFontCollection](#oh_drawing_createsharedfontcollection)函数创建[OH_Drawing_FontCollection](#oh_drawing_fontcollection)对象。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -7676,7 +7817,7 @@ OH_Drawing_TypographyCreate* OH_Drawing_CreateTypographyHandler (OH_Drawing_Typo
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
-| OH_Drawing_FontCollection | 指向OH_Drawing_FontCollection的指针，由[OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection)获取。 | 
+| OH_Drawing_FontCollection | 指向OH_Drawing_FontCollection的指针，可由[OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection)或[OH_Drawing_CreateSharedFontCollection](#oh_drawing_createsharedfontcollection)获取，建议使用[OH_Drawing_CreateSharedFontCollection](#oh_drawing_createsharedfontcollection)。 | 
 
 **返回：**
 

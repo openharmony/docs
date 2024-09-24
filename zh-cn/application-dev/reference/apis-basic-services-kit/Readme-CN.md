@@ -94,11 +94,13 @@
   - 模块
     - [CommonEvent](capi-common-event.md)
     - [OsAccount](_os_account.md)
+    - [OH_BatteryInfo](oh__batteryinfo.md)
     - [OH_Scan](c-apis-scan.md)
     - [OH_Print](_o_h___print.md)
     - [Pasteboard](_pasteboard.md)
     - [TimeService](_time_service.md)
   - 头文件
+    - [ohbattery_info.h](ohbattery__info_8h.md)
     - [oh_commonevent.h](oh_commonevent_8h.md)
     - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)
     - [oh_pasteboard.h](oh__pasteboard_8h.md)

@@ -1272,43 +1272,6 @@ currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSe
 
 ### getAVCastController<sup>10+</sup>
 
-getAVCastController(callback: AsyncCallback\<AVCastController>): void
-
-设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
-
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
-**参数：**
-
-| 参数名    | 类型                                                        | 必填 | 说明                                                         |
-| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback  | AsyncCallback<[AVCastController](#avcastcontroller10)\> | 是   | 回调函数，返回投播控制器实例。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
-
-| 错误码ID | 错误信息                                  |
-| -------- |---------------------------------------|
-| 6600102| The session does not exist.           |
-| 6600109| The remote connection is not established. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let aVCastController: avSession.AVCastController;
-currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastController) => {
-  aVCastController = avcontroller;
-  console.info('getAVCastController : SUCCESS');
-}).catch((err: BusinessError) => {
-  console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### getAVCastController<sup>10+</sup>
-
 getAVCastController(): Promise\<AVCastController>
 
 设备建立连接后，获取投播控制器。结果通过Promise异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
@@ -1329,6 +1292,43 @@ getAVCastController(): Promise\<AVCastController>
 
 | 错误码ID | 错误信息 |
 | -------- | --------------------------------------- |
+| 6600102| The session does not exist.           |
+| 6600109| The remote connection is not established. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let aVCastController: avSession.AVCastController;
+currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastController) => {
+  aVCastController = avcontroller;
+  console.info('getAVCastController : SUCCESS');
+}).catch((err: BusinessError) => {
+  console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getAVCastController<sup>10+</sup>
+
+getAVCastController(callback: AsyncCallback\<AVCastController>): void
+
+设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名    | 类型                                                        | 必填 | 说明                                                         |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback  | AsyncCallback<[AVCastController](#avcastcontroller10)\> | 是   | 回调函数，返回投播控制器实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- |---------------------------------------|
 | 6600102| The session does not exist.           |
 | 6600109| The remote connection is not established. |
 

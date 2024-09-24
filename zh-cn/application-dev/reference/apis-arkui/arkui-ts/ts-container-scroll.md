@@ -896,6 +896,8 @@ struct ScrollExample {
 
 ### 示例2
 ```ts
+import { LengthMetrics } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct NestedScroll {
@@ -915,7 +917,7 @@ struct NestedScroll {
             .fontSize(16)
             .textAlign(TextAlign.Center)
             .onClick(() => {
-              this.scrollerForList.scrollToIndex(5)
+              this.scrollerForList.scrollToIndex(5, false, ScrollAlign.START, { extraOffset: LengthMetrics.vp(5) })
             })
 
           List({ space: 20, scroller: this.scrollerForList }) {

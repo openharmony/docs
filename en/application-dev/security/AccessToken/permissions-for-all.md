@@ -273,7 +273,9 @@ Allows an application to access OpenHarmony Security Detection and Response Fram
 
 ### ohos.permission.RUN_DYN_CODE
 
-Allows an application to run dynamic code.
+Allows an application to run dynamically delivered ArkCompiler bytecode when the ArkCompiler runtime engine is in restricted mode.
+
+This permission is available only for certain system applications.
 
 **Permission level**: normal
 

@@ -2263,6 +2263,18 @@ Allows an application to use the location service without displaying the privacy
 
 **Valid since**: 12
 
+### ohos.permission.EXEMPT_PRIVACY_SECURITY_CENTER
+
+Allows a system application to be hidden on the Privacy & Security page.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ### ohos.permission.GET_SUPER_PRIVACY
 
 Allows a system application to obtain the status of the super privacy mode.
@@ -3865,6 +3877,18 @@ Allows a system application to use the camera in the background.
 
 **Valid since**：13
 
+### ohos.permission.ACCESS_ANALYTICS
+
+Allow a system service to access and read files in the /data/log/faultlog/faultlogger directory.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
@@ -4096,6 +4120,18 @@ Allows a system application or system service to grant third-party applications 
 **Authorization mode**: system_grant
 
 **Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.ACCESS_SUPER_HUB
+
+Allows an application to start SuperHub.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
 
 **Valid since**: 12
 

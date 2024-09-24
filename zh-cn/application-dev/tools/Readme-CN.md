@@ -12,6 +12,7 @@
 - [restool工具](restool.md)<!--Del-->
 - [LLDB工具](lldb-tool.md)<!--DelEnd-->
 - [param工具](param-tool.md)
+- [power-shell工具](power-shell.md)
 - [OpenHarmony SDK升级助手](openharmony_sdk_upgrade_assistant.md)
 - 命令行工具
   - [toybox工具](toybox.md)

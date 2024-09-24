@@ -111,6 +111,10 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 压缩文件，压缩的结果，使用callback异步回调返回。成功返回null，失败返回错误码。
 
+> **说明：**
+>
+>为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含../，否则会返回900001、900002错误码。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
@@ -166,6 +170,10 @@ try {
 compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 压缩文件，压缩的结果，使用Promise异步返回。成功时返回null，失败时返回错误码。
+
+> **说明：**
+>
+>为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含../，否则会返回900001、900002错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -228,6 +236,10 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
 
+> **说明：**
+>
+>为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含../，否则会返回900001、900002错误码。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
@@ -282,6 +294,10 @@ try {
 decompressFile(inFile: string, outFile: string, options?: Options): Promise\<void>
 
 解压文件，解压的结果，使用Promise异步返回，成功时返回null，失败时返回错误码。
+
+> **说明：**
+>
+>为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含../，否则会返回900001、900002错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -342,6 +358,10 @@ try {
 decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>): void
 
 解压文件，解压的结果，使用callback异步回调返回。成功时返回null，失败时返回错误码。
+
+> **说明：**
+>
+>为了避免路径穿越，从API version 13开始，inFile和outFile传入的参数不允许包含../，否则会返回900001、900002错误码。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

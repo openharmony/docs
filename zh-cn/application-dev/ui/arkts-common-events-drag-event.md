@@ -39,6 +39,27 @@
 
 更多用法参考[拖拽事件](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md)。
 
+[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)支持相关get方法获取拖拽行为的相关信息，下表列出了get方法在对应拖拽回调中是否能返回有效数据。
+| 回调事件 | onDragStart | onDragEnter | onDragMove | onDragLeave | onDrop | onDragEnd |
+| - | - | - | - | - | - | - |
+| getData         |   |   |   |   | 支持 |   |
+| getSummary      |   | 支持 | 支持 | 支持 | 支持 |   |
+| getResult       |   |   |   |   |   | 支持 |
+| getPreviewRect  |   |   |   |   | 支持 |   |
+| getVelocity/X/Y |   | 支持 | 支持 | 支持 | 支持 |   |
+| getWindowX/Y    | 支持 | 支持 | 支持 | 支持 | 支持 |   |
+| getDisplayX/Y   | 支持 | 支持 | 支持 | 支持 | 支持 |   |
+| getX/Y          | 支持 | 支持 | 支持 | 支持 | 支持 |   |
+| behavior        |   |   |   |   |   | 支持 |
+
+[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)支持相关set方法向系统传递信息，这些信息部分会影响系统对UI或数据的处理方式。下表列出了set方法应该在回调的哪个阶段执行才会被系统接受并处理。
+| 回调事件 | onDragStart | onDragEnter | onDragMove | onDragLeave | onDrop |
+| - | - | - | - | - | - |
+| useCustomDropAnimation |   |   |   |   | 支持 |
+| setData                | 支持 |   |   |   |   |
+| setResult              | 支持，可通过set failed或cancel来阻止拖拽发起 | 支持，不作为最终结果传递给onDragEnd | 支持，不作为最终结果传递给onDragEnd | 支持，不作为最终结果传递给onDragEnd  | 支持，作为最终结果传递给onDragEnd |
+| behavior               |   | 支持 | 支持 | 支持 | 支持 |
+
 ## 拖拽背板图
 
 拖拽移动过程中显示的拖拽背板图，并非是组件本身，其是用户拖动数据的表示，开发者可以将其设置为任意可显示的图像。其中onDragStart 回调返回的customBuilder或pixelmap可以设置拖拽移动过程中的背板图，浮起图默认使用组件本身的截图；dragpreview属性设置的customBuilder或pixelmap可以设置浮起和拖拽过程的背板图；如果开发者没有配置背板图，则系统会默认取组件本身的截图作为浮起及拖拽过程中的背板图。

@@ -44,6 +44,8 @@ XComponent设置为“surface“类型时，其可以和其他组件一起进行
 > **说明 :**
 >
 > 上述接口不支持跨线程访问。
+>
+> XComponent销毁（onSurfaceDestroyed回调触发后）时会释放上述接口中获取的OH_NativeXComponent和window对象。如果再次使用获取的对象，有可能会导致使用野指针或空指针的崩溃问题。
 
 **开发步骤**
 
@@ -395,7 +397,7 @@ XComponent设置为“surface“类型时，其可以和其他组件一起进行
       }
    }
    
-   // 定义一个OnMouseEvent()方法
+   // 定义一个OnKeyEvent()方法
    void PluginRender::OnKeyEvent(OH_NativeXComponent *component, void *window) {
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnKeyEvent");
    
