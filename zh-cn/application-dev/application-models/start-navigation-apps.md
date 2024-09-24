@@ -8,26 +8,6 @@
 
 startAbilityByType接口中type字段为navigation，支持路线规划、导航、位置搜索三种意图场景，对应的wantParam参数如下：
 
-> **说明：**
-> 
-> * 本文中的经纬度均采用GCJ-02坐标系统。
-> 
-> * 终点POI ID和起点POI ID需开发者自行从各地图系统中获取，并按照以下对应关系传参。
-```ts
-let wantParam: Record<string, Object> = {
-      // 其他参数
-      // ...,
-      'destinationPoiIds': {
-          1: '1111',  // key为1代表花瓣地图，value需为花瓣地图POI
-          2: '2222'   // key为2代表高德地图，value需为高德地图POI
-      } as Record<number, string>,
-      'originPoiIds': {
-          1: '3333',  // key为1代表花瓣地图，value需为花瓣地图POI
-          2: '4444'   // key为2代表高德地图，value需为高德地图POI
-      } as Record<number, string>
-    };
-```
-
 - 路线规划场景
 
     | 参数名               | 类型                   | 必填 | 说明                                                 |
@@ -60,6 +40,25 @@ let wantParam: Record<string, Object> = {
     | sceneType       | number | 是   | 意图，位置搜索场景填3 |
     | destinationName | string | 是   | 地点名称              |
 
+> **说明：**
+> 
+> * 本文中的经纬度均采用GCJ-02坐标系统。
+> 
+> * 终点POI ID和起点POI ID需开发者自行从各地图系统中获取，并按照以下对应关系传参。
+```ts
+let wantParam: Record<string, Object> = {
+      // 其他参数
+      // ...,
+      'destinationPoiIds': {
+          1: '1111',  // key为1代表花瓣地图，value需为花瓣地图POI
+          2: '2222'   // key为2代表高德地图，value需为高德地图POI
+      } as Record<number, string>,
+      'originPoiIds': {
+          1: '3333',  // key为1代表花瓣地图，value需为花瓣地图POI
+          2: '4444'   // key为2代表高德地图，value需为高德地图POI
+      } as Record<number, string>
+    };
+```
 
 ## 拉起方开发步骤
 
