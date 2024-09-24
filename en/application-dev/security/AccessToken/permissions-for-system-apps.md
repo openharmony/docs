@@ -4123,6 +4123,18 @@ Allows a system application or system service to grant third-party applications 
 
 **Valid since**: 12
 
+### ohos.permission.ACCESS_SUPER_HUB
+
+Allows an application to start SuperHub.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 12
+
 ## user_grant Permissions (Available via ACL)
 
 The following lists the user_grant permissions that can be requested via the ACL.
@@ -4428,21 +4440,5 @@ Allows an application to save images and videos to the user's directory within u
 **Authorization mode**: user_grant
 
 **Enable via ACL**: true
-
-**Valid since**: 12
-
-### ohos.permission.ACCESS_SUPER_HUB
-
-Allows an application to start SuperHub.
-
-### ohos.permission.ACCESS_SUPER_HUB
-
-Allows an application to start SuperHub.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: false
 
 **Valid since**: 12
