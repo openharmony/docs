@@ -57,6 +57,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称<!--Del-->，由发行方定义<!--DelEnd-->。 |
 | distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号<!--Del-->，由发行方定义<!--DelEnd-->。<!--RP1--><!--RP1End-->  |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本<!--Del-->，由发行方定义<!--DelEnd-->。 |
+| distributionOSApiName<sup>13+</sup> | String | 是 | 否 | 发行版系统api版本名称<!--Del-->，由发行方定义<!--DelEnd-->。 |
 | distributionOSReleaseType<sup>10+</sup> | String | 是 | 否 | 发行版系统类型<!--Del-->，由发行方定义<!--DelEnd-->。 |
 | ODID<sup>12+</sup> | String | 是 | 否 |开发者匿名设备标识符。<br/>**ODID值会在以下场景重新生成**：<br/>手机恢复出厂设置。<br/>同一设备上同一个开发者的应用全部卸载后重新安装时。<br/>**ODID生成规则**：<br/>同一设备上运行的同一个开发者的应用，ODID相同。<br/>同一个设备上不同开发者的应用，ODID不同。<br/>不同设备上同一个开发者的应用，ODID不同。<br/>不同设备上不同开发者的应用，ODID不同。<br/>**说明**：数据长度为37字节。 |
 
@@ -160,6 +161,9 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 
     let distributionOSApiVersion: number = deviceInfo.distributionOSApiVersion
     console.info('the value of the deviceInfo distributionOSApiVersion is :' + distributionOSApiVersion);
+
+    let distributionOSApiName: number = deviceInfo.distributionOSApiName
+    console.info('the value of the deviceInfo distributionOSApiName is :' + distributionOSApiName);
 
     let distributionOSReleaseType: string = deviceInfo.distributionOSReleaseType
     console.info('the value of the deviceInfo distributionOSReleaseType is :' + distributionOSReleaseType);
