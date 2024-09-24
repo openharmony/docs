@@ -4445,4 +4445,4 @@ Allows an application to start SuperHub.
 
 **Enable via ACL**: false
 
-**Valid since**: 13
+**Valid since**: 12
