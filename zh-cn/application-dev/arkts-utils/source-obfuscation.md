@@ -64,7 +64,7 @@ DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本�
 混淆功能被关闭希望重新开启混淆需要满足条件: 属性ruleOptions.enable的值为true。
 
 属性ruleOptions.files中指定的混淆配置文件会在构建HAP、HSP或HAR的时候生效。  
-属性consumerFiles中指定的混淆配置文件会在构建依赖这个library的模块时生效。 这些混淆配置文件的内容还会被合并到HAR包中的obfuscation.txt文件。
+属性consumerFiles中指定的混淆配置文件会在构建依赖这个library的模块时生效。这些混淆配置文件的内容还会被合并到HAR包中的obfuscation.txt文件。
 
 当构建HAP、HSP和HAR的时候，最终的混淆规则是当前构建模块的ruleOptions.files属性，依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。  
 如果构建的是HAR，HAR包中的obfuscation.txt是自身的consumerFiles属性， 依赖library的consumerFiles属性，以及依赖HAR包中的obfuscation.txt文件的合并。构建HAP、HSP不会生成obfuscation.txt。详细合并的策略可以查看[混淆规则合并策略](#混淆规则合并策略)。
@@ -659,15 +659,32 @@ end-for
 
 最后使用的混淆规则来自于对象`finalRule`。
 
-如果构建的是HAR，那么最终的`obfuscation.txt`文件内容来自于主工程和本地依赖的library的`consumerFiles`选项，
-以及依赖的HAR的`obfuscation.txt`文件的合并。合并策略和上面一样，除了以下的不同:
+如果构建的是HAR，那么最终的`obfuscation.txt`文件内容来自于自身和本地依赖的library的`consumerFiles`选项，以及依赖的HAR的`obfuscation.txt`文件的合并。
 
-* `-keep-dts`选项会被转换成`-keep-global-name`和`-keep-property-name`。
-* `-print-namecache`和`apply-namecache`选项会被忽略，不会出现在最后的`obfuscation.txt`文件中。
+当`consumerFiles`指定的混淆配置文件中包含以下混淆规则时，这些混淆规则会被合并到HAR包的`obfuscation.txt`文件中，而其他混淆规则不会。
+
+```
+// 混淆选项
+-enable-property-obfuscation
+-enable-string-property-obfuscation
+-enable-toplevel-obfuscation
+-compact
+-remove-log
+
+// 保留选项
+-keep-property-name
+-keep-global-name
+```
+
+**library中混淆注意事项**
+
+1. 如果`consumerFiles`指定的混淆配置文件中包含上述混淆选项，当其他模块依赖该HAR包时，这些混淆选项会与主模块的混淆规则合并，从而影响主模块。因此不建议开发者在`consumer-rules.txt`文件中配置混淆选项，建议仅配置保留选项。
+
+2. 如果在`consumerFiles`指定的混淆配置文件中添加`-keep-dts`选项，会被转换成`-keep-global-name`和`-keep-property-name`。
 
 ## 报错栈还原
 
-经过混淆的应用程序中代码名称会发生更改，crash时打印的报错栈更难以理解，因为报错栈与源码不完全一致。开发人员可使用DevEco Studio命令工具Command Line Tools中的hstack插件来还原源码堆栈，进而分析问题。反混淆工具需要使用应用编译过程中生成的sourceMap.json文件以及混淆名称映射文件nameCache.json文件，因此请本地备份它们。
+经过混淆的应用程序中代码名称会发生更改，crash时打印的报错栈更难以理解，因为报错栈与源码不完全一致。开发人员可使用DevEco Studio命令工具Command Line Tools中的hstack插件来还原源码堆栈，进而分析问题。反混淆工具需要使用应用编译过程中生成的sourceMaps.map文件以及混淆名称映射文件nameCache.json文件，因此请本地备份它们。
 
 ![obfuscation-product](figures/obfuscation-product.png)
 
