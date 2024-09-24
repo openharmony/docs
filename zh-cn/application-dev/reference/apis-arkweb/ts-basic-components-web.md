@@ -3249,7 +3249,7 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 多个web组件可能共享单个渲染进程，每个受影响的web组件都会触发该回调。
 
-应用处理该回调时，可以调用绑定的webviewContoller相关接口来恢复页面。例如[refresh](js-apis-webview.md#refresh)、[loadUrl](js-apis-webview.md#loadurl)等。
+应用处理该回调时，可以调用绑定的webviewController相关接口来恢复页面。例如[refresh](js-apis-webview.md#refresh)、[loadUrl](js-apis-webview.md#loadurl)等。
 
 组件生命周期回调详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
 
