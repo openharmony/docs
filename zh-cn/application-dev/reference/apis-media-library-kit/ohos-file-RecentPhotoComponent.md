@@ -11,7 +11,7 @@
 ```ts
 import {
   RecentPhotoComponent, RecentPhotoOptions, RecentPhotoCheckResultCallback,
-  RecentPhotoClickCallback, PhotoSource
+  RecentPhotoClickCallback, PhotoSource, RecentPhotoInfo, RecentPhotoCheckInfoCallback,
 } from '@ohos.file.RecentPhotoComponent';
 ```
 
@@ -24,7 +24,7 @@ import {
 RecentPhotoComponent({
   recentPhotoOptions?: RecentPhotoOptions,
   onRecentPhotoCheckResult?: RecentPhotoCheckResultCallback,
-  onRecentPhotoClick: RecentPhotoClickCallback，
+  onRecentPhotoClick: RecentPhotoClickCallback,
   onRecentPhotoCheckInfo?: RecentPhotoCheckInfoCallback,
 })
 
@@ -43,7 +43,7 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 | recentPhotoOptions       | [RecentPhotoOptions](#recentphotooptions)                         | 否  | 最近图片配置参数信息。                |
 | onRecentPhotoCheckResult | [RecentPhotoCheckResultCallback](#recentphotocheckresultcallback) | 否  | 最近图片查询结果回调函数。              |
 | onRecentPhotoClick       | [RecentPhotoClickCallback](#recentphotoclickcallback)             | 是  | 选择最近图片回调函数。                |
-| onRecentPhotoCheckInfo<sup>13+</sup>   | [RecentPhotoCheckInfoCallback](#recentphotocheckinfocallback)     | 否  | 最近图片查询结果回调函数,并且返回该照片的相关信息。 |
+| onRecentPhotoCheckInfo<sup>13+</sup>   | [RecentPhotoCheckInfoCallback](#recentphotocheckinfocallback13)   | 否  | 最近图片查询结果回调函数，并且返回该照片的相关信息。 |
 
 ## RecentPhotoOptions
 
@@ -59,7 +59,7 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 | MIMEType                | [photoAccessHelper.PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes) | 否    | 最近图片控件显示的文件类型，默认为PhotoViewMIMETypes.IMAGE_VIDEO_TYPE。                         |
 | photoSource             | [PhotoSource](#photosource)                                                             | 否    | 配置最近图片视频显示内容的来源，比如拍照、截屏等。默认不限制来源。                               |
 
-## RecentPhotoInfo
+## RecentPhotoInfo<sup>13+</sup>
 
 最近图片相关信息。
 
@@ -70,7 +70,7 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 | 名称          | 类型     | 必填  | 说明                                                        |
 |-------------|--------|-------|-----------------------------------------------------------|
 | datetaken   | number | 否    | 最近图片/视频的拍摄时间，单位为毫秒。（距1970年一月一日的毫秒数值）。                     |
-| identifier  | string | 否    | 最近图片/视频的名称hash值，用于辅助应用区分最新图片组件将要显示的图片/视频与之前曾显示过的图片/视频是否时同一个。 |
+| identifier  | string | 否    | 最近图片/视频的名称hash值，用于辅助应用区分最新图片组件将要显示的图片/视频与之前曾显示过的图片/视频是否为同一个。 |
 
 ## RecentPhotoCheckResultCallback
 
@@ -110,7 +110,7 @@ type RecentPhotoClickCallback = (recentPhotoInfo: BaseItemInfo) => boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | 应用回调中处理最近图片的结果返回。 |
 
-## RecentPhotoCheckInfoCallback
+## RecentPhotoCheckInfoCallback<sup>13+</sup>
 
 type RecentPhotoCheckInfoCallback = (recentPhotoExists: boolean, info: RecentPhotoInfo) => void
 
@@ -122,10 +122,10 @@ type RecentPhotoCheckInfoCallback = (recentPhotoExists: boolean, info: RecentPho
 
 **参数：**
 
-| 参数名               | 类型                                  | 必填 | 说明          |
-|-------------------|-------------------------------------| -------- |-------------|
-| recentPhotoExists | boolean                             | 是 | 查询最近图片是否存在。 |
-| info              | [RecentPhotoInfo](#recentphotoinfo) | 是 | 最近图片相关信息。   |
+| 参数名               | 类型                                    | 必填 | 说明          |
+|-------------------|---------------------------------------| -------- |-------------|
+| recentPhotoExists | boolean                               | 是 | 查询最近图片是否存在。 |
+| info              | [RecentPhotoInfo](#recentphotoinfo13) | 是 | 最近图片相关信息。   |
 
 ## PhotoSource
 
