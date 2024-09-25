@@ -394,11 +394,11 @@ import { uiObserver as observer } from '@kit.ArkUI'
 @Component
 struct Index {
   scroller: Scroller = new Scroller();
-  options: observer.ObserverOptions = { id:"testId" };
+  options: observer.ObserverOptions = { id: "testId" };
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   build() {
-    Row() {
+    Column() {
       Column() {
         Scroll(this.scroller) {
           Column() {
