@@ -248,7 +248,6 @@
           - [LifecycleService Switching](application-models/lifecycleservice-switch.md)
           - [LifecycleData Switching](application-models/lifecycledata-switch.md)
           - [DataAbilityHelper Switching](application-models/dataabilityhelper-switch.md)
-          - [mediaLibrary Switching](application-models/medialibrary-switch.md)
           - [request Switching](application-models/request-switch.md)
           - [resourceManager Switching](application-models/resourcemanager-switch.md)
           - [window Switching](application-models/window-switch.md)
@@ -307,7 +306,6 @@
         - Appendix<!--appendixes-->
           - [Comparison Between the Actor and Memory Sharing Models](arkts-utils/actor-model-development-samples.md)
           - [Serialization Types Supported by TaskPool and Worker](arkts-utils/serialization-support-types.md)
-          - [Precautions for Multithread Safe](arkts-utils/multi-thread-safety.md)
           - [\@Concurrent Decorator: Declaring and Verifying Concurrent Functions](arkts-utils/arkts-concurrent.md)
           - [Sendable Development](arkts-utils/arkts-sendable.md)
           - [System Objects That Accessed Sendable](arkts-utils/arkts-sendable-system-object-list.md)
@@ -373,6 +371,8 @@
         - Using Graphics<!--arkts-draw-graphics-->
           - [Drawing Geometric Shapes (Shape)](ui/arkts-geometric-shape-drawing.md)
           - [Drawing Custom Graphics on the Canvas (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
+        - Using Dialog Box
+          - [Custom Dialog Box (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
         - Using Animation<!--arkts-use-animation-->
           - [Animation Overview](ui/arkts-animation.md)
           - Property Animation<!--arkts-animation-attribute-->
@@ -664,10 +664,10 @@
       - [Service Widget Development in FA Model](form/widget-development-fa.md)
     - IME Kit<!--ime-kit-->
       - [Introduction to IME Kit](inputmethod/ime-kit-intro.md)
-      - [Implementing an Input Method Application](inputmethod/inputmethod_application_guide.md)
-      - [Using the Input Method in a Custom Edit Box](inputmethod/custom_input_box_guide.md)
-      - [Switching Between Input Methods](inputmethod/switch_inputmehod_guide.md)
-      - [Setting Input Method Subtypes](inputmethod/input_method_subtype_guide.md)
+      - [Implementing an Input Method Application](inputmethod/inputmethod-application-guide.md)
+      - [Using the Input Method in a Custom Edit Box](inputmethod/use-inputmethod-in-custom-edit-box.md)
+      - [Switching Between Input Methods](inputmethod/switch-inputmehod-guide.md)
+      - [Setting Input Method Subtypes](inputmethod/input-method-subtype-guide.md)
     - IPC Kit<!--ipc-kit-->
       - [Introduction to IPC Kit](ipc/ipc-rpc-overview.md)
       - [IPC and RPC Development](ipc/ipc-rpc-development-guideline.md)
@@ -1054,8 +1054,8 @@
     - Hardware<!--system-hardware-->
       - Driver Development Kit<!--driver-development-kit-->
         - [Introduction to Driver Development Kit](device/driver/driverdevelopment-overview.md)
-        - [DriverExtensionAbility Development](device/driver/driverextensionability.md)
         - [Peripheral Management Development](device/driver/externaldevice-guidelines.md)
+        - [DriverExtensionAbility Development](device/driver/driverextensionability.md)
       - Multimodal Awareness Kit<!--multimodal-awareness-kit-->
         - [Introduction to MultimodalAwareness Kit](device/stationary/multimodalawareness-kit-intro.md)
         - [Stationary Development](device/stationary/stationary-guidelines.md)
@@ -1442,8 +1442,6 @@
           - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](napi/use-napi-event-loop.md)
           - [Loading a Module Using Node-API](napi/use-napi-load-module-with-info.md)
           - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](napi/use-call-threadsafe-function-with-priority.md)
-          - [Error Handling Using Node-API](napi/use-napi-about-error.md)
-          - [Using Node-API Extension APIs](napi/use-napi-about-extension.md)
         - [Node-API FAQs](napi/use-napi-faqs.md)
       - Using JSVM-API<!--jsvm-->
         - [JSVM-API Overview](napi/jsvm-introduction.md)
@@ -1941,6 +1939,7 @@
             - [Key Event](reference/apis-arkui/arkui-ts/ts-universal-events-key.md)
             - [Focus Event](reference/apis-arkui/arkui-ts/ts-universal-focus-event.md)
             - [Mouse Event](reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md)
+            - [Hover Event](reference/apis-arkui/arkui-ts/ts-universal-events-hover.md)
             - [Accessibility Hover Event](reference/apis-arkui/arkui-ts/ts-universal-accessibility-hover-event.md)
             - [Component Area Change Event](reference/apis-arkui/arkui-ts/ts-universal-component-area-change-event.md)
             - [Component Size Change Event](reference/apis-arkui/arkui-ts/ts-universal-component-size-change-event.md)
@@ -2522,6 +2521,7 @@
             - [ArkWeb_AnyNativeAPI](reference/apis-arkweb/_ark_web___any_native_a_p_i.md)
             - [ArkWeb_ComponentAPI](reference/apis-arkweb/_ark_web___component_a_p_i.md)
             - [ArkWeb_ControllerAPI](reference/apis-arkweb/_ark_web___controller_a_p_i.md)
+            - [ArkWeb_CookieManagerAPI](reference/apis-arkweb/_ark_web___cookie_manager_a_p_i.md)
             - [ArkWeb_JavaScriptBridgeData](reference/apis-arkweb/_ark_web___java_script_bridge_data.md)
             - [ArkWeb_JavaScriptObject](reference/apis-arkweb/_ark_web___java_script_object.md)
             - [ArkWeb_ProxyMethod](reference/apis-arkweb/_ark_web___proxy_method.md)
@@ -2875,7 +2875,9 @@
           <!--DelEnd-->
         - Error Codes<!--distributed-service-arkts-errcode-->
           - [Device Management Error Codes](reference/apis-distributedservice-kit/errorcode-device-manager.md)
+          <!--Del-->
           - [Screen Hopping Error Codes](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
+          <!--DelEnd-->
       - Network Kit<!--network-api-->
         - ArkTS APIs<!--network-api-arkts-->
           - [@ohos.net.connection (Network Connection Management)](reference/apis-network-kit/js-apis-net-connection.md)
@@ -3073,10 +3075,14 @@
           - [USB Error Codes](reference/apis-basic-services-kit/errorcode-usb.md)
           - [RunningLock Error Codes](reference/apis-basic-services-kit/errorcode-runninglock.md)
           - [zlib Error Codes](reference/apis-basic-services-kit/errorcode-zlib.md) 
+          <!--Del-->
           - [Battery Info Error Codes](reference/apis-basic-services-kit/errorcode-battery-info.md)
           - [Power Consumption Statistics Error Codes](reference/apis-basic-services-kit/errorcode-batteryStatistics.md)
+          <!--DelEnd-->
           - [Pasteboard Error Codes](reference/apis-basic-services-kit/errorcode-pasteboard.md)
+          <!--Del-->
           - [Brightness Error Codes](reference/apis-basic-services-kit/errorcode-brightness.md)
+          <!--DelEnd-->
           - [Thermal Manager Error Codes](reference/apis-basic-services-kit/errorcode-thermal.md)
           - [Upload and Download Error Codes](reference/apis-basic-services-kit/errorcode-request.md)
           - [Time and Time Zone Error Codes](reference/apis-basic-services-kit/errorcode-time.md)
@@ -3084,13 +3090,11 @@
           - [System Parameter Error Codes](reference/apis-basic-services-kit/errorcode-system-parameterV9.md)
           - [Power Manager Error Codes](reference/apis-basic-services-kit/errorcode-power.md)
           - [Account Management Error Codes](reference/apis-basic-services-kit/errorcode-account.md)
-          <!--Del-->
           - [Update Error Codes](reference/apis-basic-services-kit/errorcode-update.md)
-          <!--DelEnd-->
-          - [Screen Lock Management Error Codes](reference/apis-basic-services-kit/errorcode-screenlock.md)
           - [Print Error Codes](reference/apis-basic-services-kit/errorcode-print.md)
-          - [Device Attestation Error Codes](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
           <!--Del-->
+          - [Screen Lock Management Error Codes](reference/apis-basic-services-kit/errorcode-screenlock.md)
+          - [Device Attestation Error Codes](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
           - [Intelligent Voice Error Codes](reference/apis-basic-services-kit/errorcode-intelligentVoice.md)
           <!--DelEnd-->
       - Function Flow Runtime Kit<!--function-flow-runtime-api-->

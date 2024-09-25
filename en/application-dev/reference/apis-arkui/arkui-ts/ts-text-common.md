@@ -214,7 +214,7 @@ Called when the specified menu item is clicked.
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | menuItem | [TextMenuItem](#textmenuitem) | Yes  | Menu item.|
-| range | [TextRange](#textrange12) | Yes  | Selected text.|
+| range | [TextRange](ts-universal-attributes-text-style.md#textrange12) | Yes  | Selected text.|
 
 **Return value**
 

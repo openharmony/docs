@@ -37,7 +37,8 @@ The application calls **sync()** with the devices to be synced and the sync mode
 
 ### Auto Sync
 
-In [multi-device collaboration via cross-device calls](../application-models/hop-multi-device-collaboration.md#using-cross-device-call), after an application updates data, the distributed database automatically pushes the local data to the peer ends and pulls the peer data to the local device for data sync. In this case, the application does not need to call **sync()**.
+<!--RP5-->
+In [multi-device collaboration via cross-device calls](../application-models/hop-multi-device-collaboration.md#using-cross-device-call), after an application updates data, the distributed database automatically pushes the local data to the peer ends and pulls the peer data to the local device for data sync. In this case, the application does not need to call **sync()**.<!--RP5End-->
 
 
 ## Working Principles

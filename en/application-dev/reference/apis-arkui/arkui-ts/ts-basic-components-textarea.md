@@ -298,7 +298,7 @@ When a custom keyboard is set, the text box does not support camera input, even 
 | Name               | Type                                       | Mandatory| Description                                                        |
 | --------------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value                 | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Custom keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | No  | Whether to support keyboard avoidance.                            |
+| options<sup>12+</sup> | KeyboardOptions       | No  | Whether to support keyboard avoidance.                            |
 
 ### type<sup>11+</sup>
 
@@ -772,7 +772,7 @@ Called when text is about to be inserted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](#insertvalue12), boolean> | Yes  | Callback triggered when text is about to be inserted.<br>It returns **true** if the text is inserted; returns **false** otherwise.<br>This callback is not called for text preview.<br>It is available only for system input methods.|
+| callback  | Callback\<InsertValue, boolean> | Yes  | Callback triggered when text is about to be inserted.<br>It returns **true** if the text is inserted; returns **false** otherwise.<br>This callback is not called for text preview.<br>It is available only for system input methods.|
 
 ### onDidInsert<sup>12+</sup>
 
@@ -786,7 +786,7 @@ Called when text is inserted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](#insertvalue12)> | Yes  | Callback triggered when text is inserted.<br>It is available only for system input methods.|
+| callback  | Callback\<InsertValue> | Yes  | Callback triggered when text is inserted.<br>It is available only for system input methods.|
 
 ### onWillDelete<sup>12+</sup>
 
@@ -800,7 +800,7 @@ Called when text is about to be deleted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[DeleteValue](#deletevalue12), boolean> | Yes  | Callback triggered when text is about to be deleted.<br>It returns **true** if the text is deleted; returns **false** otherwise.<br>This callback is not called for text preview.<br>It is available only for system input methods.|
+| callback  | Callback\<DeleteValue, boolean> | Yes  | Callback triggered when text is about to be deleted.<br>It returns **true** if the text is deleted; returns **false** otherwise.<br>This callback is not called for text preview.<br>It is available only for system input methods.|
 
 ### onDidDelete<sup>12+</sup>
 
@@ -814,7 +814,7 @@ Called when text is deleted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[DeleteValue](#deletevalue12)> | Yes  | Callback triggered when text is deleted.<br>It is available only for system input methods.|
+| callback  | Callback\<DeleteValue> | Yes  | Callback triggered when text is deleted.<br>It is available only for system input methods.|
 
 ## TextAreaController<sup>8+</sup>
 
@@ -854,7 +854,7 @@ Sets the text selection range and highlights the selected text when the componen
 | -------------- | -------- | ---- | ------------------------------------------------------------ |
 | selectionStart | number   | Yes  | Start position of the text selection range. The start position of text in the text box is 0.<br>A value less than 0 is handled as **0**. A value greater than the maximum text length is handled as the maximum text length.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | selectionEnd   | number   | Yes  | End position of the text selection range.<br>A value less than 0 is handled as the value **0**. A value greater than the maximum text length is handled as the maximum text length.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | No   | Configuration options for text selection.<br>Default value: **MenuPolicy.DEFAULT**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| options<sup>12+</sup>   | SelectionOptions | No   | Configuration options for text selection.<br>Default value: **MenuPolicy.DEFAULT**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 >  **NOTE**
 >
 >  If **selectionMenuHidden** is set to **true** or a 2-in-1 device is used, calling **setTextSelection** does not display the context menu even when **options** is set to **MenuPolicy.SHOW**.
@@ -918,36 +918,6 @@ Enumerates the content types for autofill.
 | DETAIL_INFO_WITHOUT_STREET | 24   | Address information without street address. The scenario-based autofill feature, when enabled, can automatically save and fill in address information without street addresses.|
 | FORMAT_ADDRESS             | 25   | Standard address. The scenario-based autofill feature, when enabled, can automatically save and fill in standard addresses.|
 
-## SelectionOptions<sup>12+</sup>
-
-Provides the configuration options for text selection.
-
-| Name      | Type                                           | Mandatory| Description            |
-| ---------- | ----------------------------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | No  | Menu display policy.|
-
-## KeyboardOptions<sup>12+</sup>
-
-Sets whether to support keyboard avoidance.
-
-| Name            | Type   | Mandatory| Description                                                        |
-| ---------------- | ------- | ---- | ------------------------------------------------------------ |
-| supportAvoidance | boolean | No  | Whether to support keyboard avoidance. The value **true** means to support keyboard avoidance, and **false** (default) means the opposite.|
-
-## InsertValue<sup>12+</sup>
-
-| Name   | Type                                                   | Mandatory| Description                                                        |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| insertOffset  | number | Yes  | Position of the inserted text.|
-| insertValue  | string | Yes  | Content of the inserted text.|
-
-## DeleteValue<sup>12+</sup>
-
-| Name   | Type                                                   | Mandatory| Description                                                        |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| deleteOffset  | number | Yes  | Position of the deleted text.|
-| direction  | [TextDeleteDirection](ts-appendix-enums.md#textdeletedirection12) | Yes  | Direction for deleting the text.|
-| deleteValue  | string | Yes  | Content of the deleted text.|
 
 ## Example
 

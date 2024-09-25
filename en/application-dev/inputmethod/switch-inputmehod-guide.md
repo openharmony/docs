@@ -6,7 +6,7 @@ You can use the APIs of the input method framework service to easily switch betw
 >
 > The following APIs can be called only in the current input method application.
 >
-> For details about how to implement an input method application, see [Implementing an Input Method Application](./inputmethod_application_guide.md).
+> For details about how to implement an input method application, see [Implementing an Input Method Application](./inputmethod-application-guide.md).
 
 ## Switching Between Input Method Subtypes
 
@@ -18,7 +18,7 @@ You can use the APIs of the input method framework service to easily switch betw
    export class KeyboardController {
      async switchCurrentInputMethodSubtype() {
        let subTypes = await inputMethod.getSetting().listCurrentInputMethodSubtype(); // Obtain all subtypes of the current input method.
-       let currentSubType = await inputMethod.getCurrentInputMethodSubtype(); // Obtain the current subtype of the current input method.
+       let currentSubType = inputMethod.getCurrentInputMethodSubtype(); // Obtain the current subtype of the current input method.
        for(let i=0;i<subTypes.length;i++) {
          if(subTypes[i].id != currentSubType.id) { // If the current subtype is not the specified one, switch to the specified one. You can enter a fixed subtype as required.
            await inputMethod.switchCurrentInputMethodSubtype(subTypes[i]);
