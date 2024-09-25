@@ -85,6 +85,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_LEARN_MORE_DIALOG
+
+允许系统应用拉起“进一步了解”的展示弹窗，获取更多详细信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ### ohos.permission.MANAGE_SETTINGS
 
 允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
