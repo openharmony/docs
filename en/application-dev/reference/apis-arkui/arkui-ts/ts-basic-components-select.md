@@ -364,7 +364,7 @@ Sets the background blur style of the drop-down list box.
 
 | Name | Type                                        | Mandatory | Description                                                        |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | Yes  | Background blur style of the drop-down list box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK** |
+| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Background blur style of the drop-down list box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK** |
 
 ## OptionWidthMode<sup>11+</sup>
 

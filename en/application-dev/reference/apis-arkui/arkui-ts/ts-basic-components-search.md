@@ -330,7 +330,7 @@ Sets the color, type, and style of the text decorative line.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](#textdecorationoptions12) | Yes  | Text decorative line options.<br>Default value: {<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>} |
+| value  | TextDecorationOptions | Yes  | Text decorative line options.<br>Default value: {<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>} |
 
 ### letterSpacing<sup>12+</sup>
 
@@ -489,29 +489,6 @@ Sets the extended options of the custom context menu on selection, including the
 | --------- | ------------------------------------------ | ---- | ---------------- |
 | fontSize  | [Length](ts-types.md#length)               | No  | Font size of the button. It cannot be set in percentage.|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Font color of the button.|
-
-## TextDecorationOptions<sup>12+</sup>
-
-| Name   | Type                                                   | Mandatory| Description                                                        |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | Yes  | Type of the text decorative line.|
-| color  |  [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the text decorative line.|
-| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | No  | Type of the text decorative line.|
-
-## InsertValue<sup>12+</sup>
-
-| Name   | Type                                                   | Mandatory| Description                                                        |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| insertOffset  | number | Yes  | Position of the inserted text.|
-| insertValue  | string | Yes  | Content of the inserted text.|
-
-## DeleteValue<sup>12+</sup>
-
-| Name   | Type                                                   | Mandatory| Description                                                        |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| deleteOffset  | number | Yes  | Position of the deleted text.|
-| direction  | [TextDeleteDirection](ts-appendix-enums.md#textdeletedirection12) | Yes  | Direction for deleting the text.|
-| deleteValue  | string | Yes  | Content of the deleted text.| 
 
 ## CancelButtonStyle<sup>10+</sup>
 
@@ -687,7 +664,7 @@ Called when text is about to be inserted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](#insertvalue12), boolean> | Yes  | Callback triggered when text is about to be inserted.<br>It returns **true** if the text is inserted; returns **false** otherwise.<br>This callback is not called for text preview.<br>It is available only for system input methods.|
+| callback  | Callback\<InsertValue, boolean> | Yes  | Callback triggered when text is about to be inserted.<br>It returns **true** if the text is inserted; returns **false** otherwise.<br>This callback is not called for text preview.<br>It is available only for system input methods.|
 
 ### onDidInsert<sup>12+</sup>
 
@@ -701,7 +678,7 @@ Called when text is inserted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](#insertvalue12)> | Yes  | Callback triggered when text is inserted.<br>It is available only for system input methods.|
+| callback  | Callback\<InsertValue> | Yes  | Callback triggered when text is inserted.<br>It is available only for system input methods.|
 
 ### onWillDelete<sup>12+</sup>
 
@@ -715,7 +692,7 @@ Called when text is about to be deleted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[DeleteValue](#deletevalue12), boolean> | Yes  | Callback triggered when text is about to be deleted.<br>It returns **true** if the text is deleted; returns **false** otherwise.<br>This callback is not called for text preview.<br>It is available only for system input methods.|
+| callback  | Callback\<DeleteValue, boolean> | Yes  | Callback triggered when text is about to be deleted.<br>It returns **true** if the text is deleted; returns **false** otherwise.<br>This callback is not called for text preview.<br>It is available only for system input methods.|
 
 ### onDidDelete<sup>12+</sup>
 
@@ -729,7 +706,7 @@ Called when text is deleted.
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[DeleteValue](#deletevalue12)> | Yes  | Callback triggered when text is deleted.<br>It is available only for system input methods.|
+| callback  | Callback\<DeleteValue> | Yes  | Callback triggered when text is deleted.<br>It is available only for system input methods.|
 
 ## SearchController
 

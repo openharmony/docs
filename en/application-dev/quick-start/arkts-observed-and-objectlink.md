@@ -466,11 +466,11 @@ struct ViewB {
 ![Observed_ObjectLink_object_array](figures/Observed_ObjectLink_object_array.gif)
 
 - this.arrA[Math.floor(this.arrA.length/2)] = new ClassA(..): The change of this state variable triggers two updates.
-  1. ForEach: The value assignment of the array item causes the change of [itemGenerator](arkts-rendering-control-foreach.md#available-apis) of **ForEach**. Therefore, the array item is identified as changed, and the item builder of **ForEach** is executed to create a **ViewA** component instance.
+  1. ForEach: The value assignment of the array item causes the change of [itemGenerator](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md) of **ForEach**. Therefore, the array item is identified as changed, and the item builder of **ForEach** is executed to create a **ViewA** component instance.
   2. ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] }): The preceding update changes the second element in the array. Therefore, the **ViewA** component instance bound to **this.arrA[1]** is updated.
 
 - this.arrA.push(new ClassA(0)): The change of this state variable triggers two updates with different effects.
-  1. ForEach: The newly added **ClassA** object is unknown to the **ForEach** [itemGenerator](arkts-rendering-control-foreach.md#available-apis). The item builder of **ForEach** will be executed to create a **ViewA** component instance.
+  1. ForEach: The newly added **ClassA** object is unknown to the **ForEach** [itemGenerator](../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md). The item builder of **ForEach** will be executed to create a **ViewA** component instance.
   2. ViewA({ label: ViewA this.arrA[last], a: this.arrA[this.arrA.length-1] }): The last item of the array is changed. As a result, the second **View A** component instance is changed. For **ViewA({ label: ViewA this.arrA[first], a: this.arrA[0] })**, a change to the array does not trigger a change to the array item, so the first **View A** component instance is not refreshed.
 
 - this.arrA[Math.floor(this.arrA.length/2)].c: @State cannot observe changes at the second layer. However, as **ClassA** is decorated by \@Observed, the change of its attributes will be observed by \@ObjectLink.

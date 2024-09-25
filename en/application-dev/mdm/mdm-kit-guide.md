@@ -2,22 +2,19 @@
 
 ## Introduction
 
-An device administrator application is an application with the [EnterpriseAdminExtensionAbility](mdm-kit-admin.md). It implements functions such as enterprise device management and event listening, application management, feature restriction management, security management, device settings, device control, device information acquisition, hardware peripheral management, system management, and network management. For details about the APIs, see [MDM Kit](../reference/apis-mdm-kit/Readme-EN.md).
+An device administrator application is an application with the [EnterpriseAdminExtensionAbility](mdm-kit-admin.md). It implements functions such as enterprise device management and event listening, application management, feature restriction management, security management, device settings, device control, device information acquisition, hardware peripheral management, system management, and network management. For details about the APIs, see **MDM Kit**.
 
 ## How to Develop
 
 To develop a device administrator application, perform the following steps:
 
-<!--RP1-->
+<!--RP1--><!--RP1End-->
 
 1. Create an **EnterpriseAdminExtensionAbility** instance.
 
 2. Declare the permissions required by the device administrator application.
 
 3. Develop and debug MDM functionalities. 
-
-<!--RP1End-->
-
 
 <!--RP2--><!--RP2End-->
 

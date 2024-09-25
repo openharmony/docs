@@ -478,10 +478,10 @@ If the custom menu is too long, embed a [\<Scroll>](./ts-container-scroll.md) co
 
 | Name      | Type                                                        | Mandatory | Description                                                        |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| spantype     | [TextSpanType](ts-appendix-enums.md#textspantype11)          | Yes  | Span type of the menu.<br>Default value: **TextSpanType.TEXT**              |
+| spanType     | TextSpanType          | Yes  | Span type of the menu.<br>Default value: **TextSpanType.TEXT**              |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)                  | Yes  | Content of the menu.                                            |
-| responseType | [TextResponseType](ts-appendix-enums.md#textresponsetype11)  | Yes  | Response type of the menu.<br>Default value: **TextResponseType.LONG_PRESS** |
-| options      | [SelectionMenuOptions](ts-appendix-enums.md#selectionmenuoptions11) | No  | Options of the menu.                                            |
+| responseType | TextResponseType  | Yes  | Response type of the menu.<br>Default value: **TextResponseType.LONG_PRESS** |
+| options      | [SelectionMenuOptions](ts-basic-components-richeditor.md#selectionmenuoptions10) | No  | Options of the menu.                                            |
 
 ### fontFeature<sup>12+</sup>
 

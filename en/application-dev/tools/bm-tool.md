@@ -341,7 +341,7 @@ The HAP file is not signed.
 **Solution**
 
 - Use automatic signature. After the device is connected, sign the application again.
-- To use manual signature, follow the instructions provided in [hapsigner Guide](../security/hapsigntool-guidelines.md).
+- To use manual signature, follow the instructions provided in [hapsigner Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/hapsigntool-guidelines.md).
   <br></br>
 
 ### 9568347
@@ -669,7 +669,7 @@ In the **module.json** file of the application project, **requiredReadPermission
 
 **Solution**
 
-Check whether the **proxyData** tag of the application is specified as required. For details, see <!--RP6-->[proxyData](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/module-configuration-file.md#proxydata%E6%A0%87%E7%AD%BE)<!--RP6End-->.
+Check whether the **proxyData** tag of the application is specified as required. For details, see <!--RP6-->[proxyData](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/module-configuration-file.md#proxydata)<!--RP6End-->.
 
 
 ### 9568315
