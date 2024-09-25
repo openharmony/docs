@@ -32,7 +32,7 @@ OH_NativeWindowManager_RegisterKeyEventFilter接口中，回调函数OH_NativeWi
 
 注入行为bug修复，开发者之前用code作硬编码需要改为对应的Input_KeyEventAction枚举。
 
-## cl.window.2 startAbility
+## cl.window.2 startAbility/openLink锁屏时限制拉起行为
 
 **访问级别**
 
@@ -50,11 +50,11 @@ OH_NativeWindowManager_RegisterKeyEventFilter接口中，回调函数OH_NativeWi
 
 |调用方|变更前|变更后|
 |---|---|---|
-|被拉起应用窗口未在创建时设置setShowOnLockScreen(true)|在锁屏下拉起到前台|应用窗口被关闭|
+|锁屏时调用接口拉起应用|在锁屏下拉起到前台|应用窗口被关闭|
 
 **起始API Level**
 
-5
+6
 
 **变更发生版本**
 
@@ -74,8 +74,8 @@ startAbility
 |startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback<AbilityResult>)|startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback<AbilityResult>)|
 |startAbilityForResult(want: Want, options?: StartOptions)|startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions)|startAbilityForResult(want: Want, options?: StartOptions)|
 |startAbilityByCall(want: Want)|startAbilityAsCaller(want: Want, callback: AsyncCallback<void>)|openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback<AbilityResult>)|
-|startAbilityByType(type: string, wantParam: Record<string, Object>, abilityStartCallback: AbilityStartCallback, callback: AsyncCallback<void>)|startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback<void>)|openAtomicService(appId: string, options?: AtomicServiceOptions)|
-|startAbilityByType(type: string, wantParam: Record<string, Object>, abilityStartCallback: AbilityStartCallback)|startAbilityAsCaller(want: Want, options?: StartOptions)|startAbilityForResultAsCaller(want: Want, options?: StartOptions)|
+||startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback<void>)|openAtomicService(appId: string, options?: AtomicServiceOptions)|
+||startAbilityAsCaller(want: Want, options?: StartOptions)|startAbilityForResultAsCaller(want: Want, options?: StartOptions)|
 |openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback<AbilityResult>)|startAbilityByCall(want: Want)||
 |startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>)|startRecentAbility(want: Want, callback: AsyncCallback<void>)||
 |startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>)||
@@ -90,3 +90,6 @@ startAbility
 |startAbilityAsCaller(want: Want, callback: AsyncCallback<void>)|||
 |startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback<void>)|||
 |startAbilityAsCaller(want: Want, options?: StartOptions)|||
+
+**适配指导**
+锁屏时取消对相关接口的调用，否则会关闭被拉起的应用。
