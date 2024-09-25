@@ -62,7 +62,7 @@ OpenHarmony-5.0-Release
 
 **变更的接口/组件**
 
-startAbility
+startAbility/openLink
 
 涉及相关接口：
 |UIAbilityContext|ServiceExtensionContext|UIExtensionContext|
@@ -92,4 +92,5 @@ startAbility
 |startAbilityAsCaller(want: Want, options?: StartOptions)|||
 
 **适配指导**
+
 锁屏时取消对相关接口的调用，否则会关闭被拉起的应用。
