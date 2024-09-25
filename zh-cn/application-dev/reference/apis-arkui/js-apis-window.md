@@ -9183,7 +9183,7 @@ export default class EntryAbility extends UIAbility {
 
 on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
-开启点击主窗三键区的关闭按钮监听，仅在2in1设备和Pad 自由多窗下生效，对于Dock栏、一步直达等关闭方式不生效。如果使用该监听事件从三键关闭时，将不调用 [UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#UIAbility.onPrepareToTerminate) 生命周期回调
+开启点击主窗三键区的关闭按钮监听，仅在2in1设备中，对存在标题栏和三键区的主窗口形态生效。如果注册该监听事件时，则注册的[UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#UIAbility.onPrepareToTerminate)生命周期回调函数将不执行。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -9195,8 +9195,8 @@ on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| eventType  | string                                                       | 是   | 监听事件，固定为'windowStageClose'，即开启主窗三键区的关闭按钮监听 |
-| callback | Callback&lt;void&gt; | 是   | 回调函数。当点击主窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前子窗是否继续关闭，true表示不关闭，false表示关闭。 |
+| eventType  | string                                                       | 是   | 监听事件，固定为'windowStageClose'，即开启主窗三键区的关闭按钮监听。|
+| callback | Callback&lt;void&gt; | 是   | 回调函数。当点击主窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前子窗是否继续关闭，true表示不关闭，false表示关闭。|
 
 **错误码：**
 
@@ -9213,12 +9213,13 @@ on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.on('windowStageClose', () => {
         console.info('Succeeded in enabling the listener for window stage close event.');
@@ -9233,7 +9234,7 @@ export default class EntryAbility extends UIAbility {
 
 ### off('windowStageClose')<sup>14+</sup>
 
-off(eventType: 'windowStageClose'): void
+off(eventType: 'windowStageClose', callback?: Callback&lt;void&gt;): void
 
 关闭主窗口关闭事件的监听。
 
@@ -9248,6 +9249,7 @@ off(eventType: 'windowStageClose'): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | 是   | 监听事件，固定为'windowStageClose'，即关闭主窗口关闭事件的监听。 |
+| callback | Callback&lt;void&gt; | 是   | 回调函数。当点击主窗口右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有boolean类型的返回值，该返回值决定当前子窗是否继续关闭，true表示不关闭，false表示关闭。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有子窗口关闭的监听。 |
 
 **错误码：**
 
@@ -9263,21 +9265,20 @@ off(eventType: 'windowStageClose'): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
-    try {
-      windowStage.on('windowStageClose', () => {
-        console.info('Succeeded in enabling the listener for window stage close event.');
-        return false;
-      });
-    } catch (exception) {
-      console.error(`Failed to enable the listener for window stage close event. Cause code: ${exception.code}, message: ${exception.message}`);
+    console.info('onWindowStageCreate');
+    const callback = () => {
+      // ...
+      return false;
     }
     try {
+      windowStage.on('windowStageClose', callback);
+      windowStage.off('windowStageClose', callback);
       windowStage.off('windowStageClose');
     } catch (exception) {
       console.error(`Failed to disable the listener for window stage close changes. Cause code: ${exception.code}, message: ${exception.message}`);
