@@ -8,8 +8,8 @@
 
 startAbilityByType接口中type字段为navigation，支持路线规划、导航、位置搜索三种意图场景，对应的wantParam参数如下：
 > **说明：**
-> 
-> * 本文中的经纬度均采用GCJ-02坐标系统。
+>
+> 本文中的经纬度均采用GCJ-02坐标系统。
 
 - 路线规划场景
 
