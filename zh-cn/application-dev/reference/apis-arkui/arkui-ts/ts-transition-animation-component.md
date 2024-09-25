@@ -101,7 +101,7 @@ TransitionOptions通过指定结构体内的参数来指定转场效果。
 | type | [TransitionType](ts-appendix-enums.md#transitiontype)  | 否 | 指定该转场样式生效的场景。<br/>默认值：TransitionType.All<br/>**说明：**<br/>不指定type时默认为TransitionType.All，即插入删除都生效。 |
 | opacity | number | 否 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。<br/>取值范围： [0, 1]<br/>**说明：** <br/>设置小于0的非法值时，按0处理；设置大于1的非法值时，按1处理。 |
 | translate |   [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions对象说明)  |否  | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。<br/>-x：横向的平移距离。<br/>-y：纵向的平移距离。<br/>-z：竖向的平移距离。|
-| scale |  [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions对象说明) | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：当前为二维显示，该参数无效 。<br>**说明：** <br>设置centerX、centerY为非法字符串时（例如，"illegalString"），默认值为"0"。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。 |
+| scale |  [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions对象说明) | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：当前为二维显示，该参数无效 。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br>**说明：** <br>设置centerX、centerY为非法字符串时（例如，"illegalString"），默认值为"0"。 |
 | rotate |  [RotateOptions](ts-universal-attributes-transformation.md#rotateoptions对象说明)| 否 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量分量。<br/>-y：纵向的旋转向量分量。<br/>-z：竖向的旋转向量分量。<br/>-&nbsp;centerX、centerY指旋转中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。 |
 
 >  **说明：**
