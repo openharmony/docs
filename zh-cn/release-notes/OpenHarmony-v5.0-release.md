@@ -124,8 +124,6 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 - 基于NDK的C API新增支持可变帧率的能力。
 
-- Surface支持HDR vivid渲染。
-
 - ColorSpaceManager支持sendable能力。
 
 - 字体引擎支持文字阴影能力，支持下划线对齐。
