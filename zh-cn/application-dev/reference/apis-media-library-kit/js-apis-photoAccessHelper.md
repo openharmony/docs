@@ -4395,7 +4395,8 @@ requestContent(imageFileUri: string, videoFileUri: string): Promise\<void>
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-对于本应用保存到媒体库的图片、视频资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
+- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
+- 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
 
@@ -4478,7 +4479,8 @@ requestContent(resourceType: ResourceType, fileUri: string): Promise\<void>
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-对于本应用保存到媒体库的图片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
+- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
+- 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
 
@@ -4560,7 +4562,8 @@ requestContent(resourceType: ResourceType): Promise\<ArrayBuffer>
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-对于本应用保存到媒体库的图片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
+- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
+- 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
 
