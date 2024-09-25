@@ -550,9 +550,10 @@ OffsetA为buildNode相对于父组件的偏移量，可以通过FrameNode中的[
 >
 > 在[webview](../apis-arkweb/js-apis-webview.md)中，内部已经处理过坐标系变换，可以将TouchEvent事件直接下发。
 >
-> 同一时间戳，postTouchEvent只能调用一次。
+> 同一时间戳，postTouchEvent只能调用一次。<!--Del-->
 >
 > 不支持[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)。
+<!--DelEnd-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -767,7 +768,7 @@ reuse(param?: Object): void
 
 recycle(): void
 
-传递recycle事件到BuiderNode中的自定义组件。
+传递recycle事件到BuilderNode中的自定义组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

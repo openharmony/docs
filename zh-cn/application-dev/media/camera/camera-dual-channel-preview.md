@@ -120,6 +120,21 @@
 
      // 会话开始
      await photoSession.start();
+
+     // 停止当前会话
+     await photoSession.stop();
+
+     // 释放相机输入流
+     await cameraInput.close();
+
+     // 释放预览输出流
+     await previewOutput.release();
+
+     // 释放拍照输出流
+     await previewOutput2.release();
+
+     // 释放会话
+     await photoSession.release();
    }
    ```
 

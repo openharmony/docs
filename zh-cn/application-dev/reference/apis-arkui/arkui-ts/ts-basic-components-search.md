@@ -70,7 +70,7 @@ placeholderColor(value: ResourceColor)
 
 placeholderFont(value?: Font)
 
-设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

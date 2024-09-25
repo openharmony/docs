@@ -273,7 +273,7 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 
 generateRandomUUID(entropyCache?: boolean): string
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。调用此函数会生成两个UUID，其中一个UUID进行缓存，一个UUID用于输出，首次调用时，参数是true或false无区别；下次调用时，如果参数是true，依旧缓存上次UUID，并生成新的UUID；如果参数是false，将生成两个UUID，其中一个UUID进行缓存，一个UUID进行输出。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。为了提升性能，此接口会默认使用缓存，即入参为true，最多可缓存128个随机的UUID。当缓存中128个UUID都被使用后，会重新进行一次缓存UUID的生成，以保证UUID的随机性。假如不需要使用缓存的UUID，请将入参设置为false。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

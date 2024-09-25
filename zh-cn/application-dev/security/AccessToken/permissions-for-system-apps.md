@@ -2237,7 +2237,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：12
 
 ### ohos.permission.EXEMPT_CAMERA_PRIVACY_INDICATOR
 
@@ -2285,7 +2285,7 @@
 
 **ACL使能**：true
 
-**起始版本**：12
+**起始版本**：13
 
 ### ohos.permission.GET_SUPER_PRIVACY
 
@@ -3913,6 +3913,18 @@
 
 **起始版本**：13
 
+### ohos.permission.ACCESS_ANALYTICS
+
+允许系统服务访问并读取路径/data/log/faultlog/faultlogger下文件的内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4144,6 +4156,18 @@
 **授权方式**：system_grant
 
 **ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SUPER_HUB
+
+允许应用拉起"中转站"。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
 
 **起始版本**：12
 

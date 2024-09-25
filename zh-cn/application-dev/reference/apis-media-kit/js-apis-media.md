@@ -221,7 +221,7 @@ createAVTranscoder(): Promise\<AVTranscoder>
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVTranscoder](#avtranscoder12)> | Promise对象。异步返回AVtranscoder实例，失败时返回null。可用于视频转码。 |
+| Promise\<[AVTranscoder](#avtranscoder12)> | Promise对象。异步返回AVTranscoder实例，失败时返回null。可用于视频转码。 |
 
 **错误码：**
 
