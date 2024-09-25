@@ -52,3 +52,5 @@ struct Index {
   }
 }
 ```
+
+除了上述通过fileUri从应用沙箱指定资源内容的方式，开发者还可以通过ArrayBuffer的方式添加资源内容，详情请参考[addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1)接口。
