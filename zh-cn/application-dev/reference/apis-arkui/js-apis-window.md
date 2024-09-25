@@ -1114,7 +1114,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## window.getWindowsByCoordinate<sup>14+</sup>
+## getWindowsByCoordinate<sup>14+</sup>
 
 getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?: number): Promise&lt;Array&lt;Window&gt;&gt;
 
@@ -1151,12 +1151,8 @@ getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?:
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = LocalStorage.getShared();
-
 try {
-    let windowStage = storage.get<window.WindowStage>("windowStage") as window.WindowStage;
-    let mainWindow = windowStage.getMainWindowSync();
-    let properties = mainWindow.getWindowProperties();
+    let properties = windowClass.getWindowProperties();
     window.getWindowsByCoordinate(properties.displayId).then((data) => {
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         for (let window of data) {
@@ -1165,14 +1161,7 @@ try {
     }).catch((err: BusinessError) => {
         console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
     });
-} catch (exception) {
-    console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
-}
 
-try {
-    let windowStage = storage.get<window.WindowStage>("windowStage") as window.WindowStage;
-    let mainWindow = windowStage.getMainWindowSync();
-    let properties = mainWindow.getWindowProperties();
     window.getWindowsByCoordinate(properties.displayId, 2, 500, 500).then((data) => {
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
         for (let window of data) {
