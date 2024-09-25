@@ -7,6 +7,9 @@
 ## 导航类应用扩展面板参数说明
 
 startAbilityByType接口中type字段为navigation，支持路线规划、导航、位置搜索三种意图场景，对应的wantParam参数如下：
+> **说明：**
+> 
+> * 本文中的经纬度均采用GCJ-02坐标系统。
 
 - 路线规划场景
 
@@ -40,33 +43,16 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
     | sceneType       | number | 是   | 意图，位置搜索场景填3 |
     | destinationName | string | 是   | 地点名称              |
 
-> **说明：**
-> 
-> * 本文中的经纬度均采用GCJ-02坐标系统。
-> 
-> * 终点POI ID和起点POI ID需开发者自行从各地图系统中获取，并按照以下对应关系传参。
-```ts
-let wantParam: Record<string, Object> = {
-      // 其他参数
-      // ...,
-      'destinationPoiIds': {
-          1: '1111',  // key为1代表花瓣地图，value需为花瓣地图POI
-          2: '2222'   // key为2代表高德地图，value需为高德地图POI
-      } as Record<number, string>,
-      'originPoiIds': {
-          1: '3333',  // key为1代表花瓣地图，value需为花瓣地图POI
-          2: '4444'   // key为2代表高德地图，value需为高德地图POI
-      } as Record<number, string>
-    };
-```
-
 ## 拉起方开发步骤
 
 1. 导入ohos.app.ability.common模块。 
     ```ts
     import { common } from '@kit.AbilityKit';
     ```
-2. 构造接口参数并调用startAbilityByType接口。
+2. 构造接口参数并调用startAbilityByType接口。 
+
+   终点POI ID列表（destinationPoiIds）和起点POI ID列表（originPoiIds）需开发者自行从各地图系统中获取，并按照对应关系传参。
+
 
     ```ts
     let context = getContext(this) as common.UIAbilityContext;
@@ -76,15 +62,15 @@ let wantParam: Record<string, Object> = {
       'destinationLongitude': 118.78315,
       'destinationName': 'xx市xx路xx号',
       'destinationPoiIds': {
-          1: "111111111111",
-          2: "222222222222"
+          1: '1111',  // key为1代表花瓣地图，value需为花瓣地图POI
+          2: '2222'   // key为2代表高德地图，value需为高德地图POI
       } as Record<number, string>,
       'originName': 'xx市xx公园',
       'originLatitude': 31.060844,
       'originLongitude': 120.78315,
       'originPoiIds': {
-          1: "333333333333",  
-          2: "444444444444"
+          1: '3333',  // key为1代表花瓣地图，value需为花瓣地图POI
+          2: '4444'   // key为2代表高德地图，value需为高德地图POI
       } as Record<number, string>,
       'vehicleType': 0
     };
