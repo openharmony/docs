@@ -14,7 +14,7 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
 
 ## Web组件网页加载的状态说明
 
-- [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)函数：在创建自定义组件的新实例后，在执行其build函数前执行。一般建议在此设置WebDebug调试模式[setWebDebuggingAccess](../reference/apis-arkweb/js-apis-webview.md#setwebdebuggingaccess)、设置Web内核自定义协议URL的跨域请求与fetch请求的权限[customizeSchemes](../reference/apis-arkweb/js-apis-webview.md#customizeschemes)、设置Cookie[configCookie](../reference/apis-arkweb/js-apis-webview.md#configcookie11-1)等。
+- [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)函数：在创建自定义组件的新实例后，在执行其build函数前执行。一般建议在此设置WebDebug调试模式[setWebDebuggingAccess](../reference/apis-arkweb/js-apis-webview.md#setwebdebuggingaccess)、设置Web内核自定义协议URL的跨域请求与fetch请求的权限[customizeSchemes](../reference/apis-arkweb/js-apis-webview.md#customizeschemes)、设置Cookie([configCookie](../reference/apis-arkweb/js-apis-webview.md#configcookie11-1))等。
 
 - [onControllerAttached](../reference/apis-arkweb/ts-basic-components-web.md#oncontrollerattached10)事件：当Controller成功绑定到Web组件时触发该回调，推荐在此事件中注入JS对象[registerJavaScriptProxy](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)、设置自定义用户代理[setCustomUserAgent](../reference/apis-arkweb/js-apis-webview.md#setcustomuseragent10)，可以在回调中使用[loadUrl](../reference/apis-arkweb/js-apis-webview.md#loadurl)，[getWebId](../reference/apis-arkweb/js-apis-webview.md#getwebid)等操作网页不相关的接口。但因该回调调用时网页还未加载，因此无法在回调中使用有关操作网页的接口，例如[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)等。
 
@@ -174,7 +174,7 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
 
 网页加载过程中需要关注一些重要的性能指标。例如，FCP(First Contentful Paint)首次内容绘制，FMP(First Meaningful Paint)首次有效绘制，LCP(Largest Contentful Paint)最大内容绘制等。Web组件提供了如下接口来通知开发者。
 
-- [onFirstContentfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstcontentfulpaint10)事件：网页首次内容绘制的回调函数。首次绘制文本、图像、非空白Canvva或者SVG的时间点。
+- [onFirstContentfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstcontentfulpaint10)事件：网页首次内容绘制的回调函数。首次绘制文本、图像、非空白Canvas或者SVG的时间点。
 
 - [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstmeaningfulpaint12)事件：网页首次有效绘制的回调函数。首次绘制页面主要内容的时间点。
 
