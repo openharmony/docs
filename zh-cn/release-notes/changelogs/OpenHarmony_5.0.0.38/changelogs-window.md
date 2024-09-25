@@ -70,8 +70,8 @@ startAbility/openLink
 |startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback<AbilityResult>)|startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback<AbilityResult>)|
 |startAbilityForResult(want: Want, options?: StartOptions)|startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions)|startAbilityForResult(want: Want, options?: StartOptions)|
 |startAbilityByCall(want: Want)|startAbilityAsCaller(want: Want, callback: AsyncCallback<void>)|openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback<AbilityResult>)|
-||startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback<void>)|openAtomicService(appId: string, options?: AtomicServiceOptions)|
-||startAbilityAsCaller(want: Want, options?: StartOptions)|startAbilityForResultAsCaller(want: Want, options?: StartOptions)|
+|startAbilityAsCaller(want: Want, options?: StartOptions)|startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback<void>)|openAtomicService(appId: string, options?: AtomicServiceOptions)|
+|startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback<void>)|startAbilityAsCaller(want: Want, options?: StartOptions)|startAbilityForResultAsCaller(want: Want, options?: StartOptions)|
 |openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback<AbilityResult>)|startAbilityByCall(want: Want)||
 |startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>)|startRecentAbility(want: Want, callback: AsyncCallback<void>)||
 |startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>)||
@@ -84,8 +84,6 @@ startAbility/openLink
 |startRecentAbility(want: Want, options?: StartOptions)|||
 |startAbilityByCallWithAccount(want: Want, accountId: number)|||
 |startAbilityAsCaller(want: Want, callback: AsyncCallback<void>)|||
-|startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback<void>)|||
-|startAbilityAsCaller(want: Want, options?: StartOptions)|||
 
 **适配指导**
 
