@@ -1,6 +1,6 @@
 # ArkTS子系统Changelog
 
-## cl.arkts.1 受限虚拟机中RestrictedWorker的接口访问级别变更
+## cl.arkts.1 Worker模块中RestrictedWorker的接口访问级别变更
 
 **访问级别**
 
@@ -15,11 +15,10 @@
 该变更为不兼容变更。
 
 变更前：
-受限虚拟机中RestrictedWorker类中的接口访问级别为public API，外部开发者可以调用。
+Worker模块中RestrictedWorker类中的接口访问级别为public API，外部开发者可以调用。
 
 变更后：
-受限虚拟机中RestrictedWorker类中的接口访问级别变更为system API，仅供系统应用调用，外部开发者将无法调用相关接口。
-
+Worker模块中RestrictedWorker类中的接口访问级别变更为system API，相关接口将不再对外暴露，仅供系统应用调用，外部开发者使用时会出现无法找到RestrictedWorker相关接口的编译失败问题。
 
 **起始API Level**
 
@@ -39,8 +38,4 @@ worker模块下的两个接口：
 
 **适配指导**
 
-受限虚拟机相关的接口访问级别变更为system API，相关接口将不再对外暴露。
-
-外部开发者将无法正常调用受限虚拟机相关的接口，强行使用会出现编译告警。
-
-如果业务场景只涉及线程间通信，对受限环境没有需求，可以选择使用worker.ThreadWorker类创建worker线程。
+如果业务场景只涉及线程间通信，可以选择使用worker.ThreadWorker类创建worker线程。

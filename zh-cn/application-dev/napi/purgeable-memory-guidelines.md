@@ -85,16 +85,16 @@ OpenHarmony提供Purgeable Memory内存管理机制，开发者可以使用相�
     class ReqObj;
 
     // 读取对象
-    OH_PurgeableMemory_BeginRead(pPurgmem);
+    if(OH_PurgeableMemory_BeginRead(pPurgmem)) {
+        // 获取PurgeableMemory对象大小
+        size_t size = OH_PurgeableMemory_ContentSize(pPurgmem);
 
-    // 获取PurgeableMemory对象大小
-    size_t size = OH_PurgeableMemory_ContentSize(pPurgmem);
+        // 获取PurgeableMemory对象内容
+        ReqObj* pReqObj = (ReqObj*) OH_PurgeableMemory_GetContent(pPurgmem);
 
-    // 获取PurgeableMemory对象内容
-    ReqObj* pReqObj = (ReqObj*) OH_PurgeableMemory_GetContent(pPurgmem);
-
-    // 读取PurgeableMemory对象结束
-    OH_PurgeableMemory_EndRead(pPurgmem);
+        // 读取PurgeableMemory对象结束
+        OH_PurgeableMemory_EndRead(pPurgmem);
+    }
     ```
 
 4. 写访问PurgeableMemory对象。
@@ -103,19 +103,19 @@ OpenHarmony提供Purgeable Memory内存管理机制，开发者可以使用相�
     class ReqObj;
 
     // 修改PurgeableMemory对象
-    OH_PurgeableMemory_BeginWrite(pPurgmem);
+    if(OH_PurgeableMemory_BeginWrite(pPurgmem)) {
+        // 获取PurgeableMemory对象数据
+        ReqObj* pReqObj = (ReqObj*) OH_PurgeableMemory_GetContent(pPurgmem);
 
-    // 获取PurgeableMemory对象数据
-    ReqObj* pReqObj = (ReqObj*) OH_PurgeableMemory_GetContent(pPurgmem);
+        // 声明扩展创建函数的参数
+        struct AppendParaData apdata = {1};
 
-    // 声明扩展创建函数的参数
-    struct AppendParaData apdata = {1};
+        // 更新PurgeableMemory对象重建规则
+        OH_PurgeableMemory_AppendModify(pPurgmem, AddFunc, &apdata);
 
-    // 更新PurgeableMemory对象重建规则
-    OH_PurgeableMemory_AppendModify(pPurgmem, AddFunc, &apdata);
-
-    // 修改PurgeableMemory对象结束
-    OH_PurgeableMemory_EndWrite(pPurgmem);
+        // 修改PurgeableMemory对象结束
+        OH_PurgeableMemory_EndWrite(pPurgmem);
+    }
     ```
 
 5. 销毁PurgeableMemory对象。
