@@ -92,6 +92,10 @@ ProgressType.Capsule | [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions1
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
+> **说明：**
+>
+> 该组件重写了通用属性[backgroundColor](ts-universal-attributes-background.md)，直接添加在Progress组件上，生效进度条的底色。如需设置整个Progress组件的背景色，需要在外层容器上添加backgroundColor，容器再包裹Progress组件。
+
 ### value
 
 value(value: number)
