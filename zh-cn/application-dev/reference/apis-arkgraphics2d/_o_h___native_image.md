@@ -62,7 +62,7 @@
 | int32_t [OH_NativeImage_GetTransformMatrixV2](#oh_nativeimage_gettransformmatrixv2) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | 根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。<br/>matrix在[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口调用后，才会更新。<br/>本接口为非线程安全类型接口。 | 
 | int32_t [OH_NativeImage_AcquireNativeWindowBuffer](#oh_nativeimage_acquirenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \*\*nativeWindowBuffer, int \*fenceFd) | 通过消费端的**OH_NativeImage**获取一个**OHNativeWindowBuffer**。<br/>本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。<br/>本接口将会创建一个**OHNativeWindowBuffer**。<br/>当使用**OHNativeWindowBuffer**时，用户需要通过[OH_NativeWindow_NativeObjectReference](_native_window.md#oh_nativewindow_nativeobjectreference)接口将其引用计数加一。<br/>当**OHNativeWindowBuffer**使用完，用户需要通过[OH_NativeWindow_NativeObjectUnreference](_native_window.md#oh_nativewindow_nativeobjectunreference)接口将其引用计数减一。<br/>本接口需要和[OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer)接口配合使用，否则会存在内存泄露。<br/>当fenceFd使用完，用户需要将其close。<br/>本接口为非线程安全类型接口。 | 
 | int32_t [OH_NativeImage_ReleaseNativeWindowBuffer](#oh_nativeimage_releasenativewindowbuffer) ([OH_NativeImage](#oh_nativeimage) \*image, [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \*nativeWindowBuffer, int fenceFd) | 通过**OH_NativeImage**实例将**OHNativeWindowBuffer**归还到buffer队列中。<br/>系统会将fenFd关闭，无需用户close。<br/>本接口为非线程安全类型接口。 | 
-| [OH_NativeImage](#oh_nativeimage) \* [OH_ConsumerSurface_Create](#oh_consumersurface_create) () | 创建一个**OH_NativeImage**实例，作为surface的消费端。<br/>本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。<br/>本接口需要和[OH_NativeImage_Destroy](#oh_nativeimage_destroy)接口配合使用，否则会存在内存泄露。<br/>本接口为非线程安全类型接口。 | 
+| [OH_NativeImage](#oh_nativeimage) \* [OH_ConsumerSurface_Create](#oh_consumersurface_create) () | 创建一个**OH_NativeImage**实例，作为surface的消费端。<br/>本接口仅用于surface消费端的内存轮转，创建的OH_NativeImage内部不会主动进行内存渲染处理。<br/>本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。<br/>本接口与 OH_NativeImage_AcquireNativeWindowBuffer和OH_NativeImage_ReleaseNativeWindowBuffer配合使用。<br/>本接口需要和[OH_NativeImage_Destroy](#oh_nativeimage_destroy)接口配合使用，否则会存在内存泄露。<br/>本接口为非线程安全类型接口。 | 
 | int32_t [OH_ConsumerSurface_SetDefaultUsage](#oh_consumersurface_setdefaultusage) ([OH_NativeImage](#oh_nativeimage) \*image, uint64_t usage) | 设置默认读写方式。 本接口为非线程安全类型接口。 | 
 | int32_t [OH_ConsumerSurface_SetDefaultSize](#oh_consumersurface_setdefaultsize) ([OH_NativeImage](#oh_nativeimage) \*image, int32_t width, int32_t height) | 设置几何图形默认尺寸。 本接口为非线程安全类型接口。 | 
 
@@ -261,9 +261,14 @@ OH_NativeImage* OH_ConsumerSurface_Create ()
 
 创建一个**OH_NativeImage**实例，作为surface的消费端。
 
+本接口仅用于surface消费端的内存轮转，创建的OH_NativeImage内部不会主动进行内存渲染处理。
+
 本接口不能与[OH_NativeImage_UpdateSurfaceImage](#oh_nativeimage_updatesurfaceimage)接口同时使用。
 
+本接口与 OH_NativeImage_AcquireNativeWindowBuffer和OH_NativeImage_ReleaseNativeWindowBuffer配合使用。
+
 本接口需要和[OH_NativeImage_Destroy](#oh_nativeimage_destroy)接口配合使用，否则会存在内存泄露。
+
 本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
