@@ -502,7 +502,7 @@ struct Index {
 }
 ```
 
-## cl.arkui.12 ChipGroup组件items拓展参数类型
+## cl.arkui.12 ChipGroup组件items拓展参数类型支持SymbolGlyphModifier
 
 **访问级别**
 
@@ -538,7 +538,7 @@ items: Array<IconItemOptions | SymbolGlyphModifier>;
 
 **适配指导**
 
-ChipGroup创建IconGroupSuffx变更：无需适配，但应注意变更后的属性范围扩展是否符合开发者预期，如不符合可具体参考：
+ChipGroup创建IconGroupSuffx变更：无需适配，开发者可以根据需要设置image或者symbol图标，如要使用symbol图标，可以参考以下示例：
 ```ts
 import { ChipSize, ChipGroup, IconGroupSuffix, SymbolGlyphModifier } from '@kit.ArkUI'
 
