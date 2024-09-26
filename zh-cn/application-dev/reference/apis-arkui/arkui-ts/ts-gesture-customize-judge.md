@@ -42,7 +42,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | 名称            | 类型                        | 描述         |
 | ---------------  | -------------------------   | -----------|
 | tag              | string                      | 手势标记。<br/>**说明：**<br/>如果未设置事件标识tag属性的情况下，此处tag不返回或者返回undefined。  |
-| type             | [GestureControl.GestureType](#gesturetype11)  | 手势类型。 |
+| type             | [GestureControl.GestureType](#gesturetype11)  | 手势类型。<br/>**说明：**<br/> 当手势为未暴露类型的系统内置手势事件时，type的值为-1。 |
 | isSystemGesture  | boolean                     | 判断当前手势是否是组件自带的手势。<br/>默认值：false |
 
 ## GestureType<sup>11+</sup>
@@ -51,16 +51,16 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 描述                                   |
-| ----- | -------------------------------------- |
-| TAP_GESTURE   | 点击手势|
-| LONG_PRESS_GESTURE  | 长按手势|
-| PAN_GESTURE    | 拖动手势|
-| PINCH_GESTURE   | 捏合手势|
-| SWIPE_GESTURE    | 滑动手势|
-| ROTATION_GESTURE   | 旋转手势|
-| DRAG    | 拖拽|
-| CLICK   | 点击|
+| 名称  | 值 | 描述                                   |
+| ----- | -------- | -------------------------------------- |
+| TAP_GESTURE   | 0 | 点击手势|
+| LONG_PRESS_GESTURE  | 1 | 长按手势|
+| PAN_GESTURE    | 2 | 拖动手势|
+| PINCH_GESTURE   | 3 | 捏合手势|
+| SWIPE_GESTURE    | 4 | 滑动手势|
+| ROTATION_GESTURE   | 5 | 旋转手势|
+| DRAG    | 6 | 拖拽|
+| CLICK   | 7 | 点击|
 
 ## BaseEvent对象说明
 
