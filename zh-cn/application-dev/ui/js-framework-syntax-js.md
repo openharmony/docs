@@ -122,7 +122,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 - 事件方法
   | 方法   | 参数                                                         | 描述                                                         |
   | ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | $watch | data:&nbsp;string,&nbsp;callback:&nbsp;string&nbsp;\|&nbsp;Function | 观察data中的属性变化，如果属性值改变，触发绑定的事件。示例见[$watch感知数据改变](../reference/apis-arkui/arkui-js/js-components-custom-props.md#watch感知数据改变)。<br/>用法：<br/>this.$watch('key',&nbsp;callback) |
+  | $watch | data:&nbsp;string,&nbsp;callback:&nbsp;string&nbsp;\|&nbsp;Function | 观察data中的属性变化，如果属性值改变，触发绑定的事件。示例见[\$watch感知数据改变](../reference/apis-arkui/arkui-js/js-components-custom-props.md#watch感知数据改变)。<br/>用法：<br/>this.$watch('key',&nbsp;callback) |
 
 - 页面方法
   | 方法                    | 参数                               | 描述                              |
