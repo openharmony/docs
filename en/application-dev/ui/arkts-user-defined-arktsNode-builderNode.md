@@ -42,7 +42,7 @@ Use the **build** API of **BuilderNode** to create a built-in component tree. Th
 >
 > In scenarios where @Builder is nested within another @Builder in the **build** method, ensure that the parameters of the nested @Builder match the input parameters provided to the **build** method.
 > 
-> For scenarios where @Builder is nested within another @Builder, if the parameter types do not match, you must include the [BuilderOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12) field as a parameter for the [build](../reference/apis-arkui/js-apis-arkui-builderNode.md) method.
+> For scenarios where @Builder is nested within another @Builder, if the parameter types do not match, you must include the [BuilderOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md) field as a parameter for the [build](../reference/apis-arkui/js-apis-arkui-builderNode.md) method.
 
 Create offline nodes and built-in component trees, and use them in conjunction with FrameNodes.
 
