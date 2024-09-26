@@ -6721,33 +6721,14 @@ brush.reset();
 
 矩阵对象。
 
-$$
-表示为\begin{bmatrix}
-    scaleX & skewX & transX \\
-    skewY & scaleY & transY \\
-    pers0 & pers1 & pers2
-\end{bmatrix}的3*3矩阵。
-$$
+表示为3*3的矩阵，如下图所示：
+
+![matrix_3x3](figures/matrix3X3.PNG)
+
 矩阵中的元素从左到右，从上到下分别表示水平缩放系数、水平倾斜系数、水平位移系数、垂直倾斜系数、垂直缩放系数、垂直位移系数、X轴透视系数、Y轴透视系数、透视缩放系数。
 设(x<sub>1</sub>, y<sub>1</sub>)为源坐标点，(x<sub>2</sub>, y<sub>2</sub>)为源坐标点通过矩阵变换后的坐标点，则两个坐标点的关系如下：
-$$\left[ \begin{matrix}
-   x_2 \\
-   y_2 \\
-   1
-  \end{matrix}
-  \right] = \left[
- \begin{matrix}
-  scaleX & skewX & transX \\
-  skewY & scaleY & transY \\
-  pers0 & pers1 & pers2
-  \end{matrix}
-  \right] \left[
- \begin{matrix}
-   x_1 \\
-   y_1 \\
-   1
-  \end{matrix}
-  \right]$$
+
+![matrix_xy](figures/matrix_xy.PNG)
 
 ### constructor<sup>12+</sup>
 
