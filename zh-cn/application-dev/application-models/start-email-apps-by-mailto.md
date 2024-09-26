@@ -1,4 +1,4 @@
-# mailto拉起电子邮件应用
+# 拉起邮件类应用（mailto方式）
 
 ## 使用场景
 
@@ -33,17 +33,17 @@ mailto:someone@example.com?key1=value1&key2=value2
 
 ### 网页开发mailto
 
-`超链接满足mailto协议即可`
+超链接满足mailto协议即可
 
 ```
 <a href="mailto:support@onlineshop.com?subject=Product Inquiry&body=I am interested in...">联系我们</a>
 ```
 
-![image](figures/mailto_html.gif)
+![image](figures/mailto-html.gif)
 
 ### 应用开发mailto
 
-`保证mailto字符串传入uri参数即可`，在应用中page页面可通过 getContext(this) 获取context，在ability中可通过this.context获取context。
+保证mailto字符串传入uri参数即可，在应用中page页面可通过 getContext(this) 获取context，在ability中可通过this.context获取context。
 
 ```
 @Entry
@@ -66,11 +66,11 @@ struct Index {
 }
 ```
 
-![image](figures/mailto_app.gif)
+![image](figures/mailto-app.gif)
 
 ## 目标方开发步骤
 
-（1）为了能够支持被其他应用通过mailto协议拉起，目标应用需要在[module.json5配置文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/module-configuration-file.md)中声明mailto。
+1. 为了能够支持被其他应用通过mailto协议拉起，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中声明mailto。
 
 ```
 {
@@ -99,17 +99,17 @@ struct Index {
 }
 ```
 
-（2）目标应用在代码中取出uri参数进行解析
+2. 目标应用在代码中取出uri参数进行解析
 
 ```
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void { 
-    // 应用冷启动...
+    // 应用冷启动生命周期回调，其他业务处理...
     parseMailto(want);
   }
 
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    // 应用热启动...
+    // 应用热启动生命周期回调，其他业务处理...
     parseMailto(want);
   }
 
@@ -118,7 +118,7 @@ export default class EntryAbility extends UIAbility {
     if (!uri || uri.length <= 0) {
       return;
     }
-    // start to parse mailto...
+    // 开始解析 mailto...
   }
 }
 
