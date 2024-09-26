@@ -65,9 +65,11 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 **描述**
 配置视频解码器，通常需要配置解码视频的描述信息，这些信息可以从OH_AVSource中提取。在调用OH_VideoDecoder_Prepare接口之前，必须调用此接口。
 
-参数校验规则：
+以下参数的配置范围可通过[能力查询](../../media/avcodec/obtain-supported-codecs.md)获取，OH_MD_KEY_ROTATION配置的参数都支持。
 
 设置OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY接口时如果当前平台不支持，不报错，走正常解码流程。
+
+参数校验规则：
 
 | Key                                                                          | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
 | -----------------------------------------------------------------------------| -------- | -------- | ------ |
