@@ -63,27 +63,27 @@ startAbility/openLink
 涉及相关接口：
 |UIAbilityContext|ServiceExtensionContext|UIExtensionContext|
 |---|---|---|
-|startAbility(want: Want, callback: AsyncCallback<void>)|startAbility(want: Want, callback: AsyncCallback<void>)|startAbility(want: Want, callback: AsyncCallback<void>)|
-|startAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>)|startAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>)|startAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>)|
+|startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)|startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)|startAbility(want: Want, callback: AsyncCallback&lt;void&gt;)|
+|startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|
 |startAbility(want: Want, options?: StartOptions)|startAbility(want: Want, options?: StartOptions)|startAbility(want: Want, options?: StartOptions)|
-|startAbilityForResult(want: Want, callback: AsyncCallback<AbilityResult>)|startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback<void>)|startAbilityForResult(want: Want, callback: AsyncCallback<AbilityResult>)|
-|startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback<AbilityResult>)|startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback<AbilityResult>)|
+|startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;)|startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback&lt;void&gt;)|startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;)|
+|startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;)|startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;)|
 |startAbilityForResult(want: Want, options?: StartOptions)|startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions)|startAbilityForResult(want: Want, options?: StartOptions)|
-|startAbilityByCall(want: Want)|startAbilityAsCaller(want: Want, callback: AsyncCallback<void>)|openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback<AbilityResult>)|
-|startAbilityAsCaller(want: Want, options?: StartOptions)|startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback<void>)|openAtomicService(appId: string, options?: AtomicServiceOptions)|
-|startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback<void>)|startAbilityAsCaller(want: Want, options?: StartOptions)|startAbilityForResultAsCaller(want: Want, options?: StartOptions)|
-|openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback<AbilityResult>)|startAbilityByCall(want: Want)||
-|startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>)|startRecentAbility(want: Want, callback: AsyncCallback<void>)||
-|startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>)||
+|startAbilityByCall(want: Want)|startAbilityAsCaller(want: Want, callback: AsyncCallback&lt;void&gt;)|openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;)|
+|startAbilityAsCaller(want: Want, options?: StartOptions)|startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|openAtomicService(appId: string, options?: AtomicServiceOptions)|
+|startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|startAbilityAsCaller(want: Want, options?: StartOptions)|startAbilityForResultAsCaller(want: Want, options?: StartOptions)|
+|openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;)|startAbilityByCall(want: Want)||
+|startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback&lt;AbilityResult&gt;)|startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;)||
+|startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)||
 |startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions)|startRecentAbility(want: Want, options?: StartOptions)||
-|startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback<void>)|startAbilityByCallWithAccount(want: Want, accountId: number)||
-|startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback<void>)|openLink(link:string, options?: OpenLinkOptions)||
+|startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback&lt;void&gt;)|startAbilityByCallWithAccount(want: Want, accountId: number)||
+|startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|openLink(link:string, options?: OpenLinkOptions)||
 |startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions)|||
-|startRecentAbility(want: Want, callback: AsyncCallback<void>)|||
-|startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback<void>)|||
+|startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;)|||
+|startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;)|||
 |startRecentAbility(want: Want, options?: StartOptions)|||
 |startAbilityByCallWithAccount(want: Want, accountId: number)|||
-|startAbilityAsCaller(want: Want, callback: AsyncCallback<void>)|||
+|startAbilityAsCaller(want: Want, callback: AsyncCallback&lt;void&gt;)|||
 
 **适配指导**
 
