@@ -44,8 +44,8 @@ OH_NativeWindowManager_RegisterKeyEventFilter接口中，回调函数OH_NativeWi
 
 **变更影响**
 
-该变更为不兼容变更。
-变更前：锁屏时可调用startAbility/openLink接口正常拉起应用并正常保持应用窗口为前台状态。
+该变更为不兼容变更。  
+变更前：锁屏时可调用startAbility/openLink接口正常拉起应用并正常保持应用窗口为前台状态。  
 变更后：锁屏时调用startAbility/openLink接口拉起应用时，当应用窗口到前台状态时会被窗口管理阻止进而关闭窗口和应用。
 
 **起始API Level**
