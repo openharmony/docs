@@ -39,7 +39,7 @@ mailto:someone@example.com?key1=value1&key2=value2
 <a href="mailto:support@onlineshop.com?subject=Product Inquiry&body=I am interested in...">联系我们</a>
 ```
 
-![image](https://wiki.huawei.com/vision-file-storage/api/file/download/upload-v2/WIKI202409214644818/12441083/81e34a17737b40f1a610470174d740d9.gif)
+![image](figures/mailto_html.gif)
 
 ### 应用开发mailto
 
@@ -66,7 +66,7 @@ struct Index {
 }
 ```
 
-![image](https://wiki.huawei.com/vision-file-storage/api/file/download/upload-v2/WIKI202409214644818/12441117/f84f3acf7f8342dba9ac1a741be5f0ea.gif)
+![image](figures/mailto_app.gif)
 
 ## 目标方开发步骤
 
