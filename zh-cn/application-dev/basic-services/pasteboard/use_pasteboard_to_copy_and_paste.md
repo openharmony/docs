@@ -31,57 +31,51 @@
 
 ### 示例代码
 ```ts
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
-import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.ArkData';
+import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    // 构造一条PlainText数据,并书写获取延时数据的函数。
-    let plainTextData = new unifiedDataChannel.UnifiedData();
-    let GetDelayPlainText = ((dataType: string) => {
-      let plainText = new unifiedDataChannel.PlainText();
-      plainText.details = {
-        Key: 'delayPlaintext',
-        Value: 'delayPlaintext',
-      };
-      plainText.textContent = 'delayTextContent';
-      plainText.abstract = 'delayTextContent';
-      plainTextData.addRecord(plainText);
-      return plainTextData;
-    });
+// 构造一条PlainText数据,并书写获取延时数据的函数。
+let plainTextData = new unifiedDataChannel.UnifiedData();
+let GetDelayPlainText = ((dataType:string) => {
+  let plainText = new unifiedDataChannel.PlainText();
+  plainText.details = {
+    Key: 'delayPlaintext',
+    Value: 'delayPlaintext',
+  };
+  plainText.textContent = 'delayTextContent';
+  plainText.abstract = 'delayTextContent';
+  plainTextData.addRecord(plainText);
+  return plainTextData;
+});
 
-    // 向系统剪贴板中存入一条PlainText数据。
-    let SetDelayPlainText = (() => {
-      plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
-      // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
-      plainTextData.properties.getDelayData = GetDelayPlainText;
-      pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(() => {
-        // 存入成功，处理正常场景
-      }).catch((error: BusinessError) => {
-        // 处理异常场景
-      });
-    })
+// 向系统剪贴板中存入一条PlainText数据。
+let SetDelayPlainText = (() => {
+  plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
+  // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
+  plainTextData.properties.getDelayData = GetDelayPlainText;
+  pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
+    // 存入成功，处理正常场景
+  }).catch((error: BusinessError) => {
+    // 处理异常场景
+  });
+})
 
-    // 从系统剪贴板中读取这条text数据
-    let GetPlainTextUnifiedData = (() => {
-      pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
-        let outputData = data;
-        let records = outputData.getRecords();
-        if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-          let record = records[0] as unifiedDataChannel.PlainText;
-          console.log('GetPlainText success, type:' + records[0].getType + ', details:' +
-          JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
-        } else {
-          console.log('Get Plain Text Data No Success, Type is: ' + records[0].getType());
-        }
-      }).catch((error: BusinessError) => {
-        //处理异常场景
-      })
-    })
-  }
-}
-
+// 从系统剪贴板中读取这条text数据
+let GetPlainTextUnifiedData = (() => {
+  pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
+    let outputData = data;
+    let records = outputData.getRecords();
+    if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+      let record = records[0] as unifiedDataChannel.PlainText;
+      console.log('GetPlainText success, type:' + records[0].getType + ', details:' +
+      JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
+    } else {
+      console.log('Get Plain Text Data No Success, Type is: ' + records[0].getType());
+    }
+  }).catch((error: BusinessError) => {
+    //处理异常场景
+  })
+})
 ```
 
 ## 使用基础类型进行复制粘贴
