@@ -4651,10 +4651,10 @@ Camera_ErrorCode OH_CaptureSession_SetZoomRatio(Camera_CaptureSession* session, 
 
 **参数:**
 
-| 名称 | 描述 | 
-| -------- | -------- |
-| session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| zoom | 要设置的目标缩放比。 | 
+| 名称 | 描述                                                        | 
+| -------- |-----------------------------------------------------------|
+| session | [Camera_CaptureSession](#camera_capturesession)实例。        | 
+| zoom | 要设置的目标缩放比。<br>设置可变焦距比到底层生效需要一定时间，获取正确设置的可变焦距比需要等待1~2帧的时间。 | 
 
 **返回：**
 
