@@ -3002,7 +3002,7 @@ if (pixelMap != undefined) {
 }
 ```
 
-### setMemoryNameSync<sup>13</sup>
+### setMemoryNameSync<sup>13+</sup>
 
 setMemoryNameSync(name: string): Promise\<void>
 
