@@ -253,7 +253,7 @@ typedef void(* OH_AVPlayerOnError) (OH_AVPlayer *player, int32_t errorCode, cons
 
 **废弃版本：** 12
 
-**替代接口：**[OH_AVPlayerOnError](#oh_avplayeronerror)
+**替代接口：**[OH_AVPlayerOnErrorCallback](#oh_avplayeronerrorcallback)
 
 **参数:**
 
