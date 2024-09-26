@@ -3003,6 +3003,53 @@ if (pixelMap != undefined) {
 }
 ```
 
+### setMemoryNameSync<sup>13+</sup>
+
+setMemoryNameSync(name: string): Promise\<void>
+
+设置PixelMap内存标识符。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名        | 类型                             | 必填 | 说明             |
+| ------------- | -------------------------------- | ---- | ---------------- |
+| name | string | 是   | pixelmap内存标识符，只允许DMA和ASHMEM内存形式的piexelmap设置，支持1-31位长度。 |
+
+**返回值：**
+
+| 类型           | 说明                  |
+| -------------- | --------------------- |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401|  Parameter error. Possible causes: name size is out of range.         |
+| 501 | Resource unavailable.          |
+| 62980286 | Setting memory identifier failed.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async Demo() {
+  if (pixelMap != undefined) {
+    try {
+      pixelMap.setMemoryNameSync("PixelMapName Test");
+    } catch(e) {
+      let error = e as BusinessError;
+      console.error(`setMemoryNameSync error. code is ${error.code}, message is ${error.message}`);
+    }
+  }
+}
+```
+
 ## image.createImageSource
 
 createImageSource(uri: string): ImageSource
