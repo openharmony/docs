@@ -45,23 +45,15 @@ HelloComponent可以在其他自定义组件中的build()函数中多次创建�
 
 
 ```ts
-class HelloComponentParam {
-  message: string = ""
-}
-
 @Entry
 @Component
 struct ParentComponent {
-  param: HelloComponentParam = {
-    message: 'Hello, World!'
-  }
-
   build() {
     Column() {
       Text('ArkUI message')
-      HelloComponent(this.param);
+      HelloComponent({ message: 'Hello World!' });
       Divider()
-      HelloComponent(this.param);
+      HelloComponent({ message: '你好，世界!' });
     }
   }
 }
