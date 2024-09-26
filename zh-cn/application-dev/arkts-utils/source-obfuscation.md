@@ -171,12 +171,14 @@ DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本�
 #### -enable-filename-obfuscation
 
 开启文件/文件夹名称混淆。如果使用这个选项，那么所有的文件/文件夹名称都会被混淆，例如：
+
 ```
 // directory和filename都会混淆
 import func from '../directory/filename';
 import { foo } from '../directory/filename';
 const module = import('../directory/filename');
 ```
+
 除了下面场景:
 
 * oh-package.json5文件中'main'、'types'字段配置的文件/文件夹名称不会被混淆。
@@ -330,15 +332,33 @@ testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
 ```
 const jsonData = ('./1.json')
 let jsonStr = JSON.parse(jsonData)
-let jsonObj = jsonStr.jsonProperty  // jsonProperty 需要保留
+let jsonObj = jsonStr.jsonProperty  // jsonProperty 需要被保留
 ```
 
 使用到的数据库相关的字段，需要手动保留。
 
 ```
 const dataToInsert = {  
-  value1: 'example1',   // value1 需要保留
+  value1: 'example1',   // value1 需要被保留
 };
+```
+
+源码中自定义装饰器修饰了成员变量、成员方法、参数，同时其源码编译的中间产物为js文件时（如编译release源码HAR或者源码包含@ts-ignore、@ts-nocheck），这些装饰器所在的成员变量/成员方法名称需要被保留。这是由于ts高级语法特性转换为js标准语法时，将上述装饰器所在的成员变量/成员方法名称硬编码为字符串常量。
+
+示例：
+
+```
+class A {
+  // 1.成员变量装饰器
+  @CustomDecoarter
+  propetyName: string = ""   // propetyName 需要被保留
+  // 2.成员方法装饰器
+  @MethodDecoarter
+  methodName1(){} // methodName1 需要被保留
+  // 3.方法参数装饰器
+  methodName2(@ParamDecorator param: string): void { // methodName2 需要被保留
+  }
+}
 ```
 
 #### `-keep-global-name` [,identifiers,...]
@@ -352,6 +372,7 @@ printPersonName
 ```
 
 namespace中导出的名称也可以通过`-keep-global-name`保留。
+
 ```
 export namespace Ns {
   export const age = 18; // -keep-global-name age 保留变量age
@@ -387,6 +408,7 @@ let d = new MyClass();      // MyClass 可以被正确地混淆
 ```
 import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testNapi1 应该被保留
 ```
+
 #### `-keep-file-name` [,identifiers,...]
 
 指定要保留的文件/文件夹的名称(不需要写文件后缀)，支持使用名称类通配符。例如，
@@ -446,7 +468,6 @@ export class exportClass {}
 
 1. 被`-keep filepath`所保留的文件，其依赖链路上的文件中导出名称及其属性都会被保留。
 2. 该功能不影响文件名混淆`-enable-filename-obfuscation`的功能。
-
 
 #### 保留选项支持的通配符
 
