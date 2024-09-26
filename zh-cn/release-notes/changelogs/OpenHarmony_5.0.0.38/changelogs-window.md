@@ -54,7 +54,7 @@ OH_NativeWindowManager_RegisterKeyEventFilter接口中，回调函数OH_NativeWi
 
 **变更发生版本**
 
-OpenHarmony-5.0-Release
+OpenHarmony SDK 5.0.0.71
 
 **变更的接口/组件**
 
