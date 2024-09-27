@@ -116,7 +116,7 @@ struct Index {
 // pageOne.ets
 import { router } from '@kit.ArkUI';
 
-@entry
+@Entry
 @Component
 struct pageOne {
   @State message: string = 'This is pageOne';
@@ -319,7 +319,6 @@ struct Index {
   build() {
     Navigation(this.pathStack) {
         // ...
-      }.width('100%').height('100%')
     }
     .title("Navigation")
     .mode(NavigationMode.Stack)
