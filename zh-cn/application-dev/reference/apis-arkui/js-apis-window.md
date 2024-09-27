@@ -723,7 +723,7 @@ getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?:
 
 | 参数名 | 类型   | 必填 | 说明                                                                       |
 | ------ | ---------- |----|--------------------------------------------------------------------------|
-| displayId   | number| 是  | 查询窗口所在的displayId，该参数应为整数，可以在窗口属性[WindowProperties](#WindowProperties)中获取 |
+| displayId   | number| 是  | 查询窗口所在的displayId，该参数应为整数，可以在窗口属性[WindowProperties](#windowproperties) 中获取 |
 | windowNumber    | number| 否  | 查询的窗口数量，该参数应为大于0整数，未设置或小于等于0返回所有满足条件的窗口。                                 |
 | x    | number | 否  | 查询的x坐标，该参数应为非负整数，未设置或小于0返回所有可见窗口。                                        |
 | y    | number| 否  | 查询的y坐标，该参数应为非负整数，未设置或小于0返回所有可见窗口。                                        |
