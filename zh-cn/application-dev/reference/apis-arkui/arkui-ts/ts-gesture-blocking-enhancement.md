@@ -275,6 +275,25 @@ getPanGestureOptions(): PanGestureOptions
 | ------ | --------- |
 | [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前拖动手势识别器的属性。 |
 
+## onGestureRecognizerJudgeBegin<sup>14+</sup>
+
+onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exposeInnerGestureFlag: boolean): T
+
+给组件绑定自定义手势识别器判定回调。
+
+相较于原有onGestureRecognizerJudgeBegin接口，新增exposeInnerGestureFlag参数作为是否触发ArkUi原生的组合组件内置组件手势拦截的标识，当该标识置为true时，onGestureRecognizerJudgeBegin在ArkUi原生的组合组件的内置组件上生效。
+对于不需要在ArkUi原生的组合组件内置组件上生效的场景，建议采用原有接口。若要求在组合组件的内置组件上生效，建议使用该接口并将exposeInnerGestureFlag设置为true。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名        | 参数类型                    | 必填  | 参数描述                          |
+| ---------- | -------------------------- | ------- | ----------------------------- |
+| callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | 是     |  给组件绑定自定义手势识别器判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
+| exposeInnerGestureFlag   | boolean         | 是    | 对内置组件手势拦截生效标识。<br/>默认值：false<br/>**说明**<br/>只有ArkUi原生的组合组件支持此标志位，并且只对默认自带的组件生效<br/>当使用默认值时，功能与原接口相同 |
+
 ## onGestureRecognizerJudgeBegin
 
 onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback): T
