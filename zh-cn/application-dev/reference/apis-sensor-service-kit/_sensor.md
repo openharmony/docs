@@ -554,7 +554,11 @@ SENSOR_TYPE_PEDOMETER_DETECTION:data[0]表示计步检测状态，1表示检测�
 
 SENSOR_TYPE_PEDOMETER:data[0]表示步数；
 
-SENSOR_TYPE_HEART_RATE:data[0]表示心率数值。
+SENSOR_TYPE_HEART_RATE:data[0]表示心率数值；
+
+SENSOR_TYPE_LINEAR_ACCELERATION:从API Version 13开始支持，data[0]、data[1]、data[2]分别表示绕设备的x、y、z的线性加速度，单位m/s²；
+
+SENSOR_TYPE_GAME_ROTATION_VECTOR:从API Version 13开始支持，data[0]、data[1]、data[2]分别表示设备分别围绕x、y、z的旋转角度，单位为度，data[3]表示旋转向量。
 
 **起始版本：** 11
 
