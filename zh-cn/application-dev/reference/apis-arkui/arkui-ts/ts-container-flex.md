@@ -7,6 +7,7 @@
 > - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - Flex组件在渲染时存在二次布局过程，因此在对性能有严格要求的场景下建议使用[Column](ts-container-column.md)、[Row](ts-container-row.md)代替。
 > - Flex组件主轴默认不设置时撑满父容器，[Column](ts-container-column.md)、[Row](ts-container-row.md)组件主轴不设置时默认是跟随子节点大小。
+> - 主轴长度可设置为auto使Flex自适应子组件布局，自适应时，Flex长度受constraintSize属性以及父容器传递的最大最小长度限制且constraintSize属性优先级更高。
 
 
 ## 子组件
@@ -386,3 +387,57 @@ struct FlexExample2 {
 ```
 
 ![zh-cn_image_0000001174422907](figures/zh-cn_image_0000001174422907.PNG)
+
+### 示例7
+该示例实现了flex在宽度设置auto后可以自适应子组件布局的能力。
+```ts
+@Component
+struct Demo {
+  @Require @Prop text: string
+
+  build() {
+    Button() {
+      Flex() {
+        Image($r('sys.media.ohos_ic_public_voice'))
+          .width(16)
+          .height(16)
+
+        Row() {
+          Text(this.text)
+            .margin({
+              left: 6,
+              right: 6
+            })
+            .fontSize(14)
+            .maxLines(1)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+        }
+
+        Image($r('sys.media.ohos_ic_public_sound'))
+          .width(16)
+          .height(16)
+      }.width("auto")
+    }
+    .backgroundColor(0xAFEEEE)
+    .height(36)
+    .padding({ left: 16, right: 16 })
+    .constraintSize({ maxWidth: 156 })
+    .width("auto")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column({ space: 12 }) {
+      Text("Width does not reach max length").fontSize(11).fontColor(0XCCCCCC).width("50%")
+      Demo({ text: "123" })
+      Text("Width reaches max length").fontSize(11).fontColor(0XCCCCCC).width("50%")
+      Demo({ text: "1234567890-1234567890-1234567890-1234567890" })
+    }
+  }
+}
+```
+
+![zh-cn_flexDemo_7](figures/zh-cn_flexDemo_7.png)
