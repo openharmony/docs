@@ -4,6 +4,8 @@ ArkTS提供了Sendable数据相关的[容器集](../reference/apis-arkts/js-apis
 
 ## Array
 
+支持原生容器Array通过[collections.Array.from](../reference/apis-arkts/js-apis-arkts-collections.md#from)方法转换为ArkTS Array容器；支持通过原生容器Array的from方法将ArkTS Array容器转换为原生容器Array。
+
 | 原生API方法 | ArkTS容器集方法 | 是否有行为差异 | 在ArkTS容器中的差异表现 |
 | --------------------------------- | ---- | ---- | ----------------- |
 | length: number |  readonly length: number  | 是 | 为了防止undefined扩散，不允许设置length。 |
@@ -44,6 +46,8 @@ ArkTS提供了Sendable数据相关的[容器集](../reference/apis-arkts/js-apis
 | new(byteLength: number): ArrayBuffer | constructor(byteLength: number)  | 否 | / |
 
 ## TypedArray（以Int8Array为例）
+
+支持原生容器TypedArray通过[collections.TypedArray.from](../reference/apis-arkts/js-apis-arkts-collections.md#from-1)方法转换为ArkTS TypedArray容器；支持通过原生容器TypedArray的from方法将ArkTS TypedArray容器转换为原生容器TypedArray。
 
 | 原生API方法 | ArkTS容器集方法 | 是否有行为差异 | 在ArkTS容器中的差异表现 |
 | --------------------------------- | ---- | ---- | ----------------- |
