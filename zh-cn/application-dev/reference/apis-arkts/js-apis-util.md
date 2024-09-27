@@ -2520,10 +2520,6 @@ for (let value of arrayValue) {
 
 返回一个键值对形式的二维数组。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -2536,7 +2532,6 @@ for (let value of arrayValue) {
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
 let pro = new util.LRUCache<number, number>();
 pro.put(2, 10);
