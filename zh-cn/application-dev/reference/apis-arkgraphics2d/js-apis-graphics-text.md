@@ -22,6 +22,120 @@
 import { text } from '@kit.ArkGraphics2D';
 ```
 
+## text.getSystemFontFullNamesByType<sup>14+</sup>
+
+getSystemFontFullNamesByType(fontType: SystemFontType): Promise&lt;Array&lt;string&gt;&gt;
+
+根据字体类型返回该类型对应的所有字体的字体名称，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| - | - | - | - |
+| fontType | [SystemFontType](#systemFontType14) | 是 | 指定的字体类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| - | - |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回相应字体类型的所有字体的字体名称。 |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+import { JSON } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("get font list")
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .width(300)
+          .height(80)
+          .onClick(() => {
+            let fontType:text.SystemFontType = text.SystemFontType.GENERIC
+            let promise = text.getSystemFontFullNamesByType(fontType)
+            promise.then((data) => {
+              console.info(`then font list size: ${data.length}`)
+              data.forEach((fontItem) => {
+                console.info(fontItem)
+              })
+            }).catch((error: BusinessError) => {
+              console.error(`Failed to get font fullNames by type, error: ${JSON.stringify(error)}`);
+            });
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## text.getFontDescriptorByFullName<sup>14+</sup>
+
+getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise&lt;FontDescriptor&gt;
+
+根据字体名称和字体类型获取对应的字体描述符，使用Promise异步回调。字体描述符是描述字体特征的一种数据结构，它包含了定义字体外观和属性的详细信息。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| - | - | - | - |
+| fullName | string | 是 | 指定的字体名称。 |
+| fontType | [SystemFontType](#systemFontType14) | 是 | 指定的字体类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| - | - |
+| Promise&lt;[FontDescriptor](#fontdescriptor14)&gt; | Promise对象，返回指定的字体描述符。 |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+import { JSON } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("get fontDesciptor")
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .width(300)
+          .height(80)
+          .onClick(() => {
+            let fontType:text.SystemFontType = text.SystemFontType.GENERIC
+            let promise = text.getFontDescriptorByFullName("HarmonyOS Sans", fontType)
+            promise.then((fontdecriptor) => {
+              console.info(`desc: ${JSON.stringify(fontdecriptor)}`)
+            }).catch((error: BusinessError) => {
+              console.error(`Failed to get fontDescriptor by fullName, error: ${JSON.stringify(error)}`);
+            });
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## TextAlign
 
 文本对齐方式枚举。
@@ -1841,3 +1955,16 @@ struct Index {
   }
 }
 ```
+
+## SystemFontType<sup>14+</sup>
+
+字体类型枚举，通过位或运算可实现组合类型。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称 | 值 | 说明 |
+| - | - | - |
+| ALL | 1 << 0 | 所有字体类型，包括系统字体类型、风格字体类型和用户已安装字体类型。 |
+| GENERIC  | 1 << 1 | 系统字体类型。 |
+| STYLISH  | 1 << 2 | 风格字体类型。风格字体类型是专为电脑设计的字体类型。 |
+| INSTALLED  | 1 << 3 | 用户已安装的字体类型。 |
