@@ -304,3 +304,4 @@ resMgr.getRawFileContent(modelName).then(modelBuffer => {
 
 - [基于ArkTS接口的MindSpore Lite应用开发（ArkTS）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ApplicationModels/MindSporeLiteArkTSDemo)
 
+<!--RP1--><!--RP1End-->
