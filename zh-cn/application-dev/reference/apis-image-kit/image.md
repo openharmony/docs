@@ -2479,7 +2479,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | napi的环境指针。  | 
-| source | **PixelMap**数据设置项。  | 
+| source | 应用层的 **PixelMap** 对象。  | 
 | alpha | alpha通道的指针。  | 
 
 **返回：**
@@ -2990,7 +2990,7 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source 
 | 名称 | 描述 | 
 | -------- | -------- |
 | env | napi的环境指针。  | 
-| source | **PixelMap** 对象。  |
+| source | 应用层的 **PixelMap** 对象。  |
 
 **返回：**
 
