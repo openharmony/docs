@@ -1874,7 +1874,7 @@ layoutMode(mode: WebLayoutMode)
 
 ### nestedScroll<sup>11+</sup>
 
-nestedScroll(value: NestedScrollOptions)
+nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 
 调用以设置嵌套滚动选项。
 
@@ -1891,7 +1891,7 @@ nestedScroll(value: NestedScrollOptions)
 
 | 参数名   | 类型                                     | 必填   | 说明             |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](#nestedscrolloptions11对象说明) | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
+| value | [NestedScrollOptions](#nestedscrolloptions11对象说明) \| [NestedScrollOptionsExt](#nestedscrolloptionsext13对象说明)<sup>13+</sup> | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
 
 **示例：**
 
@@ -1913,6 +1913,65 @@ nestedScroll(value: NestedScrollOptions)
       }
     }
   }
+  ```
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController()
+    build() {
+      Scroll(){
+        Column() {
+          Text("嵌套Web")
+            .height("25%")
+            .width("100%")
+            .fontSize(30)
+            .backgroundColor(Color.Yellow)
+          Web({ src: $rawfile('index.html'),
+                controller: this.controller })
+            .nestedScroll({
+              scrollUp: NestedScrollMode.SELF_FIRST,
+              scrollDown: NestedScrollMode.PARENT_FIRST,
+              scrollLeft: NestedScrollMode.SELF_FIRST,
+              scrollRight: NestedScrollMode.SELF_FIRST,
+            })
+        }
+      }
+    }
+  }
+  ```
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <style>
+      .blue {
+        background-color: lightblue;
+      }
+      .green {
+        background-color: lightgreen;
+      }
+      .blue, .green {
+       width: 100%;
+  	 font-size:70px;
+  	 height:1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blue" align="center" >滚动1</div>
+    <div class="green" align="center">滚动2</div>
+    <div class="blue" align="center">滚动3</div>
+    <div class="green" align="center">滚动4</div>
+    <div class="blue" align="center">滚动5</div>
+    <div class="green" align="center">滚动6</div>
+    <div class="blue" align="center">滚动7</div>
+  </body>
+  </html>
   ```
 ### enableNativeEmbedMode<sup>11+</sup>
 enableNativeEmbedMode(mode: boolean)
@@ -2346,6 +2405,55 @@ struct WebComponent {
   <body>
     <h1>editMenuOptions Demo</h1>
     <span>edit menu options</span>
+  </body>
+</html>
+```
+
+### enableHapticFeedback<sup>13+</sup>
+
+enableHapticFeedback(enabled: boolean)
+
+设置Web组件长按文本选择是否开启振动，默认开启。 需配置"ohos.permission.VIBRATE"。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型        | 必填   | 默认值 | 说明 |
+| --------- | ---------   | ------ | -----| ------------- |
+| enabled   | boolean | 是  | true | 是否开启振动。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller })
+      .enableHapticFeedback(true)
+    }
+  }
+}
+```
+
+ 加载的html文件。
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>测试网页</title>
+  </head>
+  <body>
+    <h1>enableHapticFeedback Demo</h1>
+    <span>enable haptic feedback</span>
   </body>
 </html>
 ```
@@ -6411,6 +6519,34 @@ getResponseMimeType(): string
 | ------ | ------------------ |
 | string | 返回资源响应的媒体（MIME）类型。 |
 
+### getResponseDataEx<sup>13+</sup>
+
+getResponseDataEx(): string | number | ArrayBuffer | Resource | undefined
+
+获取资源响应数据，支持多种数据类型。
+
+**返回值：**
+
+|类型|说明|
+|---|---|
+|string|返回HTML格式的字符串。|
+|number|返回文件句柄。|
+|ArrayBuffer|返回二进制数据。|
+|[Resource](../apis-arkui/arkui-ts/ts-types.md)|返回`$rawfile`资源。|
+|undefined|如果没有可用数据，返回`undefined`。|
+
+### getResponseIsReady<sup>13+</sup>
+
+getResponseIsReady(): boolean
+
+获取响应数据是否已准备就绪。
+
+**返回值：**
+
+|类型|说明|
+|---|---|
+|boolean|`true`表示响应数据已准备好，`false`表示未准备好。|
+
 ### setResponseData<sup>9+</sup>
 
 setResponseData(data: string \| number \| Resource \| ArrayBuffer): void
@@ -7147,6 +7283,17 @@ Web屏幕捕获的配置。
 | -------------- | ---------------- | -------------------- |
 | scrollForward  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
 | scrollBackward | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
+
+## NestedScrollOptionsExt<sup>13+</sup>对象说明
+
+通过NestedScrollOptionsExt可以设置上下左右四个方向的嵌套滚动规则。
+
+| 名称             | 类型               | 说明                   |
+| -------------- | ---------------- | -------------------- |
+| scrollUp  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往上滚动时的嵌套滚动选项。 |
+| scrollDown | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往下滚动时的嵌套滚动选项。 |
+| scrollLeft  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往左滚动时的嵌套滚动选项。 |
+| scrollRight | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往右滚动时的嵌套滚动选项。 |
 
 ## NestedScrollMode<sup>11+</sup>枚举说明
 
