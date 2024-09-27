@@ -119,3 +119,6 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
    选择当前的设备及进程，日志级别选择Verbose，搜索内容设置为“testTag”。此时窗口仅显示符合条件的日志。
 
    打印日志结果为“hello World 3”。
+
+<!--RP1-->
+<!--RP1End-->
