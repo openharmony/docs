@@ -165,7 +165,7 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 - 支持配置流媒体缓冲大小；支持音频Offload模式。 
 
-- 流媒体播放能力增强：支持网络错误码上报、优化流媒体缓存策略减少卡顿等。
+- 流媒体播放能力增强：优化流媒体缓存策略，减少卡顿。
 
 **录制**
 
@@ -457,22 +457,15 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 ### 上传下载
 
-- request.agent.Faults 的错误类型细化。
+- request.agent.Fault 细化了错误类型，便于开发者快速定位接口使用问题。
 
-- request.agent.Config 增加 proxy 成员，支持给 Task 设置网络代理地址。
+- request.agent.Config 新增 proxy 成员，支持设置任务的网络代理地址。
 
-- request.agent.create 创建的任务支持设置 on('response') 回调，用于获取响应头。
+- request.agent.Task.start 支持重新启动已经失败\停止的任务，便于开发者快速恢复失败任务。
 
-- request.agent.create 创建的下载任务如果失败，可以使用 request.agent.start 恢复。
+- request.agent.Task 支持使用 network.json 配置文件配置 TLS 证书锁定指纹。
 
-- request.agent.create 创建的任务支持设置证书锁定信息。
-
-- 上传任务支持指定上传应用沙箱“base”目录下的文件。
-
-- 下载任务支持指定下载到应用沙箱“base”目录下的文件。
-
-- 上传任务支持指定公共目录下的文件。
-
+- request.agent.FileSpec 支持指定应用沙箱 base 目录下的所有文件路径，便于开发者管理沙箱文件；同时支持前台上传公共文件，例如图库文件、相册文件等，减少额外拷贝带来的开销。
 
 ### 输入法框架
 
