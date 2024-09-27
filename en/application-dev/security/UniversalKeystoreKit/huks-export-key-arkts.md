@@ -1,7 +1,7 @@
 # Exporting a Key (ArkTS)
 
 
-This topic walks you through on how to export the public key of a persistently stored asymmetric key. Currently, HUKS supports export of the ECC, RSA, Ed25519, and X25519 public keys.
+This topic walks you through on how to export the public key of a persistently stored asymmetric key. Currently, HUKS supports export of the ECC, RSA, Ed25519, X25519, and SM2 public keys.
 
 
 ## How to Develop
