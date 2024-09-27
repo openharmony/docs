@@ -139,3 +139,5 @@ struct TouchExample {
 针对触屏事件开发，有以下相关实例可供参考：
 
 - [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
+
+<!--RP1--><!--RP1End-->
