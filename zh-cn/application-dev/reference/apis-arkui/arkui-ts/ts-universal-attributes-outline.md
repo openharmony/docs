@@ -165,8 +165,8 @@ outlineRadius(value: Dimension | OutlineRadiuses)
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
-| left   | [ResourceColor](ts-types.md#resourcecolor) | 否    | 左侧外描边颜色。<br />从右至左显示语言模式下为右侧外描边颜色。 |
-| right  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 右侧外描边颜色。<br />从右至左显示语言模式下为左侧外描边颜色。 |
+| start | [ResourceColor](ts-types.md#resourcecolor) | 否    | 左侧外描边颜色。<br/>从左至右显示语言模式下为右侧外描边颜色。 |
+| end | [ResourceColor](ts-types.md#resourcecolor) | 否    | 右侧外描边颜色。<br/>从左至右显示语言模式下为左侧外描边颜色。 |
 | top    | [ResourceColor](ts-types.md#resourcecolor) | 否    | 上侧外描边颜色。 |
 | bottom | [ResourceColor](ts-types.md#resourcecolor) | 否    | 下侧外描边颜色。 |
 
