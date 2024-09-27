@@ -1252,7 +1252,7 @@ Drm_ErrCode OH_MediaKeySession_GenerateOfflineReleaseRequest (MediaKeySession *m
 - DRM_ERR_OK：执行成功；
 - DRM_ERR_NO_MEMORY：内存不足，内存分配失败；
 - DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其它指针类型输入参数为空指针；
-- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+- DRM_ERR_UNKNOWN：发生内部错误或设备上的DRM解决方案不支持离线媒体密钥释放，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_GetContentProtectionLevel()
@@ -1340,7 +1340,7 @@ Drm_ErrCode OH_MediaKeySession_ProcessOfflineReleaseResponse (MediaKeySession *m
 函数结果代码[Drm_ErrCode](#drm_errcode-1)：
 - DRM_ERR_OK：执行成功；
 - DRM_ERR_INVALID_VAL：输入参数mediaKeySession为空指针或无效，或其它指针类型输入参数为空指针；
-- DRM_ERR_UNKNOWN：发生内部错误，请查看日志详细信息。
+- DRM_ERR_UNKNOWN：发生内部错误或设备上的DRM解决方案不支持离线媒体密钥释放，请查看日志详细信息。
 
 
 ### OH_MediaKeySession_RequireSecureDecoderModule()
@@ -1640,7 +1640,7 @@ Drm_ErrCode OH_MediaKeySystem_GetConfigurationByteArray (MediaKeySystem *mediaKe
 | 名称 | 描述 | 
 | -------- | -------- |
 | mediaKeySystem | MediaKeySystem实例。 | 
-| configName | 字符数组类型配置属性名称。 | 
+| configName | 字符数组类型配置属性名称，不能为空，具体支持的属性名由设备上DRM解决方案决定。 | 
 | value | 字符数组类型配置属性。 | 
 | valueLen | 字符数组类型配置属性长度。 | 
 
@@ -1965,8 +1965,8 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationByteArray (MediaKeySystem *mediaKe
 | 名称 | 描述 | 
 | -------- | -------- |
 | mediaKeySystem | MediaKeySystem实例。 | 
-| configName | 字符数组类型配置属性名。 | 
-| value | 字符数组类型配置属性值。 | 
+| configName | 字符数组类型配置属性名，不能为空，具体支持的属性名由设备上DRM解决方案决定。 | 
+| value | 字符数组类型配置属性值，不能为空，具体支持的属性值由设备上DRM解决方案决定。 | 
 | valueLen | 字符数组类型配置属性值长度。 | 
 
 **返回：**
@@ -1994,8 +1994,8 @@ Drm_ErrCode OH_MediaKeySystem_SetConfigurationString (MediaKeySystem *mediaKeySy
 | 名称 | 描述 | 
 | -------- | -------- |
 | mediaKeySystem | MediaKeySystem实例。 | 
-| configName | 字符串类型配置属性名。 | 
-| value | 字符串类型配置属性值。 | 
+| configName | 字符串类型配置属性名，不能为空，具体支持的属性名由设备上DRM解决方案决定。 | 
+| value | 字符串类型配置属性值，不能为空，具体支持的属性值由设备上DRM解决方案决定。 | 
 
 **返回：**
 
