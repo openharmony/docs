@@ -101,11 +101,33 @@ enableAnalyzer(enable: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| enable | boolean | 是 | 是否启用图像分析功能 |
+| enable | boolean | 是 | 是否启用图像分析功能。 |
 
   > **说明：**
   >
   > 仅type为SURFACE和TEXTURE时该功能有效。
+
+### enableSecure<sup>13+</sup>
+
+enableSecure(isSecure: boolean)
+
+防止组件内自绘制内容被截屏、录屏。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                   |
+| -------- | ------- | ---- | ---------------------- |
+| isSecure | boolean | 是   | 是否开启隐私图层模式。 |
+
+  > **说明：**
+  >
+  > 仅type为SURFACE时有效。
+  >
+  > 不支持[ArkUI NDK接口](../../../ui/ndk-build-ui-overview.md)创建的XComponent组件。
 
 ## 事件
 
