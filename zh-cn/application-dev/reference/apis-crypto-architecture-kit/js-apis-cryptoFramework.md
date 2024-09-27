@@ -246,7 +246,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 ## AsyKeySpec<sup>10+</sup>
 
-指定非对称密钥参数的基本接口，用于创建密钥生成器。在指定非对称密钥参数时需要构造其子类对象，并将子类对象传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。构造子类对象时，所有bigint类型的密钥参数均采用大端写法，并使用正数。
+指定非对称密钥参数的基本接口，用于创建密钥生成器。在指定非对称密钥参数时需要构造其子类对象，并将子类对象传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。构造子类对象时，除了RSA密钥采用小端写法外，其他bigint类型的密钥参数均采用大端写法，并使用正数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
