@@ -873,9 +873,18 @@ hdc -l5 start
 
 | 平台 | 路径 | 备注 |
 | -------- | -------- | -------- |
-| Windows | %temp%\hdc.log | 实际路径参考，实际使用请替换用户名变量<br/>C:\Users\用户名\AppData\Local\Temp\hdc.log |
-| Linux | /tmp/hdc.log | - |
-| MacOS | $TMPDIR/hdc.log | - |
+| Windows | %temp%\hdc_logs | 实际路径参考，实际使用请替换用户名变量<br/>C:\Users\用户名\AppData\Local\Temp\hdc_logs |
+| Linux | /tmp/hdc_logs | - |
+| MacOS | $TMPDIR/hdc_logs | - |
+
+hdc_logs日志文件夹将存在以下类型日志：
+
+|日志类型 | 日志名称 | 日志用途 | 备注 |
+| -------- | -------- | -------- | -------- |
+| 实时日志 | hdc.log | 实时记录hdc server日志 | 每次重启hdc server将会重命名原有日志并记录新的hdc.log|
+| 历史日志临时文件 | hdc-20240919-161857921.log | 转储历史日志归档生成的中间文件 |日志以时间戳20240919-161857921为例，时间戳格式为：%Y%m%d-%H%M%S|
+| 历史日志归档文件 | hdc-20240919-161857921.log.tgz | 压缩存储历史日志 | 归档文件名称格式为：历史日志临时文件名.tgz，可使用解压工具进行解压查看 |
+| 实时日志缓存临时文件 | .hdc.cache.log | 实时日志产生的临时缓存 | |
 
 **设备端日志**
 
@@ -1033,5 +1042,5 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
 1. 命令行执行`hdc list targets`查看返回值。
 2. 查看`设备管理`是否有`HDC Device`。
-3. 执行`hdc kill`关闭server后，执行`hdc -l5 start`收集日志（hdc.log位于执行端TEMP目录，不同平台目录位置存在差异，可参考[日志获取场景](#日志获取场景)）。
+3. 执行`hdc kill`关闭server后，执行`hdc -l5 start`收集日志（hdc.log位于执行端TEMP目录下hdc_logs文件夹中，不同平台目录位置存在差异，可参考[日志获取场景](#日志获取场景)）。
 4. 通过hdc.log日志定位相关问题。
