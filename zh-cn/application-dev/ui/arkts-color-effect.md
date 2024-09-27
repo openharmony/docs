@@ -77,7 +77,7 @@ struct LinearGradientDemo {
 
       GridItem() {
         Column() {
-          Text('repeat: fasle')
+          Text('repeat: false')
             .fontSize(15)
         }
         .width(100)
