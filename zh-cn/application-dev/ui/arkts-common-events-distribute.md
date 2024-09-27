@@ -44,7 +44,7 @@ mouse类的输入源包含：mouse、touchpad、joystick
 
 - hitTestBehavior可以由InterceptTouch事件变更。
 
-- 触摸热区/禁用控制/透明度等不满足组件事件交互诉求，会导致立即返回父节点。
+- 触摸热区/禁用控制等不满足组件事件交互诉求，会导致立即返回父节点。
 
   ![TouchTest](figures/TouchTest.png)
 
@@ -56,19 +56,19 @@ mouse类的输入源包含：mouse、touchpad、joystick
 
 - 子组件对父组件触摸测试的影响，取决于最后一个没有被阻塞触摸测试的子组件。
 
-- HitTestMode.Default：默认不配hitTestBehavior属性的效果，自身如果命中会阻塞兄弟，但是不阻塞孩子。
+- HitTestMode.Default：默认不配hitTestBehavior属性的效果，自身如果命中会阻塞兄弟组件，但是不阻塞子组件。
 
   ![hitTestModeDefault](figures/hitTestModeDefault.png)
 
-- HitTestMode.None：自身不接收事件，但不会阻塞兄弟/孩子继续做触摸测试。
+- HitTestMode.None：自身不接收事件，但不会阻塞兄弟组件/子组件继续做触摸测试。
 
   ![hitTestModeNone](figures/hitTestModeNone.png)
 
-- HitTestMode.Block：阻塞孩子的触摸测试，如果自身触摸测试命中，会阻塞兄弟及父亲的触摸测试。
+- HitTestMode.Block：阻塞子组件的触摸测试，如果自身触摸测试命中，会阻塞兄弟组件及父组件的触摸测试。
 
   ![hitTestModeBlock](figures/hitTestModeBlock.png)
 
-- HitTestMode.Transparent：自身进行触摸测试，同时不阻塞兄弟及父亲。
+- HitTestMode.Transparent：自身进行触摸测试，同时不阻塞兄弟组件及父组件。
 
   ![hitTestModeTransparent](figures/hitTestModeTransparent.png)
 
