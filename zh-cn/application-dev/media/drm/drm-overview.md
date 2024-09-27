@@ -1,6 +1,6 @@
 # DRM Kit 简介
 
-开发者通过调用DRM Kit（Digital Rights Management Kit）提供的接口可以实现DRM加密音视频的解密播放，支持设备DRM证书管理、许可证管理、内容解密等。
+开发者通过调用DRM Kit（Digital Rights Management Kit）提供的接口可以实现DRM加密音视频的解密，支持设备DRM证书管理、许可证管理、内容解密等。
 
 ## 能力范围
 - 解密播放：提供音视频统一的解密能力，音视频类应用接入DRM后，可以播放带有数字版权的节目。
