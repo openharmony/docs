@@ -314,7 +314,7 @@ navDestination(builder: (name: string, param: unknown) => void)
 
 | 参数名  | 类型                                   | 必填 | 说明                     |
 | ------- | -------------------------------------- | ---- | ------------------------ |
-| builder | (name: string, param: unknown) => void | 是   | 创建NavDestination组件。 |
+| builder | (name: string, param: unknown) => void | 是   | 创建NavDestination组件。name：NavDestination页面名称。param：Navdestination页面详细参数。 |
 
 ### navBarWidthRange<sup>10+</sup>
 
@@ -1332,8 +1332,8 @@ Navigation首页名字。
 
 | 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
-| value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| value  | string \| [Resource<sup>14+<sup>](ts-types.md#resource)       | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| icon   | string \| [Resource<sup>14+<sup>](ts-types.md#resource)       | 否    | 菜单栏单个选项的图标资源路径。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -1386,8 +1386,8 @@ Navigation首页名字。
 
 | 名称   | 类型     | 必填   | 说明     |
 | ---- | ------ | ---- | ------ |
-| main | string | 是    | 设置主标题。 |
-| sub  | string | 是    | 设置副标题。 |
+| main | string \| [Resource<sup>14+<sup>](ts-types.md#resource) | 是    | 设置主标题。 |
+| sub  | string \| [Resource<sup>14+<sup>](ts-types.md#resource) | 是    | 设置副标题。 |
 
 ## NavigationCustomTitle<sup>9+</sup>
 
@@ -1459,6 +1459,7 @@ Navigation首页名字。
 | paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | 否    | 标题栏结束端内间距。<br/>仅支持以下任一场景:<br/>1. 使用非自定义菜单，即[菜单value](#menus)为Array&lt;NavigationMenuItem&gt;；<br/>2. 没有右上角菜单，且使用非自定义标题，即[标题value](#title)类型为ResourceStr或NavigationCommonTitle。<br/>默认值：<br/>LengthMetrics.resource(`$r('sys.float.margin_right')`)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mainTitleModifier<sup>13+</sup>   | [TextModifier](./ts-universal-attributes-attribute-modifier.md)  | 否 | 主标题属性修改器。<br/>有如下几点使用规则：<br/>1. 通过Modifier设置的属性会覆盖系统默认的属性（如果Modifier设置了fontSize, maxFontSize, minFontSize任一属性，则系统设置的大小相关属性不生效，以开发者的设置为准）；<br/>2. 不设该属性或者设置了异常值，则恢复系统默认设置；<br/>3. [Free](#navigationtitlemode枚举说明)模式下设置字体大小时，原有滑动改变标题大小的效果失效。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | subTitleModifier<sup>13+</sup>   | [TextModifier](./ts-universal-attributes-attribute-modifier.md)  | 否 | 子标题属性修改器。<br/>有如下几点使用规则：<br/>1. 通过Modifier设置的属性会覆盖系统默认的属性（如果Modifier设置了fontSize, maxFontSize, minFontSize任一属性，则系统设置的大小相关属性不生效，以开发者的设置为准）；<br/>2. 不设该属性或者设置了异常值，则恢复系统默认设置。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| enableHoverMode<sup>14</sup>   | boolean | 否 | 可折叠屏幕在半折叠状态下，标题栏是否悬停在下半屏。默认值：false。仅在barStyle设置为层叠布局的情况下生效。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## NavigationToolbarOptions<sup>11+</sup>
 

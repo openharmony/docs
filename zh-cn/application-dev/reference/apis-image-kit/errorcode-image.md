@@ -583,3 +583,19 @@ Configuration error.
 **处理步骤**
 
 重新进行正确配置。
+
+## 62980286 PixelMap设置内存标识符失败
+
+**错误信息**
+
+fail set name.
+
+**可能原因**
+
+1. PixelMap内存类型不匹配。
+2. PixelMap的fd失效。
+3. 未知的内核错误。
+
+**处理步骤**
+
+检查是否已释放pixelmap实例。检查内存类型是否匹配。

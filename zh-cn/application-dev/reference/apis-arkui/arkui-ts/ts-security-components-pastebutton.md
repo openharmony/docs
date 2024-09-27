@@ -44,14 +44,21 @@ PasteButton(options:PasteButtonOptions)
 
 ## PasteButtonOptions
 
+用于指定粘贴按钮的图标、文本等指定元素。
+
+> **说明：**
+> 
+> icon或text需至少传入一个。<br>
+> 如果icon、text都不传入，[PasteButton](#pastebutton-1)中的options参数不起效，创建的PasteButton为默认样式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | [PasteIconStyle](#pasteiconstyle枚举说明) | 否 | 设置粘贴按钮的图标风格。<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
-| text | [PasteDescription](#pastedescription枚举说明) | 否 | 设置粘贴按钮的文本描述。<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
+| icon | [PasteIconStyle](#pasteiconstyle枚举说明) | 否 | 设置粘贴按钮的图标风格。<br/>不传入该参数表示没有图标。 |
+| text | [PasteDescription](#pastedescription枚举说明) | 否 | 设置粘贴按钮的文本描述。<br/>不传入该参数表示没有文字描述。 |
 | buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置粘贴按钮的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 ## 属性

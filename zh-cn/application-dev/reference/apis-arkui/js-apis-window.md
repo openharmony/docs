@@ -5832,6 +5832,65 @@ try {
 }
 ```
 
+### setWindowTitleButtonVisible<sup>14+</sup>
+
+setWindowTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean): void
+
+设置主窗标题栏上的最大化、最小化按钮是否可见。
+
+此接口仅支持2in1设备。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isMaximizeVisible | boolean | 是   | 设置最大化按钮是否可见，true为可见，false为隐藏。如果最大化按钮隐藏，那么在最大化场景下，也隐藏对应的还原按钮。 |
+| isMinimizeVisible | boolean | 是   | 设置最小化按钮是否可见，true为可见，false为隐藏。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // 加载主窗口对应的页面
+    windowStage.loadContent('pages/Index', (err) => {
+      let mainWindow: window.Window | undefined = undefined;
+      // 获取应用主窗口。
+      windowStage.getMainWindow().then(
+        data => {
+          mainWindow = data;
+          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          // 调用setWindowTitleButtonVisible接口，隐藏主窗标题栏最大化、最小化按钮。
+          mainWindow.setWindowTitleButtonVisible(false, false);
+        }
+      ).catch((err: BusinessError) => {
+          if(err.code){
+            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+          }
+      });
+    });
+  }
+}
+```
+
 ### enableLandscapeMultiWindow<sup>12+</sup>
 
 enableLandscapeMultiWindow(): Promise&lt;void&gt;

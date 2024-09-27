@@ -78,7 +78,7 @@ autoPlay(value: boolean)
 
 设置子组件是否自动播放。
 
-loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。
+loop为false时，自动轮播到最后一页时停止轮播。手势切换后不是最后一页时继续播放。当Swiper不可见时会停止轮播。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -752,6 +752,10 @@ onAnimationStart(event: (index: number, targetIndex: number, extraInfo: SwiperAn
 | targetIndex<sup>10+</sup> | number                                                     | 是   | 切换动画目标元素的索引。                                     |
 | extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。 |
 
+>**说明：**
+>
+>- 当翻页动画时长为0时，只有以下场景会触发该回调：滑动翻页、自动轮播、调用SwiperController.showNext()和SwiperController.showPrevious()接口以及手指点击导航点翻页。
+
 ### onAnimationEnd<sup>9+</sup>
 
 onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
@@ -772,6 +776,10 @@ onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 | ----------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | index                   | number                                                     | 是   | 当前显示元素的索引。                                         |
 | extraInfo<sup>10+</sup> | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
+
+>**说明：**
+>
+>- 当翻页动画时长为0时，只有以下场景会触发该回调：滑动翻页、自动轮播、调用SwiperController.showNext()和SwiperController.showPrevious()接口以及手指点击导航点翻页。
 
 ### onGestureSwipe<sup>10+</sup>
 
@@ -1025,6 +1033,7 @@ struct SwiperExample {
 ![swiper](figures/swiper.gif)
 
 ### 示例2
+该示例演示了使用数字指示器的效果和功能。
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {
@@ -1108,6 +1117,7 @@ struct SwiperExample {
 ![swiper](figures/swiper-digit.gif)
 
 ### 示例3
+该示例通过dislayCount属性实现了按组翻页的效果。
 ```ts
 // xxx.ets
 class MyDataSource implements IDataSource {

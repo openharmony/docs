@@ -124,10 +124,11 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 **描述**
 配置视频编码器，通常需要配置要编码的视频轨的描述信息。必须在调用Prepare之前，调用此接口。
 
-参数校验：
-
+以下参数的配置范围可通过[能力查询](../../media/avcodec/obtain-supported-codecs.md)获取，OH_MD_KEY_I_FRAME_INTERVAL暂不支持。
 
 设置OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY、OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT接口时如果当前平台不支持，不报错，走正常编码流程。
+
+参数校验：
 
 | Key                                                                       | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
 | ------------------------------------------------------------------------- | -------- | -------- | ------ |

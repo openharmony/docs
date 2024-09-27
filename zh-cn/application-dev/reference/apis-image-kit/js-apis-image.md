@@ -389,9 +389,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let srcPixelmap = image.createPixelMapSync(color, optsForUnpre);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let dstPixelMap = image.createPixelMapSync(optsForPre);
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
       console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
@@ -407,7 +408,7 @@ async function Demo() {
 
 createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
-将PixelMap数据按照透明度不前乘格式转为前乘格式，转换后的数据存入另一个PixelMap，通过Promise返回结果。
+将PixelMap数据按照透明度非预乘格式转为预乘格式，转换后的数据存入另一个PixelMap，通过Promise返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -449,9 +450,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let srcPixelmap = image.createPixelMapSync(color, optsForUnpre);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let dstPixelMap = image.createPixelMapSync(optsForPre);
   image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
   }).catch((error: BusinessError) => {
@@ -501,9 +503,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let srcPixelmap = image.createPixelMapSync(color, optsForPre);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let dstPixelMap = image.createPixelMapSync(optsForUnpre);
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
     if(error) {
       console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
@@ -545,7 +548,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 |  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103    | The image data is not supported |
 |  62980246    | Failed to read the pixelMap. |
-|  62980248    | PixelMap not allow modify. |
+|  62980248    | Pixelmap not allow modify. |
 
 **示例：**
 
@@ -561,9 +564,10 @@ async function Demo() {
     bufferArr[i+2] = 122;
     bufferArr[i+3] = 122;
   }
-  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
-  let srcPixelmap = image.createPixelMapSync(color, opts);
-  let dstPixelMap = image.createPixelMapSync(opts);
+  let optsForPre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+  let srcPixelmap = image.createPixelMapSync(color, optsForPre);
+  let optsForUnpre: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+  let dstPixelMap = image.createPixelMapSync(optsForUnpre);
   image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
     console.info('Succeeded in converting pixelmap.');
   }).catch((error: BusinessError) => {
@@ -1765,6 +1769,8 @@ scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
 
 根据输入的宽高对图片进行缩放，使用Promise形式返回。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -2391,7 +2397,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980111| If the operation invalid.        |
+| 62980111| The image source data is incomplete.        |
 | 62980115| If the image parameter invalid.             |
 
 **示例：**
@@ -2535,7 +2541,7 @@ import resourceManager from '@ohos.resourceManager'
 import { BusinessError } from '@kit.BasicServicesKit';
 
 //此处'hdr.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
-let img = await getContext(this).resourceManager.getMediaContent($r('app.media.hdr'));
+let img = getContext().resourceManager.getMediaContentSync($r('app.media.hdr'));
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -2543,13 +2549,12 @@ let decodingOptions: image.DecodingOptions = {
 let pixelmap = imageSource.createPixelMapSync(decodingOptions);
 if (pixelmap != undefined) {
   console.info('Succeeded in creating pixelMap object.');
-  try {
-    await pixelmap.toSdr();
+  pixelmap.toSdr().then(() => {
     let imageInfo = pixelmap.getImageInfoSync();
     console.info("after toSdr ,imageInfo isHdr:" + imageInfo.isHdr);
-  } catch (e) {
-    console.info('toSdr failed' + e);
-  }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set sdr. code is ${err.code}, message is ${err.message}`);
+  });
 } else {
   console.info('Failed to create pixelMap.');
 }
@@ -2584,7 +2589,7 @@ getMetadata(key: HdrMetadataKey): HdrMetadataValue
 | 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.          |
 | 501 | Resource unavailable.          |
 | 62980173 | The DMA memory does not exist.          |
-| 62980173 | Memory copy failed.          |
+| 62980302 | Memory copy failed.          |
 
 **示例：**
 
@@ -2593,7 +2598,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import image from '@ohos.multimedia.image'
 
 // 'app.media.test'需要替换为本地hdr图片。
-let img = await getContext(this).resourceManager.getMediaContent($r('app.media.test'));
+let img = getContext().resourceManager.getMediaContentSync($r('app.media.test'));
 let imageSource = image.createImageSource(img.buffer.slice(0));
 let decodingOptions: image.DecodingOptions = {
   desiredDynamicRange: image.DecodingDynamicRange.AUTO
@@ -2642,28 +2647,36 @@ setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
 | 401|  Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 501 | Resource unavailable.          |
 | 62980173 | The DMA memory does not exist.          |
-| 62980173 | Memory copy failed.          |
+| 62980302 | Memory copy failed.          |
 
 **示例：**
 
 ```ts
 import image from '@ohos.multimedia.image'
 import { BusinessError } from '@kit.BasicServicesKit';
-@State pixelmap: image.PixelMap | undefined = undefined;
 
-async Demo() {
-  let staticMetadata: image.HdrStaticMetadata = {
-    displayPrimariesX: [1.1, 1.1, 1.1],
-    displayPrimariesY: [1.2, 1.2, 1.2],
-    whitePointX: 1.1,
-    whitePointY: 1.2,
-    maxLuminance: 2.1,
-    minLuminance: 1.0,
-    maxContentLightLevel: 2.1,
-    maxFrameAverageLightLevel: 2.1,
-  }
-  this.pixelmap?.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata);
+let staticMetadata: image.HdrStaticMetadata = {
+  displayPrimariesX: [1.1, 1.1, 1.1],
+  displayPrimariesY: [1.2, 1.2, 1.2],
+  whitePointX: 1.1,
+  whitePointY: 1.2,
+  maxLuminance: 2.1,
+  minLuminance: 1.0,
+  maxContentLightLevel: 2.1,
+  maxFrameAverageLightLevel: 2.1,
 }
+const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
+let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+  pixelMap.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata).then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in setting pixelMap metadata.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to set the metadata.code ${error.code},message is ${error.message}`);
+  })
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
+})
+
 ```
 
 ### setTransferDetached<sup>12+<sup>
@@ -2947,11 +2960,7 @@ async function Demo() {
 
 convertPixelFormat(targetPixelFormat: PixelMapFormat): Promise\<void>
 
-YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2973,7 +2982,11 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980115 | Invalid image parameter.              |
+| 62980111 | The image source data is incomplete. |
+| 62980115 | Invalid input parameter.              |
+| 62980178 | Failed to create the PixelMap|
+| 62980274 | The conversion failed |
+| 62980276 | The type to be converted is an unsupported target pixel format|
 
 **示例：**
 
@@ -2981,11 +2994,59 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (pixelMap != undefined) {
+  let targetPixelFormat = image.PixelFormat.NV12  
   pixelMap.convertPixelFormat(targetPixelFormat).then(() => {
     console.info('PixelMapFormat convert Succeeded'); //符合条件则进入
   }).catch((error: BusinessError) => {
     console.error(`PixelMapFormat convert Failed. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
   })
+}
+```
+
+### setMemoryNameSync<sup>13+</sup>
+
+setMemoryNameSync(name: string): Promise\<void>
+
+设置PixelMap内存标识符。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名        | 类型                             | 必填 | 说明             |
+| ------------- | -------------------------------- | ---- | ---------------- |
+| name | string | 是   | pixelmap内存标识符，只允许DMA和ASHMEM内存形式的piexelmap设置，支持1-31位长度。 |
+
+**返回值：**
+
+| 类型           | 说明                  |
+| -------------- | --------------------- |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401|  Parameter error. Possible causes: name size is out of range.         |
+| 501 | Resource unavailable.          |
+| 62980286 | Setting memory identifier failed.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async Demo() {
+  if (pixelMap != undefined) {
+    try {
+      pixelMap.setMemoryNameSync("PixelMapName Test");
+    } catch(e) {
+      let error = e as BusinessError;
+      console.error(`setMemoryNameSync error. code is ${error.code}, message is ${error.message}`);
+    }
+  }
 }
 ```
 
@@ -3468,7 +3529,7 @@ getImageInfoSync(index?: number): ImageInfo
 ```ts
 import { image } from '@kit.ImageKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -3721,7 +3782,7 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;    |
-| 62980123| Images in EXIF format are not supported.             |
+| 62980123| The image does not support EXIF decoding.             |
 | 62980133| The EXIF data is out of range.             |
 | 62980135| The EXIF value is invalid.             |
 | 62980146| The EXIF data failed to be written to the file.        |
@@ -3789,7 +3850,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
-通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG、PNG和<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -3853,7 +3914,7 @@ modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;      |
-| 62980123| Images in EXIF format are not supported.             |
+| 62980123| The image does not support EXIF decoding.             |
 | 62980133| The EXIF data is out of range.             |
 | 62980135| The EXIF value is invalid.             |
 | 62980146| The EXIF data failed to be written to the file.             |
@@ -4085,7 +4146,7 @@ createPixelMapSync(options?: DecodingOptions): PixelMap
 ```ts
 import { image } from '@kit.ImageKit';
 
-const context: Context = getContext(this);
+const context: Context = getContext();
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
 let imageSource = image.createImageSource(filePath);
@@ -4145,7 +4206,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 | 62980115 | Invalid image parameter. |
 | 62980116 | Failed to decode the image. |
 | 62980118| Failed to create the image plugin.             |
-| 62980122 | The image decoding header is abnormal. |
+| 62980122 | Failed to decode the image header. |
 | 62980137 | Invalid media operation. |
 | 62980173 | The DMA memory does not exist. |
 | 62980174 | The DMA memory data is abnormal. |
@@ -4203,7 +4264,7 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.   |
-| 62980122 | The image decoding header is abnormal.   |
+| 62980122 | Failed to decode the image header.   |
 | 62980137 | Invalid media operation.     |
 | 62980173 | The DMA memory does not exist.        |
 | 62980174 | The DMA memory data is abnormal.    |
@@ -4256,7 +4317,7 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.         |
 | 62980118 | Failed to create the image plugin.  |
-| 62980122 | The image decoding header is abnormal.   |
+| 62980122 | Failed to decode the image header.   |
 | 62980137 | Invalid media operation.      |
 | 62980173 | The DMA memory does not exist.         |
 | 62980174 | The DMA memory data is abnormal.     |
@@ -4311,9 +4372,9 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 | 62980115 | Invalid image parameter. |
 | 62980116| Failed to decode the image. |
 | 62980118| Failed to create the image plugin. |
-| 62980122| The image decoding header is abnormal. |
+| 62980122| Failed to decode the image header. |
 | 62980137 | Invalid media operation. |
-| 62980149 | Invalid media parameter. |
+| 62980149 | Invalid MIME type for the image source. |
 
 **示例：**
 
@@ -4357,9 +4418,9 @@ getDelayTimeList(): Promise<Array\<number>>
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.          |
 | 62980118 | Failed to create the image plugin.  |
-| 62980122 | The image decoding header is abnormal.   |
+| 62980122 | Failed to decode the image header.   |
 | 62980137 | Invalid media operation.      |
-| 62980149 | Invalid media parameter.      |
+| 62980149 | Invalid MIME type for the image source.      |
 
 **示例：**
 
@@ -4401,7 +4462,7 @@ getFrameCount(callback: AsyncCallback\<number>): void
 | 62980115| Invalid image parameter. |
 | 62980116| Failed to decode the image. |
 | 62980118| Failed to create the image plugin. |
-| 62980122| The image decoding header is abnormal. |
+| 62980122| Failed to decode the image header. |
 | 62980137| Invalid media operation. |
 
 **示例：**
@@ -4446,7 +4507,7 @@ getFrameCount(): Promise\<number>
 | 62980115 | Invalid image parameter.      |
 | 62980116 | Failed to decode the image.          |
 | 62980118 | Failed to create the image plugin.   |
-| 62980122 | The image decoding header is abnormal.  |
+| 62980122 | Failed to decode the image header.  |
 | 62980137 | Invalid media operation.      |
 
 **示例：**
@@ -4484,7 +4545,7 @@ getDisposalTypeList(): Promise\<Array\<number>>
 | 62980096 | The operation failed.      |
 | 62980101 | The image data is abnormal. |
 | 62980137 | Invalid media operation.        |
-| 62980149 | Invalid image source mime type.      |
+| 62980149 | Invalid MIME type for the image source.      |
 
 **示例：**
 
@@ -5821,23 +5882,19 @@ img.release().then(() => {
 
 枚举，图片像素格式。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                   |   值   | 说明              |
 | ---------------------- | ------ | ----------------- |
-| UNKNOWN                | 0      | 未知格式。        |
-| RGB_565                | 2      | 格式为RGB_565     |
-| RGBA_8888              | 3      | 格式为RGBA_8888 |
-| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888 |
-| RGB_888<sup>9+</sup>   | 5      | 格式为RGB_888   |
-| ALPHA_8<sup>9+</sup>   | 6      | 格式为ALPHA_8   |
-| RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16  |
-| NV21<sup>9+</sup>      | 8      | 格式为NV21      |
-| NV12<sup>9+</sup>      | 9      | 格式为NV12      |
+| UNKNOWN                | 0      | 未知格式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。        |
+| RGB_565                | 2      | 格式为RGB_565。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
+| RGBA_8888              | 3      | 格式为RGBA_8888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| RGB_888<sup>9+</sup>   | 5      | 格式为RGB_888。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| ALPHA_8<sup>9+</sup>   | 6      | 格式为ALPHA_8。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
+| NV21<sup>9+</sup>      | 8      | 格式为NV21。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
+| NV12<sup>9+</sup>      | 9      | 格式为NV12。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
 | RGBA_1010102<sup>12+</sup> | 10 | 格式为RGBA_1010102 |
 | YCBCR_P010<sup>12+</sup> | 11 | 格式为YCBCR_P010 |
 | YCRCB_P010<sup>12+</sup> | 12 | 格式为YCRCB_P010 |
@@ -5856,8 +5913,8 @@ img.release().then(() => {
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | 未知透明度。            |
 | OPAQUE   | 1      | 没有alpha或图片不透明。 |
-| PREMUL   | 2      | RGB前乘alpha。         |
-| UNPREMUL | 3      | RGB不前乘alpha。       |
+| PREMUL   | 2      | RGB预乘alpha。         |
+| UNPREMUL | 3      | RGB非预乘alpha。       |
 
 ## ScaleMode<sup>9+</sup>
 
@@ -6028,9 +6085,9 @@ PixelMap的初始化选项。
 | SPECTRAL_SENSITIVITY <sup>12+</sup>       | "SpectralSensitivity"       | **读写能力：** 可读写<br> 表示所用相机的每个通道的光谱灵敏度。|
 | GPS_VERSION_ID <sup>12+</sup>             | "GPSVersionID"              | **读写能力：** 可读写<br> GPSInfoIFD的版本。|
 | GPS_LATITUDE_REF                          | "GPSLatitudeRef"            | **读写能力：** 可读写<br> 纬度引用，例如N或S。|
-| GPS_LATITUDE                              | "GPSLatitude"               | **读写能力：** 可读写<br> 图片纬度。|
+| GPS_LATITUDE                              | "GPSLatitude"               | **读写能力：** 可读写<br> 图片纬度。修改时应按"度,分,秒"格式传入，如"39,54,7.542"|
 | GPS_LONGITUDE_REF                         | "GPSLongitudeRef"           | **读写能力：** 可读写<br> 经度引用，例如W或E。|
-| GPS_LONGITUDE                             | "GPSLongitude"              | **读写能力：** 可读写<br> 图片经度。|
+| GPS_LONGITUDE                             | "GPSLongitude"              | **读写能力：** 可读写<br> 图片经度。修改时应按"度,分,秒"格式传入，如"116,19,42.16"|
 | GPS_ALTITUDE_REF <sup>12+</sup>           | "GPSAltitudeRef"            | **读写能力：** 可读写<br> 用于GPS高度的参照高度。|
 | GPS_ALTITUDE <sup>12+</sup>               | "GPSAltitude"               | **读写能力：** 可读写<br> 基于GPSAltitudeRef的高度。|
 | GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"              | **读写能力：** 可读写<br> GPS时间戳。|
@@ -6262,16 +6319,16 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称          | 类型       | 说明         |
-| ------------- | ----------| ------------ |
-| displayPrimariesX     | Array\<number>    | 归一化后显示设备三基色的X坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
-| displayPrimariesY     | Array\<number>    | 归一化后显示设备三基色的Y坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
-| whitePointX  | number    | 归一化后白点值的X坐标，以0.00002为单位，范围[0.0, 1.0]。   |
-| whitePointY  | number     | 归一化后白点值的Y坐标，以0.00002为单位，范围[0.0, 1.0]。   |
-| maxLuminance  | number    | 图像主监视器最大亮度。以1为单位，最大值为65535。   |
-| minLuminance  | number     | 图像主监视器最小亮度。以0.0001为单位，最大值6.55535。   |
-| maxContentLightLevel  | number    | 显示内容的最大亮度。以1为单位，最大值为65535。   |
-| maxFrameAverageLightLevel  | number     | 显示内容的最大平均亮度，以1为单位，最大值为65535。 |
+| 名称          | 类型       | 只读 | 可选 | 说明         |
+| ------------- | ----------| -- | -- | ------------ |
+| displayPrimariesX     | Array\<number>  | 否 | 否 | 归一化后显示设备三基色的X坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
+| displayPrimariesY     | Array\<number>  | 否 | 否 | 归一化后显示设备三基色的Y坐标，数组的长度为3，以0.00002为单位，范围[0.0, 1.0]。  |
+| whitePointX  | number  | 否 | 否 | 归一化后白点值的X坐标，以0.00002为单位，范围[0.0, 1.0]。   |
+| whitePointY  | number   | 否 | 否 | 归一化后白点值的Y坐标，以0.00002为单位，范围[0.0, 1.0]。   |
+| maxLuminance  | number  | 否 | 否 | 图像主监视器最大亮度。以1为单位，最大值为65535。   |
+| minLuminance  | number   | 否 | 否 | 图像主监视器最小亮度。以0.0001为单位，最大值6.55535。   |
+| maxContentLightLevel  | number  | 否 | 否 | 显示内容的最大亮度。以1为单位，最大值为65535。   |
+| maxFrameAverageLightLevel  | number  | 否 | 否 | 显示内容的最大平均亮度，以1为单位，最大值为65535。 |
 
 ## GainmapChannel<sup>12+</sup>
 
@@ -6279,13 +6336,13 @@ Gainmap图单个通道的数据内容，参考ISO 21496-1。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称          | 类型       | 说明         |
-| ------------- | ----------| ------------ |
-| gainmapMax     | number   | 增强图像的最大值，参考ISO 21496-1。  |
-| gainmapMin     | number   | 增强图像的最小值，参考ISO 21496-1。  |
-| gamma  | number    | gamma值，参考ISO 21496-1。   |
-| baseOffset  | number     | 基础图的偏移，参考ISO 21496-1。   |
-| alternateOffset  | number    | 提取的可选择图像偏移量，参考ISO 21496-1。    |
+| 名称          | 类型       | 只读 | 可选 | 说明         |
+| ------------- | ----------| -- | -- | ------------ |
+| gainmapMax     | number   | 否 | 否 | 增强图像的最大值，参考ISO 21496-1。  |
+| gainmapMin     | number   | 否 | 否 | 增强图像的最小值，参考ISO 21496-1。  |
+| gamma  | number    | 否 | 否 | gamma值，参考ISO 21496-1。   |
+| baseOffset  | number     | 否 | 否 | 基础图的偏移，参考ISO 21496-1。   |
+| alternateOffset  | number    | 否 | 否 | 提取的可选择图像偏移量，参考ISO 21496-1。    |
 
 ## HdrGainmapMetadata<sup>12+</sup>
 
@@ -6293,15 +6350,15 @@ Gainmap使用的元数据值，[HdrMetadataKey](#hdrmetadatakey12)中HDR_GAINMAP
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称          | 类型       | 说明         |
-| ------------- | ----------| ------------ |
-| writerVersion     | number   | 元数据编写器使用的版本。  |
-| miniVersion     | number   | 元数据解析需要理解的最小版本。  |
-| gainmapChannelCount  | number    | Gainmap的颜色通道数，值为3时RGB通道的元数据值不同，值为1时各通道元数据值相同，参考ISO 21496-1。  |
-| useBaseColorFlag  | boolean     | 是否使用基础图的色彩空间，参考ISO 21496-1。   |
-| baseHeadroom  | number    |  基础图提亮比，参考ISO 21496-1。   |
-| alternateHeadroom  | number     |  提取的可选择图像提亮比，参考ISO 21496-1。  |
-| channels  | Array<[GainmapChannel](#gainmapchannel12)> | 各通道的数据，长度为3，参考ISO 21496-1。 |
+| 名称          | 类型       | 只读 | 可选 | 说明         |
+| ------------- | ----------| -- | -- | ------------ |
+| writerVersion     | number   | 否 | 否 | 元数据编写器使用的版本。  |
+| miniVersion     | number   | 否 | 否 | 元数据解析需要理解的最小版本。  |
+| gainmapChannelCount  | number    | 否 | 否 | Gainmap的颜色通道数，值为3时RGB通道的元数据值不同，值为1时各通道元数据值相同，参考ISO 21496-1。  |
+| useBaseColorFlag  | boolean     | 否 | 否 | 是否使用基础图的色彩空间，参考ISO 21496-1。   |
+| baseHeadroom  | number    | 否 | 否 |  基础图提亮比，参考ISO 21496-1。   |
+| alternateHeadroom  | number     | 否 | 否 |  提取的可选择图像提亮比，参考ISO 21496-1。  |
+| channels  | Array<[GainmapChannel](#gainmapchannel12)> | 否 | 否 | 各通道的数据，长度为3，参考ISO 21496-1。 |
 
 ## HdrMetadataValue<sup>12+</sup>
 

@@ -706,67 +706,6 @@ constructor(value: ShadowOptions | Array\<ShadowOptions>)
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明) \| Array\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)>  | 是   | 文本阴影设置项。 |
 
-## BackgroundColorStyle<sup>13+</sup>
-
-文本背景颜色对象说明。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### 属性
-
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称           | 类型              | 只读   | 必填   | 说明     |
-| ------------ |---------------------| ---- | ---- | ------ |
-| textBackgroundStyle  |  TextBackgroundStyle  |  是  |  是  | 获取属性字符串的文本背景颜色。<br />默认值：<br />{<br /> color: Color.Transparent,<br />  radius: 0<br />} |
-
-### constructor<sup>13+</sup>
-
-constructor(textBackgroundStyle: TextBackgroundStyle)
-
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型                              | 必填 | 说明   |
-| ------- | --------------------------------- | ---- | --------------------------------- |
-| textBackgroundStyle |  TextBackgroundStyle | 是   | 文本背景色设置项。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
-
-## UrlStyle<sup>13+</sup>
-
-超链接对象说明。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### 属性
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称           | 类型              | 只读   | 必填   | 说明     |
-| ------------ |---------------------| ---- | ---- | ------ |
-| url  | string |  是  |  是  | 获取属性字符串的超链接内容。 |
-
-### constructor<sup>13+</sup>
-
-constructor(url: string)
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型                              | 必填 | 说明   |
-| ------- | --------------------------------- | ---- | --------------------------------- |
-| url | string | 是   | 超链接设置项。|
-
-
 ## ImageAttachment
 
 图片对象说明。
@@ -996,6 +935,68 @@ constructor(value?: ParagraphStyleInterface)
 | CUSTOM_SPAN | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。|
 | USER_DATA | UserDataSpan键。[UserDataSpan](./ts-universal-styled-string.md#userdataspan)所属键。|
 
+## BackgroundColorStyle<sup>13+</sup>
+
+文本背景颜色对象说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| textBackgroundStyle  |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明)  |  是  |  是  | 获取属性字符串的文本背景颜色。<br />默认值：<br />{<br /> color: Color.Transparent,<br />  radius: 0<br />} |
+
+### constructor<sup>13+</sup>
+
+constructor(textBackgroundStyle: TextBackgroundStyle)
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| textBackgroundStyle |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 是   | 文本背景色设置项。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+
+## UrlStyle<sup>13+</sup>
+
+超链接对象说明。
+
+默认颜色、字号、字重分别是'#ff0a59f7'、'16fp'、'FontWeight.Regular'，若属性字符串设置TextStyle，则TextStyle优先级更高。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| url  | string |  是  |  是  | 获取属性字符串的超链接内容。 |
+
+### constructor<sup>13+</sup>
+
+constructor(url: string)
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| url | string | 是   | 超链接设置项。|
+
 ## 示例
 
 ### 示例1
@@ -1055,7 +1056,6 @@ struct styled_string_demo1 {
         Column() {
           // 显示属性字符串
           Text(undefined, { controller: this.controller1 })
-          Text(undefined, { controller: this.controller2 }).key('mutableStyledString1')
           Text(undefined, { controller: this.controller3 }).key('mutableStyledString2')
           Button('修改string1的值')
             .onClick(() => {
@@ -1163,7 +1163,7 @@ struct styled_string_demo1 {
 }
 ```
 
-![](figures/styledstring_1.jpeg)
+![](figures/styledstring_1.PNG)
 
 ### 示例2
 

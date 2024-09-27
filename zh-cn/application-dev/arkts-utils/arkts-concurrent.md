@@ -17,9 +17,58 @@
 | 装饰的函数内的变量类型  | 允许使用local变量、入参和通过import引入的变量。禁止使用闭包变量。                               |
 | 装饰的函数内的返回值类型  | 支持的类型请查[序列化支持类型](serialization-support-types.md)。    |
 
-> **说明：**
->
-> 并发函数中返回Promise的表现需关注，其中并发同步函数会处理返回该Promise并返回结果。
+
+## 装饰器使用示例
+
+### 并发函数一般使用
+
+并发函数为一个计算两数之和的普通函数，taskpool执行该函数并返回结果。
+
+**示例：**
+
+```ts
+import { taskpool } from '@kit.ArkTS';
+
+@Concurrent
+function add(num1: number, num2: number): number {
+  return num1 + num2;
+}
+
+async function ConcurrentFunc(): Promise<void> {
+  try {
+    let task: taskpool.Task = new taskpool.Task(add, 1, 2);
+    console.info("taskpool res is: " + await taskpool.execute(task));
+  } catch (e) {
+    console.error("taskpool execute error is: " + e);
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            ConcurrentFunc();
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+### 并发函数返回Promise
+
+并发函数中返回Promise的表现需关注，其中并发同步函数会处理返回该Promise并返回结果，如下例所示。
 
 **示例：**
 
@@ -106,7 +155,26 @@ async function testConcurrentFunc() {
   })
 }
 
-testConcurrentFunc();
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Button(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            testConcurrentFunc();
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
 
 输出结果如下所示：
@@ -119,13 +187,116 @@ task5 res is: 1
 task6 res is: Promise setTimeout after resolve
 ```
 
-> **说明：**
->
-> 并发异步方法中如果使用Promise，建议搭配await使用捕获Promise中可能发生的异常。推荐使用示例如下。
+
+### 并发函数中使用自定义类或函数
+
+并发函数中使用自定义类或函数时需定义在不同文件，否则会被认为是闭包，如下例所示。
 
 **示例：**
 
 ```ts
+// Index.ets
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { testAdd, MyTestA, MyTestB } from './Test';
+
+function add(arg: number) {
+  return ++arg;
+}
+
+class TestA {
+  constructor(name: string) {
+    this.name = name;
+  }
+  name: string = 'ClassA';
+}
+
+class TestB {
+  static nameStr: string = 'ClassB';
+}
+
+@Concurrent
+function TestFunc() {
+  // case1：在并发函数中直接调用同文件内定义的类或函数
+
+  // 直接调用同文件定义的函数add()，add飘红报错：Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>
+  // add(1);
+  // 直接使用同文件定义的TestA构造，TestA飘红报错：Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>
+  // let a = new TestA("aaa");
+  // 直接访问同文件定义的TestB的成员nameStr，TestB飘红报错：Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>
+  // console.info("TestB name is: " + TestB.nameStr);
+
+  // case2：在并发函数中调用定义在Test.ets文件并导入当前文件的类或函数
+
+  // 输出结果：res1 is: 2
+  console.info("res1 is: " + testAdd(1));
+  let tmpStr = new MyTestA("TEST A");
+  // 输出结果：res2 is: TEST A
+  console.info("res2 is: " + tmpStr.name);
+  // 输出结果：res3 is: MyTestB
+  console.info("res3 is: " + MyTestB.nameStr);
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          let task = new taskpool.Task(TestFunc);
+          taskpool.execute(task).then(() => {
+            console.info("taskpool: execute task success!");
+          }).catch((e:BusinessError) => {
+            console.error(`taskpool: execute: Code: ${e.code}, message: ${e.message}`);
+          })
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+```ts
+// Test.ets
+export function testAdd(arg: number) {
+  return ++arg;
+}
+
+@Sendable
+export class MyTestA {
+  constructor(name: string) {
+    this.name = name;
+  }
+  name: string = 'MyTestA';
+}
+
+export class MyTestB {
+  static nameStr:string = 'MyTestB';
+}
+```
+
+
+### 并发异步函数中使用Promise
+
+并发异步函数中如果使用Promise，建议搭配await使用捕获Promise中可能发生的异常。推荐使用示例如下。
+
+**示例：**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+
 @Concurrent
 async function testPromiseError() {
   await new Promise<number>((resolve, reject) => {
@@ -171,7 +342,26 @@ async function testConcurrentFunc() {
   })
 }
 
-testConcurrentFunc()
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Button(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            testConcurrentFunc();
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
 
 输出结果如下所示：
@@ -180,44 +370,3 @@ task1 catch e: Error: testPromise Error
 task2 catch e: testPromiseError1 Error msg
 task3 catch e: testPromiseError2 Error msg
 ```
-
-
-## 装饰器使用示例
-  ```ts
-  import { taskpool } from '@kit.ArkTS';
-  
-  @Concurrent
-  function add(num1: number, num2: number): number {
-    return num1 + num2;
-  }
-  
-  async function ConcurrentFunc(): Promise<void> {
-    try {
-      let task: taskpool.Task = new taskpool.Task(add, 1, 2);
-      console.info("taskpool res is: " + await taskpool.execute(task));
-    } catch (e) {
-      console.error("taskpool execute error is: " + e);
-    }
-  }
-  
-  @Entry
-  @Component
-  struct Index {
-    @State message: string = 'Hello World'
-  
-    build() {
-      Row() {
-        Column() {
-          Text(this.message)
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-            .onClick(() => {
-              ConcurrentFunc();
-            })
-        }
-        .width('100%')
-      }
-      .height('100%')
-    }
-  }
-  ```

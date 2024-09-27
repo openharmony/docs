@@ -25,7 +25,6 @@
       - [文本输入 (TextInput/TextArea)](arkts-common-components-text-input.md)
       - [富文本 (RichEditor)](arkts-common-components-richeditor.md)
       - [显示图片 (Image)](arkts-graphics-display.md)
-      - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
       - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
       - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
@@ -41,6 +40,9 @@
   - 显示图形
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
+  - 使用弹窗
+    - [模态弹窗 (ModelDialog)](arkts-modal-dialog.md)
+    - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
   - 使用动画
     - [动画概述](arkts-animation.md)
     - 属性动画

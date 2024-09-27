@@ -73,8 +73,15 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -156,9 +163,16 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000055 | Installation-free timed out. |
 | 16000067 | Start options check failed. |
 | 16000068 | Ability already running. |
-| 16200001 | The caller has been released. |
 | 16300003 | The target application is not self application. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -251,9 +265,16 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000055 | Installation-free timed out. |
 | 16000067 | Start options check failed. |
 | 16000068 | Ability already running. |
-| 16200001 | The caller has been released. |
 | 16300003 | The target application is not self application. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -341,8 +362,15 @@ Ability被启动后，有如下情况:
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -427,8 +455,15 @@ Ability被启动后，有如下情况:
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -525,8 +560,15 @@ Ability被启动后，有如下情况:
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -1094,7 +1136,14 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 | 16000013 | The application is controlled by EDM.       |
 | 16000018 | The application is not allow jumping to other applications. |
 | 16000050 | Internal error. |
+| 16000071 | App clone is not supported. |
+| 16000072 | App clone or multi-instance is not supported. |
 | 16000073 | The app clone index is invalid. |
+| 16000076 | The app instance key is invalid. |
+| 16000077 | The number of app instances reaches the limit. |
+| 16000078 | The multi-instance is not supported. |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified. |
+| 16000080 | Creating an instance is not supported. |
 
 **示例：**
 
@@ -1670,7 +1719,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型，取值详见[拉起指定类型的应用](../../application-models/start-intent-panel.md#接口说明)。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 执行结果回调函数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
@@ -1729,7 +1778,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型，取值详见[拉起指定类型的应用](../../application-models/start-intent-panel.md#接口说明)。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 执行结果回调函数。 |
 
@@ -2187,49 +2236,39 @@ const TAG: string = '[openLinkDemo]';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'I am caller';
-
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button('start browser', { type: ButtonType.Capsule, stateEffect: true })
-          .width('87%')
-          .height('5%')
-          .margin({ bottom: '12vp' })
-          .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
-            let link: string = 'https://www.example.com';
-            let openLinkOptions: OpenLinkOptions = {
-              appLinkingOnly: true,
-              parameters: { demo_key: 'demo_value' }
-            };
+    RelativeContainer() {
+      Button("Call StartAbilityForResult")
+        .onClick(() => {
+          let context = getContext(this) as common.UIAbilityContext;
+          let link: string = 'https://www.example.com';
+          let openLinkOptions: OpenLinkOptions = {
+            appLinkingOnly: true,
+            parameters: { demo_key: 'demo_value' }
+          };
 
-            try {
-              context.openLink(
-                link,
-                openLinkOptions,
-                (err, result) => {
-                  hilog.error(DOMAIN, TAG, `openLink callback error.code: ${JSON.stringify(err)}`);
-                  hilog.info(DOMAIN, TAG, `openLink callback result: ${JSON.stringify(result.resultCode)}`);
-                  hilog.info(DOMAIN, TAG, `openLink callback result data: ${JSON.stringify(result.want)}`);
-                }
-              ).then(() => {
-                hilog.info(DOMAIN, TAG, `open link success.`);
-              }).catch((err: BusinessError) => {
-                hilog.error(DOMAIN, TAG, `open link failed, errCode ${JSON.stringify(err.code)}`);
-              });
-            }
-            catch (e) {
-              hilog.error(DOMAIN, TAG, `exception occured, errCode ${JSON.stringify(e.code)}`);
-            }
-          })
-      }
-      .width('100%')
+          try {
+            context.openLink(
+              link,
+              openLinkOptions,
+              (err, result) => {
+                hilog.error(DOMAIN, TAG, `openLink callback error.code: ${JSON.stringify(err)}`);
+                hilog.info(DOMAIN, TAG, `openLink callback result: ${JSON.stringify(result.resultCode)}`);
+                hilog.info(DOMAIN, TAG, `openLink callback result data: ${JSON.stringify(result.want)}`);
+              }
+            ).then(() => {
+              hilog.info(DOMAIN, TAG, `open link success.`);
+            }).catch((err: BusinessError) => {
+              hilog.error(DOMAIN, TAG, `open link failed, errCode ${JSON.stringify(err.code)}`);
+            });
+          }
+          catch (e) {
+            hilog.error(DOMAIN, TAG, `exception occured, errCode ${JSON.stringify(e.code)}`);
+          }
+        })
     }
     .height('100%')
+    .width('100%')
   }
 }
 ```

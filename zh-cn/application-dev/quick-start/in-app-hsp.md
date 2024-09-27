@@ -24,7 +24,7 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 
 
 ## 创建
-通过DevEco Studio创建一个HSP模块，详见<!--RP1-->[创建HSP模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)<!--RP1End-->，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
+通过DevEco Studio创建一个HSP模块，详见<!--RP1-->[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hsp-V5#section7717162312546)<!--RP1End-->，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
 MyApplication
 ├── library
@@ -166,7 +166,7 @@ export { ResManager } from './src/main/ets/ResManager';
 介绍如何引用HSP中的接口，以及如何通过页面路由实现HSP的pages页面跳转与返回。
 
 ### 引用HSP中的接口
-要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见<!--RP2-->[引用动态共享包](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195)<!--RP2End-->。
+要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，详见<!--RP2-->[引用动态共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)<!--RP2End-->。
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。例如，上面的library已经导出了下面这些接口：
 
 ```ts
@@ -181,7 +181,6 @@ export { nativeMulti } from './src/main/ets/utils/nativeTest';
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -262,11 +261,11 @@ struct Index {
             .resourceManager
             .getStringValue(ResManager.getDesc())
             .then(value => {
-              Logger.info(TAG, `getStringValue is ${value}`);
+              console.log('getStringValue is ' + value);
               this.message = 'getStringValue is ' + value;
             })
             .catch((err: BusinessError) => {
-              Logger.info(TAG, `getStringValue promise error is ${err}`);
+              console.error('getStringValue promise error is ' + err);
             });
         })
 
@@ -305,7 +304,6 @@ struct Index {
 ```ts
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -338,9 +336,8 @@ struct Index {
             url: '@bundle:com.samples.hspsample/library/ets/pages/Menu'
           }).then(() => {
             console.log('push page success');
-            Logger.info(TAG, 'push page success');
           }).catch((err: BusinessError) => {
-            Logger.error(TAG, `pushUrl failed, code is ${err.code}, message is ${err.message}`);
+            console.error('pushUrl failed, code is' + err.code + ', message is' + err.message);
           })
         })
       }

@@ -18,7 +18,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```
   Navigation() {
-    ...
+    // ...
   }
   .mode(NavigationMode.Auto)
   ```
@@ -34,7 +34,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .mode(NavigationMode.Stack)
   ```
@@ -188,7 +188,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .titleMode(NavigationTitleMode.Mini)
   ```
@@ -205,7 +205,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
   ```ts
   Navigation() {
-    ...
+    // ...
   }
   .titleMode(NavigationTitleMode.Full)
   ```
@@ -222,7 +222,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -234,7 +234,7 @@ Navigation() {
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "resources/base/media/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -248,7 +248,7 @@ Navigation() {
 ```ts
 let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
-  ...
+  // ...
 }
 .menus([TooTmp,
   TooTmp,
@@ -270,7 +270,7 @@ Navigation() {
 let TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 let TooBar: ToolbarItem[] = [TooTmp,TooTmp,TooTmp]
 Navigation() {
-  ...
+  // ...
 }
 .toolbarConfiguration(TooBar)
 ```
@@ -559,7 +559,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
 
 ## 页面转场
 
-Navigation默认提供了页面切换的转场动画，通过页面栈操作时，会触发不同的转场效果（Dialog类型的页面默认无转场动画），Navigation也提供了关闭系统转场、自定义转场以及共享元素转场的能力。
+Navigation默认提供了页面切换的转场动画，通过页面栈操作时，会触发不同的转场效果（API version 13之前，Dialog类型的页面默认无转场动画。从API version13开始，Dialog类型的页面支持系统转场动画。），Navigation也提供了关闭系统转场、自定义转场以及共享元素转场的能力。
 
 ### 关闭转场
 
@@ -602,7 +602,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     // 起始页配置共享元素id
     NavDestination() {
     Column() {
-        ...
+        // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(100)
@@ -614,7 +614,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
     // 目的页配置共享元素id
     NavDestination() {
     Column() {
-        ...
+        // ...
         Image($r('app.media.startIcon'))
         .geometryTransition('sharedId')
         .width(200)
@@ -634,7 +634,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
         .height(40)
         .margin(20)
         .onClick(() => {
-            animateTo({ duration: 1000 }, () => {
+            this.getUIContext()?.animateTo({ duration: 1000 }, () => {
             this.pageStack.pushPath({ name: 'ToPage' }, false)
             })
         })

@@ -20,7 +20,7 @@ width(value: Length)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
@@ -29,7 +29,7 @@ width(value: Length)
 >  **说明：**
 >
 >  - 在[TextInput](./ts-basic-components-textinput.md)组件中，width设置auto表示自适应文本宽度。
->  
+>
 >  - 在[AlphabetIndexer](./ts-container-alphabet-indexer.md)组件中，width设置auto表示自适应宽度最大索引项的宽度。
 
 ## height
@@ -46,7 +46,7 @@ height(value: Length)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型                           | 必填   | 说明                  |
 | ----- | ---------------------------- | ---- | ------------------- |
@@ -70,7 +70,7 @@ size(value: SizeOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型                              | 必填   | 说明                |
 | ----- | ------------------------------- | ---- | ----------------- |
@@ -90,7 +90,7 @@ padding(value: Padding | Length | LocalizedPadding)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -110,7 +110,7 @@ margin(value: Margin | Length | LocalizedMargin)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                                         | 必填     | 说明                                                         |
 | ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
@@ -128,11 +128,11 @@ layoutWeight(value: number | string)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型                         | 必填      | 说明                                       |
 | ----- | -------------------------- | ------- | ---------------------------------------- |
-| value | number&nbsp;\|&nbsp;string | &nbsp;是 | 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，表示自适应占满剩余空间。<br/>默认值：0<br/>**说明：** <br/>仅在[Row](./ts-container-row.md)/[Column](./ts-container-column.md)/[Flex](./ts-container-flex.md)布局中生效。<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
+| value | number&nbsp;\|&nbsp;string | &nbsp;是 | 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，表示自适应占满剩余空间。<br/>默认值：0<br/>**说明：** <br/>仅在[Row](./ts-container-row.md)/[Column](./ts-container-column.md)/[Flex](./ts-container-flex.md)布局中生效。<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。<br/>如果容器中有子元素设置了layoutWeight属性，且设置的属性值大于0，则所有子元素不会再基于flexShrink和flexGrow布局。 |
 
 ## constraintSize
 
@@ -148,13 +148,13 @@ constraintSize(value: ConstraintSizeOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 是    | 设置约束尺寸。constraintSize的优先级高于Width和Height。取值结果参考constraintSize取值对width/height影响。<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>}<br/>单位：vp<br/> |
 
-**constraintSize(minWidth/maxWidth/minHeight/maxHeight)取值对width/height影响** 
+**constraintSize(minWidth/maxWidth/minHeight/maxHeight)取值对width/height影响**
 
 | 缺省值                                      | 结果                                       |
 | ---------------------------------------- | ---------------------------------------- |

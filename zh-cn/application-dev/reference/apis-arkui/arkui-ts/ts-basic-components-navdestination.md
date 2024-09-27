@@ -36,7 +36,7 @@ NavDestination()
 
 ### title
 
-title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestinationCustomTitle, options?: NavigationTitleOptions)
+title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestinationCustomTitle | Resource, options?: NavigationTitleOptions)
 
 设置页面标题。使用NavigationCustomTitle类型设置height高度时，[titleMode](ts-basic-components-navigation.md#titlemode)属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行2行后以...截断。如果设置副标题，先缩小后以...截断。
 
@@ -179,7 +179,7 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
 | STANDARD | 标准模式的NavDestination。                       |
-| DIALOG | 默认透明，进出页面栈不影响下层NavDestination的生命周期，不支持系统转场动画。    |
+| DIALOG | 默认透明，进出页面栈不影响下层NavDestination的生命周期。<br />API version 13之前，默认无系统转场动画。从API version 13开始，支持系统转场动画。  |
 
 ## 事件
 
@@ -275,8 +275,8 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 | 名称   | 类型     | 必填   | 说明     |
 | ---- | ------ | ---- | ------ |
-| main | string | 是    | 设置主标题。 |
-| sub  | string | 是    | 设置副标题。 |
+| main | string \| [Resource<sup>14+<sup>](ts-types.md#resource) | 是    | 设置主标题。 |
+| sub  | string \| [Resource<sup>14+<sup>](ts-types.md#resource) | 是    | 设置副标题。 |
 
 ## NavDestinationCustomTitle
 

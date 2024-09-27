@@ -46,11 +46,15 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
+
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12); // 12 bytes
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
@@ -120,12 +124,15 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
 
   function genGcmParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 12 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-    arr = [0, 0, 0, 0, 0, 0, 0, 0]; // 8 bytes
+    let ivBlob = generateRandom(12); // 12 bytes
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
     let dataAad = new Uint8Array(arr);
     let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes

@@ -553,7 +553,7 @@ function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapabili
 
 createPreviewOutput(surfaceId: string): PreviewOutput
 
-创建无配置信息的预览输出对象，同步返回结果。该接口需配合[Preconfig](#preconfig12)功能一起使用。
+创建无配置信息的预览输出对象，同步返回结果。该接口需配合[preconfig](#preconfig12)一起使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -657,7 +657,7 @@ createPhotoOutput(profile?: Profile): PhotoOutput
 
 | 参数名     | 类型                                         | 必填 | 说明                                  |
 | -------- | ------------------------------------------- |----| ----------------------------------- |
-| profile  | [Profile](#profile)                         | 否  | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。<br>API 11时，该参数必填；从API version 12开始，如果使用Preconfig进行预配置，传入profile参数会覆盖Preconfig的预配置参数。|
+| profile  | [Profile](#profile)                         | 否  | 支持的拍照配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。<br>API 11时，该参数必填；从API version 12开始，如果使用[preconfig](#preconfig12)进行预配置，传入profile参数会覆盖preconfig的预配置参数。|
 
 **返回值：**
 
@@ -746,7 +746,7 @@ function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability
 
 createVideoOutput(surfaceId: string): VideoOutput
 
-创建无配置信息的录像输出对象，同步返回结果。该接口需配合[Preconfig](#preconfig12)功能一起使用。
+创建无配置信息的录像输出对象，同步返回结果。该接口需配合[preconfig](#preconfig12-1)功能一起使用。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2086,7 +2086,7 @@ function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profi
 
 ### getPreviewRotation<sup>12+</sup>
 
-getPreviewRotation(imageRotation: ImageRotation): ImageRotation
+getPreviewRotation(displayRotation: number): ImageRotation
 
 获取预览旋转角度。
 
@@ -2100,7 +2100,7 @@ getPreviewRotation(imageRotation: ImageRotation): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation)  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
+| displayRotation | number  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
 
 **返回值：**
 
@@ -2134,7 +2134,7 @@ function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotati
 }
 ```
 ### setPreviewRotation<sup>12+</sup>
-setPreviewRotation(previewRotation: Imagerotation, isDisplayLocked?: boolean): void
+setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): void
 
 设置预览旋转角度。
 
@@ -3029,7 +3029,7 @@ function registerPhotoOutputCaptureReady(photoOutput: camera.PhotoOutput): void 
 
 off(type: 'captureReady', callback?: AsyncCallback\<void\>): void
 
-注销监听监听可拍下一张。
+注销监听可拍下一张。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3203,7 +3203,7 @@ function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile |
 ```
 ### getPhotoRotation<sup>12+</sup>
 
-getPhotoRotation(imageRotation: ImageRotation): ImageRotation
+getPhotoRotation(deviceDegree: number): ImageRotation
 
 获取拍照旋转角度。
 
@@ -3217,7 +3217,7 @@ getPhotoRotation(imageRotation: ImageRotation): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation) | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度)|
+| deviceDegree | number | 是   | 设备旋转角度 |
 
 **返回值：**
 
@@ -3734,7 +3734,7 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
 
 ### getVideoRotation<sup>12+</sup>
 
-getVideoRotation(imageRotation: ImageRotation): ImageRotation
+getVideoRotation(deviceDegree: number): ImageRotation
 
 获取录像旋转角度。
 
@@ -3748,7 +3748,7 @@ getVideoRotation(imageRotation: ImageRotation): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| imageRotation | [ImageRotation](#imagerotation)  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
+| deviceDegree | number | 是   | 设备旋转角度 |
 
 **返回值：**
 
@@ -5510,9 +5510,9 @@ setZoomRatio(zoomRatio: number): void
 
 **参数：**
 
-| 参数名       | 类型                  | 必填 | 说明                                                                                   |
-| --------- | -------------------- | ---- |--------------------------------------------------------------------------------------|
-| zoomRatio | number               | 是   | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。 |
+| 参数名       | 类型                  | 必填 | 说明                                                                                                                              |
+| --------- | -------------------- | ---- |---------------------------------------------------------------------------------------------------------------------------------|
+| zoomRatio | number               | 是   | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。<br>设置可变焦距比到底层生效需要一定时间，获取正确设置的可变焦距比需要等待1~2帧的时间。 |
 
 **错误码：**
 
@@ -7988,7 +7988,7 @@ VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#a
 
 ### canPreconfig<sup>12+</sup>
 
-canPreconfig(preconfigType: PreconfigType), preconfigRatio?: PreconfigRatio): boolean
+canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
 
 查询当前Session是否支持指定的与配置类型。
 

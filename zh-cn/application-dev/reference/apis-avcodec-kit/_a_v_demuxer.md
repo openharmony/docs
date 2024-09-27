@@ -3,7 +3,7 @@
 
 ## 概述
 
-AVDemuxer模块提供用于音视频解封装功能的函数。
+AVDemuxer模块提供从媒体文件码流中提取sample的接口。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
@@ -17,7 +17,7 @@ AVDemuxer模块提供用于音视频解封装功能的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avdemuxer.h](native__avdemuxer_8h.md) | 声明用于音视频解封装的Native API。 | 
+| [native_avdemuxer.h](native__avdemuxer_8h.md) | 声明用于音视频媒体数据解析的接口。 |
 
 ### 类型定义
 
@@ -31,12 +31,12 @@ AVDemuxer模块提供用于音视频解封装功能的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_AVDemuxer \* [OH_AVDemuxer_CreateWithSource](#oh_avdemuxer_createwithsource) ([OH_AVSource](_a_v_source.md#oh_avsource) \*source) | 通过source实例对象创建OH_AVDemuxer实例对象。 | 
+| OH_AVDemuxer \* [OH_AVDemuxer_CreateWithSource](#oh_avdemuxer_createwithsource) ([OH_AVSource](_a_v_source.md#oh_avsource) \*source) | 通过source实例创建OH_AVDemuxer实例。 |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_Destroy](#oh_avdemuxer_destroy) (OH_AVDemuxer \*demuxer) | 销毁OH_AVDemuxer实例并清理内部资源。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SelectTrackByID](#oh_avdemuxer_selecttrackbyid) (OH_AVDemuxer \*demuxer, uint32_t trackIndex) | 选中指定轨道，解封装器将会从该轨道中读取数据。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_UnselectTrackByID](#oh_avdemuxer_unselecttrackbyid) (OH_AVDemuxer \*demuxer, uint32_t trackIndex) | 取消选择指定轨道，未选中的轨道的数据不会被解封装器读取。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_ReadSample](#oh_avdemuxer_readsample) (OH_AVDemuxer \*demuxer, uint32_t trackIndex, [OH_AVMemory](_core.md#oh_avmemory) \*sample, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*info) | 从选中轨道中获取当前位置压缩帧及相关信息。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_ReadSampleBuffer](#oh_avdemuxer_readsamplebuffer) (OH_AVDemuxer \*demuxer, uint32_t trackIndex, [OH_AVBuffer](_core.md#oh_avbuffer) \*sample) | 从选中轨道中获取当前位置压缩帧及相关信息。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SelectTrackByID](#oh_avdemuxer_selecttrackbyid) (OH_AVDemuxer \*demuxer, uint32_t trackIndex) | 指定读取sample的轨道，解封装器将会从该轨道中读取数据，未指定的轨道不会读取。 |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_UnselectTrackByID](#oh_avdemuxer_unselecttrackbyid) (OH_AVDemuxer \*demuxer, uint32_t trackIndex) | 移除读取sample的轨道，未选中的轨道的数据不会被解封装器读取。 |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_ReadSample](#oh_avdemuxer_readsample) (OH_AVDemuxer \*demuxer, uint32_t trackIndex, [OH_AVMemory](_core.md#oh_avmemory) \*sample, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*info) | 获取指定轨道的sample及相关信息（API11废弃）。  |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_ReadSampleBuffer](#oh_avdemuxer_readsamplebuffer) (OH_AVDemuxer \*demuxer, uint32_t trackIndex, [OH_AVBuffer](_core.md#oh_avbuffer) \*sample) | 获取指定轨道的sample。 |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SeekToTime](#oh_avdemuxer_seektotime) (OH_AVDemuxer \*demuxer, int64_t millisecond, [OH_AVSeekMode](_codec_base.md#oh_avseekmode) mode) | 根据设定的跳转模式，将所有选中的轨道到指定时间附近。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SetMediaKeySystemInfoCallback](#oh_avdemuxer_setmediakeysysteminfocallback) (OH_AVDemuxer \*demuxer, DRM_MediaKeySystemInfoCallback callback) | 设置异步DRM信息回调函数。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback](#oh_avdemuxer_setdemuxermediakeysysteminfocallback) (OH_AVDemuxer \*demuxer, Demuxer_MediaKeySystemInfoCallback callback) | 设置异步DRM信息回调函数。  | 
@@ -82,7 +82,9 @@ typedef void(* DRM_MediaKeySystemInfoCallback) (DRM_MediaKeySystemInfo *mediaKey
 OH_AVDemuxer* OH_AVDemuxer_CreateWithSource (OH_AVSource *source)
 ```
 **描述**
-通过source实例对象创建OH_AVDemuxer实例对象。可以通过调用[OH_AVDemuxer_Destroy](#oh_avdemuxer_destroy)释放实例。
+通过source实例创建OH_AVDemuxer实例。
+
+source的创建、销毁及使用，详情请参考[OH_AVSource](_a_v_source.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
@@ -98,9 +100,11 @@ OH_AVDemuxer* OH_AVDemuxer_CreateWithSource (OH_AVSource *source)
 
 返回一个指向OH_AVDemuxer实例的指针。
 
-如果执行成功，则返回指向OH_AVDemuxer实例的指针，否则返回nullptr。
+如果执行成功，则返回指向OH_AVDemuxer实例的指针，否则返回NULL。
  
-可能的失败原因：source无效，即空指针或非OH_AVSource实例。 
+可能的失败原因：
+1. source无效，即空指针；
+2. 非OH_AVSource实例。 
 
 
 ### OH_AVDemuxer_Destroy()
@@ -123,7 +127,7 @@ OH_AVErrCode OH_AVDemuxer_Destroy (OH_AVDemuxer *demuxer)
 
 **返回：**
 
-返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+返回函数结果：
 
 AV_ERR_OK：执行成功。
 
@@ -151,11 +155,14 @@ OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo (OH_AVDemuxer *demuxer, DRM_Medi
 
 **返回：**
 
-返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+返回函数结果：
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例，或者mediaKeySystemInfo为nullptr。
+AV_ERR_INVALID_VAL：
+
+    1. 输入的demuxer指针为空或为非解封装器实例；
+    2. mediaKeySystemInfo为nullptr。
 
 
 ### OH_AVDemuxer_ReadSample()
@@ -164,7 +171,9 @@ AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例，�
 OH_AVErrCode OH_AVDemuxer_ReadSample (OH_AVDemuxer *demuxer, uint32_t trackIndex, OH_AVMemory *sample, OH_AVCodecBufferAttr *info)
 ```
 **描述**
-从选中轨道中获取当前位置压缩帧及相关信息。注意，读取轨道帧数据前，轨道必须被选中。调用接口后解封装器将自动前进到下一帧。
+获取指定轨道的sample及相关信息。
+
+注意，读取轨道sample前，轨道必须被选中。调用接口后解封装器将自动前进到下一帧。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
@@ -185,13 +194,22 @@ OH_AVErrCode OH_AVDemuxer_ReadSample (OH_AVDemuxer *demuxer, uint32_t trackIndex
 
 **返回：**
 
-返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+返回函数结果：
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例，或demuxer没有正确的初始化，或轨道的索引超出范围，或者不支持读取轨道。
+AV_ERR_INVALID_VAL：
 
-AV_ERR_OPERATE_NOT_PERMIT：轨道的索引没有被选中。
+    1. 输入的demuxer指针为空或为非解封装器实例；
+    2. 轨道的索引超出范围；
+    3. 不支持读取轨道；
+    4. 输入sample为空；
+    5. 输入info为空。
+
+AV_ERR_OPERATE_NOT_PERMIT：
+
+    1. 轨道的索引没有被选中；
+    2. demuxer没有正确的初始化。
 
 AV_ERR_NO_MEMORY：sample容量不足以存储所有帧数据。
 
@@ -204,7 +222,9 @@ AV_ERR_UNKNOWN：无法从文件中读取或解析帧。
 OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer (OH_AVDemuxer *demuxer, uint32_t trackIndex, OH_AVBuffer *sample)
 ```
 **描述**
-从选中轨道中获取当前位置压缩帧及相关信息。注意，读取轨道帧数据前，轨道必须被选中。调用接口后解封装器将自动前进到下一帧。
+获取指定轨道的sample及相关信息。
+
+注意，读取轨道sample前，轨道必须被选中。调用接口后解封装器将自动前进到下一帧。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
@@ -220,13 +240,21 @@ OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer (OH_AVDemuxer *demuxer, uint32_t trac
 
 **返回：**
 
-返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+返回函数结果：
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例，或demuxer没有正确的初始化，或sample为空指针，或者轨道的索引超出范围。
+AV_ERR_INVALID_VAL：
 
-AV_ERR_OPERATE_NOT_PERMIT：轨道的索引没有被选中。
+    1. 输入的demuxer指针为空或为非解封装器实例；
+    2. sample为空指针；
+    3. 轨道的索引超出范围；
+    4. 输入sample为空。
+
+AV_ERR_OPERATE_NOT_PERMIT：
+
+    1. 轨道的索引没有被选中；
+    2. demuxer没有正确的初始化。
 
 AV_ERR_NO_MEMORY：sample容量不足以存储所有帧数据。
 
@@ -255,20 +283,20 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime (OH_AVDemuxer *demuxer, int64_t millisecond
 
 **返回：**
 
-返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+返回函数结果：
 
 AV_ERR_OK：执行成功。
 
 AV_ERR_INVALID_VAL：
 
     1. 输入的demuxer指针为空或为非解封装器实例；
-    2. demuxer没有正确的初始化；
-    3. 毫秒值超出范围。
+    2. 毫秒值超出范围。
 
 AV_ERR_OPERATE_NOT_PERMIT：
 
     1. 轨道的索引没有被选中；
-    2. 资源无法seek。
+    2. demuxer没有正确的初始化；
+    3. 资源无法seek。
 
 AV_ERR_UNKNOWN：
 
@@ -282,7 +310,7 @@ AV_ERR_UNKNOWN：
 OH_AVErrCode OH_AVDemuxer_SelectTrackByID (OH_AVDemuxer *demuxer, uint32_t trackIndex)
 ```
 **描述**
-选中指定轨道，解封装器将会从该轨道中读取数据。注意，通过多次调用接口并传入不同轨道的索引来选中多个轨道。 调用OH_AVDemuxer_ReadSample时只会读取被选中的轨道中数据，同一轨道被选择多次时，接口会返回AV_ERR_OK，并且只会生效一次。
+指定读取sample的轨道，解封装器将会从该轨道中读取数据，未指定的轨道不会读取。注意，通过多次调用接口并传入不同轨道的索引来选中多个轨道。 调用OH_AVDemuxer_ReadSample时只会读取被选中的轨道中数据，同一轨道被选择多次时，接口会返回AV_ERR_OK，并且只会生效一次。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
@@ -297,11 +325,17 @@ OH_AVErrCode OH_AVDemuxer_SelectTrackByID (OH_AVDemuxer *demuxer, uint32_t track
 
 **返回：**
 
-返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+返回函数结果：
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例，或demuxer没有正确的初始化，或轨道的索引超出范围，或者不支持读取轨道。
+AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
+
+AV_ERR_INVALID_VAL：
+    
+    1. 输入的demuxer指针为空或为非解封装器实例；
+    2. 轨道的索引超出范围；
+    3. 不支持读取轨道。
 
 
 ### OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback()
@@ -325,7 +359,7 @@ OH_AVErrCode OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback (OH_AVDemuxer *de
 
 **返回：**
 
-返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+返回函数结果：
 
 AV_ERR_OK：执行成功。
 
@@ -355,7 +389,7 @@ OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback (OH_AVDemuxer *demuxer, 
 
 **返回：**
 
-返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+返回函数结果：
 
 AV_ERR_OK：执行成功。
 
@@ -370,7 +404,7 @@ AV_ERR_INVALID_VAL：输入的demuxer指针为空或为非解封装器实例。
 OH_AVErrCode OH_AVDemuxer_UnselectTrackByID (OH_AVDemuxer *demuxer, uint32_t trackIndex)
 ```
 **描述**
-取消选择指定轨道，未选中的轨道的数据不会被解封装器读取。注意，通过多次调用接口并传入不同轨道的索引来取消对多个轨道的选择。 同一轨道被多次取消选择时，接口会返回AV_ERR_OK，并且只会生效一次。
+移除读取sample的轨道，未选中的轨道的数据不会被解封装器读取。注意，通过多次调用接口并传入不同轨道的索引来取消对多个轨道的选择。 同一轨道被多次取消选择时，接口会返回AV_ERR_OK，并且只会生效一次。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
@@ -385,8 +419,10 @@ OH_AVErrCode OH_AVDemuxer_UnselectTrackByID (OH_AVDemuxer *demuxer, uint32_t tra
 
 **返回：**
 
-返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+返回函数结果：
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_INVALID_VAL：输入的demuxer指针为空或非解封装器实例，或demuxer没有正确的初始化。
+AV_ERR_OPERATE_NOT_PERMIT：demuxer没有正确的初始化。
+
+AV_ERR_INVALID_VAL：输入的demuxer指针为空或非解封装器实例。

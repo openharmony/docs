@@ -273,7 +273,7 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 
 generateRandomUUID(entropyCache?: boolean): string
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。调用此函数会生成两个UUID，其中一个UUID进行缓存，一个UUID用于输出，首次调用时，参数是true或false无区别；下次调用时，如果参数是true，依旧缓存上次UUID，并生成新的UUID；如果参数是false，将生成两个UUID，其中一个UUID进行缓存，一个UUID进行输出。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。为了提升性能，此接口会默认使用缓存，即入参为true，最多可缓存128个随机的UUID。当缓存中128个UUID都被使用后，会重新进行一次缓存UUID的生成，以保证UUID的随机性。假如不需要使用缓存的UUID，请将入参设置为false。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1335,6 +1335,10 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 用于创建具有给定分子和分母的RationalNumber实例。
 
+> **说明：**
+>
+> 该接口要求参数numerator和denominator必须是整数类型。如果传入的参数是小数类型，不会进行拦截，但是会输出错误信息："parseRationalNumber: The type of Parameter must be integer"。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -1343,8 +1347,8 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 | 参数名      | 类型   | 必填 | 说明             |
 | ----------- | ------ | ---- | ---------------- |
-| numerator   | number | 是   | 分子，整数类型。 |
-| denominator | number | 是   | 分母，整数类型。 |
+| numerator   | number | 是   | 分子，整数类型。取值范围：-Number.MAX_VALUE <= numerator <= Number.MAX_VALUE。|
+| denominator | number | 是   | 分母，整数类型。取值范围：-Number.MAX_VALUE <= denominator <= Number.MAX_VALUE。|
 
 **错误码：**
 
@@ -1365,6 +1369,10 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 static createRationalFromString(rationalString: string): RationalNumber​
 
 基于给定的字符串创建一个RationalNumber对象。
+
+> **说明：**
+>
+> 该接口要求参数rationalString是字符串格式。如果传入的参数是小数类型字符串格式，不会进行拦截，但是会输出错误信息："createRationalFromString: The type of Parameter must be integer string"。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1514,6 +1522,10 @@ getCommonFactor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
 
+> **说明：**
+>
+> 该接口要求参数number1和number2必须是整数类型。如果传入的参数是小数类型，不会进行拦截，但是会输出错误信息："getCommonFactor: The type of Parameter must be integer"。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -1522,8 +1534,8 @@ getCommonFactor(number1: number,number2: number): number
 
 | 参数名  | 类型   | 必填 | 说明       |
 | ------- | ------ | ---- | ---------- |
-| number1 | number | 是   | 整数类型。 |
-| number2 | number | 是   | 整数类型。 |
+| number1 | number | 是   | 整数类型。-Number.MAX_VALUE <= number1 <= Number.MAX_VALUE。|
+| number2 | number | 是   | 整数类型。-Number.MAX_VALUE <= number2 <= Number.MAX_VALUE。|
 
 **返回值：**
 

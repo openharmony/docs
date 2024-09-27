@@ -620,6 +620,26 @@ getLongestLine(): number
 let longestLine = paragraph.getLongestLine();
 ```
 
+### getLongestLineWithIndent<sup>13+</sup>
+
+getLongestLineWithIndent(): number
+
+获取文本最长一行的宽度（该宽度包含当前行缩进的宽度），建议实际使用时将返回值向上取整。当文本内容为空时，返回0。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | ------------- |
+| number | 最长一行的宽度（该宽度包含当前行缩进的宽度），浮点数，单位为物理像素px。|
+
+**示例：**
+
+```ts
+let longestLineWithIndent = paragraph.getLongestLineWithIndent();
+```
+
 ### getMinIntrinsicWidth
 
 getMinIntrinsicWidth(): number
@@ -1385,7 +1405,7 @@ addSymbol(symbolId: number): void
 
 | 参数名    | 类型    | 必填 | 说明                                                        |
 | -------- | ------- | ---- | ----------------------------------------------------------- |
-| symbolId | number  | 是   | 要设置的symbol码位，十六进制，当前支持的取值范围为：0xF0000-0xF0C97。|
+| symbolId | number  | 是   | 要设置的symbol码位，十六进制，当前支持的取值范围为：0xF0000-0xF0C97。可设置的symbol码位及其对应的symbol名称请参阅以下链接中 JSON 文件的 value 字段和 name 字段： [https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json)|
 
 **示例：**
 

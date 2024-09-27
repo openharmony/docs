@@ -626,8 +626,8 @@ type AuthEventKey = 'result' | 'tip'
 
 | 类型       | 说明                    |
 | ---------- | ----------------------- |
-| "result" | [on](#ondeprecated)接口第一个参数为"result"时，[callback](#callbackdeprecated)回调返回认证的结果信息。 |
-| "tip"    | [on](#ondeprecated)接口第一个参数为"tip"时，[callback](#callbackdeprecated)回调返回认证操作中的提示信息。 |
+| 'result' | [on](#ondeprecated)接口第一个参数为"result"时，[callback](#callbackdeprecated)回调返回认证的结果信息。 |
+| 'tip'    | [on](#ondeprecated)接口第一个参数为"tip"时，[callback](#callbackdeprecated)回调返回认证操作中的提示信息。 |
 
 ## AuthEvent<sup>(deprecated)</sup>
 

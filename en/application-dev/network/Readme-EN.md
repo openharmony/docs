@@ -10,7 +10,7 @@
 
 - Network Management Capabilities
     - [Network Connection Management](net-connection-manager.md)
-    - [NetConnection Development (C/C++)] (native-netmanager-guidelines.md)
+    - [NetConnection Development (C/C++)](native-netmanager-guidelines.md)
     - [Traffic Management](net-statistics.md)
     <!--Del-->
     - [Network Firewall (For System Applications Only)](net-netfirewall.md)

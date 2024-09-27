@@ -85,7 +85,7 @@ placeholderColor(value: ResourceColor)
 
 placeholderFont(value?: Font)
 
-设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -934,6 +934,34 @@ enablePreviewText(enable: boolean)
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
+
+>  **说明：**
+>
+>  该接口在CAPI场景使用时下，默认关闭。可以在工程的module.json5中配置[metadata](../../../../application-dev/quick-start/module-structure.md#metadata对象内部结构)字段控制是否启用预上屏，配置如下：
+> ```json
+> "metadata": [
+>  {
+>     "name": "can_preview_text",
+>     "value": "true",
+>  }
+> ]
+> ```
+
+### enableHapticFeedback<sup>13+</sup>
+
+enableHapticFeedback(isEnabled: boolean)
+
+设置是否开启触控反馈。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
 
 ## InputType枚举说明
 
