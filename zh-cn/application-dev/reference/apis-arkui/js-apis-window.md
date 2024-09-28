@@ -5956,7 +5956,7 @@ export default class EntryAbility extends UIAbility {
 
 ### setWindowTopmost<sup>14+</sup>
 
-setWindowTopmost(isWindowTopmost: boolean): Promise<void>
+setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 
 应用主窗口调用，实现将窗口置于其他应用窗口之上不被遮挡，使用Promise异步回调。此接口仅支持2in1设备。
 
