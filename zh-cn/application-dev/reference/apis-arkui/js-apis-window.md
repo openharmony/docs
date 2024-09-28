@@ -5954,6 +5954,69 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### setWindowTopmost<sup>14+</sup>
+
+setWindowTopmost(isWindowTopmost: boolean): Promise<void>
+
+应用主窗口调用，实现将窗口置于其他应用窗口之上不被遮挡，使用Promise异步回调。此接口仅支持2in1设备。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isWindowTopmost | boolean | 是   | 设置主窗口置顶，true为置顶，false为取消置顶。 |
+
+**需要权限：** ohos.permission.WINDOW_TOPMOST
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.  |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // 加载主窗口对应的页面
+    windowStage.loadContent('pages/Index', (err) => {
+      let mainWindow: window.Window | undefined = undefined;
+      // 获取应用主窗口。
+      windowStage.getMainWindow().then(
+        data => {
+          mainWindow = data;
+          let isWindowTopmost: boolean = true;
+          let promise = window.setWindowTopmost(isWindowTopmost);
+          promise.then(() => {
+            console.info('Succeeded in setting the main window to be topmost.');
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
+          });
+        }
+      ).catch((err: BusinessError) => {
+          if(err.code){
+            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+          }
+      });
+    });
+  }
+}
+```
+
 ### enableLandscapeMultiWindow<sup>12+</sup>
 
 enableLandscapeMultiWindow(): Promise&lt;void&gt;
