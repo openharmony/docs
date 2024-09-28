@@ -1828,7 +1828,6 @@ runJavaScript(script: string): Promise\<string>
 | 类型            | 说明                                                |
 | --------------- | --------------------------------------------------- |
 | Promise\<string> | Promise实例，返回脚本执行的结果，执行失败返回null。 |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **错误码：**
 
@@ -3323,7 +3322,7 @@ getPageHeight(): number
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| number | 当前网页的页面高度。单位：px。 |
+| number | 当前网页的页面高度。单位：vp。 |
 
 **错误码：**
 
