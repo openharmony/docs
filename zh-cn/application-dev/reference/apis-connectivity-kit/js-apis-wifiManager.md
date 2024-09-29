@@ -18,8 +18,6 @@ isWifiActive(): boolean
 
 查询WLAN是否已使能。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
@@ -36,7 +34,6 @@ isWifiActive(): boolean
 
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
-| 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
