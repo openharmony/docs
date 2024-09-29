@@ -5915,7 +5915,7 @@ on(type: 'isoInfoChange', callback: AsyncCallback\<IsoInfo\>): void
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'isoInfoChange'。         |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| 是   | 回调函数，用于获取ISO信息。         |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| 是   | 回调函数，用于获取ISO信息。         |
 
 **错误码：**
 
@@ -5956,7 +5956,7 @@ off(type: 'isoInfoChange', callback?: AsyncCallback\<IsoInfo\>): void
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'isoInfoChange'。         |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| 否   | 回调函数，可选，用于匹配on('isoInfoChange')的callback。 |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| 否   | 回调函数，可选，用于匹配on('isoInfoChange')的callback。 |
 
 **错误码：**
 
@@ -5974,7 +5974,7 @@ function unregisterIsoInfoEvent(professionalPhotoSession: camera.ProfessionalPho
 
 ### on('exposureInfoChange')<sup>12+</sup>
 
-on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+on(type: 'exposureInfoChange', callback: AsyncCallback\<ExposureInfo\>): void
 
 监听曝光信息事件，通过注册回调函数获取曝光信息。使用callback异步回调。
 
@@ -5987,7 +5987,7 @@ on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo](js-apis-c
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'exposureInfoChange'。         |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| 是   | 回调函数，用于获取曝光信息。         |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| 是   | 回调函数，用于获取曝光信息。         |
 
 **错误码：**
 
@@ -6015,7 +6015,7 @@ function registerExposureInfoEvent(professionalPhotoSession: camera.Professional
 
 ### off('exposureInfoChange')<sup>12+</sup>
 
-off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<ExposureInfo\>): void
 
 注销监听曝光信息事件，通过注册回调函数来注销。
 
@@ -6028,7 +6028,7 @@ off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo](js-apis
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'exposureInfoChange'。         |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| 否   | 回调函数，可选，用于匹配on('exposureInfoChange')的callback。 |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| 否   | 回调函数，可选，用于匹配on('exposureInfoChange')的callback。 |
 
 **错误码：**
 
@@ -6046,7 +6046,7 @@ function unregisterExposureInfoEvent(professionalPhotoSession: camera.Profession
 
 ### on('apertureInfoChange')<sup>12+</sup>
 
-on(type: 'apertureInfoChange', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+on(type: 'apertureInfoChange', callback: AsyncCallback\<ApertureInfo\>): void
 
 监听物理光圈变化事件，通过注册回调函数获取实时物理光圈信息。使用callback异步回调。
 
@@ -6059,7 +6059,7 @@ on(type: 'apertureInfoChange', callback: AsyncCallback\<[ApertureInfo](js-apis-c
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'apertureInfoChange'。         |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| 是   | 回调函数，用于获取物理光圈信息。         |
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| 是   | 回调函数，用于获取物理光圈信息。         |
 
 **错误码：**
 
@@ -6087,7 +6087,7 @@ function registerApertureInfoEvent(professionalPhotoSession: camera.Professional
 
 ### off('apertureInfoChange')<sup>12+</sup>
 
-off(type: 'apertureInfoChange', callback?: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+off(type: 'apertureInfoChange', callback?: AsyncCallback\<ApertureInfo\>): void
 
 注销监听物理光圈变化事件，通过注册回调函数来注销。
 
@@ -6100,7 +6100,7 @@ off(type: 'apertureInfoChange', callback?: AsyncCallback\<[ApertureInfo](js-apis
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'apertureInfoChange'。         |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| 否   | 回调函数，可选，用于匹配on('apertureInfoChange')的callback。 |
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| 否   | 回调函数，可选，用于匹配on('apertureInfoChange')的callback。 |
 
 **错误码：**
 
@@ -6118,7 +6118,7 @@ function unregisterApertureInfoEvent(professionalPhotoSession: camera.Profession
 
 ### on('luminationInfoChange')<sup>12+</sup>
 
-on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+on(type: 'luminationInfoChange', callback: AsyncCallback\<LuminationInfo\>): void
 
 监听光照变化事件，通过注册回调函数获取实时光照参数。使用callback异步回调。
 
@@ -6131,7 +6131,7 @@ on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo](js-ap
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'luminationInfoChange'。         |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| 是   | 回调函数，用于获取光照参数。         |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| 是   | 回调函数，用于获取光照参数。         |
 
 **错误码：**
 
@@ -6159,7 +6159,7 @@ function registerLuminationInfoEvent(professionalPhotoSession: camera.Profession
 
 ### off('luminationInfoChange')<sup>12+</sup>
 
-off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<LuminationInfo\>): void
 
 注销监听光照变化事件，通过注册回调函数来注销。
 
@@ -6172,7 +6172,7 @@ off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo](js-
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'luminationInfoChange'。         |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| 否   | 回调函数，可选，用于匹配on('luminationInfoChange')的callback。 |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| 否   | 回调函数，可选，用于匹配on('luminationInfoChange')的callback。 |
 
 **错误码：**
 
@@ -6420,7 +6420,7 @@ function unregisterSmoothZoomInfo(professionalVideoSession: camera.ProfessionalV
 
 ### on('isoInfoChange')<sup>12+</sup>
 
-on(type: 'isoInfoChange', callback: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>): void
+on(type: 'isoInfoChange', callback: AsyncCallback\<IsoInfo\>): void
 
 监听自动ISO变化事件，通过注册回调函数获取实时ISO信息。使用callback异步回调。
 
@@ -6433,7 +6433,7 @@ on(type: 'isoInfoChange', callback: AsyncCallback\<[IsoInfo](js-apis-camera-sys.
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'isoInfoChange'。         |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| 是   | 回调函数，用于获取ISO信息。         |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| 是   | 回调函数，用于获取ISO信息。         |
 
 **错误码：**
 
@@ -6461,7 +6461,7 @@ function registerIsoInfoEvent(professionalVideoSession: camera.ProfessionalVideo
 
 ### off('isoInfoChange')<sup>12+</sup>
 
-off(type: 'isoInfoChange', callback?: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>): void
+off(type: 'isoInfoChange', callback?: AsyncCallback\<IsoInfo\>): void
 
 注销监听ISO信息事件，通过注册回调函数来注销。
 
@@ -6474,7 +6474,7 @@ off(type: 'isoInfoChange', callback?: AsyncCallback\<[IsoInfo](js-apis-camera-sy
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'isoInfoChange'。         |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| 否   | 回调函数，可选，用于匹配on('isoInfoChange')的callback。 |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| 否   | 回调函数，可选，用于匹配on('isoInfoChange')的callback。 |
 
 **错误码：**
 
@@ -6492,7 +6492,7 @@ function unregisterIsoInfoEvent(professionalVideoSession: camera.ProfessionalVid
 
 ### on('exposureInfoChange')<sup>12+</sup>
 
-on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>): void
+on(type: 'exposureInfoChange', callback: AsyncCallback\<ExposureInfo\>): void
 
 监听曝光信息事件，通过注册回调函数获取曝光信息。使用callback异步回调。
 
@@ -6505,7 +6505,7 @@ on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo]((js-apis-
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'exposureInfoChange'。         |
-| callback | AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>| 是   | 回调函数，用于获取曝光信息。         |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| 是   | 回调函数，用于获取曝光信息。         |
 
 **错误码：**
 
@@ -6533,7 +6533,7 @@ function registerExposureInfoEvent(professionalVideoSession: camera.Professional
 
 ### off('exposureInfoChange')<sup>12+</sup>
 
-off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>): void
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<ExposureInfo\>): void
 
 注销监听曝光信息事件，通过注册回调函数来注销。
 
@@ -6546,7 +6546,7 @@ off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo]((js-api
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'exposureInfoChange'。         |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| 否   | 回调函数，可选，用于匹配on('exposureInfoChange')的callback。 |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| 否   | 回调函数，可选，用于匹配on('exposureInfoChange')的callback。 |
 
 **错误码：**
 
@@ -6564,7 +6564,7 @@ function unregisterExposureInfoEvent(professionalVideoSession: camera.Profession
 
 ### on('apertureInfoChange')<sup>12+</sup>
 
-on(type: 'apertureInfoChange', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+on(type: 'apertureInfoChange', callback: AsyncCallback\<ApertureInfo\>): void
 
 监听物理光圈变化事件，通过注册回调函数获取物理光圈信息。使用callback异步回调。
 
@@ -6577,7 +6577,7 @@ on(type: 'apertureInfoChange', callback: AsyncCallback\<[ApertureInfo](js-apis-c
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'apertureInfoChange'。         |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| 是   | 回调函数，用于获取物理光圈信息。         |
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| 是   | 回调函数，用于获取物理光圈信息。         |
 
 **错误码：**
 
@@ -6605,7 +6605,7 @@ function registerApertureInfoEvent(professionalVideoSession: camera.Professional
 
 ### off('apertureInfoChange')<sup>12+</sup>
 
-off(type: 'apertureInfoChange', callback?: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+off(type: 'apertureInfoChange', callback?: AsyncCallback\<ApertureInfo\>): void
 
 注销监听物理光圈变化事件，通过注册回调函数来注销。
 
@@ -6618,7 +6618,7 @@ off(type: 'apertureInfoChange', callback?: AsyncCallback\<[ApertureInfo](js-apis
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'apertureInfoChange'。         |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| 否   | 回调函数，可选，用于匹配on('apertureInfoChange')的callback。 |
+| callback | AsyncCallback\<[ApertureInfo](#apertureinfo12)\>| 否   | 回调函数，可选，用于匹配on('apertureInfoChange')的callback。 |
 
 **错误码：**
 
@@ -6636,7 +6636,7 @@ function unregisterApertureInfoEvent(professionalVideoSession: camera.Profession
 
 ### on('luminationInfoChange')<sup>12+</sup>
 
-on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>): void
+on(type: 'luminationInfoChange', callback: AsyncCallback\<LuminationInfo\>): void
 
 监听光照变化事件，通过注册回调函数获取光照参数。使用callback异步回调。
 
@@ -6649,7 +6649,7 @@ on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo]((js-a
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'luminationInfoChange'。         |
-| callback | AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>| 是   | 回调函数，用于获取光照参数。         |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| 是   | 回调函数，用于获取光照参数。         |
 
 **错误码：**
 
@@ -6677,7 +6677,7 @@ function registerLuminationInfoEvent(professionalVideoSession: camera.Profession
 
 ### off('luminationInfoChange')<sup>12+</sup>
 
-off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>): void
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<LuminationInfo\>): void
 
 注销监听光照变化事件，通过注册回调函数来注销。
 
@@ -6690,7 +6690,7 @@ off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo]((js
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'luminationInfoChange'。         |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12))\>| 否   | 回调函数，可选，用于匹配on('luminationInfoChange')的callback。 |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| 否   | 回调函数，可选，用于匹配on('luminationInfoChange')的callback。 |
 
 **错误码：**
 
@@ -7413,7 +7413,7 @@ on(type: 'isoInfoChange', callback: AsyncCallback\<IsoInfo\>): void
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'isoInfoChange'。         |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| 是   | 回调函数，用于获取ISO信息。         |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| 是   | 回调函数，用于获取ISO信息。         |
 
 **错误码：**
 
@@ -7454,7 +7454,7 @@ off(type: 'isoInfoChange', callback?: AsyncCallback\<IsoInfo\>): void
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'isoInfoChange'。         |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| 否   | 回调函数，可选，用于匹配on('isoInfoChange')的callback。 |
+| callback | AsyncCallback\<[IsoInfo](#isoinfo12)\>| 否   | 回调函数，可选，用于匹配on('isoInfoChange')的callback。 |
 
 **错误码：**
 
@@ -7472,7 +7472,7 @@ function unregisterIsoInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSess
 
 ### on('exposureInfoChange')<sup>12+</sup>
 
-on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+on(type: 'exposureInfoChange', callback: AsyncCallback\<ExposureInfo\>): void
 
 监听曝光信息事件，通过注册回调函数获取曝光信息。使用callback异步回调。
 
@@ -7485,7 +7485,7 @@ on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo](js-apis-c
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'exposureInfoChange'。         |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| 是   | 回调函数，用于获取曝光信息。         |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| 是   | 回调函数，用于获取曝光信息。         |
 
 **错误码：**
 
@@ -7513,7 +7513,7 @@ function registerExposureInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoS
 
 ### off('exposureInfoChange')<sup>12+</sup>
 
-off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<ExposureInfo\>): void
 
 注销监听曝光信息事件，通过注册回调函数来注销。
 
@@ -7526,7 +7526,7 @@ off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo](js-apis
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'exposureInfoChange'。         |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| 否   | 回调函数，可选，用于匹配on('exposureInfoChange')的callback。 |
+| callback | AsyncCallback\<[ExposureInfo](#exposureinfo12)\>| 否   | 回调函数，可选，用于匹配on('exposureInfoChange')的callback。 |
 
 **错误码：**
 
@@ -7544,7 +7544,7 @@ function unregisterExposureInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhot
 
 ### on('luminationInfoChange')<sup>12+</sup>
 
-on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+on(type: 'luminationInfoChange', callback: AsyncCallback\<LuminationInfo\>): void
 
 监听光照变化事件，通过注册回调函数获取实时光照参数。使用callback异步回调。
 
@@ -7557,7 +7557,7 @@ on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo](js-ap
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'luminationInfoChange'。         |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| 是   | 回调函数，用于获取光照参数。         |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| 是   | 回调函数，用于获取光照参数。         |
 
 **错误码：**
 
@@ -7585,7 +7585,7 @@ function registerLuminationInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhot
 
 ### off('luminationInfoChange')<sup>12+</sup>
 
-off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<LuminationInfo\>): void
 
 注销监听光照变化事件，通过注册回调函数来注销。
 
@@ -7598,7 +7598,7 @@ off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo](js-
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'luminationInfoChange'。         |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| 否   | 回调函数，可选，用于匹配on('luminationInfoChange')的callback。 |
+| callback | AsyncCallback\<[LuminationInfo](#luminationinfo12)\>| 否   | 回调函数，可选，用于匹配on('luminationInfoChange')的callback。 |
 
 **错误码：**
 
@@ -7616,7 +7616,7 @@ function unregisterLuminationInfoEvent(timeLapsePhotoSession: camera.TimeLapsePh
 
 ### on('tryAEInfoChange')<sup>12+</sup>
 
-on(type: 'tryAEInfoChange', callback: AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>): void
+on(type: 'tryAEInfoChange', callback: AsyncCallback\<TryAEInfo\>): void
 
 监听TryAE变化事件，通过注册回调函数获取实时TryAE参数。使用callback异步回调。
 
@@ -7629,7 +7629,7 @@ on(type: 'tryAEInfoChange', callback: AsyncCallback\<[TryAEInfo](js-apis-camera-
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'tryAEInfoChange'。         |
-| callback | AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>| 是   | 回调函数，用于获取TryAE参数。         |
+| callback | AsyncCallback\<[TryAEInfo](#tryaeinfo12)\>| 是   | 回调函数，用于获取TryAE参数。         |
 
 **错误码：**
 
@@ -7657,7 +7657,7 @@ function registerTryAEInfoEvent(timeLapsePhotoSession: camera.TimeLapsePhotoSess
 
 ### off('tryAEInfoChange')<sup>12+</sup>
 
-off(type: 'tryAEInfoChange', callback?: AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>): void
+off(type: 'tryAEInfoChange', callback?: AsyncCallback\<TryAEInfo\>): void
 
 注销监听TryAE变化事件，通过注册回调函数来注销。
 
@@ -7670,7 +7670,7 @@ off(type: 'tryAEInfoChange', callback?: AsyncCallback\<[TryAEInfo](js-apis-camer
 | 参数名     | 类型                                                      | 必填 | 说明                               |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                  | 是   | 监听事件，固定为'tryAEInfoChange'。         |
-| callback | AsyncCallback\<[TryAEInfo](js-apis-camera-sys.md#tryaeinfo12)\>| 否   | 回调函数，可选，用于匹配on('tryAEInfoChange')的callback。 |
+| callback | AsyncCallback\<[TryAEInfo](#tryaeinfo12)\>| 否   | 回调函数，可选，用于匹配on('tryAEInfoChange')的callback。 |
 
 **错误码：**
 
