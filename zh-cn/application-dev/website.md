@@ -2919,12 +2919,12 @@
             - [nfctech (标准NFC-Tag Nfc 技术)](reference/apis-connectivity-kit/js-apis-nfctech.md)
             - [tagSession (标准NFC-Tag TagSession)](reference/apis-connectivity-kit/js-apis-tagSession.md)
         - C API<!--connectivity-c-->
-         - 模块<!--connectivity-module-->
-          - [Bluetooth](_bluetooth.md)
-          - [Wifi](_wifi.md)
+          - 模块<!--connectivity-module-->
+            - [Bluetooth](_bluetooth.md)
+            - [Wifi](_wifi.md)
         - 头文件<!--connectivity-headerfile-->
-          - [oh_bluetooth.h](oh__bluetooth_8h.md)
-          - [oh_wifi.h](oh__wifi_8h.md)
+            - [oh_bluetooth.h](oh__bluetooth_8h.md)
+            - [oh_wifi.h](oh__wifi_8h.md)
         - 错误码<!--connectivity-arkts-errcode-->
           - [Bluetooth错误码](reference/apis-connectivity-kit/errorcode-bluetoothManager.md)
           - [WIFI错误码](reference/apis-connectivity-kit/errorcode-wifi.md)
