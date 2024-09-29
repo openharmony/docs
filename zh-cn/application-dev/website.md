@@ -141,6 +141,7 @@
             - [Want概述](application-models/want-overview.md)
             - [显式Want与隐式Want匹配规则](application-models/explicit-implicit-want-mappings.md)
             - [使用显式Want启动应用组件](application-models/ability-startup-with-explicit-want.md)
+            - [常见action与entities（不推荐使用）](application-models/actions-entities.md)
           - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
           - [应用启动框架AppStartup](application-models/app-startup.md)
           <!--Del-->
@@ -163,6 +164,7 @@
           - [拉起指定类型的应用](application-models/start-intent-panel.md)
             - [拉起导航类应用](application-models/start-navigation-apps.md)
             - [拉起邮件类应用](application-models/start-email-apps.md)
+            - [拉起邮件类应用（mailto方式）](application-models/start-email-apps-by-mailto.md)
             - [拉起金融类应用](application-models/start-finance-apps.md)
             - [拉起图片编辑类应用](application-models/photoEditorExtensionAbility.md)
             - [拉起文件处理类应用](application-models/file-processing-apps-startup.md)
@@ -837,8 +839,11 @@
             - [使用ECDH进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh.md)
             - [使用X25519进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-x25519.md)
             - [使用DH进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-dh.md)
-        - [消息摘要计算(ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
-        - [消息摘要计算(C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
+        - 消息摘要计算
+          - [消息摘要计算介绍及算法规格](security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md)
+          - 消息摘要计算开发指导
+            - [消息摘要计算(ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
+            - [消息摘要计算(C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
         - [消息认证码计算](security/CryptoArchitectureKit/crypto-compute-mac.md)
         - [安全随机数生成](security/CryptoArchitectureKit/crypto-generate-random-number.md)
         - 密钥派生<!--crypto-key-derivation-->
@@ -1767,14 +1772,18 @@
       - C API<!--ability-c-->
         - 模块<!--ability-module-->
           - [AbilityAccessControl](reference/apis-ability-kit/_ability_access_control.md)
+          - [AbilityRuntime](reference/apis-ability-kit/_ability_runtime.md)
           - [Bundle](reference/apis-ability-kit/_bundle.md)
           - [ChildProcess](reference/apis-ability-kit/c-apis-ability-childprocess.md)
         - 头文件<!--ability-headerfile-->
           - [ability_access_control.h](reference/apis-ability-kit/ability__access__control_8h.md)
+          - [ability_runtime_common.h](reference/apis-ability-kit/ability__runtime__common_8h.md)
           - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
+          - [context_constant.h](reference/apis-ability-kit/context__constant_8h.md)
           - [native_child_process.h](reference/apis-ability-kit/native__child__process_8h.md)
         - 结构体<!--ability-struct-->
           - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/_o_h___native_bundle_application_info.md)
+          - [OH_NativeBundle_ElementName](reference/apis-ability-kit/_o_h___native_bundle_element_name.md)
       - 错误码<!--ability-arkts-errcode-->
         - [元能力子系统错误码](reference/apis-ability-kit/errorcode-ability.md)
         - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
@@ -3134,11 +3143,13 @@
           - 模块<!--basic-services-module-->
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
+            - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
             - [Pasteboard](reference/apis-basic-services-kit/_pasteboard.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
           - 头文件<!--basic-services-headerfile-->
+            - [ohbattery_info.h](reference/apis-basic-services-kit/ohbattery__info_8h.md)
             - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
             - [oh_pasteboard.h](reference/apis-basic-services-kit/oh__pasteboard_8h.md)
@@ -3711,6 +3722,7 @@
           - [media_asset_capi.h](reference/apis-media-library-kit/media__asset__capi_8h.md)
           - [media_asset_change_request_capi.h](reference/apis-media-library-kit/media__asset__change__request__capi_8h.md)
           - [media_asset_manager_capi.h](reference/apis-media-library-kit/media__asset__manager__capi_8h.md)
+          - [moving_photo_capi.h](reference/apis-media-library-kit/moving__photo__capi_8h.md)
         - 结构体<!--media-library-struct-->
           - [MediaLibrary_RequestId](reference/apis-media-library-kit/_media_library___request_id.md)
           - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)  
@@ -3738,6 +3750,7 @@
           - [NativeWindow](reference/apis-arkgraphics2d/_native_window.md)
           - [OH_NativeBuffer](reference/apis-arkgraphics2d/_o_h___native_buffer.md)
           - [OH_NativeImage](reference/apis-arkgraphics2d/_o_h___native_image.md)
+          - [NativeColorSpaceManager](reference/apis-arkgraphics2d/_native_color_space_manager.md)
         - 头文件<!--arkgraphics-headerfile-->
           - [drawing_bitmap.h](reference/apis-arkgraphics2d/drawing__bitmap_8h.md)
           - [drawing_brush.h](reference/apis-arkgraphics2d/drawing__brush_8h.md)
@@ -3761,6 +3774,7 @@
           - [drawing_pen.h](reference/apis-arkgraphics2d/drawing__pen_8h.md)
           - [drawing_pixel_map.h](reference/apis-arkgraphics2d/drawing__pixel__map_8h.md)
           - [drawing_point.h](reference/apis-arkgraphics2d/drawing__point_8h.md)
+          - [drawing_record_cmd.h](reference/apis-arkgraphics2d/drawing__record__cmd_8h.md)
           - [drawing_rect.h](reference/apis-arkgraphics2d/drawing__rect_8h.md)
           - [drawing_region.h](reference/apis-arkgraphics2d/drawing__region_8h.md)
           - [drawing_register_font.h](reference/apis-arkgraphics2d/drawing__register__font_8h.md)
@@ -3781,6 +3795,7 @@
           - [native_display_soloist.h](reference/apis-arkgraphics2d/native__display__soloist_8h.md)
           - [native_image.h](reference/apis-arkgraphics2d/native__image_8h.md)
           - [native_vsync.h](reference/apis-arkgraphics2d/native__vsync_8h.md)
+          - [native_color_space_manager.h](reference/apis-arkgraphics2d/native__color__space__manager_8h.md)
         - 结构体<!--arkgraphics-struct-->
           - [DisplaySoloist_ExpectedRateRange](reference/apis-arkgraphics2d/_display_soloist___expected_rate_range.md)
           - [OH_Drawing_BitmapFormat](reference/apis-arkgraphics2d/_o_h___drawing___bitmap_format.md)
@@ -3817,6 +3832,8 @@
           - [OHHDRMetaData](reference/apis-arkgraphics2d/_o_h_h_d_r_meta_data.md)
           - [Region](reference/apis-arkgraphics2d/_region.md)
           - [Rect](reference/apis-arkgraphics2d/_rect.md)
+          - [ColorSpacePrimaries](reference/apis-arkgraphics2d/_color_space_primaries.md)
+          - [WhitePointArray](reference/apis-arkgraphics2d/_white_point_array.md)
       - 错误码<!--arkgraphics-arkts-errcode-->
         - [色彩管理错误码](reference/apis-arkgraphics2d/errorcode-colorspace-manager.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-api-->
