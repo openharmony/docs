@@ -64,6 +64,8 @@
 
 - [ohos.permission.MEDIA_LOCATION](permissions-for-all.md#ohospermissionmedia_location)
 
+- [ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO](permissions-for-system-apps.md#ohospermissionshort_term_write_imagevideo)
+
 ## 音乐和音频
 
 - [ohos.permission.WRITE_AUDIO](permissions-for-system-apps.md#ohospermissionwrite_audio)

@@ -15,8 +15,9 @@ This action type requires that the widget provider should have the [ohos.permiss
 
 Typically, the call event is triggered for touching of buttons. Below is an example.
 
-- In this example, two buttons are laid out on the widget page. When one button is clicked, the **postCardAction** API is called to send a call event to the target UIAbility. Note that the **method** parameter in the API indicates the method to call in the target UIAbility. It is mandatory and of the string type.
 
+- In this example, two buttons are laid out on the widget page. When one button is clicked, the **postCardAction** API is called to send a call event to the target UIAbility. Note that the **method** parameter in the API indicates the method to call in the target UIAbility. It is mandatory and of the string type.
+  
     ```ts
     @Entry
     @Component
@@ -35,7 +36,7 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
               .onClick(() => {
                 postCardAction(this, {
                   action: 'call',
-                  abilityName: 'WidgetEventCallEntryAbility', // Only the UIAbility of the current application is allowed.
+                  abilityName: 'WidgetEventCallEntryAbility', // Only the UIAbility of the current application is allowed. The ability name must be the same as that defined in module.json5.
                   params: {
                     formId: this.formId,
                     method: 'funA' // Set the name of the method to call in the EntryAbility.
@@ -50,7 +51,7 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
               .onClick(() => {
                 postCardAction(this, {
                   action: 'call',
-                  abilityName: 'WidgetEventCallEntryAbility', // Only the UIAbility of the current application is allowed.
+                  abilityName: 'WidgetEventCallEntryAbility', // Only the UIAbility of the current application is allowed. The ability name must be the same as that defined in module.json5.
                   params: {
                     formId: this.formId,
                     method: 'funB', // Set the name of the method to call in the EntryAbility.
@@ -68,43 +69,43 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
       }
     }
     ```
-
+  
 - The UIAbility receives the call event and obtains the transferred parameters. It then executes the target method specified by the **method** parameter. Other data can be obtained through the [readString](../reference/apis-ipc-kit/js-apis-rpc.md#readstring) method. Listen for the method required by the call event in the **onCreate** callback of the UIAbility.
-
+  
     ```ts
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
     import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
     import { rpc } from '@kit.IPCKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    
+      
     const TAG: string = 'WidgetEventCallEntryAbility';
     const DOMAIN_NUMBER: number = 0xFF00;
     const CONST_NUMBER_1: number = 1;
     const CONST_NUMBER_2: number = 2;
-    
+      
     class MyParcelable implements rpc.Parcelable {
       num: number;
       str: string;
-    
+      
       constructor(num: number, str: string) {
         this.num = num;
         this.str = str;
       }
-    
+      
       marshalling(messageSequence: rpc.MessageSequence): boolean {
         messageSequence.writeInt(this.num);
         messageSequence.writeString(this.str);
         return true;
       }
-    
+      
       unmarshalling(messageSequence: rpc.MessageSequence): boolean {
         this.num = messageSequence.readInt();
         this.str = messageSequence.readString();
-        return true;
+          return true;
       }
     }
-    
+      
     export default class WidgetEventCallEntryAbility extends UIAbility {
       // If the UIAbility is started for the first time, onCreate is triggered after the call event is received.
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -130,7 +131,7 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee on. Cause: ${JSON.stringify(err as BusinessError)}`);
         }
       }
-    
+      
       // Deregister the listener when the process exits.
       onDestroy(): void | Promise<void> {
         try {

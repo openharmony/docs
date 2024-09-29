@@ -4275,6 +4275,7 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
 
 **示例：**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   let configParams: Record<string, Object> = {
     'uri': 'test.example.com',
     'port': 100
@@ -4324,6 +4325,7 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
 
 **示例：**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   let configParams: Record<string, Object> = {
     'uri': 'test.example.com',
     'port': 100
@@ -4375,6 +4377,7 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
 
 **示例：**
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
   let accountInfo: osAccount.DomainAccountInfo = {
     'accountName': 'demoName',
     'accountId': 'demoId',

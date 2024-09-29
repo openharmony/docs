@@ -34,6 +34,8 @@
 
 RichText(content:string)
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数:**
@@ -51,6 +53,8 @@ onStart(callback: () => void)
 
 加载网页时触发。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onComplete
@@ -58,6 +62,8 @@ onStart(callback: () => void)
 onComplete(callback: () => void)
 
 网页加载结束时触发。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -400,10 +400,6 @@ for(let i = 0;i < 10; i++) {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
-
 **返回值：**
 
 | 类型 | 说明 |

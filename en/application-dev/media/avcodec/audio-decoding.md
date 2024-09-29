@@ -6,7 +6,7 @@ Currently, the following decoding capabilities are supported:
 
 | Container Specification| Audio Decoding Type                |
 | -------- | :--------------------------- |
-| mp4      | AAC, MPEG (MP3), FLAC, Vorbis<!--RP1--><!--RP1End-->|
+| mp4      | AAC, MPEG (MP3), FLAC, Vorbis<!--RP1--><!--RP1End--> |
 | m4a      | AAC                          |
 | flac     | FLAC                        |
 | ogg      | Vorbis<!--RP2--><!--RP2End-->    |
@@ -40,7 +40,7 @@ The figure below shows the call relationship of audio decoding.
 
 ![Call relationship of audio decoding](figures/audio-codec.png)
 
-### Linking the Dynamic Library in the CMake Script
+### Linking the Dynamic Link Library in the CMake Script
 
 ```cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
@@ -164,7 +164,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
-    Link the dynamic library in the cmake script.
+    Link the dynamic link library in the cmake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
@@ -179,13 +179,18 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         printf("create media key system failed");
         return;
     }
-    // Perform DRM authorization.
+
     // Create a media key session.
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
+    if (ret != DRM_OK) {
+        // If the creation fails, refer to the DRM interface document and check logs.
+        printf("create media key session failed.");
+        return;
+    }
     if (session == nullptr) {
-        printf("create media key session failed");
+        printf("media key session is nullptr.");
         return;
     }
     // Generate a media key request and set the response to the media key request.
@@ -195,6 +200,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 5. Call **OH_AudioCodec_Configure()** to configure the decoder.
+
    Key values of configuration options are described as follows:
 
    |                              |                             Description                            |                AAC                 | FLAC|               Vorbis               | MPEG |       G711mu        |          AMR (AMR-NB and AMR-WB)        |          APE                      |
@@ -270,7 +276,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```c++
     #include <multimedia/player_framework/native_cencinfo.h>
     ```
-    Link the dynamic library in the cmake script.
+    Link the dynamic link library in the cmake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)

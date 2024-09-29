@@ -124,29 +124,34 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 **描述**
 配置视频编码器，通常需要配置要编码的视频轨的描述信息。必须在调用Prepare之前，调用此接口。
 
+以下参数的配置范围可通过[能力查询](../../media/avcodec/obtain-supported-codecs.md)获取，OH_MD_KEY_I_FRAME_INTERVAL暂不支持。
+
+设置OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY、OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT接口时如果当前平台不支持，不报错，走正常编码流程。
+
 参数校验：
+
 | Key                                                                       | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
 | ------------------------------------------------------------------------- | -------- | -------- | ------ |
-| OH_MD_KEY_WIDTH                                                           | √        | ×        | ×      |
-| OH_MD_KEY_HEIGHT                                                          | √        | ×        | ×      |
-| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat) | √        | ×        | ×      |
-| OH_MD_KEY_FRAME_RATE                                                       | √        | ×        | √      |
-| OH_MD_KEY_PROFILE 请参阅[OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile)    | √        | ×        | √      |
-| OH_MD_KEY_I_FRAME_INTERVAL                                                 | √        | \\       | √      |
+| OH_MD_KEY_WIDTH                                                           | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
+| OH_MD_KEY_HEIGHT                                                          | AV_ERR_OK       | AV_ERR_INVALID_VAL       | AV_ERR_INVALID_VAL     |
+| OH_MD_KEY_PIXEL_FORMAT 请参阅[OH_AVPixelFormat](_core.md#oh_avpixelformat) | AV_ERR_OK       | AV_ERR_UNSUPPORT       | AV_ERR_OK    |
+| OH_MD_KEY_FRAME_RATE                                                       | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK        |
+| OH_MD_KEY_PROFILE 请参阅[OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile)    | AV_ERR_OK       | AV_ERR_INVALID_VAL       |AV_ERR_OK       |
+| OH_MD_KEY_I_FRAME_INTERVAL                                                 | AV_ERR_OK       | \\       | AV_ERR_OK       |
 
-| OH_MD_KEY_<br>BITRATE | OH_MD_KEY_<br>QUALITY | OH_MD_KEY_<br>VIDEO_ENCODER_BITRATE_MODE | 校验结果 | 说明                     |
+| OH_MD_KEY_<br>BITRATE | OH_MD_KEY_<br>QUALITY | OH_MD_KEY_<br>VIDEO_ENCODER_BITRATE_MODE | 返回值 | 说明                     |
 | :-------------------- | :-------------------- | :--------------------------------------- | ---- | ---------------------- |
-| \\                    | \\                    | \\                                       | √    | 使用编码器默认值               |
-| 超出范围                  | 超出范围                  | 不支持的模式                                   | ×    | 异常值均报错                 |
-| 正常值                   | 正常值                   | \\                                       | ×    | Bitrate 与 Quality 冲突   |
-| 正常值                   | \\                    | \\                                       | √    | 使能默认码控模式               |
-| 正常值                   | \\                    | VBR、CBR                                  | √    |                        |
-| 正常值                   | \\                    | CQ                                       | ×    | Bitrate 与 CQ 模式冲突      |
-| \\                    | 正常值                   | \\                                       | √    | 使能 CQ 模式               |
-| \\                    | 正常值                   | CQ                                       | √    |                        |
-| \\                    | 正常值                   | VBR、CBR                                  | ×    | Quality 与 VBR、CBR 模式冲突 |
-| \\                    | \\                    | VBR、CBR                                  | √    | 使用编码器默认码率              |
-| \\                    | \\                    | CQ                                       | ×    | 无效值，CQ 模式必须配置 Quality  |
+| \\                    | \\                    | \\                                       |  AV_ERR_OK    | 使用编码器默认值               |
+| 超出范围                  | 超出范围                  | 不支持的模式                                   | AV_ERR_INVALID_VAL   | 异常值均报错                 |
+| 正常值                   | 正常值                   | \\                                       | AV_ERR_INVALID_VAL   | Bitrate 与 Quality 冲突   |
+| 正常值                   | \\                    | \\                                       | AV_ERR_OK     | 使能默认码控模式               |
+| 正常值                   | \\                    | VBR、CBR                                  | AV_ERR_OK     |                        |
+| 正常值                   | \\                    | CQ                                       | AV_ERR_INVALID_VAL   | Bitrate 与 CQ 模式冲突      |
+| \\                    | 正常值                   | \\                                       | AV_ERR_OK     | 使能 CQ 模式               |
+| \\                    | 正常值                   | CQ                                       | AV_ERR_OK     |                        |
+| \\                    | 正常值                   | VBR、CBR                                  | AV_ERR_INVALID_VAL   | Quality 与 VBR、CBR 模式冲突 |
+| \\                    | \\                    | VBR、CBR                                  | AV_ERR_OK     | 使用编码器默认码率              |
+| \\                    | \\                    | CQ                                       | AV_ERR_INVALID_VAL   | 无效值，CQ 模式必须配置 Quality  |
 
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
@@ -172,7 +177,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：本接口必须在Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
 
@@ -253,7 +258,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 
 ### OH_VideoEncoder_Flush()
@@ -288,7 +293,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
 
@@ -324,7 +329,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
 
@@ -349,7 +354,7 @@ OH_AVFormat* OH_VideoEncoder_GetInputDescription (OH_AVCodec *codec)
 
 **返回：**
 
-返回指向OH_AVFormat实例的指针。当codec指针非编码实例，或者为空指针，则返回空指针。
+返回指向OH_AVFormat实例的指针。当codec指针非编码实例，或者为空指针，则返回NULL。
 
 
 ### OH_VideoEncoder_GetOutputDescription()
@@ -374,7 +379,7 @@ OH_AVFormat* OH_VideoEncoder_GetOutputDescription (OH_AVCodec *codec)
 
 **返回：**
 
-返回指向OH_AVFormat实例的指针。当输入的codec指针非编码实例，或者为空指针，则返回空指针。
+返回指向OH_AVFormat实例的指针。当输入的codec指针非编码实例，或者为空指针，则返回NULL。
 
 
 ### OH_VideoEncoder_GetSurface()
@@ -402,15 +407,9 @@ OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec *codec, OHNativeWindow ** wi
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
-
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
-AV_ERR_UNKNOWN：未知错误。
-
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
-
-AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 
 ### OH_VideoEncoder_IsValid()
@@ -444,7 +443,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 
 ### OH_VideoEncoder_NotifyEndOfStream()
@@ -477,7 +476,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
 
@@ -506,15 +505,9 @@ OH_AVErrCode OH_VideoEncoder_Prepare (OH_AVCodec *codec)
 
 AV_ERR_OK：执行成功。
 
-AV_ERR_NO_MEMORY：输入的编码器实例已经销毁。
-
 AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指针。
 
-AV_ERR_UNKNOWN：未知错误。
-
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
-
-AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 
 ### OH_VideoEncoder_PushInputBuffer()
@@ -548,7 +541,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
 
@@ -584,7 +577,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
 
@@ -621,7 +614,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：本接口必须在Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
 
@@ -660,7 +653,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：本接口必须在Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
 
@@ -695,9 +688,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
-
-AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 
 ### OH_VideoEncoder_SetParameter()
@@ -731,7 +722,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
 
@@ -766,7 +757,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
 
@@ -801,7 +792,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
 
@@ -845,7 +836,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：本接口必须在Prepare接口前调用，如果在其他状态时调用，则返回此错误码。
 
@@ -886,7 +877,7 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
 
@@ -926,6 +917,6 @@ AV_ERR_INVALID_VAL：输入的codec指针为非编码器实例，或者为空指
 
 AV_ERR_UNKNOWN：未知错误。
 
-AV_ERR_SERVICE_DIED：服务状态已经消亡。
+AV_ERR_OPERATE_NOT_PERMIT：内部执行错误。
 
 AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。

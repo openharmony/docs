@@ -63,10 +63,9 @@ font(value: Font)
 
 **参数：**
 
-| 参数名 | 类型                     | 必填 | 说明                   |
-| ------ | ------------------------ | ---- | ---------------------- |
-| value  | [Font](ts-types.md#font) | 是   | Menu中所有文本的尺寸。 |
-
+| 参数名 | 类型                     | 必填 | 说明                                                         |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | 是   | Menu中所有文本的尺寸。<br/>默认值：<br/>{<br/>      size: 16,<br/>      family: 'HarmonyOS Sans',<br/>      weight: FontWeight.Medium,<br/>      style: FontStyle.Normal<br/>} |
 ### fontColor<sup>10+</sup>
 
 fontColor(value: ResourceColor)
@@ -81,7 +80,7 @@ fontColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                   |
 | ------ | ------------------------------------------ | ---- | ---------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Menu中所有文本的颜色。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | Menu中所有文本的颜色。<br/>默认值：'#E5000000' |
 
 ### radius<sup>10+</sup>
 
@@ -97,7 +96,7 @@ radius(value: Dimension | BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/> 默认值跟随主题。<br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/>默认值：2in1设备上默认值为8vp，其他设备上默认值为20vp。<br/> <br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。 |
 
 ### width<sup>10+</sup>
 
@@ -163,9 +162,9 @@ subMenuExpandingMode(mode: SubMenuExpandingMode)
 
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- |--------------|
-| mode  | [SubMenuExpandingMode](#submenuexpandingmode12枚举说明) | 是   | Menu子菜单展开样式。 |
+| mode  | [SubMenuExpandingMode](#submenuexpandingmode12枚举说明) | 是   | Menu子菜单展开样式。<br/>默认值：SubMenuExpandingMode.SIDE_EXPAND  |
 
-## subMenuExpandingMode<sup>12+</sup>枚举说明
+## SubMenuExpandingMode<sup>12+</sup>枚举说明
 
 Menu子菜单展开样式枚举。
 
@@ -247,7 +246,7 @@ struct Index {
 }
 ```
 
-![menu1](figures/menu1.png)
+![menu](figures/menu.png)
 
 ### 示例2
 

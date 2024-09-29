@@ -33,7 +33,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
            - jsoncpp.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
@@ -50,12 +50,12 @@ The following describes how to subscribe to the freeze event triggered by a butt
 3. Import the dependency files to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
-   #include "json/json.h"
-   #include "hilog/log.h"
-   #include "hiappevent/hiappevent.h"
+   # include "json/json.h"
+   # include "hilog/log.h"
+   # include "hiappevent/hiappevent.h"
    
-   #undef LOG_TAG
-   #define LOG_TAG "testTag"
+   # undef LOG_TAG
+   # define LOG_TAG "testTag"
    ```
 
 4. Subscribe to application events.
@@ -244,16 +244,15 @@ The following describes how to subscribe to the freeze event triggered by a butt
    export const registerWatcher: () => void;
    ```
 
-6. In the **EntryAbility.ts** file, add the following interface invocation to **onCreate()**.
+6. In the **EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
 
    ```typescript
+   // Import the dependent module.
    import testNapi from 'libentry.so'
-   export default class EntryAbility extends UIAbility {
-     onCreate(want, launchParam) {
-       // Register the system event watcher at startup.
-       testNapi.registerWatcher();
-     }
-   }
+
+   // Add the interface invocation to onCreate().
+   // Register the system event watcher at startup.
+   testNapi.registerWatcher();
    ```
 
 7. In the **Index.ets** file, add a button to trigger the freeze event.
@@ -271,29 +270,29 @@ The following describes how to subscribe to the freeze event triggered by a butt
 9. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
 
    ```text
-   08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
-   08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.name=APP_FREEZE
-   08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.eventType=1
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.time=1502049167732
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.foreground=1
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_version=1.0.0
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.process_name=com.example.myapplication
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.pid=1587
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.uid=20010043
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.uuid=a78a23b20f3dd9730f18a5cfa2304deac1104ac4086755c4a59cf7c72d414e2e
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.exception={"message":"App main thread is not response!","name":"THREAD_BLOCK_6S"}
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.hilog.size=6
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.event_handler.size=16
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.event_handler_3s.size=15
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.event_handler_6s.size=16
-   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.peer_binder.size=0
-   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.threads.size=28
-   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.memory={"pss":0,"rss":0,"sys_avail_mem":1326520,"sys_free_mem":940588,"sys_total_mem":1992340,"vss":0}
-   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_FREEZE_1502049185239_1587.log"]
-   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.log_over_limit=0
+   HiAppEvent eventInfo.domain=OS
+   HiAppEvent eventInfo.name=APP_FREEZE
+   HiAppEvent eventInfo.eventType=1
+   HiAppEvent eventInfo.params.time=1502049167732
+   HiAppEvent eventInfo.params.foreground=1
+   HiAppEvent eventInfo.params.bundle_version=1.0.0
+   HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
+   HiAppEvent eventInfo.params.process_name=com.example.myapplication
+   HiAppEvent eventInfo.params.pid=1587
+   HiAppEvent eventInfo.params.uid=20010043
+   HiAppEvent eventInfo.params.uuid=a78a23b20f3dd9730f18a5cfa2304deac1104ac4086755c4a59cf7c72d414e2e
+   HiAppEvent eventInfo.params.exception={"message":"App main thread is not response!","name":"THREAD_BLOCK_6S"}
+   HiAppEvent eventInfo.params.hilog.size=6
+   HiAppEvent eventInfo.params.event_handler.size=16
+   HiAppEvent eventInfo.params.event_handler_3s.size=15
+   HiAppEvent eventInfo.params.event_handler_6s.size=16
+   HiAppEvent eventInfo.params.peer_binder.size=0
+   HiAppEvent eventInfo.params.threads.size=28
+   HiAppEvent eventInfo.params.memory={"pss":0,"rss":0,"sys_avail_mem":1326520,"sys_free_mem":940588,"sys_total_mem":1992340,"vss":0}
+   HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_FREEZE_1502049185239_1587.log"]
+   HiAppEvent eventInfo.params.log_over_limit=0
    ```
-   
+
 10. Remove the application event watcher.
 
     ```c++
@@ -308,9 +307,11 @@ The following describes how to subscribe to the freeze event triggered by a butt
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // Destroy the created watcher and set onReceiverWatcher to nullptr.
+        // Destroy the created watcher and set systemEventWatcher to nullptr.
         OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        onTriggerWatcher = nullptr;
+        systemEventWatcher = nullptr;
         return {};
     }
     ```
+
+<!--no_check-->

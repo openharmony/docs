@@ -20,12 +20,12 @@ import { systemTimer } from '@kit.BasicServicesKit';
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-| 名称                | 类型   | 值   | 说明                             |
-| ------------------- | ------ | ---- |--------------------------------|
-| TIMER_TYPE_REALTIME | number | 1    | 系统启动时间定时器。（定时器启动时间不能晚于当前设置的系统时间） |
-| TIMER_TYPE_WAKEUP   | number | 2    | 唤醒定时器。                         |
-| TIMER_TYPE_EXACT    | number | 4    | 精准定时器。                         |
-| TIMER_TYPE_IDLE     | number | 8    | IDLE模式定时器（仅支持系统服务配置，不支持应用配置）。  |
+| 名称                | 类型   | 值   | 说明                                          |
+| ------------------- | ------ | ---- |---------------------------------------------|
+| TIMER_TYPE_REALTIME | number | 1    | 系统启动时间定时器。（定时器启动时间不能晚于当前设置的系统时间）            |
+| TIMER_TYPE_WAKEUP   | number | 2    | 唤醒定时器。（如果未配置为唤醒定时器，则系统处于休眠状态下不会触发，直到退出休眠状态） |
+| TIMER_TYPE_EXACT    | number | 4    | 精准定时器。                                      |
+| TIMER_TYPE_IDLE     | number | 8    | IDLE模式定时器（仅支持系统服务配置，不支持应用配置）。               |
 
  ## TimerOptions
 
@@ -33,13 +33,13 @@ import { systemTimer } from '@kit.BasicServicesKit';
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-| 名称      | 类型                                          | 必填 | 说明                                                                                                                              |
-| --------- | --------------------------------------------- | ---- |---------------------------------------------------------------------------------------------------------------------------------|
-| type      | number                                        | 是   | 定时器类型。<br>取值为1，表示为系统启动时间定时器（定时器启动时间不能晚于当前设置的系统时间） ；<br>取值为2，表示为唤醒定时器；<br>取值为4，表示为精准定时器；<br>取值为8，表示为IDLE模式定时器（仅支持系统服务配置，不支持应用配置）。 |
-| repeat    | boolean                                       | 是   | 是否为循环定时器。<br>true为循环定时器，false为单次定时器。                                                                                            |
-| interval  | number                                        | 否   | 定时器时间间隔。<br>如果是循环定时器，interval值应大于5000毫秒；单次定时器interval值为0。                                                                       |
-| wantAgent | WantAgent | 否   | 设置通知的WantAgent，定时器到期后通知。（支持拉起应用MainAbility，不支持拉起ServiceAbility。）                                                                |
-| callback  | void                                          | 否  | 用户需要执行的回调函数                                                                                                                     |
+| 名称        | 类型                                          | 必填 | 说明                                                                                                                                                                                                   |
+|-----------| --------------------------------------------- | ---- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type      | number                                        | 是   | 定时器类型，可以使用 '\|' 多选。<br>取值为1，表示为系统启动时间定时器（定时器启动时间不能晚于当前设置的系统时间） ；<br>取值为2，表示为唤醒定时器；<br>取值为4，表示为精准定时器（APP被冻结时，定时器也会被冻结，并且定时器受统一心跳管控，因此即使是精准定时器也不能确保在指定时间点触发）；<br>取值为8，表示为IDLE模式定时器（仅支持系统服务配置，不支持应用配置）。 |
+| repeat    | boolean                                       | 是   | 是否为循环定时器。<br>true为循环定时器，false为单次定时器。                                                                                                                                                                 |
+| interval  | number                                        | 否   | 定时器时间间隔。<br>如果是循环定时器，interval值最小为1s，最大为365天，建议interval值不小于5000毫秒；<br>单次定时器interval值为0。                                                                                                               |
+| wantAgent | WantAgent | 否   | 设置通知的WantAgent，定时器到期后通知。（支持拉起应用MainAbility，不支持拉起ServiceAbility。）                                                                                                                                     |
+| callback  | void                                          | 否  | 用户需要执行的回调函数                                                                                                                                                                                          |
 
 
 ## systemTimer.createTimer
@@ -150,11 +150,11 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 
 **参数：**
 
-| 参数名      | 类型                   | 必填 | 说明                           |
-| ----------- | ---------------------- | ---- | ------------------------------ |
-| timer       | number                 | 是   | 定时器的ID。                   |
-| triggerTime | number                 | 是   | 定时器的触发时间，单位：毫秒。 |
-| callback    | AsyncCallback&lt;void> | 是   | 回调函数。                     |
+| 参数名      | 类型                   | 必填 | 说明                                                                                                                                                                                                                                                           |
+| ----------- | ---------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| timer       | number                 | 是   | 定时器的ID。                                                                                                                                                                                                                                                      |
+| triggerTime | number                 | 是   | 定时器的触发时间，单位：毫秒。<br/>若定时器类型包含了TIMER_TYPE_REALTIME，该triggerTime应为系统启动时间，建议通过[systemDateTime.getUptime(STARTUP)](js-apis-date-time.md#systemdatetimegetuptime10)获取；<br/>若定时器类型不包含TIMER_TYPE_REALTIME，该triggerTime应为墙上时间，建议通过[systemDateTime.getTime()](js-apis-date-time.md#systemdatetimegettime10)获取。 |
+| callback    | AsyncCallback&lt;void> | 是   | 回调函数。                                                                                                                                                                                                                                                        |
 
 **错误码：**
 
@@ -206,10 +206,10 @@ startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名      | 类型   | 必填 | 说明                           |
-| ----------- | ------ | ---- | ------------------------------ |
-| timer       | number | 是   | 定时器的ID。                   |
-| triggerTime | number | 是   | 定时器的触发时间，单位：毫秒。 |
+| 参数名      | 类型   | 必填 | 说明                                                                                                                                                                                                                                                           |
+| ----------- | ------ | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| timer       | number | 是   | 定时器的ID。                                                                                                                                                                                                                                                      |
+| triggerTime | number | 是   | 定时器的触发时间，单位：毫秒。<br/>若定时器类型包含了TIMER_TYPE_REALTIME，该triggerTime应为系统启动时间，建议通过[systemDateTime.getUptime(STARTUP)](js-apis-date-time.md#systemdatetimegetuptime10)获取；<br/>若定时器类型不包含TIMER_TYPE_REALTIME，该triggerTime应为墙上时间，建议通过[systemDateTime.getTime()](js-apis-date-time.md#systemdatetimegettime10)获取。 |
 
 **返回值：**
 

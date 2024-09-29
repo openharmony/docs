@@ -64,7 +64,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
     }
    
     let path = getContext().cacheDir;
-    let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+    let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
     let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
    
     let readDataCallback = (buffer: ArrayBuffer) => {
@@ -156,7 +156,7 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
 }
 
 let path = getContext().cacheDir;
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
 
 let readDataCallback = (buffer: ArrayBuffer) => {

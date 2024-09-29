@@ -527,7 +527,7 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
     // Convert the second parameter to the int32 type for comparison.
     int32_t infoTypeParam;
     OH_JSVM_GetValueInt32(env, args[1], &infoTypeParam);
-    // Define the InfoType enums in the same sequence as those in ArkTS.
+    // Define the infoType enums in the same sequence as those in ArkTS.
     enum InfoType { INFO_TYPE, INFO_LENGTH, INFO_ARRAY_BUFFER, INFO_BYTE_OFFSET };
     void *data;
     JSVM_TypedarrayType type;

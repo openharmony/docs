@@ -25,10 +25,10 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    ```
 
 2. Set the events to listen for.
-   | Event Type | Description | 
+   | Event Type| Description| 
    | -------- | -------- |
-   | complete | Mandatory; used to listen for the completion of transcoding. | 
-   | error | Mandatory; used to listen for AVTranscoder errors. |
+   | complete | Mandatory; used to listen for the completion of transcoding.| 
+   | error | Mandatory; used to listen for AVTranscoder errors.|
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -142,6 +142,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
@@ -159,9 +160,9 @@ export class AVTranscoderDemo {
   setAVTranscoderCallback() {
     if (this.avTranscoder != undefined) {
       // Callback function for the completion of transcoding.
-      this.avTranscoder.on('complete', () => {
+      this.avTranscoder.on('complete', async () => {
         console.log(`AVTranscoder is completed`);
-        await releaseTranscoderingProcess();
+        await this.releaseTranscoderingProcess();
       })
       // Callback function for errors.
       this.avTranscoder.on('error', (err: BusinessError) => {
@@ -219,7 +220,7 @@ export class AVTranscoderDemo {
     await this.startTranscoderingProcess(); // Start transcoding.
     await this.pauseTranscoderingProcess(); // Pause transcoding.
     await this.resumeTranscoderingProcess(); // Resume transcoding.
-    await this.releaseTranscoderingProgress(); // Exit transcoding.
+    await this.releaseTranscoderingProcess(); // Exit transcoding.
   }
 }
 ```

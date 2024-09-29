@@ -199,9 +199,9 @@ Enumerates the uniform data types. Some data types are related. For example, the
 
 ## TypeDescriptor<sup>11+</sup> 
 
-Provides attributes and APIs for describing a uniform data type and its relationship with other uniform data types.
+Provides properties and APIs for describing a uniform data type and its relationship with other uniform data types.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 

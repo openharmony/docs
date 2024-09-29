@@ -21,7 +21,7 @@ struct WebComponent {
       Web({ 
       	src: 
       	"https://www.example.com/test.pdf", 					// 方式一 加载网络PDF文档
-      	// "file://" + getContext(this).filesDir + "/test.pdf", // 方式二 加载本地应用沙箱内PDF文档
+      	// getContext(this).filesDir + "/test.pdf", // 方式二 加载本地应用沙箱内PDF文档
       	// "resource://rawfile/test.pdf", 						// 方式三 应用内resource资源PDF文档
       	// $rawfile('test.pdf'), 								// 方式四 应用内resource资源PDF文档
       	controller: this.controller 
@@ -50,14 +50,15 @@ struct WebComponent {
   })
     .domStorageAccess(true)
   ```
-- 预览加载应用沙箱内PDF文件
+- 预览加载应用沙箱内PDF文件，需要开启应用中文件系统的访问[fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess)权限。
 
   ```
   Web({ 
-    src: "file://" + getContext(this).filesDir + "/test.pdf",
+    src: getContext(this).filesDir + "/test.pdf",
     controller: this.controller 
   })
     .domStorageAccess(true)
+    .fileAccess(true)
   ```
 - 预览加载应用内PDF资源文件，有两种使用形式。`$rawfile('test.pdf')`形式无法指定下面介绍的预览参数。
 
@@ -91,3 +92,4 @@ https://example.com/test.pdf#page=3&zoom=200,250,100
 https://example.com/test.pdf#toolbar=0  
 https://example.com/test.pdf#navpanes=0  
 ```
+<!--RP1--><!--RP1End-->

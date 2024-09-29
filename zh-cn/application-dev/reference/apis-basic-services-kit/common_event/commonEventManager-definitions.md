@@ -404,14 +404,30 @@
 **取值：** "usual.event.USER_UNLOCKED"
 
 
+### COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
+
+表示分布式账号登录成功的动作。
+
+分布式账号登录成功时会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
+
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃)，这些为公共API，setOsAccountDistributedInfoByLocalId为系统API，具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**取值：** "usual.event.DISTRIBUTED_ACCOUNT_LOGIN"
+
+
 ### COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT
 
 表示分布式账号登出成功的动作。
 
 分布式账号登出时会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
 
-与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
-具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃)，这些为公共API，setOsAccountDistributedInfoByLocalId为系统API，具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -428,8 +444,7 @@
 
 分布式账号的token令牌无效时会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
 
-与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API, 
-具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃)，这些为公共API，setOsAccountDistributedInfoByLocalId为系统API，具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
 
 **订阅者所需权限：** 无
 
@@ -447,8 +462,7 @@
 
 分布式账号注销成功会时触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
 
-与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
-具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
+与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃)，这些为公共API，setOsAccountDistributedInfoByLocalId为系统API，具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -624,9 +638,9 @@
 
 ### COMMON_EVENT_SCREEN_OFF
 
-表示设备屏幕关闭且设备处于睡眠状态的普通事件的动作。
+表示由电源服务发起的设备灭屏完成的普通事件的动作。
 
-当设备屏幕关闭且设备处于睡眠状态时，将会触发事件通知服务发布该系统公共事件。
+当由电源服务发起的设备灭屏完成时，将会触发事件通知服务发布该系统公共事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -637,9 +651,9 @@
 
 ### COMMON_EVENT_SCREEN_ON
 
-表示设备屏幕打开且设备处于交互状态的公共事件的操作。
+表示由电源服务发起的设备亮屏完成的普通事件的动作。
 
-当设备屏幕打开且设备处于交互状态时，将会触发事件通知服务发布该系统公共事件。
+当由电源服务发起的设备亮屏完成时，将会触发事件通知服务发布该系统公共事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -683,7 +697,7 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.POWER_MANAGER
+**订阅者所需权限：** 无
 
 **取值：** "usual.event.ENTER_FORCE_SLEEP"
 
@@ -696,7 +710,7 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-**订阅者所需权限：** ohos.permission.POWER_MANAGER
+**订阅者所需权限：** 无
 
 **取值：** "usual.event.EXIT_FORCE_SLEEP"
 

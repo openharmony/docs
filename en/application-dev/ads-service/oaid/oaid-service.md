@@ -8,8 +8,8 @@ An OAID is a 32-bit Universally Unique Identifier (UUID) generated using a Huawe
 
 The OAID has the following features:
 - The OAID is device specific. Different applications on the same device obtain the same OAID.
-- The OAID obtained depends on the tracing function of the application. When tracing of the application is enabled, the application obtains a valid OAID that is not all zeros. When tracing is disabled, the application obtains an all-zero OAID.
-- An OAID is generated when any application on the device enables tracking for the first time.
+- The OAID obtained depends on the switch of the **ohos.permission.APP_TRACKING_CONSENT** permission. When the switch is enabled, the application obtains a valid OAID that is not all zeros. When the switch is disabled, the application obtains an all-zero OAID.
+- An OAID is generated when any application on the device enables the **ohos.permission.APP_TRACKING_CONSENT** permission for the first time.
 
 The OAID changes in the following scenarios:
 - A user restores the factory settings of the device.
@@ -25,9 +25,9 @@ The OAID changes in the following scenarios:
 > **NOTE**
 > To call **getOAID()**, the application must request the permission **ohos.permission.APP_TRACKING_CONSENT** and user authorization. Three situations are possible:
 >
-> - If the application has configured the permission and obtained user authorization, the OAID is returned.
-> - If the application has configured the permission but not obtained user authorization, 00000000-0000-0000-0000-000000000000 is returned.
-> - If the application has not configured the permission, 00000000-0000-0000-0000-000000000000 is returned.
+> - If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is allowed, the OAID is returned.
+> - If the application has configured the permission **ohos.permission.APP_TRACKING_CONSENT** and the permission is disallowed, 00000000-0000-0000-0000-000000000000 is returned.
+> - If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.
 
 
 ## How to Develop
@@ -54,7 +54,7 @@ The OAID changes in the following scenarios:
    }
    ```
 
-2. Display a dialog box during application startup to request authorization from the user, and call **getOAID** to obtain the OAID information after user authorization is obtained. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). 
+2. To obtain the OAID, the application must call **requestPermissionFromUser** to obtain the corresponding permission. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md).
 
    The sample code is as follows:
 
@@ -65,7 +65,7 @@ The OAID changes in the following scenarios:
    import { BusinessError } from '@kit.BasicServicesKit';
    
    function requestOAIDTrackingConsentPermissions(context: common.Context): void {
-     // Display a dialog box when the page is displayed to request the user to grant the ad tracking permission.
+     // When the page is displayed, request the user to grant the permission ohos.permission.APP_TRACKING_CONSENT.
      const atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
      try {
        atManager.requestPermissionsFromUser(context, ["ohos.permission.APP_TRACKING_CONSENT"]).then((data) => {

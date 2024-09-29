@@ -13,31 +13,29 @@
    - The application does not have the required permission. 
    - The **nm_modname** value does not match the module name in multi-thread scenarios (such as worker threads and taskpool). The module names must be of the same case.
 3. Check whether the dependency .so files are successfully loaded.
-
    Check that all the dependency .so files are packaged into the application and the application has the permission to open them.  
 
 4. Check whether the module import mode matches the .so file path.
-
    If the module is imported by using **import xxx from '\@ohos.yyy.zzz'**, you may find **libzzz.z.so** or **libzzz_napi.z.so** in **/system/lib/module/yyy** (for a 32-bit system) or **/system/lib64/module/yyy** (for a 64-bit system). If the .so file does not exist or the file names do not match, an error containing the keyword "dlopen" will be reported.
 
     
 
-| **Error Log** | **Solution** |
+| **Error Log**| **Solution**|
 | -------- | -------- |
-| module $SO is not allowed to load in restricted runtime | The module, identified by **$SO**, is not allowed for the worker thread running in a restricted environment and cannot be loaded. You are advised to delete the module. |
-| module $SO is in blocklist, loading prohibited | The module, identified by **$SO**, is in a blocklist due to the control of the widget or Extension, and cannot be loaded. You are advised to delete the module. |
-| load module failed. $ERRMSG | The dynamic library fails to be loaded. **$ERRMSG** indicates the cause of the loading failure. Possible causes include the following:<br>- The .so file to be loaded does not exist.<br>- The dependency .so file does not exist. <br>- Undefined symbol is found. <br>Locate the cause based on the error message. |
-| try to load abc file from $FILEPATH failed. | You can load either a dynamic library or an .abc file. If this log information is displayed when you attempt to load a dynamic library, ignore this message. If it is displayed when you attempt to load an .abc file, the .abc file does not exist. **$FILEPATH** indicates the module path. |
+| module $SO is not allowed to load in restricted runtime | The module, identified by **$SO**, is not allowed for the worker thread running in a restricted environment and cannot be loaded. You are advised to delete the module.|
+| module $SO is in blocklist, loading prohibited | The module, identified by **$SO**, is in a blocklist due to the control of the widget or Extension, and cannot be loaded. You are advised to delete the module.|
+| load module failed. $ERRMSG | The dynamic library fails to be loaded. **$ERRMSG** indicates the cause of the loading failure. Possible causes include the following:<br>- The .so file to be loaded does not exist.<br>- The dependency .so file does not exist. <br>- Undefined symbol is found. <br>Locate the cause based on the error message.|
+| try to load abc file from $FILEPATH failed. | You can load either a dynamic library or an .abc file. If this log information is displayed when you attempt to load a dynamic library, ignore this message. If it is displayed when you attempt to load an .abc file, the .abc file does not exist. **$FILEPATH** indicates the module path.|
 
 5. If specific error message is reported, identify the fault based on the error message.
 
-| **Error message** | **Fault Analysis & Solution** |
+| **Error message** | **Fault Analysis & Solution**|
 | -------- | -------- |
-| First attempt: $ERRMSG | Loading the .so file with the module name of "xxx" fails. *$ERRMSG* indicates the error information. |
-| Second attempt: $ERRMSG | Loading the .so file with the module name of "xxx_napi" fails. *$ERRMSG* indicates the error information. |
-| try to load abc file from xxx failed | Loading the .abc file fails. *xxx* indicates the name of the .abc file. |
-| module xxx is not allowed to load in restricted runtime. | This module cannot be used in restricted runtime. *xxx* indicates the module name. You are advised to delete the module. |
-| module xxx is in blocklist, loading prohibited. | The module cannot be used in the current extension. *xxx* indicates the module name. You are advised to delete the module. |
+| First attempt: $ERRMSG | Loading the .so file with the module name of "xxx" fails. *$ERRMSG* indicates the error information.|
+| Second attempt: $ERRMSG | Loading the .so file with the module name of "xxx_napi" fails. *$ERRMSG* indicates the error information.|
+| try to load abc file from xxx failed | Loading the .abc file fails. *xxx* indicates the name of the .abc file.|
+| module xxx is not allowed to load in restricted runtime. | This module cannot be used in restricted runtime. *xxx* indicates the module name. You are advised to delete the module.|
+| module xxx is in blocklist, loading prohibited. | The module cannot be used in the current extension. *xxx* indicates the module name. You are advised to delete the module.|
 
 ## What should I do when an unexpected value is returned by an API and "occur exception need return" is reported?
 
@@ -93,8 +91,8 @@ The following code shows how to register **env_cleanup** to ensure that **tsfn**
 
 ```cpp
 #include <hilog/log.h> // To output logs, link libhilog_ndk.z.so.
-#include <thread>      // Include the thread module to create and mange threads.
-#include <unistd.h>    // Include unistd.h to suspend the execution of the calling thread.
+#include <thread> // Include the thread module to create and mange threads.
+#include <unistd.h> // Include unistd.h to suspend the execution of the calling thread.
 
 // Define the log domain and tag.
 #undef LOG_DOMAIN
@@ -201,7 +199,7 @@ napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
         delete myContext;
         return nullptr;
     };
-    char *data0 = "Im call in ArkTs Thread";
+    char *data0 = "Im call in ArkTS Thread";
     if (!myContext->Call(data0)) {
         OH_LOG_INFO(LOG_APP, "call tsfn failed");
     };

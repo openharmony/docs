@@ -19,13 +19,13 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数:**
 
-| 参数名                                             | 类型         | 必填 | 说明                                                     |
-| -------------------------------------------------- | ---------------- | ---- | ------------------------------------------------------------ |
-| width                                              | number \| string | 否   | 路径所在矩形的宽度<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
-| height                                             | number \| string | 否   | 路径所在矩形的高度<br/>值为异常值或缺省时按照自身内容需要的高度处理。 |
-| [commands](ts-drawing-components-path.md#commands) | string           | 否   | 路径绘制的命令字符串<br/>默认值：''<br/>异常值按照默认值处理。 |
+| 参数名                                             | 类型         | 必填 | 说明                   |
+| ------ | ---------------- | ---- | ------------------------------------------------------------ |
+| value  | { width?: number \| string; height?: number \| string; [commands](ts-drawing-components-path.md#commands)?: string } | 否   | width：路径所在矩形的宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>height：路径所在矩形的高度。<br/>值为异常值或缺省时按照自身内容需要的高度处理。<br/> commands：径绘制的命令字符串。默认值：''<br/>异常值按照默认值处理。|
 
 ## 属性
 

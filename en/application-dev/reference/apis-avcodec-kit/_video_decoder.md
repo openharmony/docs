@@ -72,9 +72,9 @@ Parameter verification rules are as follows:
 | -----------------------------------------------------------------------------| -------- | -------- | ------ |
 | OH_MD_KEY_WIDTH                                                              | Passed       | Failed       | Failed     |
 | OH_MD_KEY_HEIGHT                                                             | Passed       | Failed       | Failed     |
-| <br>For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat).   | Passed       | Failed       | Passed     |
+| OH_MD_KEY_PIXEL_FORMAT<br>For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat).   | Passed       | Failed       | Passed     |
 | OH_MD_KEY_FRAME_RATE                                                         | Passed       | Failed       | Passed     |
-| <br>For details, see [OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation).| Passed       | Failed       | Passed     |
+| OH_MD_KEY_ROTATION<br>For details, see [OH_MD_KEY_ROTATION](_codec_base.md#oh_md_key_rotation).| Passed       | Failed       | Passed     |
 
 
 **System capability**: SystemCapability.Multimedia.Media.VideoDecoder
@@ -90,18 +90,21 @@ Parameter verification rules are as follows:
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance, or the format is not supported.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance, or the format is not supported.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if this function is not called prior to **Prepare()**.
+**AV_ERR_INVALID_STATE**: The function is not called prior to **Prepare()**.
+
+**AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION**: CSC is not supported.
 
 
 ### OH_VideoDecoder_CreateByMime()
@@ -176,16 +179,17 @@ Clears the internal resources of a video decoder and destroys the decoder instan
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the video decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
 
 ### OH_VideoDecoder_Flush()
@@ -210,18 +214,19 @@ Clears the input and output data in the internal buffer of a video decoder. This
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
 
 
 ### OH_VideoDecoder_FreeOutputBuffer()
@@ -247,18 +252,19 @@ Frees an output buffer of a video decoder.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
 
 
 ### OH_VideoDecoder_GetOutputDescription()
@@ -310,16 +316,17 @@ Checks whether a video decoder instance is valid.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
 
 ### OH_VideoDecoder_Prepare()
@@ -344,18 +351,21 @@ Prepares internal resources for a video decoder. This function must be called af
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
+
+**AV_ERR_OPERATE_NOT_PERMIT**: CSC is configured, but the decoder is in buffer mode.
 
 
 ### OH_VideoDecoder_PushInputBuffer()
@@ -385,18 +395,19 @@ In addition, some decoders require the input of codec-specific data, such as PPS
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
 
 
 ### OH_VideoDecoder_RegisterCallback()
@@ -423,18 +434,19 @@ Registers an asynchronous callback so that your application can respond to event
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if this function is not called prior to **Prepare()**.
+**AV_ERR_INVALID_STATE**: The function is not called prior to **Prepare()**.
 
 
 ### OH_VideoDecoder_RenderOutputBuffer()
@@ -462,18 +474,19 @@ If no output surface is configured, calling this function only frees the output 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
 
 
 ### OH_VideoDecoder_RenderOutputBufferAtTime()
@@ -508,18 +521,19 @@ The caller can request the system to render the buffer at a specific time (after
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
 
 
 ### OH_VideoDecoder_Reset()
@@ -544,18 +558,19 @@ Resets a video decoder. To continue decoding, you must call **Configure** to con
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
 
 
 ### OH_VideoDecoder_SetDecryptionConfig()
@@ -565,7 +580,7 @@ OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig (OH_AVCodec *codec, MediaKeySes
 ```
 **Description**
 
-Sets the decryption configuration. This function can be called prior to **Prepare**.
+Sets the decryption configuration. This function must be called prior to **Prepare**.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoDecoder
 
@@ -577,7 +592,7 @@ Sets the decryption configuration. This function can be called prior to **Prepar
 | -------- | -------- |
 | codec | Pointer to a video decoder instance. | 
 | mediaKeySession | Pointer to a media key session instance with decryption capabilities. For details, see **MediaKeySession**. | 
-| secureVideoPath | Whether a secure video channel is used. The value **true** means that a secure video channel is used, and **false** means the opposite. | 
+| secureVideoPath | Whether a secure video channel is used. The value **true** means a secure video channel, and **false** means a non-secure video channel. In [surface mode](../../media/avcodec/video-decoding.md#surface-output), both secure and non-secure video channels are supported. In [buffer mode](../../media/avcodec/video-decoding.md#buffer-output), only non-secure video channels are supported. |
 
 **Returns**
 
@@ -585,9 +600,9 @@ Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The foll
 
 **AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_OPERATE_NOT_PERMIT**: The codec service or media key session service is in an incorrect state.
+**AV_ERR_OPERATE_NOT_PERMIT**: The decoding service process is abnormal, or the media key session service is in an incorrect state.
 
-**AV_ERR_INVALID_VAL**: The codec instance or media key session is a null pointer or invalid.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance, or **mediaKeySession** is a null pointer or invalid.
 
 
 ### OH_VideoDecoder_SetParameter()
@@ -615,18 +630,19 @@ This function can be called only after the decoder is started. Incorrect paramet
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance, or the format is not supported.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance, or the format is not supported.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
 
 
 ### OH_VideoDecoder_SetSurface()
@@ -641,6 +657,7 @@ Sets an output surface for a video decoder.
 
 In the initialization phase, this function must be called prior to **Prepare**. In the executing state, it can be called directly.
 
+
 **System capability**: SystemCapability.Multimedia.Media.VideoDecoder
 
 **Since**: 9
@@ -654,20 +671,21 @@ In the initialization phase, this function must be called prior to **Prepare**. 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_OPERATE_NOT_PERMIT** is returned if this function is called in buffer mode, but not in surface mode.
+**AV_ERR_OPERATE_NOT_PERMIT**: The function is called in the buffer mode. It can be called only in the surface mode.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
 
 
 ### OH_VideoDecoder_Start()
@@ -692,18 +710,21 @@ Starts a video decoder. This function can be called only after the decoder is pr
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
+
+**AV_ERR_OPERATE_NOT_PERMIT**: CSC is configured, but **Prepare** is not called.
 
 
 ### OH_VideoDecoder_Stop()
@@ -730,18 +751,20 @@ If you have passed codec-specific data in the previous **Start** for the decoder
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
+
 
 ## Description of Deprecated Functions
 
@@ -774,18 +797,19 @@ Sets an asynchronous callback so that your application can respond to events gen
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if this function is not called prior to **Prepare()**.
+**AV_ERR_INVALID_STATE**: The function is not called prior to **Prepare()**.
 
 
 ### OH_VideoDecoder_RenderOutputData()
@@ -817,18 +841,19 @@ If no output surface is configured, calling this function only frees the output 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
 
 
 ### OH_VideoDecoder_PushInputData()
@@ -863,18 +888,19 @@ In addition, some decoders require the input of codec-specific data, such as PPS
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.
 
 
 ### OH_VideoDecoder_FreeOutputData()
@@ -904,15 +930,16 @@ Frees an output buffer of a video decoder.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
 
+**AV_ERR_OK**: The operation is successful.
 
-**AV_ERR_NO_MEMORY** is returned if the decoder instance has been destroyed.
+**AV_ERR_NO_MEMORY**: The decoder instance has been destroyed.
 
-**AV_ERR_INVALID_VAL** is returned if the codec pointer is null or does not point to a decoder instance.
+**AV_ERR_INVALID_VAL**: The codec pointer is null or does not point to a decoder instance.
 
-**AV_ERR_UNKNOWN** is returned in the case of an unknown error.
+**AV_ERR_UNKNOWN**: An unknown error occurs.
 
-**AV_ERR_SERVICE_DIED** is returned if the service is dead.
+**AV_ERR_SERVICE_DIED**: The service is dead.
 
-**AV_ERR_INVALID_STATE** is returned if the function is called in an incorrect state.
+**AV_ERR_INVALID_STATE**: The function is called in an incorrect state.

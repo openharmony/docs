@@ -67,7 +67,7 @@ OEM厂商可以通过[分布式账号SDK](../../reference/apis-basic-services-ki
    };
    ```
 
-2. 调用setOsAccountDistributedInfoByLocalId接口，将指定分布式账号与当前系统账号绑定。
+2. 调用[setOsAccountDistributedInfoByLocalId](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10)接口，将指定分布式账号与当前系统账号绑定。
 
    ```ts
    distributedAccountAbility.setOsAccountDistributedInfoByLocalId(localId, distributedInfo).then(() => {
@@ -77,7 +77,7 @@ OEM厂商可以通过[分布式账号SDK](../../reference/apis-basic-services-ki
    });
    ```
 
-3. 在账号绑定之后，可以调用[getOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10)接口查看分布式账号的登录信息。
+3. 在账号绑定之后，可以调用[getOsAccountDistributedInfoByLocalId](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#getosaccountdistributedinfobylocalid10)接口查看分布式账号的登录信息。
 
    ```ts
    distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data: distributedAccount.DistributedInfo) => {

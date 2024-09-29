@@ -157,7 +157,8 @@ export default struct HoursWeather {
 | ![zh-cn_image_0000001395631821](figures/zh-cn_image_0000001395631821.png) | ![zh-cn_image_0000001345312038](figures/zh-cn_image_0000001345312038.png) | ![zh-cn_image_0000001349454550](figures/zh-cn_image_0000001349454550.png) | 
 
 > **说明：**
-> 为提升用户体验，大设备侧边栏隐藏状态下，每日天气与空气质量的相对顺序发生了改变。可以调整通过GridCol栅格子组件的order属性，实现目标效果。
+>
+> 为提升用户体验，大设备侧边栏隐藏状态下，每日天气与空气质量的相对顺序发生了改变。可以通过调整GridCol栅格子组件的order属性，实现目标效果。
 
 
 ```ts

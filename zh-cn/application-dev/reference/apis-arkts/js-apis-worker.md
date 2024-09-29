@@ -36,7 +36,7 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
+| type | 'classic' \| 'module' | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
 | name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
 | shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
@@ -1331,9 +1331,11 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 
 ## WorkerEventListener<sup>9+</sup>
 
-(event: Event): void | Promise&lt;void&gt;
-
 事件监听类。
+
+### (event: Event)<sup>9+</sup>
+
+(event: Event): void | Promise&lt;void&gt;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1358,8 +1360,8 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200004 | The Worker instance is not running.              |
-| 10200005 | The called API is not supported in the worker thread. |
+| 10200004 | Worker instance is not running.          |
+| 10200005 | The invoked API is not supported in workers. |
 
 **示例：**
 
@@ -1428,72 +1430,7 @@ workerPort.onerror = (err: ErrorEvent) => {
 | ---- | ---- | ---- | ---- | ------------------ |
 | data | any  | 是   | 否   | 线程间传递的数据。 |
 
-## RestrictedWorker<sup>11+</sup>
-
-RestrictedWorker类继承[ThreadWorker<sup>9+</sup>](#threadworker9)，具有ThreadWorker中所有的方法。
-RestrictedWorker主要作用是提供受限的Worker线程运行环境，该线程运行环境中只允许导入Worker模块，不允许导入其他API。
-
-### constructor<sup>11+</sup>
-
-constructor(scriptURL: string, options?: WorkerOptions)
-
-RestrictedWorker构造函数。使用以下方法前，均需先构造RestrictedWorker实例。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名    | 类型                            | 必填 | 说明                                                         |
-| --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker线程文件的路径，路径规则详细参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。 |
-| options   | [WorkerOptions](#workeroptions) | 否   | RestrictedWorker构造的选项。                                           |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 10200003 | Worker initialization failure. |
-| 10200007 | The worker file patch is invalid path. |
-
-**示例：**
-
-此处以在Stage模型中Ability加载Worker文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
-
-受限的Worker线程文件只允许导入Worker模块，不允许导入任何其他API，以下为示例代码：
-
-```ts
-import { worker } from '@kit.ArkTS';
-
-// 主要说明以下两种场景：
-
-// 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
-const workerStageModel01 = new worker.RestrictedWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
-
-// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.RestrictedWorker('phone/ets/ThreadFile/workers/worker.ets');
-```
-
-```ts
-// 受限worker线程文件
-import { worker, MessageEvents } from '@kit.ArkTS';
-
-//import { process } from '@kit.ArkTS'; // 受限Worker线程内不允许导入除了worker之外的API。
-
-const workerPort = worker.workerPort;
-
-workerPort.onmessage = (e : MessageEvents) : void => {
-  console.info("worker:: This is worker thread.")
-  //console.info("worker:: worker tid: " + process.tid) // 执行process.tid，主线程会有对应的TypeError报出。
-}
-```
-
 ## Worker<sup>(deprecated)</sup>
-
 
 使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtargetdeprecated)。
 
@@ -2175,12 +2112,19 @@ parentPort.onmessageerror = (e) => {
 
 ## EventListener<sup>(deprecated)</sup>
 
-(evt: Event): void | Promise&lt;void&gt;
-
 事件监听类。
 
-> **说明：**<br/>
+> **说明：**
+>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[WorkerEventListener<sup>9+</sup>](#workereventlistener9)替代。
+
+### (evt: Event)<sup>(deprecated)</sup>
+
+(evt: Event): void | Promise&lt;void&gt;
+
+> **说明：**
+>
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[(event:Event)<sup>9+</sup>](#event-event9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 

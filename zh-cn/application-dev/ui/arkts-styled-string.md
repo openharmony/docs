@@ -348,12 +348,12 @@
     }
 
     private async getPixmapFromMedia(resource: Resource) {
-      let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
         bundleName: resource.bundleName,
         moduleName: resource.moduleName,
         id: resource.id
       })
-      let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+      let imageSource = image.createImageSource(unit8Array?.buffer?.slice(0, unit8Array?.buffer?.byteLength))
       let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
         desiredPixelFormat: image.PixelMapFormat.RGBA_8888
       })
@@ -500,7 +500,7 @@ class MyCustomSpan extends CustomSpan {
     brush.setColor({ alpha: 255, red: 0, green: 0, blue: 0 })
     const font = new drawing.Font()
     font.setSize(vp2px(this.fontSize))
-    const textBlob = drawing.TextBlob.makeFromString(this.word.substr(0, 5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
+    const textBlob = drawing.TextBlob.makeFromString(this.word.substring(0, 5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
     canvas.attachBrush(brush)
 
     this.onDrawRectByRadius(context, options.x, options.x + vp2px(this.width), options.lineTop, options.lineBottom, 20)
@@ -509,7 +509,7 @@ class MyCustomSpan extends CustomSpan {
     canvas.drawTextBlob(textBlob, options.x, options.lineBottom - 30)
     brush.setColor({ alpha: 255, red: 255, green: 228 , blue: 196 })
     canvas.attachBrush(brush)
-    const textBlob1 = drawing.TextBlob.makeFromString(this.word.substr(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
+    const textBlob1 = drawing.TextBlob.makeFromString(this.word.substring(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
     canvas.drawTextBlob(textBlob1, options.x + vp2px(100), options.lineBottom - 30)
 
     canvas.detachBrush()

@@ -152,26 +152,6 @@
 **取值：** "usual.event.USER_SWITCHED"
 
 
-### COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
-
-表示分布式账号登录成功的动作。
-
-分布式账号登录成功时会触发事件通知服务发布该系统公共事件，事件携带系统账号ID。
-
-与这个公共事件相关的接口：setOsAccountDistributedInfo、updateOsAccountDistributedInfo(已废弃), 这些为公共API, setOsAccountDistributedInfoByLocalId为系统API,
-具体参看[分布式账号接口文档](../js-apis-distributed-account.md)。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Notification.CommonEvent
-
-**订阅者所需权限：** 无
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**取值：** "usual.event.DISTRIBUTED_ACCOUNT_LOGIN"
-
-
 ## Core File Kit
 
 文件管理子系统面向应用发布如下系统公共事件，应用如需订阅系统公共事件，请参考公共事件[接口文档](../js-apis-commonEventManager.md)。

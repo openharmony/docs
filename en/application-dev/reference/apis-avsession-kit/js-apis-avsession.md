@@ -30,11 +30,11 @@ Creates a media session. This API uses a promise to return the result. An abilit
 
 **Parameters**
 
-| Name | Type                           | Mandatory | Description                          |
+| Name| Type                           | Mandatory| Description                          |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes| Context of the UIAbility, which is used to obtain information about the application component. |
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes| Context of the UIAbility, which is used to obtain information about the application component.|
 | tag    | string                          | Yes  | Custom session name.            |
-| type   | [AVSessionType](#avsessiontype10) | Yes  | Session type. |
+| type   | [AVSessionType](#avsessiontype10) | Yes  | Session type.|
 
 **Return value**
 
@@ -46,7 +46,7 @@ Creates a media session. This API uses a promise to return the result. An abilit
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -80,18 +80,18 @@ Creates a media session. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name  | Type                                   | Mandatory | Description                                                        |
+| Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes| Context of the UIAbility, which is used to obtain information about the application component.    |
 | tag      | string                                  | Yes  | Custom session name.                                          |
 | type     | [AVSessionType](#avsessiontype10)         | Yes  | Session type.                              |
-| callback | AsyncCallback<[AVSession](#avsession10)\> | Yes  | Callback used to return the media session obtained, which can be used to obtain the session ID, set the metadata and playback state information, and send key events. |
+| callback | AsyncCallback<[AVSession](#avsession10)\> | Yes  | Callback used to return the media session obtained, which can be used to obtain the session ID, set the metadata and playback state information, and send key events.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -127,9 +127,9 @@ Enumerates the protocol types supported by the remote device.
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL<sup>11+</sup>      | 0    | Local device, which can be the built-in speaker or audio jack of the device, or an A2DP device. |
-| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+ stream mode, indicating that the media asset is being displayed on another device. |
-| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA protocol, indicating that the media asset is being displayed on another device. |
+| TYPE_LOCAL<sup>11+</sup>      | 0    | Local device, which can be the built-in speaker or audio jack of the device, or an A2DP device.|
+| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+ stream mode, indicating that the media asset is being displayed on another device.|
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA protocol, indicating that the media asset is being displayed on another device.|
 
 ## AVSessionType<sup>10+<sup>
 
@@ -143,12 +143,12 @@ You can use the strings listed in the following table.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Type | Description |
+| Type | Description|
 | -----  | ---- |
-| 'audio' | Audio session. |
-| 'video' | Video session. |
-| 'voice_call'<sup>11+<sup> | Voice call. |
-| 'video_call'<sup>12+<sup> | Video call. |
+| 'audio' | Audio session.|
+| 'video' | Video session.|
+| 'voice_call'<sup>11+<sup> | Voice call.|
+| 'video_call'<sup>12+<sup> | Video call.|
 
 ## AVSession<sup>10+</sup>
 
@@ -160,10 +160,10 @@ An **AVSession** object is created by calling [avSession.createAVSession](#avses
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name     | Type  | Readable | Writable | Description                         |
+| Name     | Type  | Readable| Writable| Description                         |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
-| sessionId | string | Yes  | No  | Unique session ID of the **AVSession** object. |
-| sessionType| [AVSessionType](#avsessiontype10) | Yes  | No  | AVSession type. |
+| sessionId | string | Yes  | No  | Unique session ID of the **AVSession** object.|
+| sessionType| [AVSessionType](#avsessiontype10) | Yes  | No  | AVSession type.|
 
 **Example**
 
@@ -184,21 +184,21 @@ Sets session metadata. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                     | Mandatory | Description        |
+| Name| Type                     | Mandatory| Description        |
 | ------ | ------------------------- | ---- | ------------ |
-| data   | [AVMetadata](#avmetadata10) | Yes  | Session metadata. |
+| data   | [AVMetadata](#avmetadata10) | Yes  | Session metadata.|
 
 **Return value**
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -221,7 +221,9 @@ let metadata: avSession.AVMetadata = {
   mediaImage: "https://www.example.com/example.jpg",
   subtitle: "8 Mile",
   description: "Rap",
-  lyric: "https://www.example.com/example.lrc",
+  // The LRC contains two types of elements: time tag + lyrics, and ID tag.
+  // Example: [00:25.44]xxx\r\n[00:26.44]xxx\r\n
+  lyric: "Lyrics in LRC format",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -242,16 +244,16 @@ Sets session metadata. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                 |
+| Name  | Type                     | Mandatory| Description                                 |
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | data     | [AVMetadata](#avmetadata10) | Yes  | Session metadata.                         |
-| callback | AsyncCallback\<void>      | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void>      | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -274,7 +276,9 @@ let metadata: avSession.AVMetadata = {
   mediaImage: "https://www.example.com/example.jpg",
   subtitle: "8 Mile",
   description: "Rap",
-  lyric: "https://www.example.com/example.lrc",
+  // The LRC contains two types of elements: time tag + lyrics, and ID tag.
+  // Example: [00:25.44]xxx\r\n[00:26.44]xxx\r\n
+  lyric: "Lyrics in LRC format",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -297,21 +301,21 @@ Sets call metadata. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                     | Mandatory | Description        |
+| Name| Type                     | Mandatory| Description        |
 | ------ | ------------------------- | ---- | ------------ |
-| data   | [CallMetadata](#callmetadata11) | Yes  | Call metadata. |
+| data   | [CallMetadata](#callmetadata11) | Yes  | Call metadata.|
 
 **Return value**
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -349,16 +353,16 @@ Sets call metadata. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                 |
+| Name  | Type                     | Mandatory| Description                                 |
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | data     | [CallMetadata](#callmetadata11) | Yes  | Call metadata.                         |
-| callback | AsyncCallback\<void>      | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void>      | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -400,21 +404,21 @@ Sets the call state. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                     | Mandatory | Description        |
+| Name| Type                     | Mandatory| Description        |
 | ------ | ------------------------- | ---- | ------------ |
-| state   | [AVCallState](#avcallstate11) | Yes  | Call state. |
+| state   | [AVCallState](#avcallstate11) | Yes  | Call state.|
 
 **Return value**
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -446,16 +450,16 @@ Sets the call state. This API uses an asynchronous callback to return the result
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                 |
+| Name  | Type                     | Mandatory| Description                                 |
 | -------- | ------------------------- | ---- | ------------------------------------- |
 | state     | [AVCallState](#avcallstate11) | Yes  | Call state.                         |
-| callback | AsyncCallback\<void>      | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void>      | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -491,21 +495,21 @@ Sets information related to the session playback state. This API uses a promise 
 
 **Parameters**
 
-| Name | Type                               | Mandatory | Description                                          |
+| Name| Type                               | Mandatory| Description                                          |
 | ------ | ----------------------------------- | ---- | ---------------------------------------------- |
-| state   | [AVPlaybackState](#avplaybackstate10) | Yes  | Information related to the session playback state. |
+| state   | [AVPlaybackState](#avplaybackstate10) | Yes  | Information related to the session playback state.|
 
 **Return value**
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -541,16 +545,16 @@ Sets information related to the session playback state. This API uses an asynchr
 
 **Parameters**
 
-| Name  | Type                               | Mandatory | Description                                          |
+| Name  | Type                               | Mandatory| Description                                          |
 | -------- | ----------------------------------- | ---- | ---------------------------------------------- |
-| state     | [AVPlaybackState](#avplaybackstate10) | Yes  | Information related to the session playback state. |
+| state     | [AVPlaybackState](#avplaybackstate10) | Yes  | Information related to the session playback state.|
 | callback | AsyncCallback\<void>                | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.         |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -590,21 +594,21 @@ Sets a launcher ability. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                                         | Mandatory | Description                                                       |
+| Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| ability | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID. |
+| ability | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID.|
 
 **Return value**
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -663,16 +667,16 @@ Sets a launcher ability. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory | Description                                                        |
+| Name  | Type                                         | Mandatory| Description                                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | ability  | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes  | Application attributes, such as the bundle name, ability name, and deviceID. |
-| callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -735,10 +739,10 @@ Dispatches a custom event in the session, including the event name and event con
 
 **Parameters**
 
-| Name | Type                                         | Mandatory | Description                                                       |
+| Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| event | string | Yes  | Name of the session event. |
-| args | {[key: string]: Object} | Yes  | Content of the session event. |
+| event | string | Yes  | Name of the session event.|
+| args | {[key: string]: Object} | Yes  | Content of the session event.|
 
 > **NOTE**
 > The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md).
@@ -747,13 +751,13 @@ Dispatches a custom event in the session, including the event name and event con
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -795,11 +799,11 @@ Dispatches a custom event in the session, including the event name and event con
 
 **Parameters**
 
-| Name | Type                                         | Mandatory | Description                                                       |
+| Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| event | string | Yes  | Name of the session event. |
-| args | {[key: string]: Object} | Yes  | Content of the session event. |
-| callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object. |
+| event | string | Yes  | Name of the session event.|
+| args | {[key: string]: Object} | Yes  | Content of the session event.|
+| callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 > **NOTE**
 
@@ -809,7 +813,7 @@ Dispatches a custom event in the session, including the event name and event con
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -853,21 +857,21 @@ Sets a playlist. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type                                | Mandatory | Description                              |
+| Name | Type                                | Mandatory| Description                              |
 | ------ | ------------------------------------ | ---- | ---------------------------------- |
-| items  | Array<[AVQueueItem](#avqueueitem10)\> | Yes  | Playlist to set. |
+| items  | Array<[AVQueueItem](#avqueueitem10)\> | Yes  | Playlist to set.|
 
 **Return value**
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -927,16 +931,16 @@ Sets a playlist. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                                                        |
+| Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ----------------------------------------------------------- |
 | items    | Array<[AVQueueItem](#avqueueitem10)\> | Yes  | Playlist to set.                         |
-| callback | AsyncCallback\<void>                 | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void>                 | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -1000,21 +1004,21 @@ Sets a name for the playlist. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description          |
+| Name | Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| title  | string | Yes  | Name of the playlist. |
+| title  | string | Yes  | Name of the playlist.|
 
 **Return value**
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -1043,16 +1047,16 @@ Sets a name for the playlist. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                                                        |
+| Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ----------------------------------------------------------- |
 | title    | string                | Yes  | Name of the playlist.                         |
-| callback | AsyncCallback\<void>  | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void>  | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -1085,9 +1089,9 @@ Sets a custom media packet in the form of key-value pairs. This API uses a promi
 
 **Parameters**
 
-| Name | Type                                         | Mandatory | Description                                                       |
+| Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| extras | {[key: string]: Object} | Yes  | Key-value pairs of the custom media packet. |
+| extras | {[key: string]: Object} | Yes  | Key-value pairs of the custom media packet.|
 
 > **NOTE**
 
@@ -1097,13 +1101,13 @@ Sets a custom media packet in the form of key-value pairs. This API uses a promi
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If the setting is successful, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -1144,10 +1148,10 @@ Sets a custom media packet in the form of key-value pairs. This API uses an asyn
 
 **Parameters**
 
-| Name | Type                                         | Mandatory | Description                                                       |
+| Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| extras | {[key: string]: Object} | Yes  | Key-value pairs of the custom media packet. |
-| callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object. |
+| extras | {[key: string]: Object} | Yes  | Key-value pairs of the custom media packet.|
+| callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 > **NOTE**
 
@@ -1157,7 +1161,7 @@ Sets a custom media packet in the form of key-value pairs. This API uses an asyn
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
@@ -1202,13 +1206,13 @@ Obtains the controller corresponding to this session. This API uses a promise to
 
 | Type                                                | Description                         |
 | ---------------------------------------------------- | ----------------------------- |
-| Promise<[AVSessionController](#avsessioncontroller10)> | Promise used to return the session controller. |
+| Promise<[AVSessionController](#avsessioncontroller10)> | Promise used to return the session controller.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
@@ -1237,15 +1241,15 @@ Obtains the controller corresponding to this session. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                                                       | Mandatory | Description                      |
+| Name  | Type                                                       | Mandatory| Description                      |
 | -------- | ----------------------------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<[AVSessionController](#avsessioncontroller10)\> | Yes  | Callback used to return the session controller. |
+| callback | AsyncCallback<[AVSessionController](#avsessioncontroller10)\> | Yes  | Callback used to return the session controller.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
@@ -1276,15 +1280,15 @@ Obtains the cast controller when a casting connection is set up. This API uses a
 
 **Parameters**
 
-| Name   | Type                                                       | Mandatory | Description                                                        |
+| Name   | Type                                                       | Mandatory| Description                                                        |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback  | AsyncCallback<[AVCastController](#avcastcontroller10)\> | Yes  | Callback used to return the cast controller. |
+| callback  | AsyncCallback<[AVCastController](#avcastcontroller10)\> | Yes  | Callback used to return the cast controller.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message                                 |
+| ID| Error Message                                 |
 | -------- |---------------------------------------|
 | 6600102| The session does not exist.           |
 | 6600109| The remote connection is not established. |
@@ -1317,13 +1321,13 @@ Obtains the cast controller when a casting connection is set up. This API uses a
 
 | Type                                                       | Description                                                        |
 | --------- | ------------------------------------------------------------ |
-| Promise<[AVCastController](#avcastcontroller10)\>  | Promise used to return the cast controller. |
+| Promise<[AVCastController](#avcastcontroller10)\>  | Promise used to return the cast controller.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | --------------------------------------- |
 | 6600102| The session does not exist.           |
 | 6600109| The remote connection is not established. |
@@ -1358,13 +1362,13 @@ Obtains information about the output device for this session. This API uses a pr
 
 | Type                                          | Description                             |
 | ---------------------------------------------- | --------------------------------- |
-| Promise<[OutputDeviceInfo](#outputdeviceinfo10)> | Promise used to return the output device information. |
+| Promise<[OutputDeviceInfo](#outputdeviceinfo10)> | Promise used to return the output device information.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
@@ -1391,15 +1395,15 @@ Obtains information about the output device for this session. This API uses an a
 
 **Parameters**
 
-| Name  | Type                                                 | Mandatory | Description                          |
+| Name  | Type                                                 | Mandatory| Description                          |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[OutputDeviceInfo](#outputdeviceinfo10)\> | Yes  | Callback used to return the information obtained. |
+| callback | AsyncCallback<[OutputDeviceInfo](#outputdeviceinfo10)\> | Yes  | Callback used to return the information obtained.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
@@ -1432,13 +1436,13 @@ Activates this session. A session can be used only after being activated. This A
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the session is activated, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If the session is activated, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
@@ -1465,15 +1469,15 @@ Activates this session. A session can be used only after being activated. This A
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description      |
+| Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the session is activated, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the session is activated, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
@@ -1512,7 +1516,7 @@ Deactivates this session. You can use [activate](#activate10) to activate the se
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
@@ -1541,7 +1545,7 @@ Deactivates this session. You can use [activate](#activate10) to activate the se
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description      |
+| Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the session is deactivated, **err** is **undefined**; otherwise, **err** is an error object.|
 
@@ -1549,7 +1553,7 @@ Deactivates this session. You can use [activate](#activate10) to activate the se
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
@@ -1582,13 +1586,13 @@ Destroys this session. This API uses a promise to return the result.
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If the session is destroyed, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If the session is destroyed, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
@@ -1615,15 +1619,15 @@ Destroys this session. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description      |
+| Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the session is destroyed, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the session is destroyed, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
@@ -1656,16 +1660,16 @@ Only one callback can be registered for each playback command. If a new callback
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                                                        |
+| Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Event type. The event **'play'** is triggered when the command for starting playback is sent to the session. |
+| type     | string               | Yes  | Event type. The event **'play'** is triggered when the command for starting playback is sent to the session.|
 | callback | () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.                                       |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -1693,16 +1697,16 @@ Only one callback can be registered for each playback command. If a new callback
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                                                        |
+| Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Event type. The event **'pause'** is triggered when the command for pausing the playback is sent to the session. |
+| type     | string               | Yes  | Event type. The event **'pause'** is triggered when the command for pausing the playback is sent to the session.|
 | callback | () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.    |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -1730,16 +1734,16 @@ Only one callback can be registered for each playback command. If a new callback
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                                                        |
+| Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Event type. The event **'stop'** is triggered when the command for stopping the playback is sent to the session. |
+| type     | string               | Yes  | Event type. The event **'stop'** is triggered when the command for stopping the playback is sent to the session.|
 | callback | () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.         |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -1767,16 +1771,16 @@ Only one callback can be registered for each playback command. If a new callback
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                                                        |
+| Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Event type. The event **'playNext'** is triggered when the command for playing the next item is sent to the session. |
+| type     | string               | Yes  | Event type. The event **'playNext'** is triggered when the command for playing the next item is sent to the session.|
 | callback | () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.    |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -1804,16 +1808,16 @@ Only one callback can be registered for each playback command. If a new callback
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                                                        |
+| Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Event type. The event **'playPrevious'** is triggered when the command for playing the previous item sent to the session. |
+| type     | string               | Yes  | Event type. The event **'playPrevious'** is triggered when the command for playing the previous item sent to the session.|
 | callback | () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.      |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -1841,16 +1845,16 @@ Only one callback can be registered for each playback command. If a new callback
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                                                        |
+| Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Event type. The event **'fastForward'** is triggered when the command for fast forwarding is sent to the session. |
+| type     | string               | Yes  | Event type. The event **'fastForward'** is triggered when the command for fast forwarding is sent to the session.|
 | callback | (time?: number) => void | Yes  | Callback used for subscription. The **time** parameter in the callback indicates the time to seek to, in seconds.   |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -1876,16 +1880,16 @@ Subscribes to rewind command events.
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                                                        |
+| Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Event type. The event **'rewind'** is triggered when the command for rewinding is sent to the session. |
+| type     | string               | Yes  | Event type. The event **'rewind'** is triggered when the command for rewinding is sent to the session.|
 | callback | (time?: number) => void | Yes  | Callback used for subscription. The **time** parameter in the callback indicates the time to seek to, in seconds.     |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -1911,16 +1915,16 @@ Subscribes to playback events of a given media ID.
 
 **Parameters**
 
-| Name  | Type                | Mandatory | Description                                                        |
+| Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Event type. The event **'playFromAssetId'** is triggered when the media ID is played. |
+| type     | string               | Yes  | Event type. The event **'playFromAssetId'** is triggered when the media ID is played.|
 | callback | callback: (assetId: number) => void | Yes  | Callback The **assetId** parameter in the callback indicates the media asset ID.     |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -1946,16 +1950,16 @@ Unsubscribes from playback events of a given media ID.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | Yes  | Event type, which is **'playFromAssetId'** in this case. |
+| type     | string               | Yes  | Event type, which is **'playFromAssetId'** in this case.|
 | callback | callback: (assetId: number) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session. The **assetId** parameter in the callback indicates the media asset ID.                           |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -1979,16 +1983,16 @@ Subscribes to seek command events.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                                                        |
+| Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The event **'seek'** is triggered when the seek command is sent to the session. |
+| type     | string                 | Yes  | Event type. The event **'seek'** is triggered when the seek command is sent to the session.|
 | callback | (time: number) => void | Yes  | Callback used for subscription. The **time** parameter in the callback indicates the time to seek to, in milliseconds.                  |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2014,16 +2018,16 @@ Subscribes to setSpeed command events.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description                                                        |
+| Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                  | Yes  | Event type. The event **'setSpeed'** is triggered when the command for setting the playback speed is sent to the session. |
+| type     | string                  | Yes  | Event type. The event **'setSpeed'** is triggered when the command for setting the playback speed is sent to the session.|
 | callback | (speed: number) => void | Yes  | Callback used for subscription. The **speed** parameter in the callback indicates the playback speed.                             |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2049,16 +2053,16 @@ Subscribes to setLoopMode command events.
 
 **Parameters**
 
-| Name   | Type                                  | Mandatory | Description |
+| Name   | Type                                  | Mandatory| Description |
 | -------- | ------------------------------------- | ---- | ---- |
-| type     | string                                | Yes  | Event type. The event **'setLoopMode'** is triggered when the command for setting the loop mode is sent to the session. |
+| type     | string                                | Yes  | Event type. The event **'setLoopMode'** is triggered when the command for setting the loop mode is sent to the session.|
 | callback | (mode: [LoopMode](#loopmode10)) => void | Yes  | Callback used for subscription. The **mode** parameter in the callback indicates the loop mode.                              |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2084,16 +2088,16 @@ Subscribes to toggleFavorite command events.
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                        |
+| Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                    | Yes  | Event type. The event **'toggleFavorite'** is triggered when the command for favoriting the media asset is sent to the session. |
+| type     | string                    | Yes  | Event type. The event **'toggleFavorite'** is triggered when the command for favoriting the media asset is sent to the session.|
 | callback | (assetId: string) => void | Yes  | Callback used for subscription. The **assetId** parameter in the callback indicates the media asset ID.                             |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2119,16 +2123,16 @@ Subscribes to the event that indicates an item in the playlist is selected. The 
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                                                     |
+| Name  | Type                     | Mandatory| Description                                                                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------------------------------------------------------- |
-| type     | string                   | Yes  | Event type. The event **'skipToQueueItem'** is triggered when an item in the playlist is selected. |
+| type     | string                   | Yes  | Event type. The event **'skipToQueueItem'** is triggered when an item in the playlist is selected.|
 | callback | (itemId: number) => void | Yes  | Callback used for subscription. The **itemId** parameter in the callback indicates the ID of the selected item.                                               |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2154,16 +2158,16 @@ Subscribes to key events of external devices such as Bluetooth and wired devices
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'handleKeyEvent'** is triggered when a key event is sent to the session. |
+| type     | string                                                       | Yes  | Event type. The event **'handleKeyEvent'** is triggered when a key event is sent to the session.|
 | callback | (event: [KeyEvent](../apis-input-kit/js-apis-keyevent.md)) => void | Yes  | Callback used for subscription. The **event** parameter in the callback indicates the key event.                             |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2192,16 +2196,16 @@ Subscribes to output device change events. After the application integrates the 
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory | Description                                                        |
+| Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                  | Yes  | Event type. The event **'outputDeviceChange'** is triggered when the output device changes. |
+| type     | string                                                  | Yes  | Event type. The event **'outputDeviceChange'** is triggered when the output device changes.|
 | callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | Yes  | Callback used for subscription. The **device** parameter in the callback indicates the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2227,16 +2231,16 @@ Subscribes to custom control command change events.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'commonCommand'** is triggered when a custom control command changes. |
+| type     | string                                                       | Yes  | Event type. The event **'commonCommand'** is triggered when a custom control command changes.|
 | callback | (command: string, args: {[key:string]: Object}) => void         | Yes  | Callback used for subscription. The **command** parameter in the callback indicates the name of the changed custom control command, and **args** indicates the parameters carried in the command. The parameters must be the same as those set in [sendCommonCommand](#sendcommoncommand10).         |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2279,7 +2283,7 @@ After the callback is canceled, the list of supported commands must be updated.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | type     | string               | Yes  | Event type, which is **'play'** in this case.|
 | callback | () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
@@ -2288,7 +2292,7 @@ After the callback is canceled, the list of supported commands must be updated.
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2314,16 +2318,16 @@ After the callback is canceled, the list of supported commands must be updated.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | Yes  | Event type, which is **'pause'** in this case. |
-| callback | () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session. |
+| type     | string               | Yes  | Event type, which is **'pause'** in this case.|
+| callback | () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2349,16 +2353,16 @@ After the callback is canceled, the list of supported commands must be updated.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | Yes  | Event type, which is **'stop'** in this case. |
+| type     | string               | Yes  | Event type, which is **'stop'** in this case.|
 | callback | () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2384,16 +2388,16 @@ After the callback is canceled, the list of supported commands must be updated.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | Yes  | Event type, which is **'playNext'** in this case. |
+| type     | string               | Yes  | Event type, which is **'playNext'** in this case.|
 | callback | () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2419,16 +2423,16 @@ After the callback is canceled, the list of supported commands must be updated.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | Yes  | Event type, which is **'playPrevious'** in this case. |
+| type     | string               | Yes  | Event type, which is **'playPrevious'** in this case.|
 | callback | () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2454,16 +2458,16 @@ After the callback is canceled, the list of supported commands must be updated.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | Yes  | Event type, which is **'fastForward'** in this case. |
+| type     | string               | Yes  | Event type, which is **'fastForward'** in this case.|
 | callback | () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2487,16 +2491,16 @@ Unsubscribes from rewind command events.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | Yes  | Event type, which is **'rewind'** in this case. |
+| type     | string               | Yes  | Event type, which is **'rewind'** in this case.|
 | callback | () => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2520,7 +2524,7 @@ Unsubscribes from seek command events.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory | Description                                         |
+| Name  | Type                  | Mandatory| Description                                         |
 | -------- | ---------------------- | ---- | ----------------------------------------- |
 | type     | string                 | Yes  | Event type, which is **'seek'** in this case.      |
 | callback | (time: number) => void | No  | Callback used for unsubscription. The **time** parameter in the callback indicates the time to seek to, in milliseconds.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.       |
@@ -2529,7 +2533,7 @@ Unsubscribes from seek command events.
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2553,7 +2557,7 @@ Unsubscribes from setSpeed command events.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description                                          |
+| Name  | Type                   | Mandatory| Description                                          |
 | -------- | ----------------------- | ---- | -------------------------------------------|
 | type     | string                  | Yes  | Event type, which is **'setSpeed'** in this case.   |
 | callback | (speed: number) => void | No  | Callback used for unsubscription. The **speed** parameter in the callback indicates the playback speed.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                |
@@ -2562,7 +2566,7 @@ Unsubscribes from setSpeed command events.
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2586,16 +2590,16 @@ Unsubscribes from setSpeed command events.
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description    |
+| Name  | Type                                 | Mandatory| Description    |
 | -------- | ------------------------------------- | ---- | ----- |
 | type     | string | Yes  | Event type, which is **'setLoopMode'** in this case.|
-| callback | (mode: [LoopMode](#loopmode10)) => void | No  | Callback used for unsubscription. The **mode** parameter in the callback indicates the loop mode.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session. |
+| callback | (mode: [LoopMode](#loopmode10)) => void | No  | Callback used for unsubscription. The **mode** parameter in the callback indicates the loop mode.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2619,7 +2623,7 @@ Unsubscribes from toggleFavorite command events.
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                        |
+| Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                    | Yes  | Event type, which is **'toggleFavorite'** in this case.           |
 | callback | (assetId: string) => void | No  | Callback used for unsubscription. The **assetId** parameter in the callback indicates the media asset ID.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                              |
@@ -2628,7 +2632,7 @@ Unsubscribes from toggleFavorite command events.
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2652,16 +2656,16 @@ Unsubscribes from the event that indicates an item in the playlist is selected.
 
 **Parameters**
 
-| Name  | Type                     | Mandatory | Description                                                                                                                                                       |
+| Name  | Type                     | Mandatory| Description                                                                                                                                                       |
 | -------- | ------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | type     | string                   | Yes  | Event type, which is **'skipToQueueItem'** in this case.                                                                                                         |
-| callback | (itemId: number) => void | No  | Callback used for unsubscription. The **itemId** parameter in the callback indicates the ID of the item.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session. |
+| callback | (itemId: number) => void | No  | Callback used for unsubscription. The **itemId** parameter in the callback indicates the ID of the item.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2685,7 +2689,7 @@ Unsubscribes from key events.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type, which is **'handleKeyEvent'** in this case.            |
 | callback | (event: [KeyEvent](../apis-input-kit/js-apis-keyevent.md)) => void | No  | Callback used for unsubscription. The **event** parameter in the callback indicates the key event.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                             |
@@ -2694,7 +2698,7 @@ Unsubscribes from key events.
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2718,7 +2722,7 @@ Unsubscribes from playback device change events.
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory | Description                                                     |
+| Name  | Type                                                   | Mandatory| Description                                                     |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
 | type     | string                                                  | Yes  | Event type, which is **'outputDeviceChange'** in this case.    |
 | callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback used for unsubscription. The **device** parameter in the callback indicates the output device information.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                       |
@@ -2727,7 +2731,7 @@ Unsubscribes from playback device change events.
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2752,7 +2756,7 @@ Unsubscribes from custom control command change events.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                    |
+| Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type, which is **'commonCommand'** in this case.   |
 | callback | (command: string, args: {[key:string]: Object}) => void         | No  | Callback used for unsubscription. The **command** parameter in the callback indicates the name of the changed custom control command, and **args** indicates the parameters carried in the command.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
@@ -2761,7 +2765,7 @@ Unsubscribes from custom control command change events.
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2785,16 +2789,16 @@ Subscribes to call answer events.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'answer'** is triggered when a call is answered. |
+| type     | string                                                       | Yes  | Event type. The event **'answer'** is triggered when a call is answered.|
 | callback | Callback\<void>                                               | Yes  | Callback used to return the result.                     |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2820,16 +2824,16 @@ Unsubscribes from call answer events.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | Yes  | Event type, which is **'answer'** in this case. |
+| type     | string               | Yes  | Event type, which is **'answer'** in this case.|
 | callback | Callback\<void>     | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.   |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2853,16 +2857,16 @@ Subscribes to call hangup events.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'hangUp'** is triggered when a call is hung up. |
+| type     | string                                                       | Yes  | Event type. The event **'hangUp'** is triggered when a call is hung up.|
 | callback | Callback\<void>                                               | Yes  | Callback used to return the result.                                            |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2888,16 +2892,16 @@ Unsubscribes from call answer events.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | Yes  | Event type, which is **'hangUp'** in this case. |
+| type     | string               | Yes  | Event type, which is **'hangUp'** in this case.|
 | callback | Callback\<void>      | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2921,16 +2925,16 @@ Subscribes to call mute events.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'toggleCallMute'** is triggered when a call is muted or unmuted. |
+| type     | string                                                       | Yes  | Event type. The event **'toggleCallMute'** is triggered when a call is muted or unmuted.|
 | callback | Callback\<void>                                               | Yes  | Callback used to return the result.                                            |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2956,16 +2960,16 @@ Unsubscribes from call mute events.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string               | Yes  | Event type, which is **'toggleCallMute'** in this case. |
+| type     | string               | Yes  | Event type, which is **'toggleCallMute'** in this case.|
 | callback | Callback\<void>    | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -2989,16 +2993,16 @@ Subscribes to cast display change events in the case of extended screens.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string                                                       | Yes  | Event type. The event **'castDisplayChange'** is triggered when the cast display in the case of extended screens changes. |
+| type     | string                                                       | Yes  | Event type. The event **'castDisplayChange'** is triggered when the cast display in the case of extended screens changes.|
 | callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | Yes  | Callback used to return the information about the cast display.                           |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -3029,16 +3033,16 @@ Unsubscribes from cast display change events in the case of extended screens.
 
 **Parameters**
 
-| Name   | Type                 | Mandatory | Description                                                                                                                        |
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type     | string                                                       | Yes  | Event type, which is **'castDisplayChange'** in this case. |
+| type     | string                                                       | Yes  | Event type, which is **'castDisplayChange'** in this case.|
 | callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
@@ -3060,15 +3064,15 @@ Stops castings. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                                 | Mandatory | Description                                 |
+| Name  | Type                                 | Mandatory| Description                                 |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void>                  | Yes  | Callback used to return the result. If the command is sent, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600109  | The remote connection is not established. |
 
@@ -3100,13 +3104,13 @@ Stops castings. This API uses a promise to return the result.
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result. If casting stops, no value is returned; otherwise, an error object is returned. |
+| Promise\<void> | Promise used to return the result. If casting stops, no value is returned; otherwise, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | ---------------------------------------- |
 | 6600109  | The remote connection is not established. |
 
@@ -3136,13 +3140,13 @@ Obtains the output device information. This API returns the result synchronously
 
 | Type                                           | Description                             |
 | ----------------------------------------------- | --------------------------------- |
-| [OutputDeviceInfo](#outputdeviceinfo10) | Information about the output device. |
+| [OutputDeviceInfo](#outputdeviceinfo10) | Information about the output device.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 |---------| --------------------------------------- |
 | 6600101 | Session service exception. |
 | 6600102 | The session does not exist. |
@@ -3173,13 +3177,13 @@ Obtains all displays that support extended screen projection in the current syst
 
 | Type                                           | Description                             |
 | ----------------------------------------------- | --------------------------------- |
-| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| Promise used to return the information about all the cast displays. |
+| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| Promise used to return the information about all the cast displays.|
 
 **Error codes**
 
 For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 |---------| --------------------------------------- |
 | 6600101 | Session service exception. |
 | 6600102 | The session does not exist. |
@@ -3190,13 +3194,11 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let castDisplay: avSession.CastDisplayInfo;
-currentAVSession.getAllCastDisplays()
-  .then((data: Array< avSession.CastDisplayInfo >) => {
+currentAVSession.getAllCastDisplays().then((data: Array< avSession.CastDisplayInfo >) => {
     if (data.length >= 1) {
        castDisplay = data[0];
      }
-   })
-   .catch((err: BusinessError) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to getAllCastDisplay. Code: ${err.code}, message: ${err.message}`);
    });
 ```
@@ -3832,7 +3834,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
   // Obtain a media key from the server. Assign a value based on service requirements.
   let licenseResponseData: Uint8Array = new Uint8Array();
-  console.info('Succeeded in get license by ' + drmUrl);
+  console.info(`Succeeded in get license by ${drmUrl}.`);
   aVCastController.processMediaKeyResponse(assetId, licenseResponseData);
 }
 ```
@@ -4469,8 +4471,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.on('error', (error: BusinessError) => {
-  console.info('error happened,and error message is :' + error.message)
-  console.info('error happened,and error code is :' + error.code)
+  console.info(`error happened, error code: ${error.code}, error message : ${error.message}.`)
 })
 ```
 
@@ -4668,7 +4669,7 @@ Describes the media metadata.
 | publishDate                 | Date                                                         | No        | Release date.                                                |
 | subtitle                    | string                                                       | No        | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 | description                 | string                                                       | No        | Media description.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
-| lyric                       | string                                                       | No        | Lyric file path (local path or network path).                |
+| lyric                       | string                                                       | No        | Lyrics. The application needs to combine the lyrics into a string. |
 | previousAssetId             | string                                                       | No        | ID of the previous media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 | nextAssetId                 | string                                                       | No        | ID of the next media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 | filter<sup>11+</sup>        | number                                                       | No        | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype11).<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
@@ -6028,7 +6029,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101 | Session service exception.                                   |
 | 6600102 | The session does not exist.                                  |
 | 6600103 | The session controller does not exist.                       |
@@ -6153,7 +6154,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID      | Error Message                                                |
 | ------- | ------------------------------------------------------------ |
-| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101 | Session service exception.                                   |
 | 6600102 | The session does not exist.                                  |
 | 6600103 | The session controller does not exist.                       |

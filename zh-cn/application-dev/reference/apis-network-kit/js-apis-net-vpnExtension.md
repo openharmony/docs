@@ -163,6 +163,10 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 创建一个 三方VPN 连接对象。
 
+> **说明：**
+>
+> 调用createVpnConnection接口前，需要先调用startVpnExtensionAbility接口启用vpn功能。
+
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -432,3 +436,43 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 false。       |
 | trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。  |
 | blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。  |
+
+**示例：**
+
+```js
+import { vpnExtension} from '@kit.NetworkKit';
+
+let vpnConfig: vpnExtension.VpnConfig = {
+  addresses: [],
+  routes: [{
+    interface: "eth0",
+    destination: {
+      address: {
+        address:'',
+        family:1,
+        port:8080
+      },
+      prefixLength:1
+    },
+    gateway: {
+      address:'',
+      family:1,
+      port:8080
+    },
+    hasGateway: true,
+    isDefaultRoute: true,
+  }],
+  mtu: 1400,
+  dnsAddresses: ["223.5.5.5", "223.6.6.6"],
+  trustedApplications: [],
+  blockedApplications: [],
+}
+let context: vpnExtension.VpnExtensionContext;
+
+function vpnCreate(){
+  let VpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+  VpnConnection.create(vpnConfig).then((data) => {
+    console.info("vpn create " + JSON.stringify(data));
+  })
+}
+```

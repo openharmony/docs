@@ -7,7 +7,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 ## 使用限制
 
 - LazyForEach必须在容器组件内使用，仅有[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。
-- LazyForEach在每次迭代中，必须创建且只允许创建一个子组件。
+- LazyForEach在每次迭代中，必须创建且只允许创建一个子组件；即LazyForEach的子组件生成函数有且只有一个根组件。
 - 生成的子组件必须是允许包含在LazyForEach父容器组件中的子组件。
 - 允许LazyForEach包含在if/else条件渲染语句中，也允许LazyForEach中出现if/else条件渲染语句。
 - 键值生成器必须针对每个数据生成唯一的值，如果键值相同，将导致键值相同的UI组件渲染出现问题。
@@ -27,7 +27,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 
 ### 首次渲染
 
-- ### 生成不同键值
+#### 生成不同键值
 
 在LazyForEach首次渲染时，会根据上述键值生成规则为数据源的每个数组项生成唯一键值，并创建相应的组件。
 
@@ -155,7 +155,7 @@ struct MyComponent {
 **图1**  LazyForEach正常首次渲染  
 ![LazyForEach-Render-DifferentKey](./figures/LazyForEach-Render-DifferentKey.gif)
 
-- ### 键值相同时错误渲染
+#### 键值相同时错误渲染
 
 当不同数据项生成的键值相同时，框架的行为是不可预测的。例如，在以下代码中，`LazyForEach`渲染的数据项键值均相同，在滑动过程中，`LazyForEach`会对划入划出当前页面的子组件进行预加载，而新建的子组件和销毁的原子组件具有相同的键值，框架可能存在取用缓存错误的情况，导致子组件渲染有问题。
 
@@ -277,7 +277,7 @@ struct MyComponent {
 
 当`LazyForEach`数据源发生变化，需要再次渲染时，开发者应根据数据源的变化情况调用`listener`对应的接口，通知`LazyForEach`做相应的更新，各使用场景如下。
 
-- ### 添加数据
+#### 添加数据
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -400,7 +400,7 @@ struct MyComponent {
 **图3**  LazyForEach添加数据  
 ![LazyForEach-Add-Data](./figures/LazyForEach-Add-Data.gif)
 
-- ### 删除数据
+#### 删除数据
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -527,7 +527,7 @@ struct MyComponent {
 **图4**  LazyForEach删除数据  
 ![LazyForEach-Delete-Data](./figures/LazyForEach-Delete-Data.gif)
 
-- ### 交换数据
+#### 交换数据
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -667,7 +667,7 @@ struct MyComponent {
 **图5**  LazyForEach交换数据  
 ![LazyForEach-Exchange-Data](./figures/LazyForEach-Exchange-Data.gif)
 
-- ### 改变单个数据
+#### 改变单个数据
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -800,7 +800,7 @@ struct MyComponent {
 **图6**  LazyForEach改变单个数据  
 ![LazyForEach-Change-SingleData](./figures/LazyForEach-Change-SingleData.gif)
 
-- ### 改变多个数据
+#### 改变多个数据
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -942,7 +942,7 @@ struct MyComponent {
 **图7**  LazyForEach改变多个数据  
 ![LazyForEach-Reload-Data](./figures/LazyForEach-Reload-Data.gif)
 
-- ### 精准批量修改数据
+#### 精准批量修改数据
 
 ```ts
 class BasicDataSource implements IDataSource {
@@ -1163,7 +1163,7 @@ struct MyComponent {
 使用该接口时有如下注意事项。
 
 1. onDatasetChange与其它操作数据的接口不能混用。
-2. 传入onDatasetChange的operations，其中每一项operation的index均从修改前的原数组内寻找。因此，opeartions中的index跟操作Datasource中的index不是一一对应的。  
+2. 传入onDatasetChange的operations，其中每一项operation的index均从修改前的原数组内寻找。因此，operations中的index跟操作Datasource中的index不总是一一对应的,而且不能是负数。  
 第一个例子清楚地显示了这一点:
 ```ts
 // 修改之前的数组
@@ -1454,7 +1454,7 @@ struct Parent {
 
 ## 常见使用问题
 
-- ### 渲染结果非预期
+### 渲染结果非预期
 
   ```ts
   class BasicDataSource implements IDataSource {
@@ -1705,12 +1705,12 @@ struct Parent {
   }
   ```
 
-  在删除一个数据项后调用`reloadData`方法，重建后面的数据项，以达到更新`index`索引的目的。
+  在删除一个数据项后调用`reloadData`方法，重建后面的数据项，以达到更新`index`索引的目的。要保证`reloadData`方法重建数据项，必须保证数据项能生成新的key。这里用了`item + index.toString()`保证被删除数据项后面的数据项都被重建。如果用`item + Data.now().toString()`替代，那么所有数据项都生成新的key，导致所有数据项都被重建。这种方法，效果是一样的，只是性能略差。
 
   **图13**  修复LazyForEach删除数据非预期  
   ![LazyForEach-Render-Not-Expected-Repair](./figures/LazyForEach-Render-Not-Expected-Repair.gif)
 
-- ### 重渲染时图片闪烁
+### 重渲染时图片闪烁
 
   ```ts
   class BasicDataSource implements IDataSource {
@@ -1985,7 +1985,7 @@ struct Parent {
   **图15**  修复LazyForEach仅改变文字但是图片闪烁问题  
   ![LazyForEach-Image-Flush-Repair](./figures/LazyForEach-Image-Flush-Repair.gif)
 
-- ### @ObjectLink属性变化UI未更新
+### @ObjectLink属性变化UI未更新
 
   ```ts
   class BasicDataSource implements IDataSource {
@@ -2271,7 +2271,7 @@ struct Parent {
   **图17**  修复ObjectLink属性变化后UI更新  
   ![LazyForEach-ObjectLink-NotRenderUI-Repair](./figures/LazyForEach-ObjectLink-NotRenderUI-Repair.gif)
 
-- ### 在List内使用屏幕闪烁
+### 在List内使用屏幕闪烁
 在List的onScrollIndex方法中调用onDataReloaded有产生屏幕闪烁的风险。
 
 ```ts

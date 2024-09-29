@@ -1,6 +1,6 @@
 # @ohos.url (URL字符串解析)
 
-URL代表着是统一资源定位符，本模块提供了常用的工具函数，实现了处理URL字符串[URLParams](#urlparams9)和构造[URL](#url)对象等功能。
+URL代表着是统一资源定位符，本模块提供了常用的工具函数，实现了解析URL字符串和构造[URL](#url)对象等功能。
 
 > **说明：**
 >
@@ -476,7 +476,7 @@ toString(): string
 let urlObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLParams(urlObject.search.slice(1));
 params.append('fod', '3');
-console.log(params.toString());
+console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 ```
 
 ## URL
@@ -622,7 +622,7 @@ toString(): string
 
 ```ts
 const urlObject = url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result = urlObject.toString();
+let result = urlObject.toString(); // Output 'https://username:password@host:8080/directory/file?query=pppppp#qwer=da'
 ```
 
 ### toJSON
@@ -1061,6 +1061,6 @@ toString(): string
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
 let params = new url.URLSearchParams(urlObject.search.slice(1));
 params.append('fod', '3');
-console.log(params.toString());
+console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 ```
 <!--no_check-->

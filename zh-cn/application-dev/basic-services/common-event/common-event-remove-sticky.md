@@ -11,7 +11,7 @@
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void | 移除粘性公共事件 |
+| removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void | 移除粘性公共事件。 |
 
 
 ## 开发步骤

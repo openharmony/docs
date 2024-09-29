@@ -71,7 +71,7 @@ Defines the camera device information.
 | cameraPosition | [CameraPosition](#cameraposition) | Yes  | No  | Camera position.   |
 | cameraType     | [CameraType](#cameratype)         | Yes  | No  | Camera type.   |
 | connectionType | [ConnectionType](#connectiontype) | Yes  | No  | Camera connection type.|
-| cameraOrientation<sup>12+</sup> | number | Yes  | No  | Camera rotation angle. The value ranges from 0° to 360°.|
+| cameraOrientation<sup>12+</sup> | number | Yes  | No  | Installation angle of the lens, which does not change as the screen rotates. The value ranges from 0° to 360°.|
 
 ## CameraPosition
 
@@ -170,7 +170,7 @@ Defines the camera profile.
 | Name     | Type                         | Read-only| Optional| Description        |
 | -------- | ----------------------------- |---- | ---- | ------------- |
 | format   | [CameraFormat](#cameraformat) | Yes |  No | Output format.     |
-| size     | [Size](#size)                 | Yes |  No | Resolution.      |
+| size     | [Size](#size)                 | Yes |  No | Resolution.<br>The width and height of the camera resolution is set, not the actual width and height of an output image. |
 
 ## FrameRateRange
 
@@ -513,7 +513,7 @@ Creates a **PreviewOutput** instance. This API returns the result synchronously.
 
 | Name    | Type                                            | Mandatory| Description                             |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| profile  | [Profile](#profile)                             | Yes  | Supported preview profiles, which are obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).|
+| profile  | [Profile](#profile)                             | Yes  | Supported preview profile, which is obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).|
 | surfaceId| string | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9).|
 
 **Return value**
@@ -550,6 +550,53 @@ function createPreviewOutput(cameraOutputCapability: camera.CameraOutputCapabili
 }
 ```
 
+### createPreviewOutput<sup>12+</sup>
+
+createPreviewOutput(surfaceId: string): PreviewOutput
+
+Creates a **PreviewOutput** instance without configuration. This API returns the result synchronously. It must be used together with [Preconfig](#preconfig12).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                            | Mandatory| Description                             |
+| -------- | ----------------------------------------------- | ---- | ------------------------------- |
+| surfaceId| string | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) or [ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9).|
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [PreviewOutput](#previewoutput)    | **PreviewOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                                          |
+|---------|------------------------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect. |
+| 7400201 | Camera service fatal error.                    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function createPreviewOutput(cameraManager: camera.CameraManager, surfaceId: string): camera.PreviewOutput | undefined {
+  let previewOutput: camera.PreviewOutput | undefined = undefined;
+  try {
+    previewOutput = cameraManager.createPreviewOutput(surfaceId);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The createPreviewOutput call failed. error code: ${err.code}`);
+  }
+  return previewOutput;
+}
+```
+
 ### createPhotoOutput<sup>(deprecated)</sup>
 
 createPhotoOutput(profile: Profile, surfaceId: string): PhotoOutput
@@ -566,7 +613,7 @@ Creates a **PhotoOutput** instance. This API returns the result synchronously.
 
 | Name    | Type                                        | Mandatory| Description                                 |
 | -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| profile  | [Profile](#profile)                         | Yes  | Supported photo profiles, which are obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).|
+| profile  | [Profile](#profile)                         | Yes  | Supported photo profile, which is obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).|
 | surfaceId| string            | Yes  | Surface ID, which is obtained from [ImageReceiver](../apis-image-kit/js-apis-image.md#imagereceiver9).|
 
 **Return value**
@@ -602,7 +649,7 @@ function createPhotoOutput(cameraOutputCapability: camera.CameraOutputCapability
 
 ### createPhotoOutput<sup>11+</sup>
 
-createPhotoOutput(profile: Profile): PhotoOutput
+createPhotoOutput(profile?: Profile): PhotoOutput
 
 Creates a **PhotoOutput** instance. This API returns the result synchronously.
 
@@ -611,8 +658,8 @@ Creates a **PhotoOutput** instance. This API returns the result synchronously.
 **Parameters**
 
 | Name    | Type                                        | Mandatory| Description                                 |
-| -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| profile  | [Profile](#profile)                         | Yes  | Supported photo profiles, which are obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).|
+| -------- | ------------------------------------------- |----| ----------------------------------- |
+| profile  | [Profile](#profile)                         | No | Supported photo profile, which is obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).<br>In API version 11, this parameter is mandatory. Since API version 12, it will overwrite the preconfigured parameters passed in through **preconfig**.|
 
 **Return value**
 
@@ -624,10 +671,10 @@ Creates a **PhotoOutput** instance. This API returns the result synchronously.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 7400101                |  Parameter missing or parameter type incorrect.               |
-| 7400201                |  Camera service fatal error.               |
+| ID   | Error Message                                          |
+|----------|------------------------------------------------|
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400201  | Camera service fatal error.                    |
 
 **Example**
 
@@ -660,7 +707,7 @@ Creates a **VideoOutput** instance. This API returns the result synchronously.
 
 | Name    | Type                                       | Mandatory| Description                             |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| profile  | [VideoProfile](#videoprofile)               | Yes  | Supported video profiles, which are obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).|
+| profile  | [VideoProfile](#videoprofile)               | Yes  | Supported video profile, which is obtained through [getSupportedOutputCapability](#getsupportedoutputcapability11).|
 | surfaceId| string          | Yes  | Surface ID, which is obtained from [AVRecorder](../apis-media-kit/js-apis-media.md#avrecorder9).|
 
 **Return value**
@@ -688,6 +735,53 @@ function createVideoOutput(cameraOutputCapability: camera.CameraOutputCapability
   let videoOutput: camera.VideoOutput | undefined = undefined;
   try {
     videoOutput = cameraManager.createVideoOutput(profile, surfaceId);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The createVideoOutput call failed. error code: ${err.code}`);
+  }
+  return videoOutput;
+}
+```
+
+### createVideoOutput<sup>12+</sup>
+
+createVideoOutput(surfaceId: string): VideoOutput
+
+Creates a **VideoOutput** instance without configuration. This API returns the result synchronously. It must be used together with [Preconfig](#preconfig12).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name      | Type    | Mandatory   | Description                                                                        |
+|-----------|--------|-------|----------------------------------------------------------------------------|
+| surfaceId | string | Yes    | Surface ID, which is obtained from [AVRecorder](../apis-media-kit/js-apis-media.md#avrecorder9).|
+
+**Return value**
+
+| Type       | Description                         |
+| ---------- | ----------------------------- |
+| [VideoOutput](#videooutput)   | **VideoOutput** instance created. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID   | Error Message                                          |
+|----------|------------------------------------------------|
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400201  | Camera service fatal error.                    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function createVideoOutput(cameraManager: camera.CameraManager, surfaceId: string): camera.VideoOutput | undefined {
+  let videoOutput: camera.VideoOutput | undefined = undefined;
+  try {
+    videoOutput = cameraManager.createVideoOutput(surfaceId);
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
@@ -1959,6 +2053,131 @@ function getActiveFrameRate(previewOutput: camera.PreviewOutput): camera.FrameRa
 }
 ```
 
+### getActiveProfile<sup>12+</sup>
+
+getActiveProfile(): Profile
+
+Obtains the profile that takes effect currently.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+|      Type     | Description       |
+| -------------  |-----------|
+| [Profile](#profile) | Profile obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                        |
+|---------|------------------------------|
+| 7400201 | Camera service fatal error.  |
+
+**Example**
+
+```ts
+function testGetActiveProfile(previewOutput: camera.PreviewOutput): camera.Profile | undefined {
+  let activeProfile: camera.Profile | undefined = undefined;
+  try {
+    activeProfile = previewOutput.getActiveProfile();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The previewOutput.getActiveProfile call failed. error code: ${err.code}`);
+  }
+  return activeProfile;
+}
+```
+
+### getPreviewRotation<sup>12+</sup>
+
+getPreviewRotation(imageRotation: ImageRotation): ImageRotation
+
+Obtains the preview rotation degree.
+
+- Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
+- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in portrait mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
+- Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | --------------| ---- | ------------------------ |
+| imageRotation | [ImageRotation](#imagerotation)  | Yes  | Screen display compensation angle (the angle required for rotating the image counterclockwise from the device's natural orientation to the screen orientation during image display).|
+
+**Return value**
+
+|      Type     | Description       |
+| -------------  |-----------|
+| [ImageRotation](#imagerotation) | Preview rotation degree.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                        |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**Example**
+
+```ts
+function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
+  let previewRotation: camera.ImageRotation;
+  try {
+    previewRotation = previewOutput.getPreviewRotation(imageRotation);
+    console.log(`Preview rotation is: ${previewRotation}`);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The previewOutput.getPreviewRotation call failed. error code: ${err.code}`);
+  }
+  return;
+}
+```
+### setPreviewRotation<sup>12+</sup>
+setPreviewRotation(previewRotation: Imagerotation, isDisplayLocked?: boolean): void
+
+Sets the preview rotation degree.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | --------------| ---- | ------------------------ |
+| previewRotation | [ImageRotation](#imagerotation)  | Yes  | Preview rotation angle.|
+| isDisplayLocked | boolean  | No  | Whether the display is locked.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                        |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**Example**
+
+```ts
+function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
+  let previewRotation: camera.ImageRotation;
+  try {
+    previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The previewOutput.setPreviewRotation call failed. error code: ${err.code}`);
+  }
+  return;
+}
+```
 ## ImageRotation
 
 Enumerates the image rotation angles.
@@ -2449,7 +2668,7 @@ function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
 
 ### on('photoAssetAvailable')<sup>12+</sup>
 
-on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
+on(type: 'photoAssetAvailable', callback: AsyncCallback\<photoAccessHelper.PhotoAsset\>): void
 
 Subscribes to photo asset available events. This API uses an asynchronous callback to return the result.
 
@@ -2464,7 +2683,7 @@ Subscribes to photo asset available events. This API uses an asynchronous callba
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | Yes  | Event type. The value is fixed at **'photoAssetAvailable'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | Yes  | Callback used to return the photo asset.|
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | Yes  | Callback used to return the photo asset.|
 
 **Example**
 
@@ -2488,7 +2707,7 @@ function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void
 
 ### off('photoAssetAvailable')<sup>12+</sup>
 
-off(type: 'photoAssetAvailable', callback?: AsyncCallback\<PhotoAsset\>): void
+off(type: 'photoAssetAvailable', callback?: AsyncCallback\<photoAccessHelper.PhotoAsset\>): void
 
 Unsubscribes from photo asset available events.
 
@@ -2499,7 +2718,7 @@ Unsubscribes from photo asset available events.
 | Name    | Type     | Mandatory | Description                                                                        |
 | -------- | ---------- |-----|----------------------------------------------------------------------------|
 | type     | string     | Yes  | Event type. The value is fixed at **'photoAssetAvailable'**. The event can be listened for when a **photoOutput** instance is created.                        |
-| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | No  | Callback used for unsubscription. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | No  | Callback used for unsubscription. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -2952,6 +3171,93 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 }
 ```
 
+### getActiveProfile<sup>12+</sup>
+
+getActiveProfile(): Profile
+
+Obtains the profile that takes effect currently.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+|      Type     | Description       |
+| -------------  |-----------|
+| [Profile](#profile) | Profile obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                        |
+|---------|------------------------------|
+| 7400201 | Camera service fatal error.  |
+
+**Example**
+
+```ts
+function testGetActiveProfile(photoOutput: camera.PhotoOutput): camera.Profile | undefined {
+  let activeProfile: camera.Profile | undefined = undefined;
+  try {
+    activeProfile = photoOutput.getActiveProfile();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The photoOutput.getActiveProfile call failed. error code: ${err.code}`);
+  }
+  return activeProfile;
+}
+```
+### getPhotoRotation<sup>12+</sup>
+
+getPhotoRotation(imageRotation: ImageRotation): ImageRotation
+
+Obtains the photo rotation degree.
+
+- Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
+- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in portrait mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
+- Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | --------------| ---- | ------------------------ |
+| imageRotation | [ImageRotation](#imagerotation) | Yes  | Screen display compensation angle (the angle required for rotating the image counterclockwise from the device's natural orientation to the screen orientation during image display).|
+
+**Return value**
+
+|      Type     | Description       |
+| -------------  |-----------|
+| [ImageRotation](#imagerotation) | Photo rotation degree.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                        |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**Example**
+
+```ts
+function testGetPhotoRotation(photoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
+  let photoRotation: camera.ImageRotation;
+  try {
+    photoRotation = photoOutput.getPhotoRotation(imageRotation);
+    console.log(`Photo rotation is: ${photoRotation}`);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The photoOutput.getPhotoRotation call failed. error code: ${err.code}`);
+  }
+  return;
+}
+```
+
 ## FrameShutterInfo
 
 Defines the frame shutter information.
@@ -3394,6 +3700,93 @@ function getActiveFrameRate(videoOutput: camera.VideoOutput): camera.FrameRateRa
 }
 ```
 
+### getActiveProfile<sup>12+</sup>
+
+getActiveProfile(): VideoProfile
+
+Obtains the profile that takes effect currently.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+|      Type     | Description       |
+| -------------  |-----------|
+| [VideoProfile](#videoprofile) | Profile obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                        |
+|---------|------------------------------|
+| 7400201 | Camera service fatal error.  |
+
+**Example**
+
+```ts
+function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile | undefined {
+  let activeProfile: camera.VideoProfile | undefined = undefined;
+  try {
+    activeProfile = videoOutput.getActiveProfile();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The videoOutput.getActiveProfile call failed. error code: ${err.code}`);
+  }
+  return activeProfile;
+}
+```
+
+### getVideoRotation<sup>12+</sup>
+
+getVideoRotation(imageRotation: ImageRotation): ImageRotation
+
+Obtains the video rotation degree.
+
+- Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
+- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in portrait mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
+- Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | --------------| ---- | ------------------------ |
+| imageRotation | [ImageRotation](#imagerotation)  | Yes  | Screen display compensation angle (the angle required for rotating the image counterclockwise from the device's natural orientation to the screen orientation during image display).|
+
+**Return value**
+
+|      Type     | Description       |
+| -------------  |-----------|
+| [ImageRotation](#imagerotation) | Video rotation degree.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                        |
+|---------|------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect.  |
+| 7400201 | Camera service fatal error.  |
+
+**Example**
+
+```ts
+function testGetVideoRotation(videoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
+  let videoRotation: camera.ImageRotation;
+  try {
+    videoRotation = videoOutput.getVideoRotation(imageRotation);
+    console.log(`Video rotation is: ${videoRotation}`);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
+  }
+  return;
+}
+```
 
 ## MetadataOutput
 
@@ -7346,6 +7739,31 @@ function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.Co
 }
 ```
 
+## PreconfigType<sup>12+</sup>
+
+Enumerates the preconfigured resolution types.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                     | Value| Description        |
+|-------------------------|---|------------|
+| PRECONFIG_720P          | 0 | 720p resolution.  |
+| PRECONFIG_1080P         | 1 | 1080p resolution. |
+| PRECONFIG_4K            | 2 | 4K resolution.    |
+| PRECONFIG_HIGH_QUALITY  | 3 | High-quality resolution.   |
+
+## PreconfigRatio<sup>12+</sup>
+
+Enumerates the preconfigured aspect ratios.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                      | Value| Description     |
+|--------------------------|---|---------|
+| PRECONFIG_RATIO_1_1      | 0 | 1:1 aspect ratio. |
+| PRECONFIG_RATIO_4_3      | 1 | 4:3 aspect ratio. |
+| PRECONFIG_RATIO_16_9     | 2 | 16:9 aspect ratio.|
+
 ## PhotoSession<sup>11+</sup>
 
 PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12)
@@ -7355,6 +7773,88 @@ Implements a photo session, which provides operations on the flash, exposure, fo
 > **NOTE**
 >
 > This class is provided for the default photo mode. It is used to take standard photos. It supports multiple photo formats and resolutions, which are suitable for most daily photographing scenarios.
+
+### canPreconfig<sup>12+</sup>
+
+canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
+
+Checks whether this session supports a preconfigured resolution.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name           | Type                                 | Mandatory | Description             |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | Yes  | Resolution type.     |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | No  | Aspect ratio. The default value is 4:3. |
+
+**Return value**
+
+| Type     | Description                                     |
+|---------|-----------------------------------------|
+| boolean | **true**: The preconfigured resolution is supported.<br>**false**: The preconfigured resolution is not supported.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                       |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**Example**
+
+```ts
+function testCanPreconfig(photoSession: camera.PhotoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    let result = photoSession.canPreconfig(preconfigType, preconfigRatio);
+    console.info(`canPreconfig ${preconfigType} ${preconfigRatio} result is : ${result}`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The canPreconfig call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### preconfig<sup>12+</sup>
+
+preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
+
+Preconfigures this session.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name           | Type                                 | Mandatory | Description             |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | Yes  | Resolution type.     |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | No  | Aspect ratio. The default value is 4:3. |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                       |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**Example**
+
+```ts
+function testPreconfig(photoSession: camera.PhotoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    photoSession.preconfig(preconfigType, preconfigRatio);
+    console.info(`preconfig ${preconfigType} ${preconfigRatio} success`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The preconfig call failed. error code: ${err.code}`);
+  }
+}
+```
 
 ### on('error')<sup>11+</sup>
 
@@ -7541,6 +8041,88 @@ Implements a video session, which provides operations on the flash, exposure, fo
 > **NOTE**
 >
 > This class is provided for the default video recording mode. It applies to common scenarios. It supports recording at various resolutions (such as 720p and 1080p) and frame rates (such as 30 fps and 60 fps).
+
+### canPreconfig<sup>12+</sup>
+
+canPreconfig(preconfigType: PreconfigType), preconfigRatio?: PreconfigRatio): boolean
+
+Checks whether this session supports a preconfigured resolution.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name           | Type                                 | Mandatory | Description             |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | Yes  | Resolution type.     |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | No  | Aspect ratio. The default value is 16:9.|
+
+**Return value**
+
+| Type     | Description                                     |
+|---------|-----------------------------------------|
+| boolean | **true**: The preconfigured resolution is supported.<br>**false**: The preconfigured resolution is not supported.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                       |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**Example**
+
+```ts
+function testCanPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    let result = videoSession.canPreconfig(preconfigType, preconfigRatio);
+    console.info(`canPreconfig ${preconfigType} ${preconfigRatio} result is : ${result}`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The canPreconfig call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### preconfig<sup>12+</sup>
+
+preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
+
+Preconfigures this session.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name           | Type                                 | Mandatory | Description             |
+|----------------|-------------------------------------|-----|-----------------|
+| preconfigType  | [PreconfigType](#preconfigtype12)   | Yes  | Resolution type.     |
+| preconfigRatio | [PreconfigRatio](#preconfigratio12) | No  | Aspect ratio. The default value is 16:9.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                       |
+|---------|-----------------------------|
+| 7400201 | Camera service fatal error. |
+
+**Example**
+
+```ts
+function testPreconfig(videoSession: camera.VideoSession, preconfigType: camera.PreconfigType,
+  preconfigRatio: camera.PreconfigRatio): void {
+  try {
+    videoSession.preconfig(preconfigType, preconfigRatio);
+    console.info(`preconfig ${preconfigType} ${preconfigRatio} success`);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The preconfig call failed. error code: ${err.code}`);
+  }
+}
+```
 
 ### on('error')<sup>11+</sup>
 

@@ -12,13 +12,13 @@
 
 3. 整合UX设计和一多能力，默认提供统一的标题显示、页面切换和单双栏适配能力；
 
-4. 基于通用UIBuilder能力，由开发者决定页面别名和页面UI对应关系，提供更加灵活的页面配置能力；
+4. 基于通用[UIBuilder](../quick-start/arkts-builder.md)能力，由开发者决定页面别名和页面UI对应关系，提供更加灵活的页面配置能力；
 
 5. 基于组件属性动效和共享元素动效能力，将页面切换动效转换为组件属性动效实现，提供更加丰富和灵活的切换动效；
 
 6. 开放了页面栈对象，开发者可以继承，能更好的管理页面显示。
 
-## 能力对标
+## 能力对比
 
 | 业务场景                                      | Navigation                            | Router                                 |
 | --------------------------------------------- | ------------------------------------- | -------------------------------------- |
@@ -75,8 +75,11 @@ Router路由的页面是一个`@Entry`修饰的Component，每一个页面都需
 
 ```ts
 // index.ets
+import { router } from '@kit.ArkUI';
+
 @Entry
 @Component
+
 struct Index {
   @State message: string = 'Hello World';
 
@@ -86,6 +89,51 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
+        Button('router to pageOne', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            router.pushUrl({
+              url: 'pages/pageOne' // 目标url
+              }, router.RouterMode.Standard, (err) => {
+                if (err) {
+                  console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                  return;
+                }
+                console.info('Invoke pushUrl succeeded.');
+              })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+```ts
+// pageOne.ets
+import { router } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct pageOne {
+  @State message: string = 'This is pageOne';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button('router back to Index', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            router.back();
+          })
       }
       .width('100%')
     }
@@ -118,6 +166,7 @@ struct Index {
       }.width('100%').height('100%')
     }
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 ```
@@ -210,10 +259,11 @@ struct Index {
   build() {
     // 设置NavPathStack并传入Navigation
     Navigation(this.pathStack) {
-        ...
+        // ...
     }.width('100%').height('100%')
+    .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
-  .title("Navigation")
 }
 
 
@@ -251,7 +301,7 @@ this.pathStack.getParamByName("pageOne")
 
 // 获取PageOne页面的索引集合
 this.pathStack.getIndexByName("pageOne")
-...
+// ...
 ```
 
 Router作为全局通用模块，可以在任意页面中调用，Navigation作为组件，子页面想要做路由需要拿到Navigation持有的页面栈对象NavPathStack，可以通过如下几种方式获取：
@@ -268,10 +318,10 @@ struct Index {
 
   build() {
     Navigation(this.pathStack) {
-        ...
-      }.width('100%').height('100%')
+        // ...
     }
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 
@@ -283,7 +333,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .title("PageOne")
   }
@@ -299,7 +349,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }.title('PageOne')
     .onReady((context: NavDestinationContext) => {
       this.pathStack = context.pathStack
@@ -323,10 +373,11 @@ struct Index {
 
   build() {
     Navigation(this.pathStack) {
-        ...
+        // ...
       }.width('100%').height('100%')
     }
     .title("Navigation")
+    .mode(NavigationMode.Stack)
   }
 }
 
@@ -338,7 +389,7 @@ export struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .title("PageOne")
   }
@@ -413,7 +464,7 @@ struct PageOne {
 
   build() {
     NavDestination() {
-      ...
+      // ...
     }
     .onWillAppear(()=>{
     })
@@ -526,7 +577,7 @@ Navigation作为路由组件，默认支持跨包跳转。
    export struct PageInHSP {
      build() {
        NavDestination() {
-           ...
+           // ...
        }
      }
    }
@@ -563,6 +614,7 @@ Navigation作为路由组件，默认支持跨包跳转。
    		  this.pageStack.pushPath({ name: "PageInHSP"});
    	 })
       }
+      .mode(NavigationMode.Stack)
       .navDestination(this.pageMap)
     }
    }
@@ -631,11 +683,11 @@ Navigation同样可以通过在observer中实现注册监听。
 
 ```ts
 export default class EntryAbility extends UIAbility {
-  ...
+  // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    ...
+    // ...
     windowStage.getMainWindow((err: BusinessError, data) => {
-      ...
+      // ...
       windowClass = data;
       // 获取UIContext实例。
       let uiContext: UIContext = windowClass.getUIContext();

@@ -1,10 +1,10 @@
 # GridContainer
 
-The **\<GridContainer>** component lays out components vertically. It is used only in the grid layout.
+The **GridContainer** component lays out components vertically. It is used only in the grid layout.
 
 >  **NOTE**
 >
->  This component is deprecated since API version 9. You are advised to use **[\<GridCol>](ts-container-gridcol.md)** and **[\<GridRow>](ts-container-gridrow.md)** instead.
+>  This component is deprecated since API version 9. You are advised to use [GridCol](ts-container-gridcol.md) and [GridRow](ts-container-gridrow.md) instead.
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -24,8 +24,8 @@ GridContainer(value?: { columns?: number | 'auto', sizeType?: SizeType, gutter?:
 | -------- | -------- | -------- | -------- |
 | columns | number \| 'auto' | No| Total number of columns in the current layout.<br>Default value: **'auto'**|
 | sizeType | SizeType | No| Device size type.<br>Default value: **SizeType.Auto**|
-| gutter | number \| string | No| Gutter of the grid layout. This parameter cannot be set to a percentage. |
-| margin | number \| string | No| Margin of the grid layout. This parameter cannot be set to a percentage. |
+| gutter | number \| string | No| Gutter of the grid layout. This parameter cannot be set to a percentage.|
+| margin | number \| string | No| Margin of the grid layout. This parameter cannot be set to a percentage.|
 
 ## SizeType
 

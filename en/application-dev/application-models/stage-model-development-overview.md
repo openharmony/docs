@@ -12,7 +12,7 @@ The following figure illustrates the stage model.
 
 - [AbilityStage](abilitystage.md)
 
-  Each HAP of the Entry or Feature type has an AbilityStage class instance during the runtime. When the code in the HAP is loaded to the process for the first time, the system creates an AbilityStage class instance.
+  Each [HAP](../quick-start/hap-package.md) of the Entry or Feature type has an instance of the **AbilityStage** class at runtime. When the code in the [HAP](../quick-start/hap-package.md) is loaded to a process for the first time, the system creates an **AbilityStage** instance first.
   
 - [UIAbility](uiability-overview.md) and [ExtensionAbility](extensionability-overview.md) components
   

@@ -57,7 +57,7 @@ Provides APIs for accessing the result sets returned.
 
 The column or key names are returned as a string array, in which the strings are in the same order as the columns or keys in the result set.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 

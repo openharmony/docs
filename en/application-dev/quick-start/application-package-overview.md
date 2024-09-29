@@ -1,7 +1,7 @@
 # Application Package Overview
 
 
-Before developing applications based on the [stage model](application-configuration-file-overview-stage.md), you need to have a basic knowledge of application design mechanism and application package structure.
+Before developing applications based on the [stage model](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/application-configuration-file-overview-stage.md), you need to have a basic knowledge of application design mechanism and application package structure.
 
 ## Application and Application Package
 
@@ -35,9 +35,9 @@ There are two types of modules by usage scenario:
   The table below lists the differences between the HAR and HSP.
   | Shared Package Type| Build and Running | Release and Reference|
   | --------  | ---- | --- |
-  | HAR | The code and resources in the HAR are built with the invoking module, and if there are multiple invoking modules, the build product contains multiple copies of the same code and resources.| The HAR can be referenced inside the application and, by being released independently, can be referenced across applications.|
-  | HSP  | The code and resources in the HSP are built independently, and the build product contains only one copy of the code and resources.| Generally, the HSP is packaged with the application and can only be referenced inside the application.|
+  | HAR | The code and resources in the HAR are built with the invoking module, and if there are multiple invoking modules, the build product contains multiple copies of the same code and resources.<br>Note: When [building a HAR](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/har-package.md#building-a-har), you are advised to enable the obfuscation capability to protect code assets.| The HAR can be referenced inside the application and, by being released independently, can be referenced across applications.|
+  | HSP  | The code and resources in the HSP are built independently, and the build product contains only one copy of the code and resources.| Generally, the HSP is packaged with the application. Intra-app HSP and integrated HSPs are supported. The intra-app HSP can only be referenced in an application; the integrated HSP can be published to the ohpm private repository and referenced in cross-applications.|
+
 
   **Figure 1** HAR and HSP in the App Pack
-
- ![in-app-hsp-har](figures/in-app-hsp-har.png)
+  ![in-app-hsp-har](figures/in-app-hsp-har.png)

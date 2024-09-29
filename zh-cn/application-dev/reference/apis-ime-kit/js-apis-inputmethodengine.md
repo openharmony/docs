@@ -27,7 +27,7 @@ import { inputMethodEngine } from '@kit.IMEKit';
 | ENTER_KEY_TYPE_NEXT | number | 5 | “下一个”功能键。 |
 | ENTER_KEY_TYPE_DONE | number | 6 | “回车”功能键。 |
 | ENTER_KEY_TYPE_PREVIOUS | number | 7 | “前一个”功能键。 |
-| ENTER_KEY_TYPE_NEWLINE | number | 8 | “换行”功能键。 |
+| ENTER_KEY_TYPE_NEWLINE<sup>12+</sup> | number | 8 | “换行”功能键。 |
 | PATTERN_NULL | number | -1 | 无特殊性编辑框。 |
 | PATTERN_TEXT | number | 0 | 文本编辑框。 |
 | PATTERN_NUMBER | number | 2 | 数字编辑框。 |
@@ -657,8 +657,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
-  for (const key in record) {
-    console.log(`private command key: ${key}, value: ${record[key]}`);
+  for (let i = 0; i < record.length; i++) {
+    console.log(`private command key: ${i}, value: ${record[i]}`);
   }
 }
 try {
@@ -700,8 +700,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record: Record<string, inputMethodEngine.CommandDataType>) => {
-  for (const key in record) {
-    console.log(`private command key: ${key}, value: ${record[key]}`);
+  for (let i = 0; i < record.length; i++) {
+    console.log(`private command key: ${i}, value: ${record[i]}`);
   }
 }
 try {

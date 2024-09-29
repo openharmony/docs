@@ -483,18 +483,18 @@ struct ViewB {
 
 ```ts
 @Observed
-class StringArray extends Array<String> {
+class StringArray extends Array<string> {
 }
 ```
 
 使用new StringArray()来构造StringArray的实例，new运算符使得\@Observed生效，\@Observed观察到StringArray的属性变化。
 
-声明一个从Array扩展的类class StringArray extends Array&lt;String&gt; {}，并创建StringArray的实例。\@Observed装饰的类需要使用new运算符来构建class实例。
+声明一个从Array扩展的类class StringArray extends Array&lt;string&gt; {}，并创建StringArray的实例。\@Observed装饰的类需要使用new运算符来构建class实例。
 
 
 ```ts
 @Observed
-class StringArray extends Array<String> {
+class StringArray extends Array<string> {
 }
 
 @Component
@@ -534,7 +534,7 @@ struct IndexPage {
         (itemArr: StringArray) => {
           ItemPage({ itemArr: itemArr })
         },
-        (itemArr: string) => itemArr[0]
+        (itemArr: StringArray) => itemArr[0]
       )
 
       Divider()
@@ -542,7 +542,7 @@ struct IndexPage {
       Button('update')
         .onClick(() => {
           console.error('Update all items in arr');
-          if ((this.arr[0] as Array<String>)[0] !== undefined) {
+          if ((this.arr[0] as StringArray)[0] !== undefined) {
             // 正常情况下需要有一个真实的ID来与ForEach一起使用，但此处没有
             // 因此需要确保推送的字符串是唯一的。
             this.arr[0].push(`${this.arr[0].slice(-1).pop()}${this.arr[0].slice(-1).pop()}`);
@@ -1258,8 +1258,11 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 
 ```ts
-@ObjectLink value：ParentCounter = new ParentCounter(0);
-@ObjectLink subValue：SubCounter = new SubCounter(0);
+CounterComp({ value: this.counter[0] }); // ParentComp组件传递 ParentCounter 给 CounterComp 组件
+@ObjectLink value：ParentCounter; // @ObjectLink 接收 ParentCounter
+
+CounterChild({ subValue: this.value.subCounter }); // CounterComp组件 传递 SubCounter 给 CounterChild 组件
+@ObjectLink subValue：SubCounter; // @ObjectLink 接收 SubCounter
 ```
 
 该方法使得\@ObjectLink分别代理了ParentCounter和SubCounter的属性，这样对于这两个类的属性的变化都可以观察到，即都会对UI视图进行刷新。即使删除了上面所说的this.counter[0].incrCounter()，UI也会进行正确的刷新。
@@ -1857,3 +1860,147 @@ Child02({
 ```
 
 此时Child01中Text组件不会刷新，因为this.pers.person.name属于两层嵌套。
+
+### 使用a.b(this.object)形式调用，不会触发UI刷新
+
+在build方法内，当@Observed与@ObjectLink联合装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.weather.temperature时，UI不会刷新。
+
+【反例】
+
+```ts
+@Observed
+class Weather {
+  temperature:number;
+
+  constructor(temperature:number) {
+    this.temperature = temperature;
+  }
+
+  static increaseTemperature(weather:Weather) {
+    weather.temperature++;
+  }
+}
+
+class Day {
+  weather:Weather;
+  week:string;
+  constructor(weather:Weather, week:string) {
+    this.weather = weather;
+    this.week = week;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State day1: Day = new Day(new Weather(15), 'Monday');
+
+  build() {
+    Column({ space:10 }) {
+      Child({ weather: this.day1.weather})
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink weather: Weather;
+
+  reduceTemperature (weather:Weather) {
+    weather.temperature--;
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`The temperature of day1 is ${this.weather.temperature} degrees.`)
+        .fontSize(20)
+      Button('increaseTemperature')
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Weather.increaseTemperature(this.weather);
+        })
+      Button('reduceTemperature')
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.reduceTemperature(this.weather);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+可以通过如下先赋值、再调用新赋值的变量的方式为this.weather加上Proxy代理，实现UI刷新。
+
+【正例】
+
+```ts
+@Observed
+class Weather {
+  temperature:number;
+
+  constructor(temperature:number) {
+    this.temperature = temperature;
+  }
+
+  static increaseTemperature(weather:Weather) {
+    weather.temperature++;
+  }
+}
+
+class Day {
+  weather:Weather;
+  week:string;
+  constructor(weather:Weather, week:string) {
+    this.weather = weather;
+    this.week = week;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State day1: Day = new Day(new Weather(15), 'Monday');
+
+  build() {
+    Column({ space:10 }) {
+      Child({ weather: this.day1.weather})
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink weather: Weather;
+
+  reduceTemperature (weather:Weather) {
+    weather.temperature--;
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`The temperature of day1 is ${this.weather.temperature} degrees.`)
+        .fontSize(20)
+      Button('increaseTemperature')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let weather1 = this.weather;
+          Weather.increaseTemperature(weather1);
+        })
+      Button('reduceTemperature')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let weather2 = this.weather;
+          this.reduceTemperature(weather2);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```

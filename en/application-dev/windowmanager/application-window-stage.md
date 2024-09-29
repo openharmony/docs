@@ -32,19 +32,19 @@ The table below lists the common APIs used for application window development. F
 
 | Instance        | API                                                      | Description                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | Obtains the main window of this window stage.<br>This API can be used only in the stage model. |
-| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to the main window in this window stage.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.<br>This API can be used only in the stage model. |
+| WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | Obtains the main window of this window stage.<br>This API can be used only in the stage model.|
+| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to the main window in this window stage.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.<br>This API can be used only in the stage model.|
 | WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | Creates a subwindow.<br>This API can be used only in the stage model.            |
-| WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | Subscribes to window stage lifecycle change events.<br>This API can be used only in the stage model. |
-| Window static method | createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br>**config**: parameters used for creating the window.            |
+| WindowStage    | on(type: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void | Subscribes to window stage lifecycle change events.<br>This API can be used only in the stage model.|
+| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow or system window.<br>**config**: parameters used for creating the window.            |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.                                    |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
 | Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether this window is touchable.                                    |
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                          |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether to enable the full-screen mode for the window layout.                                 |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable the full-screen mode for the window layout.                                 |
 | Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | Sets whether to display the status bar and navigation bar in this window.                                |
-| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar. |
+| Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
 | Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Subscribes to touch events outside this window.                          |
 | Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
@@ -410,24 +410,22 @@ export default class EntryAbility extends UIAbility {
 
       // 2. Implement the immersive effect by hiding the status bar and navigation bar.
       let names: Array<'status' | 'navigation'> = [];
-      windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      windowClass.setWindowSystemBarEnable(names)
+        .then(() => {
+          console.info('Succeeded in setting the system bar to be visible.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the system bar to be visible.');
-      });
+        });
       // 2. Alternatively, implement the immersive effect by setting the properties of the status bar and navigation bar.
       let isLayoutFullScreen = true;
-      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      windowClass.setWindowLayoutFullScreen(isLayoutFullScreen)
+        .then(() => {
+          console.info('Succeeded in setting the window layout to full-screen mode.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the window layout to full-screen mode.');
-      });
+        });
       let sysBarProps: window.SystemBarProperties = {
         statusBarColor: '#ff00ff',
         navigationBarColor: '#00ff00',
@@ -435,14 +433,13 @@ export default class EntryAbility extends UIAbility {
         statusBarContentColor: '#ffffff',
         navigationBarContentColor: '#ffffff'
       };
-      windowClass.setWindowSystemBarProperties(sysBarProps, (err: BusinessError) => {
-        let errCode: number = err.code;
-        if (errCode) {
+      windowClass.setWindowSystemBarProperties(sysBarProps)
+        .then(() => {
+          console.info('Succeeded in setting the system bar properties.');
+        })
+        .catch((err: BusinessError) => {
           console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the system bar properties.');
-      });
+        });
     })
     // 3. Load content to the immersive window.
     windowStage.loadContent("pages/page2", (err: BusinessError) => {

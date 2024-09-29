@@ -25,17 +25,15 @@ uri类型可以归纳为文档类uri和媒体文件uri两类
 | ------------- | ------------------- |
 | 'file://docs/storage/Users/currentUser/' | 文件管理器的根目录。|
 | '\<relative_path\>/' | 文件在根目录下的相对路径。例如：'Download/'和'Documents/'。|
-| 'test.txt' | 用户文件系统中存储的文件名，支持的文件类型为文件管理器支持的所有类型，以文件管理器为准，例如txt、jpg、mp4和mp3等格式的文件。|
+| 'test.txt' | 用户文件系统中存储的文件名，支持的文件类型为文件管理器支持的所有类型，以文件管理器为准。例如txt、jpg、mp4和mp3等格式的文件。|
 
 ### 文档类uri获取方式
 
 1. 通过[DocumentViewPicker接口](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)选择或保存文件，返回选择或保存的文件uri。
 
-2. 通过[AudioViewPicker接口](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)选择或保存文件，返回选择或保存的文件uri。
+2. 通过[AudioViewPicker接口](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)选择或保存文件，返回选择或保存的文件uri。<!--Del-->
 
-3. 通过[PhotoViewPicker.save接口](../reference/apis-core-file-kit/js-apis-file-picker.md#save)保存文件，返回保存的文件uri。<!--Del-->
-
-4. 通过[fileAccess模块](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)获取文档类目录下的文件得到对应文件的[FileInfo](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileinfo)对象，此对象中就包含对应文件或者目录的uri属性，此模块中的接口为系统接口，使用此模块需要注意应用是否为系统应用。支持获取文件uri的目录有：
+3. 通过[fileAccess模块](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)获取文档类目录下的文件得到对应文件的[FileInfo](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileinfo)对象，此对象中就包含对应文件或者目录的uri属性，此模块中的接口为系统接口，使用此模块需要注意应用是否为系统应用。支持获取文件uri的目录有：
    - 外部存储目录
    - Docs目录
    - Download目录
@@ -138,7 +136,7 @@ async function example() {
 
 ### 媒体文件uri获取方式
 
-1. 通过[PhotoViewPicker.select接口](../reference/apis-core-file-kit/js-apis-file-picker.md#select)选择媒体文件，返回选择的媒体文件文件的uri。
+1. 通过[PhotoAccessHelper的PhotoViewPicker](../media/medialibrary/photoAccessHelper-photoviewpicker.md)选择媒体文件，返回选择的媒体文件文件的uri。
 
 2. 通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)中的[getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)或[createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset)接口获取媒体文件对应文件的uri。<!--Del-->
 
@@ -152,7 +150,7 @@ normal等级的应用使用此类uri可以通过[photoAccessHelper模块](../ref
 system_basic等级及以上的应用使用此类uri的方式除了上述通过photoAccessHelper模块外还可以通过[userFileManager模块](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md)进行进一步处理，接口详细使用方式见接口文档。
 <!--DelEnd-->
 
-若normal等级的应用不想申请权限也可以通过临时授权的方式使用[PhotoViewPicker.select接口](../reference/apis-core-file-kit/js-apis-file-picker.md#select)得到的uri使用[photoAccessHelper.getAssets接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)获取对应uri的PhotoAsset对象。这种方式获取的对象可以调用[getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail)获取缩略图和使用[get接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get)读取[PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys)中的部分信息。
+若normal等级的应用不想申请权限也可以通过临时授权的方式使用[PhotoAccessHelper的PhotoViewPicker](../media/medialibrary/photoAccessHelper-photoviewpicker.md)得到的uri使用[photoAccessHelper.getAssets接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)获取对应uri的PhotoAsset对象。这种方式获取的对象可以调用[getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail)获取缩略图和使用[get接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get)读取[PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys)中的部分信息。
 
 以下为PhotoKeys中支持临时授权方式可以读取的信息：
 
@@ -174,7 +172,6 @@ system_basic等级及以上的应用使用此类uri的方式除了上述通过ph
 下面为通过临时授权方式使用媒体文件uri进行获取缩略图和读取文件部分信息的示例代码：
 
 ```ts
-import { picker } from '@kit.CoreFileKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { dataSharePredicates } from '@kit.ArkData';
@@ -186,11 +183,11 @@ const context = getContext(this);
 // 调用PhotoViewPicker.select选择图片
 async function photoPickerGetUri() {
   try {  
-    let PhotoSelectOptions = new picker.PhotoSelectOptions();
-    PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+    let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+    PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 1;
-    let photoPicker = new picker.PhotoViewPicker();
-    photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: picker.PhotoSelectResult) => {
+    let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
       uris = PhotoSelectResult.photoUris;
     }).catch((err: BusinessError) => {

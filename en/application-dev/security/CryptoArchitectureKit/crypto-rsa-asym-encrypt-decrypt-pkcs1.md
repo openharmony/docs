@@ -19,8 +19,8 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
 
 4. Use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to pass in the plaintext and encrypt it.
    
-   - The output of **doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
-   - If the data to be encrypted is considerably long, you can call **doFinal()** multiple times to [pass in and encrypt the data by segment](crypto-rsa-asym-encrypt-decrypt-by-segment.md).
+   - The output of **Cipher.doFinal** may be **null**. To avoid exceptions, always check whether the result is **null** before accessing specific data.
+   - If a large amount of data is to be encrypted, you can call **Cipher.doFinal** multiple times to pass in the data by segment.
 
 
 **Decryption**

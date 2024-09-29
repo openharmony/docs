@@ -9,7 +9,7 @@ The **inputMethodList** module is oriented to system applications and input meth
 ## Modules to Import
 
 ```ts
-import { inputMethodL } from '@kit.IMEKit';
+import { inputMethod } from '@kit.IMEKit';
 ```
 
 ## Child Components
@@ -31,29 +31,29 @@ Implements a dialog box showing the input method list.
 
 **Parameters**
 
-| Name | Type | Mandatory | Decorator | Description |
+| Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes | - | Controller for the dialog box showing the input method list. |
-| patternOptions | [PatternOptions](#patternoptions) | No | - | Input method pattern options (for the default input method only). |
+| controller | [CustomDialogController](../apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| - | Controller for the dialog box showing the input method list.|
+| patternOptions | [PatternOptions](#patternoptions) | No| - | Input method pattern options (for the default input method only).|
 
 ## PatternOptions
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| defaultSelected<sup>11+</sup>  | number | Yes | Yes | Optional. Default selected pattern. |
-| patterns<sup>11+</sup>    | Array<[Pattern](#pattern)> | Yes | Yes | Mandatory. Resource of the pattern option. |
-| action<sup>9+</sup> | function | Yes | Yes | Mandatory. Callback invoked when the pattern option changes. |
+| defaultSelected<sup>11+</sup>  | number | Yes| Yes| Optional. Default selected pattern.|
+| patterns<sup>11+</sup>    | Array<[Pattern](#pattern)> | Yes| Yes| Mandatory. Resource of the pattern option.|
+| action<sup>9+</sup> | function | Yes| Yes| Mandatory. Callback invoked when the pattern option changes.|
 
 ## Pattern
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-| Name | Type | Read-Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes | Yes | Mandatory. Default icon. |
-| selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes | Yes | Mandatory. Icon for the selected option. |
+| icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes| Yes| Mandatory. Default icon.|
+| selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes| Yes| Mandatory. Icon for the selected option.|
 
 ##  Events
 

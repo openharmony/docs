@@ -98,7 +98,7 @@ struct ShortcutExample {
 
 deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md), userId: number) : Promise\<void>
 
-删除指定[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)和用户的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
+删除指定用户的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
 
 **需要权限：** ohos.permission.MANAGE_SHORTCUTS
 

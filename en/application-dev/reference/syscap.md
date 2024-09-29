@@ -112,12 +112,12 @@ You can use either the ArkTS or native API to determine whether an API is availa
 	```ts
 	import geolocationManager from '@ohos.geoLocationManager';
 
-	if (geolocationManager) {
+	try {
 	geolocationManager.getCurrentLocation((location) => {
 		console.log('current location: ' + JSON.stringify(location));
 	});
-	} else {
-	console.log('This device does not support location information.');
+	} catch(err) {
+	    console.log('This device does not support location information.' + err);
 	}
 	```
 - Native API
@@ -145,19 +145,21 @@ The performance of a SysCap may vary by device type. For example, a tablet is su
 ```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
-const authenticator = userAuth.getAuthenticator();
-const result = authenticator.checkAbility('FACE_ONLY', 'S1');
-
-if (result == authenticator.CheckAvailabilityResult.AUTH_NOT_SUPPORT) {
-	console.log('This device does not support facial recognition.');
+const authParam : userAuth.AuthParam = {
+  challenge: new Uint8Array(),
+  authType: [userAuth.UserAuthType.PIN],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
+};
+const widgetParam :userAuth.WidgetParam = {
+  title: 'Enter password',
+};
+try {
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  userAuthInstance.start();
+    console.log('Device authentication succeeded.');
+} catch (error) {
+    console.error('auth catch error: ' + JSON.stringify(error));
 }
-// If an unsupported API is forcibly called, an error message is returned, but no syntax error occurs.
-authenticator.execute('FACE_ONLY', 'S1', (err, result) => {
-	if (err) {
-		console.log(err.message);
-		return;
-	}
-})
 ```
 
 ### How Do SysCap Differences Arise Between Devices

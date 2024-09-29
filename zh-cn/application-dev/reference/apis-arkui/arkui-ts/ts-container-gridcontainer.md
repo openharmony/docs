@@ -16,11 +16,21 @@
 
 ## 接口
 
-GridContainer(value?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: number&nbsp;|&nbsp;string, margin?: number&nbsp;|&nbsp;string})
+GridContainer(value?: GridContainerOptions)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | GridContainerOptions | 否 | GridContainer参数 |
+
+## GridContainerOptions对象说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | columns | number&nbsp;\|&nbsp;'auto' | 否 | 设置当前布局总列数。<br/>默认值：'auto' |
 | sizeType | SizeType | 否 | 选用设备宽度类型。<br/>默认值：SizeType.Auto |
@@ -28,6 +38,8 @@ GridContainer(value?: { columns?: number | 'auto', sizeType?: SizeType, gutter?:
 | margin | number&nbsp;\|&nbsp;string | 否 | 栅格布局两侧间距，不支持百分比。 |
 
 ## SizeType枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------- | -------- |

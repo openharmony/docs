@@ -170,7 +170,16 @@ DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本�
 
 #### -enable-filename-obfuscation
 
-开启文件/文件夹名称混淆。如果使用这个选项，那么所有的文件/文件夹名称都会被混淆，除了下面场景:
+开启文件/文件夹名称混淆。如果使用这个选项，那么所有的文件/文件夹名称都会被混淆，例如：
+
+```
+// directory和filename都会混淆
+import func from '../directory/filename';
+import { foo } from '../directory/filename';
+const module = import('../directory/filename');
+```
+
+除了下面场景:
 
 * oh-package.json5文件中'main'、'types'字段配置的文件/文件夹名称不会被混淆。
 * 模块内module.json5文件中'srcEntry'字段配置的文件/文件夹名称不会被混淆。
@@ -180,7 +189,7 @@ DevEco Studio原先默认开启代码混淆功能，会对API 10及以上版本�
 
 **注意**：  
 
-由于系统会在应用运行时加载某些指定的文件，针对这类文件，开发者需要手动在[`-keep-file-name`]选项中配置相应的白名单，防止指定文件被混淆，导致运行失败。
+由于系统会在应用运行时加载某些指定的文件，针对这类文件，开发者需要手动在[-keep-file-name](#保留选项)选项中配置相应的白名单，防止指定文件被混淆，导致运行失败。
 上述需要手动配置白名单的情况，包括但不限于以下场景：  
 
 * 当模块中包含Ability组件时。用户需要将`src/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。  
@@ -275,14 +284,42 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 (4)'struct'：表示ArkUI的struct中的属性。
 
-(5)'export'：表示被导出的名称及其属性。
+(5)'exported'：表示被导出的名称及其属性。
 
 (6)'strProp': 表示字符串属性。
 
-(7)'enum'：表示enum中的成员（该名单仅在编译HAR模块时存在）。
+(7)'enum'：表示enum中的成员。
 
-未混淆名单（keptNames.json）中包含未混淆的名称及未混淆的原因。其中，未混淆原因有以下七种：与sdk白名单重名、与语言白名单重名、与用户配置白名单重名、与struct白名单重名、与导出白名单重名、与字符串属性白名单重名（未开启字符串属性混淆的情况下）以及与enum白名单重名（在编译HAR模块的情况下）。
+未混淆名单（keptNames.json）中包含未混淆的名称及未混淆的原因。其中，未混淆原因有以下七种：与sdk白名单重名、与语言白名单重名、与用户配置白名单重名、与struct白名单重名、与导出白名单重名、与字符串属性白名单重名（未开启字符串属性混淆的情况下）以及与enum白名单重名。
 
+**注意**：
+
+1.在编译har模块且开启属性混淆的情况下，'enum'白名单将收集enum中的成员名称。
+
+例如：
+
+```
+enum Test {
+  member1,
+  member2
+}
+```
+
+enum白名单内容为['member1', 'member2']。这是由于历史版本的har模块的编译中间产物为js文件，在js文件中enum类型会转换为一个立即执行函数，而enum成员会被转化为一个字符串属性和一个字符串常量。因此，为了保证开启属性混淆的情况下功能正常，需要将enum成员名称收集为白名单。在编译新版字节码har模块时，此特性仍然被保留。
+
+2.在编译hap/hsp/字节码har模块且开启属性混淆的情况下，当enum的成员被初始化时，'enum'白名单收集初始化表达式中包含的变量名称。
+
+例如：
+
+```
+let outdoor = 1;
+enum Test {
+  member1,
+  member2 = outdoor + member1 + 2
+}
+```
+
+其中，编译hap/hsp模块的情况下，enum白名单内容为['outdoor', 'member1']；编译字节码har模块的情况下，enum白名单内容为['outdoor', 'member1', 'member2']。
 
 ### 保留选项
 
@@ -350,15 +387,33 @@ testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
 ```
 const jsonData = ('./1.json')
 let jsonStr = JSON.parse(jsonData)
-let jsonObj = jsonStr.jsonProperty  // jsonProperty 需要保留
+let jsonObj = jsonStr.jsonProperty  // jsonProperty 需要被保留
 ```
 
 使用到的数据库相关的字段，需要手动保留。
 
 ```
 const dataToInsert = {  
-  value1: 'example1',   // value1 需要保留
+  value1: 'example1',   // value1 需要被保留
 };
+```
+
+源码中自定义装饰器修饰了成员变量、成员方法、参数，同时其源码编译的中间产物为js文件时（如编译release源码HAR或者源码包含@ts-ignore、@ts-nocheck），这些装饰器所在的成员变量/成员方法名称需要被保留。这是由于ts高级语法特性转换为js标准语法时，将上述装饰器所在的成员变量/成员方法名称硬编码为字符串常量。
+
+示例：
+
+```
+class A {
+  // 1.成员变量装饰器
+  @CustomDecoarter
+  propetyName: string = ""   // propetyName 需要被保留
+  // 2.成员方法装饰器
+  @MethodDecoarter
+  methodName1(){} // methodName1 需要被保留
+  // 3.方法参数装饰器
+  methodName2(@ParamDecorator param: string): void { // methodName2 需要被保留
+  }
+}
 ```
 
 #### -keep-global-name *[,identifiers,...]*
@@ -369,6 +424,15 @@ const dataToInsert = {
 -keep-global-name
 Person
 printPersonName
+```
+
+namespace中导出的名称也可以通过`-keep-global-name`保留。
+
+```
+export namespace Ns {
+  export const age = 18; // -keep-global-name age 保留变量age
+  export function myFunc () {}; // -keep-global-name myFunc 保留函数myFunc
+}
 ```
 
 **哪些顶层作用域的名称应该被保留?**
@@ -392,6 +456,12 @@ bar();                      // bar 可以被正确地混淆
 
 class MyClass {}
 let d = new MyClass();      // MyClass 可以被正确地混淆
+```
+
+当以命名导入的方式导入 so 库的 API时，若同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项，需要手动保留 API 的名称。
+
+```
+import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testNapi1 应该被保留
 ```
 
 #### -keep-file-name *[,identifiers,...]*
@@ -449,7 +519,10 @@ export class exportClass {}
 ../oh_modules/json5          // 引用的三方库json5里所有文件中的名称都不混淆
 ```
 
-注：该功能不影响文件名混淆`-enable-filename-obfuscation`的功能
+**注意**：
+
+1. 被`-keep filepath`所保留的文件，其依赖链路上的文件中导出名称及其属性都会被保留。
+2. 该功能不影响文件名混淆`-enable-filename-obfuscation`的功能。
 
 #### 保留选项支持的通配符
 
@@ -699,7 +772,7 @@ end-for
 ### 如何排查功能异常
 
 1. 先在obfuscation-rules.txt配置-disable-obfuscation选项关闭混淆，确认问题是否由混淆引起。
-2. 若确认是开启混淆后功能出现异常，请先阅读文档了解[-enable-property-obfuscation](#混淆选项)、[-enable-toplevel-obfuscation](#混淆选项)、[-enable-filename-obfuscation](#混淆选项)、[-enable-export-obfuscation](#混淆选项)等混淆规则的能力以及哪些语法场景需要[配置白名单](#保留选项)来保证应用功能正常。下文简要介绍默认开启的四项选项功能，细节还请阅读对应选项的完整描述。
+2. 若确认是开启混淆后功能出现异常，请先阅读文档了解[-enable-property-obfuscation](#混淆选项)、[-enable-toplevel-obfuscation](#混淆选项)、[-enable-filename-obfuscation](#混淆选项)、[-enable-export-obfuscation](#混淆选项)等混淆规则的能力以及哪些语法场景需要配置白名单来保证应用功能正常。下文简要介绍默认开启的四项选项功能，细节还请阅读对应选项的完整描述。
     1. [-enable-toplevel-obfuscation](#混淆选项)为顶层作用域名称混淆开关。
     2. [-enable-property-obfuscation](#混淆选项)为属性混淆开关，配置白名单的主要场景为网络数据访问、json字段访问、动态属性访问、调用so库接口等不能混淆场景，需要使用[-keep-property-name](#保留选项)来保留指定的属性名称。
     3. [-enable-export-obfuscation](#混淆选项)为导出名称混淆，一般与1、2选项配合使用；配置白名单的主要场景为模块对外接口不能混淆，需要使用[-keep-global-name](#保留选项)来指定保留导出/导入名称。
@@ -709,6 +782,12 @@ end-for
 5. 应用运行时崩溃分析方法：
     1. 打开应用运行日志或者点击DevEco Studio中出现的Crash弹窗，找到运行时崩溃栈。
     2. 应用运行时崩溃栈中的行号为[编译产物](#如何查看混淆效果)的行号，方法名也可能为混淆后名称；因此排查时建议直接根据崩溃栈查看编译产物，进而分析哪些名称不能被混淆，然后将其配置进白名单中。
+6. 应用在运行时未崩溃但出现功能异常的分析方法（比如白屏）：
+    1. 打开应用运行日志：选择HiLog，检索与功能异常直接相关的日志，定位问题发生的上下文。
+    2. 定位异常代码段：通过分析日志，找到导致功能异常的具体代码块。
+    3. 增强日志输出：在疑似异常的功能代码中，对处理的数据字段增加日志记录。
+    4. 分析并确定关键字段：通过对新增日志输出的分析，识别是否由于混淆导致该字段的数据异常。
+    5. 配置白名单保护关键字段：将确认在混淆后对应用功能产生直接影响的关键字段添加到白名单中。
 
 ### 常见报错案例
 

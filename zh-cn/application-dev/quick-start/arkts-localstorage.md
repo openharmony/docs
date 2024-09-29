@@ -479,7 +479,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
         Button("To Page")
           .onClick(() => {
-            router.pushUrl({
+            this.getUIContext().getRouter().pushUrl({
               url: 'pages/Page'
             })
           })
@@ -516,7 +516,7 @@ struct Page {
 
         Button("Back Index")
           .onClick(() => {
-            router.back()
+            this.getUIContext().getRouter().back()
           })
       }
       .width('100%')

@@ -1,6 +1,6 @@
 # 数据防泄漏服务开发指导
 
-DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称为DLP的文件格式。后缀格式为“原始文件名（包含原始文件后缀）.dlp”，例如: “test.docx.dlp”，文件由授权凭证和原始文件密文组成。
+DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称为DLP的文件格式。后缀格式为“原始文件名（包含原始文件后缀）.dlp”，例如“test.docx.dlp”，文件由授权凭证和原始文件密文组成。
 
 通过端云协同认证（需要联网）来获取文件的访问授权，授权类型包含只读、编辑、文件拥有者三种。
 
@@ -100,7 +100,37 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
       ]
     ```
 
-3. 查询当前应用是否在沙箱中。
+3. 生成DLP文件
+
+    3.1 当前支持生成DLP文件的原文件类型: ".doc", ".docm", ".docx", ".dot", ".dotm", ".dotx", ".odp", ".odt", ".pdf", ".pot", ".potm", ".potx", ".ppa", ".ppam", ".pps", ".ppsm", ".ppsx", ".ppt", ".pptm", ".pptx", ".rtf", ".txt", ".wps", ".xla", ".xlam", ".xls", ".xlsb", ".xlsm", ".xlsx", ".xlt", ".xltm", ".xltx", ".xlw", ".xml", ".xps"。
+
+    3.2 首先要有一个DLP权限应用有读写权限的(比如文件管理的文档目录下)并且属于以上文件类型之一的原文件。
+
+    3.3 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。调用以下代码，拉起DLP管理应用的设置权限页面，输入相关的授权账号信息，点击保存，在拉起的filepicker中选择DLP文件的保存路径，保存DLP文件。[该功能云端对接模块当前需要开发者自行搭建](../DataProtectionKit/dlp-overview.md)
+
+    ```ts
+      import { common, Want } from '@kit.AbilityKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
+      try {
+          let fileUri: string = "file://docs/storage/Users/currentUser/test.txt";
+          let fileName: string = "test.txt";
+          let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+          let want: Want = {
+            'uri': fileUri,
+            'parameters': {
+              'displayName': fileName
+            }
+          }; // 请求参数
+          dlpPermission.startDLPManagerForResult(context, want).then((res: dlpPermission.DLPManagerResult) => {
+            console.info('startDLPManagerForResult res.resultCode:' + res.resultCode);
+            console.info('startDLPManagerForResult res.want:' + JSON.stringify(res.want));
+          }); // 拉起DLP权限管理应用 设置权限
+        } catch (err) {
+          console.error('startDLPManagerForResult error:' + (err as BusinessError).code + (err as BusinessError).message);
+        }
+    ```
+
+4. 查询当前应用是否在沙箱中。
 
    ```ts
    dlpPermission.isInSandbox().then((data)=> {
@@ -110,7 +140,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
    });
    ```
 
-4. 查询当前编辑的文件权限，根据文件授权的不同，DLP沙箱被限制的权限有所不同，参考[沙箱限制](#沙箱限制)。
+5. 查询当前编辑的文件权限，根据文件授权的不同，DLP沙箱被限制的权限有所不同，参考[沙箱限制](#沙箱限制)。
 
    ```ts
    dlpPermission.getDLPPermissionInfo().then((data)=> {
@@ -120,7 +150,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
    });
    ```
 
-5. 获取当前可支持DLP方案的文件扩展名类型列表，用于应用判断能否生成DLP文件，可用在实现类似文件管理器设置DLP权限的场景。
+6. 获取当前可支持DLP方案的文件扩展名类型列表，用于应用判断能否生成DLP文件，可用在实现类似文件管理器设置DLP权限的场景。
 
    ```ts
    dlpPermission.getDLPSupportedFileTypes((err, result) => {
@@ -129,7 +159,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
    });
    ```
 
-6. 判断当前打开文件是否是DLP文件。
+7. 判断当前打开文件是否是DLP文件。
 
    ```ts
    import { dlpPermission } from '@kit.DataProtectionKit';
@@ -147,7 +177,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
    fileIo.closeSync(file);
    ```
 
-7. 订阅、取消订阅DLP打开事件。
+8. 订阅、取消订阅DLP打开事件。
 
    ```ts
    event(info: dlpPermission.AccessedDLPFileInfo) {
@@ -175,7 +205,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
    }
    ```
 
-8. 获取DLP文件打开记录。
+9. 获取DLP文件打开记录。
 
    ```ts
    async getDLPFileAccessRecords() {
@@ -188,7 +218,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
    }
    ```
 
-9. 获取DLP文件保留沙箱记录。
+10. 获取DLP文件保留沙箱记录。
 
     ```ts
     async getRetentionSandboxList() {
@@ -201,7 +231,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     }
     ```
 
-10. 设置沙箱应用配置信息。
+11. 设置沙箱应用配置信息。
 
     ```ts
     async setSandboxAppConfig() {
@@ -213,7 +243,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     }
     ```
 
-11. 清理沙箱应用配置信息。
+12. 清理沙箱应用配置信息。
 
     ```ts
     async cleanSandboxAppConfig() {
@@ -225,7 +255,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     }
     ```
 
-12. 查询沙箱应用配置信息。
+13. 查询沙箱应用配置信息。
 
     ```ts
     async getSandboxAppConfig() {
@@ -238,7 +268,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     }
     ```
 
-13. 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。
+14. 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。
 
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
@@ -262,7 +292,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     }
     ```
 
-14. 查询当前系统是否提供DLP特性。
+15. 查询当前系统是否提供DLP特性。
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
     import { BusinessError } from '@kit.BasicServicesKit';

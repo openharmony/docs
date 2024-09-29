@@ -63,3 +63,71 @@ if (!OH_AVFormat_GetLongValue(trackFormat, OH_MD_KEY_TRACK_START_TIME, &startTim
 }
 int64_t oldPts = newPts - startTime;
 ```
+
+## cl.multimedia.2 EffectSuggestionType行为变更
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+效果推荐功能相关的枚举类，只有系统接口来获取/更新这些属性，无需开放。
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+变更前：该枚举为公开接口。
+
+变更后：该枚举为系统接口。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.39 版本开始。
+
+**变更的接口/组件**
+
+EffectSuggestionType/camera组件
+
+**适配指导**
+
+无需适配，相关接口没有开放，修改只是为了与相关接口的访问级别保持一致。
+
+## cl.multimedia.3 EffectSuggestionStatus行为变更
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+效果推荐功能相关的类，只有系统接口来获取/更新这些属性，无需开放。
+
+**变更影响**
+
+该变更为不兼容性变更。
+
+变更前：该类为公开接口。
+
+变更后：该类为系统接口。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.39 版本开始。
+
+**变更的接口/组件**
+
+EffectSuggestionStatus/camera组件
+
+**适配指导**
+
+无需适配，相关接口没有开放，修改只是为了与相关接口的访问级别保持一致。

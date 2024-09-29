@@ -4,6 +4,14 @@
 
 USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发套件，支持开发者基于用户态，在应用层开发USB设备驱动。提供了一系列主机侧访问设备的接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等。
 
+## 约束与限制
+
+* USB DDK开放API支持USB接口非标外设扩展驱动开发场景。
+
+* USB DDK开放API使用范围内仅允许DriverExtensionAbilit生命周期内使用。
+
+* 使用USB DDK开放API需要在module.json5中声明匹配的ACL权限，例如ohos.permission.ACCESS_DDK_USB。
+
 ## 接口说明
 
 | 名称 | 描述 |
@@ -25,7 +33,7 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 
 详细的接口说明请参考[USB DDK](../reference/apis-driverdevelopment-kit/_usb_ddk.md)。
 
-## USB DDK开发步骤
+## 开发步骤
 
 以下步骤描述了如何使用 **USB DDK**开发USB驱动：
 
@@ -42,7 +50,9 @@ libusb_ndk.z.so
 #include <usb/usb_ddk_types.h>
 ```
 
-1. **获取设备描述符**。使用 **usb_ddk_api.h** 的 **OH_Usb_Init** 接口初始化DDK，并使用 **OH_Usb_GetDeviceDescriptor**获取到设备描述符。
+1. 获取设备描述符。
+
+    使用 **usb_ddk_api.h** 的 **OH_Usb_Init** 接口初始化DDK，并使用 **OH_Usb_GetDeviceDescriptor**获取到设备描述符。
 
     ```c++
     // 初始化USB DDK
@@ -53,7 +63,9 @@ libusb_ndk.z.so
     OH_Usb_GetDeviceDescriptor(deviceId, &devDesc);
     ```
 
-2. **获取配置描述符及声明接口**。使用 **usb_ddk_api.h** 的 **OH_Usb_GetConfigDescriptor** 接口获取配置描述符 **config**，并使用 **OH_Usb_ClaimInterface** 声明接口。
+2. 获取配置描述符及声明接口。
+    
+    使用 **usb_ddk_api.h** 的 **OH_Usb_GetConfigDescriptor** 接口获取配置描述符 **config**，并使用 OH_Usb_ClaimInterface 声明"认领"接口。。
 
     ```c++
     struct UsbDdkConfigDescriptor *config = nullptr;
@@ -67,7 +79,9 @@ libusb_ndk.z.so
     // 释放配置描述符
     OH_Usb_FreeConfigDescriptor(config);
     ```
-3. **获取当前激活接口的备用设置及激活备用设置**。使用 **usb_ddk_api.h** 的 **OH_Usb_GetCurrentInterfaceSetting** 获取备用设置，并使用 **OH_Usb_SelectInterfaceSetting** 激活备用设置
+3. 获取当前激活接口的备用设置及激活备用设置。
+
+    使用 **usb_ddk_api.h** 的 **OH_Usb_GetCurrentInterfaceSetting** 获取备用设置，并使用 **OH_Usb_SelectInterfaceSetting** 激活备用设置
 
     ```c++
     uint8_t settingIndex = 0;
@@ -77,7 +91,9 @@ libusb_ndk.z.so
     // 激活备用设置
     OH_Usb_SelectInterfaceSetting(interfaceHandle, &settingIndex);
     ```
-4. **发送控制读请求、发送控制写请求**。使用 **usb_ddk_api.h** 的**OH_Usb_SendControlReadRequest**发送控制读请求，或者使用**OH_Usb_SendControlWriteRequest**发送控制写请求。
+4. 发送控制读请求、发送控制写请求。
+
+    使用 **usb_ddk_api.h** 的**OH_Usb_SendControlReadRequest**发送控制读请求，或者使用**OH_Usb_SendControlWriteRequest**发送控制写请求。
 
     ```c++
         // 超时时间，设置为1s;
@@ -106,7 +122,9 @@ libusb_ndk.z.so
     OH_Usb_SendControlWriteRequest(interfaceHandle, &setupWrite, timeout, dataWrite, &dataWriteLen);
     ```
 
-5. **创建内存映射缓冲区及发送请求**。使用 **usb_ddk_api.h** 的**OH_Usb_CreateDeviceMemMap**接口创建内存映射缓冲区**devMmap**，并使用**OH_Usb_SendPipeRequest**发送请求。
+5. 创建内存映射缓冲区及发送请求。
+
+    使用 **usb_ddk_api.h** 的**OH_Usb_CreateDeviceMemMap**接口创建内存映射缓冲区**devMmap**，并使用**OH_Usb_SendPipeRequest**发送请求。
 
     ```c++
     struct UsbDeviceMemMap *devMmap = nullptr;
@@ -122,7 +140,9 @@ libusb_ndk.z.so
     OH_Usb_SendPipeRequest(&pipe, devMmap);
     ```
 
-6. **释放资源**。在所有请求处理完毕，程序退出前，使用 **usb_ddk_api.h** 的 **OH_Usb_DestroyDeviceMemMap** 接口销毁缓冲区。使用**OH_Usb_ReleaseInterface**释放接口。使用**OH_Usb_Release**释放USB DDK。
+6. 释放资源。
+
+    在所有请求处理完毕，程序退出前，使用 **usb_ddk_api.h** 的 **OH_Usb_DestroyDeviceMemMap** 接口销毁缓冲区。使用**OH_Usb_ReleaseInterface**释放接口。使用**OH_Usb_Release**释放USB DDK。
 
     ```c++
     // 销毁缓冲区

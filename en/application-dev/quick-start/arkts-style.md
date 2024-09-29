@@ -1,11 +1,10 @@
-# \@Styles Decorator: Defining Reusable Styles
+# \@Styles Decorator: Definition of Reusable Styles
 
 
 If the style of each component needs to be set separately, this will result in a large amount of repeated code during development. Though copy and paste is available, it is inefficient and error-prone. To maximize code efficiency and maintainability, the \@Styles decorator is introduced.
 
 
-\@Styles helps avoid repeated style setting, by extracting multiple style settings into one method. When declaring a component, you can invoke this method and use the \@Styles decorator to quickly define and reuse the custom styles of a component.  
-
+\@Styles helps avoid repeated style setting, by extracting multiple style settings into one method. When declaring a component, you can invoke this method and use the \@Styles decorator to quickly define and reuse the custom styles of a component.
 
 > **NOTE**
 >
@@ -107,11 +106,9 @@ To allow for cross-file operations, use the [attribute modifier](../reference/ap
   The framework preferentially searches for \@Styles within the current component.
 
 
-## Use Scenarios
+## Application Scenarios
 
 The following example demonstrates the usage of \@Styles inside and outside a component declaration.
-
-
 
 ```ts
 // Define a \@Styles decorated method outside a component declaration.

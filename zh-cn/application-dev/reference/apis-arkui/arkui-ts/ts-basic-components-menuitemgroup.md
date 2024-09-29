@@ -30,8 +30,8 @@ MenuItemGroup(value?: MenuItemGroupOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型                                                                                      | 必填 | 描述                          |
-| ------ | ----------------------------------------------------------------------------------------- | ---- | ----------------------------- |
+| 名称   | 类型                                                         | 必填 | 说明                          |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------- |
 | header | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置对应group的标题显示信息。 |
 | footer | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置对应group的尾部显示信息。 |
 

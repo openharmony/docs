@@ -6,7 +6,7 @@
 >  - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  - 该组件嵌套List子组件滚动时，若List不设置宽高，则默认全部加载，在对性能有要求的场景下建议指定List的宽高。
 >  - 该组件滚动的前提是主轴方向大小小于内容大小。
->  - 该组件回弹的前提是要有滚动。内容小于一屏时，没有回弹效果。
+>  - Scroll组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 
 ## 子组件
@@ -445,7 +445,7 @@ Scroll滚动前触发的回调。
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | xOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
 | yOffset     | number                                                  | 是   | 每帧滚动时竖直方向的偏移量，Scroll中的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               | 
+| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是  | 当前滚动状态。                                               |
 | scrollSource | [ScrollSource](ts-appendix-enums.md#scrollsource12枚举说明) | 是 | 当前滚动操作的来源。 |
 
 **返回值：** 
@@ -477,7 +477,7 @@ Scroller的构造函数。
 
 ### scrollTo
 
-scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration?: number, curve?: Curve | ICurve, canOverScroll?: boolean } | boolean })
+scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: ScrollAnimationOptions | boolean })
 
 
 滑动到指定位置。
@@ -656,7 +656,7 @@ isAtEnd(): boolean
 
 getItemRect(index: number): RectResult
 
-获取子组件的大小位置。
+获取子组件的大小及相对容器组件的位置。
 
 >  **说明：**
 >
@@ -691,6 +691,45 @@ getItemRect(index: number): RectResult
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
+### getItemIndex<sup>13+</sup>
+
+getItemIndex(x: number, y: number): number
+
+通过坐标获取子组件的索引。
+
+>  **说明：**
+>
+>  支持List、Grid、WaterFlow组件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填   | 说明              |
+| ----- | ------ | ---- | ----------------- |
+| x | number | 是    | x轴坐标，单位为vp。 |
+| y | number | 是 | y轴坐标，单位为vp。 |
+
+> **说明：**
+>
+> 非法值返回的索引为-1。
+
+**返回值：**
+
+| 类型       | 说明       |
+| -------------------  | -------- |
+| number | 返回子组件的索引，单位：vp。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 
 ## OffsetResult<sup>11+</sup>
 
@@ -709,7 +748,7 @@ getItemRect(index: number): RectResult
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 类型   | 必填   | 说明              |
+| 名称   | 类型   | 必填   | 说明              |
 | ----- | ------ | ------ | ----------------- |
 | duration | number | 否 | 设置滚动时长。<br/>默认值：1000。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9)<sup>9+ </sup> | 否 | 设置滚动曲线。<br/>默认值：Curve.Ease。 |
@@ -857,6 +896,8 @@ struct ScrollExample {
 
 ### 示例2
 ```ts
+import { LengthMetrics } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct NestedScroll {
@@ -876,7 +917,7 @@ struct NestedScroll {
             .fontSize(16)
             .textAlign(TextAlign.Center)
             .onClick(() => {
-              this.scrollerForList.scrollToIndex(5)
+              this.scrollerForList.scrollToIndex(5, false, ScrollAlign.START, { extraOffset: LengthMetrics.vp(5) })
             })
 
           List({ space: 20, scroller: this.scrollerForList }) {
@@ -1123,3 +1164,111 @@ struct ScrollExample {
 ```
 
 ![ScrollEdgeAtVelocity](figures/ScrollEdgeAtVelocity.gif)
+### 示例7
+该示例展示了如何获得List组件的子组件索引
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ListExample {
+  private arr: number[] = []
+  private scroller: ListScroller = new ListScroller()
+  @State listSpace: number = 10
+  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100)
+  @State listIndex: number = -1
+  @State mess:string = "null"
+  @State itemBackgroundColorArr: boolean[] = [false]
+  aboutToAppear(){
+    // 初始化数据源。
+    for (let i = 0; i < 10; i++) {
+      this.arr.push(i)
+    }
+    this.listChildrenSize.splice(0, 5, [100, 100, 100, 100, 100])
+  }
+  build() {
+    Column() {
+      List({ space: this.listSpace, initialIndex: 4, scroller: this.scroller }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('item-' + item)
+              .height( item < 5 ? 100 : this.listChildrenSize.childDefaultSize)
+              .width('90%')
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor( this.itemBackgroundColorArr[item] ? 0x68B4FF: 0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .backgroundColor(Color.Gray)
+      .layoutWeight(1)
+      .scrollBar(BarState.On)
+      .childrenMainSize(this.listChildrenSize)
+      .alignListItem(ListItemAlign.Center)
+      .gesture(
+        PanGesture()
+          .onActionUpdate((event: GestureEvent) => {
+            if (event.fingerList[0] != undefined && event.fingerList[0].localX != undefined && event.fingerList[0].localY != undefined) {
+              this.listIndex = this.scroller.getItemIndex(event.fingerList[0].localX, event.fingerList[0].localY)
+              this.itemBackgroundColorArr[this.listIndex] = true;
+            }
+          })
+      )
+      .gesture(
+        TapGesture({ count: 1 })
+          .onAction((event: GestureEvent) => {
+            if (event) {
+              this.itemBackgroundColorArr.splice(0,this.itemBackgroundColorArr.length);
+            }
+          })
+      )
+
+      Text('您当前位置Item索引为：'+ this.listIndex)
+        .fontColor(Color.Red)
+        .height(50)
+    }
+  }
+}
+```
+
+![ScrollEdgeAtVelocity](figures/getItemIndex_list.gif)
+
+### 示例8
+
+```ts
+// xxx.ets
+//该示例实现了Scroll组件开启边缘渐隐效果并设置边缘渐隐长度
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
+struct ScrollExample {
+  scroller: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Scroll(this.scroller) {
+        Column() {
+          ForEach(this.arr, (item: number) => {
+            Text(item.toString())
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 10 })
+          }, (item: string) => item)
+        }.width('100%')
+      }
+      .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
+
+
+
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+![fadingEdge_scroll](figures/fadingEdge_scroll.gif)

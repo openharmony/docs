@@ -4,7 +4,7 @@ The input method subtype allows the input method to switch to a specific mode or
 
 ## Configuring and Implementing an Input Method Subtype
 
-1. Implement an [InputMethodExtensionAbility](../application-models/inputmethodextentionability.md) instance for an input method, which will be shared by all subtypes of the input method. Add **metadata** to the [module.json5](../quick-start/module-configuration-file.md) file, setting it name to **ohos_extension.input_method** and **resource** to the resource file applicable to all subtypes of the input method.
+1. Implement an **InputMethodExtensionAbility** instance for an input method, which will be shared by all subtypes of the input method. Add **metadata** to the [module.json5](../quick-start/module-configuration-file.md) file, setting it name to **ohos_extension.input_method** and **resource** to the resource file applicable to all subtypes of the input method.
    ```ts
    {
      "module": {

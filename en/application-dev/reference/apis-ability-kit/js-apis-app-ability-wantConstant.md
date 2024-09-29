@@ -30,7 +30,7 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | SHOW_MODE_KEY<sup>12+</sup>  | ohos.extra.param.key.showMode      | Show mode. For details, see **wantConstant.ShowMode**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | PARAMS_STREAM<sup>12+</sup>  | ability.params.stream  | File URIs to be authorized to the target ability. The value must be an array of file URIs of the string type. For details about how to obtain the file URI, see [fileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | APP_CLONE_INDEX_KEY<sup>12+</sup>  | ohos.extra.param.key.appCloneIndex  | Index of an application clone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-
+| CALLER_REQUEST_CODE<sup>12+</sup>  | ohos.extra.param.key.callerRequestCode  | Request code that uniquely idenfies the caller of [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult) or [openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12). When either of the APIs is called to start an ability, the target ability returns the result to the caller based on the request code.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 ## wantConstant.Flags
 
  Enumerates the flags that specify how the Want will be handled.

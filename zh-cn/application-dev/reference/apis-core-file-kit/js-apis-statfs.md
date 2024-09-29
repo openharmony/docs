@@ -64,6 +64,7 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
   ```ts
   import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getFreeBytes(path, (err: BusinessError, freeBytes:Number) => {
@@ -126,6 +127,7 @@ getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
   ```ts
   import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
   let context = getContext(this) as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getTotalBytes(path, (err: BusinessError, totalBytes:Number) => {

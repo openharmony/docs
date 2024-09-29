@@ -4,6 +4,10 @@
 
 开发者通过pthread_create创建新线程后，可以通过`napi_create_ark_runtime`来创建一个新的ArkTS基础运行时环境，并通过该运行时环境加载ArkTS模块。当使用结束后，开发者需要通过`napi_destroy_ark_runtime`来销毁所创建的ArkTS基础运行时环境。
 
+## 约束限制
+
+一个进程最多只能创建16个运行时环境。
+
 ## 使用示例
 
 1. 接口声明、编译配置以及模块注册。

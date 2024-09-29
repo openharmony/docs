@@ -47,11 +47,9 @@ struct WebComponent {
 
 ## 加载本地页面
 
-将本地页面文件放在应用的rawfile目录下，开发者可以在Web组件创建的时候指定默认加载的本地页面 ，并且加载完成后可通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口变更当前Web组件的页面。
-
-
 在下面的示例中展示加载本地页面文件的方法：
 
+将本地页面文件放在应用的rawfile目录下，开发者可以在Web组件创建的时候指定默认加载的本地页面 ，并且加载完成后可通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口变更当前Web组件的页面。
 
 - 将资源文件放置在应用的resources/rawfile目录下。
 
@@ -114,6 +112,86 @@ struct WebComponent {
     </body>
   </html>
   ```
+
+加载沙箱路径下的本地页面文件。
+
+1. 通过构造的单例对象GlobalContext获取沙箱路径。
+
+   ```ts
+   // GlobalContext.ets
+   export class GlobalContext {
+     private constructor() {}
+     private static instance: GlobalContext;
+     private _objects = new Map<string, Object>();
+
+     public static getContext(): GlobalContext {
+       if (!GlobalContext.instance) {
+         GlobalContext.instance = new GlobalContext();
+       }
+       return GlobalContext.instance;
+     }
+
+     getObject(value: string): Object | undefined {
+       return this._objects.get(value);
+     }
+
+     setObject(key: string, objectClass: Object): void {
+       this._objects.set(key, objectClass);
+     }
+   }
+   ```
+
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
+
+   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html';
+
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController();
+
+     build() {
+       Column() {
+         // 加载沙箱路径文件。
+         Web({ src: url, controller: this.controller })
+       }
+     }
+   }
+   ```
+
+2. 修改EntryAbility.ets。
+
+   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。
+
+   ```ts
+   // xxx.ets
+   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
+
+   export default class EntryAbility extends UIAbility {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+       // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+       GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+       console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"));
+     }
+   }
+   ```
+
+   加载的html文件。
+
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html>
+       <body>
+           <p>Hello World</p>
+       </body>
+   </html>
+   ```
 
 
 ## 加载HTML格式的文本数据

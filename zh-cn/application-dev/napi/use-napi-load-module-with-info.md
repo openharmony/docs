@@ -1,6 +1,6 @@
 # 使用Node-API接口进行模块加载
 
-Node-API中的napi_load_module_with_info接口的功能是进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTs基础运行时环境](use-napi-ark-runtime.md)中使用
+Node-API中的napi_load_module_with_info接口的功能是进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTS基础运行时环境](use-napi-ark-runtime.md)中使用
 
 ## 函数说明
 
@@ -19,7 +19,7 @@ napi_status napi_load_module_with_info(napi_env env,
 | result         | 加载的模块          |
 
 > **注意**
-> 
+>
 > 1. bundleName表示AppScope/app.json5中配置的工程名
 > 2. moduleName指的是待加载模块所在的HAP下module.json5中配置的名字
 > 3. [napi_load_module](use-napi-load-module.md)只局限于在主线程中进行模块加载
@@ -56,7 +56,7 @@ function test() {
 export {value, test};
 ```
 
-1. 需要在工程的build-profile.json5文件中进行以下配置
+1.需要在工程的build-profile.json5文件中进行以下配置
 
 ```json
 {
@@ -72,7 +72,11 @@ export {value, test};
 }
 ```
 
-2. 使用napi_load_module_with_info加载Test文件，调用函数test以及获取变量value
+2.使用napi_load_module_with_info加载Test文件，调用函数test以及获取变量value
+
+> **注意**
+>
+> 开启seNormalizedOHMUrl后(即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true)，加载hap包内文件路径时，bundleName不会影响最终加载逻辑，会智能通过module名索引进程内对应的hap，例如：工程的bundleName为com.example.application，实际入参时填写为 com.example.application1，模块也能正常加载。
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -109,7 +113,7 @@ function test() {
 export {value, test};
 ```
 
-1. 在加载本地HAR包时，首先需要在oh-package.json5文件中配置dependencies项
+1.在加载本地HAR包时，首先需要在oh-package.json5文件中配置dependencies项
 
 ```json
 {
@@ -119,7 +123,7 @@ export {value, test};
 }
 ```
 
-2. 其次，还需要在build-profile.json5中进行配置
+2.其次，还需要在build-profile.json5中进行配置
 
 ```json
 {
@@ -135,7 +139,7 @@ export {value, test};
 }
 ```
 
-3. 用napi_load_module_with_info加载library，调用函数test以及获取变量value
+3.用napi_load_module_with_info加载library，调用函数test以及获取变量value
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -171,7 +175,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-2. 其次，还需要在build-profile.json5中进行配置
+2.其次，还需要在build-profile.json5中进行配置
 
 ```json
 {
@@ -187,7 +191,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-3. 用napi_load_module_with_info加载@ohos/hypium，获取DEFAULT变量
+3.用napi_load_module_with_info加载@ohos/hypium，获取DEFAULT变量
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -217,7 +221,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-2. 其次，还需要在build-profile.json5中进行配置
+2.其次，还需要在build-profile.json5中进行配置
 
 ```json
 {
@@ -233,7 +237,7 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 }
 ```
 
-3. 用napi_load_module_with_info加载json5，调用函数stringify
+3.用napi_load_module_with_info加载json5，调用函数stringify
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -302,7 +306,7 @@ libentry.so的index.d.ts文件如下
 export const add: (a: number, b: number) => number;
 ```
 
-1. 在加载本地so库时，首先需要在oh-package.json5文件中配置dependencies项
+1.在加载本地so库时，首先需要在oh-package.json5文件中配置dependencies项
 
 ```json
 {
@@ -312,7 +316,7 @@ export const add: (a: number, b: number) => number;
 }
 ```
 
-2. 其次，还需要在build-profile.json5中进行配置
+2.其次，还需要在build-profile.json5中进行配置
 
 ```json
 {
@@ -328,7 +332,7 @@ export const add: (a: number, b: number) => number;
 }
 ```
 
-3. 用napi_load_module_with_info加载libentry.so，调用函数add
+3.用napi_load_module_with_info加载libentry.so，调用函数add
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -365,7 +369,7 @@ function test() {
 export {value, test};
 ```
 
-1. 在加载har2时，首先需要在har1中的oh-package.json5文件中配置dependencies项
+1.在加载har2时，首先需要在har1中的oh-package.json5文件中配置dependencies项
 
 ```json
 {
@@ -375,7 +379,7 @@ export {value, test};
 }
 ```
 
-2. 其次，还需要在har1的build-profile.json5文件中进行配置
+2.其次，还需要在har1的build-profile.json5文件中进行配置
 
 ```json
 {
@@ -391,7 +395,7 @@ export {value, test};
 }
 ```
 
-3. 在har1中用napi_load_module_with_info加载har2，调用函数test以及获取变量value
+3.在har1中用napi_load_module_with_info加载har2，调用函数test以及获取变量value
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {

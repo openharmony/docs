@@ -1,6 +1,6 @@
 # 请求自绘制内容绘制帧率
 
-对于基于[XComponent](../ui/arkts-common-components-xcomponent.md)进行Native开发的业务，可以请求独立的绘制帧率进行内容开发，如游戏、自绘制UI框架对接等场景。
+对于基于[XComponent](../ui/napi-xcomponent-guidelines.md)进行Native开发的业务，可以请求独立的绘制帧率进行内容开发，如游戏、自绘制UI框架对接等场景。
 
 ## 接口说明
 

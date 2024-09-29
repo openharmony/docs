@@ -3,7 +3,7 @@
 
 ## 概述
 
-[媒体查询](../reference/../reference/apis-arkui/js-apis-mediaquery.md)作为响应式设计的核心，在移动设备上应用十分广泛。媒体查询可根据不同设备类型或同设备不同状态修改应用的样式。媒体查询常用于下面两种场景：
+[媒体查询](../reference/apis-arkui/js-apis-mediaquery.md)作为响应式设计的核心，在移动设备上应用十分广泛。媒体查询可根据不同设备类型或同设备不同状态修改应用的样式。媒体查询常用于下面两种场景：
 
 1. 针对设备和应用的属性信息（比如显示区域、深浅色、分辨率），设计出相匹配的布局。
 
@@ -68,7 +68,7 @@ listener.on('change', onPortrait);
 
 - screen and (device-type: tv) or (resolution &lt; 2) ：表示包含多个媒体特征的多条件复杂语句查询，当设备类型为tv或设备分辨率小于2时条件成立。
 
-- (dark-mode: true) : 表示当系统为深色模式时成立。
+- (dark-mode: true) ：表示当系统为深色模式时成立。
 
 
 ### 媒体类型（media-type）
@@ -157,7 +157,7 @@ struct MediaQueryExample {
   @State text: string = 'Portrait';
   @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   // 当设备横屏时条件成立
-  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
+  listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)');
 
   // 当满足媒体查询条件时，触发回调
   onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
@@ -173,13 +173,20 @@ struct MediaQueryExample {
   aboutToAppear() {
     // 绑定当前应用实例
     // 绑定回调函数
-    this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) });
+    this.listener.on('change', (mediaQueryResult: mediaquery.MediaQueryResult) => {
+      this.onPortrait(mediaQueryResult)
+    });
+  }
+
+  aboutToDisappear() {
+    // 解绑listener中注册的回调函数
+    this.listener.off('change');
   }
 
   // 改变设备横竖屏状态函数
   private changeOrientation(isLandscape: boolean) {
     // 获取UIAbility实例的上下文信息
-    let context:common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+    let context:common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
     // 调用该接口手动改变设备横竖屏状态
     window.getLastWindow(context).then((lastWindow) => {
       lastWindow.setPreferredOrientation(isLandscape ? window.Orientation.LANDSCAPE : window.Orientation.PORTRAIT)
@@ -231,6 +238,11 @@ struct MediaQueryExample {
   aboutToAppear() {
     // 绑定当前应用实例
     this.listener.on('change', (mediaQueryResult:mediaquery.MediaQueryResult) => { this.onPortrait(mediaQueryResult) }); //绑定回调函数
+  }
+
+  aboutToDisappear() {
+    // 解绑listener中注册的回调函数
+    this.listener.off('change');
   }
 
   build() {

@@ -18,7 +18,7 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 | isTail         | Whether to add the task to the end (tail) of the task queue. The value **true** means to add the task to the end of the task queue; the value **false** means to add the task to the head of the queue.|
 
 ## When to Use
-Pass a task to an ArkTS thread from an asynchronous thread in a thread-safe manner. Then, the task will be processed based on its priority and enqueuing mode.
+Pass a task to the ArkTS main thread from an asynchronous thread in a thread-safe manner. Then, the task will be processed based on its priority and enqueuing mode.
 
 ## Calling an ArkTS API Asynchronously
 

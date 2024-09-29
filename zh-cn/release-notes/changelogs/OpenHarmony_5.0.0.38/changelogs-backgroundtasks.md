@@ -61,7 +61,7 @@ reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: num
 
 方案一：
 
-开发者可以使用日历 API，创建延时类提醒，详见[Calendar Kit开发指南](../../../application-dev/calendarmanager/calendarmanager-guidelines.md)。
+开发者可以使用日历 API，创建延时类提醒，详见[Calendar Kit开发指南](../../../application-dev/calendarmanager/calendarmanager-event-developer.md)。
 
 方案二：
 

@@ -22,6 +22,7 @@
     - [HiDebug](_hi_debug.md)
     - [HiLog](_hi_log.md)
     - [Hitrace](_hitrace.md)
+    - [HiCollie](_hi_hicollie.md)
   - 头文件
     - [hiappevent.h](hiappevent_8h.md)
     - [hiappevent_cfg.h](hiappevent__cfg_8h.md)
@@ -31,6 +32,7 @@
     - [hidebug_type.h](hidebug__type_8h.md)
     - [log.h](log_8h.md)
     - [trace.h](trace_8h.md)
+    - [hicollie.h](hicollie_8h.md)
   - 结构体
     - [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md)
     - [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md)
@@ -39,11 +41,13 @@
     - [HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)
     - [HiDebug_ThreadCpuUsage](_hi_debug___thread_cpu_usage.md)
     - [HiTraceId](_hi_trace_id.md)
+    - [HiCollie](_hi_hicollie___detection_param.md)
 - 错误码
   - [Faultlogger错误码](errorcode-faultlogger.md)
   - [应用事件打点错误码](errorcode-hiappevent.md)
   - [Hidebug错误码](errorcode-hiviewdfx-hidebug.md)
   - [Hidebug CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)
+  - [HiCollie错误码](errorcode-hiviewdfx-hicollie.md)
   <!--Del-->
   - [系统事件错误码](errorcode-hisysevent-sys.md)
   - [维测日志错误码](errorcode-loglibrary-sys.md)

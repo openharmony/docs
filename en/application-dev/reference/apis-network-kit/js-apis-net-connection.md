@@ -540,6 +540,10 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+    return;
+  }
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
     if (error) {
       console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
@@ -589,6 +593,10 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
+
   connection.setAppNet(netHandle).then(() => {
     console.log("success");
   }).catch((error: BusinessError) => {
@@ -737,6 +745,9 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
     if (error) {
       console.error(`Failed to get connection properties. Code:${error.code}, message:${error.message}`);
@@ -785,6 +796,10 @@ Obtains connection properties of the network corresponding to the **netHandle**.
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
+
   connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
   })
@@ -827,9 +842,20 @@ Obtains network connection information based on the specified **netHandle**.
 
 ```ts
 import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let netHandle = connection.getDefaultNetSync();
-let connectionproperties = connection.getConnectionPropertiesSync(netHandle);
+let netHandle: connection.NetHandle;
+let connectionproperties: connection.ConnectionProperties;
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
+  netHandle = connection.getDefaultNetSync();
+  connectionproperties = connection.getConnectionPropertiesSync(netHandle);
+  console.info("Succeeded to get connectionproperties: " + JSON.stringify(connectionproperties));
+});
+
 ```
 
 ## connection.getNetCapabilities
@@ -868,6 +894,9 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
     if (error) {
       console.error(`Failed to get net capabilities. Code:${error.code}, message:${error.message}`);
@@ -918,8 +947,11 @@ Obtains capability information of the network corresponding to the **netHandle**
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
-    console.info("Succeeded to get data: " + JSON.stringify(data));
+      console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -962,9 +994,20 @@ Obtains capability information of the network corresponding to the **netHandle**
 
 ```ts
 import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let netHandle = connection.getDefaultNetSync();
-let getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
+let netHandle: connection.NetHandle;
+let getNetCapabilitiesSync: connection.NetCapabilities;
+
+connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
+  netHandle = connection.getDefaultNetSync();
+  getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
+  console.info("Succeeded to get net capabilities sync: " + JSON.stringify(getNetCapabilitiesSync));
+});
+
 ```
 
 ## connection.isDefaultNetMetered<sup>9+</sup>
@@ -1752,7 +1795,7 @@ Unregisters the listener for network status changes.
 | 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
-| 2101007 | The callback does not exist.      |
+| 2101007 | The callback does not exists.      |
 
 **Example**
 
@@ -2075,7 +2118,10 @@ interface Data {
   remoteInfo: socket.SocketRemoteInfo
 }
 
-connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
   let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
@@ -2090,6 +2136,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
           console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+          return;
         } else {
           console.info(JSON.stringify(data));
         }
@@ -2112,13 +2159,14 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
         if (error) {
           console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+          return;
         } else {
           console.info(JSON.stringify(data));
         }
       });
     });
   }
-});
+})
 ```
 
 ### bindSocket<sup>9+</sup>
@@ -2162,6 +2210,9 @@ interface Data {
 }
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
   let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
   let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
@@ -2186,20 +2237,20 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     udp.bind({address:"192.168.xxx.xxx",
               port:8080,
               family:1} as socket.NetAddress, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
-      return;
-    }
-    udp.on('message', (data: Data) => {
-      console.info("Succeeded to get data: " + JSON.stringify(data));
+      if (error) {
+        console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
+        return;
+      }
+      udp.on('message', (data: Data) => {
+        console.info("Succeeded to get data: " + JSON.stringify(data));
+      });
+      netHandle.bindSocket(udp).then(() => {
+        console.info("bind socket success");
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
+      });
     });
-    netHandle.bindSocket(udp).then(() => {
-      console.info("bind socket success");
-    }).catch((error: BusinessError) => {
-      console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
-    });
-  });
-}
+  }
 });
 ```
 
@@ -2237,6 +2288,9 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
   let host = "xxxx";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
     if (error) {
@@ -2286,6 +2340,9 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
   let host = "xxxx";
   netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
@@ -2327,6 +2384,9 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
   let host = "xxxx";
   netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
     if (error) {
@@ -2376,6 +2436,9 @@ Resolves the host name by using the corresponding network to obtain the first IP
 import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+  if (netHandle.netId == 0) {
+    // If the obtained netid of netHandler is 0 when no default network is specified, an exception has occurred and extra processing is needed.
+  }
   let host = "xxxx";
   netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
@@ -2438,7 +2501,32 @@ Provides an instance that bears data network capabilities.
 | Name                    | Type                               | Mandatory | Description                                                        |
 | ----------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  Yes | Network transmission capabilities and bearer types of the data network.                               |
-| bearerPrivateIdentifier | string                              |  No |  Network identifier. The identifier of a Wi-Fi network is **wifi**, and that of a cellular network is **slot0** (corresponding to SIM card 1).|
+| bearerPrivateIdentifier | string                              |  No |  Network identifier. The identifier of the cellular network is **slot0** for SIM card 1 and **slot1** for SIM card 2. Since API version 12, you can pass the registered WLAN hotspot to the API to specify the WLAN network to be activated.|
+
+**Example**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+import { wifiManager } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let config: wifiManager.WifiDeviceConfig = {
+  ssid: "TEST",
+  preSharedKey: "**********",
+  securityType: wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
+};
+// Obtain the network ID of the registered WLAN through wifiManager.addCandidateConfig.
+let networkId: number = await wifiManager.addCandidateConfig(config);
+let netConnectionWlan = connection.createNetConnection({
+  netCapabilities: {
+    bearerTypes: [connection.NetBearType.BEARER_WIFI]
+  },
+  bearerPrivateIdentifier: `${networkId}`
+});
+netConnectionWlan.register((error: BusinessError) => {
+  console.log(JSON.stringify(error));
+});
+```
 
 ## NetCapabilityInfo<sup>10+</sup>
 

@@ -102,9 +102,9 @@ customHeight(value: Dimension | PanelHeight)
 
 ### fullHeight
 
-fullHeight(value: number | string)
+fullHeight(value: string | number)
 
-指定PanelType.CUSTOM状态下的高度。
+指定PanelType.Full状态下的高度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -118,9 +118,9 @@ fullHeight(value: number | string)
 
 ### halfHeight
 
-halfHeight(value: number | string)
+halfHeight(value: string | number)
 
-指定PanelMode.Full状态下的高度。
+指定PanelMode.Half状态下的高度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -134,9 +134,9 @@ halfHeight(value: number | string)
 
 ### miniHeight
 
-miniHeight(value: number | string)
+miniHeight(value: string | number)
 
-指定PanelMode.Half状态下的高度。
+指定PanelMode.Mini状态下的高度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -178,7 +178,7 @@ backgroundMask(color: ResourceColor)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [ResourceColor](ts-types.md#resourcecolor) | 是   | 指定Panel的背景蒙层。<br/>默认值：'#08182431' |
+| color   | [ResourceColor](ts-types.md#resourcecolor) | 是   | 指定Panel的背景蒙层。<br/>默认值：'#08182431' |
 
 ### showCloseIcon<sup>10+</sup>
 
@@ -228,7 +228,7 @@ showCloseIcon(value: boolean)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
-| -------- | -------- | 
+| -------- | -------- |
 | WRAP_CONTENT | 类型为CUSTOM时，自适应内容高度。 |
 ## 事件
 
@@ -239,6 +239,10 @@ showCloseIcon(value: boolean)
 onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&nbsp;PanelMode)&nbsp;=&gt;&nbsp;void)
 
 当可滑动面板发生状态变化时触发。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
@@ -253,6 +257,10 @@ onChange(event:&nbsp;(width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;mode:&n
 onHeightChange(callback: (value: number) => void)
 
 当可滑动面板发生高度变化时触发。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 

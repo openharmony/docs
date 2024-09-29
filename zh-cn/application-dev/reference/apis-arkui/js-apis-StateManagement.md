@@ -16,15 +16,15 @@
 | S    | number，boolean，string。                 |
 
 
+## 导入模块
+
+```ts
+import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
+```
+
 ## AppStorageV2
 
 AppStorageV2具体UI使用说明，详见[AppStorageV2(应用全局的UI状态存储)](../../quick-start/arkts-new-appstoragev2.md)
-
-### 导入模块
-
-```ts
-import { AppStorageV2 } from '@kit.ArkUI';
-```
 
 ### connect<sup>12+</sup>
 
@@ -104,9 +104,6 @@ static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithAr
 >
 >删除AppStorageV2中不存在的key会报警告。
 
-**返回值：**
-
-无。
 
 **示例：**
 
@@ -157,12 +154,6 @@ const keys: Array<string> = AppStorageV2.keys();
 ## PersistenceV2
 
 PersistenceV2具体UI使用说明，详见[PersistenceV2(持久化存储UI状态)](../../quick-start/arkts-new-persistencev2.md)
-
-### 导入模块
-
-```ts
-import { PersistenceV2 } from '@kit.ArkUI';
-```
 
 ### connect<sup>12+</sup>
 
@@ -269,9 +260,6 @@ static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithAr
 >
 >删除PersistenceV2中不存在的key会报警告。
 
-**返回值：**
-
-无。
 
 **示例：**
 
@@ -339,9 +327,6 @@ static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs
 >
 >手动持久化当前内存中不处于connect状态的key是无意义的。
 
-**返回值：**
-
-无。
 
 **示例：**
 
@@ -359,12 +344,6 @@ PersistenceV2.remove('key_as1');
 ## UIUtils
 
 UIUtils提供一些方法，用于处理状态管理相关的数据转换。
-
-### 导入模块
-
-```ts
-import { UIUtils } from '@kit.ArkUI';
-```
 
 ### getTarget<sup>12+</sup>
 

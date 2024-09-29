@@ -113,13 +113,13 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 回顾之前小节中关于“工程结构”的介绍，我们推荐在common目录中存放基础公共代码，features目录中存放相对独立的功能模块代码，product目录中存放完全独立的产品代码。这样在product目录中依赖features和common中的公共代码来实现功能，可以最大程度实现代码复用。
 
-配置依赖关系可以通过修改模块中的oh-package.json文件。如下图所示，通过修改default模块中的oh-package.json文件，使其可以使用common、feature1和feature2模块中的代码。更多详情参考[配置系统ohpm包依赖](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-0000001547293682-V5)。
+配置依赖关系可以通过修改模块中的oh-package.json5文件。如下图所示，通过修改default模块中的oh-package.json5文件，使其可以使用common、feature1和feature2模块中的代码。更多详情参考[配置系统ohpm包依赖](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-0000001547293682-V5)。
 
 ![zh-cn_image_0000001267274208](figures/zh-cn_image_0000001267274208.png)
 
-同样的，修改feature1和feature2模块中的oh-package.json文件，使其可以使用common模块中的代码。
+同样的，修改feature1和feature2模块中的oh-package.json5文件，使其可以使用common模块中的代码。
 
-修改oh-package.json文件后，请点击右上角的“Sync Now”，否则改动不会生效。
+修改oh-package.json5文件后，请点击右上角的“Sync Now”，否则改动不会生效。
 
 
 ## 引用ohpm包中的代码
@@ -140,7 +140,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 2. 在”common/index.ets”文件中，申明需要export的类、函数的名称及在当前模块中的位置，否则其它模块无法使用。
    ![zh-cn_image_0000001315914189](figures/zh-cn_image_0000001315914189.png)
 
-3. 在default模块中import和使用这些类和函数。注意提前在default模块的oh-package.json文件中配置对common模块的依赖关系。
+3. 在default模块中import和使用这些类和函数。注意提前在default模块的oh-package.json5文件中配置对common模块的依赖关系。
    ![zh-cn_image_0000001267914120](figures/zh-cn_image_0000001267914120.png)
 
 > **说明：**

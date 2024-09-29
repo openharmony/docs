@@ -31,19 +31,25 @@ You can use the APIs of the input method framework service to easily switch betw
 2. Register a listener in the input method application for subtype changes, so as to load a subtype-specific soft keyboard UI.
 
    ```ts
-   import { InputMethodSubtype, inputMethod } from '@kit.IMEKit';
-   
+   import { InputMethodSubtype, inputMethodEngine, inputMethod } from '@kit.IMEKit';
+
    export class KeyboardController {
-     // Register a listener in the input method application for subtype changes.
-     inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
-       if(inputMethodSubtype.id == 'InputMethodExtAbility') {
-         this.panel.setUiContent('pages/Index'); // Assume that the panel has been created in the onCreate process in the input method application.
-       }
-       if(inputMethodSubtype.id == 'InputMethodExtAbility1') {
-         this.panel.setUiContent('pages/Index1'); // Assume that the panel has been created in the onCreate process in the input method application.
-       }
-     });
+     async switchCurrentInputMethodSubtype() {
+       let panel: inputMethodEngine.Panel;
+       let inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
+       // Register a listener in the input method application for subtype changes.
+       inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
+         if(inputMethodSubtype.id == 'InputMethodExtAbility') {
+           panel.setUiContent('pages/Index'); // Assume that the panel has been created in the onCreate process in the input method application.
+         }
+         if(inputMethodSubtype.id == 'InputMethodExtAbility1') {
+           panel.setUiContent('pages/Index1'); // Assume that the panel has been created in the onCreate process in the input method application.
+         }
+       });
+     }
    }
+
+
    ```
 
 ## Switching Between Input Methods

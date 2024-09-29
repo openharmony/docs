@@ -15,7 +15,7 @@ system.request部件主要给应用提供上传下载文件的基础能力。
 import request from '@system.request';
 ```
 
-## request.upload
+## request.upload<sup>(deprecated)</sup>
 
 upload(options: UploadRequestOptions): void
 
@@ -27,7 +27,7 @@ upload(options: UploadRequestOptions): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [UploadRequestOptions](#uploadrequestoptions) | 是 | 上传的配置信息。 |
+  | options | [UploadRequestOptions](#uploadrequestoptionsdeprecated) | 是 | 上传的配置信息。 |
 
 **示例：**
 
@@ -67,7 +67,7 @@ upload(options: UploadRequestOptions): void
   ```
 
 
-## UploadRequestOptions
+## UploadRequestOptions<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
@@ -75,8 +75,8 @@ upload(options: UploadRequestOptions): void
   | 名称 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | url | string | 是 | 上传服务器地址。 |
-  | data | Array&lt;[RequestData](#requestdata)&gt; | 否 | 请求的表单数据。 |
-  | files | Array&lt;[RequestFile](#requestfile)&gt; | 是 | 待上传文件列表。请使用multipart/form-data进行提交。 |
+  | data | Array&lt;[RequestData](#requestdatadeprecated)&gt; | 否 | 请求的表单数据。 |
+  | files | Array&lt;[RequestFile](#requestfiledeprecated)&gt; | 是 | 待上传文件列表。请使用multipart/form-data进行提交。 |
   | header | Object | 否 | 请求头。 |
   | method | string | 否 | 请求方法：POST、PUT。缺省POST。 |
   | success | Function | 否 | 接口调用成功的回调函数。 |
@@ -86,7 +86,7 @@ upload(options: UploadRequestOptions): void
 **success参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | data | [UploadResponse](#uploadresponse) | 是 | 上传任务成功返回信息。 |
+  | data | [UploadResponse](#uploadresponsedeprecated) | 是 | 上传任务成功返回信息。 |
 
 **fail参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -96,7 +96,7 @@ upload(options: UploadRequestOptions): void
 
 
 
-## UploadResponse
+## UploadResponse<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
@@ -107,7 +107,7 @@ upload(options: UploadRequestOptions): void
   | headers | Object | 是 | 服务器返回的返回头内容。 |
 
 
-## RequestFile
+## RequestFile<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
 
@@ -119,7 +119,7 @@ upload(options: UploadRequestOptions): void
   | type | string | 否 | 文件的内容类型，默认根据文件名或路径的后缀获取。 |
 
 
-## RequestData
+## RequestData<sup>(deprecated)</sup>
 
 **系统能力**: SystemCapability.MiscServices.Upload。
 
@@ -130,7 +130,7 @@ upload(options: UploadRequestOptions): void
 
 
 
-## request.download
+## request.download<sup>(deprecated)</sup>
 
 download(options: DownloadRequestOptions): void
 
@@ -142,7 +142,7 @@ download(options: DownloadRequestOptions): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [DownloadRequestOptions](#downloadrequestoptions) | 是 | 下载的配置信息。 |
+  | options | [DownloadRequestOptions](#downloadrequestoptionsdeprecated) | 是 | 下载的配置信息。 |
 
 **示例：**
 
@@ -174,7 +174,7 @@ download(options: DownloadRequestOptions): void
   ```
 
 
-## DownloadRequestOptions
+## DownloadRequestOptions<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
@@ -191,7 +191,7 @@ download(options: DownloadRequestOptions): void
 **success参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | data | [DownloadResponse](#downloadresponse) | 是 | 下载任务成功返回信息。 |
+  | data | [DownloadResponse](#downloadresponsedeprecated) | 是 | 下载任务成功返回信息。 |
 
 **fail参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -199,7 +199,7 @@ download(options: DownloadRequestOptions): void
   | data | any | 是 | 下载任务失败返回header信息。 |
   | code | number | 是 | 下载任务失败返回HTTP状态码。 |
 
-## DownloadResponse
+## DownloadResponse<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
@@ -208,7 +208,7 @@ download(options: DownloadRequestOptions): void
   | token | string | 是 | 表示下载的token，获取下载状态的依据。 |
 
 
-## request.onDownloadComplete
+## request.onDownloadComplete<sup>(deprecated)</sup>
 
 onDownloadComplete(options: OnDownloadCompleteOptions): void
 
@@ -220,7 +220,7 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | options | [OnDownloadCompleteOptions](#ondownloadcompleteoptions) | 是 | 监听下载任务的配置信息。 |
+  | options | [OnDownloadCompleteOptions](#ondownloadcompleteoptionsdeprecated) | 是 | 监听下载任务的配置信息。 |
 
 **示例：**
 
@@ -244,7 +244,7 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
   ```
 
 
-## OnDownloadCompleteOptions
+## OnDownloadCompleteOptions<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 
@@ -258,7 +258,7 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
 **success参数：**
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | data | [OnDownloadCompleteResponse](#ondownloadcompleteresponse) | 是 | 下载任务成功返回信息。 |
+  | data | [OnDownloadCompleteResponse](#ondownloadcompleteresponsedeprecated) | 是 | 下载任务成功返回信息。 |
 
 **fail参数：**
   | 参数名 | 类型 | 必填 | 说明 |
@@ -267,7 +267,7 @@ onDownloadComplete(options: OnDownloadCompleteOptions): void
   | code | number | 是 | 下载任务失败返回HTTP状态码。 |
 
 
-## OnDownloadCompleteResponse
+## OnDownloadCompleteResponse<sup>(deprecated)</sup>
 
 **系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Download。
 

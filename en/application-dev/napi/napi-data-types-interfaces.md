@@ -52,7 +52,7 @@ typedef struct {
 
 ### napi_value
 
-Pointer used to represent a JavaScript (JS) value.
+A C struct pointer acting as a reference to a JS object. A **napi_value** holds a JS object. **handle_scope** is used to manage the lifetime of **napi_value** handles. The JS object held by a **napi_value** in the scope will not be released. If the **napi_value** is out of the scope, it becomes invalid and will no longer hold the JS object.
 
 ### napi_env
 
@@ -64,7 +64,7 @@ Pointer used to represent a JavaScript (JS) value.
 
 ### napi_threadsafe_function
 
-Pointer that represents a JS function that can be called asynchronously from multiple threads. It can be used to pass the asynchronous operation result to the JS environment, such as reading data from another thread or performing compute-intensive operations. In addition, it can be used to call functions in C++ code from a JS environment for execution in another thread. By using **napi_threadsafe_function**, you can implement efficient interaction between JS and C++ code while maintaining thread safety.
+Pointer that represents a JS function that can be called asynchronously from multiple threads. It can be used to pass the asynchronous (async for short) operation result to the JS environment, such as reading data from another thread or performing compute-intensive operations. In addition, it can be used to call functions in C++ code from a JS environment for execution in another thread. By using **napi_threadsafe_function**, you can implement efficient interaction between JS and C++ code while maintaining thread safety.
 
 ### napi_threadsafe_function_release_mode
 
@@ -145,7 +145,7 @@ typedef struct {
 
 **napi_async_cleanup_hook_handle**
 
-Value used to register a callback for an asynchronous operation. It is mainly used to perform a cleanup operation when an asynchronous operation is complete or canceled, for example, releasing a resource or canceling an operation. Using **napi_async_cleanup_hook_handle** ensures that related resources are correctly released and cleaned up when an asynchronous operation is complete or canceled, thereby avoiding problems such as memory leakage.
+Value used to add a callback for an async operation. It is mainly used to perform a cleanup operation when an async operation is complete or canceled, for example, releasing a resource or canceling an operation. Using **napi_async_cleanup_hook_handle** ensures that related resources are correctly released and cleaned up when an async operation is complete or canceled, thereby avoiding problems such as memory leakage.
 
 ### Callback Types
 
@@ -173,7 +173,7 @@ Function pointer passed to **napi_create_threadsafe_function** and **napi_set_in
 
 Function pointer used in **napi_create_async_work**.
 
-- An asynchronous native function is called from a worker pool thread and can be executed in parallel with the main event loop thread.
+- An async native function is called from a worker pool thread and can be executed in parallel with the main event loop thread.
 
 - Avoid making Node-API calls that execute JS code or interact with JS objects when implementing this callback.
 
@@ -181,7 +181,7 @@ Function pointer used in **napi_create_async_work**.
 
 **napi_async_complete_callback**
 
-Function pointer used when an asynchronous operation is complete. When an asynchronous operation is required, you can use **napi_create_async_work** to create an asynchronous work and specify **napi_async_complete_callback**. When the asynchronous work is complete, the callback will be automatically invoked for subsequent processing. Parameters of the callback include the status of the asynchronous operation and a return value, based on which corresponding processing can be performed.
+Function pointer used when an async operation is complete. When an async operation is required, you can use **napi_create_async_work** to create an async work and specify **napi_async_complete_callback**. When the async work is complete, the callback will be automatically invoked for subsequent processing. Parameters of the callback include the status of the async operation and a return value, based on which corresponding processing can be performed.
 
 **napi_threadsafe_function_call_js**
 
@@ -208,16 +208,16 @@ typedef enum {
 } napi_qos_t;
 ```
 
-| QoS | Use Scenario |
+| QoS| Use Scenario|
 | -------- | -------- |
-| napi_qos_background | Low priority for works invisible to users, such as data synchronization and backup. |
-| napi_qos_utility | Medium priority for works that do not require immediate response, such as downloading or importing data. |
-| napi_qos_default | Default priority. |
-| napi_qos_user_initiated | High priority for user-triggered works with visible progress, for example, opening a file. |
+| napi_qos_background | Low priority for works invisible to users, such as data synchronization and backup.|
+| napi_qos_utility | Medium priority for works that do not require immediate response, such as downloading or importing data.|
+| napi_qos_default | Default priority.|
+| napi_qos_user_initiated | High priority for user-triggered works with visible progress, for example, opening a file.|
 
 ### Event Loop Modes
 
-Node-API provides two modes for running the underlying event loop, which are defined as follows:
+Node-API provides two modes for running the underlying event loop. The two modes are defined as follows:
 
 ```c
 typedef enum {
@@ -226,10 +226,10 @@ typedef enum {
 } napi_event_mode;
 ```
 
-| Event Loop Mode | Description |
+| Event Loop Mode| Description|
 | -------- | -------- |
-| napi_event_mode_default |  Run the underlying event loop while blocking the current thread, and exit the event loop only when there is no task in the loop. |
-| napi_event_mode_nowait | Run the underlying event loop without blocking the current thread. Process a task and exit the event loop after the task is complete. If there is no task in the event loop, exit the event loop immediately. |
+| napi_event_mode_default |  Run the underlying event loop while blocking the current thread, and exit the event loop only when there is no task in the loop.|
+| napi_event_mode_nowait | Run the underlying event loop without blocking the current thread. Process a task and exit the event loop after the task is complete. If there is no task in the event loop, exit the event loop immediately.|
 
 ### Thread-safe Task Priority
 
@@ -244,252 +244,260 @@ typedef enum {
 } napi_task_priority;
 ```
 
-| Task Priority | Description |
+| Task Priority| Description|
 | -------- | -------- |
 | napi_priority_immediate | Highest priority.|
 | napi_priority_high | Priority lower than **napi_priority_immediate**.|
 | napi_priority_low | Priority lower than **napi_priority_high**.|
-| napi_priority_idle | Lowest priority. |
+| napi_priority_idle | Lowest priority.|
 
 ## APIs
 
 Node-API is extended based on the native modules provided by Node.js. The following lists the APIs supported currently.
 
-### Asynchronous Thread-Safe APIs
+### Async Thread-Safe APIs
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_create_threadsafe_function | Creates a thread-safe function. |
-| napi_get_threadsafe_function_context | Obtains the context of a thread-safe function. |
-| napi_call_threadsafe_function | Calls a thread-safe function. |
-| napi_acquire_threadsafe_function | Acquires a thread-safe function. |
-| napi_release_threadsafe_function | Releases a thread-safe function. |
-| napi_ref_threadsafe_function | Indicates that the event loop running on the main thread should not exit until the thread-safe function is destroyed. |
-| napi_unref_threadsafe_function | Indicates that the event loop running on the main thread may exit before the thread-safe function is destroyed. |
+| napi_create_threadsafe_function | Creates a thread-safe function.|
+| napi_get_threadsafe_function_context | Obtains the context of a thread-safe function.|
+| napi_call_threadsafe_function | Calls a thread-safe function.|
+| napi_acquire_threadsafe_function | Acquires a thread-safe function.|
+| napi_release_threadsafe_function | Releases a thread-safe function.|
+| napi_ref_threadsafe_function | Indicates that the event loop running on the main thread should not exit until the thread-safe function is destroyed.|
+| napi_unref_threadsafe_function | Indicates that the event loop running on the main thread may exit before the thread-safe function is destroyed.|
 
 ### Buffer
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_create_buffer | Creates a JS buffer of the specified size. |
-| napi_create_buffer_copy | Creates a JS buffer of the specified size, and initializes it with data copied from the passed-in buffer. |
-| napi_create_external_buffer | Creates a JS buffer of the specified size, and initializes it with the given data. |
-| napi_get_buffer_info | Obtains the underlying data of a JS buffer and its length. |
-| napi_is_buffer | Checks whether the given JS value is a **Buffer** object. |
-| napi_create_external_arraybuffer | Allocates a JS **ArrayBuffer** with external data. |
+| napi_create_buffer | Creates a JS **Buffer** of the specified size.|
+| napi_create_buffer_copy | Creates a JS **Buffer** of the specified size and initializes it with the given data.|
+| napi_create_external_buffer | Creates a JS **Buffer** of the specified size and initializes it with the given data.|
+| napi_get_buffer_info | Obtains the underlying data of a JS **Buffer** and its length.|
+| napi_is_buffer | Checks whether the given JS value is a **Buffer** object.|
+| napi_create_external_arraybuffer | Creates a JS **ArrayBuffer** with external data.|
 
 ### String
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_create_string_utf16 | Creates a JS string from a UTF16-encoded C string. |
-| napi_get_value_string_utf16 | Obtains the UTF16-encoded string corresponding to the given JS value. |
-| napi_create_string_latin1 | Creates a JS string from an ISO-8859-1-encoded C string. |
-| napi_create_string_utf8 | Creates a JS string from a UTF8-encoded C string. |
-| napi_get_value_string_latin1 | Obtains the ISO-8859-1-encoded string corresponding to the given JS value. |
-| napi_get_value_string_utf8 | Obtains the UTF8-encoded string corresponding to the given JS value. |
+| napi_create_string_utf16 | Creates a JS string from a UTF16-encoded C string.|
+| napi_get_value_string_utf16 | Obtains the UTF16-encoded string corresponding to the given JS value.|
+| napi_create_string_latin1 | Creates a JS string from an ISO-8859-1-encoded C string.|
+| napi_create_string_utf8 | Creates a JS string from a UTF8-encoded C string.|
+| napi_get_value_string_latin1 | Obtains the ISO-8859-1-encoded string corresponding to the given JS value.|
+| napi_get_value_string_utf8 | Obtains the UTF8-encoded string corresponding to the given JS value.|
 
 ### Date
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_create_date | Creates a JS **Date** object from C double data. |
-| napi_get_date_value | Obtains the C double equivalent of the given JS **Date** object. |
-| napi_is_date | Checks whether the given JS value is a JS **Date** object. |
+| napi_create_date | Creates a JS **Date** object from C double data.|
+| napi_get_date_value | Obtains the C double equivalent of the given JS **Date** object.|
+| napi_is_date | Checks whether the given JS value is a JS **Date** object.|
 
 ### ArrayBuffer
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_get_arraybuffer_info | Obtains the underlying data buffer of an **ArrayBuffer** and its length. |
-| napi_is_arraybuffer | Checks whether the given JS value is an **ArrayBuffer** object. |
-| napi_detach_arraybuffer | Detaches the underlying data of the given **ArrayBuffer**. |
-| napi_is_detached_arraybuffer | Checks whether the given **ArrayBuffer** has been detached. |
-| napi_create_arraybuffer | Creates a JS **ArrayBuffer** object of the specified size. |
+| napi_get_arraybuffer_info | Obtains the underlying data buffer of an **ArrayBuffer** and its length.|
+| napi_is_arraybuffer | Checks whether the given JS value is an **ArrayBuffer** object.|
+| napi_detach_arraybuffer | Detaches the underlying data of the given **ArrayBuffer**.|
+| napi_is_detached_arraybuffer | Checks whether the given **ArrayBuffer** has been detached.|
+| napi_create_arraybuffer | Creates a JS **ArrayBuffer** object of the specified size.|
 
 ### Module
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_module_register | Registers a native module. |
+| napi_module_register | Registers a native module.|
 
 ### Lifecycle Management
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_open_handle_scope | Opens a scope. You can use **napi_close_handle_scope** to close it. |
-| napi_close_handle_scope | Closes the scope passed in. After a scope is closed, all references declared in it are closed. |
-| napi_open_escapable_handle_scope | Opens a scope from which one object can be prompted to the outer scope. You can use **napi_close_escapable_handle_scope** to close it. |
-| napi_close_escapable_handle_scope | Closes the escapable handle scope passed in. |
-| napi_escape_handle | Promotes the handle to the JS object so that it is valid for the lifetime of the outer scope. |
-| napi_create_reference | Creates a reference for an object to extend its lifespan. The caller needs to manage the reference lifespan. |
-| napi_delete_reference | Deletes the reference passed in. |
-| napi_reference_ref | Increments the reference count passed in and returns the count. |
-| napi_reference_unref | Decrements the reference count passed in and returns the count. |
-| napi_get_reference_value | Obtains the JS object associated with the reference. |
-| napi_add_finalizer | Adds a **napi_finalize** callback, which will be called when the JS object in **js_Object** is garbage-collected. |
+| napi_open_handle_scope | Opens a scope. You can use **napi_close_handle_scope** to close it.|
+| napi_close_handle_scope | Closes the scope passed in. After a scope is closed, all references declared in it are closed.|
+| napi_open_escapable_handle_scope | Opens an escapable handle scope, from which the declared values can be returned to the parent scope. You can use **napi_close_escapable_handle_scope** to close it.|
+| napi_close_escapable_handle_scope | Closes the escapable handle scope passed in.|
+| napi_escape_handle | Promotes the handle to the JS object so that it is valid for the lifetime of the parent scope.|
+| napi_create_reference | Creates a reference for an object to extend its lifespan. The caller needs to manage the reference lifespan.|
+| napi_delete_reference | Deletes the reference passed in.|
+| napi_reference_ref | Increments the reference count passed in and returns the new count.|
+| napi_reference_unref | Decrements the reference count passed in and returns the new count.|
+| napi_get_reference_value | Obtains the JS object associated with the reference.|
+| napi_add_finalizer | Adds a **napi_finalize** callback, which will be called when the JS object is garbage-collected.|
 
 ### Promise
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_create_promise | Creates a deferred object and a JS promise. |
-| napi_resolve_deferred | Resolves a promise by way of the deferred object associated. |
-| napi_reject_deferred | Rejects a promise by way of the deferred object associated. |
-| napi_is_promise | Checks whether the given **napi_value** is a promise object. |
+| napi_create_promise | Creates a deferred object and a JS promise.|
+| napi_resolve_deferred | Resolves a promise by way of the deferred object associated.|
+| napi_reject_deferred | Rejects a promise by way of the deferred object associated.|
+| napi_is_promise | Checks whether the given **napi_value** is a promise object.|
 
 ### Array
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_create_array | Creates a JS **Array**. |
-| napi_create_array_with_length | Creates a JS **Array** of the specified length. |
-| napi_create_typedarray | Creates a JS **TypedArray** from an existing **ArrayBuffer**. |
-| napi_create_dataview | Creates a JS **DataView** from an existing **ArrayBuffer**. |
-| napi_get_array_length | Obtains the length of an array. |
-| napi_get_typedarray_info | Obtains the properties of a **TypedArray**. |
-| napi_get_dataview_info | Obtains the properties of a **DataView**. |
-| napi_is_array | Checks whether the given JS value is an **Array** object. |
-| napi_set_element | Sets an element at the specified index of the given **Object**. |
-| napi_get_element | Obtains the element at the specified index of the given **Object**. |
-| napi_has_element | Checks whether the given **Object** has an element at the specified index. |
-| napi_delete_element | Deletes the element at the specified index of the given **Object**. |
+| napi_create_array | Creates a JS **Array**.|
+| napi_create_array_with_length | Creates a JS **Array** of the specified length.|
+| napi_get_array_length | Obtains the length of an array.|
+| napi_is_array | Checks whether the given JS value is an **Array** object.|
+| napi_set_element | Sets an element at the specified index of the given **Object**.|
+| napi_get_element | Obtains the element at the specified index of the given **Object**.|
+| napi_has_element | Checks whether the given **Object** has an element at the specified index.|
+| napi_delete_element | Deletes the element at the specified index of the given **Object**.|
+| napi_create_typedarray | Creates a JS **TypedArray** from an existing **ArrayBuffer**.|
+| napi_is_typedarray | Checks whether a JS value is an **TypeArray** object.|
+| napi_get_typedarray_info | Obtains the properties of a **TypedArray**.|
+| napi_create_dataview | Creates a JS **DataView** from an existing **ArrayBuffer**.|
+| napi_is_dataview | Checks whether a JS value is an **DataView** object.|
+| napi_get_dataview_info | Obtains the properties of a **DataView**.|
 
 ### Primitives
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_get_boolean | Obtains a JS Boolean object based on the given C Boolean value. |
-| napi_get_global | Obtains the **global** object. |
-| napi_get_null | Obtains the **null** object. |
-| napi_get_undefined | Obtains the **undefined** object. |
-| napi_coerce_to_bool | Forcibly converts a JS value into a JS Boolean value. |
-| napi_coerce_to_number | Forcibly converts a JS value into a JS number. |
-| napi_coerce_to_object | Forcibly converts a JS value into a JS object. |
-| napi_coerce_to_string | Forcibly converts a JS value into a JS string. |
+| napi_get_boolean | Obtains a JS Boolean object based on the given C Boolean value.|
+| napi_get_global | Obtains the **global** object.|
+| napi_get_null | Obtains the **null** object.|
+| napi_get_undefined | Obtains the **undefined** object.|
+| napi_coerce_to_bool | Forcibly converts a JS value into a JS Boolean value.|
+| napi_coerce_to_number | Forcibly converts a JS value into a JS number.|
+| napi_coerce_to_object | Forcibly converts a JS value into a JS object.|
+| napi_coerce_to_string | Forcibly converts a JS value into a JS string.|
 
 ### Class
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_get_new_target | Obtains the **new.target** of the constructor call. |
-| napi_define_class | Defines a JS class corresponding to the C++ class. |
-| napi_new_instance | Creates an instance based on the given constructor. |
+| napi_new_instance | Creates an instance based on the given constructor.|
+| napi_get_new_target | Obtains the **new.target** of the constructor call.|
+| napi_define_class | Defines a JS class corresponding to the C++ class.|
+| napi_wrap | Wraps a native object into an ArkTS object. This API allows the methods and properties of a native object to be called from ArkTS.|
+| napi_unwrap | Unwraps the native object from an ArkTS object.|
+| napi_remove_wrap | Removes the wrapping after the native object is unwrapped from an ArkTS object.|
 
 ### Object
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_get_prototype | Obtains the prototype of a JS object. |
-| napi_create_object | Creates a default JS object. |
-| napi_object_freeze | Freezes an object. |
-| napi_object_seal | Seals an object. |
-| napi_typeof | Obtains the JS type of a JS value. |
-| napi_instanceof | Checks whether the given object is an instance of the specified constructor. |
-| napi_type_tag_object | Associates the value of the tag pointer with a JS object. |
-| napi_check_object_type_tag | Checks whether a tag pointer is associated with a JS object. |
+| napi_get_prototype | Obtains the prototype of a JS object.|
+| napi_create_object | Creates a default JS object.|
+| napi_object_freeze | Freezes an object.|
+| napi_object_seal | Seals an object.|
+| napi_typeof | Obtains the JS type of a JS value.|
+| napi_instanceof | Checks whether the given object is an instance of the specified constructor.|
+| napi_type_tag_object | Associates the value of the tag pointer with a JS object.|
+| napi_check_object_type_tag | Checks whether a tag pointer is associated with a JS object.|
 
 ### BigInt
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_create_bigint_int64 | Creates a JS BigInt from C int64 data. |
-| napi_create_bigint_uint64 | Creates a JS BigInt from C uint64 data. |
-| napi_create_bigint_words | Creates a single JS BigInt from a C uint64 array. |
-| napi_get_value_bigint_int64 | Obtains the C int64 equivalent of a JS BigInt. |
-| napi_get_value_bigint_uint64 | Obtains the C uint64 equivalent of a JS BigInt. |
-| napi_get_value_bigint_words | Obtains information from a JS BigInt, including the sign bit, 64-bit little-endian array, and number of elements in the array. |
+| napi_create_bigint_int64 | Creates a JS BigInt from C int64 data.|
+| napi_create_bigint_uint64 | Creates a JS BigInt from C uint64 data.|
+| napi_create_bigint_words | Creates a single JS BigInt from a C uint64 array.|
+| napi_get_value_bigint_int64 | Obtains the C int64 equivalent of a JS BigInt.|
+| napi_get_value_bigint_uint64 | Obtains the C uint64 equivalent of a JS BigInt.|
+| napi_get_value_bigint_words | Obtains information from a JS BigInt, including the sign bit, 64-bit little-endian array, and number of elements in the array.|
 
 ### Exceptions and Errors
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_throw | Throws a JS value. |
-| napi_throw_type_error | Throws a JS type error with text information. |
-| napi_throw_range_error | Throws a JS range error with text information. |
-| napi_is_error | Checks whether **napi_value** indicates an error object. |
-| napi_create_error | Creates a JS **Error** with text information. |
-| napi_create_type_error | Creates a JS **TypeError** with text information. |
-| napi_create_range_error | Creates a JS **RangeError** with text information. |
-| napi_get_and_clear_last_exception | Obtains and clears the latest exception. |
-| napi_is_exception_pending | Checks whether an exception occurs. |
-| napi_fatal_error | Raises a fatal error to terminate the process immediately. |
-| napi_get_last_error_info | Obtains the **napi_extended_error_info** struct, which contains the latest error information. |
-| napi_fatal_exception | Throws a fatal exception, terminates the process, and generates a crash log. |
+| napi_throw | Throws a JS value.|
+| napi_throw_error | Throws an ArkTS **Error** object with text information.|
+| napi_throw_type_error | Throws a JS type error with text information.|
+| napi_throw_range_error | Throws a JS range error with text information.|
+| napi_is_error | Checks whether **napi_value** indicates an error object.|
+| napi_create_error | Creates a JS **Error** with text information.|
+| napi_create_type_error | Creates a JS **TypeError** with text information.|
+| napi_create_range_error | Creates a JS **RangeError** with text information.|
+| napi_get_and_clear_last_exception | Obtains and clears the latest exception.|
+| napi_is_exception_pending | Checks whether an exception occurs.|
+| napi_fatal_error | Raises a fatal error to terminate the process immediately.|
+| napi_get_last_error_info | Obtains the **napi_extended_error_info** struct, which contains the latest error information.|
+| napi_fatal_exception | Throws a fatal exception, terminates the process, and generates a crash log.|
 
 ### Property
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_get_property_names | Obtains the names of the enumerable properties of an object in an array of strings. |
-| napi_set_property | Sets a property for an object. |
-| napi_get_property | Obtains the requested property of an object. |
-| napi_has_property | Checks whether an object has the specified property. |
-| napi_delete_property | Deletes the **key** property from an object. |
-| napi_has_own_property | Checks whether an object has the own property named **key**. |
-| napi_set_named_property | Sets a property with the specified name for an object. |
-| napi_get_named_property | Obtains the property with the specified name in an object. |
-| napi_has_named_property | Checks whether an object has the property with the specified name. |
-| napi_define_properties | Defines multiple properties for an object. |
-| napi_get_all_property_names | Obtains an array containing the names of all the available properties of this object. |
+| napi_get_property_names | Obtains the names of the enumerable properties of an object in an array of strings.|
+| napi_set_property | Sets a property for an object.|
+| napi_get_property | Obtains the requested property of an object.|
+| napi_has_property | Checks whether an object has the specified property.|
+| napi_delete_property | Deletes a property from an object.|
+| napi_has_own_property | Checks whether an object has the own property specified by **key**.|
+| napi_set_named_property | Sets a property with the specified name for an object.|
+| napi_get_named_property | Obtains the property with the specified name in an object.|
+| napi_has_named_property | Checks whether an object has the property with the specified name.|
+| napi_define_properties | Defines multiple properties for an object.|
+| napi_get_all_property_names | Obtains an array containing the names of all the available properties of this object.|
 
-### Asynchronous Works
+### Async Works
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_create_async_work | Creates a work object that executes logic asynchronously. |
-| napi_delete_async_work | Releases an asynchronous work object. |
-| napi_queue_async_work | Adds an asynchronous work object to the queue so that it can be scheduled for execution. |
-| napi_cancel_async_work | Cancels a queued asynchronous work if it has not been started. |
+| napi_create_async_work | Creates a work object that executes logic asynchronously.|
+| napi_delete_async_work | Releases an async work object.|
+| napi_queue_async_work | Adds an async work object to the queue so that it can be scheduled for execution.|
+| napi_cancel_async_work | Cancels a queued async work if it has not been started.|
 
-### Custom Asynchronous Operations
+### Custom Async Operations
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_async_init | Creates an async context. The capabilities related to **async_hook** are not supported. |
+| napi_async_init | Creates an async context. The capabilities related to **async_hook** are not supported.|
 | napi_make_callback | Allows a JS function to be called in the async context. The capabilities related to **async_hook** are not supported.|
 | napi_async_destroy | Destroys the previously created async context. The capabilities related to **async_hook** are not supported.|
-| napi_open_callback_scope | Opens a callback scope. The capabilities related to **async_hook** are not supported. |
+| napi_open_callback_scope | Opens a callback scope. The capabilities related to **async_hook** are not supported.|
 | napi_close_callback_scope | Closes the callback scope. The capabilities related to **async_hook** are not supported.|
 
 ### Comparing JS Values
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_strict_equals | Checks whether two JS values are strictly equal. |
+| napi_strict_equals | Checks whether two JS values are strictly equal.|
 
 ### UV
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_get_uv_event_loop | Obtains the current libuv loop instance. |
+| napi_get_uv_event_loop | Obtains the current libuv loop instance.|
 
 ### Function Invocation
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_call_function | Calls a JS function from a C/C++ addon. |
-| napi_get_cb_info | Obtains detailed information about the call, such as the parameters and **this** pointer, from the given callback info. |
+| napi_call_function | Calls a JS function from a C/C++ addon.|
+| napi_get_cb_info | Obtains detailed information about the call, such as the parameters and **this** pointer, from the given callback info.|
 
 ### Extension
 
-[Component Extension Symbol List](../reference/native-lib/napi.md)
+[Node-API extended symbols](../reference/native-lib/napi.md#node-api-extended-symbols)
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_queue_async_work_with_qos | Adds an asynchronous work object to the queue and schedules it based on the QoS passed in. |
-| napi_run_script_path | Runs an .abc file. |
-| napi_load_module | Loads an .abc file as a module. This API returns the namespace of the module. |
-| napi_load_module_with_info | Loads an .abc file as a module. This API returns the namespace of the module and can be used in a newly created ArkTS runtime environment. |
-| napi_create_object_with_properties | Creates a JS object using the given **napi_property_descriptor**. The key of the descriptor must be a string and cannot be converted into a number. |
+| napi_queue_async_work_with_qos | Adds an async work object to the queue and schedules it based on the QoS passed in.|
+| napi_run_script_path | Runs an .abc file.|
+| napi_load_module | Loads an .abc file as a module. This API returns the namespace of the module.|
+| napi_load_module_with_info | Loads an .abc file as a module. This API returns the namespace of the module, which can be used in the newly created ArkTS runtime environment.|
+| napi_create_object_with_properties | Creates a JS object using the given **napi_property_descriptor**. The key of the descriptor must be a string and cannot be converted into a number.|
 | napi_create_object_with_named_properties | Creates a JS object using the given **napi_value**s and keys. The key must be a string and cannot be converted into a number.|
-| napi_coerce_to_native_binding_object | Forcibly binds a JS object and a native object. |
+| napi_coerce_to_native_binding_object | Forcibly binds a JS object and a native object.|
+| napi_create_ark_runtime|Creates an ArkTS runtime environment.|
+| napi_destroy_ark_runtime|Destroys an ArkTS runtime environment.|
 | napi_run_event_loop | Runs the underlying event loop.|
 | napi_stop_event_loop | Stops the underlying event loop.|
 | napi_serialize | Converts an ArkTS object into native data.|
 | napi_deserialize | Converts native data into an ArkTS object.|
 | napi_delete_serialization_data | Deletes serialized data.|
-| napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into an ArkTS thread.|
+| napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into the ArkTS main thread.|
 | napi_is_sendable|Checks whether the given JS value is sendable.|
 | napi_define_sendable_class|Create a **sendable** class.|
 | napi_create_sendable_object_with_properties | Creates a sendable object with the given **napi_property_descriptor**.|
@@ -695,29 +703,29 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 
 ### Environment Lifecycle
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_set_instance_data | Associates data with the currently running environment. |
+| napi_set_instance_data | Associates data with the currently running environment.|
 | napi_get_instance_data | Retrieves the data that was previously associated with the currently running environment.|
 
 ### Object Lifetime Management
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_add_env_cleanup_hook | Registers a clean-up hook for releasing resources when the environment exits. |
-| napi_remove_env_cleanup_hook | Unregisters the clean-up hook.|
-| napi_add_async_cleanup_hook | Registers an asynchronous clean-up hook for releasing resources when the environment exits. |
-| napi_remove_async_cleanup_hook | Unregisters the asynchronous clean-up hook.|
+| napi_add_env_cleanup_hook | Adds a cleanup hook function for releasing resources when the environment exits.|
+| napi_remove_env_cleanup_hook | Removes a cleanup hook function.|
+| napi_add_async_cleanup_hook | Adds an async cleanup hook function for releasing resources when the environment exits.|
+| napi_remove_async_cleanup_hook | Removes an async cleanup hook function.|
 
 ### ArkTS Runtime Environment
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| napi_create_ark_runtime | Creates an ArkTS runtime environment. |
-| napi_destroy_ark_runtime | Destroys the ArkTS runtime environment. |
+| napi_create_ark_runtime | Creates an ArkTS runtime environment.|
+| napi_destroy_ark_runtime | Destroys the ArkTS runtime environment.|
 
 ### Other Utilities
 
-| API | Description |
+| API| Description|
 | -------- | -------- |
-| node_api_get_module_file_name | Obtains the absolute path of the location, from which the addon is loaded.|
+| node_api_get_module_file_name | Obtains the absolute path of the module to be loaded.|

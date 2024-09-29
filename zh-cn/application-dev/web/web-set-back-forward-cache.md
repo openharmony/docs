@@ -6,7 +6,7 @@
 
 可以通过[enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12)来开启web组件使用前进后退缓存的功能。
 
-需要在[initializeBrowserEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)初始化内核之前调用。
+需要在[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)初始化内核之前调用。
 
 ```ts
 // EntryAbility.ets

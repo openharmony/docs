@@ -70,7 +70,6 @@ TextInput有9种可选类型，分别为Normal基本输入模式、Password密�
 ## 自定义样式
 
 - 设置无输入时的提示文本。
-  TextInput({placeholder:'我是提示文本'})
 
 
   ```ts

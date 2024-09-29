@@ -20,7 +20,7 @@ Example: [Encryption and Decryption by Segment with an SM4 Symmetric Key (GCM Mo
 
 Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) and [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to pass in and encrypt/decrypt the data of an asymmetric key pair by segment.
 
-If the plaintext length is greater than the data length supported by a single encryption (see [RSA](crypto-asym-encrypt-decrypt-spec.md#rsa), divide the data to be encrypted into data segments of an appropriate length and encrypt each data segment. Specifically, create a **Cipher** instance and call **Cipher.init** and **Cipher.doFinal**.
+If the plaintext length is greater than the data length supported by a single encryption (see [Asymmetric Key Encryption and Decryption Algorithm Specifications](crypto-asym-encrypt-decrypt-spec.md)), divide the data to be encrypted into data segments of an appropriate length and encrypt each data segment. Specifically, create a **Cipher** instance and call [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) and [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1).
 
 The amount of data to be passed in each time varies, depending on the key specifications.
 

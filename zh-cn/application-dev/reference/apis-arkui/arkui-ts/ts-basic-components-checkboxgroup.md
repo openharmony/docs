@@ -26,7 +26,7 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                                  | 必填 | 描述                 |
+| 参数名  | 类型                                                  | 必填 | 说明                 |
 | ------- | ----------------------------------------------------- | ---- | -------------------- |
 | options | [CheckboxGroupOptions](#checkboxgroupoptions对象说明) | 否   | 配置多选框群组参数。 |
 

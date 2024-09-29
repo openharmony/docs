@@ -16,9 +16,11 @@ PatternLock(controller?: PatternLockController)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 
-| 参数名     | 参数类型                                        | 必填 | 描述                                                         |
+| 参数名     | 类型                                        | 必填 | 说明 |
 | ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | controller | [PatternLockController](#patternlockcontroller) | 否   | 设置PatternLock组件控制器，可用于控制组件状态重置。       |
 
@@ -57,6 +59,19 @@ circleRadius(value: Length)
 | 参数名 | 类型                         | 必填 | 说明                               |
 | ------ | ---------------------------- | ---- | ---------------------------------- |
 | value  | [Length](ts-types.md#length) | 是   | 宫格中圆点的半径。<br/>默认值：6vp |
+
+### backgroundColor
+backgroundColor(value: ResourceColor)
+
+设置背景颜色
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                       | 必填 | 说明                                                       |
+| ------ | ------------------------------------------ | ---- | ---------------------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 背景颜色 |
 
 ### regularColor
 
@@ -174,7 +189,10 @@ activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称          | 参数类型 | 必填 | 描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+
+| 名称          | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 背景圆环颜色。 <br/>默认值：与pathColor值相同 |
 | radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 背景圆环的半径。<br/>默认值：circleRadius的11/6 |
@@ -224,13 +242,17 @@ let patternLockController: PatternLockController = new PatternLockController()
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### reset
 
-reset(): void
+reset()
 
 重置组件状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### setChallengeResult<sup>11+</sup>
 
@@ -240,6 +262,8 @@ setChallengeResult(result: PatternLockChallengeResult): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数   | 参数类型                                                     | 必填 | 参数描述       |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
 | result | [PatternLockChallengeResult](#patternlockchallengeresult11枚举说明) | 是   | 图案密码状态。 |
@@ -247,6 +271,8 @@ setChallengeResult(result: PatternLockChallengeResult): void
 ## PatternLockChallengeResult<sup>11+</sup>枚举说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 描述           |
 | ------- | -------------- |

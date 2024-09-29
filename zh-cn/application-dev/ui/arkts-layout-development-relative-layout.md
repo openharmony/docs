@@ -3,7 +3,7 @@
 
 ## 概述
 
-在应用的开发过程中，经常需要设计复杂界面，此时涉及到多个相同或不同组件之间的嵌套。如果布局组件嵌套深度过深，或者嵌套组件数过多，会带来额外的开销。如果在布局的方式上进行优化，就可以有效的提升性能，减少时间开销。<!--Del-->请参考[优化布局时间](../performance/reduce-view-nesting-levels.md)了解RelativeContainer相对于List，在布局时间上的性能提升。<!--DelEnd-->
+在应用的开发过程中，经常需要设计复杂界面，此时涉及到多个相同或不同组件之间的嵌套。如果布局组件嵌套深度过深，或者嵌套组件数过多，会带来额外的开销。如果在布局的方式上进行优化，就可以有效的提升性能，减少时间开销。<!--Del-->请参考[优化布局时间](../performance/reduce-view-nesting-levels.md#优化布局时间)了解RelativeContainer相对于List，在布局时间上的性能提升。<!--DelEnd-->
 
 RelativeContainer为采用相对布局的容器，支持容器内部的子元素设置相对位置关系，适用于界面复杂场景的情况，对多个子组件进行对齐和排列。子元素支持指定兄弟元素作为锚点，也支持指定父容器作为锚点，基于锚点做相对位置布局。下图是一个RelativeContainer的概念图，图中的虚线表示位置的依赖关系。
 
@@ -48,19 +48,26 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
   }
   let Mleft:Record<string,number> = { 'left': 20 }
   let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
-  RelativeContainer() {
-    Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
-      .backgroundColor("#FF3333")
-      .alignRules(AlignRus)
-      .id("row1")
+ 
+  @Entry
+  @Component
+  struct Index {
+    build() {
+      RelativeContainer() {
+        Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FF3333")
+        .alignRules(AlignRus)
+        .id("row1")
 
-    Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
-      .backgroundColor("#FFCC00")
-      .alignRules(AlignRue)
-      .id("row2")
-  }.width(300).height(300)
-  .margin(Mleft)
-  .border(BWC)
+        Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FFCC00")
+        .alignRules(AlignRue)
+        .id("row2")
+      }.width(300).height(300)
+      .margin(Mleft)
+      .border(BWC)
+    }
+  }
   ```
 
   ![zh-cn_image_0000001562820901](figures/zh-cn_image_0000001562820901.png)
@@ -78,19 +85,26 @@ RelativeContainer为采用相对布局的容器，支持容器内部的子元素
   }
   let Mleft:Record<string,number> = { 'left': 20 }
   let BWC:Record<string,number|string> = { 'width': 2, 'color': '#6699FF' }
-  RelativeContainer() {
-    Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
-      .backgroundColor("#FF3333")
-      .alignRules(AlignRus)
-      .id("row1")
 
-    Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
-      .backgroundColor("#FFCC00")
-      .alignRules(RelConB)
-      .id("row2")
-  }.width(300).height(300)
-  .margin(Mleft)
-  .border(BWC)
+  @Entry
+  @Component
+  struct Index {
+    build() {
+      RelativeContainer() {
+        Row(){Text('row1')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FF3333")
+        .alignRules(AlignRus)
+        .id("row1")
+
+        Row(){Text('row2')}.justifyContent(FlexAlign.Center).width(100).height(100)
+        .backgroundColor("#FFCC00")
+        .alignRules(RelConB)
+        .id("row2")
+      }.width(300).height(300)
+      .margin(Mleft)
+      .border(BWC)
+    }
+  }
   ```
 
   ![zh-cn_image_0000001562940613](figures/zh-cn_image_0000001562940613.png)

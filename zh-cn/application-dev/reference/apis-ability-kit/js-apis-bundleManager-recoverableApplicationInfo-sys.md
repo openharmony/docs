@@ -16,7 +16,7 @@
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称             | 类型                           | 可读 | 可写 | 说明                   |
+| 名称             | 类型                           | 只读 | 可选 | 说明                   |
 | ---------------- | ------------------------------ | ---- | ---- | ---------------------- |
 | bundleName       | string                         | 是   | 否   | 应用包的名称。       |
 | moduleName       | string                         | 是   | 否   | 模块名称。 |

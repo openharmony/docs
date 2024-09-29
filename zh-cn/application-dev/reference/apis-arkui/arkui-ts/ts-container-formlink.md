@@ -31,9 +31,9 @@ FormLink(options: FormLinkOptions)
 
 | 参数名       | 类型                            | 必填   | 说明   |
 | --------- | ------------------------------- | ---- | ------ |
-| options | [FormLinkOptions](#formlinkoptions类型说明) | 是    | 定义卡片信息 |
+| options | [FormLinkOptions](#formlinkoptions对象说明) | 是    | 定义卡片信息 |
 
-## FormLinkOptions类型说明
+## FormLinkOptions对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

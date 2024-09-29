@@ -67,13 +67,17 @@ class Fruit {
 }
 // 调用函数，用变量obj接收函数返回的实例化对象
 let obj = testNapi.newInstance(Fruit, 'test');
-// 打印实例化对象的obj
+// 打印实例化对象obj的信息
 hilog.info(0x0000, 'Node-API', 'napi_new_instance %{public}s', JSON.stringify(obj));
 ```
 
 ### napi_get_new_target
 
 用于获取构造函数的new.target值。在ArkTS中，new.target是一个特殊的元属性，用于在构造函数中判断是否通过new关键字调用了该构造函数。
+
+示例代码可以参考链接：
+
+[Native与ArkTS对象绑定](use-napi-object-wrap.md)
 
 ### napi_define_class
 

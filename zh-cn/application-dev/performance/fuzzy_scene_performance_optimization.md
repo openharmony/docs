@@ -1,4 +1,4 @@
-# 模糊场景性能优化
+# 图像模糊动效优化：静态模糊与动态模糊的性能对比解析
 
 ## 概述
 
@@ -17,7 +17,7 @@
 
 **静态模糊**：静态模糊是指对输入的静态内容进行模糊处理并获取一张模糊后的图像的模糊。适用于需要为静态图像提供模糊化效果的场景。[Effect Kit](../reference/apis-arkgraphics2d/js-apis-effectKit.md)在Filter图像效果类中提供[blur](../reference/apis-arkgraphics2d/js-apis-effectKit.md#blur)接口，可用于定义模糊半径，数值越大模糊效果越明显。
 
-**动态模糊**：动态模糊是指模糊效果会随着每帧模糊内容和模糊半径的变化，进行实时变化的模糊。适用于模糊内容需要实时刷新和更改的场景。系统针对组件内容、背景的动态模糊提供了两种实现动态模糊的方法：[backgroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9)和[foregroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle)。这两个方法不能指定模糊半径、提亮、饱和度、蒙版颜色等具体参数，只能调用底层将这些参数封装好的[模糊样式](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#blurstyle9)来实现不同风格的模糊效果。同时系统也为开发者提供了能够自定义参数的[backgroundEffect](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundeffect11)，可以对组件背景实现自定义模糊动效。如果只需要对组件进行简单的模糊处理，系统还提供了与静态模糊类似的简单方法[blur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#blur)和[backdropBlur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#backdropblur)，只需要定义模糊半径即可。
+**动态模糊**：动态模糊是指模糊效果会随着每帧模糊内容和模糊半径的变化，进行实时变化的模糊。适用于模糊内容需要实时刷新和更改的场景。系统针对组件内容、背景的动态模糊提供了两种实现动态模糊的方法：[backgroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundblurstyle9)和[foregroundBlurStyle](../reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle)。这两个方法不能指定模糊半径、提亮、饱和度、蒙版颜色等具体参数，只能调用底层将这些参数封装好的[模糊样式](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#blurstyle9)来实现不同风格的模糊效果。同时系统也为开发者提供了能够自定义参数的[backgroundEffect](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundeffect11)，可以对组件背景实现自定义模糊动效。如果只需要对组件进行简单的模糊处理，系统还提供了与静态模糊类似的简单方法[blur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#blur)和[backdropBlur](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur)，只需要定义模糊半径即可。
 
 ## 场景示例
 

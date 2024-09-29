@@ -240,6 +240,17 @@
 | On   | 常驻显示。              |
 | Auto | 按需显示(触摸时显示，2s后消失)。 |
 
+## TitleHeight<sup>9+</sup>
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 描述                         |
+| ----------- | -------------------------- |
+| MainOnly    | 只有主标题时标题栏的推荐高度（56vp）。      |
+| MainWithSub | 同时有主标题和副标题时标题栏的推荐高度（82vp）。 |
+
 ## EdgeEffect
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -374,6 +385,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称            | 描述               |
 | ------------- | ---------------- |
 | Row           | 主轴与行方向一致作为布局模式。  |
@@ -424,9 +437,9 @@
 
 | 类型      | 描述                                  |
 | ------- | ----------------------------------- |
-| Cover   | 默认值，保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Cover   | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
-| Auto    | 保持原图的比例不变。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
+| Auto    | 默认值，保持原图的比例不变。<br /> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                         |
 | FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## GradientDirection
@@ -473,14 +486,14 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称      | 描述      |
-| ------- | ------- |
-| Lighter | 字体较细。   |
-| Normal  | 字体粗细正常。 |
-| Regular | 字体粗细正常。 |
-| Medium  | 字体粗细适中。 |
-| Bold    | 字体较粗。   |
-| Bolder  | 字体非常粗。  |
+| 名称    |  值   |    描述      |
+| ------- | ----- | ----------- |
+| Lighter |  100  |   字体较细。 |
+| Normal  |  400  |   字体粗细正常。 |
+| Regular |  400  |   字体粗细正常。 |
+| Medium  |  500  |   字体粗细适中。 |
+| Bold    |  700  |   字体较粗。   |
+| Bolder  |  900  |   字体非常粗。 |
 
 ## TextAlign
 
@@ -541,16 +554,6 @@
 | ---------- | ------------- |
 | LongPress  | 通过长按触发菜单弹出。   |
 | RightClick | 通过鼠标右键触发菜单弹出。 |
-
-## RichEditorResponseType<sup>11+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称         | 描述            |
-| ---------- | ------------- |
-| LONG_PRESS  | 通过长按触发菜单弹出。   |
-| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
-| SELECT | 通过鼠标选中触发菜单弹出。 |
 
 ## HoverEffect<sup>8+</sup>
 
@@ -615,18 +618,6 @@
 | DEFAULT   | 白底蓝字（深色主题：白底=黑底）。 |
 | HIGHLIGHT | 蓝底白字。                        |
 
-## ThemeColorMode<sup>10+</sup>
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 描述         |
-| ------ | ---------- |
-| SYSTEM | 跟随系统深浅色模式。 |
-| LIGHT  | 固定使用浅色模式。  |
-| DARK   | 固定使用深色模式。  |
-
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -690,7 +681,7 @@
 | 名称    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
 | DEFAULT | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。 |
-| INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。 |
+| INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。<br/>内联模式下，不支持拖入文本。 |
 
 
 ## Nullable <sup>11+</sup>
@@ -771,30 +762,6 @@ Nullable\<T> {
 | FIT_CONTENT | 设置该值时，下拉菜单宽度按默认2栅格显示。            |
 | FIT_TRIGGER | 设置下拉菜单继承下拉按钮宽度。 |
 
-## SelectionMenuOptions<sup>11+</sup>
-
-范围信息。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-| 名称 | 类型  | 只读 | 必填  | 描述                               |
-| ------ | ------ | ------ | ------ | -------------------------------------- |
-| onAppear | [MenuOnAppearCallback](ts-basic-components-richeditor.md#menuonappearcallback12) | 否 | 否 | 自定义选择菜单弹出时回调。 |
-| onDisappear | () => void | 否 | 否 | 自定义选择菜单关闭时回调。 |
-
-## DismissReason<sup>12+</sup>
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称          | 值   | 描述                                                         |
-| ------------- | ---- | ------------------------------------------------------------ |
-| PRESS_BACK    | 0    | 点击三键back、左滑/右滑、键盘ESC。                           |
-| TOUCH_OUTSIDE | 1    | 点击遮障层时。                                               |
-| CLOSE_BUTTON  | 2    | 点击关闭按钮。                                               |
-| SLIDE_DOWN    | 3    | 下拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。 |
-
 ## ChainStyle<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -806,19 +773,6 @@ Nullable\<T> {
 | SPREAD | 组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。 |
 | SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                 |
 | PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例7](ts-container-relativecontainer.md#示例7)。                      |
-
-## BarrierDirection<sup>12+</sup>
-
-定义屏障线的方向。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最左侧。    |
-| RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最右侧。   |
-| TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最上方。    |
-| BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最下方。 |
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
@@ -844,13 +798,6 @@ Nullable\<T> {
 | DASHED        | 虚线。 |
 | WAVY        | 波浪线。 |
 
-## FlexSpaceOptions<sup>12+</sup>
-
-| 名称          | 类型        |  只读     | 必填      | 说明      |
-| ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
-| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
-
 ## MenuPolicy<sup>12+</sup>
 
 菜单弹出的策略。
@@ -869,6 +816,8 @@ Nullable\<T> {
 枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                  | 值 | 说明                                                |
 | --------------------- | - | ---------------------------------------------------- |
@@ -950,3 +899,28 @@ Nullable\<T> {
 | CENTER   | 图片中间与行中间对齐。       |
 | BOTTOM   | 图片下边沿与行下边沿对齐。   |
 | BASELINE | 图片下边沿与文本BaseLine对齐。 |
+
+
+## XComponentType<sup>10+</sup>枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                             | 描述                                                         |
+| -------------------------------- | ------------------------------------------------------------ |
+| SURFACE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。背景色设置为黑色时会走显示子系统（DSS）。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| COMPONENT<sup>(deprecated)</sup> | XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>**说明：**<br/>从API version 12 开始，该接口废弃，建议使用其他容器组件替代。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| TEXTURE                          | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。1、保持帧同步，保持在同一帧将图形处理器（GPU）纹理和ArkUI其他的绘制指令统一发给渲染服务(RenderService)。2、动效和原生组件统一。3、走图形处理器（GPU）合成，相比surface可能走显示子系统（DSS）功耗更高。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| NODE<sup>12+</sup>            | 用于Native UI节点的占位容器，开发者通过Native API 开发的页面组件可展示在此容器区域内。<br/>**说明：**<br/>该类型不再演进，推荐使用[ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md)占位组件管理Native API创建的组件，ContentSlot在内存和性能方面都优于NODE类型的XComponent。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+## HoverModeAreaType<sup>13+</sup>
+
+悬停态显示区域类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| TOP_SCREEN | 上半屏。|
+| BOTTOM_SCREEN | 下半屏。|

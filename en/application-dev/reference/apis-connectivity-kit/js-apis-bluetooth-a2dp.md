@@ -25,7 +25,7 @@ Creates an **A2dpSrcProfile** instance.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| A2dpSourceProfile | **A2dpSrcProfile** instance created.|
+| [A2dpSourceProfile](#a2dpsourceprofile) | **A2dpSrcProfile** instance created.|
 
 **Error codes**
 

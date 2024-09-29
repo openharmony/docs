@@ -80,7 +80,7 @@ let result = vector.add("a");
 let result1 = vector.add(1);
 let b = [1, 2, 3];
 let result2 = vector.add(b);
-let c: C1 = {name : "Dylon", age : "13"};
+let c: C1 = {name : "Jack", age : "13"};
 let result3 = vector.add(c);
 ```
 

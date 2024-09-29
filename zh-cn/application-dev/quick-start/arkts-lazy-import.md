@@ -6,7 +6,7 @@
 > 
 > 延迟加载特性在API12版本开始支持。
 >
-> 开发者如需在API12上使用lazy import语法，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则将无法通过编译。参考[DevEco Studio build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-0000001778834297-V5#section511142752919)
+> 开发者如需在API12上使用lazy import语法，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则将无法通过编译。参考[DevEco Studio build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5#section511142752919)
 
 
 ## 功能特性
@@ -50,6 +50,7 @@
     执行结果为：
     
     ```typescript    
+        mod2 executed
         main executed
     ```
 
@@ -90,7 +91,7 @@
         main executed
     ```
     
-    如果在mian.ets内删除lazy关键字，执行顺序为：
+    如果在main.ets内删除lazy关键字，执行顺序为：
     
     ```typescript  
         mod1 a executed

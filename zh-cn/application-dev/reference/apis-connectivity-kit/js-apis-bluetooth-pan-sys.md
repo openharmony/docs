@@ -80,7 +80,7 @@ setTethering(enable: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| value | boolean | 是    | 是否设置蓝牙共享。 |
+| value | boolean | 是    | 是否设置蓝牙共享。true表示设置蓝牙共享，false表示不设置蓝牙共享。 |
 
 **错误码**：
 

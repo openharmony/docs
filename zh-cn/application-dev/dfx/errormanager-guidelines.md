@@ -45,9 +45,14 @@
 | -2     | 参数错误       |
 
 ## 开发示例
+
+> **注意：**
+> 建议在异常回调函数处理的最后，增加同步退出操作，否则可能出现多次异常回调的现象。
+
 ```ts
 import { AbilityConstant, errorManager, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
+import process from '@ohos.process';
 
 let registerId = -1;
 let callback: errorManager.ErrorObserver = {
@@ -60,6 +65,9 @@ let callback: errorManager.ErrorObserver = {
         if (typeof(errorObj.stack) === 'string') {
             console.log('onException, stack: ', errorObj.stack);
         }
+        //回调函数执行完，采用同步退出方式，避免多次触发异常
+        let pro = new process.ProcessManager();
+        pro.exit(0);
     }
 }
 

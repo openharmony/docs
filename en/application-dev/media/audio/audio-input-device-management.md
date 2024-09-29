@@ -1,4 +1,4 @@
-# Audio Input Device Management
+# Managing Global Audio Input Devices
 
 If a device is connected to multiple audio input devices, you can use **AudioRoutingManager** to specify an audio input device to record audio. For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
 
@@ -17,12 +17,12 @@ let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of Au
 
 The table below lists the supported audio input devices.
 
-| Name | Value | Description | 
+| Name| Value| Description| 
 | -------- | -------- | -------- |
-| WIRED_HEADSET | 3 | Wired headset with a microphone. | 
-| BLUETOOTH_SCO | 7 | Bluetooth device using Synchronous Connection Oriented (SCO) links. | 
-| MIC | 15 | Microphone. | 
-| USB_HEADSET | 22 | USB Type-C headset. | 
+| WIRED_HEADSET | 3 | Wired headset with a microphone.| 
+| BLUETOOTH_SCO | 7 | Bluetooth device using Synchronous Connection Oriented (SCO) links.| 
+| MIC | 15 | Microphone.| 
+| USB_HEADSET | 22 | USB Type-C headset.| 
 
 ## Obtaining Input Device Information
 

@@ -5,17 +5,27 @@ The codecs and their capabilities that you can use for your application on a dev
 To ensure that the encoding and decoding behavior meets your expectations, first query the audio and video codecs supported by the system and their capability parameters through a series of APIs. Then find the codecs that are suitable for the development scenario, and correctly configure the codec parameters.
 
 ## General Development
-1. Link the dynamic library in the CMake script.
+1. Link the dynamic link library in the CMake script.
 
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+   target_link_libraries(sample PUBLIC libnative_media_core.so)
+   target_link_libraries(sample PUBLIC libnative_media_venc.so)
+   target_link_libraries(sample PUBLIC libnative_media_vdec.so)
    ```
+   > **NOTE**
+   >
+   > The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
+   >
 
 2. Add the header files.
 
    ```c++
    #include <multimedia/player_framework/native_avcapability.h>
    #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   #include <multimedia/player_framework/native_avcodec_videoencoder.h>
+   #include <multimedia/player_framework/native_avcodec_videodecoder.h>
    ```
 
 3. Obtain the audio/video codec capability instance.

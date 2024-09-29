@@ -72,9 +72,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      .fontWeight(FontWeight.Bold)
      .onClick(() => {
          let t = Date.now();
-         while (Date.now() - t <= 350){
-         
-         }
+         while (Date.now() - t <= 350) {}
      })
    ```
 

@@ -204,3 +204,12 @@ try {
   console.error(`getWantAgent failed! ${err.code} ${err.message}}`);
 }
 ```
+## OperationType
+
+Enumerates the operation types of the **WantAgent** objects.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name                     | Value| Description                                           |
+|-------------------------|---|-----------------------------------------------|
+| START_SERVICE_EXTENSION<sup>12+</sup> | 6 | Starts a ServiceExtensionAbility.<br>**System API**: This is a system API.|

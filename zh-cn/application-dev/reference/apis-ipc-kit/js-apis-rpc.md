@@ -121,7 +121,7 @@ writeRemoteObject(object: IRemoteObject): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900008  | The The proxy or remote object is invalid. |
+  | 1900008  | The proxy or remote object is invalid. |
   | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
@@ -1496,7 +1496,7 @@ writeByteArray(byteArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array; <br/> 5.The type of the element in the array is incorrect. |
+  | 401      | Parameter error. Possible causes: <br/> 1.The parameter is an empty array; <br/> 2.The number of parameters is incorrect; <br/> 3.The parameter type does not match; <br/> 4.The element does not exist in the array. <br/> 5.The type of the element in the array is incorrect. |
   | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
@@ -3703,7 +3703,7 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The obtained value of typeCode is incorrect. |
+  | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The obtained value of typeCode is incorrect; |
   | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**

@@ -19,7 +19,7 @@ FA模型仍需要先导入包，再调用[getResourceManager](#resourcemanagerge
 Stage模型下Context的引用方法请参考[Stage模型的Context详细介绍](../../application-models/application-context-stage.md)。
 
 ```ts
-import { UIAbility } from '@kit.abilityKit';
+import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
@@ -269,8 +269,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
-**参数：** 
-
 | 名称                        | 类型                            | 可读 | 可写 | 说明               |
 | --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
 | direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。         |
@@ -291,8 +289,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
-**参数：**
-
 | 名称            | 类型                            | 可读   | 可写   | 说明       |
 | ------------- | ------------------------------- | ---- | ---- | -------- |
 | screenDensity | [ScreenDensity](#screendensity) | 是    | 否    | 当前设备屏幕密度。 |
@@ -307,8 +303,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
-**参数：**
-
 | 名称     | 类型    | 可读   | 可写  | 说明           |
 | ------ | ------  | ---- | ---- | ------------------ |
 | fd     | number  | 是    | 否 | 文件描述符。 |
@@ -322,8 +316,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
-
-**参数：**
 
 | 名称         | 类型     | 可读   | 可写  |说明          |
 | ---------- | ------ | ----- | ----  | ---------------|
@@ -3475,7 +3467,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 资源ID值对应的DrawableDescriptor对象。|
 
 **错误码：**
 
@@ -3538,7 +3530,7 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 | 类型      | 说明                |
 | ------- | ----------------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。 |
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 资源ID值对应的DrawableDescriptor对象。 |
 
 **错误码：**
 
@@ -3605,7 +3597,7 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 
 | 类型     | 说明        |
 | ------ | --------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。 |
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 资源ID值对应的DrawableDescriptor对象。 |
 
 **错误码：**
 
@@ -5283,7 +5275,7 @@ getLocales(includeSystem?: boolean): Array\<string>
 
 getSymbol(resId: number):number
 
-用户获取指定资源ID对应的符号值，是用同步方式返回。
+用户获取指定资源ID对应的符号值，使用同步方式返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5328,7 +5320,7 @@ getSymbol(resId: number):number
 ### getSymbol<sup>11+</sup>
 getSymbol(resource: Resource): number
 
-用户获取指定resource对象对应的符号值，是用同步方式返回。
+用户获取指定resource对象对应的符号值，使用同步方式返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 

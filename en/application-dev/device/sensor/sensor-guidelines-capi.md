@@ -1,4 +1,4 @@
-# Capi Sensor Development
+# Sensor Development (C/C++)
 
 
 ## When to Use

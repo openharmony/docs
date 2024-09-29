@@ -8,7 +8,7 @@ The following demuxing formats are supported:
 
 | Media Format | Muxing Format                     | Stream Format                     |
 | -------- | :----------------------------| :----------------------------|
-| Audio/Video    | mp4                        |<!--RP1-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP1End-->|
+| Audio/Video    | mp4                        |<!--RP1-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3); subtitle stream: WEBVTT<!--RP1End-->|
 | Audio/Video    | fmp4                       |<!--RP2-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP2End-->|
 | Audio/Video    | mkv                        |<!--RP3-->Video stream: AVC (H.264); audio stream: AAC, MPEG (MP3), and OPUS<!--RP3End-->|
 | Audio/Video    | mpeg-ts                    |<!--RP4-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP4End-->|
@@ -18,10 +18,13 @@ The following demuxing formats are supported:
 | Audio      | mp3                        |Audio stream: MPEG (MP3)|
 | Audio      | ogg                        |Audio stream: OGG|
 | Audio      | flac                       |Audio stream: FLAC|
-| Audio      | wav                        |Audio stream: PCM|
+| Audio      | wav                        |Audio stream: PCM and PCM-MULAW|
 | Audio      | amr                        |Audio stream: AMR (AMR-NB and AMR-WB)|
 | Audio      | ape                        |Audio stream: APE|
 | External subtitle  | srt                        |Subtitle stream: SRT|
+| External subtitle  | webvtt                     |Subtitle stream: WEBVTT|
+
+The DRM demuxting capability supports the following formats: <!--RP7-->mp4 (H.264 and AAC) and mpeg-ts (H.264 and AAC)<!--RP7End-->.
 
 **Usage Scenario**
 
@@ -55,6 +58,11 @@ target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
 target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 ```
+
+> **NOTE**
+>
+> The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
+>
 
 ### How to Develop
 
@@ -174,21 +182,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_drm.so)
    ```
-   Register the callback to obtain the media key system information in either of the following ways:
+   There are two types of APIs for setting DRM information listeners. The callback function shown in example 1 can return a demuxer instance and therefore is recommended in the scenario where multiple demuxer instances are used. The callback function shown in example 2 does not return a demuxer instance and is applicable to the scenario where a single demuxer instance is used.
 
-   Sample code for the first method:
-   ```c++
-   // Implement the OnDrmInfoChanged callback.
-   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
-   {
-      // Parse the media key system information, including the quantity, DRM type, and corresponding PSSH.
-   }
-
-   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
-   Drm_ErrCode ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
-   ```
-
-   Sample code for the second method:
+   Example 1:
    ```c++
    // Implement the OnDrmInfoChangedWithObj callback.
    static void OnDrmInfoChangedWithObj(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *drmInfo)
@@ -200,11 +196,25 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    Drm_ErrCode ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback);
 
    ```
+
+   Example 2:
+   ```c++
+   // Implement the OnDrmInfoChanged callback.
+   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
+   {
+      // Parse the media key system information, including the quantity, DRM type, and corresponding PSSH.
+   }
+
+   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
+   Drm_ErrCode ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
+   ```
+
    After the callback is invoked, you can call the API to proactively obtain the media key system information (UUID and corresponding PSSH).
    ```c++
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
+   After obtaining and parsing DRM information, create [MediaKeySystem](../drm/native-drm-mediakeysystem-management.md) and [MediaKeySession](../drm/native-drm-mediakeysession-management.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](./audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 [Surface Output in Video Decoding](./video-decoding.md#surface-mode) or step 4 in [Buffer Output in Video Decoding](./video-decoding.md#buffer mode).
 
 5. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
 
@@ -380,6 +390,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 | -- | -- | -- | -- | -- |
 |OH_MD_KEY_CODEC_MIME|Stream codec type.|Supported|Supported|Supported|
 |OH_MD_KEY_TRACK_TYPE|Stream track type.|Supported|Supported|Supported|
+|OH_MD_KEY_TRACK_START_TIME|Start time of the stream.|Supported|Supported|Supported|
 |OH_MD_KEY_BITRATE|Stream bit rate.|Supported|Supported|Not supported|
 |OH_MD_KEY_LANGUAGE|Stream language type.|Supported|Supported|Not supported|
 |OH_MD_KEY_CODEC_CONFIG|Codec-specific data. In the case of video, data carried in **xps** is transferred. In the case of audio, data carried in **extraData** is transferred.|Supported|Supported|Not supported|

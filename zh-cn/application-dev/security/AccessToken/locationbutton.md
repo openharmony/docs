@@ -36,7 +36,7 @@
 
 2. 添加位置控件和获取当前位置信息。
    
-   安全控件是由图标、文本、背景组成的类似Button的按钮，其中图标、文本两者至少有其一，背景是可选的。图标和文本不支持自定义，仅支持在已有的选项中选择。应用申明安全控件的接口时，分为传参和不传参两种，不传参默认创建图标+文字+背景的按钮，传参根据传入的参数创建，不包含没有配置的元素。
+   安全控件是由图标、文本、背景组成的类似Button的按钮，其中图标、文本两者至少有其一，背景是必选的。图标和文本不支持自定义，仅支持在已有的选项中选择。应用申明安全控件的接口时，分为传参和不传参两种，不传参默认创建图标+文字+背景的按钮，传参根据传入的参数创建，不包含没有配置的元素。
 
    当前示例使用默认参数，具体请参见[LocationButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
 
@@ -56,13 +56,17 @@
        'distanceInterval': 0,
        'maxAccuracy': 0
      };
-     geoLocationManager.getCurrentLocation(requestInfo)
-       .then((location: geoLocationManager.Location) => {
-         promptAction.showToast({ message: JSON.stringify(location) });
-       })
-       .catch((err: BusinessError) => {
-         console.error(`Failed to get current location. Code is ${err.code}, message is ${err.message}`);
-       });
+     try {
+       geoLocationManager.getCurrentLocation(requestInfo)
+         .then((location: geoLocationManager.Location) => {
+           promptAction.showToast({ message: JSON.stringify(location) });
+         })
+         .catch((err: BusinessError) => {
+           console.error(`Failed to get current location. Code is ${err.code}, message is ${err.message}`);
+         });
+     } catch (err) {
+       console.error(`Failed to get current location. Code is ${err.code}, message is ${err.message}`);
+     }
    }
    
    @Entry
@@ -76,6 +80,7 @@
              text: LocationDescription.CURRENT_LOCATION,
              buttonType: ButtonType.Normal
            })
+             .padding({top: 12, bottom: 12, left: 24, right: 24})
              .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
                if (result === LocationButtonOnClickResult.SUCCESS) {
                  // 免去权限申请和权限请求等环节，获得临时授权，获取位置信息授权

@@ -8,8 +8,9 @@ In the KV pairs, the key must be a string, and the value can be a number, a stri
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - Preferences are not thread-safe and may cause file damage and data loss when used in multi-process scenarios. Do not use preferences in multi-process scenarios.
 
 ## Modules to Import
 
@@ -23,10 +24,10 @@ import { sendablePreferences } from '@kit.ArkData';
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name            | Type | Readable | Writable | Description                                   |
+| Name            | Type| Readable| Writable| Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 1024 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 x 1024 x 1024 bytes. |
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 x 1024 x 1024 bytes.|
 
 ## sendablePreferences.getPreferences
 
@@ -40,22 +41,22 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description                                                                                                                                                                          |
+| Name | Type            | Mandatory| Description                                                                                                                                                                          |
 | ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)          | Yes  | Application context. |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)          | Yes  | Application context.|
 | options | [Options](#options) | Yes  | Configuration options of the **Preferences** instance.       |
 
 **Return value**
 
 | Type                                   | Description                              |
 | --------------------------------------- | ---------------------------------- |
-| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained.<br>This instance inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use). |
+| Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained.<br>This instance inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use).|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -98,22 +99,22 @@ Obtains a **Preferences** instance. This API returns the result synchronously.
 
 **Parameters**
 
-| Name | Type                 | Mandatory | Description                                                        |
+| Name | Type                 | Mandatory| Description                                                        |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)               | Yes  | Application context. |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)               | Yes  | Application context.|
 | options | [Options](#options) | Yes  | Configuration options of the **Preferences** instance.                           |
 
 **Return value**
 
 | Type                       | Description                 |
 | --------------------------- | --------------------- |
-| [Preferences](#preferences) | **Preferences** instance obtained.<br>This instance inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use). |
+| [Preferences](#preferences) | **Preferences** instance obtained.<br>This instance inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use).|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -151,22 +152,22 @@ Avoid using a deleted **Preferences** instance to perform data operations, which
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description                                                                        |
+| Name | Type            | Mandatory| Description                                                                        |
 | ------- | ---------------- | ---- | ----------------------------------------------------------------------------|
-| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)          | Yes  | Application context. |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)          | Yes  | Application context.|
 | options | [Options](#options) | Yes  | Configuration options of the **Preferences** instance.                                                                           |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -209,22 +210,22 @@ After an application calls [getPreferences](#sendablepreferencesgetpreferences) 
 
 **Parameters**
 
-| Name | Type            | Mandatory | Description                                                                                                                     |
+| Name | Type            | Mandatory| Description                                                                                                                     |
 | ------- | ---------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)          | Yes  | Application context. |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)          | Yes  | Application context.|
 | options | [Options](#options) | Yes  | Configuration options of the **Preferences** instance.                                                                                   |
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -266,16 +267,16 @@ After an application calls [getPreferences](#sendablepreferencesgetpreferences) 
 
 **Parameters**
 
-| Name | Type                 | Mandatory | Description                                                        |
+| Name | Type                 | Mandatory| Description                                                        |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)               | Yes  | Application context. |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)               | Yes  | Application context.|
 | options | [Options](#options) | Yes  | Configuration options of the **Preferences** instance.                           |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
@@ -305,10 +306,10 @@ Represents the configuration options of a **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Name       | Type  | Mandatory | Description                                                        |
+| Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | Yes  | Name of the **Preferences** instance.                                     |
-| dataGroupId | string\|null | No  | Application group ID, which needs to be obtained from AppGallery. This parameter is not supported currently.<br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br>**Model restriction**: This attribute can be used only in the stage model.|
+| dataGroupId | string\|null | No  | Application group ID, which needs to be obtained from AppGallery. This parameter is not supported currently.<br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br> **Model restriction**: This attribute can be used only in the stage model.|
 
 
 ## Preferences
@@ -329,10 +330,10 @@ Obtains the value of a key from this **Preferences** instance. This API uses a p
 
  **Parameters**
 
-| Name  | Type                   | Mandatory | Description |
+| Name  | Type                   | Mandatory| Description |
 | -------- | ----------------------- | ---- |--------|
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty. |
-| defValue | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | Yes  | Default value to be returned. |
+| defValue | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | Yes  | Default value to be returned.|
 
 **Return value**
 
@@ -344,7 +345,7 @@ Obtains the value of a key from this **Preferences** instance. This API uses a p
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -376,10 +377,10 @@ Obtains the value of a key from this **Preferences** instance. This API returns 
 
 **Parameters**
 
-| Name  | Type                   | Mandatory | Description           |
+| Name  | Type                   | Mandatory| Description           |
 | -------- | ----------------------- | ---- |---------------------|
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty. |
-| defValue | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | Yes  | Default value to be returned. |
+| defValue | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | Yes  | Default value to be returned.|
 
 **Return value**
 
@@ -391,7 +392,7 @@ Obtains the value of a key from this **Preferences** instance. This API returns 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -423,7 +424,7 @@ Obtains all KV pairs from this **Preferences** instance. This API uses a promise
 
 For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 15500000 | Inner error.                   |
 
@@ -457,13 +458,13 @@ Obtains all KV pairs from this **Preferences** instance. This API returns the re
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | All KV pairs obtained.<br>This object inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use). |
+| [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | All KV pairs obtained.<br>This object inherits [ISendable](../../arkts-utils/arkts-sendable.md#isendable) and can be passed between concurrent ArkTS instances (including the main thread and the TaskPool or Worker threads) via pass-by-reference. For details, see [When to Use](../../arkts-utils/arkts-sendable.md#when-to-use).|
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 15500000 | Inner error.                   |
 
@@ -494,22 +495,22 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
 
 **Parameters**
 
-| Name | Type                   | Mandatory | Description                        |
+| Name| Type                   | Mandatory| Description                        |
 | ------ | ----------------------- | ---- |--------------------------|
 | key    | string                  | Yes  | Key of the data. It cannot be empty. |
-| value  | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | Yes  | Value to write. |
+| value  | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | Yes  | Value to write.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -543,16 +544,16 @@ Writes data to this **Preferences** instance. This API returns the result synchr
 
 **Parameters**
 
-| Name | Type                   | Mandatory | Description                                                        |
+| Name| Type                   | Mandatory| Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------ |
-| key    | string                  | Yes  | Key of the data. It cannot be empty. |
-| value  | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | Yes  | Value to write. |
+| key    | string                  | Yes  | Key of the data. It cannot be empty.|
+| value  | [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable) | Yes  | Value to write.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -575,21 +576,21 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                           |
+| Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the data to check. It cannot be empty. |
+| key    | string | Yes  | Key of the data to check. It cannot be empty.|
 
 **Return value**
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the **Preferences** instance contains the KV pair; the value **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means the **Preferences** instance contains the KV pair; the value **false** means the opposite.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -623,21 +624,21 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                           |
+| Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the data to check. It cannot be empty. |
+| key    | string | Yes  | Key of the data to check. It cannot be empty.|
 
 **Return value**
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| boolean | Returns **true** if the **Preferences** instance contains the KV pair; returns **false** otherwise. |
+| boolean | Returns **true** if the **Preferences** instance contains the KV pair; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -665,21 +666,21 @@ Deletes a KV pair from this **Preferences** instance. This API uses a promise to
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                           |
+| Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty. |
+| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -709,15 +710,15 @@ Deletes a KV pair from this **Preferences** instance. This API returns the resul
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                           |
+| Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty. |
+| key    | string | Yes  | Key of the KV pair to delete. It cannot be empty.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -742,13 +743,13 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 15500000 | Inner error.                   |
 
@@ -779,13 +780,13 @@ Clears this **Preferences** instance. This API uses a promise to return the resu
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 15500000 | Inner error.                   |
 
@@ -816,7 +817,7 @@ Clears this **Preferences** instance. This API returns the result synchronously.
 
 For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 15500000 | Inner error.                   |
 
@@ -838,16 +839,16 @@ Subscribes to data changes. The registered callback will be invoked to return th
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                    |
+| Name  | Type    | Mandatory| Description                                    |
 | -------- | -------- | ---- | ---------------------------------------- |
-| type     | string   | Yes  | Event type. The value is **'change'**, which indicates data changes. |
+| type     | string   | Yes  | Event type. The value is **'change'**, which indicates data changes.|
 | callback | Callback&lt;string&gt; | Yes  | Callback used to return the key whose value is changed.    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -881,16 +882,16 @@ Subscribes to inter-process data changes. For the multiple processes holding the
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                        |
+| Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes. |
+| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes.|
 | callback | Callback&lt;string&gt; | Yes  | Callback used to return the key whose value is changed.                  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | -------------------------------------- |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                           |
@@ -925,7 +926,7 @@ Subscribes to changes of specific data. The registered callback will be invoked 
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.          |
 | keys     | Array&lt;string&gt;                                          | Yes  | Keys to be observed.                                         |
@@ -935,7 +936,7 @@ Subscribes to changes of specific data. The registered callback will be invoked 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -972,16 +973,16 @@ Unsubscribes from data changes.
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                        |
+| Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type. The value is **'change'**, which indicates data changes.                    |
-| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes. |
+| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1016,16 +1017,16 @@ Unsubscribes from inter-process data changes.
 
 **Parameters**
 
-| Name  | Type    | Mandatory | Description                                                        |
+| Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes. |
+| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes.|
 | callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for inter-process data changes.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
@@ -1059,17 +1060,17 @@ Unsubscribes from changes of specific data.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory | Description                                                        |
+| Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.          |
-| keys     | Array&lt;string&gt;                                          | Yes  | Keys to be unsubscribed from. If this parameter is not specified, this API unsubscribes from the changes of all keys. |
-| callback | Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the changes of the specified data. |
+| keys     | Array&lt;string&gt;                                          | Yes  | Keys to be unsubscribed from. If this parameter is not specified, this API unsubscribes from the changes of all keys.|
+| callback | Callback&lt;[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the changes of the specified data.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |

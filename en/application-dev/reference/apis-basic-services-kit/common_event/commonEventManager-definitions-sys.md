@@ -2,13 +2,11 @@
 
 This document provides a list of common events defined by the system.
 
-Common event types are defined in [Support enumeration of the ohos.commonEventManager module](../js-apis-commonEventManager.md#support).
+Common event types are defined in [Support enumeration of the ohos.commonEventManager module](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md#support).
 
 > **NOTE**
 >
-> The current page contains only the system APIs of this module. For details about other public APIs, see [System Common Events](../common_event/commonEventManager-definitions.md).
-
-
+> The current page contains only the system APIs of this module. For details about other public APIs, see [System Common Events](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md).
 
 
 ## Ability Kit
@@ -64,6 +62,8 @@ System applications can call JavaScript APIs to apply for removing resource usag
 **Value:** "usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED"
 
 
+
+
 ## Basic Services Kit - Power Supply
 
 ### COMMON_EVENT_CHARGE_TYPE_CHANGED<sup>10+</sup>
@@ -87,7 +87,7 @@ Indicates that a user has been added to the system.
 
 When a system account is created, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **createOsAccount** and **createOsAccountForDomain**. These APIs are system APIs. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
+APIs related to this event: **createOsAccount** and **createOsAccountForDomain**. These APIs are system APIs. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md).
 
 **System API**: This is a system API.
 
@@ -104,7 +104,7 @@ Indicates that a user has been removed from the system.
 
 When a system account is removed, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **removeOsAccount**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
+APIs related to this event: **removeOsAccount**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md).
 
 **System API**: This is a system API.
 
@@ -121,7 +121,7 @@ Indicates that the status of the domain account status changes.
 
 When a domain user account is authenticated, deleted, or has the token updated, the event notification service is triggered to publish this event carrying the system account ID, domain name, and account status.
 
-APIs related to this event: **removeOsAccount**, **DomainAccountManager.auth**, and **updateAccountToken**. These APIs are system APIs. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
+APIs related to this event: **removeOsAccount**, **DomainAccountManager.auth**, and **updateAccountToken**. These APIs are system APIs. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md).
 
 **System API**: This is a system API.
 
@@ -138,7 +138,7 @@ Indicates that a user switchover is complete.
 
 When a system account is switched, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **activateOsAccount**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
+APIs related to this event: **activateOsAccount**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md).
 
 **System API**: This is a system API.
 
@@ -149,29 +149,11 @@ APIs related to this event: **activateOsAccount**. This API is a system API. For
 **Value:** "usual.event.USER_SWITCHED"
 
 
-### COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN
-
-Indicates a successful login from a distributed account.
-
-When a distributed account is successfully logged in, the event notification service is triggered to publish this event carrying the system account ID.
-
-APIs related to this event: **setOsAccountDistributedInfo**, **updateOsAccountDistributedInfo** (deprecated), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API.
-For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Notification.CommonEvent
-
-**Required subscriber permissions:** none
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**Value:** "usual.event.DISTRIBUTED_ACCOUNT_LOGIN"
 
 
 ## Core File Kit
 
-This document lists the common system events provided by the file management subsystem to applications. Applications can use [APIs](../js-apis-commonEventManager.md) to subscribe to common system events.
+This document lists the common system events provided by the file management subsystem to applications. Applications can use [APIs](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md) to subscribe to common system events.
 
 
 ### COMMON_EVENT_VOLUME_REMOVED
@@ -187,8 +169,6 @@ This common event is triggered when an external storage device is removed.
 **Required subscriber permissions:** ohos.permission.STORAGE_MANAGER
 
 **Value:** "usual.event.data.VOLUME_REMOVED"
-
-
 
 ### COMMON_EVENT_VOLUME_UNMOUNTED
 
@@ -268,7 +248,7 @@ When the device receives an SMS message, the event notification service is trigg
 **Value:** usual.event.SMS_RECEIVED_COMPLETED
 
 
-### COMMON_EVENT_SMS_EMERGENCY_CB_RECEIVE_COMPLETED</sup>10+<sup>
+### COMMON_EVENT_SMS_EMERGENCY_CB_RECEIVE_COMPLETED<sup>10+</sup>
 
 Indicates that an emergency cell broadcast message is received.
 
@@ -296,10 +276,6 @@ When the device receives a cell broadcast message, the event notification servic
 **Required subscriber permissions:** ohos.permission.RECEIVE_SMS (for system apps only)
 
 **Value:** usual.event.SMS_CB_RECEIVE_COMPLETED
-
-
-
-
 
 ### COMMON_EVENT_OPERATOR_CONFIG_CHANGED<sup>10+</sup>
 
@@ -479,6 +455,8 @@ When there is a change in the audio quality of the device, the event notificatio
 **Required subscriber permissions:** none
 
 **Value:** usual.event.AUDIO_QUALITY_CHANGE
+
+
 
 
 ## Reserved Common Event

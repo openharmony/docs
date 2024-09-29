@@ -1,9 +1,9 @@
 # Freezing a Custom Component
 
-When a custom component decorated by @ComponentV2 is inactive, it can be frozen so that its state variable does not respond to updates. That is, the @Monitor decorated method is not called, and the node associated with the state variable is not re-rendered. You can use the **freezeWhenInactive** attribute to specify whether to freeze a custom component. If no parameter is passed in, the feature is disabled. This feature works in following scenarios: page routing, **\<TabContent>**, and **\<Navigation>**.
+When a custom component decorated by @ComponentV2 is inactive, it can be frozen so that its state variable does not respond to updates. That is, the @Monitor decorated method is not called, and the node associated with the state variable is not re-rendered. You can use the **freezeWhenInactive** attribute to specify whether to freeze a custom component. If no parameter is passed in, the feature is disabled. This feature works in following scenarios: page routing, **TabContent**, and **Navigation**.
 
 
-> **Note:**
+> **NOTE**
 >
 > Custom component freezing is supported since API version 12.
 > 
@@ -92,14 +92,14 @@ In the preceding example:
 
 3. When the button **second page + 2** on page B is clicked, the @Monitor decorated **onPageChange** method is called.
 
-4. When the **back** button is clicked, page B is destroyed, and page A changes from inactive to active. At this time, corresponding **Text** is updated.
+4. When the **back** button is clicked, page B is destroyed, and page A changes from inactive to active. At this time, the **Text** component is updated.
 
 
 ### TabContent
 
-- You can freeze invisible **\<TabContent>** components in the **\<Tabs>** container so that they do not trigger UI re-rendering.
+- You can freeze invisible **TabContent** components in the **Tabs** container so that they do not trigger UI re-rendering.
 
-- During initial rendering, only the **\<TabContent>** component that is being displayed is created. All **\<TabContent>** components are created only after all of them have been switched to.
+- During initial rendering, only the **TabContent** component that is being displayed is created. All **TabContent** components are created only after all of them have been switched to.
 
 ```ts
 @Entry
@@ -148,16 +148,16 @@ struct FreezeChild {
 
 In the preceding example:
 
-1. When **change message** is clicked, the value of **message** changes, and the @Monitor decorated **onMessageUpdated** method of the **\<TabContent>** component being displayed is called.
+1. When **change message** is clicked, the value of **message** changes, and the @Monitor decorated **onMessageUpdated** method of the **TabContent** component being displayed is called.
 
-2. When you click **two** to switch to another **\<TabContent>** component, it switches from inactive to active, and the corresponding @Monitor decorated **onMessageUpdated** method is called.
+2. When **two** is clicked to switch to another **TabContent** component, the component switches from inactive to active, and the corresponding @Monitor decorated **onMessageUpdated** method is called.
 
-3. When **change message** is clicked again, the value of **message** changes, and only the @Monitor decorated **onMessageUpdated** method of the **\<TabContent>** component being displayed is called.
+3. When **change message** is clicked again, the value of **message** changes, and only the @Monitor decorated **onMessageUpdated** method of the **TabContent** component being displayed is called.
 
 
 ### Navigation
 
-- You can freeze this invisible page so that it does not trigger UI re-rendering. When return to this page, @Monitor callback is triggered to re-render the components.
+- You can freeze an invisible page so that it does not trigger UI re-rendering. When the user returns to this page, a re-render is triggered through an @Monitor decorated callback.
 
 ```ts
 @Entry
@@ -313,20 +313,20 @@ In the preceding example:
 
 1. When **change message** is clicked, the value of **message** changes, and the @Monitor decorated **info** method of the **MyNavigationTestStack** component being displayed is called.
 
-2. Click **Next Page** to switch to **PageOne** page and create the **pageOneStack** node.
+2. When **Next Page** is clicked, the page is switched to **PageOne** and the **pageOneStack** node is created.
 
 3. When **change message** is clicked again, the value of **message** changes, and only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageOneStack** is called.
 
-4. Click **Next Page** to switch to **PageTwo** page and create the **pageTwoStack** node.
+4. When **Next Page** is clicked, the page is switched to **PageTwo** and the **pageTwoStack** node is created.
 
 5. When **change message** is clicked again, the value of **message** changes, and only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageTwoStack** is called.
 
-6. Click **Next Page** to switch to **PageThree** page and create the **pageThreeStack** node.
+6. When **Next Page** is clicked, the page is switched to **PageThree** and the **pageThreeStack** node is created.
 
 7. When **change message** is clicked again, the value of **message** changes, and only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageThreeStack** is called.
 
-8. Click **Back Page** to switch to **PageTwo** page. At this time, only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageTwoStack** is called.
+8. When **Back Page** is clicked, the page is switched to **PageTwo**. At this time, only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageTwoStack** is called.
 
-9. Click **Back Page** to switch to **PageOne** page. At this time, only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageOneStack** is called.
+9. When **Back Page** is clicked, the page is switched to **PageOne** page. At this time, only the @Monitor decorated **info** method of the **NavigationContentMsgStack** child component in **pageOneStack** is called.
 
-10. Click **Back Page** again to switch to the initial page.
+10. When **Back Page** is clicked, the page is switched to the initial page.

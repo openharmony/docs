@@ -1,6 +1,6 @@
 # Safe Area
 
-A safe area refers to the display area that isn't covered by a status bar, navigation bar, or any other component in the system-defined non-safe-areas. By default, all the content you develop is placed in the safe area. If necessary, you can expand a component's safe area through the **expandSafeArea** attribute – without changing the layout, and specify how to avoid the virtual keyboard through the **setKeyboardAvoidMode** attribute.
+A safe area refers to the display area that isn't covered by a status bar, navigation bar, or any other component in the system-defined non-safe-areas. By default, all the content you develop is placed in the safe area. If necessary, you can expand a component's safe area through the [expandSafeArea](#expandsafearea) attribute – without changing the layout, and specify how to make space for the virtual keyboard through the [setKeyboardAvoidMode](#setkeyboardavoidmode11) attribute.
 
 > **NOTE**
 >
@@ -52,7 +52,7 @@ Sets the safe area to be expanded to.
 
 setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
-Sets the avoidance mode for the virtual keyboard.
+Sets the avoid mode for the virtual keyboard.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -62,7 +62,7 @@ Sets the avoidance mode for the virtual keyboard.
 
 | Name| Type                                                | Mandatory| Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | Yes  | Sets the avoidance mode for the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**<br>By default, offset is used to avoid the virtual keyboard.<br>**value**: avoidance mode for the virtual keyboard. This parameter is mandatory.|
+| value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | Yes  | Avoid mode of the virtual keyboard.<br>Default value: **KeyboardAvoidMode.OFFSET**<br>By default, offset is used to avoid the virtual keyboard.<br> |
 
 >  **NOTE**
 >  With **KeyboardAvoidMode.RESIZE**, the page is resized to prevent the virtual keyboard from obstructing the view. Regarding components on the page, those whose width and height are set in percentage are resized with the page, and those whose width and height are set to specific values are laid out according to their settings.
@@ -73,7 +73,7 @@ Sets the avoidance mode for the virtual keyboard.
 
 getKeyboardAvoidMode(): KeyboardAvoidMode
 
-Obtains the avoidance mode of the virtual keyboard.
+Obtains the avoid mode of the virtual keyboard.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -83,7 +83,7 @@ Obtains the avoidance mode of the virtual keyboard.
 
 | Name                                                | Description                              |
 | ---------------------------------------------------- | ---------------------------------- |
-| [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | Avoidance mode of the virtual keyboard.|
+| [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | Avoid mode of the virtual keyboard.|
 
 ## Example
 

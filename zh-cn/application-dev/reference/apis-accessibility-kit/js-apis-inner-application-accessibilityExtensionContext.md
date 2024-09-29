@@ -94,12 +94,12 @@ type FocusDirection = 'up' | 'down' | 'left' | 'right' | 'forward' | 'backward'
 
 | 类型       | 说明      |
 | -------- | ------- |
-| string       | 表示向上查询，值固定为'up'字符串。 |
-| string     | 表示向下查询，值固定为'down'字符串。 |
-| string     | 表示向左查询，值固定为'left'字符串。 |
-| string    | 表示向右查询，值固定为'right'字符串。 |
-| string  | 表示向前查询，值固定为'forward'字符串。 |
-| string | 表示向后查询，值固定为'backward'字符串。 |
+| 'up'       | 表示向上查询。 |
+| 'down'     | 表示向下查询。 |
+| 'left'     | 表示向左查询。 |
+| 'right'    | 表示向右查询。 |
+| 'forward'  | 表示向前查询。 |
+| 'backward' | 表示向后查询。 |
 
 ## FocusType
 
@@ -111,8 +111,8 @@ type FocusType = 'accessibility' | 'normal'
 
 | 类型            | 说明          |
 | ------------- | ----------- |
-| string | 表示无障碍的焦点类型，值固定为'accessibility'字符串。 |
-| string        | 表示普通的焦点类型，值固定为'normal'字符串。  |
+| 'accessibility' | 表示无障碍的焦点类型。 |
+| 'normal'        | 表示普通的焦点类型。  |
 
 ## Rect
 
@@ -137,8 +137,8 @@ type WindowType = 'application' | 'system'
 
 | 类型          | 说明        |
 | ----------- | --------- |
-| string | 表示应用窗口类型，值固定为'application'字符串。 |
-| string      | 表示系统窗口类型，值固定为'system'字符串。 |
+| 'application' | 表示应用窗口类型。 |
+| 'system'      | 表示系统窗口类型。 |
 
 ## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated)</sup>
 

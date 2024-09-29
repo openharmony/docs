@@ -25,7 +25,7 @@ import installer from '@ohos.bundle.installer';
 | ohos.permission.UNINSTALL_BUNDLE | system_core | 允许应用卸载应用。 |
 | ohos.permission.RECOVER_BUNDLE | system_core | 允许应用恢复预置应用。 |
 | ohos.permission.INSTALL_SELF_BUNDLE | system_core | 允许企业MDM应用在企业设备上自升级。|
-
+| ohos.permission.INSTALL_INTERNALTESTING_BUNDLE | system_core | 允许应用安装开发者内测构建应用。|
 
 权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
@@ -170,6 +170,8 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 > 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
 > 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
+>
+> 安装开发者内测构建应用需要ohos.permission.INSTALL_INTERNALTESTING_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -259,6 +261,8 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 > 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
 > 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
+>
+> 安装开发者内测构建应用需要ohos.permission.INSTALL_INTERNALTESTING_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -343,6 +347,8 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 > 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
 > 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
+>
+> 安装开发者内测构建应用需要ohos.permission.INSTALL_INTERNALTESTING_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -651,6 +657,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
 
 **示例：**
 
@@ -713,6 +720,7 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
 
 **示例：**
 
@@ -776,6 +784,7 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
 
 **示例：**
 ```ts
@@ -808,7 +817,7 @@ try {
 
 ## BundleInstaller.uninstall<sup>10+</sup>
 
-uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void
+uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void\>) : void
 
 以异步方法卸载一个共享包，使用callback形式返回结果。
 
@@ -1359,7 +1368,7 @@ try {
 
 ## BundleInstaller.createAppClone<sup>12+</sup>
 
-createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise<number>;
+createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise\<number\>;
 
 以异步方法创建应用分身，使用Promise形式返回结果。
 
@@ -1426,7 +1435,7 @@ try {
 
 ## BundleInstaller.destroyAppClone<sup>12+</sup>
 
-destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise<void>;
+destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\<void\>;
 
 以异步方法删除应用分身，使用Promise形式返回结果。
 
@@ -1491,7 +1500,7 @@ try {
 
 ## BundleInstaller.installPreexistingApp<sup>12+</sup>
 
-installPreexistingApp(bundleName: string, userId?: number): Promise<void>;
+installPreexistingApp(bundleName: string, userId?: number): Promise\<void\>;
 
 以异步方法安装应用，使用Promise形式返回结果。
 
@@ -1525,6 +1534,8 @@ installPreexistingApp(bundleName: string, userId?: number): Promise<void>;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName cannot be found. |
 | 17700004 | The userId is invalid. |
+| 17700071 | It is not allowed to install the enterprise bundle. |
+| 17700058 | Failed to install the HAP because this application is prohibited from being installed on this device or by specified users. |
 
 **示例：**
 ```ts

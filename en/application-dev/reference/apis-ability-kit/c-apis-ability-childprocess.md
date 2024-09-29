@@ -40,6 +40,9 @@ The ChildProcess module provides APIs to manage child processes. You can call th
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | int [OH_Ability_CreateNativeChildProcess](#oh_ability_createnativechildprocess) (const char \*libName, [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) onProcessStarted) | Creates a child process, loads the specified dynamic library file, and returns the startup result asynchronously through a callback parameter. The callback notification is an independent thread. When implementing the callback function, pay attention to thread synchronization and do not perform time-consuming operations to avoid long-time blocking.|
 
+> **NOTE**
+>
+> Currently, only 2-in-1 devices are supported, and only one native child process can be started for a process.
 
 ## Type Description
 ### OH_Ability_OnNativeChildProcessStarted
@@ -134,6 +137,10 @@ The processing logic sequence is shown in the following pseudocode:
 	Child process:
 	8. The child process exits after the NativeChildProcess_MainProc() function is returned.
 
+> **NOTE**
+>
+> Currently, only 2-in-1 devices are supported, and only one native child process can be started for a process.
+
 **Since**: 12
 
 **Parameters**
@@ -147,5 +154,3 @@ The processing logic sequence is shown in the following pseudocode:
 **Returns**
 
 Returns **NCP_NO_ERROR** if the operation is successful; returns an error code defined in [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) otherwise.
-
- <!--no_check--> 

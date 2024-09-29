@@ -22,8 +22,8 @@ string是编程中常用的数据类型之一。它可以存储和操作文本�
 | napi_create_string_utf8 | 需要通过UTF8编码的C字符串创建ArkTS string值时使用这个函数。 |
 | napi_get_value_string_utf16 | 需要将ArkTS的字符类型的数据转换为utf16编码的字符时使用这个函数。 |
 | napi_create_string_utf16 | 需要通过UTF16编码的C字符串创建ArkTS string值时使用这个函数。 |
-| napi_get_value_string_latin1 | 需要将ArkTS的字符类型的数据转换为utf16编码的字符时使用这个函数。 |
-| napi_create_string_latin1 | 需要通过UTF16编码的C字符串创建ArkTS string值时使用这个函数。 |
+| napi_get_value_string_latin1 | 需要将ArkTS的字符类型的数据转换为ISO-8859-1编码的字符时使用这个函数。 |
+| napi_create_string_latin1 | 需要通过ISO-8859-1编码的字符串创建ArkTS string值时使用这个函数。 |
 
 ## 使用示例
 
@@ -31,7 +31,7 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 
 ### napi_get_value_string_utf8
 
-napi_get_value_string_utf8接口可以将ArkTS的字符类型的数据转换为utf8编码的字符。
+将ArkTS的字符类型的数据转换为utf8编码的字符。
 
 cpp部分代码
 
@@ -117,7 +117,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_string_utf8:%{public}s'
 
 ### napi_get_value_string_utf16
 
-napi_get_value_string_utf16，将ArkTS的字符类型的数据转换为utf16编码的字符。
+将ArkTS的字符类型的数据转换为utf16编码的字符。
 
 cpp部分代码
 
@@ -138,11 +138,11 @@ static napi_value GetValueStringUtf16(napi_env env, napi_callback_info info)
     // 字符串的缓冲区大小
     size_t bufferSize = MAX_BUFFER_SIZE;
     // 字符串的长度
-    size_t string;
+    size_t stringLen;
     // 获取字符串的数据和长度
-    napi_get_value_string_utf16(env, args[0], buffer, bufferSize, &string);
+    napi_get_value_string_utf16(env, args[0], buffer, bufferSize, &stringLen);
     // 获取字符串返回结果
-    napi_create_string_utf16(env, buffer, string, &result);
+    napi_create_string_utf16(env, buffer, stringLen, &result);
     // 返回结果
     return result; 
 }
@@ -206,7 +206,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_string_utf16:%{public}s
 
 ### napi_get_value_string_latin1
 
-napi_get_value_string_latin1接口可以将ArkTS的字符类型的数据转换为ISO-8859-1编码的字符。
+将ArkTS的字符类型的数据转换为ISO-8859-1编码的字符。
 
 cpp部分代码
 

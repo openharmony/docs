@@ -1,12 +1,12 @@
 # Converting a Compressed or Uncompressed ECC Public Key (C/C++)
 
-You can generate a public key object (**PubKey**) from ECC public key data or obtain the ECC public key data from a public key (**PubKey**) object.
+You can generate a public key object [PubKey](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey)) from ECC public key data or obtain the ECC public key data from a public key (**PubKey**) object.
 
 Currently, only the compressed/uncompressed public key data that complies with the ECC X.509 standard is supported. The public key data mentioned in this topic is a complete X509 public key. For details about the operations on point data, see [Converting Compressed or Uncompressed ECC Point Data](crypto-convert-compressed-or-uncompressed-ECC-point.md). 
 
 For details about the ECC algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc). 
 
-You can specify the string parameter **format** to set the format of the ECC public key to obtain. To obtain a compressed public key that complies with the X.509 standard, set **format** to **X509|COMPRESSED**. To obtain an uncompressed public key, set **format** to **X509|UNCOMPRESSED**.
+You can pass in the string parameter to set the format of the ECC public key to obtain. To obtain a compressed public key that complies with the X.509 standard, pass in **X509|COMPRESSED**. To obtain an uncompressed public key, pass in **X509|UNCOMPRESSED**.
 
 
 ##  Converting Uncompressed Public Key Data to Compressed Public Key Data

@@ -196,7 +196,7 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | onEnterActionArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onExitActionArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | builder |  [CustomBuilder](ts-types.md#custombuilder8) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onStateChange<sup>11+</sup> | (swipeActionState) => void | 否 |当列表项滑动状态变化时候触发。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onStateChange<sup>11+</sup> | (state:[SwipeActionState](#swipeactionstate11枚举说明)) => void | 否 |当列表项滑动状态变化时候触发。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 ## ListItemOptions<sup>10+</sup>对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -295,17 +295,20 @@ struct ListItemExample2 {
   @State arr: number[] = [0, 1, 2, 3, 4]
   @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
   @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
+  private scroller: ListScroller = new ListScroller()
 
   @Builder itemEnd() {
     Row() {
       Button("Delete").margin("4vp")
-      Button("Set").margin("4vp")
+      Button("Set").margin("4vp").onClick(() => {
+        this.scroller.closeAllSwipeActions()
+      })
     }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
   }
 
   build() {
     Column() {
-      List({ space: 10 }) {
+      List({ space: 10, scroller: this.scroller }) {
         ForEach(this.arr, (item: number) => {
           ListItem() {
             Text("item" + item)

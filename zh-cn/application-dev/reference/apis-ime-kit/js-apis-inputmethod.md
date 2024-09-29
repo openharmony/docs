@@ -658,7 +658,7 @@ Enter键的功能类型。
 | NEXT  | 5 |下一步。 |
 | DONE  | 6 |完成。 |
 | PREVIOUS  | 7 |上一步。 |
-| NEWLINE  | 8 | 换行。|
+| NEWLINE<sup>12+</sup>  | 8 | 换行。|
 
 ## KeyboardStatus<sup>10+</sup>
 
@@ -2723,8 +2723,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   name: 'com.example.kikakeyboard',
   id: 'propertyId',
-  packageName: 'com.example.kikakeyboard',
-  methodId: 'propertyId',
 }
 let inputMethodSetting = inputMethod.getSetting();
 try {
@@ -2779,8 +2777,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let inputMethodProperty: inputMethod.InputMethodProperty = {
   name: 'com.example.kikakeyboard',
   id: 'propertyId',
-  packageName: 'com.example.kikakeyboard',
-  methodId: 'propertyId',
 }
 let inputMethodSetting = inputMethod.getSetting();
 try {

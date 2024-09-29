@@ -32,10 +32,10 @@ type ActivityType = 'still' | 'relativeStill'
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Stationary
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
-| --------- | ------ | ---- | ---- | ------- |
-| still    | string | 是 | 否 | 表示绝对静止。 |
-| relativeStill | string | 是 | 否 | 表示相对静止。 |
+| 类型 | 说明 |
+| -------- | -------- |
+| 'still' | 绝对静止。 |
+| 'relativeStill' | 相对静止。 |
 
 ## ActivityEvent
 

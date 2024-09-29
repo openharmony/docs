@@ -32,7 +32,10 @@ The APIs of this module do not need to be imported through the JS interface. You
 | struct  [Image_Size](_image___size.md) | Describes the image size. | 
 | struct  [Image_Region](_image___region.md) | Describes the region of an image to decode. | 
 | struct  [Image_String](_image___string.md) | Describes an image string. | 
-
+| struct  [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md) | Describes the static metadata values available for the key **HDR_STATIC_METADATA**. | 
+| struct  [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md) | Describes the dynamic metadata values available for the key **DR_DYNAMIC_METADATA**. | 
+| struct  [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md) | Describes the gain map metadata values available for the key **HDR_GAINMAP_METADATA**. For details, see ISO 21496-1. | 
+| struct  [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) | Describes the HDR metadata values used by the pixel map and available for the key **OH_Pixelmap_HdrMetadataKey**. | 
 
 ### Types
 
@@ -52,6 +55,11 @@ The APIs of this module do not need to be imported through the JS interface. You
 | typedef struct [OH_ImageSource_Info](#oh_imagesource_info) [OH_ImageSource_Info](#oh_imagesource_info) | Defines a struct for the image source information, which is created by calling [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create).| 
 | typedef struct [OH_DecodingOptions](#oh_decodingoptions) [OH_DecodingOptions](#oh_decodingoptions) | Defines a struct for decoding parameters, which are used in [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap).| 
 | typedef struct [OH_PixelmapNative](#oh_pixelmapnative) [OH_PixelmapNative](#oh_pixelmapnative) | Defines the **Pixelmap** struct, which is used to perform operations related to a pixel map.| 
+| typedef struct [OH_NativeBuffer](#oh_nativebuffer) [OH_NativeBuffer](#oh_nativebuffer) | Defines the **NativeBuffer** struct, which is used to perform operations related to the native buffer.| 
+| typedef struct [OH_Pixelmap_HdrStaticMetadata](_o_h___pixelmap___hdr_static_metadata.md) [OH_Pixelmap_HdrStaticMetadata](#oh_pixelmap_hdrstaticmetadata) | Defines a struct for the static metadata values available for the key **HDR_STATIC_METADATA**. | 
+| typedef struct [OH_Pixelmap_HdrDynamicMetadata](_o_h___pixelmap___hdr_dynamic_metadata.md) [OH_Pixelmap_HdrDynamicMetadata](#oh_pixelmap_hdrdynamicmetadata) | Defines a struct for the dynamic metadata values available for the key **DR_DYNAMIC_METADATA**. | 
+| typedef struct [OH_Pixelmap_HdrGainmapMetadata](_o_h___pixelmap___hdr_gainmap_metadata.md) [OH_Pixelmap_HdrGainmapMetadata](#oh_pixelmap_hdrgainmapmetadata) | Defines a struct for the gain map metadata values available for the key **HDR_GAINMAP_METADATA**. For details, see ISO 21496-1. | 
+| typedef struct [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) [OH_Pixelmap_HdrMetadataValue](#oh_pixelmap_hdrmetadatavalue) | Defines a struct for the HDR metadata values used by the pixel map a the key [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey). It is used in [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata). |
 | typedef struct [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) | Defines a struct for the initialization parameters.| 
 | typedef struct [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) [OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) | Defines a struct for the image information.| 
 
@@ -60,12 +68,14 @@ The APIs of this module do not need to be imported through the JS interface. You
 
 | Name| Description| 
 | -------- | -------- |
-| [Image_ErrorCode](#image_errorcode) {<br>IMAGE_SUCCESS = 0,<br>IMAGE_BAD_PARAMETER = 401,<br>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101,<br>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br>IMAGE_TOO_LARGE = 7600103,<br>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br>IMAGE_UNSUPPORTED_METADATA = 7600202,<br>IMAGE_UNSUPPORTED_CONVERSION = 7600203,<br>IMAGE_INVALID_REGION = 7600204,<br>IMAGE_ALLOC_FAILED = 7600301,<br>IMAGE_COPY_FAILED = 7600302,<br>IMAGE_UNKNOWN_ERROR = 7600901,<br>IMAGE_BAD_SOURCE = 7700101,<br>IMAGE_DECODE_FAILED = 7700301,<br>IMAGE_ENCODE_FAILED = 7800301<br>} | Enumerates the error codes.| 
+| [Image_ErrorCode](#image_errorcode) {<br>IMAGE_SUCCESS = 0, <br>IMAGE_BAD_PARAMETER = 401, <br>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, <br>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br>IMAGE_TOO_LARGE = 7600103, <br>IMAGE_DMA_NOT_EXIST = 7600173, <br>IMAGE_DMA_OPERATION_FAILED = 7600174, <br>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br>IMAGE_UNSUPPORTED_METADATA = 7600202, <br>IMAGE_UNSUPPORTED_CONVERSION = 7600203, <br>IMAGE_INVALID_REGION = 7600204, <br>IMAGE_ALLOC_FAILED = 7600301,<br>IMAGE_COPY_FAILED = 7600302, <br>IMAGE_UNKNOWN_ERROR = 7600901, <br>IMAGE_BAD_SOURCE = 7700101, <br>IMAGE_DECODE_FAILED = 7700301,<br>IMAGE_ENCODE_FAILED = 7800301<br>} | Enumerates the error codes. | 
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | Enumerates the desired dynamic range for encoding.| 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br>IMAGE_DYNAMIC_RANGE_SDR = 1,<br>IMAGE_DYNAMIC_RANGE_HDR = 2 } | Enumerates the desired dynamic range for decoding.| 
 | [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2 } | Enumerates the alpha types of a pixel map.| 
 | [PIXEL_FORMAT](#pixel_format) {<br>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br>PIXEL_FORMAT_NV12 = 9<br>} | Enumerates the image pixel formats.| 
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br>OH_PixelmapNative_AntiAliasing_NONE = 0, <br>OH_PixelmapNative_AntiAliasing_LOW = 1, <br>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br>} | Enumerates the antialiasing levels used for scaling pixel maps. | 
+| [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br>HDR_METADATA_TYPE = 0, <br>HDR_STATIC_METADATA = 1, <br>HDR_DYNAMIC_METADATA = 2, <br>HDR_GAINMAP_METADATA = 3 } | Enumerates the keys of the HDR related metadata information used by the pixel map. It is used in [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata). | 
+| [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br>HDR_METADATA_TYPE_NONE = 0, <br>HDR_METADATA_TYPE_BASE = 1, <br>HDR_METADATA_TYPE_GAINMAP = 2, <br>HDR_METADATA_TYPE_ALTERNATE = 3 } | Enumerates the HDR metadata types, which are the values of **HDR_METADATA_TYPE**. | 
 
 
 ### Functions
@@ -176,6 +186,9 @@ The APIs of this module do not need to be imported through the JS interface. You
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | Releases the pointer to an **OH_PixelmapNative** object.| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_PixelmapNative](#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | Converts pixel data of a pixel map from premultiplied alpha to non-premultiplied alpha, or vice versa.| 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates an empty pixel map using **OH_Pixelmap_InitializationOptions**. The memory data is 0.| 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetNativeBuffer](#oh_pixelmapnative_getnativebuffer) (OH_PixelmapNative \*pixelmap, OH_NativeBuffer \*\*nativeBuffer) | Obtains the **NativeBuffer** object from a pixel map in the DMA memory. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata) (OH_PixelmapNative \*pixelmap, [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*\*value) | Obtains the metadata. | 
+| [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) (OH_PixelmapNative \*pixelmap, [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*value) | Sets the metadata. | 
 
 
 ### Variables
@@ -468,6 +481,60 @@ The fields in this struct cannot be directly operated. Instead, they must be man
 **Since**: 12
 
 
+### OH_Pixelmap_HdrDynamicMetadata
+
+```
+typedef struct OH_Pixelmap_HdrDynamicMetadata OH_Pixelmap_HdrDynamicMetadata
+```
+
+**Description**
+
+Defines a struct for the dynamic metadata values available for the key **DR_DYNAMIC_METADATA**.
+
+**Since**: 12
+
+
+### OH_Pixelmap_HdrGainmapMetadata
+
+```
+typedef struct OH_Pixelmap_HdrGainmapMetadata OH_Pixelmap_HdrGainmapMetadata
+```
+
+**Description**
+
+Defines a struct for the gain map metadata values available for the key **HDR_GAINMAP_METADATA**. For details, see ISO 21496-1.
+
+**Since**: 12
+
+
+### OH_Pixelmap_HdrMetadataValue
+
+```
+typedef struct OH_Pixelmap_HdrMetadataValue OH_Pixelmap_HdrMetadataValue
+```
+
+**Description**
+
+Defines a struct for the HDR metadata values used by the pixel map. It corresponds to the key [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey).
+
+It is used in [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata).
+
+**Since**: 12
+
+
+### OH_Pixelmap_HdrStaticMetadata
+
+```
+typedef struct OH_Pixelmap_HdrStaticMetadata OH_Pixelmap_HdrStaticMetadata
+```
+
+**Description**
+
+Defines a struct for the static metadata values available for the key **HDR_STATIC_METADATA**.
+
+**Since**: 12
+
+
 ### OH_ImageSource_Info
 
 ```
@@ -558,6 +625,20 @@ The fields in this struct cannot be directly operated. Instead, they must be man
 **Since**: 12
 
 
+### OH_NativeBuffer
+
+```
+typedef struct OH_NativeBuffer OH_NativeBuffer
+```
+
+**Description**
+
+Defines the **NativeBuffer** struct, which is used to perform operations related to the native buffer.
+
+
+**Since**: 12
+
+
 ## Enum Description
 
 
@@ -594,21 +675,23 @@ Enumerates the error codes.
 
 | Value| Description| 
 | -------- | -------- |
-| IMAGE_SUCCESS | Operation successful.| 
-| IMAGE_BAD_PARAMETER | Invalid parameter.| 
-| IMAGE_UNSUPPORTED_MIME_TYPE | Unsupported MIME type.| 
-| IMAGE_UNKNOWN_MIME_TYPE | Unknown MIME type.| 
-| IMAGE_TOO_LARGE | The data or image is too large.| 
-| IMAGE_UNSUPPORTED_OPERATION | Unsupported operation.| 
-| IMAGE_UNSUPPORTED_METADATA | Unsupported metadata.| 
-| IMAGE_UNSUPPORTED_CONVERSION | Unsupported conversion.| 
-| IMAGE_INVALID_REGION | Invalid region.| 
-| IMAGE_ALLOC_FAILED | Failed to allocate the memory.| 
-| IMAGE_COPY_FAILED | Failed to copy the memory.| 
-| IMAGE_UNKNOWN_ERROR | Unknown error.| 
-| IMAGE_BAD_SOURCE | Abnormal data source.| 
-| IMAGE_DECODE_FAILED | Decoding failed.| 
-| IMAGE_ENCODE_FAILED | Encoding failed.| 
+| IMAGE_SUCCESS  | Operation successful.| 
+| IMAGE_BAD_PARAMETER  | Invalid parameter.| 
+| IMAGE_UNSUPPORTED_MIME_TYPE  | Unsupported MIME type.| 
+| IMAGE_UNKNOWN_MIME_TYPE  | Unknown MIME type.| 
+| IMAGE_TOO_LARGE  | The data or image is too large.| 
+| IMAGE_DMA_NOT_EXIST  | The memory is not the DMA memory.| 
+| IMAGE_DMA_OPERATION_FAILED  | The operation on the DMA memory fails.| 
+| IMAGE_UNSUPPORTED_OPERATION  | Unsupported operation.| 
+| IMAGE_UNSUPPORTED_METADATA  | Unsupported metadata.| 
+| IMAGE_UNSUPPORTED_CONVERSION  | Unsupported conversion.| 
+| IMAGE_INVALID_REGION  | Invalid region.| 
+| IMAGE_ALLOC_FAILED  | Failed to allocate the memory.| 
+| IMAGE_COPY_FAILED  | Failed to copy the memory.| 
+| IMAGE_UNKNOWN_ERROR  | Unknown error.| 
+| IMAGE_BAD_SOURCE  | Abnormal data source.| 
+| IMAGE_DECODE_FAILED  | Decoding failed.| 
+| IMAGE_ENCODE_FAILED  | Encoding failed.| 
 
 
 ### IMAGE_PACKER_DYNAMIC_RANGE
@@ -652,6 +735,46 @@ Enumerates the image pixel formats.
 | PIXEL_FORMAT_RGBA_F16 | RGBA_F16 format.| 
 | PIXEL_FORMAT_NV21 | NV21 format.| 
 | PIXEL_FORMAT_NV12 | NV12 format.| 
+
+
+### OH_Pixelmap_HdrMetadataKey
+
+```
+enum OH_Pixelmap_HdrMetadataKey
+```
+
+**Description**
+
+Enumerates the keys of the HDR related metadata information used by the pixel map. It is used in [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata).
+
+**Since**: 12
+
+| Value| Description| 
+| -------- | -------- |
+| HDR_METADATA_TYPE  | Metadata type used by the pixel map.  | 
+| HDR_STATIC_METADATA  | Static metadata.  | 
+| HDR_DYNAMIC_METADATA  | Dynamic metadata.  | 
+| HDR_GAINMAP_METADATA  | Metadata used by gain maps.  | 
+
+
+### OH_Pixelmap_HdrMetadataType
+
+```
+enum OH_Pixelmap_HdrMetadataType
+```
+
+**Description**
+
+Enumerates the HDR metadata types, which are the values of **HDR_METADATA_TYPE**.
+
+**Since**: 12
+
+| Value| Description| 
+| -------- | -------- |
+| HDR_METADATA_TYPE_NONE  | No metadata.  | 
+| HDR_METADATA_TYPE_BASE  | Metadata used for base graphics.  | 
+| HDR_METADATA_TYPE_GAINMAP  | Metadata used for gain maps.  | 
+| HDR_METADATA_TYPE_ALTERNATE  | Metadata used for synthesized HDR graphics.  | 
 
 
 ### OH_PixelmapNative_AntiAliasingLevel
@@ -1960,7 +2083,7 @@ Creates the pointer to an **OH_ImageSourceNative** object based on a URI.
 
 | Name| Description| 
 | -------- | -------- |
-| uri | Pointer to the URI of the image source. Only file URIs or Base64 URIs are accepted. | 
+| uri | Pointer to the URI of the image source. Only file URIs or Base64 URIs are accepted. Currently, only absolute paths are supported. |
 | uriSize | URI length. | 
 | res | Double pointer to the **OH_ImageSourceNative** object created at the C++ local layer. | 
 
@@ -2830,7 +2953,7 @@ The stride is the actual memory size occupied by each row of the image, in bytes
 | Name| Description| 
 | -------- | -------- |
 | options | Pointer to an **OH_Pixelmap_InitializationOptions** object. | 
-| rowStride | Pointer to the row stride, in bytes. | 
+| rowStride | Pointer to the stride, in bytes. | 
 
 **Returns**
 
@@ -2902,7 +3025,7 @@ Converts pixel data of a pixel map from premultiplied alpha to non-premultiplied
 | Name| Description| 
 | -------- | -------- |
 | srcpixelmap | Pointer to the source pixel map, which is an **OH_PixelmapNative** object. | 
-| dstpixelmap | Pointer to the destination pixel map, which is an **OH_PixelmapNative** object. | 
+| dstpixelmap | Pointer to the destination pixel map, which is an **OH_PixelmapNative** object. This pointer must be different from the pointer to the source pixel map. | 
 | isPremul | Conversion mode. The value **true** means a conversion from premultiplied alpha to non-premultiplied alpha, and **false** means a conversion from non-premultiplied alpha to premultiplied alpha. | 
 
 **Returns**
@@ -3033,6 +3156,55 @@ Obtains the image information.
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
 
 
+### OH_PixelmapNative_GetMetadata()
+
+```
+Image_ErrorCode OH_PixelmapNative_GetMetadata (OH_PixelmapNative * pixelmap, OH_Pixelmap_HdrMetadataKey key, OH_Pixelmap_HdrMetadataValue ** value )
+```
+
+**Description**
+
+Obtains the metadata.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| key | Metadata key. For details, see [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey). | 
+| value | Double pointer to the value of the metadata key. For details, see [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md). | 
+
+**Returns**
+
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_DMA_NOT_EXIST** if the DMA memory does not exist; returns **IMAGE_COPY_FAILED** if the memory copy fails. For details, see [Image_ErrorCode](#image_errorcode).
+
+
+### OH_PixelmapNative_GetNativeBuffer()
+
+```
+Image_ErrorCode OH_PixelmapNative_GetNativeBuffer (OH_PixelmapNative * pixelmap, OH_NativeBuffer ** nativeBuffer )
+```
+
+**Description**
+
+Obtains the **NativeBuffer** object from a pixel map in the DMA memory.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| pixelmap | Pointer to the pixel map. | 
+| nativeBuffer | Double pointer to the **NativeBuffer** object obtained. | 
+
+**Returns**
+
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_DMA_NOT_EXIST** if the memory is not the DMA memory; returns **IMAGE_DMA_OPERATION_FAILED** if the operation on the DMA memory fails. For details, see [Image_ErrorCode](#image_errorcode).
+
+
 ### OH_PixelmapNative_Opacity()
 
 ```
@@ -3065,7 +3237,7 @@ Image_ErrorCode OH_PixelmapNative_ReadPixels (OH_PixelmapNative * pixelmap, uint
 
 **Description**
 
-Reads the image pixel data and writes the data to an ArrayBuffer. This API uses a promise to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads pixel data of an image and writes the data to the buffer based on the pixel format of the pixel map.
 
 **Since**: 12
 
@@ -3180,6 +3352,31 @@ Scales an image based on the specified antialiasing level, width, and height.
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_TOO_LARGE** if the image is too large; returns **IMAGE_ALLOC_FAILED** if memory allocation fails; returns **IMAGE_UNKNOWN_ERROR** if the object pointed to by **pixelmap** is released. For details, see [Image_ErrorCode](#image_errorcode).
 
 
+### OH_PixelmapNative_SetMetadata()
+
+```
+Image_ErrorCode OH_PixelmapNative_SetMetadata (OH_PixelmapNative * pixelmap, OH_Pixelmap_HdrMetadataKey key, OH_Pixelmap_HdrMetadataValue * value )
+```
+
+**Description**
+
+Sets metadata.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| pixelmap | Pointer to an **OH_PixelmapNative** object. | 
+| key | Pointer to the metadata key. For details, see [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey). | 
+| value | Pointer to the value of the metadata key. For details, see [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md). | 
+
+**Returns**
+
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_DMA_NOT_EXIST** if the DMA memory does not exist; returns **IMAGE_COPY_FAILED** if the memory copy fails. For details, see [Image_ErrorCode](#image_errorcode).
+
+
 ### OH_PixelmapNative_ToSdr()
 
 ```
@@ -3236,7 +3433,7 @@ Image_ErrorCode OH_PixelmapNative_WritePixels (OH_PixelmapNative * pixelmap, uin
 
 **Description**
 
-Reads the image pixel data in the buffer and writes the data to a pixel map.
+Reads the pixel data in the buffer and writes the result to the pixel map based on the pixel format of the pixel map.
 
 **Since**: 12
 

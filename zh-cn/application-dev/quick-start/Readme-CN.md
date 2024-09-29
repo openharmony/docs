@@ -16,7 +16,6 @@
       - [HSP](in-app-hsp.md)
       - [动态import](arkts-dynamic-import.md)
       - [延迟加载（lazy import）](arkts-lazy-import.md)
-      - [HAR转HSP指导](har-to-hsp.md)
     - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
   - 应用配置文件（Stage模型）
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
@@ -27,6 +26,12 @@
     - [app对象内部结构](app-structure.md)
     - [deviceConfig内部结构](deviceconfig-structure.md)
     - [module对象内部结构](module-structure.md)
+  - 典型场景的开发指导
+    - [集成态HSP](integrated-hsp.md)
+    - [HAR转HSP指导](har-to-hsp.md)
+    - [HSP转HAR指导](hsp-to-har.md)
+    - [创建应用静态快捷方式](typical-scenario-configuration.md)
+    - [创建应用分身](app-clone.md)
 
 - [资源分类与访问](resource-categories-and-access.md)
 

@@ -23,10 +23,10 @@ Describes the options of system alert tones.
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
 
-| Name     | Type           | Mandatory | Description                       |
-| --------- | -------------- |---|---------------------------|
-| muteAudio | boolean | No | Whether the sound is muted. The value **true** means that the sound is muted, and **false** means the opposite. |
-| muteHaptics | boolean | No | Whether haptics feedback is turned off. The value **true** means that haptics feedback is turned off, and **false** means the opposite. |
+| Name       | Type   | Mandatory| Description                                         |
+| ----------- | ------- | ---- | --------------------------------------------- |
+| muteAudio   | boolean | No  | Whether the sound is muted. The value **true** means that the sound is muted, and **false** means the opposite.  |
+| muteHaptics | boolean | No  | Whether haptics feedback is turned off. The value **true** means that haptics feedback is turned off, and **false** means the opposite.|
 
 ## SystemTonePlayer
 
@@ -44,18 +44,18 @@ Obtains the title of a system alert tone. This API uses a promise to return the 
 
 **Return value**
 
-| Type                 | Description                             |
-| --------------------- | -------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the title obtained. |
+| Type   | Description                                 |
+| ------- | ------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the title obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
-| ------- | --------------------- |
-| 202 | Caller is not a system application. |
-| 5400103 | I/O error. |
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+| 5400103  | I/O error.                          |
 
 **Example**
 
@@ -81,19 +81,19 @@ Prepares to play a system alert tone. This API uses a promise to return the resu
 
 **Return value**
 
-| Type               | Description                             |
-| ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Type   | Description                           |
+| ------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
-| ------- | --------------------- |
-| 202 | Caller is not a system application. |
-| 5400102 | Operation not allowed. |
-| 5400103 | I/O error. |
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+| 5400102  | Operation not allowed.              |
+| 5400103  | I/O error.                          |
 
 **Example**
 
@@ -121,26 +121,26 @@ Starts playing a system alert tone. This API uses a promise to return the result
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory | Description                      |
-| -------- |-----------------------------------------|--| ------------------------- |
-| toneOptions  | [SystemToneOptions](#systemtoneoptions) | No | Options of the system alert tone. |
+| Name     | Type                                   | Mandatory| Description            |
+| ----------- | --------------------------------------- | ---- | ---------------- |
+| toneOptions | [SystemToneOptions](#systemtoneoptions) | No  | Options of the system alert tone.|
 
 **Return value**
 
-| Type               | Description                           |
-| ------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the stream ID. |
+| Type   | Description                     |
+| ------- | ------------------------- |
+| Promise&lt;number&gt; | Promise used to return the stream ID.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
-| ------- | --------------------- |
-| 201 | Permission denied. |
-| 202 | Caller is not a system application. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 5400102 | Operation not allowed. |
+| ID| Error Message                                                                                                   |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied.                                                                                          |
+| 202      | Caller is not a system application.                                                                         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 5400102  | Operation not allowed.                                                                                      |
 
 **Example**
 
@@ -172,25 +172,25 @@ Stops playing a system alert tone. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory | Description                      |
-| -------- |-----------------------------------------|--| ------------------------- |
-| id  | number | Yes | Stream ID returned by **start()**. |
+| Name| Type  | Mandatory| Description                     |
+| ------ | ------ | ---- | ------------------------- |
+| id     | number | Yes  | Stream ID returned by **start()**.|
 
 **Return value**
 
-| Type               | Description                             |
-| ------------------- | -------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. |
+| Type   | Description                               |
+| ------- | ----------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
-| ------- | --------------------- |
-| 202 | Caller is not a system application. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 5400102 | Operation not allowed. |
+| ID| Error Message                                                                                                   |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 202      | Caller is not a system application.                                                                         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 5400102  | Operation not allowed.                                                                                      |
 
 **Example**
 
@@ -217,17 +217,17 @@ Releases the system alert tone player. This API uses a promise to return the res
 
 **Return value**
 
-| Type               | Description                           |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.  |
+| Type   | Description                           |
+| ------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
-| ID | Error Message             |
-| ------- | --------------------- |
-| 202 | Caller is not a system application. |
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
 
 **Example**
 
@@ -239,4 +239,201 @@ systemTonePlayer.release().then(() => {
 }).catch ((err: BusinessError) => {
   console.error(`Failed to release system tone player. ${err}`);
 });
+```
+
+### setAudioVolumeScale<sup>12+</sup>
+
+setAudioVolumeScale(scale: number): void
+
+Sets the scale of the audio volume. No result is returned.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                |
+| ------ | ------ | ---- | ------------------------------------ |
+| scale  | number | Yes  | Scale of the audio volume. The value is in the range [0, 1].|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID| Error Message                                                                                                   |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 202      | Caller is not a system application.                                                                         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 5400102  | Operation not allowed.                                                                                      |
+| 20700002 | Parameter check error, For example, value is out side [0, 1]                                                |
+
+**Example**
+
+```ts
+let scale: number = 0.5;
+try {
+  systemTonePlayer.setAudioVolumeScale(scale);
+} catch (err) {
+  console.error(`Failed to set audio volume scale. ${err}`);
+}
+```
+
+### getAudioVolumeScale<sup>12+</sup>
+
+getAudioVolumeScale(): number;
+
+Obtains the scale of the audio volume. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Return value**
+
+
+| Type  | Description        |
+| ------ | ------------ |
+| number | Scale of the audio volume.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+
+**Example**
+
+```ts
+try {
+  let scale: number = systemTonePlayer.getAudioVolumeScale();
+  console.info(` get audio volume scale. ${scale}`);
+} catch (err) {
+  console.error(`Failed to get audio volume scale. ${err}`);
+}
+```
+
+### getSupportedHapticsFeatures<sup>12+</sup>
+
+getSupportedHapticsFeatures(): Promise&lt;Array&lt;systemSoundManager.ToneHapticsFeature&gt;&gt;
+
+Obtains the supported haptics styles. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Return value**
+
+
+| Type   | Description                                                                                                                 |
+| ------- | --------------------------------------------------------------------------------------------------------------------- |
+| Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature12)&gt;&gt; | Promise used to return an array of the supported haptics styles.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+| 20700003 | Unsupported operation.              |
+
+**Example**
+
+```ts
+try {
+  let features: Array<systemSoundManager.ToneHapticsFeature> = await systemTonePlayer.getSupportedHapticsFeatures();
+  console.info(` get supported haptics features. ${features}`);
+} catch (err) {
+  console.error(`Failed to get supported haptics features. ${err}`);
+}
+```
+
+### setHapticsFeature<sup>12+</sup>
+
+setHapticsFeature(hapticsFeature: systemSoundManager.ToneHapticsFeature): void
+
+Sets a haptics style of the ringtone.
+
+Before calling this API, call [getSupportedHapticsFeatures](#getsupportedhapticsfeatures12) to obtain the supported haptics styles. The setting fails if the haptics style to set is not supported.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+**Parameters**
+
+
+| Name        | Type                                                                                         | Mandatory| Description            |
+| -------------- | --------------------------------------------------------------------------------------------- | ---- | ---------------- |
+| hapticsFeature | [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature12) | Yes  | Haptics style.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+
+| ID| Error Message                                                                                                   |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| 202      | Caller is not a system application.                                                                         |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 5400102  | Operation not allowed.                                                                                      |
+| 20700003 | Unsupported operation.                                                                                      |
+
+**Example**
+
+```ts
+try {
+  let features: Array<systemSoundManager.ToneHapticsFeature> = await systemTonePlayer.getSupportedHapticsFeatures();
+  if (features.lenght == 0) {
+    return;
+  }
+  let feature: systemSoundManager.ToneHapticsFeature = features[0];
+  systemTonePlayer.setHapticsFeature(feature);
+  console.info(` set haptics feature success`);
+} catch (err) {
+  console.error(`Failed to set haptics feature. ${err}`);
+}
+```
+
+### getHapticsFeature<sup>12+</sup>
+
+getHapticsFeature(): systemSoundManager.ToneHapticsFeature
+
+Obtains the haptics style of the ringtone. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.SystemSound.Core
+
+**Return value**
+
+
+| Type                                                                                         | Description    |
+| --------------------------------------------------------------------------------------------- | -------- |
+| [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature12) | Haptics style.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202      | Caller is not a system application. |
+| 20700003 | Unsupported operation.              |
+
+**Example**
+
+```ts
+try {
+  let feature: systemSoundManager.ToneHapticsFeature = systemTonePlayer.getHapticsFeature();
+  console.info(` get haptics feature success. ${features}`);
+} catch (err) {
+  console.error(`Failed to get haptics feature. ${err}`);
+}
 ```

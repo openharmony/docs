@@ -22,17 +22,23 @@ DataPanel(options: DataPanelOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | options |  [DataPanelOptions](#datapaneloptions对象说明)| 是 | 数据面板组件参数。 |
 
 ## DataPanelOptions对象说明
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名            | 参数类型   | 必填  | 参数描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 类型   | 必填  | 说明 |
 | ----------------- | -------- | ----- | -------- |
 | values            | number[]   | 是    | 数据值列表，最多包含9个数据，大于9个数据则取前9个数据。若数据值小于0则置为0。 |
 | max               | number     | 否    |   -&nbsp;max大于0，表示数据的最大值。<br/>-&nbsp;max小于等于0，max等于value数组各项的和，按比例显示。<br/>默认值：100 |
@@ -41,9 +47,11 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelType<sup>8+</sup>枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | -------| ------------ |
@@ -160,7 +168,9 @@ DataPanelShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptio
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 参数类型 | 必填 | 描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
 | colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 否 | 各数据段投影的颜色。 <br/>默认值：与valueColors值相同 <br/>**说明：** <br/>若设置的投影颜色的个数少于数据段个数时，则显示的投影颜色的个数和设置的投影颜色个数一致。<br/>若设置的投影颜色的个数多于数据段个数时，则显示的投影颜色的个数和数据段个数一致。|
 
@@ -168,7 +178,7 @@ DataPanelShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptio
 
 线性渐变颜色描述。
 
-LinearGradient(colorStops: ColorStop[])
+constructor(colorStops: ColorStop[])
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -183,7 +193,9 @@ LinearGradient(colorStops: ColorStop[])
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 参数类型 | 必填 | 描述 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 是 | 颜色值。|
 | offset | [Length](ts-types.md#length) | 是 | 渐变色断点（0~1之间的比例值，若数据值小于0则置为0，若数据值大于1则置为1）。<br>**说明：** <br/>若传入字符串类型且内容为数字，则转换为对应的数值。<br/>例如'10vp'转换为10，'10%'转换为0.1。 |
@@ -194,10 +206,12 @@ LinearGradient(colorStops: ColorStop[])
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 参数名  | 类型    |    默认值      |  说明              |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型    |    必填      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
-| values | number[] | - | 当前DataPanel的数据值，最大长度为9。 |
-| maxValue | number | 100 | DataPanel显示的最大值。 |
+| values | number[] | 是 | 当前DataPanel的数据值，最大长度为9。 |
+| maxValue | number | 是 | DataPanel显示的最大值。<br/>默认值：100。 |
 
 ## 示例
 
@@ -309,7 +323,9 @@ function buildDataPanel(config: DataPanelConfiguration) {
         ChildItem({ item: item, index: index, max:config.maxValue})
       }, (item: string) => item)
     }.padding(10)
-    Line().width(360).backgroundColor("#ff373737").margin({bottom:5})
+    Column() {
+      Line().width("100%").backgroundColor("#ff373737").margin({bottom:5})
+    }.padding({left: 20, right: 20})
     Row() {
       Text('Length=' + config.values.length + '    ').margin({ left: 10 }).align(Alignment.Start)
       Text('Max=' + config.maxValue).margin({ left: 10 }).align(Alignment.Start)
@@ -334,6 +350,7 @@ struct Index {
       Row() {
         DataPanel({ values: [12.3, 21.1, 13.4, 35.2, 26.0, 32.0], max: 140, type: DataPanelType.Circle })
           .width(400).height(260)
+          .constraintSize({maxWidth: "100%"})
           .padding({ top: 10 })
           .contentModifier(new DataPanelBuilder())
       }.margin(15).backgroundColor("#fff5f5f5")

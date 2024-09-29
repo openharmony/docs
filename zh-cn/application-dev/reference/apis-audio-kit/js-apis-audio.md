@@ -300,6 +300,21 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | INPUT_DEVICES_FLAG              | 2      | 输入设备。                     |
 | ALL_DEVICES_FLAG                | 3      | 所有设备。                     |
 
+## DeviceUsage<sup>12+</sup>
+
+枚举，可获取的设备种类。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称                            |  值     | 说明                        |
+| ------------------------------- | ------ |---------------------------|
+| MEDIA_OUTPUT_DEVICES | 1      | 媒体输出设备。|
+| MEDIA_INPUT_DEVICES  | 2      | 媒体输入设备。|
+| ALL_MEDIA_DEVICES    | 3      | 所有媒体设备。|
+| CALL_OUTPUT_DEVICES  | 4      | 通话输出设备。|
+| CALL_INPUT_DEVICES   | 8      | 通话输入设备。|
+| ALL_CALL_DEVICES     | 12     | 所有通话设备。|
+
 ## DeviceRole
 
 枚举，设备角色。
@@ -862,8 +877,10 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称                   |  值     | 说明                                          |
 | :--------------------- | :----- | :-------------------------------------------- |
-| AUDIO_SCENE_DEFAULT    | 0      | 默认音频场景。                                |
-| AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
+| AUDIO_SCENE_DEFAULT                  | 0      | 默认音频场景。                                |
+| AUDIO_SCENE_RINGING<sup>12+</sup>    | 1      | 响铃模式。 |
+| AUDIO_SCENE_PHONE_CALL<sup>12+</sup> | 2      | 电话模式。 |
+| AUDIO_SCENE_VOICE_CHAT               | 3      | 语音聊天模式。                                |
 
 ## AudioConcurrencyMode<sup>12+</sup>
 
@@ -887,7 +904,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称                   | 值 | 说明     |
 | :--------------------- |:--|:-------|
 | DEACTIVATED_LOWER_PRIORITY | 0 | 应用焦点被抢占。 |
-| DEACTIVATED_TIME_OUT | 1 | 应用停流后超时。    |
+| DEACTIVATED_TIMEOUT | 1 | 应用停流后超时。    |
 
 ## AudioSessionStrategy<sup>12+</sup>
 
@@ -2127,7 +2144,7 @@ audioManager.isMicrophoneMute().then((value: boolean) => {
 
 on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 
-设备更改。音频设备连接状态变化，使用callback方式返回结果。
+订阅监听音频设备连接变化事件（当音频设备连接状态发生变化时触发），使用callback方式返回结果。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[on('deviceChange')](#ondevicechange9)替代。
@@ -2138,7 +2155,7 @@ on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
+| type     | string                                               | 是   | 监听事件，固定为：'deviceChange'。 |
 | callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
 
 **示例：**
@@ -2156,7 +2173,7 @@ audioManager.on('deviceChange', (deviceChanged: audio.DeviceChangeAction) => {
 
 off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
-取消订阅音频设备连接变化事件，使用callback方式返回结果。
+取消监听音频设备连接变化事件，使用callback方式返回结果。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[off('deviceChange')](#offdevicechange9)替代。
@@ -2167,7 +2184,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
+| type     | string                                              | 是   | 监听事件，固定为：'deviceChange'。 |
 | callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 回调函数，返回设备更新详情。 |
 
 **示例：**
@@ -2180,7 +2197,7 @@ audioManager.off('deviceChange');
 
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
-请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序），使用callback方式返回结果。
+订阅监听音频打断事件（当应用程序的音频被另一个播放事件中断时触发，回调通知此应用程序），使用callback方式返回结果。
 
 与[on('audioInterrupt')](#onaudiointerrupt9)作用一致，均用于监听焦点变化。为无音频流的场景（未曾创建AudioRenderer对象），比如FM、语音唤醒等提供焦点变化监听功能。
 
@@ -2193,7 +2210,7 @@ on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAc
 
 | 参数名    | 类型                                                      | 必填 | 说明                                                         |
 | --------- |---------------------------------------------------------| ---- | ------------------------------------------------------------ |
-| type      | string                                                  | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
+| type      | string                                                  | 是   | 监听事件，固定为：'interrupt'。 |
 | interrupt | [AudioInterrupt](#audiointerruptdeprecated)             | 是   | 音频打断事件类型的参数。                                     |
 | callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | 是   | 回调函数，返回音频打断时，应用接收的中断事件信息。 |
 
@@ -2223,7 +2240,7 @@ audioManager.on('interrupt', interAudioInterrupt, (InterruptAction: audio.Interr
 
 off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
 
-取消监听音频打断事件（删除监听事件，取消打断），使用callback方式返回结果。
+取消监听音频打断事件，使用callback方式返回结果。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 11 开始废弃，建议使用AudioCapturer中的[off('audioInterrupt')](#offaudiointerrupt10)替代。
@@ -2234,7 +2251,7 @@ off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<Interrupt
 
 | 参数名    | 类型                                                      | 必填 | 说明                                                         |
 | --------- |---------------------------------------------------------| ---- | ------------------------------------------------------------ |
-| type      | string                                                  | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
+| type      | string                                                  | 是   | 监听事件，固定为：'interrupt'。 |
 | interrupt | [AudioInterrupt](#audiointerruptdeprecated)                       | 是   | 音频打断事件类型的参数。                                     |
 | callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | 否   | 回调函数，返回删除监听事件，取消打断时，应用接收的中断事件信息。 |
 
@@ -2371,7 +2388,7 @@ try {
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
-监听系统音量变化事件，使用callback方式返回结果。
+订阅监听系统音量变化事件（当系统音量发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2379,7 +2396,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
+| type     | string                                 | 是   | 监听事件，固定为：'volumeChange'。 |
 | callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
@@ -2413,7 +2430,7 @@ off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
+| type     | string                                 | 是   | 监听事件，固定为：'volumeChange'。 |
 | callback | Callback<[VolumeEvent](#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
@@ -2917,7 +2934,7 @@ try {
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-监听铃声模式变化事件，使用callback方式返回结果。
+订阅监听铃声模式变化事件（当[铃声模式](#audioringmode)发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2925,7 +2942,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | 是   | 事件回调类型，支持的事件为：'ringerModeChange'（铃声模式变化事件，检测到铃声模式改变时，触发该事件）。 |
+| type     | string                                    | 是   | 监听事件，固定为：'ringerModeChange'。 |
 | callback | Callback<[AudioRingMode](#audioringmode)> | 是   | 回调函数，返回变化后的铃音模式。 |
 
 **错误码：**
@@ -3096,7 +3113,7 @@ try {
 
 on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
-监听系统麦克风状态更改事件，使用callback方式返回结果。
+订阅监听系统麦克风状态更改事件（当检测到系统麦克风状态发生改变时触发），使用callback方式返回结果。
 
 目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
 
@@ -3106,7 +3123,7 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 事件回调类型，支持的事件为：'micStateChange'（系统麦克风状态变化事件，检测到系统麦克风状态改变时，触发该事件）。 |
+| type     | string                                 | 是   | 监听事件，固定为：'micStateChange'。 |
 | callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | 是   | 回调函数，返回变更后的麦克风状态。 |
 
 **错误码：**
@@ -3316,7 +3333,7 @@ let capturerInfo: audio.AudioCapturerInfo = {
   capturerFlags: 0
 }
 
-audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
+audio.getAudioManager().getRoutingManager().getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
   audioVolumeGroupManager.getMaxAmplitudeForInputDevice(data[0]).then((value) => {
     console.info(`mic volatileume amplitude is: ${value}`);
   }).catch((err: BusinessError) => {
@@ -3367,7 +3384,7 @@ let rendererInfo: audio.AudioRendererInfo = {
   rendererFlags : 0
 }
 
-audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
+audio.getAudioManager().getRoutingManager().getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
   audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(data[0]).then((value) => {
     console.info(`mic volatileume amplitude is: ${value}`);
   }).catch((err: BusinessError) => {
@@ -3660,7 +3677,7 @@ try {
 
 on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
 
-监听音频渲染器更改事件，使用callback方式返回结果。
+订阅监听音频渲染器更改事件（当音频播放流状态变化、设备变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -3668,7 +3685,7 @@ on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArr
 
 | 参数名      | 类型        | 必填      | 说明                                                                     |
 | -------- | ---------- | --------- | ------------------------------------------------------------------------ |
-| type     | string     | 是        | 事件类型，支持的事件`'audioRendererChange'`：当音频渲染器发生更改时触发。     |
+| type     | string     | 是        | 监听事件，固定为：'audioRendererChange'。     |
 | callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | 是  |  回调函数，返回当前音频渲染器信息。 |
 
 **错误码：**
@@ -3717,7 +3734,7 @@ off(type: 'audioRendererChange'): void
 
 | 参数名     | 类型     | 必填 | 说明              |
 | -------- | ------- | ---- | ---------------- |
-| type     | string  | 是   | 事件类型，支持的事件`'audioRendererChange'`：音频渲染器更改事件。 |
+| type     | string  | 是   | 监听事件，固定为：'audioRendererChange'。 |
 
 **错误码：**
 
@@ -3739,15 +3756,15 @@ console.info('######### RendererChange Off is called #########');
 
 on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
-监听音频采集器更改事件，使用callback方式返回结果。
+订阅监听音频采集器更改事件（当音频录制流状态变化、设备变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 **参数：**
 
-| 参数名     | 类型     | 必填      | 说明                                                                                           |
-| -------- | ------- | --------- | ----------------------------------------------------------------------- |
-| type     | string  | 是        | 事件类型，支持的事件`'audioCapturerChange'`：当音频采集器发生更改时触发。     |
+| 参数名     | 类型     | 必填      | 说明                                                                                          |
+| -------- | ------- | --------- | ---------------------------------------------------------------------- |
+| type     | string  | 是        | 监听事件，固定为：'audioCapturerChange'。     |
 | callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | 是     | 回调函数，返回当前音频采集器信息。 |
 
 **错误码：**
@@ -3794,7 +3811,7 @@ off(type: 'audioCapturerChange'): void
 
 | 参数名       | 类型     | 必填 | 说明                                                          |
 | -------- | -------- | --- | ------------------------------------------------------------- |
-| type     | string   |是   | 事件类型，支持的事件`'audioCapturerChange'`：音频采集器更改事件。 |
+| type     | string   |是   | 监听事件，固定为：'audioCapturerChange'。 |
 
 **错误码：**
 
@@ -4146,17 +4163,17 @@ try {
 
 on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
 
-设备更改。音频设备连接状态变化，使用callback方式返回结果。
+订阅监听音频设备连接变化事件（当音频设备连接状态发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
-| 参数名   | 类型                                                 | 必填 | 说明                                       |
-| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
-| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 设备类型的flag。     |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
+| 参数名   | 类型                                                 | 必填 | 说明                      |
+| :------- | :--------------------------------------------------- | :--- |:------------------------|
+| type     | string                                               | 是   | 监听事件，固定为：'deviceChange'。 |
+| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 设备类型的flag。              |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。          |
 
 **错误码：**
 
@@ -4182,7 +4199,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
 
 off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
-取消订阅音频设备连接变化事件，使用callback方式返回结果。
+取消监听音频设备连接变化事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4190,7 +4207,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
+| type     | string                                              | 是   | 监听事件，固定为：'deviceChange'。 |
 | callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 回调函数，返回设备更新详情。 |
 
 **错误码：**
@@ -4240,6 +4257,115 @@ audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER
   }
   console.info('Callback invoked to indicate that the device is set to the active status.');
 });
+```
+
+### getAvailableDevices<sup>12+</sup>
+
+getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
+
+获取音频可选设备列表，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明             |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceUsage| [DeviceUsage](#deviceusage12) | 是   | 设备的usage。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                      |
+| ------------------------------------------------------------ | ------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 返回设备列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
+  console.info(`Indicate that the device list is obtained ${data}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the device list. ${error}`);
+}
+```
+
+### on('availableDeviceChange')<sup>12+</sup>
+
+on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction\>): void
+
+订阅监听音频可选设备连接变化事件（当音频可选设备连接状态发生变化时触发），使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 监听事件，固定为：'availableDeviceChange'。 |
+| deviceUsage | [DeviceUsage](#deviceusage12)                       | 是   | 设备的usage。     |
+| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioRoutingManager.on('availableDeviceChange', audio.DeviceUsage.MEDIA_OUTPUT_DEVICES, (deviceChanged: audio.DeviceChangeAction) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+});
+```
+
+### off('availableDeviceChange')<sup>12+</sup>
+
+off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): void
+
+取消监听音频可选设备连接变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 监听事件，固定为：'availableDeviceChange'。 |
+| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)> | 否   | 回调函数，返回可选设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioRoutingManager.off('availableDeviceChange');
 ```
 
 ### setCommunicationDevice<sup>9+</sup>
@@ -4522,7 +4648,7 @@ try {
 
 on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
 
-订阅最高优先级输出设备变化事件，使用callback方式返回结果。
+订阅监听最高优先级输出设备变化事件（当最高优先级输出设备发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4530,7 +4656,7 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                      |
 | :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| type     | string                                               | 是   | 监听事件，固定为：'preferOutputDeviceChangeForRendererInfo' |
 | rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 表示渲染器信息。                                                |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 回调函数，返回优先级最高的输出设备信息。 |
 
@@ -4562,7 +4688,7 @@ audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, 
 
 off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
 
-取消订阅最高优先级输出音频设备变化事件，使用callback方式返回结果。
+取消监听最高优先级输出音频设备变化事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4570,7 +4696,7 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| type     | string                                              | 是   | 监听事件，固定为：'preferOutputDeviceChangeForRendererInfo'。 |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回优先级最高的输出设备信息。 |
 
 **错误码：**
@@ -4733,7 +4859,7 @@ try {
 
 on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapturerInfo, callback: Callback<AudioDeviceDescriptors\>): void
 
-订阅最高优先级输入设备变化事件，使用callback方式返回结果。
+订阅监听最高优先级输入设备变化事件（当最高优先级输入设备发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4741,7 +4867,7 @@ on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapture
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferredInputDeviceChangeForCapturerInfo' |
+| type     | string                                               | 是   | 监听事件，固定为：'preferredInputDeviceChangeForCapturerInfo' |
 | capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8)        | 是   | 表示采集器信息。              |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 回调函数，返回优先级最高的输入设备信息。 |
 
@@ -4773,7 +4899,7 @@ audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo
 
 off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<AudioDeviceDescriptors\>): void
 
-取消订阅最高优先级输入音频设备变化事件，使用callback方式返回结果。
+取消监听最高优先级输入音频设备变化事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4781,7 +4907,7 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferredInputDeviceChangeForCapturerInfo' |
+| type     | string                                              | 是   | 监听事件，固定为：'preferredInputDeviceChangeForCapturerInfo' |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回优先级最高的输入设备信息。 |
 
 **错误码：**
@@ -4829,7 +4955,7 @@ activateAudioSession(strategy: AudioSessionStrategy): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters unspecified. 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed.|
 | 6800301 | System error. Returned by promise. |
 
@@ -4907,7 +5033,7 @@ let isActivated = audioSessionManager.isAudioSessionActivated();
 
 on(type: 'audioSessionDeactivated', callback: Callback\<AudioSessionDeactivatedEvent>): void
 
-监听音频会话停用事件，使用callback方式返回结果。
+订阅监听音频会话停用事件（当音频会话停用时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -4915,7 +5041,7 @@ on(type: 'audioSessionDeactivated', callback: Callback\<AudioSessionDeactivatedE
 
 | 参数名   | 类型                                                                        | 必填 | 说明                                                         |
 | -------- |---------------------------------------------------------------------------| ---- | ------------------------------------------------------------ |
-| type     | string                                                                    | 是   | 事件回调类型，支持的事件为：'audioSessionDeactivated'。 |
+| type     | string                                                                    | 是   | 监听事件，固定为：'audioSessionDeactivated'。 |
 | callback | Callback<[AudioSessionDeactivatedEvent](#audiosessiondeactivatedevent12)> | 是   | 回调函数，返回音频会话停用原因。 |
 
 **错误码：**
@@ -4924,7 +5050,7 @@ on(type: 'audioSessionDeactivated', callback: Callback\<AudioSessionDeactivatedE
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters unspecified. 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -4947,7 +5073,7 @@ off(type: 'audioSessionDeactivated', callback?: Callback\<AudioSessionDeactivate
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 事件回调类型，支持的事件为：'audioSessionDeactivated'。 |
+| type     | string                                 | 是   | 监听事件，固定为：'audioSessionDeactivated'。 |
 | callback |Callback<[AudioSessionDeactivatedEvent](#audiosessiondeactivatedevent12)> | 否   | 回调函数，返回音频会话停用原因。 |
 
 **错误码：**
@@ -4956,7 +5082,7 @@ off(type: 'audioSessionDeactivated', callback?: Callback\<AudioSessionDeactivate
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -6991,11 +7117,60 @@ getSilentModeAndMixWithOthers(): boolean
 let on = audioRenderer.getSilentModeAndMixWithOthers();
 ```
 
+### setDefaultOutputDevice<sup>12+</sup>
+
+setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
+
+设置默认本机内置发声设备。使用Promise方式异步返回结果。
+
+本接口仅适用于[音频流类型](#streamusage)为语音消息、VoIP语音通话或者VoIP视频通话的场景使用，以及可选的设备类型为听筒、扬声器和系统默认设备。
+
+本接口允许在AudioRenderer创建以后的任何时间被调用，系统会记录应用设置的默认本机内置发声设备。在应用启动播放时，若有外接设备如蓝牙耳机/有线耳机接入，系统优先从外接设备发声；否则系统遵循应用设置的默认本机内置发声设备发声。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名     | 类型             | 必填   | 说明                                                      |
+| ---------- |----------------| ------ |---------------------------------------------------------|
+| deviceType | [DeviceType](#devicetype) | 是     | 设备类型。<br>只支持：EARPIECE（听筒）、SPEAKER（扬声器）和DEFAULT（系统默认设备）。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800103 | Operation not permit at current state.    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 本接口允许在AudioRenderer创建以后的任何时间被调用。
+// 未播放时调用，系统会记录应用设置的默认本机内置发声设备，当应用启动播放时从设置的默认本机内置发声设备发声。
+// 正在播放时调用，在没有外接设备如蓝牙耳机/有线耳机，系统会立即切换到设置的默认本机内置发声设备发声；否则系统会先记录应用设置的默认本机内置发声设备，等外接设备移除后再切换到设置的默认本机内置发声设备发声。
+audioRenderer.setDefaultOutputDevice(audio.DeviceType.SPEAKER).then(() => {
+  console.info('setDefaultOutputDevice Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setDefaultOutputDevice Fail: ${err}`);
+});
+```
+
 ### on('audioInterrupt')<sup>9+</sup>
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-监听音频中断事件（焦点变化），使用callback方式返回结果。
+订阅监听音频中断事件（当音频焦点发生变化时触发），使用callback方式返回结果。
 
 AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
 
@@ -7005,9 +7180,9 @@ AudioRenderer对象在start事件发生时会主动获取焦点，在pause、sto
 
 **参数：**
 
-| 参数名   | 类型                                         | 必填 | 说明                                                         |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（中断事件被触发，音频渲染被中断。） |
+| 参数名   | 类型                                         | 必填 | 说明                                                        |
+| -------- | -------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | string                                       | 是   | 监听事件，固定为：'audioInterrupt'。 |
 | callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 回调函数，返回播放中断时，应用接收的中断事件信息。 |
 
 **错误码：**
@@ -7083,7 +7258,7 @@ async function onAudioInterrupt(){
 
 on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。当渲染的帧数到达frame参数的值时，触发回调，仅调用一次，使用callback方式返回结果。
+订阅监听到达标记事件（当渲染的帧数到达frame参数的值时触发，仅调用一次），使用callback方式返回结果。
 
 举例说明，如果frame设置为100，当渲染帧数到达第100帧时，将上报信息。
 
@@ -7093,7 +7268,7 @@ on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                      |
 | :------- | :----------------------- | :--- | :---------------------------------------- |
-| type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。 |
+| type     | string                   | 是   | 监听事件，固定为：'markReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。该值必须大于0。         |
 | callback | Callback\<number>         | 是   | 回调函数，返回frame参数的值。 |
 
@@ -7108,11 +7283,11 @@ audioRenderer.on('markReach', 1000, (position: number) => {
 ```
 
 
-### off('markReach') <sup>8+</sup>
+### off('markReach')<sup>8+</sup>
 
 off(type: 'markReach'): void
 
-取消订阅标记事件。
+取消监听到达标记事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7120,7 +7295,7 @@ off(type: 'markReach'): void
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | :----- | :----- | :--- | :------------------------------------------------ |
-| type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'markReach'。 |
+| type   | string | 是   | 监听事件，固定为：'markReach'。 |
 
 **示例：**
 
@@ -7128,11 +7303,11 @@ off(type: 'markReach'): void
 audioRenderer.off('markReach');
 ```
 
-### on('periodReach') <sup>8+</sup>
+### on('periodReach')<sup>8+</sup>
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。每当渲染的帧数达到frame参数的值时，触发回调，即按周期上报信息。使用callback方式返回结果。
+订阅监听到达标记事件（每当渲染的帧数达到frame参数的值时触发，即按周期上报信息），使用callback方式返回结果。
 
 举例说明，如果frame设置为10，每当渲染10帧数据时将上报信息，例如在第10帧、20帧、30帧，均会上报信息。
 
@@ -7142,7 +7317,7 @@ on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                        |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
-| type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
+| type     | string                   | 是   | 监听事件，固定为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。该值必须大于 0。           |
 | callback | Callback\<number>         | 是   | 回调函数，返回frame参数的值。 |
 
@@ -7156,11 +7331,11 @@ audioRenderer.on('periodReach', 1000, (position: number) => {
 });
 ```
 
-### off('periodReach') <sup>8+</sup>
+### off('periodReach')<sup>8+</sup>
 
 off(type: 'periodReach'): void
 
-取消订阅标记事件。
+取消监听到达标记事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7168,7 +7343,7 @@ off(type: 'periodReach'): void
 
 | 参数名 | 类型   | 必填 | 说明                                                |
 | :----- | :----- | :--- | :-------------------------------------------------- |
-| type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'periodReach'。 |
+| type   | string | 是   | 监听事件，固定为：'periodReach'。 |
 
 **示例：**
 
@@ -7176,11 +7351,11 @@ off(type: 'periodReach'): void
 audioRenderer.off('periodReach');
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
-订阅监听状态变化，使用callback方式返回结果。
+订阅监听状态变化事件（当AudioRenderer的状态发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7188,7 +7363,7 @@ on(type: 'stateChange', callback: Callback<AudioState\>): void
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'stateChange'。 |
+| type     | string                     | 是   | 监听事件，固定为：'stateChange'。 |
 | callback | Callback\<[AudioState](#audiostate8)> | 是   | 回调函数，返回当前音频的状态。 |
 
 **示例：**
@@ -7204,11 +7379,11 @@ audioRenderer.on('stateChange', (state: audio.AudioState) => {
 });
 ```
 
-### on('outputDeviceChange') <sup>10+</sup>
+### on('outputDeviceChange')<sup>10+</sup>
 
 on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
-订阅监听音频输出设备变化，使用callback方式返回结果。
+订阅监听音频输出设备变化事件（当音频输出设备发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -7216,7 +7391,7 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
+| type     | string                     | 是   | 监听事件，固定为：'outputDeviceChange'。 |
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 回调函数，返回当前音频流的输出设备描述信息。 |
 
 **错误码：**
@@ -7238,11 +7413,11 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
 });
 ```
 
-### off('outputDeviceChange') <sup>10+</sup>
+### off('outputDeviceChange')<sup>10+</sup>
 
 off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
 
-取消订阅监听音频输出设备变化，使用callback方式返回结果。
+取消监听音频输出设备变化事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -7250,7 +7425,7 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
+| type     | string                     | 是   | 监听事件，固定为：'outputDeviceChange'。 |
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回当前音频流的输出设备描述信息。 |
 
 **错误码：**
@@ -7272,11 +7447,11 @@ audioRenderer.off('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptor
 });
 ```
 
-### on('outputDeviceChangeWithInfo') <sup>11+</sup>
+### on('outputDeviceChangeWithInfo')<sup>11+</sup>
 
 on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChangeInfo>): void
 
-订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+订阅监听音频流输出设备变化及原因事件（当音频输出设备发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -7284,7 +7459,7 @@ on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChan
 
 | 参数名   | 类型                                                                       | 必填 | 说明                                          |
 | :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
-| type     | string                                                                   | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| type     | string                                                                   | 是   | 监听事件，固定为：'outputDeviceChangeWithInfo'。 |
 | callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
@@ -7307,11 +7482,11 @@ audioRenderer.on('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStr
 });
 ```
 
-### off('outputDeviceChangeWithInfo') <sup>11+</sup>
+### off('outputDeviceChangeWithInfo')<sup>11+</sup>
 
 off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceChangeInfo>): void
 
-取消订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+取消监听音频流输出设备变化及原因事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -7319,7 +7494,7 @@ off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceCh
 
 | 参数名   | 类型                                                                       | 必填 | 说明                                          |
 | :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
-| type     | string                                                                   | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| type     | string                                                                   | 是   | 监听事件，固定为：'outputDeviceChangeWithInfo'。 |
 | callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
@@ -7346,7 +7521,7 @@ audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioSt
 
 on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
-订阅监听音频数据写入回调，使用 callback 方式返回结果。
+订阅监听音频数据写入回调事件（当需要写入音频数据时触发），使用 callback 方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7354,7 +7529,7 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
 | 参数名   | 类型                             | 必填 | 说明                                  |
 | :------- |:--------------------------------| :--- |:--------------------------------------|
-| type     | string                           | 是   | 事件回调类型，支持的事件为：'writeData'。 |
+| type     | string                           | 是   | 监听事件，固定为：'writeData'。 |
 | callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 是   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](#audiodatacallbackresult12)。        |
 
 **错误码：**
@@ -7379,7 +7554,7 @@ class Options {
 
 let bufferSize: number = 0;
 let path = getContext().cacheDir;
-// 确保该路径下存在该资源
+// 确保该沙箱路径下存在该资源
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
@@ -7412,7 +7587,7 @@ audioRenderer.start().then(() => {
 
 off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 
-取消订阅监听音频数据写入回调，使用 callback 方式返回结果。
+取消监听音频数据写入回调事件，使用 callback 方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7420,7 +7595,7 @@ off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 
 | 参数名   | 类型                             | 必填 | 说明                                  |
 | :------- |:--------------------------------| :--- |:--------------------------------------|
-| type     | string                           | 是   | 事件回调类型，支持的事件为：'writeData'。 |
+| type     | string                           | 是   | 监听事件，固定为：'writeData'。 |
 | callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 否   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](#audiodatacallbackresult12)。 |
 
 **错误码：**
@@ -8218,7 +8393,7 @@ if (info.deviceDescriptors[0].encodingTypes) {
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-监听音频中断事件（焦点变化），使用callback方式返回结果。
+订阅监听音频中断事件（当音频焦点发生变化时触发），使用callback方式返回结果。
 
 AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
 
@@ -8230,7 +8405,7 @@ AudioCapturer对象在start事件发生时会主动获取焦点，在pause、sto
 
 | 参数名   | 类型                                         | 必填 | 说明                                                         |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（中断事件被触发，音频采集被中断。） |
+| type     | string                                       | 是   | 监听事件，固定为：'audioInterrupt'。 |
 | callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 回调函数，返回播放中断时，应用接收的中断事件信息。 |
 
 **错误码：**
@@ -8295,7 +8470,7 @@ async function onAudioInterrupt(){
 
 off(type: 'audioInterrupt'): void
 
-取消订阅音频中断事件。
+取消监听音频中断事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -8303,7 +8478,7 @@ off(type: 'audioInterrupt'): void
 
 | 参数名   | 类型                                         | 必填 | 说明                                                         |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | 是   | 事件回调类型，支持的事件为：'audioInterrupt' |
+| type     | string                                       | 是   | 监听事件，固定为：'audioInterrupt'。 |
 
 **错误码：**
 
@@ -8324,7 +8499,7 @@ audioCapturer.off('audioInterrupt');
 
 on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
-订阅监听音频输入设备变化，使用callback方式返回结果。
+订阅监听音频输入设备变化事件（当音频输入设备发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -8332,7 +8507,7 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'inputDeviceChange'。 |
+| type     | string                     | 是   | 监听事件，固定为：'inputDeviceChange'。 |
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 回调函数，返回监听的音频输入设备变化(返回数据为切换后的设备信息)。 |
 
 **错误码：**
@@ -8357,7 +8532,7 @@ audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescri
 
 off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
 
-取消订阅音频输入设备更改事件，使用callback方式返回结果。
+取消监听音频输入设备更改事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -8365,7 +8540,7 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 | 参数名   | 类型                       | 必填 | 说明                                       |
 | :------- | :------------------------- | :--- |:-----------------------------------------|
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'inputDeviceChange'。       |
+| type     | string                     | 是   | 监听事件，固定为：'inputDeviceChange'。       |
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回监听的音频输入设备信息。 |
 
 **错误码：**
@@ -8387,7 +8562,7 @@ audioCapturer.off('inputDeviceChange');
 
 on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): void
 
-订阅监听录音流配置变化，使用callback方式返回结果。订阅内部是异步实现，是非精确回调，在录音流配置变化的同时注册回调，收到的返回结果存在变化可能性。
+订阅监听录音流配置变化事件（当音频录制流状态变化、设备变化时触发），使用callback方式返回结果。订阅内部是异步实现，是非精确回调，在录音流配置变化的同时注册回调，收到的返回结果存在变化可能性。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8395,7 +8570,7 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioCapturerChange'。 |
+| type     | string                     | 是   | 监听事件，固定为：'audioCapturerChange'。 |
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 回调函数，录音流配置或状态变化时返回监听的录音流当前配置和状态信息。 |
 
 **错误码：**
@@ -8421,7 +8596,7 @@ audioCapturer.on('audioCapturerChange', (capturerChangeInfo: audio.AudioCapturer
 
 off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>): void
 
-取消订阅音频输入设备更改事件，使用callback方式返回结果。
+取消监听录音流配置变化事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8429,7 +8604,7 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioCapturerChange'。 |
+| type     | string                     | 是   | 监听事件，固定为：'audioCapturerChange'。 |
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置或状态变化。 |
 
 **错误码：**
@@ -8451,7 +8626,7 @@ audioCapturer.off('audioCapturerChange');
 
 on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅标记到达的事件。当采集的帧数达到frame参数的值时，触发回调，仅调用一次，使用callback方式返回结果。
+订阅监听标记到达事件（当采集的帧数达到frame参数的值时触发，仅调用一次），使用callback方式返回结果。
 
 举例说明，如果frame设置为100，当采集帧数到达第100帧时，将上报信息。
 
@@ -8461,7 +8636,7 @@ on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                       |
 | :------- | :----------------------  | :--- | :----------------------------------------- |
-| type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。  |
+| type     | string                   | 是   | 监听事件，固定为：'markReach'。  |
 | frame    | number                   | 是   | 触发事件的帧数。该值必须大于0。           |
 | callback | Callback\<number>         | 是   | 回调函数，返回frame参数的值。 |
 
@@ -8479,7 +8654,7 @@ audioCapturer.on('markReach', 1000, (position: number) => {
 
 off(type: 'markReach'): void
 
-取消订阅标记到达的事件。
+取消监听标记到达事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8487,7 +8662,7 @@ off(type: 'markReach'): void
 
 | 参数名 | 类型   | 必填 | 说明                                          |
 | :----- | :----- | :--- | :-------------------------------------------- |
-| type   | string | 是   | 取消事件回调类型，支持的事件为：'markReach'。 |
+| type   | string | 是   | 监听事件，固定为：'markReach'。 |
 
 **示例：**
 
@@ -8499,7 +8674,7 @@ audioCapturer.off('markReach');
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。每当采集的帧数达到frame参数的值时，触发回调，即按周期上报信息。使用callback方式返回结果。
+订阅监听到达标记事件（当采集的帧数达到frame参数的值时触发，即按周期上报信息），使用callback方式返回结果。
 
 举例说明，如果frame设置为10，每当采集10帧数据时将上报信息，例如在第10帧、20帧、30帧，均会上报信息。
 
@@ -8509,7 +8684,7 @@ on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                        |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
-| type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
+| type     | string                   | 是   | 监听事件，固定为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。该值必须大于0。            |
 | callback | Callback\<number>         | 是   |回调函数，返回frame参数的值。    |
 
@@ -8527,7 +8702,7 @@ audioCapturer.on('periodReach', 1000, (position: number) => {
 
 off(type: 'periodReach'): void
 
-取消订阅标记到达的事件。
+取消监听标记到达事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8535,7 +8710,7 @@ off(type: 'periodReach'): void
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | :----- | :----- | :--- | :---------------------------------------------- |
-| type   | string | 是  | 取消事件回调类型，支持的事件为：'periodReach'。 |
+| type   | string | 是  | 监听事件，固定为：'periodReach'。 |
 
 **示例：**
 
@@ -8543,11 +8718,11 @@ off(type: 'periodReach'): void
 audioCapturer.off('periodReach');
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
-订阅监听状态变化，使用callback方式返回结果。
+订阅监听状态变化事件（当AudioCapturer状态发生变化时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8555,7 +8730,7 @@ on(type: 'stateChange', callback: Callback<AudioState\>): void
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'stateChange'。 |
+| type     | string                     | 是   | 监听事件，固定为：'stateChange'。 |
 | callback | Callback\<[AudioState](#audiostate8)> | 是   | 回调函数，返回当前音频的状态。 |
 
 **示例：**
@@ -8575,7 +8750,7 @@ audioCapturer.on('stateChange', (state: audio.AudioState) => {
 
 on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
-订阅监听音频数据读入回调，使用callback方式返回结果。
+订阅监听音频数据读入回调事件（当需要读取音频流数据时触发），使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8583,7 +8758,7 @@ on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
 | 参数名   | 类型                     | 必填 | 说明                        |
 | :------- |:-----------------------| :--- |:--------------------------|
-| type     | string                 | 是   | 事件回调类型，支持的事件为：'readData'。 |
+| type     | string                 | 是   | 监听事件，固定为：'readData'。 |
 | callback | Callback\<ArrayBuffer> | 是   | 回调函数，返回读到的数据缓冲区。            |
 
 **错误码：**
@@ -8608,8 +8783,8 @@ class Options {
 
 let bufferSize: number = 0;
 let path = getContext().cacheDir;
-// 确保该路径下存在该资源
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+// 确保该沙箱路径下存在该资源
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
 let readDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {
@@ -8633,7 +8808,7 @@ audioCapturer.start((err: BusinessError) => {
 
 off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
-取消订阅监听音频数据读入回调，使用callback方式返回结果。
+取消监听音频数据读入回调事件，使用callback方式返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8641,7 +8816,7 @@ off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
 | 参数名   | 类型                     | 必填 | 说明                                         |
 | :------- |:-----------------------| :--- |:-------------------------------------------|
-| type     | string                 | 是   | 事件回调类型，支持的事件为：'readData'。                 |
+| type     | string                 | 是   | 监听事件，固定为：'readData'。                 |
 | callback | Callback\<ArrayBuffer> | 否   | 回调函数，返回读到的数据缓冲区。                            |
 
 **错误码：**

@@ -5,6 +5,8 @@ UIAbility is an application component that has the UI. The UIAbility module, inh
 - [Caller](#caller): an object returned by [startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall). The CallerAbility (caller) uses this object to communicate with the CalleeAbility (callee).
 - [Callee](#callee): an internal object of UIAbility. The CalleeAbility (callee) uses this object to communicate with the CallerAbility (caller).
 
+For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -21,12 +23,12 @@ import { UIAbility } from '@kit.AbilityKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| Yes| Context of the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| launchWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters for starting the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters carried in the last request.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| callee | [Callee](#callee) | No| Yes| Object that invokes the stub service.|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| No| Context of the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| launchWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters for starting the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| No| Parameters carried in the last request.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| callee | [Callee](#callee) | No| No| Object that invokes the stub service.|
 
 ## UIAbility.onCreate
 
@@ -873,7 +875,7 @@ export default class MainAbility extends UIAbility {
 }
 ```
 
-### Caller.on
+### Caller.on('release')
 
 on(type: 'release', callback: OnReleaseCallback): void
 
@@ -928,7 +930,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.off
+### Caller.off('release')
 
 off(type: 'release', callback: OnReleaseCallback): void
 
@@ -984,7 +986,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.off
+### Caller.off('release')
 
 off(type: 'release'): void
 

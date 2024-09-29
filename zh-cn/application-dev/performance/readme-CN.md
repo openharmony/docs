@@ -1,4 +1,4 @@
-- 性能
+# 性能
   - [性能优化概览](performance-overview.md)
   - [应用开发性能优化入门引导](application-performance-optimization-guidance.md)
   - [应用性能优化常见问题解决指导](performance-optimization-practical-guidance.md)
@@ -28,7 +28,7 @@
     - [避免在滑动场景的高频回调接口中处理耗时操作](avoid_high_frequency_callback_execute_lengthy_operation.md)
     - [合理使用系统接口](reasonable_using_system_interfaces.md)
     - [避免在主线程中执行耗时操作](avoid_time_consuming_operations_in_mainthread.md)
-    - [模糊场景性能优化](fuzzy_scene_performance_optimization.md)
+    - [图像模糊动效优化：静态模糊与动态模糊的性能对比解析](fuzzy_scene_performance_optimization.md)
     - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](native_drawing_substitute_canvas.md)
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
@@ -51,6 +51,7 @@
     - [在线短视频流畅切换](performance-quick-switch-short-video.md)
     - [合理使用缓存提升性能](reasonable_using_cache_improve_performance.md)
     - [滑动白块问题解决指导](resolve_sliding_white_blocks.md)
+    - [相机分段式拍照性能提升实践](performance-camera-shot2see.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
