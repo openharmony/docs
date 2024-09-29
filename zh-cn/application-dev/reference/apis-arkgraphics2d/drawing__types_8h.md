@@ -70,7 +70,8 @@
 | typedef enum [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding)  [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding) | 文本编码类型枚举。 | 
 | typedef struct [OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr)  [OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) | 定义字体管理类, 用于字体管理。 | 
 | typedef struct [OH_Drawing_FontStyleSet](_drawing.md#oh_drawing_fontstyleset)  [OH_Drawing_FontStyleSet](_drawing.md#oh_drawing_fontstyleset) | 定义字体样式集, 用于字体样式族匹配。 | 
-
+| typedef struct [OH_Drawing_RecordCmdUtils](_drawing.md#oh_drawing_recordcmdutils) [OH_Drawing_RecordCmdUtils](_drawing.md#oh_drawing_recordcmdutils) | 定义指令录制工具，用于生成录制指令。 | 
+| typedef struct [OH_Drawing_RecordCmd](_drawing.md#oh_drawing_recordcmd) [OH_Drawing_RecordCmd](_drawing.md#oh_drawing_recordcmd) | 定义录制指令类, 用于存储录制指令的集合。 |
 
 ### 枚举
 

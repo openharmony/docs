@@ -44,6 +44,7 @@
     - [drawing_pen.h](drawing__pen_8h.md)
     - [drawing_pixel_map.h](drawing__pixel__map_8h.md)
     - [drawing_point.h](drawing__point_8h.md)
+    - [drawing_record_cmd.h](drawing__record__cmd_8h.md)
     - [drawing_rect.h](drawing__rect_8h.md)
     - [drawing_region.h](drawing__region_8h.md)
     - [drawing_register_font.h](drawing__register__font_8h.md)
