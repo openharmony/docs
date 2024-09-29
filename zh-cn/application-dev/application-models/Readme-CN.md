@@ -49,6 +49,7 @@
     - [拉起指定类型的应用](start-intent-panel.md)
       - [拉起导航类应用](start-navigation-apps.md)
       - [拉起邮件类应用](start-email-apps.md)
+      - [拉起邮件类应用（mailto方式）](start-email-apps-by-mailto.md)
       - [拉起金融类应用](start-finance-apps.md)
       - [拉起图片编辑类应用](photoEditorExtensionAbility.md)
       - [拉起文件处理类应用](file-processing-apps-startup.md)
