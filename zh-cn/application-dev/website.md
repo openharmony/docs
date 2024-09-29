@@ -307,7 +307,7 @@
           - [CPU密集型任务开发指导 (TaskPool和Worker)](arkts-utils/cpu-intensive-task-development.md)
           - [I/O密集型任务开发指导 (TaskPool)](arkts-utils/io-intensive-task-development.md)
           - [同步任务开发指导 (TaskPool和Worker)](arkts-utils/sync-task-development.md)
-        - 附录<!--appendixes-->
+        - 附录<!--concurrency-appendixes-->
           - [Actor并发模型对比内存共享并发模型](arkts-utils/actor-model-development-samples.md)
           - [TaskPool和Worker支持的序列化类型](arkts-utils/serialization-support-types.md)
           - [\@Concurrent装饰器：声明并校验并发函数](arkts-utils/arkts-concurrent.md)
@@ -1341,7 +1341,7 @@
         - [系统相册资源使用指导](media/medialibrary/photoAccessHelper-systemAlbum-guidelines.md)
         - [媒体资源变更通知相关指导](media/medialibrary/photoAccessHelper-notify-guidelines.md)
         - [使用MediaAssetManager请求图片资源(C/C++)](media/medialibrary/using-ndk-mediaassetmanager-for-request-resource.md)
-  - 图形<!--graphics-->
+  - 图形
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-2d-->
       - [ArkGraphics 2D简介](graphics/arkgraphics2D-introduction.md)
       - 使用可变帧率能力定制不同内容的绘制帧率<!--displaysync-->
@@ -1725,7 +1725,7 @@
           - continuation<!--continuation-->
             - [continuationExtraParams](reference/apis-ability-kit/js-apis-continuation-continuationExtraParams.md)
             - [continuationResult](reference/apis-ability-kit/js-apis-continuation-continuationResult.md)
-          - security<!--security-->
+          - security<!--ability-security-->
             - [PermissionRequestResult](reference/apis-ability-kit/js-apis-permissionrequestresult.md)
           - wantAgent<!--wantAgent-->
             - [triggerInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-triggerInfo.md)
@@ -1778,8 +1778,9 @@
         - 头文件<!--ability-headerfile-->
           - [ability_access_control.h](reference/apis-ability-kit/ability__access__control_8h.md)
           - [ability_runtime_common.h](reference/apis-ability-kit/ability__runtime__common_8h.md)
-          - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
+          - [application_context.h](reference/apis-ability-kit/application__context_8h.md)
           - [context_constant.h](reference/apis-ability-kit/context__constant_8h.md)
+          - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
           - [native_child_process.h](reference/apis-ability-kit/native__child__process_8h.md)
         - 结构体<!--ability-struct-->
           - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/_o_h___native_bundle_application_info.md)
@@ -1958,7 +1959,7 @@
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
-        - 图形图像<!--graphics-->
+        - 图形图像<!--graphics-api-->
           - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
           - [@ohos.window (窗口)](reference/apis-arkui/js-apis-window.md)
@@ -2246,7 +2247,7 @@
           <!--Del-->
           - [FormComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)
           <!--DelEnd-->
-        - 安全<!--security-->
+        - 安全<!--arkui-security-->
           - [安全控件通用属性](reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)
           - [LocationButton](reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)
           - [PasteButton](reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md)
@@ -3184,9 +3185,9 @@
           - [系统电源管理错误码](reference/apis-basic-services-kit/errorcode-power.md)
           - [账号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
           - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
+          - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
           <!--Del-->
           - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
-          - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
           - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
           - [智能语音错误码](reference/apis-basic-services-kit/errorcode-intelligentVoice.md)
           <!--DelEnd-->
@@ -3726,7 +3727,7 @@
         - 结构体<!--media-library-struct-->
           - [MediaLibrary_RequestId](reference/apis-media-library-kit/_media_library___request_id.md)
           - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)  
-  - 图形<!--graphics-api-->
+  - 图形
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-api-->
       - ArkTS API<!--arkgraphics-arkts-->
         - [@ohos.effectKit (图像效果)](reference/apis-arkgraphics2d/js-apis-effectKit.md)
