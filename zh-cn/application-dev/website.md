@@ -1,4 +1,5 @@
 # OpenHarmony应用开发文档
+- [应用开发导读](application-dev-guide.md)
 - 入门<!--application-getting-started-->
   <!--Del-->
   - 快速入门<!--quick-start-->
