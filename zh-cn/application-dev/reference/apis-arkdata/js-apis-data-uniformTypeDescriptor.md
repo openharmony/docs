@@ -567,3 +567,117 @@ try {
     console.error(`getUniformDataTypeByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
 }
 ```
+
+## uniformTypeDescriptor.getUniformDataTypesByFilenameExtension<sup>13+</sup>
+
+getUniformDataTypesByFilenameExtension(filenameExtension: string, belongsTo?: string): Array\<string>
+
+根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型ID列表。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| filenameExtension    | string  | 是    |文件后缀名称。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID，无默认值，若不传入此参数则只按照文件后缀名称查询标准化数据类型ID。   |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| Array\<string> | 返回与给定文件后缀名以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID列表，如果要查询的标准化数据类型不存在则返回根据入参按指定规则生成的动态类型列表。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**示例：**
+
+```ts
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let typeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension('.ts', 'general.source-code');
+    for (let typeId of typeIds) {
+        console.info(`typeId is ${typeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+
+// 根据“.myts”，“general.plain-text”查不到预置数据类型则按返回根据入参信息生成的动态类型列表。
+try {
+    let flexTypeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension('.myts', 'general.plain-text');
+    for (let flexTypeId of flexTypeIds) {
+        console.info(`typeId is flex type, flex typeId is ${flexTypeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByFilenameExtension throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+```
+
+## uniformTypeDescriptor.getUniformDataTypesByMIMEType<sup>13+</sup>
+
+getUniformDataTypesByMIMEType(mimeType: string, belongsTo?: string): Array\<string>
+
+根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型ID列表。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填  | 说明                    |
+| -----  | ------  | ----  | ----------------------- |
+| mimeType    | string  | 是    |MIME类型名称。   |
+| belongsTo    | string  | 否    |要查询的标准化数据类型所归属类型ID。无默认值，若不传入此参数则只按照MIME类型名称查询标准化数据类型ID。   |
+
+**返回值：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| Array\<string> | 返回与MIME类型名称以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID列表，如果要查询的标准化数据类型不存在则返回根据入参按指定规则生成的动态类型列表。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**示例：**
+
+```ts
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let typeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType('text/plain', 'general.text');
+    for (let typeId of typeIds) {
+        console.info(`typeId is ${typeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+
+// 根据“image/myimage”, “general.image”查不到预置数据类型则按返回根据入参信息生成的动态类型列表。
+try {
+    let flexTypeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType('image/myimage', 'general.image');
+    for (let flexTypeId of flexTypeIds) {
+        console.info(`typeId is flex type, flex typeId is ${flexTypeId}`);
+    }
+} catch(e) {
+    let error: BusinessError = e as BusinessError;
+    console.error(`getUniformDataTypesByMIMEType throws an exception. code is ${error.code}, message is ${error.message} `);
+}
+```

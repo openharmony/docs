@@ -242,8 +242,8 @@
 | const char \* [OH_UdmfProperty_GetTag](#oh_udmfproperty_gettag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取用户自定义标签值。 | 
 | int64_t [OH_UdmfProperty_GetTimestamp](#oh_udmfproperty_gettimestamp) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取时间戳。 | 
 | [Udmf_ShareOption](#udmf_shareoption)[OH_UdmfProperty_GetShareOption](#oh_udmfproperty_getshareoption) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取设备内适用范围属性。 | 
-| int [OH_UdmfProperty_GetExtrasIntParam](#oh_udmfproperty_getextrasintparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key, int defaultValue) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取对应的整型参数。 | 
-| const char \* [OH_UdmfProperty_GetExtrasStringParam](#oh_udmfproperty_getextrasstringparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取对应的字符串参数。 | 
+| int [OH_UdmfProperty_GetExtrasIntParam](#oh_udmfproperty_getextrasintparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key, int defaultValue) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取自定义的附加整型参数。 | 
+| const char \* [OH_UdmfProperty_GetExtrasStringParam](#oh_udmfproperty_getextrasstringparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取自定义的附加字符串参数。 | 
 | int [OH_UdmfProperty_SetTag](#oh_udmfproperty_settag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*tag) | 设置数据属性[OH_UdmfProperty](#oh_udmfproperty)的自定义标签值。 | 
 | int [OH_UdmfProperty_SetShareOption](#oh_udmfproperty_setshareoption) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, [Udmf_ShareOption](#udmf_shareoption) option) | 设置数据属性[OH_UdmfProperty](#oh_udmfproperty)的设备内适用范围**OH_Udmf_ShareOption**参数。 | 
 | int [OH_UdmfProperty_SetExtrasIntParam](#oh_udmfproperty_setextrasintparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key, int param) | 设置数据属性[OH_UdmfProperty](#oh_udmfproperty)的附加整型参数。 | 
@@ -2830,7 +2830,7 @@ int OH_UdmfProperty_GetExtrasIntParam (OH_UdmfProperty* pThis, const char* key, 
 
 **描述**
 
-从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取对应的整型参数。
+从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取自定义的附加整型参数。
 
 **起始版本：** 12
 
@@ -2859,7 +2859,7 @@ const char* OH_UdmfProperty_GetExtrasStringParam (OH_UdmfProperty* pThis, const 
 
 **描述**
 
-从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取对应的字符串参数。
+从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取自定义的附加字符串参数。
 
 **起始版本：** 12
 

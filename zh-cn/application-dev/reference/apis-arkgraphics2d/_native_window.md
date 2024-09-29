@@ -46,11 +46,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [NativeWindowOperation](#nativewindowoperation-1) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br/>SET_HDR_WHITE_POINT_BRIGHTNESS, SET_SDR_WHITE_POINT_BRIGHTNESS, SET_SOURCE_TYPE,GET_SOURCE_TYPE,SET_APP_FRAMEWORK_TYPE,GET_APP_FRAMEWORK_TYPE<br/>} | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 |
+| [NativeWindowOperation](#nativewindowoperation) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,<br/>GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE, SET_SOURCE_TYPE, GET_SOURCE_TYPE,<br/>SET_APP_FRAMEWORK_TYPE, GET_APP_FRAMEWORK_TYPE, SET_HDR_WHITE_POINT_BRIGHTNESS, SET_SDR_WHITE_POINT_BRIGHTNESS,<br/>SET_DESIRED_PRESENT_TIMESTAMP = 24<br/>} | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 |
 | [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | 缩放模式Scaling Mode。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
 | [OHScalingModeV2](#ohscalingmodev2-1) {<br/>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br/>OH_SCALING_MODE_SCALE_FIT_V2<br/>} | 渲染缩放模式枚举。  | 
 | [OHHDRMetadataKey](#ohhdrmetadatakey) {<br/>OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,<br/>OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,<br/>OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,<br/>OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13<br/>} | 枚举HDR元数据关键字。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
-| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000, NATIVE_ERROR_UNSUPPORTED = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000,NATIVE_ERROR_HDI_ERROR = 50007000, NATIVE_ERROR_BINDER_ERROR = 50401000,NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br/>} | 接口错误码说明（仅用于查询）。  | 
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000, NATIVE_ERROR_UNSUPPORTED = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br/>} | 接口错误码说明（仅用于查询）。  | 
 | [OHSurfaceSource](#ohsurfacesource-1) {<br/>OH_SURFACE_SOURCE_DEFAULT = 0, OH_SURFACE_SOURCE_UI, OH_SURFACE_SOURCE_GAME, OH_SURFACE_SOURCE_CAMERA,OH_SURFACE_SOURCE_VIDEO<br/>} | 本地窗口内容来源类型枚举。 | 
 
 ### 函数
@@ -246,6 +246,7 @@ enum OHNativeErrorCode
 | NATIVE_ERROR_EGL_STATE_UNKNOWN  | egl环境状态异常   | 
 | NATIVE_ERROR_EGL_API_FAILED  | egl接口调用失败   | 
 
+
 ### NativeWindowOperation
 
 ```
@@ -277,13 +278,14 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | SET_TRANSFORM | 设置本地窗口缓冲区变换， 函数中的可变参数是 [输入] int32_t transform。 | 
 | GET_TRANSFORM | 获取本地窗口缓冲区变换， 函数中的可变参数是 [输出] int32_t \*transform。 | 
 | SET_UI_TIMESTAMP | 设置本地窗口缓冲区UI时间戳， 函数中的可变参数是 [输入] uint64_t uiTimestamp。 | 
-| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | 获取内存队列大小, 函数中的可变参数是 [输出] int32_t \*size。<br/>从API version 12开始支持此枚举。 | 
-| SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度, 函数中的可变参数是 [输入] float brightness。 取值范围为[0.0f, 1.0f]。 | 
-| SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度, 函数中的可变参数是 [输入] float brightness。 取值范围为[0.0f, 1.0f]。 | 
-| SET_SOURCE_TYPE<sup>12+</sup> | 设置本地窗口内容来源, 函数中的可变参数是 [输入] int32_t sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource-1)枚举值。 |
-| GET_SOURCE_TYPE<sup>12+</sup> | 获取本地窗口内容来源, 函数中的可变参数是 [输出] int32_t \*sourceType，取值具体可见[OHSurfaceSource](#ohsurfacesource-1)枚举值。|
-| SET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 设置本地窗口应用框架名称, 函数中的可变参数是 [输入] char\* frameworkType，最大支持64字节。 |
-| GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 获取本地窗口应用框架名称, 函数中的可变参数是 [输出] char\* frameworkType。 |
+| GET_BUFFERQUEUE_SIZE<sup>12+</sup> | 获取内存队列大小, 函数中的可变参数是 [输出] int32_t \*size. | 
+| SET_SOURCE_TYPE<sup>12+</sup> | 设置本地窗口内容来源, 函数中的可变参数是 [输入] int32_t sourceType， 取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。 | 
+| GET_SOURCE_TYPE<sup>12+</sup> | 获取本地窗口内容来源, 函数中的可变参数是 [输出] int32_t \*sourceType， 取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。 | 
+| SET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 设置本地窗口应用框架名称, 函数中的可变参数是 [输入] char\* frameworkType， 最大支持64字节。 | 
+| GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 获取本地窗口应用框架名称, 函数中的可变参数是 [输出] char\* frameworkType。 | 
+| SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]. | 
+| SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]. | 
+| SET_DESIRED_PRESENT_TIMESTAMP<sup>13+</sup> | 设置本地窗口缓冲区期望上屏时间的时间戳。 当且仅当RenderService为本地窗口的消费者时，该时间戳生效。 本操作执行后需要配合调用[OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer)生效。 生产者下一次放入队列的buffer，达到该期望上屏时间后，才会被RenderService消费并上屏。 如果buffer队列中存在多个生产者放入的buffer，都设置了desiredPresentTimestamp并已达到期望上屏时间，则较早入队的buffer将被消费者丢弃回队列。 如果期望上屏时间大于消费者提供的时间 1 秒以上，则该期望上屏时间戳将被忽略。 函数中的可变参数是 [输入] int64_t desiredPresentTimestamp，取值范围大于0，应由std::chrono::steady_clock标准库时钟生成，且单位为纳秒。 | 
 
 ### OHHDRMetadataKey
 

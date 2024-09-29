@@ -296,7 +296,7 @@ hasType(type: string): boolean
 
 | **错误码ID** | **错误信息**                                |
 | ------------ | ------------------------------------------- |
-| 401          | Possible causes:1.Mandatory parameters are left unspecified; <br>2.Incorrect parameters types.  |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
