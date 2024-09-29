@@ -40,6 +40,11 @@
   - tag
     - [nfctech (标准NFC-Tag Nfc 技术)](js-apis-nfctech.md)
     - [tagSession (标准NFC-Tag TagSession)](js-apis-tagSession.md)
+- C API
+  - 模块
+    - [Bluetooth](_bluetooth.md)
+  - 头文件
+    - [oh_bluetooth.h](oh__bluetooth_8h.md)
 - 错误码
   - [Bluetooth错误码](errorcode-bluetoothManager.md)
   - [WIFI错误码](errorcode-wifi.md)
