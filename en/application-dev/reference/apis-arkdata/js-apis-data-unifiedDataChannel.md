@@ -20,10 +20,10 @@ Enumerates the options for using **UnifiedData** in a device.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name         | Value | Description               |
+| Name         | Value| Description               |
 |-------------|---|-------------------|
-| IN_APP       | 0 | **UnifiedData** can be used only in the same application of a device. |
-| CROSS_APP | 1 | **UnifiedData** can be used across applications of a device. |
+| IN_APP       | 0 | **UnifiedData** can be used only in the same application of a device.|
+| CROSS_APP | 1 | **UnifiedData** can be used across applications of a device.|
 
 ## GetDelayData<sup>12+</sup>
 
@@ -37,15 +37,15 @@ A type that defines a function used to obtain a deferred **UnifiedData** object.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Identifier of the deferred encapsulation. |
+| type | string | Yes| Identifier of the deferred encapsulation.|
 
 **Return value**
 
 | Type                                    | Description                     |
 | ---------------------------------------- |-------------------------|
-| [UnifiedData](#unifieddata) | **UnifiedData** object. |
+| [UnifiedData](#unifieddata) | **UnifiedData** object.|
 
 **Example**
 
@@ -76,17 +76,17 @@ Enumerates the data field types allowed in a unified data record.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Number. |
-| string | String. |
-| boolean | Boolean. |
-| image.PixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7). |
-| Want | [Want](../apis-ability-kit/js-apis-app-ability-want.md). |
-| ArrayBuffer | ArrayBuffer. |
-| object | Object. |
-| null | Null. |
-| undefined | Undefined. |
+| number | Number.|
+| string | String.|
+| boolean | Boolean.|
+| image.PixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7).|
+| Want | [Want](../apis-ability-kit/js-apis-app-ability-want.md).|
+| ArrayBuffer | ArrayBuffer.|
+| object | Object.|
+| null | Null.|
+| undefined | Undefined.|
 
 ## UnifiedDataProperties<sup>12+</sup>
 
@@ -96,13 +96,13 @@ Defines the properties of the data records in the unified data object, including
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| extras<sup>12+</sup> | Record<string, object> | No | Yes | Object of the dictionary type used to set other properties. The default value is an empty dictionary object. |
-| tag<sup>12+</sup> | string | No | Yes | Customized tag. The default value is an empty string. |
-| timestamp<sup>12+</sup> | Date | Yes | Yes | Timestamp when [UnifiedData](#unifieddata) is generated. The default value is January 1, 1970 (UTC). |
-| shareOptions<sup>12+</sup> | [ShareOptions](#shareoptions12) | No | Yes | Range, in which [UnifiedData](#unifieddata) can be used. The default value is **CROSS_APP**. |
-| getDelayData<sup>12+</sup> | [GetDelayData](#getdelaydata12) | No | Yes | Callback for obtaining the deferred data. Currently, it can be used only in the pasteboard application of the same device. The default value is **undefined**. |
+| extras<sup>12+</sup> | Record<string, object> | No| Yes| Object of the dictionary type used to set other properties. The default value is an empty dictionary object.|
+| tag<sup>12+</sup> | string | No| Yes| Customized tag. The default value is an empty string.|
+| timestamp<sup>12+</sup> | Date | Yes| Yes| Timestamp when [UnifiedData](#unifieddata) is generated. The default value is January 1, 1970 (UTC).|
+| shareOptions<sup>12+</sup> | [ShareOptions](#shareoptions12) | No| Yes| Range, in which [UnifiedData](#unifieddata) can be used. The default value is **CROSS_APP**.|
+| getDelayData<sup>12+</sup> | [GetDelayData](#getdelaydata12) | No| Yes| Callback for obtaining the deferred data. Currently, it can be used only in the pasteboard application of the same device. The default value is **undefined**.|
 
 **Example**
 
@@ -138,11 +138,11 @@ Provides APIs for encapsulating a set of data records.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-### Attributes
+### Properties
 
-| Name | Type | Read Only | Optional | Description                                                                                             |
+| Name| Type| Read-Only| Optional| Description                                                                                             |
 | -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------|
-| properties<sup>12+</sup> | [UnifiedDataProperties](#unifieddataproperties12) | No | No | Properties of all the data records in a unified data object, including the timestamp, tag, application range, and additional data.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| properties<sup>12+</sup> | [UnifiedDataProperties](#unifieddataproperties12) | No| No| Properties of all the data records in a unified data object, including the timestamp, tag, application range, and additional data.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ### constructor<sup>12+</sup>
 
@@ -172,15 +172,15 @@ A constructor used to create a **UnifiedData** object with a data record.
 
 **Parameters**
 
-| Name | Type                           | Mandatory | Description                                     |
+| Name| Type                           | Mandatory| Description                                     |
 | ------ | ------------------------------- | ---- |-----------------------------------------|
-| record | [UnifiedRecord](#unifiedrecord) | Yes  | Data record in the **UnifiedData** object. It is a **UnifiedRecord** object or its child class object. |
+| record | [UnifiedRecord](#unifiedrecord) | Yes  | Data record in the **UnifiedData** object. It is a **UnifiedRecord** object or its child class object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -204,7 +204,7 @@ Adds a data record to this **UnifiedRecord** object.
 
 **Parameters**
 
-| Name | Type                           | Mandatory | Description                                         |
+| Name| Type                           | Mandatory| Description                                         |
 | ------ | ------------------------------- | ---- |---------------------------------------------|
 | record | [UnifiedRecord](#unifiedrecord) | Yes  | Data record to add. It is a **UnifiedRecord** child class object.|
 
@@ -212,7 +212,7 @@ Adds a data record to this **UnifiedRecord** object.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -242,7 +242,7 @@ Obtains all data records from this **UnifiedData** object. The data obtained is 
 
 | Type                                    | Description                     |
 | ---------------------------------------- |-------------------------|
-| Array\<[UnifiedRecord](#unifiedrecord)\> | Records in the **UnifiedData** object obtained. |
+| Array\<[UnifiedRecord](#unifiedrecord)\> | Records in the **UnifiedData** object obtained.|
 
 **Example**
 
@@ -280,7 +280,7 @@ Checks whether this **UnifiedData** object has the specified data type.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type                           | Mandatory | Description                                         |
+| Name| Type                           | Mandatory| Description                                         |
 | ------ | ------------------------------- | ---- |---------------------------------------------|
 | type | string | Yes  | Data type to check. For details, see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype).|
 
@@ -288,13 +288,13 @@ Checks whether this **UnifiedData** object has the specified data type.
 
 | Type                                    | Description                     |
 | ---------------------------------------- |-------------------------|
-| boolean | Returns **true** if the specified data type exists; returns **false** otherwise. |
+| boolean | Returns **true** if the specified data type exists; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
@@ -329,7 +329,7 @@ Obtains the types of all data records in this **UnifiedData** object.
 
 | Type                                    | Description                     |
 | ---------------------------------------- |-------------------------|
-| Array\<string\> | Array of the [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype) types obtained. |
+| Array\<string\> | Array of the [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype) types obtained.|
 
 **Example**
 
@@ -347,16 +347,16 @@ let types = unifiedData.getTypes();
 
 ## Summary
 
-Defines the summary of a **UnifiedData object**, including the data types and sizes. Currently, it is not supported.
+Represents the abstract of a uniform data object, including the data type and size.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| summary   | Record<string, number> | No | No | Dictionary type object, where the key indicates the data type (see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)), and the value indicates the total size (in bytes) of this type of records in the unified data object. |
-| totalSize | number | No | No | Total size of all the records in the **UnifiedData** object, in bytes. |
+| summary   | Record<string, number> | No| No| Dictionary type object, where the key indicates the data type (see [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)), and the value indicates the total size (in bytes) of this type of records in the unified data object.|
+| totalSize | number | No| No| Total size of all the records in the **UnifiedData** object, in bytes.|
 
 ## UnifiedRecord
 
@@ -390,16 +390,16 @@ A constructor used to create a data record with the specified type and value.<br
 
 **Parameters**
 
-| Name | Type                           | Mandatory | Description                                     |
+| Name| Type                           | Mandatory| Description                                     |
 | ------ | ------------------------------- | ---- |-----------------------------------------|
-| type | string | Yes  | Type of the data record to create. |
-| value | [ValueType](#valuetype12) | Yes  | Value of the data record to create. |
+| type | string | Yes  | Type of the data record to create.|
+| value | [ValueType](#valuetype12) | Yes  | Value of the data record to create.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed.  |
 
@@ -482,7 +482,7 @@ Obtains the value of this data record.
 
 | Type  | Description                                                  |
 | ------ |------------------------------------------------------|
-| [ValueType](#valuetype12) | Value obtained. |
+| [ValueType](#valuetype12) | Value obtained.|
 
 **Example**
 
@@ -514,9 +514,9 @@ Represents the text data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| details | Record<string, string> | No | Yes | A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>"title":"Title",<br>"content":"Content"<br>}<br>The default value is an empty dictionary object. |
+| details | Record<string, string> | No| Yes| A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>"title":"Title",<br>"content":"Content"<br>}<br> The default value is an empty dictionary object.|
 
 **Example**
 
@@ -537,10 +537,10 @@ Represents the plaintext data. It is a child class of [Text](#text) and is used 
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| textContent | string | No | No | Plaintext content.               |
-| abstract    | string | No | Yes | Text abstract. This parameter is optional. The default value is an empty string. |
+| textContent | string | No| No| Plaintext content.               |
+| abstract    | string | No| Yes| Text abstract. This parameter is optional. The default value is an empty string.|
 
 **Example**
 
@@ -558,10 +558,10 @@ Represents hyperlink data. It is a child class of [Text](#text) and is used to d
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| url         | string | No | No | URL.      |
-| description | string | No | Yes | Description of the linked content. This parameter is optional. The default value is an empty string. |
+| url         | string | No| No| URL.      |
+| description | string | No| Yes| Description of the linked content. This parameter is optional. The default value is an empty string.|
 
 **Example**
 
@@ -579,10 +579,10 @@ Represents the HTML data. It is a child class of [Text](#text) and is used to de
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| htmlContent  | string | No | No | Content in HTML format.            |
-| plainContent | string | No | Yes | Plaintext without HTML tags. This parameter is optional. The default value is an empty string. |
+| htmlContent  | string | No| No| Content in HTML format.            |
+| plainContent | string | No| Yes| Plaintext without HTML tags. This parameter is optional. The default value is an empty string.|
 
 **Example**
 
@@ -600,10 +600,10 @@ Represents the file data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| details | Record<string, string> | No | Yes | A dictionary type object, where both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br>The default value is an empty dictionary object. |
-| uri     | string                    | No | No | URI of the file data.                                                                                                                                            |
+| details | Record<string, string> | No| Yes| A dictionary type object, where both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br> The default value is an empty dictionary object.|
+| uri     | string                    | No| No| URI of the file data.                                                                                                                                            |
 
 **Example**
 
@@ -624,9 +624,9 @@ Represents the image data. It is a child class of [File](#file) and is used to d
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| imageUri | string | No | No | URI of the image. |
+| imageUri | string | No| No| URI of the image.|
 
 **Example**
 
@@ -643,9 +643,9 @@ Represents video data. It is a child class of [File](#file) and is used to descr
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| videoUri | string | No | No | URI of the video file. |
+| videoUri | string | No| No| URI of the video file.|
 
 **Example**
 
@@ -662,9 +662,9 @@ Represents audio data. It is a child class of [File](#file) and is used to descr
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| audioUri | string | No | No | Audio data URI. |
+| audioUri | string | No| No| Audio data URI.|
 
 **Example**
 
@@ -681,9 +681,9 @@ Represents the folder data. It is a child class of [File](#file) and is used to 
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| folderUri | string | No | No | URI of the folder. |
+| folderUri | string | No| No| URI of the folder.|
 
 **Example**
 
@@ -700,9 +700,9 @@ Represents specific data types defined by OpenHarmony. It is a child class of [U
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| details | Record<string, number \| string \| Uint8Array> | No | Yes | A dictionary type object, where the key is of the string type, and the value can be a number, a string, or a Uint8Array. The default value is an empty dictionary object.|
+| details | Record<string, number \| string \| Uint8Array> | No| Yes| A dictionary type object, where the key is of the string type, and the value can be a number, a string, or a Uint8Array. The default value is an empty dictionary object.|
 
 **Example**
 
@@ -719,19 +719,19 @@ let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 
 ## SystemDefinedForm
 
-Represents the service widget data defined by the system, which is a child class of [SystemDefinedRecord](#systemdefinedrecord).
+Represents the service widget data defined by the system. It is a child class of [SystemDefinedRecord](#systemdefinedrecord).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| formId      | number | No | No | Service widget ID.         |
-| formName    | string | No | No | Widget name.         |
-| bundleName  | string | No | No | Name of the bundle to which the widget belongs.  |
-| abilityName | string | No | No | Ability name corresponding to the widget. |
-| module      | string | No | No | Name of the module to which the widget belongs.  |
+| formId      | number | No| No| Service widget ID.         |
+| formName    | string | No| No| Widget name.         |
+| bundleName  | string | No| No| Name of the bundle to which the widget belongs.  |
+| abilityName | string | No| No| Ability name corresponding to the widget.|
+| module      | string | No| No| Name of the module to which the widget belongs.  |
 
 **Example**
 
@@ -759,14 +759,14 @@ Represents the data of the home screen icon defined by the system. It is a child
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| appId       | string | No | No | ID of the application, for which the icon is used.     |
-| appName     | string | No | No | Name of the application, for which the icon is used.      |
-| appIconId   | string | No | No | Image ID of the icon.       |
-| appLabelId  | string | No | No | Label ID corresponding to the icon name.   |
-| bundleName  | string | No | No | Bundle name corresponding to the icon. |
-| abilityName | string | No | No | Application ability name corresponding to the icon. |
+| appId       | string | No| No| ID of the application, for which the icon is used.     |
+| appName     | string | No| No| Name of the application, for which the icon is used.      |
+| appIconId   | string | No| No| Image ID of the icon.       |
+| appLabelId  | string | No| No| Label ID corresponding to the icon name.   |
+| bundleName  | string | No| No| Bundle name corresponding to the icon.|
+| abilityName | string | No| No| Application ability name corresponding to the icon.|
 
 **Example**
 
@@ -795,9 +795,9 @@ Represents the image data type corresponding to [PixelMap](../apis-image-kit/js-
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| rawData | Uint8Array | No | No | Binary data of the **PixelMap** object. |
+| rawData | Uint8Array | No| No| Binary data of the **PixelMap** object.|
 
 **Example**
 
@@ -833,10 +833,10 @@ Represents the custom data type for applications only. It is a child class of [U
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
-| Name | Type | Read Only | Optional | Description |
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| applicationDefinedType | string     | No | No | Application's custom data type identifier, which must start with **ApplicationDefined**. |
-| rawData                | Uint8Array | No | No | Binary data of the custom data type.                     |
+| applicationDefinedType | string     | No| No| Application's custom data type identifier, which must start with **ApplicationDefined**.|
+| rawData                | Uint8Array | No| No| Binary data of the custom data type.                     |
 
 **Example**
 
@@ -867,10 +867,10 @@ Defines the data operation performed by the UDMF. It includes two optional param
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 
-| Name      | Type                   | Read-Only | Optional | Description                                                                                                                                                                                                                               |
+| Name      | Type                   | Read-Only| Optional| Description                                                                                                                                                                                                                               |
 |-----------|-------------------------|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | intention | [Intention](#intention) | No | Yes | Type of the data channel related to the data operation.                                                                                                                                                                                                                 |
-| key       | string                  | No | Yes | Unique identifier of the data object in the UDMF, which can be obtained from the value returned by [insertData](#unifieddatachannelinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated. |
+| key       | string                  | No | Yes | Unique identifier of the data object in the UDMF, which can be obtained from the value returned by [insertData](#unifieddatachannelinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated.|
 
 
 
@@ -886,19 +886,18 @@ Inserts data to the UDMF public data channel. This API uses an asynchronous call
 
 **Parameters**
 
-| Name     | Type                        | Mandatory | Description                          |
+| Name     | Type                        | Mandatory| Description                          |
 |----------|----------------------------|----|------------------------------|
 | options  | [Options](#options)        | Yes | Configuration parameters. Only the **intention** is required.       |
 | data     | [UnifiedData](#unifieddata) | Yes | Data to insert.                       |
-| callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the key (unique identifier) of the data inserted. |
+| callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the key (unique identifier) of the data inserted.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **Example**
@@ -941,24 +940,23 @@ Inserts data to the UDMF public data channel. This API uses a promise to return 
 
 **Parameters**
 
-| Name    | Type                         | Mandatory | Description                   |
+| Name    | Type                         | Mandatory| Description                   |
 |---------|-----------------------------|----|-----------------------|
-| options | [Options](#options)         | Yes | Configuration parameters. Only the **intention** is required. |
+| options | [Options](#options)         | Yes | Configuration parameters. Only the **intention** is required.|
 | data    | [UnifiedData](#unifieddata) | Yes | Data to insert.                |
 
 **Return value**
 
 | Type                   | Description                               |
 |-----------------------|-----------------------------------|
-| Promise&lt;string&gt; | Promise used to return the key of the data inserted. |
+| Promise&lt;string&gt; | Promise used to return the key of the data inserted.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **Example**
@@ -998,19 +996,18 @@ Updates the data in the UDMF public data channel. This API uses an asynchronous 
 
 **Parameters**
 
-| Name     | Type                         | Mandatory | Description                                 |
+| Name     | Type                         | Mandatory| Description                                 |
 |----------|-----------------------------|----|-------------------------------------|
 | options  | [Options](#options)         | Yes | Configuration parameters. Only the value of **key** is required.                    |
 | data     | [UnifiedData](#unifieddata) | Yes | New data.                              |
-| callback | AsyncCallback&lt;void&gt;   | Yes | Callback used to return the result. If the data is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback&lt;void&gt;   | Yes | Callback used to return the result. If the data is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **Example**
@@ -1053,24 +1050,23 @@ Updates the data in the UDMF public data channel. This API uses a promise to ret
 
 **Parameters**
 
-| Name    | Type                         | Mandatory | Description             |
+| Name    | Type                         | Mandatory| Description             |
 |---------|-----------------------------|----|-----------------|
-| options | [Options](#options)         | Yes | Configuration parameters. Only the value of **key** is required. |
+| options | [Options](#options)         | Yes | Configuration parameters. Only the value of **key** is required.|
 | data    | [UnifiedData](#unifieddata) | Yes | New data.          |
 
 **Return value**
 
 | Type                 | Description                        |
 |---------------------|----------------------------|
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **Example**
@@ -1111,18 +1107,17 @@ Queries data in the UDMF public data channel. This API uses an asynchronous call
 
 **Parameters**
 
-| Name     | Type                                                           | Mandatory | Description                                                                                                                                                              |
+| Name     | Type                                                           | Mandatory| Description                                                                                                                                                              |
 |----------|---------------------------------------------------------------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | options  | [Options](#options)                                           | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in.                                                                                                                   |
-| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Yes | Callback used to return the queried data.<br>If only the **key** is specified in **options**, the data corresponding to the key is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** is returned.<br>If both **intention** and **key** are specified, the intersection of the two is returned, which is the result obtained when only **key** is specified. If there is no intersection between the specified **intention** and **key**, an error object is returned. |
+| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Yes | Callback used to return the queried data.<br>If only the **key** is specified in **options**, the data corresponding to the key is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** is returned.<br>If both **intention** and **key** are specified, the intersection of the two is returned, which is the result obtained when only **key** is specified. If there is no intersection between the specified **intention** and **key**, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **Example**
@@ -1171,23 +1166,22 @@ Queries data in the UDMF public data channel. This API uses a promise to return 
 
 **Parameters**
 
-| Name    | Type                 | Mandatory | Description                                           |
+| Name    | Type                 | Mandatory| Description                                           |
 |---------|---------------------|----|-----------------------------------------------|
-| options | [Options](#options) | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in. |
+| options | [Options](#options) | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in.|
 
 **Return value**
 
 | Type                                                     | Description                                                                                                                                 |
 |---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| Promise&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Promise used to return the result.<br>If only the **key** is specified in **options**, the data corresponding to the key is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** is returned.<br>If both **intention** and **key** are specified, the intersection of the two is returned, which is the result obtained when only **key** is specified. If there is no intersection between the specified **intention** and **key**, an error object is returned. |
+| Promise&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Promise used to return the result.<br>If only the **key** is specified in **options**, the data corresponding to the key is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** is returned.<br>If both **intention** and **key** are specified, the intersection of the two is returned, which is the result obtained when only **key** is specified. If there is no intersection between the specified **intention** and **key**, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **Example**
@@ -1234,18 +1228,17 @@ Deletes data from the UDMF public data channel. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name     | Type                                                           | Mandatory | Description                                                                                                                                                                                    |
+| Name     | Type                                                           | Mandatory| Description                                                                                                                                                                                    |
 |----------|---------------------------------------------------------------|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | options  | [Options](#options)                                           | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in.                                                                                                                                         |
-| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Yes | Callback used to return the data deleted.<br>If only the **key** is specified in **options**, the data corresponding to the key deleted is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** deleted is returned.<br>If both **intention** and **key** are specified, the intersection of the two deleted is returned. If there is no intersection between the two, an error object is returned. |
+| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Yes | Callback used to return the data deleted.<br>If only the **key** is specified in **options**, the data corresponding to the key deleted is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** deleted is returned.<br>If both **intention** and **key** are specified, the intersection of the two deleted is returned. If there is no intersection between the two, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **Example**
@@ -1294,23 +1287,22 @@ Deletes data from the UDMF public data channel. This API uses a promise to retur
 
 **Parameters**
 
-| Name    | Type                 | Mandatory | Description    |
+| Name    | Type                 | Mandatory| Description    |
 |---------|---------------------|----|--------|
-| options | [Options](#options) | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in. |
+| options | [Options](#options) | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in.|
 
 **Return value**
 
 | Type                                                     | Description                                                                                                                                                         |
 |---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Promise&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Promise used to return the data deleted.<br>If only the **key** is specified in **options**, the data corresponding to the key deleted is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** deleted is returned.<br>If both **intention** and **key** are specified, the intersection of the two deleted is returned. If there is no intersection between the two, an error object is returned. |
+| Promise&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Promise used to return the data deleted.<br>If only the **key** is specified in **options**, the data corresponding to the key deleted is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** deleted is returned.<br>If both **intention** and **key** are specified, the intersection of the two deleted is returned. If there is no intersection between the two, an error object is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| **ID** | **Error Message**                               |
+| **ID**| **Error Message**                               |
 | ------------ | ------------------------------------------- |
-| 201          | Permission denied. |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **Example**

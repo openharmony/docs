@@ -126,7 +126,7 @@ getPadding() : DirectionalEdgesT\<number>
 
 getBorderWidth() : DirectionalEdgesT\<number>
 
-调用此方法获得子组件的boderWidth信息。
+调用此方法获得子组件的borderWidth信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -134,7 +134,7 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
 | 类型                          | 说明                                        |
 |------------------------------------|---------------------------------------------|
-| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的boderWidth信息。  |
+| [DirectionalEdgesT&lt;number&gt;](#directionaledgestt12)  |  子组件的borderWidth信息。  |
 
 ## Measurable<sup>10+</sup>
 

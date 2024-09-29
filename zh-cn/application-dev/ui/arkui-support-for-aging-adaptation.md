@@ -8,23 +8,23 @@
 
 * 适老化规则
 
-  由于在系统字体大于1倍时，组件并没有默认放大，需要通过适老化功能放大组件；
+  由于在系统字体大于1倍时，组件并没有默认放大，需要通过适老化功能放大组件。
 
 * 适老化操作
 
-  在已经支持适老化能力的组件上长按组件，能够触发弹窗，当用户释放时，适老化操作结束。当设置系统字体大于1倍时，组件自动放大，当系统字体恢复至1倍时组件恢复正常状态；
+  在已经支持适老化能力的组件上长按组件，能够触发弹窗，当用户释放时，适老化操作结束。当设置系统字体大于1倍时，组件自动放大，当系统字体恢复至1倍时组件恢复正常状态。
 
 * 适老化对象
 
-  触发适老化操作并提供数据的组件；
+  触发适老化操作并提供数据的组件。
 
 * 适老化弹窗目标
 
-  可接收并处理适老化数据的组件；
+  可接收并处理适老化数据的组件。
 
 * 弹窗限制
 
-  当用户将系统字体设置为2倍以上时，弹窗内容包括icon和文字的放大倍数固定为2倍；
+  当用户将系统字体设置为2倍以上时，弹窗内容包括icon和文字的放大倍数固定为2倍。
 
 * 联合其他能力
 
@@ -39,7 +39,7 @@
 
 ## 示例
 
-SideBarContainer组件通过长按控制按钮触发适老化弹窗。在系统字体为1倍的情况下，长按控制按钮不能弹窗；在系统字体大于1倍的情况下，长按控制按钮可以弹窗。
+SideBarContainer组件通过长按控制按钮触发适老化弹窗。在系统字体为1倍的情况下，长按控制按钮不能弹窗。在系统字体大于1倍的情况下，长按控制按钮可以弹窗。
 
 ```ts
 import { abilityManager, Configuration } from '@kit.AbilityKit';
@@ -132,7 +132,7 @@ struct SideBarContainerExample {
 | ---------------------------------- | ------------------------------------ |
 | ![](figures/aging_01.png)          | ![](figures/aging_02.png)            |
 
-TextPickerDialog组件通过设置系统字体大小触发适老化弹窗。在系统字体为1倍的情况下，适老化不触发；在系统字体大于1倍的情况下，适老化触发。
+[TextPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md)组件通过设置系统字体大小触发适老化弹窗。在系统字体为1倍的情况下，适老化不触发；在系统字体大于1倍的情况下，适老化触发。
 
 ```ts
 import { abilityManager, Configuration } from '@kit.AbilityKit';
@@ -191,7 +191,7 @@ struct TextPickerExample {
     Column() {
       Button("TextPickerDialog.show:" + this.v)
         .onClick(() => {
-          TextPickerDialog.show({
+          this.getUIContext().showTextPickerDialog({
             range: this.cascade,
             selected: this.select,
             onAccept: (value: TextPickerResult) => {

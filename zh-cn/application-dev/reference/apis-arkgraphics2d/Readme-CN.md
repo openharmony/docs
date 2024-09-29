@@ -20,6 +20,7 @@
     - [NativeWindow](_native_window.md)
     - [OH_NativeBuffer](_o_h___native_buffer.md)
     - [OH_NativeImage](_o_h___native_image.md)
+    - [NativeColorSpaceManager](_native_color_space_manager.md)
   - 头文件
     - [drawing_bitmap.h](drawing__bitmap_8h.md)
     - [drawing_brush.h](drawing__brush_8h.md)
@@ -43,6 +44,7 @@
     - [drawing_pen.h](drawing__pen_8h.md)
     - [drawing_pixel_map.h](drawing__pixel__map_8h.md)
     - [drawing_point.h](drawing__point_8h.md)
+    - [drawing_record_cmd.h](drawing__record__cmd_8h.md)
     - [drawing_rect.h](drawing__rect_8h.md)
     - [drawing_region.h](drawing__region_8h.md)
     - [drawing_register_font.h](drawing__register__font_8h.md)
@@ -63,6 +65,7 @@
     - [native_display_soloist.h](native__display__soloist_8h.md)
     - [native_image.h](native__image_8h.md)
     - [native_vsync.h](native__vsync_8h.md)
+    - [native_color_space_manager.h](native__color__space__manager_8h.md)
   - 结构体
     - [DisplaySoloist_ExpectedRateRange](_display_soloist___expected_rate_range.md)
     - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
@@ -99,6 +102,8 @@
     - [OHHDRMetaData](_o_h_h_d_r_meta_data.md)
     - [Region](_region.md)
     - [Rect](_rect.md)
+    - [ColorSpacePrimaries](_color_space_primaries.md)
+    - [WhitePointArray](_white_point_array.md)
 - 错误码
   - [色彩管理错误码](errorcode-colorspace-manager.md)
 

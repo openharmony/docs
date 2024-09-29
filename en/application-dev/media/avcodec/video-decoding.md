@@ -27,6 +27,7 @@ Through the VideoDecoder module, your application can implement the following ke
 - Due to limited hardware decoder resources, you must call **OH_VideoDecoder_Destroy()** to destroy every decoder instance when it is no longer needed.
 - The input streams for video decoding support only the Annex B format, and the supported Annex B format does not support multi-layer network slice.
 - When **flush()**, **reset()**, or **stop()** is called, do not continue to operate the OH_AVBuffer obtained through the previous callback function.
+- The DRM decryption capability supports both non-secure and secure video channels in [surface mode](#surface-output), but only non-secure video channels in buffer mode (#buffer-output).
 
 ## Surface Output and Buffer Output
 
@@ -75,13 +76,17 @@ The figure below shows the call relationship of video decoding.
 
 ![Call relationship of video decoding](figures/video-decode.png)
 
-### Linking the Dynamic Library in the CMake Script
+### Linking the Dynamic Link Library in the CMake Script
 
 ``` cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 ```
+> **NOTE**
+>
+> The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
+>
 
 ### Surface Output
 
@@ -147,6 +152,8 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     You need to process the callback functions to ensure that the decoder runs properly.
 
+    <!--RP2--><!--RP2End-->
+
     ```c++
     // Implement the OH_AVCodecOnError callback function.
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
@@ -196,7 +203,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     > In the callback functions, pay attention to multi-thread synchronization for operations on the data queue.
     >
 
-5. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Audio and Video Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).  
+5. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained and a media key is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Audio and Video Demuxing](audio-video-demuxer.md).  In surface mode, the DRM decryption capability supports both secure and non-secure video channels. For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).
 
     Add the header files.
 
@@ -206,7 +213,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
-    Link the dynamic library in the CMake script.
+    Link the dynamic link library in the CMake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
@@ -221,17 +228,27 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
         printf("create media key system failed");
         return;
     }
-    // Perform authentication via the provisioning server.
-    // Create a media key session.
+
+    // Create a decryption session. If a secure video channel is used, create a MediaKeySession with the content protection level of CONTENT_PROTECTION_LEVEL_HW_CRYPTO or higher.
+    // If a non-secure video channel is used, create a MediaKeySession with the content protection level of CONTENT_PROTECTION_LEVEL_SW_CRYPTO or higher.
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
-    if (session == nullptr) {
-        printf("create media key session failed");
+    if (ret != DRM_OK) {
+        // If the creation fails, check the DRM interface document and logs.
+        printf("create media key session failed.");
         return;
     }
+    if (session == nullptr) {
+        printf("media key session is nullptr.");
+        return;
+    }
+
     // Generate a media key request and set the response to the media key request.
+
     // Set the decryption configuration, that is, set the decryption session and secure video channel flag to the decoder.
+    // If the DRM scheme supports a secure video channel, set secureVideoPath to true and create a secure decoder before using the channel.
+    // That is, in step 3, call OH_VideoDecoder_CreateByName, with a decoder name followed by .secure (for example, [CodecName].secure) passed in, to create a secure decoder.
     bool secureVideoPath = false;
     ret = OH_VideoDecoder_SetDecryptionConfig(videoDec, session, secureVideoPath);
     ```
@@ -317,14 +334,14 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
 11. (Optional) Call **OH_AVCencInfo_SetAVBuffer()** to set the Common Encryption Scheme (CENC) information.
 
-    If the content being played is DRM encrypted and demuxing is performed by the upper-layer application, call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer so that the media data can be decrypted in the AVBuffer.
+    If the program to play is DRM encrypted and the application implements media demuxing instead of using the system's [demuxer](audio-video-demuxer.md), you must call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer. In this way, the AVBuffer carries the data to be decrypted and CENC information, so that the media data in the AVBuffer can be decrypted. You do not need to call this API when the application uses the system's [demuxer](audio-video-demuxer.md).
 
     Add the header files.
 
     ```c++
     #include <multimedia/player_framework/native_cencinfo.h>
     ```
-    Link the dynamic library in the cmake script.
+    Link the dynamic link library in the CMake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
@@ -346,31 +363,38 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     uint32_t firstEncryptedOffset = 0;
     uint32_t subsampleCount = 1;
     DrmSubsample subsamples[1] = { {0x10, 0x16} };
+    // Create a CencInfo instance.
     OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
     if (cencInfo == nullptr) {
         // Exception handling.
     }
+    // Set the decryption algorithm.
     OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set KeyId and Iv.
     errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set the sample information.
     errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
         subsampleCount, subsamples);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set the mode. KeyId, Iv, and SubSamples have been set.
     errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set CencInfo to the AVBuffer.
     errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Destroy the CencInfo instance.
     errNo = OH_AVCencInfo_Destroy(cencInfo);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
@@ -469,7 +493,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     > **NOTE**
     >
     > After **flush()** is called, the XPS must be transferred again in the **start()** call.
-    >
+
     Example of XPS retransfer:
 
     ```c++
@@ -490,7 +514,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
 15. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
 
-    After **OH_VideoDecoder_Reset()** is called, the decoder returns to the Initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_SetSurface()**.
+    After **OH_VideoDecoder_Reset()** is called, the decoder returns to the Initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()**, **OH_VideoDecoder_Prepare()**, **OH_VideoDecoder_SetSurface()** in sequence.
 
     ```c++
     // Reset the decoder.
@@ -500,6 +524,11 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     }
     // Reconfigure the decoder.
     ret = OH_VideoDecoder_Configure(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // The decoder is ready again.
+    ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
@@ -585,6 +614,8 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     You need to process the callback functions to ensure that the decoder runs properly.
 
+    <!--RP2--><!--RP2End-->
+
     ```c++
     int32_t cropTop = 0;
     int32_t cropBottom = 0;
@@ -607,15 +638,15 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
         // The changed video width, height, and stride can be obtained through format.
         (void)codec;
         (void)userData;
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, width);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, height);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
         // (Optional) Obtain the cropped rectangle information.
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, cropTop);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, cropBottom);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, cropLeft);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, cropRight);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, &cropTop);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, &cropBottom);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, &cropLeft);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, &cropRight);
     }
     
     // Implement the OH_AVCodecOnNeedInputBuffer callback function.
@@ -636,15 +667,15 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
         // Obtain the video width, height, and stride.
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(codec);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, width);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, height);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
             // (Optional) Obtain the cropped rectangle information.
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, cropTop);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, cropBottom);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, cropLeft);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, cropRight);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, &cropTop);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, &cropBottom);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, &cropLeft);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, &cropRight);
             OH_AVFormat_Destroy(format);
             isFirstFrame = false;
         }
@@ -664,7 +695,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     > In the callback functions, pay attention to multi-thread synchronization for operations on the data queue.
     >
 
-4. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Audio and Video Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).  
+4. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained and a media key is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Audio and Video Demuxing](audio-video-demuxer.md).  In buffer mode, the DRM decryption capability supports only non-secure video channels. For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).
 
     Add the header files.
 
@@ -674,7 +705,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
-    Link the dynamic library in the CMake script.
+    Link the dynamic link library in the CMake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
@@ -689,13 +720,19 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
         printf("create media key system failed");
         return;
     }
-    // Perform DRM authorization.
+
     // Create a media key session.
+    // To use a non-secure video channel, create a MediaKeySession with the content protection level of CONTENT_PROTECTION_LEVEL_SW_CRYPTO or higher.
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
+    if (ret != DRM_OK) {
+        // If the creation fails, check the DRM interface document and logs.
+        printf("create media key session failed.");
+        return;
+    }
     if (session == nullptr) {
-        printf("create media key session failed");
+        printf("media key session is nullptr.");
         return;
     }
     // Generate a media key request and set the response to the media key request.
@@ -724,13 +761,13 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
 6. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.  
 
-   ```c++
-int32_t ret = OH_VideoDecoder_Prepare(videoDec);
+    ```c++
+    int32_t ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
     ```
-    
+
 7. Call **OH_VideoDecoder_Start()** to start the decoder.
 
     ```c++
@@ -766,31 +803,38 @@ int32_t ret = OH_VideoDecoder_Prepare(videoDec);
     uint32_t firstEncryptedOffset = 0;
     uint32_t subsampleCount = 1;
     DrmSubsample subsamples[1] = { {0x10, 0x16} };
+    // Create a CencInfo instance.
     OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
     if (cencInfo == nullptr) {
         // Exception handling.
     }
+    // Set the decryption algorithm.
     OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set KeyId and Iv.
     errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set the sample information.
     errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
         subsampleCount, subsamples);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set the mode. KeyId, Iv, and SubSamples have been set.
     errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set CencInfo to the AVBuffer.
     errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Destroy the CencInfo instance.
     errNo = OH_AVCencInfo_Destroy(cencInfo);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
@@ -871,11 +915,12 @@ int32_t ret = OH_VideoDecoder_Prepare(videoDec);
         int32_t hStride;
     };
 
-    uint8_t *dst; // Pointer to the target memory area.
-    uint8_t *src; // Pointer to the source memory area.
-    struct Rect rect;
-    struct DstRect dstRect;
-    struct SrcRect srcRect;
+    Rect rect = {320, 240};
+    DstRect dstRect = {320, 250};
+    SrcRect srcRect = {320, 250};
+    uint8_t* dst = new uint8_t[dstRect.hStride * dstRect.wStride]; // Pointer to the target memory area.
+    uint8_t* src = new uint8_t[srcRect.hStride * srcRect.wStride]; // Pointer to the source memory area.
+
     // Y: Copy the source data in the Y region to the target data in another region.
     for (int32_t i = 0; i < rect.height; ++i) {
         // Copy a row of data from the source to a row of the target.
@@ -895,6 +940,11 @@ int32_t ret = OH_VideoDecoder_Prepare(videoDec);
         dst += dstRect.wStride;
         src += srcRect.wStride;
     }
+
+    delete[] dst;
+    dst = nullptr;
+    delete[] src;
+    src = nullptr;
     ```
 
     When processing buffer data (before releasing data) during hardware decoding, the output callback AVBuffer receives the image data after width and height alignment. Generally, copy the image width, height, stride, and pixel format to ensure correct processing of the decoded data. For details, see step 3 in [Buffer Output](#buffer-output).

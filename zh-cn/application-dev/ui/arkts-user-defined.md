@@ -7,7 +7,7 @@
   - **自定义组合**：ArkUI框架提供的最基础的自定义方式，通过内置组件和自定义组件的基础能力，将这些能力进行组合，复用已有组件，进一步封装新的组件。具体包括：封装、布局、绘制和动画等基础能力。
   - **自定义扩展**：ArkUI框架提供一系列Modifier的能力，通过与UI分离的方式，对已有UI组件的属性、手势、内容进行扩展修改。包括[AttributeModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md)、[GestureModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-gesture-modifier.md#gesturemodifier-1)、[DrawModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md#drawmodifier-1)等扩展能力。
   - **自定义节点**：具备底层实体节点的部分基础能力的节点对象，这些节点能够通过[自定义占位节点](./arkts-user-defined-place-hoder.md#自定义占位节点)与原生组件进行混合显示。自定义节点可以具备单个节点的测算布局、设置基础属性、设置事件监听、自定义绘制渲染内容的自定义能力。包括[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)、[RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md)、[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md)三类对象。
-  - **自定义渲染**：通过[XComponent](./arkts-common-components-xcomponent.md)的“surface”模式暴露出的NativeWindow，使用NDK接口，可以将EGL/OpenGLES生成的显示数据或其它方式解码生成的媒体流数据写入到NativeWindow中，可以实现渲染内容的自定义。
+  - **自定义渲染**：通过[XComponent](napi-xcomponent-guidelines.md)的“surface”模式暴露出的NativeWindow，使用NDK接口，可以将EGL/OpenGLES生成的显示数据或其它方式解码生成的媒体流数据写入到NativeWindow中，可以实现渲染内容的自定义。
 
 ## 自定义能力导览
   上述提到自定义能力层次不同，使用场景也不同。通过以下导览，可快速了解各种自定义能力的说明以及使用场景和建议。
@@ -24,4 +24,4 @@
   |自定义节点|组件节点| [FrameNode](arkts-user-defined-arktsNode-frameNode.md): 表示组件的实体节点，主要提供以下两类能力：<br>完全自定义节点能力：提供完整的自定义能力，包括自定义测量、布局以及绘制，支持节点的动态增加、删除，并且可以为节点设置通用属性和事件。适用于不带渲染引擎，但需要依赖系统的布局、事件、动画及渲染等能力，实现语言为高级语言的三方框架对接。<br>组件代理节点能力：提供声明式组件的代理能力，提供遍历节点树的能力，通过FrameNode可以遍历整个组件树，并通过节点访问组件的信息或者注册额外的事件监听回调。适用于结合无感监听的接口实现打点、广告SDK、中台DFX等业务。<br>[TypedFrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typedframenode12)：通过typeNode提供的接口，可创建具体类型的FrameNode能力。创建出具体组件类型的FrameNode，可通过FrameNode的接口，进行自定义的挂载，生成一棵自定义的组件树。适用于高效对接高级语言开发的动态化框架。 |
   |自定义节点|渲染节点| [RenderNode](arkts-user-defined-arktsNode-renderNode.md)：表示轻量级的渲染节点RenderNode，仅提供了设置渲染相关属性、自定义绘制内容以及节点操作的能力。可以向三方框架提供基础的渲染、动画能力。适用于不带渲染引擎，只依赖系统的基础动画、渲染的三方框架对接。 |
   |自定义节点| 原生组件混合 | [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)：BuilderNode对象提供了能够创建、更新原生组件以及组件树的能力。用于在自定义的FrameNode或RenderNode树结构中嵌入声明式的组件结构，实现原生组件与自定义节点的混合显示。另外还提供了对Builder内容进行纹理导出的能力，可实现在XComponent创建的渲染环境中进行同层渲染显示。 |
-  |自定义渲染| 独立渲染 | [XComponent](./arkts-common-components-xcomponent.md)：XComponent的“surface”模式会暴露出NativeWindow，通过NDK接口配合NativeWindow可创建独立的渲染环境，将EGL/OpenGLES生成的显示数据或其它方式解码生成的媒体流数据写入到NativeWindow中，不依赖ArkUI框架提供的其它组件能力即可进行自定义的渲染。适用于自带渲染引擎的框架，如游戏引擎、地图、相机等场景。 |
+  |自定义渲染| 独立渲染 | [XComponent](napi-xcomponent-guidelines.md)：XComponent的“surface”模式会暴露出NativeWindow，通过NDK接口配合NativeWindow可创建独立的渲染环境，将EGL/OpenGLES生成的显示数据或其它方式解码生成的媒体流数据写入到NativeWindow中，不依赖ArkUI框架提供的其它组件能力即可进行自定义的渲染。适用于自带渲染引擎的框架，如游戏引擎、地图、相机等场景。 |

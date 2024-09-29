@@ -2,7 +2,7 @@
 
 ## Overview
 
-When the environment changes, for example, when a user goes outdoors or when a more appropriate device is detected, the user can migrate an ongoing task to another device for better experience. The application on the source device can automatically exit, depending on the setting. A typical cross-device migration scenario is as follows: The user migrates a video playback task from a tablet to a smart TV. The video application on the tablet exits. From the perspective of application development, cross-device migration enables the UIAbility component running on device A to migrate to and keep running on device B. After the migration is complete, the UIAbility component on device A automatically exits (depending on the setting).
+When the environment changes, for example, when a user goes outdoors or when a more appropriate device is detected, the user can migrate an ongoing task to another device for better experience. The application on the source device can automatically exit, depending on the setting. A typical cross-device migration scenario is as follows: The user migrates a video playback task from a tablet to a smart TV. The video application on the tablet exits. From the perspective of application development, cross-device migration enables the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component running on device A to migrate to and keep running on device B. After the migration is complete, the UIAbility component on device A automatically exits (depending on the setting).
 
 Cross-device migration supports the following features:
 
@@ -32,7 +32,7 @@ Cross-device migration supports the following features:
 
 ![hop-cross-device-migration](figures/hop-cross-device-migration.png)
 
-1. On the source device, the UIAbility uses the [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) callback to save service data to be migrated. For example, to complete cross-device migration, a browser application uses the [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) callback to save service data such as the page URL.
+1. On the source device, the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) uses the [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) callback to save service data to be migrated. For example, to complete cross-device migration, a browser application uses the **onContinue()** callback to save service data such as the page URL.
 2. The distributed framework provides a mechanism for saving and restoring application page stacks and service data across devices. It sends the data from the source device to the target device.
 3. On the target device, the same UIAbility uses the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback (in the case of cold start) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback (in the case of hot start) to restore the service data.
 
@@ -44,7 +44,7 @@ The following figure shows the cross-device migration process when a migration r
 
 ## Constraints
 
-- Cross-device migration must be performed between the same UIAbility component. In other words, **bundleName**, **abilityName**, and **signature** of the component on the two devices must be the same.
+- Cross-device migration must be performed between the same [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component. In other words, **bundleName**, **abilityName**, and **signature** of the component on the two devices must be the same.
 - For better user experience, the data to be transmitted via the **wantParam** parameter must be less than 100 KB.
 
 ## How to Develop
@@ -69,20 +69,20 @@ The following figure shows the cross-device migration process when a migration r
    >
    > Configure the application launch type. For details, see [UIAbility Launch Type](uiability-launch-type.md).
 
-2. Implement [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) in the UIAbility on the source device.
+2. Implement **onContinue()** in the UIAbility on the source device.
 
-    When a migration is triggered for the UIAbility, [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) is called on the source device. You can use either synchronous or asynchronous mode to save the data in this callback to implement application compatibility check and migration decision.
+    When a migration is triggered for the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) is called on the source device. You can use either synchronous or asynchronous mode to save the data in this callback to implement application compatibility check and migration decision.
 
     - Saving data to migrate: You can save the data to migrate in key-value pairs in **wantParam**.
     - Checking application compatibility: You can obtain the application version on the target device from **wantParam.version** in the **onContinue()** callback and compare it with the application version on the source device.
 
-    - Making a migration decision: You can determine whether migration is supported based on the return value of [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue). For details about the return values, see [AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult).
+    - Making a migration decision: You can determine whether migration is supported based on the return value of **onContinue()**. For details about the return values, see [AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult).
 
     Certain fields (listed in the table below) in **wantParam** passed in to **onContinue()** are preconfigured in the system. You can use these fields for service processing. When defining custom `wantParam` data, do not use the same keys as the preconfigured ones to prevent data exceptions due to system overwrites.  
     | Field|Description|
     | ---- | ---- |
-    | version | Version the application on the target device. |
-    | targetDevice | Network ID of the target device. |
+    | version | Version the application on the target device.|
+    | targetDevice | Network ID of the target device.|
 
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
@@ -124,12 +124,12 @@ The following figure shows the cross-device migration process when a migration r
 
     > **NOTE**
     > 
-    > When an application is launched as a result of a migration, the **onWindowStageRestore()** lifecycle callback function, rather than **onWindowStageCreate()**, is triggered following **onCreate()** or **onNewWant()**. This sequence occurs for both cold and hot starts.
+    > When an application is launched as a result of a migration, the [onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore) lifecycle callback function, rather than [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate), is triggered following **onCreate()** or **onNewWant()**. This sequence occurs for both cold and hot starts.
     > If you have performed some necessary initialization operations during application launch in **onWindowStageCreate()**, you must perform the same initialization operations in **onWindowStageRestore()** after the migration to avoid application exceptions.
 
-    - The **launchReason** parameter in the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback specifies whether the launch is triggered as a result of a migration.
-    - You can obtain the saved data from the **want** parameter.
-    - To use system-level page stack restoration, you must call **restoreWindowStage()** to trigger page restoration with page stacks before **onCreate()** or **onNewWant()** is complete. For details, see [On-Demand Page Stack Migration](./hop-cross-device-migration.md#on-demand-page-stack-migration).
+    - The **launchReason** parameter in the **onCreate()** or **onNewWant()** callback specifies whether the launch is triggered as a result of a migration.
+    - You can obtain the saved data from the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter.
+    - To use system-level page stack restoration, you must call [restoreWindowStage()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextrestorewindowstage) to trigger page restoration with page stacks before **onCreate()** or **onNewWant()** is complete. For details, see [On-Demand Page Stack Migration](./hop-cross-device-migration.md#on-demand-page-stack-migration).
 
     ```ts
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -181,7 +181,7 @@ Since API version 10, you can dynamically set the migration state. Specifically,
 
 To implement special scenarios, for example, where migration is required only for a specific page or upon a specific event, perform the following steps:
 
-1. In the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) lifecycle callback of the UIAbility, disable cross-device migration.
+1. In the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) lifecycle callback of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), disable cross-device migration.
 
     ```ts
     // MigrationAbility.ets
@@ -202,7 +202,7 @@ To implement special scenarios, for example, where migration is required only fo
     }
     ```
 
- 2. To enable cross-device migration for a specific page, call the migration API in **onPageShow()** of the page.
+2. To enable cross-device migration for a specific page, call the migration API in [onPageShow()](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow) of the page.
 
     ```ts
     // Page_MigrationAbilityFirst.ets
@@ -229,7 +229,7 @@ To implement special scenarios, for example, where migration is required only fo
     }
     ```
 
-3. To enable cross-device migration for a specific event, call the migration API in the event. The following uses the **onClick()** event of the **Button** component as an example:
+3. To enable cross-device migration for a specific event, call the migration API in the event. The following uses the [onClick()](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick) event of the **Button** component as an example:
 
     ```ts
     // Page_MigrationAbilityFirst.ets
@@ -257,7 +257,7 @@ To implement special scenarios, for example, where migration is required only fo
                 this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
                   hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
                   promptAction.showToast({
-                    message: $r('app.string.Success')
+                    message: 'Success'
                   });
                 });
               })
@@ -273,11 +273,13 @@ To implement special scenarios, for example, where migration is required only fo
 
 ### Migrating the Page Stack on Demand
 
-By default, the page stack is restored during the migration of a UIAbility. Before **onCreate()** or **onNewWant()** finishes the execution, call **restoreWindowStage()** to pass in the current window context, which will be used for page stack loading and restoration.
 
 > **NOTE**
 >
-> The **restoreWindowStage()** API must be executed in a synchronous API. If it is executed during an asynchronous callback, there is a possibility that the page fails to be loaded during application startup.
+> Currently, only the page stack implemented based on the router module can be automatically restored. The page stack implemented using the **Navigation** component cannot be automatically restored.
+> If an application uses the **Navigation** component for routing, you can disable default page stack migration by setting [SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams) to **false**. In addition, save the page (or page stack) to be migrated in **want**, and manually load the specified page on the target device.
+
+By default, the page stack is restored during the migration of a [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md). Before [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) finishes the execution, call [restoreWindowStage()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#restore) to pass in the current window context, which will be used for page stack loading and restoration. The **restoreWindowStage()** API must be executed in a synchronous API. If it is executed during an asynchronous callback, there is a possibility that the page fails to be loaded during application startup.
 
 The following uses **onCreate()** as an example:
 
@@ -295,11 +297,7 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-If the application does not want to use the page stack restored by the system, set [SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams) to **false**, and specify the page to be displayed after the migration in **onWindowStageRestore()**.
-
-> **NOTE**
->
-> If the page to be displayed after the migration is not specified, a blank page will be displayed.
+If the application does not want to use the page stack restored by the system, set [SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantparams) to **false**, and specify the page to be displayed after the migration in [onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore). If the page to be displayed after the migration is not specified, a blank page will be displayed.
 
 For example, a UIAbility does not want to restore the page stack displayed on the source device. Instead, it wants **Page_MigrationAbilityThird** to be restored after the migration.
 
@@ -356,7 +354,7 @@ export default class MigrationAbility extends UIAbility {
 ```
 
 ### Supporting Cross-Device Migration Between Different Abilities in the Same Application
-Generally, the same ability is involved during a cross-device migration. However, different ability names may be configured for the same service on different device types, resulting in different abilities. To support migration in this scenario, you can configure the **continueType** flag under **abilities** in the **module.json5** file for association.
+Generally, the same ability is involved during a cross-device migration. However, different ability names may be configured for the same service on different device types, resulting in different abilities. To support migration in this scenario, you can configure the **continueType** flag under **abilities** in the [module.json5](../quick-start/module-configuration-file.md) file for association.
 
 The values of the **continueType** tag of the two abilities must be the same. The following is an example:
    > **NOTE**
@@ -438,7 +436,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class MigrationAbility extends UIAbility {
   storage: LocalStorage = new LocalStorage();
-  
+
   // Save the data on the source device.
   onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
     // Save the data to migrate in the custom field (for example, data) of wantParam.
@@ -485,7 +483,7 @@ If the size of the data to migrate is greater than 100 KB or a file needs to be 
 
 #### Basic Data Migration
 
-To use a distributed data object, you must save data in the **onContinue()** API on the source device and restore data in the **onCreate()** or **onNewWant()** API of the target device.
+To use a distributed data object, you must save data in the [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) API on the source device and restore data in the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) API of the target device.
 
 On the source device, save the data to migrate to a distributed [data object](../reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject).
 
@@ -571,12 +569,12 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-In **onCreate()** or **onNewWant()**, the peer device adds the same distributed data object as the source device for networking, in order to restore data.
+In [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant), the peer device adds the same distributed data object as the source device for networking, in order to restore data.
 
 - Create an empty distributed data object to receive restored data.
-- Read the network ID of the distributed data object from **want**.
+- Read the network ID of the distributed data object from [want](../reference/apis-ability-kit/js-apis-app-ability-want.md).
 - Register [on()](../reference/apis-arkdata/js-apis-data-distributedobject.md#onstatus9) to listen for data changes. In the event callback indicating that **status** is **restored**, implement the service operations that need to be performed when the data restoration is complete.
-- Call **setSessionId()** to join the network and activate the distributed data object.
+- Call [setSessionId()](../reference/apis-arkdata/js-apis-data-distributedobject.md#setsessionid9) to add the data object to the network, and activate the distributed data object.
 
 > **NOTE**
 >
@@ -647,9 +645,9 @@ export default class MigrationAbility extends UIAbility {
 
 #### File Migration
 
-A file, such as an image or document, must be converted to the [commonType.Asset] (../reference/apis-arkdata/js-apis-data-commonType.md#asset) type before being encapsulated into a distributed data objects for migration. The migration implementation is similar to that of a common distributed data object. The following describes only the differences.
+A file, such as an image or document, must be converted to the [commonType.Asset](../reference/apis-arkdata/js-apis-data-commonType.md#asset) type before being encapsulated into a distributed data objects for migration. The migration implementation is similar to that of a common distributed data object. The following describes only the differences.
 
-On the source device, save the file asset to be migrated to a distributed data object.
+On the source device, save the file asset to migrate to a distributed [data object](../reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject).
 
 - Copy the file asset to the [distributed file directory](application-context-stage.md#obtaining-application-file-paths). For details about related APIs and usage, see [basic file APIs](../file-management/app-file-access.md).
 - Use the file in the distributed file directory to create an asset object.
@@ -758,7 +756,7 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
-The target application must create an asset object whose attributes are empty as the root attribute of the distributed data object. When the on() event callback in which status is restored is received, the data synchronization including the asset is complete. The asset object of source application can be obtained in the same way as the basic data.
+The target application must create an asset object whose attributes are empty as the root attribute of the distributed data object. When the [on()](../reference/apis-arkdata/js-apis-data-distributedobject.md#onstatus9) event callback in which **status** is **restored** is received, the data synchronization including the asset is complete. The asset object of source application can be obtained in the same way as the basic data.
 
 > **NOTE**
 >
@@ -919,7 +917,7 @@ A mission center demo is provided for you to verify the migration capability of 
 
 ### Q1: What Can I Do If the Application Cannot Be Migrated Back to the Source Device?
 
-The migration state is set at the ability level. The application on the target device may have executed the command to set its own migration state (for example, set the state to **INACTIVE** in [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) during cold start or to **INACTIVE** during hot start since the application has opened a page that cannot be migrated). To ensure a migration back to the source device, you must set the migration state to **ACTIVE** in [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant).
+The migration state is set at the ability level. The application on the target device may have executed the command to set its own migration state (for example, set the state to **INACTIVE** in [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) during cold start or to **INACTIVE** during hot start since the application has opened a page that cannot be migrated). To ensure a migration back to the source device, you must set the migration state to **ACTIVE** in onCreate() or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant).
 
 ```ts
 // MigrationAbility.ets
@@ -958,5 +956,5 @@ export default class MigrationAbility extends UIAbility {
 
 ### Q2: What Can I Do If the Call of loadContent() Does Not Take Effect in onWindowStageRestore()?
 
-If page stack migration is not disabled for an application, the system migrates and loads the page stack of the application by default. In this case, if you use **loadContent()** to trigger the loading of a specific page in the onWindowStageRestore() lifecycle callback function, the loading does not take effect and the page in the page stack is still restored.
+If page stack migration is not disabled for an application, the system migrates and loads the page stack of the application by default. In this case, if you use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) to trigger the loading of a specific page in the [onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore) lifecycle callback function, the loading does not take effect and the page in the page stack is still restored.
 

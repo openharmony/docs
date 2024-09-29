@@ -28,19 +28,25 @@
 
 ```ts
 import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
-const authParam: userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
-};
-const widgetParam: userAuth.WidgetParam = {
-  title: '请进行身份认证',
-};
 try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  // 设置认证参数
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  // 配置认证界面
+  const widgetParam: userAuth.WidgetParam = {
+    title: '请进行身份认证',
+  };
   // 获取认证对象
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
   // 开始认证
   userAuthInstance.start();

@@ -94,7 +94,6 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | uri          | string         | 否  | 否  | 表示证书的唯一标识符。 |
 | certAlias          | string   | 否  | 否  | 表示证书的别名。 |
 | state          | boolean     | 否  | 否  | 表示证书的状态，true为启用状态、false为禁用状态。 |
-| issuerName          | string         | 否  | 否  | 表示证书的颁发者名称。 |
 | subjectName          | string   | 否  | 否  | 表示证书的使用者名称。 |
 
 ## Credential

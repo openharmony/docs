@@ -224,7 +224,7 @@ RichEditor(this.options1)
 
 onWillChange的callback中：[RichEditorChangeValue](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorchangevalue12)为图文变化信息；boolean为true时，表示当前图文允许被更改。boolean为false时，表示当前图文不允许被更改。
 
-onDidChange的callback中：[OnDidChangeCallback](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#ondidchangecallback12)为图文变化前后的内容范围。
+onDidChange的callback中：[OnDidChangeCallback](../reference/apis-arkui/arkui-ts/ts-text-common.md#ondidchangecallback12)为图文变化前后的内容范围。
 
 使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的RichEditor组件不支持这两种回调。
 
@@ -484,7 +484,7 @@ Button('setSelection(0,2)', {
   
 除了直接在组件内输入内容，也可以通过[addTextSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addtextspan)添加文本内容。
 
-其中value是文本内容；options是文本选项，用于添加文本的偏移位置和文本样式信息（[RichEditorParagraphStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditortextspanoptions)）。
+其中value是文本内容；options是文本选项，用于添加文本的偏移位置和文本样式信息（[RichEditorTextSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditortextspanoptions)）。
 
 如果组件光标闪烁，插入后光标位置更新为新插入文本的后面。
 
@@ -656,3 +656,4 @@ Button('getSpans', {
     })
 ```
 ![alt text](figures/richeditor_image_getspan.gif)
+<!--RP1--><!--RP1End-->

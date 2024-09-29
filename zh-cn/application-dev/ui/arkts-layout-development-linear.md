@@ -74,7 +74,7 @@ Row({ space: 35 }) {
 
 ## 布局子元素在交叉轴上的对齐方式
 
-在布局容器内，可以通过alignItems属性设置子元素在交叉轴（排列方向的垂直方向）上的对齐方式。且在各类尺寸屏幕中，表现一致。其中，交叉轴为垂直方向时，取值为[VerticalAlign类型](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#verticalalign)，水平方向取值为[HorizontalAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#horizontalalign)。
+在布局容器内，可以通过alignItems属性设置子元素在交叉轴（排列方向的垂直方向）上的对齐方式。且在各类尺寸屏幕中，表现一致。其中，交叉轴为垂直方向时，取值为[VerticalAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#verticalalign)类型，水平方向取值为[HorizontalAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#horizontalalign)类型。
 
 alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式，其优先级高于alignItems属性，如果设置了alignSelf属性，则在单个子元素上会覆盖alignItems属性。
 

@@ -43,6 +43,8 @@ RelativeContainer()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持如下属性：
@@ -53,13 +55,15 @@ guideLine(value: Array&lt;GuideLineStyle&gt;)
 
 设置RelativeContainer容器内的辅助线，Array中每个项目即为一条guideline。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                       | 必填 | 说明                              |
 | ------ | ------------------------------------------ | ---- | --------------------------------- |
-| value  | Array<[GuideLineStyle](#guidelinestyle12)> | 是   | RelativeContainer容器内的辅助线。 |
+| value  | Array<[GuideLineStyle](#guidelinestyle12对象说明)> | 是   | RelativeContainer容器内的辅助线。 |
 
 ### barrier<sup>12+</sup>
 
@@ -67,13 +71,15 @@ barrier(value: Array&lt;BarrierStyle&gt;)
 
 设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                   | 必填 | 说明                            |
 | ------ | -------------------------------------- | ---- | ------------------------------- |
-| value  | Array<[BarrierStyle](#barrierstyle12)> | 是   | RelativeContainer容器内的屏障。 |
+| value  | Array<[BarrierStyle](#barrierstyle12对象说明)> | 是   | RelativeContainer容器内的屏障。 |
 
 ### barrier<sup>12+</sup>
 
@@ -81,71 +87,100 @@ barrier(barrierStyle: Array&lt;LocalizedBarrierStyle&gt;)
 
 设置RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名 | 类型                                   | 必填 | 说明                           |
 | ------ | -------------------------------------- | ---- | ------------------------------ |
-| barrierStyle  | Array\<[LocalizedBarrierStyle](#localizedbarrierstyle12)\> | 是   | RelativeContaine容器内的屏障。 |
+| barrierStyle  | Array\<[LocalizedBarrierStyle](#localizedbarrierstyle12对象说明)\> | 是   | RelativeContaine容器内的屏障。 |
 
-## GuideLineStyle<sup>12+</sup>
+## GuideLineStyle<sup>12+</sup>对象说明
 
 guideLine参数，用于定义一条guideline的id、方向和位置。
 
-**参数：**
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称    | 类型      | 必填   | 描述                    |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | id  | string  | 是    | guideline的id，必须是唯一的并且不可与容器内组件重名。   |
 | direction | [Axis](ts-appendix-enums.md#axis) | 是    | 指定guideline的方向。<br />默认值：Axis.Vertical |
-| position | [GuideLinePosition](#guidelineposition12) | 是    | 指定guideline的位置。<br />默认值：<br />{<br />start: 0<br />} |
+| position | [GuideLinePosition](#guidelineposition12对象说明) | 是    | 指定guideline的位置。<br />默认值：<br />{<br />start: 0<br />} |
 
-## GuideLinePosition<sup>12+</sup>
+## GuideLinePosition<sup>12+</sup>对象说明
 
 guideLine位置参数，用于定义guideline的位置。
 
-**参数：**
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称    | 类型      | 必填   | 描述                    |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | start  | [Dimension](ts-types.md#dimension10)  | 否    | guideline距离容器左侧或者顶部的距离。   |
 | end | [Dimension](ts-types.md#dimension10) | 否    | guideline距离容器右侧或者底部的距离。 |
 
-## BarrierStyle<sup>12+</sup>
+## BarrierStyle<sup>12+</sup>对象说明
 
 barrier参数，用于定义一条barrier的id、方向和生成时所依赖的组件。
 
-**参数：**
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称    | 类型      | 必填   | 描述                    |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。   |
-| direction | [BarrierDirection](ts-appendix-enums.md#barrierdirection12) | 是    | 指定barrier的方向。<br />默认值：BarrierDirection.LEFT |
+| direction | [BarrierDirection](ts-container-relativecontainer.md#barrierdirection12) | 是    | 指定barrier的方向。<br />默认值：BarrierDirection.LEFT |
 | referencedId | Array\<string> | 是    | 指定生成barrier所依赖的组件。 |
 
-## LocalizedBarrierStyle<sup>12+</sup>
-
-barrier参数，用于定义一条barrier的id、方向和生成时所依赖的组件。
-
-**参数：**
-
-| 名称    | 类型      | 必填   | 描述                    |
-| ----- | ------- | ---- | --------------------- |
-| id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。   |
-| localizedDirection | [LocalizedBarrierDirection](#localizedbarrierdirection12) | 是    | 指定barrier的方向。 |
-| referencedId | Array\<string\> | 是    | 指定生成barrier所依赖的组件。 |
-
-## LocalizedBarrierDirection<sup>12+</sup>
+## BarrierDirection<sup>12+</sup>枚举说明
 
 定义屏障线的方向。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12对象说明)的最左侧。    |
+| RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12对象说明)的最右侧。   |
+| TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12对象说明)的最上方。    |
+| BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12对象说明)的最下方。 |
+
+## LocalizedBarrierStyle<sup>12+</sup>对象说明
+
+barrier参数，用于定义一条barrier的id、方向和生成时所依赖的组件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型      | 必填   | 说明              |
+| ----- | ------- | ---- | --------------------- |
+| id  | string  | 是    | barrier的id，必须是唯一的并且不可与容器内组件重名。   |
+| localizedDirection | [LocalizedBarrierDirection](#localizedbarrierdirection12枚举说明) | 是    | 指定barrier的方向。 |
+| referencedId | Array\<string\> | 是    | 指定生成barrier所依赖的组件。 |
+
+## LocalizedBarrierDirection<sup>12+</sup>枚举说明
+
+定义屏障线的方向。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 |  值  | 描述                         |
 | ------ | -- | ----------------------------- |
-| START  | 0  |屏障在其所有[referencedId](#localizedbarrierstyle12)的最左/右侧，LTR模式时为最左侧，RTL模式时为最右侧。 |
-| END    | 1  | 屏障在其所有[referencedId](#localizedbarrierstyle12)的最左/右侧, LTR模式时为最右侧，RTL模式时为最左侧。   |
-| TOP    | 2  | 屏障在其所有[referencedId](#localizedbarrierstyle12)的最上方。    |
-| BOTTOM | 3  | 屏障在其所有[referencedId](#localizedbarrierstyle12)的最下方。 |
+| START  | 0  |屏障在其所有[referencedId](#localizedbarrierstyle12对象说明)的最左/右侧，LTR模式时为最左侧，RTL模式时为最右侧。 |
+| END    | 1  | 屏障在其所有[referencedId](#localizedbarrierstyle12对象说明)的最左/右侧, LTR模式时为最右侧，RTL模式时为最左侧。   |
+| TOP    | 2  | 屏障在其所有[referencedId](#localizedbarrierstyle12对象说明)的最上方。    |
+| BOTTOM | 3  | 屏障在其所有[referencedId](#localizedbarrierstyle12对象说明)的最下方。 |
 
 ## 示例
 

@@ -1,4 +1,4 @@
-# IPC与RPC通信概述
+# IPC Kit简介
 
 
 ## 基本概念
@@ -7,7 +7,7 @@ IPC（Inter-Process Communication）与RPC（Remote Procedure Call）用于实�
 
 > **说明：**
 > Stage模型不能直接使用本文介绍的IPC和RPC，需要通过以下能力实现相关业务场景：
->- IPC典型使用场景在<!--Del-->[<!--DelEnd-->后台服务<!--Del-->](../application-models/background-services.md)<!--DelEnd-->，应用的后台服务通过IPC机制提供跨进程的服务调用能力。
+>- IPC典型使用场景在后台服务，应用的后台服务通过IPC机制提供跨进程的服务调用能力。
 >- RPC典型使用场景在<!--Del-->[<!--DelEnd-->多端协同<!--Del-->](../application-models/hop-multi-device-collaboration.md)<!--DelEnd-->，多端协同通过RPC机制提供远端接口调用与数据传递能力。
 
 

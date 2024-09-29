@@ -438,7 +438,7 @@ options.signal = s;
 
 ## ArkTSUtils.ASON
 
-为支持将JSON字符串解析成共享数据，ArkTS语言基础库新增了ASON工具。ASON支持开发者解析JSON字符串，并生成共享数据进行跨并发域传输，同时ASON也支持将共享数据转换成JSON字符串。
+为支持将JSON字符串解析成共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON支持开发者解析JSON字符串，并生成共享数据进行跨并发域传输，同时ASON也支持将共享数据转换成JSON字符串。
 
 ### ISendable
 
@@ -496,13 +496,12 @@ type Transformer = (this: ISendable, key: string, value: ISendable | undefined |
 
 定义解析结果的返回类型。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 值| 说明            |
 | ------ | ------ | --------------- |
-| OBJECT   | 0 |返回Sendable Object对象。|
+| OBJECT   | 0 |返回 SendableObject 对象。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| MAP<sup>13+</sup>   | 1 |返回 SendableMap 对象。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 
 ### ParseOptions
 
@@ -565,6 +564,17 @@ let numberObj = ArkTSUtils.ASON.parse(numberText,undefined,options) as ISendable
 
 console.info((numberObj as object)?.["largeNumber"]);
 // 期望输出: 112233445566778899
+
+let options2: ArkTSUtils.ASON.ParseOptions = {
+    bigIntMode: ArkTSUtils.ASON.BigIntMode.PARSE_AS_BIGINT,
+    parseReturnType: ArkTSUtils.ASON.ParseReturnType.MAP,
+  }
+let mapText = '{"largeNumber":112233445566778899}';
+let map  = ArkTSUtils.ASON.parse(mapText,undefined,options2);
+console.info("map is " + map);
+// 期望输出: map is [object SendableMap]
+console.info("largeNumber is " + (map as collections.Map<string,bigint>).get("largeNumber"));
+// 期望输出: largeNumber is 112233445566778899
 ```
 
 ### stringify

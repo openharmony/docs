@@ -1,4 +1,4 @@
-# @ohos.atomicservice.NavPushPathHelper(分包路由工具类)
+# NavPushPathHelper
 
 当跳转的目标[NavDestination](ts-basic-components-navdestination.md)在不同的hsp分包，且未被主包依赖，首次运行元服务只会下载安装主包，需要使用NavPushPathHelper先下载安装相应hsp分包，再将指定的[NavDestination](ts-basic-components-navdestination.md)页面信息入栈。使[Navigation](ts-basic-components-navigation.md)支持动态加载hsp分包后再跳转。
 
@@ -106,7 +106,7 @@ pushPath(moduleName: string, info: NavPathInfo, options?: NavigationOptions): Pr
 
 ### pushPathByName
 
-pushPathByName(moduleName: string, name: string, param: unknown, animated?: boolean): Promise\<void\>
+pushPathByName(moduleName: string, name: string, param: Object, animated?: boolean): Promise\<void\>
 
 先判断分包是否存在，若不存在，则通过moduleName下载分包，再将name指定的[NavDestination](ts-basic-components-navdestination.md)页面信息入栈，传递的数据为param，使用Promise异步回调返回接口调用结果。
 
@@ -120,7 +120,7 @@ pushPathByName(moduleName: string, name: string, param: unknown, animated?: bool
 | ----- | ------- | ---- | --------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
-| param | unknown | 是    | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
+| param | Object | 是    | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**

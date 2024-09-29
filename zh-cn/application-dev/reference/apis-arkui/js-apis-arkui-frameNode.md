@@ -332,7 +332,7 @@ getParent(): FrameNode | null;
 
   getPositionToWindow(): Position
 
-获取FrameNode相对于窗口的位置偏移。
+获取FrameNode相对于窗口的位置偏移，单位为VP。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -342,7 +342,7 @@ getParent(): FrameNode | null;
 
 | 类型     | 说明                            |
 | -------- | ------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移，单位为VP。 |
 
 **示例：**
 
@@ -353,7 +353,7 @@ getParent(): FrameNode | null;
 
 getPositionToParent(): Position
 
-获取FrameNode相对于父组件的位置偏移。
+获取FrameNode相对于父组件的位置偏移，单位为VP。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -363,7 +363,7 @@ getPositionToParent(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移，单位为VP。 |
 
 **示例：**
 
@@ -373,7 +373,7 @@ getPositionToParent(): Position
 
   getPositionToScreen(): Position
 
-获取FrameNode相对于屏幕的位置偏移。
+获取FrameNode相对于屏幕的位置偏移，单位为VP。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -383,7 +383,7 @@ getPositionToParent(): Position
 
 | 类型     | 说明                            |
 | -------- | ------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移，单位为VP。 |
 
 **示例：**
 
@@ -394,7 +394,7 @@ getPositionToParent(): Position
 
 getPositionToParentWithTransform(): Position
 
-获取FrameNode相对于父组件带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于父组件带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -404,7 +404,7 @@ getPositionToParentWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移，单位为VP。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -414,7 +414,7 @@ getPositionToParentWithTransform(): Position
 
 getPositionToWindowWithTransform(): Position
 
-获取FrameNode相对于窗口带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于窗口带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -424,7 +424,7 @@ getPositionToWindowWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移，单位为VP。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -434,7 +434,7 @@ getPositionToWindowWithTransform(): Position
 
 getPositionToScreenWithTransform(): Position
 
-获取FrameNode相对于屏幕带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+获取FrameNode相对于屏幕带有绘制属性的位置偏移，单位为VP，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -444,7 +444,7 @@ getPositionToScreenWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移，单位为VP。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -455,7 +455,7 @@ getPositionToScreenWithTransform(): Position
 
 getMeasuredSize(): Size
 
-获取FrameNode测量后的大小。
+获取FrameNode测量后的大小，单位为PX。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -465,7 +465,7 @@ getMeasuredSize(): Size
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Size](./js-apis-arkui-graphics.md#size) | 节点测量后的大小。 |
+| [Size](./js-apis-arkui-graphics.md#size) | 节点测量后的大小，单位为PX。 |
 
 **示例：**
 
@@ -476,7 +476,7 @@ getMeasuredSize(): Size
 
 getLayoutPosition(): Position
 
-获取FrameNode布局后相对于父组件的位置偏移。该偏移是父容器对该节点进行布局之后的结果，因此布局之后生效的offset属性和不参与布局的position属性不影响该偏移值。
+获取FrameNode布局后相对于父组件的位置偏移，单位为PX。该偏移是父容器对该节点进行布局之后的结果，因此布局之后生效的offset属性和不参与布局的position属性不影响该偏移值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -486,7 +486,7 @@ getLayoutPosition(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点布局后相对于父组件的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点布局后相对于父组件的位置偏移，单位为PX。 |
 
 **示例：**
 
@@ -686,7 +686,7 @@ isClipToFrame(): boolean
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| boolean | 节点是否是剪裁到页面。 |
+| boolean | 节点是否是剪裁到组件区域。 |
 
 **示例：**
 
@@ -2327,6 +2327,40 @@ createNode(context: UIContext, nodeType: 'XComponent'): XComponent
 typeNode.createNode(uiContext, 'XComponent');
 ```
 
+### createNode('XComponent')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'XComponent', options: XComponentOptions): XComponent
+
+按照options中的配置参数创建XComponent类型的FrameNode节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'XComponent' | 是 | 创建XComponent类型的节点。 |
+| options | [XComponentOptions](./arkui-ts/ts-basic-components-xcomponent.md#xcomponentoptions12) | 是 | 定义XComponent的具体配置参数。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [XComponent](#xcomponent12) | XComponent类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+let controller: XComponentController = new XComponentController();
+let options: XComponentOptions = {
+  type: XComponentType.TEXTURE,
+  controller: controller
+};
+typeNode.createNode(uiContext, 'XComponent', options);
+```
+
 ### QRCode<sup>13+</sup>
 type QRCode = TypedFrameNode&lt;QRCodeInterface, QRCodeAttribute&gt;
 
@@ -2655,6 +2689,336 @@ createNode(context: UIContext, nodeType: 'TextArea'): TextArea
 typeNode.createNode(uiContext, 'TextArea');
 ```
 
+### SymbolGlyph<sup>13+</sup>
+type SymbolGlyph = TypedFrameNode&lt;SymbolGlyphInterface, SymbolGlyphAttribute&gt;
+
+SymbolGlyph类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;SymbolGlyphInterface, SymbolGlyphAttribute&gt; | 提供SymbolGlyph类型FrameNode节点。<br/>**说明：**<br/> SymbolGlyphInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为SymbolGlyph组件的构造函数类型。 <br/> SymbolGlyphAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回SymbolGlyph组件的属性设置对象。 |
+
+### createNode('SymbolGlyph')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
+
+创建SymbolGlyph类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'SymbolGlyph' | 是 | 创建SymbolGlyph类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [SymbolGlyph](#symbolglyph13) | SymbolGlyph类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'SymbolGlyph');
+```
+
+### Checkbox<sup>13+</sup>
+type Checkbox = TypedFrameNode&lt;CheckboxInterface, CheckboxAttribute&gt;
+
+Checkbox类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;CheckboxInterface, CheckboxAttribute&gt; | 提供Checkbox类型FrameNode节点。<br/>**说明：**<br/> CheckboxInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Checkbox组件的构造函数类型。 <br/> CheckboxAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Checkbox组件的属性设置对象。 |
+
+### createNode('Checkbox')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
+
+创建Checkbox类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Checkbox' | 是 | 创建Checkbox类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Checkbox](#checkbox13) | Checkbox类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Checkbox');
+```
+
+### CheckboxGroup<sup>13+</sup>
+type CheckboxGroup = TypedFrameNode&lt;CheckboxGroupInterface, CheckboxGroupAttribute&gt;
+
+CheckboxGroup类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;CheckboxGroupInterface, CheckboxGroupAttribute&gt; | 提供CheckboxGroup类型FrameNode节点。<br/>**说明：**<br/> CheckboxGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为CheckboxGroup组件的构造函数类型。 <br/> CheckboxGroupAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回CheckboxGroup组件的属性设置对象。 |
+
+### createNode('CheckboxGroup')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
+
+创建CheckboxGroup类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'CheckboxGroup' | 是 | 创建CheckboxGroup类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [CheckboxGroup](#checkboxgroup13) | CheckboxGroup类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'CheckboxGroup');
+```
+
+### Rating<sup>13+</sup>
+type Rating = TypedFrameNode&lt;RatingInterface, RatingAttribute&gt;
+
+Rating类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;RatingInterface, RatingAttribute&gt; | 提供Rating类型FrameNode节点。<br/>**说明：**<br/> RatingInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Rating组件的构造函数类型。 <br/> RatingAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Rating组件的属性设置对象。 |
+
+### createNode('Rating')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Rating'): Rating
+
+创建Rating类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Rating' | 是 | 创建Rating类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Rating](#rating13) | Rating类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Rating');
+```
+
+### Radio<sup>13+</sup>
+type Radio = TypedFrameNode&lt;RadioInterface, RadioAttribute&gt;
+
+Radio类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;RadioInterface, RadioAttribute&gt; | 提供Radio类型FrameNode节点。<br/>**说明：**<br/> RadioInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Radio组件的构造函数类型。 <br/> RadioAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Radio组件的属性设置对象。 |
+
+### createNode('Radio')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Radio'): Radio
+
+创建Radio类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Radio' | 是 | 创建Radio类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Radio](#radio13) | Radio类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Radio');
+```
+
+### Slider<sup>13+</sup>
+type Slider = TypedFrameNode&lt;SliderInterface, SliderAttribute&gt;
+
+Slider类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;SliderInterface, SliderAttribute&gt; | 提供Slider类型FrameNode节点。<br/>**说明：**<br/> SliderInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Slider组件的构造函数类型。 <br/> SliderAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Slider组件的属性设置对象。 |
+
+### createNode('Slider')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Slider'): Slider
+
+创建Slider类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Slider' | 是 | 创建Slider类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Slider](#slider13) | Slider类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Slider');
+```
+
+### Select<sup>13+</sup>
+type Select = TypedFrameNode&lt;SelectInterface, SelectAttribute&gt;
+
+Select类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;SelectInterface, SelectAttribute&gt; | 提供Select类型FrameNode节点。<br/>**说明：**<br/> SelectInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Select组件的构造函数类型。 <br/> SelectAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Select组件的属性设置对象。 |
+
+### createNode('Select')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Select'): Select
+
+创建Select类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Select' | 是 | 创建Select类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Select](#select13) | Select类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'Select');
+```
+
+### Toggle<sup>13+</sup>
+type Toggle = TypedFrameNode&lt;ToggleInterface, ToggleAttribute&gt;
+
+Toggle类型的FrameNode节点类型。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ToggleInterface, ToggleAttribute&gt; | 提供Toggle类型FrameNode节点。<br/>**说明：**<br/> ToggleInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Toggle组件的构造函数类型。 <br/> ToggleAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Toggle组件的属性设置对象。 |
+
+### createNode('Toggle')<sup>13+</sup>
+createNode(context: UIContext, nodeType: 'Toggle', options?: ToggleOptions): Toggle
+
+创建Toggle类型的FrameNode节点。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
+| nodeType | 'Toggle' | 是 | 创建Toggle类型的节点。 |
+| options | ToggleOptions | 否 | 创建Toggle节点的接口参数。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [Toggle](#toggle13) | Toggle类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+let toggleOptions: ToggleOptions = {type: ToggleType.Button, isOn: false};
+typeNode.createNode(uiContext, 'Toggle', toggleOptions);
+```
+
 ## NodeAdapter<sup>12+</sup>
 
 NodeAdapter提供FrameNode的数据懒加载能力。
@@ -2731,7 +3095,7 @@ reloadAllItems(): void
 
 reloadItem(start: number, count: number): void
 
-定义从索引值开始重新加载指定数量的节点数据。
+从索引值开始重新加载指定数量的节点数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2748,7 +3112,7 @@ reloadItem(start: number, count: number): void
 
 removeItem(start: number, count: number): void
 
-定义从索引值开始删除指定数量的节点数据。
+从索引值开始删除指定数量的节点数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2765,7 +3129,7 @@ removeItem(start: number, count: number): void
 
 insertItem(start: number, count: number): void
 
-定义从索引值开始新增指定数量的节点数据。
+从索引值开始新增指定数量的节点数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2782,7 +3146,7 @@ insertItem(start: number, count: number): void
 
 moveItem(from: number, to: number): void
 
-定义数据移动操作。将数据从起始索引移动到结束索引。
+将数据从原始索引移动到目的索引。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2792,8 +3156,8 @@ moveItem(from: number, to: number): void
 
 | 参数名  | 类型                                                   | 必填 | 说明             |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| from | number | 是   | 数据移动起始索引值。 |
-| to | number | 是   | 数据移动结束索引值。 |
+| from | number | 是   | 数据移动的原始索引值。 |
+| to | number | 是   | 数据移动的目的索引值。 |
 
 ### getAllAvailableItems<sup>12+</sup>
 

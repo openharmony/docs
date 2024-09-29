@@ -35,7 +35,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -159,7 +159,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -269,7 +269,7 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -385,7 +385,7 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -489,7 +489,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -536,7 +536,7 @@ stopVibration(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -575,7 +575,7 @@ stopVibrationSync(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -615,7 +615,7 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -686,7 +686,7 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -752,7 +752,7 @@ isSupportEffectSync(effectId: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)。
+以下错误码的详细介绍请参见[振动错误码](errorcode-vibrator.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -821,7 +821,7 @@ try {
 
 | 名称               | 值                   | 说明                             |
 | ------------------ | -------------------- | -------------------------------- |
-| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 描述用户调整计时器时的振动效果。|
+| EFFECT_CLOCK_TIMER | 'haptic.clock.timer' | 描述用户调整计时器时的振动效果。|
 
 ## HapticFeedback<sup>12+</sup>
 
@@ -831,9 +831,9 @@ try {
 
 | 名称         | 值                    | 说明                         |
 | ------------ | --------------------- | ---------------------------- |
-| EFFECT_SOFT  | "haptic.effect.soft"  | 较松散的振动效果，频率偏低。 |
-| EFFECT_HARD  | "haptic.effect.hard"  | 较沉重的振动效果，频率居中。 |
-| EFFECT_SHARP | "haptic.effect.sharp" | 较尖锐的振动效果，频率偏高。 |
+| EFFECT_SOFT  | 'haptic.effect.soft'  | 较松散的振动效果，频率偏低。 |
+| EFFECT_HARD  | 'haptic.effect.hard'  | 较沉重的振动效果，频率居中。 |
+| EFFECT_SHARP | 'haptic.effect.sharp' | 较尖锐的振动效果，频率偏高。 |
 
 ## VibratorStopMode
 
@@ -843,8 +843,8 @@ try {
 
 | 名称                      | 值       | 说明                           |
 | ------------------------- | -------- | ------------------------------ |
-| VIBRATOR_STOP_MODE_TIME   | "time"   | 停止duration模式的振动。 |
-| VIBRATOR_STOP_MODE_PRESET | "preset" | 停止预置EffectId的振动。|
+| VIBRATOR_STOP_MODE_TIME   | 'time'   | 停止duration模式的振动。 |
+| VIBRATOR_STOP_MODE_PRESET | 'preset' | 停止预置EffectId的振动。|
 
 ## VibrateEffect<sup>9+</sup>
 
@@ -868,7 +868,7 @@ try {
 
 | 名称     | 类型    | 必填 | 说明                           |
 | -------- | ------ | ----- | ------------------------------ |
-| type     | "time" |  是   | 值为"time"，按照指定持续时间触发马达振动。 |
+| type     | 'time' |  是   | 值为'time'，按照指定持续时间触发马达振动。 |
 | duration | number |  是   | 马达持续振动时长, 单位ms。         |
 
 ## VibratePreset<sup>9+</sup>
@@ -879,10 +879,10 @@ try {
 
 | 名称     | 类型      | 必填 | 说明                           |
 | -------- | -------- | ---- |------------------------------ |
-| type     | "preset" |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
+| type     | 'preset' |  是  | 值为'preset'，按照预置振动效果触发马达振动。 |
 | effectId | string   |  是  | 预置的振动效果ID。             |
 | count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
-| intensity<sup>12+</sup> | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
+| intensity<sup>12+</sup> | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。若振动效果不支持强度调节或设备不支持时，则按默认强度振动。 |
 
 ## VibrateFromFile<sup>10+</sup>
 
@@ -892,7 +892,7 @@ try {
 
 | 名称     | 类型       | 必填 | 说明                           |
 | -------- | --------  | ---- | ------------------------------ |
-| type     | "file" |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
+| type     | 'file' |  是  | 值为'file'，按照振动配置文件触发马达振动。 |
 | hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | 是 | 振动配置文件的描述符。|
 
 ## HapticFileDescriptor<sup>10+</sup>

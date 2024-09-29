@@ -67,7 +67,7 @@ XML模块的API接口可以参考[@ohos.xml](../reference/apis-arkts/js-apis-xml
    ```ts
    let view: Uint8Array = new Uint8Array(arrayBuffer); // 使用Uint8Array读取arrayBuffer的数据
    let textDecoder: util.TextDecoder = util.TextDecoder.create(); // 调用util模块的TextDecoder类
-   let res: string = textDecoder.decodeWithStream(view); // 对view解码
+   let res: string = textDecoder.decodeToString(view); // 对view解码
    console.info(res);
    ```
 

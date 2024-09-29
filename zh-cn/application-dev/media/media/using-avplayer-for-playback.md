@@ -1,6 +1,6 @@
 # 使用AVPlayer开发音频播放功能(ArkTS)
 
-使用AVPlayer可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。
+使用AVPlayer可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。如需播放PCM音频数据，请使用[AudioRenderer](../audio/using-audiorenderer-for-playback.md)。
 
 播放的全流程包含：创建AVPlayer，设置播放资源，设置播放参数（音量/倍速/焦点模式），播放控制（播放/暂停/跳转/停止），重置，销毁资源。
 
@@ -63,7 +63,7 @@
 
 ## 完整示例
 
-参考以下示例，完整地播放一首音乐。
+参考以下示例，完整地播放一首音乐，实现起播后3s暂停，暂停3s重新播放的效果。
 
 ```ts
 import { media } from '@kit.MediaKit';
@@ -113,13 +113,19 @@ export class AVPlayerDemo {
               console.info('AVPlayer wait to play end.');
             }
           } else {
-            avPlayer.pause(); // 调用暂停接口暂停播放
+            setTimeout(() => {
+              console.info('AVPlayer playing wait to pause');
+              avPlayer.pause(); // 播放3s后调用暂停接口暂停播放
+            }, 3000)
           }
           this.count++;
           break;
         case 'paused': // pause成功调用后触发该状态机上报
           console.info('AVPlayer state paused called.');
-          avPlayer.play(); // 再次播放接口开始播放
+          setTimeout(() => {
+              console.info('AVPlayer paused wait to play again');
+              avPlayer.play(); // 暂停3s后再次调用播放接口开始播放
+            }, 3000)
           break;
         case 'completed': // 播放结束后触发该状态机上报
           console.info('AVPlayer state completed called.');

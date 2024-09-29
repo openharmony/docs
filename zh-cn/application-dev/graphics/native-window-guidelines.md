@@ -80,7 +80,8 @@ libnative_window.so
         {
             // 可获取 OHNativeWindow 实例
             OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
-            // ...
+            // 此回调触发后，会将window进行引用计数减1的操作，当window的应用计数为0后，会触发window的析构，
+            // window析构后，不可再通过window进行接口调用，否则可能会触发野指针或空指针的奔溃。
         }
         void DispatchTouchEventCB(OH_NativeXComponent* component, void* window)
         {

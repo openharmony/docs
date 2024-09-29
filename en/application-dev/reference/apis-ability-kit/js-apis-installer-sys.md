@@ -1365,7 +1365,7 @@ try {
 
 ## BundleInstaller.createAppClone<sup>12+</sup>
 
-createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise<number>;
+createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise\<number>;
 
 Creates an application clone. This API uses a promise to return the result.
 
@@ -1432,7 +1432,7 @@ try {
 
 ## BundleInstaller.destroyAppClone<sup>12+</sup>
 
-destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise<void>;
+destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\<void>;
 
 Destroys an application clone. This API uses a promise to return the result.
 
@@ -1497,7 +1497,7 @@ try {
 
 ## BundleInstaller.installPreexistingApp<sup>12+</sup>
 
-installPreexistingApp(bundleName: string, userId?: number): Promise<void>;
+installPreexistingApp(bundleName: string, userId?: number): Promise\<void>;
 
 Installs a bundle. This API uses a promise to return the result.
 
@@ -1531,6 +1531,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName cannot be found. |
 | 17700004 | The userId is invalid. |
+| 17700071 | It is not allowed to install the enterprise bundle. |
 
 **Example**
 ```ts

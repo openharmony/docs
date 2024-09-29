@@ -208,8 +208,6 @@ export default {
 
 全局定义画布（el）及画笔（ctx），初始化创建一个边框宽度为5的长方形。对边框的宽度（lineWidth）、颜色（strokeStyle）、虚化程度（setLineDash）进行改变，选用select组件添加change事件，下拉选择时触发change事件后画出改变后的图形。
 
-
-
 ```html
 <!-- xxx.hml -->
 <div class="container">
@@ -222,8 +220,6 @@ export default {
   </select>
 </div>
 ```
-
-
 
 ```css
 /* xxx.css */
@@ -248,8 +244,6 @@ select{
   background-color: white;
 }
 ```
-
-
 
 ```js
 // xxx.js
@@ -561,7 +555,8 @@ export default {
 
 ![zh-cn_image_0000001223064401](figures/zh-cn_image_0000001223064401.gif)
 
-> **说明：**
+> **说明：** 
+>
 > ltr布局模式下start和left一致，rtl布局模式下start和right一致·。
 
 

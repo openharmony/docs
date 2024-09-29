@@ -32,7 +32,7 @@ To enable an application to properly use a UIAbility component, declare the UIAb
 ```json
 {
   "module": {
-    ...
+    // ...
     "abilities": [
       {
         "name": "EntryAbility", // Name of the UIAbility component.
@@ -42,7 +42,7 @@ To enable an application to properly use a UIAbility component, declare the UIAb
         "label": "$string:EntryAbility_label", // Label of the UIAbility component.
         "startWindowIcon": "$media:icon", // Index of the icon resource file.
         "startWindowBackground": "$color:start_window_background", // Index of the background color resource file.
-        ...
+        // ...
       }
     ]
   }

@@ -26,7 +26,7 @@ Checkbox(options?: CheckboxOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                        | 必填 | 描述               |
+| 参数名  | 类型                                        | 必填 | 说明               |
 | ------- | ------------------------------------------- | ---- | ------------------ |
 | options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置复选框的参数。 |
 
@@ -112,7 +112,7 @@ mark(value: MarkStyle)
 
 | 参数名 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。 |
+| value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。<br/>默认值：{<br/>strokeColor : `$r('sys.color.ohos_id_color_foreground_contrary')`,<br/>strokeWidth: `$r('sys.float.ohos_id_checkbox_stroke_width')`,<br/>size: '20vp'<br/>} |
 
 ### shape<sup>11+</sup>
 
@@ -166,7 +166,7 @@ onChange(callback: (value: boolean) => void)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 描述                                              |
+| 参数名 | 类型    | 必填 | 说明                                              |
 | ------ | ------- | ---- | ------------------------------------------------- |
 | value  | boolean | 是   | 返回true时，表示已选中。返回false时，表示未选中。 |
 

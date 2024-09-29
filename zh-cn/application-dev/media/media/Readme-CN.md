@@ -11,6 +11,7 @@
   - [视频播放](video-playback.md)
   - [添加视频外挂字幕](video-subtitle.md)
   - [视频录制](video-recording.md)
+  - [使用AVScreenCaptureRecorder录屏保存到文件(ArkTS)](using-avscreencapture-ArkTs.md)
   - [使用AVScreenCapture录屏取原始码流(C/C++)](using-avscreencapture-for-buffer.md)
   - [使用AVScreenCapture录屏保存到文件(C/C++)](using-avscreencapture-for-file.md)
   - [获取视频缩略图](avimagegenerator.md)

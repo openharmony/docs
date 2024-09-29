@@ -273,7 +273,9 @@ Allows an application to access OpenHarmony Security Detection and Response Fram
 
 ### ohos.permission.RUN_DYN_CODE
 
-Allows an application to run dynamic code.
+Allows an application to run dynamically delivered ArkCompiler bytecode when the ArkCompiler runtime engine is in restricted mode.
+
+This permission is available only for certain system applications.
 
 **Permission level**: normal
 
@@ -347,6 +349,8 @@ After the application obtains this permission, a directory in **/el5** will be a
 
 Allows an application to support persistent access to file URIs.
 
+<!--RP2--><!--RP2End-->
+
 **Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
 
 **Authorization mode**: system_grant
@@ -355,13 +359,33 @@ Allows an application to support persistent access to file URIs.
 
 ### ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE
 
-Allows an application to access the car distributed engine.
+Allows an application to access the distributed travel service engine.
 
 **Permission level**: normal
 
 **Authorization mode**: system_grant
 
 **Valid since**: 12
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 13
+
+### ohos.permission.WINDOW_TOPMOST
+
+Allows an application to set pinned windows.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 13
 
 ## user_grant Permissions
 
@@ -529,6 +553,10 @@ Allows an application to use NearLink, such as device pairing and connecting to 
 
 Allows an application to access the **Download** directory and its subdirectories in the user directory.
 
+Currently, this permission is available only for 2-in-1 device applications.
+
+<!--RP2--><!--RP2End-->
+
 **Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
 
 **Authorization mode**: user_grant
@@ -538,6 +566,10 @@ Allows an application to access the **Download** directory and its subdirectorie
 ### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 
 Allows an application to access the **Documents** directory and its subdirectories in the user directory.
+
+Currently, this permission is available only for 2-in-1 device applications.
+
+<!--RP2--><!--RP2End-->
 
 **Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
 

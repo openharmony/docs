@@ -546,7 +546,7 @@ The number of child process exceeds upper bound.
 
 **处理步骤**
 
-确认创建的子进程数量是否已经达到上限。子进程数量上限为128个。
+确认创建的子进程数量是否已经达到上限。子进程数量上限为512个。
 
 ## 16000063 重启应用指定组件无效
 
@@ -794,6 +794,98 @@ Not support back to caller.
 
 1. 确认当前应用已在module.json5文件中配置linkFeature字段。
 2. 确认当前应用声明的linkFeature取值正确，linkFeature描述的功能与应用链接对应的实际功能一致，且应用通过系统审核。
+
+## 16000076 指定的APP_INSTANCE_KEY不存在
+
+**错误信息**
+
+The APP_INSTANCE_KEY is invalid.
+
+**错误描述**
+
+指定的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)不存在时，返回该错误码。
+
+**可能原因**
+
+应用的实例中不存在该[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)指定的实例。
+
+**处理步骤**
+
+确保传入的[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)是一个有效值。
+
+## 16000077 应用的实例数量已达到上限
+
+**错误信息**
+
+The number of app instances reaches the limit.
+
+**错误描述**
+
+当应用的实例数量达到上限后，继续创建应用实例，返回该错误码。
+
+**可能原因**
+
+创建应用实例前未判断应用实例数量是否已达到应用自己设置的上限值。
+
+**处理步骤**
+
+调整设置的应用实例上限，或者删除已有应用实例后，才能继续创建新的应用实例。
+
+## 16000078 不支持应用多实例
+
+**错误信息**
+
+The multi-instance is not supported.
+
+**错误描述**
+
+应用不支持多实例。
+
+**可能原因**
+
+1. 目标应用未配置多实例。
+2. 当前设备类型不支持多实例。
+
+**处理步骤**
+
+1. 对目标应用配置多实例。
+2. 在2in1设备上调用该方法。
+
+## 16000079 不支持指定APP_INSTANCE_KEY
+
+**错误信息**
+
+The APP_INSTANCE_KEY cannot be specified.
+
+**错误描述**
+
+[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)不支持同时指定。当指定[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)的同时指定[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)，返回该错误码。
+
+**可能原因**
+
+参数传入过多。
+
+**处理步骤**
+
+参数[APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)和[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)只支持二选一。
+
+## 16000080 不支持创建新实例
+
+**错误信息**
+
+Creating an instance is not supported.
+
+**错误描述**
+
+只允许应用使用[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)创建自己的实例，不允许应用间启动时为其他应用创建实例。否则，返回该错误码。
+
+**可能原因**
+
+参数使用场景有误。
+
+**处理步骤**
+
+删除参数[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#wantconstantparams)。
 
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 

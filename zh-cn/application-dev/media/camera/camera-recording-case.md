@@ -305,22 +305,22 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   }
 
   // 停止当前会话
-  videoSession.stop();
+  await videoSession.stop();
 
   // 关闭文件
   fs.closeSync(file);
 
   // 释放相机输入流
-  cameraInput.close();
+  await cameraInput.close();
 
   // 释放预览输出流
-  previewOutput.release();
+  await previewOutput.release();
 
   // 释放录像输出流
-  videoOutput.release();
+  await videoOutput.release();
 
   // 释放会话
-  videoSession.release();
+  await videoSession.release();
 
   // 会话置空
   videoSession = undefined;

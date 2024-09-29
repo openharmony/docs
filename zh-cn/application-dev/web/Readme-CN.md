@@ -15,6 +15,7 @@
   - [前端页面调用应用侧函数](web-in-page-app-function-invoking.md)
   - [建立应用侧与前端页面数据通道](web-app-page-data-channel.md)
   - [应用侧与前端页面的相互调用(C/C++)](arkweb-ndk-jsbridge.md)
+  - [建立应用侧与前端页面数据通道(C/C++)](arkweb-ndk-page-data-channel.md)
 - 管理网页交互
   - [Web组件嵌套滚动](web-nested-scrolling.md)
   - [Web页面显示内容滚动](web-content-scrolling.md)
@@ -41,7 +42,7 @@
   - [使用Web组件打印前端页面](web-print.md)
   - [使用Web组件的PDF文档预览能力](web-pdf-preview.md)
   - [网页中安全区域计算和避让适配](web-safe-area-insets.md)
-- [同层渲染绘制Video和Button组件](web-same-layer.md)
+- [同层渲染](web-same-layer.md)
 - Web调试维测
   - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
   - [使用crashpad收集Web组件崩溃信息](web-crashpad.md)

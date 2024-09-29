@@ -78,6 +78,7 @@
       - [按键事件](arkui-ts/ts-universal-events-key.md)
       - [焦点事件](arkui-ts/ts-universal-focus-event.md)
       - [鼠标事件](arkui-ts/ts-universal-mouse-key.md)
+      - [悬浮事件](arkui-ts/ts-universal-events-hover.md)
       - [无障碍悬浮事件](arkui-ts/ts-universal-accessibility-hover-event.md)
       - [组件区域变化事件](arkui-ts/ts-universal-component-area-change-event.md)
       - [组件尺寸变化事件](arkui-ts/ts-universal-component-size-change-event.md)
@@ -140,6 +141,7 @@
       - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
       <!--Del-->
       - [点光源设置 (系统接口)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
+      - [图像效果 (系统接口)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
       <!--DelEnd-->
     - 手势处理
       - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
@@ -382,7 +384,9 @@
     - [UIExtensionComponent (系统接口)](arkui-ts/ts-container-ui-extension-component-sys.md)
     <!--DelEnd-->
   - 已停止维护的组件与接口
+    <!--Del-->
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
+    <!--DelEnd-->
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
     - [Panel](arkui-ts/ts-container-panel.md)
     - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
@@ -399,6 +403,7 @@
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [WindowManager_NativeModule](_window_manager___native_module.md)
     - [Native Accessibility](arkui_native_interface_accessibility.md)
+    - [OH_DisplayManager](_o_h___display_manager.md)
   - 头文件
     - [drag_and_drop.h](drag__and__drop_8h.md)
     - [drawable_descriptor.h](drawable__descriptor_8h.md)
@@ -416,6 +421,8 @@
     - [oh_window_comm.h](oh__window__comm_8h.md)
     - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
     - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
+    - [oh_display_info.h](oh__display__info_8h.md)
+    - [oh_display_manager.h](oh__display__manager_8h.md)
   - 结构体
     - [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md)
     - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
@@ -444,6 +451,9 @@
     - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
+    - [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md)
+    - [NativeDisplayManager_Rect](_native_display_manager___rect.md)
+    - [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md)
 - 错误码
   - UI界面
     - [动画错误码](errorcode-animator.md)

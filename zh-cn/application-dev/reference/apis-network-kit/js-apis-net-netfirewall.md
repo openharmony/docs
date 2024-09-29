@@ -514,7 +514,7 @@ getInterceptedRecords(userId: number, requestParam: RequestParam): Promise<\Inte
 **参数：**
 
 | 参数名       | 类型                          | 必填 | 说明                                         |
-| ------------ | ---------------------------—— | ---- | -------------------------------------------- |
+| ------------ | --------------------------- | ---- | -------------------------------------------- |
 | userId       | number                        | 是   | 系统中的多用户用户ID，不能是不存在的用户ID。 |
 | requestParam | [RequestParam](#requestparam) | 是   | 查询参数。                                   |
 

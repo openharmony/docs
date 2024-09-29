@@ -32,6 +32,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 | --------------- | --------------------------------------------- | ---- | ----------- | ------------------------------------------------------------ |
 | options         | [SegmentButtonOptions](#segmentbuttonoptions) | 是   | @ObjectLink | 分段按钮选项。                                               |
 | selectedIndexes | number[]                                      | 是   | @Link       | 分段按钮的选中项编号，第一项的编号为0，之后顺序增加。<br/>**说明：**<br/>`selectedIndexes`使用[@Link装饰器：父子双向同步](../../../quick-start/arkts-link.md)，仅支持有效的按钮编号（第一个按钮编号为0，之后按顺序累加），如没有选中项可传入空数组`[]`。 |
+| onItemClicked<sup>13+</sup> | Callback\<number\> | 否 | - | 当分段按钮选项被点击时触发的回调函数，回调入参为被点击的选项下标。 |
 
 >**说明：**
 >
@@ -52,21 +53,21 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 | type                    | "tab" \| "capsule"                                           | 分段按钮的类型。                                             |
 | multiply                | boolean                                                      | 是否可以多选。<br/>**说明：**<br/>页签类分段按钮只支持单选，设置`multiply`为`true`不生效。 |
 | buttons                 | [SegmentButtonItemOptionsArray](#segmentbuttonitemoptionsarray) | 按钮信息，包括图标和文本信息。                               |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮未选中态的文本颜色，默认值：#99182431。                  |
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态的文本颜色，默认值：#ff182431。                    |
-| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | 按钮未选中态的字体大小（不支持百分比设置），默认值：14.0fp。 |
-| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | 按钮选中态的字体大小（不支持百分比设置），默认值：14.0fp。   |
-| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | 按钮未选中态的字体粗细，默认值：FontWeight.Regular。         |
-| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | 按钮选中态的字体粗细，默认值：FontWeight.Medium。            |
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 底板颜色，默认值：页签类\#0c182431，单选类/多选类\#0c182431。 |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态底板颜色，默认值：页签类\#ffffffff，单选类/多选类\#ff007dff。 |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮未选中态的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_secondary') |
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态的文本颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_text_primary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。 |
+| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | 按钮未选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2') |
+| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | 按钮选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2') |
+| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | 按钮未选中态的字体粗细。<br/>默认值：FontWeight.Regular |
+| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | 按钮选中态的字体粗细。<br/>默认值：FontWeight.Medium。     |
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 底板颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal') |
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态底板颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_emphasize')`。 |
 | imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。 |
 | buttonPadding           | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
-| textPadding             | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 文本内边距，默认值：0。                                      |
+| textPadding             | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 文本内边距。<br/>默认值：0                           |
 | localizedButtonPadding<sup>12+</sup>  | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。 |
-| localizedTextPadding<sup>12+</sup>    | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 文本内边距，默认值：0。                                                                                                                                                                                                                                                     |
+| localizedTextPadding<sup>12+</sup>    | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 文本内边距。<br/>默认值：0                                                                                                                                                                                                                                          |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 布局方向。<br/>默认值：Direction.Auto                                                                                                                                                                                                                                           |
-| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                         |
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 背景模糊材质。<br/>默认值：BlurStyle.NONE                    |
 
 ### constructor
 
@@ -159,21 +160,21 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 | 属性                    | 类型                                                         | 描述                                                         |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮未选中态的文本颜色，默认值：#99182431。                  |
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态的文本颜色，默认值：#ff182431。                    |
-| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | 按钮未选中态的字体大小（不支持百分比设置），默认值：14.0fp。 |
-| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | 按钮选中态的字体大小（不支持百分比设置），默认值：14.0fp。   |
-| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | 按钮未选中态的字体粗细，默认值：FontWeight.Regular。         |
-| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | 按钮选中态的字体粗细，默认值：FontWeight.Medium。            |
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 底板颜色，默认值：页签类\#0c182431，单选类/多选类\#0c182431。 |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态底板颜色，默认值：页签类\#ffffffff，单选类/多选类\#ff007dff。 |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮未选中态的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_secondary') |
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态的文本颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_text_primary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。 |
+| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | 按钮未选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2') |
+| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | 按钮选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2') |
+| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | 按钮未选中态的字体粗细。<br/>默认值：FontWeight.Regular |
+| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | 按钮选中态的字体粗细。<br/>默认值：FontWeight.Medium。 |
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 底板颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal') |
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 按钮选中态底板颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_emphasize')`。 |
 | imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。 |
 | buttonPadding           | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
-| textPadding             | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 文本内边距，默认值：0。                                      |
+| textPadding             | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 文本内边距。<br/>默认值：0                         |
 | localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。 |
-| localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 文本内边距，默认值：0。                                                                                                                                                                                                                                                     |
+| localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 文本内边距。<br/>默认值：0                                                                                                                                                                                                                                          |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 布局方向。<br/>默认值：Direction.Auto                                                                                                                                                                                                                                          |
-| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 背景模糊材质，默认值：BlurStyle.NONE                      |
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 背景模糊材质。<br/>默认值：BlurStyle.NONE |
 
 ## TabSegmentButtonConstructionOptions
 

@@ -172,3 +172,4 @@ let isBoundary = iterator.isBoundary(9); // isBoundary: true
 // 获取BreakIterator对象处理的文本
 let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
 ```
+<!--RP1--><!--RP1End-->

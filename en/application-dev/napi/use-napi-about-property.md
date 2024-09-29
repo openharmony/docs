@@ -1,4 +1,4 @@
-# Setting ArkTS Object Properties Using Node-API
+# Working with Property Using Node-API
 
 ## Introduction
 
@@ -45,7 +45,7 @@ CPP code:
 
 static napi_value GetPropertyNames(napi_env env, napi_callback_info info)
 {
-    // Pass in obj as a parameter.
+    // Parse the ArkTS input parameters.
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -144,7 +144,7 @@ try {
 
 ### napi_get_property
 
-Use **napi_get_property** to obtain a property value in an ArkTS object based on the property name.
+Use **napi_get_property** to obtain the value of the specified property in an object.
 
 CPP code:
 
@@ -687,7 +687,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API setter::%{public}s ', testNapi.crea
 
 ### napi_get_all_property_names
 
-Use **napi_get_all_property_names** to obtain the names of all properties of an ArkTS object.
+Use **napi_get_all_property_names** to obtain all property names in an ArkTS object.
 
 CPP code:
 

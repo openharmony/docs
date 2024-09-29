@@ -93,7 +93,7 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
 
 ### 创建卡片FormExtensionAbility
 
-创建Stage模型的卡片，需实现FormExtensionAbility生命周期接口。先参考<!--RP1-->[DevEco Studio服务卡片开发指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ide_service_widget-0000001078566997-V3)<!--RP1End-->生成服务卡片模板。
+创建Stage模型的卡片，需实现FormExtensionAbility生命周期接口。先参考<!--RP1-->[DevEco Studio服务卡片开发指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-service-widget-V5)<!--RP1End-->生成服务卡片模板。
 
 1. 在EntryFormAbility.ets中，导入相关模块。
     ```ts
@@ -337,9 +337,9 @@ export default class JsCardFormAbility extends FormExtensionAbility {
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
-- 常态卡片：卡片使用方会持久化的卡片；
+- 常态卡片：卡片使用方会持久化的卡片。
 
-- 临时卡片：卡片使用方不会持久化的卡片；
+- 临时卡片：卡片使用方不会持久化的卡片。
 
 由于临时卡片的数据具有非持久化的特殊性，某些场景例如卡片服务框架死亡重启，此时临时卡片数据在卡片管理服务中已经删除，且对应的卡片ID不会通知到提供方，所以卡片提供方需要自己负责清理长时间未删除的临时卡片数据。同时对应的卡片使用方可能会将之前请求的临时卡片转换为常态卡片。如果转换成功，卡片提供方也需要对对应的临时卡片ID进行处理，把卡片提供方记录的临时卡片数据转换为常态卡片数据，防止提供方在清理长时间未删除的临时卡片时，把已经转换为常态卡片的临时卡片信息删除，导致卡片信息丢失。
 
@@ -463,7 +463,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
 ### 开发卡片事件
 
-卡片支持为组件设置交互事件（action），包括**router**事件和**message**事件，其中router事件用于UIAbility跳转，message事件用于卡片开发人员自定义点击事件。
+卡片支持为组件设置交互事件（action），包括router事件和message事件，其中router事件用于UIAbility跳转，message事件用于卡片开发人员自定义点击事件。
 
 关键步骤说明如下：
 
@@ -592,7 +592,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   "data"中JSON Value支持多级嵌套数据，在更新数据时，需要注意携带完整数据。
 
-  例如:当前卡片显示07.18日Mr.Zhang的课程信息，示例如下。
+  例如：当前卡片显示07.18日Mr.Zhang的课程信息，示例如下。
   ```ts
   "data": {
       "Day": "07.18",

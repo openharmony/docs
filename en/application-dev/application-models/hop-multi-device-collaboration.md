@@ -29,12 +29,12 @@ The figure below shows the multi-device collaboration process.
 
 - Multi-device collaboration must comply with [Inter-Device Component Startup Rules](component-startup-rules.md#inter-device-component-startup-rules).
 
-- For better user experience, you are advised to use the **want** parameter to transmit data smaller than 100 KB.
+- For better user experience, you are advised to use the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter to transmit data smaller than 100 KB.
 
 
 ## Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)
 
-On device A, touch the **Start** button provided by the initiator application to start a specified UIAbility or ServiceExtensionAbility on device B.
+On device A, touch the **Start** button provided by the initiator application to start a specified [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) or [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) on device B.
 
 
 ### Available APIs
@@ -95,7 +95,7 @@ On device A, touch the **Start** button provided by the initiator application to
     }
     ```
 
-4. Set the target component parameters, and call [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start a UIAbility or ServiceExtensionAbility.
+4. Set the target component parameters, and call [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start a [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) or [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md).
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -151,7 +151,7 @@ On device A, touch the **Start** button provided by the initiator application to
                 // context is the AbilityContext of the initiator UIAbility.
                 this.context.startAbility(want).then(() => {
                   promptAction.showToast({
-                    message: $r('app.string.SuccessfulCollaboration')
+                    message: 'SuccessfulCollaboration'
                   });
                 }).catch((err: BusinessError) => {
                   hilog.error(DOMAIN_NUMBER, TAG, `startAbility err: ` + JSON.stringify(err));
@@ -167,7 +167,7 @@ On device A, touch the **Start** button provided by the initiator application to
     }
     ```
 
-5. Call [stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability-1) to stop the ServiceExtensionAbility when it is no longer required on device B. (This API cannot be used to stop a UIAbility. Users must manually stop a UIAbility through mission management.)
+5. Call [stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability-1) to stop the [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) when it is no longer required on device B. (This API cannot be used to stop a [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md). Users must manually stop a UIAbility through mission management.)
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -226,7 +226,7 @@ On device A, touch the **Start** button provided by the initiator application to
 
 ## Starting UIAbility Across Devices (Data Returned)
 
-On device A, touch the **Start** button provided by the initiator application to start a specified UIAbility on device B. When the UIAbility on device B exits, a value is returned to the initiator application.
+On device A, touch the Start button provided by the initiator application to start a specified [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) on device B. When the UIAbility on device B exits, a value is returned to the initiator application.
 
 
 ### Available APIs
@@ -246,7 +246,7 @@ On device A, touch the **Start** button provided by the initiator application to
 
 2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
-3. Set the target component parameters on the initiator, and call **startAbilityForResult()** to start the target UIAbility. **data** in the asynchronous callback is used to receive the information returned by the target UIAbility to the initiator UIAbility after the target UIAbility terminates itself. For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned).
+3. Set the target component parameters on the initiator, and call [startAbilityForResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult) to start the target UIAbility. **data** in the asynchronous callback is used to receive the information returned by the target UIAbility to the initiator UIAbility after the target UIAbility terminates itself. For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned).
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -303,7 +303,7 @@ On device A, touch the **Start** button provided by the initiator application to
                 this.context.stopServiceExtensionAbility(want).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'stop service extension ability success')
                   promptAction.showToast({
-                    message: $r('app.string.SuccessfullyStop')
+                    message: 'SuccessfullyStop'
                   });
                 }).catch((err: BusinessError) => {
                   hilog.error(DOMAIN_NUMBER, TAG, `stop service extension ability err is ` + JSON.stringify(err));
@@ -319,7 +319,7 @@ On device A, touch the **Start** button provided by the initiator application to
     }
     ```
 
-4. After the UIAbility mission on the target device is complete, call **terminateSelfWithResult()** to return the data to the initiator UIAbility.
+4. After the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) mission on the target device is complete, call [terminateSelfWithResult()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to return the data to the initiator UIAbility.
 
     ```ts
     import { common } from '@kit.AbilityKit';
@@ -372,7 +372,7 @@ On device A, touch the **Start** button provided by the initiator application to
     }
     ```
 
-5. The initiator UIAbility receives the information returned by the target UIAbility and processes the information.
+5. The initiator [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) receives the information returned by the target UIAbility and processes the information.
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -478,9 +478,9 @@ A system application can connect to a service on another device by calling [conn
 3. (Optional) [Implement a background service](serviceextensionability.md#implementing-a-background-service-for-system-applications-only). Perform this operation only if no background service is available. This operation is available only for system applications.
 
 4. Connect to the background service.
-   - Implement the **IAbilityConnection** class. **IAbilityConnection** provides the following callbacks that you should implement: **onConnect()**, **onDisconnect()**, and **onFailed()**. The **onConnect()** callback is invoked when a service is connected, **onDisconnect()** is invoked when a service is unexpectedly disconnected, and **onFailed()** is invoked when the connection to a service fails.
+   - Implement the **IAbilityConnection** class. **IAbilityConnection** provides the following callbacks that you should implement: [onConnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect), [onDisconnect()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#ondisconnect), and [onFailed()](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md#onfailed). The **onConnect()** callback is invoked when a service is connected, **onDisconnect()** is invoked when a service is unexpectedly disconnected, and **onFailed()** is invoked when the connection to a service fails.
    - Set the target component parameters, including the target device ID, bundle name, and ability name.
-   - Call **connectServiceExtensionAbility** to initiate a connection.
+   - Call **connectServiceExtensionAbility()** to initiate a connection.
    - Receive the service handle returned by the target device when the connection is successful.
    - Perform cross-device call and obtain the result returned by the target service.
      
@@ -587,7 +587,7 @@ A system application can connect to a service on another device by calling [conn
 
     For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned).
 
-5. Disconnect the connection. Use **disconnectServiceExtensionAbility()** to disconnect from the background service.
+5. Disconnect the connection. Use [disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) to disconnect from the background service.
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -618,7 +618,7 @@ A system application can connect to a service on another device by calling [conn
                   hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
                   // The background service is disconnected.
                   promptAction.showToast({
-                    message: $r('app.string.SuccessfullyDisconnectBackendService')
+                    message: 'SuccessfullyDisconnectBackendService'
                   })
                 }).catch((error: BusinessError) => {
                   hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');
@@ -664,23 +664,23 @@ The following describes how to implement multi-device collaboration through cros
 2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 3. Create the CalleeAbility.
-   
-   For the CalleeAbility, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use **on()** to register a listener. When data does not need to be received, use **off()** to deregister the listener.
 
-     1. Configure the launch type of the UIAbility.
+   For the CalleeAbility, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use [on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon) to register a listener. When data does not need to be received, use [off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff) to deregister the listener.
 
-         Set **launchType** of the CalleeAbility to **singleton** in the **module.json5** file.
+    1. Configure the launch type of the UIAbility.
 
-         | JSON Field| Description|
-         | -------- | -------- |
-         | "launchType"| UIAbility launch type. Set this parameter to **singleton**.|
+        Set **launchType** of the CalleeAbility to **singleton** in the [module.json5](../quick-start/module-configuration-file.md) file.
 
-         An example of the UIAbility configuration is as follows:
+        | JSON Field| Description|
+        | -------- | -------- |
+        | "launchType"| UIAbility launch type. Set this parameter to **singleton**.|
+
+        An example of the UIAbility configuration is as follows:
 
         ```json
         "abilities":[{
             "name": ".CalleeAbility",
-            "srcEntry": "./ets/CalleeAbility/CalleeAbility.ts",
+            "srcEntry": "./ets/CalleeAbility/CalleeAbility.ets",
             "launchType": "singleton",
             "description": "$string:CalleeAbility_desc",
             "icon": "$media:icon",
@@ -688,12 +688,12 @@ The following describes how to implement multi-device collaboration through cros
             "exported": true
         }]
         ```
-     2. Import the **UIAbility** module.
+    2. Import the **UIAbility** module.
 
         ```ts
         import { UIAbility } from '@kit.AbilityKit';
         ```
-     3. Define the agreed parcelable data.
+    3. Define the agreed parcelable data.
 
         The data formats sent and received by the CallerAbility and CalleeAbility must be consistent. In the following example, the data formats are number and string.
 
@@ -728,9 +728,9 @@ The following describes how to implement multi-device collaboration through cros
           };
         }
         ```
-     4. Implement **Callee.on** and **Callee.off**.
+    4. Implement [Callee.on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeon) and [Callee.off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleeoff).
 
-        In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate()** of the UIAbility and deregistered in **onDestroy()**. After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements.
+        In the following example, the **MSG_SEND_METHOD** listener is registered in [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) of the UIAbility and deregistered in [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityondestroy). After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements.
            
         ```ts
         import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
@@ -821,14 +821,14 @@ The following describes how to implement multi-device collaboration through cros
         ```
      
 4. Obtain the caller object and access the CalleeAbility.
-    1. Import the **UIAbility** module.
+    1. Import the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) module.
       
         ```ts
         import { UIAbility } from '@kit.AbilityKit';
         ```
     2. Obtain the caller object.
 
-        The **context** attribute of the UIAbility implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the UIAbility, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** and **onRemoteStateChange** listeners of the CallerAbility. You need to implement processing based on service requirements.
+        The **context** attribute of the UIAbility implements [startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall) to obtain the [Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller) object for communication. The following example uses **this.context** to obtain the **context** attribute of the UIAbility, uses **startAbilityByCall** to start [Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee), obtain the Caller object, and register the [onRelease](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleronrelease) and [onRemoteStateChange](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#calleronremotestatechange10) listeners of the CallerAbility. You need to implement processing based on service requirements.
 
         ```ts
         import { BusinessError } from '@kit.BasicServicesKit';
@@ -894,7 +894,7 @@ The following describes how to implement multi-device collaboration through cros
                         });
                         hilog.info(DOMAIN_NUMBER, TAG, 'remote caller register OnRelease succeed');
                         promptAction.showToast({
-                          message: $r('app.string.CallerSuccess')
+                          message: 'CallerSuccess'
                         });
                         // Register the onRemoteStateChange listener of the CallerAbility.
                         try {
@@ -922,7 +922,7 @@ The following describes how to implement multi-device collaboration through cros
         For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned).
 
 5. Sends agreed parcelable data to the CalleeAbility.
-    1. The parcelable data can be sent to the CalleeAbility with or without a return value. The method and parcelable data must be consistent with those of the CalleeAbility. The following example describes how to send data to the CalleeAbility.
+    1. The parcelable data can be sent to the CalleeAbility with or without a return value. The method and parcelable data must be consistent with those of the CalleeAbility. The following example describes how to use [Call](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callercall) to send data to [Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee).
       
         ```ts
         import { UIAbility, Caller } from '@kit.AbilityKit';
@@ -977,7 +977,7 @@ The following describes how to implement multi-device collaboration through cros
           // ...
         }
         ```
-    2. In the following, **CallWithResult** is used to send data **originMsg** to the CalleeAbility and assign the data processed by the **CallSendMsg** method to **backMsg**.
+    2. In the following, [CallWithResult](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callercallwithresult) is used to send data **originMsg** to the CalleeAbility and assign the data processed by the **CallSendMsg** method to **backMsg**.
       
         ```ts
         import { UIAbility, Caller } from '@kit.AbilityKit';
@@ -1043,29 +1043,29 @@ The following describes how to implement multi-device collaboration through cros
    
 6. Release the caller object.
 
-   When the caller object is no longer required, use **release()** to release it.
+    When the [Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller) object is no longer required, use [release](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callerrelease) to release it.
 
-    ```ts
-    import { UIAbility, Caller } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
+      ```ts
+      import { UIAbility, Caller } from '@kit.AbilityKit';
+      import { hilog } from '@kit.PerformanceAnalysisKit';
 
-    const TAG: string = '[CalleeAbility]';
-    const DOMAIN_NUMBER: number = 0xFF00;
+      const TAG: string = '[CalleeAbility]';
+      const DOMAIN_NUMBER: number = 0xFF00;
 
-    export default class EntryAbility extends UIAbility {
-      caller: Caller | undefined;
+      export default class EntryAbility extends UIAbility {
+        caller: Caller | undefined;
 
-      releaseCall(): void {
-        try {
-          if (this.caller) {
-            this.caller.release();
-            this.caller = undefined;
+        releaseCall(): void {
+          try {
+            if (this.caller) {
+              this.caller.release();
+              this.caller = undefined;
+            }
+            hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
+          } catch (error) {
+            hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
           }
-          hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
-        } catch (error) {
-          hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
         }
       }
-    }
-    ```
+      ```
 <!--no_check-->

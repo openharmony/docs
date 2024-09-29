@@ -19,6 +19,7 @@
   - [@ohos.net.statistics (Traffic Management) (System API)](js-apis-net-statistics-sys.md)
   - [@ohos.net.vpn (VPN Management) (System API)](js-apis-net-vpn-sys.md)
   - [@ohos.net.vpnExtension (Enhanced VPN Management) (System API)](js-apis-net-vpnExtension-sys.md)
+  - [@ohos.net.netFirewall (Network Firewall)](js-apis-net-netfirewall.md)
   <!--DelEnd-->
 - C API
   - Module

@@ -75,7 +75,7 @@ splice(start: number, deleteCount?: number, sections?: Array\<SectionOptions\>):
 | ---- | ----------------------------- | ---- | -------------------- |
 | start | number | 是    | 从0开始计算的索引，会转换为整数，表示要开始改变分组的位置。<br/>**说明：** <br/>1. 如果索引是负数，则从末尾开始计算，使用`start + WaterFlowSections.length()`。<br/>2. 如果 `start < -WaterFlowSections.length()`，则使用0。<br/>3. 如果 `start >= WaterFlowSections.length()`，则在最后添加新分组。 |
 | deleteCount | number | 否    | 表示要从start开始删除的分组数量。<br/>**说明：** <br/>1. 如果省略了deleteCount，或者其值大于或等于由start指定的位置到WaterFlowSections末尾的分组数量，那么从start到WaterFlowSections末尾的所有分组将被删除。<br/>2. 如果deleteCount是0或者负数，则不会删除任何分组。 |
-| sections | Array<[SectionOptions](#sectionoptions12)> | 否    | 表示要从start开始加入的分组。如果不指定，`splice()`将只从瀑布流中删除分组。 |
+| sections | Array<[SectionOptions](#sectionoptions12对象说明)> | 否    | 表示要从start开始加入的分组。如果不指定，`splice()`将只从瀑布流中删除分组。 |
 
 **返回值：** 
 
@@ -98,7 +98,7 @@ push(section: SectionOptions): boolean
 
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
-| section | [SectionOptions](#sectionoptions12) | 是    | 添加到瀑布流末尾的分组。 |
+| section | [SectionOptions](#sectionoptions12对象说明) | 是    | 添加到瀑布流末尾的分组。 |
 
 **返回值：** 
 
@@ -121,7 +121,7 @@ update(sectionIndex: number, section: SectionOptions): boolean
 | 参数名   | 类型                            | 必填   | 说明                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | sectionIndex | number | 是    | 从0开始计算的索引，会转换为整数，表示要修改的分组的位置。<br/>**说明：** <br/>1. 如果索引是负数，则从末尾开始计算，使用`sectionIndex + WaterFlowSections.length()`。<br/>2. 如果`sectionIndex < -WaterFlowSections.length()`，则使用0。<br/>3. 如果`sectionIndex >= WaterFlowSections.length()`，则在最后添加新分组。 |
-| section | [SectionOptions](#sectionoptions12) | 是    | 新的分组信息。 |
+| section | [SectionOptions](#sectionoptions12对象说明) | 是    | 新的分组信息。 |
 
 **返回值：** 
 
@@ -143,7 +143,7 @@ values(): Array\<SectionOptions\>
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Array<[SectionOptions](#sectionoptions12)> | 瀑布流中所有分组配置信息。 |
+| Array<[SectionOptions](#sectionoptions12对象说明)> | 瀑布流中所有分组配置信息。 |
 
 ### length<sup>12+</sup>
 
@@ -161,7 +161,7 @@ length(): number
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | number | 瀑布流中分组数量。 |
 
-## SectionOptions<sup>12+</sup>
+## SectionOptions<sup>12+</sup>对象说明
 
 FlowItem分组配置信息。
 
@@ -169,12 +169,10 @@ FlowItem分组配置信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
 | 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|-----|
-| itemsCount | number | 是 | 分组中FlowItem数量，必须是正整数。 |
-| crossCount | number | 否 | 纵向布局时为列数，横向布局时为行数，默认值：1。 |
+| itemsCount | number | 是 | 分组中FlowItem数量，必须是正整数。若splice、push、update方法收到的分组中有分组的itemsCount小于0，则不会执行该方法。 |
+| crossCount | number | 否 | 纵向布局时为列数，横向布局时为行数，默认值：1。小于1的按默认值处理。 |
 | columnsGap | [Dimension](ts-types.md#dimension10) | 否 | 该分组的列间距，不设置时使用瀑布流的columnsGap，设置非法值时使用0vp。 |
 | rowsGap | [Dimension](ts-types.md#dimension10) | 否 | 该分组的行间距，不设置时使用瀑布流的rowsGap，设置非法值时使用0vp。 |
 | margin | [Margin](ts-types.md#margin) \| [Dimension](ts-types.md#dimension10) | 否 | 该分组的外边距参数为Length类型时，四个方向外边距同时生效。<br>默认值：0<br>单位：vp<br>margin设置百分比时，上下左右外边距均以瀑布流的width作为基础值。 |

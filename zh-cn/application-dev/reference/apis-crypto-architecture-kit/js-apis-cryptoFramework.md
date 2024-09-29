@@ -149,9 +149,9 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -192,9 +192,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -241,18 +241,18 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | PSS_MGF_NAME_STR | 101 | 表示RSA算法中，使用PSS模式时，掩码生成算法（目前仅支持MGF1）。 |
 | PSS_MGF1_MD_STR | 102 | 表示RSA算法中，使用PSS模式时，MGF1掩码生成功能的消息摘要参数。 |
 | PSS_SALT_LEN_NUM | 103 | 表示RSA算法中，使用PSS模式时，盐值的长度，长度以字节为单位。 |
-| PSS_TRAILER_FIELD_NUM | 104 | 表示RSA算法中，使用PSS模式时，用于编码操作的整数，值为1。 |
+| PSS_TRAILER_FIELD_NUM | 104 | 表示RSA算法中，使用PSS模式时，用于编码操作的整数。 |
 | SM2_USER_ID_UINT8ARR<sup>11+</sup> | 105 | 表示SM2算法中，用户身份标识字段。 |
 
 ## AsyKeySpec<sup>10+</sup>
 
-指定非对称密钥参数的基本接口，用于创建密钥生成器。在指定非对称密钥参数时需要构造其子类对象，并将子类对象传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。构造子类对象时，所有bigint类型的密钥参数均采用大端写法，并使用正数。
+指定非对称密钥参数的基本接口，用于创建密钥生成器。在指定非对称密钥参数时需要构造其子类对象，并将子类对象传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。构造子类对象时，除了RSA密钥采用小端写法外，其他bigint类型的密钥参数均采用大端写法，并使用正数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -267,9 +267,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -285,9 +285,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -302,9 +302,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -318,9 +318,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -332,9 +332,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -346,9 +346,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -363,9 +363,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -384,9 +384,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -401,9 +401,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -418,9 +418,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -436,9 +436,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -452,9 +452,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -469,9 +469,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
@@ -487,9 +487,9 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -503,9 +503,9 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -519,9 +519,9 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
@@ -536,9 +536,9 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -552,9 +552,9 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -568,9 +568,9 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
@@ -585,9 +585,9 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                |
 | ---- | ------ | ---- | ---- | ----------------------------------- |
@@ -603,9 +603,9 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
@@ -620,9 +620,9 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
@@ -637,9 +637,9 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.Asymkey
+**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.Asymkey
+API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
@@ -3165,11 +3165,15 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
+function generateRandom(len: number) {
+  let rand = cryptoFramework.createRandom();
+  let generateRandSync = rand.generateRandomSync(len);
+  return generateRandSync;
+}
+
 function genGcmParamsSpec() {
-  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let dataIv = new Uint8Array(arr);
-  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let ivBlob = generateRandom(12);
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8];
   let dataAad = new Uint8Array(arr);
   let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
   arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -3259,11 +3263,15 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
+function generateRandom(len: number) {
+  let rand = cryptoFramework.createRandom();
+  let generateRandSync = rand.generateRandomSync(len);
+  return generateRandSync;
+}
+
 function genGcmParamsSpec() {
-  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let dataIv = new Uint8Array(arr);
-  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let ivBlob = generateRandom(12);
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8];
   let dataAad = new Uint8Array(arr);
   let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
   arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -3335,11 +3343,15 @@ doFinalSync(data: DataBlob | null): DataBlob
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { buffer } from '@kit.ArkTS';
 
+function generateRandom(len: number) {
+  let rand = cryptoFramework.createRandom();
+  let generateRandSync = rand.generateRandomSync(len);
+  return generateRandSync;
+}
+
 function genGcmParamsSpec() {
-  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let dataIv = new Uint8Array(arr);
-  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
-  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let ivBlob = generateRandom(12);
+  let arr = [1, 2, 3, 4, 5, 6, 7, 8];
   let dataAad = new Uint8Array(arr);
   let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
   arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -4769,7 +4781,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob>): void
 
-基于传入的私钥与公钥进行密钥协商，通过注册回调函数返回共享秘密。
+基于传入的私钥与公钥进行密钥协商，通过注册回调函数返回共享密钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4783,7 +4795,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ------------------------ | ---- | ---------------------- |
 | priKey   | [PriKey](#prikey)        | 是   | 设置密钥协商的私钥输入。 |
 | pubKey   | [PubKey](#pubkey)        | 是   | 设置密钥协商的公钥输入。 |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 异步接受共享秘密的回调。 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 异步接受共享密钥的回调。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4799,7 +4811,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
-基于传入的私钥与公钥进行密钥协商，通过Promise返回共享秘密。
+基于传入的私钥与公钥进行密钥协商，通过Promise返回共享密钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4818,7 +4830,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-| Promise\<[DataBlob](#datablob)> | 共享秘密。 |
+| Promise\<[DataBlob](#datablob)> | 共享密钥。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4834,7 +4846,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 generateSecretSync(priKey: PriKey, pubKey: PubKey): DataBlob
 
-基于传入的私钥与公钥进行密钥协商，通过同步返回共享秘密。
+基于传入的私钥与公钥进行密钥协商，通过同步返回共享密钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4851,7 +4863,7 @@ generateSecretSync(priKey: PriKey, pubKey: PubKey): DataBlob
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-|[DataBlob](#datablob) | 共享秘密。 |
+|[DataBlob](#datablob) | 共享密钥。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4980,7 +4992,9 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> - Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> 
+> - 该接口不支持轻量级智能穿戴。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5011,7 +5025,9 @@ update(input: DataBlob): Promise\<void>
 
 > **说明：**
 >
-> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> - Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+> 
+> - 该接口不支持轻量级智能穿戴。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5075,6 +5091,10 @@ digest(callback: AsyncCallback\<DataBlob>): void
 
 通过注册回调函数返回Md的计算结果。
 
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
@@ -5115,6 +5135,10 @@ function mdByCallback() {
 digest(): Promise\<DataBlob>
 
 通过Promise返回Md的计算结果。
+
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5752,6 +5776,10 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 
 异步生成指定长度的随机数，通过注册回调函数返回。
 
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
@@ -5794,6 +5822,10 @@ rand.generateRandom(12, (err, randData) => {
 generateRandom(len: number): Promise\<DataBlob>
 
 异步生成指定长度的随机数，通过Promise返回。
+
+> **说明：**
+> 
+> 该接口不支持轻量级智能穿戴。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

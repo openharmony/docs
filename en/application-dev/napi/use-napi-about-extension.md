@@ -241,8 +241,9 @@ static napi_value RunScriptPath(napi_env env, napi_callback_info info)
     napi_value returnValue = nullptr;
     if (value == nullptr || status != napi_ok) {
         napi_get_boolean(env, false, &returnValue);
+    } else {
+        napi_get_boolean(env, true, &returnValue);
     }
-    napi_get_boolean(env, true, &returnValue);
     return returnValue;
 }
 ```
@@ -634,7 +635,7 @@ See [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API 
 
 #### napi_create_ark_runtime, napi_destroy_ark_runtime
 
-See [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.md)
+See [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.md).
 
 ## Serialization and Deserialization
 
@@ -718,7 +719,7 @@ hilog.info(0x0000, 'testTag', ' Node-API aboutSerialize: %{public}d', testNapi.a
 
 | API| Description|
 | -------- | -------- |
-| napi_call_threadsafe_function_with_priority | Calls a task with the specified priority and enqueuing mode into an ArkTS thread.|
+| napi_call_threadsafe_function_with_priority | Calls a task with the specified priority and enqueuing mode into the ArkTS main thread.|
 
 ### Example
 

@@ -15,6 +15,6 @@ Related module: [FFRT](_f_f_r_t.md)
 
 | Name| Description| 
 | -------- | -------- |
-| [ffrt_function_t] (_f_f_r_t.md#types) [exec](_f_f_r_t.md#exec)| Function used to execute a task.| 
-| [ffrt_function_t] (_f_f_r_t.md#types) [destroy](_f_f_r_t.md#destroy)| Function used to destroy a task.| 
+| [ffrt_function_t](_f_f_r_t.md#types) [exec](_f_f_r_t.md#exec)| Function used to execute a task.| 
+| [ffrt_function_t](_f_f_r_t.md#types) [destroy](_f_f_r_t.md#destroy)| Function used to destroy a task.| 
 | uint64_t [reserve](_f_f_r_t.md#reserve)[2] | Reserved bit.| 

@@ -44,12 +44,10 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_open_handle_scope and napi_close_handle_scope
 
-Use **napi_open_handle_scope** to open a scope, and use **napi_close_handle_scope** to close it. You can use these two APIs to manage the **napi_value** lifecycle of an ArkTS object, which prevents the object from being incorrectly garbage-collected.
-
+Use **napi_open_handle_scope** to open a scope, and use **napi_close_handle_scope** to close it. You can use these two APIs to manage the **napi_value** lifecycle of an ArkTS object, which prevents the object from being incorrectly garbage-collected. 
 Properly using these two APIs can minimize lifecycle and prevent memory leaks.
 
-For details about the code, see:
-[Lifecycle Management](napi-guidelines.md)
+For details about the code, see [Lifecycle Management](napi-guidelines.md).
 
 CPP code:
 
@@ -124,7 +122,6 @@ try {
 Use **napi_open_escapable_handle_scope** to open an escapeable scope, which allows the declared values in the scope to be returned to the parent scope. You can use **napi_close_escapable_handle_scope** to close it. 
 
 Use **napi_escape_handle** to promote the lifecycle of an ArkTS object so that it is valid for the lifetime of the parent scope.
-
 These APIs are helpful for managing ArkTS objects more flexibly in C/C++, especially when passing cross-scope values.
 
 CPP code:
@@ -188,9 +185,9 @@ Use **napi_reference_ref** to increment the reference count and use **napi_refer
 
 Use **napi_get_reference_value** to obtain the ArkTS object associated with the reference.
 
-### napi_add_finalize
+### napi_add_finalizer
 
-Use **napi_add_finalize** to add a **napi_finalize** callback, which will be called when the ArkTS object is garbage-collected.
+Use **napi_add_finalizer** to add a **napi_finalizer** callback, which will be called when the ArkTS object is garbage-collected.
 
 CPP code:
 

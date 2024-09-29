@@ -273,7 +273,9 @@
 
 ### ohos.permission.RUN_DYN_CODE
 
-允许应用运行动态代码。
+允许系统方舟运行时引擎在受限模式下执行动态下发的方舟字节码。
+
+该权限相关的API均为系统API，仅部分特定系统应用可申请该权限。 
 
 **权限级别**：normal
 
@@ -335,7 +337,7 @@
 
 允许应用在锁屏后保护本应用敏感数据不被访问。
 
-应用获取此权限后，系统将给用户新建一个高安全级别el5的目录。应用可以在此目录下存放数据，这部分数据在锁屏后无法被访问。没有调用接口。
+应用获取此权限后，系统将给用户新建一个高安全级别el5的目录。应用可以在此目录下存放数据，这部分数据在锁屏后无法被访问。
 
 **权限级别**：normal
 
@@ -346,6 +348,8 @@
 ### ohos.permission.FILE_ACCESS_PERSIST
 
 允许应用支持持久化访问文件Uri。
+
+<!--RP2--><!--RP2End-->
 
 **权限级别**：API version 11为system_basic; 从API version 12开始为normal。
 
@@ -362,6 +366,26 @@
 **授权方式**：system_grant
 
 **起始版本**：12
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：13
+
+### ohos.permission.WINDOW_TOPMOST
+
+允许应用将窗口设置为应用置顶窗口。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：13
 
 ## user_grant（用户授权）权限列表
 
@@ -531,6 +555,8 @@
 
 当前仅2in1设备应用可申请此权限。
 
+<!--RP2--><!--RP2End-->
+
 **权限级别**：API version 11为system_basic; 从API version 12开始为normal。
 
 **授权方式**：user_grant
@@ -542,6 +568,8 @@
 允许应用访问公共目录下的Documents目录及子目录。
 
 当前仅2in1设备应用可申请此权限。
+
+<!--RP2--><!--RP2End-->
 
 **权限级别**：API version 11为system_basic; 从API version 12开始为normal。
 

@@ -1,7 +1,7 @@
 # 显示图片 (Image)
 
 
-开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg和gif，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
+开发者经常需要在应用中显示一些图片，例如：按钮中的icon、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg、gif和heif，具体用法请参考[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)组件。
 
 
 Image通过调用接口来创建，接口调用形式如下：
@@ -74,11 +74,11 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 - 媒体库file://data/storage
 
-  支持file://路径前缀的字符串，用于访问通过[媒体库](../reference/apis-core-file-kit/js-apis-file-picker.md)提供的图片路径。
+  支持file://路径前缀的字符串，用于访问通过[选择器](../reference/apis-core-file-kit/js-apis-file-picker.md)提供的图片路径。
 
   1. 调用接口获取图库的照片url。
       ```ts
-      import { picker } from '@kit.CoreFileKit';
+      import { photoAccessHelper } from '@kit.MediaLibraryKit';
       import { BusinessError } from '@kit.BasicServicesKit';
 
       @Entry
@@ -88,11 +88,11 @@ Image支持加载存档图、多媒体像素图两种类型。
         // 获取照片url集
         getAllImg() {
           try {
-            let PhotoSelectOptions:picker.PhotoSelectOptions = new picker.PhotoSelectOptions();
-            PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
+            let PhotoSelectOptions:photoAccessHelper.PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+            PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
             PhotoSelectOptions.maxSelectNumber = 5;
-            let photoPicker:picker.PhotoViewPicker = new picker.PhotoViewPicker();
-            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:picker.PhotoSelectResult) => {
+            let photoPicker:photoAccessHelper.PhotoViewPicker = new photoAccessHelper.PhotoViewPicker();
+            photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult:photoAccessHelper.PhotoSelectResult) => {
               this.imgDatas = PhotoSelectResult.photoUris;
               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
             }).catch((err:Error) => {
@@ -134,7 +134,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 - base64
 
-  路径格式为data:image/[png|jpeg|bmp|webp];base64,[base64 data]，其中[base64 data]为Base64字符串数据。
+  路径格式为data:image/[png|jpeg|bmp|webp|heif];base64,[base64 data]，其中[base64 data]为Base64字符串数据。
 
   Base64格式字符串可用于存储图片的像素数据，在网页上使用较为广泛。
 
@@ -153,13 +153,13 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 
    请求网络图片，解码编码PixelMap。
 
-   1. 引用网络权限与媒体库权限。
+   (1) 引用网络权限与媒体库权限。
        ```ts
        import { http } from '@kit.NetworkKit';
        import { image } from '@kit.ImageKit';
        import { BusinessError } from '@kit.BasicServicesKit';
        ```
-   2. 填写网络图片地址。
+   (2) 填写网络图片地址。
        ```ts
        let OutData: http.HttpResponse
        http.createHttp().request("https://www.example.com/xxx.png",

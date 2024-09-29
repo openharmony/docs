@@ -1577,7 +1577,7 @@ getTimeZone(zoneID?: string): TimeZone
 
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
-| zondID | string | 否    | 时区ID。默认值：系统时区。 |
+| zoneID | string | 否    | 时区ID。默认值：系统时区。 |
 
 **返回值：**
 

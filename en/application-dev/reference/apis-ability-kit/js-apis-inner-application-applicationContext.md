@@ -17,7 +17,7 @@ import { common } from '@kit.AbilityKit';
 
 Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **context** instance.
 
-## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
+## ApplicationContext.on('abilityLifecycle')
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
@@ -105,7 +105,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
+## ApplicationContext.off('abilityLifecycle')
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
@@ -158,7 +158,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number)
+## ApplicationContext.off('abilityLifecycle')
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
@@ -210,7 +210,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)
+## ApplicationContext.on('environment')
 
 on(type: 'environment', callback: EnvironmentCallback): number
 
@@ -273,7 +273,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
+## ApplicationContext.off('environment')
 
 off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): void
 
@@ -325,7 +325,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'environment', callbackId: number)
+## ApplicationContext.off('environment')
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
@@ -376,7 +376,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
+## ApplicationContext.on('applicationStateChange')<sup>10+</sup>
 
 on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
@@ -432,7 +432,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback)<sup>10+</sup>
+## ApplicationContext.off('applicationStateChange')<sup>10+</sup>
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
@@ -598,6 +598,52 @@ export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
     applicationContext.killAllProcesses();
+  }
+}
+```
+
+## ApplicationContext.killAllProcesses<sup>13+</sup>
+
+killAllProcesses(clearPageStack: boolean): Promise\<void\>
+
+Kills all the processes where the application is located. This API uses a promise to return the result. It can be called only by the main thread.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| clearPageStack | boolean | Yes| Whether to clear the page stack. The value **true** means to clear the page stack, and **false** means the opposite.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000011 | The context does not exist. |
+
+**Example**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+let isClearPageStack = false;
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    applicationContext.killAllProcesses(isClearPageStack);
   }
 }
 ```

@@ -400,7 +400,7 @@ MSG:ability:EntryAbility background timeout
 
 - 方式一：通过DevEco Studio获取日志
 
-    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考<!--RP1-->[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-0000001659706366-V5)<!--RP1End-->。
+    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考<!--RP1-->[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-V5)<!--RP1End-->。
 
 - 方式二：通过hiAppEvent接口订阅
 
@@ -658,64 +658,60 @@ Tid:3108, xxx
 
 ### 查看 binder 信息
 
-获取对应 Pid:Tid 的对端信息以及对应等待时长:
+binder信息抓取时机：存在半周期检测的故障类型实在warning事件产生后获取；其他则在block事件后获取。
+
+1、获取binder调用链
 
 ```
-PeerBinderCatcher -- pid==15440 layer_ == 1
-BinderCatcher --
-        19692:19714 to 628:4117 code 2 wait:0.847104688 s frz_state:3
-        15440:15440 to 979:0 code 5f475249 wait:18.638522393 s frz_state:1
-async   20818:20840 to 15440:0 code c wait:16.85511978 s frz_state:3
-async   20896:20940 to 15440:0 code c wait:14.370431770 s frz_state:3
-async   20969:20989 to 15440:0 code c wait:12.796154686 s frz_state:3
-async   21006:21033 to 15440:0 code c wait:11.238690103 s frz_state:3
-async   21052:21075 to 15440:0 code c wait:9.497665624 s frz_state:3
-async   21097:21126 to 15440:0 code c wait:7.901210416 s frz_state:3
-async   21175:21247 to 15440:0 code c wait:6.138197396 s frz_state:3
-async   21310:21336 to 15440:0 code c wait:4.716456770 s frz_state:3
-async   21358:21378 to 15440:0 code c wait:2.985317708 s frz_state:3
-async   21400:21421 to 15440:0 code c wait:1.456175521 s frz_state:3
-        2653:1228 to 63115:63174 code 0 wait:73233.19094270 s frz_state:3
-        628:8136 to 979:0 code2 wait:215715.687057426 s frz_state:1
+PeerBinderCatcher -- pid==35854 layer_ == 1
+BinderCatcher --
+    35854:35854 to 52462:52462 code 3 wait:27.185154163 s frz_state:3          -> 35854:35854 to 52462:53462 code 3 wait:27.185154163 s
+    ...
+    52462:52462 to 1386:0 code 13 wait:24.733640622 s frz_state:3              -> 52462:52462 to 1386:0 code 13 wait:24.733640622 s
 ```
+以上示例为参考：从故障进程的主线程出发，存在 35854:35854 -> 52462:52462 -> 1386:0 的调用链关系，结合对端进程堆栈信息排查对端阻塞原因。
 
-1、可能存在多级等待，需要梳理链式调用逻辑
+2、线程号为0
 
-2、通过调用链得到最终调用到的进程，可参照其 stack 分析:
+表示该应用为IPC_FULL，即应用的ipc线程都在使用中，没有空闲线程分配来完成本次请求，导致阻塞，如上面示例中的1386进程，可参照其stack分析:
 
 ```
 pid     context     request   started    max     ready   free_async_space
 
-16841   binder        0         1        16        3         520192
+35862    binder      0          2        16       2         519984
 
-16805   binder        0         2        16        3         520192
+35854    binder      0          2        16       3         520192
 
-16775   binder        0         2        16        3         520192
+35850    binder      0          2        16       3         520192
 
-16348   binder        0         1        16        3         520192
+13669    binder      0          1        16       3         520192
 
-16026   binder        0         1        16        3         520192
+...
 
-16028   binder        1        14        16        15        520192
+1386     binder      1          15       16       0         517264                 -> binderInfo
 
-14727   binder        1        14        16        16        520192
+1474     binder      0          2        16       4         520192
 ```
 
-request：当前请求数
+可以看到此时 1386 进程处于 ready 态的线程为 0，验证了上述说法。此情况说明该进程的其他ipc线程可能全部被阻塞了，需要分析排查为什么其他ipc线程不释放。常见场景为：某一ipc线程持锁阻塞，导致其他线程等锁卡死。
 
-started：已启动线程数
+另一种情况为 free_async_space 消耗殆尽，导致新的ipc线程没有足够的 buffer 空间完成请求。值得说明的是，同步和异步请求都会消耗该值，常见场景为：某短时间段内大批量异步请求。
 
-max：最大线程数
+3、waitTime过小
 
-ready：当前可用的ipc线程个数
+waitTime 表示的是本次ipc通信时长，如果该值远小于故障检测时长，我们有理由确认本次ipc请求并不是卡死的根本原因。
+一种典型的场景是：应用侧主线程在短时间内多次ipc请求，总请求时长过长导致故障。
 
-free_async_space：buffer 剩余空间
+排查方向：
+    - 单次请求是否在预期时长内（例如：规格在20ms的请求接口异常情形下达到1s），排查接口性能不达预期的原因。
+    - 应用测频繁调用场景是否合理。
 
-- 当请求太多，即 ready = started 时，没有空余线程时，会导致新请求无响应，此时表现为 Tid 为 0，表示还未分配 binder 线程；
-    --> 分析为什么 其他 binder 线程不释放
+4、无调用关系，栈为ipc栈
 
-- 当 free_async_space 值很小时，表示 buffer 不足，可能会导致线程卡死；
-    --> 分析为什么 buffer 被用完，其他线程在做什么业务
+确定是否为瞬时栈，即waring/block栈是否一致，可能场景是：warning为ipc栈，block栈为其他瞬时栈，表面抓取binder时ipc请求已经结束，本次ipc请求耗时并不长。
+需要提到的是：binder信息并不是在发生故障时刻实时获取的，有一定的延迟性；对于存在半周期检测的故障类型来说，binder抓取比较准确，绝大多数都可以在故障时间段内完成采集；而其他故障类型在上报存在延迟的情况下可能抓取到非现场binder。
+
+当然，结合 trace 分析更能直观查看binder的耗时情况。
 
 ### 结合 hilog
 
