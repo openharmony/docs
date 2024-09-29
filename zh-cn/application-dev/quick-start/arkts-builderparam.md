@@ -106,7 +106,7 @@
         Child({
           // 把this.componentBuilder传给子组件Child的@BuilderParam customBuilderParam，this指向的是子组件Child，即label变量的值为"Child"。
           customBuilderParam: this.componentBuilder,
-          // 把():void=>{this.componentBuilder()}传给子组件Child的@BuilderParam customChangeThisBuilderPara，
+          // 把():void=>{this.componentBuilder()}传给子组件Child的@BuilderParam customChangeThisBuilderParam，
           // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent"。
           customChangeThisBuilderParam: (): void => { this.componentBuilder() }
         })
@@ -308,7 +308,7 @@ struct ParentPage {
 
 ### 使用全局和局部\@Builder初始化\@BuilderParam
 
-在自定义组件中，使用\@BuilderParam修饰的变量接收来着父组件通过\@Builder传递的内容进行初始化，因为父组件的\@Builder可以使用箭头函数的形式改变当前的this指向，所以当使用\@BuilderParam修饰的变量时，会展示出不同的内容。
+在自定义组件中，使用\@BuilderParam修饰的变量接收来自父组件通过\@Builder传递的内容进行初始化，因为父组件的\@Builder可以使用箭头函数的形式改变当前的this指向，所以当使用\@BuilderParam修饰的变量时，会展示出不同的内容。
 
 ```ts
 @Component
@@ -355,7 +355,7 @@ struct ParentPage {
       ChildPage({
         // 把this.componentBuilder传给子组件ChildPage的@BuilderParam customBuilderParam，this指向的是子组件ChildPage，所以label变量的值为"Child Page"。
         customBuilderParam: this.componentBuilder,
-        // 把():void=>{this.componentBuilder()}传给子组件ChildPage的@BuilderParam customChangeThisBuilderPara，
+        // 把():void=>{this.componentBuilder()}传给子组件ChildPage的@BuilderParam customChangeThisBuilderParam，
         // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent Page"。
         customChangeThisBuilderParam: (): void => { this.componentBuilder() }
       })
