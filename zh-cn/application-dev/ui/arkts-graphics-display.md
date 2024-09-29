@@ -154,25 +154,30 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
    请求网络图片，解码编码PixelMap。
 
    (1) 引用网络权限与媒体库权限。
-       ```ts
-       import { http } from '@kit.NetworkKit';
-       import { image } from '@kit.ImageKit';
-       import { BusinessError } from '@kit.BasicServicesKit';
-       ```
+
+    ```ts
+    import { http } from '@kit.NetworkKit';
+    import { image } from '@kit.ImageKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
+
    (2) 填写网络图片地址。
-       ```ts
-       let OutData: http.HttpResponse
-       http.createHttp().request("https://www.example.com/xxx.png",
-         (error: BusinessError, data: http.HttpResponse) => {
-           if (error) {
-             console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
-           } else {
-             OutData = data
-           }
-         }
-       )
-       ```
+
+    ```ts
+    let OutData: http.HttpResponse
+    http.createHttp().request("https://www.example.com/xxx.png",
+      (error: BusinessError, data: http.HttpResponse) => {
+        if (error) {
+          console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
+        } else {
+          OutData = data
+        }
+      }
+    )
+    ```
+
    3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
+
        ```ts
        let code: http.ResponseCode | number = OutData.responseCode
        if (http.ResponseCode.OK === code) {
@@ -206,7 +211,9 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
          })
        }
        ```
+
    4. 显示图片。
+
        ```ts
        class htp{
         httpRequest: Function | undefined = undefined
@@ -223,7 +230,9 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
          })
        Image(this.image).height(100).width(100)
       ```
+
       同时，也可以传入pixelMap创建[PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12)对象，用来显示图片。
+
       ```ts
        import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
        class htp{
