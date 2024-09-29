@@ -7552,8 +7552,8 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
-| preferredAudioLanguage | string | 否 | 播放策略首选音轨语言。 |
-| preferredSubtitleLanguage | string | 否 | 播放策略首选字幕语言。 |
+| preferredAudioLanguage | string | 否 | 播放策略首选音轨语言。非dash场景不涉及，建议缺省。 |
+| preferredSubtitleLanguage | string | 否 | 播放策略首选字幕语言。非dash场景不涉及，建议缺省。 |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
