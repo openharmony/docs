@@ -314,7 +314,7 @@ Router作为全局通用模块，可以在任意页面中调用，Navigation作�
 @Component
 struct Index {
   // Navigation创建一个Provide修饰的NavPathStack
- @Provide('pathStack') pathStack: NavPathStack
+ @Provide('pathStack') pathStack: NavPathStack = new NavPathStack()
 
   build() {
     Navigation(this.pathStack) {
