@@ -68,7 +68,7 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 ### 分布式数据管理
 
-- RelationStore&amp;Preferences支持共沙箱数据的访问方式。
+- RelationalStore&amp;Preferences支持共沙箱数据的访问方式。
 
 - RDB支持只读方式打开。
 
@@ -207,7 +207,7 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 - EXIF读写能力增强，支持EXIF批量读写，GIF支持获取播放次数信息。
 
-- 支持HDR能力：HDR双层编解码、HDR编辑框架，以及HDR与SDR互转。
+- 支持HDR能力：HDR双层编解码、HDR与SDR互转。
 
 - 编解码格式增强，支持HEIF编解码，DNG解码。
 
@@ -444,8 +444,6 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 - 支持在开发者模式打开trace功能。
 
 - 开放主线程超时事件的感知。
-
-- HiAppEvent支持二进制交付方式的KIT运营打点。
 
 - errorManager支持TaskPool和Worker监听未处理的Reject事件。
 
