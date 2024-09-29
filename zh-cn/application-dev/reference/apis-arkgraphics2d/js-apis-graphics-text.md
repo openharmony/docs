@@ -338,7 +338,7 @@ struct Index {
 
 loadFontSync(name: string, path: string | Resource): void
 
-同步接口，将路径的文件，以name作为使用的别名，加载成字体。
+同步接口，将路径的文件，以name作为使用的别名，加载成字体。支持文件格式：ttf、otf。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
