@@ -174,7 +174,7 @@ struct Parent {
 
 ## @LocalBuilder和@Builder区别说明
 
-函数componentBuilder被@Builder修饰时，显示效果是 “Child”，函数componentBuilder被@LocalBuild修饰时，显示效果是“Parent”。
+函数componentBuilder被@Builder修饰时，显示效果是 “Child”，函数componentBuilder被@LocalBuildr修饰时，显示效果是“Parent”。
 
 说明：
 
