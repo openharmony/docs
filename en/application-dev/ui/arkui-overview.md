@@ -13,7 +13,7 @@ ArkUI provides a comprehensive infrastructure for UI development of applications
 
 ## Two Development Paradigms
 
-ArkUI comes with two development paradigms: [ArkTS-based declarative development paradigm](arkts-ui-development-overview.md) (declarative development paradigm for short) and [JS-compatible web-like development paradigm](../ui/ui-js-overview.md) (web-like development paradigm for short). You can choose whichever development paradigm that aligns with your practice.
+ArkUI comes with two development paradigms: [ArkTS-based declarative development paradigm](arkts-ui-development-overview.md) (declarative development paradigm for short) and [JS-compatible web-like development paradigm](ui-js-overview.md) (web-like development paradigm for short). You can choose whichever development paradigm that aligns with your practice.
 
 - **Declarative development paradigm**: uses [ArkTS](../quick-start/arkts-get-started.md) – a superset of TypeScript with declarative UI syntax, providing UI drawing capabilities from three dimensions: component, animation, and state management.
 

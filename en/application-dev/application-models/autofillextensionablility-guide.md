@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md) is an ExtensionAbility component of the AUTO_FILL_PASSWORD or AUTO_FILL_SMART type that provides the auto-fill service.
+The [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md) is an [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) component of the AUTO_FILL_PASSWORD or AUTO_FILL_SMART type that provides the auto-fill service.
 
 The auto-fill service can be classified as follows:
 
@@ -21,16 +21,15 @@ The table below describes the main APIs related to the auto-fill service. For de
 
 ## How to Develop
 
-In this example, the party that provides the AutoFillExtensionAbility capability is called the provider, and the party that starts the AutoFillExtensionAbility is called the client.
+In this example, the party that provides the [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md) capability is called the provider, and the party that starts the AutoFillExtensionAbility is called the client.
 
 ### Developing the AutoFillExtensionAbility Provider
 
 #### Lifecycle
 
-The AutoFillExtensionAbility provides the lifecycle callbacks **onCreate**, **onSessionCreate**, **onSessionDestroy**, **onForeground**, **onBackground**, and **onDestroy**. Override them as required.
+The [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md) provides the lifecycle callbacks [onCreate](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityoncreate), [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsessiondestroy), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonbackground), and [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityondestroy). Override them as required.
 
 - **onCreate**: called to initialize the service logic when an AutoFillExtensionAbility is created.
-- **onSessionCreate**: called when a **UIExtensionContentSession** instance is created for the AutoFillExtensionAbility.
 - **onSessionDestroy**: called when a **UIExtensionContentSession** instance is destroyed for the AutoFillExtensionAbility.
 - **onForeground**: called when the AutoFillExtensionAbility is switched from the background to the foreground.
 - **onBackground**: called when the AutoFillExtensionAbility is switched from the foreground to the background.
@@ -61,7 +60,7 @@ Before implementing auto-fill for accounts and passwords, manually create an Aut
    "extensionAbilities": [
       {
         "name": "AutoFillAbility",
-        "srcEntry": "./ets/autofillability/AutoFillAbility.ts",
+        "srcEntry": "./ets/autofillability/AutoFillAbility.ets",
         // ...
         "type": "autoFill/password"
       }
@@ -72,12 +71,12 @@ Before implementing auto-fill for accounts and passwords, manually create an Aut
 
    1. Right-click the **ets** directory, and choose **New > Directory** to create a directory named **autofillability**.
 
-   2. Right-click the **autofillability** directory, and choose **New > File** to create a file named **AutoFillAbility.ts**. An example code snippet is as follows:
+   2. Right-click the **autofillability** directory, and choose **New > File** to create a file named **AutoFillAbility.ets**. An example code snippet is as follows:
 
       ```ts
       import { hilog } from '@kit.PerformanceAnalysisKit';
       import { AutoFillExtensionAbility, autoFillManager, UIExtensionContentSession } from '@kit.AbilityKit';
-      
+
       class AutoFillAbility extends AutoFillExtensionAbility {
         // ...
         // The onFillRequest lifecycle callback is triggered when the auto-fill service initiates an auto-fill request.
@@ -85,29 +84,30 @@ Before implementing auto-fill for accounts and passwords, manually create an Aut
           hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
           try {
             // Save the page data and callback data carried in onFillRequest.
-            let storageFill: LocalStorage = new LocalStorage({
+            let obj: Record<string, UIExtensionContentSession | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
               'session': session,
               'fillCallback': callback, // The auto-fill processing result is returned to the client through this callback.
-              'viewData': request.viewData, // Assemble the data to be populated to viewData and return the data to the client through the callback for auto-fill.
-              'pageNodeInfos': request.viewData.pageNodeInfos
-            });
+              'viewData': request.viewData, // Assemble the data to be populated to viewData and return the data to the client through the callback.
+            };
+            let storageFill: LocalStorage = new LocalStorage(obj);
             // Load the auto-fill processing page.
             session.loadContent('autofillpages/AutoFillPassWord', storageFill);
           } catch (err) {
             hilog.error(0x0000, 'testTag', '%{public}s', 'autofill failed to load content');
           }
         }
-      
+
         // The onSaveRequest lifecycle callback is triggered when the auto-save service initiates an auto-save request.
         onSaveRequest(session: UIExtensionContentSession, request: autoFillManager.SaveRequest, callback: autoFillManager.SaveRequestCallback): void {
           hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onSaveRequest');
           try {
-            // Save the page data and callback data carried in onSaveRequest.
-            let storageSave: LocalStorage = new LocalStorage({
+            let obj: Record<string, UIExtensionContentSession | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
               'session': session,
               'saveCallback': callback, // The auto-save processing result is returned to the client through this callback.
-              'viewData': request.viewData
-            });
+              'viewData': request.viewData, // Assemble the data to be populated to viewData and return the data to the client through the callback.
+            }
+            // Save the page data and callback data carried in onSaveRequest.
+            let storageSave: LocalStorage = new LocalStorage(obj);
             // Load the auto-save processing page.
             session.loadContent('autofillpages/SavePage', storageSave);
           } catch (err) {
@@ -123,7 +123,7 @@ Before implementing auto-fill for accounts and passwords, manually create an Aut
 
    2. Right-click the **autofillpages** directory, and choose **New > File** to create a file named **AutoFillPassWord.ets**.
 
-   3. When users touch the account or password text box on the page, the auto-fill framework sends an auto-fill request to the auto-fill service to trigger the **onFillRequest** lifecycle callback. In the **onFillRequest** lifecycle callback, display the page that shows the available accounts and passwords (implemented by **AutoFillPassWord.ets**).
+   3. When users touch the account or password text box on the page, the auto-fill framework sends an auto-fill request to the auto-fill service to trigger the [onFillRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonfillrequest) lifecycle callback. In the **onFillRequest** lifecycle callback, display the page that shows the available accounts and passwords (implemented by **AutoFillPassWord.ets**).
 
       ```ts
       import { autoFillManager } from '@kit.AbilityKit';
@@ -241,7 +241,7 @@ Before implementing auto-fill for accounts and passwords, manually create an Aut
 
    1. Right-click the **autofillpages** directory, and choose **New > File** to create a file named **SavePage.ets**.
 
-   2. When information exists in the **TextInput** component, trigger the **onSaveRequest** lifecycle callback during page redirection (a user touches the login button). In the **onSaveRequest** callback, display the information save processing page (implemented by **SavePage.ets**).
+   2. When information exists in the **TextInput** component, trigger the [onSaveRequest](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md#autofillextensionabilityonsaverequest) lifecycle callback during page redirection (a user touches the login button). In the **onSaveRequest** callback, display the information save processing page (implemented by **SavePage.ets**).
 
       ```ts
       import { autoFillManager } from '@kit.AbilityKit';
@@ -322,7 +322,7 @@ Before implementing scenario-specific auto-fill, you need to create a **SmartAut
    "extensionAbilities": [
       {
          "name": "AutoFillAbility",
-         "srcEntry": "./ets/autofillability/AutoFillAbility.ts",
+         "srcEntry": "./ets/autofillability/AutoFillAbility.ets",
          // ...
          "type": "autoFill/smart"
       }
@@ -333,7 +333,7 @@ Before implementing scenario-specific auto-fill, you need to create a **SmartAut
 
 ### Developing the AutoFillExtensionAbility Client
 
-You can click the auto-fill component on the home page to start the AutoFillExtensionAbility. For example, you can add the following component to the main page:
+You can click the auto-fill component on the home page to start the [AutoFillExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md). For example, you can add the following component to the main page:
 
 #### Component That Supports Auto-Fill of Accounts and Passwords
 

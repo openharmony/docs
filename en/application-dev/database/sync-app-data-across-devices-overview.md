@@ -1,4 +1,4 @@
-# Overview of Distributed Application Data Sync
+# Distributed Application Data Sync Overview
 
 
 ## When to Use

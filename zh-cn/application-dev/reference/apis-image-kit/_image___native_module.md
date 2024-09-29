@@ -173,6 +173,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_GetDynamicRange](#oh_pixelmapimageinfo_getdynamicrange) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info, bool \*isHdr) | 获取Pixelmap是否为高动态范围的信息。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapImageInfo_Release](#oh_pixelmapimageinfo_release) ([OH_Pixelmap_ImageInfo](#oh_pixelmap_imageinfo) \*info) | 释放OH_Pixelmap_ImageInfo指针。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_CreatePixelmap](#oh_pixelmapnative_createpixelmap) (uint8_t \*data, size_t dataLength, [OH_Pixelmap_InitializationOptions](#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | 通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。 | 
+| Image_ErrorCode [OH_PixelmapNative_ConvertPixelmapNativeToNapi](#oh_pixelmapnative_convertpixelmapnativetonapi) (napi_env env, OH_PixelmapNative \*pixelmapNative, napi_value \*pixelmapNapi) | 将nativePixelMap对象转换为PixelMapnapi对象。  | 
+| Image_ErrorCode [OH_PixelmapNative_ConvertPixelmapNativeFromNapi](#oh_pixelmapnative_convertpixelmapnativefromnapi) (napi_env env, napi_value pixelmapNapi, OH_PixelmapNative \*\*pixelmapNative) | 将PixelMapnapi对象转换为nativePixelMap对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ReadPixels](#oh_pixelmapnative_readpixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*destination, size_t \*bufferSize) | 读取图像像素数据，结果写入ArrayBuffer里。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_WritePixels](#oh_pixelmapnative_writepixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*source, size_t bufferSize) | 读取缓冲区中的图片数据，结果写入PixelMap中。 | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_ToSdr](#oh_pixelmapnative_tosdr) (OH_PixelmapNative \*pixelmap) | 将HDR的图像内容转换为SDR的图像内容。  | 
@@ -1215,7 +1217,8 @@ Image_ErrorCode OH_ImageNative_GetRowStride (OH_ImageNative * image, uint32_t co
 Image_ErrorCode OH_ImageNative_GetTimestamp (OH_ImageNative * image, int64_t * timestamp )
 ```
 **描述**
-获取Native [OH_ImageNative](#oh_imagenative) 对象中的时间戳信息
+获取Native [OH_ImageNative](#oh_imagenative) 对象中的时间戳信息。时间戳以纳秒为单位，通常是单调递增的。时间戳的具体含义和基准取决于图像的生产者，在相机预览/拍照场景，生产者就是相机。来自不同生产者的图像的时间戳可能有不同的含义和基准，因此可能无法进行比较。
+如果要获取某张照片的生成时间，可以通过[OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty)接口读取相关的EXIF信息。
 
 **起始版本：** 12
 
@@ -2815,6 +2818,52 @@ Image_ErrorCode OH_PixelmapNative_ConvertAlphaFormat (OH_PixelmapNative * srcpix
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_ConvertPixelmapNativeFromNapi()
+
+```
+Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeFromNapi (napi_env env, napi_value pixelmapNapi, OH_PixelmapNative ** pixelmapNative )
+```
+**描述**
+将PixelMapnapi对象转换为nativePixelMap对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | napi的环境指针。  | 
+| pixelmapNapi | 需要转换的PixelMapnapi对象。  | 
+| pixelmapNative | 转换出的OH_PixelmapNative对象指针。  | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果pixelmapNative是nullptr，或者pixelmapNapi不是PixelMapNapi对象返回IMAGE_BAD_PARAMETER，具体请参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_ConvertPixelmapNativeToNapi()
+
+```
+Image_ErrorCode OH_PixelmapNative_ConvertPixelmapNativeToNapi (napi_env env, OH_PixelmapNative * pixelmapNative, napi_value * pixelmapNapi )
+```
+**描述**
+将nativePixelMap对象转换为PixelMapnapi对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | napi的环境指针。  | 
+| pixelmapNative | 被操作的OH_PixelmapNative指针。  | 
+| pixelmapNapi | 转换出来的PixelMapnapi对象指针。  | 
+
+**返回：**
+
+如果操作成功返回IMAGE_SUCCESS，如果pixelmapNative为空返回IMAGE_BAD_PARAMETER，具体请参考[Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapNative_CreateEmptyPixelmap()

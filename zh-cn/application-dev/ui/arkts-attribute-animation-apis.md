@@ -18,6 +18,9 @@ animateTo(value: AnimateParam, event: () => void): void
 
 [animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)接口参数中，value指定[AnimateParam对象](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md#animateparam对象说明)（包括时长、[Curve](../reference/apis-arkui/js-apis-curve.md#curve)等）event为动画的闭包函数，闭包内变量改变产生的属性动画将遵循相同的动画参数。
 
+> **说明：**
+> 
+> 直接使用animateTo可能导致实例不明确的问题，建议使用[getUIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto)调用绑定实例的animateTo。
 
 ```ts
 import { curves } from '@kit.ArkUI';
@@ -44,7 +47,7 @@ struct AnimateToDemo {
       .height(100)
       .borderRadius(30)
       .onClick(() => {
-        animateTo({ curve: curves.springMotion() }, () => {
+        this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
           this.animate = !this.animate;
           // 第三步：闭包内通过状态变量改变UI界面
           // 这里可以写任何能改变UI的逻辑比如数组添加，显隐控制，系统会检测改变后的UI界面与之前的UI界面的差异，对有差异的部分添加动画

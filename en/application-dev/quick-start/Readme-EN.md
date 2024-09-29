@@ -16,8 +16,11 @@
       - [HSP](in-app-hsp.md)
       - [Dynamic Import](arkts-dynamic-import.md)
       - [Lazy Import](arkts-lazy-import.md)
+    - Typical Scenarios Development
+      - [Integrated HSP](integrated-hsp.md)
       - [Converting HAR to HSP](har-to-hsp.md)
       - [Converting HSP to HAR](hsp-to-har.md)
+      - [Creating a Static Shortcut of the Application](typical-scenario-configuration.md)
     - [Application Package Installation, Uninstall, and Update](application-package-install-uninstall.md)
   - Application Configuration Files in Stage Model
     - [Overview of Application Configuration Files in Stage Model](application-configuration-file-overview-stage.md)
@@ -45,7 +48,7 @@
   - Basic Syntax of UI Paradigms
     - [Basic Syntax Overview](arkts-basic-syntax-overview.md)
     - [Declarative UI Description](arkts-declarative-ui-description.md)
-    - CustomComponent
+    - Custom Components
       - [Creating a Custom Component](arkts-create-custom-components.md)
       - [Page and Custom Component Lifecycle](arkts-page-custom-components-lifecycle.md)
       - [Custom Component Layout](arkts-page-custom-components-layout.md)

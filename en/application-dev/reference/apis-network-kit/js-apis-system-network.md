@@ -2,7 +2,8 @@
 
 > **NOTE**
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+>
+> - The APIs of this module are no longer maintained since API version 8. You are advised to use ['@ohos.net.connection'](js-apis-net-connection.md).
 
 ## Modules to Import
 
@@ -27,7 +28,7 @@ getType(options?: {<br>
 &nbsp;&nbsp;complete?: () => void;<br>
 }): void
 
-Obtains the network type of this device.
+Obtains the network type.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -36,10 +37,10 @@ Obtains the network type of this device.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | success | Function | No| Called when the API call is successful. The return value is defined by [NetworkResponse](#networkresponse3).|
-| fail | Function | No| Called when an API call fails.|
-| complete | Function | No| Called when an API call is complete.|
+| fail | Function | No| Called when API call has failed.|
+| complete | Function | No| Called when the API call is complete.|
 
-Error codes:
+One of the following error codes will be returned if the API call has failed.
 
 | Error Code| Description|
 | -------- | -------- |
@@ -67,7 +68,7 @@ subscribe(options?:{<br>
 &nbsp;&nbsp;fail?: (data: any, code: number) => void;<br>
   }): void
 
-Listens to the network connection state of this device. If this API is called multiple times, the last call takes effect.
+Listens to the network connection state. If this method is called multiple times, the last call takes effect.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -76,9 +77,9 @@ Listens to the network connection state of this device. If this API is called mu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | success | Function | No| Called when the network state changes. The return value is defined by [NetworkResponse](#networkresponse3).|
-| fail | Function | No| Called when an API call fails.|
+| fail | Function | No| Called when API call has failed.|
 
-Error codes:
+One of the following error codes will be returned if the API call has failed.
 
 | Error Code| Description|
 | -------- | -------- |
@@ -104,7 +105,7 @@ export default class Network {
 
 unsubscribe(): void
 
-Cancels listening to the network connection state of this device.
+Cancels listening to the network connection state.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 

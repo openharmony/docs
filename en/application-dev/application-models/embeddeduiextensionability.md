@@ -2,9 +2,9 @@
 
 ## Overview
 
-[EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) is an ExtensionAbility component of the embedded UI type. It provides the capability of embedded UIs across processes.
+[EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) is an [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) component of the EMBEDDED_UI type. It provides the capability of embedded UIs across processes.
 
-The EmbeddedUIExtensionAbility must be used together with the [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md). Specifically, with the **EmbeddedComponent**, you can embed the UI provided by the EmbeddedUIExtensionAbility into a UIAbility of the same application. The EmbeddedUIExtensionAbility runs in a process independent of the UIAbility for UI layout and rendering. It is usually used in modular development scenarios where process isolation is required.
+The EmbeddedUIExtensionAbility must be used together with the [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md). Specifically, with the EmbeddedComponent, you can embed the UI provided by the EmbeddedUIExtensionAbility into a [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) of the same application. The EmbeddedUIExtensionAbility runs in a process independent of the UIAbility for UI layout and rendering. It is usually used in modular development scenarios where process isolation is required.
 
 > **NOTE**
 >
@@ -19,24 +19,24 @@ The EmbeddedUIExtensionAbility provides related capabilities through the [UIExte
 
 ### Lifecycle
 
-The [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) class provides the **onCreate**, **onSessionCreate**, **onSessionDestroy**, **onForeground**, **onBackground**, and **onDestroy** lifecycle callbacks. You must override them as required.
+The [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) class provides the lifecycle callbacks [onCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityoncreate), [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessioncreate), [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessiondestroy), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonbackground), and [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityondestroy). You must override them as required.
 
-- [onCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityoncreate): called to initialize the service logic when an EmbeddedUIExtensionAbility is created.
-- [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessioncreate): called when a **UIExtensionContentSession** instance is created for the EmbeddedUIExtensionAbility.
-- [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessiondestroy): called when a **UIExtensionContentSession** instance is destroyed for the EmbeddedUIExtensionAbility.
-- [onForeground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonforeground): called when the EmbeddedUIExtensionAbility is switched from the background to the foreground.
-- [onBackground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonbackground): called when the EmbeddedUIExtensionAbility is switched from the foreground to the background.
-- [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityondestroy): called to clear resources when the EmbeddedUIExtensionAbility is destroyed.
+- **onCreate**: called to initialize the service logic when an EmbeddedUIExtensionAbility is created.
+- **onSessionCreate**: called when a **UIExtensionContentSession** instance is created for the EmbeddedUIExtensionAbility.
+- **onSessionDestroy**: called when a **UIExtensionContentSession** instance is destroyed for the EmbeddedUIExtensionAbility.
+- **onForeground**: called when the EmbeddedUIExtensionAbility is switched from the background to the foreground.
+- **onBackground**: called when the EmbeddedUIExtensionAbility is switched from the foreground to the background.
+- **onDestroy**: called to clear resources when the EmbeddedUIExtensionAbility is destroyed.
 
 ### How to Develop
 
-To implement a provider, create an EmbeddedUIExtensionAbility in DevEco Studio as follows:
+To implement a provider, create an [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) in DevEco Studio as follows:
 
 1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **EmbeddedUIExtAbility**.
 
-2. Right-click the **EmbeddedUIExtAbility** directory, and choose **New > File** to create a file named **EmbeddedUIExtAbility.ts**.
+2. Right-click the **EmbeddedUIExtAbility** directory, and choose **New > File** to create a file named **EmbeddedUIExtAbility.ets**.
 
-3. Open the **EmbeddedUIExtAbility.ts** file and import its dependencies. Customize a class that inherits from **EmbeddedUIExtensionAbility** and implement the lifecycle callbacks **onCreate**, **onSessionCreate**, and **onSessionDestroy**, **onForeground**, **onBackground**, and **onDestroy**.
+3. Open the **EmbeddedUIExtAbility.ets** file and import its dependencies. Customize a class that inherits from **EmbeddedUIExtensionAbility** and implement the lifecycle callbacks [onCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityoncreate), [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessioncreate), [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessiondestroy), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonbackground), and [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityondestroy).
 
     ```ts
     import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
@@ -75,7 +75,7 @@ To implement a provider, create an EmbeddedUIExtensionAbility in DevEco Studio a
     }
     ```
 
-4. Write the entry page file **pages/extension.ets**, which will be loaded in **onSessionCreate** of the EmbeddedUIExtensionAbility.
+4. Write the entry page file **pages/Index.ets**, which will be loaded in [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessiondestroy) of the EmbeddedUIExtensionAbility.
 
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';
@@ -117,7 +117,7 @@ To implement a provider, create an EmbeddedUIExtensionAbility in DevEco Studio a
             "icon": "$media:icon",
             "description": "EmbeddedUIExtAbility",
             "type": "embeddedUI",
-            "srcEntry": "./ets/EmbeddedUIExtAbility/EmbeddedUIExtAbility.ts"
+            "srcEntry": "./ets/EmbeddedUIExtAbility/EmbeddedUIExtAbility.ets"
           },
         ]
       }
@@ -128,8 +128,8 @@ To implement a provider, create an EmbeddedUIExtensionAbility in DevEco Studio a
 
 ## Developing the EmbeddedUIExtensionAbility Client
 
-You can load the EmbeddedUIExtensionAbility in the application through the **EmbeddedComponent** on the UIAbility page. Two fields are added to **want.parameters** for the EmbeddedUIExtensionAbility: **ohos.extension.processMode.hostSpecified** and **ohos.extension.processMode.hostInstance**.
-- **ohos.extension.processMode.hostSpecified** specifies the name of the process in which the EmbeddedUIExtensionAbility that is not started for the first time runs. If this field is not configured, the EmbeddedUIExtensionAbility runs in the same process as the UIExtensionAbility. Example configuration: "ohos.extension.processMode.hostSpecified": "com.ohos.inentexecutedemo:share." 
+You can load the [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) in the application through the [EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md) on the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) page. Two fields are added to [want](../reference/apis-ability-kit/js-apis-app-ability-want.md).parameters for the EmbeddedUIExtensionAbility: **ohos.extension.processMode.hostSpecified** and **ohos.extension.processMode.hostInstance**.
+- **ohos.extension.processMode.hostSpecified** specifies the name of the process in which the EmbeddedUIExtensionAbility that is not started for the first time runs. If this field is not configured, the EmbeddedUIExtensionAbility runs in the same process as the [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md). Example configuration: "ohos.extension.processMode.hostSpecified": "com.ohos.inentexecutedemo:share." 
 - **ohos.extension.processMode.hostInstance** specifies whether to start the EmbeddedUIExtensionAbility as an independent process. If **false** is passed in, the EmbeddedUIExtensionAbility is started based on the UIExtensionAbility process model. If **true** is passed in, a process is created, regardless of the process model configured for the UIExtensionAbility. Example configuration: "ohos.extension.processMode.hostInstance": "true".
 
 If both fields are configured, **ohos.extension.processMode.hostSpecified** takes precedence, meaning that the EmbeddedUIExtensionAbility runs in the specified process.

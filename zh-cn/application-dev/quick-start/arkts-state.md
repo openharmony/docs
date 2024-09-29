@@ -985,3 +985,99 @@ struct Index {
 5. 系统长时间无响应，appfreeze。
 
 所以，在build里面改变状态变量的这种行为是完全错误的。当发现“FIX THIS APPLICATION ERROR: @Component ... has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!”日志时，即使当下没有带来严重后果，也应该警惕。应该排查应用，修改对应的错误写法，消除该错误日志。
+
+### 使用a.b(this.object)形式调用，不会触发UI刷新
+
+在build方法内，当@State装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法Balloon.increaseVolume或者this.reduceVolume修改balloon的volume时，UI不会刷新。
+
+【反例】
+
+```ts
+class Balloon {
+  volume: number;
+  constructor(volume: number) {
+    this.volume = volume;
+  }
+
+  static increaseVolume(balloon:Balloon) {
+    balloon.volume += 2;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State balloon: Balloon = new Balloon(10);
+
+  reduceVolume(balloon:Balloon) {
+    balloon.volume -= 1;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The volume of the balloon is ${this.balloon.volume} cubic centimeters.`)
+        .fontSize(30)
+      Button(`increaseVolume`)
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Balloon.increaseVolume(this.balloon);
+        })
+      Button(`reduceVolume`)
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.reduceVolume(this.balloon);
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+可以通过如下先赋值、再调用新赋值的变量的方式为this.balloon加上Proxy代理，实现UI刷新。
+
+【正例】
+
+```ts
+class Balloon {
+  volume: number;
+  constructor(volume: number) {
+    this.volume = volume;
+  }
+
+  static increaseVolume(balloon:Balloon) {
+    balloon.volume += 2;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State balloon: Balloon = new Balloon(10);
+
+  reduceVolume(balloon:Balloon) {
+    balloon.volume -= 1;
+  }
+
+  build() {
+    Column({space:8}) {
+      Text(`The volume of the balloon is ${this.balloon.volume} cubic centimeters.`)
+        .fontSize(30)
+      Button(`increaseVolume`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let balloon1 = this.balloon;
+          Balloon.increaseVolume(balloon1);
+        })
+      Button(`reduceVolume`)
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let balloon2 = this.balloon;
+          this.reduceVolume(balloon2);
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```

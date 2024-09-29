@@ -231,5 +231,6 @@ export default {
 
 ![zh-cn_image_0000001220635059](figures/zh-cn_image_0000001220635059.gif)
 
-> **说明：**
+> **说明：** 
+>
 > 在调用update接口的过程中可以使用这个接口更新动画参数，入参与createAnimator一致。

@@ -502,7 +502,7 @@ Enumerates the return types of the parsing result.
 
 | Name| Value| Description           |
 | ------ | ------ | --------------- |
-| OBJECT   | 0 |**Sendable** object.|
+| OBJECT   | 0 |Returns a sendable object.|
 
 ### ParseOptions
 

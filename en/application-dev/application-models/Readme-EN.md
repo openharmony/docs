@@ -13,11 +13,14 @@
       - [UIAbility Usage](uiability-usage.md)
       - [Data Synchronization Between UIAbility and UI Page](uiability-data-sync-with-ui.md)
       - [Starting UIAbility in the Same Application](uiability-intra-device-interaction.md)
+      - [UIAbility Backup and Restore](ability-recover-guideline.md)
     - [ExtensionAbility Component](extensionability-overview.md)
+      - [UIServiceExtension](uiserviceextension.md)
       <!--Del-->
       - [ServiceExtensionAbility (for System Applications Only)](serviceextensionability.md)
+      - [UIServiceExtension (for System Applications Only)](uiserviceextension-sys.md)
       - [UIExtensionAbility (for System Applications Only)](uiextensionability.md)
-      - [AutoFillExtensionAbility (for System Applications Only](autofillextensionablility-guide.md)
+      - [AutoFillExtensionAbility (for System Applications Only)](autofillextensionablility-guide.md)
       <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage Component Container](abilitystage.md)
@@ -37,17 +40,20 @@
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
   - Inter-Application Redirection
     - [Overview of Application Redirection](link-between-apps-overview.md)
-    - Directional Redirection
+    - Starting a Specified Application
       - [(Optional) Using canOpenLink to Check Application Accessibility](canopenlink.md)
       - [Using Deep Linking for Application Redirection](deep-linking-startup.md)
       <!--Del-->
       - [Using App Linking for Application Redirection](app-linking-startup.md)
       <!--DelEnd-->
       - [Switching from Explicit Want Redirection to Linking Redirection](uiability-startup-adjust.md)
-    - Common Intent Redirection
-      - [Using startAbilityByType to Start a Vertical Application](start-intent-panel.md)
-      - [Starting an Image Editing Application with PhotoEditorExtensionAbility to Edit an Image](photoEditorExtensionAbility.md)
-      - [Using startAbility to Start a File Application](file-processing-apps-startup.md)
+      - [Application URI Description](app-uri-config.md)
+    - [Starting an Application of the Specified Type](start-intent-panel.md)
+      - [Starting a Navigation Application](start-navigation-apps.md)
+      - [Starting an Email Application](start-email-apps.md)
+      - [Starting a Financial Application](start-finance-apps.md)
+      - [Starting an Image Editing Application](photoEditorExtensionAbility.md)
+      - [Starting a File Application](file-processing-apps-startup.md)
     - [Starting a System Application](system-app-startup.md)
   - [Process Model (Stage Model)](process-model-stage.md)
   - [Thread Model (Stage Model)](thread-model-stage.md)

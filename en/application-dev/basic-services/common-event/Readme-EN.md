@@ -1,7 +1,7 @@
 # Application Events
 
 - IPC
-    - [Common Event Overview](common-event-overview.md)
+    - [Introduction to Common Events](common-event-overview.md)
     - Common Event Subscription
         <!--Del-->
         - [Common Event Subscription Overview](common-event-subscription-overview.md)
@@ -15,5 +15,5 @@
     <!--Del-->
     - [Removing Sticky Common Events (for System Applications Only)](common-event-remove-sticky.md)
     <!--DelEnd-->
-- Inter-Thread Communication (FA Model)
+- Inter-Thread Communication
     - [Using Emitter for Inter-Thread Communication](itc-with-emitter.md)

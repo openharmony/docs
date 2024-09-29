@@ -14,6 +14,9 @@
   <!--DelEnd-->
   - [Deferred Photo Delivery (ArkTS)](camera-deferred-capture.md)
   - [Moving Photos (ArkTS)](camera-moving-photo.md)
+  <!--Del-->
+  - [Depth Data (for System Applications Only) (ArkTS)](camera-depth-data.md)
+  <!--DelEnd-->
 - Camera Best Practices (ArkTS)
   - [Camera Photographing Sample (ArkTS)](camera-shooting-case.md)
   - [Camera Recording Sample (ArkTS)](camera-recording-case.md)

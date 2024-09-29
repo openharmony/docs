@@ -1,15 +1,15 @@
 # HapModuleInfo
 
+HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的HAP信息，其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)至少包含GET_BUNDLE_INFO_WITH_HAP_MODULE。
+
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
-HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的HAP信息，其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)至少包含GET_BUNDLE_INFO_WITH_HAP_MODULE。
 
 ## HapModuleInfo
 
 **系统能力**: SystemCapability.BundleManager.BundleFramework.Core
 
-| 名称                              | 类型                                                         | 可读 | 可写 | 说明                 |
+| 名称                              | 类型                                                         | 只读 | 可选 | 说明                 |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | -------------------- |
 | name                              | string                                                       | 是   | 否   | 模块名称。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | icon                              | string                                                       | 是   | 否   | 模块图标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -41,7 +41,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 |moduleName | string         | 是   | 否   | 模块运行时，由系统自动执行预加载的模块名称。|
 
@@ -53,7 +53,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称        | 类型   | 可读 | 可写 | 说明                   |
+| 名称        | 类型   | 只读 | 可选 | 说明                   |
 | ----------- | ------ | ---- | ---- | ---------------------- |
 | bundleName<sup>10+</sup>  | string | 是   | 否   | 标识当前模块依赖的共享包包名。       |
 | moduleName  | string | 是   | 否   | 标识当前模块依赖的共享包模块名。 |
@@ -67,7 +67,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称           | 类型   | 可读 | 可写 | 说明                   |
+| 名称           | 类型   | 只读 | 可选 | 说明                   |
 | ------------- | ------ | ---- | ---- | ---------------------- |
 | name          | string | 是   | 否   | 标识跳转页面的名称。       |
 | pageSourceFile| string | 是   | 否   | 标识页面在模块内的路径。   |
@@ -83,7 +83,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
-| 名称          | 类型    | 可读 | 可写 | 说明                   |
+| 名称          | 类型    | 只读 | 可选 | 说明                   |
 | ------------- | ------ | ---- | ---- | ---------------------- |
 | key           | string | 是   | 否   | 标识路由表自定义数据的键。       |
 | value         | string | 是   | 否   | 标识路由表自定义数据的值。 |

@@ -24,7 +24,7 @@ The bundle module provides APIs for querying application information.
 
 | Name| Description|
 | -------- | -------- |
-| [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | Defines the application information.|
+| [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | Describes the application information.|
 
 
 
@@ -87,3 +87,4 @@ Obtains the appIdentifier information about the current application. appIdentifi
 **Returns**
 
 Returns a string that describes the appIdentifier information of the application.
+

@@ -4,7 +4,7 @@
 
 ### 功能介绍
 
-应用退到后台或进程终止后，仍然有一些提醒用户的定时类任务，例如购物类应用抢购提醒等，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。当前支持的提醒类型包括：倒计时、日历和闹钟。
+应用退到后台或进程终止后，仍然有一些提醒用户的定时类任务，例如时钟提醒等，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。当前支持的提醒类型包括：倒计时、日历和闹钟。<!--RP1--><!--RP1End-->
 
 - 倒计时类：基于倒计时的提醒功能。
 
@@ -18,7 +18,7 @@
 
 - **跳转限制**：点击提醒通知后跳转的应用必须是申请代理提醒的本应用。
 
-<!--RP1--><!--RP1End-->
+<!--RP2--><!--RP2End-->
 
 
 ## 接口说明
@@ -115,7 +115,7 @@
         },
         ringDuration: 5, // 指明响铃时长（单位：秒）
         snoozeTimes: 2, // 指明延迟提醒次数
-        timeInterval: 5, // 执行延迟提醒间隔（单位：秒）
+        timeInterval: 5*60, // 执行延迟提醒间隔（单位：秒）
         title: 'this is title', // 指明提醒标题
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容
@@ -153,7 +153,7 @@
         },
         ringDuration: 5, // 指明响铃时长（单位：秒）
         snoozeTimes: 2, // 指明延迟提醒次数
-        timeInterval: 5, // 执行延迟提醒间隔（单位：秒）
+        timeInterval: 5*60, // 执行延迟提醒间隔（单位：秒）
         title: 'this is title', // 指明提醒标题
         content: 'this is content', // 指明提醒内容
         expiredContent: 'this reminder has expired', // 指明提醒过期后需要显示的内容

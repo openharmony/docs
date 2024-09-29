@@ -1093,28 +1093,6 @@ getDragController(): DragController
 uiContext.getDragController();
 ```
 
-### getDragPreview<sup>11+</sup>
-
-getDragPreview(): dragController.DragPreview
-
-返回一个代表拖拽背板的对象。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：** 
-
-| 类型                                                         | 说明                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
-
-**错误码：** 通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
-
-**示例：**
-
-请参考[animate](js-apis-arkui-dragController.md#animate11)
-
 ### keyframeAnimateTo<sup>11+</sup>
 
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
@@ -1932,7 +1910,7 @@ closeBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>): Promi
 > 使用此接口关闭半模态页面时，不会触发shouldDismiss回调。
 >
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5319,8 +5297,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
-| 103301   | the ComponentContent is incorrect.                           |
-| 103302   | Dialog content already exists.                               |
+| 100001   | Internal error.                                              |
 
 ### closeCustomDialog<sup>12+</sup>
 
@@ -5771,6 +5748,28 @@ struct DragControllerPage {
   }
 }
 ```
+
+### getDragPreview<sup>11+</sup>
+
+getDragPreview(): dragController.DragPreview
+
+返回一个代表拖拽背板的对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [dragController.DragPreview](js-apis-arkui-dragController.md#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
+
+**错误码：** 通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
+
+**示例：**
+
+请参考[animate](js-apis-arkui-dragController.md#animate11)
 
 ### setDragEventStrictReportingEnabled<sup>12+</sup>
 
@@ -6828,6 +6827,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **示例：** 
 
@@ -6923,6 +6923,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
 
 **示例：** 
 
@@ -6980,7 +6981,7 @@ struct ComponentSnapshotExample {
 
 ### getSync<sup>12+</sup>
 
-getSync(id: string, options?: SnapshotOptions): image.PixelMap
+getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
 获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
 
@@ -6994,10 +6995,10 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 **参数：**
 
-| 参数名  | 类型                                                         | 必填 | 说明                                                         |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| id      | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| options | [SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | 否   | 截图相关的自定义参数。                                       |
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
@@ -7055,9 +7056,9 @@ struct SnapshotExample {
 
 ### onFrame<sup>12+</sup>
 
-在下一帧进行渲染时，该方法将被执行。
-
 onFrame(frameTimeInNano: number): void
+
+在下一帧进行渲染时，该方法将被执行。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7111,9 +7112,9 @@ struct Index {
 
 ### onIdle<sup>12+</sup>
 
-在下一帧渲染结束时，如果距离下一个Vsync信号到来还有1ms以上的剩余时间，该方法将被执行，否则将顺延至后面的帧。
-
 onIdle(timeLeftInNano: number): void
+
+在下一帧渲染结束时，如果距离下一个Vsync信号到来还有1ms以上的剩余时间，该方法将被执行，否则将顺延至后面的帧。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

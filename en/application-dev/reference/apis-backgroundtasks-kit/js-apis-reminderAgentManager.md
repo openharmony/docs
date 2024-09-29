@@ -22,8 +22,6 @@ Publishes a reminder. This API uses an asynchronous callback to return the resul
 > **NOTE**
 >
 > This API can be called only after the [NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10) permission is obtained.
->
-> <!--RP1--><!--RP1End-->
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -73,8 +71,6 @@ Publishes a reminder. This API uses a promise to return the result.
 > **NOTE**
 >
 > This API can be called only after the [NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10) permission is obtained.
->
-> <!--RP1--><!--RP1End-->
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 

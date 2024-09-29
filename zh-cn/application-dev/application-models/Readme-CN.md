@@ -26,6 +26,7 @@
       - [Want概述](want-overview.md)
       - [显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)
       - [使用显式Want启动应用组件](ability-startup-with-explicit-want.md)
+      - [常见action与entities（不推荐使用）](actions-entities.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
     - [应用启动框架AppStartup](app-startup.md)
     <!--Del-->
@@ -133,7 +134,6 @@
     - [LifecycleService接口切换](lifecycleservice-switch.md)
     - [LifecycleData接口切换](lifecycledata-switch.md)
     - [DataAbilityHelper接口切换](dataabilityhelper-switch.md)
-    - [mediaLibrary接口切换](medialibrary-switch.md)
     - [request接口切换](request-switch.md)
     - [resourceManager接口切换](resourcemanager-switch.md)
     - [window接口切换](window-switch.md)

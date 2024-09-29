@@ -3,17 +3,19 @@
 - [Introduction to ArkWeb](web-component-overview.md)
 - [Lifecycle of Web Components](web-event-sequence.md)
 - Setting Basic Attributes and Events
-  - [Default User Agent String](web-default-userAgent.md)
+  - [Setting User Agent](web-default-userAgent.md)
   - [Managing Cookies and Data Storage](web-cookie-and-data-storage-mgmt.md)
   - [Setting the Dark Mode](web-set-dark-mode.md)
   - [Opening Pages in a New Window](web-open-in-new-window.md)
   - [Managing Location Permissions](web-geolocation-permission.md)
   - [Using Incognito Mode](web-incognito-mode.md)
+  - [Using Motion and Direction Sensors](web/web-sensor.md)
 - Using Frontend Page JavaScript Code on the Application
   - [Invoking Frontend Page Functions on the Application](web-in-app-frontend-page-function-invoking.md)
   - [Invoking Application Functions on the Frontend Page](web-in-page-app-function-invoking.md)
   - [Establishing a Data Channel Between the Application and Frontend Page](web-app-page-data-channel.md)
-  - [Mutual Invoking (C/C++) Between the Application Side and Frontend Pages](arkweb-ndk-jsbridge.md)
+  - [Mutual Invoking Between the Application Side and Frontend Pages (C/C++)](arkweb-ndk-jsbridge.md)
+  - [Establishing a Data Channel Between the Application and the Frontend Page (C/C++)](arkweb-ndk-page-data-channel.md)
 - Managing Web Page Interactions
   - [Implementing Nested Scrolling](web-nested-scrolling.md)
 - Managing Cyber Security and Privacy for Web Components
@@ -38,6 +40,7 @@
 - Processing Web Page Content
   - [Printing Frontend Pages](web-print.md)
   - [Previewing PDF Files](web-pdf-preview.md)
+  - [Calculating and Adjusting Safe Area Insets](web-safe-area-insets.md)
 - [Rendering and Drawing Video and Button Components at the Same Layer](web-same-layer.md)
 - Web Debugging
   - [Debugging Frontend Pages by Using DevTools](web-debugging-with-devtools.md)

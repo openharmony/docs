@@ -225,7 +225,7 @@ Web组件提供了应用接管网页中的媒体播放的能力， 用来支持�
                  // 接管当前的媒体。
 
                  // 使用同层渲染流程提供的 surface 来构造一个本地播放器组件。
-                 this.node_controller = new MyNodeController(mediaInfo.surfaceInfo.id, NodeRenderType.  RENDER_TYPE_TEXTURE);
+                 this.node_controller = new MyNodeController(mediaInfo.surfaceInfo.id, NodeRenderType.RENDER_TYPE_TEXTURE);
                  this.node_controller.build();
 
                  // 展示本地播放器组件。
@@ -565,7 +565,7 @@ ArkWeb 内核需要本地播放器的状态信息来更新到网页， 如视频
     }
   }
 
-  // 监听NativeMediaPlayer的状态, 然后通过 webview.NativeMediaPlayerHandler 将状态上报给 ArkWeb 内核。
+  // 监听NativeMediaPlayer的状态，然后通过 webview.NativeMediaPlayerHandler 将状态上报给 ArkWeb 内核。
   class AVPlayerListenerImpl implements AVPlayerListener {
     handler: webview.NativeMediaPlayerHandler;
     component: NativePlayerComponent;
@@ -784,7 +784,7 @@ ArkWeb 内核需要本地播放器的状态信息来更新到网页， 如视频
     width: number = 0;
     height: number = 0;
 
-    static toNodeRect(rectInPx: Rect) : Rect {
+    static toNodeRect(rectInPx: webview.RectEvent) : Rect {
       let rect = new Rect();
       rect.x = px2vp(rectInPx.x);
       rect.y = px2vp(rectInPx.x);
@@ -1204,7 +1204,8 @@ ArkWeb 内核需要本地播放器的状态信息来更新到网页， 如视频
   </head>
   <body>
   <div>
-      <video src='https://media.w3.org/2010/05/bunny/trailer.mp4' style='width: 100%'></video>
+      <!-- 使用时需要自行替换视频链接 -->
+      <video src='https://xxx.xxx/demo.mp4' style='width: 100%'></video>
   </div>
   </body>
   </html>

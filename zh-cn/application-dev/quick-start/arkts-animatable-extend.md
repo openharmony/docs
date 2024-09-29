@@ -25,17 +25,17 @@
 ```
 
 - \@AnimatableExtend仅支持定义在全局，不支持在组件内部定义。
-- \@AnimatableExtend定义的函数参数类型必须为number类型或者实现 AnimtableArithmetic\<T\>接口的自定义类型。
+- \@AnimatableExtend定义的函数参数类型必须为number类型或者实现 AnimatableArithmetic\<T\>接口的自定义类型。
 - \@AnimatableExtend定义的函数体内只能调用\@AnimatableExtend括号内组件的属性方法。
 
-### AnimtableArithmetic\<T\>接口说明
-对复杂数据类型做动画，需要实现AnimtableArithmetic\<T\>接口中加法、减法、乘法和判断相等函数。
+### AnimatableArithmetic\<T\>接口说明
+对复杂数据类型做动画，需要实现AnimatableArithmetic\<T\>接口中加法、减法、乘法和判断相等函数。
 | 名称 | 入参类型 | 返回值类型 | 说明
 | -------- | -------- |-------- |-------- |
-| plus | AnimtableArithmetic\<T\> | AnimtableArithmetic\<T\> | 加法函数 |
-| subtract | AnimtableArithmetic\<T\> | AnimtableArithmetic\<T\> | 减法函数 |
-| multiply | number | AnimtableArithmetic\<T\> | 乘法函数 |
-| equals | AnimtableArithmetic\<T\> | boolean | 相等判断函数 |
+| plus | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | 加法函数 |
+| subtract | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | 减法函数 |
+| multiply | number | AnimatableArithmetic\<T\> | 乘法函数 |
+| equals | AnimatableArithmetic\<T\> | boolean | 相等判断函数 |
 
 ## 使用场景
 

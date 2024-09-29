@@ -595,3 +595,197 @@ struct CustomWidgetChild {
   }
 }
 ```
+
+### 使用a.b(this.object)形式调用，不会触发UI刷新
+
+在build方法内，当@Provide与@Consume装饰的变量是Object类型、且通过a.b(this.object)形式调用时，b方法内传入的是this.object的原生对象，修改其属性，无法触发UI刷新。如下例中，通过静态方法或者使用this调用组件内部方法，修改组件中的this.dog.age与this.dog.name时，UI不会刷新。
+
+【反例】
+
+```ts
+class Animal {
+  name:string;
+  type:string;
+  age: number;
+
+  constructor(name:string, type:string, age:number) {
+    this.name = name;
+    this.type = type;
+    this.age = age;
+  }
+
+  static changeName1(animal:Animal) {
+    animal.name = 'Black';
+  }
+  static changeAge1(animal:Animal) {
+    animal.age += 1;
+  }
+}
+
+@Entry
+@Component
+struct Demo1 {
+  @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
+
+  changeAge2(animal:Animal) {
+    animal.age += 2;
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Red)
+        .fontSize(30)
+      Button('changeAge1')
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Animal.changeAge1(this.dog);
+        })
+      Button('changeAge2')
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.changeAge2(this.dog);
+        })
+      Demo2()
+    }
+  }
+}
+
+@Component
+struct Demo2 {
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo2.`)
+        .fontColor(Color.Blue)
+        .fontSize(30)
+      Demo3()
+    }
+  }
+}
+
+@Component
+struct Demo3 {
+  @Consume dog:Animal;
+
+  changeName2(animal:Animal) {
+    animal.name = 'White';
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Yellow)
+        .fontSize(30)
+      Button('changeName1')
+        .onClick(()=>{
+          // 通过静态方法调用，无法触发UI刷新
+          Animal.changeName1(this.dog);
+        })
+      Button('changeName2')
+        .onClick(()=>{
+          // 使用this通过自定义组件内部方法调用，无法触发UI刷新
+          this.changeName2(this.dog);
+        })
+    }
+  }
+}
+```
+
+可以通过如下先赋值、再调用新赋值的变量的方式为this.dog加上Proxy代理，实现UI刷新。
+
+【正例】
+
+```ts
+class Animal {
+  name:string;
+  type:string;
+  age: number;
+
+  constructor(name:string, type:string, age:number) {
+    this.name = name;
+    this.type = type;
+    this.age = age;
+  }
+
+  static changeName1(animal:Animal) {
+    animal.name = 'Black';
+  }
+  static changeAge1(animal:Animal) {
+    animal.age += 1;
+  }
+}
+
+@Entry
+@Component
+struct Demo1 {
+  @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
+
+  changeAge2(animal:Animal) {
+    animal.age += 2;
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Red)
+        .fontSize(30)
+      Button('changeAge1')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let a1 = this.dog;
+          Animal.changeAge1(a1);
+        })
+      Button('changeAge2')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let a2 = this.dog;
+          this.changeAge2(a2);
+        })
+      Demo2()
+    }
+  }
+}
+
+@Component
+struct Demo2 {
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo2.`)
+        .fontColor(Color.Blue)
+        .fontSize(30)
+      Demo3()
+    }
+  }
+}
+
+@Component
+struct Demo3 {
+  @Consume dog:Animal;
+
+  changeName2(animal:Animal) {
+    animal.name = 'White';
+  }
+
+  build() {
+    Column({ space:10 }) {
+      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+        .fontColor(Color.Yellow)
+        .fontSize(30)
+      Button('changeName1')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let b1 = this.dog;
+          Animal.changeName1(b1);
+        })
+      Button('changeName2')
+        .onClick(()=>{
+          // 通过赋值添加 Proxy 代理
+          let b2 = this.dog;
+          this.changeName2(b2);
+        })
+    }
+  }
+}
+```

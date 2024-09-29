@@ -26,6 +26,8 @@ NavDestination()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 属性
 
 支持[通用属性](ts-universal-attributes-size.md)。
@@ -36,7 +38,7 @@ NavDestination()
 
 title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestinationCustomTitle, options?: NavigationTitleOptions)
 
-设置页面标题。使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行2行后以...截断。如果设置副标题，先缩小后以...截断。
+设置页面标题。使用NavigationCustomTitle类型设置height高度时，[titleMode](ts-basic-components-navigation.md#titlemode)属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行2行后以...截断。如果设置副标题，先缩小后以...截断。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -172,6 +174,8 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
 | STANDARD | 标准模式的NavDestination。                       |
@@ -269,7 +273,7 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型     | 必填   | 描述     |
+| 名称   | 类型     | 必填   | 说明     |
 | ---- | ------ | ---- | ------ |
 | main | string | 是    | 设置主标题。 |
 | sub  | string | 是    | 设置副标题。 |
@@ -283,11 +287,13 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 | 名称      | 类型                                       | 必填   | 说明       |
 | ------- | ---------------------------------------- | ---- | -------- |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 设置标题栏内容。 |
-| height  | [TitleHeight](ts-basic-components-navigation.md#titleheight9枚举说明) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
+| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | 是    | 设置标题栏高度。 |
 
 ## NavDestinationContext<sup>11+</sup>
 
-| 名称   | 类型     | 必填   |  描述     |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型     | 必填   |  说明     |
 | ---- | ------ | ----- | ------ |
 | pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是 | 跳转NavDestination时指定的参数。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 是 | 当前NavDestination所处的页面栈。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -312,11 +318,13 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称   | 类型   | 描述 |
-| ----  | ---   | ----- |
-| name  | string | 页面名称。|
-| pageSourceFile| string | 页面在当前包中的路径。|
-| data | object | 页面自定义字段信息。|
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   |必填 | 说明 |
+| ----  | ---   | ---- |----- |
+| name  | string | 是 | 页面名称。|
+| pageSourceFile| string | 是 | 页面在当前包中的路径。|
+| data | object | 是 | 页面自定义字段信息。|
 
 ## 示例
 

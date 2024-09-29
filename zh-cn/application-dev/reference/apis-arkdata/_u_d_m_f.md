@@ -204,7 +204,7 @@
 | [OH_UdmfRecord](#oh_udmfrecord) \*\* [OH_UdmfData_GetRecords](#oh_udmfdata_getrecords) ([OH_UdmfData](#oh_udmfdata) \*pThis, unsigned int \*count) | 获取统一数据对象[OH_UdmfData](#oh_udmfdata)中包含的所有记录结果集。 | 
 | [OH_UdmfRecord](#oh_udmfrecord) \* [OH_UdmfRecord_Create](#oh_udmfrecord_create) () | 创建统一数据记录[OH_UdmfRecord](#oh_udmfrecord)指针及实例对象。 | 
 | void [OH_UdmfRecord_Destroy](#oh_udmfrecord_destroy) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis) | 销毁统一数据记录[OH_UdmfRecord](#oh_udmfrecord)指针指向的实例对象。 | 
-| int [OH_UdmfRecord_AddGeneralEntry](#oh_udmfrecord_addgeneralentry) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*typeId, unsigned char \*entry, unsigned int count) | 添加用户自定义的通用数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
+| int [OH_UdmfRecord_AddGeneralEntry](#oh_udmfrecord_addgeneralentry) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*typeId, unsigned char \*entry, unsigned int count) | 添加用户自定义的通用数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。对于已定义UDS的类型（比如PlainText、Link、Pixelmap等）不可使用该接口。 | 
 | int [OH_UdmfRecord_AddPlainText](#oh_udmfrecord_addplaintext) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | 增加纯文本类型[OH_UdsPlainText](#oh_udsplaintext)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
 | int [OH_UdmfRecord_AddHyperlink](#oh_udmfrecord_addhyperlink) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHyperlink](#oh_udshyperlink) \*hyperlink) | 增加超链接类型[OH_UdsHyperlink](#oh_udshyperlink)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
 | int [OH_UdmfRecord_AddHtml](#oh_udmfrecord_addhtml) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHtml](#oh_udshtml) \*html) | 增加超文本标记语言类型[OH_UdsHtml](#oh_udshtml)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
@@ -214,7 +214,7 @@
 | int [OH_UdmfRecord_GetPlainText](#oh_udmfrecord_getplaintext) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取纯文本类型[OH_UdsPlainText](#oh_udsplaintext)数据。 | 
 | int [OH_UdmfRecord_GetHyperlink](#oh_udmfrecord_gethyperlink) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHyperlink](#oh_udshyperlink) \*hyperlink) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取超链接类型[OH_UdsHyperlink](#oh_udshyperlink)数据。 | 
 | int [OH_UdmfRecord_GetHtml](#oh_udmfrecord_gethtml) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHtml](#oh_udshtml) \*html) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取超文本标记语言类型[OH_UdsHtml](#oh_udshtml)数据。 | 
-| int [OH_UdmfRecord_GetAppItem](#oh_udmfrecord_getappitem) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsAppItem](#oh_udsappitem) \*appItem) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型{OH_UdsAppItem}数据。 | 
+| int [OH_UdmfRecord_GetAppItem](#oh_udmfrecord_getappitem) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsAppItem](#oh_udsappitem) \*appItem) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型[OH_UdsAppItem](#oh_udsappitem)数据。 | 
 | [OH_UdmfProperty](#oh_udmfproperty) \* [OH_UdmfProperty_Create](#oh_udmfproperty_create) ([OH_UdmfData](#oh_udmfdata) \*unifiedData) | 创建统一数据对象中数据记录属性[OH_UdmfProperty](#oh_udmfproperty)指针及实例对象。 | 
 | void [OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 销毁数据属性[OH_UdmfProperty](#oh_udmfproperty)指针指向的实例对象。 | 
 | const char \* [OH_UdmfProperty_GetTag](#oh_udmfproperty_gettag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取用户自定义标签值。 | 
@@ -2844,7 +2844,7 @@ int OH_UdmfRecord_AddGeneralEntry (OH_UdmfRecord* pThis, const char* typeId, uns
 
 **描述**
 
-添加用户自定义的通用数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。
+添加用户自定义的通用数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。对于已定义UDS的类型（比如PlainText、Link、Pixelmap等）不可使用该接口。
 
 **起始版本：** 12
 
@@ -2853,7 +2853,7 @@ int OH_UdmfRecord_AddGeneralEntry (OH_UdmfRecord* pThis, const char* typeId, uns
 | 名称 | 描述 | 
 | -------- | -------- |
 | pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
-| typeId | 表示数据类型标识。 | 
+| typeId | 表示数据类型标识，为和系统定义的类型进行区分，建议以'ApplicationDefined'开头。| 
 | entry | 表示用户自定义数据。 | 
 | count | 表示用户自定义数据的大小。数据大小不超过4KB。 | 
 
@@ -3016,7 +3016,7 @@ int OH_UdmfRecord_GetAppItem (OH_UdmfRecord* pThis, OH_UdsAppItem* appItem )
 
 **描述**
 
-从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型{OH_UdsAppItem}数据。
+从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型[OH_UdsAppItem](#oh_udsappitem)数据。
 
 **起始版本：** 12
 
@@ -3331,11 +3331,21 @@ const char* OH_UdsAppItem_GetId (OH_UdsAppItem* pThis)
 
 从桌面图标类型[OH_UdsAppItem](#oh_udsappitem)实例中获取应用ID。
 
+**起始版本：** 12
+
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| pThis | 表示一个指向{桌面图标类型[}对象的指针。 输入有效入参时返回应用ID的字符串指针，否则返回nullptr。 OH_UdsAppItem 12](#oh_udsappitem) | 
+| pThis | 表示一个指向桌面图标类型[OH_UdsAppItem](#oh_udsappitem)对象的指针。| 
+
+**返回：**
+
+输入有效入参时返回应用ID的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsAppItem](#oh_udsappitem)
 
 
 ### OH_UdsAppItem_GetLabelId()

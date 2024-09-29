@@ -9,7 +9,7 @@
 You can draw custom graphics on the canvas in any of the following ways:
 
 
-- Use [CanvasRenderingContext2D](../reference/arkui-ts/ts-canvasrenderingcontext2d.md).
+- Use [CanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md).
 
   ```ts
   @Entry
@@ -45,7 +45,7 @@ You can draw custom graphics on the canvas in any of the following ways:
   1. Use the **transferToImageBitmap** API to create an **ImageBitmap** object for the image that is recently rendered off the screen canvas.
   2. Use the **transferFromImageBitmap** API of the **CanvasRenderingContext2D** object to display the created **ImageBitmap** object.
 
-    For details, see [OffscreenCanvasRenderingContext2D](../reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md).
+    For details, see [OffscreenCanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingcontext2d.md).
 
   ```ts
   @Entry
@@ -133,7 +133,7 @@ Two modes are available for drawing with the **Canvas** component: Alternatively
 
   ![2023022793719(1)](figures/2023022793719(1).jpg)
 
-- Define an individual **path2d** object to build an ideal path, and then call the **stroke** or **fill** API of the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to draw the path. For details, see [Path2D](../reference/arkui-ts/ts-components-canvas-path2d.md).
+- Define an individual **path2d** object to build an ideal path, and then call the **stroke** or **fill** API of the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to draw the path. For details, see [Path2D](../reference/apis-arkui/arkui-ts/ts-components-canvas-path2d.md).
 
   ```ts
   Canvas(this.context)
@@ -152,10 +152,10 @@ Two modes are available for drawing with the **Canvas** component: Alternatively
 
 ## Common Usage of the Canvas Component
 
-**OffscreenCanvasRenderingContext2D** and **CanvasRenderingContext2D** provide a large number of attributes and methods, which can be used to draw text and graphics and process pixels. They are the core of the **Canvas** component. Common APIs include [fill](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fill), [clip](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#clip), and [stroke](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroke). In addition, attributes such as [fillStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fillstyle), [globalAlpha](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#globalalpha), and [strokeStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#strokestyle) are provided to spruce up the graphics. This topic describes typical usage of the canvas.
+**OffscreenCanvasRenderingContext2D** and **CanvasRenderingContext2D** provide a large number of attributes and methods, which can be used to draw text and graphics and process pixels. They are the core of the **Canvas** component. Common APIs include [fill](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#fill), [clip](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#clip), and [stroke](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroke). In addition, attributes such as [fillStyle](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#fillstyle), [globalAlpha](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#globalalpha), and [strokeStyle](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#strokestyle) are provided to spruce up the graphics. This topic describes typical usage of the canvas.
 
 - Draw a basic shape.
-  You can draw a basic shape by calling APIs such as [arc](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#arc), [ellipse](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#ellipse), and [rect](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#rect).
+  You can draw a basic shape by calling APIs such as [arc](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#arc), [ellipse](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#ellipse), and [rect](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#rect).
 
   ```ts
   Canvas(this.context)
@@ -182,7 +182,7 @@ Two modes are available for drawing with the **Canvas** component: Alternatively
 
 - Draw text.
 
-  You can use APIs such as [fillText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#filltext) and [strokeText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext) to draw text.
+  You can use APIs such as [fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext) and [strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext) to draw text.
 
   ```ts
   Canvas(this.context)
@@ -203,7 +203,7 @@ Two modes are available for drawing with the **Canvas** component: Alternatively
 
 - Draw images and processes image pixel information.
 
-  You can draw an image by calling APIs such as [drawImage](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#drawimage) and [putImageData](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#putimagedata). You can also process image pixel information by calling APIs such as [createImageData](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createimagedata), [getPixelMap](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#getpixelmap), and [getImageData](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#getimagedata).
+  You can draw an image by calling APIs such as [drawImage](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#drawimage) and [putImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#putimagedata). You can also process image pixel information by calling APIs such as [createImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createimagedata), [getPixelMap](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getpixelmap), and [getImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getimagedata).
 
   ```ts
   @Entry
@@ -243,7 +243,7 @@ Two modes are available for drawing with the **Canvas** component: Alternatively
 
 - Other usage
 
-  **Canvas** also provides other usage. For example, regarding [CanvasGradient](../reference/arkui-ts/ts-components-canvas-canvasgradient.md), you can create a linear gradient with [createLinearGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient) or create a radial gradient with [createRadialGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient), among others.
+  **Canvas** also provides other usage. For example, regarding [CanvasGradient](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvasgradient.md), you can create a linear gradient with [createLinearGradient](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient) or create a radial gradient with [createRadialGradient](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient), among others.
 
   ```ts
     Canvas(this.context)

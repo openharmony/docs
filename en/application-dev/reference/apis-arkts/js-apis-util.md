@@ -183,7 +183,7 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 
 > **NOTE**
 >
-> This API requires that **original** be of an asynchronous function. If a non-asynchronous function is passed in, the function is not intercepted, but the error message "callbackWrapper: The type of Parameter must be AsyncFunction" is displayed.
+> **original** must be an asynchronous function. If a non-asynchronous function is passed in, the function is not intercepted, but the error message "callbackWrapper: The type of Parameter must be AsyncFunction" is displayed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1070,6 +1070,7 @@ Defines encoded text.
 ## TextEncoder
 
 Provides APIs to encode strings into byte arrays. Multiple encoding formats are supported.
+
 Note that when **TextEncoder** is used for encoding, the number of bytes occupied by a character varies according to the encoding format. Therefore, when using **TextEncoder**, you must explicitly specify the encoding format to be used to obtain the required encoding result.
 
 ### Attributes
@@ -1845,10 +1846,12 @@ Provides APIs to discard the least recently used data to make rooms for new elem
 **Example**
 
 ```ts
-let  pro : util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(1,8);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(1, 8);
 let result = pro.length;
+console.info('result = ' + result);
+// Output: result = 2
 ```
 
 ### constructor<sup>9+</sup>
@@ -1865,12 +1868,20 @@ A constructor used to create a **LRUCache** instance. The default capacity of th
 
 | Name  | Type  | Mandatory| Description                        |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | No  | Capacity of the cache to create. The default value is **64**.|
+| capacity | number | No  | Capacity of the cache to create. The default value is **64**, and the maximum value is **2147483647**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 ```
 
 
@@ -1878,7 +1889,7 @@ let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
 
 updateCapacity(newCapacity: number): void
 
-Changes the cache capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
+Changes the cache capacity. If the new capacity is less than or equal to **0**, an exception will be thrown. If the total number of values in the cache is greater than the specified capacity, the deletion operation is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1888,7 +1899,7 @@ Changes the cache capacity. If the new capacity is less than or equal to **0**, 
 
 | Name     | Type  | Mandatory| Description                        |
 | ----------- | ------ | ---- | ---------------------------- |
-| newCapacity | number | Yes  | New capacity of the cache.|
+| newCapacity | number | Yes  | New capacity of the cache. The maximum value is **2147483647**.|
 
 **Error codes**
 
@@ -1901,7 +1912,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 pro.updateCapacity(100);
 ```
 
@@ -1924,8 +1935,8 @@ Obtains the string representation of this cache.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.get(2);
 pro.get(3);
 console.info(pro.toString());
@@ -1952,15 +1963,17 @@ Obtains the capacity of this cache.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 let result = pro.getCapacity();
+console.info('result = ' + result);
+// Output: result = 64
 ```
 
 ### clear<sup>9+</sup>
 
 clear(): void
 
-Clears key-value pairs from this cache. The **afterRemoval()** method will be called to perform subsequent operations.
+Clears key-value pairs from this cache.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1969,10 +1982,15 @@ Clears key-value pairs from this cache. The **afterRemoval()** method will be ca
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.length;
 pro.clear();
+let res = pro.length;
+console.info('result = ' + result);
+console.info('res = ' + res);
+// Output: result = 1
+// Output: res = 0
 ```
 
 ### getCreateCount<sup>9+</sup>
@@ -2005,10 +2023,12 @@ class ChildLRUCache extends util.LRUCache<number, number> {
   }
 }
 let lru = new ChildLRUCache();
-lru.put(2,10);
+lru.put(2, 10);
 lru.get(3);
 lru.get(5);
 let res = lru.getCreateCount();
+console.info('res = ' + res);
+// Output: res = 2
 ```
 
 ### getMissCount<sup>9+</sup>
@@ -2030,10 +2050,12 @@ Obtains the number of times that the queried values are mismatched.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.get(2);
 let result = pro.getMissCount();
+console.info('result = ' + result);
+// Output: result = 0
 ```
 
 ### getRemovalCount<sup>9+</sup>
@@ -2055,11 +2077,13 @@ Obtains the number of times that key-value pairs in the cache are recycled.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.updateCapacity(2);
-pro.put(50,22);
+pro.put(50, 22);
 let result = pro.getRemovalCount();
+console.info('result = ' + result);
+// Output: result = 0
 ```
 
 ### getMatchCount<sup>9+</sup>
@@ -2081,10 +2105,12 @@ Obtains the number of times that the queried values are matched.
 **Example**
 
   ```ts
-  let pro: util.LRUCache<number, number> = new util.LRUCache();
-  pro.put(2,10);
+  let pro = new util.LRUCache<number, number>();
+  pro.put(2, 10);
   pro.get(2);
   let result = pro.getMatchCount();
+  console.info('result = ' + result);
+  // Output: result = 1
   ```
 
 ### getPutCount<sup>9+</sup>
@@ -2106,9 +2132,11 @@ Obtains the number of additions to this cache.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.getPutCount();
+console.info('result = ' + result);
+// Output: result = 1
 ```
 
 ### isEmpty<sup>9+</sup>
@@ -2130,16 +2158,18 @@ Checks whether this cache is empty.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.isEmpty();
+console.info('result = ' + result);
+// Output: result = false
 ```
 
 ### get<sup>9+</sup>
 
 get(key: K): V | undefined
 
-Obtains the value of the specified key.
+Obtains the value of a key. If the key is not in the cache, [createDefault<sup>9+</sup>](#createdefault9) is called to create the key. If the value specified in **createDefault** is not **undefined**, [afterRemoval<sup>9+</sup>](#afterremoval9) is called to return the value specified in **createDefault**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2155,7 +2185,7 @@ Obtains the value of the specified key.
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| V \| undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise.|
+| V \| undefined | Returns the value of the key if a match is found in the cache; returns the value specified in **createDefault** otherwise.|
 
 **Error codes**
 
@@ -2168,16 +2198,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result  = pro.get(2);
+console.info('result = ' + result);
+// Output: result = 10
 ```
 
 ### put<sup>9+</sup>
 
 put(key: K,value: V): V
 
-Adds a key-value pair to this cache.
+Adds a key-value pair to this cache and returns the value associated with the key. If the total number of values in the cache is greater than the specified capacity, the deletion operation is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2194,7 +2226,7 @@ Adds a key-value pair to this cache.
 
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| V    | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**.|
+| V    | Value of the key-value pair added. If the key or value is empty, an exception is thrown.|
 
 **Error codes**
 
@@ -2207,8 +2239,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-let result = pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+let result = pro.put(2, 10);
+console.info('result = ' + result);
+// Output: result = 10
 ```
 
 ### values<sup>9+</sup>
@@ -2230,11 +2264,13 @@ Obtains all values in this cache, listed from the most to the least recently acc
 **Example**
 
 ```ts
-let pro: util.LRUCache<number|string,number|string> = new util.LRUCache();
-pro.put(2,10);
-pro.put(2,"anhu");
-pro.put("afaf","grfb");
+let pro = new util.LRUCache<number|string,number|string>();
+pro.put(2, 10);
+pro.put(2, "anhu");
+pro.put("afaf", "grfb");
 let result = pro.values();
+console.info('result = ' + result);
+// Output: result = anhu,grfb
 ```
 
 ### keys<sup>9+</sup>
@@ -2256,16 +2292,19 @@ Obtains all keys in this cache, listed from the most to the least recently acces
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 1);
 let result = pro.keys();
+console.info('result = ' + result);
+// Output: result = 2,3
 ```
 
 ### remove<sup>9+</sup>
 
 remove(key: K): V | undefined
 
-Removes the specified key and its value from this cache.
+Removes a key and its associated value from this cache and returns the value associated with the key. If the key does not exist, **undefined** is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2294,16 +2333,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.remove(20);
+console.info('result = ' + result);
+// Output: result = undefined
 ```
 
 ### afterRemoval<sup>9+</sup>
 
 afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
-Performs subsequent operations after a value is removed.
+Performs subsequent operations after a value is removed. The subsequent operations must be implemented by developers. This API is called during deletion operations, such as [get<sup>9+</sup>](#get9), [put<sup>9+</sup>](#put9), [remove<sup>9+</sup>](#remove9), [clear<sup>9+</sup>](#clear9), and [updateCapacity<sup>9+</sup>](#updatecapacity9).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2336,13 +2377,16 @@ class ChildLRUCache<K, V> extends util.LRUCache<K, V> {
 
   afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
     if (isEvict === true) {
-      console.info('key: ' + key);
-      console.info('value: ' + value);
-      console.info('newValue: ' + newValue);
+      console.info('key = ' + key);
+      // Output: key = 1
+      console.info('value = ' + value);
+      // Output: value = 1
+      console.info('newValue = ' + newValue);
+      // Output: newValue = null
     }
   }
 }
-let lru: ChildLRUCache<number, number>= new ChildLRUCache(2);
+let lru = new ChildLRUCache<number, number>(2);
 lru.put(1, 1);
 lru.put(2, 2);
 lru.put(3, 3);
@@ -2381,20 +2425,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let pro : util.LRUCache<number | object, number> = new util.LRUCache();
-pro.put(2,10);
-class Lru{
-s : string = "";
-}
-let obj : Lru = {s : "key" };
-let result = pro.contains(obj);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+let result = pro.contains(2);
+console.info('result = ' + result);
+// Output: result = true
 ```
 
 ### createDefault<sup>9+</sup>
 
 createDefault(key: K): V
 
-Creates a value if the value of the specified key is not available.
+Performs subsequent operations if no key is matched in the cache and returns the value (**undefined** by default) associated with the key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2404,7 +2446,7 @@ Creates a value if the value of the specified key is not available.
 
 | Name| Type| Mandatory| Description          |
 | ------ | ---- | ---- | -------------- |
-| key    | K    | Yes  | Key of which the value is missing.|
+| key    | K    | Yes  | Key.|
 
 **Return value**
 
@@ -2423,8 +2465,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 let result = pro.createDefault(50);
+console.info('result = ' + result);
+// Output: result = undefined
 ```
 
 ### entries<sup>9+</sup>
@@ -2446,13 +2490,16 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(3,15);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 15);
 let pair:Iterable<Object[]> = pro.entries();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
   console.info(value[0]+ ', '+ value[1]);
+  // Output:
+  // 2, 10
+  // 3, 15
 }
 ```
 
@@ -2480,13 +2527,16 @@ Obtains a two-dimensional array in key-value pairs.
 
 <!--code_no_check-->
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(3,15);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 15);
 let pair:Iterable<Object[]> = pro[Symbol.iterator]();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
   console.info(value[0]+ ', '+ value[1]);
+  // Output:
+  // 2, 10
+  // 3, 15
 }
 ```
 
@@ -3607,7 +3657,7 @@ A constructor used to create a **Types** object.
 
 isAnyArrayBuffer(value: Object): boolean
 
-Checks whether the input value is of the ArrayBuffer type.
+Checks whether the input value is of the ArrayBuffer or SharedArrayBuffer type.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3623,7 +3673,7 @@ Checks whether the input value is of the ArrayBuffer type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the ArrayBuffer or SharedArrayBuffer type; returns **false** otherwise.|
 
 **Example**
 
@@ -3673,7 +3723,7 @@ Checks whether the input value is of the ArrayBufferView type.
 
 isArgumentsObject(value: Object): boolean
 
-Checks whether the input value is of the arguments type.
+Checks whether the input value is an arguments object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3689,7 +3739,7 @@ Checks whether the input value is of the arguments type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the arguments type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is an arguments object; returns **false** otherwise.|
 
 **Example**
 
@@ -3921,11 +3971,51 @@ Checks whether the input value is of the native external type.
 
 **Example**
 
+  ```cpp
+  // /entry/src/main/cpp/napi_init.cpp
+  #include "napi/native_api.h"
+  #include <js_native_api.h>
+  #include <stdlib.h>
+
+  napi_value result;
+  static napi_value Testexternal(napi_env env, napi_callback_info info) {
+      int* raw = (int*) malloc(1024);
+      napi_status status = napi_create_external(env, (void*) raw, NULL, NULL, &result);
+      if (status != napi_ok) {
+          napi_throw_error(env, NULL, "create external failed");
+          return NULL;
+      }
+      return result;
+  }
+
+  EXTERN_C_START
+  static napi_value Init(napi_env env, napi_value exports)
+  {
+      napi_property_descriptor desc[] = {
+          {"testexternal", nullptr, Testexternal, nullptr, nullptr, nullptr, napi_default, nullptr},
+      };
+      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+      return exports;
+  }
+  EXTERN_C_END
+  // The code for module registration is omitted here. You may need to register the Testexternal method.
+  ...
+
+  ```
+
+  <!--code_no_check-->
   ```ts
+  import testNapi from 'libentry.so';
+
   let type = new util.types();
-  let result = type.isExternal(true);
+  const data = testNapi.testexternal();
+  let result = type.isExternal(data);
+
+  let result01 = type.isExternal(true);
   console.info("result = " + result);
-  // Output: result = false
+  console.info("result01 = " + result01);
+  // Output: result = true
+  // Output: result01 = false
   ```
 
 
@@ -3999,10 +4089,6 @@ isGeneratorFunction(value: Object): boolean
 
 Checks whether the input value is a generator function.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -4021,10 +4107,16 @@ Checks whether the input value is a generator function.
 
 **Example**
 
-<!--code_no_check-->
   ```ts
+  // /entry/src/main/ets/pages/test.ts
+  export function* foo() {}
+  ```
+
+  ```ts
+  import { foo } from './test'
+
   let type = new util.types();
-  let result = type.isGeneratorFunction(function* foo() {});
+  let result = type.isGeneratorFunction(foo);
   console.info("result = " + result);
   // Output: result = true
   ```
@@ -4035,10 +4127,6 @@ Checks whether the input value is a generator function.
 isGeneratorObject(value: Object): boolean
 
 Checks whether the input value is a generator object.
-
-> **NOTE**
->
-> This API cannot be used in .ets files.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4058,12 +4146,16 @@ Checks whether the input value is a generator object.
 
 **Example**
 
-<!--code_no_check-->
   ```ts
-  // This API cannot be used in .ets files.
+  // /entry/src/main/ets/pages/test.ts
+  function* foo() {}
+  export const generator = foo();
+  ```
+
+  ```ts
+  import { generator } from './test'
+
   let type = new util.types();
-  function* foo() {};
-  const generator = foo();
   let result = type.isGeneratorObject(generator);
   console.info("result = " + result);
   // Output: result = true
@@ -4494,15 +4586,11 @@ Checks whether the input value is a string object.
   ```
 
 
-### isSymbolObjec<sup>8+</sup>
+### isSymbolObject<sup>8+</sup>
 
 isSymbolObject(value: Object): boolean
 
 Checks whether the input value is a symbol object.
-
-> **NOTE**
->
-> This API cannot be used in .ets files.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4522,11 +4610,15 @@ Checks whether the input value is a symbol object.
 
 **Example**
 
-<!--code_no_check-->
   ```ts
-  // This API cannot be used in .ets files.
+  // /entry/src/main/ets/pages/test.ts
+  export const symbols = Symbol('foo');
+  ```
+
+  ```ts
+  import { symbols } from './test'
+
   let type = new util.types();
-  const symbols = Symbol('foo');
   let result = type.isSymbolObject(Object(symbols));
   console.info("result = " + result);
   // Output: result = true
@@ -4539,7 +4631,7 @@ isTypedArray(value: Object): boolean
 
 Checks whether the input value is of the TypedArray type.
 
-**TypedArray** is a helper type representing any of the following: Int8Array, Int16Array, Int32Array, Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Float32Array, Float64Array, and DataView.
+**TypedArray** is a helper type representing any of the following: Int8Array, Int16Array, Int32Array, Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Float32Array, Float64Array, BigInt64Array, and BigUint64Array.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4830,10 +4922,6 @@ isModuleNamespaceObject(value: Object): boolean
 
 Checks whether the input value is a module namespace object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -4852,14 +4940,20 @@ Checks whether the input value is a module namespace object.
 
 **Example**
 
-<!--code_no_check-->
   ```ts
-  // This API cannot be used in .ets files.
-  import { url } from '@kit.ArkTS';
+  // /entry/src/main/ets/pages/test.ts
+  export function func() {
+    console.info("hello world");
+  }
+  ```
+
+  ```ts
+  import * as nameSpace from './test';
+
   let type = new util.types();
-  let result = type.isModuleNamespaceObject(url);
+  let result = type.isModuleNamespaceObject(nameSpace);
   console.info("result = " + result);
-  // Output: result = false
+  // Output: result = true
   ```
 
 

@@ -28,7 +28,7 @@ An application package can contain either only one entry HAP or one entry HAP pl
 
 To create a HAP in DevEco Studio:
 
-1. Create a project. For details, see [Building the First ArkTS Application in Stage Model](start-with-ets-stage.md).
+1. Create a project.
 2. Right-click the project directory and choose **New** > **Module** from the shortcut menu.
 3. In the dialog box displayed, select **Empty Ability** as the template and click **Next**.
    
@@ -50,7 +50,7 @@ To debug a HAP, use either of the following tools:
 
 - DevEco Studio
 
-- [hdc](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md), which can be obtained from the **toolchains** folder in the OpenHarmony SDK
+- <!--Del-->[<!--DelEnd-->hdc<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->, which can be obtained from the **toolchains** folder in the OpenHarmony SDK
 
    Before debugging a HAP, install or update it using either of the methods:
 

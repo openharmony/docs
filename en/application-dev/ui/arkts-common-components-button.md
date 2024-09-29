@@ -1,7 +1,7 @@
 # Button
 
 
-The **\<Button>** component is usually activated by user clicks to perform a specific action. Buttons are classified as capsule, circle, or normal buttons. When used as a container, the **\<Button>** component accepts child components such as text and images. For details, see [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md).
+The **Button** component is usually activated by user clicks to perform a specific action. Buttons are classified as capsule, circle, or normal buttons. When used as a container, the **Button** component accepts child components such as text and images. For details, see [Button](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md).
 
 
 ## Creating a Button
@@ -34,7 +34,7 @@ You can create a button that contains or does not contain child components.
   Button(options?: {type?: ButtonType, stateEffect?: boolean})
   ```
 
-  The child component contained can either be a [basic component](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) or a [container component](../reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md).
+  The child component contained can either be a basic component or a container component.
 
   ```ts
   Button({ type: ButtonType.Normal, stateEffect: true }) {
@@ -151,7 +151,7 @@ Use the **type** parameter to set the button type to **Capsule**, **Circle**, or
 
 ## Adding Events
 
-The **\<Button>** component is usually used to trigger actions. You can bind the **onClick** event to the button to have it respond with custom behavior after being clicked.
+The **Button** component is usually used to trigger actions. You can bind the **onClick** event to the button to have it respond with custom behavior after being clicked.
 
 ```ts
 Button('Ok', { type: ButtonType.Normal, stateEffect: true }) 
@@ -165,11 +165,12 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
 - Using the button for startup
 
-  You can use the button for any UI element that involves the startup operation. The button triggers the predefined event based on the user's operation. For example, you can use a button in the **\<List>** container to redirect the user to another page.
+  You can use the button for any UI element that involves the startup operation. The button triggers the predefined event based on the user's operation. For example, you can use a button in the **List** container to redirect the user to another page.
 
   ```ts
   // xxx.ets
-  import router from '@ohos.router';
+  import { router } from '@kit.ArkUI';
+  
   @Entry
   @Component
   struct ButtonCase1 {

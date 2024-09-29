@@ -17,12 +17,12 @@ The thread that creates the worker thread is referred to as the host thread (not
 - A worker thread can be created manually or automatically. In manual creation mode, you must also perform related configurations. For details, see [Precautions for Creating a Worker Thread](#precautions-for-creating-a-worker-thread).
 - The URL of the worker thread file passed in to the constructor function varies according to the version in use. For details, see [Precautions for File URLs](#precautions-for-file-urls).
 - After a worker thread is created, you must manually manage its lifecycle. A maximum of 64 worker threads can run simultaneously. For details, see [Lifecycle Precautions](#lifecycle-precautions).
-- Context objects vary in different threads. Therefore, the worker thread can use only a thread-safe library, but not a non-thread-safe library (for example, UI-related non-thread-safe library). For details, see [Precautions for Multithread Safe](multi-thread-safety.md).
+- Context objects vary in different threads. Therefore, the worker thread can use only a thread-safe library, but not a non-thread-safe library (for example, UI-related non-thread-safe library).
 - A maximum of 16 MB data can be serialized.
 - You must register the **onerror** API in the main thread to listen for worker thread errors, which might cause a JavaScript crash.
 - Worker thread files cannot be used across HAPs.
 - During the creation of a worker object, the worker thread files of the current module can be loaded, but those of other modules cannot. To use the worker provided by another module, encapsulate the entire worker logic into a method, export the method, and then import the method.
-- Before referencing the HAR or HSP, configure the dependency on the HAR or HSP. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-import-0000001547293682-V5).
+- Before referencing the HAR or HSP, configure the dependency on the HAR or HSP. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-import-V5).
 
 
 ### Precautions for Creating a Worker Thread

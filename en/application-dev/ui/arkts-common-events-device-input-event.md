@@ -15,7 +15,7 @@ Mouse events can trigger the following callbacks.
 | onHover(event: (isHover: boolean) =&gt; void) | Triggered when the mouse pointer enters or leaves the component.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
 | onMouse(event: (event?: MouseEvent) =&gt; void) | Triggered when the component is clicked by a mouse button or the mouse pointer moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
 
-When the component is bound to the **onHover** callback, you can use the [hoverEffect](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md) attribute to set the hover effect of the component in hover state.
+When the component is bound to the **onHover** callback, you can use the [hoverEffect](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md#hovereffect) attribute to set the hover effect of the component in hover state.
 
 
   **Figure 1** Mouse event data flow 
@@ -87,7 +87,7 @@ struct MouseExample {
 ```
 
 
-In this example, a **\<Button>** component is created, with the initial background color of gray and the content of **Not Hover**. The component is bound to the **onHover** callback. In the callback, **this.isHovered** is set to the callback parameter **isHover**.
+In this example, a **Button** component is created, with the initial background color of gray and the content of **Not Hover**. The component is bound to the **onHover** callback. In the callback, **this.isHovered** is set to the callback parameter **isHover**.
 
 
 When the mouse pointer moves from outside the button to inside the button, the callback is invoked, the value of **isHover** changes to **true**, the value of **isHovered** changes to **true**, the background color of the component changes to **Color.Green**, and the content changes to **Hovered!**.
@@ -178,12 +178,12 @@ struct MouseExample {
 ```
 
 
-Bind the **onMouse** API to the button based on the **onHover** example. In the callback, the values of the callback parameters, such as **button** and **action**, are displayed. The same settings are performed on the outer **\<Column>** container. The entire process can be divided into the following two actions:
+Bind the **onMouse** API to the button based on the **onHover** example. In the callback, the values of the callback parameters, such as **button** and **action**, are displayed. The same settings are performed on the outer **Column** container. The entire process can be divided into the following two actions:
 
 
-1. Moving the mouse pointer: When the mouse pointer is moved from outside the button to inside the button, only the **onMouse** callback of the **\<Column>** is triggered. When the mouse pointer is moved to the button, as the **onMouse** event bubbles up by default, both the **onMouse** callbacks of the **\<Column>** and **\<Button>** components are invoked. In this process, the mouse pointer moves, but no mouse button is clicked. Therefore, in the displayed information, the value of **button** is 0 (enumerated value of **MouseButton.None**) and the value of **action** is **3** (enumerated value of **MouseAction.Move**).
+1. Moving the mouse pointer: When the mouse pointer is moved from outside the button to inside the button, only the **onMouse** callback of the **Column** is triggered. When the mouse pointer is moved to the button, as the **onMouse** event bubbles up by default, both the **onMouse** callbacks of the **Column** and **Button** components are invoked. In this process, the mouse pointer moves, but no mouse button is clicked. Therefore, in the displayed information, the value of **button** is 0 (enumerated value of **MouseButton.None**) and the value of **action** is **3** (enumerated value of **MouseAction.Move**).
 
-2. Clicking the mouse button: After the mouse pointer enters the **\<Button>** component, the **\<Button>** component is clicked twice, namely, left-click and right-click.
+2. Clicking the mouse button: After the mouse pointer enters the **Button** component, the **Button** component is clicked twice, namely, left-click and right-click.
    Left-clicked: button = 1 (enumerated value of **MouseButton.Left**); action = 1 (enumerated value of **MouseAction.Press**); action = 2 (enumerated value of **MouseAction.Release**).
 
    Right-click: button = 2 (enumerated value of **MouseButton.Right**); action = 1 (enumerated value of **MouseAction.Press**); action = 2 (enumerated value of **MouseAction.Release**)
@@ -244,7 +244,7 @@ struct MouseExample {
 ```
 
 
-To prevent the mouse event of the child component (**\<Button>**) from bubbling up to its parent component (**\<Column>**), use the **event** parameter in the **onMouse** callback of **\<Button>** to call the **stopPropagation** API.
+To prevent the mouse event of the child component (**Button**) from bubbling up to its parent component (**Column**), use the **event** parameter in the **onMouse** callback of **Button** to call the **stopPropagation** API.
 
 
 
@@ -253,7 +253,7 @@ event.stopPropagation()
 ```
 
 
-With bubbling prevented, the mouse event on the **\<Button>** component will trigger the **onMouse** callback of the **\<Button>** component, but not the **onMouse** callback of the **\<Column>** component.
+With bubbling prevented, the mouse event on the **Button** component will trigger the **onMouse** callback of the **Button** component, but not the **onMouse** callback of the **Column** component.
 
 
 ### hoverEffect
@@ -269,7 +269,7 @@ Sets the hover effect of the component in hover state. The parameter value type 
 
   **Table 1** HoverEffect
 
-| Enum| Description                                    |
+| Value| Description                                    |
 | -------------- | ---------------------------------------- |
 | Auto           | Default hover effect, which varies by component.                    |
 | Scale          | Scale effect. When the mouse pointer is placed over the component, the component is scaled up from 100% to 105%. When the mouse pointer is moved away, the component is scaled down from 105% to 100%.|
@@ -305,7 +305,7 @@ struct HoverExample {
 ![hoverEffect](figures/hoverEffect.gif)
 
 
-For the **\<Button>** component, **Auto** creates the same effect as **Scale**.
+The default hover effect for the button is the **Highlight** effect. Therefore, the effects of **Auto** and **Highlight** are the same. The **Highlight** effect darkens the background color, **Scale** causes the component to scale, and **None** disables the hover effect.
 
 
 ## Key Event
@@ -325,6 +325,7 @@ When a text box has focus and the input method is enabled, most key events are c
 
 After the key event is sent to the ArkUI framework, it first identifies the complete focus chain, and then sends the key event from one node to the next, following the leaf-to-root path.
 
+The key event process for the **Web** component differs from the aforementioned process. The **Web** component does not match keyboard shortcuts when **onKeyPreIme** returns **false**. The unconsumed key event will be re-dispatched back to ArkUI through **ReDispatch** during the third key press dispatch. It is within this **ReDispatch** that operations such as matching keyboard shortcuts are performed again.
 
 ### onKeyEvent & onKeyPreIme
 
@@ -338,7 +339,7 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 The difference between the preceding two methods lies only in the triggering time. For details, see [Key Event Data Flow](#key-event-data-flow). The return value of **onKeyPreIme** determines whether the key event will be dispatched for the page keyboard shortcut, input method, and **onKeyEvent**.
 
 
-The methods are triggered when the bound component has [focus](arkts-common-events-focus-event.md) and a key event occurs on the component. The callback parameter [KeyEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent) can be used to obtain the information about the key event, including [KeyType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keytype), [keyCode](../reference/apis-input-kit/js-apis-keycode.md), **keyText**, [KeySource](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keysource), **deviceId**, **metaKey**, **timestamp**, and **stopPropagation**.
+The methods are triggered when the bound component has focus and a key event occurs on the component. The callback parameter [KeyEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent) can be used to obtain the information about the key event, including [KeyType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keytype), [keyCode](../reference/apis-input-kit/js-apis-keycode.md#keycode), **keyText**, [KeySource](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keysource), **deviceId**, **metaKey**, **timestamp**, and **stopPropagation**.
 
 
 
@@ -397,7 +398,7 @@ struct KeyEventExample {
 ```
 
 
-In the preceding example, **onKeyEvent** is bound to the **\<Button>** component and its parent container **\<Column>**. After the application opens and loads a page, the first focusable non-container component in the component tree automatically obtains focus. Set the **\<Button>** component as the default focus of the current page. Because the **\<Button>** component is a child node of the **\<Column>** component, the **\<Column>** component also obtains focus. For details about the focus obtaining mechanism, see [Focus Event](arkts-common-events-focus-event.md).
+In the preceding example, **onKeyEvent** is bound to the **Button** component and its parent container **Column**. After the application opens and loads a page, the first focusable non-container component in the component tree automatically obtains focus. Set the **Button** component as the default focus of the current page. Because the **Button** component is a child node of the **Column** component, the **Column** component also obtains focus. For details about the focus obtaining mechanism, see [Focus Event](arkts-common-events-focus-event.md).
 
 
 ![en-us_image_0000001511421324](figures/en-us_image_0000001511421324.gif)
@@ -406,12 +407,12 @@ In the preceding example, **onKeyEvent** is bound to the **\<Button>** component
 After the application is opened, press the following keys in sequence: Space, Enter, Left Ctrl, Left Shift, Letter A, and Letter Z.
 
 
-1. Because the **onKeyEvent** event bubbles by default, the **onKeyEvent** callbacks of both **\<Button>** and **\<Column>** are invoked.
+1. Because the **onKeyEvent** event bubbles by default, the **onKeyEvent** callbacks of both **Button** and **Column** are invoked.
 
 2. Each key has two callbacks, which correspond to **KeyType.Down** and **KeyType.Up** respectively, indicating that the key is pressed and then lifted.
 
 
-To prevent the key event of the **\<Button>** component from bubbling up to its parent container **\<Column>**, add the **event.stopPropagation()** API to the **onKeyEvent** callback of **\<Button>**.
+To prevent the key event of the **Button** component from bubbling up to its parent container **Column**, add the **event.stopPropagation()** API to the **onKeyEvent** callback of **Button**.
 
 
 
@@ -477,7 +478,7 @@ struct KeyEventExample {
 
 Use **OnKeyPreIme** to block the left arrow key input in the text box.
 ```ts
-import { KeyCode } from '@ohos.multimodalInput.keyCode';
+import { KeyCode } from '@kit.InputKit';
 
 @Entry
 @Component

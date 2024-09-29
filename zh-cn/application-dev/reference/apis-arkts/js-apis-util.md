@@ -577,7 +577,7 @@ static addBefore(targetClass: Object, methodName: string, isStatic: boolean, bef
 | 参数名    | 类型    | 必填 | 说明                                   |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
-| methodName   | string   | 是   | 指定的方法名。                    |
+| methodName   | string   | 是   | 指定的方法名，不支持read-only方法。                    |
 | isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
 | before       | Function | 是   | 要插入的函数对象。函数有参数，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参数，无参时不做处理。 |
 
@@ -669,7 +669,7 @@ static addAfter(targetClass: Object, methodName: string, isStatic: boolean, afte
 | 参数名    | 类型    | 必填 | 说明                                   |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
-| methodName   | string   | 是   | 指定的原方法名。                   |
+| methodName   | string   | 是   | 指定的原方法名，不支持read-only方法。                   |
 | isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
 | after        | Function | 是   | 要插入的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），第二个参数是原方法的返回值（如果原方法没有返回值，则为undefined），其余参数是原方法的参数。函数也可以无参，无参时不做处理。  |
 
@@ -752,7 +752,7 @@ static replace(targetClass: Object, methodName: string, isStatic: boolean, inste
 | 参数名    | 类型    | 必填 | 说明                                   |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
-| methodName   | string   | 是   | 指定的原方法名。                  |
+| methodName   | string   | 是   | 指定的原方法名，不支持read-only方法。                  |
 | isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。       |
 | instead      | Function | 是   | 要用来替换原方法的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参，无参时不做处理。   |
 
@@ -1335,6 +1335,10 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 用于创建具有给定分子和分母的RationalNumber实例。
 
+> **说明：**
+>
+> 该接口要求参数numerator和denominator必须是整数类型。如果传入的参数是小数类型，不会进行拦截，但是会输出错误信息："parseRationalNumber: The type of Parameter must be integer"。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -1343,8 +1347,8 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 | 参数名      | 类型   | 必填 | 说明             |
 | ----------- | ------ | ---- | ---------------- |
-| numerator   | number | 是   | 分子，整数类型。 |
-| denominator | number | 是   | 分母，整数类型。 |
+| numerator   | number | 是   | 分子，整数类型。取值范围：-Number.MAX_VALUE <= numerator <= Number.MAX_VALUE。|
+| denominator | number | 是   | 分母，整数类型。取值范围：-Number.MAX_VALUE <= denominator <= Number.MAX_VALUE。|
 
 **错误码：**
 
@@ -1365,6 +1369,10 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 static createRationalFromString(rationalString: string): RationalNumber​
 
 基于给定的字符串创建一个RationalNumber对象。
+
+> **说明：**
+>
+> 该接口要求参数rationalString是字符串格式。如果传入的参数是小数类型字符串格式，不会进行拦截，但是会输出错误信息："createRationalFromString: The type of Parameter must be integer string"。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1514,6 +1522,10 @@ getCommonFactor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
 
+> **说明：**
+>
+> 该接口要求参数number1和number2必须是整数类型。如果传入的参数是小数类型，不会进行拦截，但是会输出错误信息："getCommonFactor: The type of Parameter must be integer"。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -1522,8 +1534,8 @@ getCommonFactor(number1: number,number2: number): number
 
 | 参数名  | 类型   | 必填 | 说明       |
 | ------- | ------ | ---- | ---------- |
-| number1 | number | 是   | 整数类型。 |
-| number2 | number | 是   | 整数类型。 |
+| number1 | number | 是   | 整数类型。-Number.MAX_VALUE <= number1 <= Number.MAX_VALUE。|
+| number2 | number | 是   | 整数类型。-Number.MAX_VALUE <= number2 <= Number.MAX_VALUE。|
 
 **返回值：**
 

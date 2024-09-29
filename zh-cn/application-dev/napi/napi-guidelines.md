@@ -51,7 +51,7 @@ static napi_value GetArgvDemo2(napi_env env, napi_callback_info info) {
     size_t argc = 2;
     napi_value argv[2] = {nullptr};
     // napi_get_cb_info 会向 argv 中写入 argc 个 JS 传入参数或 undefined
-    napi_get_cb_info(env, info, &argc, nullptr, nullptr, nullptr);
+    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // 业务代码
     // ... ...
     return nullptr;
@@ -158,7 +158,7 @@ void callbackTest(CallbackContext* context)
         // using callback function back to JS thread
         [](uv_work_t* work, int status) {
             CallbackContext* context = (CallbackContext*)work->data;
-            napi_handle_scope scope = nullptr; 
+            napi_handle_scope scope = nullptr;
             napi_open_handle_scope(context->env, &scope);
             if (scope == nullptr) {
                 if (work != nullptr) {
@@ -280,8 +280,8 @@ napi_create_arraybuffer等同于JS代码中的`new ArrayBuffer(size)`，其生�
 
 **【建议】** 尽可能的减少数据转换次数，避免不必要的复制。
 
-- **减少数据转换次数：** 频繁的数据转换可能会导致性能下降，可以通过批量处理数据或者使用更高效的数据结构来优化性能；
-- **避免不必要的数据复制：** 在进行数据转换时，可以使用Node-API提供的接口来直接访问原始数据，而不是创建新的副本；
+- **减少数据转换次数：** 频繁的数据转换可能会导致性能下降，可以通过批量处理数据或者使用更高效的数据结构来优化性能。
+- **避免不必要的数据复制：** 在进行数据转换时，可以使用Node-API提供的接口来直接访问原始数据，而不是创建新的副本。
 - **使用缓存：** 如果某些数据在多次转换中都会被使用到，可以考虑使用缓存来避免重复的数据转换。缓存可以减少不必要的计算，提高性能。
 
 ## 模块注册与模块命名

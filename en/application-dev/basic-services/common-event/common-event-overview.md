@@ -7,7 +7,7 @@ Common Event Service (CES) is provided for applications to subscribe to, publish
 Common events are classified into system common events and custom common events.
 
 
-- System common events: defined in CES. Currently, only system applications and system services can publish system common events, such as HAP installation, update, and uninstall. For details about the supported system common events, see [System Common Events](../reference/apis/commonEventManager-definitions.md).
+- System common events: defined in CES. Currently, only system applications and system services can publish system common events, such as HAP installation, update, and uninstall. For details about the supported system common events, see [System Common Events](../../reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md).
 - Custom common events: customized by applications to implement cross-process event communication.
 
 

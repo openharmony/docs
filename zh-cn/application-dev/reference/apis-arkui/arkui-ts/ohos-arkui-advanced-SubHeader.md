@@ -21,11 +21,12 @@ import { SubHeader } from '@kit.ArkUI'
 无
 
 ## 属性
-支持[通用属性](ts-universal-attributes-size.md)
+
+支持[通用属性](ts-universal-attributes-size.md)。
 
 > **说明：**
 >
-> 不支持设置[文本通用属性](ts-universal-attributes-text-style.md)。
+> 不支持设置文本相关。
 
 ## SubHeader
 

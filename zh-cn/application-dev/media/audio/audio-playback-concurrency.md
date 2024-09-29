@@ -22,7 +22,9 @@
 
 设置焦点模式的方法：
 
-- 若[使用AVPlayer开发音频播放功能](../media/using-avplayer-for-playback.md)，则可以通过修改AVPlayer的[audioInterruptMode](../../reference/apis-media-kit/js-apis-media.md#avplayer9)属性进行设置。
+- 若[使用AVPlayer开发音频播放功能(ArkTS)](../media/using-avplayer-for-playback.md)，则可以通过修改AVPlayer的[audioInterruptMode](../../reference/apis-media-kit/js-apis-media.md#avplayer9)属性进行设置。
+
+- 若[使用AVPlayer开发音频播放功能(C/C++)](../media/using-ndk-avplayer-for-playerback.md)，则可以调用AVPlayer的[OH_AVPlayer_SetAudioInterruptMode](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiointerruptmode)函数进行设置。
 
 - 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[setInterruptMode](../../reference/apis-audio-kit/js-apis-audio.md#setinterruptmode9)函数进行设置。
 
@@ -51,11 +53,13 @@
 
 监听音频打断事件的方法：
 
-- 若[使用AVPlayer开发音频播放功能](../media/using-avplayer-for-playback.md)，则可以调用AVPlayer的[on('audioInterrupt')](../../reference/apis-media-kit/js-apis-media.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件（InterruptEvent）时，应用需根据其内容，做出相应的调整。
+- 若[使用AVPlayer开发音频播放功能(ArkTS)](../media/using-avplayer-for-playback.md)，则可以调用AVPlayer的[on('audioInterrupt')](../../reference/apis-media-kit/js-apis-media.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件[InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)时，应用需根据其内容，做出相应的调整。
 
-- 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[on('audioInterrupt')](../../reference/apis-audio-kit/js-apis-audio.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件（InterruptEvent）时，应用需根据其内容，做出相应的调整。
+- 若[使用AVPlayer开发音频播放功能(C/C++)](../media/using-ndk-avplayer-for-playerback.md)，则可以调用AVPlayer的[OH_AVPlayer_SetOnInfoCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setoninfocallback)接口注册监听焦点回调事件，当收到音频打断事件[OH_AVPlayerOnInfoCallback](../../reference/apis-media-kit/_a_v_player.md#oh_avplayeroninfocallback)时，应用需根据其内容，做出相应的调整。
 
-- 若[使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)，则可以调用[OH_AudioStreamBuilder_SetRendererCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setrenderercallback)接口注册监听焦点回调事件，当收到音频打断事件（OH_AudioRenderer_OnInterruptEvent）时，应用需根据其内容，做出相应的调整。
+- 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[on('audioInterrupt')](../../reference/apis-audio-kit/js-apis-audio.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件[InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)时，应用需根据其内容，做出相应的调整。
+
+- 若[使用OHAudio开发音频播放功能(C/C++)](using-ohaudio-for-playback.md)，则可以调用[OH_AudioStreamBuilder_SetRendererCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setrenderercallback)接口注册监听焦点回调事件，当收到音频打断事件[OH_AudioRenderer_OnInterruptEvent](../../reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_oninterruptevent)时，应用需根据其内容，做出相应的调整。
 
 为了带给用户更好的体验，针对不同的音频打断事件内容，应用需要做出相应的处理操作。此处以使用AudioRenderer开发音频播放功能为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考（若使用AVPlayer开发音频播放功能或者使用OHAudio接口开发音频播放器功能，处理方法类似），具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
 

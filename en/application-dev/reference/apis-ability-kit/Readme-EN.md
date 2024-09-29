@@ -7,6 +7,7 @@
     - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-app-ability-abilityLifecycleCallback.md)
     - [@ohos.app.ability.AbilityStage (AbilityStage)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)](js-apis-app-ability-actionExtensionAbility.md)
+    - [@ohos.app.ability.application (Application)](js-apis-app-ability-application.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
     - [@ohos.app.ability.AtomicServiceOptions (Optional Start Options of EmbeddableUIAbilities)](js-apis-app-ability-atomicServiceOptions.md)
     - [@ohos.app.ability.autoFillManager (autoFillManager)](js-apis-app-ability-autoFillManager.md)
@@ -38,6 +39,7 @@
     - [@ohos.app.appstartup.StartupTask](js-apis-app-appstartup-startupTask.md)
     <!--Del-->
     - [@ohos.app.ability.AbilityConstant (AbilityConstant) (System API)](js-apis-app-ability-abilityConstant-sys.md)
+    - [@ohos.app.ability.application (Application) (System API)](js-apis-app-ability-application-sys.md)
     - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility) (System API)](js-apis-app-ability-autoFillExtensionAbility-sys.md)
     - [@ohos.app.ability.autoStartupManager (autoStartupManager) (System API)](js-apis-app-ability-autoStartupManager-sys.md)
     - [@ohos.app.ability.common (Context) (System API)](js-apis-app-ability-common-sys.md)
@@ -92,6 +94,7 @@
     - [@ohos.bundle.installer (installer) (System API)](js-apis-installer-sys.md)
     - [@ohos.bundle.launcherBundleManager (launcherBundleManager module) (System API)](js-apis-launcherBundleManager-sys.md)
     - [@ohos.bundle.overlay (overlay) (System API)](js-apis-overlay-sys.md)
+    - [@ohos.bundle.shortcutManager (shortcutManager) (System API)](js-apis-shortcutManager-sys.md)
     - [@ohos.distributedMissionManager (Distributed Mission Management) (System API)](js-apis-distributedMissionManager-sys.md)
     - [@ohos.privacyManager (Privacy Management) (System API)](js-apis-privacyManager-sys.md)
     <!--DelEnd-->
@@ -239,9 +242,11 @@
       <!--DelEnd-->
 - C APIs
   - Modules
+    - [AbilityAccessControl](_ability_access_control.md)
     - [Bundle](_bundle.md)
     - [ChildProcess](c-apis-ability-childprocess.md)
   - Header Files
+    - [ability_access_control.h](ability__access__control_8h.md)
     - [native_interface_bundle.h](native__interface__bundle.md)
     - [native_child_process.h](native__child__process_8h.md)
   - Structs

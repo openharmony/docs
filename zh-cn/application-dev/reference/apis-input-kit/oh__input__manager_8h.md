@@ -7,7 +7,7 @@
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
-**库：** liboh_input.so
+**库：** libohinput.so
 
 **起始版本：** 12
 

@@ -157,7 +157,7 @@ In the following example, page transition animations are defined using [router.p
 
 ```ts
 // PageTransitionSrc1
-import router from '@ohos.router';
+import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionSrc1 {
@@ -209,7 +209,7 @@ struct PageTransitionSrc1 {
 
 ```ts
 // PageTransitionDst1
-import router from '@ohos.router';
+import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionDst1 {
@@ -267,7 +267,7 @@ In the following example, **type** is set to **RouteType.None**.
 
 ```ts
 // PageTransitionSrc2
-import router from '@ohos.router';
+import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionSrc2 {
@@ -313,7 +313,7 @@ struct PageTransitionSrc2 {
 
 ```ts
 // PageTransitionDst2
-import router from '@ohos.router';
+import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionDst2 {

@@ -25,17 +25,15 @@ uri类型可以归纳为文档类uri和媒体文件uri两类
 | ------------- | ------------------- |
 | 'file://docs/storage/Users/currentUser/' | 文件管理器的根目录。|
 | '\<relative_path\>/' | 文件在根目录下的相对路径。例如：'Download/'和'Documents/'。|
-| 'test.txt' | 用户文件系统中存储的文件名，支持的文件类型为文件管理器支持的所有类型，以文件管理器为准，例如txt、jpg、mp4和mp3等格式的文件。|
+| 'test.txt' | 用户文件系统中存储的文件名，支持的文件类型为文件管理器支持的所有类型，以文件管理器为准。例如txt、jpg、mp4和mp3等格式的文件。|
 
 ### 文档类uri获取方式
 
 1. 通过[DocumentViewPicker接口](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)选择或保存文件，返回选择或保存的文件uri。
 
-2. 通过[AudioViewPicker接口](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)选择或保存文件，返回选择或保存的文件uri。
+2. 通过[AudioViewPicker接口](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)选择或保存文件，返回选择或保存的文件uri。<!--Del-->
 
-3. 通过[PhotoViewPicker.save接口](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated)保存文件，返回保存的文件uri。<!--Del-->
-
-4. 通过[fileAccess模块](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)获取文档类目录下的文件得到对应文件的[FileInfo](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileinfo)对象，此对象中就包含对应文件或者目录的uri属性，此模块中的接口为系统接口，使用此模块需要注意应用是否为系统应用。支持获取文件uri的目录有：
+3. 通过[fileAccess模块](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)获取文档类目录下的文件得到对应文件的[FileInfo](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileinfo)对象，此对象中就包含对应文件或者目录的uri属性，此模块中的接口为系统接口，使用此模块需要注意应用是否为系统应用。支持获取文件uri的目录有：
    - 外部存储目录
    - Docs目录
    - Download目录
