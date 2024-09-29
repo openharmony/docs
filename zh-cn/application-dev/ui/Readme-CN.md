@@ -109,6 +109,7 @@
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
+    - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
   - 跨进程拉起页面
     <!--Del-->
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
