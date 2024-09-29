@@ -121,7 +121,7 @@
   });
   ```
 
-## 查询音频会话是否已激活。
+## 查询音频会话是否已激活
 
 应用可以通过[isAudioSessionActivated](../../reference/apis-audio-kit/js-apis-audio.md#isaudiosessionactivated12)接口检查当前应用的音频会话是否已激活。
 
