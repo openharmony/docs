@@ -19,8 +19,6 @@ isWifiActive(): boolean
 
 Checks whether WLAN is enabled.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
@@ -37,7 +35,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
