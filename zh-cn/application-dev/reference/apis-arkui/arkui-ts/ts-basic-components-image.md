@@ -70,7 +70,7 @@ src新增[ImageContent](#imagecontent12)类型，可指定对应的图形内容�
 
 Image(src: PixelMap | ResourceStr | DrawableDescriptor, imageAIOptions: ImageAIOptions)
 
-Image新增[imageAIOptions](#ts-image-common.md#imageaioptions)参数，为组件设置AI分析选项。
+Image新增[imageAIOptions](ts-image-common.md#imageaioptions)参数，为组件设置AI分析选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
