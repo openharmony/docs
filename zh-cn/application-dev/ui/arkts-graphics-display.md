@@ -176,81 +176,81 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
     )
     ```
 
-   3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
+  3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
 
-       ```ts
-       let code: http.ResponseCode | number = OutData.responseCode
-       if (http.ResponseCode.OK === code) {
-         let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
-         let imageSource: image.ImageSource = image.createImageSource(imageData);
-       
-         class tmp {
-           height: number = 100
-           width: number = 100
-         }
-       
-         let si: tmp = new tmp()
-         let options: Record<string, number | boolean | tmp> = {
-           'alphaType': 0, // 透明度
-           'editable': false, // 是否可编辑
-           'pixelFormat': 3, // 像素格式
-           'scaleMode': 1, // 缩略值
-           'size': { height: 100, width: 100 }
-         } // 创建图片大小
-       
-         class imagetmp {
-           image: PixelMap | undefined = undefined
-           set(val: PixelMap) {
-             this.image = val
-           }
-         }
-       
-         imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
-           let im = new imagetmp()
-           im.set(pixelMap)
-         })
-       }
-       ```
-
-   4. 显示图片。
-
-       ```ts
-       class htp{
-        httpRequest: Function | undefined = undefined
-        set(){
-          if(this.httpRequest){
-            this.httpRequest()
-          }
+    ```ts
+    let code: http.ResponseCode | number = OutData.responseCode
+    if (http.ResponseCode.OK === code) {
+      let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
+      let imageSource: image.ImageSource = image.createImageSource(imageData);
+    
+      class tmp {
+        height: number = 100
+        width: number = 100
+      }
+    
+      let si: tmp = new tmp()
+      let options: Record<string, number | boolean | tmp> = {
+        'alphaType': 0, // 透明度
+        'editable': false, // 是否可编辑
+        'pixelFormat': 3, // 像素格式
+        'scaleMode': 1, // 缩略值
+        'size': { height: 100, width: 100 }
+      } // 创建图片大小
+    
+      class imagetmp {
+        image: PixelMap | undefined = undefined
+        set(val: PixelMap) {
+          this.image = val
         }
       }
-       Button("获取网络图片")
-         .onClick(() => {
-           let sethtp = new htp()
-           sethtp.set()
-         })
-       Image(this.image).height(100).width(100)
-      ```
+    
+      imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
+        let im = new imagetmp()
+        im.set(pixelMap)
+      })
+    }
+    ```
 
-      同时，也可以传入pixelMap创建[PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12)对象，用来显示图片。
+  4. 显示图片。
 
-      ```ts
-       import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
-       class htp{
-        httpRequest: Function | undefined = undefined
-        set(){
-          if(this.httpRequest){
-            this.httpRequest()
-          }
+    ```ts
+    class htp{
+      httpRequest: Function | undefined = undefined
+      set(){
+        if(this.httpRequest){
+          this.httpRequest()
         }
-       }
-       Button("获取网络图片")
-         .onClick(() => {
-           let sethtp = new htp()
-           sethtp.set()
-           this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image)
-         })
-       Image(this.drawablePixelMap).height(100).width(100)
-      ```
+      }
+    }
+      Button("获取网络图片")
+        .onClick(() => {
+          let sethtp = new htp()
+          sethtp.set()
+        })
+      Image(this.image).height(100).width(100)
+    ```
+
+    同时，也可以传入pixelMap创建[PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12)对象，用来显示图片。
+
+    ```ts
+      import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI'
+      class htp{
+      httpRequest: Function | undefined = undefined
+      set(){
+        if(this.httpRequest){
+          this.httpRequest()
+        }
+      }
+      }
+      Button("获取网络图片")
+        .onClick(() => {
+          let sethtp = new htp()
+          sethtp.set()
+          this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image)
+        })
+      Image(this.drawablePixelMap).height(100).width(100)
+    ```
 
 
 ## 显示矢量图
