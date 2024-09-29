@@ -513,7 +513,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_Region](#oh_drawing_region) \* [OH_Drawing_RegionCreate](#oh_drawing_regioncreate) (void) | 用于创建一个区域对象，实现更精确的图形控制。 | 
 | bool [OH_Drawing_RegionSetRect](#oh_drawing_regionsetrect) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Rect](#oh_drawing_rect) \*rect) | 用于尝试给区域对象设置矩形边界。 | 
 | void [OH_Drawing_RegionDestroy](#oh_drawing_regiondestroy) ([OH_Drawing_Region](#oh_drawing_region) \*) | 用于销毁区域对象并回收该对象占有的内存。 | 
-| uint32_t [OH_Drawing_RegisterFont](#oh_drawing_registerfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, const char \*familySrc) | 用于在字体管理器中注册自定义字体。 | 
+| uint32_t [OH_Drawing_RegisterFont](#oh_drawing_registerfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, const char \*familySrc) | 用于在字体管理器中注册自定义字体，支持的字体文件格式包含：ttf、otf。 | 
 | uint32_t [OH_Drawing_RegisterFontBuffer](#oh_drawing_registerfontbuffer) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, uint8_t \*fontBuffer, size_t length) | 用于在字体管理器中注册字体缓冲区。 | 
 | [OH_Drawing_RoundRect](#oh_drawing_roundrect) \* [OH_Drawing_RoundRectCreate](#oh_drawing_roundrectcreate) (const [OH_Drawing_Rect](#oh_drawing_rect) \*, float xRad, float yRad) | 用于创建一个圆角矩形对象。 | 
 | void [OH_Drawing_RoundRectSetCorner](#oh_drawing_roundrectsetcorner) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*, [OH_Drawing_CornerPos](#oh_drawing_cornerpos) pos, [OH_Drawing_Corner_Radii](#oh_drawing_corner_radii)) | 用于设置圆角矩形中指定圆角位置的圆角半径。 | 
@@ -12034,7 +12034,7 @@ uint32_t OH_Drawing_RegisterFont (OH_Drawing_FontCollection* , const char* fontF
 
 **描述**
 
-用于在字体管理器中注册自定义字体。
+用于在字体管理器中注册自定义字体，支持的字体文件格式包含：ttf、otf。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
