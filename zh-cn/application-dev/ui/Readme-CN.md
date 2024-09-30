@@ -42,6 +42,7 @@
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
   - 使用弹窗
     - [模态弹窗 (ModelDialog)](arkts-modal-dialog.md)
+    - [不依赖UI组件的全局自定义弹窗(推荐)](arkts-uicontext-custom-dialog.md)
     - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
   - 使用动画
     - [动画概述](arkts-animation.md)
@@ -109,6 +110,7 @@
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
+    - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
   - 跨进程拉起页面
     <!--Del-->
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)

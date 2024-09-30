@@ -323,7 +323,9 @@ function buildDataPanel(config: DataPanelConfiguration) {
         ChildItem({ item: item, index: index, max:config.maxValue})
       }, (item: string) => item)
     }.padding(10)
-    Line().width(360).backgroundColor("#ff373737").margin({bottom:5})
+    Column() {
+      Line().width("100%").backgroundColor("#ff373737").margin({bottom:5})
+    }.padding({left: 20, right: 20})
     Row() {
       Text('Length=' + config.values.length + '    ').margin({ left: 10 }).align(Alignment.Start)
       Text('Max=' + config.maxValue).margin({ left: 10 }).align(Alignment.Start)
@@ -348,6 +350,7 @@ struct Index {
       Row() {
         DataPanel({ values: [12.3, 21.1, 13.4, 35.2, 26.0, 32.0], max: 140, type: DataPanelType.Circle })
           .width(400).height(260)
+          .constraintSize({maxWidth: "100%"})
           .padding({ top: 10 })
           .contentModifier(new DataPanelBuilder())
       }.margin(15).backgroundColor("#fff5f5f5")

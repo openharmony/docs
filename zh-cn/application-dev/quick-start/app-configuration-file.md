@@ -92,7 +92,7 @@ app.json5配置文件包含以下标签。
 
 1. 将图标的前景资源和背景资源放在AppScope/resources/base/media目录下。
 
-2. 在上述media目录下创建一个json文件（例如：layered-image.json），在文件中引用前景资源和背景资源。
+2. 在上述media目录下创建一个json文件（例如：layered-image.json），在文件中引用前景资源和背景资源，详见[图标资源规范](https://developer.huawei.com/consumer/cn/doc/design-guides/application-icon-0000001953444009#section634668113212)。
 
 分层图标资源文件示例：
 

@@ -1626,7 +1626,7 @@ Y // 表示来自utils的Y
 
 ```typescript
 import { X as Z, Y } from './utils'
-Z // 表示来自Utils的Z
+Z // 表示来自Utils的X
 Y // 表示来自Utils的Y
 X // 编译时错误：'X'不可见
 ```

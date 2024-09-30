@@ -390,13 +390,9 @@ bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_P
 
 视频编解码的宽高不仅会受帧级编解码能力限制，同时也会受协议中级别对帧级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每帧宏块数目为36864。
 
-给定图像宽和高，求最大帧率的公式如下, 其中$MaxMBsPerFrameLevelLimits$是编解码器能支持的最大级别在协议中限定的最大每帧宏块数, $MaxMBsPerFrameSubmit$是编解码器上报能支持的最大每帧宏块数，实际能力取两者交集。
+给定图像宽和高，求最大帧率的公式如下, 其中*MaxMBsPerFrameLevelLimits*是编解码器能支持的最大级别在协议中限定的最大每帧宏块数, *MaxMBsPerFrameSubmit*是编解码器上报能支持的最大每帧宏块数，实际能力取两者交集。
 
-$$
-MaxMBsPerFrame = \min(MaxMBsPerFrameLevelLimits, MaxMBsPerFrameSubmit) \\
-MBWidth = MBHeight = 16 \\
-maxWidth = \lfloor MaxMBsPerFrame \div \lceil \frac{height}{MBHeight} \rceil \rfloor \times MBWidth
-$$
+![](figures/formula-maxmbsperframe.png)
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -491,13 +487,9 @@ if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
 
 视频编解码的帧率不仅会受编解码器秒级编解码能力限制，同时也会受协议中级别对秒级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每秒宏块数目为983040。
 
-给定图像宽和高，求最大帧率的公式如下, 其中$MaxMBsPerSecondLevelLimits$是编解码器能支持的最大级别在协议中限定的最大每秒宏块数, $MaxMBsPerSecondSubmit$是编解码器上报能支持的最大每秒宏块数，实际能力取两者交集。
+给定图像宽和高，求最大帧率的公式如下, 其中*MaxMBsPerSecondLevelLimits*是编解码器能支持的最大级别在协议中限定的最大每秒宏块数, *MaxMBsPerSecondSubmit*是编解码器上报能支持的最大每秒宏块数，实际能力取两者交集。
 
-$$
-MaxMBsPerSecond = \min(MaxMBsPerSecondLevelLimits, MaxMBsPerSecondSubmit) \\
-MBWidth = MBHeight = 16 \\
-maxFrameRate = MaxMBsPerSecond \div (\lceil{\frac{width}{MBWidth}} \rceil \times \lceil \frac{height}{MBHeight} \rceil)
-$$
+![](figures/formula-maxmbspersecond.png)
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
