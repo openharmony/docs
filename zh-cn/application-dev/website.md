@@ -2284,6 +2284,7 @@
           - [像素单位](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
           - [枚举说明](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
           - [设置事件回调](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
+          - [SVG](reference/apis-arkui/arkui-ts/ts-basic-svg.md)
           <!--Del-->
           - [枚举说明 (系统接口)](reference/apis-arkui/arkui-ts/ts-appendix-enums-sys.md)
           <!--DelEnd-->
@@ -2823,6 +2824,11 @@
           <!--Del-->
           - [@ohos.dlpPermission (数据防泄漏)(系统接口)](reference/apis-data-protection-kit/js-apis-dlppermission-sys.md)
           <!--DelEnd-->
+        - C API<!--data-protection-c-->
+          - 模块<!--data-protection-module-->
+            - [DlpPermissionApi](reference/apis-data-protection-kit/_dlp_permission_api.md)
+          - 头文件<!--data-protection-headerfile-->
+            - [dlp_permission_api.h](reference/apis-data-protection-kit/dlp__permission__api_8h.md)
         - 错误码<!--data-protection-arkts-errcode-->
           - [DLP服务错误码](reference/apis-data-protection-kit/errorcode-dlp.md)
       - Device Certificate Kit（设备证书服务）<!--device-certificate-api-->
