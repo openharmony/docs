@@ -3237,10 +3237,10 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 **示例：**
 
 ```ts
-function testGetPhotoRotation(photoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
+function testGetPhotoRotation(photoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
   let photoRotation: camera.ImageRotation;
   try {
-    photoRotation = photoOutput.getPhotoRotation(imageRotation);
+    photoRotation = photoOutput.getPhotoRotation(deviceDegree);
     console.log(`Photo rotation is: ${photoRotation}`);
   } catch (error) {
     // 失败返回错误码error.code并处理
@@ -3768,10 +3768,10 @@ getVideoRotation(deviceDegree: number): ImageRotation
 **示例：**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
+function testGetVideoRotation(videoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
   let videoRotation: camera.ImageRotation;
   try {
-    videoRotation = videoOutput.getVideoRotation(imageRotation);
+    videoRotation = videoOutput.getVideoRotation(deviceDegree);
     console.log(`Video rotation is: ${videoRotation}`);
   } catch (error) {
     // 失败返回错误码error.code并处理
