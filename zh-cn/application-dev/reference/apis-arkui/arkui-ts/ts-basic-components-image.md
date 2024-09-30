@@ -8,7 +8,7 @@ Image为图片组件，常用于在应用中显示图片。Image支持加载[Pix
 >
 > 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](../../../ui/arkts-common-events-focus-event.md#设置组件是否可获焦)。Image组件默认不获焦，需将[focusable](ts-universal-attributes-focus.md#focusable)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)属性设置为true，即可实现点击获焦。
 >
-> 图片格式支持svg图源，svg标签文档请参考[svg说明](./ts-basic-svg.md)
+> 图片格式支持SVG图源，SVG标签文档请参考[SVG标签说明](./ts-basic-svg.md)
 >
 > 动图在Image组件不可见时停止动画，通过[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)事件实现组件的可见状态，可见阈值ratios大于0时，Image可见。
 
