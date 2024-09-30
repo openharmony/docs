@@ -2,7 +2,7 @@
 
 - [了解OpenHarmony开源项目](OpenHarmony-Overview_zh.md)
 - [术语](glossary.md)
-- [版本说明](release-notes/OpenHarmony-v5.0-release.md)
+- [版本说明](release-notes/OpenHarmony-v5.0.0-release.md)
 - OpenHarmony三方组件
   - [OpenHarmony三方组件简介](third-party-components/third-party-components-introduction.md)  
   - [OpenHarmony JS/TS三方组件使用指导](third-party-components/ohpm-third-party-guide.md)
