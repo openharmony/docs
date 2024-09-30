@@ -36,7 +36,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -121,7 +121,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -197,7 +197,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -295,7 +295,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -383,7 +383,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -481,7 +481,7 @@ getUid(agent: WantAgent): Promise\<number\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -570,7 +570,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -668,7 +668,7 @@ cancel(agent: WantAgent): Promise\<void\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000151   | Invalid wantagent object.|
 
 **示例：**
@@ -1042,7 +1042,7 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -1141,7 +1141,7 @@ getOperationType(agent: WantAgent): Promise\<number>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 

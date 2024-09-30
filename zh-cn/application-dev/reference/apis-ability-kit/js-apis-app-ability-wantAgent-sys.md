@@ -38,7 +38,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
@@ -138,7 +138,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
+| 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
 
