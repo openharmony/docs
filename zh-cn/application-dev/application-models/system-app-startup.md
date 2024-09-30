@@ -29,7 +29,7 @@
 
 当前支持直接拉起设置应用中如下页面，未列出的暂不支持。
 - 权限设置页面：[Ability Kit](abilitykit-overview.md)提供[requestPermissionOnSetting](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissiononsetting12)接口，支持拉起权限设置页面。详见[二次向用户申请授权](../security/AccessToken/request-user-authorization-second.md)。
-
+- 通知管理页面：[Notification Kit](../notification/notification-overview.md)提供[openNotificationSettings()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageropennotificationsettings13)接口，支持拉起通知管理页面。
 <!--RP1-->
 <!--RP1End-->
 

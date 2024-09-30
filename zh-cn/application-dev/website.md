@@ -141,6 +141,7 @@
             - [Want概述](application-models/want-overview.md)
             - [显式Want与隐式Want匹配规则](application-models/explicit-implicit-want-mappings.md)
             - [使用显式Want启动应用组件](application-models/ability-startup-with-explicit-want.md)
+            - [常见action与entities（不推荐使用）](application-models/actions-entities.md)
           - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
           - [应用启动框架AppStartup](application-models/app-startup.md)
           <!--Del-->
@@ -306,7 +307,7 @@
           - [CPU密集型任务开发指导 (TaskPool和Worker)](arkts-utils/cpu-intensive-task-development.md)
           - [I/O密集型任务开发指导 (TaskPool)](arkts-utils/io-intensive-task-development.md)
           - [同步任务开发指导 (TaskPool和Worker)](arkts-utils/sync-task-development.md)
-        - 附录<!--appendixes-->
+        - 附录<!--concurrency-appendixes-->
           - [Actor并发模型对比内存共享并发模型](arkts-utils/actor-model-development-samples.md)
           - [TaskPool和Worker支持的序列化类型](arkts-utils/serialization-support-types.md)
           - [\@Concurrent装饰器：声明并校验并发函数](arkts-utils/arkts-concurrent.md)
@@ -376,6 +377,7 @@
           - [使用画布绘制自定义图形 (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
        - 使用弹窗
           - [模态弹窗 (ModelDialog)](ui/arkts-modal-dialog.md)
+          - [不依赖UI组件的全局自定义弹窗 (推荐)](ui/arkts-uicontext-custom-dialog.md)
           - [自定义弹窗 (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
         - 使用动画<!--arkts-use-animation-->
           - [动画概述](ui/arkts-animation.md)
@@ -673,7 +675,7 @@
       - [在自绘编辑框中使用输入法](inputmethod/use-inputmethod-in-custom-edit-box.md)
       - [切换输入法应用](inputmethod/switch-inputmehod-guide.md)
       - [输入法子类型开发指南](inputmethod/input-method-subtype-guide.md)
-      - [自绘编辑框开发指导 (C/C++)](inputmethod/native-custom-input-box-guide.md)
+      - [自绘编辑框开发指导 (C/C++)](inputmethod/use-inputmethod-in-custom-edit-box-ndk.md)
     - IPC Kit（进程间通信服务）<!--ipc-kit-->
       - [IPC Kit简介](ipc/ipc-rpc-overview.md)
       - [IPC与RPC通信开发指导](ipc/ipc-rpc-development-guideline.md)
@@ -838,8 +840,11 @@
             - [使用ECDH进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh.md)
             - [使用X25519进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-x25519.md)
             - [使用DH进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-dh.md)
-        - [消息摘要计算(ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
-        - [消息摘要计算(C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
+        - 消息摘要计算
+          - [消息摘要计算介绍及算法规格](security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md)
+          - 消息摘要计算开发指导
+            - [消息摘要计算(ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
+            - [消息摘要计算(C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
         - [消息认证码计算](security/CryptoArchitectureKit/crypto-compute-mac.md)
         - [安全随机数生成](security/CryptoArchitectureKit/crypto-generate-random-number.md)
         - 密钥派生<!--crypto-key-derivation-->
@@ -1337,7 +1342,7 @@
         - [系统相册资源使用指导](media/medialibrary/photoAccessHelper-systemAlbum-guidelines.md)
         - [媒体资源变更通知相关指导](media/medialibrary/photoAccessHelper-notify-guidelines.md)
         - [使用MediaAssetManager请求图片资源(C/C++)](media/medialibrary/using-ndk-mediaassetmanager-for-request-resource.md)
-  - 图形<!--graphics-->
+  - 图形
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-2d-->
       - [ArkGraphics 2D简介](graphics/arkgraphics2D-introduction.md)
       - 使用可变帧率能力定制不同内容的绘制帧率<!--displaysync-->
@@ -1721,7 +1726,7 @@
           - continuation<!--continuation-->
             - [continuationExtraParams](reference/apis-ability-kit/js-apis-continuation-continuationExtraParams.md)
             - [continuationResult](reference/apis-ability-kit/js-apis-continuation-continuationResult.md)
-          - security<!--security-->
+          - security<!--ability-security-->
             - [PermissionRequestResult](reference/apis-ability-kit/js-apis-permissionrequestresult.md)
           - wantAgent<!--wantAgent-->
             - [triggerInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-triggerInfo.md)
@@ -1768,14 +1773,19 @@
       - C API<!--ability-c-->
         - 模块<!--ability-module-->
           - [AbilityAccessControl](reference/apis-ability-kit/_ability_access_control.md)
+          - [AbilityRuntime](reference/apis-ability-kit/_ability_runtime.md)
           - [Bundle](reference/apis-ability-kit/_bundle.md)
           - [ChildProcess](reference/apis-ability-kit/c-apis-ability-childprocess.md)
         - 头文件<!--ability-headerfile-->
           - [ability_access_control.h](reference/apis-ability-kit/ability__access__control_8h.md)
+          - [ability_runtime_common.h](reference/apis-ability-kit/ability__runtime__common_8h.md)
+          - [application_context.h](reference/apis-ability-kit/application__context_8h.md)
+          - [context_constant.h](reference/apis-ability-kit/context__constant_8h.md)
           - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
           - [native_child_process.h](reference/apis-ability-kit/native__child__process_8h.md)
         - 结构体<!--ability-struct-->
           - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/_o_h___native_bundle_application_info.md)
+          - [OH_NativeBundle_ElementName](reference/apis-ability-kit/_o_h___native_bundle_element_name.md)
       - 错误码<!--ability-arkts-errcode-->
         - [元能力子系统错误码](reference/apis-ability-kit/errorcode-ability.md)
         - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
@@ -1817,7 +1827,7 @@
           - [@ohos.data.rdb (关系型数据库)](reference/apis-arkdata/js-apis-data-rdb.md)
           - [@ohos.data.storage (轻量级存储)](reference/apis-arkdata/js-apis-data-storage.md)
           - [@system.storage数据存储](reference/apis-arkdata/js-apis-system-storage.md)
-          - data/rdb<!--data/rdb-->
+          - data/rdb<!--data-rdb-->
             - [resultSet结果集](reference/apis-arkdata/js-apis-data-resultset.md)
       - C API<!--arkdata-c-->
         - 模块<!--arkdata-module-->
@@ -1950,7 +1960,7 @@
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
-        - 图形图像<!--graphics-->
+        - 图形图像<!--graphics-api-->
           - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
           - [@ohos.window (窗口)](reference/apis-arkui/js-apis-window.md)
@@ -2197,7 +2207,7 @@
           - [XComponent](reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)
           - [Component3D](reference/apis-arkui/arkui-ts/ts-basic-components-component3d.md)
           - [EmbeddedComponent](reference/apis-arkui/arkui-ts/ts-container-embedded-component.md) 
-        - 标题栏与工具栏<!--title<!--bars-and-toolbars-->
+        - 标题栏与工具栏<!--bars-and-toolbars-->
           - [ComposeTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
           - [EditableTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
           - [SelectTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SelectTitleBar.md)
@@ -2238,7 +2248,7 @@
           <!--Del-->
           - [FormComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)
           <!--DelEnd-->
-        - 安全<!--security-->
+        - 安全<!--arkui-security-->
           - [安全控件通用属性](reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)
           - [LocationButton](reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)
           - [PasteButton](reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md)
@@ -2275,6 +2285,7 @@
           - [像素单位](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
           - [枚举说明](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
           - [设置事件回调](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
+          - [SVG标签说明](reference/apis-arkui/arkui-ts/ts-basic-svg.md)
           <!--Del-->
           - [枚举说明 (系统接口)](reference/apis-arkui/arkui-ts/ts-appendix-enums-sys.md)
           <!--DelEnd-->
@@ -2814,6 +2825,11 @@
           <!--Del-->
           - [@ohos.dlpPermission (数据防泄漏)(系统接口)](reference/apis-data-protection-kit/js-apis-dlppermission-sys.md)
           <!--DelEnd-->
+        - C API<!--data-protection-c-->
+          - 模块<!--data-protection-module-->
+            - [DlpPermissionApi](reference/apis-data-protection-kit/_dlp_permission_api.md)
+          - 头文件<!--data-protection-headerfile-->
+            - [dlp_permission_api.h](reference/apis-data-protection-kit/dlp__permission__api_8h.md)
         - 错误码<!--data-protection-arkts-errcode-->
           - [DLP服务错误码](reference/apis-data-protection-kit/errorcode-dlp.md)
       - Device Certificate Kit（设备证书服务）<!--device-certificate-api-->
@@ -2910,6 +2926,13 @@
           - tag
             - [nfctech (标准NFC-Tag Nfc 技术)](reference/apis-connectivity-kit/js-apis-nfctech.md)
             - [tagSession (标准NFC-Tag TagSession)](reference/apis-connectivity-kit/js-apis-tagSession.md)
+        - C API<!--connectivity-c-->
+          - 模块<!--connectivity-module-->
+            - [Bluetooth](reference/apis-connectivity-kit/_bluetooth.md)
+            - [Wifi](reference/apis-connectivity-kit/_wifi.md)
+        - 头文件<!--connectivity-headerfile-->
+            - [oh_bluetooth.h](reference/apis-connectivity-kit/oh__bluetooth_8h.md)
+            - [oh_wifi.h](reference/apis-connectivity-kit/oh__wifi_8h.md)
         - 错误码<!--connectivity-arkts-errcode-->
           - [Bluetooth错误码](reference/apis-connectivity-kit/errorcode-bluetoothManager.md)
           - [WIFI错误码](reference/apis-connectivity-kit/errorcode-wifi.md)
@@ -3135,11 +3158,13 @@
           - 模块<!--basic-services-module-->
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
+            - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
             - [Pasteboard](reference/apis-basic-services-kit/_pasteboard.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
           - 头文件<!--basic-services-headerfile-->
+            - [ohbattery_info.h](reference/apis-basic-services-kit/ohbattery__info_8h.md)
             - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
             - [oh_pasteboard.h](reference/apis-basic-services-kit/oh__pasteboard_8h.md)
@@ -3174,9 +3199,9 @@
           - [系统电源管理错误码](reference/apis-basic-services-kit/errorcode-power.md)
           - [账号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
           - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
+          - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
           <!--Del-->
           - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
-          - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
           - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
           - [智能语音错误码](reference/apis-basic-services-kit/errorcode-intelligentVoice.md)
           <!--DelEnd-->
@@ -3712,10 +3737,11 @@
           - [media_asset_capi.h](reference/apis-media-library-kit/media__asset__capi_8h.md)
           - [media_asset_change_request_capi.h](reference/apis-media-library-kit/media__asset__change__request__capi_8h.md)
           - [media_asset_manager_capi.h](reference/apis-media-library-kit/media__asset__manager__capi_8h.md)
+          - [moving_photo_capi.h](reference/apis-media-library-kit/moving__photo__capi_8h.md)
         - 结构体<!--media-library-struct-->
           - [MediaLibrary_RequestId](reference/apis-media-library-kit/_media_library___request_id.md)
           - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)  
-  - 图形<!--graphics-api-->
+  - 图形
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-api-->
       - ArkTS API<!--arkgraphics-arkts-->
         - [@ohos.effectKit (图像效果)](reference/apis-arkgraphics2d/js-apis-effectKit.md)
@@ -3739,6 +3765,7 @@
           - [NativeWindow](reference/apis-arkgraphics2d/_native_window.md)
           - [OH_NativeBuffer](reference/apis-arkgraphics2d/_o_h___native_buffer.md)
           - [OH_NativeImage](reference/apis-arkgraphics2d/_o_h___native_image.md)
+          - [NativeColorSpaceManager](reference/apis-arkgraphics2d/_native_color_space_manager.md)
         - 头文件<!--arkgraphics-headerfile-->
           - [drawing_bitmap.h](reference/apis-arkgraphics2d/drawing__bitmap_8h.md)
           - [drawing_brush.h](reference/apis-arkgraphics2d/drawing__brush_8h.md)
@@ -3762,6 +3789,7 @@
           - [drawing_pen.h](reference/apis-arkgraphics2d/drawing__pen_8h.md)
           - [drawing_pixel_map.h](reference/apis-arkgraphics2d/drawing__pixel__map_8h.md)
           - [drawing_point.h](reference/apis-arkgraphics2d/drawing__point_8h.md)
+          - [drawing_record_cmd.h](reference/apis-arkgraphics2d/drawing__record__cmd_8h.md)
           - [drawing_rect.h](reference/apis-arkgraphics2d/drawing__rect_8h.md)
           - [drawing_region.h](reference/apis-arkgraphics2d/drawing__region_8h.md)
           - [drawing_register_font.h](reference/apis-arkgraphics2d/drawing__register__font_8h.md)
@@ -3782,6 +3810,7 @@
           - [native_display_soloist.h](reference/apis-arkgraphics2d/native__display__soloist_8h.md)
           - [native_image.h](reference/apis-arkgraphics2d/native__image_8h.md)
           - [native_vsync.h](reference/apis-arkgraphics2d/native__vsync_8h.md)
+          - [native_color_space_manager.h](reference/apis-arkgraphics2d/native__color__space__manager_8h.md)
         - 结构体<!--arkgraphics-struct-->
           - [DisplaySoloist_ExpectedRateRange](reference/apis-arkgraphics2d/_display_soloist___expected_rate_range.md)
           - [OH_Drawing_BitmapFormat](reference/apis-arkgraphics2d/_o_h___drawing___bitmap_format.md)
@@ -3818,6 +3847,8 @@
           - [OHHDRMetaData](reference/apis-arkgraphics2d/_o_h_h_d_r_meta_data.md)
           - [Region](reference/apis-arkgraphics2d/_region.md)
           - [Rect](reference/apis-arkgraphics2d/_rect.md)
+          - [ColorSpacePrimaries](reference/apis-arkgraphics2d/_color_space_primaries.md)
+          - [WhitePointArray](reference/apis-arkgraphics2d/_white_point_array.md)
       - 错误码<!--arkgraphics-arkts-errcode-->
         - [色彩管理错误码](reference/apis-arkgraphics2d/errorcode-colorspace-manager.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-api-->

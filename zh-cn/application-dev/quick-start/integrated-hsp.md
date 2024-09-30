@@ -4,6 +4,10 @@
 > **说明：** 
 > HSP只能给bundleName一样的项目使用，集成态HSP可以给不同的bundleName的工程集成使用。
 
+## 约束限制
+- 集成态HSP只支持[Stage模型](application-package-structure-stage.md)。
+- 集成态HSP需要API12及以上版本，使用[标准化的OHMUrl格式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5#section511142752919)。
+
 ## 开发使用说明
 1. 创建方-集成态HSP-工程配置：集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
 
