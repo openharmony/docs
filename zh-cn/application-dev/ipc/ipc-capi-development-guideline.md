@@ -4,7 +4,7 @@
 ## 场景介绍
 
 IPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，而IPC CAPI是提供的C接口。
-IPC CAPI接口不直接提供跨进程通信能力，两个进程之间的IPC通道建立，依赖于**元能力**。
+IPC CAPI接口不直接提供跨进程通信能力，两个进程之间的IPC通道建立，依赖于[Ability Kit](../application-models/abilitykit-overview.md)。
 
 ![图](./figures/_i_p_c_architecture_diagram.png)
 

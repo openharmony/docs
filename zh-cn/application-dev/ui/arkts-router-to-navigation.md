@@ -116,7 +116,7 @@ struct Index {
 // pageOne.ets
 import { router } from '@kit.ArkUI';
 
-@entry
+@Entry
 @Component
 struct pageOne {
   @State message: string = 'This is pageOne';
@@ -314,12 +314,11 @@ Router作为全局通用模块，可以在任意页面中调用，Navigation作�
 @Component
 struct Index {
   // Navigation创建一个Provide修饰的NavPathStack
- @Provide('pathStack') pathStack: NavPathStack
+ @Provide('pathStack') pathStack: NavPathStack = new NavPathStack()
 
   build() {
     Navigation(this.pathStack) {
         // ...
-      }.width('100%').height('100%')
     }
     .title("Navigation")
     .mode(NavigationMode.Stack)

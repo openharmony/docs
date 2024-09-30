@@ -71,7 +71,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -155,7 +155,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -232,7 +232,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -330,7 +330,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -418,7 +418,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -516,7 +516,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -605,7 +605,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -703,7 +703,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -795,7 +795,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -888,7 +888,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -987,7 +987,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1078,7 +1078,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -1179,7 +1179,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  actionType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };

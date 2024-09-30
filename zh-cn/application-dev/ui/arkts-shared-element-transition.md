@@ -2118,3 +2118,4 @@ export default struct  Post {
 针对共享元素转场开发，有以下相关实例可供参考：
 
 - [电子相册（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ElectronicAlbum)
+<!--RP1--><!--RP1End-->

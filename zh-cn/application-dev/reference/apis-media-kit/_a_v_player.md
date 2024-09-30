@@ -1450,6 +1450,7 @@ OH_AVErrCode OH_AVPlayer_SetVideoSurface (OH_AVPlayer *player, OHNativeWindow *w
 ```
 **描述**
 设置播放画面窗口。
+此函数必须在**SetSource**之后，**Prepare**之前调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
