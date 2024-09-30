@@ -1060,3 +1060,218 @@ Error: verify code signature failed.
 	```
 
 * 场景二：检查签名流程和签名证书，参考<!--RP8-->[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)<!--RP8End-->。
+
+
+### 9568257 验证pkcs7文件失败      
+**错误信息**
+
+Error: fail to verify pkcs7 file.
+
+**错误描述**
+
+验证pkcs7文件失败。
+
+**可能原因**
+
+应用当前使用的签名不符合HarmonyOS应用签名要求，通常是由于当前使用的是OpenHarmony应用的签名，应该替换为HarmonyOS应用的签名。
+
+**处理步骤**
+
+1.在为应用/服务签名时勾选“Support HarmonyOS”,完成HarmonyOS应用签名后再次启动调试或运行应用。
+![示例图](figures/zh-cn_image_9568257.png)
+
+### 9568401 调试包仅支持运行在开发者模式设备      
+**错误信息**
+
+Error: debug bundle can only be installed in developer mode.
+
+**错误描述**
+
+调试包仅支持运行在开发者模式设备。
+
+**可能原因**
+
+终端设备未开启“开发者模式”。
+
+**处理步骤**
+
+1.终端系统查看“设置 > 系统”中是否有“开发者选项”，如果不存在，可在“设置 > 关于手机/关于平板”连续七次单击“版本号”，直到提示“开启开发者模式”，点击“确认开启”后输入PIN码（如果已设置），设备将自动重启。
+2.USB数据线连接终端和PC，在“设置 > 系统 > 开发者选项”中，打开“USB调试”开关，弹出的“允许USB调试”的弹框，单机“允许”。
+3.启动调试或运行应用。
+
+### 9568386 卸载找不到资源      
+**错误信息**
+
+Error: uninstall missing installed bundle.
+
+**错误描述**
+
+卸载找不到资源。
+
+**可能原因**
+
+之前卸载不干净，有资源残留。
+
+**处理步骤**
+
+1.手动清理el1/el2下所有未卸载的资源
+2.重新安装
+
+
+### 9568284 安装版本不匹配      
+**错误信息**
+
+Error: install version not compatible.
+
+**错误描述**
+
+安装版本不匹配。
+
+**可能原因**
+
+当前安装HSP的版本信息与已安装HAP的版本信息不匹配。
+安装HSP时会做如下校验：
+1.bundleName和HAP的一致
+2.apiReleaseType和HAP的一致
+3.version和HAP的一致
+4.签名和HAP的一致
+
+**处理步骤**
+
+1.卸载版本信息不匹配的HAP，再安装HSP
+2.修改HSP版本信息与HAP一致，再安装HSP
+
+### 9568287 安装包entry模块数量不合规      
+**错误信息**
+
+Error: install invalid number of entry hap.
+
+**错误描述**
+
+安装包entry模块数量不合规。
+
+**可能原因**
+
+安装包中entry模块有多个。一个应用只能有一个entry模块，可以有多个feature模块。
+
+**处理步骤**
+
+1.保留一个entry模块，其余entry模块修改为feature（修改module.json5中type字段）。
+
+
+### 9568281 安装包vendor不一致      
+**错误信息**
+
+Error: install vendor not same.
+
+**错误描述**
+
+安装包vendor不一致。
+
+**可能原因**
+
+app.json5文件中app的vendor字段配置不一致。
+
+**处理步骤**
+
+1.若只有一个hap，要求与已安装应用vendor字段一致，卸载重装即可。
+2.若包含集成态hsp，要求集成态hsp与使用方hap的vendor字段保持一致。
+
+
+### 9568279 安装版本名不一致      
+**错误信息**
+
+Error: install version name not same.
+
+**错误描述**
+
+安装版本名不一致。
+
+**可能原因**
+
+* 场景一：只有一个hap，可能时保存数据的应用版本和新安装版本不一致导致。
+
+* 场景二：HSP和HAP一起安装时，HSP和HAP的包名、版本号、sdk版本号、releaseType有不一致。
+
+**处理步骤**
+
+* 场景一：DevEco entry配置界面中取消勾选“Keep Application Data”。
+![示例图](figures/zh-cn_image_9568279.png)
+
+* 场景二：对其HSP和HAP的包名、版本号、sdk版本号、releaseType使其一致。
+
+
+### 9568274 安装服务错误      
+**错误信息**
+
+Error: install installd service error.
+
+**错误描述**
+
+安装服务错误。
+
+**可能原因**
+
+安装服务异常。
+
+**处理步骤**
+
+1.清除缓存，重启设备。
+
+
+### 9568314 安装应用间共享库失败      
+**错误信息**
+
+Error: Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
+
+**错误描述**
+
+安装应用间共享库失败。
+
+**可能原因**
+
+安装应用见共享hsp时使用“hdc app install ***”指令。
+
+**处理步骤**
+
+1.安装应用间hsp时使用“hdc install -s ***”指令。
+
+
+### 9568359 安装设置selinux失败      
+**错误信息**
+
+Error: installd set selinux label failed.
+
+**错误描述**
+
+安装设置selinux失败。
+
+**可能原因**
+
+签名配置文件中APL字段错误。APL有“normal”、“system_basic”和“system_core”三种等级。
+
+**处理步骤**
+
+1.确认签名文件p7b中apl字段是否有误。
+![示例图](figures/zh-cn_image_9568359_1.png)
+2.若apl字段有误，修改UnsgnedReleasedProfileTemplate.json文件中apl字段，并重新签名。
+![示例图](figures/zh-cn_image_9568359_2.png)
+
+
+### 9568403 安装加密校验失败      
+**错误信息**
+
+Error: check encryption failed.
+
+**错误描述**
+
+安装加密校验失败。
+
+**可能原因**
+
+可能是镜像版本较老；或者HAP包lib目录内非so文件导致。
+
+**处理步骤**
+
+1.安装新版本镜像。
+2.删除HAP工程中lib目录内非so文件，重新签名打包。
