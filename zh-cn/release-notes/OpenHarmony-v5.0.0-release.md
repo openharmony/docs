@@ -1,9 +1,9 @@
-# OpenHarmony 5.0 Release
+# OpenHarmony 5.0.0 Release
 
 
 ## 版本概述
 
-OpenHarmony 5.0 Release版本标准系统能力持续完善。相比OpenHarmony 5.0 Beta1，Release版本做出了如下特性新增或增强：
+OpenHarmony 5.0.0 Release版本标准系统能力持续完善。相比OpenHarmony 5.0 Beta1，Release版本做出了如下特性新增或增强：
 
 应用框架新增更多生命周期管理能力、提供子进程相关能力，可以对应用运行时的任务执行进行更精细的调度和管理；ArkUI进一步开放自定义节点的渲染能力；应用包管理提升了应用打包效率，丰富了终端用户使用应用时的可操作场景（如创建应用分身、创建桌面快捷方式等）；分布式数据管理能力进一步增强，在保证数据合理共享的前提下增强安全性，其他模块能力适配Sendable机制也得到了增强；文件管理进一步完善Picker的能力，对文件资源做到合理管控权限和合理使用；媒体在音视频播放、录制方面能力进一步增强，新增支持多个音视频、图片的编码格式，支持更细节的播控操作；相机提供更强大的能力，丰富终端用户拍照场景。
 
@@ -68,7 +68,7 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 ### 分布式数据管理
 
-- RelationStore&amp;Preferences支持共沙箱数据的访问方式。
+- RelationalStore&amp;Preferences支持共沙箱数据的访问方式。
 
 - RDB支持只读方式打开。
 
@@ -207,7 +207,7 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 - EXIF读写能力增强，支持EXIF批量读写，GIF支持获取播放次数信息。
 
-- 支持HDR能力：HDR双层编解码、HDR编辑框架，以及HDR与SDR互转。
+- 支持HDR能力：HDR双层编解码、HDR与SDR互转。
 
 - 编解码格式增强，支持HEIF编解码，DNG解码。
 
@@ -445,8 +445,6 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 - 开放主线程超时事件的感知。
 
-- HiAppEvent支持二进制交付方式的KIT运营打点。
-
 - errorManager支持TaskPool和Worker监听未处理的Reject事件。
 
 
@@ -534,9 +532,9 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 | 软件 | 版本 | 备注 | 
 | -------- | -------- | -------- |
-| OpenHarmony | 5.0 Release | NA | 
-| Public SDK | Ohos_sdk_public 5.0.0.70 (API Version 12 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。 | 
-| HUAWEI DevEco Studio（可选） | 5.0 Release | OpenHarmony应用开发推荐使用。获取方式：*待发布后提供* | 
+| OpenHarmony | 5.0.0 Release | NA | 
+| Public SDK | Ohos_sdk_public 5.0.0.71 (API Version 12 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。 | 
+| HUAWEI DevEco Studio（可选） | 5.0.0 Release | OpenHarmony应用开发推荐使用。获取方式：*待发布后提供* | 
 | HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[请点击这里获取](https://device.harmonyos.com/cn/develop/ide#download)。  | 
 
 
@@ -571,14 +569,14 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 - 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
    ```
-   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-5.0-Release --no-repo-verify
+   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-5.0.0-Release --no-repo-verify
    repo sync -c
    repo forall -c 'git lfs pull'
    ```
    
 - 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
    ```
-   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v5.0-Release --no-repo-verify
+   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v5.0.0-Release --no-repo-verify
    repo sync -c
    repo forall -c 'git lfs pull'
    ```
@@ -589,14 +587,14 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 - 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
    ```
-   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-5.0-Release --no-repo-verify
+   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-5.0.0-Release --no-repo-verify
    repo sync -c
    repo forall -c 'git lfs pull'
    ```
    
 - 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
    ```
-   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v5.0-Release --no-repo-verify
+   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v5.0.0-Release --no-repo-verify
    repo sync -c
    repo forall -c 'git lfs pull'
    ```
@@ -609,14 +607,13 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 5.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/code-v5.0-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/code-v5.0-Release.tar.gz.sha256) | 31.6 GB |
-| Hi3861解决方案（二进制）        | 5.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_pegasus.tar.gz.sha256) | 29.2 MB |
-| Hi3516解决方案-LiteOS（二进制） | 5.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 318.7 MB |
-| Hi3516解决方案-Linux（二进制）  | 5.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/hispark_taurus_Linux.tar.gz.sha256) | 215.8 MB |
-| RK3568标准系统解决方案（二进制）        | 5.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/dayu200_standard_arm32.tar.gz.sha256) | 8.4 GB |
-| 标准系统Public SDK包（Mac）             | 5.0.0.70 | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/ohos-sdk-mac-public-signed.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/ohos-sdk-mac-public-signed.tar.gz.sha256) | 1.1 GB |
-| 标准系统Public SDK包（Mac-M1）             | 5.0.0.70  | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/L2-SDK-MAC-M1-PUBLIC-signed.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/L2-SDK-MAC-M1-PUBLIC-signed.tar.gz.sha256) | 1.1 GB |
-| 标准系统Public SDK包（Windows/Linux）   | 5.0.0.70   | [站点](https://repo.huaweicloud.com/openharmony/os/5.0-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.2 GB |
+| Hi3861解决方案（二进制）        | 5.0.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_pegasus.tar.gz.sha256) | 27.1 MB |
+| Hi3516解决方案-LiteOS（二进制） | 5.0.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 328.3 MB |
+| Hi3516解决方案-Linux（二进制）  | 5.0.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/hispark_taurus_Linux.tar.gz.sha256) | 220.4 MB |
+| RK3568标准系统解决方案（二进制）        | 5.0.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/dayu200_standard_arm32.tar.gz.sha256) | 519.7 MB |
+| 标准系统Public SDK包（Mac）             | 5.0.0.71 | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
+| 标准系统Public SDK包（Mac-M1）             | 5.0.0.71  | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
+| 标准系统Public SDK包（Windows/Linux）   | 5.0.0.71   | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.0-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.5 GB |
 
 
 
@@ -647,10 +644,9 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 | -------- | -------- | -------- | -------- |
 | I9S5ZN | 进程com.ohos.settings小概率出现因THREAD_BLOCK_6S卡在libunwind.z.so导致的appfrreze。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 10.15 | 
 | I9S600 | 进程com.ohos.settings小概率出现因THREAD_BLOCK_6S卡在libark_jsruntime.so导致的appfrreze。 | 设置页面卡顿。<br/>规避措施：重启设置应用。 | 10.15 | 
-| IAB2U3 | 进程audio_server下的OS_APAsyncRunne线程小概率出现因libaudio_client.z.so崩溃导致的cppcrash。 | 对用户无影响，无需规避。 | 10.15 | 
+| IAB2U3<br>IAK2J2 | 进程audio_server下的OS_APAsyncRunne线程小概率出现因libaudio_client.z.so崩溃导致的cppcrash。 | 对用户无影响，无需规避。 | 10.15 | 
 | IAIRFB | 进程com.ohos.note下的com.ohos.note线程小概率出现因libweb_engine.so崩溃导致的cppcrash。 | 异常出现后应用会闪退，重启应用可恢复。 | 10.15 | 
 | I9SXZ8 | 进程com.ohos.contacts小概率出现因THREAD_BLOCK_6S卡在libark_jsruntime.so导致的appfreez。 | 异常出现后联系人应用进入通话记录查询通话记录卡顿，重启联系人应用可恢复。 | 10.15 | 
-| IAK2J2 | 进程audio_server下的OS_APAsyncRunne线程小概率出现因libaudio_client.z.so崩溃导致的cppcrash。 | 对用户无影响，无需规避。 | 10.15 | 
 | IAKLLD | 进程audio_server下的SaInit2线程小概率出现因libaudio_policy_service.z.so崩溃导致的cppcrash。 | 异常出现后进程重启，客户端有自恢复机制，对用户无影响，无需规避。 | 10.15 | 
 | IA56CU | 进程com.ohos.note下的com.ohos.note线程小概率出现因libweb_engine.so导致的cppcrash。 | 异常出现后应用会闪退，重启应用可恢复。 | 9.30 | 
 | IA5AMJ | 进程com.ohos.launcher小概率出现因THREAD_BLOCK_6S卡在libark_jsruntime.so导致的appfreeze。 | 异常出现后进入多任务界面时会感知到获取应用截图卡顿约3秒左右，加载完成后恢复正常。 | 9.30 | 
@@ -658,8 +654,6 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 | IA6RH6 | 进程com.ohos.settings有较高概率出现因THREAD_BLOCK_6S卡在libbtframework.z.so导致的appfreeze。 | 会又低概率造成“设置”应用卡死，重新打开“设置”可恢复。 | 10.15 | 
 | IA6RFX | 进程bluetooth_service下的OSaInit0线程有较高概率出现因libbtservice.z.so崩溃导致的cppcrash。 | 会有低概率造成蓝牙相关应用crash，重启应用可恢复。 | 10.15 | 
 | IA8KGR | 进程bluetooth_service下的OS_IPC_12_22172线程小概率出现因libbluetooth_server.z.so崩溃导致的cppcrash。 | 会有低概率造成蓝牙相关应用crash，重启应用可恢复。 | 10.15 | 
-| IAM7DN | 进程audio_server在压测下出现内存泄露，15小时内存增长80M。 | 该问题可能导致设备性能略有下降，重启音频相关应用可恢复。 | 10.15 | 
 | IAQC64 | 随机打开几个应用，再打开设置。返回到桌面，再反复进入后台界面，设置会出现泄露，操作1次大概增长32KB。 | 多任务场景下反复切换“设置”应用前后台，可能造成应用闪退。重新打开“设置”可恢复。 | 10.15 | 
-| IAQC76 | 打开时钟静置在前台会发生内存泄露。2小时左右内存占用上涨到180M。 | 长时间静置在时钟，可能导致操作时钟响应变慢，重新打开时钟可恢复。 | 10.15 | 
-
-<!--no_check-->
+| IASE04 | 在RK3568开发板对OpenHarmony进行内存测试，render_service进程的常驻内存实测值超规格基线31 MB。 | 整机内存占用高于预期。 | 10.15 | 
+| IASDWO | 通过浏览器访问微博首页的滑动帧率低于规格基线。 | 影响浏览体验。 | 10.15 | 
