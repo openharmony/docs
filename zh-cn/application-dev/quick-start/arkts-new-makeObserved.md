@@ -24,11 +24,16 @@
 
 ## 限制条件
 
-- makeObserved仅支持对象类型传参。
+- makeObserved仅支持非空的对象类型传参。
+  - 不支持undefined和null：返回自身，不做任何处理。
+  - 非Object类型：编译拦截报错
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
-  let res = UIUtils.makeObserved(2); // 非对象类型入参，错误用法
+  let res1 = UIUtils.makeObserved(2); // 非法类型入参，错误用法，编译报错
+  let res2 = UIUtils.makeObserved(undefined); // 非法类型入参，错误用法，返回自身，res2 === undefined
+  let res3 = UIUtils.makeObserved(null); // 非法类型入参，错误用法，返回自身，res3 === null
+
   class Info {
     id: number = 0;
   }
