@@ -1,7 +1,6 @@
-# SVG
+# SVG标签说明
 SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(可扩展标记语言)的图形格式，用于描述二维图形和图像。Image组件支持的SVG矢量图涉及的元素和属性范围受限，为SVG1.1规范的部分功能。相关的元素和属性请参考如下描述：
->
-> 
+
 ## 基础形状
 基础形状标签包括：\<rect\>、\<circle\>、\<ellipse\>、\<line\>、\<polyline\>、\<polygon\>、\<path\>
 >  **说明：**
@@ -77,4 +76,4 @@ SVG(Scalable Vector Graphics)是可缩放矢量图形，它是一种基于XML(�
 | \<use\> | 复用已有元素 | x：x轴偏移分量；<br> y：y轴偏移分量；href: 目标元素 | fill、fill-rule、fill-opacity、stroke、stroke-dasharray、stroke-dashoffset、stroke-opacity、stroke-width、stroke-linecap、stroke-linejoin、stroke-miterlimit、transform |
 | \<defs\> | 定义可复用对象 | | |
 
-**注意：** 当前支持的颜色值格式包括：#rrggbb、rgb()、rgba()
+**说明：** 当前支持的颜色值格式包括：#rrggbb、rgb()、rgba()
