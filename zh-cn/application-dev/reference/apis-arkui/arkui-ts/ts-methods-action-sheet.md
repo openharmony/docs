@@ -101,7 +101,7 @@ struct ActionSheetExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
         .onClick(() => {
-          ActionSheet.show({ // 建议使用 this.getUIContest().showActionSheet()接口
+          ActionSheet.show({ // 建议使用 this.getUIContext().showActionSheet()接口
             title: 'ActionSheet title',
             subtitle: 'ActionSheet subtitle',
             message: 'message',
