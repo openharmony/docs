@@ -25,7 +25,7 @@
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_SetCallback](_audio_decoder.md#oh_audiodecoder_setcallback) (OH_AVCodec \*codec, [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) callback, void \*userData) | 设置异步回调函数，使应用可以响应音频解码器生成的事件。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_Configure](_audio_decoder.md#oh_audiodecoder_configure) (OH_AVCodec \*codec, OH_AVFormat \*format) | 要配置音频解码器，通常需要配置从容器中提取的音频描述信息。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_Prepare](_audio_decoder.md#oh_audiodecoder_prepare) (OH_AVCodec \*codec) | 准备解码器的内部资源。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_Start](_audio_decoder.md#oh_audiodecoder_start) (OH_AVCodec \*codec) | Prepare成功后调用此接口启动解码器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_Start](_audio_decoder.md#oh_audiodecoder_start) (OH_AVCodec \*codec) | 调用此接口启动解码器，在Prepare成功后执行。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_Stop](_audio_decoder.md#oh_audiodecoder_stop) (OH_AVCodec \*codec) | 停止解码器。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_Flush](_audio_decoder.md#oh_audiodecoder_flush) (OH_AVCodec \*codec) | 清除解码器中缓存的输入和输出数据。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_Reset](_audio_decoder.md#oh_audiodecoder_reset) (OH_AVCodec \*codec) | 重置解码器。如果要继续解码，需要再次调用Configure接口配置解码器实例。 | 
