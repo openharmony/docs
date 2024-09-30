@@ -886,7 +886,7 @@ restartApp(want: Want): void
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
+| 16000063 | The target to restart does not belong to the current application or is not a UIAbility. |
 | 16000064 | Restart too frequently. Try again at least 10s later. |
 
 **示例：**

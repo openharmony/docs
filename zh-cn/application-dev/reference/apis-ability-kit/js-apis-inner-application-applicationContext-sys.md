@@ -47,7 +47,7 @@ preloadUIExtensionAbility(want: Want): Promise\<void\>
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16200011 | The context does not exist. |
 | 16000050 | Internal error. |
 
