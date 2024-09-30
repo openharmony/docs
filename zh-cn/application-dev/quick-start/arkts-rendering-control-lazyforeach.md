@@ -1930,6 +1930,7 @@ struct Parent {
     }
   }
   
+  // @Observed类装饰器 和 @ObjectLink 用于在涉及嵌套对象或数组的场景中进行双向数据同步
   @Observed
   class StringData {
     message: string;
@@ -1943,6 +1944,7 @@ struct Parent {
   @Entry
   @Component
   struct MyComponent {
+    // 用状态变量来驱动UI刷新，而不是通过Lazyforeach的api来驱动UI刷新
     @State data: MyDataSource = new MyDataSource();
   
     aboutToAppear() {
@@ -2247,6 +2249,7 @@ struct Parent {
             ChildComponent({data: item})
           }
           .onClick(() => {
+            // @ObjectLink装饰的成员变量仅能监听到其子属性的变化，再深入嵌套的属性便无法观测到
             item.message = new NestedString(item.message.message + '0');
           })
         }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
@@ -2305,7 +2308,6 @@ class BasicDataSource implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-      // 写法2：listener.onDatasetChange([{type: DataOperationType.RELOAD}]);
     })
   }
 
@@ -2454,7 +2456,6 @@ class BasicDataSource implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-      // 写法2：listener.onDatasetChange([{type: DataOperationType.RELOAD}]);
     })
   }
 
@@ -2525,6 +2526,7 @@ class MyDataSource extends BasicDataSource {
     for (let i = totalCount; i < totalCount + batch; i++) {
       this.dataArray.push(`Hello ${i}`)
     }
+    // 替换 notifyDataReload
     this.notifyDatasetChange([{type:DataOperationType.ADD, index: totalCount-1, count:batch}])
   }
 }
