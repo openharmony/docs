@@ -42,7 +42,7 @@
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
   - 使用弹窗
     - [模态弹窗 (ModelDialog)](arkts-modal-dialog.md)
-    - [不依赖UI组件的全局自定义弹窗(推荐)](arkts-uicontext-custom-dialog.md)
+    - [不依赖UI组件的全局自定义弹窗 (推荐)](arkts-uicontext-custom-dialog.md)
     - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
   - 使用动画
     - [动画概述](arkts-animation.md)

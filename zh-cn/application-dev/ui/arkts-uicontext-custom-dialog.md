@@ -1,4 +1,4 @@
-# 不依赖UI组件的全局自定义弹窗
+# 不依赖UI组件的全局自定义弹窗 (推荐)
 
 
 由于[CustomDialogController](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller)在使用上存在诸多限制，不支持动态创建也不支持动态刷新，在相对较复杂的应用场景中推荐使用UIContext中获取到的PromptAction对象提供的[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口来实现自定义弹窗。
