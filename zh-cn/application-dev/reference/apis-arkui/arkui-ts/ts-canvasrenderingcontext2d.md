@@ -46,7 +46,7 @@ RenderingContextSettings(antialias?: boolean)
 
 ### LengthMetricsUnit<sup>12+</sup>
 
-用来配置CanvasRenderingContext2D对象的单位模式，配置后无法动态更改，详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
+用来配置CanvasRenderingContext2D对象的单位模式，默认单位模式为LengthMetricsUnit.DEFAULT，对应默认单位vp，配置后无法动态更改，详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
 
 **示例：**
 
@@ -2749,10 +2749,10 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
-| sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>默认单位：vp。 |
-| sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>默认单位：vp。 |
-| sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>默认单位：vp。 |
-| sh    | number                                   | 是  | 裁切源图像时需要裁切的高度。<br>默认单位：vp。 |
+| sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。 |
+| sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。  |
+| sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。  |
+| sh    | number                                   | 是  | 裁切源图像时需要裁切的高度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。  |
 | dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp。|
 | dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp。|
 | dw    | number                                   | 是  | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>默认单位：vp。 |
