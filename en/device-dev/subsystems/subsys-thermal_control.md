@@ -168,5 +168,3 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/blob/ma
 During development, you can refer to the [default thermal control configuration](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml).
 
 Packing path: `/vendor/etc/thermal_config/hdf`
-
-<!--no_check-->
