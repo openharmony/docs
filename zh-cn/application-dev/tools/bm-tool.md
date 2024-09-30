@@ -1078,7 +1078,7 @@ Error: fail to verify pkcs7 file.
 **处理步骤**
 
 1.在为应用/服务签名时勾选“Support HarmonyOS”,完成HarmonyOS应用签名后再次启动调试或运行应用。
-![示例图](figures/zh-cn_image_9568257_1.png)
+![示例图](figures/zh-cn_image_9868257_1.png)
 
 ### 9568401 调试包仅支持运行在开发者模式设备      
 **错误信息**
