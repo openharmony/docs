@@ -761,6 +761,7 @@ getItemRect(index: number): RectResult
 
 ## 示例
 ### 示例1
+该示例展示了Scroll组件部分属性和scroller控制器的使用。
 
 ```ts
 // xxx.ets
@@ -845,6 +846,7 @@ struct ScrollExample {
 ![zh-cn_image_0000001174104386](figures/zh-cn_image_0000001174104386.gif)
 
 ### 示例2
+该示例使用onScrollFrameBegin事件实现了内层List组件和外层Scroll组件的嵌套滚动。
 ```ts
 import { LengthMetrics } from '@kit.ArkUI'
 
@@ -919,6 +921,7 @@ struct NestedScroll {
 ![NestedScroll](figures/NestedScroll.gif)
 
 ### 示例3
+该示例使用nestedScroll属性实现了内层List组件和外层Scroll组件的嵌套滚动。
 ```ts
 @Entry
 @Component
@@ -982,6 +985,7 @@ struct StickyNestedScroll {
 ```
 ![NestedScroll2](figures/NestedScroll2.gif)
 ### 示例4
+该示例实现了Scroll组件的限位滚动。
 ```ts
 @Entry
 @Component
@@ -1014,6 +1018,7 @@ struct Index {
 ![NestedScrollSnap](figures/NestedScrollSnap.gif)
 
 ### 示例5
+该示例通过scroller控制器的Fling接口触发Scroll组件的惯性滚动。
 ```ts
 @Entry
 @Component
