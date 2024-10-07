@@ -1268,16 +1268,19 @@ enterKeyType属性接口使用示例。
 @Entry
 @Component
 struct TextInputExample {
-  @State Text: string = ''
-  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
+  @State text: string = ''
+  @State enterTypes: Array<EnterKeyType> =
+    [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next,
+      EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
   @State index: number = 0
+
   build() {
     Column({ space: 20 }) {
-      TextArea({ placeholder: '请输入用户名', text: this.Text })
+      TextArea({ placeholder: '请输入用户名', text: this.text })
         .width(380)
         .enterKeyType(this.enterTypes[this.index])
         .onChange((value: string) => {
-          this.Text = value
+          this.text = value
         })
         .onSubmit((enterKey: EnterKeyType) => {
           console.log("trigger area onsubmit" + enterKey);
@@ -1598,45 +1601,44 @@ struct TextAreaExample {
 
 ### 示例13
 
-lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
+lineBreakStrategy使用示例，展示了lineBreakStrategy设置不同挡位的效果。
 
 ```ts
 @Entry
 @Component
-struct TextExample1 {
-  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+struct TextAreaExample {
+  @State message1: string =
+    "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
+  @State lineBreakStrategyIndex: number = 0
+  @State lineBreakStrategy: LineBreakStrategy[] =
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
+      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
+      TextArea({ text: this.message1 })
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
         .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.GREEDY)
-      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
-      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
+      Row() {
+        Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+          this.lineBreakStrategyIndex++
+          if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0
+          }
+        })
+      }.padding({ top: 10 })
     }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![textAreaLineBreakStrategy](figures/textAreaLineBreakStrategy.PNG)
+![textAreaLineBreakStrategy](figures/textAreaLineBreakStrategy.gif)
 
 ### 示例14
 
