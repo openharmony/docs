@@ -83,12 +83,12 @@ CommonOptions定义Counter的共通属性和事件。
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
-| 名称            | 类型                      | 必填 | 默认值 | 说明                                                         |
-| --------------- | ------------------------- | ---- | ------ | ------------------------------------------------------------ |
-| focusable       | boolean                   | 否   | true   | 设置Counter是否可以获焦。<br/>**说明：** <br/>该属性对列表型、紧凑型Counter生效。 |
-| step            | number                    | 否   | 1      | 设置Counter的步长。<br/>取值范围：大于等于1的整数。          |
-| onHoverIncrease | (isHover: boolean) =>void | 否   | -      | 鼠标进入或退出Counter组件的增加按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true, 退出时为false。 |
-| onHoverDecrease | (isHover: boolean) =>void | 否   | -      | 鼠标进入或退出Counter组件的减小按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true, 退出时为false。 |
+| 名称            | 类型                      | 必填 | 说明                                                         |
+| --------------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| focusable       | boolean                   | 否   | 设置Counter是否可以获焦。<br/>**说明：** <br/>该属性对列表型、紧凑型Counter生效。<br/>默认值：true |
+| step            | number                    | 否   | 设置Counter的步长。<br/>取值范围：大于等于1的整数。<br/>默认值：1 |
+| onHoverIncrease | (isHover: boolean) =>void | 否   | 鼠标进入或退出Counter组件的增加按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true, 退出时为false。 |
+| onHoverDecrease | (isHover: boolean) =>void | 否   | 鼠标进入或退出Counter组件的减小按钮触发该回调。<br/>isHover：表示鼠标是否悬浮在组件上，鼠标进入时为true, 退出时为false。 |
 
 ##  InlineStyleOptions
 
@@ -100,13 +100,13 @@ InlineStyleOptions定义Inline Style（数值内联型Counter）的属性和事�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                   | 必填 | 默认值 | 说明                                                   |
-| --------- | ---------------------- | ---- | ------ | ------------------------------------------------------ |
-| value     | number                 | 否   | 0      | 设置Counter的初始值。                                  |
-| min       | number                 | 否   | 0      | 设置Counter的最小值。                                  |
-| max       | number                 | 否   | 999    | 设置Counter的最大值。                                  |
-| textWidth | number                 | 否   | 0      | 设置数值文本的宽度。                                   |
-| onChange  | (value: number) =>void | 否   | -      | 当数值改变时，返回当前值。<br/>value：当前显示的数值。 |
+| 名称      | 类型                   | 必填 | 说明                                                   |
+| --------- | ---------------------- | ---- | ------------------------------------------------------ |
+| value     | number                 | 否   | 设置Counter的初始值。<br/>默认值：0                    |
+| min       | number                 | 否   | 设置Counter的最小值。<br/>默认值：0                    |
+| max       | number                 | 否   | 设置Counter的最大值。<br/>默认值：999                  |
+| textWidth | number                 | 否   | 设置数值文本的宽度。<br/>默认值：0                     |
+| onChange  | (value: number) =>void | 否   | 当数值改变时，返回当前值。<br/>value：当前显示的数值。 |
 
 ## NumberStyleOptions
 
@@ -118,13 +118,13 @@ NumberStyleOptions定义Number style（列表型Counter和紧凑型Counter）的
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                                                         | 必填 | 默认值 | 说明                                          |
-| --------------- | ------------------------------------------------------------ | ---- | ------ | --------------------------------------------- |
-| label           | [ResourceStr](ts-types.md#resourcestr) | 否   | -      | 设置Counter的说明文本。                       |
-| onFocusIncrease | () =>void                                                    | 否   | -      | 当前Counter组件增加按钮获取焦点时触发的回调。 |
-| onFocusDecrease | () =>void                                                    | 否   | -      | 当前Counter组件减小按钮获取焦点时触发的回调。 |
-| onBlurIncrease  | () =>void                                                    | 否   | -      | 当前Counter组件增加按钮失去焦点时触发的回调。 |
-| onBlurDecrease  | () =>void                                                    | 否   | -      | 当前Counter组件减小按钮失去焦点时触发的回调。 |
+| 名称            | 类型                                   | 必填 | 说明                                          |
+| --------------- | -------------------------------------- | ---- | --------------------------------------------- |
+| label           | [ResourceStr](ts-types.md#resourcestr) | 否   | 设置Counter的说明文本。                       |
+| onFocusIncrease | () =>void                              | 否   | 当前Counter组件增加按钮获取焦点时触发的回调。 |
+| onFocusDecrease | () =>void                              | 否   | 当前Counter组件减小按钮获取焦点时触发的回调。 |
+| onBlurIncrease  | () =>void                              | 否   | 当前Counter组件增加按钮失去焦点时触发的回调。 |
+| onBlurDecrease  | () =>void                              | 否   | 当前Counter组件减小按钮失去焦点时触发的回调。 |
 
 ## DateStyleOptions
 
@@ -136,12 +136,12 @@ DateStyleOptions定义Date style（日期内联型Counter）的属性和事件�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 类型                                | 必填 | 默认值 | 说明                                                      |
-| ------------ | ----------------------------------- | ---- | ------ | --------------------------------------------------------- |
-| year         | number                              | 否   | 1      | 设置日期内联型初始年份。                                  |
-| month        | number                              | 否   | 1      | 设置日期内联型初始月份。                                  |
-| day          | number                              | 否   | 1      | 设置日期内联型初始日。                                    |
-| onDateChange | (date: [DateData](#datedata))=>void | 否   | -      | 当日期改变时，返回当前日期。<br/>date：当前显示的日期值。 |
+| 名称         | 类型                                | 必填 | 说明                                                      |
+| ------------ | ----------------------------------- | ---- | --------------------------------------------------------- |
+| year         | number                              | 否   | 设置日期内联型初始年份。<br/>默认值：1                    |
+| month        | number                              | 否   | 设置日期内联型初始月份。<br/>默认值：1                    |
+| day          | number                              | 否   | 设置日期内联型初始日。<br/>默认值：1                      |
+| onDateChange | (date: [DateData](#datedata))=>void | 否   | 当日期改变时，返回当前日期。<br/>date：当前显示的日期值。 |
 
 ## DateData
 

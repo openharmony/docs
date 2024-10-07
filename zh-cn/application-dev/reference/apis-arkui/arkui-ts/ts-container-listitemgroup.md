@@ -90,7 +90,7 @@ childrenMainSize(value: ChildrenMainSize)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值  | 描述               |
+| 名称 | 值  | 说明             |
 | ---- | ---- | ------------------ |
 | NONE | 0 | 无样式。           |
 | CARD | 1 | 显示默认卡片样式。 |
