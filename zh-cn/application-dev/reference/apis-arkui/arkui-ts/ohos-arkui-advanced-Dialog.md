@@ -40,7 +40,7 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 
 **参数：** 
 
-| 名称                          | 参数类型                                                     | 必填 | 装饰器类型 | 说明                                                         |
+| 名称                          | 类型                                                         | 必填 | 装饰器类型 | 说明                                                         |
 | ----------------------------- | ------------------------------------------------------------ | ---- | ---------- | ------------------------------------------------------------ |
 | controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | -          | 提示弹出框控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | imageRes                      | [ResourceStr<sup>12+</sup>](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | -          | 展示的图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -49,8 +49,8 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 | content                       | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | 提示弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | checkbox的提示内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isChecked                     | boolean                                                      | 否   | \@Prop     | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | 否   | -          | 现推荐使用 onCheckedChange<sup>12+</sup>。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                 |
+| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | 否   | -          | 现推荐使用 onCheckedChange<sup>12+</sup>。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | primaryButton                 | [ButtonOptions](#buttonoptions)                              | 否   | -          | 提示框左侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | secondaryButton               | [ButtonOptions](#buttonoptions)                              | 否   | -          | 提示框右侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | -          | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -68,7 +68,7 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 
 **参数：**
 
-| 名称                | 参数类型                                                     | 必填 | 说明                                                         |
+| 名称                | 类型                                                         | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | 选择弹出框控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title               | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 选择弹出框标题。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -89,16 +89,14 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称                          | 参数类型                                                     | 必填 | 装饰器类型 | 说明                                                         |
+| 名称                          | 类型                                                         | 必填 | 装饰器类型 | 说明                                                         |
 | ----------------------------- | ------------------------------------------------------------ | ---- | ---------- | ------------------------------------------------------------ |
 | controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | -          | 确认弹出框控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title                         | [ResourceStr](ts-types.md#resourcestr)                       | 是   | -          | 确认弹出框标题。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | content                       | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | 确认弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | checkbox的提示内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isChecked                     | boolean                                                      | 否   | \@Prop     | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                 |
+| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | primaryButton                 | [ButtonOptions](#buttonoptions)                              | 否   | -          | 确认框左侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | secondaryButton               | [ButtonOptions](#buttonoptions)                              | 否   | -          | 确认框右侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme)\| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | 否   | -          | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -115,13 +113,11 @@ AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, sec
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称                         | 参数类型                                                     | 必填 | 说明                                                         |
+| 名称                         | 类型                                                         | 必填 | 说明                                                         |
 | ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | controller                   | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | 确认弹出框控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| primaryTitle<sup>12+</sup>   | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 确认框一级标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                             |
-| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 确认框二级标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                             |
+| primaryTitle<sup>12+</sup>   | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 确认框一级标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 确认框二级标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | content                      | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 确认弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | primaryButton                | [ButtonOptions](#buttonoptions)                              | 否   | 确认框左侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | secondaryButton              | [ButtonOptions](#buttonoptions)                              | 否   | 确认框右侧按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -139,9 +135,7 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称                | 参数类型                                                     | 必填 | 说明                                                         |
+| 名称                | 类型                                                         | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | 加载弹出框控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | content             | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 加载弹出框内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -161,9 +155,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 名称                | 参数类型                                                     | 必填 | 说明                                                         |
+| 名称                | 类型                                                     | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | 弹出框控制器。                                               |
 | contentBuilder      | () => void                                                   | 是   | 弹出框内容。                                                 |

@@ -445,7 +445,7 @@ maintainVisibleContentPosition(enabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                        |
+| 名称     |  值  | 说明                      |
 | ------ | ------ | ------------------------- |
 | Start  | 0 | ListItem在List中，交叉轴方向首部对齐。 |
 | Center | 1 | ListItem在List中，交叉轴方向居中对齐。 |
@@ -459,7 +459,7 @@ maintainVisibleContentPosition(enabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                 |
+| 名称     |  值  | 说明                               |
 | ------ | ------ | ---------------------------------- |
 | None   | 0 | ListItemGroup的header不吸顶，footer不吸底。 |
 | Header | 1 | ListItemGroup的header吸顶，footer不吸底。  |
@@ -477,7 +477,7 @@ maintainVisibleContentPosition(enabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                       |
+| 名称     |  值  | 说明                                     |
 | ------ | ------ | ---------------------------------------- |
 | NONE   | 0 | 默认无项目滚动对齐效果。            |
 | START  | 1 | 视图中的第一项将在列表的开头对齐。<br/>**说明：**<br/>当列表位移至末端，需要将末端的item完整显示，可能出现开头不对齐的情况。 |
@@ -787,7 +787,7 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                       |
+| 名称     |  值  | 说明                                     |
 | ------ | ------ | ---------------------------------------- |
 | Idle   |  0  | 空闲状态。滚动状态回归空闲时触发，控制器提供的无动画方法控制滚动时触发。 |
 | Scroll |  1  | 滚动状态。手指拖动List，拖动滚动条和滚动鼠标滚轮时触发。|

@@ -51,7 +51,7 @@ Radio(options: RadioOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 描述                             |
+| 名称            | 说明                           |
 | --------------- | -------------------------------- |
 | TICK            | 选中样式为系统默认TICK图标。  |
 | DOT             | 选中样式为系统默认DOT图标。   |

@@ -43,6 +43,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## ContentItem
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -55,6 +57,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 ## IconType
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -70,6 +74,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 ## OperateItem
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -87,6 +93,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 右侧图标/箭头资源。 |
@@ -96,6 +104,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧按钮文字。 |
@@ -103,6 +113,8 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 ## OperateCheck
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
