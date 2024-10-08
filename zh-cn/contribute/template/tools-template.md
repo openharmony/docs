@@ -104,16 +104,6 @@ bm install [-h] [-p filePath] [-u userId] [-r] [-w waitingTime] [-s hspDirPath]
 
   **表3** 安装命令列表
 
-| 命令                                | 描述                       |
-| ----------------------------------- | -------------------------- |
-| bm install -h | 显示install支持的命令信息。-h为非必选字段。 |
-| bm install -p \<filePath\>    | 安装应用，支持指定路径和多个hap、hsp同时安装。安装应用时，-p为必选字段。 |
-| bm install -p \<filePath\> -u \<userId\>   |给指定用户安装一个应用。-u非必选字段，默认为当前活跃用户。 |
-| bm install -p \<filePath\> -r | 覆盖安装一个应用，-r为非必选字段，默认支持覆盖安装。 |
-| bm install -p \<filePath\> -r -u \<userId\> | 给指定用户覆盖安装一个应用。 |
-| bm install -p \<filePath\> -r -u \<userId\> -w \<waitingTime\> | 安装时指定bm工具等待时间，-w非必选字段，最小的等待时长为180s，最大的等待时长为600s， 默认缺省为5s。 |
-| bm install -s \<hspDirPath\> | 安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。-s为安装应用间HSP时必选字段，其他场景为可选字段。 |
-| bm install -p \<filePath\> -s \<hspDirPath\> | 同时安装使用方应用和其依赖的应用间共享库。 |
 | 命令 | 是否必选 | 描述 |
 | -------- | -------- | -------- |
 | -h | 否，默认输出帮助信息 | 显示install支持的命令信息 |
