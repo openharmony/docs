@@ -4402,7 +4402,7 @@ getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDoNotDisturbProfile(1).then((data: notificationManager.DoNotDisturbProfile) => {
-  console.info("getDoNotDisturbProfile success: " + Json.stringify(data));
+  console.info("getDoNotDisturbProfile success: " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
   console.error(`getDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
 });
