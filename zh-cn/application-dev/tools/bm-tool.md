@@ -1078,7 +1078,7 @@ Error: fail to verify pkcs7 file.
 **处理步骤**
 
 1. 在为应用/服务签名时勾选“Support HarmonyOS”,完成HarmonyOS应用签名后再次启动调试或运行应用。
-![示例图](figures/zh-cn_image_9568257.png)
+![示例图](figures/zh-cn_image_9568257_1.png)
 
 ### 9568401 调试包仅支持运行在开发者模式设备      
 **错误信息**
@@ -1253,7 +1253,7 @@ Error: installd set selinux label failed.
 **处理步骤**
 
 1. 确认签名文件p7b中apl字段是否有误。
-![示例图](figures/zh-cn_image_9568359_1.png)
+![示例图](figures/zh-cn_image_9568359.png)
 2. 若apl字段有误，修改UnsgnedReleasedProfileTemplate.json文件中apl字段，并重新签名。
 ![示例图](figures/zh-cn_image_9568359_2.png)
 
