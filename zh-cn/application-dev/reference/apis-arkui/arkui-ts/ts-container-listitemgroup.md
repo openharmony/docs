@@ -242,10 +242,13 @@ interface ArrObject {
 // xxx.ets
 import { ComponentContent } from '@kit.ArkUI';
 
+interface TimeTable {
+  title: string;
+  projects: string[];
+}
+
 class HeadBuilderParams {
   text: string | Resource;
-  colorMode: boolean = false
-
   constructor(text: string | Resource) {
     this.text = text;
   }
@@ -253,8 +256,6 @@ class HeadBuilderParams {
 
 class FootBuilderParams {
   num: number | Resource;
-  colorMode: boolean = false
-
   constructor(num: number | Resource) {
     this.num = num;
   }
@@ -267,8 +268,7 @@ function itemHead(params: HeadBuilderParams) {
     .height('48vp')
     .width("100%")
     .padding(10)
-    .fontColor($r('sys.color.font_secondary'))
-    .backgroundColor(0xAABBCC)
+    .backgroundColor($r('sys.color.background_tertiary'))
 }
 
 @Builder
@@ -278,15 +278,14 @@ function itemFoot(params: FootBuilderParams) {
     .height('48vp')
     .width("100%")
     .padding(10)
-    .fontColor($r('sys.color.font_secondary'))
-    .backgroundColor(0xAABBCC)
+    .backgroundColor($r('sys.color.background_tertiary'))
 }
 
 @Component
 struct MyItemGroup {
   item: TimeTable = { title: "", projects: [] }
-  header ?: ComponentContent<HeadBuilderParams> = undefined
-  footer ?: ComponentContent<FootBuilderParams> = undefined
+  header?: ComponentContent<HeadBuilderParams> = undefined
+  footer?: ComponentContent<FootBuilderParams> = undefined
   headerParam = new HeadBuilderParams(this.item.title)
   footerParam = new FootBuilderParams(this.item.projects.length)
 
@@ -358,19 +357,12 @@ struct ListItemGroupExample {
           MyItemGroup({ item: item })
         })
       }
-      .width('90%')
+      .layoutWeight(1)
       .sticky(StickyStyle.Header | StickyStyle.Footer)
       .scrollBar(BarState.Off)
     }
-    .width('100%')
-    .height('90%')
     .backgroundColor($r('sys.color.background_primary'))
-    .padding({ top: 5 })
   }
-}
-interface TimeTable {
-  title: string;
-  projects: string[];
 }
 ```
 

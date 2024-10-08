@@ -571,7 +571,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
-| 16200002 | Callee invalid. The callee does not exist. |
+| 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -659,7 +659,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
-| 16200002 | Callee invalid. The callee does not exist. |
+| 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -735,7 +735,7 @@ release(): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
-| 16200002 | Callee invalid. The callee does not exist. |
+| 16200002 | The callee does not exist. |
 
 **示例：**
 
@@ -1067,7 +1067,7 @@ on(method: string, callback: CalleeCallback): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16200004 | Method registered. The method has registered. |
+| 16200004 | The method has been registered. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -1138,7 +1138,7 @@ off(method: string): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16200005 | Method not registered. The method has not registered. |
+| 16200005 | The method has not been registered. |
 | 16000050 | Internal error. |
 
 **示例：**

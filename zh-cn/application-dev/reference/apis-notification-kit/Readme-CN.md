@@ -1,6 +1,6 @@
 # Notification Kit（用户通知服务）
 
-- ArkTS API  
+- ArkTS API
   - [@ohos.notificationManager (NotificationManager模块)](js-apis-notificationManager.md)
   - [@ohos.notificationManager (NotificationManager模块)(系统接口)](js-apis-notificationManager-sys.md)
   - [@ohos.notificationSubscribe (NotificationSubscribe模块)(系统接口)](js-apis-notificationSubscribe-sys.md)
@@ -29,5 +29,10 @@
     <!--Del-->
     - [@ohos.notification (Notification模块)(系统接口)](js-apis-notification-sys.md)
     <!--DelEnd-->
+- C API
+  - 模块
+    - [Notification](capi-notification.md)
+  - 头文件
+    - [notification.h](notification_8h.md)
 - 错误码
   - [通知错误码](errorcode-notification.md)

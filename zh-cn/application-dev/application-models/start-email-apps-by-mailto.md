@@ -37,18 +37,15 @@ mailto:someone@example.com?key1=value1&key2=value2
 
 ### 从网页拉起
 
-网页中的超链接需要满足mailto协议。
+网页中的超链接需要满足mailto协议。示例如下：
 
-示例如下：
-
-> **说明：**
-> 
-> 实际开发时，需要将邮箱地址替换为真实的邮箱，邮件内容可以根据需要进行配置。
 
 ```
 <a href="mailto:support@example.com?subject=Product Inquiry&body=I am interested in...">联系我们</a>
 ```
+实际开发时，需要将邮箱地址替换为真实的邮箱，邮件内容可以根据需要进行配置。
 
+实现效果如下：
 ![image](figures/mailto-html.gif)
 
 ### 从应用拉起
@@ -76,60 +73,61 @@ struct Index {
 }
 ```
 
+实现效果如下：
 ![image](figures/mailto-app.gif)
 
 ## 目标方开发步骤
 
 1. 为了能够支持被其他应用通过mailto协议拉起，目标应用需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中声明mailto。
 
-```
-{
-  "module": {
-    // ...
-    "abilities": [
-      {
+    ```
+    {
+      "module": {
         // ...
-        "skills": [
+        "abilities": [
           {
-           "actions": [
-              'ohos.want.action.sendToData'
-            ],
-            "uris": [
+            // ...
+            "skills": [
               {
-                "scheme": "mailto",
-                // linkFeature 用于适配垂类面板拉起
-                "linkFeature": 'ComposeMail'
+              "actions": [
+                  'ohos.want.action.sendToData'
+                ],
+                "uris": [
+                  {
+                    "scheme": "mailto",
+                    // linkFeature 用于适配垂类面板拉起
+                    "linkFeature": 'ComposeMail'
+                  }
+                ]
               }
             ]
           }
         ]
       }
-    ]
-  }
-}
-```
+    }
+    ```
 
 2. 目标应用在代码中取出uri参数进行解析
 
-```
-export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void { 
-    // 应用冷启动生命周期回调，其他业务处理...
-    parseMailto(want);
-  }
+    ```
+    export default class EntryAbility extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void { 
+        // 应用冷启动生命周期回调，其他业务处理...
+        parseMailto(want);
+      }
 
-  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    // 应用热启动生命周期回调，其他业务处理...
-    parseMailto(want);
-  }
+      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        // 应用热启动生命周期回调，其他业务处理...
+        parseMailto(want);
+      }
 
-  public parseMailto(want: Want) {
-    const uri = want?.uri;
-    if (!uri || uri.length <= 0) {
-      return;
+      public parseMailto(want: Want) {
+        const uri = want?.uri;
+        if (!uri || uri.length <= 0) {
+          return;
+        }
+        // 开始解析 mailto...
+      }
     }
-    // 开始解析 mailto...
-  }
-}
 
-```
+    ```
