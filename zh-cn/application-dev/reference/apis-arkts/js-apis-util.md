@@ -830,8 +830,8 @@ TextDecoder的构造函数。
 **示例：**
 
 ```ts
-let result = new util.TextDecoder();
-let retStr = result.encoding;
+let textDecoder = new util.TextDecoder();
+let retStr = textDecoder.encoding;
 ```
 ### create<sup>9+</sup>
 
@@ -865,8 +865,8 @@ let textDecoderOptions: util.TextDecoderOptions = {
   fatal: false,
   ignoreBOM : true
 }
-let result = util.TextDecoder.create('utf-8', textDecoderOptions)
-let retStr = result.encoding
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+let retStr = textDecoder.encoding;
 ```
 
 ### decodeToString<sup>12+</sup>
@@ -911,8 +911,8 @@ let decodeToStringOptions: util.DecodeToStringOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
-let retStr = textDecoder.decodeToString(result, decodeToStringOptions);
+let uint8 = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
+let retStr = textDecoder.decodeToString(uint8, decodeToStringOptions);
 console.info("retStr = " + retStr);
 ```
 
@@ -962,15 +962,15 @@ let decodeWithStreamOptions: util.DecodeWithStreamOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decodeWithStream(result , decodeWithStreamOptions);
+let retStr = textDecoder.decodeWithStream(uint8, decodeWithStreamOptions);
 console.info("retStr = " + retStr);
 ```
 
@@ -1041,15 +1041,15 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 ```ts
 let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decode( result , {stream: false});
+let retStr = textDecoder.decode(uint8, {stream: false});
 console.info("retStr = " + retStr);
 ```
 
@@ -1234,10 +1234,10 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 ```ts
 let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = textEncoder.encodeIntoUint8Array('abcd', dest);
-console.info("dest = " + dest);
-// 输出结果: dest = 97,98,99,100
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeIntoUint8Array('abcd', uint8);
+console.info("uint8 = " + uint8);
+// 输出结果: uint8 = 97,98,99,100
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -1270,10 +1270,10 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 ```ts
 let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = textEncoder.encodeInto('abcd', dest);
-console.info("dest = " + dest);
-// 输出结果: dest = 97,98,99,100
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeInto('abcd', uint8);
+console.info("uint8 = " + uint8);
+// 输出结果: uint8 = 97,98,99,100
 ```
 
 ### encode<sup>(deprecated)</sup>
