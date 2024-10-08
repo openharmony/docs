@@ -534,7 +534,7 @@ IPC提供CAPI基础接口能力，包括序列化/反序列化、消息收发处
 | -------- | -------- | -------- |
 | OpenHarmony | 5.0.0 Release | NA | 
 | Public SDK | Ohos_sdk_public 5.0.0.71 (API Version 12 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。 | 
-| HUAWEI DevEco Studio（可选） | 5.0.0 Release | OpenHarmony应用开发推荐使用。获取方式：*待发布后提供* | 
+| HUAWEI DevEco Studio（可选） | 5.0.0 Release | OpenHarmony应用开发推荐使用。<br />[请点击这里获取](https://developer.huawei.com/consumer/cn/download/)。 | 
 | HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[请点击这里获取](https://device.harmonyos.com/cn/develop/ide#download)。  | 
 
 
