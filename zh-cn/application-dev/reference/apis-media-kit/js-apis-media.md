@@ -2695,7 +2695,7 @@ avPlayer.off('trackInfoUpdate')
 
 on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
 
-订阅获取音频UV值更新事件，音频资源播放时定时上报。
+订阅音频UV值，即音频的振幅(电平)更新事件，音频资源播放时定时上报。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -2720,7 +2720,7 @@ avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
 
 off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 
-取消订阅获取音频UV值事件。
+取消订阅获取音频UV值事件, 即取消音频的振幅(电平)上报事件。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
