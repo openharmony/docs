@@ -5321,6 +5321,76 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### restore<sup>14+</sup>
+
+restore(): Promise&lt;void&gt;
+
+将主窗口从最小化状态，恢复到前台显示，并恢复到进入该模式之前的大小和位置。使用Promise异步回调。此接口仅在多窗层叠布局效果下生效，仅在主窗口最小化状态时Ability生命周期是Forground生效，仅2in1设备可用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 801          | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002      | This window state is abnormal.                               |
+| 1300003      | This window manager service works abnormally.                |
+| 1300004      | Unauthorized operation.                                      |
+
+**示例**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // 加载主窗口对应的页面
+    windowStage.loadContent('pages/Index', (err) => {
+      let mainWindow: window.Window | undefined = undefined;
+      // 获取应用主窗口。
+      windowStage.getMainWindow().then(
+        data => {
+          mainWindow = data;
+          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          // 调用minimize,使主窗缩小。
+          mainWindow.minimize();
+          //设置延时函数延时5秒钟后对主窗进行恢复。
+          setTimeout(()=>{
+              //调用restore()函数对主窗进行恢复。
+              let promise = mainWindow.restore();
+              promise.then(() => {
+                  console.info('Succeeded in restoring the window.');
+              }).catch((err: BusinessError) => {
+                  console.error(`Failed to restore the window. Cause code: ${err.code}, 
+                  message: ${err.message}`);
+              });
+          },5000);
+        }
+      ).catch((err: BusinessError) => {
+          if(err.code){
+            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+          }
+      });
+    });
+  }
+}
+```
+
 ### getWindowLimits<sup>11+</sup>
 
 getWindowLimits(): WindowLimits
