@@ -940,13 +940,13 @@ Native侧
     ```typescript
     import nativeRender from 'libnativerender.so'
     //重写XComponentController
-    class MyXComponentController extends XComponentController{
+    class MyXComponentController extends XComponentController {
         onSurfaceCreated(surfaceId: string): void {
         console.log(`onSurfaceCreated surfaceId: ${surfaceId}`)
         nativeRender.SetSurfaceId(BigInt(surfaceId));
         }
         onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
-        console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${ArkTSON.stringify(rect)}}`)
+        console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`)
         nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight)
         }
         onSurfaceDestroyed(surfaceId: string): void {
