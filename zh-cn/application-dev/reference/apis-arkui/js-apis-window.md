@@ -6102,14 +6102,17 @@ export default class EntryAbility extends UIAbility {
       windowClass = data;
       
       // 设置当前窗口禁用返回手势功能
-      let gestureBackEnabled: boolean = false;
-      windowClass.setGestureBackEnabled(gestureBackEnabled)
-        .then(() => {
+      try {
+        let gestureBackEnabled: boolean = false;
+        let promise = windowClass.setGestureBackEnabled(gestureBackEnabled);
+        promise.then(() => {
           console.info(`Succeeded in setting gesture back disabled`);
-        })
-        .catch((err: BusinessError) => {
-          console.error(`Failed to set gesture back disabled, Cause code: ${err.code}`);
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set gesture back disabled, Cause code: ${err.code}, message: ${err.message}`);
         });
+      } catch(exception) {
+        console.error(`Failed to set gesture back disabled, Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     });
   }
 }
