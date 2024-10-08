@@ -2162,7 +2162,6 @@ setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): v
 
 ```ts
 function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
-  let previewRotation: camera.ImageRotation;
   try {
     previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);
   } catch (error) {
