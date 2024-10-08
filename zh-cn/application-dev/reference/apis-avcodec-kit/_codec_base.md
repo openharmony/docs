@@ -423,9 +423,10 @@ typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *u
 
 | 使用场景| 错误码 |
 | -------- | -------- |
+| 音频编解码 | AV_ERR_DRM_DECRYPT_FAILED：DRM解密失败。  |
 | 视频编解码 | AV_ERROR_NO_MEMORY：系统资源不足。<br>AV_ERROR_UNKNOWN：未知错误，请通过具体日志分析。<br>AV_ERR_SERVICE_DIED：服务状态已消亡。  |
 | 视频解码 | AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION：当前输入不支持色彩空间转换功能。  |
-| 音频编解码 | AV_ERR_DRM_DECRYPT_FAILED：DRM解密失败。  |
+<!--RP1--><!--RP1End-->
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2457,7 +2458,7 @@ const char* OH_MD_KEY_VIDEO_PIC_HEIGHT
 
 视频解码时调用[OH_VideoDecoder_GetOutputDescription](_video_decoder.md#oh_videodecoder_getoutputdescription)接口，可以从其返回的OH_AVFormat中解析出高度值。
 
-当解码输出码流变化时，也可从[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)返回的OH_AVForamt实例中解析出高度值。
+当解码输出码流<!--RP2--><!--RP2End-->变化时，也可从[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)返回的OH_AVForamt实例中解析出高度值。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2474,7 +2475,7 @@ const char* OH_MD_KEY_VIDEO_PIC_WIDTH
 
 视频解码时调用[OH_VideoDecoder_GetOutputDescription](_video_decoder.md#oh_videodecoder_getoutputdescription)接口，可以从其返回的OH_AVFormat中解析出宽度值。
 
-当解码输出码流变化时，也可从[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)返回的OH_AVForamt实例中解析出宽度值。
+当解码输出码流<!--RP2--><!--RP2End-->变化时，也可从[OH_AVCodecOnStreamChanged](#oh_avcodeconstreamchanged)返回的OH_AVForamt实例中解析出宽度值。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
