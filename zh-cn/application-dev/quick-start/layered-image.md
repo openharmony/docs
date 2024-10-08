@@ -7,8 +7,9 @@
     
 
 2. 创建前景和背景描述json文件。
-- 创建json文件。layered_image.json文件放置到AppScope\resources\base\media文件下。"background"和"foreground"下的资源名，与上一步归档的图片资源名称对应。
+- 创建json文件。创建layered_image.json文件放置到AppScope\resources\base\media文件下。
 
+- 配置json文件。设置"background"和"foreground"，与上一步归档的图片资源名称对应。
     ```bash
     {
       "layered-image":
@@ -18,7 +19,6 @@
       }
     }
     ```
-- 配置json文件。"background"和"foreground"下的资源名，与上一步归档的图片资源名称对应。
 
 3. 引用分层图标。在app.json5配置文件中修改"icon"对应的的资源为"$media:layered_image"。
 
