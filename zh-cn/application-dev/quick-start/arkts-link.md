@@ -626,7 +626,7 @@ struct Parent {
 
 @Component
 struct Child {
-  @Prop score: Score;
+  @Link score: Score;
 
   changeScore2(score:Score) {
     score.value += 2;
