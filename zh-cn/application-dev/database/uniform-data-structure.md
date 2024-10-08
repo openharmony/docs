@@ -38,7 +38,7 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
     details : hyperlinkDetails,
   }
   
-  hyperlink.description = '...';  // 修该hyperlink属性description
+  hyperlink.description = '...';  // 修改hyperlink属性description
   
   console.info(`hyperlink url = ${hyperlink.url}`);  // 访问对象属性。
   
