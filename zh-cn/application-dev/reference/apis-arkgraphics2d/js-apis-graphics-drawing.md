@@ -1491,8 +1491,8 @@ drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Poin
 | 参数名          | 类型                                       | 必填   | 说明         |
 | ------------ | ---------------------------------------- | ---- | ---------- |
 | path | [Path](#path)                | 是    | 路径对象，可生成阴影。 |
-| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d) | 是    | 表示一个三维向量，用于计算z轴方向的偏移量。 |
-| devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d) | 是    | 光线相对于画布的位置。 |
+| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 表示一个三维向量，用于计算z轴方向的偏移量。 |
+| devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 光线相对于画布的位置。 |
 | lightRadius   | number           | 是    | 圆形灯半径，该参数为浮点数。      |
 | ambientColor  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是    | 环境阴影颜色。 |
 | spotColor  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是    | 点阴影颜色。 |
