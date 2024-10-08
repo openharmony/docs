@@ -718,7 +718,7 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取区域内的图像像素数据。使用Promise形式返回。
+读取区域内的图像像素数据，并按照BGRA_8888格式读入缓冲区中。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -786,7 +786,7 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取区域内的图像像素数据。使用callback形式返回。
+读取区域内的图像像素数据，并按照BGRA_8888格式读入缓冲区中。使用callback形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -855,7 +855,7 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-以同步方式读取区域内的图像像素数据，并按照BGRA_8888格式写入缓冲区中。
+以同步方式读取区域内的图像像素数据，并按照BGRA_8888格式读入缓冲区中。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -898,7 +898,7 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-读取区域内的图像像素数据。使用Promise形式返回。
+将BGRA_8888格式的图像像素数据写入指定区域内。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -974,7 +974,7 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取区域内的图像像素数据。使用callback形式返回。
+将BGRA_8888格式的图像像素数据写入指定区域内。使用callback形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1110,7 +1110,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 | 参数名 | 类型        | 必填 | 说明           |
 | ------ | ----------- | ---- | -------------- |
-| src    | ArrayBuffer | 是   | 图像像素数据。 |
+| src    | ArrayBuffer | 是   | 缓冲区，函数执行时会将该缓冲区中的图像像素数据写入到PixelMap。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
 
 **返回值：**
 
@@ -1155,8 +1155,8 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
-| src      | ArrayBuffer          | 是   | 图像像素数据。                 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当读取缓冲区中的图片数据并写入PixelMap成功，err为undefined，否则为错误对象。 |
+| src      | ArrayBuffer          | 是   | 缓冲区，函数执行时会将该缓冲区中的图像像素数据写入到PixelMap。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当缓冲区中的图像像素数据写入PixelMap成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -1196,7 +1196,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 | 参数名 | 类型        | 必填 | 说明           |
 | ------ | ----------- | ---- | -------------- |
-| src    | ArrayBuffer | 是   | 图像像素数据。 |
+| src    | ArrayBuffer | 是   | 缓冲区，函数执行时会将该缓冲区中的图像像素数据写入到PixelMap。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
 
 **错误码：**
 
@@ -2705,10 +2705,44 @@ pixelmap在跨线程传输时，断开原线程的引用。适用于需立即释
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import image from '@ohos.multimedia.image';
+import taskpool from '@ohos.taskpool';
 
-async function Demo() {
-  if (pixelMap != undefined) {
-    pixelMap.setTransferDetached(true);
+@Concurrent
+// 子线程方法
+async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
+  // 创建 imageSource
+  const imageSource = image.createImageSource(rawFileDescriptor);
+  // 创建 pixelMap
+  const pixelMap = imageSource.createPixelMapSync();
+  // 释放 imageSource
+  imageSource.release();
+  // 使 pixelMap 在跨线程传输完成后，断开原线程的引用。
+  pixelMap.setTransferDetached(true);
+  // 返回 pixelMap 给主线程
+  return pixelMap;
+}
+
+@Entry
+@Component
+struct Demo {
+  @State pixelMap: PixelMap | undefined = undefined;
+  // 主线程方法
+  private loadImageFromThread(): void {
+    const resourceMgr = getContext(this).resourceManager;
+    // 此处‘example.jpg’ 仅作示例，请开发者自行替换，否则 imageSource 创建失败会导致后续无法正常执行。
+    resourceMgr.getRawFd('example.jpg').then(rawFileDescriptor => {
+      taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
+        if (pixelMap) {
+          this.pixelMap = pixelMap as PixelMap;
+          console.log('Succeeded in creating pixelMap.');
+          // 主线程释放 pixelMap。由于子线程返回 pixelMap 时已调用 setTransferDetached，所以此处能够立即释放 pixelMap。
+          this.pixelMap.release();
+        } else {
+          console.error('Failed to create pixelMap.');
+        }
+      });
+    });
   }
 }
 ```
