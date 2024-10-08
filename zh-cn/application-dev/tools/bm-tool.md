@@ -1087,6 +1087,7 @@ Error: fail to verify pkcs7 file.
 1.在为应用/服务签名时勾选“Support HarmonyOS”,完成HarmonyOS应用签名后再次启动调试或运行应用。
 ![示例图](figures/zh-cn_image_9868257_1.png)
 
+
 ### 9568401 调试包仅支持运行在开发者模式设备      
 **错误信息**
 
@@ -1102,9 +1103,9 @@ Error: debug bundle can only be installed in developer mode.
 
 **处理步骤**
 
-1.终端系统查看“设置 > 系统”中是否有“开发者选项”，如果不存在，可在“设置 > 关于手机/关于平板”连续七次单击“版本号”，直到提示“开启开发者模式”，点击“确认开启”后输入PIN码（如果已设置），设备将自动重启。
-2.USB数据线连接终端和PC，在“设置 > 系统 > 开发者选项”中，打开“USB调试”开关，弹出的“允许USB调试”的弹框，单机“允许”。
-3.启动调试或运行应用。
+1. 终端系统查看“设置 > 系统”中是否有“开发者选项”，如果不存在，可在“设置 > 关于手机/关于平板”连续七次单击“版本号”，直到提示“开启开发者模式”，点击“确认开启”后输入PIN码（如果已设置），设备将自动重启。
+2. USB数据线连接终端和PC，在“设置 > 系统 > 开发者选项”中，打开“USB调试”开关，弹出的“允许USB调试”的弹框，单机“允许”。
+3. 启动调试或运行应用。
 
 ### 9568386 卸载找不到资源      
 **错误信息**
@@ -1121,8 +1122,8 @@ Error: uninstall missing installed bundle.
 
 **处理步骤**
 
-1.手动清理el1/el2下所有未卸载的资源
-2.重新安装
+1. 手动清理el1/el2下所有未卸载的资源
+2. 重新安装
 
 
 ### 9568284 安装版本不匹配      
@@ -1138,15 +1139,15 @@ Error: install version not compatible.
 
 当前安装HSP的版本信息与已安装HAP的版本信息不匹配。
 安装HSP时会做如下校验：
-1.bundleName和HAP的一致
-2.apiReleaseType和HAP的一致
-3.version和HAP的一致
-4.签名和HAP的一致
+1. bundleName和HAP的一致
+2. apiReleaseType和HAP的一致
+3. version和HAP的一致
+4. 签名和HAP的一致
 
 **处理步骤**
 
-1.卸载版本信息不匹配的HAP，再安装HSP
-2.修改HSP版本信息与HAP一致，再安装HSP
+1. 卸载版本信息不匹配的HAP，再安装HSP
+2. 修改HSP版本信息与HAP一致，再安装HSP
 
 ### 9568287 安装包entry模块数量不合规      
 **错误信息**
@@ -1163,7 +1164,7 @@ Error: install invalid number of entry hap.
 
 **处理步骤**
 
-1.保留一个entry模块，其余entry模块修改为feature（修改module.json5中type字段）。
+1. 保留一个entry模块，其余entry模块修改为feature（修改module.json5中type字段）。
 
 
 ### 9568281 安装包vendor不一致      
@@ -1181,8 +1182,8 @@ app.json5文件中app的vendor字段配置不一致。
 
 **处理步骤**
 
-1.若只有一个hap，要求与已安装应用vendor字段一致，卸载重装即可。
-2.若包含集成态hsp，要求集成态hsp与使用方hap的vendor字段保持一致。
+1. 若只有一个hap，要求与已安装应用vendor字段一致，卸载重装即可。
+2. 若包含集成态hsp，要求集成态hsp与使用方hap的vendor字段保持一致。
 
 
 ### 9568279 安装版本名不一致      
@@ -1223,7 +1224,7 @@ Error: install installd service error.
 
 **处理步骤**
 
-1.清除缓存，重启设备。
+1. 清除缓存，重启设备。
 
 
 ### 9568314 安装应用间共享库失败      
@@ -1237,11 +1238,11 @@ Error: Failed to install the HSP because installing a shared bundle specified by
 
 **可能原因**
 
-安装应用见共享hsp时使用“hdc app install ***”指令。
+安装应用见共享HSP时使用“hdc app install ***”指令。
 
 **处理步骤**
 
-1.安装应用间hsp时使用“hdc install -s ***”指令。
+1. 安装应用间HSP时使用“hdc install -s ***”指令。
 
 
 ### 9568359 安装设置selinux失败      
@@ -1280,5 +1281,5 @@ Error: check encryption failed.
 
 **处理步骤**
 
-1.安装新版本镜像。
-2.删除HAP工程中lib目录内非so文件，重新签名打包。
+1. 安装新版本镜像。
+2. 删除HAP工程中lib目录内非so文件，重新签名打包。
