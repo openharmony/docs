@@ -360,6 +360,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 11. 写入编码图像。
     在之前的第7步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
+    <!--RP13--><!--RP13End-->
 
 12. （可选）调用OH_VideoEncoder_PushInputParameter()通知编码器随帧参数配置输入完成。
     在之前的第5步中，开发者已经注册随帧通路回调
