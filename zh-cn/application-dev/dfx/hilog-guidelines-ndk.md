@@ -27,7 +27,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 - domain：用于指定输出日志所对应的业务领域，取值范围为0x0000~0xFFFF，开发者可以根据需要进行自定义。
 
-- tag：用于指定日志标识，可以为任意字符串，建议标识调用所在的类或者业务行为。
+- tag：用于指定日志标识，可以为任意字符串，建议标识调用所在的类或者业务行为。tag最多为32字节，超出后会截断，不建议使用中文字符。
 
 - level：用于指定日志级别。取值见[LogLevel](../reference/apis-performance-analysis-kit/_hi_log.md#loglevel)。
 
@@ -97,6 +97,7 @@ static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_T
 void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain, const char *tag, const char *msg)
 {
     // user-defined to handle your log, such as redirect/filter
+    // 注意: 回调函数里面不允许再调用hilog接口打印日志，不然会死循环
 }
 
 static void Test(void)
