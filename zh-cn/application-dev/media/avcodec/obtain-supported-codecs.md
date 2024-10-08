@@ -600,8 +600,8 @@ if (isSupported) {
    // 2. 查询支持的长期参考帧个数
    OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(capability, VIDEO_ENCODER_LONG_TERM_REFERENCE);
    int32_t maxLTRCount = -1;
-   int32_t ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
-   if (ret == AV_ERR_OK && maxLTRCount >= NEEDED_MIN_LTR_NUM) {
+   bool ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
+   if (ret && maxLTRCount >= NEEDED_LTR_NUM) {
       if (!OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_NUM)) {
          // 异常处理
       }
