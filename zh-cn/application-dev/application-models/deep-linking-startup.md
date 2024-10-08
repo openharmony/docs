@@ -45,9 +45,9 @@ Deep Linking基于隐式Want匹配机制中的uri匹配来查询、拉起目标�
 
 ## 拉起方应用实现应用跳转
 
-下面通过两个案例，分别介绍如何使用[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)与[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口实现应用跳转。
+下面通过三个案例，分别介绍如何使用[openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)与[startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口实现应用跳转，以及如何在[Web组件](../reference/apis-arkweb/ts-basic-components-web.md)中实现应用跳转。
 
-### 使用openLink打开浏览器页面
+### 使用openLink实现应用跳转
 
 在[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口的link字段中传入目标应用的URL信息，并将options字段中的`appLinkingOnly`配置为`false`。
 
@@ -135,4 +135,66 @@ struct Index {
       })
   }
 }
+```
+
+### 使用Web组件实现应用跳转
+
+Web组件需要跳转DeepLink链接应用时，可通过拦截回调[onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onloadintercept10)中对定义的事件进行处理，实现应用跳转。
+
+示例代码如下：
+
+```ts
+// index.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .onLoadIntercept((event) => {
+          const url: string = event.data.getRequestUrl();
+          if (url === 'link://www.example.com') {
+            (getContext() as common.UIAbilityContext).openLink(url)
+              .then(() => {
+                console.log('openLink success');
+              }).catch((err: BusinessError) => {
+                console.error('openLink failed, err:' + JSON.stringify(err));
+              })
+            return true;
+          }
+          // 返回true表示阻止此次加载，否则允许此次加载
+          return false;
+        })
+    }
+  }
+}
+```
+
+前端页面代码：
+```html
+// index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Hello World</h1>
+<!--方式一、通过绑定事件window.open方法实现跳转-->
+<button class="doOpenLink" onclick="doOpenLink()">跳转其他应用一</button>
+<!--方式二、通过超链接实现跳转-->
+<a href="link://www.example.com">跳转其他应用二</a>
+</body>
+</html>
+<script>
+    function doOpenLink() {
+        window.open("link://www.example.com")
+    }
+</script>
 ```
