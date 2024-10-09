@@ -212,7 +212,7 @@ After obtaining the output stream capabilities supported by the camera, create a
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddInput failed.");
         }
 
-        // Create a preview output stream. For details about the surfaceId parameter, see the <XComponent>. The preview stream is the surface provided by the <XComponent>.
+        // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
         ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, 0, &previewOutput);
         if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");

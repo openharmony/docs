@@ -1,6 +1,6 @@
 # PasteButton
 
-The **\<PasteButton>** security component allows you to obtain temporary pasteboard permission from the user by their touching the component.
+The **PasteButton** security component allows you to obtain temporary pasteboard permission from the user by their touching the component.
 
 > **NOTE**
 >

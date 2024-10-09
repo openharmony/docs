@@ -33,7 +33,7 @@ Through the VideoDecoder module, your application can implement the following ke
 
 - Surface output and buffer output differ in data output modes.
 - They are applicable to different scenarios.
-  - Surface output indicates that the OHNativeWindow is used to transfer output data. It supports connection with other modules, such as the **\<XComponent>**.
+  - Surface output indicates that the OHNativeWindow is used to transfer output data. It supports connection with other modules, such as the **XComponent**.
   - Buffer output indicates that decoded data is output in shared memory mode.
 
 - The two also differ slightly in the API calling modes:
@@ -284,13 +284,13 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     OH_AVFormat_Destroy(format);
     ```
 
-7. Set the surface. The application obtains the native window from the **\<XComponent>**. For details about the process, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+7. Set the surface. The application obtains the native window from the **XComponent**. For details about the process, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
     You perform this step during decoding, that is, dynamically switch the surface.
 
     ```c++
     // Set the window parameters.
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window); // Obtain the window from the <XComponent>.
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window); // Obtain the window from the XComponent.
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }

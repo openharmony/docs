@@ -164,7 +164,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         photoProfile = cameraOutputCapability->photoProfiles[0];
         
         
-        // Create a preview output stream, with the previewSurfaceId parameter set to the ID of the surface provided by the <XComponent>.
+        // Create a preview output stream, with the previewSurfaceId parameter set to the ID of the surface provided by the XComponent.
         ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
         if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
           OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");

@@ -217,7 +217,7 @@ libnative_drawing.so
         // ...
     }
     ```
-    All callbacks of the **<XComponent>** must be initialized. You can define unnecessary callbacks as null pointers.
+    All callbacks of the **XComponent** must be initialized. You can define unnecessary callbacks as null pointers.
     ```c++
     // OH_NativeXComponent_Callback is a struct.
     OH_NativeXComponent_Callback callback;
