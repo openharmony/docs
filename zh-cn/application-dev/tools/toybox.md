@@ -126,7 +126,7 @@ ls -l /system/bin/cmd
 | 命令 | 说明 |
 | :- | :- |
 | cal     | 打印日历。<br />usage: cal [[month] year] |
-| date    | 设置/获取当前日期/时间。<br />usage: date [-u] [-r FILE] [-d DATE] [+DISPLAY\_FORMAT] [-D  SET\_FORMAT] [SET] |
+| date    | 设置/获取当前日期/时间。<br />usage: date [-u] [-r FILE] [-d DATE] [+DISPLAY\_FORMAT] [-D SET\_FORMAT] [SET] |
 | hwclock | 获取/设置硬件时钟。<br />usage: hwclock [-rswtluf] |
 | sleep   | 等待设置的时间后再退出。可以是小数。可选的后缀可以是“m”（分钟）、“h”（小时）、“d”（天）或“s”（秒，默认值）。<br />usage: sleep DURATION |
 | time    | 运行命令行并报告真实时间、用户时间和系统时间（以秒为单位）。(真实时间=时钟时间，用户时间=命令代码使用cpu的时间，系统时间=操作系统使用cpu的时间。)<br />usage: time [-pv] COMMAND [ARGS...] |
@@ -146,39 +146,35 @@ ls -l /system/bin/cmd
 | w       | 显示用户登录情况和登录时间。<br />usage: w |
 
 ### 进程操作
-
-hdc shell运行时，仅支持pidof/ps/watch/xargs。<br />
-应用沙箱内运行时，仅支持本应用pid namespace里的进程操作。
 > **说明**：
->
->以下命令操作权限外的进程会失效。
+> 部分命令需要较高的权限，操作权限外的进程会失效。
+> 如果命令执行失败，请确认是否拥有对应的权限，产品之间存在差异，详情请咨询产品负责人。
 
 | 命令 | 说明 |
 | :- | :- |
-| chrt      | 获取/设置一个进程的调度策略和优先级。<br />usage: chrt [-Rmofrbi] {-p PID [PRIORITY] | [PRIORITY COMMAND...]} |
+| chrt      | 获取/设置一个进程的调度策略和优先级。<br />usage: chrt [-Rmofrbi] {-p PID [PRIORITY] \| [PRIORITY COMMAND...]} |
 | iorenice  | 显示/修改一个进程的IO优先级。<br />usage: iorenice PID [CLASS] [PRIORITY] |
 | iotop     | 根据I/O对进程排序。<br />usage: iotop [-AaKObq] [-n NUMBER] [-d SECONDS] [-p PID,] [-u USER,] |
-| ionice    | 显示/修改一个进程的IO调度优先级。<br />usage: ionice [-t] [-c CLASS] [-n LEVEL] [COMMAND...|-p PID] |
+| ionice    | 显示/修改一个进程的IO调度优先级。<br />usage: ionice [-t] [-c CLASS] [-n LEVEL] [COMMAND...\|-p PID] |
 | kill      | 向进程发送信号。<br />usage: kill [-l [SIGNAL] \| -s SIGNAL \| -SIGNAL] pid... |
 | killall   | 向具有给定名称的所有进程发送信号（默认：SIGTERM）。<br />usage: killall [-l] [-iqv] [-SIGNAL \| -s SIGNAL]  PROCESS\_NAME... |
 | killall5  | 对当前会话以外的所有进程发送信号。<br />usage: killall5 [-l [SIGNAL]] [-SIGNAL \| -s SIGNAL] [-o PID]... |
 | pidof   | 打印具有给定名称的所有进程的PID。<br />usage: pidof [-s] [-o omitpid[,omitpid...]] [NAME...] |
-| pkill   | 按照进程名来杀死进程。<br />usage: pkill [-fnovx]  [-SIGNAL \| -l SIGNAL] [PATTERN] [-G GID,] [-g PGRP,] [-P PPID,] [-s SID,] [-t TERM,] [-U UID,] [-u EUID,] |
+| pkill   | 按照进程名来杀死进程。<br />usage: pkill [-fnovx] [-SIGNAL \| -l SIGNAL] [PATTERN] [-G GID,] [-g PGRP,] [-P PPID,] [-s SID,] [-t TERM,] [-U UID,] [-u EUID,] |
 | pmap    | 查看进程的内存映射情况。<br />usage: pmap [-xq] [pids...] |
-| ps      | 显示进程信息。<br />usage: ps [-AadefLlnwZ] [-gG GROUP,] [-k FIELD,] [-o FIELD,] [-p PID,] [-t  TTY,] [-uU USER,] |
+| ps      | 显示进程信息。<br />usage: ps [-AadefLlnwZ] [-gG GROUP,] [-k FIELD,] [-o FIELD,] [-p PID,] [-t TTY,] [-uU USER,] |
 | pwdx    | 打印进程的工作目录。<br />usage: pwdx PID... |
 | renice  | 调整进程/组/用户级别的进程优先级。<br />usage: renice [-gpu] -n increment ID ... |
 | setsid  | 在新的会话中运行命令。<br />usage: setsid [-t] command [args...] |
 | taskset | 启动一个仅在指定处理器上运行的任务，或者修改已经存在的进程的处理器偏好。<br />usage: taskset [-ap] [mask] [PID \| cmd [args...]] |
 | timeout | 创建子进程执行命令，如果子进程超时未退出，则向子进程发送一个信号。DURATION可以是小数。可选的后缀可以是“m”（分钟）、“h”（小时）、“d”（天）或“s”（秒，默认值）。<br />usage: timeout [-k DURATION] [-s SIGNAL] DURATION COMMAND... |
-| top     | 实时显示进程信息。<br />usage: top [-Hbq] [-k FIELD,] [-o FIELD,] [-s SORT] [-n NUMBER] [-m LINES]  [-d SECONDS] [-p PID,] [-u USER,] |
-| iotop   | 实时显示进程信息（按I/O对进程进行排名）。<br />usage: iotop [-AaKObq] [-n NUMBER] [-d SECONDS] [-p PID,] [-u USER,] |
+| top     | 实时显示进程信息。<br />usage: top [-Hbq] [-k FIELD,] [-o FIELD,] [-s SORT] [-n NUMBER] [-m LINES] [-d SECONDS] [-p PID,] [-u USER,] |
 | nice    | 以指定的优先级运行命令。<br />usage: nice [-n PRIORITY] COMMAND [ARG...] |
 | nsenter | 在特定的命名空间中运行指令。<br />usage: nsenter [-t pid] [-F] [-i] [-m] [-n] [-p] [-u] [-U] COMMAND... |
 | ulimit/prlimit | 显示或者设置进程的资源限制。<br />usage: ulimit/prlimit [-P PID] [-SHRacdefilmnpqrstuv] [LIMIT] |
 | unshare | 给一个进程创建新的命名空间，部分属性不与父进程共享。<br />usage: unshare [-imnpuUr] COMMAND... |
 | watch   | 每隔-n秒运行一次参数中的命令，显示执行结果。按q退出。<br />usage: watch [-teb] [-n SEC] PROG ARGS |
-| xargs   | 运行命令行一次或多次，附加标准输入设备中的参数。<br />usage: xargs [-0prt] [-s NUM] [-n NUM] [-E STR]  COMMAND... |
+| xargs   | 运行命令行一次或多次，附加标准输入设备中的参数。<br />usage: xargs [-0prt] [-s NUM] [-n NUM] [-E STR] COMMAND... |
 
 ### 设备节点操作
 
@@ -244,15 +240,15 @@ hdc shell运行时，仅支持pidof/ps/watch/xargs。<br />
 | comm      | 读取FILE1和FILE2（这两个文件应该是有序的），并生成三个文本列作为输出：仅在FILE1中的行；仅在FILE2中的行；在两个文件中都有的行。“-”代表标准输入设备<br />usage: comm [-123] FILE1 FILE2  |
 | count     | 将标准输入设备复制到标准输出设备，将简单的进度指示器显示到标准错误输出stderr。<br />usage: count |
 | cp        | 将文件从SOURCE复制到DEST。如果有多个源，DEST必须是一个目录。<br />usage: cp [--preserve=motcxa] [-adlnrsvfipRHLP] SOURCE... DEST |
-| cpio      | 从“newc”格式的cpio档案中中读写文件。<br />usage: cpio -{o\|t\|i\|p DEST} [-v] [--verbose] [-F FILE] [--no-preserve-owner] [ignored: -mdu -H newc] |
+| cpio      | 从“newc”格式的cpio档案中中读写文件。<br />usage: cpio -{o\|t\|i\|p DEST} [-v] [--verbose] [-F FILE] [--no-preserve-owner]<br />&emsp;[ignored: -mdu -H newc] |
 | crc32     | 输出每个文件的crc32校验和。<br />usage: crc32 [file...] |
 | cut       | 将每个FILE中的行的选定部分打印到标准输出。每个选择列表以逗号分隔，可以是数字（从1开始计数）或破折号分隔的范围(其中X-表示X到行尾，-X表示从开始到X)。<br />usage: cut [-Ds] [-bcfF LIST] [-dO DELIM] [FILE...] |
-| dd        |  用于转换和复制文件的命令，可以用于创建磁盘镜像、备份数据、转换字符编码等任务。<br />usage: dd [if=FILE] [of=FILE] [ibs=N] [obs=N] [iflag=FLAGS] [oflag=FLAGS] [bs=N] [count=N] [seek=N] [skip=N] [conv=notrunc\|noerror\|sync\|fsync] [status=noxfer\|none] |
+| dd        |  用于转换和复制文件的命令，可以用于创建磁盘镜像、备份数据、转换字符编码等任务。<br />usage:<br />&emsp; dd [if=FILE] [of=FILE] [ibs=N] [obs=N] [iflag=FLAGS] [oflag=FLAGS]<br />&emsp; [bs=N] [count=N] [seek=N] [skip=N]<br />&emsp; [conv=notrunc\|noerror\|sync\|fsync] [status=noxfer\|none] |
 | diff      | 比较文件/文件夹，输出差异。<br />usage: diff [-abBdiNqrTstw] [-L LABEL] [-S FILE] [-U LINES] FILE1 FILE2 |
 | dirname   | 显示路径的目录部分。<br />usage: dirname PATH... |
 | dos2unix  | 将换行符格式从dos“\\r\\n”转换为unix“\\n”。如果没有列出文件，从标准输入设备获取输入。“-”代表标准输入设备。<br />usage: dos2unix [FILE...] |
 | echo      | 将每个参数写入标准输出设备，每个参数之间有一个空格，后跟一个换行符。<br />usage: echo [-neE] [args...] |
-| grep/egrep/fgrep | 显示匹配正则表达式的行。如果没有-e，则第一个参数为要匹配的正则表达式。没有文件（或“-”文件名）读取标准输入设备。如果匹配，则返回0；如果找不到匹配，则返回1；如果命令错误，则返回2。<br />usage: grep/egrep/fgrep [-EFrivwcloqsHbhn] [-ABC NUM] [-m MAX] [-e REGEX]... [-MS  PATTERN]... [-f REGFILE] [FILE]... |
+| grep/egrep/fgrep | 显示匹配正则表达式的行。如果没有-e，则第一个参数为要匹配的正则表达式。没有文件（或“-”文件名）读取标准输入设备。如果匹配，则返回0；如果找不到匹配，则返回1；如果命令错误，则返回2。<br />usage: grep/egrep/fgrep [-EFrivwcloqsHbhn] [-ABC NUM] [-m MAX] [-e REGEX]... [-MS PATTERN]... [-f REGFILE] [FILE]... |
 | gzip      | 压缩文件。<br />usage: gzip [-19cdfk] [FILE...] |
 | expand    | 根据输入参数将制表符展开为空格。<br />usage: expand [-t TABLIST] [FILE...] |
 | fallocate | 让文件系统给文件预留空间。<br />usage: fallocate [-l size] [-o offset] file |
@@ -279,11 +275,11 @@ hdc shell运行时，仅支持pidof/ps/watch/xargs。<br />
 | mknod     | 创建一个特殊的文件(b为块设备，c或u为字符设备，p为命名管道)。<br />usage: mknod [-m MODE] NAME TYPE [MAJOR MINOR] |
 | more      | 查看文件，一次一页。<br />usage: more [FILE...] |
 | mv        | 移动或重命名文件。<br />usage: mv [-fivn] SOURCE... DEST |
-| nl        | 给输入的文件添加行号。<br />usage: nl [-E] [-l #] [-b MODE] [-n STYLE] [-s SEPARATOR] [-v #] [-w WIDTH]  [FILE...] |
+| nl        | 给输入的文件添加行号。<br />usage: nl [-E] [-l #] [-b MODE] [-n STYLE] [-s SEPARATOR] [-v #] [-w WIDTH] [FILE...] |
 | od        | 以八进制/十六进制格式转储数据。<br />usage: od [-bcdosxv] [-j #] [-N #] [-w #] [-A doxn] [-t acdfoux[#]] |
 | paste     | 从每个输入文件中合并相应的行。<br />usage: paste [-s] [-d DELIMITERS] [FILE...] |
 | patch     | 将统一的diff应用于一个或多个文件。<br />usage: patch [-d DIR] [-i file] [-p depth] [-Rlsu] [--dry-run] |
-| pgrep     | 查找进程。PATTERN是扩展正则表达式，用于命令名称的检测。<br />usage: pgrep [-clfnovx] [-d DELIM] [-L SIGNAL] [PATTERN] [-G GID,] [-g  PGRP,] [-P PPID,] [-s SID,] [-t TERM,] [-U UID,] [-u EUID,] |
+| pgrep     | 查找进程。PATTERN是扩展正则表达式，用于命令名称的检测。<br />usage: pgrep [-clfnovx] [-d DELIM] [-L SIGNAL] [PATTERN] [-G GID,] [-g PGRP,] [-P PPID,] [-s SID,] [-t TERM,] [-U UID,] [-u EUID,] |
 | printf    | 使用C语言的printf语法，根据Format格式化并打印参数。<br />usage: printf FORMAT [ARGUMENT...] |
 | pwd       | 打印工作（当前）目录。<br />usage: pwd [-L \| -P] |
 | readahead | 将文件预加载到磁盘缓存中。<br />usage: readahead FILE... |
@@ -295,8 +291,7 @@ hdc shell运行时，仅支持pidof/ps/watch/xargs。<br />
 | sed       | 流编辑器。将编辑脚本应用于输入行。<br />usage: sed [-inrzE] [-e SCRIPT]... \| SCRIPT [-f SCRIPT\_FILE]... [FILE...] |
 | seq       | 从头到尾按递增计数。省略参数默认值为1。使用两个参数作为第一个和最后一个。参数可以是负数或浮点数。<br />usage: seq [-w \| -f fmt\_str] [-s sep\_str] [first] [increment] last |
 | setfattr  | 写入 POSIX 扩展属性。<br />usage: setfattr [-h] [-x \| -n NAME] [-v VALUE] FILE... |
-| sha1sum   | 计算sha1哈希值。<br />usage: sha?sum [-bcs] [FILE]... |
-| sha256sum | 计算sha256哈希值。<br />usage: sha?sum [-bcs] [FILE]... |
+| sha1sum/sha256sum | 计算sha系列哈希值。<br />usage: sha?sum [-bcs] [FILE]... |
 | shred     | 安全的删除文件（用随机数据覆盖文件内容）。<br />usage: shred [-fuz] [-n COUNT] [-s SIZE] FILE... |
 | sort      | 对从输入文件（或标准输入设备）到标准输出设备的所有文本行进行排序。<br />usage: sort [-Mbcdfginrsuz] [FILE...] [-k#[,#[x]] [-t X]] [-o FILE] |
 | split     | 将输入（或标准输入设备）数据复制到一系列输出（或“x”）文件，使用按字母顺序递增的后缀（aa,ab,ac...az,ba,bb...）。<br />usage: split [-a SUFFIX\_LEN] [-b BYTES] [-l LINES] [INPUT [OUTPUT]] |
@@ -305,7 +300,7 @@ hdc shell运行时，仅支持pidof/ps/watch/xargs。<br />
 | tac       | 以相反的顺序输出行。<br />usage: tac [FILE...] |
 | tail      | 将文件中的最后几行复制到标准输出设备中。“-”代表标准输入设备。<br />usage: tail [-n\|c NUMBER] [-f] [FILE...] |
 | tar       | 在.tar文件中创建、解压缩或列出文件。<br />usage: tar [-cxt] [-fvohmjkOS] [-XTCf NAME] [FILES] |
-| tee       | 将标准输入设备复制到每个列出的文件，也复制到标准输出设备。“-”代表标准输出设备。<br />usage: tee [-ai] [FILE...] |
+| tee       | 将标准输入设备复制到每个列出的文件，也复制到标准输出设备。“-”代表标准输出设备。<br />usage: tee [-ai] [file...] |
 | touch     | 更新每个FILE的访问和修改时间为当前时间。<br />usage: touch [-amch] [-d DATE] [-t TIME] [-r FILE] FILE... |
 | truncate  | 设置文件的长度，必要时稀疏扩展。<br />usage: truncate [-c] -s SIZE file... |
 | uniq      | 报告或过滤文件中的重复行。<br />usage: uniq [-cduiz] [-w maxchars] [-f fields] [-s char] [input\_file [output\_file]] |
