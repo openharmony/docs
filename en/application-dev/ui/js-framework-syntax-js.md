@@ -127,7 +127,7 @@ The ES6 syntax is supported.
 - Event methods
   | Name | Parameter | Description |
   | -------- | -------- | -------- |
-  | $watch | data: string, callback: string \| Function | Listens for attribute changes. If the value of the data attribute changes, the bound event is triggered. For details, see [Monitoring Data Changes by $watch](../reference/apis-arkui/arkui-js/js-components-custom-props.md#monitoring-data-changes-by-watch).<br/>Usage:<br/>this.$watch('key', callback) |
+  | $watch | data: string, callback: string \| Function | Listens for attribute changes. If the value of the data attribute changes, the bound event is triggered.<br/> For details, see Monitoring Data Changes by $watch. <br/> Usage:this.$watch('key', callback)  |
 
 - Page methods
   | Name | Parameter | Description |
@@ -306,3 +306,5 @@ export default {
 ```
 
 ![en-us_image_0000001118642009](figures/en-us_image_0000001118642009.gif)
+
+
