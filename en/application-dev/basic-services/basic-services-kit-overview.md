@@ -1,11 +1,10 @@
-# Introduction to Basic Service Kit
+# Introduction to Basic Services Kit
 
-Basic Service Kit provides basic capabilities for application developers, from pasteboard read/write, file upload/download, file compression, file printing, inter-process/inter-thread communication, to device and application account management.
+Basic Services Kit provides basic capabilities for application developers, from pasteboard read/write, file upload/download, file compression, file printing, inter-process/inter-thread communication, to device and application account management.
 
 ## When to Use
 
-Among the various use cases,
-Basic Services Kit is typically used in the following:
+Among the various use cases, Basic Services Kit is typically used in the following:
 
 - Pasteboard read/write
   - Intra-device copy and paste: For example, copy a piece of text in application A and paste it to another application.
@@ -53,4 +52,4 @@ Depending on different use cases, this Kit provides the following capabilities:
 
 - [Ability Kit](../application-models/abilitykit-overview.md): Common events in this Kit are required for inter-process communication in Ability Kit.
 
-- [Core File Kit](../file-management/core-file-kit-intro.md): Core File Kit provides file access and management capabilities. You use Core File Kit for application file access, file sharing, and data backup and restore, and use this Kit to implement file compression, file upload and download, and file printing.
+- [Core File Kit](../file-management/core-file-kit-intro.md): Core File Kit provides file access and management capabilities. You can use Core File Kit for application file access, file sharing, and data backup and restore, and use this Kit to implement file compression, file upload and download, and file printing.
