@@ -718,7 +718,8 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取区域内的图像像素数据，并按照BGRA_8888格式读入缓冲区中。使用Promise形式返回。
+读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。使用 Promise 形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -786,7 +787,8 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取区域内的图像像素数据，并按照BGRA_8888格式读入缓冲区中。使用callback形式返回。
+读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。使用 callback 形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -855,7 +857,8 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-以同步方式读取区域内的图像像素数据，并按照BGRA_8888格式读入缓冲区中。
+以同步方式读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -898,7 +901,8 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-将BGRA_8888格式的图像像素数据写入指定区域内。使用Promise形式返回。
+读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。使用 Promise 形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -974,7 +978,8 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-将BGRA_8888格式的图像像素数据写入指定区域内。使用callback形式返回。
+读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。使用 callback 形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1049,7 +1054,8 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-以同步方式将BGRA_8888格式的图像像素数据写入指定区域内。
+以同步方式读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
