@@ -2691,6 +2691,54 @@ off(type: 'trackInfoUpdate', callback?: Callback\<Array\<MediaDescription>>): vo
 avPlayer.off('trackInfoUpdate')
 ```
 
+### on('amplitudeUpdate')<sup>13+</sup>
+
+on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
+
+订阅音频最大电平值，音频资源播放时定时上报。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件回调类型，支持的事件为：'amplitudeUpdate'。 |
+| callback | Callback\<Array\<number>> | 是   | 音频最大电平值更新事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
+  console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}')
+})
+```
+
+### off('amplitudeUpdate')<sup>13+</sup>
+
+off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
+
+取消订阅获取音频最大电平值事件。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 事件回调类型，支持的事件为：'amplitudeUpdate'。 |
+| callback | Callback\<Array\<number>> | 否   | 取消音频最大电平值更新事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.off('amplitudeUpdate')
+```
+
 ## AVPlayerState<sup>9+</sup>
 
 type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error'
