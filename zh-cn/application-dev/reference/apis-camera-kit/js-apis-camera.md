@@ -1282,6 +1282,18 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010格式的图片。      |
 | CAMERA_FORMAT_YCRCB_P010<sup>11+</sup> |   2002    | YCRCB_P010格式的图片。      |
+| CAMERA_FORMAT_HEIC<sup>13+</sup>       |   2003    | HEIF格式的图片。            |
+
+## VideoCodecType<sup>13+</sup>
+
+枚举，视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称   | 值    | 说明          |
+|------|------|-------------|
+| HVC  | 0    | 视频编码类型HVC。  |
+| HEVC | 1 | 视频编码类型HEVC。 |
 
 ## CameraInput
 
@@ -2740,6 +2752,67 @@ isMirrorSupported(): boolean
 function isMirrorSupported(photoOutput: camera.PhotoOutput): boolean {
   let isSupported: boolean = photoOutput.isMirrorSupported();
   return isSupported;
+}
+```
+
+### getSupportedMovingPhotoVideoCodecTypes<sup>13+</sup>
+
+getSupportedMovingPhotoVideoCodecTypes(): Array\<VideoCodecType\>
+
+查询支持的动态照片短视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                |
+| -------------- |-------------------|
+| Array\<[VideoCodecType](#videocodectype13)\> | 支持的动态照片短视频编码类型列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID        | 错误信息                      |
+| --------------- | ---------------               |
+| 7400201         |  Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function getSupportedMovingPhotoVideoCodecType(photoOutput: camera.PhotoOutput): Array<camera.VideoCodecType> {
+  let supportedVideoCodecTypesArray: Array<camera.VideoCodecType> = photoOutput.getSupportedMovingPhotoVideoCodecTypes();
+  return supportedVideoCodecTypesArray;
+}
+```
+
+### setMovingPhotoVideoCodecType<sup>13+</sup>
+
+setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
+
+设置动态照片短视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名        | 类型                                  | 说明                |
+| ------------- |-------------------------------------| ------------        |
+| codecType     | [VideoCodecType](#videocodectype13) | 获取动态照片短视频编码类型  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID        | 错误信息                      |
+| --------------- | ---------------               |
+| 7400201         |  Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function setMovingPhotoVideoCodecTypes(photoOutput: camera.PhotoOutput, videoCodecType: camera.VideoCodecType): void {
+   photoOutput.setMovingPhotoVideoCodecType(videoCodecType);
 }
 ```
 
