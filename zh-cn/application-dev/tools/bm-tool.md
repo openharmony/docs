@@ -319,12 +319,12 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 
   **表11** 共享库查询命令列表
 
-| 命令                                             | 描述                                   |
-| ------------------------------------------------ | -------------------------------------- |
-| bm dump-shared -h  | 显示dump-shared支持的命令信息。-h为非必选字段。          |
-| bm dump-shared -a          | 查询系统中已安装所有共享库。-a为非必选字段。     |
-| bm dump-shared -n \<bundleName\>            | 查询指定共享库包名的详细信息。-n为非必选字段。           |
-| bm dump-shared -n \<bundleName\> -m \<moduleName\>      | 查询指定共享库包名和模块名的详细信息。-m为非必选字段。     |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示dump-shared支持的命令信息。 |
+| -a | 否 | 查询系统中已安装所有共享库。|
+| -n | 否 | 查询指定共享库包名的详细信息。|
+| -m | 否 | 查询指定共享库包名和模块名的详细信息。|
 
 
 示例：
@@ -346,11 +346,11 @@ bm dump-dependencies [-h] [-n bundleName] [-m moduleName]
 ```
 
   **表12** 共享库依赖关系查询命令列表
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm dump-dependencies -h | 显示bm dump-dependencies支持的命令信息。-h为非必选字段。 |
-| bm dump-dependencies -n \<bundleName\> | 查询指定应用依赖的共享库信息。-n为必选字段。 |
-| bm dump-dependencies -n \<bundleName\> -m \<moduleName\> | 查询指定应用指定模块依赖的共享库信息。-m为非必选字段。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示dump-dependencies支持的命令信息。 |
+| -n | 是 | 查询指定共享库包名的详细信息。|
+| -m | 否 | 查询指定应用指定模块依赖的共享库信息。|
 
 * 示例
 ```Bash
@@ -367,13 +367,12 @@ bm compile [-h] [-m mode] [-r bundleName]
 ```
   **表13** compile命令列表
 
-| 命令 | 描述 |
-| -------- | -------- |
-| bm compile -h| 显示compile支持的命令信息。-h为非必选字段。 |
-| bm compile -m \<mode-name\>| 根据包名编译应用。-m为非必选字段，可选值为partial或者full。 |
-| bm compile -m \<mode-name\> -a| 编译所有应用。-a为非必选字段。 |
-| bm compile -r -a| 移除所有编译应用的结果。-r为非必选字段。 |
-| bm compile -r \<bundleName\>| 移除应用的结果。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示compile支持的命令信息。 |
+| -a | 是 | 编译所有应用。|
+| -m | 否，可选值为partial或者full。 | 根据包名编译应用。|
+| -r | 否 | 移除应用的结果。|
 
 示例：
 
@@ -392,11 +391,11 @@ bm copy-ap [-h] [-a] [-n bundleName]
 
 **表14** copy-ap命令列表
 
-| 命令 | 描述 |
-| -------- | -------- |
-| bm copy-ap -h| 显示copy-ap支持的命令信息。-h为非必选字段。 |
-| bm copy-ap -a| 拷贝所有包相关ap文件。-a为非必选字段。 |
-| bm copy-ap -n \<bundleName\>| 根据包名拷贝对应包相关的ap文件。-n为非必选字段。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示copy-ap支持的命令信息。 |
+| -a | 否，默认所有包相关ap文件 | 拷贝所有包相关ap文件。|
+| -n | 否，默认当前应用包名 | 根据包名拷贝对应包相关的ap文件。|
 
 示例：
 
@@ -413,14 +412,13 @@ bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId] [-t targetModul
 ```
 
 **表15** dump-overlay命令列表
-| 命令 | 描述 |
-| -------- | -------- |
-| bm dump-overlay -h| 显示dump-overlay支持的命令信息。-h为非必选字段。 |
-| bm dump-overlay -b \<bundleName\>| 获取指定应用的所有OverlayModuleInfo信息。-b为必选字段。 |
-| bm dump-overlay -b \<bundleName\> -m \<moduleName\>| 根据指定的包名和module名查询OverlayModuleInfo信息。-m为非必选字段。 |
-| bm dump-overlay -b \<bundleName\> -t \<target-moduleName\>| 根据指定的包名和目标module名查询OverlayModuleInfo信息。-t为非必选字段。 |
-| bm dump-overlay -b \<bundleName\> -t \<target-moduleName\> -u \<userId\>| 根据指定的包名、目标module名和用户查询OverlayModuleInfo信息。-u为非必选字段，默认为当前活跃用户。 |
-
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示dump-overlay支持的命令信息。 |
+| -b | 是 | 获取指定应用的所有OverlayModuleInfo信息。|
+| -m | 否，默认当前应用主模块名 | 根据指定的包名和module名查询OverlayModuleInfo信息。|
+| -t | 否 | 根据指定的包名和目标module名查询OverlayModuleInfo信息。|
+| -u | 否，默认为当前活跃用户。 | 根据指定的包名、目标module名和用户查询OverlayModuleInfo信息。 |
 示例：
 
 ```bash
@@ -443,12 +441,12 @@ bm dump-target-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
 ```
 
 **表16** dump-overlay命令列表
-| 命令 | 描述 |
-| -------- | -------- |
-| bm dump-target-overlay -h| 显示dump-target-overlay支持的命令信息。-h为非必选字段。 |
-| bm dump-target-overlay -b \<bundleName\> | 获取指定目标应用的所有OverlayBundleInfo信息。-b为必选字段。 |
-| bm dump-target-overlay -b \<bundleName\> -m \<moduleName\> | 根据指定的目标应用的包名和module名查询OverlayModuleInfo信息。-m为非必选字段。 |
-| bm dump-target-overlay -b \<bundleName\> -m \<moduleName\> -u \<userId\> | 根据指定的目标应用的包名、module名和用户查询OverlayModuleInfo信息。-u为非必选字段，默认为当前活跃用户。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示dump-target-overlay支持的命令信息。 |
+| -b | 是 | 获取指定应用的所有OverlayBundleInfo信息。|
+| -m | 否，默认当前应用主模块名 | 根据指定的包名和module名查询OverlayBundleInfo信息。|
+| -u | 否，默认为当前活跃用户。 | 根据指定的包名、目标module名和用户查询OverlayBundleInfo信息。 |
 
 示例：
 
