@@ -112,7 +112,7 @@ bindSheet组件。
 
 默认行为变更，无需适配。
 
-## cl.arkui.3  文本拖拽规格变更
+## cl.arkui.3  文本拖拽结束键盘行为变更
 
 **访问级别**
 
@@ -120,7 +120,7 @@ bindSheet组件。
 
 **变更原因**
 
-系统默认行为变更
+优化系统易用性，提升用户体验
 
 **变更影响**
 
@@ -129,6 +129,10 @@ bindSheet组件。
 变更前：从文本框A拖拽到文本框B，文本框B获焦拉起键盘，触发onEditChange回调。
 
 变更后：从文本框A拖拽到文本框B，焦点转移到根节点。文本框B没有获焦，因此不触发onEditChange回调。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/keyboard_before.gif) | ![](figures/keyboard_after.gif) |
 
 **起始API Level**
 
@@ -140,7 +144,7 @@ API 8
 
 **变更的接口/组件**
 
-textInput/textArea/search
+textInput/textArea/search组件的onEditChange接口
 
 **适配指导**
 
