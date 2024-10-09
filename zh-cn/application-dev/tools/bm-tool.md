@@ -1132,9 +1132,8 @@ Error: install version not compatible.
 当前安装HSP的版本信息与已安装HAP的版本信息不匹配。
 安装HSP时会做如下校验：
 1. bundleName和HAP的一致。
-2. apiReleaseType和HAP的一致。
-3. version和HAP的一致。
-4. 签名和HAP的一致。
+2. version和HAP的一致。
+3. 签名和HAP的一致。
 
 **处理步骤**
 
