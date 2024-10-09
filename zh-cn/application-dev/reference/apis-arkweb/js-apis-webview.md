@@ -1476,7 +1476,7 @@ struct WebComponent {
 
 clearHistory(): void
 
-删除所有前进后退记录。
+删除所有前进后退记录，不建议在onErrorReceive与onPageBegin中调用clearHistory，会造成异常退出。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
