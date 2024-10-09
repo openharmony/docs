@@ -12,7 +12,7 @@
 
 ## 引入与使用流程
 
-媒体查询通过mediaquery模块接口，设置查询条件并绑定回调函数，在对应的条件的回调函数里更改页面布局或者实现业务逻辑，实现页面的响应式设计。具体步骤如下：
+媒体查询通过mediaquery模块接口，设置查询条件并绑定回调函数，任一[媒体特征](#媒体特征media-feature)改变时，均会触发回调函数，返回匹配结果，根据返回值更改页面布局或者实现业务逻辑，实现页面的响应式设计。具体步骤如下：
 
 首先导入媒体查询模块。
 
@@ -155,7 +155,6 @@ import { common } from '@kit.AbilityKit';
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
-  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   // 当设备横屏时条件成立
   listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)');
 
@@ -222,7 +221,6 @@ import { featureAbility } from '@kit.AbilityKit';
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
-  @State portraitFunc:mediaquery.MediaQueryResult|void|null = null;
   listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // 当设备横屏时条件成立
 
   onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) { // 当满足媒体查询条件时，触发回调
