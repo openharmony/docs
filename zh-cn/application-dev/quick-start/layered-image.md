@@ -1,6 +1,6 @@
 # 配置分层图标
 
-应用图标如果采用分层图标（包括前景图和背景图两层），可以参考本章节进行配置。图标规范详见[图标资源规范](https://developer.huawei.com/consumer/cn/doc/design-guides/application-icon-0000001953444009#section634668113212)。
+应用图标如果采用分层图标（包括前景图和背景图两层），可以参考本章节进行配置。图标规范详见[图标交付](https://docs.openharmony.cn/pages/v5.0/zh-cn/design/ux-design/visual-app-icons.md#%E5%9B%BE%E6%A0%87%E4%BA%A4%E4%BB%98)。
 
 ## 配置步骤
 1. 将前景资源和背景资源文件放在“AppScope\resources\base\media”文件下。
