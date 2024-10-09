@@ -9268,7 +9268,7 @@ struct WebComponent {
 }
 ```
 
-### fetchCookie<sup>13+</sup>
+### fetchCookie<sup>14+</sup>
 
 static fetchCookie(url: string, incognito: boolean): Promise\<string>
 
@@ -9450,7 +9450,7 @@ struct WebComponent {
 }
 ```
 
-### configCookieSync<sup>13+</sup>
+### configCookieSync<sup>14+</sup>
 
 static configCookieSync(url: string, value: string, incognito: boolean, includeHttpOnly: boolean): void
 
@@ -9629,7 +9629,7 @@ struct WebComponent {
 }
 ```
 
-### configCookie<sup>13+</sup>
+### configCookie<sup>14+</sup>
 
 static configCookie(url: string, value: string, incognito: boolean, includeHttpOnly: boolean): Promise\<void>
 
