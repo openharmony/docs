@@ -1910,7 +1910,7 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 
 | 参数名   | 类型                                     | 必填   | 说明             |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](#nestedscrolloptions11对象说明) \| [NestedScrollOptionsExt](#nestedscrolloptionsext13对象说明)<sup>13+</sup> | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
+| value | [NestedScrollOptions](#nestedscrolloptions11对象说明) \| [NestedScrollOptionsExt](#nestedscrolloptionsext14对象说明)<sup>14+</sup> | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
 
 **示例：**
 
@@ -7384,7 +7384,7 @@ Web屏幕捕获的配置。
 | scrollForward  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
 | scrollBackward | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
 
-## NestedScrollOptionsExt<sup>13+</sup>对象说明
+## NestedScrollOptionsExt<sup>14+</sup>对象说明
 
 通过NestedScrollOptionsExt可以设置上下左右四个方向的嵌套滚动规则。
 
