@@ -738,26 +738,33 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
-
+  
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State isShow: boolean = false;
-
+    @State isShow: boolean = true;
+    @State btnMsg: string ="隐藏滚动条";
+  
     build() {
       Column() {
         //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
-        Button('refresh')
+        Button(this.btnMsg)
           .onClick(() => {
-            this.isShow = true;
+            if(this.isShow){
+              this.isShow = false;
+              this.btnMsg="显示滚动条";
+            }else{
+              this.isShow = true;
+              this.btnMsg="隐藏滚动条";
+            }
             try {
               this.controller.refresh();
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
-          })
-        Web({ src: $rawfile('index.html'), controller: this.controller })
+          }).height("10%").width("40%")
+        Web({ src: $rawfile('index.html'), controller: this.controller }).height("90%")
           .horizontalScrollBarAccess(this.isShow)
       }
     }
@@ -770,15 +777,16 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
   <!DOCTYPE html>
   <html>
   <head>
+      <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0">
       <title>Demo</title>
       <style>
-        body {
-          width:3000px;
-          height:3000px;
-          padding-right:170px;
-          padding-left:170px;
-          border:5px solid blueviolet
-        }
+          body {
+            width:3000px;
+            height:6000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+          }
       </style>
   </head>
   <body>
@@ -810,27 +818,34 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
-
+  
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State isShow: boolean = false;
-
+    @State isShow: boolean = true;
+    @State btnMsg: string ="隐藏滚动条";
+  
     build() {
       Column() {
-        //通过@State变量改变纵向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
-        Button('refresh')
-        .onClick(() => {
-          this.isShow = true;
-          try {
-            this.controller.refresh();
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-        Web({ src: $rawfile('index.html'), controller: this.controller })
-        .verticalScrollBarAccess(this.isShow)
+        //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        Button(this.btnMsg)
+          .onClick(() => {
+            if(this.isShow){
+              this.isShow = false;
+              this.btnMsg="显示滚动条";
+            }else{
+              this.isShow = true;
+              this.btnMsg="隐藏滚动条";
+            }
+            try {
+              this.controller.refresh();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          }).height("10%").width("40%")
+        Web({ src: $rawfile('index.html'), controller: this.controller }).height("90%")
+          .verticalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -842,15 +857,16 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   <!DOCTYPE html>
   <html>
   <head>
+      <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0">
       <title>Demo</title>
       <style>
-        body {
-          width:3000px;
-          height:3000px;
-          padding-right:170px;
-          padding-left:170px;
-          border:5px solid blueviolet
-        }
+          body {
+            width:3000px;
+            height:6000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+          }
       </style>
   </head>
   <body>
@@ -1814,13 +1830,16 @@ layoutMode(mode: WebLayoutMode)
 
 > **说明：**
 >
-> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web组件大小基于前端页面大小的自适应网页布局（WebLayoutMode.FIT_CONTENT）。
+> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web组件高度基于前端页面高度的自适应网页布局（WebLayoutMode.FIT_CONTENT）。
 >
-> Web组件大小基于前端页面自适应布局有如下限制：
+> Web组件高度基于前端页面自适应布局有如下限制：
 > - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式，否则会整个白屏。
 > - Web组件创建后不支持动态切换layoutMode模式
 > - Web组件宽高规格：分别不超过50万px。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
+> - 不支持瀑布流网页（下拉到底部加载更多）。
+> - 仅支持高度自适应，不支持宽度自适应。
+> - 由于高度自适应网页高度，您无法通过修改组件高度属性来修改组件高度。
 
 **参数：**
 
@@ -1839,7 +1858,7 @@ layoutMode(mode: WebLayoutMode)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+    mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
 
     build() {
       Column() {
@@ -1859,7 +1878,7 @@ layoutMode(mode: WebLayoutMode)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State layoutMode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+    layoutMode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
     @State overScrollMode: OverScrollMode = OverScrollMode.NEVER;
 
     build() {

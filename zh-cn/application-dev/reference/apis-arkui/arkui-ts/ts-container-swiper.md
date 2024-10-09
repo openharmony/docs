@@ -7,7 +7,8 @@
 > - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - Swiper组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
-
+>
+> - Swiper组件内包含了[PanGesture](ts-basic-gestures-pangesture.md)拖动手势事件，用于滑动轮播子组件。[disableSwipe](#disableswipe8)属性设为true会取消内部的PanGesture事件监听。
 
 ## 子组件
 

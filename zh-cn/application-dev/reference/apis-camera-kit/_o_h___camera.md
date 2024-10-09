@@ -1334,7 +1334,7 @@ typedef void (*OH_PhotoOutput_OnFrameShutterEnd) (Camera_PhotoOutput* photoOutpu
 | 名称 | 描述 | 
 | -------- | -------- |
 | photoOutput | 传递回调的[Camera_PhotoOutput](#camera_photooutput)。 | 
-| Info | 回调传递的[Camera_CaptureStartInfo](_camera___capture_start_info.md)。 | 
+| Info | 回调传递的[Camera_FrameShutterInfo](_camera___frame_shutter_info.md)。 | 
 
 
 ### OH_PhotoOutput_OnFrameStart
@@ -4559,7 +4559,7 @@ Camera_ErrorCode OH_CaptureSession_SetSessionMode(Camera_CaptureSession* session
 | 名称 | 描述 | 
 | -------- | -------- |
 | session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| sceneMode | [CaptureSession_SceneMode](#camera_scenemode-1)实例。 | 
+| sceneMode | [Camera_SceneMode](#camera_scenemode-1)实例。 | 
 
 **返回：**
 
@@ -5085,6 +5085,8 @@ Camera_ErrorCode OH_PhotoOutput_EnableMovingPhoto(Camera_PhotoOutput* photoOutpu
 
 **起始版本：** 12
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -5416,6 +5418,8 @@ Camera_ErrorCode OH_PhotoOutput_RegisterPhotoAvailableCallback(Camera_PhotoOutpu
 
 - CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
 
+- CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。
+
 
 ### OH_PhotoOutput_Release()
 
@@ -5669,6 +5673,8 @@ Camera_ErrorCode OH_PhotoOutput_UnregisterPhotoAvailableCallback(Camera_PhotoOut
 - CAMERA_OK：方法调用成功。
 
 - CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。
+
+- CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。
 
 
 ### OH_PreviewOutput_DeleteFrameRates()

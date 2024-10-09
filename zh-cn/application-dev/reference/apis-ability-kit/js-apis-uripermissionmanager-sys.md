@@ -50,7 +50,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 | 16000050 | Internal error. |
 | 16000058 | Invalid URI flag. |
 | 16000059 | Invalid URI type. |
-| 16000060 | Sandbox application can not grant URI permission. |
+| 16000060 | A sandbox application cannot grant URI permission. |
 
 
 **示例：**
@@ -114,7 +114,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | 16000050 | Internal error. |
   | 16000058 | Invalid URI flag. |
   | 16000059 | Invalid URI type. |
-  | 16000060 | Sandbox application can not grant URI permission. |
+  | 16000060 | A sandbox application cannot grant URI permission. |
 
 **示例：**
     

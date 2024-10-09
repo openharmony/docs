@@ -1282,6 +1282,18 @@ function unregisterTorchStatusChange(cameraManager: camera.CameraManager): void 
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 | CAMERA_FORMAT_YCBCR_P010<sup>11+</sup> |   2001    | YCBCR_P010格式的图片。      |
 | CAMERA_FORMAT_YCRCB_P010<sup>11+</sup> |   2002    | YCRCB_P010格式的图片。      |
+| CAMERA_FORMAT_HEIC<sup>13+</sup>       |   2003    | HEIF格式的图片。            |
+
+## VideoCodecType<sup>13+</sup>
+
+枚举，视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称   | 值    | 说明          |
+|------|------|-------------|
+| HVC  | 0    | 视频编码类型HVC。  |
+| HEVC | 1 | 视频编码类型HEVC。 |
 
 ## CameraInput
 
@@ -2100,7 +2112,7 @@ getPreviewRotation(displayRotation: number): ImageRotation
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| displayRotation | number  | 是   | 屏幕显示补偿角度(图像显示时从设备自然方向逆时针旋转到屏幕显示方向所需的角度) |
+| displayRotation | number  | 是   | 显示设备的屏幕旋转角度，通过[display.getDefaultDisplaySync](../apis-arkui/js-apis-display.md#displaygetdefaultdisplaysync9)获得。 |
 
 **返回值：**
 
@@ -2160,7 +2172,6 @@ setPreviewRotation(previewRotation: ImageRotation, isDisplayLocked?: boolean): v
 
 ```ts
 function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRotation : camera.ImageRotation, isDisplayLocked: boolean): void {
-  let previewRotation: camera.ImageRotation;
   try {
     previewOutput.setPreviewRotation(previewRotation, isDisplayLocked);
   } catch (error) {
@@ -2744,6 +2755,67 @@ function isMirrorSupported(photoOutput: camera.PhotoOutput): boolean {
 }
 ```
 
+### getSupportedMovingPhotoVideoCodecTypes<sup>13+</sup>
+
+getSupportedMovingPhotoVideoCodecTypes(): Array\<VideoCodecType\>
+
+查询支持的动态照片短视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                |
+| -------------- |-------------------|
+| Array\<[VideoCodecType](#videocodectype13)\> | 支持的动态照片短视频编码类型列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID        | 错误信息                      |
+| --------------- | ---------------               |
+| 7400201         |  Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function getSupportedMovingPhotoVideoCodecType(photoOutput: camera.PhotoOutput): Array<camera.VideoCodecType> {
+  let supportedVideoCodecTypesArray: Array<camera.VideoCodecType> = photoOutput.getSupportedMovingPhotoVideoCodecTypes();
+  return supportedVideoCodecTypesArray;
+}
+```
+
+### setMovingPhotoVideoCodecType<sup>13+</sup>
+
+setMovingPhotoVideoCodecType(codecType: VideoCodecType): void
+
+设置动态照片短视频编码类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名        | 类型                                  | 说明                |
+| ------------- |-------------------------------------| ------------        |
+| codecType     | [VideoCodecType](#videocodectype13) | 获取动态照片短视频编码类型  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID        | 错误信息                      |
+| --------------- | ---------------               |
+| 7400201         |  Camera service fatal error.  |
+
+**示例：**
+
+```ts
+function setMovingPhotoVideoCodecTypes(photoOutput: camera.PhotoOutput, videoCodecType: camera.VideoCodecType): void {
+   photoOutput.setMovingPhotoVideoCodecType(videoCodecType);
+}
+```
+
 ### on('captureStart')<sup>(deprecated)</sup>
 
 on(type: 'captureStart', callback: AsyncCallback\<number\>): void
@@ -3237,10 +3309,10 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 **示例：**
 
 ```ts
-function testGetPhotoRotation(photoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
+function testGetPhotoRotation(photoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
   let photoRotation: camera.ImageRotation;
   try {
-    photoRotation = photoOutput.getPhotoRotation(imageRotation);
+    photoRotation = photoOutput.getPhotoRotation(deviceDegree);
     console.log(`Photo rotation is: ${photoRotation}`);
   } catch (error) {
     // 失败返回错误码error.code并处理
@@ -3768,10 +3840,10 @@ getVideoRotation(deviceDegree: number): ImageRotation
 **示例：**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
+function testGetVideoRotation(videoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
   let videoRotation: camera.ImageRotation;
   try {
-    videoRotation = videoOutput.getVideoRotation(imageRotation);
+    videoRotation = videoOutput.getVideoRotation(deviceDegree);
     console.log(`Video rotation is: ${videoRotation}`);
   } catch (error) {
     // 失败返回错误码error.code并处理

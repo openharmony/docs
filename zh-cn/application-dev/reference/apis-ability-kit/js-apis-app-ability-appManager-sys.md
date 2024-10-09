@@ -1842,6 +1842,7 @@ getRunningMultiAppInfo(bundleName: string): Promise\<RunningMultiAppInfo>
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000072 | App clone or multi-instance is not supported. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 
 **示例：**
 

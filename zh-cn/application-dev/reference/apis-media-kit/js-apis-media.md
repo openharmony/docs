@@ -2353,7 +2353,7 @@ on(type: 'audioInterrupt', callback: Callback\<audio.InterruptEvent>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                                                       | 是   | 音频焦点变化事件回调类型，支持的事件：'audioInterrupt'。 |
-| callback | Callback\<[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)> | 是   | 音频焦点变化事件回调方法。                           |
+| callback | Callback\<[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)> | 是   | 音频焦点变化事件回调方法。                           |
 
 **示例：**
 
@@ -2380,7 +2380,7 @@ off(type: 'audioInterrupt', callback?: Callback<audio.InterruptEvent>): void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 音频焦点变化事件回调类型，取消注册的事件：'audioInterrupt'。 |
-| callback | Callback\<[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)> | 否   | 音频焦点变化事件回调方法。<br/>从API version 12开始支持此参数。             |
+| callback | Callback\<[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)> | 否   | 音频焦点变化事件回调方法。<br/>从API version 12开始支持此参数。             |
 
 **示例：**
 
@@ -7552,6 +7552,8 @@ setMimeType(mimeType: AVMimeTypes): void
 | preferredBufferDuration | number | 否  | 播放策略首选缓冲持续时间，单位s，取值范围1-20。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferredHdr | boolean | 否   | 播放策略true是hdr，false非hdr，默认非hdr。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mutedMediaType | [MediaType](#mediatype8) | 否 | 静音播放的媒体类型，仅支持设置 MediaType.MEDIA_TYPE_AUD。 |
+| preferredAudioLanguage | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。 |
+| preferredSubtitleLanguage | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景不涉及，建议缺省。 |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
