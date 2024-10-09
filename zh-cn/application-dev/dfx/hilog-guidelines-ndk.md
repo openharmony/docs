@@ -89,6 +89,10 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 ### 日志回调接口使用示例
 
+> **注意**
+>
+> 回调函数里面不允许再调用hilog接口打印日志，不然会死循环
+
 ```c++
 #include "hilog/log.h"
 static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"};
