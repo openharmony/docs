@@ -89,20 +89,18 @@ bm install -p /data/app/ohos.app.hap -u 100 -w 10
 bm uninstall [-h] [-n bundleName] [-m moduleName] [-u userId] [-k] [-s] [-v versionCode]
 ```
 
-命令可以组合，下面列出部分命令。
-
-
   **表4** 卸载命令列表
 
-| 命令                          | 描述                     |
-| ----------------------------- | ------------------------ |
-| bm uninstall -h | 显示uninstall支持的命令信息。-h为非必选字段。 |
-| bm uninstall -n \<bundleName\> | 通过指定包名卸载应用。-n为必选字段。 |
-| bm uninstall -n \<bundleName\> -u \<userId\>| 通过指定包名和用户卸载应用。-u非必选字段，默认为当前活跃用户。 |
-| bm uninstall -n \<bundleName\> -u \<userId\> -k| 通过指定包名和用户以保留用户数据方式卸载应用。-k为非必选字段。 |
-| bm uninstall -n \<bundleName\> -m \<moduleName\> | 通过指定包名卸载应用的一个模块。-m为非必选字段。 |
-| bm uninstall -n \<bundleName\> -s | 卸载指定的shared bundle。-s为非必选字段，卸载共享库应用时为必选字段。 |
-| bm uninstall -n \<bundleName\> -s -v \<versionCode\> | 卸载指定的shared bundle的指定版本。-v为非必选字段。 |
+| 命令 | 是否必选 | 描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示uninstall支持的命令信息 |
+| -n | 是 | 指定Bundle名称卸载应用 |
+| -m | 否，默认卸载所有模块 | 指定卸载应用的一个模块 |
+| -u | 否，默认卸载当前所有用户下该应用 | 指定用户卸载应用 |
+| -k | 否，默认卸载应用时不保存应用数据 | 卸载应用时保存应用数据 |
+| -s | 根据场景判断，安装应用间HSP时必选字段，其他场景为非必选字段。| 卸载指定的共享库。|
+| -v | 否，默认卸载同包名的所有共享包 | 指示共享包的版本号 |
+
 
 示例：
 
@@ -110,13 +108,15 @@ bm uninstall [-h] [-n bundleName] [-m moduleName] [-u userId] [-k] [-s] [-v vers
 # 卸载一个应用
 bm uninstall -n com.ohos.app
 # 卸载应用的一个模块
-bm uninstall -n com.ohos.app -m entry
+bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility
 # 卸载一个shared bundle
 bm uninstall -n com.ohos.example -s
 # 卸载一个shared bundle的指定版本
 bm uninstall -n com.ohos.example -s -v 100001
 # 卸载一个应用，并保留用户数据
 bm uninstall -n com.ohos.app -k
+# 指定用户卸载应用的一个模块
+bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility -u 100 
 ```
 
 
@@ -125,19 +125,17 @@ bm uninstall -n com.ohos.app -k
 ```bash
 bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-u userId] [-d deviceId]
 ```
-命令可以组合，下面列出部分命令。
-
 
   **表5** 查询命令列表
 
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm dump -h | 显示dump支持的命令信息。-h为非必选字段。 |
-| bm dump -a | 查询系统已经安装的所有应用包名。-a为非必选字段。 |
-| bm dump -n \<bundleName\> | 查询指定包名的详细信息。-n为非必选字段。 |
-| bm dump -n \<bundleName\> -s | 查询指定包名下的快捷方式信息。-s为非必选字段。 |
-| bm dump -n \<bundleName\> -d \<deviceId\> | 跨设备查询包信息。-d为非必选字段。 |
-| bm dump -n \<bundleName\> -u \<userId\> | 查询指定用户下指定包名的详细信息。-u为非必选字段，默认为所有用户。 |
+| 命令 | 是否必选 | 描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示dump支持的命令信息 |
+| -a | 是 | 查询系统已经安装的所有应用 |
+| -n | 是 | 查询指定Bundle名称的详细信息 |
+| -s | 是 | 查询指定Bundle名称下的快捷方式信息 |
+| -d | 否，默认查询当前设备 | 查询指定设备中的包信息 |
+| -u | 否，默认查询当前设备上的所有用户 | 查询指定用户下指定Bundle名称的详细信息 |
 
 
 示例：
@@ -168,6 +166,13 @@ bm clean [-h] [-c] [-n bundleName] [-d] [-u userId] [-i appIndex]
 | bm clean -n \<bundleName\> -c -u \<userId\> | 清除指定用户下包名的缓存数据。-u为非必选字段，默认为当前活跃用户。 |
 | bm clean -n \<bundleName\> -d -u \<userId\> | 清除指定用户下包名的数据目录。 |
 | bm clean -n \<bundleName\> -d -u \<userId\> -i \<appIndex\> | 清除指定用户下分身应用的数据目录。-i为非必选字段，默认为0。 |
+| 命令 | 描述 |
+| -------- | -------- |
+| -h | 显示clean支持的命令信息 |
+| -c&nbsp;-n | 清除指定Bundle名称的缓存数据 |
+| -d&nbsp;-n | 清除指定Bundle名称的数据目录 |
+| -u | 清除指定用户下Bundle名称的缓存数据 |
+
 
 示例：
 
