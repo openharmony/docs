@@ -572,7 +572,7 @@ finishAnimation(callback?: () => void)
 
 ## Indicator<sup>10+</sup>对象说明
 
-设置导航点距离Swiper组件距离。
+设置导航点距离Swiper组件距离。由于导航点有默认交互区域，交互区域高度为32vp, 所以无法让显示部分完全贴底。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
