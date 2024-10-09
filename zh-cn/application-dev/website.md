@@ -854,7 +854,9 @@
       - Data Protection Kit（数据保护服务）<!--data-protection-kit-->
         - 数据防泄漏服务<!--dlp-->
           - [数据防泄漏服务简介](security/DataProtectionKit/dlp-overview.md)
+          <!--Del-->
           - [数据防泄漏服务开发指导](security/DataProtectionKit/dlp-guidelines.md)
+          <!--DelEnd-->
       - Device Certificate Kit（设备证书服务）<!--device-certificate-kit-->
         - [Device Certificate Kit简介](security/DeviceCertificateKit/device-certificate-kit-intro.md)
         - 证书算法库框架<!--certificate-framework-->
