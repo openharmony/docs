@@ -80,7 +80,7 @@
       clonePixelMap(pixelMap: PixelMap, desiredPixelFormat?: image.PixelMapFormat): PixelMap {
         // 获取当前 PixelMap 的图片信息
         const imageInfo = pixelMap.getImageInfoSync();
-        // 获取当前 PixelMap 的像素数据，并根据当前 PixelMap 的像素格式读入缓冲区数组
+        // 读取当前 PixelMap 的图像像素数据，并按照当前 PixelMap 的像素格式写入缓冲区数组
         const buffer = new ArrayBuffer(pixelMap.getPixelBytesNumber());
         pixelMap.readPixelsToBufferSync(buffer);
         // 根据当前 PixelMap 的图片信息，生成初始化选项。
