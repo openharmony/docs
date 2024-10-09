@@ -87,6 +87,10 @@ Image新增[imageAIOptions](ts-image-common.md#imageaioptions)参数，为组件
 
 属性的详细使用指导请参考[添加属性](../../../ui/arkts-graphics-display.md#添加属性)。除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
+> **说明：**
+>
+> Image组件不支持设置通用属性[foregroundColor](./ts-universal-attributes-foreground-color.md#foregroundcolor)，可以通过Image组件的[fillColor](#fillcolor)属性设置填充颜色。
+
 ### alt
 
 alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|&nbsp;PixelMap)
