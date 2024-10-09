@@ -612,7 +612,7 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 | 类型               | 说明                                                |
 | ------------------ | --------------------------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回获取指定应用的通知使能状态的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取指定应用的通知使能状态的结果（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -717,7 +717,7 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -927,7 +927,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取指定应用的角标使能状态。 |
+| Promise\<boolean\> | 以Promise形式返回获取指定应用的角标使能状态（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -1449,7 +1449,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
 获取当前未删除的所有通知。使用Promise异步回调。
 
