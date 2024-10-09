@@ -89,8 +89,6 @@ xx xxxx [h] [****] [****]
 ```bash
 # 场景描述
 xx xxxx 
-# 返回结果
-xxxx .... successfully
 ```
 **举例：**
 ### 安装命令
