@@ -1114,8 +1114,8 @@ Error: uninstall missing installed bundle.
 
 **处理步骤**
 
-1. 手动清理el1/el2下所有未卸载的资源
-2. 重新安装
+1. 手动清理el1/el2下所有未卸载的资源。
+2. 重新安装。
 
 
 ### 9568284 安装版本不匹配      
@@ -1131,15 +1131,15 @@ Error: install version not compatible.
 
 当前安装HSP的版本信息与已安装HAP的版本信息不匹配。
 安装HSP时会做如下校验：
-1. bundleName和HAP的一致
-2. apiReleaseType和HAP的一致
-3. version和HAP的一致
-4. 签名和HAP的一致
+1. bundleName和HAP的一致。
+2. apiReleaseType和HAP的一致。
+3. version和HAP的一致。
+4. 签名和HAP的一致。
 
 **处理步骤**
 
-1. 卸载版本信息不匹配的HAP，再安装HSP
-2. 修改HSP版本信息与HAP一致，再安装HSP
+1. 卸载版本信息不匹配的HAP，再安装HSP。
+2. 修改HSP版本信息与HAP一致，再安装HSP。
 
 ### 9568287 安装包entry模块数量不合规      
 **错误信息**
@@ -1174,8 +1174,8 @@ app.json5文件中app的vendor字段配置不一致。
 
 **处理步骤**
 
-1. 若只有一个hap，要求与已安装应用vendor字段一致，卸载重装即可。
-2. 若包含集成态hsp，要求集成态hsp与使用方hap的vendor字段保持一致。
+1. 若只有一个HAP，要求与已安装应用vendor字段一致，卸载重装即可。
+2. 若包含集成态HSP，要求集成态HSP与使用方HAP的vendor字段保持一致。
 
 
 ### 9568279 安装版本名不一致      
