@@ -1449,11 +1449,11 @@ passwordIcon、showUnderline、showUnit、showError属性接口使用示例。
 @Entry
 @Component
 struct TextInputExample {
-  @State PassWordSrc1: Resource = $r('app.media.onIcon')
-  @State PassWordSrc2: Resource = $r('app.media.offIcon')
-  @State TextError: string = ''
-  @State Text: string = ''
-  @State NameText: string = 'test'
+  @State passWordSrc1: Resource = $r('app.media.onIcon')
+  @State passWordSrc2: Resource = $r('app.media.offIcon')
+  @State textError: string = ''
+  @State text: string = ''
+  @State nameText: string = 'test'
 
   @Builder itemEnd() {
     Select([{ value: 'KB' },
@@ -1483,7 +1483,7 @@ struct TextInputExample {
         .type(InputType.Password)
         .width(380)
         .height(60)
-        .passwordIcon({ onIconSrc: this.PassWordSrc1, offIconSrc: this.PassWordSrc2 })
+        .passwordIcon({ onIconSrc: this.passWordSrc1, offIconSrc: this.passWordSrc2 })
       // 下划线模式
       TextInput({ placeholder: 'underline style' })
         .showUnderline(true)
@@ -1492,22 +1492,22 @@ struct TextInputExample {
         .showError('Error')
         .showUnit(this.itemEnd)
 
-      Text(`用户名：${this.Text}`)
+      Text(`用户名：${this.text}`)
         .width('95%')
-      TextInput({ placeholder: '请输入用户名', text: this.Text })
+      TextInput({ placeholder: '请输入用户名', text: this.text })
         .showUnderline(true)
         .width(380)
-        .showError(this.TextError)
+        .showError(this.textError)
         .onChange((value: string) => {
-          this.Text = value
+          this.text = value
         })
         .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
           // 用户名不正确会清空输入框和用户名并提示错误文本
-          if (this.Text == this.NameText) {
-            this.TextError = ''
+          if (this.text == this.nameText) {
+            this.textError = ''
           } else {
-            this.TextError = '用户名输入错误'
-            this.Text = ''
+            this.textError = '用户名输入错误'
+            this.text = ''
             // 调用keepEditableState方法，输入框保持编辑态
             event.keepEditableState()
           }
@@ -1635,7 +1635,7 @@ struct TextInputExample {
 ```ts
 @Entry
 @Component
-struct phone_example {
+struct TextInputExample {
   @State submitValue: string = ''
   @State text: string = ''
   public readonly NUM_TEXT_MAXSIZE_LENGTH = 13
@@ -1783,14 +1783,18 @@ struct phone_example {
 @Entry
 @Component
 struct Index {
-
   build() {
     Row() {
       Column() {
-        TextInput({placeholder:'提示文本内容'})
+        TextInput({ placeholder: '提示文本内容' })
           .showUnderline(true)
-          .underlineColor({normal:Color.Orange,typing:Color.Green,error:Color.Red,disable:Color.Gray});
-        TextInput({placeholder:'提示文本内容'})
+          .underlineColor({
+            normal: Color.Orange,
+            typing: Color.Green,
+            error: Color.Red,
+            disable: Color.Gray
+          });
+        TextInput({ placeholder: '提示文本内容' })
           .showUnderline(true)
           .underlineColor(Color.Gray);
       }
@@ -1905,19 +1909,18 @@ fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用
 ```ts
 @Entry
 @Component
-struct textInput {
+struct TextInputExample {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
-
   build() {
-    Column(){
-      TextInput({text: this.text1})
+    Column() {
+      TextInput({ text: this.text1 })
         .fontSize(20)
-        .margin({top:200})
+        .margin({ top: 200 })
         .fontFeature("\"ss01\" on")
-      TextInput({text : this.text2})
-        .margin({top:10})
+      TextInput({ text: this.text2 })
+        .margin({ top: 10 })
         .fontSize(20)
         .fontFeature("\"ss01\" off")
     }
@@ -1936,22 +1939,25 @@ struct textInput {
 ```ts
 @Entry
 @Component
-struct Input {
+struct Index {
   controller: TextInputController = new TextInputController()
   @State inputValue: string = ""
-  @State height1:string|number = '80%'
-  @State supportAvoidance:boolean = true;
+  @State height1: string | number = '80%'
+  @State supportAvoidance: boolean = true
+
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
-      Row(){
+      Row() {
         Button('x').onClick(() => {
           // 关闭自定义键盘
           this.controller.stopEditing()
         }).margin(10)
       }
+
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
@@ -1962,18 +1968,19 @@ struct Input {
       }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
     }.backgroundColor(Color.Gray)
   }
+
   build() {
     Column() {
-      Row(){
+      Row() {
         Button("20%")
           .fontSize(24)
-          .onClick(()=>{
+          .onClick(() => {
             this.height1 = "20%"
           })
         Button("80%")
           .fontSize(24)
-          .margin({left:20})
-          .onClick(()=>{
+          .margin({ left: 20 })
+          .onClick(() => {
             this.height1 = "80%"
           })
       }
@@ -1981,10 +1988,12 @@ struct Input {
       .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
-      .padding({bottom:50})
-      TextInput({ controller: this.controller, text: this.inputValue })
-        // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+      .padding({ bottom: 50 })
+
+      TextInput({ controller: this.controller, text: this.inputValue })// 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })
+        .margin(10)
+        .border({ width: 1 })
 
     }
   }
@@ -2005,22 +2014,31 @@ struct TextInputExample {
     Row() {
       Column() {
         Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'This is the text without the height adaptive policy set'})
+        TextInput({ text: 'This is the text without the height adaptive policy set' })
           .width('80%').height(50).borderWidth(1).margin(1)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
           .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
           .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
@@ -2036,51 +2054,45 @@ struct TextInputExample {
 ![TextInputAdaptFont](figures/textinput_adapt_font.png)
 
 ### 示例13
-lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
+lineBreakStrategy使用示例，展示了lineBreakStrategy设置不同挡位的效果。
 
 ```ts
 @Entry
 @Component
-struct TextExample1 {
-  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+struct TextInputExample {
+  @State message1: string =
+    "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
+  @State lineBreakStrategyIndex: number = 0
+  @State lineBreakStrategy: LineBreakStrategy[] = [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
+      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
+      TextInput({ text: this.message1 })
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
         .width('100%')
-        .maxLines(5)
+        .maxLines(12)
         .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.GREEDY)
-      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .maxLines(5)
-        .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
-      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .maxLines(5)
-        .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
+      Row() {
+        Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+          this.lineBreakStrategyIndex++
+          if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0
+          }
+        })
+      }
     }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.PNG)
+![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.gif)
 
 ### 示例14
 
