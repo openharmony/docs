@@ -54,8 +54,6 @@ bm help
 ```bash
 bm install [-h] [-p filePath] [-u userId] [-r] [-w waitingTime] [-s hspDirPath]
 ```
-安装命令可以组合，下面列出部分命令。
-
 
   **表3** 安装命令列表
 
