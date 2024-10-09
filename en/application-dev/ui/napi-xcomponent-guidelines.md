@@ -2,9 +2,9 @@
 
 ## When to Use
 
-**NativeXComponent** provides an instance for the **\<XComponent>** at the native layer, which can be used as a bridge for binding with the **\<XComponent>** at the JS layer. The NDK APIs provided by the **\<XComponent>** depend on this instance. The provided APIs include those for obtaining a native window, obtaining the layout or event information of the **\<XComponent>**, registering the lifecycle callbacks of the **\<XComponent>**, and registering the callbacks for the touch, mouse, and key events of the **\<XComponent>**. You can use the provided APIs in the following scenarios:
+**NativeXComponent** provides an instance for the **XComponent** at the native layer, which can be used as a bridge for binding with the **XComponent** at the JS layer. The NDK APIs provided by the **XComponent** depend on this instance. The provided APIs include those for obtaining a native window, obtaining the layout or event information of the **XComponent**, registering the lifecycle callbacks of the **XComponent**, and registering the callbacks for the touch, mouse, and key events of the **XComponent**. You can use the provided APIs in the following scenarios:
 
-- Register the lifecycle and event callbacks of the **\<XComponent>**.
+- Register the lifecycle and event callbacks of the **XComponent**.
 - Initialize the environment, obtain the current state, and respond to various events via these callbacks.
 - Use the native window and EGL APIs to develop custom drawing content, and apply for and submit buffers to the graphics queue.
 
@@ -12,20 +12,20 @@
 
 | API| Description|
 | -------- | -------- |
-|OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size)|Obtains the ID of an **\<XComponent>**.|
-|OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height)|Obtains the size of the surface held by an **\<XComponent>**.|
-|OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y)|Obtains the offset of the surface held by an **\<XComponent>** relative to the upper left corner of the window.|
-|OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)|Obtains the touch event triggered by an **\<XComponent>**. For details about the attribute values in **touchEvent**, see [OH_NativeXComponent_TouchEvent](../reference/apis-arkui/_o_h___native_x_component___touch_event.md).|
-|OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType)|Obtains the tool type of an **\<XComponent>** touch point.|
-|OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX)|Obtains the tilt of an **\<XComponent>** touch point relative to the x-axis.|
-|OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY)|Obtains the tilt of an **\<XComponent>** touch point relative to the y-axis.|
-|OH_NativeXComponent_GetMouseEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_MouseEvent* mouseEvent)|Obtains the mouse event triggered by an **\<XComponent>**.|
+|OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size)|Obtains the ID of an **XComponent**.|
+|OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height)|Obtains the size of the surface held by an **XComponent**.|
+|OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y)|Obtains the offset of the surface held by an **XComponent** relative to the upper left corner of the window.|
+|OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)|Obtains the touch event triggered by an **XComponent**. For details about the attribute values in **touchEvent**, see [OH_NativeXComponent_TouchEvent](../reference/apis-arkui/_o_h___native_x_component___touch_event.md).|
+|OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType)|Obtains the tool type of an **XComponent** touch point.|
+|OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX)|Obtains the tilt of an **XComponent** touch point relative to the x-axis.|
+|OH_NativeXComponent_GetTouchPointTiltY(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltY)|Obtains the tilt of an **XComponent** touch point relative to the y-axis.|
+|OH_NativeXComponent_GetMouseEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_MouseEvent* mouseEvent)|Obtains the mouse event triggered by an **XComponent**.|
 |OH_NativeXComponent_RegisterCallback(OH_NativeXComponent* component, OH_NativeXComponent_Callback* callback)|Registers a lifecycle or touch event callback for an **OH_NativeXComponent** instance.|
 |OH_NativeXComponent_RegisterMouseEventCallback(OH_NativeXComponent* component, OH_NativeXComponent_MouseEvent_Callback* callback)|Registers the mouse event callback for an **OH_NativeXComponent** instance.|
 |OH_NativeXComponent_RegisterFocusEventCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, void* window))|Registers the focus obtaining event callback for an **OH_NativeXComponent** instance.|
 |OH_NativeXComponent_RegisterKeyEventCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, void* window))|Registers the key event callback for an **OH_NativeXComponent** instance.|
 |OH_NativeXComponent_RegisterBlurEventCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, void* window))|Registers the focus loss event callback for an **OH_NativeXComponent** instance.|
-|OH_NativeXComponent_GetKeyEvent(OH_NativeXComponent* component, OH_NativeXComponent_KeyEvent\** keyEvent)|Obtains the key event triggered by an **\<XComponent>**.|
+|OH_NativeXComponent_GetKeyEvent(OH_NativeXComponent* component, OH_NativeXComponent_KeyEvent\** keyEvent)|Obtains the key event triggered by an **XComponent**.|
 |OH_NativeXComponent_GetKeyEventAction(OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_KeyAction* action)|Obtains the action of a key event.|
 |OH_NativeXComponent_GetKeyEventCode(OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_KeyCode* code)|Obtains the key code value of a key event.|
 |OH_NativeXComponent_GetKeyEventSourceType(OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_EventSourceType* sourceType)|Obtains the input source type of a key event.|
@@ -34,7 +34,7 @@
 
 ## Lifecycle Description
 
-You can use the **\<XComponent>** to develop EGL/OpenGL ES rendering by using the following ArkTS code:
+You can use the **XComponent** to develop EGL/OpenGL ES rendering by using the following ArkTS code:
 
 ```typescript
 @Builder
@@ -47,7 +47,7 @@ function myComponent() {
 
 ### **onLoad** Event
 
-Trigger time: when the surface of the **\<XComponent>** is ready.
+Trigger time: when the surface of the **XComponent** is ready.
 
 **context** parameter: where the native API exposed on the module is mounted. Its usage is similar to the usage of a **context** instance obtained after the module is directly loaded using **import context from "libnativerender.so"**.
 
@@ -57,14 +57,14 @@ Time sequence: subject to the surface. The figure below shows the time sequence 
 
 ### **onDestroy** Event
 
-Trigger time: when the **\<XComponent>** is destroyed, in the same manner as that when an ArkUI component is destroyed. The figure below shows the time sequence of the **onDestroy** event and the **OnSurfaceDestroyed** event at the native layer.
+Trigger time: when the **XComponent** is destroyed, in the same manner as that when an ArkUI component is destroyed. The figure below shows the time sequence of the **onDestroy** event and the **OnSurfaceDestroyed** event at the native layer.
 
 ![onDestroy](./figures/onDestroy.png)
 
 ## How to Develop
-The following describes how to use the **\<XComponent>** to call the native APIs to create the EGL/OpenGL ES environment, draw graphics on the main page, and change graphics colors.
+The following describes how to use the **XComponent** to call the native APIs to create the EGL/OpenGL ES environment, draw graphics on the main page, and change graphics colors.
 
-1. Define the **\<XComponent>** on the GUI.
+1. Define the **XComponent** on the GUI.
 
     ```typescript
     @Entry
@@ -119,7 +119,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");
             return nullptr;
         }
-        // Check whether the environment variables in the method contain the <XComponent> instance. If the instance exists, register the drawing-related API.
+        // Check whether the environment variables in the method contain the XComponent instance. If the instance exists, register the drawing-related API.
         PluginManager::GetInstance()->Export(env, exports);
         return exports;
     }
@@ -158,16 +158,16 @@ The following describes how to use the **\<XComponent>** to call the native APIs
     }
     ```
 
-3. Register the **\<XComponent>** event callback and use the Node-API to implement it.
+3. Register the **XComponent** event callback and use the Node-API to implement it.
 
-   (1) Define the callbacks for the touch event of the **\<XComponent>** and for when a surface is successfully created, changed, or destroyed.
+   (1) Define the callbacks for the touch event of the **XComponent** and for when a surface is successfully created, changed, or destroyed.
 
    ```c++
    // Define the OnSurfaceCreatedCB() function to encapsulate the initialization environment and drawing background.
    void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window)
    {
    	// ...
-   	// Obtain the ID of the <XComponent>, that is, the id parameter in the <XComponent> struct in the JS code.
+   	// Obtain the ID of the XComponent, that is, the id parameter in the XComponent struct in the JS code.
    	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
    	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
    	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
@@ -181,7 +181,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
    	auto render = PluginRender::GetInstance(id);
    	uint64_t width;
    	uint64_t height;
-   	// Obtain the size of the surface held by the <XComponent>.
+   	// Obtain the size of the surface held by the XComponent.
    	int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
    	if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
    		if (render->eglCore_->EglContextInit(window, width, height)) {
@@ -194,7 +194,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
    void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window)
    {
    	// ...
-   	// Obtain the ID of the <XComponent>.
+   	// Obtain the ID of the XComponent.
    	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
    	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
    	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
@@ -215,7 +215,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
    void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window)
    {
    	// ...
-   	// Obtain the ID of the <XComponent>.
+   	// Obtain the ID of the XComponent.
    	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
    	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
    	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
@@ -233,7 +233,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
    void DispatchTouchEventCB(OH_NativeXComponent *component, void *window)
    {
    	// ...
-   	// Obtain the ID of the <XComponent>.
+   	// Obtain the ID of the XComponent.
    	char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
    	uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
    	if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
@@ -352,7 +352,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
        PluginRender* render = PluginRender::GetInstance(id);
        double offsetX;
        double offsetY;
-       // Obtain the offset of the surface held by an <XComponent> relative to the upper left corner of the window.
+       // Obtain the offset of the surface held by an XComponent relative to the upper left corner of the window.
        OH_NativeXComponent_GetXComponentOffset(component, window, &offsetX, &offsetY);
        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OH_NativeXComponent_GetXComponentOffset",
            "offsetX = %{public}lf, offsetY = %{public}lf", offsetX, offsetY);
@@ -369,12 +369,12 @@ The following describes how to use the **\<XComponent>** to call the native APIs
    {
        // ...
        OH_NativeXComponent_TouchEvent touchEvent;
-       // Obtain the touch event triggered by the <XComponent>.
+       // Obtain the touch event triggered by the XComponent.
        OH_NativeXComponent_GetTouchEvent(component, window, &touchEvent);
-       // Obtain the x coordinate of the <XComponent> touch point relative to the left edge of the <XComponent> and the y coordinate of the <XComponent> touch point relative to the upper edge of the <XComponent>.
+       // Obtain the x coordinate of the XComponent touch point relative to the left edge of the XComponent and the y coordinate of the XComponent touch point relative to the upper edge of the XComponent.
        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
            "touch info: x = %{public}lf, y = %{public}lf", touchEvent.x, touchEvent.y);
-       // Obtain the x coordinate and y-coordinate of the <XComponent> touch point relative to the upper left corner of the application window where the <XComponent> is located.
+       // Obtain the x coordinate and y-coordinate of the XComponent touch point relative to the upper left corner of the application window where the XComponent is located.
        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
            "touch info: screenX = %{public}lf, screenY = %{public}lf", touchEvent.screenX, touchEvent.screenY);
        std::string id(idStr);
@@ -387,11 +387,11 @@ The following describes how to use the **\<XComponent>** to call the native APIs
        float tiltY = 0.0f;
        OH_NativeXComponent_TouchPointToolType toolType =
            OH_NativeXComponent_TouchPointToolType::OH_NATIVEXCOMPONENT_TOOL_TYPE_UNKNOWN;
-       // Obtain the tool type of the <XComponent> touch point.
+       // Obtain the tool type of the XComponent touch point.
        OH_NativeXComponent_GetTouchPointToolType(component, 0, &toolType);
-       // Obtain the tilt of the <XComponent> touch point relative to the x-axis.
+       // Obtain the tilt of the XComponent touch point relative to the x-axis.
        OH_NativeXComponent_GetTouchPointTiltX(component, 0, &tiltX);
-       // Obtain the tilt of the <XComponent> touch point relative to the y-axis.
+       // Obtain the tilt of the XComponent touch point relative to the y-axis.
        OH_NativeXComponent_GetTouchPointTiltY(component, 0, &tiltY);
        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
            "touch info: toolType = %{public}d, tiltX = %{public}lf, tiltY = %{public}lf", toolType, tiltX, tiltY);
@@ -401,7 +401,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
    void PluginRender::OnMouseEvent(OH_NativeXComponent *component, void *window) {
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnMouseEvent");
       OH_NativeXComponent_MouseEvent mouseEvent;
-      // Obtain the mouse event triggered by the <XComponent>.
+      // Obtain the mouse event triggered by the XComponent.
       int32_t ret = OH_NativeXComponent_GetMouseEvent(component, window, &mouseEvent);
       if (ret == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
    	   OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "MouseEvent Info: x = %{public}f, y = %{public}f, action = %{public}d, button = %{public}d", mouseEvent.x, mouseEvent.y, mouseEvent.action, mouseEvent.button);
@@ -415,7 +415,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
       OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnKeyEvent");
    
       OH_NativeXComponent_KeyEvent *keyEvent = nullptr;
-      // Obtain the key event triggered by the <XComponent>.
+      // Obtain the key event triggered by the XComponent.
       if (OH_NativeXComponent_GetKeyEvent(component, &keyEvent) >= 0) {
    	   OH_NativeXComponent_KeyAction action;
           // Obtain the action of a key event.
@@ -439,7 +439,7 @@ The following describes how to use the **\<XComponent>** to call the native APIs
    }
    ```
 
-   (2) Register the **\<XComponent>** event callback and call the method defined in step 3.1 when the **\<XComponent>** event is triggered.
+   (2) Register the **XComponent** event callback and call the method defined in step 3.1 when the **XComponent** event is triggered.
 
     ```c++
     void PluginRender::RegisterCallback(OH_NativeXComponent *nativeXComponent) {

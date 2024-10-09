@@ -17,7 +17,7 @@ The following constraints apply when same-layer rendering is used:
 
 - W3C standards-based tags cannot be defined as tags for same-layer rendering.
 
-- The **<object>** tags and **\<embed>** tags cannot be configured for same-layer rendering at the same time.
+- The **\<object>** tags and **\<embed>** tags cannot be configured for same-layer rendering at the same time.
 
 - To deliver best possible performance, keep the number of tags at the same layer on a page within five.
 
@@ -440,7 +440,6 @@ For components that require location information, such as **\<TextInput>** and *
 - Complete sample code on the application side:
 
   ```ts
-  ...
   class MyNodeController extends NodeController {
     ...
     makeNode(uiContext: UIContext): FrameNode | null{
@@ -459,7 +458,6 @@ For components that require location information, such as **\<TextInput>** and *
     ...
   }
 
-
   @Component
   struct TextInputComponent {
     @Prop params: Params
@@ -475,7 +473,7 @@ For components that require location information, such as **\<TextInput>** and *
           .onTouch((event) => {
             console.log('input1 event ' + JSON.stringify(event));
           }).margin({ top: 30})
-
+    
         TextInput({ text: `${this.params.textOne}` })
           .height(50)
           .width(200)
@@ -483,7 +481,7 @@ For components that require location information, such as **\<TextInput>** and *
           .onTouch((event) => {
             console.log('input2 event ' + JSON.stringify(event));
           }).margin({ top: 30})
-
+    
         TextInput({ text: `${this.params.textOne}` })
           .height(50)
           .width(200)
@@ -520,7 +518,7 @@ For components that require location information, such as **\<TextInput>** and *
             ForEach(this.componentIdArr, (componentId: string) => {
               NodeContainer(this.nodeControllerMap.get(componentId)).position(this.edges)
             }, (embedId: string) => embedId)
-
+    
             Web({ src: $rawfile('test.html'), controller: this.browserTabController})
               .enableNativeEmbedMode(true)
               .registerNativeEmbedRule("object", "APPlication/view")
@@ -537,15 +535,15 @@ For components that require location information, such as **\<TextInput>** and *
                     width : px2vp(embed.info?.width),
                     height :px2vp(embed.info?.height)})
                   nodeController.rebuild()
-
+    
                   this.nodeControllerMap.set(componentId, nodeController)
                   this.componentIdArr.push(componentId)
                 } else if (embed.status == NativeEmbedStatus.UPDATE) {
                   console.log("NativeEmbed update" + JSON.stringify(embed.info))
-
+    
                   this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                   let nodeController = this.nodeControllerMap.get(componentId)
-
+    
                   nodeController?.updateNode({text: 'update',   width : px2vp(embed.info?.width),
                     height :px2vp(embed.info?.height)} as ESObject)
                   nodeController?.rebuild()
