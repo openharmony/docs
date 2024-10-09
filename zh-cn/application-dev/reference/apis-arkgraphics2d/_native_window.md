@@ -283,9 +283,9 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | GET_SOURCE_TYPE<sup>12+</sup> | 获取本地窗口内容来源, 函数中的可变参数是 [输出] int32_t \*sourceType， 取值具体可见[OHSurfaceSource](#ohsurfacesource)枚举值。 | 
 | SET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 设置本地窗口应用框架名称, 函数中的可变参数是 [输入] char\* frameworkType， 最大支持64字节。 | 
 | GET_APP_FRAMEWORK_TYPE<sup>12+</sup> | 获取本地窗口应用框架名称, 函数中的可变参数是 [输出] char\* frameworkType。 | 
-| SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]. | 
-| SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]. | 
-| SET_DESIRED_PRESENT_TIMESTAMP<sup>13+</sup> | 设置本地窗口缓冲区期望上屏时间的时间戳。 当且仅当RenderService为本地窗口的消费者时，该时间戳生效。 本操作执行后需要配合调用[OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer)生效。 生产者下一次放入队列的buffer，达到该期望上屏时间后，才会被RenderService消费并上屏。 如果buffer队列中存在多个生产者放入的buffer，都设置了desiredPresentTimestamp并已达到期望上屏时间，则较早入队的buffer将被消费者丢弃回队列。 如果期望上屏时间大于消费者提供的时间 1 秒以上，则该期望上屏时间戳将被忽略。 函数中的可变参数是 [输入] int64_t desiredPresentTimestamp，取值范围大于0，应由std::chrono::steady_clock标准库时钟生成，且单位为纳秒。 | 
+| SET_HDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置HDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]。 | 
+| SET_SDR_WHITE_POINT_BRIGHTNESS<sup>12+</sup> | 设置SDR白点亮度, 函数中的可变参数是 [输入] float brightness. 取值范围为[0.0f, 1.0f]。 | 
+| SET_DESIRED_PRESENT_TIMESTAMP<sup>14+</sup> | 设置本地窗口缓冲区期望上屏时间的时间戳。 当且仅当RenderService为本地窗口的消费者时，该时间戳生效。 本操作执行后需要配合调用[OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer)生效。 生产者下一次放入队列的buffer，达到该期望上屏时间后，才会被RenderService消费并上屏。 如果buffer队列中存在多个生产者放入的buffer，都设置了desiredPresentTimestamp并已达到期望上屏时间，则较早入队的buffer将被消费者丢弃回队列。 如果期望上屏时间大于消费者提供的时间 1 秒以上，则该期望上屏时间戳将被忽略。 函数中的可变参数是 [输入] int64_t desiredPresentTimestamp，取值范围大于0，应由std::chrono::steady_clock标准库时钟生成，且单位为纳秒。 | 
 
 ### OHHDRMetadataKey
 
