@@ -667,7 +667,7 @@
       - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
       - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-use-guide.md)
     <!--DelEnd-->
-  - Basic Service Kit<!--basic-services-kit-->
+  - Basic Services Kit<!--basic-services-kit-->
     - [Introduction to Basic Services Kit](basic-services/basic-services-kit-overview.md)
     - Application Events<!--app-events-->
       - IPC
