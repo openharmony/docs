@@ -982,7 +982,7 @@
         - [Call Service Development](telephony/telephony-call.md)
         - [SMS Service Development](telephony/telephony-sms.md)
     - Basic Functions<!--system-basicfun-->
-      - Basic Service Kit<!--basic-services-kit-->
+      - Basic Services Kit<!--basic-services-kit-->
         - [Introduction to Basic Services Kit](basic-services/basic-services-kit-overview.md)
         - Application Events<!--app-events-->
           - IPC<!--event-ipc-->
