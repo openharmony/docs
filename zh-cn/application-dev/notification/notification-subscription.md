@@ -32,6 +32,8 @@
 
 **表2** 通知订阅回调接口介绍
 
+详细接口介绍请参见[NotificationSubscriber](../reference/apis-notification-kit/js-apis-inner-notification-notificationSubscriber-sys.md)。
+
 | **接口名** | **描述** |
 | -------- | -------- |
 | onConsume?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void  | 通知回调。               |

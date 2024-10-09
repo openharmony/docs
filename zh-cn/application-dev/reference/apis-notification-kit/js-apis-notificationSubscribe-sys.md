@@ -192,7 +192,7 @@ notificationSubscribe.subscribe(subscriber).then(() => {
 
 subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 
-订阅通知并指定订阅信息。使用Promise异步回调。
+订阅本应用的通知并指定订阅信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -543,7 +543,7 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 | 参数名     | 类型       | 必填 | 说明       |
 | -------- | ---------- | ---- | ---------- |
-| hashCode | string | 是   | 通知唯一ID。 |
+| hashCode | string | 是   | 通知唯一ID。可以通过[onConsume](js-apis-inner-notification-notificationSubscriber-sys.md#onconsume)回调的入参[SubscribeCallbackData](js-apis-inner-notification-notificationSubscriber-sys.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
 | reason   | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
 **返回值：**
@@ -875,6 +875,7 @@ let removeAllCallback = (err: BusinessError) => {
     console.info("removeAll success");
   }
 }
+// 用户ID，使用时需替换为真实的userId。
 let userId: number = 1;
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
