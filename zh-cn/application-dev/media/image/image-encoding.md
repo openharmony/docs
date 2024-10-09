@@ -67,10 +67,10 @@
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { fileIo } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
    const context : Context = getContext(this);
    const path : string = context.cacheDir + "/pixel_map.jpg";
-   let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+   let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
        // 直接打包进文件
    }).catch((error : BusinessError) => { 
@@ -82,10 +82,10 @@
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { fileIo } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
    const context : Context = getContext(this);
    const filePath : string = context.cacheDir + "/image_source.jpg";
-   let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {
        // 直接打包进文件
    }).catch((error : BusinessError) => { 
