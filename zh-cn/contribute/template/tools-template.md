@@ -129,4 +129,4 @@ bm install -p aaa.hap -s xxx.hsp yyy.hsp
 bm install -p /data/app/ohos.app.hap -u 100 -w 10s 
 ```
 
-
+<!--no_check-->
