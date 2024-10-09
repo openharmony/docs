@@ -4951,7 +4951,7 @@ onRequestRedirected: (request: Want) =&gt; void
 
 | 参数名     | 类型   | 必填   | 说明         |
 | ------- | ---- | ---- | ---------- |
-| request | Want | 是    | 用于跳转的请求信息。 |
+| request | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 用于跳转的请求信息。 |
 
 **示例：**
 
@@ -5063,7 +5063,7 @@ onRequestRedirected: (request: Want) =&gt; void
 
 | 参数名     | 类型   | 必填   | 说明         |
 | ------- | ---- | ---- | ---------- |
-| request | Want | 是    | 用于跳转的请求信息。 |
+| request | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 用于跳转的请求信息。 |
 
 **示例：**
 
