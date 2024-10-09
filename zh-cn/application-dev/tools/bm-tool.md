@@ -158,20 +158,14 @@ bm clean [-h] [-c] [-n bundleName] [-d] [-u userId] [-i appIndex]
 ```
 
   **表6** 清理命令列表
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm clean -h | 显示clean支持的命令信息。-h为非必选字段。 |
-| bm clean -n \<bundleName\> -c | 清除指定包名的缓存数据。-n为必选字段，-c为非必选字段。 |
-| bm clean -n \<bundleName\> -d | 清除指定包名的数据目录。-d为非必选字段。 |
-| bm clean -n \<bundleName\> -c -u \<userId\> | 清除指定用户下包名的缓存数据。-u为非必选字段，默认为当前活跃用户。 |
-| bm clean -n \<bundleName\> -d -u \<userId\> | 清除指定用户下包名的数据目录。 |
-| bm clean -n \<bundleName\> -d -u \<userId\> -i \<appIndex\> | 清除指定用户下分身应用的数据目录。-i为非必选字段，默认为0。 |
-| 命令 | 描述 |
-| -------- | -------- |
-| -h | 显示clean支持的命令信息 |
-| -c&nbsp;-n | 清除指定Bundle名称的缓存数据 |
-| -d&nbsp;-n | 清除指定Bundle名称的数据目录 |
-| -u | 清除指定用户下Bundle名称的缓存数据 |
+
+| 命令 | 是否必选 | 描述 |
+| -------- | --------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示clean支持的命令信息 |
+| -c&nbsp;-n | -n为必选字段，-c为非必选字段。 |清除指定Bundle名称的缓存数据 |
+| -d&nbsp;-n | -n为必选字段，-c为非必选字段。 |清除指定Bundle名称的数据目录 |
+| -i | 否，默认为0 | 清楚分身应用的数据目录。|
+| -u | 否，默认为当时活跃用户 | 清除指定用户下Bundle名称的缓存数据 |
 
 
 示例：
@@ -195,12 +189,12 @@ bm enable [-h] [-n bundleName] [-a abilityName] [-u userId]
 
   **表7** 使能命令列表
 
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm enable -h | 显示enable支持的命令信息。-h为非必选字段。 |
-| bm enable -n \<bundleName\> | 使能指定包名的应用。-n为必选字段。 |
-| bm enable -n \<bundleName\> -a \<abilityName\> | 使能指定包名下的元能力模块。-a为非必选字段。 |
-| bm enable -n \<bundleName\> -u \<userId\>| 使能指定用户和包名的应用。-u为非必选字段，默认为当前活跃用户。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 |显示enable支持的命令信息 |
+| -n | 是 |使能指定Bundle名称的应用 |
+| -a | 否 |使能指定Bundle名称下的元能力模块 |
+| -u | 否，默认为当前活跃用户 |使能指定用户和Bundle名称的应用 |
 
 
 示例：
@@ -222,12 +216,12 @@ bm disable [-h] [-n bundleName] [-a abilityName] [-u userId]
 
   **表8** 禁用命令列表
 
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm disable -h | 显示disable支持的命令信息。-h为非必选字段。 |
-| bm disable -n \<bundleName\> | 禁用指定包名的应用。-n为必选字段。 |
-| bm disable -n \<bundleName\> -a \<abilityName\> | 禁用指定包名下的元能力模块。-a为非必选字段。 |
-| bm disable -n \<bundleName\> -u \<userId\>| 禁用指定用户和包名下的应用。-u为非必选字段，默认为当前活跃用户。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示disable支持的命令信息 |
+| -n | 是 |禁用指定Bundle名称的应用 |
+| -a | 否 |禁用指定Bundle名称下的元能力模块 |
+| -u | 否，默认为当前活跃用户 | 禁用指定用户和Bundle名称下的应用 |
 
 
 示例：
@@ -248,10 +242,10 @@ bm get [-h] [-u]
 
   **表9** 获取udid命令列表
 
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm get -h | 显示get支持的命令信息。-h为非必选字段。 |
-| bm get -u | 获取设备的udid。-u为必选字段。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示get支持的命令信息 |
+| -u | 是 | 获取设备的udid |
 
 
 示例：
@@ -274,14 +268,21 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b
 注：hqf文件制作方式可参考[HQF打包指令](packing-tool.md#hqf打包指令)。
 
   **表10** 快速修复命令列表
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
 | bm quickfix -h | 显示quickfix支持的命令信息。-h为非必选字段。 |
 | bm quickfix -a -f \<filePath\> | 执行补丁安装命令。-a非必选字段，指定后，-f为必选字段，未指定-a，则-f为非必选字段。 |
 | bm quickfix -q -b \<bundleName\> | 根据包名查询补丁包信息。-q为非必选字段，指定后，-b为必选字段，未指定-q，则-b为非必选字段。 |
 | bm quickfix -a -f \<filePath\> -d | 选择debug模式执行补丁安装命令。-d为非必选字段。 |
 | bm quickfix -a -f \<filePath\> -t \<target-path\> | 指定补丁安装目录，且不使能。-t为非必选字段。 |
 | bm quickfix -r -b \<bundleName\> | 根据包名卸载未使能的补丁。-r为非必选字段，指定后，-b为必选字段，未指定-r，则-b为非必选字段。 |
+| -h | 否，默认输出帮助信息 | 显示quickfix支持的命令信息 |
+| -a&nbsp;-f | -a非必选字段，指定后，-f为必选字段，未指定-a，则-f为非必选字段。| 执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
+| -q&nbsp;-b | -q为非必选字段，指定后，-b为必选字段，未指定-q，则-b为非必选字段。 | 根据包名查询补丁信息，bundle-name对应包名。 |
+| -r&nbsp;-b | -r为非必选字段，指定后，-b为必选字段，未指定-r，则-b为非必选字段。 | 根据包名卸载未使能的补丁。|
+| -t | 否 ||
+| -d | 否||
+
 
 
 示例：
@@ -333,6 +334,8 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 bm dump-shared -a
 # 显示该共享库的详细信息
 bm dump-shared -n com.ohos.lib
+# 显示指定应用指定模块依赖的共享库信息
+bm dump-dependencies -n com.ohos.app -m entry
 ```
 
 ## 共享库依赖关系查询命令
