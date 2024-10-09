@@ -69,9 +69,9 @@
 
 ## **命令
 >*写作要求*
->1. 命令模板：必须包含该命令涉及的每一个参数。
->2. 命令列表：必须按照表格顺序去介绍xx工具所支持的每个命令信息当xx命令含有参数时，执行"xx help/-h"。通过"xx xxxx help/-h"的返回值，把该命令的模板写出，"help/-h"在首位。
->3. 示例：列举的示例命令要包含该工具所支持的全部参数。
+>1. 命令模板：必须包含"xx xxxx help/-h"的返回值中所支持的每一个参数。
+>2. 命令列表：必须按照"xx xxxx help/-h"的返回值去介绍**命令所支持的每一个参数。"help/-h"在首位。
+>3. 示例：示例命令要根据命令列表的参数进行组合举例（尽可能涉及到每一个的参数）。
 
 ```bash
 xx xxxx [h] [****] [****]
@@ -123,10 +123,10 @@ bm install -p /data/app/ohos.app.hap
 bm install -p /data/app/ohos.app.hap -r
 # 安装一个应用间共享库
 bm install -s xxx.hsp
-# 同时安装多个应用间共享库
-bm install -s xxx.hsp yyy.hsp
 # 同时安装使用方应用和其依赖的应用间共享库
 bm install -p aaa.hap -s xxx.hsp yyy.hsp
+# 指定用户安装一个hap,等待时间为10s
+bm install -p /data/app/ohos.app.hap -u 100 -w 10s 
 ```
 
 
