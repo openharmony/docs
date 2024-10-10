@@ -17,26 +17,11 @@ toybox 是一个轻量级的Linux命令行工具集合，它将常用的Linux命
 ## 命令行说明
 
 toybox的执行方式有两种
+- 使用 toybox [command] [arguments...]
+- 直接执行 [command] [arguments...]
 
-- 使用 toybox cmd [args...]
-- 创建 cmd 到 toybox 的软连接，然后直接调用 cmd
-
-系统已经创建好了大部分命令的软连接，可以直接使用各种命令。
-
-> **备注**：
-> 本文列举toybox支持的所有命令。
-> 由于产品各自的配置与权限管控，一款产品可能仅支持部分命令，或者仅支持命令中的部分选项。
-> 如果遇到命令缺失，命令执行缺少权限等问题，请咨询对应产品负责人。
-
-### 检查命令是否属于toybox的方法
-ls -l /system/bin/cmd
-如果输出结果为："system/bin/cmd -> toybox"，则表示cmd命令由toybox实现，否则不由toybox实现。
-
-例：
-"system/bin/cat -> toybox"，表示cat命令由toybox实现。
-
-例外情况：在shell中运行各种命令时，如果shell中存在对该命令的实现，会优先调用shell的实现，不会调用toybox。
-如：time/test/pwd/realpath/ulimit/kill等，此时需要在命令前面加上toybox，才会调用toybox的代码实现。
+其中 [command] 可被替换为toybox支持的任意命令（可通过输入不带参数的toybox命令查询）。
+[arguments...] 为[command]所需要的参数
 
 ### 帮助命令
 格式：toybox [--long | --help | --version | [command] [arguments...]]
@@ -51,7 +36,7 @@ ls -l /system/bin/cmd
 格式：help [-ah] [command]
 | 参数 | 说明 |
 | :- | :- |
-| command | 显示command的帮助。 |
+| command | 显示command的帮助。[command] 可被替换为toybox支持的任意命令 |
 
 | 选项 | 说明 |
 | :- | :- |
@@ -65,7 +50,7 @@ ls -l /system/bin/cmd
 | ascii     | 显示acsii编码表。<br />usage: ascii |
 | factor     | 分解质因数。<br />usage: factor NUMBER... |
 | mcookie    | 生成128位强随机数。<br />usage: mcookie [-vV] |
-| mkpasswd   | 对密码进行加密。<br />usage: mkpasswd [-P FD] [-m TYPE] [-S SALT] [PASSWORD] [SALT] |
+| mkpasswd | 对密码进行加密。<br />usage: mkpasswd [-P FD] [-m TYPE] [-S SALT] [PASSWORD] [SALT] |
 | uuidgen    | 创建并打印新的RFC4122随机UUID。<br />usage: uuidgen |
 
 ### 终端操作
@@ -146,9 +131,6 @@ ls -l /system/bin/cmd
 | w       | 显示用户登录情况和登录时间。<br />usage: w |
 
 ### 进程操作
-> **说明**：
-> 部分命令需要较高的权限，操作权限外的进程会失效。
-> 如果命令执行失败，请确认是否拥有对应的权限，产品之间存在差异，详情请咨询产品负责人。
 
 | 命令 | 说明 |
 | :- | :- |
@@ -312,3 +294,51 @@ ls -l /system/bin/cmd
 | which     | 在\$PATH中搜索与文件名匹配的可执行文件。<br />usage: which [-a] filename ... |
 | xxd       | 以16进制的形式显示文件内容。若没有列出任何文件，从标准输入设备复制。<br />usage: xxd [-c n] [-g n] [-i] [-l n] [-o n] [-p] [-r] [-s n] [file] |
 | zcat      | 将文件解压缩到标准输出设备。比如“gzip -dc”。<br /> usage: zcat [FILE...] |
+
+## 常见问题
+
+### 报错："Unknown command xxx"
+在命令行中输入"xxx" 或 "toybox xxx" 或 "help xxx"时，如果遇到报错 "Unknown command xxx"，表示toybox不支持xxx命令。
+如果该命令在本文的描述中，则证明产品未编译该命令，可以找产品负责人提出需求。
+
+### 报错："Operation not permitted"/"Permission denied"
+toybox存在大量操作文件和进程的命令，如果调用者缺少对被操作对象的权限，就会报错。
+1. 请检查被操作的文件，以及所属文件夹的读、写、执行权限，确认自己是否有权限执行。
+2. 如果shell缺少root权限，还可能被SELinux拦截。可以在内核日志中搜索"avc: denied"关键字。
+例子：
+如果出现类似 avc: denied { xxx } for comm="ls" xxxxxx 的日志，表示命令ls触发了SELinux拦截。
+
+如遇权限缺失问题，实际又需要执行该命令，请联系产品负责人提出需求。
+
+### 其他Linux标准报错
+toybox大部分命令为对内核的调用，出错时会通过perror打印Linux内核错误码对应的文本。
+常见的错误有："File exists"/"Not a directory"/"Read-only file system"等。
+这些为Linux标准错误，可以参考Linux相关资料查询报错原因。请根据具体报错，检查命令的参数或者命令的格式是否出现错误。
+
+例子：
+试图在只读文件系统中进行创建文件的操作，会有报错 "Read-only file system"。
+cat可以打印文件内容，如果试图cat一个目录，会有报错 "Is a directory"。
+试图用ls命令查看一个不存在的文件或目录，会有报错 "No such file or directory"。
+
+### 命令与toybox描述不符合
+如果发现在shell下输入"命令 参数"的表现与"toybox 命令 参数"不一致，可能有两种原因导致。
+
+1. 实际调用的是shell的实现而非toybox。
+
+对于time/test/pwd/realpath/ulimit/kill等命令，shell会直接使用自己的实现，不会去PATH中查找对应程序。
+此时如果想要调用toybox命令，请使用"toybox 命令 参数"的格式。
+
+2. 单板上未创建该命令到toybox的软连接。
+
+如果拥有root权限，可以通过下列命令查询：
+以cat为例：
+>\# which cat  查询调用cat时实际调用的程序位置 <br />
+>\# /bin/cat <br />
+>\# ls -l /bin/cat 检查cat是否存在软连接 <br />
+>\# [省略前面打印] /bin/cat -> toybox <br />
+
+/bin/cat通过软连接指向了toybox，调用cat实际上是在调用toybox程序。
+如果命令指向非toybox的程序，或者命令没有软连接，则表示调用的不是toybox程序。
+此时如果想要调用toybox命令，请使用"toybox 命令 参数"的格式。
+
+
