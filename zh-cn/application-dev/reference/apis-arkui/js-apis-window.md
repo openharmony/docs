@@ -5959,6 +5959,7 @@ export default class EntryAbility extends UIAbility {
 setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 
 应用主窗口调用，实现将窗口置于其他应用窗口之上不被遮挡，使用Promise异步回调。此接口仅支持2in1设备。
+应用可通过自定义快捷键实现主窗口的置顶和取消置顶。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5985,34 +5986,58 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+// ets/pages/Index.ets
 import { window } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { KeyEvent } from '@ohos.multimodalInput.keyEvent';
 
-export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    // 加载主窗口对应的页面
-    windowStage.loadContent('pages/Index', (err) => {
-      let mainWindow: window.Window | undefined = undefined;
-      // 获取应用主窗口。
-      windowStage.getMainWindow().then(
-        data => {
-          mainWindow = data;
-          let isWindowTopmost: boolean = true;
-          let promise = window.setWindowTopmost(isWindowTopmost);
-          promise.then(() => {
-            console.info('Succeeded in setting the main window to be topmost.');
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
-          });
-        }
-      ).catch((err: BusinessError) => {
-          if(err.code){
-            console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+const context = (getContext(this) as common.UIAbilityContext);
+let windowClass: window.Window | undefined;
+let keyUpEventAry: string[] = [];
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Button("窗口置顶")
+        .onClick(() => {
+          try {
+            let promiseCtx = window.getLastWindow(context);
+            promiseCtx.then((data) => {
+              windowClass = data;
+              //  true:窗口置顶，false:取消窗口置顶
+              let isWindowTopmost: boolean = true;
+              let promiseTopmost = windowClass.setWindowTopmost(isWindowTopmost);
+              promiseTopmost.then(() => {
+                console.info('Succeeded in setting the main window to be topmost.');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            })
+          } catch (exception) {
+            console.log(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`)
           }
-      });
-    });
+        })
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEvent((event) => {
+      if(event) {
+        if(event.type === KeyType.Down) {
+          keyUpEventAry = [];
+        }
+        if(event.type === KeyType.Up) {
+          keyUpEventAry.push(event.keyText);
+          // 自定义快捷键 ctrl+T 执行主窗口置顶、取消置顶的操作
+          if(windowClass && keyUpEventAry.includes('KEYCODE_CTRL_LEFT') && keyUpEventAry.includes('KEYCODE_T')) {
+            let isWindowTopmost: boolean = false;
+            windowClass.setWindowTopmost(isWindowTopmost);
+          }
+        }
+      }
+    })
   }
 }
 ```
