@@ -15,9 +15,9 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 | install | 安装命令，用于安装应用。 |
 | uninstall | 卸载命令，用于卸载应用。 |
 | dump | 查询命令，用于查询应用的相关信息。 |
-| clean | 清理命令，用于清理应用的缓存和数据。此命令在root版本下可用，在user版本下打开开发者模式可用。其它情况不可用。|
+| clean | 清理命令，用于清理应用的缓存和数据。此命令在root版本下可用，在user版本下打开开发者模式可用。其它情况不可用。|<!--Del-->
 | enable | 使能命令，用于使能应用，使能后应用可以继续使用。此命令在root版本下可用，在user版本下不可用。 |
-| disable | 禁用命令，用于禁用应用，禁用后应用无法使用。此命令在root版本下可用，在user版本下不可用。 |
+| disable | 禁用命令，用于禁用应用，禁用后应用无法使用。此命令在root版本下可用，在user版本下不可用。 |<!--DelEnd-->
 | get | 获取udid命令，用于获取设备的udid。 |
 | quickfix | 快速修复相关命令，用于执行补丁相关操作，如补丁安装、补丁查询。 |
 | compile | 应用执行编译AOT命令。 |
@@ -130,9 +130,9 @@ bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-u userId] [-d deviceId]
 | 命令 | 是否必选 | 描述 |
 | -------- | -------- | -------- |
 | -h | 否，默认输出帮助信息 | 显示dump支持的命令信息。 |
-| -a | 是 | 查询系统已经安装的所有应用。 |
-| -n | 是 | 查询指定Bundle名称的详细信息。 |
-| -s | 是 | 查询指定Bundle名称下的快捷方式信息。 |
+| -a | 否 | 查询系统已经安装的所有应用。 |
+| -n | 否 | 查询指定Bundle名称的详细信息。 |
+| -s | 否 | 查询指定Bundle名称下的快捷方式信息。 |
 | -d | 否，默认查询当前设备 | 查询指定设备中的包信息。 |
 | -u | 否，默认查询当前设备上的所有用户 | 查询指定用户下指定Bundle名称的详细信息。 |
 
@@ -178,7 +178,7 @@ bm clean -d -n com.ohos.app -u 100
 clean bundle data files successfully.
 ```
 
-
+<!--Del-->
 ## 使能命令
 
 ```bash
@@ -231,7 +231,7 @@ bm disable -n com.ohos.app -a com.ohos.app.EntryAbility -u 100
 // 执行结果
 disable bundle successfully.
 ```
-
+<!--DelEnd-->
 
 ## 获取udid命令
 
