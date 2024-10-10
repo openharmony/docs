@@ -53,11 +53,11 @@ resources
 #### base目录
 
 base目录是默认存在的目录，二级子目录element用于存放字符串、颜色、布尔值等基础元素，media、profile存放媒体、动画、布局等资源文件。<br/>
-目录中的资源文件会被编译成二进制文件，并赋予资源文件ID。通过指定资源类型（type）和资源名称（name）引用。
+目录中的资源文件会被编译成二进制文件，并赋予资源文件ID。通过指定资源类型（type）和资源名称（name）访问。
 
 #### 限定词目录
 
-en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需要开发者根据开发需要自行创建。二级子目录element、media、profile用于存放字符串、颜色、布尔值等基础元素，以及媒体、动画、布局等资源文件。<br/>同样，目录中的资源文件会被编译成二进制文件，并赋予资源文件ID。通过指定资源类型（type）和资源名称（name）来引用。
+en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需要开发者根据开发需要自行创建。二级子目录element、media、profile用于存放字符串、颜色、布尔值等基础元素，以及媒体、动画、布局等资源文件。<br/>同样，目录中的资源文件会被编译成二进制文件，并赋予资源文件ID。通过指定资源类型（type）和资源名称（name）来访问。
 
 **限定词目录的命名要求**
 
@@ -84,7 +84,7 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 #### rawfile目录
 
-支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。通过指定文件路径和文件名引用。
+支持创建多层子目录，子目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。通过指定文件路径和文件名访问。
 
 #### resfile目录
 
@@ -288,7 +288,7 @@ string资源配置attr属性示例如下：
 
 ### 单HAP包应用资源
 
- - 通过```"$r"```或```"$rawfile"```引用资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式引用。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，通过```$r('app.string.label','aaa','bbb',444)```形式引用。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
+ - 通过```"$r"```或```"$rawfile"```访问资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式访问。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，通过```$r('app.string.label','aaa','bbb',444)```形式访问。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式访问。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
    > **说明：**
    >
@@ -323,14 +323,14 @@ string资源配置attr属性示例如下：
 <!--Del-->
 #### bundle不同，跨bundle访问（仅支持系统应用使用）
 
-- 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext().createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('test')。
+- 通过[createModuleContext(bundleName, moduleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatemodulecontext12)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
 <!--DelEnd-->
 
 #### bundle相同，跨module访问
 
-- 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext().createModuleContext(moduleName).resourceManager.getStringByNameSync('test')。
+- 通过[createBundleContext(bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
 
-- 通过```"$r"```或```"$rawfile"```引用资源。具体操作如下：
+- 通过```"$r"```或```"$rawfile"```访问资源。具体操作如下：
 
   1.这里是列表文本[hsp].type.name获取资源。其中，hsp为hsp模块名，type为资源类型，name为资源名称，示例如下：
   
@@ -367,13 +367,17 @@ string资源配置attr属性示例如下：
    ```
   > **说明** 
   >
-  > hsp包名必须写在[]内，rawfile下有多层目录，需要从rawfile下面第一个目录开始写，如```"\$rawfile('[hsp].oneFile/twoFile/icon.png')"```，使用```"$r"```和```"$rawfile"```跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
+  >在entry的oh-package.json5文件中添加依赖。如```"dependencies": {"library":"file":../library}```
+  >![Alt text](image.png)
+  >
+  > hsp包名必须写在[]内，rawfile下有多层目录，需要从rawfile下面第一个目录开始写，如```"$rawfile('[hsp].oneFile/twoFile/icon.png')"```，使用```"$r"```和```"$rawfile"```跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
+
 
 ### 系统资源
 
 除了自定义资源，开发者也可以使用系统中预定义的资源，统一应用的视觉风格。<!--Del-->可以查看[应用UX设计中关于资源的介绍](../../design/ux-design/design-resources.md)，获取支持的系统资源ID及其在不同配置下的取值。<!--DelEnd-->
 
-在开发过程中，分层参数的用法与资源限定词基本一致。对于系统资源，可以通过```“$r('sys.type.resource_id')”```的形式引用。其中，sys为系统资源；type为资源类型，取值包括“color”、“float”、“string”、“media”；resource_id为资源id。
+对于系统资源，可以通过```“$r('sys.type.resource_name')”```的形式访问。其中，sys表示系统资源；type为资源类型，取值包括“color”、“float”、“string”、“media”、“symbol”；resource_name为资源名称。
 
 > **说明：**
 >
