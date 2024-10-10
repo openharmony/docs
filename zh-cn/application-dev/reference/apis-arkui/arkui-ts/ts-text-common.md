@@ -263,6 +263,17 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | BACKWARD | 0    | 向后删除。 |
 | FORWARD    | 1    | 向前删除。 |
 
+## MenuType<sup>13+</sup>枚举说明
+
+菜单类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 描述 |
+| ------- | ---- | ------------------- |
+| SELECTION_MENU | 0 | 文本选择菜单。|
+| PREVIEW_MENU | 1 | 图片预览菜单。|
+
 ## InsertValue<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。

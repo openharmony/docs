@@ -1767,6 +1767,7 @@ RichEditor span信息。
 | ----------- | ---------- | ---- | ------------- |
 | onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。 |
 | onDisappear | Callback\<void\>  | 否    | 自定义选择菜单关闭时回调。 |
+| menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。 |
 
 ## PasteEvent<sup>11+</sup>
 
