@@ -32,7 +32,7 @@
     - [@ohos.arkui.uiExtension (uiExtension) (System API)](js-apis-arkui-uiExtension-sys.md)
     - [@ohos.deviceStatus.dragInteraction (Drag Interaction) (System API)](js-apis-devicestatus-draginteraction-sys.md)
     - [@ohos.pluginComponent (PluginComponentManager) (System API)](js-apis-plugincomponent-sys.md)
-    - @ohos.uiAppearance (UI Appearance) (System API)](js-apis-uiappearance-sys.md)
+    - [@ohos.uiAppearance (UI Appearance) (System API)](js-apis-uiappearance-sys.md)
     - [@ohos.uiExtensionHost (System API)](js-apis-uiExtensionHost-sys.md)
     - [@ohos.arkui.UIContext (UIContext) (System API)](js-apis-arkui-UIContext-sys.md)
     - [@ohos.promptAction (Prompt) (System API)](js-apis-promptAction-sys.md)
@@ -85,7 +85,7 @@
       - [Custom Keyboard Shortcuts](arkui-ts/ts-universal-events-keyboardshortcut.md)
       - [Custom Event Dispatch](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
       - [Custom Event Interception](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
-    - Universal attributes
+    - Universal Attributes
       - [Size](arkui-ts/ts-universal-attributes-size.md)
       - [Location](arkui-ts/ts-universal-attributes-location.md)
       - [Layout Constraints](arkui-ts/ts-universal-attributes-layout-constraints.md)
@@ -140,6 +140,7 @@
       - [Special Effect Drawing Combination](arkui-ts/ts-universal-attributes-use-effect.md)
       <!--Del-->
       - [Point Light Style (System API)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
+      - [Image Effects (System API)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
       <!--DelEnd-->
     - Gesture Handling
       - [Gesture Binding Methods](arkui-ts/ts-gesture-settings.md)
@@ -326,7 +327,7 @@
     - [Date Picker Dialog Box (DatePickerDialog)](arkui-ts/ts-methods-datepicker-dialog.md)
     - [Time Picker Dialog Box (TimePickerDialog)](arkui-ts/ts-methods-timepicker-dialog.md)
     - [Text Picker Dialog Box (TextPickerDialog)](arkui-ts/ts-methods-textpicker-dialog.md)
-    - [Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)
+    - [Dialog Box (Dialog)](arkui-ts/ohos-arkui-advanced-Dialog.md)
   - Service Widgets
     - [FormLink](arkui-ts/ts-container-formlink.md)
     - [FormMenu](arkui-ts/ohos-arkui-advanced-formmenu.md)
@@ -462,3 +463,4 @@
   - Graphics
     - [Display Error Codes](errorcode-display.md)
     - [Window Error Codes](errorcode-window.md)
+<!--no_check-->
