@@ -718,7 +718,8 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取区域内的图像像素数据。使用Promise形式返回。
+读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。使用 Promise 形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -786,7 +787,8 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取区域内的图像像素数据。使用callback形式返回。
+读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。使用 callback 形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -855,7 +857,8 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-以同步方式读取区域内的图像像素数据，并按照BGRA_8888格式写入缓冲区中。
+以同步方式读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -898,7 +901,8 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-读取区域内的图像像素数据。使用Promise形式返回。
+读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。使用 Promise 形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -974,7 +978,8 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取区域内的图像像素数据。使用callback形式返回。
+读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。使用 callback 形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1049,7 +1054,8 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-以同步方式将BGRA_8888格式的图像像素数据写入指定区域内。
+以同步方式读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
+当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1110,7 +1116,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 | 参数名 | 类型        | 必填 | 说明           |
 | ------ | ----------- | ---- | -------------- |
-| src    | ArrayBuffer | 是   | 图像像素数据。 |
+| src    | ArrayBuffer | 是   | 缓冲区，函数执行时会将该缓冲区中的图像像素数据写入到PixelMap。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
 
 **返回值：**
 
@@ -1155,8 +1161,8 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
-| src      | ArrayBuffer          | 是   | 图像像素数据。                 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当读取缓冲区中的图片数据并写入PixelMap成功，err为undefined，否则为错误对象。 |
+| src      | ArrayBuffer          | 是   | 缓冲区，函数执行时会将该缓冲区中的图像像素数据写入到PixelMap。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当缓冲区中的图像像素数据写入PixelMap成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -1196,7 +1202,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 | 参数名 | 类型        | 必填 | 说明           |
 | ------ | ----------- | ---- | -------------- |
-| src    | ArrayBuffer | 是   | 图像像素数据。 |
+| src    | ArrayBuffer | 是   | 缓冲区，函数执行时会将该缓冲区中的图像像素数据写入到PixelMap。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
 
 **错误码：**
 
@@ -2705,10 +2711,44 @@ pixelmap在跨线程传输时，断开原线程的引用。适用于需立即释
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import image from '@ohos.multimedia.image';
+import taskpool from '@ohos.taskpool';
 
-async function Demo() {
-  if (pixelMap != undefined) {
-    pixelMap.setTransferDetached(true);
+@Concurrent
+// 子线程方法
+async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
+  // 创建 imageSource
+  const imageSource = image.createImageSource(rawFileDescriptor);
+  // 创建 pixelMap
+  const pixelMap = imageSource.createPixelMapSync();
+  // 释放 imageSource
+  imageSource.release();
+  // 使 pixelMap 在跨线程传输完成后，断开原线程的引用。
+  pixelMap.setTransferDetached(true);
+  // 返回 pixelMap 给主线程
+  return pixelMap;
+}
+
+@Entry
+@Component
+struct Demo {
+  @State pixelMap: PixelMap | undefined = undefined;
+  // 主线程方法
+  private loadImageFromThread(): void {
+    const resourceMgr = getContext(this).resourceManager;
+    // 此处‘example.jpg’ 仅作示例，请开发者自行替换，否则 imageSource 创建失败会导致后续无法正常执行。
+    resourceMgr.getRawFd('example.jpg').then(rawFileDescriptor => {
+      taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
+        if (pixelMap) {
+          this.pixelMap = pixelMap as PixelMap;
+          console.log('Succeeded in creating pixelMap.');
+          // 主线程释放 pixelMap。由于子线程返回 pixelMap 时已调用 setTransferDetached，所以此处能够立即释放 pixelMap。
+          this.pixelMap.release();
+        } else {
+          console.error('Failed to create pixelMap.');
+        }
+      });
+    });
   }
 }
 ```
@@ -3003,6 +3043,53 @@ if (pixelMap != undefined) {
 }
 ```
 
+### setMemoryNameSync<sup>13+</sup>
+
+setMemoryNameSync(name: string): Promise\<void>
+
+设置PixelMap内存标识符。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名        | 类型                             | 必填 | 说明             |
+| ------------- | -------------------------------- | ---- | ---------------- |
+| name | string | 是   | pixelmap内存标识符，只允许DMA和ASHMEM内存形式的piexelmap设置，支持1-31位长度。 |
+
+**返回值：**
+
+| 类型           | 说明                  |
+| -------------- | --------------------- |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401|  Parameter error. Possible causes: name size is out of range.         |
+| 501 | Resource unavailable.          |
+| 62980286 | Setting memory identifier failed.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async Demo() {
+  if (pixelMap != undefined) {
+    try {
+      pixelMap.setMemoryNameSync("PixelMapName Test");
+    } catch(e) {
+      let error = e as BusinessError;
+      console.error(`setMemoryNameSync error. code is ${error.code}, message is ${error.message}`);
+    }
+  }
+}
+```
+
 ## image.createImageSource
 
 createImageSource(uri: string): ImageSource
@@ -3095,12 +3182,12 @@ createImageSource(fd: number): ImageSource
 **示例：**
 
 ```ts
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const context: Context = getContext(this);
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
-let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
 ```
 
@@ -3132,13 +3219,13 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 **示例：**
 
 ```ts
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
 const context: Context = getContext();
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 const filePath: string = context.filesDir + "/test.jpg";
-let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imageSourceApi: image.ImageSource = image.createImageSource(file.fd, sourceOptions);
 ```
 
@@ -4842,7 +4929,7 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const context: Context = getContext(this);
 //此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
@@ -4850,7 +4937,7 @@ const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
 const filePath: string = context.filesDir + "/image_source.jpg";
-let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err: BusinessError) => {
   if (err) {
@@ -4887,7 +4974,7 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const context: Context = getContext(this);
 //此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
@@ -4895,7 +4982,7 @@ const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
 const filePath: string = context.filesDir + "/image_source.jpg";
-let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
   console.info('Succeeded in packing the image to file.');
@@ -4925,7 +5012,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
@@ -4933,7 +5020,7 @@ const context: Context = getContext(this);
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   const imagePackerApi: image.ImagePacker = image.createImagePacker();
   imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err: BusinessError) => {
     if (err) {
@@ -4971,7 +5058,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
@@ -4979,7 +5066,7 @@ const context: Context = getContext(this);
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   const imagePackerApi: image.ImagePacker = image.createImagePacker();
   imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
     .then(() => {
@@ -5959,7 +6046,7 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heif"<sup>12+</sup>（不同硬件设备支持情况不同）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp"、"image/png"和"image/heif"<sup>12+</sup>（不同硬件设备支持情况不同）。<br>**说明：** 因为jpeg不支持透明通道，若使用带透明通道的数据编码jpeg格式，透明色将变为黑色。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | quality | number | 否   | 否   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。如果不设置大小，默认为25M。如果编码图片超过25M，需要指定大小。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |

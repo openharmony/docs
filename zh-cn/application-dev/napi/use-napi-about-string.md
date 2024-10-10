@@ -16,6 +16,7 @@ string是编程中常用的数据类型之一。它可以存储和操作文本�
 ## 场景和功能介绍
 
 以下Node-API接口主要用于string的创建和获取，使用场景如下：
+
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_get_value_string_utf8 | 需要将ArkTS的字符类型的数据转换为utf8编码的字符时使用这个函数。 |
@@ -37,7 +38,7 @@ cpp部分代码
 
 ```cpp
 #include "napi/native_api.h"
-#include <string>
+#include <cstring>
 
 static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info) 
 {
@@ -45,15 +46,22 @@ static napi_value GetValueStringUtf8(napi_env env, napi_callback_info info)
     napi_value args[1] = {nullptr};
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    std::string buf;
+    // 获取字符串的长度
     size_t length = 0;
-    napi_status status = napi_get_value_string_utf8(env, args[0], (char*)buf.c_str(), NAPI_AUTO_LENGTH, &length);
+    napi_status status = napi_get_value_string_utf8(env, args[0], nullptr, 0, &length);
     // 传入一个非字符串 napi_get_value_string_utf8接口会返回napi_string_expected
-    if (status == napi_string_expected) {
+    if (status != napi_ok) {
         return nullptr;
     }
-    napi_value result;
-    napi_create_string_utf8(env, buf.c_str(), length, &result);
+    char* buf = new char[length + 1];
+    std::memset(buf, 0, length + 1);
+    napi_get_value_string_utf8(env, args[0], buf, length + 1, &length);
+    napi_value result = nullptr;
+    status = napi_create_string_utf8(env, buf, length, &result);
+    delete buf;
+    if (status != napi_ok) {
+        return nullptr;
+    };
     return result;
 }
 ```

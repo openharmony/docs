@@ -691,17 +691,17 @@ Defines the axis type of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name     | Type  | Mandatory   | Description     |
-| --------- | ------ | ---- | ------- |
-| touchmajor  | string | Yes| **touchmajor** axis.|
-| touchminor  | string | Yes| **touchminor** axis.|
-| toolminor   | string | Yes| **toolminor** axis.|
-| toolmajor   | string | Yes| **toolmajor** axis.|
-| orientation | string | Yes| **orientation** axis.|
-| pressure    | string | Yes| **pressure** axis. |
-| x           | string | Yes| X axis.        |
-| y           | string | Yes| Y axis.        |
-| null        | string | Yes| None.            |
+| Type     |Description     |
+| --------- | ------- |
+| 'touchmajor'  | **touchmajor** axis.|
+| 'touchminor'  | **touchminor** axis.|
+| 'toolminor'   | **toolminor** axis.|
+| 'toolmajor'   | **toolmajor** axis.|
+| 'orientation' | **orientation** axis.|
+|'pressure'    | **pressure** axis. |
+| 'x'          | X axis.        |
+| 'y'           | Y axis.        |
+|'null'        |  None.            |
 
 ## AxisRange
 
@@ -727,14 +727,14 @@ Enumerates input source types of the axis. For example, if a mouse reports an x-
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name       | Type  | Mandatory|  Description     |
-| --------- | ------ |  ---- |  ------- |
-| keyboard    | string | Yes| The input device is a keyboard. |
-| touchscreen | string | Yes| The input device is a touchscreen.|
-| mouse       | string | Yes| The input device is a mouse. |
-| trackball   | string | Yes| The input device is a trackball.|
-| touchpad    | string | Yes| The input device is a touchpad.|
-| joystick    | string | Yes| The input device is a joystick.|
+| Type      |Description     |
+| --------- |  ------- |
+| 'keyboard'    | The input device is a keyboard. |
+| 'touchscreen' | The input device is a touchscreen.|
+| 'mouse'       | The input device is a mouse. |
+| 'trackball'   | The input device is a trackball.|
+| 'touchpad'    | The input device is a touchpad.|
+| 'joystick'   | The input device is a joystick.|
 
 ## ChangedType<sup>9+</sup>
 
@@ -744,10 +744,10 @@ Defines the change type for the hot swap event of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Name       | Type | Mandatory | Description     |
-| --------- | ------ | ---- | ------- |
-| add    | string | Yes| An input device is inserted.|
-| remove | string | Yes| An input device is removed.|
+| Type       | Description     |
+| --------- | ------- |
+| 'add'    | An input device is inserted.|
+| 'remove' | An input device is removed.|
 
 ## KeyboardType<sup>9+</sup>
 

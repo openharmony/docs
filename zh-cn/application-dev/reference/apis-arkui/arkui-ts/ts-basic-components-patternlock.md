@@ -240,6 +240,12 @@ PatternLock组件的控制器，可以通过它进行组件状态重置。
 let patternLockController: PatternLockController = new PatternLockController()
 ```
 
+### constructor
+
+constructor()
+
+PatternLockController的构造函数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -264,7 +270,7 @@ setChallengeResult(result: PatternLockChallengeResult): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数   | 参数类型                                                     | 必填 | 参数描述       |
+| 名称   | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
 | result | [PatternLockChallengeResult](#patternlockchallengeresult11枚举说明) | 是   | 图案密码状态。 |
 
@@ -274,7 +280,7 @@ setChallengeResult(result: PatternLockChallengeResult): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 描述           |
+| 名称    | 说明           |
 | ------- | -------------- |
 | CORRECT | 图案密码正确。 |
 | WRONG   | 图案密码错误。 |

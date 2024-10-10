@@ -31,6 +31,8 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 - Promise不支持跨线程传递，不能作为concurrent function的返回值。
 
+- 不支持在TaskPool工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
+
 ```ts
 // 正例
 @Concurrent

@@ -85,7 +85,7 @@ placeholderColor(value: ResourceColor)
 
 placeholderFont(value?: Font)
 
-设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -154,8 +154,6 @@ fontColor(value: ResourceColor)
 
 设置字体颜色。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -168,11 +166,9 @@ fontColor(value: ResourceColor)
 
 ### fontSize
 
-fontSize(value: number | string | Resource)
+fontSize(value: Length)
 
 设置字体大小。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -180,17 +176,15 @@ fontSize(value: number | string | Resource)
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
 
 ### fontStyle
 
 fontStyle(value: FontStyle)
 
 设置字体样式。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -208,8 +202,6 @@ fontWeight(value: number | FontWeight | string)
 
 设置文本的字体粗细，设置过大可能会在不同字体下有截断。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -218,15 +210,13 @@ fontWeight(value: number | FontWeight | string)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
+| value  | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是   | 文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal |
 
 ### fontFamily
 
-fontFamily(value: string | Resource)
+fontFamily(value: ResourceStr)
 
 设置字体列表。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -234,9 +224,9 @@ fontFamily(value: string | Resource)
 
 **参数：** 
 
-| 参数名 | 类型                                                 | 必填 | 说明                                                         |
-| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| 参数名 | 类型                                   | 必填 | 说明                                                         |
+| ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### inputFilter<sup>8+</sup>
 
@@ -988,7 +978,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                       | 值   | 描述                                                         |
+| 名称                       | 值   | 说明                                                         |
 | -------------------------- | ---- | ------------------------------------------------------------ |
 | USER_NAME                  | 0    | 【用户名】在已启用密码保险箱的情况下，支持用户名的自动保存和自动填充。 |
 | PASSWORD                   | 1    | 【密码】在已启用密码保险箱的情况下，支持密码的自动保存和自动填充。 |
@@ -1018,9 +1008,9 @@ enableHapticFeedback(isEnabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                                       |
-| ------- | ---------------------------------------- |
-| Default | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。      |
+| 名称    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| Default | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。 |
 | Inline  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。<br/>内联模式下，不支持拖入文本。 |
 
 ## PasswordIcon<sup>10+</sup>对象说明
@@ -1367,7 +1357,7 @@ stopEditing(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名 | 类型  | 必填   | 说明 |
+| 名称 | 类型  | 必填   | 说明 |
 | ---- | ----- | ---- | ---- |
 | text              | string     | 是   | 输入框文本内容。                                   |
 
@@ -1465,11 +1455,11 @@ passwordIcon、showUnderline、showUnit、showError属性接口使用示例。
 @Entry
 @Component
 struct TextInputExample {
-  @State PassWordSrc1: Resource = $r('app.media.onIcon')
-  @State PassWordSrc2: Resource = $r('app.media.offIcon')
-  @State TextError: string = ''
-  @State Text: string = ''
-  @State NameText: string = 'test'
+  @State passWordSrc1: Resource = $r('app.media.onIcon')
+  @State passWordSrc2: Resource = $r('app.media.offIcon')
+  @State textError: string = ''
+  @State text: string = ''
+  @State nameText: string = 'test'
 
   @Builder itemEnd() {
     Select([{ value: 'KB' },
@@ -1499,7 +1489,7 @@ struct TextInputExample {
         .type(InputType.Password)
         .width(380)
         .height(60)
-        .passwordIcon({ onIconSrc: this.PassWordSrc1, offIconSrc: this.PassWordSrc2 })
+        .passwordIcon({ onIconSrc: this.passWordSrc1, offIconSrc: this.passWordSrc2 })
       // 下划线模式
       TextInput({ placeholder: 'underline style' })
         .showUnderline(true)
@@ -1508,22 +1498,22 @@ struct TextInputExample {
         .showError('Error')
         .showUnit(this.itemEnd)
 
-      Text(`用户名：${this.Text}`)
+      Text(`用户名：${this.text}`)
         .width('95%')
-      TextInput({ placeholder: '请输入用户名', text: this.Text })
+      TextInput({ placeholder: '请输入用户名', text: this.text })
         .showUnderline(true)
         .width(380)
-        .showError(this.TextError)
+        .showError(this.textError)
         .onChange((value: string) => {
-          this.Text = value
+          this.text = value
         })
         .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
           // 用户名不正确会清空输入框和用户名并提示错误文本
-          if (this.Text == this.NameText) {
-            this.TextError = ''
+          if (this.text == this.nameText) {
+            this.textError = ''
           } else {
-            this.TextError = '用户名输入错误'
-            this.Text = ''
+            this.textError = '用户名输入错误'
+            this.text = ''
             // 调用keepEditableState方法，输入框保持编辑态
             event.keepEditableState()
           }
@@ -1651,7 +1641,7 @@ struct TextInputExample {
 ```ts
 @Entry
 @Component
-struct phone_example {
+struct TextInputExample {
   @State submitValue: string = ''
   @State text: string = ''
   public readonly NUM_TEXT_MAXSIZE_LENGTH = 13
@@ -1799,14 +1789,18 @@ struct phone_example {
 @Entry
 @Component
 struct Index {
-
   build() {
     Row() {
       Column() {
-        TextInput({placeholder:'提示文本内容'})
+        TextInput({ placeholder: '提示文本内容' })
           .showUnderline(true)
-          .underlineColor({normal:Color.Orange,typing:Color.Green,error:Color.Red,disable:Color.Gray});
-        TextInput({placeholder:'提示文本内容'})
+          .underlineColor({
+            normal: Color.Orange,
+            typing: Color.Green,
+            error: Color.Red,
+            disable: Color.Gray
+          });
+        TextInput({ placeholder: '提示文本内容' })
           .showUnderline(true)
           .underlineColor(Color.Gray);
       }
@@ -1921,19 +1915,18 @@ fontFeature属性使用示例，对比了fontFeature使用ss01属性和不使用
 ```ts
 @Entry
 @Component
-struct textInput {
+struct TextInputExample {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
-
   build() {
-    Column(){
-      TextInput({text: this.text1})
+    Column() {
+      TextInput({ text: this.text1 })
         .fontSize(20)
-        .margin({top:200})
+        .margin({ top: 200 })
         .fontFeature("\"ss01\" on")
-      TextInput({text : this.text2})
-        .margin({top:10})
+      TextInput({ text: this.text2 })
+        .margin({ top: 10 })
         .fontSize(20)
         .fontFeature("\"ss01\" off")
     }
@@ -1952,22 +1945,25 @@ struct textInput {
 ```ts
 @Entry
 @Component
-struct Input {
+struct Index {
   controller: TextInputController = new TextInputController()
   @State inputValue: string = ""
-  @State height1:string|number = '80%'
-  @State supportAvoidance:boolean = true;
+  @State height1: string | number = '80%'
+  @State supportAvoidance: boolean = true
+
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
-      Row(){
+      Row() {
         Button('x').onClick(() => {
           // 关闭自定义键盘
           this.controller.stopEditing()
         }).margin(10)
       }
+
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
@@ -1978,18 +1974,19 @@ struct Input {
       }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
     }.backgroundColor(Color.Gray)
   }
+
   build() {
     Column() {
-      Row(){
+      Row() {
         Button("20%")
           .fontSize(24)
-          .onClick(()=>{
+          .onClick(() => {
             this.height1 = "20%"
           })
         Button("80%")
           .fontSize(24)
-          .margin({left:20})
-          .onClick(()=>{
+          .margin({ left: 20 })
+          .onClick(() => {
             this.height1 = "80%"
           })
       }
@@ -1997,10 +1994,12 @@ struct Input {
       .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
-      .padding({bottom:50})
-      TextInput({ controller: this.controller, text: this.inputValue })
-        // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
+      .padding({ bottom: 50 })
+
+      TextInput({ controller: this.controller, text: this.inputValue })// 绑定自定义键盘
+        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })
+        .margin(10)
+        .border({ width: 1 })
 
     }
   }
@@ -2021,22 +2020,31 @@ struct TextInputExample {
     Row() {
       Column() {
         Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'This is the text without the height adaptive policy set'})
+        TextInput({ text: 'This is the text without the height adaptive policy set' })
           .width('80%').height(50).borderWidth(1).margin(1)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
           .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
           .heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
-        TextInput({text: 'This is the text with the height adaptive policy set'})
-          .width('80%').height(50).borderWidth(1).margin(1)
+        TextInput({ text: 'This is the text with the height adaptive policy set' })
+          .width('80%')
+          .height(50)
+          .borderWidth(1)
+          .margin(1)
           .minFontSize(4)
           .maxFontSize(40)
           .maxLines(3)
@@ -2052,55 +2060,49 @@ struct TextInputExample {
 ![TextInputAdaptFont](figures/textinput_adapt_font.png)
 
 ### 示例13
-lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
+lineBreakStrategy使用示例，展示了lineBreakStrategy设置不同挡位的效果。
 
 ```ts
 @Entry
 @Component
-struct TextExample1 {
-  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+struct TextInputExample {
+  @State message1: string =
+    "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
+  @State lineBreakStrategyIndex: number = 0
+  @State lineBreakStrategy: LineBreakStrategy[] = [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
+      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
+      TextInput({ text: this.message1 })
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
         .width('100%')
-        .maxLines(5)
+        .maxLines(12)
         .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.GREEDY)
-      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .maxLines(5)
-        .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
-      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextInput({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .maxLines(5)
-        .style(TextInputStyle.Inline)
-        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
+      Row() {
+        Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+          this.lineBreakStrategyIndex++
+          if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0
+          }
+        })
+      }
     }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.PNG)
+![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.gif)
 
 ### 示例14
 
-该实例展示输入框支持插入和删除回调。
+该示例展示输入框支持插入和删除回调。
 
 ```ts
 // xxx.ets

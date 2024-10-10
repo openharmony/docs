@@ -273,7 +273,9 @@ Allows an application to access OpenHarmony Security Detection and Response Fram
 
 ### ohos.permission.RUN_DYN_CODE
 
-Allows an application to run dynamic code.
+Allows an application to run dynamically delivered ArkCompiler bytecode when the ArkCompiler runtime engine is in restricted mode.
+
+This permission is available only for certain system applications.
 
 **Permission level**: normal
 
@@ -368,6 +370,16 @@ Allows an application to access the distributed travel service engine.
 ### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
 Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 13
+
+### ohos.permission.WINDOW_TOPMOST
+
+Allows an application to set pinned windows.
 
 **Permission level**: normal
 

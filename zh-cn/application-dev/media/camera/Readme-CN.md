@@ -19,6 +19,7 @@
   - [深度信息(仅对系统应用开放)(ArkTS)](camera-depth-data.md)
   <!--DelEnd-->
 - 相机最佳实践(ArkTS)
+  - [通过系统相机拍照和录像(ArkTS)](camera-picker.md)
   - [拍照实现方案(ArkTS)](camera-shooting-case.md)
   - [录像实现方案(ArkTS)](camera-recording-case.md)
   - [双路预览(ArkTS)](camera-dual-channel-preview.md)

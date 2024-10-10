@@ -2842,10 +2842,10 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 | 参数    | 类型 | 必填   | 说明 |
 | ----- | ---------------------------------------- | ---- | ----------------------------- |
 | image | [ImageBitmap](ts-components-canvas-imagebitmap.md) 或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 图片资源，请参考ImageBitmap或PixelMap。 |
-| sx    | number | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>默认单位：vp。 |
-| sy    | number | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>默认单位：vp。 |
-| sw    | number | 是  | 裁切源图像时需要裁切的宽度。<br>默认单位：vp。 |
-| sh    | number | 是  | 裁切源图像时需要裁切的高度。<br>默认单位：vp。 |
+| sx    | number | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。 |
+| sy    | number | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。 |
+| sw    | number | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。 |
+| sh    | number | 是  | 裁切源图像时需要裁切的高度。<br>image类型为ImageBitmap时，默认单位：vp。<br>image类型为PixelMap时，单位：px。 |
 | dx    | number | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp。 |
 | dy    | number | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp。 |
 | dw    | number | 是  | 绘制区域的宽度。<br>默认单位：vp。 |
@@ -3380,6 +3380,12 @@ transferToImageBitmap(): ImageBitmap
 restore(): void
 
 对保存的绘图上下文进行恢复。
+
+> **说明：**
+>
+> 当restore()次数未超出save()次数时，从栈中弹出存储的绘制状态并恢复CanvasRenderingContext2D对象的属性、剪切路径和变换矩阵的值。</br>
+> 当restore()次数超出save()次数时，此方法不做任何改变。</br>
+> 当没有保存状态时，此方法不做任何改变。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

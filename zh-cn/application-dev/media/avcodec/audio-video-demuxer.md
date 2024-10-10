@@ -79,6 +79,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 
 2. 创建资源管理实例对象。
+
+   调用者HAP中使用open获取fd时，filepath需要转换为[沙箱路径](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)，才能获取沙盒资源。
+
    ```c++
    // 创建文件操作符 fd，打开时对文件句柄必须有读权限(filePath 为待解封装文件路径，需预置文件，保证路径指向的文件存在)
    std::string filePath = "test.mp4";

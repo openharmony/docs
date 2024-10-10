@@ -152,7 +152,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     注册回调函数指针集合OH_AVCodecCallback，包括：
 
-    - OH_AVCodecOnError 编码器运行错误，返回的错误码详情请参见：[OH_AVCodecOnError](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcodeconerror)；
+    - OH_AVCodecOnError 编码器运行错误，返回的错误码详情请参见[OH_AVCodecOnError](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcodeconerror)；
     - OH_AVCodecOnStreamChanged  码流信息变化，如格式变化等；
     - OH_AVCodecOnNeedInputBuffer 输入回调无作用，调用者通过获取的surface输入数据；
     - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。
@@ -174,6 +174,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
     <!--RP5End-->
 
+    <!--RP12-->
     ```c++
     // 设置OH_AVCodecOnStreamChanged 回调函数，编码数据流变化
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
@@ -184,6 +185,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         (void)userData;
     }
     ```
+    <!--RP12End-->
 
     ```c++
     // 设置 OH_AVCodecOnNeedInputBuffer 回调函数，编码输入帧送入数据队列
@@ -367,7 +369,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     <!--RP8End-->
 
 11. 写入编码图像。
-    在之前的第7步中，调用者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的surface进行持续地输入，所以调用者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
+    在之前的第7步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
+    <!--RP13--><!--RP13End-->
 
 12. （可选）调用OH_VideoEncoder_PushInputParameter()通知编码器随帧参数配置输入完成。
     在之前的第5步中，调用者已经注册随帧通路回调
@@ -534,7 +537,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 3. 调用OH_VideoEncoder_RegisterCallback()设置回调函数。
 
     注册回调函数指针集合OH_AVCodecCallback，包括：
-    - OH_AVCodecOnError 编码器运行错误，返回的错误码详情请参见：[OH_AVCodecOnError](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcodeconerror)；
+    - OH_AVCodecOnError 编码器运行错误，返回的错误码详情请参见[OH_AVCodecOnError](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcodeconerror)；
     - OH_AVCodecOnStreamChanged 码流信息变化，如格式变化等；
     - OH_AVCodecOnNeedInputBuffer 运行过程中需要新的输入数据，即编码器已准备好，可以输入YUV/RGB数据；
     - OH_AVCodecOnNewOutputBuffer 运行过程中产生了新的输出数据，即编码完成。

@@ -72,7 +72,7 @@ enableNestedScroll(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------- | -------- |
 | Vertical | 纵向滚动条。 |
 | Horizontal | 横向滚动条。 |

@@ -231,7 +231,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     target_link_libraries(sample PUBLIC libnative_drm.so)
     ```
 
-    使用示例：
+    <!--RP4-->使用示例：<!--RP4End--> 
+
     ```c++
     // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例
     MediaKeySystem *system = nullptr;

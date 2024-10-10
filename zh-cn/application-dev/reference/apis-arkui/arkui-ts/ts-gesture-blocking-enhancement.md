@@ -7,7 +7,10 @@
 >  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## shouldBuiltInRecognizerParallelWith
+
 shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWithCallback): T
+
+提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -275,6 +278,8 @@ getPanGestureOptions(): PanGestureOptions
 ## onGestureRecognizerJudgeBegin
 
 onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback): T
+
+给组件绑定自定义手势识别器判定回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

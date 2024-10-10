@@ -287,10 +287,10 @@ zh-cn/application-dev/basic-services/update/sample-server-overview.md  @nezha-fa
 zh-cn/application-dev/basic-services/update/sample-server-guidelines.md  @nezha-father
 
 [开发-CalendarManager Kit]
-zh-cn/application-dev/calendarmanager @ge-yafang @jt_123456 @edollar
-zh-cn/application-dev/kit-readme/Readme-CalendarManager-Kit.md @ge-yafang @jt_123456 @edollar
-zh-cn/application-dev/calendarmanager/calendarmanager-overview.md @ge-yafang @jt_123456 @edollar
-zh-cn/application-dev/calendarmanager/calendarmanager-guidelines.md @ge-yafang @jt_123456 @edollar
+zh-cn/application-dev/calendarmanager @liuqian677 @jt_123456 @edollar
+zh-cn/application-dev/kit-readme/Readme-CalendarManager-Kit.md @liuqian677 @jt_123456 @edollar
+zh-cn/application-dev/calendarmanager/calendarmanager-overview.md @liuqian677 @jt_123456 @edollar
+zh-cn/application-dev/calendarmanager/calendarmanager-guidelines.md @liuqian677 @jt_123456 @edollar
 
 
 [开发-Connectivity Kit]
@@ -924,39 +924,39 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @li
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @li-yan339 @Kevin-Lau @liuhonggang123
 
 [API参考-Basic Services Kit-数据文件处理]
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @zhang_yixin13 @hanruofei @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @zhang_yixin13 @hanruofei @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @zhang_yixin13 @hanruofei @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-update-sys.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zhang_yixin13 @hanruofei @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @liuqian677 @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @liuqian677 @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @liuqian677 @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-update-sys.md @hughes802 @liuqian677 @zhangzhengxue @mamba-ting
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @liuqian677 @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @liuqian677 @zhangzhengxue @mamba-ting
 
 [API参考-Basic Services Kit-时间时区、公共回调、系统设置]
-zh-cn/application-dev/reference/common/js-apis-timer.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/commonEvent-screenlock.md @zhang_yixin13
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-time.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-date-time-sys.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-time.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-date-time.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-time.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock-sys.md @zhang_yixin13 @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock.md @zhang_yixin13 @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @wangzhangjun
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings.md @xue-seu @zhang_yixin13
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings-sys.md @xue-seu @zhang_yixin13
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper-sys.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @wangzhangjun
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md @zhang_yixin13 @illybyy @murphy1984 @feng-aiwen @wangzhangjun
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-screenlock.md @zhang_yixin13 @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/common/js-apis-timer.md @liuqian677 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/commonEvent-screenlock.md @liuqian677
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-timer-sys.md @liuqian677 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-time.md @liuqian677 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-date-time-sys.md @liuqian677 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-time.md @liuqian677 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-nonsys-date-time.md @liuqian677 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-time.md @liuqian677 @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock-sys.md @liuqian677 @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-screen-lock.md @liuqian677 @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper.md @liuqian677 @illybyy @murphy1984 @feng-aiwen @wangzhangjun
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings.md @xue-seu @liuqian677
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings-sys.md @xue-seu @liuqian677
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-wallpaper-sys.md @liuqian677 @illybyy @murphy1984 @feng-aiwen @wangzhangjun
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md @liuqian677 @illybyy @murphy1984 @feng-aiwen @wangzhangjun
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-screenlock.md @liuqian677 @feng-aiwen @illybyy @murphy1984 @wangzhangjun 
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-capability*.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 
 [API参考-Basic Services Kit-启动恢复]
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-parameterV9.md @mupceet @zhang_yixin13 @handyohos @nan-xiansen
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-device-info.md @mupceet @zhang_yixin13 @handyohos @smartltt
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-parameterV9.md @mupceet @liuqian677 @handyohos @nan-xiansen
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-device-info.md @mupceet @liuqian677 @handyohos @smartltt
 
 
 [API参考-CalendarManager Kit]
-zh-cn/application-dev/reference/apis-calendar-kit/ @ge-yafang @jt_123456 @edollar
+zh-cn/application-dev/reference/apis-calendar-kit/ @liuqian677 @jt_123456 @edollar
 
 
 [API参考-Connectivity Kit-bluetooth]

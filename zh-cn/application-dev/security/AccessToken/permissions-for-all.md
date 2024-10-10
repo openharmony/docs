@@ -273,7 +273,9 @@
 
 ### ohos.permission.RUN_DYN_CODE
 
-允许应用运行动态代码。
+允许系统方舟运行时引擎在受限模式下执行动态下发的方舟字节码。
+
+该权限相关的API均为系统API，仅部分特定系统应用可申请该权限。 
 
 **权限级别**：normal
 
@@ -368,6 +370,16 @@
 ### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
 允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：13
+
+### ohos.permission.WINDOW_TOPMOST
+
+允许应用将窗口设置为应用置顶窗口。
 
 **权限级别**：normal
 

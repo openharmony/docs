@@ -428,7 +428,7 @@ systemRingtonePlayer.release().then(() => {
 
 on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
-监听音频中断事件。使用callback获取中断事件。
+监听音频中断事件（当音频焦点发生变化时触发），使用callback方式返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -438,8 +438,8 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                                                       |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
-| type     | string                  | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（中断事件被触发，音频渲染被中断）。 |
-| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | 是   | 被监听的中断事件的回调。    |
+| type     | string                  | 是   | 监听事件，固定为：'audioInterrupt'。 |
+| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | 是   | 回调函数，返回播放中断时，应用接收的中断事件信息。 |
 
 **错误码：**
 
@@ -504,7 +504,7 @@ systemRingtonePlayer.on('audioInterrupt', async(interruptEvent: audio.InterruptE
 
 off(type: 'audioInterrupt'): void
 
-取消订阅音频中断事件。
+取消监听音频中断事件。
 
 **系统接口：** 该接口为系统接口
 
@@ -514,7 +514,7 @@ off(type: 'audioInterrupt'): void
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | :----- | :----- | :--- | :------------------------------------------------ |
-| type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'audioInterrupt'。 |
+| type   | string | 是   | 监听事件，固定为：'audioInterrupt'。 |
 
 **错误码：**
 
