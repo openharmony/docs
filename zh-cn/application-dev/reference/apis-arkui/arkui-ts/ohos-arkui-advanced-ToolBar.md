@@ -35,7 +35,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 装饰器类型       | 说明                  |
+| 名称 | 类型 | 必填 | 装饰器类型       | 说明                  |
 | -------- | -------- | -------- |-------------|---------------------|
 | toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | @ObjectLink | 工具栏列表。              |
 | activateIndex | number | 否 | @Prop       | 激活态的子项。<br/>默认值：-1。 |
@@ -43,13 +43,19 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 ## ToolBarOptions
 
-继承于 Array<[ToolBarOption](#toolbaroption)>
+继承于 Array<[ToolBarOption](#toolbaroption)>。
+
+**装饰器类型：**\@Observed
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ToolBarOption
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

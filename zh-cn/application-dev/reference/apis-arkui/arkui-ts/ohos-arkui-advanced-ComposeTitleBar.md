@@ -13,7 +13,7 @@
 
 ```
 import { ComposeTitleBar } from '@kit.ArkUI'
-``` 
+```
 
 
 ## 子组件
@@ -36,7 +36,7 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | item | [ComposeTitleBarMenuItem](#composetitlebarmenuitem) | 否 | 用于左侧头像的单个菜单项目。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题。 |
@@ -46,6 +46,8 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 ## ComposeTitleBarMenuItem
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

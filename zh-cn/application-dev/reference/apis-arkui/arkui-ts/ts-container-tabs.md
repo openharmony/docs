@@ -378,7 +378,7 @@ TabBar布局模式枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 值 | 描述                                       |
+| 名称        | 值 | 说明                                     |
 | ---------- | -- | ---------------------------------------- |
 | Scrollable | 0  | 每一个TabBar均使用实际布局宽度，超过总长度（横向Tabs的barWidth，纵向Tabs的barHeight）后可滑动。 |
 | Fixed      | 1  | 所有TabBar平均分配barWidth宽度（纵向时平均分配barHeight高度）。 |
@@ -391,11 +391,11 @@ TabBar布局模式枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 值  | 描述                                       |
-| ------------- | -- | ---------------------------------------- |
-| CONTENT_FIRST | 0  | 先加载目标页内容，再开始切换动画 |
-| ACTION_FIRST  | 1  | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto |
-| NO_ANIMATION  | 2  | 关闭默认动画 |
+| 名称          | 值   | 说明                                                         |
+| ------------- | ---- | ------------------------------------------------------------ |
+| CONTENT_FIRST | 0    | 先加载目标页内容，再开始切换动画                             |
+| ACTION_FIRST  | 1    | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto |
+| NO_ANIMATION  | 2    | 关闭默认动画                                                 |
 
 ## LayoutStyle<sup>10+</sup>枚举说明
 
@@ -405,7 +405,7 @@ Scrollable模式下不滚动时的页签排布方式枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 值 | 描述                                       |
+| 名称         | 值 | 说明                                     |
 | ---------- | -- | ---------------------------------------- |
 | ALWAYS_CENTER | 0 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，页签紧凑居中。|
 | ALWAYS_AVERAGE_SPLIT | 1 | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。|

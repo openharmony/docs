@@ -461,7 +461,13 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 指定图像内容。
 
-| 名称     | 描述                      |
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                    |
 | ------ | -------------------------- |
 | EMPTY   | 空图像。                   |
 
@@ -471,7 +477,9 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                       |
 | ------ | -------------------------- |
 | None   | 最近邻插值。                   |
 | High   | Cubic插值，插值质量最高，可能会影响图片渲染的速度。 |
@@ -484,8 +492,10 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称       | 描述      |
-| -------- | ------- |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明           |
+| -------- | -------------- |
 | Original | 原色渲染模式。 |
 | Template | 黑白渲染模式。 |
 
@@ -506,6 +516,8 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | --------- |-----------|-----------|-----------|
 |  top    |  [Length](ts-types.md#length)  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
@@ -521,7 +533,9 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称     | 描述                      |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                    |
 | ------ | -------------------------- |
 | High   | 不受限动态范围，最大限度进行图片提亮。              |
 | Constraint | 受限动态范围，受限进行图片提亮。          |
