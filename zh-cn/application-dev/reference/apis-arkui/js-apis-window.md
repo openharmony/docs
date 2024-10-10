@@ -6046,7 +6046,7 @@ struct Index {
 }
 ```
 
-### setGestureBackEnabled<sup>13+<sup>
+### setGestureBackEnabled<sup>14+<sup>
 
 setGestureBackEnabled(enabled: boolean): Promise&lt;void&gt;
 
@@ -6054,7 +6054,7 @@ setGestureBackEnabled(enabled: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -6118,7 +6118,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### getGestureBackEnabled<sup>13+<sup>
+### getGestureBackEnabled<sup>14+<sup>
 
 getGestureBackEnabled(): boolean
 
@@ -6126,7 +6126,7 @@ getGestureBackEnabled(): boolean
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
