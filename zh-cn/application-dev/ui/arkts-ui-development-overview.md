@@ -89,7 +89,7 @@
 | 使用文本 | 介绍了输入框、富文本和属性字符串等文本组件的使用方法。                | -&nbsp;[文本显示](arkts-common-components-text-display.md) <br/>- [文本输入](arkts-common-components-text-input.md)<br/>- [富文本](arkts-common-components-richeditor.md)<br/>- [图标小符号](arkts-common-components-symbol.md)<br/>- [属性字符串](arkts-styled-string.md)|
 | 使用弹窗 | 介绍了模态弹窗和自定义弹窗的使用方法。 | - [模态弹窗](arkts-modal-dialog.md)<br>- [自定义弹窗](arkts-uicontext-custom-dialog.md) |
 | 显示图形        | 介绍了如何显示图片、绘制自定义几何图形以及使用画布绘制自定义图形。   | -&nbsp;[几何图形](arkts-geometric-shape-drawing.md)<br/>-&nbsp;[画布](arkts-drawing-customization-on-canvas.md) |
-| 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | - [属性动画](arkts-attribute-animation-overview.md)<br>- [转场动画](arkts-transition-overview.md)<br>-[粒子动画](arkts-particle-animation.md)<br>- [组件动画](arkts-component-animation.md)<br>- [动画曲线](arkts-traditional-curve.md)<br>- [动画衔接](arkts-animation-smoothing.md)<br>- [动画效果](arkts-blur-effect.md)<br>- [帧动画](arkts-animator.md) |
+| 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | - [属性动画](arkts-attribute-animation-overview.md)<br>- [转场动画](arkts-transition-overview.md)<br>- [粒子动画](arkts-particle-animation.md)<br>- [组件动画](arkts-component-animation.md)<br>- [动画曲线](arkts-traditional-curve.md)<br>- [动画衔接](arkts-animation-smoothing.md)<br>- [动画效果](arkts-blur-effect.md)<br>- [帧动画](arkts-animator.md) |
 | 绑定事件        | 介绍了事件的基本概念和如何使用通用事件和手势事件。           | -&nbsp;[通用事件](arkts-common-events-touch-screen-event.md)<br/>-&nbsp;[手势事件](arkts-gesture-events-binding.md) |
 | 使用自定义能力        | 介绍了自定义能力的基本概念和如何使用自定义能力。       | -&nbsp;[自定义节点](arkts-user-defined-node.md)<br/>-&nbsp;[自定义扩展](arkts-user-defined-modifier.md)|
 | 使用镜像能力        | 介绍了镜像能力的基本概念和如何使用镜像能力。       | -&nbsp;[使用镜像能力](arkts-mirroring-display.md) |
