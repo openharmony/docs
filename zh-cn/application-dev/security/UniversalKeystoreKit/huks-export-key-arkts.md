@@ -8,7 +8,7 @@
 
 ## 开发步骤
 
-1. 指定密钥别名keyAlias，密钥别名最大长度为64字节。
+1. 指定密钥别名keyAlias，密钥别名最大长度为128字节。
 
 2. 调用接口[exportKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksexportkeyitem9)，传入参数keyAlias和options。
    options为预留参数，当前可传入空。
