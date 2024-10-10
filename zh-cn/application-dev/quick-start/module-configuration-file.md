@@ -49,6 +49,10 @@
         ],
         "continueType": [
           "continueType1"
+        ],
+        "continueBundleName": [
+          "com.example.myapplication1",
+          "com.example.myapplication2"
         ]
       }
     ],
@@ -311,6 +315,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | excludeFromDock | 标识当前UIAbility组件是否支持从dock区域隐藏图标。<br/>-&nbsp;true：表示在dock区域隐藏。<br/>-&nbsp;false：表示不能在dock区域隐藏。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | preferMultiWindowOrientation | 标识当前UIAbility组件多窗布局方向：<br/>-&nbsp;default：缺省值，参数不配置默认值，建议其他应用类配置。<br/>-&nbsp;portrait：多窗布局方向为竖向，建议竖向游戏类应用配置。<br/>-&nbsp;landscape：多窗布局方向为横向，配置后支持横屏悬浮窗和上下分屏，建议横向游戏类应用配置。<br/>-&nbsp;landscape_auto：多窗布局动态可变为横向，需要配合API enableLandScapeMultiWindow/disableLandScapeMultiWindow使用，建议视频类应用配置。 | 字符串 | 该标签可缺省，缺省值为default。 |
 | continueType | 标识当前UIAbility组件的跨端迁移类型。 | 字符串数组 | 该标签可缺省，缺省值为当前组件的名称。 |
+| continueBundleName | 标识当前应用支持跨端迁移的其它应用名称列表。<br/>**说明：**<br/>不能配置为本应用包名，仅为了做异包名迁移使用。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 
 abilities示例：
 
@@ -363,6 +368,10 @@ abilities示例：
     "continueType": [
       "continueType1",
       "continueType2"
+    ],
+    "continueBundleName": [
+      "com.example.myapplication1",
+      "com.example.myapplication2"
     ]
   }]
 }
