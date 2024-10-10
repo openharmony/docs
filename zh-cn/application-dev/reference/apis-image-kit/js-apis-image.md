@@ -3135,12 +3135,12 @@ createImageSource(fd: number): ImageSource
 **示例：**
 
 ```ts
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const context: Context = getContext(this);
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
 let filePath: string = context.filesDir + "/test.jpg";
-let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
 ```
 
@@ -3172,13 +3172,13 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 **示例：**
 
 ```ts
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
 const context: Context = getContext();
 //此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
 const filePath: string = context.filesDir + "/test.jpg";
-let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imageSourceApi: image.ImageSource = image.createImageSource(file.fd, sourceOptions);
 ```
 
@@ -4882,7 +4882,7 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const context: Context = getContext(this);
 //此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
@@ -4890,7 +4890,7 @@ const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
 const filePath: string = context.filesDir + "/image_source.jpg";
-let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err: BusinessError) => {
   if (err) {
@@ -4927,7 +4927,7 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const context: Context = getContext(this);
 //此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
@@ -4935,7 +4935,7 @@ const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
 const filePath: string = context.filesDir + "/image_source.jpg";
-let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
   console.info('Succeeded in packing the image to file.');
@@ -4965,7 +4965,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
@@ -4973,7 +4973,7 @@ const context: Context = getContext(this);
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   const imagePackerApi: image.ImagePacker = image.createImagePacker();
   imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err: BusinessError) => {
     if (err) {
@@ -5011,7 +5011,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
 let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
@@ -5019,7 +5019,7 @@ const context: Context = getContext(this);
 const path: string = context.filesDir + "/pixel_map.jpg";
 image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
   let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   const imagePackerApi: image.ImagePacker = image.createImagePacker();
   imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
     .then(() => {
