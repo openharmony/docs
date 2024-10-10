@@ -97,7 +97,7 @@ kernel/
 │		│               ├── hi3516dv300_standard_defconfig    # Standard-system defconfig of the open-source Hi3516D V300 development board from HiSilicon
 │		│               ├── small_common_defconfig            # Common defconfig of the small-system kernel
 │		│               └── standard_common_defconfig         # Common defconfig of the standard-system kernel
-│		└── linux-5.10 (or linux-6.6)
+│		└── linux-5.10 or linux-6.6
 │		    └── arch
 │		        └── arm
 │		            └── configs
