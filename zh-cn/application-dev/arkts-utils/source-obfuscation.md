@@ -338,6 +338,21 @@ lastName
 
 该选项在开启`-enable-property-obfuscation`时生效
 
+属性白名单作用于全局。即代码中出现多个重名属性，只要与-keep-property-name配置白名单名称相同，均不会被混淆。
+
+例子：
+
+```
+class a{
+  age:number //age在白名单中，a中age被保留
+}
+
+class b{
+  age:number //b中age也被保留
+}
+
+```
+
 **哪些属性名应该被保留?**
 
 为了保障混淆的正确性，建议保留所有不通过点语法访问的属性。
