@@ -269,18 +269,12 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b
   **表10** 快速修复命令列表
 | 命令 | 是否必选 |描述 |
 | -------- | -------- | -------- |
-| bm quickfix -h | 显示quickfix支持的命令信息。-h为非必选字段。 |
-| bm quickfix -a -f \<filePath\> | 执行补丁安装命令。-a非必选字段，指定后，-f为必选字段，未指定-a，则-f为非必选字段。 |
-| bm quickfix -q -b \<bundleName\> | 根据包名查询补丁包信息。-q为非必选字段，指定后，-b为必选字段，未指定-q，则-b为非必选字段。 |
-| bm quickfix -a -f \<filePath\> -d | 选择debug模式执行补丁安装命令。-d为非必选字段。 |
-| bm quickfix -a -f \<filePath\> -t \<target-path\> | 指定补丁安装目录，且不使能。-t为非必选字段。 |
-| bm quickfix -r -b \<bundleName\> | 根据包名卸载未使能的补丁。-r为非必选字段，指定后，-b为必选字段，未指定-r，则-b为非必选字段。 |
 | -h | 否，默认输出帮助信息 | 显示quickfix支持的命令信息 |
 | -a&nbsp;-f | -a非必选字段，指定后，-f为必选字段，未指定-a，则-f为非必选字段。| 执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
 | -q&nbsp;-b | -q为非必选字段，指定后，-b为必选字段，未指定-q，则-b为非必选字段。 | 根据包名查询补丁信息，bundle-name对应包名。 |
 | -r&nbsp;-b | -r为非必选字段，指定后，-b为必选字段，未指定-r，则-b为非必选字段。 | 根据包名卸载未使能的补丁。|
-| -t | 否 ||
-| -d | 否||
+| -t | 否 | 表示应用的目标路径。|
+| -d | 否| 应用快速修复调试模式。|
 
 
 
