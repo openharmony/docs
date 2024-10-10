@@ -41,6 +41,7 @@
     - [动效能力实践](animation_practice.md)
     - [性能提升的其他方法](arkts-performance-improvement-recommendation.md)
     - [运行时动态加载页面提升性能](performance-dynamic-import.md)
+    - [合理使用缓存提升性能](reasonable_using_cache_improve_performance.md)
     - [合理运行后台任务](reasonable-running-backgroundTask.md)
     - [Web组件开发性能提升指导](performance-web-import.md)
     - [使用同层渲染在Webview上渲染原生组件](webview-render-app-components.md)
