@@ -96,16 +96,7 @@ async function example() {
     // 将来源于应用沙箱的照片内容写入媒体库的目标uri
     let desFile: fileIo.File = await fileIo.open(desFileUris[0], fileIo.OpenMode.WRITE_ONLY);
     let srcFile: fileIo.File = await fileIo.open(srcFileUri, fileIo.OpenMode.READ_ONLY);
-    let bufSize = 10000000;
-    let readSize = 0;
-    let buf = new ArrayBuffer(bufSize);
-    let readOptions: ReadOptions = { offset: readSize, length: bufSize };
-    let readLen = fileIo.readSync(srcFile.fd, buf, readOptions);
-    if (readLen > 0) {
-      readSize += readLen;
-      let writeOptions: WriteOptions = { length: readLen };
-      fileIo.writeSync(desFile.fd, buf, writeOptions);
-    }
+    await fileIo.copyFile(srcFile.fd, desFile.fd);
     fileIo.closeSync(srcFile);
     fileIo.closeSync(desFile);
     console.info('create asset by dialog successfully');
