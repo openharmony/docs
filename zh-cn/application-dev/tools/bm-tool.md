@@ -1,26 +1,25 @@
 # bm工具
 
+Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、更新、查询等功能的工具，bm为开发者提供基本的应用安装包的调试能力。
 
-Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、更新、查询等功能的工具，bm为开发者提供基本的应用安装包的调试能力，例如：安装应用，卸载应用，查询安装包信息等。
+## 环境要求
 
-> **说明：**
->
-> 在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
+在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
 
 
-  **表1** bm工具命令列表
+## bm工具命令列表
 
 | 命令 | 描述 |
 | -------- | -------- |
-| help | 帮助命令，显示bm支持的命令信息。 |
-| install | 安装命令，用来安装应用。 |
-| uninstall | 卸载命令，用来卸载应用。 |
-| dump | 查询命令，用来查询应用的相关信息。 |
-| clean | 清理命令，用来清理应用的缓存和数据。此命令在root版本下可用，在user版本下打开开发者模式可用。其它情况不可用。|
-| enable | 使能命令，用来使能应用，使能后应用可以继续使用。此命令在root版本下可用，在user版本下不可用。 |
-| disable | 禁用命令，用来禁用应用，禁用后应用无法使用。此命令在root版本下可用，在user版本下不可用。 |
-| get | 获取udid命令，用来获取设备的udid。 |
-| quickfix | 快速修复相关命令，用来执行补丁相关操作，如补丁安装、补丁查询。 |
+| help | 帮助命令，用于查询bm支持的命令信息。 |
+| install | 安装命令，用于安装应用。 |
+| uninstall | 卸载命令，用于卸载应用。 |
+| dump | 查询命令，用于查询应用的相关信息。 |
+| clean | 清理命令，用于清理应用的缓存和数据。此命令在root版本下可用，在user版本下打开开发者模式可用。其它情况不可用。|
+| enable | 使能命令，用于使能应用，使能后应用可以继续使用。此命令在root版本下可用，在user版本下不可用。 |
+| disable | 禁用命令，用于禁用应用，禁用后应用无法使用。此命令在root版本下可用，在user版本下不可用。 |
+| get | 获取udid命令，用于获取设备的udid。 |
+| quickfix | 快速修复相关命令，用于执行补丁相关操作，如补丁安装、补丁查询。 |
 | compile | 应用执行编译AOT命令。 |
 | copy-ap | 把应用的ap文件拷贝到/data/local/pgo目录下，供shell用户读取文件。 |
 | dump-dependencies | 查询应用依赖的模块信息。 |
@@ -36,7 +35,7 @@ bm help
 
   **表2** help命令列表
 
-| 命令    | 描述       |
+| 命令    | 描述       |
 | ------- | ---------- |
 | bm help | 显示bm工具的能够支持的命令信息。 |
 
@@ -54,21 +53,18 @@ bm help
 ```bash
 bm install [-h] [-p filePath] [-u userId] [-r] [-w waitingTime] [-s hspDirPath]
 ```
-安装命令可以组合，下面列出部分命令。
-
 
   **表3** 安装命令列表
 
-| 命令                                | 描述                       |
-| ----------------------------------- | -------------------------- |
-| bm install -h | 显示install支持的命令信息。-h为非必选字段。 |
-| bm install -p \<filePath\>    | 安装应用，支持指定路径和多个hap、hsp同时安装。安装应用时，-p为必选字段。 |
-| bm install -p \<filePath\> -u \<userId\>   |给指定用户安装一个应用。-u非必选字段，默认为当前活跃用户。 |
-| bm install -p \<filePath\> -r | 覆盖安装一个应用，-r为非必选字段，默认支持覆盖安装。 |
-| bm install -p \<filePath\> -r -u \<userId\> | 给指定用户覆盖安装一个应用。 |
-| bm install -p \<filePath\> -r -u \<userId\> -w \<waitingTime\> | 安装时指定bm工具等待时间，-w非必选字段，最小的等待时长为180s，最大的等待时长为600s， 默认缺省为5s。 |
-| bm install -s \<hspDirPath\> | 安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。-s为安装应用间HSP时必选字段，其他场景为可选字段。 |
-| bm install -p \<filePath\> -s \<hspDirPath\> | 同时安装使用方应用和其依赖的应用间共享库。 |
+
+| 命令 | 是否必选 | 描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示install支持的命令信息。|
+| -p | 是 | 安装HAP路径，支持指定路径和多个HAP同时安装。|
+| -u | 否，默认安装到当前所有用户上 | 给指定用户安装一个HAP。 |
+| -r | 否，默认值为覆盖安装 | 覆盖安装一个HAP。 |
+| -s | 根据场景判断，安装应用间HSP时必选字段，其他场景为可选字段。 |安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。|
+| -w | 否，默认等待5s | 安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为5s。 |
 
 
 
@@ -80,10 +76,10 @@ bm install -p /data/app/ohos.app.hap
 bm install -p /data/app/ohos.app.hap -r
 # 安装一个应用间共享库
 bm install -s xxx.hsp
-# 同时安装多个应用间共享库
-bm install -s xxx.hsp yyy.hsp
 # 同时安装使用方应用和其依赖的应用间共享库
 bm install -p aaa.hap -s xxx.hsp yyy.hsp
+# 指定用户安装一个hap,等待时间为10s
+bm install -p /data/app/ohos.app.hap -u 100 -w 10
 ```
 
 ## 卸载命令
@@ -92,20 +88,18 @@ bm install -p aaa.hap -s xxx.hsp yyy.hsp
 bm uninstall [-h] [-n bundleName] [-m moduleName] [-u userId] [-k] [-s] [-v versionCode]
 ```
 
-命令可以组合，下面列出部分命令。
-
-
   **表4** 卸载命令列表
 
-| 命令                          | 描述                     |
-| ----------------------------- | ------------------------ |
-| bm uninstall -h | 显示uninstall支持的命令信息。-h为非必选字段。 |
-| bm uninstall -n \<bundleName\> | 通过指定包名卸载应用。-n为必选字段。 |
-| bm uninstall -n \<bundleName\> -u \<userId\>| 通过指定包名和用户卸载应用。-u非必选字段，默认为当前活跃用户。 |
-| bm uninstall -n \<bundleName\> -u \<userId\> -k| 通过指定包名和用户以保留用户数据方式卸载应用。-k为非必选字段。 |
-| bm uninstall -n \<bundleName\> -m \<moduleName\> | 通过指定包名卸载应用的一个模块。-m为非必选字段。 |
-| bm uninstall -n \<bundleName\> -s | 卸载指定的shared bundle。-s为非必选字段，卸载共享库应用时为必选字段。 |
-| bm uninstall -n \<bundleName\> -s -v \<versionCode\> | 卸载指定的shared bundle的指定版本。-v为非必选字段。 |
+| 命令 | 是否必选 | 描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示uninstall支持的命令信息。 |
+| -n | 是 | 指定Bundle名称卸载应用。 |
+| -m | 否，默认卸载所有模块 | 指定卸载应用的一个模块。 |
+| -u | 否，默认卸载当前所有用户下该应用 | 指定用户卸载应用。 |
+| -k | 否，默认卸载应用时不保存应用数据 | 卸载应用时保存应用数据。 |
+| -s | 根据场景判断，安装应用间HSP时必选字段，其他场景为非必选字段。| 卸载指定的共享库。|
+| -v | 否，默认卸载同包名的所有共享包 | 指示共享包的版本号。 |
+
 
 示例：
 
@@ -113,13 +107,15 @@ bm uninstall [-h] [-n bundleName] [-m moduleName] [-u userId] [-k] [-s] [-v vers
 # 卸载一个应用
 bm uninstall -n com.ohos.app
 # 卸载应用的一个模块
-bm uninstall -n com.ohos.app -m entry
+bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility
 # 卸载一个shared bundle
 bm uninstall -n com.ohos.example -s
 # 卸载一个shared bundle的指定版本
 bm uninstall -n com.ohos.example -s -v 100001
 # 卸载一个应用，并保留用户数据
 bm uninstall -n com.ohos.app -k
+# 指定用户卸载应用的一个模块
+bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility -u 100 
 ```
 
 
@@ -128,19 +124,17 @@ bm uninstall -n com.ohos.app -k
 ```bash
 bm dump [-h] [-a] [-n bundleName] [-s shortcutInfo] [-u userId] [-d deviceId]
 ```
-命令可以组合，下面列出部分命令。
-
 
   **表5** 查询命令列表
 
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm dump -h | 显示dump支持的命令信息。-h为非必选字段。 |
-| bm dump -a | 查询系统已经安装的所有应用包名。-a为非必选字段。 |
-| bm dump -n \<bundleName\> | 查询指定包名的详细信息。-n为非必选字段。 |
-| bm dump -n \<bundleName\> -s | 查询指定包名下的快捷方式信息。-s为非必选字段。 |
-| bm dump -n \<bundleName\> -d \<deviceId\> | 跨设备查询包信息。-d为非必选字段。 |
-| bm dump -n \<bundleName\> -u \<userId\> | 查询指定用户下指定包名的详细信息。-u为非必选字段，默认为所有用户。 |
+| 命令 | 是否必选 | 描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示dump支持的命令信息。 |
+| -a | 是 | 查询系统已经安装的所有应用。 |
+| -n | 是 | 查询指定Bundle名称的详细信息。 |
+| -s | 是 | 查询指定Bundle名称下的快捷方式信息。 |
+| -d | 否，默认查询当前设备 | 查询指定设备中的包信息。 |
+| -u | 否，默认查询当前设备上的所有用户 | 查询指定用户下指定Bundle名称的详细信息。 |
 
 
 示例：
@@ -163,14 +157,15 @@ bm clean [-h] [-c] [-n bundleName] [-d] [-u userId] [-i appIndex]
 ```
 
   **表6** 清理命令列表
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm clean -h | 显示clean支持的命令信息。-h为非必选字段。 |
-| bm clean -n \<bundleName\> -c | 清除指定包名的缓存数据。-n为必选字段，-c为非必选字段。 |
-| bm clean -n \<bundleName\> -d | 清除指定包名的数据目录。-d为非必选字段。 |
-| bm clean -n \<bundleName\> -c -u \<userId\> | 清除指定用户下包名的缓存数据。-u为非必选字段，默认为当前活跃用户。 |
-| bm clean -n \<bundleName\> -d -u \<userId\> | 清除指定用户下包名的数据目录。 |
-| bm clean -n \<bundleName\> -d -u \<userId\> -i \<appIndex\> | 清除指定用户下分身应用的数据目录。-i为非必选字段，默认为0。 |
+
+| 命令 | 是否必选 | 描述 |
+| -------- | --------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示clean支持的命令信息。 |
+| -c&nbsp;-n | -n为必选字段，-c为非必选字段。 |清除指定Bundle名称的缓存数据。 |
+| -d&nbsp;-n | -n为必选字段，-c为非必选字段。 |清除指定Bundle名称的数据目录。 |
+| -i | 否，默认为0 | 清楚分身应用的数据目录。|
+| -u | 否，默认为当时活跃用户 | 清除指定用户下Bundle名称的缓存数据。 |
+
 
 示例：
 
@@ -193,12 +188,12 @@ bm enable [-h] [-n bundleName] [-a abilityName] [-u userId]
 
   **表7** 使能命令列表
 
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm enable -h | 显示enable支持的命令信息。-h为非必选字段。 |
-| bm enable -n \<bundleName\> | 使能指定包名的应用。-n为必选字段。 |
-| bm enable -n \<bundleName\> -a \<abilityName\> | 使能指定包名下的元能力模块。-a为非必选字段。 |
-| bm enable -n \<bundleName\> -u \<userId\>| 使能指定用户和包名的应用。-u为非必选字段，默认为当前活跃用户。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 |显示enable支持的命令信息。 |
+| -n | 是 |使能指定Bundle名称的应用。 |
+| -a | 否 |使能指定Bundle名称下的元能力模块。 |
+| -u | 否，默认为当前活跃用户 |使能指定用户和Bundle名称的应用。 |
 
 
 示例：
@@ -220,12 +215,12 @@ bm disable [-h] [-n bundleName] [-a abilityName] [-u userId]
 
   **表8** 禁用命令列表
 
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm disable -h | 显示disable支持的命令信息。-h为非必选字段。 |
-| bm disable -n \<bundleName\> | 禁用指定包名的应用。-n为必选字段。 |
-| bm disable -n \<bundleName\> -a \<abilityName\> | 禁用指定包名下的元能力模块。-a为非必选字段。 |
-| bm disable -n \<bundleName\> -u \<userId\>| 禁用指定用户和包名下的应用。-u为非必选字段，默认为当前活跃用户。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示disable支持的命令信息。|
+| -n | 是 |禁用指定Bundle名称的应用。|
+| -a | 否 |禁用指定Bundle名称下的元能力模块。|
+| -u | 否，默认为当前活跃用户 | 禁用指定用户和Bundle名称下的应用。|
 
 
 示例：
@@ -246,10 +241,10 @@ bm get [-h] [-u]
 
   **表9** 获取udid命令列表
 
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm get -h | 显示get支持的命令信息。-h为非必选字段。 |
-| bm get -u | 获取设备的udid。-u为必选字段。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示get支持的命令信息。|
+| -u | 是 | 获取设备的udid。|
 
 
 示例：
@@ -272,14 +267,15 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b
 注：hqf文件制作方式可参考[HQF打包指令](packing-tool.md#hqf打包指令)。
 
   **表10** 快速修复命令列表
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm quickfix -h | 显示quickfix支持的命令信息。-h为非必选字段。 |
-| bm quickfix -a -f \<filePath\> | 执行补丁安装命令。-a非必选字段，指定后，-f为必选字段，未指定-a，则-f为非必选字段。 |
-| bm quickfix -q -b \<bundleName\> | 根据包名查询补丁包信息。-q为非必选字段，指定后，-b为必选字段，未指定-q，则-b为非必选字段。 |
-| bm quickfix -a -f \<filePath\> -d | 选择debug模式执行补丁安装命令。-d为非必选字段。 |
-| bm quickfix -a -f \<filePath\> -t \<target-path\> | 指定补丁安装目录，且不使能。-t为非必选字段。 |
-| bm quickfix -r -b \<bundleName\> | 根据包名卸载未使能的补丁。-r为非必选字段，指定后，-b为必选字段，未指定-r，则-b为非必选字段。 |
+|   命令        | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示quickfix支持的命令信息 |
+| -a&nbsp;-f | -a非必选字段，指定后，-f为必选字段，未指定-a，则-f为非必选字段。| 执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
+| -q&nbsp;-b | -q为非必选字段，指定后，-b为必选字段，未指定-q，则-b为非必选字段。 | 根据包名查询补丁信息，bundle-name对应包名。 |
+| -r&nbsp;-b | -r为非必选字段，指定后，-b为必选字段，未指定-r，则-b为非必选字段。 | 根据包名卸载未使能的补丁。|
+| -t | 否 | 表示应用的目标路径。|
+| -d | 否| 应用快速修复调试模式。|
+
 
 
 示例：
@@ -316,12 +312,12 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 
   **表11** 共享库查询命令列表
 
-| 命令                                             | 描述                                   |
-| ------------------------------------------------ | -------------------------------------- |
-| bm dump-shared -h  | 显示dump-shared支持的命令信息。-h为非必选字段。          |
-| bm dump-shared -a          | 查询系统中已安装所有共享库。-a为非必选字段。     |
-| bm dump-shared -n \<bundleName\>            | 查询指定共享库包名的详细信息。-n为非必选字段。           |
-| bm dump-shared -n \<bundleName\> -m \<moduleName\>      | 查询指定共享库包名和模块名的详细信息。-m为非必选字段。     |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示dump-shared支持的命令信息。 |
+| -a | 否 | 查询系统中已安装所有共享库。|
+| -n | 否 | 查询指定共享库包名的详细信息。|
+| -m | 否 | 查询指定共享库包名和模块名的详细信息。|
 
 
 示例：
@@ -331,6 +327,8 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 bm dump-shared -a
 # 显示该共享库的详细信息
 bm dump-shared -n com.ohos.lib
+# 显示指定应用指定模块依赖的共享库信息
+bm dump-dependencies -n com.ohos.app -m entry
 ```
 
 ## 共享库依赖关系查询命令
@@ -341,13 +339,13 @@ bm dump-dependencies [-h] [-n bundleName] [-m moduleName]
 ```
 
   **表12** 共享库依赖关系查询命令列表
-| 命令       | 描述                       |
-| ---------- | -------------------------- |
-| bm dump-dependencies -h | 显示bm dump-dependencies支持的命令信息。-h为非必选字段。 |
-| bm dump-dependencies -n \<bundleName\> | 查询指定应用依赖的共享库信息。-n为必选字段。 |
-| bm dump-dependencies -n \<bundleName\> -m \<moduleName\> | 查询指定应用指定模块依赖的共享库信息。-m为非必选字段。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示dump-dependencies支持的命令信息。 |
+| -n | 是 | 查询指定共享库包名的详细信息。|
+| -m | 否 | 查询指定应用指定模块依赖的共享库信息。|
 
-* 示例
+示例
 ```Bash
 # 显示指定应用指定模块依赖的共享库信息
 bm dump-dependencies -n com.ohos.app -m entry
@@ -362,13 +360,12 @@ bm compile [-h] [-m mode] [-r bundleName]
 ```
   **表13** compile命令列表
 
-| 命令 | 描述 |
-| -------- | -------- |
-| bm compile -h| 显示compile支持的命令信息。-h为非必选字段。 |
-| bm compile -m \<mode-name\>| 根据包名编译应用。-m为非必选字段，可选值为partial或者full。 |
-| bm compile -m \<mode-name\> -a| 编译所有应用。-a为非必选字段。 |
-| bm compile -r -a| 移除所有编译应用的结果。-r为非必选字段。 |
-| bm compile -r \<bundleName\>| 移除应用的结果。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示compile支持的命令信息。 |
+| -a | 是 | 编译所有应用。|
+| -m | 否，可选值为partial或者full。 | 根据包名编译应用。|
+| -r | 否 | 移除应用的结果。|
 
 示例：
 
@@ -387,11 +384,11 @@ bm copy-ap [-h] [-a] [-n bundleName]
 
 **表14** copy-ap命令列表
 
-| 命令 | 描述 |
-| -------- | -------- |
-| bm copy-ap -h| 显示copy-ap支持的命令信息。-h为非必选字段。 |
-| bm copy-ap -a| 拷贝所有包相关ap文件。-a为非必选字段。 |
-| bm copy-ap -n \<bundleName\>| 根据包名拷贝对应包相关的ap文件。-n为非必选字段。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示copy-ap支持的命令信息。 |
+| -a | 否，默认所有包相关ap文件 | 拷贝所有包相关ap文件。|
+| -n | 否，默认当前应用包名 | 根据包名拷贝对应包相关的ap文件。|
 
 示例：
 
@@ -408,13 +405,13 @@ bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId] [-t targetModul
 ```
 
 **表15** dump-overlay命令列表
-| 命令 | 描述 |
-| -------- | -------- |
-| bm dump-overlay -h| 显示dump-overlay支持的命令信息。-h为非必选字段。 |
-| bm dump-overlay -b \<bundleName\>| 获取指定应用的所有OverlayModuleInfo信息。-b为必选字段。 |
-| bm dump-overlay -b \<bundleName\> -m \<moduleName\>| 根据指定的包名和module名查询OverlayModuleInfo信息。-m为非必选字段。 |
-| bm dump-overlay -b \<bundleName\> -t \<target-moduleName\>| 根据指定的包名和目标module名查询OverlayModuleInfo信息。-t为非必选字段。 |
-| bm dump-overlay -b \<bundleName\> -t \<target-moduleName\> -u \<userId\>| 根据指定的包名、目标module名和用户查询OverlayModuleInfo信息。-u为非必选字段，默认为当前活跃用户。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示dump-overlay支持的命令信息。 |
+| -b | 是 | 获取指定应用的所有OverlayModuleInfo信息。|
+| -m | 否，默认当前应用主模块名 | 根据指定的包名和module名查询OverlayModuleInfo信息。|
+| -t | 否 | 根据指定的包名和目标module名查询OverlayModuleInfo信息。|
+| -u | 否，默认为当前活跃用户。 | 根据指定的包名、目标module名和用户查询OverlayModuleInfo信息。 |
 
 示例：
 
@@ -438,13 +435,22 @@ bm dump-target-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
 ```
 
 **表16** dump-overlay命令列表
-| 命令 | 描述 |
-| -------- | -------- |
-| bm dump-target-overlay -h| 显示dump-target-overlay支持的命令信息。-h为非必选字段。 |
-| bm dump-target-overlay -b \<bundleName\> | 获取指定目标应用的所有OverlayBundleInfo信息。-b为必选字段。 |
-| bm dump-target-overlay -b \<bundleName\> -m \<moduleName\> | 根据指定的目标应用的包名和module名查询OverlayModuleInfo信息。-m为非必选字段。 |
-| bm dump-target-overlay -b \<bundleName\> -m \<moduleName\> -u \<userId\> | 根据指定的目标应用的包名、module名和用户查询OverlayModuleInfo信息。-u为非必选字段，默认为当前活跃用户。 |
+| 命令 | 是否必选 |描述 |
+| -------- | -------- | -------- |
+| -h | 否，默认输出帮助信息 | 显示dump-target-overlay支持的命令信息。 |
+| -b | 是 | 获取指定应用的所有OverlayBundleInfo信息。|
+| -m | 否，默认当前应用主模块名 | 根据指定的包名和module名查询OverlayBundleInfo信息。|
+| -u | 否，默认为当前活跃用户。 | 根据指定的包名、目标module名和用户查询OverlayBundleInfo信息。 |
 
+示例：
+
+```bash
+# 根据包名来获取目标应用com.ohos.app中的所有关联的OverlayBundleInfo信息
+bm dump-target-overlay-b com.ohos.app
+
+# 根据包名和module来获取目标应用com.ohos.app中目标module为entry的所有关联的OverlayModuleInfo信息
+bm dump-target-overlay -b com.ohos.app -m entry
+```
 示例：
 
 ```bash
