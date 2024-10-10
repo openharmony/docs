@@ -21,17 +21,17 @@
       - [单选框 (Radio)](arkts-common-components-radio-button.md)
       - [切换按钮 (Toggle)](arkts-common-components-switch.md)
       - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
-      - [文本显示 (Text/Span)](arkts-common-components-text-display.md)
-      - [文本输入 (TextInput/TextArea)](arkts-common-components-text-input.md)
-      - [富文本 (RichEditor)](arkts-common-components-richeditor.md)
       - [显示图片 (Image)](arkts-graphics-display.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
-      - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
       - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
     - 使用文本
+      - [文本显示 (Text/Span)](arkts-common-components-text-display.md)
+      - [文本输入 (TextInput/TextArea)](arkts-common-components-text-input.md)
+      - [富文本 (RichEditor)](arkts-common-components-richeditor.md)
+      - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
       - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 设置组件导航和页面路由
     - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
