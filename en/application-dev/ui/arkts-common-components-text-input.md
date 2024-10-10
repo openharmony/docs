@@ -1,12 +1,12 @@
 # Text Input (TextInput/TextArea)
 
 
-The **\<TextInput>** and **\<TextArea>** components are input components typically used to accept input from the user, such as comments, chat messages, and table content. They can be used in combination with other components to meet more diversified purposes, for example, login and registration. For details, see [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) and [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md).
+The **TextInput** and **TextArea** components are input components typically used to accept input from the user, such as comments, chat messages, and table content. They can be used in combination with other components to meet more diversified purposes, for example, login and registration. For details, see [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) and [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md).
 
 
 ## Creating a Text Box
 
-The **\<TextInput>** component provides single-line text input, while the **\<TextArea>** component provides multi-line text input. To create these components, use the following APIs:
+The **TextInput** component provides single-line text input, while the **TextArea** component provides multi-line text input. To create these components, use the following APIs:
 
 ```ts
 TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextInputController})
@@ -33,7 +33,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
   ![en-us_image_0000001562940481](figures/en-us_image_0000001562940481.png)
 
-  The **\<TextArea>** component automatically wraps text so that each line does not have more than the width of the component.
+  The **TextArea** component automatically wraps text so that each line does not have more than the width of the component.
 
 
   ```ts
@@ -45,7 +45,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 ## Setting the Input Box Type
 
-The **\<TextInput>** component comes in nine types. You can specify its type by setting the **type** parameter to any of the following: **Normal**, **Password**, **Email**, **Number**, **PhoneNumber**, **USER_NAME**, **NEW_PASSWORD**, **NUMBER_PASSWORD**, **SCREEN_LOCK_PASSWORD**, and **NUMBER_DECIMAL**.  
+The **TextInput** component comes in nine types. You can specify its type by setting the **type** parameter to any of the following: **Normal**, **Password**, **Email**, **Number**, **PhoneNumber**, **USER_NAME**, **NEW_PASSWORD**, **NUMBER_PASSWORD**,<!--Del--> **SCREEN_LOCK_PASSWORD**,<!--DelEnd--> and **NUMBER_DECIMAL**.
 
 
 - Normal type (default type)
@@ -104,8 +104,6 @@ The **\<TextInput>** component comes in nine types. You can specify its type by 
 
 You can add the **onChange** event for the text box to obtain its content changes. You can also add the universal events to implement user interactions.
 
-
-
 ```ts
 TextInput()
   .onChange((value: string) => {
@@ -115,7 +113,6 @@ TextInput()
     console.info ('Get Focus');
   })
 ```
-
 
 ## Example Scenario
 
@@ -141,5 +138,33 @@ struct TextInputSample {
 }
 ```
 
-
 ![textinput](figures/textinput.gif)
+
+## Keyboard Avoidance
+
+After the keyboard is raised, scrollable container components will only activate the keyboard avoidance feature when switching between landscape and portrait modes. To enable keyboard avoidance for non-scrollable container components, nest them within a scrollable container component, such as [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md), [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), or [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md).
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  placeHolderArr: string[] = ['1', '2', '3', '4', '5', '6', '7']
+
+  build() {
+    Scroll() {
+      Column() {
+        ForEach(this.placeHolderArr, (placeholder: string) => {
+          TextInput({ placeholder: 'TextInput ' + placeholder })
+            .margin(30)
+        })
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![textinputkeyboardavoid](figures/TextInputKeyboardAvoid.gif)
+
