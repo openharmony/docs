@@ -469,7 +469,7 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 值 | 描述                                   |
+| 名称   | 值 | 说明                                 |
 | ------ |------| -------------------------------------- |
 | DEFAULT  |  0  | 使用Grid的默认对齐方式。 |
 | STRETCH |  1  | 以一行中的最高的GridItem作为其他GridItem的高度。 |
@@ -488,7 +488,7 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   |枚举值| 描述                                   |
+| 名称   |值| 说明                                 |
 | ------ |------| -------------------------------------- |
 | Row  |  0  | 主轴布局方向沿水平方向布局，即自左往右先填满一行，再去填下一行。 |
 | Column |  1  | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
