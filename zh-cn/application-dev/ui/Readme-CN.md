@@ -99,6 +99,11 @@
   - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置
     - [设置主题换肤](theme_skinning.md)
+  - 跨进程拉起页面
+    - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
+    <!--Del-->
+    - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
+    <!--DelEnd-->
   - 使用NDK接口构建UI
     - [NDK接口概述](ndk-build-ui-overview.md)
     - [接入ArkTS页面](ndk-access-the-arkts-page.md)
@@ -111,11 +116,6 @@
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
     - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
-  - 跨进程拉起页面
-    <!--Del-->
-    - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
-    <!--DelEnd-->
-    - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
 - UI开发 (兼容JS的类Web开发范式)
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明
