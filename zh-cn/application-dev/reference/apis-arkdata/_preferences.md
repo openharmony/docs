@@ -247,7 +247,6 @@ int OH_Preferences_Close (OH_Preferences *preference)
 | 名称 | 描述 | 
 | -------- | -------- |
 | preference | 指向需要关闭的[OH_Preferences](#oh_preferences)实例对象的指针。 | 
-| option | 指向PreferencesOption[OH_PreferencesOption](#oh_preferencesoption)的指针。 | 
 
 **返回：**
 
@@ -264,8 +263,6 @@ int OH_Preferences_Close (OH_Preferences *preference)
 **参见：**
 
 [OH_Preferences](#oh_preferences)
-
-[OH_PreferencesOption](#oh_preferencesoption)
 
 [OH_Preferences_ErrCode](#oh_preferences_errcode)
 
