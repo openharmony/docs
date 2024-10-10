@@ -84,7 +84,7 @@ struct Index {
               hilog.info(DOMAIN_NUMBER, TAG, 'open link success.');
             }).catch((err: BusinessError) => {
               hilog.error(DOMAIN_NUMBER, TAG, `open link failed. Code is ${err.code}, message is ${err.message}`);
-            })
+            });
         } catch (paramError) {
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to start link. Code is ${paramError.code}, message is ${paramError.message}`);
         }
@@ -128,7 +128,7 @@ struct Index {
             hilog.info(DOMAIN_NUMBER, TAG, 'start ability success.');
           }).catch((err: BusinessError) => {
             hilog.error(DOMAIN_NUMBER, TAG, `start ability failed. Code is ${err.code}, message is ${err.message}`);
-          })
+          });
         } catch (paramError) {
           hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${paramError.code}, message is ${paramError.message}`);
         }
@@ -165,7 +165,7 @@ struct WebComponent {
                 console.log('openLink success');
               }).catch((err: BusinessError) => {
                 console.error('openLink failed, err:' + JSON.stringify(err));
-              })
+              });
             return true;
           }
           // 返回true表示阻止此次加载，否则允许此次加载
