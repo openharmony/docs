@@ -299,16 +299,20 @@ toybox的执行方式有两种
 
 ### 报错："Unknown command xxx"
 在命令行中输入"xxx" 或 "toybox xxx" 或 "help xxx"时，如果遇到报错 "Unknown command xxx"，表示toybox不支持xxx命令。
-如果该命令在本文的描述中，则证明产品未编译该命令，可以找产品负责人提出需求。
+<!--RP1-->
+如果该命令在本文的描述中，则证明产品未编译该命令，建议前往OpenHarmony官方论坛提问反馈。
+<!--RP1End-->
 
 ### 报错："Operation not permitted"/"Permission denied"
 toybox存在大量操作文件和进程的命令，如果调用者缺少对被操作对象的权限，就会报错。
-1. 请检查被操作的文件，以及所属文件夹的读、写、执行权限，确认自己是否有权限执行。
-2. 如果shell缺少root权限，还可能被SELinux拦截。可以在内核日志中搜索"avc: denied"关键字。
+1. 权限缺失。请检查被操作的文件，以及所属文件夹的读、写、执行权限，确认自己是否有权限执行。
+2. SELinux拦截。可以在内核日志中搜索"avc: denied"关键字。
 例子：
 如果出现类似 avc: denied { xxx } for comm="ls" xxxxxx 的日志，表示命令ls触发了SELinux拦截。
 
-如遇权限缺失问题，实际又需要执行该命令，请联系产品负责人提出需求。
+<!--RP1-->
+如遇权限缺失问题，又需要执行该命令，建议前往OpenHarmony官方论坛提问反馈。
+<!--RP1End-->
 
 ### 其他Linux标准报错
 toybox大部分命令为对内核的调用，出错时会通过perror打印Linux内核错误码对应的文本。
@@ -325,20 +329,9 @@ cat可以打印文件内容，如果试图cat一个目录，会有报错 "Is a d
 
 1. 实际调用的是shell的实现而非toybox。
 
-对于time/test/pwd/realpath/ulimit/kill等命令，shell会直接使用自己的实现，不会去PATH中查找对应程序。
+对于time/test/pwd/realpath/ulimit/kill等命令，shell会直接使用自己的实现。
 此时如果想要调用toybox命令，请使用"toybox 命令 参数"的格式。
 
-2. 单板上未创建该命令到toybox的软连接。
+2. 设备未将该命令配置给toybox，而是有另外的实现。
 
-如果拥有root权限，可以通过下列命令查询：
-以cat为例：
->\# which cat  查询调用cat时实际调用的程序位置 <br />
->\# /bin/cat <br />
->\# ls -l /bin/cat 检查cat是否存在软连接 <br />
->\# [省略前面打印] /bin/cat -> toybox <br />
-
-/bin/cat通过软连接指向了toybox，调用cat实际上是在调用toybox程序。
-如果命令指向非toybox的程序，或者命令没有软连接，则表示调用的不是toybox程序。
 此时如果想要调用toybox命令，请使用"toybox 命令 参数"的格式。
-
-
