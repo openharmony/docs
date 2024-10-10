@@ -2608,7 +2608,7 @@
           - [FileShare_PolicyInfo](reference/apis-core-file-kit/_file_share___policy_info.md)
       - Error Codes<!--core-file-arkts-errcode-->
         - [File Management Error Codes](reference/apis-core-file-kit/errorcode-filemanagement.md)
--     Form Kit<!--form-api-->
+    - Form Kit<!--form-api-->
       - ArkTS APIs<!--form-arkts-->
         - [@ohos.app.form.formBindingData (formBindingData)](reference/apis-form-kit/js-apis-app-form-formBindingData.md)
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)
