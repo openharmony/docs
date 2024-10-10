@@ -1095,7 +1095,7 @@ Error: debug bundle can only be installed in developer mode.
 
 **处理步骤**
 
-1. 终端系统查看“设置 > 系统”中是否有“开发者选项”，如果不存在，可在“设置 > 关于手机/关于平板”连续七次单击“版本号”，直到提示“开启开发者模式”，点击“确认开启”后输入PIN码（如果已设置），设备将自动重启。
+1. 终端系统查看“设置 > 系统”中是否有“开发者选项”，如果不存在，可在“设置 > 关于本机”连续七次单击“版本号”，直到提示“开启开发者模式”，点击“确认开启”后输入PIN码（如果已设置），设备将自动重启。
 2. USB数据线连接终端和PC，在“设置 > 系统 > 开发者选项”中，打开“USB调试”开关，弹出的“允许USB调试”的弹框，单机“允许”。
 3. 启动调试或运行应用。
 
@@ -1188,7 +1188,7 @@ Error: install version name not same.
 
 **可能原因**
 
-* 场景一：只有一个hap，可能时保存数据的应用版本和新安装版本不一致导致。
+* 场景一：只有一个hap，可能是保存数据的应用版本和新安装版本不一致导致。
 
 * 场景二：HSP和HAP一起安装时，HSP和HAP的包名、版本号、sdk版本号、releaseType有不一致。
 
@@ -1229,7 +1229,7 @@ Error: Failed to install the HSP because installing a shared bundle specified by
 
 **可能原因**
 
-安装应用见共享HSP时使用“hdc app install ***”指令。
+安装应用间共享HSP时使用“hdc app install ***”指令。
 
 **处理步骤**
 
