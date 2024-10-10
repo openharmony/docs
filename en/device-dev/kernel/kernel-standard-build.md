@@ -3,14 +3,16 @@
 
  **Example**
 
-The following uses the Hi3516D V300 board and Ubuntu x86 server as an example.
+The following uses the rk3568 board and Ubuntu x86 server as an example.
 
 
-Perform a full build for the project to generate the **uImage** kernel image.
+Perform a full build for the project to generate the kernel image.
 
 
 ```bash
-./build.sh --product-name hispark_taurus_standard  # Build the hispark_taurus_standard image.
-    --build-target build_kernel                    # Build the uImage kernel image of hispark_taurus_standard.
-    --gn-args linux_kernel_version=\"linux-5.10\"  # Specify the kernel version.
+./build.sh --product-name rk3568					# Build the rk3568 image.
+    --gn-args linux_kernel_version="linux-6.6"		# Specify the kernel version, optional parameters.
+													# Note: Currently, Boards are built with Linux-6.6,
+													#       rk3568 has completed the Linux-6.6 kernel adaptation. Thus building Linux-6.6 need not to specify the kernel version, but building Linux-5.10 need.
+													#       Other boards must add this kernel version parameter to build with the Linux-5.10 before the adaptation is completed.
 ```
