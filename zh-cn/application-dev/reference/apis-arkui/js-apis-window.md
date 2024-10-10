@@ -5990,7 +5990,6 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 import { window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { KeyEvent } from '@ohos.multimodalInput.keyEvent';
 
 const context = (getContext(this) as common.UIAbilityContext);
 let windowClass: window.Window | undefined;
