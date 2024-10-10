@@ -193,14 +193,14 @@ toybox的执行方式有两种
 
 | 命令 | 说明 |
 | :- | :- |
-| ftpget/ftpput | 与FTP服务器沟通，支持读、写、列举文件等操作。<br />usage: ftpget/ftpput [-cvgslLmMdD] [-p PORT] [-P PASSWORD] [-u USER] HOST [LOCAL] REMOTE |
+| ftpget/ftpput | 与FTP服务器沟通，支持读、写、列举文件等操作。ftpget自带-g选项。ftpput自带-s选项。<br />usage: ftpget/ftpput [-cvgslLmMdD] [-p PORT] [-P PASSWORD] [-u USER] HOST [LOCAL] REMOTE |
 | ifconfig      | 显示或配置网络接口。<br />usage: ifconfig [-aS] [INTERFACE [ACTION...]] |
 | nbd-client    | 创建nbd客户端。<br />usage: nbd-client [-ns] HOST PORT DEVICE |
 | netstat   | 显示网络信息。<br />usage: netstat [-pWrxwutneal] |
-| ping/ping6    | 检测网络连通性。<br />usage: ping/ping6 [OPTIONS] HOST |
+| ping/ping6    | 检测网络连通性。ping6自带-6选项。<br />usage: ping/ping6 [OPTIONS] HOST |
 | sntp    | SNTP客户端。<br />usage: sntp [-saSdDqm] [-r SHIFT] [-m ADDRESS] [-p PORT] [SERVER] |
 | telnet  | 连接telnet服务器。<br />usage: telnet HOST [PORT] |
-| traceroute/traceroute6 | 跟踪报文到HOST的路径。<br />usage: traceroute [-46FUIldnvr] [-f 1ST_TTL] [-m MAXTTL] [-p PORT] [-q PROBES] [-s SRC_IP] [-t TOS] [-w WAIT_SEC] [-g GATEWAY] [-i IFACE] [-z PAUSE_MSEC] HOST [BYTES]<br />usage: traceroute6 [-dnrv] [-m MAXTTL] [-p PORT] [-q PROBES][-s SRC_IP] [-t TOS] [-w WAIT_SEC] [-i IFACE] HOST [BYTES] |
+| traceroute/traceroute6 | 跟踪报文到HOST的路径。traceroute6自带-6选项。<br />usage: traceroute [-46FUIldnvr] [-f 1ST_TTL] [-m MAXTTL] [-p PORT] [-q PROBES] [-s SRC_IP] [-t TOS] [-w WAIT_SEC] [-g GATEWAY] [-i IFACE] [-z PAUSE_MSEC] HOST [BYTES]<br />usage: traceroute6 [-dnrv] [-m MAXTTL] [-p PORT] [-q PROBES][-s SRC_IP] [-t TOS] [-w WAIT_SEC] [-i IFACE] HOST [BYTES] |
 | wget    | 从网络上下载资源。<br />usage: wget [OPTIONS]... [URL] |
 
 ### 文件操作
@@ -230,7 +230,7 @@ toybox的执行方式有两种
 | dirname   | 显示路径的目录部分。<br />usage: dirname PATH... |
 | dos2unix  | 将换行符格式从dos“\\r\\n”转换为unix“\\n”。如果没有列出文件，从标准输入设备获取输入。“-”代表标准输入设备。<br />usage: dos2unix [FILE...] |
 | echo      | 将每个参数写入标准输出设备，每个参数之间有一个空格，后跟一个换行符。<br />usage: echo [-neE] [args...] |
-| grep/egrep/fgrep | 显示匹配正则表达式的行。如果没有-e，则第一个参数为要匹配的正则表达式。没有文件（或“-”文件名）读取标准输入设备。如果匹配，则返回0；如果找不到匹配，则返回1；如果命令错误，则返回2。<br />usage: grep/egrep/fgrep [-EFrivwcloqsHbhn] [-ABC NUM] [-m MAX] [-e REGEX]... [-MS PATTERN]... [-f REGFILE] [FILE]... |
+| grep/egrep/fgrep | 显示匹配正则表达式的行。如果没有-e，则第一个参数为要匹配的正则表达式。没有文件（或“-”文件名）读取标准输入设备。如果匹配，则返回0；如果找不到匹配，则返回1；如果命令错误，则返回2。<br />egrep自带-E选项，fgrep自带-F选项。E和F选项不能同时选。<br />usage: grep/egrep/fgrep [-EFrivwcloqsHbhn] [-ABC NUM] [-m MAX] [-e REGEX]... [-MS PATTERN]... [-f REGFILE] [FILE]... |
 | gzip      | 压缩文件。<br />usage: gzip [-19cdfk] [FILE...] |
 | expand    | 根据输入参数将制表符展开为空格。<br />usage: expand [-t TABLIST] [FILE...] |
 | fallocate | 让文件系统给文件预留空间。<br />usage: fallocate [-l size] [-o offset] file |
