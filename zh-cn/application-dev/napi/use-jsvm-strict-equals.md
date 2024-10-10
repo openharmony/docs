@@ -16,7 +16,7 @@ JSVM-API中用于判断给定的两个JavaScript值是否严格相等，类似�
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
 ### OH_JSVM_StrictEquals
 
@@ -29,15 +29,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// IsStrictEquals注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = IsStrictEquals},
-};
-static JSVM_CallbackStruct *method = param;
-// IsStrictEquals方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"isStrictEquals", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_StrictEquals的样例方法
 static JSVM_Value IsStrictEquals(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -57,20 +48,21 @@ static JSVM_Value IsStrictEquals(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, result, &isStrictEqual);
     return isStrictEqual;
 }
+// IsStrictEquals注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = IsStrictEquals},
+};
+static JSVM_CallbackStruct *method = param;
+// IsStrictEquals方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"isStrictEquals", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char* srcCallNative = R"JS(data = '123';value = '123';isStrictEquals(data,value);)JS";
 ```
 
-ArkTS侧示例代码
+预期的输出结果
 
 ```ts
-let script: string = `
-    let data = '123';
-    let value = 123;
-    isStrictEquals(data,value);
-`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'isStrictEquals: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'isStrictEquals: %{public}s', error.message);
-}
+JSVM OH_JSVM_StrictEquals: success: 1
 ```
