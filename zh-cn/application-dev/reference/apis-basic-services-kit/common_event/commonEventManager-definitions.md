@@ -418,7 +418,7 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**取值：** "usual.event.DISTRIBUTED_ACCOUNT_LOGIN"
+**取值：** "common.event.DISTRIBUTED_ACCOUNT_LOGIN"
 
 
 ### COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT
@@ -435,7 +435,7 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**取值：** "usual.event.DISTRIBUTED_ACCOUNT_LOGOUT"
+**取值：** "common.event.DISTRIBUTED_ACCOUNT_LOGOUT"
 
 
 ### COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID
@@ -452,7 +452,7 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**取值：** "usual.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID"
+**取值：** "common.event.DISTRIBUTED_ACCOUNT_TOKEN_INVALID"
 
 
 
@@ -470,7 +470,7 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**取值：** "usual.event.DISTRIBUTED_ACCOUNT_LOGOFF"
+**取值：** "common.event.DISTRIBUTED_ACCOUNT_LOGOFF"
 
 
 
