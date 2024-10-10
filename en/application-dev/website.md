@@ -2190,7 +2190,7 @@
           - [Date Picker Dialog Box (DatePickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-datepicker-dialog.md)
           - [Time Picker Dialog Box (TimePickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-timepicker-dialog.md)
           - [Text Picker Dialog Box (TextPickerDialog)](reference/apis-arkui/arkui-ts/ts-methods-textpicker-dialog.md)
-          - [Dialog(reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)
+          - [Dialog](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md)
         - Service Widgets
           - [FormLink](reference/apis-arkui/arkui-ts/ts-container-formlink.md)
           - [FormMenu](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md)
