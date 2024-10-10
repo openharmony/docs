@@ -23,6 +23,9 @@ toybox的执行方式有两种
 其中 [command] 可被替换为toybox支持的任意命令（可通过输入不带参数的toybox命令查询）。
 [arguments...] 为[command]所需要的参数
 
+<!--RP1-->
+<!--RP1End-->
+
 ### 帮助命令
 格式：toybox [--long | --help | --version | [command] [arguments...]]
 | 选项 | 参数 | 说明 |
@@ -299,9 +302,9 @@ toybox的执行方式有两种
 
 ### 报错："Unknown command xxx"
 在命令行中输入"xxx" 或 "toybox xxx" 或 "help xxx"时，如果遇到报错 "Unknown command xxx"，表示toybox不支持xxx命令。
-<!--RP1-->
+<!--RP2-->
 如果该命令在本文的描述中，则证明产品未编译该命令，建议前往OpenHarmony官方论坛提问反馈。
-<!--RP1End-->
+<!--RP2End-->
 
 ### 报错："Operation not permitted"/"Permission denied"
 toybox存在大量操作文件和进程的命令，如果调用者缺少对被操作对象的权限，就会报错。
@@ -310,9 +313,9 @@ toybox存在大量操作文件和进程的命令，如果调用者缺少对被�
 例子：
 如果出现类似 avc: denied { xxx } for comm="ls" xxxxxx 的日志，表示命令ls触发了SELinux拦截。
 
-<!--RP2-->
+<!--RP3-->
 如遇权限缺失问题，又需要执行该命令，建议前往OpenHarmony官方论坛提问反馈。
-<!--RP2End-->
+<!--RP3End-->
 
 ### 其他Linux标准报错
 toybox大部分命令为对内核的调用，出错时会通过perror打印Linux内核错误码对应的文本。
@@ -330,8 +333,8 @@ cat可以打印文件内容，如果试图cat一个目录，会有报错 "Is a d
 1. 实际调用的是shell的实现而非toybox。
 
 对于time/test/pwd/realpath/ulimit/kill等命令，shell会直接使用自己的实现。
-此时如果想要调用toybox命令，请使用"toybox 命令 参数"的格式。
+此时如果想要调用toybox命令，请使用"toybox [command] [arguments...]"的格式。
 
 2. 设备未将该命令配置给toybox，而是有另外的实现。
 
-此时如果想要调用toybox命令，请使用"toybox 命令 参数"的格式。
+此时如果想要调用toybox命令，请使用"toybox [command] [arguments...]"的格式。
