@@ -267,7 +267,7 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b
 注：hqf文件制作方式可参考[HQF打包指令](packing-tool.md#hqf打包指令)。
 
   **表10** 快速修复命令列表
-|   命令        | 是否必选 |描述 |
+|   命令        | 是否必选     |   描述    |
 | -------- | -------- | -------- |
 | -h | 否，默认输出帮助信息 | 显示quickfix支持的命令信息 |
 | -a&nbsp;-f | -a非必选字段，指定后，-f为必选字段，未指定-a，则-f为非必选字段。| 执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
