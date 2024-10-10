@@ -70,7 +70,7 @@ struct Index {
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { fileIo, ReadOptions, WriteOptions } from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
