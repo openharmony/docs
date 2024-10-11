@@ -53,6 +53,10 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 <...>-2638 (----—) [002] .... 458.904382: tracing_mark_write: C|2638|H:hitraceTest 500
 ```
 
+**引用文件：**
+
+&lt;hitrace/trace.h&gt;
+
 **起始版本：**
 
 10
