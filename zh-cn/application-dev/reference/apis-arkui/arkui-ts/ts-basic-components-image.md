@@ -193,7 +193,7 @@ renderMode(value: ImageRenderMode)
 
 ### sourceSize
 
-sourceSize(value: { width:&nbsp;number;&nbsp;height:&nbsp;number&nbsp;})
+sourceSize(value: ImageSourceSize)
 
 设置图片解码尺寸。仅在目标尺寸小于图源尺寸时生效。svg类型图源和PixelMap资源不支持该属性。
 
@@ -209,7 +209,7 @@ sourceSize(value: { width:&nbsp;number;&nbsp;height:&nbsp;number&nbsp;})
 
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | 是   | 图片解码尺寸，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。和ImageFit.None配合使用时可在组件内显示小图。<br/>单位：vp |
+| value  | [ImageSourceSize](#imagesourcesize14对象说明) | 是   | 图片解码尺寸参数，降低图片的分辨率，常用于需要让图片显示尺寸比组件尺寸更小的场景。和ImageFit.None配合使用时可在组件内显示小图。 |
 
 ### matchTextDirection
 
@@ -540,6 +540,19 @@ dynamicRangeMode(value: DynamicRangeMode)
 | High   | 不受限动态范围，最大限度进行图片提亮。              |
 | Constraint | 受限动态范围，受限进行图片提亮。          |
 | Standard    | 标准动态范围，不进行图片提亮。         |
+
+## ImageSourceSize<sup>14+</sup>对象说明
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型       | 必填 | 说明           |
+| ------ | --------- | ---- | ------------- |
+| width  | number | 是   | 图片解码尺寸宽度。<br/>单位：vp |
+| height  | number | 是   | 图片解码尺寸高度。<br/>单位：vp |
 
 ## 事件
 
