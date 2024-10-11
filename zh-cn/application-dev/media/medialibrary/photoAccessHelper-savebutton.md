@@ -65,7 +65,7 @@ struct Index {
 
 1. 指定待保存到媒体库的位于应用沙箱的图片uri。
 2. 指定待保存照片的创建选项，包括文件后缀和照片类型，标题和照片子类型可选。
-3. 基于弹窗授权的方式获取媒体库的目标uri。
+3. 调用[showAssetsCreationDialog](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12)，基于弹窗授权的方式获取媒体库的目标uri。
 4. 将来源于应用沙箱的照片内容写入媒体库的目标uri。
 
 ```ts
