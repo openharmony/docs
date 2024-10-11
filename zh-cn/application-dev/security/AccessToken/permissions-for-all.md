@@ -387,18 +387,6 @@
 
 **起始版本**：13
 
-### ohos.permission.READ_WRITE_USB_DEV
-
-允许指定的PC应用进行鸿蒙设备连接调试读写USB设备。
-
-当前仅2in1设备应用可申请此权限。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**起始版本**：12
-
 ## user_grant（用户授权）权限列表
 
 以下权限的授权方式均为[user_grant（用户授权）](app-permission-mgmt-overview.md#user_grant用户授权)，申请方式请参考[声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) 。
