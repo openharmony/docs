@@ -5,7 +5,7 @@
 该模块提供以下窗口相关的常用功能：
 
 - [Window](#window)：当前窗口实例，窗口管理器管理的基本单元。
-- [WindowStage](#windowstage9)：窗口管理器。管理各个基本窗口单元。https://gitee.com/yyuehao/docs/blob/OpenHarmony-5.0.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md
+- [WindowStage](#windowstage9)：窗口管理器。管理各个基本窗口单元。
 
 > **说明：**
 >
