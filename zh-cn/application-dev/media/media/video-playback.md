@@ -76,7 +76,7 @@
 
 ```ts
 import { media } from '@kit.MediaKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -166,7 +166,7 @@ export class AVPlayerDemo {
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
     // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报
-    let file = await fileIo.open(path);
+    let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
     this.isSeek = true; // 支持seek操作
     avPlayer.url = fdPath;
@@ -203,7 +203,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
         }
-        num = fileIo.readSync(this.fd, buf, { offset: pos, length: length });
+        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
         if (num > 0 && (this.fileSize >= pos)) {
           return num;
         }
@@ -214,11 +214,11 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fileIo.open(path).then((file: fileIo.File) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     // 获取播放文件的大小
-    this.fileSize = fileIo.statSync(path).size;
+    this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
     this.isSeek = true; // 支持seek操作
     avPlayer.dataSrc = src;
@@ -238,7 +238,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined) {
           return -1;
         }
-        num = fileIo.readSync(this.fd, buf);
+        num = fs.readSync(this.fd, buf);
         if (num > 0) {
           return num;
         }
@@ -248,7 +248,7 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fileIo.open(path).then((file: fileIo.File) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // 不支持seek操作
