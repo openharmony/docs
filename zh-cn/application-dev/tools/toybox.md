@@ -17,7 +17,7 @@ toybox 是一个轻量级的Linux命令行工具集合，它将常用的Linux命
 ## 命令行说明
 
 toybox的执行方式有两种
-- 使用 toybox [command] [arguments...]
+- toybox [command] [arguments...]
 - 直接执行 [command] [arguments...]
 
 其中 [command] 可被替换为toybox支持的任意命令（可通过输入不带参数的toybox命令查询）。
@@ -210,7 +210,7 @@ toybox的执行方式有两种
 
 | 命令 | 说明 |
 | :- | :- |
-| awk       | 强大的文本分析与处理工具。<br />usage: awk [-F sepstring] [-v assignment]... program [argument...]<br />&emsp;awk [-F sepstring] -f progfile [-v assignment]... [argument...] |
+| awk       | awk是一个处理文本的工具，可对文档内容进行筛选、分析。<br />usage: awk [-F sepstring] [-v assignment]... program [argument...]<br />&emsp;awk [-F sepstring] -f progfile [-v assignment]... [argument...] |
 | base64    | 通过base64算法进行加密/解密。<br />usage: base64 [-di] [-w COLUMNS] [FILE...] |
 | basename  | 返回删除后缀的路径名的非目录部分。<br />usage: basename [-a] [-s SUFFIX] NAME... \| NAME [SUFFIX] |
 | bunzip2   | 解压bz格式的文件。<br />usage: bunzip2 [-cftkv] [FILE...] |
