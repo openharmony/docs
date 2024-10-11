@@ -9,21 +9,22 @@
 ## 实现思路
 
 1. 将要生成自定义组件地方用[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)占位，将NodeContainer内部的[NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md)按照组件类型分别存储在NodePool中。
-2. 每次需要创建子组件时，优先从NodePool中取出一个组件，如果NodePool中没有可复用的组件则重新创建一个，否则就更新一下数据。当NodeController销毁时，回收到NodePool中，供下次使用。
+2. 每次创建子组件时，优先通过NodePool的getNode方法尝试复用已存在的NodeController组件，若无可复用组件则调用makeNode方法新建；若复用成功，则调用update方法更新组件数据。
+3. 当NodeController销毁时，NodeItem回收到NodePool中，供下次使用。
+
+### 组件复用原理
+
+在ArkUI中，当页面退出时，系统默认会销毁页面上的所有节点及其对应的NodeItem实例，以释放资源。为了提升性能和资源利用率，应用侧可以主动保存NodeItem实例。通过这种方法，能够有效延长这些NodeItem实例的生命周期，避免不必要的重建开销，从而在后续页面或组件的创建过程中实现快速复用。
+
+下图为复用池中NodeItem实例跟随NodeContainer组件创建与销毁的复用过程。
+
+![component_pool_reuse_process](figures/node_custom_component_reusable_pool_process.jpg)
 
 ### 数据结构
 
 NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool通过HashMap管理NodeItem的复用和回收。
 
 ![image-20240531161153519](figures/node_custom_component_reusable_pool_struct.png)
-
-### 创建和销毁过程中复用池的流程
-
-1. 在页面中使用NodeContainer占位自定义组件的位置，当运行到此处时在NodePool根据类型查找NodeItem。
-2. 没有找到对应类型的NodeItem时创建新的NodeItem，否则取出已有的NodeItem并刷新数据。
-3. 当页面被销毁时将NodeItem回收到复用池中，等待下次使用。
-
-![image-20240531164427730](figures/node_custom_component_reusable_pool_process.png)
 
 ## 应用场景
 
@@ -300,19 +301,242 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
 | 创建耗时（优化前） | 39.5ms | 35.7ms | 29.8ms | 26.5ms |
 | 创建耗时（优化后） | 40.3ms | 14.8ms | 17.8ms | 18.3ms |
 
+## 使用onIdle进行组件预创建
+
+在上一个章节的优化示例中，第一次进入首页时耗时依旧较高。这是因为第一次进入时，自定义组件复用池中没有组件可以复用，全部需要重新创建。要解决这个问题，可以提前预创建组件复用池中的组件，减少进入首页的启动耗时。目前，应用冷启动是一个比较好的预创建组件的时机。当组件数量较多时，集中预创建本身也耗时较长，容易导致主线程阻塞。ArkUI中提供了[onIdle回调接口](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-arkui-uicontext-V5#onidle12)，可以返回每一帧帧尾的空闲时间，在帧尾空闲时逐步进行预创建是一个比较好的分摊主线程负载的方式。
+
+### 示例代码
+
+下面的代码，模拟了应用冷启动的流程，在应用启动后先进入广告页（Index页面），并在广告页进行组件预创建。
+
+1. 在自定义组件复用池中实现预创建。
+
+   ```ts
+   // 继承NodeController，创建可以复用的子组件
+   export class NodeItem extends NodeController {
+     // ...
+   
+     // 预创建BuildNode
+     prebuild(uiContext: UIContext) {
+       this.node = new BuilderNode(uiContext);
+       this.node.build(this.builder, this.data);
+     }
+   }
+   
+   // 全局组件复用池
+   export class NodePool {
+     // ...
+   
+     public preBuild(type: string, item: ESObject, builder: WrappedBuilder<ESObject>, uiContext: UIContext) {
+       if (type) {
+         let nodeItem: NodeItem | undefined = new NodeItem();
+         nodeItem.builder = builder;
+         nodeItem.data.data = item;
+         nodeItem.type = type;
+         // 预创建组件
+         nodeItem.prebuild(uiContext);
+         // 将预创建的组件回收到复用池中，便于后续复用
+         this.recycleNode(type, nodeItem);
+       }
+     }
+   
+     // ...
+   }
+   ```
+
+2. 在广告页中预创建组件。
+
+   ```ts
+   @Entry
+   @Component
+   struct Index {
+     // ...
+     aboutToAppear(): void {
+       // ...
+       // 获取模拟数据
+       let viewItems: ViewItem[] = [];
+       viewItems.push(...furnitureData());
+       viewItems.push(...natureData());
+       // 遍历模拟数据，预创建对应数量的组件
+       viewItems.forEach((item) => {
+         NodePool.getInstance()
+           .preBuild('reuse_type_', item, flowItemWrapper, this.getUIContext());
+       })
+     }
+   
+     // ...
+   }
+   ```
+
+3. 通过SmartPerfHost工具抓取Trace图，从图3中可以看到提前进行组件预创建后，上一章节中前两个页面的加载耗时已经缩短到了25ms左右，和第三个页面的耗时（18ms）相比差距已明显缩小，这说明提前预创建确实能解决首页因无法复用组件而导致的长耗时问题。
+
+   图3 预创建组件Trace图
+
+   ![](figures/node_custom_component_onidle_1.png)
+
+4. 然后查看冷启动耗时，如图4所示，加载Index页面（H:load page: pages/Index(id:1)）耗时大概144ms左右。
+
+   图4 预创建组件冷启动Trace图-1
+
+   ![](figures/node_custom_component_onidle_2.png)
+
+5. 如图5所示，将图4中的Trace进一步放大后可以看到，加载Index页面时主要耗时都是用于创建子组件（H:CustomNode:BuildItem \[SubFlowItem]\[self:47][parent:48]）。虽然单个组件耗时并不多，只有426μs，但是当数量较多时，总的预创建耗时就会变长，导致主线程阻塞。
+
+   图5 预创建组件冷启动Trace图-2
+
+   ![](figures/node_custom_component_onidle_3.png)
+
+6. 如图6所示，能够看到从桌面点击图标，到进入广告页，有明显的卡顿，这是因为预创建耗时较长，引起了主线程的阻塞。
+
+   图6 预创建组件演示
+
+   ![](figures/node_custom_component_onidle_4.gif)
+
+### 优化方案
+
+前文中可以看到，在冷启动时进行预创建，当组件数量较多时，会引起主线程的阻塞，增加冷启动耗时。为了解决这个问题，可以通过onIdle回调方法，将组件预创建分布到每一帧帧尾的空闲时间中执行。这样一来，预创建过程就被平摊在多个周期里执行，避免对冷启动时间的过度影响，进而优化启动速度和用户体验。
+
+### 实现思路
+
+当系统执行完全部任务后，会将帧尾的空闲时间通知到onIdle回调。此时，如果组件复用池中有需要预创建的组件，则判断空闲时间是否足够进行预创建。如果时间充足，则进行组件预创建，否则将onIdle回调传递到下一帧中执行，直到所有的组件全部预创建完成。
+
+![](figures/node_custom_component_onidle_5.png)
+
+### 优化代码
+
+下面的代码，将对组件预创建进行优化，把预创建分摊到帧尾的空闲时间中进行。
+
+1. 通过常规预创建抓取Trace，获取单个组件预创建耗时，示例代码中单个组件预创建耗时最长在1ms左右。
+
+2. 继承抽象类FrameCallback，实现帧回调类，在构造器中传入预创建的数据，并实现onIdle接口。
+
+   ```ts
+   export class IdleCallback extends FrameCallback {
+     private uiContext: UIContext;
+     // 已经创建的子组件数量
+     private todoCount: number = 0;
+     private viewItems: ViewItem[] = [];
+   
+     /**
+      * @param context 上下文对象，用于将帧回调传递到下一帧
+      * @param preBuildData 预创建组件的数据列表，用于确认预创建组件的数量和相关信息，可根据业务需求自行修改或设置固定值
+      */
+     constructor(context: UIContext, preBuildData: ViewItem[]) {
+       super();
+       this.uiContext = context;
+       this.viewItems = preBuildData;
+     }
+   ```
+
+3. 系统通过onIdle回调方法，将帧尾空闲时间通过参数idleTimeInNano（单位：ns）传递出来。在接收到帧尾空闲时间后，如果有需要预创建的组件，可根据单个组件的预创建耗时，设置预创建的剩余空闲时间上限（示例代码中设置了1ms）。
+
+   ```
+   // onIdle回调，返回帧尾空闲时间idleTimeInNano。
+   onIdle(idleTimeInNano: number): void {
+   
+     // 当预创建的组件数量已经超过模拟数据的数量，则停止预创建
+     if (this.todoCount >= this.viewItems.length) {
+       return;
+     }
+     // 当前时间，后续用于计算本帧剩余空闲时间。
+     let cur: number = systemDateTime.getTime(true);
+     // 帧尾空闲时间，后续用于计算本帧剩余空闲时间。
+     let timeLeft = idleTimeInNano;
+     // 当帧尾空闲时间大于1ms时，执行预创建。
+     // 此处空闲时间限制设置了1ms，即空闲时间少于1ms时，本帧不再进行组件的预创建，而是将帧回调传递到下一帧，开发者可以根据自身业务、组件复杂度进行设置，预留足够的空闲时间。
+     while (timeLeft >= 1000000) {
+   ```
+
+4. 当剩余空闲时间足够创建组件时，在此帧中进行组件预创建，并不断更新当前帧的剩余空闲时间。
+
+   ```ts
+   hiTraceMeter.startTrace('onIdle_prebuild', 1);
+   // 进行组件预创建
+   NodePool.getInstance()
+     .preBuild('reuse_type_', this.viewItems[this.todoCount], flowItemWrapper, this.uiContext);
+   hiTraceMeter.finishTrace('onIdle_prebuild', 1);
+   // 预创建完成后，更新本帧剩余空闲空闲时间。
+   let now = systemDateTime.getTime(true);
+   timeLeft = timeLeft - (now - cur);
+   cur = now;
+   this.todoCount++;
+   // 当预创建的组件数量已经超过模拟数据的数量，则停止预创建
+   if (this.todoCount >= this.viewItems.length) {
+     return;
+   }
+   ```
+
+5. 当当前帧剩余空闲时间不足以创建组件时，通过postFrameCallback方法，将帧回调传递到下一帧，继续进行剩余组件的预创建。
+
+   ```ts
+   // 如果组件预创建没有完成，则将帧回调传递到下一帧，并在下一帧中继续进行组件的预创建。
+   if (this.todoCount < this.viewItems.length) {
+     this.uiContext.postFrameCallback(this);
+   }
+   ```
+
+6. 在冷启动时通过帧回调的方式预创建组件。
+
+   ```
+   @Entry
+   @Component
+   struct Index {
+     // ...
+     aboutToAppear(): void {
+       // ...
+       // 获取模拟数据
+       let viewItems: ViewItem[] = [];
+       viewItems.push(...furnitureData());
+       viewItems.push(...natureData());
+       let context = this.getUIContext();
+       // 开启帧回调
+       context.postFrameCallback(new IdleCallback(context, viewItems));
+     }
+   
+     // ...
+   }
+   ```
+
+7. 通过SmartPerfHost工具抓取Trace图，可以查看冷启动耗时。如下图所示，加载Index页面（H:load page: pages/Index(id:1)）耗时大概8ms左右，只有优化前耗时（144ms）的1/18，性能提升明显。而且相比于优化前，H:load page: pages/Index(id:1)标签下面并没有创建组件的耗时标签。
+
+   图7 使用onIdle预创建组件Trace图
+
+   ![](figures/node_custom_component_onidle_6.png)
+
+8. 如图8所示，组件的预创建，被放在了onIdle中执行，并且是在帧尾空闲时间中，并不会影响到帧的正常功能。
+
+   图8 使用onIdle预创建组件空闲时间Trace图
+
+   ![](figures/node_custom_component_onidle_7.png)
+
+9. 通过图9可以看到，从桌面点击图标到广告页的展示，变的更加流畅了。
+
+   图9 使用onIdle预创建组件演示
+
+   ![](figures/node_custom_component_onidle_8.gif)
+
+### 性能对比
+
+通过前两个章节可以看到，使用onIdle进行闲时组件预创建时，性能优化效果明显，能够在预创建复用池组件的前提下，减少冷启动时间。
+
+| 优化前 | 144ms |
+| ------ | ----- |
+| 优化后 | 8ms   |
+
+### 使用约束
+
+1. 开发者需要根据业务准确预估组件预创建耗时，同时将业务逻辑颗粒度拆小，以便能够拆分到多个onIdle时机中完成。例如，单个组件预创建耗时在2ms左右，帧尾空闲时间只有1ms，那么就不能在当前帧进行预创建，而是延迟到下一帧中执行。
+2. 需要合理控制自定义组件复用池中组件预创建的数量，否则内存占用较多，可能会影响性能。
+
 ## 总结
 
-在父组件内部进行组件复用时，使用常规复用是可以解决问题的，而且使用简单，只需要添加@Reusable装饰器并且实现aboutToReuse。但是由于复用池的局限性，不同的父组件想要复用相同子组件时就会失效。而自定义组件复用池，可以实现跨页面的组件复用，但是实现起来也比较复杂，需要开发者自己维护复用池。
+在父组件内部进行组件复用时，使用常规复用是可以解决问题的，而且使用简单，只需要添加@Reusable装饰器并且实现aboutToReuse。但是由于复用池的局限性，不同的父组件想要复用相同子组件时就会失效。而自定义组件复用池，可以实现跨页面的组件复用，并在闲时对组件进行预创建，加快组件的加载速度。但是实现起来也比较复杂，需要开发者自己维护复用池。
 
 ## FAQ
 
 **Q：** 示例代码中为什么不使用ArkUI提供的Tabs+TabContent组件，而是要用List+Swiper组件实现？
 
 **A：** Tabs中不支持使用LazyForEach，只能使用ForEach。如果使用ForEach，那么在页面创建时会将所有的TabContent全部创建，并且切换时无法回收子组件（不会执行aboutToDisappear），这就导致自定义复用池NodePool中是空的，每次创建时都获取不到组件，只能重新创建，使组件复用失去了效果。并且因为多创建了一个NodeContainer组件，耗时会比常规复用更长。
-
-**Q：** 如果想要优化第一个页面的首帧耗时，应该怎么做？
-
-**A：** 可以根据业务需求，提前在复用池中创建一些子组件（比如应用启动时），这样在第一个页面加载时可以略过创建子组件的过程，减少首帧耗时。
 
 **Q：** NodeController中aboutToDisappear接口，是否和自定义组件生命周期中的aboutToDisappear相同？
 
