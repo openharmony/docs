@@ -1182,3 +1182,48 @@ try {
   console.error(`Failed to get user trusted certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
+## certificateManager.getPrivateCertificates<sup>13+</sup>
+
+getPrivateCertificates(): Promise\<CMResult>
+
+表示获取应用安装的凭据列表，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**返回值**：
+
+| 类型                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise对象。表示获取应用安装的凭据列表的结果，返回值[CMResult](#cmresult)对象中的credentialList属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 17500001 | Internal error. |
+
+**示例**：
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  certificateManager.getPrivateCertificates().then((cmResult) => {
+    if (cmResult?.credentialList == undefined) {
+      console.info('The result of getting all private certificates installed by the application is undefined.');
+    } else {
+      let list = cmResult.credentialList;
+      console.info('Succeeded in getting all private certificates installed by the application.');
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get all private certificates installed by the application. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to get all private certificates installed by the application. Code: ${error.code}, message: ${error.message}`);
+}
+```
