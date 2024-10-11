@@ -1508,7 +1508,7 @@ onContentChanged(listener: StyledStringChangedListener): void
 
 文本样式选项。
 
-继承自[RichEditorRange](#RichEditorRange)。
+继承自[RichEditorRange](#richeditorrange)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1522,7 +1522,7 @@ onContentChanged(listener: StyledStringChangedListener): void
 
 图片样式选项。
 
-继承自[RichEditorRange](#RichEditorRange)。
+继承自[RichEditorRange](#richeditorrange)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1536,7 +1536,7 @@ onContentChanged(listener: StyledStringChangedListener): void
 
 SymbolSpan样式选项。
 
-继承自[RichEditorRange](#RichEditorRange)。
+继承自[RichEditorRange](#richeditorrange)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1550,7 +1550,7 @@ SymbolSpan样式选项。
 
 段落样式选项。
 
-继承自[RichEditorRange](#RichEditorRange)。
+继承自[RichEditorRange](#richeditorrange)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
