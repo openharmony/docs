@@ -219,7 +219,7 @@ let maxIndex: number = 0;
 let maxArray: Array<number> = [];
 let maxIndexArray: Array<number> = [];
 
-// 假设图像预处理后的buffer数据保存在float32View
+// 完成图像输入和预处理后的buffer数据保存在float32View，具体可见上文图像输入和预处理中float32View的定义和处理。
 let inputs: ArrayBuffer[] = [float32View.buffer];
 let resMgr: resourceManager.ResourceManager = getContext().getApplicationContext().resourceManager;
 resMgr.getRawFileContent(modelName).then(modelBuffer => {
