@@ -1546,10 +1546,6 @@ SymbolSpan样式选项。
 | ----------- | ---------------------------------------- | ---- | ------------------------------- |
 | symbolStyle | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 是    | 组件样式。                           |
 
->  **说明：**
->
->  当start大于end时为异常情况，此时start为0，end为无穷大。
-
 ## RichEditorParagraphStyleOptions<sup>11+</sup>
 
 段落样式选项。
