@@ -358,7 +358,6 @@
             - [切换按钮 (Toggle)](ui/arkts-common-components-switch.md)
             - [进度条 (Progress)](ui/arkts-common-components-progress-indicator.md)
             - [显示图片 (Image)](ui/arkts-graphics-display.md)
-            - [自定义弹窗 (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
             - [视频播放 (Video)](ui/arkts-common-components-video-player.md)
             - [自定义渲染 (XComponent)](ui/napi-xcomponent-guidelines.md)
           - 添加气泡和菜单<!--arkts-add-popup-menu-->
