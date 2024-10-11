@@ -1333,7 +1333,7 @@
     - Media Library Kit（媒体文件管理服务）<!--medialibrary-kit-->
       - [Media Library Kit 简介](media/medialibrary/photoAccessHelper-overview.md)
       - [使用Picker选择媒体库资源](media/medialibrary/photoAccessHelper-photoviewpicker.md)
-      - [使用安全控件保存媒体库资源](media/medialibrary/photoAccessHelper-savebutton.md)
+      - [保存媒体库资源](media/medialibrary/photoAccessHelper-savebutton.md)
       - 动态照片<!--movingphoto-->
         - [访问和管理动态照片资源](media/medialibrary/photoAccessHelper-movingphoto.md)
         - [使用MovingPhotoView播放动态照片](media/medialibrary/movingphotoview-guidelines.md)
