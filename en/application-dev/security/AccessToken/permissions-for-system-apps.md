@@ -3925,7 +3925,7 @@ This permission is available only for applications running on 2-in-1 devices.
 
 **Enable via ACL**：true
 
-**Valid since**：12
+**Valid since**：13
 
 ## system_grant Permissions (Unavailable via ACL)
 
