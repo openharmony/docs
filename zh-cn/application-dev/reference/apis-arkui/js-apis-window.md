@@ -5,7 +5,7 @@
 该模块提供以下窗口相关的常用功能：
 
 - [Window](#window)：当前窗口实例，窗口管理器管理的基本单元。
-- [WindowStage](#windowstage9)：窗口管理器。管理各个基本窗口单元。
+- [WindowStage](#windowstage9)：窗口管理器。管理各个基本窗口单元。https://gitee.com/yyuehao/docs/blob/OpenHarmony-5.0.0-Release/zh-cn/application-dev/reference/apis-arkui/js-apis-window.md
 
 > **说明：**
 >
@@ -4330,7 +4330,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用callback异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持窗口焦点从点击前的获焦窗口切换到该窗口，使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4377,7 +4377,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持窗口焦点从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7785,7 +7785,7 @@ promise.then(() => {
 
 setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从操作前的获焦窗口切换到该窗口，使用callback异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持窗口焦点从操作前的获焦窗口切换到该窗口，使用callback异步回调。
 
 > **说明：**
 >
@@ -7821,7 +7821,7 @@ windowClass.setFocusable(isFocusable, (err: BusinessError) => {
 
 setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持窗口焦点从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
 
 > **说明：**
 >
