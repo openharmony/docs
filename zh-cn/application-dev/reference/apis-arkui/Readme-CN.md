@@ -376,14 +376,14 @@
     <!--Del-->
     - [枚举说明 (系统接口)](arkui-ts/ts-appendix-enums-sys.md)
     <!--DelEnd-->
-    <!--Del-->
+  <!--Del-->
   - 其他类别
     - [EffectComponent (系统接口)](arkui-ts/ts-container-effectcomponent-sys.md)
     - [IsolatedComponent (系统接口)](arkui-ts/ts-container-isolated-component-sys.md)
     - [RemoteWindow (系统接口)](arkui-ts/ts-basic-components-remotewindow-sys.md)
     - [PluginComponent (系统接口)](arkui-ts/ts-basic-components-plugincomponent-sys.md)
     - [UIExtensionComponent (系统接口)](arkui-ts/ts-container-ui-extension-component-sys.md)
-    <!--DelEnd-->
+  <!--DelEnd-->
   - 已停止维护的组件与接口
     <!--Del-->
     - [AbilityComponent](arkui-ts/ts-container-ability-component-sys.md)
