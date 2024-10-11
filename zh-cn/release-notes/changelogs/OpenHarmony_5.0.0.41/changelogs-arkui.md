@@ -97,7 +97,9 @@ CreateModalUIExtension和hideNonSecureWindows接口。
 
 变更后：API13开始，MenuItem组件含有超长文本时，在2in1设备上不换行，其余设备无限换行。
 
-// TODO配图
+| 变更前长文本缩略 | 变更后非2in1设备长文本换行 |
+|---------|---------|
+|  ![长文本缩略](figures/menu-item-long-text-before.png)       |  ![2in1设备长文本换行](figures/menu-item-long-text-after.png)       |
 
 **起始API Level**
 
