@@ -399,6 +399,7 @@
 - C API
   - 模块
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
+    - [Native Accessibility](arkui_native_interface_accessibility.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
     - [WindowManager_NativeModule](_window_manager___native_module.md)
@@ -410,6 +411,7 @@
     - [native_dialog.h](native__dialog_8h.md)
     - [native_gesture.h](native__gesture_8h.md)
     - [native_interface.h](native__interface_8h.md)
+    - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
     - [native_node.h](native__node_8h.md)
     - [native_node_napi.h](native__node__napi_8h.md)
