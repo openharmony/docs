@@ -19,6 +19,7 @@
 
 ### 在napi_init.cpp文件中封装接口并注册模块
 1. 封装函数
+
   ```C
   #include "napi/native_api.h"
   #include "transient_task/transient_task_api.h"
@@ -68,7 +69,9 @@
   }
 
   ```
-  2. 注册函数
+
+2. 注册函数
+
   ```C
   EXTERN_C_START
   static napi_value Init(napi_env env, napi_value exports)
@@ -84,7 +87,7 @@
   EXTERN_C_END
   ```
 
-  3. 注册模块
+3. 注册模块
 
   ```C
   static napi_module demoModule = {
@@ -104,6 +107,7 @@
   ```
 
 ### 在index.d.ts文件中声明函数
+
   ```ts
   export const RequestSuspendDelay: () => number;
   export const GetRemainingDelayTime: () => number;
@@ -160,6 +164,7 @@
   ```
 
 ### 配置库依赖
+
 配置`CMakeLists.txt`，本模块需要用到的共享库是`libtransient_task.so`，在工程自动生成的`CMakeLists.txt`中的`target_link_libraries`中添加此共享库。
 
 ## 测试步骤
@@ -167,6 +172,7 @@
 1. 连接设备并运行程序。
 
 2. 点击 `申请短时任务` 按钮，控制台会打印日志，示例如下：
+
   ```
   The return requestId is 1
   ```
