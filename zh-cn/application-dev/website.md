@@ -1173,6 +1173,9 @@
         - [param工具](tools/param-tool.md)
         - [power-shell工具](tools/power-shell.md)
         - [atm工具](tools/atm-tool.md)
+        <!--Del-->
+        - [acm工具](tools/acm-tool.md)
+        <!--DelEnd-->
         - 命令行工具<!--command-line-utilities-->
           - [toybox工具](tools/toybox.md)
           - [mediatool工具](tools/mediatool.md)
@@ -3629,6 +3632,7 @@
           - [Image](reference/apis-image-kit/image.md)
           - [Image_NativeModule](reference/apis-image-kit/_image___native_module.md)
           - [ImageEffect](reference/apis-image-kit/_image_effect.md)
+          - [ImageProcessing](reference/apis-image-kit/_image_processing.md)
         - 头文件<!--image-headerfile-->
           - [image_mdk.h](reference/apis-image-kit/image__mdk_8h.md)
           - [image_mdk_common.h](reference/apis-image-kit/image__mdk__common_8h.md)
@@ -3646,6 +3650,8 @@
           - [image_effect.h](reference/apis-image-kit/image__effect_8h.md)
           - [image_effect_errors.h](reference/apis-image-kit/image__effect__errors_8h.md)
           - [image_effect_filter.h](reference/apis-image-kit/image__effect__filter_8h.md)
+          - [image_processing.h](reference/apis-image-kit/image__processing_8h.md)
+          - [image_processing_types.h](reference/apis-image-kit/image__processing__types_8h.md)
         - 结构体<!--image-struct-->
           - [ImagePacker_Opts](reference/apis-image-kit/_image_packer___opts__.md)
           - [OH_Pixelmap_HdrDynamicMetadata](reference/apis-image-kit/_o_h___pixelmap___hdr_dynamic_metadata.md)
@@ -3678,6 +3684,7 @@
           - [ImageEffect_FilterNames](reference/apis-image-kit/_image_effect___filter_names.md)
           - [ImageEffect_Region](reference/apis-image-kit/_image_effect___region.md)
           - [ImageEffect_Size](reference/apis-image-kit/_image_effect___size.md)
+          - [ImageProcessing_ColorSpaceInfo](reference/apis-image-kit/_image_processing___color_space_info.md)
       - 错误码<!--image-arkts-errcode-->
         - [图片错误码](reference/apis-image-kit/errorcode-image.md)
     - Media Kit（媒体服务）<!--media-api-->
