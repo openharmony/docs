@@ -814,7 +814,7 @@ Error: install parse unexpected.
 
 **处理步骤**
 
-* 场景一：查看设备system分许存储空间，若已满，清理存储满足安装所需空间。
+* 场景一：查看设备system分区存储空间，若已满，清理存储满足安装所需空间。
   ```
   hdc shell param get const.ohos.apiversion
   ```
