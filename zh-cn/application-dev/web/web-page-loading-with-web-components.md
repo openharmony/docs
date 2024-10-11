@@ -361,7 +361,7 @@ struct Index {
 **常见白屏问题排查:**
 1. 排查应用上网权限配置。
 
-   检查是否已在module.json5中添加网络权限，添加方法请参考在[配置文件中声明权限](https://gitee.com/openharmony/docs/blob/d6dda5a9301f60dfee1998c919ef63d08cb31b00/zh-cn/application-dev/security/AccessToken/declare-permissions.md)。
+   检查是否已在module.json5中添加网络权限，添加方法请参考在[配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
    ```ts
    "requestPermissions":[
        {
@@ -385,7 +385,7 @@ struct Index {
    ```
 3. 排查Web可见性状态。
 
-   如果整个节点已上树，可通过日志[WebPattern::OnVisibleAreaChange](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange) 查看Web组件可见性状态是否正确，不可见的Web组件可能会造成白屏
+   如果整个节点已上树，可通过日志[WebPattern::OnVisibleAreaChange](../reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange) 查看Web组件可见性状态是否正确，不可见的Web组件可能会造成白屏
 ## 相关实例
 
 针对Web组件开发，有以下相关实例可供参考：
