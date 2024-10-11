@@ -4705,4 +4705,4 @@ struct RichEditor_example {
 
 ```
 
-![StyledString](figures/example23.gif))
+![StyledString](figures/example23.gif)
