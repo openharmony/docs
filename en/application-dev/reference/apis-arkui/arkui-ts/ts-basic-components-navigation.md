@@ -1464,6 +1464,8 @@ Defines the name of the navigation home page.
 
 ## NavigationTitleOptions<sup>11+</sup>
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the title bar. If this parameter is not set, the default color is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|

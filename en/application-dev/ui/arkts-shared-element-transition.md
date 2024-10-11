@@ -69,7 +69,7 @@ This example implements a shared element transition for the scenario where, as a
         List() {
           // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
           if (!this.isExpand) {
-            Text ('Collapse')
+            Text('Collapse')
               .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.9) }))
           }
         
@@ -81,7 +81,7 @@ This example implements a shared element transition for the scenario where, as a
         
           // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
           if (this.isExpand) {
-            Text ('Expand')
+            Text('Expand')
               .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion() }))
           }
         }
@@ -469,7 +469,7 @@ function PostBuilder(data: Data) {
         Column() {
           Text('Click to expand Item ' + data.item)
             .fontSize(20)
-          Text ('Shared element transition')
+          Text('Shared element transition')
             .fontSize(12)
             .fontColor(0x909399)
         }
@@ -588,7 +588,7 @@ export const deleteNode = (id: string) => {
 }
 ```
 
-![en-us_image_sharedElementsNodeTransfer](figures/en-us_image_sharedElementsNodeTransfer.gif)
+
 
 ### Using with Navigation
 
@@ -1342,7 +1342,7 @@ export const getMyNode = (): MyNodeController | undefined => {
 }
 ```
 
-![zh-cn_image_NavigationNodeTransfer](figures/zh-cn_image_NavigationNodeTransfer.gif)
+![zh-cn_image_NavigationNodeTransfer](figures/en-us_image_NavigationNodeTransfer.gif)
 
 ### Using with BindSheet
 
@@ -1885,7 +1885,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-![zh-cn_image_BindSheetNodeTransfer](figures/zh-cn_image_BindSheetNodeTransfer.gif)
+![zh-cn_image_BindSheetNodeTransfer](figures/en-us_image_BindSheetNodeTransfer.gif)
 
 ## Using geometryTransition
 

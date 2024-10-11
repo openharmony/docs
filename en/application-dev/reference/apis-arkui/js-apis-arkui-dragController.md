@@ -764,7 +764,7 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button ('Drag Here')
+      Button ('Drop Here')
         .margin(10)
         .onDragEnter(() => {
         try {

@@ -325,7 +325,7 @@ interface ParticlePropertyAnimation<T> {
 | to | T | Yes| Target value of the property. If the value is invalid, the default value will be used.|
 |startMillis|number | Yes| Start time of the animation.|
 |endMillis|number | Yes| End time of the animation.|
-|curve|[Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve)| No| Animation curve.<br>Default value: **Curve.Linear**|
+|curve|[Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9)| No| Animation curve.<br>Default value: **Curve.Linear**|
 
 
 ## ParticleType
