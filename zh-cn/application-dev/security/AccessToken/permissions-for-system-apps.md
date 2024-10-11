@@ -3937,6 +3937,18 @@
 
 **起始版本**：13
 
+### ohos.permission.READ_WRITE_USB_DEV
+
+允许指定的PC应用进行鸿蒙设备连接调试读写USB设备。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4180,18 +4192,6 @@
 **授权方式**：system_grant
 
 **ACL使能**：false
-
-**起始版本**：12
-
-### ohos.permission.READ_WRITE_USB_DEV
-
-允许指定的PC应用进行鸿蒙设备连接调试读写USB设备。
-
-当前仅2in1设备应用可申请此权限。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
 
 **起始版本**：12
 
