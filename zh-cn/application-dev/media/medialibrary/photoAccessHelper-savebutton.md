@@ -78,7 +78,7 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 async function example() {
   try {
     // 指定待保存到媒体库的位于应用沙箱的图片uri
-    let srcFileUri = 'file://com.example.myapplication/data/storage/el2/base/haps/entry/files/test.jpg';
+    let srcFileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
     let srcFileUris: Array<string> = [
       srcFileUri
     ];
