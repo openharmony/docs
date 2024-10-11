@@ -665,7 +665,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 系统路由表
 
-从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（HSP/HAR）中需要独立配置router_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。其主要步骤如下：
+从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（HSP/HAR）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。其主要步骤如下：
 
 1. 在跳转目标模块的配置文件module.json5添加路由表配置：
    
@@ -702,7 +702,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
    | buildFunction | 跳转目标页的入口函数名称，必须以@Builder修饰。 |
    | data | 应用自定义字段。可以通过配置项读取接口getConfigInRouteMap获取。|
 
-3. 在跳转目标页面中，需要配置入口Builder函数，函数名称需要和router_map.json配置文件中的buildFunction保持一致，否则在编译时会报错。
+3. 在跳转目标页面中，需要配置入口Builder函数，函数名称需要和route_map.json配置文件中的buildFunction保持一致，否则在编译时会报错。
    
    ```ts
      // 跳转页面入口函数
