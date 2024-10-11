@@ -3913,6 +3913,20 @@ Allows a system application to subscribe to the restore start event.
 
 **Valid since**：13
 
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+Allows an application to connect to a device and read and write the device data via USB for debugging purposes.
+
+This permission is available only for applications running on 2-in-1 devices.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：12
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.

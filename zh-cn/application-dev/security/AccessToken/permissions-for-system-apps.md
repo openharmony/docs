@@ -3939,13 +3939,15 @@
 
 ### ohos.permission.READ_WRITE_USB_DEV
 
-允许指定的应用进行设备连接调试读写USB设备。
+允许应用连接设备，并通过USB调试读写该设备。
 
 当前仅2in1设备应用可申请此权限。
 
 **权限级别**：system_basic
 
 **授权方式**：system_grant
+
+**ACL使能**：true
 
 **起始版本**：12
 
