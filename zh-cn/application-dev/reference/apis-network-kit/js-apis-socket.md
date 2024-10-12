@@ -3037,6 +3037,8 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 ```ts
 import { socket } from '@kit.NetworkKit';
 
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
   port: 8080,
@@ -3048,12 +3050,10 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
     return;
   }
   console.log("listen success");
+  tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
+    console.log(JSON.stringify(data))
+  });
 })
-
-let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
-  console.log(JSON.stringify(data))
-});
 ```
 
 ### off('connect')<sup>10+</sup>
@@ -3082,6 +3082,8 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 ```ts
 import { socket } from '@kit.NetworkKit';
 
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
   port: 8080,
@@ -3093,16 +3095,14 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
     return;
   }
   console.log("listen success");
+  let callback = (data: socket.TCPSocketConnection) => {
+    console.log('on connect message: ' + JSON.stringify(data));
+  }
+  tcpServer.on('connect', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  tcpServer.off('connect', callback);
+  tcpServer.off('connect');
 })
-
-let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let callback = (data: socket.TCPSocketConnection) => {
-  console.log('on connect message: ' + JSON.stringify(data));
-}
-tcpServer.on('connect', callback);
-// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-tcpServer.off('connect', callback);
-tcpServer.off('connect');
 ```
 
 ### on('error')<sup>10+</sup>
@@ -3135,6 +3135,8 @@ on(type: 'error', callback: ErrorCallback): void
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
   port: 8080,
@@ -3146,12 +3148,10 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
     return;
   }
   console.log("listen success");
+  tcpServer.on('error', (err: BusinessError) => {
+    console.log("on error, err:" + JSON.stringify(err))
+  });
 })
-
-let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-tcpServer.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
-});
 ```
 
 ### off('error')<sup>10+</sup>
@@ -3181,6 +3181,8 @@ off(type: 'error', callback?: ErrorCallback): void
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
+
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
   port: 8080,
@@ -3192,16 +3194,14 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
     return;
   }
   console.log("listen success");
+  let callback = (err: BusinessError) => {
+    console.log("on error, err:" + JSON.stringify(err));
+  }
+  tcpServer.on('error', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  tcpServer.off('error', callback);
+  tcpServer.off('error');
 })
-
-let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
-}
-tcpServer.on('error', callback);
-// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
-tcpServer.off('error', callback);
-tcpServer.off('error');
 ```
 
 ## TCPSocketConnection<sup>10+</sup>
