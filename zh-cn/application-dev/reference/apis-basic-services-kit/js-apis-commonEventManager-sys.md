@@ -46,7 +46,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
-| 1500004  | not System services.                |
+| 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
 | 1500009  | error obtaining system parameters.  |
@@ -104,7 +104,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
-| 1500004  | not System services or System app.                |
+| 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
 | 1500009  | error obtaining system parameters.  |
@@ -170,7 +170,7 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                     |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |   
-| 1500004  | not system service.                 |
+| 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
 
@@ -222,7 +222,7 @@ removeStickyCommonEvent(event: string): Promise\<void>
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                     |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
-| 1500004  | not system service.                 |
+| 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
 
@@ -338,7 +338,7 @@ commonEventManager.setStaticSubscriberState(false).then(() => {
 
 ## commonEventManager.setStaticSubscriberState<sup>12+</sup>
 
-setStaticSubscriberState(enable: boolean, events?: Array<string>): Promise<void>
+setStaticSubscriberState(enable: boolean, events?: Array\<string>): Promise\<void>
 
 为当前应用设置静态订阅事件的使能状态，并且记录事件名称。使用Promise异步回调。
 
@@ -353,7 +353,7 @@ setStaticSubscriberState(enable: boolean, events?: Array<string>): Promise<void>
 | 参数名 | 类型          | 必填 | 说明                                                 |
 | ------ | ------------- | ---- | ---------------------------------------------------- |
 | enable | boolean       | 是   | 表示静态订阅事件使能状态。 true：使能 false：去使能。|
-| events | array<string> | 否   | 表示记录事件名称。                                   |
+| events | array\<string> | 否   | 表示记录事件名称。                                   |
 
 **返回值：**
 
