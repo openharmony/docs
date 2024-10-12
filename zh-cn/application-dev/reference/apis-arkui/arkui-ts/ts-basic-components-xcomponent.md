@@ -41,7 +41,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
-| type        | [XComponentType](ts-appendix-enums.md#xcomponenttype10枚举说明)   | 是   | 用于指定XComponent组件类型。                                 |
+| type        | [XComponentType](ts-appendix-enums.md#xcomponenttype10)   | 是   | 用于指定XComponent组件类型。                                 |
 | libraryname | string                                        | 否   | 用Native层编译输出动态库名称（对应的动态库不支持跨模块加载），仅类型为SURFACE或TEXTURE时有效。 |
 | controller  | [XComponentController](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 
@@ -74,7 +74,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10枚举说明)         | 是   | 用于指定XComponent组件类型。 |
+| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 是   | 用于指定XComponent组件类型。 |
 | controller | [XComponentController](#xcomponentcontroller) | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 | imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
