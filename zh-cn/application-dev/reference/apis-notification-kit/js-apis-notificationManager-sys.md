@@ -2684,9 +2684,14 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600003  | Failed to connect to the service.                |
 | 1600004  | Notification disabled.              |
 | 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600014  | No permission.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -2761,9 +2766,14 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600003  | Failed to connect to the service.                |
 | 1600004  | Notification disabled.                    |
 | 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600014  | No permission.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -2833,9 +2843,14 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600003  | Failed to connect to the service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot disabled.         |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
+| 1600014  | No permission.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -2900,6 +2915,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 | 1600003  | Failed to connect to the service.          |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.              |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -2961,6 +2977,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 | 1600003  | Failed to connect to the service.          |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.              |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -3020,6 +3037,7 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 | 1600007  | The notification does not exist.            |
 | 1600008  | The user does not exist.                    |
 | 1600012  | No memory space.                          |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -3709,6 +3727,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |
 | 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
