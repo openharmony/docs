@@ -136,7 +136,7 @@ scrollBar(value: BarState)
 
 ### cachedCount
 
-cachedCount(value: number)
+cachedCount(value: number, show?: boolean)
 
 设置列表中ListItem/ListItemGroup的预加载数量，懒加载场景只会预加载List显示区域外cachedCount的内容，非懒加载场景会全部加载。懒加载、非懒加载都只布局List显示区域+List显示区域外cachedCount的内容。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
@@ -155,6 +155,7 @@ List下嵌套使用LazyForEach，并且LazyForEach下嵌套使用ListItemGroup�
 | 参数名 | 类型   | 必填 | 说明                                               |
 | ------ | ------ | ---- | -------------------------------------------------- |
 | value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：1 |
+| show<sup>14+</sup>  | boolean | 否   | 被预加载的ListItem是否需要显示。 <br/> 默认值：false |
 
 ### editMode<sup>(deprecated)</sup>
 
