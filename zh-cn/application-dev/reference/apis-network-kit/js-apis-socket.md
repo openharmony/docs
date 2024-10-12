@@ -3037,6 +3037,19 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 ```ts
 import { socket } from '@kit.NetworkKit';
 
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
   console.log(JSON.stringify(data))
@@ -3068,6 +3081,19 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
 ```ts
 import { socket } from '@kit.NetworkKit';
+
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = (data: socket.TCPSocketConnection) => {
@@ -3109,6 +3135,19 @@ on(type: 'error', callback: ErrorCallback): void
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -3141,6 +3180,19 @@ off(type: 'error', callback?: ErrorCallback): void
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
+let listenAddr: socket.NetAddress = {
+  address:  '192.168.xx.xxx',
+  port: 8080,
+  family: 1
+}
+tcpServer.listen(listenAddr, (err: BusinessError) => {
+  if (err) {
+    console.log("listen fail");
+    return;
+  }
+  console.log("listen success");
+})
 
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = (err: BusinessError) => {
