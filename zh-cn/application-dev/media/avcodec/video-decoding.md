@@ -21,7 +21,7 @@
 |          支持的能力                       |             使用简述                                                                     |
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
 | 变分辨率         | 解码器支持输入码流分辨率发生变化，发生变化后会触发OH_VideoDecoder_RegisterCallback接口设置的回调函数OnStreamChanged()。具体可参考下文中：Surface模式步骤-4或Buffer模式步骤-3  |
-| 动态切换Surface  | 通过调用OH_VideoDecoder_SetSurface接口配置，仅Surface模式支持。具体可参考下文中：Surface模式步骤-7    |
+| 动态切换surface  | 通过调用OH_VideoDecoder_SetSurface接口配置，仅Surface模式支持。具体可参考下文中：Surface模式步骤-7    |
 | 低时延解码  | 通过调用OH_VideoDecoder_Configure接口配置，具体可参考下文中：Surface模式的步骤-6或Buffer模式步骤-5      |      
 
 
@@ -38,12 +38,12 @@
 9. 如果调用者在调用OH_AVBuffer_GetNativeBuffer接口时获取到OH_NativeBuffer指针对象，并且该对象的生命周期超过了当前的OH_AVBuffer指针对象，那么需要进行
    一次数据的拷贝操作。在这种情况下，调用者需要自行管理新生成的OH_NativeBuffer对象的生命周期，确保其正确使用和释放。
 
-## Surface输出与Buffer输出
+## surface输出与buffer输出
 
 1. 两者数据的输出方式不同。
 2. 两者的适用场景不同：
-- Surface输出是指用OHNativeWindow来传递输出数据，可以与其他模块对接，例如XComponent。
-- Buffer输出是指经过解码的数据会以共享内存的方式输出。
+- surface输出是指用OHNativeWindow来传递输出数据，可以与其他模块对接，例如XComponent。
+- buffer输出是指经过解码的数据会以共享内存的方式输出。
 
 3. 在接口调用的过程中，两种方式的接口调用方式基本一致，但存在以下差异点：
 - 在Surface模式下，可选择调用OH_VideoDecoder_FreeOutputBuffer接口丢弃输出帧（不送显）；在Buffer模式下，应用必须调用OH_VideoDecoder_FreeOutputBuffer接口释放数据。
