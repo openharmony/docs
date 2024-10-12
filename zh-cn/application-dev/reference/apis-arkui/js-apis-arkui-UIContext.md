@@ -2156,6 +2156,48 @@ struct UIContextBindSheet {
 }
 ```
 
+### isFollowingSystemFontScale<sup>13+</sup>
+
+isFollowingSystemFontScale(): boolean
+
+获取当前UI上下文是否跟随系统字体倍率。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型      | 说明            |
+|---------|---------------|
+| boolean | 当前UI上下文是否跟随系统字体倍率。 |
+
+**示例：**
+```ts
+uiContext.isFollowingSystemFontScale()
+```
+
+### getMaxFontScale<sup>13+</sup>
+
+getMaxFontScale(): number
+
+获取当前UI上下文最大字体倍率。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| number | 当前UI上下文最大字体倍率。 |
+
+**示例：**
+```ts
+uiContext.getMaxFontScale()
+```
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
