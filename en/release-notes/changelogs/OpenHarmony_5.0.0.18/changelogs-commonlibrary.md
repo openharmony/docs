@@ -55,6 +55,7 @@ N/A
 If **sendData** is not executed in the task pool or the read and write operations on the same attribute are performed by two independent threads after data is returned, no adaptation is required.
 
 If **sendData** is executed in the task pool or the host thread and its subthread read and write the same attribute after data is returned, a lock must be used (imported from @arkts.utils).
+
 Current code:
 
 ```
@@ -100,3 +101,69 @@ task.onReceiveData((val: A) => {
     console.log("num: " + val.getNum())
 })
 ```
+
+
+## cl.commonlibrary.2 taskId in taskInfos Obtained by Calling taskpool.getTaskPoolInfo Is Changed from BigInt to Number
+
+**Access Level**
+
+Other
+
+**Change Reason**
+
+**taskId** of the number type is sufficient for use.
+
+**Change Impact**
+
+This change is a non-compatible change.
+
+Before the change, the **taskId** type is BigInt.
+
+After the change, the **taskId** type is number. **taskId** is a member of **TaskInfo** in the **TaskPoolInfo** class obtained through **taskpool.getTaskPoolInfo**. The change of the member type does not affect other attributes obtained using **taskpool.getTaskPoolInfo**. The change has little impact on developers.
+
+Current code:
+```ts
+import { taskpool } from '@kit.ArkTS'
+
+@Concurrent
+function delay(): void {
+  let start: number = new Date().getTime();
+  while (new Date().getTime() - start < 500) {
+    continue;
+  }
+}
+
+let task1: taskpool.Task = new taskpool.Task(delay);
+let task2: taskpool.Task = new taskpool.Task(delay);
+let task3: taskpool.Task = new taskpool.Task(delay);
+taskpool.execute(task1, taskpool.Priority.LOW)
+taskpool.execute(task2, taskpool.Priority.MEDIUM)
+taskpool.execute(task3, taskpool.Priority.HIGH)
+let start: number = new Date().getTime();
+while (new Date().getTime() - start < 1000) {
+  continue;
+}
+let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
+let taskId: number = 0;
+let taskIS = Array.from(taskpoolInfo.taskInfos)
+for(let taskInfo of taskIS) {
+  taskId = taskInfo.taskId;
+  console.info("taskpool---taskId is:" + taskId);
+}
+```
+
+**Start API Level**
+
+API version 11
+
+**Change Since**
+
+OpenHarmony SDK 5.0.0.18
+
+**Key API/Component Changes**
+
+taskpool.getTaskPoolInfo
+
+**Adaptation Guide**
+
+Define the **taskId** type as number.
