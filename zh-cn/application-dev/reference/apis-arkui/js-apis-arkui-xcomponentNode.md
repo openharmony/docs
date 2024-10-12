@@ -31,7 +31,7 @@ XComponentNode的构造函数。
 | uiContext   | [UIContext](js-apis-arkui-UIContext.md)                      | 是   | UI上下文，获取方式可参考[UIContext获取方法](./js-apis-arkui-node.md#uicontext获取方法)。 |
 | options     | [RenderOptions](./js-apis-arkui-builderNode.md#renderoptions) | 是   | XComponentNode的构造可选参数。                               |
 | id          | string                                                       | 是   | XComponent的唯一标识，支持最大的字符串长度128。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md#xcomponent)。 |
-| type        | [XComponentType](arkui-ts/ts-basic-components-xcomponent.md#xcomponenttype10枚举说明) | 是   | 用于指定XComponent组件类型。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md#xcomponent)。 |
+| type        | [XComponentType](arkui-ts/ts-appendix-enums.md#xcomponenttype10) | 是   | 用于指定XComponent组件类型。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md#xcomponent)。 |
 | libraryName | string                                                       | 否   | Native层编译输出动态库名称。详见[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md#xcomponent)。 |
 
 > **说明：**
