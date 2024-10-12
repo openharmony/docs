@@ -701,6 +701,48 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 | --------   | -------------------------------------------- |
 | 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 
+### setTabBarTranslate<sup>14+</sup>
+
+setTabBarTranslate(translate: TranslateOptions): void
+
+设置TabBar的平移距离。
+
+> **说明：**
+>
+> 当使用bindTabsToScrollable或bindTabsToNestedScrollable等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarTranslate接口设置的TabBar平移距离会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarTranslate接口。
+>
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填   | 说明                                     |
+| ----- | ------ | ---- | ---------------------------------------- |
+| translate | [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions对象说明) | 是 | 设置TabBar的平移距离。 |
+
+### setTabBarOpacity<sup>14+</sup>
+
+setTabBarOpacity(opacity: number): void
+
+设置TabBar的不透明度。
+
+> **说明：**
+>
+> 当使用bindTabsToScrollable或bindTabsToNestedScrollable等接口绑定了Tabs组件和可滚动容器组件后，在滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，调用setTabBarOpacity接口设置的TabBar不透明度会失效。因此不建议同时使用bindTabsToScrollable、bindTabsToNestedScrollable和setTabBarOpacity接口。
+>
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填   | 说明                                     |
+| ----- | ------ | ---- | ---------------------------------------- |
+| opacity | number | 是 | 设置TabBar的不透明度，取值范围为[0.0, 1.0]。 |
+
 ## 示例
 
 ### 示例1
@@ -1659,3 +1701,55 @@ struct MyComponent {
   }
 }
 ```
+
+### 示例11
+
+本示例通过setTabBarTranslate、setTabBarOpacity等接口设置了TabBar的平移距离和不透明度。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabsExample {
+  private controller: TabsController = new TabsController()
+
+  build() {
+    Column() {
+      Button('设置TabBar的平移距离').margin({ top: 20 })
+        .onClick(() => {
+          this.controller.setTabBarTranslate({ x: -20, y: -20 })
+        })
+
+      Button('设置TabBar的透明度').margin({ top: 20 })
+        .onClick(() => {
+          this.controller.setTabBarOpacity(0.5)
+        })
+
+      Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'green'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#007DFF')
+        }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'blue'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'yellow'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#E67C92')
+        }.tabBar(BottomTabBarStyle.of($r('app.media.startIcon'), 'pink'))
+      }
+      .width(360)
+      .height(296)
+      .margin({ top: 20 })
+      .barBackgroundColor('#F1F3F5')
+    }
+    .width('100%')
+  }
+}
+```
+
+![tabs11](figures/tabs11.gif)
