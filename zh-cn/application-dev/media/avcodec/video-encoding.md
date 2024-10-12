@@ -695,7 +695,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         int32_t frameSize = width * height * 3 / 2; // NV12像素格式下，每帧数据大小的计算公式
         inputFile->read(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), frameSize);
     } else {
-        // 如果跨距不等于宽，需要调用者按照跨距进行偏移
+        // 如果跨距不等于宽，需要调用者按照跨距进行偏移，具体可参考以下示例
     }
     // 配置buffer info信息
     OH_AVCodecBufferAttr info;
@@ -713,7 +713,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
-    对跨距进行偏移，以NV12图像为例 示例如下：
+    对跨距进行偏移，以NV12图像为例，示例如下：
 
     以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
 
@@ -732,19 +732,19 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     使用示例：
 
     ```c++
-    struct Rect   // 源内存区域的宽，高
+    struct Rect   // 源内存区域的宽、高，由调用者自行设置
     {
         int32_t width;
         int32_t height;
     };
 
-    struct DstRect // 目标内存区域的宽，高跨距
+    struct DstRect // 目标内存区域的宽、高跨距，通过回调函数OnNeedInputBuffer获取
     {
         int32_t wStride;
         int32_t hStride;
     };
 
-    struct SrcRect // 源内存区域的宽，高跨距
+    struct SrcRect // 源内存区域的宽、高跨距，由调用者自行设置
     {
         int32_t wStride;
         int32_t hStride;
