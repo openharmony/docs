@@ -448,6 +448,7 @@
           - [构建弹窗](ui/ndk-build-pop-up-window.md)
           - [构建自定义组件](ui/ndk-build-custom-components.md)
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
+          - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -2492,6 +2493,7 @@
       - C API<!--arkui-c-->
         - 模块<!--arkui-module-->
           - [ArkUI_NativeModule](reference/apis-arkui/_ark_u_i___native_module.md)
+          - [Native Accessibility](reference/apis-arkui/arkui_native_interface_accessibility.md)
           - [Native XComponent](reference/apis-arkui/_o_h___native_x_component.md)
           - [ArkUI_EventModule](reference/apis-arkui/_ark_u_i___event_module.md)
           - [WindowManager_NativeModule](reference/apis-arkui/_window_manager___native_module.md)
@@ -2504,6 +2506,7 @@
             - [native_dialog.h](reference/apis-arkui/native__dialog_8h.md)
             - [native_gesture.h](reference/apis-arkui/native__gesture_8h.md)
             - [native_interface.h](reference/apis-arkui/native__interface_8h.md)
+            - [native_interface_accessibility.h](reference/apis-arkui/native__interface__accessibility_8h.md)
             - [native_interface_xcomponent.h](reference/apis-arkui/native__interface__xcomponent_8h.md)
             - [native_node.h](reference/apis-arkui/native__node_8h.md)
             - [native_node_napi.h](reference/apis-arkui/native__node__napi_8h.md)
