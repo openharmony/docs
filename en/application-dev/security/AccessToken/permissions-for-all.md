@@ -3,6 +3,7 @@
 Before requesting permissions for your application, read and understand the [Workflow for Using Permissions](determine-application-mode.md) and this topic to determine the permissions required.
 
 > **NOTE**
+> 
 > "Enable via ACL" is not involved for permissions of the normal level.
 
 ## system_grant Permissions
