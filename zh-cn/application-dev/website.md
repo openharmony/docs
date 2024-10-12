@@ -872,6 +872,7 @@
         - 证书管理<!--certManager-->
           - [证书管理概述](security/DeviceCertificateKit/certManager-overview.md)
           - [证书管理开发指导](security/DeviceCertificateKit/certManager-guidelines.md)
+          - [证书管理对话框开发指导](security/DeviceCertificateKit/certManagerDialog-guidelines.md)
       - Universal Keystore Kit（密钥管理服务）<!--huks-kit-->
         - [Universal Keystore Kit简介](security/UniversalKeystoreKit/huks-overview.md)
         - [通用密钥库基础概念](security/UniversalKeystoreKit/huks-concepts.md)
@@ -1035,6 +1036,7 @@
         - USB服务<!--usb-->
           - [USB服务开发概述](basic-services/usb/usb-overview.md)
           - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
+          - [常见问题](basic-services/faqs/faqs-usb.md)
         <!--Del-->
         - 升级服务<!--update-->
           - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
@@ -2846,12 +2848,14 @@
         - ArkTS API<!--device-certificate-arkts-->
           - [@ohos.security.cert (证书模块)](reference/apis-device-certificate-kit/js-apis-cert.md)
           - [@ohos.security.certManager (证书管理模块)](reference/apis-device-certificate-kit/js-apis-certManager.md)
+          - [@ohos.security.certManagerDialog (证书管理对话框模块)](reference/apis-device-certificate-kit/js-apis-certManagerDialog.md)
           <!--Del-->
           - [@ohos.security.certManager (证书管理模块)(系统接口)](reference/apis-device-certificate-kit/js-apis-certManager-sys.md)
           <!--DelEnd-->
         - 错误码<!--device-certificate-arkts-errcode-->
           - [证书错误码](reference/apis-device-certificate-kit/errorcode-cert.md)
           - [证书管理错误码](reference/apis-device-certificate-kit/errorcode-certManager.md)
+          - [证书管理对话框错误码](reference/apis-device-certificate-kit/errorcode-certManagerDialog.md)
       - Universal Keystore Kit（密钥管理服务）<!--universal-keystore-api-->
         - ArkTS API<!--universal-keystore-arkts-->
           - [@ohos.security.huks (通用密钥库系统)](reference/apis-universal-keystore-kit/js-apis-huks.md)
@@ -3949,6 +3953,11 @@
           <!--Del-->
           - [@ohos.notification (Notification模块)(系统接口)](reference/apis-notification-kit/js-apis-notification-sys.md)
           <!--DelEnd-->
+      - C API<!--notification-c-->
+        - 模块<!--notification-module-->
+          - [Notification](reference/apis-notification-kit/capi-notification.md)
+        - 头文件<!--notification-headerfile-->
+          - [notification.h](reference/apis-notification-kit/notification_8h.md)
       - 错误码<!--notification-arkts-errcode-->
         - [通知错误码](reference/apis-notification-kit/errorcode-notification.md)
   - AI<!--ai-api-->
