@@ -1911,6 +1911,7 @@ function printArgs(args: string): string {
   console.info("func: " + args);
   return args;
 }
+
 async function taskpoolExecute(): Promise<void> {
   // taskpool.execute(task)
   let task: taskpool.Task = new taskpool.Task(printArgs, "create task, then execute");
@@ -1918,6 +1919,7 @@ async function taskpoolExecute(): Promise<void> {
   // taskpool.execute(function)
   console.info("taskpool.execute(function) result: " + await taskpool.execute(printArgs, "execute task by func"));
 }
+
 taskpoolExecute();
 ```
 
@@ -1935,9 +1937,9 @@ import { c } from "./b";
 
 @Concurrent
 function printArgs(a: string): string {
-    console.info(a);
-    console.info(c);
-    return a;
+  console.info(a);
+  console.info(c);
+  return a;
 }
 
 async function taskpoolExecute(): Promise<void> {
@@ -1986,6 +1988,7 @@ function strSort(inPutArr: Array<string>): Array<string> {
   let newArr = inPutArr.sort();
   return newArr;
 }
+
 export async function func1(): Promise<void> {
   console.info("taskpoolTest start");
   let strArray: Array<string> = ['c test string', 'b test string', 'a test string'];
@@ -2038,13 +2041,13 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: Object)=>{
+  taskpool.execute(task).then((res: Object) => {
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
   });
   // 1s后取消task
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(task);
     } catch (e) {
@@ -2080,13 +2083,13 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: Object)=>{
+  taskpool.execute(task).then((res: Object) => {
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
   });
 
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(task); // 任务已执行,取消失败
     } catch (e) {
@@ -2194,21 +2197,19 @@ let state: number = 0;
 let duration: number = 0;
 let name: string = "";
 let threadIS = Array.from(taskpoolInfo.threadInfos)
-for(let threadInfo of threadIS) {
+for (let threadInfo of threadIS) {
   tid = threadInfo.tid;
-  if (threadInfo.taskIds != undefined && threadInfo.priority != undefined )
-  {
+  if (threadInfo.taskIds != undefined && threadInfo.priority != undefined) {
     taskIds.length = threadInfo.taskIds.length;
     priority = threadInfo.priority;
   }
   console.info("taskpool---tid is:" + tid + ", taskIds is:" + taskIds + ", priority is:" + priority);
 }
 let taskIS = Array.from(taskpoolInfo.taskInfos)
-for(let taskInfo of taskIS) {
+for (let taskInfo of taskIS) {
   taskId = taskInfo.taskId;
   state = taskInfo.state;
-  if (taskInfo.duration != undefined )
-  {
+  if (taskInfo.duration != undefined) {
     duration = taskInfo.duration;
     name = taskInfo.name;
   }

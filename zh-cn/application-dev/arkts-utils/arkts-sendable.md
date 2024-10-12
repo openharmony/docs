@@ -114,7 +114,7 @@ Sendable interface需同时满足以下两个规则：
 | 装饰的对象内的属性的其他限制 | 成员属性必须显式声明类型、必须显式初始化。成员属性不能跟感叹号。|
 | 装饰的对象内的方法参数限制  | 允许使用local变量、入参和通过import引入的变量。禁止使用闭包变量。           |
 | Sendable Class的限制      | 不支持增加属性、不支持删除属性、允许修改属性，修改前后属性的类型必须一致、不支持修改方法。   |
-| 适用场景                  | 1. 在TaskPool或Worker中使用类方法。<br/>2. 传输对象数据量较大的使用场景。         |
+| 适用场景                  | 1. 在TaskPool或Worker中使用类方法。<br/>2. 传输对象数据量较大的使用场景。<br/>3. 与[makeObserved接口](../quick-start/arkts-new-makeObserved.md)配合使用，可以观察[@Sendable](#sendable装饰器声明并校验sendable类)类的数据变化，具体使用请参考[makeObserved和@Sendable装饰的class配合使用](../quick-start/arkts-new-makeObserved.md#makeobserved和sendable装饰的class配合使用)。         |
 
 
 ### 装饰器使用示例
