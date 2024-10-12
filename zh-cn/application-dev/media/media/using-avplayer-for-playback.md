@@ -20,7 +20,7 @@
 - 如果要实现后台播放或熄屏播放，需要接入[AVSession（媒体会话）](../avsession/avsession-access-scene.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。
 - 应用在播放过程中，若播放的媒体数据涉及音频，根据系统音频管理策略（参考[处理音频焦点事件](../audio/audio-playback-concurrency.md)），可能会被其他应用打断，建议应用主动监听音频打断事件，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
 - 面对设备同时连接多个音频输出设备的情况，应用可以通过[on('audioOutputDeviceChangeWithInfo')](../../reference/apis-media-kit/js-apis-media.md#onaudiooutputdevicechangewithinfo11)监听音频输出设备的变化，从而做出相应处理。
-- 设置音频渲染信息。若媒体源包含视频，则usage默认值为STREAM_USAGE_MOVIE，否则usage默认值为STREAM_USAGE_MUSIC。rendererFlags默认值为0。若默认usage不满足需求，则须主动配置[audio.AudioRendererInfo](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-audio-V5#audiorendererinfo8)。只允许在initialized状态下设置。在第一次调用prepare()之前设置，以便音频渲染器信息在之后生效。元服务API： 从API version 12开始，该接口支持在元服务中使用。
+- 设置音频渲染信息。若媒体源包含视频，则usage默认值为STREAM_USAGE_MOVIE，否则usage默认值为STREAM_USAGE_MUSIC。rendererFlags默认值为0。若默认usage不满足需求，则须主动配置[audio.AudioRendererInfo](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-audio-V5#audiorendererinfo8)。只允许在initialized状态下设置。在第一次调用prepare()之前设置，以便音频渲染器信息在之后生效。
 
 ## 开发步骤及注意事项
 
@@ -53,6 +53,8 @@
    > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9)。
    > 
    > - 需要使用[支持的播放格式与协议](media-kit-intro.md#支持的格式与协议)。
+   > 
+   > 此外，如果需要设置音频渲染信息，则只允许在initialized状态下，第一次调用prepare()之前设置，以便音频渲染器信息在之后生效。若媒体源包含视频，则usage默认值为STREAM_USAGE_MOVIE，否则usage默认值为STREAM_USAGE_MUSIC。rendererFlags默认值为0。若默认usage不满足需求，则须主动配置[audio.AudioRendererInfo](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V5/js-apis-audio-V5#audiorendererinfo8)。
 
 4. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置音量。
 
