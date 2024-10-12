@@ -1034,7 +1034,7 @@ int32_t OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow *window, int code,
 | -------- | -------- |
 | window | 一个OHNativeWindow的结构体实例的指针。 | 
 | code | 表示操作码，详见[NativeWindowOperation](#nativewindowoperation)。 | 
-| ... | 可变参数，必须与操作码一一对应。 | 
+| ... | 可变参数，必须与操作码对应的数据类型保持一致，且入参数量严格按照操作码提示传入，否则会存在未定义行为。 | 
 
 **返回：**
 
