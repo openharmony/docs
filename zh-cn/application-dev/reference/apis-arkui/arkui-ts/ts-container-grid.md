@@ -238,7 +238,7 @@ scrollBarWidth(value: number | string)
 
 ### cachedCount
 
-cachedCount(value: number)
+cachedCount(value: number, show?: boolean)
 
 设置预加载的GridItem的数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)中生效。设置为小于0的值时，按默认值显示。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
@@ -255,6 +255,7 @@ cachedCount(value: number)
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | value  | number | 是   | 预加载的GridItem的数量。<br/>默认值：1 |
+| show<sup>14+</sup>  | boolean | 否   | 被预加载的GridItem是否需要显示。 <br/> 默认值：false |
 
 ### editMode<sup>8+</sup>
 
