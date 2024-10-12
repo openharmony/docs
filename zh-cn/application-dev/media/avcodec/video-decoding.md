@@ -33,6 +33,10 @@
 5. 在调用Flush，Reset，Stop的过程中，调用者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
 6. DRM解密能力在[Surface模式](#surface模式)下既支持非安全视频通路，也支持安全视频通路，在[Buffer模式](#buffer模式)下仅支持非安全视频通路。
 7. Buffer模式和Surface模式使用方式一致的接口，所以只提供了Surface模式的示例。
+8. 在Buffer模式下，调用者通过输出回调函数OH_AVCodecOnNewOutputBuffer获取到OH_AVBuffer的指针对象后，必须通过调用OH_VideoDecoder_FreeOutputBuffer接口
+   来通知系统该对象已被使用完毕。这样系统才能够将后续解码的数据写入到相应的位置。
+9. 如果调用者在调用OH_AVBuffer_GetNativeBuffer接口时获取到OH_NativeBuffer指针对象，并且该对象的生命周期超过了当前的OH_AVBuffer指针对象，那么需要进行
+   一次数据的拷贝操作。在这种情况下，调用者需要自行管理新生成的OH_NativeBuffer对象的生命周期，确保其正确使用和释放。
 
 ## Surface输出与Buffer输出
 

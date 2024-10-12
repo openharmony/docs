@@ -30,6 +30,10 @@
 2. 由于硬件编码器资源有限，每个编码器在使用完毕后都必须调用OH_VideoEncoder_Destroy接口来销毁实例并释放资源。
 3. 一旦调用Flush，Reset，Stop接口，会触发系统回收OH_AVBuffer，调用者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
 4. Buffer模式和Surface模式使用方式一致的接口，所以只提供了Surface模式的示例。
+8. 在Buffer模式下，调用者通过输入回调函数OH_AVCodecOnNeedInputBuffer获取到OH_AVBuffer的指针对象后，必须通过调用OH_VideoEncoder_PushInputBuffer接口
+   来通知系统该对象已被使用完毕。这样系统才能够将该对象里面的数据进行编码。
+9. 如果调用者在调用OH_AVBuffer_GetNativeBuffer接口时获取到OH_NativeBuffer指针对象，并且该对象的生命周期超过了当前的OH_AVBuffer指针对象，那么需要进行
+   一次数据的拷贝操作。在这种情况下，调用者需要自行管理新生成的OH_NativeBuffer对象的生命周期，确保其正确使用和释放。
 
 
 ## surface输入与buffer输入
@@ -699,7 +703,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         int32_t frameSize = width * height * 3 / 2; // NV12像素格式下，每帧数据大小的计算公式
         inputFile->read(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), frameSize);
     } else {
-        // 如果跨距不等于宽，需要调用者按照跨距进行偏移
+        // 如果跨距不等于宽，需要调用者按照跨距进行偏移，具体可参考以下示例
     }
     // 配置buffer info信息
     OH_AVCodecBufferAttr info;
@@ -717,7 +721,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
-    对跨距进行偏移，以NV12图像为例 示例如下：
+    对跨距进行偏移，以NV12图像为例，示例如下：
 
     以NV12图像为例，width、height、wStride、hStride图像排布参考下图：
 
@@ -736,19 +740,19 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     使用示例：
 
     ```c++
-    struct Rect   // 源内存区域的宽，高
+    struct Rect   // 源内存区域的宽、高，由调用者自行设置
     {
         int32_t width;
         int32_t height;
     };
 
-    struct DstRect // 目标内存区域的宽，高跨距
+    struct DstRect // 目标内存区域的宽、高跨距，通过回调函数OnNeedInputBuffer获取
     {
         int32_t wStride;
         int32_t hStride;
     };
 
-    struct SrcRect // 源内存区域的宽，高跨距
+    struct SrcRect // 源内存区域的宽、高跨距，由调用者自行设置
     {
         int32_t wStride;
         int32_t hStride;
