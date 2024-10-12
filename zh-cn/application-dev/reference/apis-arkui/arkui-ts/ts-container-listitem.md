@@ -196,6 +196,7 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | onEnterActionArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onExitActionArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | builder |  [CustomBuilder](ts-types.md#custombuilder8) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| builderComponent<sup>16+</sup> |  [ComponentContent](ts-types.md#custombuilder8) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 <br/>**说明：** <br/>该参数的优先级高于参数builder。即同时设置builder和builderComponent时，以builderComponent设置的值为准。<br/> 同一个builderComponent不推荐同时给不同的start/end使用，否则会导致显示问题。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 | onStateChange<sup>11+</sup> | (state:[SwipeActionState](#swipeactionstate11枚举说明)) => void | 否 |当列表项滑动状态变化时候触发。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 ## ListItemOptions<sup>10+</sup>对象说明
 
@@ -391,3 +392,113 @@ struct ListItemExample3 {
 }
 ```
 ![ListItemStyle](figures/listItem3.jpeg)
+
+### 示例4（通过ComponentContent设置划出组件）
+
+该示例通过ComponentContent设置ListItem中的划出组件操作时显示的操作项。
+
+```ts
+// xxx.ets
+import { ComponentContent } from '@kit.ArkUI';
+
+class BuilderParams {
+  text: string | Resource;
+  scroller: ListScroller
+  constructor(text: string | Resource, scroller: ListScroller) {
+    this.text = text;
+    this.scroller = scroller;
+  }
+}
+
+@Builder
+function itemBuilder(params: BuilderParams) {
+  Row() {
+    Button(params.text).margin("4vp")
+    Button("Set").margin("4vp").onClick(() => {
+      params.scroller.closeAllSwipeActions()
+    })
+  }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
+}
+@Component
+struct MyListItem {
+  scroller: ListScroller = new ListScroller()
+  @State arr: number[] = [0, 1, 2, 3, 4]
+  @State project ?: number = 0
+  startBuilder ?: ComponentContent<BuilderParams> = undefined
+  endBuilder ?: ComponentContent<BuilderParams> = undefined
+
+  builderParam = new BuilderParams("delete", this.scroller)
+
+  aboutToAppear(): void {
+    this.startBuilder = new ComponentContent(this.getUIContext(), wrapBuilder(itemBuilder), this.builderParam)
+    this.endBuilder = new ComponentContent(this.getUIContext(), wrapBuilder(itemBuilder), this.builderParam)
+  }
+  GetStartBuilder() {
+    this.startBuilder?.update(new BuilderParams("StartDelete", this.scroller));
+    return this.startBuilder;
+  }
+  GetEndBuilder() {
+    this.endBuilder?.update(new BuilderParams("EndDelete", this.scroller));
+    return this.endBuilder;
+  }
+  build() {
+    ListItem() {
+      Text("item" + this.project)
+        .width('100%')
+        .height(100)
+        .fontSize(16)
+        .textAlign(TextAlign.Center)
+        .borderRadius(10)
+        .backgroundColor(0xFFFFFF)
+    }
+    .transition({ type: TransitionType.Delete, opacity: 0 })
+    .swipeAction({
+      end: {
+        builderComponent: this.GetEndBuilder(),
+        onAction: () => {
+          animateTo({ duration: 1000 }, () => {
+            let index = this.arr.indexOf(this.project)
+            this.arr.splice(index, 1)
+          })
+        },
+        actionAreaDistance: 56
+      },
+      start: {
+        builderComponent: this.GetStartBuilder(),
+        onAction: () => {
+          animateTo({ duration: 1000 }, () => {
+            let index = this.arr.indexOf(this.project)
+            this.arr.splice(index, 1)
+          })
+        },
+        actionAreaDistance: 56
+      }
+    })
+    .padding(5)
+  }
+}
+
+@Entry
+@Component
+struct ListItemExample {
+  @State arr: number[] = [0, 1, 2, 3, 4]
+  private scroller: ListScroller = new ListScroller()
+
+  build() {
+    Column() {
+      List({ space: 10, scroller: this.scroller }) {
+        ListItemGroup() {
+          ForEach(this.arr, (project: number) => {
+            MyListItem({ scroller: this.scroller, project: project, arr:this.arr })
+          }, (item: string) => item)
+        }
+      }
+    }
+    .padding(10)
+    .backgroundColor(0xDCDCDC)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+![ListItemStyle](figures/deleteListItem_example04.gif)
