@@ -4393,7 +4393,6 @@ getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
-| 1600012  | No memory space.                    |
 | 1600019  | The do-not-disturb profile does not exist.                    |
 
 **示例：**
