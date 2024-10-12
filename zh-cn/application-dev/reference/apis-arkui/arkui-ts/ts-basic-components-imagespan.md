@@ -61,7 +61,7 @@ verticalAlign(value: ImageSpanAlignment)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10枚举说明) | 是   | 图片基于行高的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
+| value  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 是   | 图片基于行高的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
 
 ### objectFit
 
