@@ -168,7 +168,7 @@ clipContent(clip: ContentClipMode | RectShape): T
 
 | 参数名  | 类型                                              | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| clip | ContentClipMode/RectShape   | 是   | 裁剪只针对滚动容器的内容，也就是其子节点，背景不受影响。通过RectShape传入自定义矩形区域时并不支持圆角。<br/>默认值：因组件而异，Grid、Scroll的默认值为ContentClipMode.BOUNDARY；List、WaterFlow的默认值为ContentClipMode.CONTENT_ONLY。 |
+| clip | [ContentClipMode](#contentclipmode14枚举说明)/[RectShape](../js-apis-arkui-shape.md#rectshape)   | 是   | 裁剪只针对滚动容器的内容，也就是其子节点，背景不受影响。通过RectShape传入自定义矩形区域时并不支持圆角。<br/>默认值：因组件而异，Grid、Scroll的默认值为ContentClipMode.BOUNDARY；List、WaterFlow的默认值为ContentClipMode.CONTENT_ONLY。 |
 
 
 ## 事件
@@ -346,7 +346,7 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 | ------ | ------ | ---------------------------------------- |
 | CONTENT_ONLY   |  0  | 仅裁剪内容区范围，对应图中的绿色区域。 |
 | BOUNDARY |  1  | 按组件区域裁剪，对应图中的整个蓝色区域。 |
-| SAFE_AREA  |  2  | 按组件配置的SafeArea区域裁剪，对应图中的黄色区域。 |
+| SAFE_AREA  |  2  | 按组件配置的SafeArea区域裁剪，对应图中的整个黄色区域。 |
 
 ## OnWillScrollCallback<sup>12+</sup>
 
