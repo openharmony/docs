@@ -344,7 +344,7 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
-| CONTENT_ONLY   |  0  | 仅裁剪内容区范围，对应图中的绿色区域。 |
+| CONTENT_ONLY   |  0  | 按内容区裁剪，对应图中的绿色区域。 |
 | BOUNDARY |  1  | 按组件区域裁剪，对应图中的整个蓝色区域。 |
 | SAFE_AREA  |  2  | 按组件配置的SafeArea区域裁剪，对应图中的整个黄色区域。 |
 
