@@ -472,7 +472,7 @@ HAP包未经签名认证。
 **处理步骤**
 
 1. 使用<!--RP3-->[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)<!--RP3End-->。在连接设备后，重新为应用进行签名。
-2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)
+2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP1-->[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)<!--RP1End-->。
 <br></br>
 
 ### 9568347 解析本地so文件失败
@@ -621,7 +621,7 @@ Error: install parse profile missing prop.<br>
 
 **处理步骤**
 
-* 方法1：请参考[app.json5配置文件](../quick-start/app-configuration-file.md)和[module.json5配置文件](../quick-start/module-configuration-file.md)<!--RP2End-->查看并补充必填字段。
+* 方法1：请参考[app.json5配置文件](../quick-start/app-configuration-file.md)和[module.json5配置文件](../quick-start/module-configuration-file.md)查看并补充必填字段。
 * 方法2：通过hilog日志判断缺失字段。
 
     开启落盘命令：
@@ -667,7 +667,7 @@ Error: signature verification failed due to not trusted app source.
 
 * 场景一：签名中未包含该调试设备的UDID。
 
-* 场景二：签名时使用了<!--RP9-->[发布证书和发布profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-releaseharmony-0000001933963166)<!--RP9End-->。发布证书签名的应用不能启动调试或运行。
+* 场景二：签名时使用了[发布证书和发布profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-releaseharmony-0000001933963166)。发布证书签名的应用不能启动调试或运行。
 
 **处理步骤**
 
@@ -678,7 +678,7 @@ Error: signature verification failed due to not trusted app source.
 		//UDID获取命令
 		hdc shell bm get -u
 		```
-* 场景二：使用<!--RP10-->[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)<!--RP10End-->重新签名应用。
+* 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
 
 ### 9568289 权限请求失败导致安装失败
@@ -766,7 +766,7 @@ Error: verify signature failed.
 
 * 场景一：HSP只能给同包名的应用使用，只有集成态HSP可以给不同包名的应用使用。需要用户与三方开发者确认，三方开发者应提供集成态HSP、或同包名的HSP给用户使用。
 
-* 场景二：检查签名流程和签名证书，参考<!--RP8-->[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)<!--RP8End-->。
+* 场景二：检查签名流程和签名证书，参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)。
 
 
 ### 9568266 安装权限拒绝
@@ -805,7 +805,7 @@ Error: install parse unexpected.
 
 **处理步骤**
 
-* 场景一：查看设备system分许存储空间，若已满，清理存储满足安装所需空间。
+* 场景一：查看设备system分区存储空间，若已满，清理存储满足安装所需空间。
   ```
   hdc shell param get const.ohos.apiversion
   ```
@@ -828,7 +828,7 @@ proxyData标签requiredReadPermission和requiredWritePermission属性验证失�
 
 **处理步骤**
 
-1. 检查应用定义的proxyData内容是否符合要求，参考<!--RP6-->[proxyData标签](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/module-configuration-file.md#proxydata%E6%A0%87%E7%AD%BE)<!--RP6End-->。
+1. 检查应用定义的proxyData内容是否符合要求，参考[proxyData标签](../quick-start/module-configuration-file.md#proxydata标签)。
 
 
 ### 9568315 数据代理URI错误
@@ -846,7 +846,7 @@ proxyData标签uri属性验证失败。
 
 **处理步骤**
 
-1. 检查应用定义的proxyData内容是否符合要求，参考<!--RP7-->[proxyData标签](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/module-configuration-file.md#proxydata%E6%A0%87%E7%AD%BE)<!--RP7End-->。
+1. 检查应用定义的proxyData内容是否符合要求，参考[proxyData标签](../quick-start/module-configuration-file.md#proxydata标签)。
 
 
 ### 9568336 应用调试类型与已安装应用不一致
@@ -1057,7 +1057,7 @@ Error: verify code signature failed.
 	// 执行结果2：verify codesign success。说明包已签名
 	```
 
-* 场景二：检查签名流程和签名证书，参考<!--RP8-->[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)<!--RP8End-->。
+* 场景二：检查签名流程和签名证书，参考[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5)。
 
 
 ### 9568257 验证pkcs7文件失败      
