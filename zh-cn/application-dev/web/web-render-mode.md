@@ -1,6 +1,6 @@
 # Web组件渲染模式
 
-Web组件支持两种渲染模式：
+Web组件支持两种渲染模式。
 
 **异步渲染模式（默认）**
 
@@ -14,8 +14,9 @@ Web组件支持两种渲染模式：
 
 同步渲染模式下，Web组件作为图形canvas节点，Web渲染跟随系统组件一起送显。可以渲染更长Web组件内容，但会消耗更多的性能资源。
 
-> 说明：
-> 接口枚举值定义请查看[RenderMode枚举说明](../reference/apis-arkweb/ts-basic-components-web.md#rendermode12枚举说明)
+> **说明：**
+>
+> 接口枚举值定义请查看[RenderMode枚举说明](../reference/apis-arkweb/ts-basic-components-web.md#rendermode12枚举说明)。
 
 ## 规格与约束
 
