@@ -1,4 +1,4 @@
-# @ohos.data.sendablePreferences (Shared Preferences)
+# @ohos.data.sendablePreferences (Shared User Preferences)
 
 
 The **sendablePreferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs.
@@ -10,7 +10,7 @@ In the KV pairs, the key must be a string, and the value can be a number, a stri
 >
 > - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - Preferences are not thread-safe and may cause file damage and data loss when used in multi-process scenarios. Do not use preferences in multi-process scenarios.
+> - The shared user preferences are not thread-safe and may cause file damage and data loss when used in multi-process scenarios. Do not use it in multi-process scenarios.
 
 ## Modules to Import
 
