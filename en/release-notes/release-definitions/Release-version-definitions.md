@@ -25,11 +25,11 @@ Beta is a branch pulled from Master in the OpenHarmony community irregularly. Th
 
 A tag version is a stable and reliable version created by applying patches to an LTS or a Release branch, with the purpose of fixing individual bugs, security vulnerabilities, and other necessary adaptation modifications.
 
-The release versions are available in the [**Release Notes** folder](../).
+The release versions are available in the [Release Notes](https://gitee.com/openharmony/docs/tree/master/en/release-notes) folder.
 
 ## Lifecycle Policies
 
-The OpenHarmony community provides maintenance and technical support for Release and LTS branches based on the OpenHarmony Version Lifecycle Management. The OpenHarmony community provides maintenance and technical support based on the *OpenHarmony Version Lifecycle Management*.
+The OpenHarmony community provides maintenance and technical support for Release and LTS branches based on [OpenHarmony Version Lifecycle Management](https://gitee.com/openharmony/release-management/blob/master/openHarmony-version-lifecycle-management.md).
 
 ### Maintenance Schedule
 
@@ -53,6 +53,10 @@ Run the following commands to download the source code of each branch:
 
 
 
+
+
 ### Version Plan
 
 The OpenHarmony Release SIG periodically releases, updates, and maintains branch version plans. For details, visit [OpenHarmony-SIG-RoadMap](https://gitee.com/openharmony-sig/oh-inner-release-management/blob/master/OpenHarmony-SIG-RoadMap.md).
+
+ <!--no_check--> 
