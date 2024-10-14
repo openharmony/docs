@@ -5650,6 +5650,49 @@ async function example() {
 }
 ```
 
+### setVideoEnhancementAttr<sup>13+</sup>
+
+setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: string): Promise&lt;void&gt;
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| type       | [videoEnhancementType](#VideoEnhancementType13) | 是    | 需要进行分段式视频的处理类型。 |
+| photoId | string | 是    | 图片的photoId。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error.            |
+| 14000016 | Operation Not Support.            |
+
+**示例：**
+
+```ts
+async function example(asset: photoAccessHelper.PhotoAsset) {
+    try {
+        let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(asset);
+        let photoId = CameraContext.getInstance().consumeVideoEnhancePhotoId();
+        assetChangeRequest.setVideEnhancementAttr(QUALITY_ENHANCEMENT_LOCAL, photoId);
+            await photoAccessHelper.applyChanges(assetChangeRequest);
+    } catch (err) {
+        // error code
+    }
+}
+```
+
 ## PhotoSubtype
 
 枚举，不同[PhotoAsset](#photoasset)的类型。
@@ -6019,3 +6062,17 @@ async function example() {
 |totalFileSize          |number  |否 | 总文件大小。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_UPLOADING或者CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING时提供。  |
 |expectedDuration          |number  |否 | 排队时间。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_EXECUTING时提供。  |
 |statusCode          |number  |否 | 状态码。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_FAILED时提供。  |
+
+## VideoEnhancementType<sup>13+</sup>
+
+枚举，分段式视频，二段式触发类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| QUALITY_ENHANCEMENT_LOCAL |  0 |  端增强视频。 |
+| QUALITY_ENHANCEMENT_CLOUD |  1 |  云增强视频。 |
+| QUALITY_ENHANCEMENT_LOCAL_AND_CLOUD |  2 |  端增强和云增强视频。 |
