@@ -297,11 +297,13 @@ string资源配置attr属性示例如下：
   [资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件，访问应用资源时需先了解.json文件的使用规范。<br/>资源的具体使用方法如下：
 
   ```ts
-    Text('Hello')
+    Text($r('app.string.string_hello'))
     .fontColor($r('app.color.ohos_id_color_emphasize'))
     .fontSize($r('app.float.ohos_id_text_size_headline1'))
     .fontFamily($r('app.string.ohos_id_text_font_family_medium'))
     .backgroundColor($r('app.color.ohos_id_color_palette_aux1'))
+
+    //Test($r('app.string.message_notification','LiHua','2'))
 
     Image($r('app.media.ohos_app_icon'))
     .border({
@@ -375,7 +377,7 @@ string资源配置attr属性示例如下：
 
 ### 系统资源
 
-除了自定义资源，开发者也可以使用系统中预定义的资源，统一应用的视觉风格。<!--Del-->可以查看[应用UX设计中关于资源的介绍](../../design/ux-design/design-resources.md)，获取支持的系统资源ID及其在不同配置下的取值。<!--DelEnd-->
+开发者可以在[应用UX设计关于资源的介绍](../../design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的图标资源，获取到图标资源后可通过[SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md)进步对图标设置。
 
 对于系统资源，可以通过```“$r('sys.type.resource_name')”```的形式访问。其中，sys表示系统资源；type为资源类型，取值包括“color”、“float”、“string”、“media”、“symbol”；resource_name为资源名称。
 
