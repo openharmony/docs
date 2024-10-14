@@ -304,9 +304,6 @@ string资源配置attr属性示例如下：
     .fontFamily($r('app.string.ohos_id_text_font_family_medium'))
     .backgroundColor($r('app.color.ohos_id_color_palette_aux1'))
 
-    //对占位符，通过$r('app.string.label','aaa','bbb',444)访问
-    Test($r('app.string.message_notification','LiHua',2))
-
     Image($r('app.media.ohos_app_icon'))
     .border({
       color: $r('app.color.ohos_id_color_palette_aux1'),
@@ -318,6 +315,9 @@ string资源配置attr属性示例如下：
     })
     .height(200)
     .width(300)
+
+    //对占位符，通过$r('app.string.label','aaa','bbb',444)访问
+    Text($r('app.string.message_notification','LiHua',2))
   ```
 
 - 通过本应用上下文获取ResourceManager后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext().resourceManager.getStringByNameSync('test') 可获取字符串资源；getContext().resourceManager.getRawFd('rawfilepath') 可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
