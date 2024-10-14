@@ -305,7 +305,7 @@ string资源配置attr属性示例如下：
     .backgroundColor($r('app.color.ohos_id_color_palette_aux1'))
 
     //对占位符，通过$r('app.string.label','aaa','bbb',444)访问
-    Test($r('app.string.message_notification','LiHua','2'))
+    Test($r('app.string.message_notification','LiHua',2))
 
     Image($r('app.media.ohos_app_icon'))
     .border({
