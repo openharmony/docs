@@ -545,6 +545,9 @@
         - [管理位置权限](web/web-geolocation-permission.md)
         - [使用隐私模式](web/web-incognito-mode.md)
         - [使用运动和方向传感器](web/web-sensor.md)
+      - Web渲染和布局<!--web-render-layout--->
+        - [Web渲染模式](web/web-render-mode.md)
+        - [使用Web组件大小自适应页面内容布局](web/web-fit-content.md)
       - 在应用中使用前端页面JavaScript<!--web-use-frontend-page-js-->
         - [应用侧调用前端页面函数](web/web-in-app-frontend-page-function-invoking.md)
         - [前端页面调用应用侧函数](web/web-in-page-app-function-invoking.md)
