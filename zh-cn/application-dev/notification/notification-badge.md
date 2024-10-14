@@ -71,4 +71,40 @@
     notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
     ```
 
-   
+## 常见问题
+
+由于setBadgeNumber为异步接口，使用setBadgeNumber连续设置角标时，为了确保执行顺序符合预期，需要确保上一次设置完成后才能进行下一次设置。
+
+- 反例
+
+    每次接口调用是相互独立的、没有依赖关系的，实际执行时无法保证调用顺序。
+
+    示例如下：
+
+    ```ts
+    let badgeNumber: number = 10;
+    notificationManager.setBadgeNumber(badgeNumber).then(() => {
+      hilog.info(DOMAIN_NUMBER, TAG, `setBadgeNumber 10 success.`);
+    });
+    badgeNumber = 11;
+    notificationManager.setBadgeNumber(badgeNumber).then(() => {
+      hilog.info(DOMAIN_NUMBER, TAG, `setBadgeNumber 11 success.`);
+    });
+    ```
+
+- 正例
+
+    多次接口调用存在依赖关系，确保上一次设置完成后才能进行下一次设置。
+
+    示例如下：
+
+    ```ts
+    let badgeNumber: number = 10;
+    notificationManager.setBadgeNumber(badgeNumber).then(() => {
+      hilog.info(DOMAIN_NUMBER, TAG, `setBadgeNumber 10 success.`);
+      badgeNumber = 11;
+      notificationManager.setBadgeNumber(badgeNumber).then(() => {
+        hilog.info(DOMAIN_NUMBER, TAG, `setBadgeNumber 11 success.`);
+      });
+    });
+    ```
