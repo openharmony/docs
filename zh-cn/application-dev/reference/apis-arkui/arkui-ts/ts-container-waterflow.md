@@ -385,7 +385,7 @@ friction(value: number | Resource)
 
 ### cachedCount<sup>11+</sup>
 
-cachedCount(value: number, show?: boolean)
+cachedCount(value: number)
 
 设置预加载的FlowItem的数量，只在LazyForEach中生效。设置该属性后会缓存cachedCount个FlowItem。[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的FlowItem会被释放。设置为小于0的值时，按默认值显示。
 
@@ -398,7 +398,27 @@ cachedCount(value: number, show?: boolean)
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
 | value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
-| show<sup>14+</sup>  | boolean | 否   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false |
+
+### cachedCount<sup>14+</sup>
+
+cachedCount(value: number, show: boolean)
+
+设置预加载的FlowItem的数量，并配置是否显示这些预加载节点。
+
+配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12) / [内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
+
+[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)超出显示和缓存范围的FlowItem会被释放。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
+| show<sup>14+</sup>  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false |
 
 ## 事件
 

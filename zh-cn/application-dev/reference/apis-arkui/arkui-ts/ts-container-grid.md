@@ -238,7 +238,7 @@ scrollBarWidth(value: number | string)
 
 ### cachedCount
 
-cachedCount(value: number, show?: boolean)
+cachedCount(value: number)
 
 设置预加载的GridItem的数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)中生效。设置为小于0的值时，按默认值显示。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
@@ -255,7 +255,25 @@ cachedCount(value: number, show?: boolean)
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | value  | number | 是   | 预加载的GridItem的数量。<br/>默认值：1 |
-| show<sup>14+</sup>  | boolean | 否   | 被预加载的GridItem是否需要显示。 <br/> 默认值：false |
+
+### cachedCount<sup>14+</sup>
+
+cachedCount(value: number, show: boolean)
+
+设置预加载的GridItem的数量，并配置是否显示这些预加载节点。
+
+设置缓存后会在Grid显示区域上下各缓存cachedCount*列数个GridItem。配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12) / [内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value  | number | 是   | 预加载的GridItem的数量。<br/>默认值：1 |
+| show  | boolean | 是   | 被预加载的GridItem是否需要显示。 <br/> 默认值：false |
 
 ### editMode<sup>8+</sup>
 
