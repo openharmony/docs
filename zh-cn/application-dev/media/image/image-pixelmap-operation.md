@@ -62,7 +62,7 @@
    pixelMap.writeBufferToPixels(writeColor, () => {});
    ```
 
-## 开发示例-复制（深拷贝）一个新的PixelMap
+## 复制（深拷贝）新的PixelMap
 
 1. 完成[图片解码](image-decoding.md)，获取PixelMap位图对象。
 
