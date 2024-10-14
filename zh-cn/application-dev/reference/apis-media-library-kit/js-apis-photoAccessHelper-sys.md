@@ -5664,7 +5664,7 @@ setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: str
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| type       | [videoEnhancementType](#VideoEnhancementType13) | 是    | 需要进行分段式视频的处理类型。 |
+| type       | [videoEnhancementType](#videoenhancementtype13) | 是    | 需要进行分段式视频的处理类型。 |
 | photoId | string | 是    | 图片的photoId。 |
 
 **错误码：**
@@ -6065,7 +6065,7 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 
 ## VideoEnhancementType<sup>13+</sup>
 
-枚举，分段式视频，二段式触发类型。
+枚举，分段式视频的二段式触发类型。
 
 **系统接口**：此接口为系统接口。
 
@@ -6073,6 +6073,6 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
-| QUALITY_ENHANCEMENT_LOCAL |  0 |  端增强视频。 |
-| QUALITY_ENHANCEMENT_CLOUD |  1 |  云增强视频。 |
-| QUALITY_ENHANCEMENT_LOCAL_AND_CLOUD |  2 |  端增强和云增强视频。 |
+| QUALITY_ENHANCEMENT_LOCAL |  0 |  在端侧增强处理。 |
+| QUALITY_ENHANCEMENT_CLOUD |  1 |  在云侧增强处理。 |
+| QUALITY_ENHANCEMENT_LOCAL_AND_CLOUD |  2 |  在端侧和云侧同时增强处理。 |
