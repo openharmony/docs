@@ -1830,7 +1830,7 @@ export default class EntryAbility extends UIAbility {
 
 showAbility(): Promise\<void>
 
-显示当前Ability。使用Promise异步回调。仅在平板类设备上生效。仅支持在主线程调用。
+显示当前Ability。使用Promise异步回调。仅在2in1设备上生效。仅支持在主线程调用。
 
 调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM。
 
@@ -1927,7 +1927,7 @@ export default class EntryAbility extends UIAbility {
 
 hideAbility(): Promise\<void>
 
-隐藏当前Ability。使用Promise异步回调。仅在平板类设备上生效。仅支持在主线程调用。
+隐藏当前Ability。使用Promise异步回调。仅在2in1设备上生效。仅支持在主线程调用。
 
 调用此接口要求当前Ability必须通过[UIAbilityContext.startAbility](#uiabilitycontextstartability-1)启动，且启动入参中[options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12)必须设置为NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM或者ATTACH_TO_STATUS_BAR_ITEM。
 
@@ -2459,15 +2459,11 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     let enabled = true;
     try {
-      this.context.setRestoreEnabled(enabled).then((data) => {
-        console.log('setRestoreEnabled success.');
-      }).catch((err: BusinessError) => {
-        console.error(`setRestoreEnabled fail, err: ${JSON.stringify(err)}`);
-      });
+      this.context.setRestoreEnabled(enabled);
     } catch (paramError) {
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      console.error(`[UIAbilityContext] error: ${code}, ${message}`);
+      console.error(`setRestoreEnabled failed, err code: ${code}, err msg: ${message}`);
     }
   }
 }
