@@ -5684,11 +5684,11 @@ setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: str
 async function example(asset: photoAccessHelper.PhotoAsset) {
     try {
         let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(asset);
-        let photoId = CameraContext.getInstance().consumeVideoEnhancePhotoId();
+        let photoId = "202410011800";
         assetChangeRequest.setVideEnhancementAttr(QUALITY_ENHANCEMENT_LOCAL, photoId);
-            await photoAccessHelper.applyChanges(assetChangeRequest);
+        await photoAccessHelper.applyChanges(assetChangeRequest);
     } catch (err) {
-        // error code
+        console.error(err);
     }
 }
 ```
