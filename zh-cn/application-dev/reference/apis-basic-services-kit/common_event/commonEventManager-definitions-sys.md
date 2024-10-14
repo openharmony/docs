@@ -233,6 +233,18 @@
 **取值：** "usual.event.data.VOLUME_EJECT"
 
 
+### COMMON_EVENT_RESTORE_START
+
+表示某个应用开始恢复的公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** ohos.permission.START_RESTORE_NOTIFICATION
+
+**取值：** "usual.event.RESTORE_START"
+
 
 ## Telephony Kit
 

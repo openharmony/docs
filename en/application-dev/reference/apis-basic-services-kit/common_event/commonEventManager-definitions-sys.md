@@ -230,6 +230,18 @@ This common event is triggered when the user calls the **unmount** API on a moun
 **Value:** "usual.event.data.VOLUME_EJECT"
 
 
+### COMMON_EVENT_RESTORE_START
+
+Indicates that an application begins to restored.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required subscriber permissions:** ohos.permission.START_RESTORE_NOTIFICATION
+
+**Value:** "usual.event.RESTORE_START"
+
 
 ## Telephony Kit
 
