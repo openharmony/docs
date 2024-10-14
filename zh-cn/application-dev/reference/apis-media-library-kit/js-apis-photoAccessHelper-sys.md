@@ -5664,7 +5664,7 @@ setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: str
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| type       | [videoEnhancementType](#videoenhancementtype13) | 是    | 需要进行分段式视频的处理类型。 |
+| type       | [VideoEnhancementType](#videoenhancementtype13) | 是    | 需要进行分段式视频的处理类型。 |
 | photoId | string | 是    | 图片的photoId。 |
 
 **错误码：**
