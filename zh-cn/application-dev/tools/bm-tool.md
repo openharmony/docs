@@ -806,8 +806,8 @@ Error: install parse unexpected.
 **处理步骤**
 
 * 场景一：查看设备system分区存储空间，若已满，清理存储满足安装所需空间。
-  ```
-  hdc shell param get const.ohos.apiversion
+  ```bash
+  hdc shell df -h /system
   ```
 
 * 场景二：查看本地hap与推送到设备上hap的md5值，若不一致则表示推送过程hap损毁，请尝试重传。
