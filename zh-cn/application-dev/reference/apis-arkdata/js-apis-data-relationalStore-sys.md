@@ -921,6 +921,14 @@ lockCloudContainer(): Promise&lt;number&gt;
 | ------------------- | ---------------------------------------|
 | Promise&lt;number&gt; | Promise对象，如果加锁成功，返回锁的有效时长，如果加锁失败，返回0，单位：ms。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**            |
+|-----------|---------------------------|
+| 202       | Permission verification failed, application which is not a system application uses system API.  |
+
 **示例：**
 
 ```ts
@@ -951,6 +959,14 @@ unlockCloudContainer(): Promise&lt;void&gt;
 | 类型                | 说明                                    |
 | ------------------- | --------------------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**            |
+|-----------|---------------------------|
+| 202       | Permission verification failed, application which is not a system application uses system API.  |
 
 **示例：**
 
