@@ -75,3 +75,102 @@ router.getState()
 **适配指导**
 
 当开发者在代码中有通过router.getState()使用path值时，需要根据获取到的内容进行整改。
+
+## cl.arkui.2 禁止在转场动画过程中，更新消失节点的属性。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在转场动画过程中改变正在消失节点的属性，可能造成数据访问异常，产生crash。例如，动画过程中将data置为undefined，Text组件增加默认转场不会立即被删除，在更新状态时，数据访问异常产生crash。因此，需要变更为在转场动画过程中，禁止更新消失节点的属性。
+
+```
+class Mydata {
+  str: string;
+  constructor(str: string) {
+    this.str = str;
+  }
+}
+@State data: Mydata|undefined = new MyData("branch");
+if (this.data) {
+  // 对于删除时增加的默认转场，会延长组件生命周期。Text没有立即被删除，而是等转场动画结束后才被删除
+  Text(this.data.str)
+}
+Button("play with animation")
+  .onClick(()=>{
+    animateTo({},()=>{
+      if (this.data) {
+        // 在动画过程中，会给if下的第一层组件增加默认转场
+        this.data = undefined;
+      }
+    }) 
+  })
+
+```
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：转场动画过程中，正在消失的节点可以更新属性。
+
+变更后：转场动画过程中，禁止消失的节点更新属性。
+
+**起始API Level**
+
+API 10
+
+**变更发生版本**
+
+从OpenHarmony 5.0.0.49 版本开始。
+
+**变更的接口/组件**
+
+transition属性
+
+**适配指导**
+
+如果要对转场动画过程中，消失的节点进行属性更新，应当在节点下树之前产生，而不是在消失过程中。
+
+示例：
+
+```
+@Entry
+@Component
+struct Index {
+  @State flag: Boolean = true;
+  @State color: Color = Color.Red;
+  build() {
+    Column(){
+      if (this.flag) {
+        Text('abc')
+          .transition(TransitionEffect.OPACITY)
+          .backgroundColor(this.color)
+      }
+
+      Button("play with animation")
+        .onClick(()=>{
+          // 变更前，消失过程中的节点可以更新属性，Text组件的颜色在消失过程中变为蓝色
+          // animateTo({},()=>{
+          //   this.flag ? this.color = Color.Blue : this.color = Color.Red;
+          //   this.flag = !this.flag;
+          // })
+
+          // 变更后，消失过程中的节点无法更新属性，Text组件的颜色在消失过程中一直为红色
+          // 如果需要更新属性，使Text组件的颜色在消失过程中变为蓝色，应当在节点下树之前更新
+          animateTo({},()=>{
+            this.flag ? this.color = Color.Blue : this.color = Color.Red;
+          }) // 节点下树前改变颜色属性
+          animateTo({},()=>{
+            this.flag = !this.flag;
+          })
+        })
+        .width("100%")
+        .padding(10)
+    }
+  }
+}
+```
+
