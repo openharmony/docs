@@ -2,17 +2,18 @@
 
 ## 简介
 
-使用JSVM-API接口进行array相关开发时，调用相关接口可以在JSVM模块中直接操作和处理JavaScript中的数组。
+使用 JSVM-API 接口进行数组（array）相关开发时，调用相关接口可以在 JSVM 模块中直接操作和处理 JavaScript 中的数组。
 
 ## 基本概念
 
-使用JSVM-API接口进行数组（array）相关开发时，涉及的基本概念主要包括数组的创建、访问、修改、遍历以及与数组相关的操作。这些概念对于理解如何在JSVM模块中与JavaScript数组交互非常重要。以下是一些关键概念：
+使用 JSVM-API 接口进行数组（array）相关开发时，涉及的基本概念主要包括数组的创建、访问、修改、遍历以及与数组相关的操作。这些概念对于理解在 JSVM 模块中如何与 JavaScript 数组交互非常重要。以下是一些关键概念：
 
-- **数组的创建**：在JSVM模块中需要创建一个新的JavaScript数组，可以使用提供的OH_JSVM_CreateArray接口创建数组，将数组传递给JavaScript层。
-- **数组相关操作**：在JSVM模块中通过对应的接口获取JavaScript数组的长度、检索指定索引处的元素以及设置指定索引处的元素值，从而实现JSVM模块与JavaScript数组的交互。
-- **TypedArray**：JavaScript中的TypedArray是一种用来描述二进制数据的类数组数据视图，可以简单理解为一种指定元素类型的数组，TypedArray没有直接构造器，但是可以用它的子类构造器构造TypedArray类型的数据。TypedArray的子类有：Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Int32Array等。
-- **DataView**：DataView是JavaScript中的一种视图，是可以从ArrayBuffer对象中读写多种数值类型的底层接口。
-- **ArrayBuffer**：ArrayBuffer是固定长度的二进制数据缓冲区。
+- **数组的创建**：若在 JSVM 模块中需要创建一个新的 JavaScript 数组，可以使用提供的 OH_JSVM_CreateArray 接口创建数组，将数组传递给 JavaScript 层。
+- **数组相关操作**：在 JSVM 模块中通过对应的接口获取 JavaScript 数组的长度、检索指定索引处的元素以及设置指定索引处的元素值，从而实现 JSVM 模块与 JavaScript 数组的交互。
+- **TypedArray**：JavaScript 中的 TypedArray 是一种用来描述二进制数据的类数组数据视图，可以简单理解为一种指定元素类型的数组，TypedArray 没有直接构造器，但是可以用它的子类构造器构造 TypedArray 类型的数据。TypedArray 的子类有：Int8Array、Uint8Array、Uint8ClampedArray、Int16Array、Int32Array 等。
+- **ArrayBuffer**：ArrayBuffer 是固定长度的二进制数据缓冲区。
+- **DataView**：DataView 是 JavaScript 中的一种视图，是可以从 ArrayBuffer 对象中读写多种数值类型的底层接口。
+
 
 ## 接口说明
 
@@ -20,8 +21,8 @@
 | ---------------------------- | ------------------------------------------ |
 |OH_JSVM_CreateArray | 创建一个新的 JavaScript 数组对象 |
 |OH_JSVM_CreateArrayWithLength | 创建一个指定长度的 JavaScript 数组对象 |
-|OH_JSVM_CreateTypedarray | 在现有的 ArrayBuffer 上创建一个 JavaScript TypedArray 对象,TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型 |
-|OH_JSVM_CreateDataview | 在现有的 ArrayBuffer 上创建一个 JavaScript DataView 对象,DataView 对象在底层数据缓冲区上提供类似数组的视图 |
+|OH_JSVM_CreateTypedarray | 在现有的 ArrayBuffer 上创建一个 JavaScript TypedArray 对象，TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型。需要注意，对于入参有以下要求：(length * size_of_element) + byte_offset 要不大于传入数组的大小（以字节为单位），size_of_element 指数组中元素的数据类型的大小，否则会引发 RangeError 异常。|
+|OH_JSVM_CreateDataview | 在现有的 ArrayBuffer 上创建一个 JavaScript DataView 对象，DataView 对象在底层数据缓冲区上提供类似数组的视图，该 ArrayBuffer 允许有不同大小和类型的元素。要求 byte_length + byte_offset 小于或等于传入数组的字节大小，否则会引发 RangeError 异常。|
 |OH_JSVM_GetArrayLength | 返回 Array 对象的长度 |
 |OH_JSVM_GetTypedarrayInfo | 获取 TypedArray（类型化数组）对象的信息 |
 |OH_JSVM_GetDataviewInfo | 获取 Dataview 对象的信息 |
@@ -35,13 +36,13 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。OH_JSVM_CreateTypedarray方法除外，具体使用见示例。
+JSVM-API 接口开发流程参考[使用 JSVM-API 实现 JS 与 C/C++ 语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应 C++ 相关代码进行展示。
 
 ### OH_JSVM_CreateArray
 
-创建一个新的JavaScript数组对象。
+创建一个新的 JavaScript 数组对象。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 // hello.cpp
@@ -49,14 +50,6 @@ cpp部分代码
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 // CreateArray注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateArray},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateArray方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 static int DIFF_VALUE_FIVE = 5;
 // OH_JSVM_CreateArray的样例方法
 static JSVM_Value CreateArray(JSVM_Env env, JSVM_CallbackInfo info)
@@ -77,48 +70,33 @@ static JSVM_Value CreateArray(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return array;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateArray},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateArray方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
   function testCreateArray() {
     return createArray();
   }
-  testCreateArray()
-`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testCreateArray: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testCreateArray error: %{public}s', error.message);
-}
+  testCreateArray();
+)JS";
 ```
-
 ### OH_JSVM_CreateArrayWithLength
 
-创建一个指定长度的JavaScript数组对象。
+创建一个指定长度的 JavaScript 数组对象。
 
-cpp部分代码：
+cpp 部分代码：
 
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CreateArrayWithLength注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateArrayWithLength},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateArrayWithLength方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createArrayWithLength", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_CreateArrayWithLength的样例方法
 static JSVM_Value CreateArrayWithLength(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -145,49 +123,36 @@ static JSVM_Value CreateArrayWithLength(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
+// CreateArrayWithLength注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateArrayWithLength},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateArrayWithLength方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createArrayWithLength", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
 let num = 7;
-let script: string = `
-  function testCreateArrayWithLength(num) {
+function testCreateArrayWithLength(num){
     return createArrayWithLength(num);
-  }
-  testCreateArrayWithLength(${num})
-  `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM testCreateArrayWithLength: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM testCreateArrayWithLength error: %{public}s', error.message);
 }
+testCreateArrayWithLength(num);
+)JS";
 ```
 
 ### OH_JSVM_CreateTypedarray
 
-在现有的ArrayBuffer上创建一个JavaScript TypedArray对象,TypedArray对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型。
+在现有的 ArrayBuffer上 创建一个 JavaScript TypedArray 对象,TypedArray 对象在底层数据缓冲区上提供类似数组的视图，其中每个元素都具有相同的底层二进制标量数据类型。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CreateTypedArray注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateTypedArray},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateTypedArray方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createTypedArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_CreateTypedarray的样例方法
 static int DIFF_VALUE_THREE = 3;
 static JSVM_Value CreateTypedArray(JSVM_Env env, JSVM_CallbackInfo info)
@@ -247,80 +212,42 @@ static JSVM_Value CreateTypedArray(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return typedArray;
 }
-```
-
-需要对use-jsvm-process.md中的模块初始化部分进行修改，具体见如下：
-
-```cpp
-// hello.cpp
-static napi_value Init(napi_env env, napi_value exports) {
-    // 定义的TypedArray类型供JS使用，用于存放JSVM_TypedArrayType类型，使用示例见TS侧的createTypedArray，这部分开发者依据具体需求选择是否使用。
-    napi_value typedArrayTypes;
-    napi_create_object(env, &typedArrayTypes);
-    napi_value typeIndex;
-    std::string typeKeys[] = {
-        "INT8_ARRAY",   "UINT8_ARRAY",   "UINT8_CLAMPED_ARRAY", "INT_ARRAY",      "UINT16_ARRAY",    "INT32_ARRAY",
-        "UINT32_ARRAY", "FLOAT32_ARRAY", "FLOAT64_ARRAY",       "BIGINT64_ARRAY", "BIGUINT64_ARRAY",
-    };
-    for (int32_t i = 0; i < sizeof(typeKeys) / sizeof(typeKeys[0]); i++) {
-        napi_create_int32(env, i, &typeIndex);
-        napi_set_named_property(env, typedArrayTypes, typeKeys[i].c_str(), typeIndex);
-    }
-    // ArkTS接口与C++接口的绑定和映射
-    napi_property_descriptor desc[] = {
-        {"runJsVm", nullptr, RunJsVm, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"TypedArrayTypes", nullptr, nullptr, nullptr, nullptr, typedArrayTypes, napi_default, nullptr},
-    };
-    // 在exports对象上挂载RunJsVm的Native方法
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  // 传入需要设置的TypedArray类型，如INT8_ARRAY
-  let type: number = napitest.TypedArrayTypes["INT8_ARRAY"];
-  let script: string = `
-    createTypedArray(${type})
-    `;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM CreateTypedArray: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM CreateTypedArray error: %{public}s', error.message);
-}
-try {
-  // 传入需要设置的TypedArray类型，如INT32_ARRAY
-  let type: number = napitest.TypedArrayTypes["INT32_ARRAY"];
-  let str: string = `createTypedArray(${type})`;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM CreateTypedArray: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM CreateTypedArray error: %{public}s', error.message);
-}
+// CreateTypedArray注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateTypedArray},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateTypedArray方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createTypedArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
+const type = {
+    INT8_ARRAY: 0,
+    UINT8_ARRAY: 1,
+    UINT8_CLAMPED_ARRAY: 2,
+    INT16_ARRAY: 3,
+    UINT16_ARRAY: 4,
+    INT32_ARRAY: 5,
+    UINT32_ARRAY: 6,
+    FLOAT32_ARRAY: 7,
+    FLOAT64_ARRAY: 8,
+    BIGINT64_ARRAY: 9,
+    BIGUINT64_ARRAY: 10
+};
+createTypedArray(type.INT8_ARRAY);
+createTypedArray(type.INT32_ARRAY);
+)JS";
 ```
 
 ### OH_JSVM_CreateDataview
 
-在现有的ArrayBuffer上创建一个JavaScript DataView对象，DataView对象在底层数据缓冲区上提供类似数组的视图。
+在现有的 ArrayBuffer 上创建一个 JavaScript DataView 对象，DataView 对象在底层数据缓冲区上提供类似数组的视图。
 
 cpp部分代码
 
 ```cpp
-// CreateDataView注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateDataView},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateDataView方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createDataView", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 static int DIFF_VALUE_FOUR = 4;
 static int DIFF_VALUE_TWELVE = 12;
 // OH_JSVM_CreateDataview的样例方法
@@ -365,7 +292,7 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM CreateDataView fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success returnLength:%{public}d", returnLength);
+            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success, returnLength: %{public}d", returnLength);
         }
         break;
     case ARRAY_BUFFERE:
@@ -377,7 +304,7 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM CreateDataView fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success isArraybuffer:%{public}d", isArraybuffer);
+            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success, isArraybuffer: %{public}d", isArraybuffer);
         }
         break;
     case BYTE_OFFSET:
@@ -387,7 +314,7 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM CreateDataView fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success returnOffset:%{public}d", returnOffset);
+            OH_LOG_INFO(LOG_APP, "JSVM CreateDataView success, returnOffset: %{public}d", returnOffset);
         }
         break;
     default:
@@ -395,66 +322,37 @@ static JSVM_Value CreateDataView(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return returnResult;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let BYTE_LENGTGH = 0;
-  let str: string = `
-  createDataView(new ArrayBuffer(16), ${BYTE_LENGTGH})
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createDataView len: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createDataView error: %{public}s', error.message);
-}
-try {
-  let IS_ARRAYBUFFER = 1;
-  let str: string = `
-  createDataView(new ArrayBuffer(16), ${IS_ARRAYBUFFER})
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createDataView is buffer: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createDataView error: %{public}s', error.message);
-}
-try {
-  let BYTE_OFFSET = 2;
-  let str: string = `
-  createDataView(new ArrayBuffer(16), ${BYTE_OFFSET})
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createDataView offset: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createDataView error: %{public}s', error.message);
-}
+// CreateDataView注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CreateDataView},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateDataView方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"createDataView", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
+ let BYTE_LENGTH = 0;
+ createDataView(new ArrayBuffer(16), BYTE_LENGTH);
+ let IS_ARRAYBUFFER = 1;
+ createDataView(new ArrayBuffer(16), IS_ARRAYBUFFER);
+ let BYTE_OFFSET = 2;
+ createDataView(new ArrayBuffer(16), BYTE_OFFSET);
+)JS";
 ```
 
 ### OH_JSVM_GetArrayLength
 
-返回Array对象的长度。
+返回 Array 对象的长度。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetArrayLength注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetArrayLength},
-};
-static JSVM_CallbackStruct *method = param;
-// GetArrayLength方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getArrayLength", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetArrayLength的样例方法
 static JSVM_Value GetArrayLength(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -476,46 +374,33 @@ static JSVM_Value GetArrayLength(JSVM_Env env, JSVM_CallbackInfo info)
     OH_LOG_INFO(LOG_APP, "JSVM length: %{public}d", length);
     return result;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let data =  '[0, 1, 2, 3, 4, 5]';
-let str: string = `
-  getArrayLength(${data})
-  `;
-try {
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetArrayLength: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetArrayLength error: %{public}s', error.message);
-}
+// GetArrayLength注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetArrayLength},
+};
+static JSVM_CallbackStruct *method = param;
+// GetArrayLength方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getArrayLength", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
+let data = [0, 1, 2, 3, 4, 5];
+getArrayLength(data);
+)JS";
 ```
 
 ### OH_JSVM_GetTypedarrayInfo
 
-获取TypedArray（类型化数组）对象的信息。
+获取 TypedArray（类型化数组）对象的信息。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetTypedArrayInfo注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetTypedArrayInfo},
-};
-static JSVM_CallbackStruct *method = param;
-// GetTypedArrayInfo方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getTypedArrayInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetTypedarrayInfo的样例方法
 static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -546,7 +431,7 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetTypedArrayInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success is JSVM_INT8_ARRAY:%{public}d", type == JSVM_INT8_ARRAY);
+            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success, JSVM_INT8_ARRAY: %{public}d", type == JSVM_INT8_ARRAY);
         }
         break;
     case INFO_LENGTH:
@@ -557,7 +442,7 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetTypedArrayInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success length:%{public}d", length);
+            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success, length: %{public}d", length);
         }
         break;
     case INFO_BYTE_OFFSET:
@@ -568,7 +453,7 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetTypedArrayInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success byteOffset:%{public}d", byteOffset);
+            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success, byteOffset: %{public}d", byteOffset);
         }
         break;
     case INFO_ARRAY_BUFFER:
@@ -581,7 +466,7 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetTypedArrayInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success isArrayBuffer:%{public}d", isArrayBuffer);
+            OH_LOG_INFO(LOG_APP, "JSVM GetTypedArrayInfo success, isArrayBuffer: %{public}d", isArrayBuffer);
         }
         break;
     default:
@@ -589,76 +474,39 @@ static JSVM_Value GetTypedArrayInfo(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  // is JSVM_INT8_ARRAY
-  let str: string = `
-  getTypedArrayInfo(new Int8Array(3), 0)
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo error: %{public}s', error.message);
-}
-try {
-  // length
-  let str: string = `
-  getTypedArrayInfo(new Int8Array(5), 1)
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo error: %{public}s', error.message);
-}
-try {
-  // is_arraybuffer
-  let str: string = `
-  getTypedArrayInfo(new Int8Array(5), 2)
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo error: %{public}s', error.message);
-}
-try {
-  // byteoffset
-  let str: string = `
-  getTypedArrayInfo(new Int8Array(1), 3)
-  `;
-  let result = napitest.runJsVm(str);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetTypedArrayInfo error: %{public}s', error.message);
-}
+// GetTypedArrayInfo注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetTypedArrayInfo},
+};
+static JSVM_CallbackStruct *method = param;
+// GetTypedArrayInfo方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getTypedArrayInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
+// is JSVM_INT8_ARRAY
+getTypedArrayInfo(new Int8Array(3), 0);
+// length
+getTypedArrayInfo(new Int8Array(5), 1);
+// is_arraybuffer
+getTypedArrayInfo(new Int8Array(5), 2);
+// byteoffset
+getTypedArrayInfo(new Int8Array(1), 3);
+)JS";
 ```
 
 ### OH_JSVM_GetDataviewInfo
 
-获取Dataview对象的信息。
+获取 Dataview 对象的信息。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetDataViewInfo注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetDataViewInfo},
-};
-static JSVM_CallbackStruct *method = param;
-// GetDataViewInfo方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getDataViewInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetDataviewInfo的样例方法
 static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -687,7 +535,7 @@ static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetDataViewInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success byteLength:%{public}d", byteLength);
+            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success, byteLength: %{public}d", byteLength);
         }
         break;
     case ARRAY_BUFFERE:
@@ -700,7 +548,7 @@ static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetDataViewInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success isArrayBuffer:%{public}d", isArrayBuffer);
+            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success, isArrayBuffer: %{public}d", isArrayBuffer);
         }
         break;
     case BYTE_OFFSET:
@@ -711,7 +559,7 @@ static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
         if (status != JSVM_OK) {
             OH_LOG_ERROR(LOG_APP, "JSVM GetDataViewInfo fail");
         } else {
-            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success byteOffset:%{public}d", byteOffset);
+            OH_LOG_INFO(LOG_APP, "JSVM GetDataViewInfo success, byteOffset: %{public}d", byteOffset);
         }
         break;
     default:
@@ -719,74 +567,45 @@ static JSVM_Value GetDataViewInfo(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return result;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  // bytelength
-  let script: string = `getDataViewInfo(new DataView(new Int8Array([2,5]).buffer), 0)`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo error: %{public}s', error.message);
-}
-try {
-  // is arraybuffer
-  let data = `'a'`;
-  let isarraybuffer = '1';
-  let script: string = `getDataViewInfo(${data}, ${isarraybuffer})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo error: %{public}s', error.message);
-}
-try {
-  // is arraybuffer
-  let data = 'new DataView(new Int8Array([2,5,3]).buffer)';
-  let isarraybuffer = '1';
-  let script: string = `getDataViewInfo(${data}, ${isarraybuffer})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo error: %{public}s', error.message);
-}
-try {
-  // byte_offset
-  let data = 'new DataView(new Int8Array([2,5,3]).buffer)';
-  let isarraybuffer = '2';
-  let script: string = `getDataViewInfo(${data}, ${isarraybuffer})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getDataViewInfo error: %{public}s', error.message);
-}
+// GetDataViewInfo注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetDataViewInfo},
+};
+static JSVM_CallbackStruct *method = param;
+// GetDataViewInfo方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getDataViewInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
+// bytelength
+getDataViewInfo(new DataView(new Int8Array([2,5]).buffer), 0);
+// is arraybuffer
+let data = 'a';
+let isarraybuffer = 1;
+getDataViewInfo(data, isarraybuffer);
+// is arraybuffer
+data = new DataView(new Int8Array([2,5,3]).buffer);
+isarraybuffer = 1;
+getDataViewInfo(data, isarraybuffer);
+// byte_offset
+data = new DataView(new Int8Array([2,5,3]).buffer);
+isarraybuffer = 2;
+getDataViewInfo(data, isarraybuffer);
+)JS";
 ```
 
 ### OH_JSVM_IsArray
 
-判断一个JavaScript对象是否为Array类型对象。
+判断一个 JavaScript 对象是否为 Array 类型对象。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// IsArray注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = IsArray},
-};
-static JSVM_CallbackStruct *method = param;
-// IsArray方法别名，TS侧调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"isArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_IsArray的样例方法
 static JSVM_Value IsArray(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -800,50 +619,37 @@ static JSVM_Value IsArray(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM IsArray fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM IsArray success:%{public}d", result);
+        OH_LOG_INFO(LOG_APP, "JSVM IsArray success, IsArray: %{public}d", result);
     }
     return returnValue;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let data = '[1, 2, 3, 4, 5]';
-let script: string = `
-   isArray(${data})
- `
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'IsArray: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'IsArray: %{public}s', error.message);
-}
+// IsArray注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = IsArray},
+};
+static JSVM_CallbackStruct *method = param;
+// IsArray方法别名，TS侧调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"isArray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
+let data = [1, 2, 3, 4, 5];
+isArray(data);
+)JS";
 ```
 
 ### OH_JSVM_SetElement
 
 在给定对象的指定索引处设置元素。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// SetElement注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = SetElement},
-};
-static JSVM_CallbackStruct *method = param;
-// SetElement方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"setElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_SetElement的样例方法
 static int DIFF_VALUE_THREE = 3;
 static JSVM_Value SetElement(JSVM_Env env, JSVM_CallbackInfo info) {
@@ -860,45 +666,32 @@ static JSVM_Value SetElement(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return args[0];
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  setElement(3)
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM setElement: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM setElement error: %{public}s', error.message);
-}
+// SetElement注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = SetElement},
+};
+static JSVM_CallbackStruct *method = param;
+// SetElement方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"setElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
+setElement(3);
+)JS";
 ```
 
 ### OH_JSVM_GetElement
 
 获取给定对象指定索引处的元素。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetElement注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetElement},
-};
-static JSVM_CallbackStruct *method = param;
-// GetElement方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetElement的样例方法
 static JSVM_Value GetElement(JSVM_Env env, JSVM_CallbackInfo info) {
     // 获取js侧传入的两个参数
@@ -918,46 +711,33 @@ static JSVM_Value GetElement(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return result;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let arr = [10, 'hello', null, true];
-  getElement(arr, 3)
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM getElement: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM getElement error: %{public}s', error.message);
-}
+// GetElement注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetElement},
+};
+static JSVM_CallbackStruct *method = param;
+// GetElement方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
+let arr = [10, 'hello', null, true];
+getElement(arr, 3);
+)JS";
 ```
 
 ### OH_JSVM_HasElement
 
 若给定对象的指定索引处拥有属性，获取该元素。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// HasElement注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = HasElement},
-};
-static JSVM_CallbackStruct *method = param;
-// HasElement方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"hasElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_HasElement的样例方法
 static JSVM_Value HasElement(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -977,35 +757,25 @@ static JSVM_Value HasElement(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM hasElement fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM JSVM hasElement: %{public}d", hasElement);
+        OH_LOG_INFO(LOG_APP, "JSVM hasElement: %{public}d", hasElement);
     }
     return result;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let arr = [10, 'hello', null, true];
-`
-let scriptTrue: string = script + `\n` + `
-  hasElement(arr, 0)
-`
-let scriptFalse: string = script + `\n` + `
-  hasElement(arr, 4)
-`
-try {
-  let resultTrue = napitest.runJsVm(scriptTrue);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM resultTrue: %{public}s', resultTrue);
-  let resultFalse = napitest.runJsVm(scriptFalse);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM resultFalse: %{public}s', resultFalse);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM hasElement error: %{public}s', error.message);
-}
+// HasElement注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = HasElement},
+};
+static JSVM_CallbackStruct *method = param;
+// HasElement方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"hasElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
+let arr = [10, 'hello', null, true];
+hasElement(arr, 0);
+hasElement(arr, 4);
+)JS";
 ```
 
 ### OH_JSVM_DeleteElement
@@ -1019,15 +789,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// DeleteElement注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = DeleteElement},
-};
-static JSVM_CallbackStruct *method = param;
-// DeleteElement方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"deleteElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_DeleteElement的样例方法
 static JSVM_Value DeleteElement(JSVM_Env env, JSVM_CallbackInfo info) {
     // 获取js侧传入的两个参数
@@ -1046,50 +807,37 @@ static JSVM_Value DeleteElement(JSVM_Env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM DeleteElement fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM JSVM DeleteElement: %{public}d", deleted);
+        OH_LOG_INFO(LOG_APP, "JSVM DeleteElement: %{public}d", deleted);
     }
     return result;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-  let arr = [10, 'hello', null, true];
-  deleteElement(arr, 0)
-`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM deleteElement: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM deleteElement error: %{public}s', error.message);
-}
+// DeleteElement注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = DeleteElement},
+};
+static JSVM_CallbackStruct *method = param;
+// DeleteElement方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"deleteElement", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
+let arr = [10, 'hello', null, true];
+deleteElement(arr, 0);
+)JS";
 ```
 
 ### OH_JSVM_IsDataview
 
-判断一个JavaScript对象是否为Dataview类型对象。
+判断一个 JavaScript 对象是否为 Dataview类型对象。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// IsDataView注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = IsDataView},
-};
-static JSVM_CallbackStruct *method = param;
-// IsDataView方法别名，TS侧调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"isDataView", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_IsDataview的样例方法
 static JSVM_Value IsDataView(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
@@ -1103,51 +851,38 @@ static JSVM_Value IsDataView(JSVM_Env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM IsDataView fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM JSVM IsDataView: %{public}d", result);
+        OH_LOG_INFO(LOG_APP, "JSVM IsDataView: %{public}d", result);
     }
     return isDateView;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
+// IsDataView注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = IsDataView},
+};
+static JSVM_CallbackStruct *method = param;
+// IsDataView方法别名，TS侧调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"isDataView", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
 let buffer = new ArrayBuffer(16);
 let dataView = new DataView(buffer);
 isDataView(dataView);
-  `;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'IsDataView: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'IsDataView: %{public}s', error.message);
-}
+)JS";
 ```
 
 ### OH_JSVM_IsTypedarray
 
-判断一个JavaScript对象是否为Typedarray类型对象。
+判断一个 JavaScript 对象是否为 Typedarray 类型对象。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// IsTypedarray注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = IsTypedarray},
-};
-static JSVM_CallbackStruct *method = param;
-// IsTypedarray方法别名，TS侧调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"isTypedarray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_IsTypedarray的样例方法
 static JSVM_Value IsTypedarray(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
@@ -1160,25 +895,21 @@ static JSVM_Value IsTypedarray(JSVM_Env env, JSVM_CallbackInfo info) {
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM IsTypedarray fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM JSVM IsTypedarray: %{public}d", result);
+        OH_LOG_INFO(LOG_APP, "JSVM IsTypedarray: %{public}d", result);
     }
     return isTypedArray;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `
-         isTypedarray(new Uint16Array([1, 2, 3, 4]))
-       `
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'IsTypedArray: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'IsTypedArray: %{public}s', error.message);
-}
+// IsTypedarray注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = IsTypedarray},
+};
+static JSVM_CallbackStruct *method = param;
+// IsTypedarray方法别名，TS侧调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"isTypedarray", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(
+isTypedarray(new Uint16Array([1, 2, 3, 4]));
+)JS";
 ```
