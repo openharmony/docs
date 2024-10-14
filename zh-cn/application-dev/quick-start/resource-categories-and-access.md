@@ -297,13 +297,15 @@ string资源配置attr属性示例如下：
   [资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件，访问应用资源时需先了解.json文件的使用规范。<br/>资源的具体使用方法如下：
 
   ```ts
+    //通过$r('app.type.name')访问
     Text($r('app.string.string_hello'))
     .fontColor($r('app.color.ohos_id_color_emphasize'))
     .fontSize($r('app.float.ohos_id_text_size_headline1'))
     .fontFamily($r('app.string.ohos_id_text_font_family_medium'))
     .backgroundColor($r('app.color.ohos_id_color_palette_aux1'))
 
-    //Test($r('app.string.message_notification','LiHua','2'))
+    //对占位符，通过$r('app.string.label','aaa','bbb',444)访问
+    Test($r('app.string.message_notification','LiHua','2'))
 
     Image($r('app.media.ohos_app_icon'))
     .border({
@@ -334,7 +336,10 @@ string资源配置attr属性示例如下：
 
 - 通过```"$r"```或```"$rawfile"```访问资源。具体操作如下：
 
-  1.这里是列表文本[hsp].type.name获取资源。其中，hsp为hsp模块名，type为资源类型，name为资源名称，示例如下：
+  1.在entry的oh-package.json5文件中添加依赖。如```"dependencies": {"library":"file":../library}```
+  ![Alt text](image.png)
+
+  2.这里是列表文本[hsp].type.name获取资源。其中，hsp为hsp模块名，type为资源类型，name为资源名称，示例如下：
   
     ```ts
       Text($r('[hsp].string.test_string'))
@@ -342,7 +347,7 @@ string资源配置attr属性示例如下：
         .fontColor($r('[hsp].color.font_color'))  
       Image($rawfile('[hsp].icon.png'))
     ```
-  2.使用变量获取资源。示例如下：
+  3.使用变量获取资源。示例如下：
 
    ```ts
     @Entry
@@ -368,9 +373,6 @@ string资源配置attr属性示例如下：
     }
    ```
   > **说明** 
-  >
-  >在entry的oh-package.json5文件中添加依赖。如```"dependencies": {"library":"file":../library}```
-  >![Alt text](image.png)
   >
   > hsp包名必须写在[]内，rawfile下有多层目录，需要从rawfile下面第一个目录开始写，如```"$rawfile('[hsp].oneFile/twoFile/icon.png')"```，使用```"$r"```和```"$rawfile"```跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
 
