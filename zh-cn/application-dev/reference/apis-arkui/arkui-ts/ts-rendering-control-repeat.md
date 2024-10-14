@@ -155,7 +155,9 @@ templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
 | totalCount | number | 否   | 数据源的总长度，可以大于已加载数据项的数量<br/>令arr.length表示数据源长度，以下为totalCount的判断规则：<br/>1) totalCount不设置 \|\| totalCount不是整数 \|\| totalCount <= 0 \|\| totalCount == arr.length时，totalCount为数据源长度，列表正常滚动<br/>2) 0 < totalCount < arr.length时，界面中只渲染“totalCount”个数据<br/>3) totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。 |
 
-> **注意：** 当totalCount < arr.length时，totalCount建议设置能铺满父组件容器，否则会有父组件容器留空的体验问题。
+> **注意：** 
+>
+> 当totalCount < arr.length时，totalCount建议设置能铺满父组件容器，否则会有父组件容器留空的体验问题。
 
 ## RepeatItemBuilder
 
