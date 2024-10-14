@@ -1628,7 +1628,7 @@ openNotificationSettings(context: UIAbilityContext): Promise\<void\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600003  | Failed to connect to the service.          |
-| 1600018  | The notification settings window is already displayed.           |
+| 1600018  | the notification settings window is already displayed.           |
 
 **示例：**
 
