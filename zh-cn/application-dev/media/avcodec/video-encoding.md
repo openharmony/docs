@@ -9,7 +9,6 @@
 | 容器规格 | 视频编码类型                 |
 | -------- | ---------------------------- |
 | mp4      | HEVC（H.265）、 AVC（H.264） |
-| m4a      | HEVC（H.265）、 AVC（H.264） |
 
 目前仅支持硬件编码，基于MimeType创建编码器时，支持配置为H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
