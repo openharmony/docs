@@ -1,8 +1,8 @@
 # 分段式拍照(ArkTS)
 
 分段式拍照是相机的重要功能之一，即应用下发拍照任务后，系统将分多阶段上报不同质量的图片。
-- 在第一阶段，系统快速上报一阶段图，一阶段图比二阶段真图质量低，出图速度快。应用通过回调会收到一个PhotoAsset对象，通过该对象可调用媒体库接口，读取图片或落盘图片。
-- 在第二阶段，分段式子服务会根据系统压力及定制化场景进行调度，将后处理好的原图回传给媒体库，替换一阶段图。
+- 在第一阶段，系统快速上报轻量处理的图片，轻量处理的图片比全质量图低，出图速度快。应用通过回调会收到一个PhotoAsset对象，通过该对象可调用媒体库接口，读取图片或落盘图片。
+- 在第二阶段，相机框架会根据应用的请求图片诉求或者在系统闲时，进行图像增强处理得到全质量图，将处理好的图片传回给媒体库，替换轻量处理的图片。
 
 通过分布式拍照，优化了系统的拍照响应时延，从而提升用户体验。
 
@@ -54,7 +54,7 @@
 3. 设置拍照photoAssetAvailable的回调。
 
    > **注意：**
-   > 如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，会导致流被重启。
+   > 如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，photoAssetAvailable和photoAvailable同时注册，会导致流被重启，仅photoAssetAvailable生效。
    >
    > 不建议开发者同时注册photoAvailable和photoAssetAvailable。
 
@@ -85,7 +85,7 @@
 
 在相机应用开发过程中，可以随时监听拍照输出流状态，包括拍照流开始、拍照帧的开始与结束、拍照输出流的错误。
 
-- 通过注册固定的captureStart回调函数获取监听拍照开始结果，photoOutput创建成功时即可监听，拍照第一次曝光时触发，该事件返回此次拍照的captureId。
+- 通过注册固定的captureStart回调函数获取监听拍照开始结果，photoOutput创建成功时即可监听，相机设备已经准备开始这次拍照时触发，该事件返回此次拍照的captureId。
 
   ```ts
   function onPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
@@ -108,6 +108,19 @@
       }
       console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
       console.info(`frameCount : ${captureEndInfo.frameCount}`);
+    });
+  }
+  ```
+
+- 通过注册固定的captureReady回调函数获取监听可拍下一张结果，photoOutput创建成功时即可监听，当下一张可拍时触发，该事件返回结果为下一张可拍的相关信息。
+
+  ```ts
+  function onPhotoOutputCaptureReady(photoOutput: camera.PhotoOutput): void {
+    photoOutput.on('captureReady', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
+      console.info(`photo capture ready`);
     });
   }
   ```
