@@ -10,6 +10,9 @@
   - [管理位置权限](web-geolocation-permission.md)
   - [使用隐私模式](web-incognito-mode.md)
   - [使用运动和方向传感器](web-sensor.md)
+- Web渲染和布局
+  - [Web渲染模式](web-render-mode.md)
+  - [使用Web组件大小自适应页面内容布局](web-fit-content.md)
 - 在应用中使用前端页面JavaScript
   - [应用侧调用前端页面函数](web-in-app-frontend-page-function-invoking.md)
   - [前端页面调用应用侧函数](web-in-page-app-function-invoking.md)
