@@ -693,15 +693,15 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 | 参数名      | 类型   | 必填    | 说明      |
 | --------- | ------ | ---- | ------- |
-| touchmajor  | string | 是 | 表示touchmajor轴。|
-| touchminor  | string | 是 | 表示touchminor轴。|
-| toolminor   | string | 是 | 表示toolminor轴。 |
-| toolmajor   | string | 是 | 表示toolmajor轴。 |
-| orientation | string | 是 | 表示orientation轴。|
-| pressure    | string | 是 | 表示pressure轴。  |
-| x           | string | 是 | 表示x轴。         |
-| y           | string | 是 | 表示y轴。         |
-| null        | string | 是 | 无。             |
+| 'touchmajor'  | 表示touchmajor轴。|
+| 'touchminor'  | 表示touchminor轴。|
+| 'toolminor'   | 表示toolminor轴。 |
+| 'toolmajor'   | 表示toolmajor轴。 |
+| 'orientation' | 表示orientation轴。|
+|'pressure'    | 表示pressure轴。  |
+| 'x'          | 表示x轴。         |
+| 'y'           | 表示y轴。         |
+|'null'        |  无。             |
 
 ## AxisRange
 
@@ -729,12 +729,12 @@ type SourceType = 'keyboard' | 'mouse' | 'touchpad' | 'touchscreen' | 'joystick'
 
 | 参数名        | 类型   | 必填 |  说明      |
 | --------- | ------ |  ---- |  ------- |
-| keyboard    | string | 是 | 表示输入设备是键盘。  |
-| touchscreen | string | 是 | 表示输入设备是触摸屏。 |
-| mouse       | string | 是 | 表示输入设备是鼠标。  |
-| trackball   | string | 是 | 表示输入设备是轨迹球。 |
-| touchpad    | string | 是 | 表示输入设备是触摸板。 |
-| joystick    | string | 是 | 表示输入设备是操纵杆。 |
+| 'keyboard'    | 表示输入设备是键盘。  |
+| 'touchscreen' | 表示输入设备是触摸屏。 |
+| 'mouse'       | 表示输入设备是鼠标。  |
+| 'trackball'   | 表示输入设备是轨迹球。 |
+| 'touchpad'    | 表示输入设备是触摸板。 |
+| 'joystick'   | 表示输入设备是操纵杆。 |
 
 ## ChangedType<sup>9+</sup>
 
@@ -746,8 +746,8 @@ type ChangedType = 'add' | 'remove'
 
 | 参数名        | 类型  | 必填  | 说明      |
 | --------- | ------ | ---- | ------- |
-| add    | string | 是 | 表示输入设备插入。 |
-| remove | string | 是 | 表示输入设备移除。 |
+| 'add'    | 表示输入设备插入。 |
+| 'remove' | 表示输入设备移除。 |
 
 ## KeyboardType<sup>9+</sup>
 
