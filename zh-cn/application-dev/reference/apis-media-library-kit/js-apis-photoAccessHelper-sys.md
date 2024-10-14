@@ -5682,14 +5682,14 @@ setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: str
 
 ```ts
 async function example(asset: photoAccessHelper.PhotoAsset) {
-    try {
-        let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(asset);
-        let photoId = "202410011800";
-        assetChangeRequest.setVideEnhancementAttr(QUALITY_ENHANCEMENT_LOCAL, photoId);
-        await photoAccessHelper.applyChanges(assetChangeRequest);
-    } catch (err) {
-        console.error(err);
-    }
+  try {
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    let photoId = "202410011800";
+    assetChangeRequest.setVideoEnhancementAttr(photoAccessHelper.VideoEnhancementType.QUALITY_ENHANCEMENT_LOCAL, photoId);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+  } catch (err) {
+    console.error(`setVideoEnhancementAttr fail with error: ${err.code}, ${err.message}`);
+  }
 }
 ```
 
