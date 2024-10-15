@@ -403,9 +403,9 @@ cachedCount(value: number)
 
 cachedCount(value: number, show: boolean)
 
-设置预加载的FlowItem的数量，并配置是否显示这些预加载节点。
+设置预加载的FlowItem数量，并配置是否显示预加载节点。
 
-配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12) / [内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
+配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12)或[内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
 
 [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)超出显示和缓存范围的FlowItem会被释放。
 
@@ -418,7 +418,7 @@ cachedCount(value: number, show: boolean)
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
 | value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
-| show<sup>14+</sup>  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false |
+| show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false |
 
 ## 事件
 
