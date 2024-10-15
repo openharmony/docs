@@ -1,4 +1,4 @@
-# @ohos.data.sendablePreferences (Shared Preferences)
+# @ohos.data.sendablePreferences (Shared User Preferences)
 
 
 The **sendablePreferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs.
