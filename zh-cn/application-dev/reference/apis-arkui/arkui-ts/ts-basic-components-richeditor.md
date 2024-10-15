@@ -4272,7 +4272,6 @@ struct LineBreakStrategyExample {
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
 import { image } from '@kit.ImageKit'
-import { On } from '@ohos.UiTest';
 
 @Entry
 @Component
@@ -4345,7 +4344,7 @@ struct Index {
 
 
   build() {
-    Column() {
+    Column({space:6}) {
       Column() {
         Text("选中区信息")
           .fontSize(20)
@@ -4353,8 +4352,8 @@ struct Index {
         Text("selection range: " + this.selection).width("100%")
         Text("selection content: " + this.content).width("100%")
       }
-      .borderWidth(1)
-      .borderColor(Color.Black)
+      // .borderWidth(1)
+      // .borderColor(Color.Black)
       .width("100%")
       .height("10%")
 
@@ -4384,8 +4383,8 @@ struct Index {
         })
         .height("20%")
         .width("100%")
-        .borderWidth(1)
-        .borderColor(Color.Black)
+        // .borderWidth(1)
+        // .borderColor(Color.Black)
 
       RichEditor(this.options1)
         .onReady(() => {
@@ -4396,7 +4395,6 @@ struct Index {
         .borderWidth(1)
         .borderColor(Color.Black)
 
-      Column({space:2}) {
         Row({space:2}) {
           Button("插入图片")
             .stateEffect(true)
@@ -4480,8 +4478,8 @@ struct Index {
             this.controller.setStyledString(this.controller1.toStyledString({start:0,end:13}))
           })
         }
-      }
-      .width("100%")
+
+
     }
   }
 }
