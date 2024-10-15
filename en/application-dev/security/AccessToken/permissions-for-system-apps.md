@@ -735,7 +735,7 @@ Allows an application to use the lock screen service to lock the screen, send a 
 
 ### ohos.permission.BACKUP
 
-Allows an application to have backup and restore capabilities.
+Allows an application to use the backup and restore capability.
 
 **Permission level**: system_basic
 
@@ -3641,13 +3641,13 @@ Allows a modal UIExtension to unhide non-secure windows.
 
 Allows a system application to use the camera in the background.
 
-**Permission level**：system_basic
+**Permission level**: system_core
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：13
+**Valid since**: 13
 
 ## system_grant Permissions (Unavailable via ACL)
 
