@@ -96,3 +96,6 @@
         return image.createPixelMapSync(buffer, options);
       }
      ```
+
+<!--RP1-->
+<!--RP1End-->
