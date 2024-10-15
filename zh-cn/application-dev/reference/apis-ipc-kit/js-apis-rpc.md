@@ -3426,7 +3426,7 @@ getRawDataCapacity(): number
 
 ### writeRawData<sup>(deprecated)</sup>
 
->从API version 11 开始不再维护，建议使用[writeRawDataBuffer](#writerawdatabuffer11)类替代。
+>从API version 11 开始废弃，建议使用[writeRawDataBuffer](#writerawdatabuffer11)替代。
 
 writeRawData(rawData: number[], size: number): void
 
@@ -3515,7 +3515,7 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
 ### readRawData<sup>(deprecated)</sup>
 
->从API version 11 开始不再维护，建议使用[readRawDataBuffer](#readrawdatabuffer11)类替代。
+>从API version 11 开始废弃，建议使用[readRawDataBuffer](#readrawdatabuffer11)替代。
 
 readRawData(size: number): number[]
 
@@ -3741,7 +3741,7 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
 
 ## MessageParcel<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[MessageSequence](#messagesequence9)类替代。
+>从API version 9 开始废弃，建议使用[MessageSequence](#messagesequence9)替代。
 
 在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
 
@@ -6333,7 +6333,7 @@ unmarshalling(dataIn: MessageSequence): boolean
 
 ## Sequenceable<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[Parcelable](#parcelable9)类替代。
+>从API version 9 开始废弃，建议使用[Parcelable](#parcelable9)替代。
 
 在进程间通信（IPC）期间，将类的对象写入MessageParcel并从MessageParcel中恢复它们。
 
@@ -6559,9 +6559,9 @@ onRemoteDied(): void
 | data    | [MessageSequence](#messagesequence9) | 是   | 否   | 发送给对端进程的MessageSequence对象。 |
 | reply   | [MessageSequence](#messagesequence9) | 是   | 否   | 对端进程返回的MessageSequence对象。   |
 
-## SendRequestResult<sup>8+(deprecated)</sup>
+## SendRequestResult<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[RequestResult](#requestresult9)类替代。
+>从API version 8 开始支持，API version 9 开始废弃，建议使用[RequestResult](#requestresult9)替代。
 
 发送请求的响应结果。
 
@@ -6608,7 +6608,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9)类替代。
+>从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9)替代。
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
@@ -6630,7 +6630,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+>从API version 8开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -6684,9 +6684,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -6707,7 +6707,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 ### sendMessageRequest<sup>9+</sup>
 
@@ -6735,9 +6735,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.Failed to obtain the passed object instance. |
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-1)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-1)替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -6753,7 +6753,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 ### registerDeathRecipient<sup>9+</sup>
 
@@ -6781,7 +6781,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### addDeathrecipient<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
+>从API version 9 开始废弃，建议使用[registerDeathRecipient](#registerdeathrecipient9)替代。
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -6828,7 +6828,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)类替代。
+>从API version 9 开始废弃，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)替代。
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -6873,7 +6873,7 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9)类替代。
+>从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9)替代。
 
 getInterfaceDescriptor(): string
 
@@ -6917,7 +6917,7 @@ isObjectDead(): boolean
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-2)类替代。
+>从API version 8 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-2)替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -7099,9 +7099,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   }
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-2)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-2)替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -7122,7 +7122,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
@@ -7291,9 +7291,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   }
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-3)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-3)替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -7309,7 +7309,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 **示例：**
 
@@ -7458,7 +7458,7 @@ getLocalInterface(interface: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9-1)类替代。
+>从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9-1)替代。
 
 queryLocalInterface(interface: string): IRemoteBroker
 
@@ -7608,7 +7608,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### addDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9-1)类替代。
+>从API version 9 开始废弃，建议使用[registerDeathRecipient](#registerdeathrecipient9-1)类替代。
 
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -7765,7 +7765,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9-1)类替代。
+>从API version 9 开始废弃，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9-1)替代。
 
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
@@ -7915,7 +7915,7 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9-1)类替代。
+>从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9-1)替代。
 
 getInterfaceDescriptor(): string
 
@@ -8504,7 +8504,7 @@ static flushCmdBuffer(object: IRemoteObject): void
 
 ### flushCommands<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[flushCmdBuffer](#flushcmdbuffer9)类替代。
+>从API version 9 开始废弃，建议使用[flushCmdBuffer](#flushcmdbuffer9)替代。
 
 static flushCommands(object: IRemoteObject): number
 
@@ -8620,7 +8620,7 @@ static restoreCallingIdentity(identity: string): void
 
 ### setCallingIdentity<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[restoreCallingIdentity](#restorecallingidentity9)类替代。
+>从API version 9 开始废弃，建议使用[restoreCallingIdentity](#restorecallingidentity9)替代。
 
 static setCallingIdentity(identity: string): boolean
 
@@ -8676,7 +8676,7 @@ RemoteObject构造函数。
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-4)类替代。
+>从API version 8 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-4)替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -8810,9 +8810,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
     });
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-4)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-4)替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
@@ -8833,7 +8833,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
@@ -8947,9 +8947,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-### sendRequest<sup>8+(deprecated)</sup>
+### sendRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-5)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-5)替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
@@ -8965,7 +8965,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | data          | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply         | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options       | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 **示例：**
 
@@ -9159,7 +9159,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
 ### onRemoteRequest<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)类替代。
+>从API version 9 开始废弃，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)替代。
 
 onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
@@ -9341,7 +9341,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getLocalInterface](#getlocalinterface9-2)类替代。
+>从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9-2)替代。
 
 queryLocalInterface(descriptor: string): IRemoteBroker
 
@@ -9453,7 +9453,7 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[getDescriptor](#getdescriptor9-2)类替代。
+>从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9-2)替代。
 
 getInterfaceDescriptor(): string
 
@@ -9559,7 +9559,7 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 ### attachLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[modifyLocalInterface](#modifylocalinterface9)类替代。
+>从API version 9 开始废弃，建议使用[modifyLocalInterface](#modifylocalinterface9)替代。
 
 attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
@@ -9667,9 +9667,9 @@ static create(name: string, size: number): Ashmem
   }
   ```
 
-### createAshmem<sup>8+(deprecated)</sup>
+### createAshmem<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[create](#create9)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[create](#create9)替代。
 
 static createAshmem(name: string, size: number): Ashmem
 
@@ -9746,9 +9746,9 @@ static create(ashmem: Ashmem): Ashmem
   }
   ```
 
-### createAshmemFromExisting<sup>8+(deprecated)</sup>
+### createAshmemFromExisting<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[create](#create9-1)替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[create](#create9-1)替代。
 
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
@@ -9872,9 +9872,9 @@ mapTypedAshmem(mapType: number): void
   }
   ```
 
-### mapAshmem<sup>8+(deprecated)</sup>
+### mapAshmem<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[mapTypedAshmem](#maptypedashmem9)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapTypedAshmem](#maptypedashmem9)替代。
 
 mapAshmem(mapType: number): boolean
 
@@ -9936,9 +9936,9 @@ mapReadWriteAshmem(): void
   }
   ```
 
-### mapReadAndWriteAshmem<sup>8+(deprecated)</sup>
+### mapReadAndWriteAshmem<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[mapReadWriteAshmem](#mapreadwriteashmem9)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapReadWriteAshmem](#mapreadwriteashmem9)替代。
 
 mapReadAndWriteAshmem(): boolean
 
@@ -9994,9 +9994,9 @@ mapReadonlyAshmem(): void
   }
   ```
 
-### mapReadOnlyAshmem<sup>8+(deprecated)</sup>
+### mapReadOnlyAshmem<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[mapReadonlyAshmem](#mapreadonlyashmem9)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapReadonlyAshmem](#mapreadonlyashmem9)替代。
 
 mapReadOnlyAshmem(): boolean
 
@@ -10059,9 +10059,9 @@ setProtectionType(protectionType: number): void
   }
   ```
 
-### setProtection<sup>8+(deprecated)</sup>
+### setProtection<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[setProtectionType](#setprotectiontype9)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[setProtectionType](#setprotectiontype9)替代。
 
 setProtection(protectionType: number): boolean
 
@@ -10139,9 +10139,9 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
   }
   ```
 
-### writeAshmem<sup>9+(deprecated)</sup>
+### writeAshmem<sup>(deprecated)</sup>
 
->从API version 11 开始不再维护，建议使用[writeDataToAshmem](#writedatatoashmem11)类替代。
+>从API version 9 开始支持，从API version 11 开始废弃，建议使用[writeDataToAshmem](#writedatatoashmem11)替代。
 
 writeAshmem(buf: number[], size: number, offset: number): void
 
@@ -10184,9 +10184,9 @@ writeAshmem(buf: number[], size: number, offset: number): void
   }
   ```
 
-### writeToAshmem<sup>8+(deprecated)</sup>
+### writeToAshmem<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[writeDataToAshmem](#writedatatoashmem11)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[writeDataToAshmem](#writedatatoashmem11)替代。
 
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
@@ -10283,9 +10283,9 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
   }
   ```
 
-### readAshmem<sup>9+(deprecated)</sup>
+### readAshmem<sup>(deprecated)</sup>
 
->从API version 11 开始不再维护，建议使用[readDataFromAshmem](#readdatafromashmem11)类替代。
+>从API version 9 开始支持，从API version 11 开始废弃，建议使用[readDataFromAshmem](#readdatafromashmem11)替代。
 
 readAshmem(size: number, offset: number): number[]
 
@@ -10335,9 +10335,9 @@ readAshmem(size: number, offset: number): number[]
   }
   ```
 
-### readFromAshmem<sup>8+(deprecated)</sup>
+### readFromAshmem<sup>(deprecated)</sup>
 
->从API version 9 开始不再维护，建议使用[readDataFromAshmem](#readdatafromashmem11)类替代。
+>从API version 8 开始支持，从API version 9 开始废弃，建议使用[readDataFromAshmem](#readdatafromashmem11)替代。
 
 readFromAshmem(size: number, offset: number): number[]
 
