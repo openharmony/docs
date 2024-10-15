@@ -103,6 +103,8 @@ relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
 ```ts
 import { relationalStore } from '@kit.ArkData';
 
+let context = getContext(this);
+
 // 初始化需要使用的密钥
 let key = new Uint8Array(32);
 for (let i = 0; i < 32; i++) {
@@ -113,10 +115,10 @@ for (let i = 0; i < 32; i++) {
 const CRYPTO_PARAM : relationalStore.CryptoParam = {
     encryptionKey: key, // 必选参数，使用指定的密钥打开加密数据库。
     iterationCount: 25000, // 可选参数，迭代次数。迭代次数必须大于零。不指定或等于零则使用默认值10000和默认加密算法。
-    encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_CBC, // 可选参数，加/解密算法。如不指定，默认算法为AES_256_GCM。
+    encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_CBC, // 可选参数，加密/解密算法。如不指定，默认算法为AES_256_GCM。
     hmacAlgo: relationalStore.HmacAlgo.SHA256, // 可选参数，HMAC算法。如不指定，默认值为SHA256。
     kdfAlgo: relationalStore.KdfAlgo.KDF_SHA512, // 可选参数，KDF算法。如不指定，默认值和HMAC算法相等。
-    cryptoPageSize: 2048 // 可选参数，加密/解密时使用的页大小。如不指定，默认值为1024。必须在512到65536范围内并且为2的幂。
+    cryptoPageSize: 2048 // 可选参数，加密/解密时使用的页大小。必须为512到65536范围内的整数并且为2的幂。如不指定，默认值为1024。
 }
 
 const STORE_CONFIG : relationalStore.StoreConfig = {
@@ -126,18 +128,15 @@ const STORE_CONFIG : relationalStore.StoreConfig = {
     cryptoParam: CRYPTO_PARAM
 }
 
-relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, store) => {
-  if (err) {
-    console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
-    return;
-  }
+let store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+if (store == null) {
+  console.error('Failed to get RdbStore.');
+} else {
   console.info('Succeeded in getting RdbStore.');
-});
+}
 
 // 调用完后需要将密钥清零
-for (let i = 0; i < 32; i++) {
-	CRYPTO_PARAM.encryptionKey[i] = 0
-}
+CRYPTO_PARAM.encryptionKey.fill(0);
 ```
 
 如果开发者不关心加密使用的算法及参数，则无需配置cryptoParam属性，使用默认加密配置即可。当开发者需要自定义加密配置，或需要打开非默认配置的加密数据库时，则需要配置cryptoParam属性。
