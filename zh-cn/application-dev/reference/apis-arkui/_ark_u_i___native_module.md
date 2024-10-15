@@ -73,61 +73,61 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [ArkUI_NodeEvent](#arkui_nodeevent-12)[ArkUI_NodeEvent](#arkui_nodeevent-12) | 组件事件的通用结构类型。  | 
-| typedef struct [ArkUI_Context](#arkui_context)[ArkUI_Context](#arkui_context) | native UI的上下文实例对象。  | 
+| typedef struct [ArkUI_NodeEvent](#arkui_nodeevent-12) [ArkUI_NodeEvent](#arkui_nodeevent-12) | 组件事件的通用结构类型。  | 
+| typedef struct [ArkUI_Context](#arkui_context) [ArkUI_Context](#arkui_context) | native UI的上下文实例对象。  | 
 | typedef struct [ArkUI_Context](#arkui_context) \* [ArkUI_ContextHandle](#arkui_contexthandle-12) | native UI的上下文实例对象指针定义。  | 
-| typedef struct [ArkUI_DragEvent](#arkui_dragevent)[ArkUI_DragEvent](#arkui_dragevent) | 拖拽事件。  | 
-| typedef struct [ArkUI_DragPreviewOption](#arkui_dragpreviewoption)[ArkUI_DragPreviewOption](#arkui_dragpreviewoption) | 设置拖拽跟手图的相关自定义参数。  | 
-| typedef struct [ArkUI_DragAction](#arkui_dragaction)[ArkUI_DragAction](#arkui_dragaction) | 拖拽行为，用于主动发起拖拽。  | 
-| typedef struct [ArkUI_DragAndDropInfo](#arkui_draganddropinfo)[ArkUI_DragAndDropInfo](#arkui_draganddropinfo) | 主动发起拖拽后，通过拖拽状态监听返回的系统拖拽相关数据。  | 
-| typedef struct [OH_UdmfData](#oh_udmfdata)[OH_UdmfData](#oh_udmfdata) | UDMF 统一数据定义。  | 
-| typedef struct [OH_PixelmapNative](#oh_pixelmapnative)[OH_PixelmapNative](#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。  | 
-| typedef struct [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor)[ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) | 定义 DrawableDescriptor 对象。  | 
+| typedef struct [ArkUI_DragEvent](#arkui_dragevent) [ArkUI_DragEvent](#arkui_dragevent) | 拖拽事件。  | 
+| typedef struct [ArkUI_DragPreviewOption](#arkui_dragpreviewoption) [ArkUI_DragPreviewOption](#arkui_dragpreviewoption) | 设置拖拽跟手图的相关自定义参数。  | 
+| typedef struct [ArkUI_DragAction](#arkui_dragaction) [ArkUI_DragAction](#arkui_dragaction) | 拖拽行为，用于主动发起拖拽。  | 
+| typedef struct [ArkUI_DragAndDropInfo](#arkui_draganddropinfo) [ArkUI_DragAndDropInfo](#arkui_draganddropinfo) | 主动发起拖拽后，通过拖拽状态监听返回的系统拖拽相关数据。  | 
+| typedef struct [OH_UdmfData](#oh_udmfdata) [OH_UdmfData](#oh_udmfdata) | UDMF 统一数据定义。  | 
+| typedef struct [OH_PixelmapNative](#oh_pixelmapnative) [OH_PixelmapNative](#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。  | 
+| typedef struct [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) | 定义 DrawableDescriptor 对象。  | 
 | typedef struct [OH_PixelmapNative](#oh_pixelmapnative) \* [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) | 定义OH_PixelmapNative对象指针类型。  | 
-| typedef struct [ArkUI_AnimateOption](#arkui_animateoption)[ArkUI_AnimateOption](#arkui_animateoption) | 设置动画效果相关参数。  | 
+| typedef struct [ArkUI_AnimateOption](#arkui_animateoption) [ArkUI_AnimateOption](#arkui_animateoption) | 设置动画效果相关参数。  | 
 | typedef struct ArkUI_Curve \* [ArkUI_CurveHandle](#arkui_curvehandle) | 定义曲线的插值对象指针定义。  | 
-| typedef struct [ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption)[ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) | 定义关键帧动画参数对象。  | 
-| typedef struct [ArkUI_AnimatorOption](#arkui_animatoroption)[ArkUI_AnimatorOption](#arkui_animatoroption) | 定义animator动画参数对象。  | 
+| typedef struct [ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) [ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) | 定义关键帧动画参数对象。  | 
+| typedef struct [ArkUI_AnimatorOption](#arkui_animatoroption) [ArkUI_AnimatorOption](#arkui_animatoroption) | 定义animator动画参数对象。  | 
 | typedef struct ArkUI_Animator \* [ArkUI_AnimatorHandle](#arkui_animatorhandle) | 定义animator动画对象指针。  | 
-| typedef struct [ArkUI_TransitionEffect](#arkui_transitioneffect)[ArkUI_TransitionEffect](#arkui_transitioneffect) | 定义transition属性配置转场参数对象。  | 
+| typedef struct [ArkUI_TransitionEffect](#arkui_transitioneffect) [ArkUI_TransitionEffect](#arkui_transitioneffect) | 定义transition属性配置转场参数对象。  | 
 | typedef bool(\* [ArkUI_OnWillDismissEvent](#arkui_onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
-| typedef struct [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent)[ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) | 定义弹窗关闭事件对象。  | 
+| typedef struct [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) [ArkUI_DialogDismissEvent](#arkui_dialogdismissevent) | 定义弹窗关闭事件对象。  | 
 | typedef uint32_t [ArkUI_GestureEventActionTypeMask](#arkui_gestureeventactiontypemask) | 定义手势事件类型集合  | 
 | typedef uint32_t [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
 | typedef [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) \* [ArkUI_GestureRecognizerHandleArray](#arkui_gesturerecognizerhandlearray) | 提供手势识别器句柄类型数组对象定义。  | 
-| typedef struct [ArkUI_GestureEventTargetInfo](#arkui_gestureeventtargetinfo)[ArkUI_GestureEventTargetInfo](#arkui_gestureeventtargetinfo) | 提供手势事件目标信息类型对象定义。  | 
-| typedef struct [ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent)[ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) | 提供并行内部手势事件类型对象定义。  | 
+| typedef struct [ArkUI_GestureEventTargetInfo](#arkui_gestureeventtargetinfo) [ArkUI_GestureEventTargetInfo](#arkui_gestureeventtargetinfo) | 提供手势事件目标信息类型对象定义。  | 
+| typedef struct [ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) [ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) | 提供并行内部手势事件类型对象定义。  | 
 | typedef void(\* [ArkUI_GestureRecognizerDestructNotifyCallback](#arkui_gesturerecognizerdestructnotifycallback)) (ArkUI_GestureRecognizer \*recognizer, void \*userData) | 定义手势识别器析构通知事件的回调函数类型。  | 
-| typedef struct [ArkUI_NodeEvent](#arkui_nodeevent-12)[ArkUI_NodeEvent](#arkui_nodeevent-12) | 定义组件事件的通用结构类型。  | 
-| typedef struct [ArkUI_NodeCustomEvent](#arkui_nodecustomevent)[ArkUI_NodeCustomEvent](#arkui_nodecustomevent) | 定义自定义组件事件的通用结构类型。  | 
+| typedef struct [ArkUI_NodeEvent](#arkui_nodeevent-12) [ArkUI_NodeEvent](#arkui_nodeevent-12) | 定义组件事件的通用结构类型。  | 
+| typedef struct [ArkUI_NodeCustomEvent](#arkui_nodecustomevent) [ArkUI_NodeCustomEvent](#arkui_nodecustomevent) | 定义自定义组件事件的通用结构类型。  | 
 | typedef struct ArkUI_NodeAdapter \* [ArkUI_NodeAdapterHandle](#arkui_nodeadapterhandle) | 定义组件适配器对象，用于滚动类组件的元素懒加载。  | 
-| typedef struct [ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent)[ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) | 定义适配器事件对象。  | 
-| typedef struct [ArkUI_NodeContentEvent](#arkui_nodecontentevent)[ArkUI_NodeContentEvent](#arkui_nodecontentevent) | 定义NodeContent事件的通用结构类型。  | 
+| typedef struct [ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) [ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) | 定义适配器事件对象。  | 
+| typedef struct [ArkUI_NodeContentEvent](#arkui_nodecontentevent) [ArkUI_NodeContentEvent](#arkui_nodecontentevent) | 定义NodeContent事件的通用结构类型。  | 
 | typedef void(\* [ArkUI_NodeContentCallback](#arkui_nodecontentcallback)) ([ArkUI_NodeContentEvent](#arkui_nodecontentevent) \*event) | 定义NodeContent事件的回调函数类型。  | 
-| typedef struct [ArkUI_LayoutConstraint](#arkui_layoutconstraint)[ArkUI_LayoutConstraint](#arkui_layoutconstraint) | 约束尺寸，组件布局时，进行尺寸范围限制。  | 
-| typedef struct [ArkUI_DrawContext](#arkui_drawcontext)[ArkUI_DrawContext](#arkui_drawcontext) | 定义组件绘制上下文类型结构。  | 
+| typedef struct [ArkUI_LayoutConstraint](#arkui_layoutconstraint) [ArkUI_LayoutConstraint](#arkui_layoutconstraint) | 约束尺寸，组件布局时，进行尺寸范围限制。  | 
+| typedef struct [ArkUI_DrawContext](#arkui_drawcontext) [ArkUI_DrawContext](#arkui_drawcontext) | 定义组件绘制上下文类型结构。  | 
 | typedef struct ArkUI_Node \* [ArkUI_NodeHandle](#arkui_nodehandle) | 定义ArkUI native组件实例对象指针定义。  | 
 | typedef struct ArkUI_NativeDialog \* [ArkUI_NativeDialogHandle](#arkui_nativedialoghandle) | 定义ArkUI在Native侧的自定义弹窗控制器对象指针。  | 
-| typedef struct [ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption)[ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) | 定义FlowItem分组配置信息。  | 
-| typedef struct [ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem)[ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) | 定义ListItemSwipeActionOption方法内Item的配置信息。  | 
-| typedef struct [ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption)[ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) | 定义ListItemSwipeActionOption方法的配置信息。  | 
+| typedef struct [ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) [ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) | 定义FlowItem分组配置信息。  | 
+| typedef struct [ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) [ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) | 定义ListItemSwipeActionOption方法内Item的配置信息。  | 
+| typedef struct [ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) [ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) | 定义ListItemSwipeActionOption方法的配置信息。  | 
 | typedef struct [ArkUI_Context](#arkui_context) \* [ArkUI_ContextHandle](#arkui_contexthandle-12) | 定义ArkUI native UI的上下文实例对象指针定义。  | 
 | typedef struct ArkUI_NodeContent \* [ArkUI_NodeContentHandle](#arkui_nodecontenthandle) | 定义ArkUI NodeContent实例在Native侧的实例对象指针定义。  | 
-| typedef struct [ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption)[ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) | 指定设置在相对容器中子组件的对齐规则。  | 
-| typedef struct [ArkUI_GuidelineOption](#arkui_guidelineoption)[ArkUI_GuidelineOption](#arkui_guidelineoption) | guideLine参数，用于定义guideline的id、方向和位置。  | 
-| typedef struct [ArkUI_BarrierOption](#arkui_barrieroption)[ArkUI_BarrierOption](#arkui_barrieroption) | barrier参数，用于定义barrier的id、方向和生成时所依赖的组件。  | 
-| typedef struct [ArkUI_ImageAnimatorFrameInfo](#arkui_imageanimatorframeinfo)[ArkUI_ImageAnimatorFrameInfo](#arkui_imageanimatorframeinfo) | 定义图片帧信息。  | 
-| typedef struct [ArkUI_ListChildrenMainSize](#arkui_listchildrenmainsize)[ArkUI_ListChildrenMainSize](#arkui_listchildrenmainsize) | 定义List的ChildrenMainSize类信息。  | 
-| typedef struct [ArkUI_AccessibilityState](#arkui_accessibilitystate)[ArkUI_AccessibilityState](#arkui_accessibilitystate) | 定义组件无障碍状态。  | 
-| typedef struct [ArkUI_AccessibilityValue](#arkui_accessibilityvalue)[ArkUI_AccessibilityValue](#arkui_accessibilityvalue) | 定义组件无障碍信息值。  | 
-| typedef struct [ArkUI_SystemFontStyleEvent](#arkui_systemfontstyleevent)[ArkUI_SystemFontStyleEvent](#arkui_systemfontstyleevent) | 系统字体变更事件定义。  | 
-| typedef struct [ArkUI_CustomSpanMeasureInfo](#arkui_customspanmeasureinfo)[ArkUI_CustomSpanMeasureInfo](#arkui_customspanmeasureinfo) | 自定义段落组件的测量信息。  | 
-| typedef struct [ArkUI_CustomSpanMetrics](#arkui_customspanmetrics)[ArkUI_CustomSpanMetrics](#arkui_customspanmetrics) | 自定义段落组件的度量指标。  | 
-| typedef struct [ArkUI_CustomSpanDrawInfo](#arkui_customspandrawinfo)[ArkUI_CustomSpanDrawInfo](#arkui_customspandrawinfo) | 自定义段落组件的绘制信息。  | 
-| typedef struct [ArkUI_SwiperIndicator](#arkui_swiperindicator)[ArkUI_SwiperIndicator](#arkui_swiperindicator) | 定义 Swiper 组件的导航指示器风格。  | 
-| typedef struct [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor)[ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) | 定义文本组件支持的属性字符串的数据对象。  | 
-| typedef struct [ArkUI_StyledString](#arkui_styledstring)[ArkUI_StyledString](#arkui_styledstring) | 定义文本组件支持的格式化字符串数据对象。  | 
+| typedef struct [ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) [ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) | 指定设置在相对容器中子组件的对齐规则。  | 
+| typedef struct [ArkUI_GuidelineOption](#arkui_guidelineoption) [ArkUI_GuidelineOption](#arkui_guidelineoption) | guideLine参数，用于定义guideline的id、方向和位置。  | 
+| typedef struct [ArkUI_BarrierOption](#arkui_barrieroption) [ArkUI_BarrierOption](#arkui_barrieroption) | barrier参数，用于定义barrier的id、方向和生成时所依赖的组件。  | 
+| typedef struct [ArkUI_ImageAnimatorFrameInfo](#arkui_imageanimatorframeinfo) [ArkUI_ImageAnimatorFrameInfo](#arkui_imageanimatorframeinfo) | 定义图片帧信息。  | 
+| typedef struct [ArkUI_ListChildrenMainSize](#arkui_listchildrenmainsize) [ArkUI_ListChildrenMainSize](#arkui_listchildrenmainsize) | 定义List的ChildrenMainSize类信息。  | 
+| typedef struct [ArkUI_AccessibilityState](#arkui_accessibilitystate) [ArkUI_AccessibilityState](#arkui_accessibilitystate) | 定义组件无障碍状态。  | 
+| typedef struct [ArkUI_AccessibilityValue](#arkui_accessibilityvalue) [ArkUI_AccessibilityValue](#arkui_accessibilityvalue) | 定义组件无障碍信息值。  | 
+| typedef struct [ArkUI_SystemFontStyleEvent](#arkui_systemfontstyleevent) [ArkUI_SystemFontStyleEvent](#arkui_systemfontstyleevent) | 系统字体变更事件定义。  | 
+| typedef struct [ArkUI_CustomSpanMeasureInfo](#arkui_customspanmeasureinfo) [ArkUI_CustomSpanMeasureInfo](#arkui_customspanmeasureinfo) | 自定义段落组件的测量信息。  | 
+| typedef struct [ArkUI_CustomSpanMetrics](#arkui_customspanmetrics) [ArkUI_CustomSpanMetrics](#arkui_customspanmetrics) | 自定义段落组件的度量指标。  | 
+| typedef struct [ArkUI_CustomSpanDrawInfo](#arkui_customspandrawinfo) [ArkUI_CustomSpanDrawInfo](#arkui_customspandrawinfo) | 自定义段落组件的绘制信息。  | 
+| typedef struct [ArkUI_SwiperIndicator](#arkui_swiperindicator) [ArkUI_SwiperIndicator](#arkui_swiperindicator) | 定义 Swiper 组件的导航指示器风格。  | 
+| typedef struct [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) | 定义文本组件支持的属性字符串的数据对象。  | 
+| typedef struct [ArkUI_StyledString](#arkui_styledstring) [ArkUI_StyledString](#arkui_styledstring) | 定义文本组件支持的格式化字符串数据对象。  | 
 
 
 ### 枚举
@@ -259,7 +259,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [ArkUI_DragEvent](#arkui_dragevent) \* [OH_ArkUI_NodeEvent_GetDragEvent](#oh_arkui_nodeevent_getdragevent) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*nodeEvent) | 从 NodeEvent 中获取DragEvent。  | 
-| [ArkUI_PreDragStatus](#arkui_predragstatus)[OH_ArkUI_NodeEvent_GetPreDragStatus](#oh_arkui_nodeevent_getpredragstatus) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*nodeEvent) | 获取预览拖拽事件状态。  | 
+| [ArkUI_PreDragStatus](#arkui_predragstatus) [OH_ArkUI_NodeEvent_GetPreDragStatus](#oh_arkui_nodeevent_getpredragstatus) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*nodeEvent) | 获取预览拖拽事件状态。  | 
 | int32_t [OH_ArkUI_DragEvent_DisableDefaultDropAnimation](#oh_arkui_dragevent_disabledefaultdropanimation) ([ArkUI_DragEvent](#arkui_dragevent) \*event, bool disable) | 设置是否禁用松手时的系统默认动效，默认不禁用，通常在应用需要自定义落位动效时配置。  | 
 | int32_t [OH_ArkUI_DragEvent_SetSuggestedDropOperation](#oh_arkui_dragevent_setsuggesteddropoperation) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DropProposal](#arkui_dropproposal) proposal) | 设置数据处理方式  | 
 | int32_t [OH_ArkUI_DragEvent_SetDragResult](#oh_arkui_dragevent_setdragresult) ([ArkUI_DragEvent](#arkui_dragevent) \*event, [ArkUI_DragResult](#arkui_dragresult) result) | 设置拖拽事件的结果。  | 
@@ -307,13 +307,13 @@
 | int32_t [OH_ArkUI_DragAction_SetDragPreviewOption](#oh_arkui_dragaction_setdragpreviewoption) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, [ArkUI_DragPreviewOption](#arkui_dragpreviewoption) \*option) | 将构造的ArkUI_DragPreviewOption设置给ArkUI_DragAction。  | 
 | int32_t [OH_ArkUI_DragAction_RegisterStatusListener](#oh_arkui_dragaction_registerstatuslistener) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction, void \*userData, void(\*listener)([ArkUI_DragAndDropInfo](#arkui_draganddropinfo) \*dragAndDropInfo, void \*userData)) | 注册拖拽状态监听回调,该回调可感知到拖拽已经发起或用户松手结束的状态, 可通过该监听获取到落入方对数据的接收处理是否成功。  | 
 | void [OH_ArkUI_DragAction_UnregisterStatusListener](#oh_arkui_dragaction_unregisterstatuslistener) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction) | 解注册拖拽状态监听回调。  | 
-| [ArkUI_DragStatus](#arkui_dragstatus)[OH_ArkUI_DragAndDropInfo_GetDragStatus](#oh_arkui_draganddropinfo_getdragstatus) ([ArkUI_DragAndDropInfo](#arkui_draganddropinfo) \*dragAndDropInfo) | 获取dragaction发起拖拽的状态，获取异常时返回 ArkUI_DRAG_STATUS_UNKNOWN。  | 
+| [ArkUI_DragStatus](#arkui_dragstatus) [OH_ArkUI_DragAndDropInfo_GetDragStatus](#oh_arkui_draganddropinfo_getdragstatus) ([ArkUI_DragAndDropInfo](#arkui_draganddropinfo) \*dragAndDropInfo) | 获取dragaction发起拖拽的状态，获取异常时返回 ArkUI_DRAG_STATUS_UNKNOWN。  | 
 | [ArkUI_DragEvent](#arkui_dragevent) \* [OH_ArkUI_DragAndDropInfo_GetDragEvent](#oh_arkui_draganddropinfo_getdragevent) ([ArkUI_DragAndDropInfo](#arkui_draganddropinfo) \*dragAndDropInfo) | 通过dragAndDropInfo获取到DragEvent，可通过DragEvent获取释放结果等。  | 
 | int32_t [OH_ArkUI_StartDrag](#oh_arkui_startdrag) ([ArkUI_DragAction](#arkui_dragaction) \*dragAction) | 通过构造的DragAction对象发起拖拽。  | 
 | [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromPixelMap](#oh_arkui_drawabledescriptor_createfrompixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) pixelMap) | 使用 PixelMap 创建 DrawableDescriptor 对象。  | 
 | [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap](#oh_arkui_drawabledescriptor_createfromanimatedpixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) \*array, int32_t size) | 使用 PixelMap 图片数组创建DrawableDescriptor 对象。  | 
 | void [OH_ArkUI_DrawableDescriptor_Dispose](#oh_arkui_drawabledescriptor_dispose) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 销毁 DrawableDescriptor 对象指针。  | 
-| [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle)[OH_ArkUI_DrawableDescriptor_GetStaticPixelMap](#oh_arkui_drawabledescriptor_getstaticpixelmap) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取 PixelMap 图片对象指针。  | 
+| [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) [OH_ArkUI_DrawableDescriptor_GetStaticPixelMap](#oh_arkui_drawabledescriptor_getstaticpixelmap) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取 PixelMap 图片对象指针。  | 
 | [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) \* [OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray](#oh_arkui_drawabledescriptor_getanimatedpixelmaparray) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取用于播放动画的 PixelMap 图片数组数据。  | 
 | int32_t [OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArraySize](#oh_arkui_drawabledescriptor_getanimatedpixelmaparraysize) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取用于播放动画的 PixelMap 图片数组数据。  | 
 | void [OH_ArkUI_DrawableDescriptor_SetAnimationDuration](#oh_arkui_drawabledescriptor_setanimationduration) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor, int32_t duration) | 设置 PixelMap 图片数组播放总时长。  | 
@@ -324,10 +324,10 @@
 | void [OH_ArkUI_AnimateOption_Dispose](#oh_arkui_animateoption_dispose) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 销毁动画效果参数指针。  | 
 | int32_t [OH_ArkUI_AnimateOption_GetDuration](#oh_arkui_animateoption_getduration) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画持续时间，单位为ms(毫秒)。  | 
 | float [OH_ArkUI_AnimateOption_GetTempo](#oh_arkui_animateoption_gettempo) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画播放速度。  | 
-| [ArkUI_AnimationCurve](#arkui_animationcurve)[OH_ArkUI_AnimateOption_GetCurve](#oh_arkui_animateoption_getcurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画曲线。  | 
+| [ArkUI_AnimationCurve](#arkui_animationcurve) [OH_ArkUI_AnimateOption_GetCurve](#oh_arkui_animateoption_getcurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画曲线。  | 
 | int32_t [OH_ArkUI_AnimateOption_GetDelay](#oh_arkui_animateoption_getdelay) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画延迟播放时间，单位为ms(毫秒)。  | 
 | int32_t [OH_ArkUI_AnimateOption_GetIterations](#oh_arkui_animateoption_getiterations) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画播放次数。  | 
-| [ArkUI_AnimationPlayMode](#arkui_animationplaymode)[OH_ArkUI_AnimateOption_GetPlayMode](#oh_arkui_animateoption_getplaymode) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画播放模式。  | 
+| [ArkUI_AnimationPlayMode](#arkui_animationplaymode) [OH_ArkUI_AnimateOption_GetPlayMode](#oh_arkui_animateoption_getplaymode) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画播放模式。  | 
 | [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md) \* [OH_ArkUI_AnimateOption_GetExpectedFrameRateRange](#oh_arkui_animateoption_getexpectedframeraterange) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画的期望帧率。  | 
 | void [OH_ArkUI_AnimateOption_SetDuration](#oh_arkui_animateoption_setduration) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, int32_t value) | 设置动画持续时间。  | 
 | void [OH_ArkUI_AnimateOption_SetTempo](#oh_arkui_animateoption_settempo) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, float value) | 设置动画播放速度。  | 
@@ -337,7 +337,7 @@
 | void [OH_ArkUI_AnimateOption_SetPlayMode](#oh_arkui_animateoption_setplaymode) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_AnimationPlayMode](#arkui_animationplaymode) value) | 设置动画播放模式。  | 
 | void [OH_ArkUI_AnimateOption_SetExpectedFrameRateRange](#oh_arkui_animateoption_setexpectedframeraterange) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md) \*value) | 设置动画的期望帧率。  | 
 | void [OH_ArkUI_AnimateOption_SetICurve](#oh_arkui_animateoption_seticurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option, [ArkUI_CurveHandle](#arkui_curvehandle) value) | 设置动画的动画曲线。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_AnimateOption_GetICurve](#oh_arkui_animateoption_geticurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画的动画曲线。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_AnimateOption_GetICurve](#oh_arkui_animateoption_geticurve) ([ArkUI_AnimateOption](#arkui_animateoption) \*option) | 获取动画的动画曲线。  | 
 | [ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \* [OH_ArkUI_KeyframeAnimateOption_Create](#oh_arkui_keyframeanimateoption_create) (int32_t size) | 获取关键帧动画参数。  | 
 | void [OH_ArkUI_KeyframeAnimateOption_Dispose](#oh_arkui_keyframeanimateoption_dispose) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option) | 销毁关键帧动画参数。  | 
 | int32_t [OH_ArkUI_KeyframeAnimateOption_SetDelay](#oh_arkui_keyframeanimateoption_setdelay) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option, int32_t value) | 设置关键帧动画的整体延时时间，单位为ms(毫秒)，默认不延时播放。  | 
@@ -349,7 +349,7 @@
 | int32_t [OH_ArkUI_KeyframeAnimateOption_GetDelay](#oh_arkui_keyframeanimateoption_getdelay) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option) | 获取关键帧整体延时时间。  | 
 | int32_t [OH_ArkUI_KeyframeAnimateOption_GetIterations](#oh_arkui_keyframeanimateoption_getiterations) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option) | 获取关键帧动画播放次数。  | 
 | int32_t [OH_ArkUI_KeyframeAnimateOption_GetDuration](#oh_arkui_keyframeanimateoption_getduration) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option, int32_t index) | 获取关键帧动画某段状态持续时间。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_KeyframeAnimateOption_GetCurve](#oh_arkui_keyframeanimateoption_getcurve) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option, int32_t index) | 获取关键帧动画某段状态动画曲线。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_KeyframeAnimateOption_GetCurve](#oh_arkui_keyframeanimateoption_getcurve) ([ArkUI_KeyframeAnimateOption](#arkui_keyframeanimateoption) \*option, int32_t index) | 获取关键帧动画某段状态动画曲线。  | 
 | [ArkUI_AnimatorOption](#arkui_animatoroption) \* [OH_ArkUI_AnimatorOption_Create](#oh_arkui_animatoroption_create) (int32_t keyframeSize) | 创建animator动画对象参数。  | 
 | void [OH_ArkUI_AnimatorOption_Dispose](#oh_arkui_animatoroption_dispose) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 销毁animator动画对象参数。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetDuration](#oh_arkui_animatoroption_setduration) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, int32_t value) | 设置animator动画播放的时长，单位毫秒。  | 
@@ -366,15 +366,15 @@
 | int32_t [OH_ArkUI_AnimatorOption_GetDuration](#oh_arkui_animatoroption_getduration) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放的时长。  | 
 | int32_t [OH_ArkUI_AnimatorOption_GetDelay](#oh_arkui_animatoroption_getdelay) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画延时播放时长。  | 
 | int32_t [OH_ArkUI_AnimatorOption_GetIterations](#oh_arkui_animatoroption_getiterations) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放次数。  | 
-| [ArkUI_AnimationFill](#arkui_animationfill)[OH_ArkUI_AnimatorOption_GetFill](#oh_arkui_animatoroption_getfill) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画执行后是否恢复到初始状态。  | 
-| [ArkUI_AnimationDirection](#arkui_animationdirection)[OH_ArkUI_AnimatorOption_GetDirection](#oh_arkui_animatoroption_getdirection) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放方向。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_AnimatorOption_GetCurve](#oh_arkui_animatoroption_getcurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画插值曲线。  | 
+| [ArkUI_AnimationFill](#arkui_animationfill) [OH_ArkUI_AnimatorOption_GetFill](#oh_arkui_animatoroption_getfill) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画执行后是否恢复到初始状态。  | 
+| [ArkUI_AnimationDirection](#arkui_animationdirection) [OH_ArkUI_AnimatorOption_GetDirection](#oh_arkui_animatoroption_getdirection) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画播放方向。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_AnimatorOption_GetCurve](#oh_arkui_animatoroption_getcurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画插值曲线。  | 
 | float [OH_ArkUI_AnimatorOption_GetBegin](#oh_arkui_animatoroption_getbegin) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画插值起点。  | 
 | float [OH_ArkUI_AnimatorOption_GetEnd](#oh_arkui_animatoroption_getend) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画插值终点。  | 
 | [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md) \* [OH_ArkUI_AnimatorOption_GetExpectedFrameRateRange](#oh_arkui_animatoroption_getexpectedframeraterange) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option) | 获取animator动画期望的帧率范围。  | 
 | float [OH_ArkUI_AnimatorOption_GetKeyframeTime](#oh_arkui_animatoroption_getkeyframetime) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, int32_t index) | 获取animator动画关键帧时间。  | 
 | float [OH_ArkUI_AnimatorOption_GetKeyframeValue](#oh_arkui_animatoroption_getkeyframevalue) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, int32_t index) | 获取animator动画关键帧数值。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_AnimatorOption_GetKeyframeCurve](#oh_arkui_animatoroption_getkeyframecurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, int32_t index) | 获取animator动画关键帧动画插值曲线。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_AnimatorOption_GetKeyframeCurve](#oh_arkui_animatoroption_getkeyframecurve) ([ArkUI_AnimatorOption](#arkui_animatoroption) \*option, int32_t index) | 获取animator动画关键帧动画插值曲线。  | 
 | void \* [OH_ArkUI_AnimatorEvent_GetUserData](#oh_arkui_animatorevent_getuserdata) (ArkUI_AnimatorEvent \*event) | 获取动画事件对象中的用户自定义对象。  | 
 | void \* [OH_ArkUI_AnimatorOnFrameEvent_GetUserData](#oh_arkui_animatoronframeevent_getuserdata) (ArkUI_AnimatorOnFrameEvent \*event) | 获取动画事件对象中的用户自定义对象。  | 
 | float [OH_ArkUI_AnimatorOnFrameEvent_GetValue](#oh_arkui_animatoronframeevent_getvalue) (ArkUI_AnimatorOnFrameEvent \*event) | 获取动画事件对象中的当前进度。  | 
@@ -388,14 +388,14 @@
 | int32_t [OH_ArkUI_Animator_Pause](#oh_arkui_animator_pause) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 暂停animator动画。  | 
 | int32_t [OH_ArkUI_Animator_Cancel](#oh_arkui_animator_cancel) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 取消animator动画。  | 
 | int32_t [OH_ArkUI_Animator_Reverse](#oh_arkui_animator_reverse) ([ArkUI_AnimatorHandle](#arkui_animatorhandle) animator) | 以相反的顺序播放animator动画。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_Curve_CreateCurveByType](#oh_arkui_curve_createcurvebytype) ([ArkUI_AnimationCurve](#arkui_animationcurve) curve) | 插值曲线的初始化函数，可以根据入参创建一个插值曲线对象。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_Curve_CreateStepsCurve](#oh_arkui_curve_createstepscurve) (int32_t count, bool end) | 构造阶梯曲线对象。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_Curve_CreateCubicBezierCurve](#oh_arkui_curve_createcubicbeziercurve) (float x1, float y1, float x2, float y2) | 构造三阶贝塞尔曲线对象。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_Curve_CreateSpringCurve](#oh_arkui_curve_createspringcurve) (float velocity, float mass, float stiffness, float damping) | 构造弹簧曲线对象，曲线形状由弹簧参数决定，动画时长受animation、animateTo中的duration参数控制。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_Curve_CreateSpringMotion](#oh_arkui_curve_createspringmotion) (float response, float dampingFraction, float overlapDuration) | 构造弹性动画曲线对象。如果对同一对象的同一属性进行多个弹性动画，每个动画会替换掉前一个动画，并继承之前的速度。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_Curve_CreateResponsiveSpringMotion](#oh_arkui_curve_createresponsivespringmotion) (float response, float dampingFraction, float overlapDuration) | 构造弹性跟手动画曲线对象，是springMotion的一种特例，仅默认参数不同，可与springMotion混合使用。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_Curve_CreateInterpolatingSpring](#oh_arkui_curve_createinterpolatingspring) (float velocity, float mass, float stiffness, float damping) | 构造插值器弹簧曲线对象，生成一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。  | 
-| [ArkUI_CurveHandle](#arkui_curvehandle)[OH_ArkUI_Curve_CreateCustomCurve](#oh_arkui_curve_createcustomcurve) (void \*userData, float(\*interpolate)(float fraction, void \*userdata)) | 构造自定义曲线对象。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateCurveByType](#oh_arkui_curve_createcurvebytype) ([ArkUI_AnimationCurve](#arkui_animationcurve) curve) | 插值曲线的初始化函数，可以根据入参创建一个插值曲线对象。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateStepsCurve](#oh_arkui_curve_createstepscurve) (int32_t count, bool end) | 构造阶梯曲线对象。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateCubicBezierCurve](#oh_arkui_curve_createcubicbeziercurve) (float x1, float y1, float x2, float y2) | 构造三阶贝塞尔曲线对象。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateSpringCurve](#oh_arkui_curve_createspringcurve) (float velocity, float mass, float stiffness, float damping) | 构造弹簧曲线对象，曲线形状由弹簧参数决定，动画时长受animation、animateTo中的duration参数控制。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateSpringMotion](#oh_arkui_curve_createspringmotion) (float response, float dampingFraction, float overlapDuration) | 构造弹性动画曲线对象。如果对同一对象的同一属性进行多个弹性动画，每个动画会替换掉前一个动画，并继承之前的速度。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateResponsiveSpringMotion](#oh_arkui_curve_createresponsivespringmotion) (float response, float dampingFraction, float overlapDuration) | 构造弹性跟手动画曲线对象，是springMotion的一种特例，仅默认参数不同，可与springMotion混合使用。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateInterpolatingSpring](#oh_arkui_curve_createinterpolatingspring) (float velocity, float mass, float stiffness, float damping) | 构造插值器弹簧曲线对象，生成一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。  | 
+| [ArkUI_CurveHandle](#arkui_curvehandle) [OH_ArkUI_Curve_CreateCustomCurve](#oh_arkui_curve_createcustomcurve) (void \*userData, float(\*interpolate)(float fraction, void \*userdata)) | 构造自定义曲线对象。  | 
 | void [OH_ArkUI_Curve_DisposeCurve](#oh_arkui_curve_disposecurve) ([ArkUI_CurveHandle](#arkui_curvehandle) curveHandle) | 销毁自定义曲线对象。  | 
 | [ArkUI_TransitionEffect](#arkui_transitioneffect) \* [OH_ArkUI_CreateOpacityTransitionEffect](#oh_arkui_createopacitytransitioneffect) (float opacity) | 创建组件转场时的透明度效果对象。  | 
 | [ArkUI_TransitionEffect](#arkui_transitioneffect) \* [OH_ArkUI_CreateTranslationTransitionEffect](#oh_arkui_createtranslationtransitioneffect) ([ArkUI_TranslationOptions](_ark_u_i___translation_options.md) \*translate) | 创建组件转场时的平移效果对象。  | 
@@ -413,8 +413,8 @@
 | ArkUI_GestureRecognizer \* [OH_ArkUI_GestureInterruptInfo_GetRecognizer](#oh_arkui_gestureinterruptinfo_getrecognizer) (const ArkUI_GestureInterruptInfo \*event) | 返回被打断的手势指针。  | 
 | ArkUI_GestureEvent \* [OH_ArkUI_GestureInterruptInfo_GetGestureEvent](#oh_arkui_gestureinterruptinfo_getgestureevent) (const ArkUI_GestureInterruptInfo \*event) | 返回打断的手势事件数据。  | 
 | int32_t [OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType](#oh_arkui_gestureinterruptinfo_getsystemrecognizertype) (const ArkUI_GestureInterruptInfo \*event) | 当要触发的是系统内部手势时，使用该方法可返回该系统内部手势的类型。  | 
-| [ArkUI_GestureEventActionType](#arkui_gestureeventactiontype)[OH_ArkUI_GestureEvent_GetActionType](#oh_arkui_gestureevent_getactiontype) (const ArkUI_GestureEvent \*event) | 返回手势事件类型。  | 
-| [ArkUI_NodeHandle](#arkui_nodehandle)[OH_ArkUI_GestureEvent_GetResponseNode](#oh_arkui_gestureevent_getresponsenode) (ArkUI_GestureEvent \*event) | 返回响应手势的节点。  | 
+| [ArkUI_GestureEventActionType](#arkui_gestureeventactiontype) [OH_ArkUI_GestureEvent_GetActionType](#oh_arkui_gestureevent_getactiontype) (const ArkUI_GestureEvent \*event) | 返回手势事件类型。  | 
+| [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_GestureEvent_GetResponseNode](#oh_arkui_gestureevent_getresponsenode) (ArkUI_GestureEvent \*event) | 返回响应手势的节点。  | 
 | const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \* [OH_ArkUI_GestureEvent_GetRawInputEvent](#oh_arkui_gestureevent_getrawinputevent) (const ArkUI_GestureEvent \*event) | 返回手势输入。  | 
 | int32_t [OH_ArkUI_LongPress_GetRepeatCount](#oh_arkui_longpress_getrepeatcount) (const ArkUI_GestureEvent \*event) | 返回长按手势定时触发次数。  | 
 | float [OH_ArkUI_PanGesture_GetVelocity](#oh_arkui_pangesture_getvelocity) (const ArkUI_GestureEvent \*event) | 滑动手势返回手势主方向速度。  | 
@@ -428,7 +428,7 @@
 | float [OH_ArkUI_PinchGesture_GetScale](#oh_arkui_pinchgesture_getscale) (const ArkUI_GestureEvent \*event) | 捏合手势返回当前手势事件缩放信息。  | 
 | float [OH_ArkUI_PinchGesture_GetCenterX](#oh_arkui_pinchgesture_getcenterx) (const ArkUI_GestureEvent \*event) | 捏合手势中心点相对于当前组件元素左上角x轴坐标。  | 
 | float [OH_ArkUI_PinchGesture_GetCenterY](#oh_arkui_pinchgesture_getcentery) (const ArkUI_GestureEvent \*event) | 捏合手势中心点相对于当前组件元素左上角y轴坐标。  | 
-| [ArkUI_NodeHandle](#arkui_nodehandle)[OH_ArkUI_GestureEvent_GetNode](#oh_arkui_gestureevent_getnode) (const ArkUI_GestureEvent \*event) | 获取被绑定手势的ARKUI组件。  | 
+| [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_GestureEvent_GetNode](#oh_arkui_gestureevent_getnode) (const ArkUI_GestureEvent \*event) | 获取被绑定手势的ARKUI组件。  | 
 | int32_t [OH_ArkUI_GetResponseRecognizersFromInterruptInfo](#oh_arkui_getresponserecognizersfrominterruptinfo) (const ArkUI_GestureInterruptInfo \*event, [ArkUI_GestureRecognizerHandleArray](#arkui_gesturerecognizerhandlearray) \*responseChain, int32_t \*count) | 获取手势响应链的信息。  | 
 | int32_t [OH_ArkUI_SetGestureRecognizerEnabled](#oh_arkui_setgesturerecognizerenabled) (ArkUI_GestureRecognizer \*recognizer, bool enabled) | 设置手势识别器的使能状态。  | 
 | bool [OH_ArkUI_GetGestureRecognizerEnabled](#oh_arkui_getgesturerecognizerenabled) (ArkUI_GestureRecognizer \*recognizer) | 获取手势识别器的使能状态。  | 
@@ -446,9 +446,9 @@
 | int32_t [OH_ArkUI_ParallelInnerGestureEvent_GetConflictRecognizers](#oh_arkui_parallelinnergestureevent_getconflictrecognizers) ([ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) \*event, [ArkUI_GestureRecognizerHandleArray](#arkui_gesturerecognizerhandlearray) \*array, int32_t \*size) | 获取并行内部手势事件中的冲突的手势识别器。  | 
 | int32_t [OH_ArkUI_SetArkUIGestureRecognizerDisposeNotify](#oh_arkui_setarkuigesturerecognizerdisposenotify) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureRecognizerDestructNotifyCallback](#arkui_gesturerecognizerdestructnotifycallback) callback, void \*userData) | 设置手势识别器对象析构通知回调函数。  | 
 | void \* [OH_ArkUI_QueryModuleInterfaceByName](#oh_arkui_querymoduleinterfacebyname) ([ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) type, const char \*structName) | 获取指定类型的Native模块接口集合。  | 
-| [ArkUI_NodeEventType](#arkui_nodeeventtype)[OH_ArkUI_NodeEvent_GetEventType](#oh_arkui_nodeevent_geteventtype) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取组件事件类型。  | 
+| [ArkUI_NodeEventType](#arkui_nodeeventtype) [OH_ArkUI_NodeEvent_GetEventType](#oh_arkui_nodeevent_geteventtype) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取组件事件类型。  | 
 | int32_t [OH_ArkUI_NodeEvent_GetTargetId](#oh_arkui_nodeevent_gettargetid) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取事件自定义标识ID。  | 
-| [ArkUI_NodeHandle](#arkui_nodehandle)[OH_ArkUI_NodeEvent_GetNodeHandle](#oh_arkui_nodeevent_getnodehandle) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取触发该事件的组件对象。  | 
+| [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_NodeEvent_GetNodeHandle](#oh_arkui_nodeevent_getnodehandle) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取触发该事件的组件对象。  | 
 | [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \* [OH_ArkUI_NodeEvent_GetInputEvent](#oh_arkui_nodeevent_getinputevent) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取组件事件中的输入事件（如触碰事件）数据。  | 
 | [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md) \* [OH_ArkUI_NodeEvent_GetNodeComponentEvent](#oh_arkui_nodeevent_getnodecomponentevent) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取组件事件中的数字类型数据。  | 
 | [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md) \* [OH_ArkUI_NodeEvent_GetStringAsyncEvent](#oh_arkui_nodeevent_getstringasyncevent) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event) | 获取组件事件中的字符串数据。  | 
@@ -456,7 +456,7 @@
 | int32_t [OH_ArkUI_NodeEvent_GetNumberValue](#oh_arkui_nodeevent_getnumbervalue) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event, int32_t index, [ArkUI_NumberValue](union_ark_u_i___number_value.md) \*value) | 获取组件回调事件的数字类型参数。  | 
 | int32_t [OH_ArkUI_NodeEvent_GetStringValue](#oh_arkui_nodeevent_getstringvalue) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event, int32_t index, char \*\*string, int32_t \*stringSize) | 获取组件回调事件的字符串类型参数，字符串数据仅在事件回调过程中有效，需要在事件回调外使用建议进行额外拷贝处理。  | 
 | int32_t [OH_ArkUI_NodeEvent_SetReturnNumberValue](#oh_arkui_nodeevent_setreturnnumbervalue) ([ArkUI_NodeEvent](#arkui_nodeevent-12) \*event, [ArkUI_NumberValue](union_ark_u_i___number_value.md) \*value, int32_t size) | 设置组件回调事件的返回值。  | 
-| [ArkUI_NodeAdapterHandle](#arkui_nodeadapterhandle)[OH_ArkUI_NodeAdapter_Create](#oh_arkui_nodeadapter_create) () | 创建组件适配器对象。  | 
+| [ArkUI_NodeAdapterHandle](#arkui_nodeadapterhandle) [OH_ArkUI_NodeAdapter_Create](#oh_arkui_nodeadapter_create) () | 创建组件适配器对象。  | 
 | void [OH_ArkUI_NodeAdapter_Dispose](#oh_arkui_nodeadapter_dispose) ([ArkUI_NodeAdapterHandle](#arkui_nodeadapterhandle) handle) | 销毁组件适配器对象。  | 
 | int32_t [OH_ArkUI_NodeAdapter_SetTotalNodeCount](#oh_arkui_nodeadapter_settotalnodecount) ([ArkUI_NodeAdapterHandle](#arkui_nodeadapterhandle) handle, uint32_t size) | 设置Adapter中的元素总数。  | 
 | uint32_t [OH_ArkUI_NodeAdapter_GetTotalNodeCount](#oh_arkui_nodeadapter_gettotalnodecount) ([ArkUI_NodeAdapterHandle](#arkui_nodeadapterhandle) handle) | 获取Adapter中的元素总数。  | 
@@ -469,25 +469,25 @@
 | int32_t [OH_ArkUI_NodeAdapter_MoveItem](#oh_arkui_nodeadapter_moveitem) ([ArkUI_NodeAdapterHandle](#arkui_nodeadapterhandle) handle, uint32_t from, uint32_t to) | 通知Adapter进行局部元素移位。  | 
 | int32_t [OH_ArkUI_NodeAdapter_GetAllItems](#oh_arkui_nodeadapter_getallitems) ([ArkUI_NodeAdapterHandle](#arkui_nodeadapterhandle) handle, [ArkUI_NodeHandle](#arkui_nodehandle) \*\*items, uint32_t \*size) | 获取存储在Adapter中的所有元素。  | 
 | void \* [OH_ArkUI_NodeAdapterEvent_GetUserData](#oh_arkui_nodeadapterevent_getuserdata) ([ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) \*event) | 获取注册事件时传入的自定义数据。  | 
-| [ArkUI_NodeAdapterEventType](#arkui_nodeadaptereventtype)[OH_ArkUI_NodeAdapterEvent_GetType](#oh_arkui_nodeadapterevent_gettype) ([ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) \*event) | 获取事件类型。  | 
-| [ArkUI_NodeHandle](#arkui_nodehandle)[OH_ArkUI_NodeAdapterEvent_GetRemovedNode](#oh_arkui_nodeadapterevent_getremovednode) ([ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) \*event) | 获取需要销毁的事件中待销毁的元素。  | 
+| [ArkUI_NodeAdapterEventType](#arkui_nodeadaptereventtype) [OH_ArkUI_NodeAdapterEvent_GetType](#oh_arkui_nodeadapterevent_gettype) ([ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) \*event) | 获取事件类型。  | 
+| [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_NodeAdapterEvent_GetRemovedNode](#oh_arkui_nodeadapterevent_getremovednode) ([ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) \*event) | 获取需要销毁的事件中待销毁的元素。  | 
 | uint32_t [OH_ArkUI_NodeAdapterEvent_GetItemIndex](#oh_arkui_nodeadapterevent_getitemindex) ([ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) \*event) | 获取适配器事件时需要操作的元素序号。  | 
-| [ArkUI_NodeHandle](#arkui_nodehandle)[OH_ArkUI_NodeAdapterEvent_GetHostNode](#oh_arkui_nodeadapterevent_gethostnode) ([ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) \*event) | 获取使用该适配器的滚动类容器节点。  | 
+| [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_NodeAdapterEvent_GetHostNode](#oh_arkui_nodeadapterevent_gethostnode) ([ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) \*event) | 获取使用该适配器的滚动类容器节点。  | 
 | int32_t [OH_ArkUI_NodeAdapterEvent_SetItem](#oh_arkui_nodeadapterevent_setitem) ([ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) \*event, [ArkUI_NodeHandle](#arkui_nodehandle) node) | 设置需要新增到Adapter中的组件。  | 
 | int32_t [OH_ArkUI_NodeAdapterEvent_SetNodeId](#oh_arkui_nodeadapterevent_setnodeid) ([ArkUI_NodeAdapterEvent](#arkui_nodeadapterevent) \*event, int32_t id) | 设置生成的组件标识。  | 
 | [ArkUI_LayoutConstraint](#arkui_layoutconstraint) \* [OH_ArkUI_NodeCustomEvent_GetLayoutConstraintInMeasure](#oh_arkui_nodecustomevent_getlayoutconstraintinmeasure) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event) | 通过自定义组件事件获取测算过程中的约束尺寸。  | 
-| [ArkUI_IntOffset](_ark_u_i___int_offset.md)[OH_ArkUI_NodeCustomEvent_GetPositionInLayout](#oh_arkui_nodecustomevent_getpositioninlayout) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event) | 通过自定义组件事件获取在布局阶段期望自身相对父组件的位置。  | 
+| [ArkUI_IntOffset](_ark_u_i___int_offset.md) [OH_ArkUI_NodeCustomEvent_GetPositionInLayout](#oh_arkui_nodecustomevent_getpositioninlayout) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event) | 通过自定义组件事件获取在布局阶段期望自身相对父组件的位置。  | 
 | [ArkUI_DrawContext](#arkui_drawcontext) \* [OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw](#oh_arkui_nodecustomevent_getdrawcontextindraw) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event) | 通过自定义组件事件获取绘制上下文。  | 
 | int32_t [OH_ArkUI_NodeCustomEvent_GetEventTargetId](#oh_arkui_nodecustomevent_geteventtargetid) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event) | 通过自定义组件事件获取自定义事件ID。  | 
 | void \* [OH_ArkUI_NodeCustomEvent_GetUserData](#oh_arkui_nodecustomevent_getuserdata) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event) | 通过自定义组件事件获取自定义事件参数。  | 
-| [ArkUI_NodeHandle](#arkui_nodehandle)[OH_ArkUI_NodeCustomEvent_GetNodeHandle](#oh_arkui_nodecustomevent_getnodehandle) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event) | 通过自定义组件事件获取组件对象。  | 
-| [ArkUI_NodeCustomEventType](#arkui_nodecustomeventtype)[OH_ArkUI_NodeCustomEvent_GetEventType](#oh_arkui_nodecustomevent_geteventtype) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event) | 通过自定义组件事件获取事件类型。  | 
+| [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_NodeCustomEvent_GetNodeHandle](#oh_arkui_nodecustomevent_getnodehandle) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event) | 通过自定义组件事件获取组件对象。  | 
+| [ArkUI_NodeCustomEventType](#arkui_nodecustomeventtype) [OH_ArkUI_NodeCustomEvent_GetEventType](#oh_arkui_nodecustomevent_geteventtype) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event) | 通过自定义组件事件获取事件类型。  | 
 | int32_t [OH_ArkUI_NodeCustomEvent_GetCustomSpanMeasureInfo](#oh_arkui_nodecustomevent_getcustomspanmeasureinfo) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event, [ArkUI_CustomSpanMeasureInfo](#arkui_customspanmeasureinfo) \*info) | 通过自定义组件事件获取自定义段落组件的测量信息。  | 
 | int32_t [OH_ArkUI_NodeCustomEvent_SetCustomSpanMetrics](#oh_arkui_nodecustomevent_setcustomspanmetrics) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event, [ArkUI_CustomSpanMetrics](#arkui_customspanmetrics) \*metrics) | 通过自定义组件事件设置自定义段落的度量指标。  | 
 | int32_t [OH_ArkUI_NodeCustomEvent_GetCustomSpanDrawInfo](#oh_arkui_nodecustomevent_getcustomspandrawinfo) ([ArkUI_NodeCustomEvent](#arkui_nodecustomevent) \*event, [ArkUI_CustomSpanDrawInfo](#arkui_customspandrawinfo) \*info) | 通过自定义组件事件获取自定义段落组件的绘制信息。  | 
 | int32_t [OH_ArkUI_NodeContent_RegisterCallback](#oh_arkui_nodecontent_registercallback) ([ArkUI_NodeContentHandle](#arkui_nodecontenthandle) content, [ArkUI_NodeContentCallback](#arkui_nodecontentcallback) callback) | 注册NodeContent事件函数。  | 
-| [ArkUI_NodeContentEventType](#arkui_nodecontenteventtype)[OH_ArkUI_NodeContentEvent_GetEventType](#oh_arkui_nodecontentevent_geteventtype) ([ArkUI_NodeContentEvent](#arkui_nodecontentevent) \*event) | 获取触发NodeContent事件的事件类型。  | 
-| [ArkUI_NodeContentHandle](#arkui_nodecontenthandle)[OH_ArkUI_NodeContentEvent_GetNodeContentHandle](#oh_arkui_nodecontentevent_getnodecontenthandle) ([ArkUI_NodeContentEvent](#arkui_nodecontentevent) \*event) | 获取触发事件的NodeContent对象。  | 
+| [ArkUI_NodeContentEventType](#arkui_nodecontenteventtype) [OH_ArkUI_NodeContentEvent_GetEventType](#oh_arkui_nodecontentevent_geteventtype) ([ArkUI_NodeContentEvent](#arkui_nodecontentevent) \*event) | 获取触发NodeContent事件的事件类型。  | 
+| [ArkUI_NodeContentHandle](#arkui_nodecontenthandle) [OH_ArkUI_NodeContentEvent_GetNodeContentHandle](#oh_arkui_nodecontentevent_getnodecontenthandle) ([ArkUI_NodeContentEvent](#arkui_nodecontentevent) \*event) | 获取触发事件的NodeContent对象。  | 
 | int32_t [OH_ArkUI_NodeContent_SetUserData](#oh_arkui_nodecontent_setuserdata) ([ArkUI_NodeContentHandle](#arkui_nodecontenthandle) content, void \*userData) | 在NodeContent对象上保存自定义数据。  | 
 | void \* [OH_ArkUI_NodeContent_GetUserData](#oh_arkui_nodecontent_getuserdata) ([ArkUI_NodeContentHandle](#arkui_nodecontenthandle) content) | 获取在NodeContent对象上保存的自定义数据。  | 
 | int32_t [OH_ArkUI_NodeContent_AddNode](#oh_arkui_nodecontent_addnode) ([ArkUI_NodeContentHandle](#arkui_nodecontenthandle) content, [ArkUI_NodeHandle](#arkui_nodehandle) node) | 将一个ArkUI组件节点添加到对应的NodeContent对象下。  | 
@@ -502,7 +502,7 @@
 | void [OH_ArkUI_NodeUtils_AddCustomProperty](#oh_arkui_nodeutils_addcustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name, const char \*value) | 设置组件的自定义属性。该接口仅在主线程生效。  | 
 | void [OH_ArkUI_NodeUtils_RemoveCustomProperty](#oh_arkui_nodeutils_removecustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name) | 移除组件已设置的自定义属性。  | 
 | int32_t [OH_ArkUI_List_CloseAllSwipeActions](#oh_arkui_list_closeallswipeactions) ([ArkUI_NodeHandle](#arkui_nodehandle) node, void \*userData, void(\*onFinish)(void \*userData)) | 收起展开状态下的ListItem。  | 
-| [ArkUI_ContextHandle](#arkui_contexthandle-12)[OH_ArkUI_GetContextByNode](#oh_arkui_getcontextbynode) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取当前节点所在页面的UI的上下文实例对象指针。  | 
+| [ArkUI_ContextHandle](#arkui_contexthandle-12) [OH_ArkUI_GetContextByNode](#oh_arkui_getcontextbynode) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取当前节点所在页面的UI的上下文实例对象指针。  | 
 | int32_t [OH_ArkUI_RegisterSystemColorModeChangeEvent](#oh_arkui_registersystemcolormodechangeevent) ([ArkUI_NodeHandle](#arkui_nodehandle) node, void \*userData, void(\*onColorModeChange)([ArkUI_SystemColorMode](#arkui_systemcolormode) colorMode, void \*userData)) | 注册系统深浅色变更事件。同一组件仅能注册一个系统深浅变更回调。  | 
 | void [OH_ArkUI_UnregisterSystemColorModeChangeEvent](#oh_arkui_unregistersystemcolormodechangeevent) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 注销系统深浅色变更事件。  | 
 | int32_t [OH_ArkUI_RegisterSystemFontStyleChangeEvent](#oh_arkui_registersystemfontstylechangeevent) ([ArkUI_NodeHandle](#arkui_nodehandle) node, void \*userData, void(\*onFontStyleChange)([ArkUI_SystemFontStyleEvent](#arkui_systemfontstyleevent) \*event, void \*userData)) | 注册系统字体变更事件。同一组件仅能注册一个系统字体变更回调。  | 
@@ -514,19 +514,19 @@
 | int32_t [OH_ArkUI_GetNodeContentFromNapiValue](#oh_arkui_getnodecontentfromnapivalue) (napi_env env, napi_value value, [ArkUI_NodeContentHandle](#arkui_nodecontenthandle) \*content) | 获取ArkTS侧创建的NodeContent对象映射到native侧的ArkUI_NodeContentHandle。  | 
 | int32_t [OH_ArkUI_GetDrawableDescriptorFromNapiValue](#oh_arkui_getdrawabledescriptorfromnapivalue) (napi_env env, napi_value value, [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*\*drawableDescriptor) | 将ArkTS侧创建的DrawableDescriptor对象映射到native侧的ArkUI_DrawableDescriptor。  | 
 | int32_t [OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue](#oh_arkui_getdrawabledescriptorfromresourcenapivalue) (napi_env env, napi_value value, [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*\*drawableDescriptor) | 将ArkTS侧创建的$r资源对象映射到native侧的ArkUI_DrawableDescriptor。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetNavigationId](#oh_arkui_getnavigationid) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在的Navigation组件的ID。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetNavDestinationName](#oh_arkui_getnavdestinationname) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在的NavDestination组件的名称。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetNavStackLength](#oh_arkui_getnavstacklength) ([ArkUI_NodeHandle](#arkui_nodehandle) node, int32_t \*length) | 根据给定索引值，获取当前节点所在的Navigation栈的长度。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetNavDestinationNameByIndex](#oh_arkui_getnavdestinationnamebyindex) ([ArkUI_NodeHandle](#arkui_nodehandle) node, int32_t index, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 根据给定索引值，获取当前节点所在的Navigation栈中对应位置的页面名称。 索引值从0开始计数，0为栈底。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetNavDestinationId](#oh_arkui_getnavdestinationid) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在的NavDestination组件的ID。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetNavDestinationState](#oh_arkui_getnavdestinationstate) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_NavDestinationState](#arkui_navdestinationstate) \*state) | 获取当前节点所在的NavDestination组件的状态。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetNavDestinationIndex](#oh_arkui_getnavdestinationindex) ([ArkUI_NodeHandle](#arkui_nodehandle) node, int32_t \*index) | 获取当前节点所在的NavDestination组件在页面栈的索引。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetNavigationId](#oh_arkui_getnavigationid) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在的Navigation组件的ID。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetNavDestinationName](#oh_arkui_getnavdestinationname) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在的NavDestination组件的名称。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetNavStackLength](#oh_arkui_getnavstacklength) ([ArkUI_NodeHandle](#arkui_nodehandle) node, int32_t \*length) | 根据给定索引值，获取当前节点所在的Navigation栈的长度。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetNavDestinationNameByIndex](#oh_arkui_getnavdestinationnamebyindex) ([ArkUI_NodeHandle](#arkui_nodehandle) node, int32_t index, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 根据给定索引值，获取当前节点所在的Navigation栈中对应位置的页面名称。 索引值从0开始计数，0为栈底。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetNavDestinationId](#oh_arkui_getnavdestinationid) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在的NavDestination组件的ID。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetNavDestinationState](#oh_arkui_getnavdestinationstate) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_NavDestinationState](#arkui_navdestinationstate) \*state) | 获取当前节点所在的NavDestination组件的状态。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetNavDestinationIndex](#oh_arkui_getnavdestinationindex) ([ArkUI_NodeHandle](#arkui_nodehandle) node, int32_t \*index) | 获取当前节点所在的NavDestination组件在页面栈的索引。  | 
 | napi_value [OH_ArkUI_GetNavDestinationParam](#oh_arkui_getnavdestinationparam) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取当前节点所在的NavDestination组件的参数。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetRouterPageIndex](#oh_arkui_getrouterpageindex) ([ArkUI_NodeHandle](#arkui_nodehandle) node, int32_t \*index) | 获取当前节点所在页面在Router页面栈中的索引。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetRouterPageName](#oh_arkui_getrouterpagename) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在页面的名称。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetRouterPagePath](#oh_arkui_getrouterpagepath) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在页面的Page组件的路径。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetRouterPageState](#oh_arkui_getrouterpagestate) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_RouterPageState](#arkui_routerpagestate) \*state) | 获取当前节点所在页面的Page组件的状态。  | 
-| [ArkUI_ErrorCode](#arkui_errorcode)[OH_ArkUI_GetRouterPageId](#oh_arkui_getrouterpageid) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在页面的Page组件的ID。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetRouterPageIndex](#oh_arkui_getrouterpageindex) ([ArkUI_NodeHandle](#arkui_nodehandle) node, int32_t \*index) | 获取当前节点所在页面在Router页面栈中的索引。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetRouterPageName](#oh_arkui_getrouterpagename) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在页面的名称。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetRouterPagePath](#oh_arkui_getrouterpagepath) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在页面的Page组件的路径。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetRouterPageState](#oh_arkui_getrouterpagestate) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_RouterPageState](#arkui_routerpagestate) \*state) | 获取当前节点所在页面的Page组件的状态。  | 
+| [ArkUI_ErrorCode](#arkui_errorcode) [OH_ArkUI_GetRouterPageId](#oh_arkui_getrouterpageid) ([ArkUI_NodeHandle](#arkui_nodehandle) node, char \*buffer, int32_t bufferSize, int32_t \*writeLength) | 获取当前节点所在页面的Page组件的ID。  | 
 | [ArkUI_LayoutConstraint](#arkui_layoutconstraint) \* [OH_ArkUI_LayoutConstraint_Create](#oh_arkui_layoutconstraint_create) () | 创建约束尺寸。  | 
 | [ArkUI_LayoutConstraint](#arkui_layoutconstraint) \* [OH_ArkUI_LayoutConstraint_Copy](#oh_arkui_layoutconstraint_copy) (const [ArkUI_LayoutConstraint](#arkui_layoutconstraint) \*Constraint) | 约束尺寸深拷贝。  | 
 | void \* [OH_ArkUI_LayoutConstraint_Dispose](#oh_arkui_layoutconstraint_dispose) ([ArkUI_LayoutConstraint](#arkui_layoutconstraint) \*Constraint) | 销毁约束尺寸指针。  | 
@@ -543,7 +543,7 @@
 | void [OH_ArkUI_LayoutConstraint_SetPercentReferenceWidth](#oh_arkui_layoutconstraint_setpercentreferencewidth) ([ArkUI_LayoutConstraint](#arkui_layoutconstraint) \*Constraint, int32_t value) | 设置宽度百分比基准。  | 
 | void [OH_ArkUI_LayoutConstraint_SetPercentReferenceHeight](#oh_arkui_layoutconstraint_setpercentreferenceheight) ([ArkUI_LayoutConstraint](#arkui_layoutconstraint) \*Constraint, int32_t value) | 设置高度百分比基准。  | 
 | void \* [OH_ArkUI_DrawContext_GetCanvas](#oh_arkui_drawcontext_getcanvas) ([ArkUI_DrawContext](#arkui_drawcontext) \*context) | 获取绘制canvas指针，可以转换为图形库的OH_Drawing_Canvas指针进行绘制。  | 
-| [ArkUI_IntSize](_ark_u_i___int_size.md)[OH_ArkUI_DrawContext_GetSize](#oh_arkui_drawcontext_getsize) ([ArkUI_DrawContext](#arkui_drawcontext) \*context) | 获取可绘制区域大小。  | 
+| [ArkUI_IntSize](_ark_u_i___int_size.md) [OH_ArkUI_DrawContext_GetSize](#oh_arkui_drawcontext_getsize) ([ArkUI_DrawContext](#arkui_drawcontext) \*context) | 获取可绘制区域大小。  | 
 | [ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \* [OH_ArkUI_WaterFlowSectionOption_Create](#oh_arkui_waterflowsectionoption_create) () | 创建FlowItem分组配置信息。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_Dispose](#oh_arkui_waterflowsectionoption_dispose) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option) | 销毁FlowItem分组配置信息指针。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_SetSize](#oh_arkui_waterflowsectionoption_setsize) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t size) | 设置FlowItem分组配置信息数组长度。  | 
@@ -557,7 +557,7 @@
 | void [OH_ArkUI_WaterFlowSectionOption_SetRowGap](#oh_arkui_waterflowsectionoption_setrowgap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, float rowGap) | 设置分组的行间距。  | 
 | float [OH_ArkUI_WaterFlowSectionOption_GetRowGap](#oh_arkui_waterflowsectionoption_getrowgap) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的行间距。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_SetMargin](#oh_arkui_waterflowsectionoption_setmargin) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, float marginTop, float marginRight, float marginBottom, float marginLeft) | 设置分组的外边距。  | 
-| [ArkUI_Margin](_ark_u_i___margin.md)[OH_ArkUI_WaterFlowSectionOption_GetMargin](#oh_arkui_waterflowsectionoption_getmargin) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的外边距。  | 
+| [ArkUI_Margin](_ark_u_i___margin.md) [OH_ArkUI_WaterFlowSectionOption_GetMargin](#oh_arkui_waterflowsectionoption_getmargin) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index) | 通过FlowItem分组配置信息获取对应索引下的分组的外边距。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindex) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, float(\*callback)(int32_t itemIndex)) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。  | 
 | void [OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndexWithUserData](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindexwithuserdata) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, void \*userData, float(\*callback)(int32_t itemIndex, void \*userData)) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。  | 
 | [ArkUI_GuidelineOption](#arkui_guidelineoption) \* [OH_ArkUI_GuidelineOption_Create](#oh_arkui_guidelineoption_create) (int32_t size) | 创建RelativeContaine容器内的辅助线信息。  | 
@@ -567,7 +567,7 @@
 | void [OH_ArkUI_GuidelineOption_SetPositionStart](#oh_arkui_guidelineoption_setpositionstart) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, float value, int32_t index) | 设置距离容器左侧或者顶部的距离。  | 
 | void [OH_ArkUI_GuidelineOption_SetPositionEnd](#oh_arkui_guidelineoption_setpositionend) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, float value, int32_t index) | 设置距离容器右侧或者底部的距离。  | 
 | const char \* [OH_ArkUI_GuidelineOption_GetId](#oh_arkui_guidelineoption_getid) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, int32_t index) | 获取辅助线的Id。  | 
-| [ArkUI_Axis](#arkui_axis)[OH_ArkUI_GuidelineOption_GetDirection](#oh_arkui_guidelineoption_getdirection) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, int32_t index) | 获取辅助线的方向。  | 
+| [ArkUI_Axis](#arkui_axis) [OH_ArkUI_GuidelineOption_GetDirection](#oh_arkui_guidelineoption_getdirection) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, int32_t index) | 获取辅助线的方向。  | 
 | float [OH_ArkUI_GuidelineOption_GetPositionStart](#oh_arkui_guidelineoption_getpositionstart) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, int32_t index) | 获取距离容器左侧或者顶部的距离。  | 
 | float [OH_ArkUI_GuidelineOption_GetPositionEnd](#oh_arkui_guidelineoption_getpositionend) ([ArkUI_GuidelineOption](#arkui_guidelineoption) \*guideline, int32_t index) | 获取距离容器右侧或者底部的距离。  | 
 | [ArkUI_BarrierOption](#arkui_barrieroption) \* [OH_ArkUI_BarrierOption_Create](#oh_arkui_barrieroption_create) (int32_t size) | 创建RelativeContaine容器内的屏障信息。  | 
@@ -576,7 +576,7 @@
 | void [OH_ArkUI_BarrierOption_SetDirection](#oh_arkui_barrieroption_setdirection) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle, [ArkUI_BarrierDirection](#arkui_barrierdirection) value, int32_t index) | 设置屏障的方向。  | 
 | void [OH_ArkUI_BarrierOption_SetReferencedId](#oh_arkui_barrieroption_setreferencedid) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle, const char \*value, int32_t index) | 设置屏障的依赖的组件。  | 
 | const char \* [OH_ArkUI_BarrierOption_GetId](#oh_arkui_barrieroption_getid) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle, int32_t index) | 获取屏障的Id。  | 
-| [ArkUI_BarrierDirection](#arkui_barrierdirection)[OH_ArkUI_BarrierOption_GetDirection](#oh_arkui_barrieroption_getdirection) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle, int32_t index) | 获取屏障的方向。  | 
+| [ArkUI_BarrierDirection](#arkui_barrierdirection) [OH_ArkUI_BarrierOption_GetDirection](#oh_arkui_barrieroption_getdirection) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle, int32_t index) | 获取屏障的方向。  | 
 | const char \* [OH_ArkUI_BarrierOption_GetReferencedId](#oh_arkui_barrieroption_getreferencedid) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle, int32_t index, int32_t referencedIndex) | 获取屏障的依赖的组件。  | 
 | int32_t [OH_ArkUI_BarrierOption_GetReferencedIdSize](#oh_arkui_barrieroption_getreferencedidsize) ([ArkUI_BarrierOption](#arkui_barrieroption) \*barrierStyle, int32_t index) | 获取屏障的依赖的组件的个数。  | 
 | [ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \* [OH_ArkUI_AlignmentRuleOption_Create](#oh_arkui_alignmentruleoption_create) () | 创建相对容器中子组件的对齐规则信息。  | 
@@ -590,17 +590,17 @@
 | void [OH_ArkUI_AlignmentRuleOption_SetBiasHorizontal](#oh_arkui_alignmentruleoption_setbiashorizontal) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option, float horizontal) | 设置组件在锚点约束下的水平方向上偏移参数。  | 
 | void [OH_ArkUI_AlignmentRuleOption_SetBiasVertical](#oh_arkui_alignmentruleoption_setbiasvertical) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option, float vertical) | 设置组件在锚点约束下的垂直方向上偏移参数。  | 
 | const char \* [OH_ArkUI_AlignmentRuleOption_GetStartId](#oh_arkui_alignmentruleoption_getstartid) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取左对齐参数的Id。  | 
-| [ArkUI_HorizontalAlignment](#arkui_horizontalalignment)[OH_ArkUI_AlignmentRuleOption_GetStartAlignment](#oh_arkui_alignmentruleoption_getstartalignment) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取左对齐参数的对齐方式。  | 
+| [ArkUI_HorizontalAlignment](#arkui_horizontalalignment) [OH_ArkUI_AlignmentRuleOption_GetStartAlignment](#oh_arkui_alignmentruleoption_getstartalignment) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取左对齐参数的对齐方式。  | 
 | const char \* [OH_ArkUI_AlignmentRuleOption_GetEndId](#oh_arkui_alignmentruleoption_getendid) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取右对齐参数。  | 
-| [ArkUI_HorizontalAlignment](#arkui_horizontalalignment)[OH_ArkUI_AlignmentRuleOption_GetEndAlignment](#oh_arkui_alignmentruleoption_getendalignment) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取右对齐参数。  | 
+| [ArkUI_HorizontalAlignment](#arkui_horizontalalignment) [OH_ArkUI_AlignmentRuleOption_GetEndAlignment](#oh_arkui_alignmentruleoption_getendalignment) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取右对齐参数。  | 
 | const char \* [OH_ArkUI_AlignmentRuleOption_GetCenterIdHorizontal](#oh_arkui_alignmentruleoption_getcenteridhorizontal) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取横向居中对齐方式的参数。  | 
-| [ArkUI_HorizontalAlignment](#arkui_horizontalalignment)[OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentHorizontal](#oh_arkui_alignmentruleoption_getcenteralignmenthorizontal) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取横向居中对齐方式的参数。  | 
+| [ArkUI_HorizontalAlignment](#arkui_horizontalalignment) [OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentHorizontal](#oh_arkui_alignmentruleoption_getcenteralignmenthorizontal) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取横向居中对齐方式的参数。  | 
 | const char \* [OH_ArkUI_AlignmentRuleOption_GetTopId](#oh_arkui_alignmentruleoption_gettopid) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取顶部对齐的参数。  | 
-| [ArkUI_VerticalAlignment](#arkui_verticalalignment)[OH_ArkUI_AlignmentRuleOption_GetTopAlignment](#oh_arkui_alignmentruleoption_gettopalignment) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取顶部对齐的参数。  | 
+| [ArkUI_VerticalAlignment](#arkui_verticalalignment) [OH_ArkUI_AlignmentRuleOption_GetTopAlignment](#oh_arkui_alignmentruleoption_gettopalignment) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取顶部对齐的参数。  | 
 | const char \* [OH_ArkUI_AlignmentRuleOption_GetBottomId](#oh_arkui_alignmentruleoption_getbottomid) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取底部对齐的参数。  | 
-| [ArkUI_VerticalAlignment](#arkui_verticalalignment)[OH_ArkUI_AlignmentRuleOption_GetBottomAlignment](#oh_arkui_alignmentruleoption_getbottomalignment) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取底部对齐的参数。  | 
+| [ArkUI_VerticalAlignment](#arkui_verticalalignment) [OH_ArkUI_AlignmentRuleOption_GetBottomAlignment](#oh_arkui_alignmentruleoption_getbottomalignment) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取底部对齐的参数。  | 
 | const char \* [OH_ArkUI_AlignmentRuleOption_GetCenterIdVertical](#oh_arkui_alignmentruleoption_getcenteridvertical) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取纵向居中对齐方式的参数。  | 
-| [ArkUI_VerticalAlignment](#arkui_verticalalignment)[OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentVertical](#oh_arkui_alignmentruleoption_getcenteralignmentvertical) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取纵向居中对齐方式的参数。  | 
+| [ArkUI_VerticalAlignment](#arkui_verticalalignment) [OH_ArkUI_AlignmentRuleOption_GetCenterAlignmentVertical](#oh_arkui_alignmentruleoption_getcenteralignmentvertical) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取纵向居中对齐方式的参数。  | 
 | float [OH_ArkUI_AlignmentRuleOption_GetBiasHorizontal](#oh_arkui_alignmentruleoption_getbiashorizontal) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取水平方向上的bias值。  | 
 | float [OH_ArkUI_AlignmentRuleOption_GetBiasVertical](#oh_arkui_alignmentruleoption_getbiasvertical) ([ArkUI_AlignmentRuleOption](#arkui_alignmentruleoption) \*option) | 获取垂直方向上的bias值。  | 
 | [ArkUI_SwiperIndicator](#arkui_swiperindicator) \* [OH_ArkUI_SwiperIndicator_Create](#oh_arkui_swiperindicator_create) ([ArkUI_SwiperIndicatorType](#arkui_swiperindicatortype) type) | 创建 Swiper 组件的导航指示器。  | 
@@ -751,7 +751,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nativeNode
 ### ArkUI_AccessibilityState
 
 ```
-typedef struct ArkUI_AccessibilityStateArkUI_AccessibilityState
+typedef struct ArkUI_AccessibilityState ArkUI_AccessibilityState
 ```
 **描述：**
 
@@ -763,7 +763,7 @@ typedef struct ArkUI_AccessibilityStateArkUI_AccessibilityState
 ### ArkUI_AccessibilityValue
 
 ```
-typedef struct ArkUI_AccessibilityValueArkUI_AccessibilityValue
+typedef struct ArkUI_AccessibilityValue ArkUI_AccessibilityValue
 ```
 **描述：**
 
@@ -775,7 +775,7 @@ typedef struct ArkUI_AccessibilityValueArkUI_AccessibilityValue
 ### ArkUI_AlignmentRuleOption
 
 ```
-typedef struct ArkUI_AlignmentRuleOptionArkUI_AlignmentRuleOption
+typedef struct ArkUI_AlignmentRuleOption ArkUI_AlignmentRuleOption
 ```
 **描述：**
 
@@ -787,7 +787,7 @@ typedef struct ArkUI_AlignmentRuleOptionArkUI_AlignmentRuleOption
 ### ArkUI_AnimateOption
 
 ```
-typedef struct ArkUI_AnimateOptionArkUI_AnimateOption
+typedef struct ArkUI_AnimateOption ArkUI_AnimateOption
 ```
 **描述：**
 
@@ -811,7 +811,7 @@ typedef struct ArkUI_Animator* ArkUI_AnimatorHandle
 ### ArkUI_AnimatorOption
 
 ```
-typedef struct ArkUI_AnimatorOptionArkUI_AnimatorOption
+typedef struct ArkUI_AnimatorOption ArkUI_AnimatorOption
 ```
 **描述：**
 
@@ -823,7 +823,7 @@ typedef struct ArkUI_AnimatorOptionArkUI_AnimatorOption
 ### ArkUI_BarrierOption
 
 ```
-typedef struct ArkUI_BarrierOptionArkUI_BarrierOption
+typedef struct ArkUI_BarrierOption ArkUI_BarrierOption
 ```
 **描述：**
 
@@ -835,7 +835,7 @@ barrier参数，用于定义barrier的id、方向和生成时所依赖的组件�
 ### ArkUI_Context
 
 ```
-typedef struct ArkUI_ContextArkUI_Context
+typedef struct ArkUI_Context ArkUI_Context
 ```
 **描述：**
 
@@ -883,7 +883,7 @@ typedef struct ArkUI_Curve* ArkUI_CurveHandle
 ### ArkUI_CustomSpanDrawInfo
 
 ```
-typedef struct ArkUI_CustomSpanDrawInfoArkUI_CustomSpanDrawInfo
+typedef struct ArkUI_CustomSpanDrawInfo ArkUI_CustomSpanDrawInfo
 ```
 **描述：**
 
@@ -895,7 +895,7 @@ typedef struct ArkUI_CustomSpanDrawInfoArkUI_CustomSpanDrawInfo
 ### ArkUI_CustomSpanMeasureInfo
 
 ```
-typedef struct ArkUI_CustomSpanMeasureInfoArkUI_CustomSpanMeasureInfo
+typedef struct ArkUI_CustomSpanMeasureInfo ArkUI_CustomSpanMeasureInfo
 ```
 **描述：**
 
@@ -907,7 +907,7 @@ typedef struct ArkUI_CustomSpanMeasureInfoArkUI_CustomSpanMeasureInfo
 ### ArkUI_CustomSpanMetrics
 
 ```
-typedef struct ArkUI_CustomSpanMetricsArkUI_CustomSpanMetrics
+typedef struct ArkUI_CustomSpanMetrics ArkUI_CustomSpanMetrics
 ```
 **描述：**
 
@@ -918,7 +918,7 @@ typedef struct ArkUI_CustomSpanMetricsArkUI_CustomSpanMetrics
 ### ArkUI_DialogDismissEvent
 
 ```
-typedef struct ArkUI_DialogDismissEventArkUI_DialogDismissEvent
+typedef struct ArkUI_DialogDismissEvent ArkUI_DialogDismissEvent
 ```
 **描述：**
 
@@ -930,7 +930,7 @@ typedef struct ArkUI_DialogDismissEventArkUI_DialogDismissEvent
 ### ArkUI_DragAction
 
 ```
-typedef struct ArkUI_DragActionArkUI_DragAction
+typedef struct ArkUI_DragAction ArkUI_DragAction
 ```
 **描述：**
 
@@ -942,7 +942,7 @@ typedef struct ArkUI_DragActionArkUI_DragAction
 ### ArkUI_DragAndDropInfo
 
 ```
-typedef struct ArkUI_DragAndDropInfoArkUI_DragAndDropInfo
+typedef struct ArkUI_DragAndDropInfo ArkUI_DragAndDropInfo
 ```
 **描述：**
 
@@ -954,7 +954,7 @@ typedef struct ArkUI_DragAndDropInfoArkUI_DragAndDropInfo
 ### ArkUI_DragEvent
 
 ```
-typedef struct ArkUI_DragEventArkUI_DragEvent
+typedef struct ArkUI_DragEvent ArkUI_DragEvent
 ```
 **描述：**
 
@@ -966,7 +966,7 @@ typedef struct ArkUI_DragEventArkUI_DragEvent
 ### ArkUI_DragPreviewOption
 
 ```
-typedef struct ArkUI_DragPreviewOptionArkUI_DragPreviewOption
+typedef struct ArkUI_DragPreviewOption ArkUI_DragPreviewOption
 ```
 **描述：**
 
@@ -978,7 +978,7 @@ typedef struct ArkUI_DragPreviewOptionArkUI_DragPreviewOption
 ### ArkUI_DrawableDescriptor
 
 ```
-typedef struct ArkUI_DrawableDescriptorArkUI_DrawableDescriptor
+typedef struct ArkUI_DrawableDescriptor ArkUI_DrawableDescriptor
 ```
 **描述：**
 
@@ -990,7 +990,7 @@ typedef struct ArkUI_DrawableDescriptorArkUI_DrawableDescriptor
 ### ArkUI_DrawContext
 
 ```
-typedef struct ArkUI_DrawContextArkUI_DrawContext
+typedef struct ArkUI_DrawContext ArkUI_DrawContext
 ```
 **描述：**
 
@@ -1028,7 +1028,7 @@ typedef uint32_t ArkUI_GestureEventActionTypeMask
 ### ArkUI_GestureEventTargetInfo
 
 ```
-typedef struct ArkUI_GestureEventTargetInfoArkUI_GestureEventTargetInfo
+typedef struct ArkUI_GestureEventTargetInfo ArkUI_GestureEventTargetInfo
 ```
 **描述：**
 
@@ -1076,7 +1076,7 @@ typedef ArkUI_GestureRecognizerHandle* ArkUI_GestureRecognizerHandleArray
 ### ArkUI_GuidelineOption
 
 ```
-typedef struct ArkUI_GuidelineOptionArkUI_GuidelineOption
+typedef struct ArkUI_GuidelineOption ArkUI_GuidelineOption
 ```
 **描述：**
 
@@ -1088,7 +1088,7 @@ guideLine参数，用于定义guideline的id、方向和位置。
 ### ArkUI_ImageAnimatorFrameInfo
 
 ```
-typedef struct ArkUI_ImageAnimatorFrameInfoArkUI_ImageAnimatorFrameInfo
+typedef struct ArkUI_ImageAnimatorFrameInfo ArkUI_ImageAnimatorFrameInfo
 ```
 **描述：**
 
@@ -1100,7 +1100,7 @@ typedef struct ArkUI_ImageAnimatorFrameInfoArkUI_ImageAnimatorFrameInfo
 ### ArkUI_KeyframeAnimateOption
 
 ```
-typedef struct ArkUI_KeyframeAnimateOptionArkUI_KeyframeAnimateOption
+typedef struct ArkUI_KeyframeAnimateOption ArkUI_KeyframeAnimateOption
 ```
 **描述：**
 
@@ -1112,7 +1112,7 @@ typedef struct ArkUI_KeyframeAnimateOptionArkUI_KeyframeAnimateOption
 ### ArkUI_LayoutConstraint
 
 ```
-typedef struct ArkUI_LayoutConstraintArkUI_LayoutConstraint
+typedef struct ArkUI_LayoutConstraint ArkUI_LayoutConstraint
 ```
 **描述：**
 
@@ -1124,7 +1124,7 @@ typedef struct ArkUI_LayoutConstraintArkUI_LayoutConstraint
 ### ArkUI_ListChildrenMainSize
 
 ```
-typedef struct ArkUI_ListChildrenMainSizeArkUI_ListChildrenMainSize
+typedef struct ArkUI_ListChildrenMainSize ArkUI_ListChildrenMainSize
 ```
 **描述：**
 
@@ -1136,7 +1136,7 @@ typedef struct ArkUI_ListChildrenMainSizeArkUI_ListChildrenMainSize
 ### ArkUI_ListItemSwipeActionItem
 
 ```
-typedef struct ArkUI_ListItemSwipeActionItemArkUI_ListItemSwipeActionItem
+typedef struct ArkUI_ListItemSwipeActionItem ArkUI_ListItemSwipeActionItem
 ```
 **描述：**
 
@@ -1148,7 +1148,7 @@ typedef struct ArkUI_ListItemSwipeActionItemArkUI_ListItemSwipeActionItem
 ### ArkUI_ListItemSwipeActionOption
 
 ```
-typedef struct ArkUI_ListItemSwipeActionOptionArkUI_ListItemSwipeActionOption
+typedef struct ArkUI_ListItemSwipeActionOption ArkUI_ListItemSwipeActionOption
 ```
 **描述：**
 
@@ -1172,7 +1172,7 @@ typedef struct ArkUI_NativeDialog* ArkUI_NativeDialogHandle
 ### ArkUI_NodeAdapterEvent
 
 ```
-typedef struct ArkUI_NodeAdapterEventArkUI_NodeAdapterEvent
+typedef struct ArkUI_NodeAdapterEvent ArkUI_NodeAdapterEvent
 ```
 **描述：**
 
@@ -1208,7 +1208,7 @@ typedef void(* ArkUI_NodeContentCallback) (ArkUI_NodeContentEvent *event)
 ### ArkUI_NodeContentEvent
 
 ```
-typedef struct ArkUI_NodeContentEventArkUI_NodeContentEvent
+typedef struct ArkUI_NodeContentEvent ArkUI_NodeContentEvent
 ```
 **描述：**
 
@@ -1232,7 +1232,7 @@ typedef struct ArkUI_NodeContent* ArkUI_NodeContentHandle
 ### ArkUI_NodeCustomEvent
 
 ```
-typedef struct ArkUI_NodeCustomEventArkUI_NodeCustomEvent
+typedef struct ArkUI_NodeCustomEvent ArkUI_NodeCustomEvent
 ```
 **描述：**
 
@@ -1244,7 +1244,7 @@ typedef struct ArkUI_NodeCustomEventArkUI_NodeCustomEvent
 ### ArkUI_NodeEvent [1/2]
 
 ```
-typedef struct ArkUI_NodeEventArkUI_NodeEvent
+typedef struct ArkUI_NodeEvent ArkUI_NodeEvent
 ```
 **描述：**
 
@@ -1292,7 +1292,7 @@ typedef bool(* ArkUI_OnWillDismissEvent) (int32_t reason)
 ### ArkUI_ParallelInnerGestureEvent
 
 ```
-typedef struct ArkUI_ParallelInnerGestureEventArkUI_ParallelInnerGestureEvent
+typedef struct ArkUI_ParallelInnerGestureEvent ArkUI_ParallelInnerGestureEvent
 ```
 **描述：**
 
@@ -1304,7 +1304,7 @@ typedef struct ArkUI_ParallelInnerGestureEventArkUI_ParallelInnerGestureEvent
 ### ArkUI_StyledString
 
 ```
-typedef struct ArkUI_StyledStringArkUI_StyledString
+typedef struct ArkUI_StyledString ArkUI_StyledString
 ```
 **描述：**
 
@@ -1316,7 +1316,7 @@ typedef struct ArkUI_StyledStringArkUI_StyledString
 ### ArkUI_StyledString_Descriptor
 
 ```
-typedef struct ArkUI_StyledString_DescriptorArkUI_StyledString_Descriptor
+typedef struct ArkUI_StyledString_Descriptor ArkUI_StyledString_Descriptor
 ```
 **描述：**
 
@@ -1328,7 +1328,7 @@ typedef struct ArkUI_StyledString_DescriptorArkUI_StyledString_Descriptor
 ### ArkUI_SwiperIndicator
 
 ```
-typedef struct ArkUI_SwiperIndicatorArkUI_SwiperIndicator
+typedef struct ArkUI_SwiperIndicator ArkUI_SwiperIndicator
 ```
 **描述：**
 
@@ -1340,7 +1340,7 @@ typedef struct ArkUI_SwiperIndicatorArkUI_SwiperIndicator
 ### ArkUI_SystemFontStyleEvent
 
 ```
-typedef struct ArkUI_SystemFontStyleEventArkUI_SystemFontStyleEvent
+typedef struct ArkUI_SystemFontStyleEvent ArkUI_SystemFontStyleEvent
 ```
 **描述：**
 
@@ -1352,7 +1352,7 @@ typedef struct ArkUI_SystemFontStyleEventArkUI_SystemFontStyleEvent
 ### ArkUI_TransitionEffect
 
 ```
-typedef struct ArkUI_TransitionEffectArkUI_TransitionEffect
+typedef struct ArkUI_TransitionEffect ArkUI_TransitionEffect
 ```
 **描述：**
 
@@ -1364,7 +1364,7 @@ typedef struct ArkUI_TransitionEffectArkUI_TransitionEffect
 ### ArkUI_WaterFlowSectionOption
 
 ```
-typedef struct ArkUI_WaterFlowSectionOptionArkUI_WaterFlowSectionOption
+typedef struct ArkUI_WaterFlowSectionOption ArkUI_WaterFlowSectionOption
 ```
 **描述：**
 
@@ -1376,7 +1376,7 @@ typedef struct ArkUI_WaterFlowSectionOptionArkUI_WaterFlowSectionOption
 ### OH_PixelmapNative
 
 ```
-typedef struct OH_PixelmapNativeOH_PixelmapNative
+typedef struct OH_PixelmapNative OH_PixelmapNative
 ```
 **描述：**
 
@@ -1400,7 +1400,7 @@ typedef struct OH_PixelmapNative* OH_PixelmapNativeHandle
 ### OH_UdmfData
 
 ```
-typedef struct OH_UdmfDataOH_UdmfData
+typedef struct OH_UdmfData OH_UdmfData
 ```
 **描述：**
 
