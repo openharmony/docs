@@ -4397,8 +4397,6 @@ struct Index {
         })
         .height("20%")
         .width("100%")
-      // .borderWidth(1)
-      // .borderColor(Color.Black)
 
       RichEditor(this.options1)
         .onReady(() => {
