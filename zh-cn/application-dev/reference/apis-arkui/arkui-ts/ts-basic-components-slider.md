@@ -571,6 +571,8 @@ type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => vo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
 | 参数名 | 类型    | 只读 | 可选 | 说明              |
 | ------ | ------ | ---- | ---------------- | ---------------- |
 | value | number | 否 | 否 | 设置当前的进度值。 |

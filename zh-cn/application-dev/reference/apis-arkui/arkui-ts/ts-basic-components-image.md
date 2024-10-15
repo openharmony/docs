@@ -535,11 +535,11 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                    |
-| ------ | -------------------------- |
-| High   | 不受限动态范围，最大限度进行图片提亮。              |
-| Constraint | 受限动态范围，受限进行图片提亮。          |
-| Standard    | 标准动态范围，不进行图片提亮。         |
+| 名称     | 值    | 说明                    |
+| ------ | -------------------------- | -------------------------- |
+| HIGH   | 0  | 不受限动态范围，最大限度进行图片提亮。              |
+| CONSTRAINT | 1 | 受限动态范围，受限进行图片提亮。          |
+| STANDARD | 2 | 标准动态范围，不进行图片提亮。         |
 
 ## ImageSourceSize<sup>14+</sup>对象说明
 
@@ -644,17 +644,15 @@ type ImageErrorCallback = (error: ImageError) => void
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型   | 必填 | 说明                      |
 | --------------- | ------ | ---- | ------------------------- |
-| componentWidth  | number | 是   | 组件的宽。<br/>单位：像素 |
-| componentHeight | number | 是   | 组件的高。<br/>单位：像素 |
-| message<sup>10+</sup>         | string | 是   | 报错信息。                |
+| componentWidth  | number | 是   | 组件的宽。<br/>单位：像素<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| componentHeight | number | 是   | 组件的高。<br/>单位：像素<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| message<sup>10+</sup>         | string | 是   | 报错信息。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 ## 示例
 

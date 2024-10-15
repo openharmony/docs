@@ -1356,9 +1356,9 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型       | 说明                                       |
-| -------- | ---------------------------------------- |
-| "navBar"   | Navigation首页。 |
+| 类型     | 说明             |
+| -------- | ---------------- |
+| 'navBar' | Navigation首页。 |
 
 ## NavigationMenuItem
 

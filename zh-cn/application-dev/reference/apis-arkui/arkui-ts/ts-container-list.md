@@ -578,7 +578,7 @@ List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 ### onScrollFrameBegin<sup>9+</sup>
 
-onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain：number })
+onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number })
 
 列表开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。
 
@@ -979,7 +979,7 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 描述                                       |
+| 名称     |  值  | 说明                                     |
 | ------ | ------ | ---------------------------------------- |
 | NONE |  0  | 当前页面可视边处于none位置。例如，ListItemGroup中既没有header、footer，也没有ListItem。 |
 | IN_LIST_ITEM_AREA |  1  | 当前页面可视边处于ListItem位置。 |
