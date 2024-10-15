@@ -14,7 +14,7 @@
 
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
-如需要在图库中看到所保存的图片、视频资源，需要将其保存到媒体库，保存方式请参考：[安全控件创建媒体资源](../medialibrary/photoAccessHelper-savebutton.md#使用安全控件创建媒体资源)。
+如需要在图库中看到所保存的图片、视频资源，需要将其保存到媒体库，保存方式请参考：[保存媒体库资源](../medialibrary/photoAccessHelper-savebutton.md)。
 
 需要在[photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/js-apis-camera.md#onphotoavailable11)接口获取到buffer时，将buffer在安全控件中保存到媒体库。
 ```ts

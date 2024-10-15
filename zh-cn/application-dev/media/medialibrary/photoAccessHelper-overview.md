@@ -9,7 +9,7 @@ Media Library Kit（媒体文件管理服务）提供了管理相册和媒体文
 面向**所有应用**开放如下能力：
 
 - [使用Picker选择媒体库资源](photoAccessHelper-photoviewpicker.md)
-- [使用安全控件保存媒体库资源](photoAccessHelper-savebutton.md)
+- [保存媒体库资源](photoAccessHelper-savebutton.md)
 
 面向**三方应用受限**开放如下能力：
 
