@@ -71,7 +71,7 @@ PasteButton(options:PasteButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | LINES | 0 | 粘贴按钮展示线条样式图标。 |
 
@@ -81,7 +81,7 @@ PasteButton(options:PasteButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | PASTE | 0 | 粘贴按钮的文字描述为“粘贴”。 |
 
@@ -91,7 +91,7 @@ PasteButton(options:PasteButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 粘贴按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 粘贴按钮点击后权限授权失败。 |
