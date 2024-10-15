@@ -7,6 +7,8 @@
 
 共享用户首选项默认加密等级为EL2，持久化文件存储在对应的EL2路径下。设备开机后，若处于无密码状态，可直接访问；若处于有密码状态，此路径下的文件需要至少一次解锁对应用户的锁屏界面后（密码、指纹、人脸等方式解锁皆可）才能够访问。需避免在开机未解锁的情况下访问首选项。修改加密登记的方法请参见[获取和修改加密分区](../../../application-dev/application-models/application-context-stage.md#获取和修改加密分区)。
 
+sendablePreferences实例继承ISendable，可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，性能优于普通的[preference](../js-apis-data-preferences.md)，参考[Sendable使用场景](../../arkts-utils/arkts-sendable.md#使用场景)。
+
 > **说明：**
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
