@@ -16,7 +16,7 @@ childProcessManager模块提供子进程管理能力，支持子进程启动操�
 import { childProcessManager } from '@kit.AbilityKit';
 ```
 
-## childProcessManager.StartMode
+## StartMode
 
 子进程启动模式枚举。
 
