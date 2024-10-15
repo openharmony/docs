@@ -67,7 +67,7 @@ LocationButton(options:LocationButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | FULL_FILLED |  0 | 位置按钮展示填充样式图标。 |
 | LINES | 1 | 位置按钮展示线条样式图标。 |
@@ -78,7 +78,7 @@ LocationButton(options:LocationButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | CURRENT_LOCATION | 0 | 位置按钮的文字描述为“当前位置”。 |
 | ADD_LOCATION | 1 | 位置按钮的文字描述为“添加位置”。 |
@@ -98,7 +98,7 @@ LocationButton(options:LocationButtonOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 枚举值 | 描述 |
+| 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 位置按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 位置按钮点击后位置权限授权失败。 |
