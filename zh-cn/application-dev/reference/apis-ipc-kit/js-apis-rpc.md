@@ -6707,7 +6707,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 ### sendMessageRequest<sup>9+</sup>
 
@@ -6753,7 +6753,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 ### registerDeathRecipient<sup>9+</sup>
 
@@ -7122,7 +7122,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
@@ -7309,7 +7309,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | data     | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply    | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options  | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 **示例：**
 
@@ -8833,7 +8833,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 | 类型                                                         | 说明                                          |
 | ------------------------------------------------------------ | --------------------------------------------- |
-| Promise&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+| Promise&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
 
 **示例：**
 
@@ -8965,7 +8965,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 | data          | [MessageParcel](#messageparceldeprecated)                    | 是   | 保存待发送数据的MessageParcel对象。                    |
 | reply         | [MessageParcel](#messageparceldeprecated)                    | 是   | 接收应答数据的MessageParcel对象。                            |
 | options       | [MessageOption](#messageoption)                              | 是   | 本次请求的同异步模式，默认同步调用。                         |
-| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresult8deprecated)&gt; | 是   | 接收发送结果的回调。                                         |
+| callback      | AsyncCallback&lt;[SendRequestResult](#sendrequestresultdeprecated)&gt; | 是   | 接收发送结果的回调。                                         |
 
 **示例：**
 
