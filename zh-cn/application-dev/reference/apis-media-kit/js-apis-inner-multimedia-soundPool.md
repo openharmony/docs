@@ -241,7 +241,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let soundID: number = 0;
     let fileSize: number = 1; //通过fileIo.stat()获取size值
     let uri: string = "";
-    //获取fd的描述信息,test_01.mp3不是rawfile目录资源下面的音频
+    //获取fd的描述信息，test_01.mp3不是rawfile目录资源下面的音频
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
@@ -356,7 +356,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let soundID: number = 0;
     let fileSize: number = 1; //通过fileIo.stat()获取size值
     let uri: string = "";
-    //获取fd的描述信息,test_01.mp3不是rawfile目录资源下面的音频
+    //获取fd的描述信息，test_01.mp3不是rawfile目录资源下面的音频
     fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file_: fileIo.File) => {
       file = file_;
       console.info("file fd: " + file.fd);
