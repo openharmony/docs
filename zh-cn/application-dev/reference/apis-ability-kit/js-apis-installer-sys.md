@@ -1326,6 +1326,7 @@ uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void
 | 17700001 | The specified bundle name is not found. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 | 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
+| 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **示例：**
@@ -1359,7 +1360,7 @@ try {
 
 ## BundleInstaller.createAppClone<sup>12+</sup>
 
-createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise<number>;
+createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise\<number>;
 
 以异步方法创建应用分身，使用Promise形式返回结果。
 
@@ -1426,7 +1427,7 @@ try {
 
 ## BundleInstaller.destroyAppClone<sup>12+</sup>
 
-destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise<void>;
+destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\<void>;
 
 以异步方法删除应用分身，使用Promise形式返回结果。
 
@@ -1491,7 +1492,7 @@ try {
 
 ## BundleInstaller.installPreexistingApp<sup>12+</sup>
 
-installPreexistingApp(bundleName: string, userId?: number): Promise<void>;
+installPreexistingApp(bundleName: string, userId?: number): Promise\<void>;
 
 以异步方法安装应用，使用Promise形式返回结果。
 
