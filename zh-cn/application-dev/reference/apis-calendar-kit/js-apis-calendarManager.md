@@ -1552,7 +1552,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 static filterByTitle(title: string): EventFilter
 
-根据日程标题过滤日程。
+根据日程标题过滤日程，该条件为模糊匹配。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1592,6 +1592,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
     }).catch((err: BusinessError) => {
       console.error(`Failed to add event, err -> ${JSON.stringify(err)}`);
     });
+    // 根据MyEvent进行模糊查询，如果存在类似标题为MyEvent1类型的日程，也可查询出来
     const filter = calendarManager.EventFilter.filterByTitle('MyEvent');
     calendar.getEvents(filter).then((data: calendarManager.Event[]) => {
       console.info(`Succeeded to filter by title, data -> ${JSON.stringify(data)}`);
@@ -1611,7 +1612,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | 名称      | 值   | 说明                 |
 | --------- | ---- | -------------------- |
 | NORMAL    | 0    | 普通日程。           |
-| IMPORTANT | 1    | 重要日程。支持倒计时。 |
+| IMPORTANT | 1    | 重要日程，例如结婚纪念日等具有重要意义的日期，不推荐三方开发者使用，重要日程类型不支持一键服务跳转功能及无法自定义提醒时间。 |
 
 ## RecurrenceRule
 
@@ -1657,7 +1658,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | 名称        | 类型                        | 只读 | 必填 | 说明                                  |
 | ----------- | --------------------------- | ---- | ---- | ------------------------------------- |
 | type        | [ServiceType](#servicetype) | 否   | 是   | 服务类型。                            |
-| uri         | string                      | 否   | 是   | 服务的uri。可以跳转到三方应用相应界面。 |
+| uri         | string                      | 否   | 是   | 服务的uri，格式为Deeplink类型。可以跳转到三方应用相应界面。 |
 | description | string                      | 否   | 否   | 服务辅助描述。不填时，默认为空字符串。  |
 
 ## ServiceType
