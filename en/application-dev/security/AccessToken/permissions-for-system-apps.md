@@ -735,7 +735,7 @@ Allows an application to use the lock screen service to lock the screen, send a 
 
 ### ohos.permission.BACKUP
 
-Allows an application to have backup and restore capabilities.
+Allows an application to use the backup and restore capability.
 
 **Permission level**: system_basic
 
