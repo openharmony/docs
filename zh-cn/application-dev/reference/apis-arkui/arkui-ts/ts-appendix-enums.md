@@ -1015,3 +1015,33 @@ Nullable\<T> {
 | ------ | ----------------------------- |
 | TOP_SCREEN | 上半屏。|
 | BOTTOM_SCREEN | 下半屏。|
+
+### WidthBreakpoint<sup>13+</sup>
+
+表示窗口不同宽度阈值下对应的宽度断点枚举值。通过[getWindowWidthBreakpoint](../js-apis-arkui-UIContext.md#getwindowwidthbreakpoint13)返回。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| WIDTH_XS | 0   | 窗口宽度小于320vp。 |
+| WIDTH_SM | 1   | 窗口宽度大于等于320vp，且小于600vp。 |
+| WIDTH_MD | 2   | 窗口宽度大于等于600vp，且小于840vp。 |
+| WIDTH_LG | 3   | 窗口宽度大于等于840vp，且小于1440vp。 |
+| WIDTH_XL | 4   | 窗口宽度大于等于1440vp。 |
+
+### HeightBreakpoint<sup>13+</sup>
+
+表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| HEIGHT_SM | 0   | 窗口高宽比小于0.8。 |
+| HEIGHT_MD | 1   | 窗口高宽比大于等于0.8，且小于1.2。 |
+| HEIGHT_LG | 2   | 窗口高宽比大于等于1.2。 |
