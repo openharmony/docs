@@ -14,7 +14,7 @@ AbilityConstant提供UIAbility相关的枚举，包括设置初次启动原因�
 import { AbilityConstant } from '@kit.AbilityKit';
 ```
 
-## AbilityConstant.LaunchParam
+## LaunchParam
 
 启动参数。Ability启动时由系统自动传入，开发者无需修改。
 
@@ -26,7 +26,7 @@ import { AbilityConstant } from '@kit.AbilityKit';
 | lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 否 | 否 | 枚举类型，表示最后退出原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示最后退出详细原因。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-## AbilityConstant.LaunchReason
+## LaunchReason
 
 Ability初次启动原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate)方法根据launchParam.launchReason的不同类型执行相应操作。
 
@@ -57,7 +57,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.LastExitReason
+## LastExitReason
 
 Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate)方法根据launchParam.lastExitReason的不同类型执行相应操作。
 
@@ -92,7 +92,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.OnContinueResult 
+## OnContinueResult 
 
 Ability迁移结果，该类型为枚举，可配合UIAbility的[onContinue(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncontinue)方法进完成相应的返回。
 
@@ -118,7 +118,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.MemoryLevel
+## MemoryLevel
 
 内存级别，该类型为枚举，可配合UIAbility的[onMemoryLevel(level)](js-apis-app-ability-ability.md#abilityonmemorylevel)方法根据level执行不同内存级别的相应操作。
 
@@ -146,7 +146,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.WindowMode<sup>12+</sup>
+## WindowMode<sup>12+</sup>
 
 启动Ability时的窗口模式，类型为枚举。可配合[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)使用，指定启动Ability的窗口模式。
 
@@ -184,7 +184,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.OnSaveResult
+## OnSaveResult
 
 保存应用数据的结果，该类型为枚举，可配合UIAbility的[onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)方法完成相应的返回。
 
@@ -213,7 +213,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.StateType
+## StateType
 
 保存应用数据场景原因，该类型为枚举，可配合UIAbility的[onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)方法根据reason的不同类型执行相应操作。
 
@@ -241,7 +241,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.ContinueState<sup>10+</sup>
+## ContinueState<sup>10+</sup>
 
 流转状态枚举值。用于表示当前应用任务流转的状态。可配合[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)的[setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10)方法进行设置。
 
