@@ -493,6 +493,34 @@ export class exportClass {}
 ../oh_modules/json5          // 引用的三方库json5里所有文件中的名称都不混淆
 ```
 
+**如何在模块中保留远程HAR包**
+
+方式一：指定远程`HAR`包在模块级`oh_modules`中的具体路径（该路径为软链接路径，真实路径为工程级`oh_modules`中的文件路径）。因为在配置模块级`oh_modules`中的路径作为白名单时，需要具体到包名或之后的目录才能正确地软链接到真实的目录路径，所以不能仅配置`HAR`包的上级目录名称。
+
+```
+// 正例
+-keep
+./oh_modules/harName1         // harName1目录下所有文件及子文件夹中的名称都不混淆
+./oh_modules/harName1/src     // src目录下所有文件及子文件夹中的名称都不混淆
+./oh_modules/folder/harName2  // harName2目录下所有文件及子文件夹中的名称都不混淆
+
+// 反例
+-keep
+./oh_modules                  // 保留模块级oh_modules里HAR包时，不支持配置HAR包的上级目录名称
+```
+
+方式二：指定远程`HAR`包在工程级`oh_modules`中的具体路径。因为工程级`oh_modules`中的文件路径都为真实路径，所以其路径均可配置。
+
+```
+-keep
+../oh_modules                  // 工程级oh_modules目录下所有文件及子文件夹中的名称都不混淆
+../oh_modules/harName3          // harName3目录下所有文件及子文件夹中的名称都不混淆
+```
+
+模块级`oh_moudles`和工程级`oh_modules`在`DevEco Studio`中的目录结构如下图所示：
+
+![oh_modules](./figures/oh_modules.png)
+
 **注意**：
 
 1. 被`-keep filepath`所保留的文件，其依赖链路上的文件中导出名称及其属性都会被保留。
@@ -831,7 +859,7 @@ end-for
 假设当前模块未配置`-compact`，但是混淆的中间产物中代码都被压缩成一行，可按照以下步骤排查混淆选项：
 
 1. 查看当前模块的oh-package.json5中的dependencies，此字段记录了当前模块的依赖信息。
-2. 在依赖的模块/三方库中的混淆配置文件内检索"-comapct"：
+2. 在依赖的模块/三方库中的混淆配置文件内检索"-compact"：
     * 在本地依赖的library中的consumer-rules.txt文件中检索"-compact"。
     * 在工程目录下的oh_modules文件夹中，对全部的obfuscation.txt文件检索"-compact"。
 
