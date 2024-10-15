@@ -18,7 +18,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 创建WantAgent（callback形式）。 创建失败返回的WantAgent为空值。
 
-三方应用只能调用当前应用的Ability。
+三方应用只能设置自己应用的Ability。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -100,7 +100,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 创建WantAgent（Promise形式）。 创建失败返回的WantAgent为空值。
 
-三方应用只能调用当前应用的Ability。
+三方应用只能设置自己应用的Ability。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
