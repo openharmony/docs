@@ -289,7 +289,7 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
 | Circle  | 圆形按钮。              |
@@ -325,7 +325,7 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | EMPHASIZED | 强调按钮（用于强调当前操作）。 |
 | NORMAL  | 普通按钮（一般界面操作）。              |
@@ -339,7 +339,7 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | SMALL | 小尺寸按钮。 |
 | NORMAL  | 正常尺寸按钮。              |
@@ -352,7 +352,7 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
+| 名称      | 说明               |
 | ------- | ------------------ |
 | NORMAL | 正常按钮。 |
 | ERROR  | 警示按钮。              |
@@ -380,6 +380,8 @@ type ButtonTriggerClickCallback = (xPos: number, yPos: number) => void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |

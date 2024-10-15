@@ -177,7 +177,7 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 描述 |
+| 名称  | 说明 |
 | ----- | -------------------- |
 | All   | 群组多选择框全部选择。 |
 | Part  | 群组多选择框部分选择。 |

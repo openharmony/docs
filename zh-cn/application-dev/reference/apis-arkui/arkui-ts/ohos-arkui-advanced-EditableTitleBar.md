@@ -32,8 +32,6 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | leftIconStyle | [EditableLeftIconType](#editablelefticontype) | 是 | - | 左侧按钮类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -70,6 +68,8 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## EditableTitleBarItem<sup>12+</sup>
+
+type EditableTitleBarItem = EditableTitleBarMenuItem
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
