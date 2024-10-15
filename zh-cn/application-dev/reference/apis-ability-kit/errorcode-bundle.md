@@ -873,6 +873,19 @@ It is not allowed to install the enterprise bundle.
 
 **处理步骤**<br/>
 
+## 17700072 Launch Want不存在
+**错误信息**<br/>
+The launch want is not found.
+
+**错误描述**<br/>
+Launch Want不存在。
+
+**可能原因**<br/>
+应用没有Ability，或者没有entities配置为entity.system.home和actions配置为action.system.home的Ability。
+
+**处理步骤**<br/>
+应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify the abc file.

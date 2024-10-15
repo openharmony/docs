@@ -808,3 +808,44 @@ try {
   hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
 }
 ```
+
+### bundleManager.getLaunchWant<sup>13+</sup>
+
+getLaunchWant(): Want
+
+获取自身用于启动应用程序的Want参数。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                | 说明                                        |
+| ----------------------------------- | ------------------------------------------- |
+| [Want](js-apis-app-ability-want.md) | 返回包含Bundle名称和Ability名称的Want对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 17700072 | The launch want is not found. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+  let want = bundleManager.getLaunchWant();
+  hilog.info(0x0000, 'testTag', 'getLaunchWant ability name: %{public}s', want.abilityName);
+  hilog.info(0x0000, 'testTag', 'getLaunchWant bundle name: %{public}s', want.bundleName);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getLaunchWant failed: %{public}s', message);
+}
+```
