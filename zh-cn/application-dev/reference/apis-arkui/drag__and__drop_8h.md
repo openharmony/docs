@@ -21,15 +21,15 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12)[ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) | 组件事件的通用结构类型。  | 
-| typedef struct [ArkUI_Context](_ark_u_i___native_module.md#arkui_context)[ArkUI_Context](_ark_u_i___native_module.md#arkui_context) | native UI的上下文实例对象。  | 
+| typedef struct [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) [ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) | 组件事件的通用结构类型。  | 
+| typedef struct [ArkUI_Context](_ark_u_i___native_module.md#arkui_context) [ArkUI_Context](_ark_u_i___native_module.md#arkui_context) | native UI的上下文实例对象。  | 
 | typedef struct [ArkUI_Context](_ark_u_i___native_module.md#arkui_context) \* [ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) | native UI的上下文实例对象指针定义。  | 
-| typedef struct [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)[ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) | 拖拽事件。  | 
-| typedef struct [ArkUI_DragPreviewOption](_ark_u_i___native_module.md#arkui_dragpreviewoption)[ArkUI_DragPreviewOption](_ark_u_i___native_module.md#arkui_dragpreviewoption) | 设置拖拽跟手图的相关自定义参数。  | 
-| typedef struct [ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction)[ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) | 拖拽行为，用于主动发起拖拽。  | 
-| typedef struct [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo)[ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) | 主动发起拖拽后，通过拖拽状态监听返回的系统拖拽相关数据。  | 
-| typedef struct [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata)[OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) | UDMF 统一数据定义。  | 
-| typedef struct [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative)[OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。  | 
+| typedef struct [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) | 拖拽事件。  | 
+| typedef struct [ArkUI_DragPreviewOption](_ark_u_i___native_module.md#arkui_dragpreviewoption) [ArkUI_DragPreviewOption](_ark_u_i___native_module.md#arkui_dragpreviewoption) | 设置拖拽跟手图的相关自定义参数。  | 
+| typedef struct [ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) [ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) | 拖拽行为，用于主动发起拖拽。  | 
+| typedef struct [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) | 主动发起拖拽后，通过拖拽状态监听返回的系统拖拽相关数据。  | 
+| typedef struct [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) | UDMF 统一数据定义。  | 
+| typedef struct [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。  | 
 
 
 ### 枚举
@@ -48,7 +48,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \* [OH_ArkUI_NodeEvent_GetDragEvent](_ark_u_i___native_module.md#oh_arkui_nodeevent_getdragevent) ([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) \*nodeEvent) | 从 NodeEvent 中获取DragEvent。  | 
-| [ArkUI_PreDragStatus](_ark_u_i___native_module.md#arkui_predragstatus)[OH_ArkUI_NodeEvent_GetPreDragStatus](_ark_u_i___native_module.md#oh_arkui_nodeevent_getpredragstatus) ([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) \*nodeEvent) | 获取预览拖拽事件状态。  | 
+| [ArkUI_PreDragStatus](_ark_u_i___native_module.md#arkui_predragstatus) [OH_ArkUI_NodeEvent_GetPreDragStatus](_ark_u_i___native_module.md#oh_arkui_nodeevent_getpredragstatus) ([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent-12) \*nodeEvent) | 获取预览拖拽事件状态。  | 
 | int32_t [OH_ArkUI_DragEvent_DisableDefaultDropAnimation](_ark_u_i___native_module.md#oh_arkui_dragevent_disabledefaultdropanimation) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, bool disable) | 设置是否禁用松手时的系统默认动效，默认不禁用，通常在应用需要自定义落位动效时配置。  | 
 | int32_t [OH_ArkUI_DragEvent_SetSuggestedDropOperation](_ark_u_i___native_module.md#oh_arkui_dragevent_setsuggesteddropoperation) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, [ArkUI_DropProposal](_ark_u_i___native_module.md#arkui_dropproposal) proposal) | 设置数据处理方式  | 
 | int32_t [OH_ArkUI_DragEvent_SetDragResult](_ark_u_i___native_module.md#oh_arkui_dragevent_setdragresult) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, [ArkUI_DragResult](_ark_u_i___native_module.md#arkui_dragresult) result) | 设置拖拽事件的结果。  | 
@@ -96,6 +96,6 @@
 | int32_t [OH_ArkUI_DragAction_SetDragPreviewOption](_ark_u_i___native_module.md#oh_arkui_dragaction_setdragpreviewoption) ([ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) \*dragAction, [ArkUI_DragPreviewOption](_ark_u_i___native_module.md#arkui_dragpreviewoption) \*option) | 将构造的ArkUI_DragPreviewOption设置给ArkUI_DragAction。  | 
 | int32_t [OH_ArkUI_DragAction_RegisterStatusListener](_ark_u_i___native_module.md#oh_arkui_dragaction_registerstatuslistener) ([ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) \*dragAction, void \*userData, void(\*listener)([ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) \*dragAndDropInfo, void \*userData)) | 注册拖拽状态监听回调,该回调可感知到拖拽已经发起或用户松手结束的状态, 可通过该监听获取到落入方对数据的接收处理是否成功。  | 
 | void [OH_ArkUI_DragAction_UnregisterStatusListener](_ark_u_i___native_module.md#oh_arkui_dragaction_unregisterstatuslistener) ([ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) \*dragAction) | 解注册拖拽状态监听回调。  | 
-| [ArkUI_DragStatus](_ark_u_i___native_module.md#arkui_dragstatus)[OH_ArkUI_DragAndDropInfo_GetDragStatus](_ark_u_i___native_module.md#oh_arkui_draganddropinfo_getdragstatus) ([ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) \*dragAndDropInfo) | 获取dragaction发起拖拽的状态，获取异常时返回 ArkUI_DRAG_STATUS_UNKNOWN。  | 
+| [ArkUI_DragStatus](_ark_u_i___native_module.md#arkui_dragstatus) [OH_ArkUI_DragAndDropInfo_GetDragStatus](_ark_u_i___native_module.md#oh_arkui_draganddropinfo_getdragstatus) ([ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) \*dragAndDropInfo) | 获取dragaction发起拖拽的状态，获取异常时返回 ArkUI_DRAG_STATUS_UNKNOWN。  | 
 | [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \* [OH_ArkUI_DragAndDropInfo_GetDragEvent](_ark_u_i___native_module.md#oh_arkui_draganddropinfo_getdragevent) ([ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) \*dragAndDropInfo) | 通过dragAndDropInfo获取到DragEvent，可通过DragEvent获取释放结果等。  | 
 | int32_t [OH_ArkUI_StartDrag](_ark_u_i___native_module.md#oh_arkui_startdrag) ([ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) \*dragAction) | 通过构造的DragAction对象发起拖拽。  | 
