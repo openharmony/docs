@@ -59,7 +59,7 @@ UIExtensionAbility连接完成时的回调，之后可使用proxy向被拉起的
 
 ### onReceive
 
-onReceive(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<{ [key: string]: Object }>)
+onReceive(callback: ReceiveCallback)
 
 收到被拉起的Ability发送的数据时触发的回调。
 
@@ -67,7 +67,7 @@ onReceive(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#cal
 
 | 参数名                       | 类型   | 说明                                                         |
 | ---------------------------- | ------ | ------------------------------------------------------------ |
-| data                        | { [key: string]: Object } | 收到来自对端Ability的数据。                 |
+| data                        | [ReceiveCallback](#receivecallback14) | 收到来自对端Ability的数据。                 |
 
 ### onResult<sup>(deprecated)</sup>
 
@@ -144,6 +144,18 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 | code    | number | 被拉起UIExtensionAbility退出时返回的结果码。 |
 | want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 被拉起UIExtensionAbility退出时返回的数据。   |
 
+## ReceiveCallback<sup>14+<sup>
+type ReceiveCallback = Callback\<Record\<string, Object\>\>
+
+用于封装被拉起的Ability发送的数据。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名                       | 类型   | 说明                                                         |
+| ---------------------------- | ------ | ------------------------------------------------------------ |
+| data                        | Record\<string, Object\> | 收到来自对端Ability的数据。                 |
+
 ## UIExtensionOptions<sup>11+</sup>
 用于在UIExtensionComponent进行构造的时传递可选的构造参数。
 
@@ -168,7 +180,7 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 ### send
 
-send(data: { [key: string]: Object }): void
+send(data: Record\<string, Object\>): void
 
 用于在双方建立连接成功后，组件使用方向被拉起的Ability发送数据的场景，提供异步发送数据。
 
@@ -178,11 +190,11 @@ send(data: { [key: string]: Object }): void
 
 | 参数名  | 参数类型                                     | 必填   | 参数描述            |
 | ---- | ---------------------------------------- | ---- | --------------- |
-| data | { [key: string]: Object } | 是    | 异步发送给被拉起的扩展Ability的数据。 |
+| data | Record\<string, Object\> | 是    | 异步发送给被拉起的扩展Ability的数据。 |
 
 ### sendSync<sup>11+</sup>
 
-sendSync(data: { [key: string]: Object }): { [key: string]: Object }
+sendSync(data: Record\<string, Object\>): Record\<string, Object\>
 
 用于在双方建立连接成功后，组件使用方向被拉起的Ability发送数据的场景，提供同步发送数据。
 
@@ -192,13 +204,13 @@ sendSync(data: { [key: string]: Object }): { [key: string]: Object }
 
 | 参数名  | 参数类型                                     | 必填   | 参数描述            |
 | ---- | ---------------------------------------- | ---- | --------------- |
-| data | { [key: string]: Object } | 是    | 同步发送给被拉起的扩展Ability的数据。 |
+| data | Record\<string, Object\> | 是    | 同步发送给被拉起的扩展Ability的数据。 |
 
 **返回值：**
 
 | 类型 | 描述 |
 | ---- | ----|
-|{ [key: string]: Object } | 扩展Ability回复的数据。 |
+| Record\<string, Object\> | 扩展Ability回复的数据。 |
 
 **错误码：**
 
@@ -209,7 +221,7 @@ sendSync(data: { [key: string]: Object }): { [key: string]: Object }
 
 ### on('asyncReceiverRegister')<sup>11+</sup>
 
-on(type: 'asyncReceiverRegister', callback: (proxy: UIExtensionProxy) => void): void
+on(type: 'asyncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void
 
 用于在双方建立连接成功后，组件使用方订阅被拉起的Ability发生异步注册的场景。
 
@@ -220,11 +232,11 @@ on(type: 'asyncReceiverRegister', callback: (proxy: UIExtensionProxy) => void): 
 | 参数名  | 参数类型 |必填 | 参数描述 |
 | ------ | -------- |---- | ------- |
 | type   | string | 是 | 代表订阅扩展Ability发生异步注册回调。 |
-| callback   | (proxy: UIExtensionProxy) => void | 是 | 订阅扩展Ability注册setReceiveDataCallback后触发的回调。 |
+| callback   | Callback\<UIExtensionProxy\> | 是 | 订阅扩展Ability注册setReceiveDataCallback后触发的回调。 |
 
 ### on('syncReceiverRegister')<sup>11+</sup>
 
-on(type: 'syncReceiverRegister', callback: (proxy: UIExtensionProxy) => void): void
+on(type: 'syncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void;
 
 用于在双方建立连接成功后，组件使用方订阅被拉起的Ability发生同步注册的场景。
 
@@ -235,11 +247,11 @@ on(type: 'syncReceiverRegister', callback: (proxy: UIExtensionProxy) => void): v
 | 参数名  | 参数类型 |必填 | 参数描述 |
 | ------ | -------- |---- | ------- |
 | type   | string | 是 | 订阅扩展Ability发生同步注册回调。 |
-| callback   | (proxy: UIExtensionProxy) => void | 是 | 扩展Ability注册setReceiveDataForResultCallback后触发的回调。 |
+| callback   | Callback\<UIExtensionProxy\> | 是 | 扩展Ability注册setReceiveDataForResultCallback后触发的回调。 |
 
 ### off('asyncReceiverRegister')<sup>11+</sup>
 
-off(type: 'asyncReceiverRegister', callback?: (proxy: UIExtensionProxy) => void): void
+off(type: 'asyncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): void
 
 用于在双方建立连接成功后，组件使用方取消订阅被拉起的Ability发生异步注册的场景。
 
@@ -250,11 +262,11 @@ off(type: 'asyncReceiverRegister', callback?: (proxy: UIExtensionProxy) => void)
 | 参数名  | 参数类型 | 必填 | 参数描述 |
 | ------ | -------- | ----- | ------- |
 | type   | string | 是 | 取消订阅扩展Ability发生异步注册回调。 |
-| callback | (proxy: UIExtensionProxy) => void | 否 | 为空代表取消订阅所有扩展Ability异步注册后触发回调。<br> 非空代表取消订阅异步对应回调。 |
+| callback | Callback\<UIExtensionProxy\> | 否 | 为空代表取消订阅所有扩展Ability异步注册后触发回调。<br> 非空代表取消订阅异步对应回调。 |
 
 ### off('syncReceiverRegister')<sup>11+</sup>
 
-off(type: 'syncReceiverRegister', callback?: (proxy: UIExtensionProxy) => void): void
+off(type: 'syncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): void
 
 用于在双方建立连接成功后，组件使用方取消订阅被拉起的Ability发生同步注册的场景。
 
@@ -265,7 +277,7 @@ off(type: 'syncReceiverRegister', callback?: (proxy: UIExtensionProxy) => void):
 | 参数名  | 参数类型 | 必填 | 参数描述 |
 | ------ | -------- | ----- | ------- |
 | type   | string | 是 | 取消订阅扩展Ability发生同步注册回调。 |
-| callback | (proxy: UIExtensionProxy) => void | 否 | 为空代表取消订阅所有扩展Ability同步注册后触发回调<br> 非空代表取消订阅同步对应回调。 |
+| callback | Callback\<UIExtensionProxy\> | 否 | 为空代表取消订阅所有扩展Ability同步注册后触发回调<br> 非空代表取消订阅同步对应回调。 |
 
 ## 示例
 
