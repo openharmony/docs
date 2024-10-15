@@ -1083,6 +1083,8 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 添加图片内容，如果组件光标闪烁，插入后光标位置更新为新插入图片的后面。
 
+不建议直接添加网络图片。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -4383,8 +4385,6 @@ struct Index {
         })
         .height("20%")
         .width("100%")
-        // .borderWidth(1)
-        // .borderColor(Color.Black)
 
       RichEditor(this.options1)
         .onReady(() => {
@@ -4466,7 +4466,6 @@ struct Index {
             // 使变更样式后的属性字符串展示在组件上
             this.controller.setStyledString(this.richEditorStyledString);
           })
-
         }
         Row({space:2}){
           //将属性字符串转换成span信息
@@ -4478,15 +4477,12 @@ struct Index {
             this.controller.setStyledString(this.controller1.toStyledString({start:0,end:13}))
           })
         }
-
-
     }
   }
 }
-
 ```
 
-![StyledString](figures/StyledString(example20).gif))
+![StyledString](figures/StyledString(example20).gif)
 
 ### 示例21
 LayoutManager使用示例。
