@@ -14,7 +14,7 @@ childProcessManager模块提供子进程管理能力，支持子进程启动操�
 import { childProcessManager } from '@kit.AbilityKit';
 ```
 
-## childProcessManager.StartMode
+## StartMode
 
 子进程启动模式枚举。
 
@@ -195,6 +195,7 @@ startArkChildProcess(srcEntry: string, args: ChildProcessArgs, options?: ChildPr
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. The API cannot be called in a child process. |
+| 16000062  | The number of child processes exceeds the upper limit. |
 
 **示例：**
 
