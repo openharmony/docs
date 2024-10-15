@@ -14,6 +14,7 @@ ArkTS容器集使用方法具体可查[容器集](../reference/apis-arkts/js-api
 
 ArkTS容器集与原生容器API方法的行为对比详查[ArkTS Collections与原生API方法的行为差异对比](arkts-collections-vs-native-api-comparison.md)。
 
+
 ## 使用示例
 
 ```ts

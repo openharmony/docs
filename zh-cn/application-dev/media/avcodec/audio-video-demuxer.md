@@ -1,8 +1,8 @@
-# 音视频解封装
+# 媒体数据解析
 
-开发者可以调用本模块的Native API接口，完成音视频解封装，即从比特流数据中取出音频、视频等媒体帧数据。
+调用者可以调用本模块的Native API接口，完成媒体数据的解封装相关操作，即从比特流数据中取出音频、视频、字幕等媒体sample，获得DRM相关信息
 
-当前支持的数据输入类型有：远程连接(http协议、HLS协议)和文件描述符(fd)。
+当前支持的数据输入类型有：远程连接(http协议)和文件描述符(fd)。
 
 支持的解封装格式如下：
 
@@ -30,15 +30,15 @@ DRM解密能力支持的解封装格式：<!--RP7-->mp4(H.264，AAC)、mpeg-ts(H
 
 - 播放
   
-  播放媒体文件时，需要先对音视频流进行解封装，然后使用解封装获取的帧数据进行解码和播放。
+  播放媒体文件时，需要先对媒体流进行解封装，然后使用解封装获取的sample进行解码和播放。
 
 - 音视频编辑
   
-  编辑媒体文件时，需要先对音视频流进行解封装，获取到指定帧进行编辑。
+  编辑媒体文件时，需要先对媒体流进行解封装，获取到指定sample进行编辑。
 
 - 媒体文件格式转换（转封装）
 
-  媒体文件格式转换时，需要先对音视频流进行解封装，然后按需将音视频流封装至新的格式文件内。
+  媒体文件格式转换时，需要先对媒体流进行解封装，然后按需将媒体流封装至新的格式文件内。
 
 ## 开发指导
 
@@ -61,7 +61,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 > **说明：**
 >
-> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
+> 上述'sample'字样仅为示例，此处由调用者根据实际工程目录自定义。
 >
 
 ### 开发步骤
@@ -79,6 +79,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 
 2. 创建资源管理实例对象。
+
+   调用者HAP中使用open获取fd时，filepath需要转换为[沙箱路径](../../file-management/app-sandbox-directory.md#应用沙箱路径和真实物理路径的对应关系)，才能获取沙盒资源。
+
    ```c++
    // 创建文件操作符 fd，打开时对文件句柄必须有读权限(filePath 为待解封装文件路径，需预置文件，保证路径指向的文件存在)
    std::string filePath = "test.mp4";
@@ -293,7 +296,22 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-9. 开始解封装，循环获取帧数据(以含音频、视频两轨的文件为例)。
+9. 开始解封装，循环获取sample(以含音频、视频两轨的文件为例)。
+
+   BufferAttr包含的属性：
+   - size：sample尺寸；
+   - offset：数据在AVBuffer中的偏移，一般为0；
+   - pts：文件封装的显示时间戳；
+   - flags：sample属性。
+
+   | flag | 描述 |
+   | -------- | -------- |
+   | AVCODEC_BUFFER_FLAGS_NONE | 默认。 |
+   | AVCODEC_BUFFER_FLAGS_EOS | 结尾sample，数据为空。 |
+   | AVCODEC_BUFFER_FLAGS_SYNC_FRAME | IDR帧或I帧。 |
+   | AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME | 非完整的sample，一般由于buffer过小，无法拷贝完整的sample。 |
+   | AVCODEC_BUFFER_FLAGS_CODEC_DATA | 含参数集信息的帧。 |
+   | AVCODEC_BUFFER_FLAGS_DISCARD  | 可丢弃的帧。 |
 
    ```c++
    // 创建 buffer，用与保存用户解封装得到的数据
@@ -308,11 +326,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    int32_t ret;
    while (!audioIsEnd || !videoIsEnd) {
       // 在调用 OH_AVDemuxer_ReadSampleBuffer 接口获取数据前，需要先调用 OH_AVDemuxer_SelectTrackByID 选中需要获取数据的轨道
-      // 获取音频帧数据
+      // 获取音频sample
       if(!audioIsEnd) {
          ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);
          if (ret == AV_ERR_OK) {
-            // 可通过 buffer 获取并处理音频帧数据
+            // 可通过 buffer 获取并处理音频sample
             OH_AVBuffer_GetBufferAttr(buffer, &info);
             printf("audio info.size: %d\n", info.size);
             if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
@@ -323,7 +341,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       if(!videoIsEnd) {
          ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, videoTrackIndex, buffer);
          if (ret == AV_ERR_OK) {
-            // 可通过 buffer 获取并处理视频帧数据
+            // 可通过 buffer 获取并处理视频sample
             OH_AVBuffer_GetBufferAttr(buffer, &info);
             printf("video info.size: %d\n", info.size);
             if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
@@ -391,7 +409,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 |OH_MD_KEY_TRACK_START_TIME|码流起始时间的键|√|√|√|
 |OH_MD_KEY_BITRATE|码流比特率的键|√|√|-|
 |OH_MD_KEY_LANGUAGE|码流语言类型的键|√|√|-|
-|OH_MD_KEY_CODEC_CONFIG|编解码器特定数据的键，视频中表示传递xps，音频中表示传递extraData|√|√|-|
+|OH_MD_KEY_CODEC_CONFIG|编解码器特定数据的键，视频中表示传递参数集，音频中表示传递解码器的参数配置信息|√|√|-|
 |OH_MD_KEY_WIDTH|视频流宽度的键|√|-|-|
 |OH_MD_KEY_HEIGHT|视频流高度的键|√|-|-|
 |OH_MD_KEY_FRAME_RATE|视频流帧率的键|√|-|-|

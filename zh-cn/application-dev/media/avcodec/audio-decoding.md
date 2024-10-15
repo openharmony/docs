@@ -229,7 +229,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | G711mu      | 8000                                                                                            |   1    |
    | AMR(amrnb)  | 8000                                                                                            |   1    |
    | AMR(amrwb)  | 16000                                                                                           |   1    |
-   | APE         | 16000                                                                                           |  1~2   |
+   | APE         | 8000、11025、12000、16000、22050、24000、32000、44100、48000、64000、88200、96000、176400、192000 |  1~2   |
 
    ```cpp
    // 设置解码分辨率
@@ -287,18 +287,18 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
     若当前播放的节目是DRM加密节目，且由上层应用做媒体解封装，则须调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置给AVBuffer，以实现AVBuffer中媒体数据的解密。
 
-    添加头文件
+    添加头文件：
 
     ```c++
     #include <multimedia/player_framework/native_cencinfo.h>
     ```
-    在 CMake 脚本中链接动态库
+    在 CMake 脚本中链接动态库：
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
     ```
 
-    使用示例
+    使用示例：
     ```c++
     auto buffer = signal_->inBufferQueue_.front();
     int64_t size;

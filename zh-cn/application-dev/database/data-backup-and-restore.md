@@ -161,6 +161,137 @@
    }
    ```
 
+## 关系型数据库损坏重建
+
+关系型数据库，可以通过在[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)中配置allowRebuild参数以设置数据库在损坏时是否自动重建，默认不重建。
+
+开库时在StoreConfig中配置allowRebuild参数为true，则数据库损坏时将自动重建。
+
+   ```ts
+   import { relationalStore } from '@kit.ArkData';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   
+   let store: relationalStore.RdbStore | undefined = undefined;
+
+   let context = getContext(this);
+
+   const STORE_CONFIG: relationalStore.StoreConfig = {
+     name: 'RdbTest.db',
+     securityLevel: relationalStore.SecurityLevel.S3,
+     allowRebuild: true
+   };
+   relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
+     store = rdbStore;
+     if (err) {
+       console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
+       return;
+     }
+     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
+     })
+     console.info('Succeeded in getting RdbStore.');
+   })
+   ```
+
+<!--Del-->
+## 关系型数据库双写备份与恢复（仅系统应用可用）
+
+关系型数据库，可以通过在[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#storeconfig)中配置haMode参数实现数据库双写备份，通过[restore](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#restore12)接口实现数据库恢复。
+
+1. 使用getRdbStore()方法创建关系型数据库，配置haMode参数为MAIN_REPLICA。
+     
+   ```ts
+   import { relationalStore } from '@kit.ArkData';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   
+   let store: relationalStore.RdbStore | undefined = undefined;
+
+   let context = getContext(this);
+
+   const STORE_CONFIG: relationalStore.StoreConfig = {
+     name: 'RdbTest.db',
+     securityLevel: relationalStore.SecurityLevel.S3,
+     haMode: relationalStore.HAMode.MAIN_REPLICA
+   };
+   relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
+     store = rdbStore;
+     if (err) {
+       console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
+       return;
+     }
+     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
+     })
+     console.info('Succeeded in getting RdbStore.');
+   })
+   ```
+
+2. 使用insert()方法插入数据。
+     
+   ```ts
+   import { ValuesBucket } from '@kit.ArkData';
+
+   let value1 = 'Rose';
+   let value2 = 18;
+   let value3 = 100.5;
+   let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+
+   // 以下三种方式可用
+   const valueBucket1: ValuesBucket = {
+     'NAME': value1,
+     'AGE': value2,
+     'SALARY': value3,
+     'CODES': value4,
+   };
+   const valueBucket2: ValuesBucket = {
+     NAME: value1,
+     AGE: value2,
+     SALARY: value3,
+     CODES: value4,
+   };
+   const valueBucket3: ValuesBucket = {
+     "NAME": value1,
+     "AGE": value2,
+     "SALARY": value3,
+     "CODES": value4,
+   };
+
+   if(store != undefined) {
+     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket1, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
+       if (err) {
+         console.error(`Failed to insert data. Code:${err.code},message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in inserting data. rowId:${rowId}`);
+     })
+   }
+   ```
+
+3. 使用delete()方法删除数据（模拟意外删除、篡改场景）。
+     
+   ```ts
+   let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+   predicates.equalTo('NAME', 'Lisa');
+   if(store != undefined) {
+     (store as relationalStore.RdbStore).delete(predicates).then((rows: number) => {
+       console.info(`Delete rows: ${rows}`);
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to delete data. Code:${err.code},message:${err.message}`);
+     })
+   }
+   ```
+
+4. 使用restore()方法恢复数据。
+     
+   ```ts
+   if(store != undefined) {
+     let promiseRestore = (store as relationalStore.RdbStore).restore();
+     promiseRestore.then(() => {
+       console.info('Succeeded in restoring.');
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to restore, code is ${err.code},message is ${err.message}`);
+     })
+    }
+   ```
+<!--DelEnd-->
 
 ## 关系型数据库备份与恢复
 

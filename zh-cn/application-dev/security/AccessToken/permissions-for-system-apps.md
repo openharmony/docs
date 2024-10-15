@@ -85,6 +85,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_LEARN_MORE_DIALOG
+
+允许系统应用拉起“进一步了解”的展示弹窗，获取更多详细信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ### ohos.permission.MANAGE_SETTINGS
 
 允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
@@ -1375,7 +1387,7 @@
 
 ### ohos.permission.ACCESS_BOOSTER_SERVICE
 
-允许系统服务或系统应用调用网络增强服务中的网络质量感知，网络场景预测、或网络加速等功能接口。
+允许系统服务或系统应用调用网络增强服务中的网络质量感知、网络场景预测、网络加速等功能接口。
 
 **权限级别**：system_basic
 
@@ -2263,6 +2275,18 @@
 
 **起始版本**：12
 
+### ohos.permission.EXEMPT_PRIVACY_SECURITY_CENTER
+
+允许系统应用在“隐私和安全”中的权限详情页不展示。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ### ohos.permission.GET_SUPER_PRIVACY
 
 允许获取超级隐私模式的状态。
@@ -2844,6 +2868,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.REGISTER_FINDNETWORK_ACCESSORY
+
+允许应用和系统服务发起查找网络配件注册流程。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
 
 ### ohos.permission.MANAGE_RGM
 
@@ -3877,6 +3913,44 @@
 
 **起始版本**：13
 
+### ohos.permission.ACCESS_ANALYTICS
+
+允许系统服务访问并读取路径/data/log/faultlog/faultlogger下文件的内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+允许系统应用订阅备份框架开始恢复的事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.READ_WRITE_USB_DEV
+
+允许应用连接设备，并通过USB调试读写该设备。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4108,6 +4182,18 @@
 **授权方式**：system_grant
 
 **ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SUPER_HUB
+
+允许应用拉起"中转站"。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：false
 
 **起始版本**：12
 

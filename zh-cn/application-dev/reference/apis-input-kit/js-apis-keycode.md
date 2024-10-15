@@ -24,12 +24,13 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_UNKNOWN                  |  -1 | 未知按键                        |
 | KEYCODE_HOME                     |  1 | 功能（Home）键                  |
 | KEYCODE_BACK                     |  2 | 返回键                         |
-| KEYCODE_MEDIA_PLAY_PAUSE<sup>12+</sup>         |  10 | 多媒体键：播放/暂停<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
-| KEYCODE_MEDIA_STOP<sup>12+</sup>               |  11 | 多媒体键：停止<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
-| KEYCODE_MEDIA_NEXT<sup>12+</sup>               |  12 | 多媒体键：下一首<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
-| KEYCODE_MEDIA_PREVIOUS<sup>12+</sup>           |  13 | 多媒体键：上一首<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
-| KEYCODE_MEDIA_REWIND<sup>12+</sup>             |  14 | 多媒体键：快退<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
-| KEYCODE_MEDIA_FAST_FORWARD<sup>12+</sup>       |  15 | 多媒体键：快进<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
+| KEYCODE_SEARCH<sup>13+</sup> | 9 | 搜索键 |
+| KEYCODE_MEDIA_PLAY_PAUSE        |  10 | 多媒体键：播放/暂停<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| KEYCODE_MEDIA_STOP               |  11 | 多媒体键：停止<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
+| KEYCODE_MEDIA_NEXT               |  12 | 多媒体键：下一首<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
+| KEYCODE_MEDIA_PREVIOUS           |  13 | 多媒体键：上一首<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
+| KEYCODE_MEDIA_REWIND            |  14 | 多媒体键：快退<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
+| KEYCODE_MEDIA_FAST_FORWARD       |  15 | 多媒体键：快进<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
 | KEYCODE_VOLUME_UP                |  16 | 音量增加键                       |
 | KEYCODE_VOLUME_DOWN              |  17 | 音量减小键                       |
 | KEYCODE_POWER                    |  18 | 电源键                         |
@@ -123,8 +124,8 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_MOVE_END                 |  2082 | 光标移动到末尾键                    |
 | KEYCODE_INSERT                   |  2083 | 插入键                         |
 | KEYCODE_FORWARD                  |  2084 | 前进键                         |
-| KEYCODE_MEDIA_PLAY<sup>12+</sup>               |  2085 | 多媒体键：播放<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
-| KEYCODE_MEDIA_PAUSE<sup>12+</sup>              |  2086 | 多媒体键：暂停<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
+| KEYCODE_MEDIA_PLAY               |  2085 | 多媒体键：播放<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
+| KEYCODE_MEDIA_PAUSE              |  2086 | 多媒体键：暂停<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                     |
 | KEYCODE_MEDIA_CLOSE              |  2087 | 多媒体键：关闭                     |
 | KEYCODE_MEDIA_EJECT              |  2088 | 多媒体键：弹出                     |
 | KEYCODE_MEDIA_RECORD             |  2089 | 多媒体键：录音                     |
@@ -283,7 +284,7 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_CONTROLPANEL             |  2719 | 控制面板键                       |
 | KEYCODE_APPSELECT                |  2720 | 应用程序选择键                     |
 | KEYCODE_SCREENSAVER              |  2721 | 屏幕保护程序键                     |
-| KEYCODE_ASSISTANT                |  2722 | 辅助键                         |
+| KEYCODE_ASSISTANT                |  2722 | 智慧键                      |
 | KEYCODE_KBD_LAYOUT_NEXT          |  2723 | 下一个键盘布局键                    |
 | KEYCODE_BRIGHTNESS_MIN           |  2724 | 最小亮度键                       |
 | KEYCODE_BRIGHTNESS_MAX           |  2725 | 最大亮度键                       |

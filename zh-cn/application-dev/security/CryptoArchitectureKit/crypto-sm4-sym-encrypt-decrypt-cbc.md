@@ -41,20 +41,24 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
+
   function genIvParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+    let ivBlob = generateRandom(16); // 16 bytes
     let ivParamsSpec: cryptoFramework.IvParamsSpec = {
       algName: "IvParamsSpec",
       iv: ivBlob
     };
     return ivParamsSpec;
   }
+  let iv = genIvParamsSpec();
   // 加密消息
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('SM4_128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, iv);
     let encryptData = await cipher.doFinal(plainText);
     return encryptData;
@@ -62,7 +66,6 @@
   // 解密消息
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('SM4_128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, iv);
     let decryptData = await decoder.doFinal(cipherText);
     return decryptData;
@@ -100,20 +103,24 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
+
   function genIvParamsSpec() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // 16 bytes
-    let dataIv = new Uint8Array(arr);
-    let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+    let ivBlob = generateRandom(16); // 16 bytes
     let ivParamsSpec: cryptoFramework.IvParamsSpec = {
       algName: "IvParamsSpec",
       iv: ivBlob
     };
     return ivParamsSpec;
   }
+  let iv = genIvParamsSpec();
   // 加密消息
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
     let cipher = cryptoFramework.createCipher('SM4_128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, iv);
     let encryptData = cipher.doFinalSync(plainText);
     return encryptData;
@@ -121,7 +128,6 @@
   // 解密消息
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
     let decoder = cryptoFramework.createCipher('SM4_128|CBC|PKCS7');
-    let iv = genIvParamsSpec();
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, iv);
     let decryptData = decoder.doFinalSync(cipherText);
     return decryptData;

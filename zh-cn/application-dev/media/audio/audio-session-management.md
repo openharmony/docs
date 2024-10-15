@@ -98,7 +98,7 @@
   
   let strategy: audio.AudioSessionStrategy = {
     concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
-  }
+  };
   
   audioSessionManager.activateAudioSession(strategy).then(() => {
     console.info('activateAudioSession SUCCESS');
@@ -121,7 +121,7 @@
   });
   ```
 
-## 查询音频会话是否已激活。
+## 查询音频会话是否已激活
 
 应用可以通过[isAudioSessionActivated](../../reference/apis-audio-kit/js-apis-audio.md#isaudiosessionactivated12)接口检查当前应用的音频会话是否已激活。
 
@@ -137,7 +137,7 @@
   import { audio } from '@kit.AudioKit';
 
   audioSessionManager.on('audioSessionDeactivated', (audioSessionDeactivatedEvent: audio.AudioSessionDeactivatedEvent) => {
-    console.info(`VolumeType of stream: ${audioSessionDeactivatedEvent.reason} `);
+    console.info(`reason of audioSessionDeactivated: ${audioSessionDeactivatedEvent.reason} `);
   });
   ```
 
@@ -158,14 +158,12 @@
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let audioManager = audio.getAudioManager();
-
   // 创建音频会话管理器
   let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionManager();
-
   // 设置音频并发模式
   let strategy: audio.AudioSessionStrategy = {
     concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
-  }
+  };
 
   // 激活音频会话
   audioSessionManager.activateAudioSession(strategy).then(() => {
@@ -179,11 +177,10 @@
 
   // 监听音频会话停用事件
   audioSessionManager.on('audioSessionDeactivated', (audioSessionDeactivatedEvent: audio.AudioSessionDeactivatedEvent) => {
-    console.info(`VolumeType of stream: ${audioSessionDeactivatedEvent.reason} `);
+    console.info(`reason of audioSessionDeactivated: ${audioSessionDeactivatedEvent.reason} `);
   });
 
   // 音频会话激活后应用在此处正常执行音频播放、暂停、停止、释放等操作即可。 
-
   // 取消监听音频会话停用事件
   audioSessionManager.off('audioSessionDeactivated');
 

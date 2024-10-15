@@ -4,7 +4,7 @@
 
 ## 在配置文件中声明权限
 
-应用需要在[module.json5配置文件](../../quick-start/module-configuration-file.md)的requestPermissions标签中声明权限。
+应用需要在module.json5配置文件的requestPermissions标签中声明权限。
 
 | 属性 | 含义 | 数据类型 | 取值范围 |
 | -------- | -------- | -------- | -------- |

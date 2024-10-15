@@ -539,7 +539,7 @@ struct ModalTransitionWithIf {
   // 第一步：定义状态变量控制页面显示
   @State isShowShare: boolean = false;
   private shareFunc(): void {
-    animateTo({ duration: 500 }, () => {
+    this.getUIContext()?.animateTo({ duration: 500 }, () => {
       this.isShowShare = !this.isShowShare;
     })
   }

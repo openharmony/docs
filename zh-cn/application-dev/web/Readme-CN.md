@@ -10,6 +10,9 @@
   - [管理位置权限](web-geolocation-permission.md)
   - [使用隐私模式](web-incognito-mode.md)
   - [使用运动和方向传感器](web-sensor.md)
+- Web渲染和布局
+  - [Web渲染模式](web-render-mode.md)
+  - [使用Web组件大小自适应页面内容布局](web-fit-content.md)
 - 在应用中使用前端页面JavaScript
   - [应用侧调用前端页面函数](web-in-app-frontend-page-function-invoking.md)
   - [前端页面调用应用侧函数](web-in-page-app-function-invoking.md)
@@ -42,7 +45,7 @@
   - [使用Web组件打印前端页面](web-print.md)
   - [使用Web组件的PDF文档预览能力](web-pdf-preview.md)
   - [网页中安全区域计算和避让适配](web-safe-area-insets.md)
-- [同层渲染绘制Video和Button组件](web-same-layer.md)
+- [同层渲染](web-same-layer.md)
 - Web调试维测
   - [使用Devtools工具调试前端页面](web-debugging-with-devtools.md)
   - [使用crashpad收集Web组件崩溃信息](web-crashpad.md)

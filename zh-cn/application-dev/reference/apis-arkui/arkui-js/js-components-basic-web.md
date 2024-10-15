@@ -1,7 +1,8 @@
 # web
 展示网页内容的组件。
->![](../../public_sys-resources/icon-note.gif) **说明：** 
->   该组件从API version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：** 
+>
+>  该组件从API version 6开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 权限列表
 访问在线网页时需添加网络权限：ohos.permission.INTERNET

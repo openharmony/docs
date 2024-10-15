@@ -58,7 +58,7 @@
    ...
    // 控制新增或者删除组件
    // 方式一：将控制变量放到animateTo闭包内，未通过animation接口定义动画参数的TransitionEffect将跟随animateTo的动画参数
-   animateTo({ curve: curves.springMotion() }, () => {
+   this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
      this.isPresent = false;
    })
    
@@ -190,7 +190,7 @@ struct Index1 {
     }
     .size({ width: '100%', height: '100%' })
     .onClick(() => {
-      animateTo({
+      this.getUIContext()?.animateTo({
         duration: DURATION + INTERVAL * (ITEM_COUNTS - 1),
         curve: Curve.Friction
       }, () => {

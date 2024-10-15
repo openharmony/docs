@@ -27,7 +27,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 - domain：用于指定输出日志所对应的业务领域，取值范围为0x0000~0xFFFF，开发者可以根据需要进行自定义。
 
-- tag：用于指定日志标识，可以为任意字符串，建议标识调用所在的类或者业务行为。
+- tag：用于指定日志标识，可以为任意字符串，建议标识调用所在的类或者业务行为。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。
 
 - level：用于指定日志级别。取值见[LogLevel](../reference/apis-performance-analysis-kit/_hi_log.md#loglevel)。
 
@@ -89,6 +89,10 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 ### 日志回调接口使用示例
 
+> **注意**
+>
+> 回调函数里面不允许再调用hilog接口打印日志，不然会死循环
+
 ```c++
 #include "hilog/log.h"
 static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_TAG"};
@@ -97,6 +101,7 @@ static constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD003200, "MY_T
 void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain, const char *tag, const char *msg)
 {
     // user-defined to handle your log, such as redirect/filter
+    // 注意: 回调函数里面不允许再调用hilog接口打印日志，不然会死循环
 }
 
 static void Test(void)

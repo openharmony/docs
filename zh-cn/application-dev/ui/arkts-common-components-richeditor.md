@@ -656,3 +656,4 @@ Button('getSpans', {
     })
 ```
 ![alt text](figures/richeditor_image_getspan.gif)
+<!--RP1--><!--RP1End-->

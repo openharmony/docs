@@ -50,6 +50,7 @@
     执行结果为：
     
     ```typescript    
+        mod2 executed
         main executed
     ```
 
@@ -101,12 +102,15 @@
 
 ## 语法规格
 
-lazy-import支持如下指令实现：
+- lazy-import支持如下指令实现：
 
 | 语法                               | ModuleRequest | ImportName  | LocalName   | API12是否支持lazy加载    |
 | :--------------------------------- | :------------ | :---------- | :---------- | :------------------- |
 | import lazy { x } from "mod";        | "mod"         | "x"         | "x"         | 支持                  |
 | import lazy { x as v } from "mod";   | "mod"         | "x"         | "v"         | 支持                  |
+
+- 延迟加载共享模块或依赖路径内包含共享模块。
+    延迟加载对于共享模块依旧生效，使用限制参考[共享模块开发指导](../arkts-utils/arkts-sendable-module.md)。
 
 ### 错误示例
 
@@ -140,8 +144,8 @@ lazy-import支持如下指令实现：
 
 - 在同一ets文件中，期待延迟加载的依赖模块标记不完全。
     
-    标记不完全将导致延迟加载失效，并且增加识别lazy-import的开销。
-    ```typescript 
+    标记不完全将导致延迟加载失效，并且增加识别延迟加载的开销。
+    ```typescript
         // main.ets   
         import lazy { a } from "./mod1";    // 从"mod1"内获取a对象，标记为延迟加载
         import { c } from "./mod2";
@@ -149,16 +153,51 @@ lazy-import支持如下指令实现：
         
         // ...
     ```
-
-- 延迟加载共享模块或依赖路径内包含共享模块。
-
-    延迟加载对于共享模块依旧生效，使用限制参考[共享模块开发指导](../arkts-utils/arkts-sendable-module.md)。
+- 在同一ets文件中，未使用懒加载变量并再次导出，不支持延迟加载变量被re-export导出。
     
+    这种方式导出的变量c未在B.ets中使用，文件B.ets不触发执行。在文件A.ets中使用变量a时，该变量未初始化，抛js异常。
+    ```typescript
+        // A.ets
+        import { c } from "./B";
+        console.log(c);
+
+        // B.ets
+        import lazy { c } from "./C";    // 从"mod1"内获取a对象，标记为延迟加载
+        export { c }
+
+        // C.ets
+        function c(){};
+        export { c }
+    ```
+    执行结果:
+    ```typescript
+        ReferenceError: a is not initaliized
+             at func_main_0 (A.ets:2:1)
+    ```
+
+    ```typescript
+        // A_ns.ets
+        import * as ns from "./B";
+        console.log(ns.c);
+
+        // B.ets
+        import lazy { c } from "./C";    // 从"mod1"内获取a对象，标记为延迟加载
+        export { c }
+
+        // C.ets
+        function c(){};
+        export { c }
+    ```
+    执行结果:
+    ```typescript
+    ReferenceError: module environment is undefined
+        at func_main_0 (A_ns.js:2:1)
+    ```
+
 - 暂不支持lazy-import延迟加载kit。
 
-- 延迟加载存在的影响。
-    * 不依赖该模块的执行的side-effect。
+- 开发者需要评估使用延迟加载存在的影响。
+    * 不依赖该模块的执行的side-effect(如初始化全局变量，挂载globalThis等)。
     * 使用导出对象时，触发延迟加载的耗时导致对应特性的功能劣化。
     * 使用lazy特性导致模块未执行而导致的bug。
-    
-        开发者需自行评估延迟加载存在的影响。
+

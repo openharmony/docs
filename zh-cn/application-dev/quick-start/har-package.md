@@ -14,7 +14,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 - HAR可以依赖其他HAR，但不支持循环依赖，也不支持依赖传递。
 
 ## 创建
-通过DevEco Studio创建一个HAR模块，详见<!--RP1-->[创建库模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612)<!--RP1End-->。
+通过DevEco Studio创建一个HAR模块，详见<!--RP1-->[创建库模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-V5#section643521083015)<!--RP1End-->。
 
 
 ## 开发
@@ -132,7 +132,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 
 介绍如何配置HAR依赖，并引用HAR的ArkUI组件、接口、资源。
 
-引用HAR前，需要先配置对HAR的依赖，详见<!--RP2-->[引用HAR文件和资源](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section611662614153)<!--RP2End-->。
+引用HAR前，需要先配置对HAR的依赖，详见<!--RP2-->[引用HAR文件和资源](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)<!--RP2End-->。
 
 ### 引用HAR的ArkUI组件
 
@@ -365,7 +365,7 @@ HAR模块中arkts文件编译后，默认产物为js文件，想要将产物修�
 
 ## 发布
 
-详见<!--RP3-->[发布HAR](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section1213451811512)<!--RP3End-->。
+详见<!--RP3-->[发布HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-publish-V5)<!--RP3End-->。
 
 ## 相关实例
 

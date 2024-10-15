@@ -22,15 +22,17 @@ import { InterstitialDialogAction, IconStyle, TitlePosition, BottomOffset } from
 
 ## InterstitialDialogAction
 
+```
 InterstitialDialogAction {
     uiContext: UIContext,
-    contentNode: ComponentContent\<object\>,
+    contentNode: ComponentContent<object>,
     dialogParam: DialogParams,
     bottomOffsetType?: BottomOffset,
     constructor: (dialogOptions: DialogOptions),
-    openDialog(): Callback\<void\>,
-    closeDialog(): Callback\<void\>
+    openDialog(): Callback<void>,
+    closeDialog(): Callback<void>
 }
+```
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -25,7 +25,7 @@ import installer from '@ohos.bundle.installer';
 | ohos.permission.UNINSTALL_BUNDLE | system_core | 允许应用卸载应用。 |
 | ohos.permission.RECOVER_BUNDLE | system_core | 允许应用恢复预置应用。 |
 | ohos.permission.INSTALL_SELF_BUNDLE | system_core | 允许企业MDM应用在企业设备上自升级。|
-
+| ohos.permission.INSTALL_INTERNALTESTING_BUNDLE | system_core | 允许应用安装开发者内测构建应用。|
 
 权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
@@ -170,6 +170,8 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 > 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
 > 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
+>
+> 安装开发者内测构建应用需要ohos.permission.INSTALL_INTERNALTESTING_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -259,6 +261,8 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 > 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
 > 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
+>
+> 安装开发者内测构建应用需要ohos.permission.INSTALL_INTERNALTESTING_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -343,6 +347,8 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 > 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
 > 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
+>
+> 安装开发者内测构建应用需要ohos.permission.INSTALL_INTERNALTESTING_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -1329,6 +1335,7 @@ uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void
 | 17700001 | The specified bundle name is not found. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 | 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
+| 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **示例：**

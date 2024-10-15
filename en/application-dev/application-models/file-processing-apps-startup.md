@@ -122,7 +122,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
 
 1. Declare the capability to open files.
 
-    Applications that are able to open files must declare the file opening capability in the [module.json5](../quick-start/module-configuration-file.md) file. The **uris** field indicates the type of the URIs, and the **scheme** field is fixed at **file**. The **type** field indicates the types of files that can be opened. For details, see [MIME Definition] (https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com). In the following example, the file type is TXT.
+    Applications that are able to open files must declare the file opening capability in the [module.json5](../quick-start/module-configuration-file.md) file. The **uris** field indicates the type of the URIs, and the **scheme** field is fixed at **file**. The **type** field indicates the types of files that can be opened. For details, see [MIME Definition](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com). In the following example, the file type is TXT.
 
     ```ts
     {

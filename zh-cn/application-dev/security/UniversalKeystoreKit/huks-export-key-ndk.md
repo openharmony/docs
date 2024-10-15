@@ -1,7 +1,7 @@
 # 密钥导出(C/C++)
 
 
-业务需要获取持久化存储的非对称密钥的公钥时使用，当前支持ECC/RSA/ED25519/X25519的公钥导出。
+业务需要获取持久化存储的非对称密钥的公钥时使用，当前支持ECC/RSA/ED25519/X25519/SM2的公钥导出。
 >**说明：**
 > 轻量级设备仅支持RSA公钥导出。
 
@@ -13,7 +13,7 @@
 ## 开发步骤
 
 1. 构造对应参数。
-   - keyAlias：密钥别名，封装成[OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md)结构，密钥别名最大长度为64字节。
+   - keyAlias：密钥别名，封装成[OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md)结构，密钥别名最大长度为128字节。
    - paramSetIn：预留参数，暂不需要处理，传空即可。
    - key：用于放置导出的公钥，为[OH_Huks_Blob](../../reference/apis-universal-keystore-kit/_o_h___huks___blob.md)类型对象，需要业务提前申请好内存，需申请足够容纳获取到的密钥属性集的内存大小。
 

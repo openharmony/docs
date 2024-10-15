@@ -32,7 +32,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | XHTML<sup>12+</sup>    | 'general.xhtml'                   | XHTML文本类型，归属类型为XML。                |
 | RSS<sup>12+</sup>    | 'general.rss'                   | RSS文本类型，归属类型为XML。                |
 | SMIL<sup>12+</sup>                         | 'com.real.smil'                    |  同步多媒体集成语言类型，归属类型为XML文本类型。       |
-| SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | 所有源代码的基类型，归属类型为PLAIN_TEXT。        |
+| SOURCE_CODE<sup>11+</sup>                | 'general.source-code'                  | 所有源代码的基类型，归属类型为TEXT。        |
 | SCRIPT<sup>11+</sup>    | 'general.script'                  | 所有脚本语言源代码的基类型，归属类型为SOURCE_CODE。   |
 | SHELL_SCRIPT<sup>11+</sup>               | 'general.shell-script'                  | shell脚本类型，归属类型为SCRIPT。            |
 | CSH_SCRIPT<sup>11+</sup>      | 'general.csh-script'                 | C-shell脚本类型，归属类型为SHELL_SCRIPT。    |
@@ -40,8 +40,8 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | PHP_SCRIPT<sup>11+</sup>         | 'general.php-script'           | PHP脚本类型，归属类型为SHELL_SCRIPT。        |
 | PYTHON_SCRIPT<sup>11+</sup>        | 'general.python-script'          | Python脚本类型，归属类型为SHELL_SCRIPT。     |
 | RUBY_SCRIPT<sup>11+</sup>                         | 'general.ruby-script'                   | Ruby脚本类型，归属类型为SHELL_SCRIPT。       |
-| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript源代码类型，归属类型为SCRIPT。 |
-| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript源代码类型，归属类型为SCRIPT。 |
+| TYPE_SCRIPT<sup>11+</sup>                        | 'general.type-script'                  | TypeScript源代码类型，归属类型为SOURCE_CODE。 |
+| JAVA_SCRIPT<sup>11+</sup>                        | 'general.java-script'                  | JavaScript源代码类型，归属类型为SOURCE_CODE。 |
 | CSS<sup>12+</sup>    | 'general.css'                   | CSS样式表类型，归属类型为SCRIPT。                |
 | C_HEADER<sup>11+</sup>                        | 'general.c-header'                  | C头文件类型，归属类型为SOURCE_CODE。          |
 | C_SOURCE<sup>11+</sup>                       | 'general.c-source'                 | C源代码类型，归属类型为SOURCE_CODE。          |
@@ -49,7 +49,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | C_PLUS_PLUS_SOURCE<sup>11+</sup>         | 'general.c-plus-plus-source'           | C++源代码类型，归属类型为SOURCE_CODE。        |
 | JAVA_SOURCE<sup>11+</sup>        | 'general.java-source'          | Java源代码类型，归属类型为SOURCE_CODE。       |
 | TEX<sup>12+</sup>    | 'general.tex'                   | TEX源代码类型，归属类型为SOURCE_CODE。                |
-| MARKDOWN<sup>12+</sup>                         | 'general.markdown'                    | 标记语言文本类型，归属类型为PLAIN_TEXT。       |
+| MARKDOWN<sup>12+</sup>                         | 'general.markdown'                    | 标记语言文本类型，归属类型为TEXT。       |
 | ASC_TEXT<sup>12+</sup>    | 'general.asc-text'                   | ASCII文本类型，归属类型为TEXT。                |
 | RICH_TEXT<sup>12+</sup>    | 'general.rich-text'                   | 富文本类型，归属类型为TEXT。                |
 | DELIMITED_VALUES_TEXT<sup>12+</sup>    | 'general.delimited-values-text'                   | 所有分隔值文本的基类型，归属类型为TEXT。                |
@@ -252,9 +252,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
-    let ret = typeObj.belongsTo('general.plain-text');
+    let ret = typeObj.belongsTo('general.source-code');
     if(ret) {
-        console.info('type general.type-script belongs to type general.plain-text');
+        console.info('type general.type-script belongs to type general.source-code');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -266,7 +266,7 @@ try{
 
 isLowerLevelType(type: string): boolean
 
-判断当前标准化数据类型是否是指定标准化数据类型的低层级类型。例如TYPE_SCRIPT为SOURCE_CODE的低层级类型，TYPE_SCRIPT和SOURCE_CODE为PLAIN_TEXT的低层级类型。
+判断当前标准化数据类型是否是指定标准化数据类型的低层级类型。例如TYPE_SCRIPT为SOURCE_CODE的低层级类型，TYPE_SCRIPT和SOURCE_CODE为TEXT的低层级类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -298,9 +298,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
-    let ret = typeObj.isLowerLevelType('general.plain-text');
+    let ret = typeObj.isLowerLevelType('general.source-code');
     if(ret) {
-        console.info('type general.type-script is lower level type of type general.plain-text');
+        console.info('type general.type-script is lower level type of type general.source-code');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;
@@ -312,7 +312,7 @@ try{
 
 isHigherLevelType(type: string): boolean
 
-判断当前标准化数据类型是否是指定标准化数据类型的高层级类型。例如SOURCE_CODE为TYPE_SCRIPT的高层级类型，PLAIN_TEXT为SOURCE_CODE和TYPE_SCRIPT的高层级类型。
+判断当前标准化数据类型是否是指定标准化数据类型的高层级类型。例如SOURCE_CODE为TYPE_SCRIPT的高层级类型，TEXT为SOURCE_CODE和TYPE_SCRIPT的高层级类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -343,10 +343,10 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
-    let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.plain-text');
+    let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.source-code');
     let ret = typeObj.isHigherLevelType('general.type-script');
     if(ret) {
-        console.info('type general.plain-text is higher level type of type general.type-script');
+        console.info('type general.source-code is higher level type of type general.type-script');
     }
 } catch(e) {
     let error: BusinessError = e as BusinessError;

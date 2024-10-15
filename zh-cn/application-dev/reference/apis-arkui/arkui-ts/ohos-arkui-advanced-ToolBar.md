@@ -35,21 +35,27 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 
 **参数：**
 
-| 名称                            | 参数类型                                                      | 必填  | 装饰器类型       | 说明                                                                                                   |
-|-------------------------------|-----------------------------------------------------------|-----|-------------|------------------------------------------------------------------------------------------------------|
-| toolBarList                   | [ToolBarOptions](#toolbaroptions)                         | 是   | @ObjectLink | 工具栏列表。                                                                                               |
-| activateIndex                 | number                                                    | 否   | @Prop       | 激活态的子项。<br/>默认值：-1。                                                                                  |
-| controller                    | [TabsController](ts-container-tabs.md#tabscontroller)     | 是   | -           | 工具栏控制器。                                                                                          |
-| dividerModifier<sup>13+</sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | 否   | @Prop       | 工具栏头部分割线属性，可设置分割线高度、颜色等。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。                         |
-| toolBarModifier<sup>13+</sup> | [ToolBarModifier](#toolbarmodifier13) | 否   | @Prop       | 工具栏属性，可设置工具栏高度、背景色、内边距（仅在工具栏子项数量小于5时生效）、是否显示按压态。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| 名称                          | 类型                                                         | 必填 | 装饰器类型  | 说明                                                         |
+| ----------------------------- | ------------------------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
+| toolBarList                   | [ToolBarOptions](#toolbaroptions)                            | 是   | @ObjectLink | 工具栏列表。                                                 |
+| activateIndex                 | number                                                       | 否   | @Prop       | 激活态的子项。<br/>默认值：-1。                              |
+| controller                    | [TabsController](ts-container-tabs.md#tabscontroller)        | 是   | -           | 工具栏控制器。                                               |
+| dividerModifier<sup>13+</sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | 否   | @Prop       | 工具栏头部分割线属性，可设置分割线高度、颜色等。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| toolBarModifier<sup>13+</sup> | [ToolBarModifier](#toolbarmodifier13)                        | 否   | @Prop       | 工具栏属性，可设置工具栏高度、背景色、内边距（仅在工具栏子项数量小于5时生效）、是否显示按压态。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## ToolBarOptions
 
-继承于 Array<[ToolBarOption](#toolbaroption)>
+继承于 Array<[ToolBarOption](#toolbaroption)>。
+
+**装饰器类型：**\@Observed
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## ToolBarOption
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                                 | 类型                                                        | 必填 | 说明                                                                                                           |
 |------------------------------------|-----------------------------------------------------------| -------- |--------------------------------------------------------------------------------------------------------------|
