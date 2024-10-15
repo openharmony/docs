@@ -95,4 +95,4 @@
 
 ### 图片编码保存进图库
 
-可以将图片编码保存到应用沙箱，然后使用媒体文件管理相关接口[创建媒体资源](../medialibrary/photoAccessHelper-savebutton.md)。
+可以将图片编码保存到应用沙箱，然后使用媒体文件管理相关接口[保存媒体库资源](../medialibrary/photoAccessHelper-savebutton.md)。
