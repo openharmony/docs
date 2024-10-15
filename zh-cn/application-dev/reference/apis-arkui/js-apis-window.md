@@ -5962,6 +5962,7 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 应用可通过自定义快捷键实现主窗口的置顶和取消置顶。
 
 **系统能力：** SystemCapability.Window.SessionManager
+**需要权限：** ohos.permission.WINDOW_TOPMOST
 
 **参数：**
 
@@ -5969,7 +5970,6 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 | --------- | ------- | ---- | --------------------------------------------- |
 | isWindowTopmost | boolean | 是   | 设置主窗口置顶，true为置顶，false为取消置顶。 |
 
-**需要权限：** ohos.permission.WINDOW_TOPMOST
 
 **错误码：**
 
@@ -6016,7 +6016,7 @@ struct Index {
               });
             })
           } catch (exception) {
-            console.log(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`)
+            console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`)
           }
         })
     }
