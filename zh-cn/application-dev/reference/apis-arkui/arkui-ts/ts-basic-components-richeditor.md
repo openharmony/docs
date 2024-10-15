@@ -4269,8 +4269,10 @@ struct LineBreakStrategyExample {
 属性字符串使用示例。
 
 ```ts
+// xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
 import { image } from '@kit.ImageKit'
+import { On } from '@ohos.UiTest';
 
 @Entry
 @Component
@@ -4324,7 +4326,7 @@ struct Index {
 
   async aboutToAppear() {
     console.info("aboutToAppear initial imagePixelMap");
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.startIcon'));
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
   }
 
   private async getPixmapFromMedia(resource: Resource) {
@@ -4387,14 +4389,18 @@ struct Index {
 
       RichEditor(this.options1)
         .onReady(() => {
-          this.controller1.addTextSpan("把这些文字转换成属性字符串");
-        })
+        this.controller1.addTextSpan("把这些文字转换成属性字符串");
+      })
         .height("10%")
         .width("100%")
+        .borderWidth(1)
+        .borderColor(Color.Black)
 
-      Column() {
-        Row() {
-          Button("插入图片").onClick(() => {
+      Column({space:2}) {
+        Row({space:2}) {
+          Button("插入图片")
+            .stateEffect(true)
+            .onClick(() => {
             if (this.imagePixelMap !== undefined) {
               let imageStyledString = new MutableStyledString(new ImageAttachment({
                 value: this.imagePixelMap,
@@ -4419,8 +4425,19 @@ struct Index {
             this.controller.setStyledString(this.richEditorStyledString);
             this.controller.setCaretOffset(this.richEditorStyledString.length);
           })
+          Button("删除选中内容").onClick(() => {
+            // 获取选中范围
+            let richEditorSelection = this.controller.getSelection();
+            let start = richEditorSelection.start ? richEditorSelection.start : 0;
+            let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            // 获取组件展示的属性字符串
+            this.richEditorStyledString = this.controller.getStyledString();
+            this.richEditorStyledString.removeString(start, end - start);
+            // 使删除内容后的属性字符串展示在组件上
+            this.controller.setStyledString(this.richEditorStyledString);
+          })
         }
-        Row() {
+        Row({space:2}) {
           Button("获取选中内容").onClick(() => {
             // 获取选中范围
             let richEditorSelection = this.controller.getSelection();
@@ -4451,19 +4468,9 @@ struct Index {
             // 使变更样式后的属性字符串展示在组件上
             this.controller.setStyledString(this.richEditorStyledString);
           })
-          Button("删除选中内容").onClick(() => {
-            // 获取选中范围
-            let richEditorSelection = this.controller.getSelection();
-            let start = richEditorSelection.start ? richEditorSelection.start : 0;
-            let end = richEditorSelection.end ? richEditorSelection.end : 0;
-            // 获取组件展示的属性字符串
-            this.richEditorStyledString = this.controller.getStyledString();
-            this.richEditorStyledString.removeString(start, end - start);
-            // 使删除内容后的属性字符串展示在组件上
-            this.controller.setStyledString(this.richEditorStyledString);
-          })
+
         }
-        Row(){
+        Row({space:2}){
           //将属性字符串转换成span信息
           Button("调用fromStyledString").onClick(() => {
             this.controller1.addTextSpan("调用fromStyledString：" +JSON.stringify(this.controller1.fromStyledString(this.mutableStyledString)))
