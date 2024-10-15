@@ -1335,6 +1335,7 @@ uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void
 | 17700001 | The specified bundle name is not found. |
 | 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 | 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
+| 17700060 | The specified application cannot be uninstalled. |
 | 17700067 | Failed to uninstall the HAP because uninstalling the native package failed. |
 
 **示例：**
