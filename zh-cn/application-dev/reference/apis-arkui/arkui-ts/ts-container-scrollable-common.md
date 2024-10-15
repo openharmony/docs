@@ -339,7 +339,7 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-这是组件配置了边距属性后的示意图，方便理解每种枚举对应的裁剪区域。
+下图是组件配置了边距属性后的示意图，可理解每种枚举对应的裁剪区域。
 ![ContentClipMode示意图](figures/ContentClipMode.png)
 
 | 名称     |  枚举值  | 描述                                       |
