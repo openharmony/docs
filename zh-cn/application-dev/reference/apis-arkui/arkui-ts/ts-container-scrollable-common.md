@@ -342,7 +342,7 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 下图是组件配置了边距属性后的示意图，可理解每种枚举对应的裁剪区域。
 ![ContentClipMode示意图](figures/ContentClipMode.png)
 
-| 名称     |  枚举值  | 描述                                       |
+| 名称     |  值  | 说明                                       |
 | ------ | ------ | ---------------------------------------- |
 | CONTENT_ONLY   |  0  | 按内容区裁剪，对应图中的绿色区域。 |
 | BOUNDARY |  1  | 按组件区域裁剪，对应图中的整个蓝色区域。 |
