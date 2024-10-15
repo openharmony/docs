@@ -4354,8 +4354,6 @@ struct Index {
         Text("selection range: " + this.selection).width("100%")
         Text("selection content: " + this.content).width("100%")
       }
-      // .borderWidth(1)
-      // .borderColor(Color.Black)
       .width("100%")
       .height("10%")
 
