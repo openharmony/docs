@@ -1213,7 +1213,7 @@ try {
 }
 ```
 
-## wantAgentFlags
+## WantAgentFlags
 
 表示使用WantAgent类型的枚举。
 
