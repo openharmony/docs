@@ -421,7 +421,7 @@ export default class MigrationAbility extends UIAbility {
      }
    }
    ```
-快速拉起流程如下图所示。
+配置快速拉起功能后，当用户点击接续图标，等待接续数据返回的过程中，并行拉其应用，减小用户感知接续启动时间。快速拉起流程如下图所示。
 
 ![hop-cross-device-migration](figures/continue_quick_start.png)
 
