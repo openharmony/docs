@@ -5958,10 +5958,11 @@ export default class EntryAbility extends UIAbility {
 
 setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 
-应用主窗口调用，实现将窗口置于其他应用窗口之上不被遮挡，使用Promise异步回调。此接口仅支持2in1设备。
-应用可通过自定义快捷键实现主窗口的置顶和取消置顶。
+应用主窗口调用，实现将窗口置于其他应用窗口之上不被遮挡，使用Promise异步回调。<br>
+应用可通过自定义快捷键实现主窗口的置顶和取消置顶。<br>
+此接口仅支持2in1设备。
 
-**系统能力：** SystemCapability.Window.SessionManager
+**系统能力：** SystemCapability.Window.SessionManager<br>
 **需要权限：** ohos.permission.WINDOW_TOPMOST
 
 **参数：**
