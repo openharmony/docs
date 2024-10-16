@@ -6847,7 +6847,7 @@ prepare(config: AudioRecorderConfig): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 201      | Permission denied     |
+| 201      | permission denied     |
 
 **示例：**
 
@@ -7923,6 +7923,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 201      | permission denied.     |
 | 5400103  | IO error. Return by ErrorCallback. |
 | 5400105  | Service died. Return by ErrorCallback. |
 
