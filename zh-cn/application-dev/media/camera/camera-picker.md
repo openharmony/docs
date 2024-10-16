@@ -7,6 +7,12 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
 
 由于照片的拍摄和确认都是由用户进行主动确认，因此应用开发者可以不用申请操作相机的相关权限。
 
+## 约束与限制
+
+在应用调试时，开发者需在release模式下调用系统相机（CameraPicker）。
+
+由于系统限制了debug模式下不允许调试release应用，在debug模式下调用系统相机，将导致异常。
+
 ## 开发步骤
 
 详细的API说明请参考[CameraPicker API参考](../../reference/apis-camera-kit/js-apis-cameraPicker.md)。
