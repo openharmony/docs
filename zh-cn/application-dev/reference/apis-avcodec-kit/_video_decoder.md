@@ -501,7 +501,7 @@ OH_AVErrCode OH_VideoDecoder_RenderOutputBufferAtTime(OH_AVCodec *codec, uint32_
 | -------- | -------- |
 | codec | 指向视频解码实例的指针。  |
 | index | 输出buffer对应的索引值。 由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。 |
-| renderTimestampNs | 输出buffer被发送到surface的时间戳，单位是纳秒。  |
+| renderTimestampNs | 输出buffer被发送到surface的时间戳，取值范围大于0，应由std::chrono::steady_clock标准库时钟生成，且单位为纳秒。  |
 
 **返回：**
 
