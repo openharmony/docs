@@ -173,3 +173,5 @@ let isBoundary = iterator.isBoundary(9); // isBoundary: true
 let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
 ```
 <!--RP1--><!--RP1End-->
+
+<!--no_check-->
