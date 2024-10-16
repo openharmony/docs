@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。 <br> **库：** libace_ndk.z.so | 
+| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。 <br> **库：** libace_ndk.z.so |  
 
 
 ### 类型定义
@@ -29,7 +29,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_UIInputEvent_Type](#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2, ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 } | UI输入事件类型定义。  | 
+| [ArkUI_UIInputEvent_Type](#arkui_uiinputevent_type) { **ARKUI_UIINPUTEVENT_TYPE_UNKNOWN** = 0, **ARKUI_UIINPUTEVENT_TYPE_TOUCH** = 1, **ARKUI_UIINPUTEVENT_TYPE_AXIS** = 2, **ARKUI_UIINPUTEVENT_TYPE_MOUSE** = 3 } | UI输入事件类型定义。  | 
 | {<br/>OH_NATIVEXCOMPONENT_RESULT_SUCCESS = 0, OH_NATIVEXCOMPONENT_RESULT_FAILED = -1, OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER = -2, UI_TOUCH_EVENT_ACTION_CANCEL = 0,<br/>UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3<br/>} | 定义输入事件的Action Code。  | 
 | {<br/>UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_TOOL_TYPE_FINGER = 1, UI_INPUT_EVENT_TOOL_TYPE_PEN = 2, UI_INPUT_EVENT_TOOL_TYPE_MOUSE = 3,<br/>UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD = 4, UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK = 5<br/>} | 产生输入事件的工具类型定义。  | 
 | { UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN = 0, UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE = 1, UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN = 2 } | 产生输入事件的来源类型定义。  | 
@@ -417,6 +417,7 @@ float OH_ArkUI_PointerEvent_GetDisplayXByIndex (const ArkUI_UIInputEvent * event
 
 返回当前带有指向性的输入事件相对于当前屏幕左上角的X坐标，如果参数异常则返回0.0f。
 
+
 ### OH_ArkUI_PointerEvent_GetDisplayY()
 
 ```
@@ -531,7 +532,6 @@ int64_t OH_ArkUI_PointerEvent_GetHistoryEventTime (const ArkUI_UIInputEvent * ev
 **返回：**
 
 返回UI输入事件发生的时间，如果参数异常则返回0。
-
 
 ### OH_ArkUI_PointerEvent_GetHistoryPointerCount()
 
