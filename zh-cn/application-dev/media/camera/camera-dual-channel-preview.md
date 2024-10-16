@@ -195,7 +195,8 @@
 
 7. 通过 [image.Component]()解析图片buffer数据参考：
 
-   > 注意：需要确认图像的宽width是否与行距rowStride一致，如果不一致可参考以下方式处理：
+   > **注意：**
+   > 需要确认图像的宽width是否与行距rowStride一致，如果不一致可参考以下方式处理：
 
    方式一：去除component.byteBuffer中stride数据，拷贝得到新的buffer，调用不支持stride的接口处理buffer。
 
