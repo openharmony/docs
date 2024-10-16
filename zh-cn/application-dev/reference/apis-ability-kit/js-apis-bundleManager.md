@@ -193,7 +193,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
 | UNSPECIFIED|  0 | 未指定类型。 |
-| MULTI_INSTANCE |  1  | 多实例模式。  |
+| MULTI_INSTANCE |  1  | 多实例模式。常驻进程不支持该字段。  |
 | APP_CLONE |  2  |  分身模式。  |
 
 ## 接口
