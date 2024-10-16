@@ -832,7 +832,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settinggetvalue10)。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settingsgetvalue10)。
 
 **模型约束**：此接口仅可在FA模型下使用。
 
@@ -870,7 +870,7 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settinggetvalue10-1)。
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getValue()](#settingsgetvalue10-1)。
 
 **模型约束**：此接口仅可在FA模型下使用。
 
