@@ -5,6 +5,7 @@
 
 数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括number、string、boolean、bigint以及可序列化的object。
 
+共享用户首选项可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，性能优于普通的[用户首选项](js-apis-data-preferences.md)，可参考[Sendable使用场景](../../arkts-utils/arkts-sendable.md#使用场景)。
 
 > **说明：**
 >
