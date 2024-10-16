@@ -98,4 +98,4 @@ StartupVisibility作为[StartOptions](js-apis-app-ability-startOptions.md)的一
 
 **示例：**
 
-  参见[ContextConstant.ProcessMode](#contextconstantprocessmode12)。
+  参见[ContextConstant.ProcessMode](#processmode12)。

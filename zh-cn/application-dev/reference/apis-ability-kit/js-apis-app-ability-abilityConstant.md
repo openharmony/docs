@@ -22,8 +22,8 @@ import { AbilityConstant } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#abilityconstantlaunchreason)| 否 | 否 | 枚举类型，表示启动原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | 否 | 否 | 枚举类型，表示最后退出原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| launchReason | [LaunchReason](#launchreason)| 否 | 否 | 枚举类型，表示启动原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| lastExitReason | [LastExitReason](#lastexitreason) | 否 | 否 | 枚举类型，表示最后退出原因。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | lastExitMessage<sup>12+</sup> | string | 否 | 否 | 表示最后退出详细原因。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## LaunchReason
@@ -72,7 +72,7 @@ Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(
 | JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | APP_FREEZE<sup>10+</sup>  | 5    | 由于watchdog检测出应用Freeze故障，导致应用程序退出。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 由于系统性能问题（如设备内存不足），导致应用程序退出。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：该接口即将废弃，建议使用RESOURCE_CONTROL替代。 |
-| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 系统资源使用不当，导致应用程序退出。具体错误原因可以通过[LaunchParam.lastExitMessage](#abilityconstantlaunchparam)获取，可能原因如下: <br> - CPU Highload，CPU高负载。<br> - CPU_EXT Highload，快速CPU负载检测。<br> - IO Manage Control，I/O管控。<br> - App Memory Deterioration，应用内存超限劣化。<br> - Temperature Control，温度管控。<br> - Memory Pressure，整机低内存触发按优先级由低到高查杀。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 系统资源使用不当，导致应用程序退出。具体错误原因可以通过[LaunchParam.lastExitMessage](#launchparam)获取，可能原因如下: <br> - CPU Highload，CPU高负载。<br> - CPU_EXT Highload，快速CPU负载检测。<br> - IO Manage Control，I/O管控。<br> - App Memory Deterioration，应用内存超限劣化。<br> - Temperature Control，温度管控。<br> - Memory Pressure，整机低内存触发按优先级由低到高查杀。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | UPGRADE<sup>10+</sup>  | 8    | 应用程序因升级而退出。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
