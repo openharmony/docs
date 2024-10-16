@@ -45,15 +45,15 @@
 
 3. 创建方-集成态HSP-打包配置（tgz包）。
 
-    3.1 配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)；
+   (1) 配置项目签名信息，详见[应用/服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-0000001587684945-V5)；
 
-    3.2 配置release模式；
+   (2) 配置release模式；
 
     ![](./figures/ide-release-setting.png)
 
-    3.3 选择library目录，Build -> Make Module 'libray'。
+   (3) 选择library目录，Build -> Make Module 'libray'。
 
-4. 使用方-工程依赖配置:使用方主模块下oh-package.json5配置文件中添加依赖。
+4. 使用方-工程依赖配置：使用方主模块下oh-package.json5配置文件中添加依赖。
 
     ```json
     // user_project/entry/oh-package.json5
