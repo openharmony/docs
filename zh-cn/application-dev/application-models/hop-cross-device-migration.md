@@ -121,22 +121,39 @@
     > 1. 在应用迁移启动时，无论是冷启动还是热启动，都会在执行完onCreate()/onNewWant()后，触发[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)生命周期函数，不执行[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期函数。
     > 2. 开发者如果在`onWindowStageCreate()`中进行了一些应用启动时必要的初始化，那么迁移后需要在`onWindowStageRestore()`中执行同样的初始化操作，避免应用异常。
 
-    - 通过在onCreate()/onNewWant()回调中检查`launchReason`，可以判断此次启动是否由迁移触发。
+    - 通过在onCreate()/onNewWant()回调中检查`launchReason`(CONTINUATION)，可以判断此次启动是否由迁移触发。若应用已配置快速拉起功能，则首次触发需要在onCreate()/onNewWant()中校验launchReason是否为提前拉起 (PREPARE_CONTINUATION)。
     - 开发者可以从[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)中获取之前保存的迁移数据。
     - 若开发者使用系统页面栈恢复功能，则需要在onCreate()/onNewWant()执行完成前，同步调用[restoreWindowStage()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextrestorewindowstage)，来触发带有页面栈的页面恢复，详见[按需迁移页面栈](./hop-cross-device-migration.md#按需迁移页面栈)。
 
     ```ts
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-
+    
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-
+    
     export default class MigrationAbility extends UIAbility {
       storage : LocalStorage = new LocalStorage();
-
+    
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+    
+        // 1.若已配置快速拉起功能，首次触发迁移
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.PREPARE_CONTINUATION) {
+          //处理应用自定义跳转、时序等问题
+          // ...
+          
+          // 将上述保存的数据从want.parameters中取出恢复
+          let continueInput = '';
+          if (want.parameters !== undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
+          }
+          // 触发页面恢复
+          this.context.restoreWindowStage(this.storage);
+        }
+    
+        // 2.非首次触发接续
         if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
           // 将上述保存的数据从want.parameters中取出恢复
           let continueInput = '';
@@ -148,7 +165,7 @@
           this.context.restoreWindowStage(this.storage);
         }
       }
-
+    
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
           hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
           if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
@@ -232,10 +249,10 @@
     import { AbilityConstant, common } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { promptAction } from '@kit.ArkUI';
-
+    
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-
+    
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
@@ -385,7 +402,7 @@ export default class MigrationAbility extends UIAbility {
        ]
      }
    }
-   ```
+```
 
 ### 支持快速拉起目标应用
 默认情况下，发起迁移后不会立即拉起对端的目标应用，而是等待迁移数据从源端同步到对端后，才会拉起。为了发起迁移后能够立即拉起目标应用，做到及时响应，可以通过在continueType标签中添加“_ContinueQuickStart”后缀进行生效，这样待迁移数据从源端同步到对端后只恢复迁移数据即可，提升应用迁移体验。
@@ -404,6 +421,9 @@ export default class MigrationAbility extends UIAbility {
      }
    }
    ```
+快速拉起流程如下图所示。
+
+![hop-cross-device-migration](figures/continue_quick_start.png)
 
 快速拉起目标应用时，应用的[onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)和[onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagerestore)回调会被依次触发。通常在onWindowStageCreate()中，开发者会调用[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)加载页面，该接口会抛出一个异步任务加载首页，该异步任务与onWindowStageRestore()无同步关系。如果在onWindowStageRestore()中使用UI接口（如路由接口），其调用时机可能早于首页加载。为保证正常加载顺序，可以使用[setTimeout()](../reference/common/js-apis-timer.md#settimeout)抛出异步任务执行相关操作。详细见示例代码。
 
