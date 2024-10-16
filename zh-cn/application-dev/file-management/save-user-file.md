@@ -37,7 +37,8 @@
    documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf']; 
    ```
 
-3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12-2)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)接口拉起FilePicker界面进行文件保存。
+3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口拉起FilePicker界面进行文件保存。
+
    ```ts
    let uris: Array<string> = [];
    // 请确保 getContext(this) 返回结果为 UIAbilityContext
@@ -52,9 +53,10 @@
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
+
 > **注意**：
 > <br>**1**、不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存URI。
-> <br>**2**、使用picker的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)接口获取到URI的权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
+> <br>**2**、使用picker的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口获取到URI的权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
 > <br>**3**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
 > <br>**4**、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
 
