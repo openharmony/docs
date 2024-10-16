@@ -92,3 +92,6 @@
      ```
 
      ![Transparency](figures/transparency.png)
+
+<!--RP1-->
+<!--RP1End-->

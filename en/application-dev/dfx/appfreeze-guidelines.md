@@ -400,7 +400,7 @@ The appfreeze log is managed together with the native process crash, JS applicat
 
 - Method 1: DevEco Studio
 
-    DevEco Studio collects device fault logs and saves them to **FaultLog**. For details, see <!--RP1-->[DevEco Studio User Guide-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-0000001659706366-V5)<!--RP1End-->.
+    DevEco Studio collects device fault logs and saves them to **FaultLog**. For details, see <!--RP1-->[DevEco Studio User Guide-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-fault-log-V5)<!--RP1End-->.
 
 - Method 2: hiAppEvent APIs
 
