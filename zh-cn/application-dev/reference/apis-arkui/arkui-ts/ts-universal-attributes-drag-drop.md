@@ -339,7 +339,7 @@ struct Example {
         ForEach(this.numbers, (item: number) => {
           GridItem() {
             Column()
-              .backgroundColor(Color.Red)
+              .backgroundColor(Color.Blue)
               .width('100%')
               .height('100%')
           }
@@ -377,7 +377,7 @@ struct Example {
         ForEach(this.numbers, (item: number) => {
           GridItem() {
             Column()
-              .backgroundColor(Color.Red)
+              .backgroundColor(Color.Blue)
               .width('100%')
               .height('100%')
           }
