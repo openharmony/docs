@@ -22,7 +22,7 @@ JavaScript Date对象提供了一种在JavaScript中表示和操作日期和时�
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
 ### OH_JSVM_CreateDate
 
@@ -31,10 +31,33 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 cpp部分代码
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+#include <time.h>
+// OH_JSVM_CreateDate的样例方法
+static JSVM_Value CreateDate(JSVM_Env env, JSVM_CallbackInfo info) {
+    // 通过c接口获取Unix纪元以来经过的秒数，并转化为毫秒数为单位
+    double value = static_cast<double>(time(NULL) * 1000);
+    // 调用OH_JSVM_CreateDate接口将double值转换成表示日期时间的JavaScript值返回出去
+    JSVM_Value returnValue = nullptr;
+
+    JSVM_CALL(OH_JSVM_CreateDate(env, value, &returnValue));
+
+    bool isDate;
+    JSVM_CALL(OH_JSVM_IsDate(env, returnValue, &isDate));
+    if (isDate == false) {
+        OH_LOG_ERROR(LOG_APP, "JSVM IsDate fail");
+        return returnValue;
+    }
+
+    value = 0;
+    JSVM_CALL(OH_JSVM_GetDateValue(env, returnValue, &value));
+
+    uint64_t time = static_cast<uint64_t>(value) / 1000;
+    char *date = ctime(reinterpret_cast<time_t *>(&time));
+    OH_LOG_INFO(LOG_APP, "JSVM CreateDate success:%{public}s", date);
+
+    return returnValue;
+}
+
 // CreateDate注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateDate},
@@ -42,36 +65,10 @@ static JSVM_CallbackStruct param[] = {
 static JSVM_CallbackStruct *method = param;
 // CreateDate方法别名，供JS调用
 static JSVM_PropertyDescriptor descriptor[] = {
-    {"createDate", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+    {"createDate", nullptr, method, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// OH_JSVM_CreateDate的样例方法
-static JSVM_Value CreateDate(JSVM_Env env, JSVM_CallbackInfo info) {
-    double value = 1501924876711;
-    // 调用OH_JSVM_CreateDate接口将double值转换成表示日期时间的JavaScript值返回出去
-    JSVM_Value returnValue = nullptr;
-    JSVM_Status status = OH_JSVM_CreateDate(env, value, &returnValue);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM CreateDate fail");
-    } else {
-        OH_LOG_INFO(LOG_APP, "JSVM CreateDate success");
-    }
-    return returnValue;
-}
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `createDate()`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM CreateDate: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM CreateDate error: %{public}s', error.message);
-}
+// 样例测试js
+const char *srcCallNative = R"JS(createDate())JS";
 ```
 
 ### OH_JSVM_GetDateValue
@@ -81,53 +78,37 @@ try {
 cpp部分代码
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// GetDateValue注册回调
+#include <time.h>
+// OH_JSVM_GetDateValue的样例方法
+static JSVM_Value GetDateValue(JSVM_Env env, JSVM_CallbackInfo info) {
+    size_t argc = 1;
+    JSVM_Value args[1] = {nullptr};
+    JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr));
+    // 获取传入的Unix Time Stamp时间
+    double value;
+    JSVM_CALL(OH_JSVM_GetDateValue(env, args[0], &value)); 
+   
+    // 将获取到的Unix Time Stamp时间转化为日期字符串打印
+    uint64_t time = static_cast<uint64_t>(value) / 1000;
+    char *date = ctime(reinterpret_cast<time_t *>(&time));
+    OH_LOG_INFO(LOG_APP, "JSVM GetDateValue success:%{public}s", date);
+   
+    JSVM_Value returnValue = nullptr;
+    JSVM_CALL(OH_JSVM_CreateDouble(env, value, &returnValue));
+    return returnValue;
+}
+
+// CreateDate注册回调
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetDateValue},
 };
 static JSVM_CallbackStruct *method = param;
-// GetDateValue方法别名，供JS调用
+// CreateDate方法别名，供JS调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getDateValue", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
-// OH_JSVM_GetDateValue的样例方法
-static JSVM_Value GetDateValue(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    size_t argc = 1;
-    JSVM_Value args[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    // 获取传入的Unix Time Stamp时间
-    double value;
-    JSVM_Status status = OH_JSVM_GetDateValue(env, args[0], &value);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM IsArray fail");
-    } else {
-        // 将获取到的Unix Time Stamp时间打印
-        OH_LOG_INFO(LOG_APP, "JSVM gets the incoming Green time:%{public}lf.", value);
-    }
-    JSVM_Value returnValue = nullptr;
-    OH_JSVM_CreateDouble(env, value, &returnValue);
-    return returnValue;
-}
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `getDateValue(new Date(Date.now()))`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM GetDateValue: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM GetDateValue error: %{public}s', error.message);
-}
+// 样例测试js
+const char *srcCallNative = R"JS(getDateValue(new Date(Date.now())))JS";
 ```
 
 ### OH_JSVM_IsDate
@@ -137,51 +118,28 @@ try {
 cpp部分代码
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// IsDate注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = IsDate},
-};
-static JSVM_CallbackStruct *method = param;
-// IsDate方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"isDate", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_IsDate的样例方法
 static JSVM_Value IsDate(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
-    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    bool result;
-    JSVM_Status status = OH_JSVM_IsDate(env, args[0], &result);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM IsDate fail");
-    } else {
-        OH_LOG_INFO(LOG_APP, "JSVM IsDate success:%{public}d", result);
-    }
-    JSVM_Value isDate = nullptr;
-    OH_JSVM_GetBoolean(env, result, &isDate);
-    return isDate;
+    JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr));
+    bool isData;
+    JSVM_CALL(OH_JSVM_IsDate(env, args[0], &isData));
+    OH_LOG_INFO(LOG_APP, "JSVM IsDate success:%{public}d", isData);
+    
+    JSVM_Value result = nullptr;
+    JSVM_CALL(OH_JSVM_GetBoolean(env, isData, &result));
+    return result;
 }
-```
-
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `isDate(new Date(Date.now()))`;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM IsDate: %{public}s', napitest.runJsVm(script));
-  script = `
-      isDate(1)
-  `;
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM IsDate: %{public}s', napitest.runJsVm(script));
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM IsDate error: %{public}s', error.message);
-}
+// CreateDate注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = IsDate},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateDate方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"isDate", nullptr, method, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(isDate(new Date(Date.now())))JS";
 ```
