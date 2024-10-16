@@ -68,12 +68,12 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    import { fileIo } from '@kit.CoreFileKit';
+    import { fileIo as fs } from '@kit.CoreFileKit';
    
     let soundID: number;
     let uri: string;
     async function load() {
-      await fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file: fileIo.File) => {
+      await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
         console.info("file fd: " + file.fd);
         uri = 'fd://' + (file.fd).toString()
       }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
@@ -210,7 +210,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 ```ts
 import { audio } from '@kit.AudioKit';
 import { media } from '@kit.MediaKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let soundPool: media.SoundPool;
@@ -236,7 +236,7 @@ async function create() {
   finishPlayCallback();
   setErrorCallback();
   // 加载音频资源
-  await fileIo.open('/test_01.mp3', fileIo.OpenMode.READ_ONLY).then((file: fileIo.File) => {
+  await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
     console.info("file fd: " + file.fd);
     uri = 'fd://' + (file.fd).toString()
   }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
