@@ -233,9 +233,11 @@
 **取值：** "usual.event.data.VOLUME_EJECT"
 
 
-### COMMON_EVENT_RESTORE_START
+### COMMON_EVENT_RESTORE_START<sup>13+<sup>
 
 表示某个应用开始恢复的公共事件。
+
+当数据迁移相关应用拉起备份恢复框架进行恢复任务，某个应用恢复开始时会发送此公共事件。
 
 **系统接口：** 此接口为系统接口。
 
