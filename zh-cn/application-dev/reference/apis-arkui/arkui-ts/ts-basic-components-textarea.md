@@ -144,7 +144,7 @@ fontColor(value: ResourceColor)
 
 ### fontSize
 
-fontSize(value: Lenth)
+fontSize(value: Length)
 
 设置字体大小。
 
