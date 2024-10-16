@@ -21,11 +21,12 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 > **说明：**
 >
 > 不支持转场动画。
+>
 > 同一页面的多个Web组件，必须绑定不同的WebviewController。
 
 **参数：**
 
-| 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
+| 参数名        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
@@ -246,7 +247,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 **参数：**
 
-| 参数名              | 参数类型    | 必填   | 默认值   | 参数描述                                 |
+| 参数名              | 类型    | 必填   | 默认值   | 说明                                 |
 | ---------------- | ------- | ---- | ----- | ------------------------------------ |
 | domStorageAccess | boolean | 是    | false | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。 |
 
@@ -280,7 +281,7 @@ fileAccess(fileAccess: boolean)
 
 **参数：**
 
-| 参数名        | 参数类型    | 必填   | 默认值  | 参数描述                   |
+| 参数名        | 类型    | 必填   | 默认值  | 说明                   |
 | ---------- | ------- | ---- | ---- | ---------------------- |
 | fileAccess | boolean | 是    | false | API version 11及以前：默认为true，启动应用中文件系统的访问。API version 12及以后：默认为false，不启用应用中文件系统的访问。 |
 
@@ -312,7 +313,7 @@ imageAccess(imageAccess: boolean)
 
 **参数：**
 
-| 参数名         | 参数类型    | 必填   | 默认值  | 参数描述            |
+| 参数名         | 类型    | 必填   | 默认值  | 说明            |
 | ----------- | ------- | ---- | ---- | --------------- |
 | imageAccess | boolean | 是    | true | 设置是否允许自动加载图片资源。 |
 
@@ -343,7 +344,7 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 **参数：**
 
-| 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
+| 参数名        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- |---------------------------------------- |
 | javaScriptProxy     | [JavaScriptProxy](#javascriptproxy12)                                   | 是    |  参与注册的对象。只能声明方法，不能声明属性。                   |
 
@@ -402,7 +403,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 **参数：**
 
-| 参数名              | 参数类型    | 必填   | 默认值  | 参数描述                |
+| 参数名              | 类型    | 必填   | 默认值  | 说明                |
 | ---------------- | ------- | ---- | ---- | ------------------- |
 | javaScriptAccess | boolean | 是    | true | 是否允许执行JavaScript脚本。 |
 
@@ -433,7 +434,7 @@ overScrollMode(mode: OverScrollMode)
 
 **参数：**
 
-| 参数名  | 参数类型                                    | 必填   | 默认值                  | 参数描述               |
+| 参数名  | 类型                                    | 必填   | 默认值                  | 说明               |
 | ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
 | mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。 |
 
@@ -465,7 +466,7 @@ mixedMode(mixedMode: MixedMode)
 
 **参数：**
 
-| 参数名       | 参数类型                        | 必填   | 默认值            | 参数描述      |
+| 参数名       | 类型                        | 必填   | 默认值            | 说明      |
 | --------- | --------------------------- | ---- | -------------- | --------- |
 | mixedMode | [MixedMode](#mixedmode枚举说明) | 是    | MixedMode.None | 要设置的混合内容。 |
 
@@ -497,7 +498,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 **参数：**
 
-| 参数名               | 参数类型    | 必填   | 默认值  | 参数描述             |
+| 参数名               | 类型    | 必填   | 默认值  | 说明             |
 | ----------------- | ------- | ---- | ---- | ---------------- |
 | onlineImageAccess | boolean | 是    | true | 设置是否允许从网络加载图片资源。 |
 
@@ -529,7 +530,7 @@ zoomAccess(zoomAccess: boolean)
 
 **参数：**
 
-| 参数名        | 参数类型    | 必填   | 默认值  | 参数描述          |
+| 参数名        | 类型    | 必填   | 默认值  | 说明          |
 | ---------- | ------- | ---- | ---- | ------------- |
 | zoomAccess | boolean | 是    | true | 设置是否支持手势进行缩放。 |
 
@@ -561,7 +562,7 @@ overviewModeAccess(overviewModeAccess: boolean)
 
 **参数：**
 
-| 参数名                | 参数类型    | 必填   | 默认值  | 参数描述            |
+| 参数名                | 类型    | 必填   | 默认值  | 说明            |
 | ------------------ | ------- | ---- | ---- | --------------- |
 | overviewModeAccess | boolean | 是    | true | 设置是否使用概览模式加载网页。 |
 
@@ -593,7 +594,7 @@ databaseAccess(databaseAccess: boolean)
 
 **参数：**
 
-| 参数名            | 参数类型    | 必填   | 默认值   | 参数描述              |
+| 参数名            | 类型    | 必填   | 默认值   | 说明              |
 | -------------- | ------- | ---- | ----- | ----------------- |
 | databaseAccess | boolean | 是    | false | 设置是否开启数据库存储API权限。 |
 
@@ -625,7 +626,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 **参数：**
 
-| 参数名               | 参数类型    | 必填   | 默认值  | 参数描述            |
+| 参数名               | 类型    | 必填   | 默认值  | 说明            |
 | ----------------- | ------- | ---- | ---- | --------------- |
 | geolocationAccess | boolean | 是    | true | 设置是否开启获取地理位置权限。 |
 
@@ -657,7 +658,7 @@ mediaPlayGestureAccess(access: boolean)
 
 **参数：**
 
-| 参数名    | 参数类型    | 必填   | 默认值  | 参数描述                |
+| 参数名    | 类型    | 必填   | 默认值  | 说明                |
 | ------ | ------- | ---- | ---- | ------------------- |
 | access | boolean | 是    | true | 设置有声视频播放是否需要用户手动点击。 |
 
@@ -691,7 +692,7 @@ multiWindowAccess(multiWindow: boolean)
 
 **参数：**
 
-| 参数名         | 参数类型    | 必填   | 默认值   | 参数描述         |
+| 参数名         | 类型    | 必填   | 默认值   | 说明         |
 | ----------- | ------- | ---- | ----- | ------------ |
 | multiWindow | boolean | 是    | false | 设置是否开启多窗口权限。 |
 
@@ -727,7 +728,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 **参数：**
 
-| 参数名                 | 参数类型    | 必填   | 默认值  | 参数描述         |
+| 参数名                 | 类型    | 必填   | 默认值  | 说明         |
 | ------------------- | ------- | ---- | ---- | ------------ |
 | horizontalScrollBar | boolean | 是    | true | 设置是否显示横向滚动条。 |
 
@@ -737,26 +738,33 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
-
+  
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State isShow: boolean = false;
-
+    @State isShow: boolean = true;
+    @State btnMsg: string ="隐藏滚动条";
+  
     build() {
       Column() {
         //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
-        Button('refresh')
+        Button(this.btnMsg)
           .onClick(() => {
-            this.isShow = true;
+            if(this.isShow){
+              this.isShow = false;
+              this.btnMsg="显示滚动条";
+            }else{
+              this.isShow = true;
+              this.btnMsg="隐藏滚动条";
+            }
             try {
               this.controller.refresh();
             } catch (error) {
               console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
             }
-          })
-        Web({ src: $rawfile('index.html'), controller: this.controller })
+          }).height("10%").width("40%")
+        Web({ src: $rawfile('index.html'), controller: this.controller }).height("90%")
           .horizontalScrollBarAccess(this.isShow)
       }
     }
@@ -769,15 +777,16 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
   <!DOCTYPE html>
   <html>
   <head>
+      <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0">
       <title>Demo</title>
       <style>
-        body {
-          width:3000px;
-          height:3000px;
-          padding-right:170px;
-          padding-left:170px;
-          border:5px solid blueviolet
-        }
+          body {
+            width:3000px;
+            height:6000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+          }
       </style>
   </head>
   <body>
@@ -799,7 +808,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 **参数：**
 
-| 参数名               | 参数类型    | 必填   | 默认值  | 参数描述         |
+| 参数名               | 类型    | 必填   | 默认值  | 说明         |
 | ----------------- | ------- | ---- | ---- | ------------ |
 | verticalScrollBar | boolean | 是    | true | 设置是否显示纵向滚动条。 |
 
@@ -809,27 +818,34 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
-
+  
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State isShow: boolean = false;
-
+    @State isShow: boolean = true;
+    @State btnMsg: string ="隐藏滚动条";
+  
     build() {
       Column() {
-        //通过@State变量改变纵向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
-        Button('refresh')
-        .onClick(() => {
-          this.isShow = true;
-          try {
-            this.controller.refresh();
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-        Web({ src: $rawfile('index.html'), controller: this.controller })
-        .verticalScrollBarAccess(this.isShow)
+        //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        Button(this.btnMsg)
+          .onClick(() => {
+            if(this.isShow){
+              this.isShow = false;
+              this.btnMsg="显示滚动条";
+            }else{
+              this.isShow = true;
+              this.btnMsg="隐藏滚动条";
+            }
+            try {
+              this.controller.refresh();
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          }).height("10%").width("40%")
+        Web({ src: $rawfile('index.html'), controller: this.controller }).height("90%")
+          .verticalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -841,15 +857,16 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   <!DOCTYPE html>
   <html>
   <head>
+      <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0">
       <title>Demo</title>
       <style>
-        body {
-          width:3000px;
-          height:3000px;
-          padding-right:170px;
-          padding-left:170px;
-          border:5px solid blueviolet
-        }
+          body {
+            width:3000px;
+            height:6000px;
+            padding-right:170px;
+            padding-left:170px;
+            border:5px solid blueviolet
+          }
       </style>
   </head>
   <body>
@@ -876,7 +893,7 @@ cacheMode(cacheMode: CacheMode)
 
 **参数：**
 
-| 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
+| 参数名       | 类型                        | 必填   | 默认值               | 说明      |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
 | cacheMode | [CacheMode](#cachemode9枚举说明) | 是    | CacheMode.Default | 要设置的缓存模式。 |
 
@@ -909,7 +926,7 @@ copyOptions(value: CopyOptions)
 
 **参数：**
 
-| 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
+| 参数名       | 类型                        | 必填   | 默认值               | 说明      |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
 | value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.LocalDevice | 要设置的剪贴板复制范围选项。 |
 
@@ -942,7 +959,7 @@ textZoomAtio(textZoomAtio: number)
 
 **参数：**
 
-| 参数名          | 参数类型   | 必填   | 默认值  | 参数描述                             |
+| 参数名          | 类型   | 必填   | 默认值  | 说明                             |
 | ------------ | ------ | ---- | ---- | -------------------------------- |
 | textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, +∞)。 |
 
@@ -972,7 +989,7 @@ textZoomRatio(textZoomRatio: number)
 
 **参数：**
 
-| 参数名           | 参数类型   | 必填   | 默认值  | 参数描述                             |
+| 参数名           | 类型   | 必填   | 默认值  | 说明                             |
 | ------------- | ------ | ---- | ---- | -------------------------------- |
 | textZoomRatio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, +∞)。 |
 
@@ -1005,7 +1022,7 @@ initialScale(percent: number)
 
 **参数：**
 
-| 参数名     | 参数类型   | 必填   | 默认值  | 参数描述                          |
+| 参数名     | 类型   | 必填   | 默认值  | 说明                          |
 | ------- | ------ | ---- | ---- | ----------------------------- |
 | percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。 |
 
@@ -1042,7 +1059,7 @@ userAgent(userAgent: string)
 
 **参数：**
 
-| 参数名       | 参数类型   | 必填   | 默认值  | 参数描述      |
+| 参数名       | 类型   | 必填   | 默认值  | 说明      |
 | --------- | ------ | ---- | ---- | --------- |
 | userAgent | string | 是    | -    | 要设置的用户代理。 |
 
@@ -1075,7 +1092,7 @@ blockNetwork(block: boolean)
 
 **参数：**
 
-| 参数名   | 参数类型    | 必填   | 默认值   | 参数描述                |
+| 参数名   | 类型    | 必填   | 默认值   | 说明                |
 | ----- | ------- | ---- | ----- | ------------------- |
 | block | boolean | 是    | false | 设置Web组件是否阻止从网络加载资源。 |
 
@@ -1108,7 +1125,7 @@ defaultFixedFontSize(size: number)
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| 参数名  | 类型   | 必填   | 默认值  | 说明                                     |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | size | number | 是    | 13   | 设置网页的默认等宽字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。 |
 
@@ -1141,7 +1158,7 @@ defaultFontSize(size: number)
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| 参数名  | 类型   | 必填   | 默认值  | 说明                                     |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | size | number | 是    | 16   | 设置网页的默认字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。 |
 
@@ -1174,7 +1191,7 @@ minFontSize(size: number)
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| 参数名  | 类型   | 必填   | 默认值  | 说明                                     |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | size | number | 是    | 8    | 设置网页字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。 |
 
@@ -1207,7 +1224,7 @@ minLogicalFontSize(size: number)
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| 参数名  | 类型   | 必填   | 默认值  | 说明                                     |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | size | number | 是    | 8    | 设置网页逻辑字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。 |
 
@@ -1240,7 +1257,7 @@ webFixedFont(family: string)
 
 **参数：**
 
-| 参数名    | 参数类型   | 必填   | 默认值       | 参数描述                |
+| 参数名    | 类型   | 必填   | 默认值       | 说明                |
 | ------ | ------ | ---- | --------- | ------------------- |
 | family | string | 是    | monospace | 设置网页的fixed font字体库。 |
 
@@ -1273,7 +1290,7 @@ webSansSerifFont(family: string)
 
 **参数：**
 
-| 参数名    | 参数类型   | 必填   | 默认值        | 参数描述                     |
+| 参数名    | 类型   | 必填   | 默认值        | 说明                     |
 | ------ | ------ | ---- | ---------- | ------------------------ |
 | family | string | 是    | sans-serif | 设置网页的sans serif font字体库。 |
 
@@ -1306,7 +1323,7 @@ webSerifFont(family: string)
 
 **参数：**
 
-| 参数名    | 参数类型   | 必填   | 默认值   | 参数描述                |
+| 参数名    | 类型   | 必填   | 默认值   | 说明                |
 | ------ | ------ | ---- | ----- | ------------------- |
 | family | string | 是    | serif | 设置网页的serif font字体库。 |
 
@@ -1339,7 +1356,7 @@ webStandardFont(family: string)
 
 **参数：**
 
-| 参数名    | 参数类型   | 必填   | 默认值        | 参数描述                   |
+| 参数名    | 类型   | 必填   | 默认值        | 说明                   |
 | ------ | ------ | ---- | ---------- | ---------------------- |
 | family | string | 是    | sans serif | 设置网页的standard font字体库。 |
 
@@ -1372,7 +1389,7 @@ webFantasyFont(family: string)
 
 **参数：**
 
-| 参数名    | 参数类型   | 必填   | 默认值     | 参数描述                  |
+| 参数名    | 类型   | 必填   | 默认值     | 说明                  |
 | ------ | ------ | ---- | ------- | --------------------- |
 | family | string | 是    | fantasy | 设置网页的fantasy font字体库。 |
 
@@ -1404,7 +1421,7 @@ webCursiveFont(family: string)
 
 **参数：**
 
-| 参数名    | 参数类型   | 必填   | 默认值     | 参数描述                  |
+| 参数名    | 类型   | 必填   | 默认值     | 说明                  |
 | ------ | ------ | ---- | ------- | --------------------- |
 | family | string | 是    | cursive | 设置网页的cursive font字体库。 |
 
@@ -1437,7 +1454,7 @@ darkMode(mode: WebDarkMode)
 
 **参数：**
 
-| 参数名  | 参数类型                             | 必填   | 默认值             | 参数描述                   |
+| 参数名  | 类型                             | 必填   | 默认值             | 说明                   |
 | ---- | -------------------------------- | ---- | --------------- | ---------------------- |
 | mode | [WebDarkMode](#webdarkmode9枚举说明) | 是    | WebDarkMode.Off | 设置Web的深色模式为关闭、开启或跟随系统。 |
 
@@ -1470,7 +1487,7 @@ forceDarkAccess(access: boolean)
 
 **参数：**
 
-| 参数名    | 参数类型    | 必填   | 默认值   | 参数描述            |
+| 参数名    | 类型    | 必填   | 默认值   | 说明            |
 | ------ | ------- | ---- | ----- | --------------- |
 | access | boolean | 是    | false | 设置网页是否开启强制深色模式。 |
 
@@ -1525,7 +1542,7 @@ pinchSmooth(isEnabled: boolean)
 
 **参数：**
 
-| 参数名       | 参数类型    | 必填   | 默认值   | 参数描述          |
+| 参数名       | 类型    | 必填   | 默认值   | 说明          |
 | --------- | ------- | ---- | ----- | ------------- |
 | isEnabled | boolean | 是    | false | 网页是否开启捏合流畅模式。 |
 
@@ -1570,7 +1587,7 @@ allowWindowOpenMethod(flag: boolean)
 
 **参数：**
 
-| 参数名  | 参数类型    | 必填   | 默认值                                      | 参数描述                      |
+| 参数名  | 类型    | 必填   | 默认值                                      | 说明                      |
 | ---- | ------- | ---- | ---------------------------------------- | ------------------------- |
 | flag | boolean | 是    | 默认值与系统参数关联，当系统参数persist.web.allowWindowOpenMethod.enabled为true时，默认值为true, 否则为false | 网页是否可以通过JavaScript自动打开窗口。 |
 
@@ -1649,7 +1666,7 @@ mediaOptions(options: WebMediaOptions)
 
 **参数：**
 
-| 参数名     | 参数类型                                  | 必填   | 默认值                                      | 参数描述                                     |
+| 参数名     | 类型                                  | 必填   | 默认值                                      | 说明                                     |
 | ------- | ------------------------------------- | ---- | ---------------------------------------- | ---------------------------------------- |
 | options | [WebMediaOptions](#webmediaoptions10) | 是    | {resumeInterval: 0, audioExclusive: true} | 设置Web的媒体策略。其中，resumeInterval的默认值为0表示不自动续播。 |
 
@@ -1686,7 +1703,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 **参数：**
 
-| 参数名     | 参数类型                                | 必填   | 默认值  | 参数描述               |
+| 参数名     | 类型                                | 必填   | 默认值  | 说明               |
 | ------- | ----------------------------------- | ---- | ---- | ------------------ |
 | scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的ScriptItem数组 |
 
@@ -1758,7 +1775,7 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
 **参数：**
 
-| 参数名     | 参数类型                                | 必填   | 默认值  | 参数描述               |
+| 参数名     | 类型                                | 必填   | 默认值  | 说明               |
 | ------- | ----------------------------------- | ---- | ---- | ------------------ |
 | scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的ScriptItem数组 |
 
@@ -1813,17 +1830,20 @@ layoutMode(mode: WebLayoutMode)
 
 > **说明：**
 >
-> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web组件大小基于前端页面大小的自适应网页布局（WebLayoutMode.FIT_CONTENT）。
+> 目前只支持两种Web布局模式，分别为Web布局跟随系统（WebLayoutMode.NONE）和Web组件高度基于前端页面高度的自适应网页布局（WebLayoutMode.FIT_CONTENT）。
 >
-> Web组件大小基于前端页面自适应布局有如下限制：
+> Web组件高度基于前端页面自适应布局有如下限制：
 > - 如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式，否则会整个白屏。
 > - Web组件创建后不支持动态切换layoutMode模式
 > - Web组件宽高规格：分别不超过50万px。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
+> - 不支持瀑布流网页（下拉到底部加载更多）。
+> - 仅支持高度自适应，不支持宽度自适应。
+> - 由于高度自适应网页高度，您无法通过修改组件高度属性来修改组件高度。
 
 **参数：**
 
-| 参数名  | 参数类型                                  | 必填   | 默认值                | 参数描述                  |
+| 参数名  | 类型                                  | 必填   | 默认值                | 说明                  |
 | ---- | ------------------------------------- | ---- | ------------------ | --------------------- |
 | mode | [WebLayoutMode](#weblayoutmode11枚举说明) | 是    | WebLayoutMode.NONE | 设置web布局模式，跟随系统或自适应布局。 |
 
@@ -1838,7 +1858,7 @@ layoutMode(mode: WebLayoutMode)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+    mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
 
     build() {
       Column() {
@@ -1858,7 +1878,7 @@ layoutMode(mode: WebLayoutMode)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State layoutMode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
+    layoutMode: WebLayoutMode = WebLayoutMode.FIT_CONTENT;
     @State overScrollMode: OverScrollMode = OverScrollMode.NEVER;
 
     build() {
@@ -1888,9 +1908,9 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 
 **参数：**
 
-| 参数名   | 参数类型                                     | 必填   | 参数描述             |
+| 参数名   | 类型                                     | 必填   | 说明             |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](#nestedscrolloptions11对象说明) \| [NestedScrollOptionsExt](#nestedscrolloptionsext13对象说明)<sup>13+</sup> | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
+| value | [NestedScrollOptions](#nestedscrolloptions11对象说明) \| [NestedScrollOptionsExt](#nestedscrolloptionsext14对象说明)<sup>14+</sup> | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
 
 **示例：**
 
@@ -1980,7 +2000,7 @@ enableNativeEmbedMode(mode: boolean)
 
 **参数：**
 
-| 参数名   | 参数类型                      | 必填   | 默认值                | 参数描述             |
+| 参数名   | 类型                      | 必填   | 默认值                | 说明             |
 | ----- | ---------------------------------------- | ---- | ------------------| ---------------- |
 | mode |  boolean | 是    | false | 是否开启同层渲染功能。 |
 
@@ -2012,7 +2032,7 @@ forceDisplayScrollBar(enabled: boolean)
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填 | 默认值 | 参数描述           |
+| 参数名  | 类型 | 必填 | 默认值 | 说明           |
 | ------- | -------- | ---- | ------ | ------------------ |
 | enabled | boolean  | 是   | false  | 滚动条是否常驻。 |
 
@@ -2061,13 +2081,18 @@ forceDisplayScrollBar(enabled: boolean)
   </html>
   ```
 ### registerNativeEmbedRule<sup>12+</sup>
+
 registerNativeEmbedRule(tag: string, type: string)
 
-注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用英文非空字串，不区分大小写。若标准类型与object或embed的标准类型相同，ArkWeb内核将其识别为非同层标签。本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的embed标签识别为同层标签。
+注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型只能使用英文非空字串，不区分大小写。
+
+若指定类型与w3c定义的object或embed标准类型重合，ArkWeb内核将其识别为非同层标签。
+
+本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的embed标签识别为同层标签。
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述             |
+| 参数名  | 类型   | 必填   | 默认值  | 说明             |
 |------|--------| ---- |------|------------------|
 | tag  | string | 是    | ""   | 标签名。             |
 | type | string | 是    | ""   | 标签类型,内核使用前缀匹配此参数。 |
@@ -2100,7 +2125,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| 参数名  | 类型   | 必填   | 默认值  | 说明                                     |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | textEncodingFormat | string | 是    | "UTF-8"   | 默认字符编码。 |
 
@@ -2155,7 +2180,7 @@ metaViewport(enable: boolean)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                         |
+| 参数名 | 类型 | 必填 | 默认值 | 说明                         |
 | ------ | -------- | ---- | ------ | -------------------------------- |
 | enable | boolean  | 是   | true   | 是否支持meta标签的viewport属性。 |
 
@@ -2198,7 +2223,7 @@ textAutosizing(textAutosizing: boolean)
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| 参数名  | 类型   | 必填   | 默认值  | 说明                                     |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | textAutosizing | boolean | 是    | true   | 文本自动调整大小。 |
 
@@ -2231,7 +2256,7 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述 |
+| 参数名  | 类型   | 必填   | 默认值  | 说明 |
 | ---- | ------ | ---- | ---- | ---------------------|
 | config | [NativeMediaPlayerConfig](#nativemediaplayerconfig12) | 是    |  {enable: false, shouldOverlay: false} | enable: 是否开启该功能。<br/> shouldOverlay: 该功能开启后， 应用接管网页视频的播放器画面是否覆盖网页内容。|
 
@@ -2523,7 +2548,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 **参数：**
 
-| 参数名     | 参数类型                  | 参数描述            |
+| 参数名     | 类型                  | 说明            |
 | ------- | --------------------- | --------------- |
 | callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | 网页触发alert()告警弹窗时触发<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
@@ -2600,7 +2625,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 **参数：**
 
-| 参数名     | 参数类型                  | 参数描述            |
+| 参数名     | 类型                  | 说明            |
 | ------- | --------------------- | --------------- |
 | callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | 刷新或关闭场景下，在即将离开当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
@@ -2677,7 +2702,7 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
 
 **参数：**
 
-| 参数名     | 参数类型                  | 参数描述            |
+| 参数名     | 类型                  | 说明            |
 | ------- | --------------------- | --------------- |
 | callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | 网页调用confirm()告警时触发<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
@@ -2763,7 +2788,7 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
 
 **参数：**
 
-| 参数名     | 参数类型                  | 参数描述            |
+| 参数名     | 类型                  | 说明            |
 | ------- | --------------------- | --------------- |
 | callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | 网页调用prompt()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
@@ -2846,7 +2871,7 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
 
 **参数：**
 
-| 参数名     | 参数类型                              | 参数描述      |
+| 参数名     | 类型                              | 说明      |
 | ------- | --------------------------------- | --------- |
 | callback | Callback\<[OnConsoleEvent](#onconsoleevent12), boolean\> | 网页收到JavaScript控制台消息时触发。<br>返回值boolean。当返回true时，该条消息将不会再打印至控制台，反之仍会打印至控制台。 |
 
@@ -2905,7 +2930,7 @@ onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
 **参数：**
 
-| 参数名                | 参数类型   | 参数描述                                |
+| 参数名                | 类型   | 说明                                |
 | ------------------ | ------ | ----------------------------------- |
 | callback                | Callback\<[OnDownloadStartEvent](#ondownloadstartevent12)\> | 开始下载时触发。                           |
 
@@ -2945,7 +2970,7 @@ onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 参数描述            |
+| 参数名     | 类型                                     | 说明            |
 | ------- | ---------------------------------------- | --------------- |
 | callback | Callback\<[OnErrorReceiveEvent](#onerrorreceiveevent12)\> | 网页收到 Web 资源加载错误时触发。      |
 
@@ -2992,7 +3017,7 @@ onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
 
 **参数：**
 
-| 参数名      | 参数类型                                     | 参数描述       |
+| 参数名      | 类型                                     | 说明       |
 | -------- | ---------------------------------------- | ---------- |
 | callback  | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent12)\> | 网页收到加载资源加载HTTP错误时触发。 |
 
@@ -3048,7 +3073,7 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 
 **参数：**
 
-| 参数名  | 参数类型   | 参数描述      |
+| 参数名  | 类型   | 说明      |
 | ---- | ------ | --------- |
 | callback  | Callback\<[OnPageBeginEvent](#onpagebeginevent12)\> | 网页加载开始时触发。 |
 
@@ -3086,7 +3111,7 @@ onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
 **参数：**
 
-| 参数名  | 参数类型   | 参数描述      |
+| 参数名  | 类型   | 说明      |
 | ---- | ------ | --------- |
 | callback  | Callback\<[OnPageEndEvent](#onpageendevent12)\> | 网页加载结束时触发。 |
 
@@ -3122,7 +3147,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 **参数：**
 
-| 参数名         | 参数类型   | 参数描述                  |
+| 参数名         | 类型   | 说明                  |
 | ----------- | ------ | --------------------- |
 | callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 页面加载进度时触发的功能。 |
 
@@ -3157,7 +3182,7 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
 **参数：**
 
-| 参数名   | 参数类型   | 参数描述          |
+| 参数名   | 类型   | 说明          |
 | ----- | ------ | ------------- |
 | callback | Callback\<[OnTitleReceiveEvent](#ontitlereceiveevent12)\> | 定义主应用程序文档标题更改时触发。 |
 
@@ -3193,7 +3218,7 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
 **参数：**
 
-| 参数名         | 参数类型    | 参数描述                                     |
+| 参数名         | 类型    | 说明                                     |
 | ----------- | ------- | ---------------------------------------- |
 | callback         | Callback\<[OnRefreshAccessedHistoryEvent](#onrefreshaccessedhistoryevent12)\>  | 在网页刷新访问历史记录时触发。                |
 
@@ -3249,13 +3274,13 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 多个web组件可能共享单个渲染进程，每个受影响的web组件都会触发该回调。
 
-应用处理该回调时，可以调用绑定的webviewContoller相关接口来恢复页面。例如[refresh](js-apis-webview.md#refresh)、[loadUrl](js-apis-webview.md#loadurl)等。
+应用处理该回调时，可以调用绑定的webviewController相关接口来恢复页面。例如[refresh](js-apis-webview.md#refresh)、[loadUrl](js-apis-webview.md#loadurl)等。
 
 组件生命周期回调详情可参考[Web组件的生命周期](../../web/web-event-sequence.md)。
 
 **参数：**
 
-| 参数名              | 参数类型                                     | 参数描述             |
+| 参数名              | 类型                                     | 说明             |
 | ---------------- | ---------------------------------------- | ---------------- |
 | callback | Callback\<[OnRenderExitedEvent](#onrenderexitedevent12)\> | 渲染过程退出时触发。 |
 
@@ -3363,7 +3388,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
 **参数：**
 
-| 参数名          | 参数类型                                     | 参数描述              |
+| 参数名          | 类型                                     | 说明              |
 | ------------ | ---------------------------------------- | ----------------- |
 | callback       | Callback\<[OnShowFileSelectorEvent](#onshowfileselectorevent12), boolean\> | 用于通知Web组件文件选择的结果。<br>返回值boolean。当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
@@ -3468,7 +3493,7 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
 **参数：**
 
-| 参数名  | 参数类型   | 参数描述           |
+| 参数名  | 类型   | 说明           |
 | ---- | ------ | -------------- |
 | callback  | Callback\<[OnResourceLoadEvent](#onresourceloadevent12)\> | 加载url时触发。 |
 
@@ -3502,7 +3527,7 @@ onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
 **参数：**
 
-| 参数名      | 参数类型   | 参数描述         |
+| 参数名      | 类型   | 说明         |
 | -------- | ------ | ------------ |
 | callback | Callback\<[OnScaleChangeEvent](#onscalechangeevent12)\> | 当前页面显示比例的变化时触发。 |
 
@@ -3537,7 +3562,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 **参数：**
 
-| 参数名  | 参数类型                                     | 参数描述      |
+| 参数名  | 类型                                     | 说明      |
 | ---- | ---------------------------------------- | --------- |
 | data | string \| [WebResourceRequest](#webresourcerequest) | url的相关信息。 |
 
@@ -3580,7 +3605,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 参数描述        |
+| 参数名     | 类型                                     | 说明        |
 | ------- | ---------------------------------------- | ----------- |
 | callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12)\> | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](#webresourceresponse)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
 
@@ -3652,7 +3677,7 @@ onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
 
 **参数：**
 
-| 参数名     | 参数类型                                 | 参数描述             |
+| 参数名     | 类型                                 | 说明             |
 | ------- | ------------------------------------ | ---------------- |
 | callback | Callback\<[OnHttpAuthRequestEvent](#onhttpauthrequestevent12), boolean\> | 当浏览器需要用户的凭据时触发。<br>返回值boolean。返回false表示此次认证失败，否则成功。   |
 
@@ -3717,7 +3742,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 
 **参数：**
 
-| 参数名     | 参数类型                                 | 参数描述           |
+| 参数名     | 类型                                 | 说明           |
 | ------- | ------------------------------------ | -------------- |
 | callback | Callback\<[OnSslErrorEventReceiveEvent](#onsslerroreventreceiveevent12)\> | 当网页收到SSL错误时触发。 |
 
@@ -3769,7 +3794,7 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 
 **参数：**
 
-| 参数名     | 参数类型                                 | 参数描述           |
+| 参数名     | 类型                                 | 说明           |
 | ------- | ------------------------------------ | -------------- |
 | callback | [OnSslErrorEventCallback](#onsslerroreventcallback12) | 通知用户加载资源时发生SSL错误。 |
 
@@ -3827,7 +3852,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
 **参数：**
 
-| 参数名      | 参数类型                                     | 参数描述            |
+| 参数名      | 类型                                     | 说明            |
 | -------- | ---------------------------------------- | --------------- |
 | callback  | Callback\<[OnClientAuthenticationEvent](#onclientauthenticationrequestevent12)\> | 当需要用户提供的SSL客户端证书时触发的回调。  |
 
@@ -4027,7 +4052,7 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 参数描述           |
+| 参数名     | 类型                                     | 说明           |
 | ------- | ---------------------------------------- | -------------- |
 | callback | Callback\<[OnPermissionRequestEvent](#onpermissionrequestevent12)\> | 通知收到获取权限请求触发。 |
 
@@ -4132,7 +4157,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
 
 **参数：**
 
-| 参数名    | 参数类型                                     | 参数描述        |
+| 参数名    | 类型                                     | 说明        |
 | ------ | ---------------------------------------- | ----------- |
 | callback  | Callback\<[OnContextMenuShowEvent](#oncontextmenushowevent12), boolean\> | 调用时触发的回调，以允许自定义显示上下文菜单。<br>返回值boolean。自定义菜单返回true，触发的自定义菜单无效返回false。     |
 
@@ -4284,7 +4309,7 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 **参数：**
 
-| 参数名    | 参数类型                                     | 参数描述        |
+| 参数名    | 类型                                     | 说明        |
 | ------ | ---------------------------------------- | ----------- |
 | callback  | [OnContextMenuHideCallback](#oncontextmenuhidecallback11) | 菜单相关参数。     |
 
@@ -4318,7 +4343,7 @@ onScroll(callback: Callback\<OnScrollEvent\>): WebAttribute;
 
 **参数：**
 
-| 参数名     | 参数类型   | 参数描述                   |
+| 参数名     | 类型   | 说明                   |
 | ------- | ------ | ---------------------- |
 | callback | Callback\<[OnScrollEvent](#onscrollevent12)\> | 当滚动条滑动到指定位置时触发。 |
 
@@ -4353,7 +4378,7 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
 
 **参数：**
 
-| 参数名         | 参数类型                            | 参数描述           |
+| 参数名         | 类型                            | 说明           |
 | ----------- | ------------------------------- | -------------- |
 | callback      | Callback\<[OnGeolocationShowEvent](#ongeolocationshowevent12)\>  | 请求显示地理位置权限时触发。     |
 
@@ -4425,7 +4450,7 @@ onGeolocationHide(callback: () => void)
 
 **参数：**
 
-| 参数名      | 参数类型       | 参数描述                 |
+| 参数名      | 类型       | 说明                 |
 | -------- | ---------- | -------------------- |
 | callback | () => void | 地理位置信息获取请求已被取消的回调函数。 |
 
@@ -4460,7 +4485,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 参数描述           |
+| 参数名     | 类型                                     | 说明           |
 | ------- | ---------------------------------------- | -------------- |
 | callback | [OnFullScreenEnterCallback](#onfullscreenentercallback12) | Web组件进入全屏时的回调信息。 |
 
@@ -4498,7 +4523,7 @@ onFullScreenExit(callback: () => void)
 
 **参数：**
 
-| 参数名      | 参数类型       | 参数描述          |
+| 参数名      | 类型       | 说明          |
 | -------- | ---------- | ------------- |
 | callback | () => void | 退出全屏模式时的回调函数。 |
 
@@ -4545,7 +4570,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 **参数：**
 
-| 参数名           | 参数类型                                     | 参数描述                          |
+| 参数名           | 类型                                     | 说明                          |
 | ------------- | ---------------------------------------- | ----------------------------- |
 | callback       | Callback\<[OnWindowNewEvent](#onwindownewevent12)\>                                  | 网页要求用户创建窗口时触发的回调。    |
 
@@ -4616,7 +4641,7 @@ onWindowExit(callback: () => void)
 
 **参数：**
 
-| 参数名      | 参数类型       | 参数描述         |
+| 参数名      | 类型       | 说明         |
 | -------- | ---------- | ------------ |
 | callback | () => void | 窗口请求关闭的回调函数。 |
 
@@ -4650,7 +4675,7 @@ onSearchResultReceive(callback: Callback\<OnSearchResultReceiveEvent\>)
 
 **参数：**
 
-| 参数名                | 参数类型    | 参数描述                                     |
+| 参数名                | 类型    | 说明                                     |
 | ------------------ | ------- | ---------------------------------------- |
 | callback | Callback\<[OnSearchResultReceiveEvent](#onsearchresultreceiveevent12)\>  | 通知调用方网页页内查找的结果。         |
 
@@ -4687,7 +4712,7 @@ onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 参数描述        |
+| 参数名     | 类型                                     | 说明        |
 | ------- | ---------------------------------------- | ----------- |
 | callback | Callback\<[OnDataResubmittedEvent](#ondataresubmittedevent12)\> | 网页表单可以重新提交时触发。 |
 
@@ -4751,7 +4776,7 @@ onPageVisible(callback: Callback\<OnPageVisibleEvent\>)
 
 **参数：**
 
-| 参数名  | 参数类型   | 参数描述                       |
+| 参数名  | 类型   | 说明                       |
 | ---- | ------ | -------------------------- |
 | callback  | Callback\<[OnPageVisibleEvent](#onpagevisibleevent12)\> | 旧页面不再呈现，新页面即将可见时触发的回调函数。 |
 
@@ -4785,7 +4810,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
 **参数：**
 
-| 参数名   | 参数类型                                     | 参数描述           |
+| 参数名   | 类型                                     | 说明           |
 | ----- | ---------------------------------------- | -------------- |
 | event | [KeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 触发的KeyEvent事件。 |
 
@@ -4829,7 +4854,7 @@ onTouchIconUrlReceived(callback: Callback\<OnTouchIconUrlReceivedEvent\>)
 
 **参数：**
 
-| 参数名         | 参数类型    | 参数描述                        |
+| 参数名         | 类型    | 说明                        |
 | ----------- | ------- | --------------------------- |
 | callback         | Callback\<[OnTouchIconUrlReceivedEvent](#ontouchiconurlreceivedevent12)\>  | 接收到的apple-touch-icon url地址时触发。 |
 
@@ -4863,7 +4888,7 @@ onFaviconReceived(callback: Callback\<OnFaviconReceivedEvent\>)
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 参数描述                      |
+| 参数名     | 类型                                     | 说明                      |
 | ------- | ---------------------------------------- | ------------------------- |
 | callback | Callback\<[OnFaviconReceivedEvent](#onfaviconreceivedevent12)\> | 当前页面接收到新的favicon时触发。 |
 
@@ -4900,7 +4925,7 @@ onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
 
 **参数：**
 
-| 参数名     | 参数类型    | 参数描述                               |
+| 参数名     | 类型    | 说明                               |
 | ------- | ------- | ---------------------------------- |
 | callback | Callback\<[OnAudioStateChangedEvent](#onaudiostatechangedevent12)\> | 网页上的音频播放状态发生改变时触发。 |
 
@@ -4936,7 +4961,7 @@ onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
 
 **参数：**
 
-| 参数名                    | 参数类型   | 参数描述                              |
+| 参数名                    | 类型   | 说明                              |
 | ---------------------- | ------ | --------------------------------- |
 | callback    | Callback\<[OnFirstContentfulPaintEvent](#onfirstcontentfulpaintevent12)\> | 网页首次内容绘制回调函数。          |
 
@@ -5048,7 +5073,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 参数描述        |
+| 参数名     | 类型                                     | 说明        |
 | ------- | ---------------------------------------- | ----------- |
 | callback | Callback\<[OnLoadInterceptEvent](#onloadinterceptevent12), boolean\> | 截获资源加载时触发的回调。<br>返回值boolean。返回true表示阻止此次加载，否则允许此次加载。 |
 
@@ -5113,7 +5138,7 @@ onScreenCaptureRequest(callback: Callback\<OnScreenCaptureRequestEvent\>)
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 参数描述           |
+| 参数名     | 类型                                     | 说明           |
 | ------- | ---------------------------------------- | -------------- |
 | callback | Callback\<[OnScreenCaptureRequestEvent](#onscreencapturerequestevent12)\> | 通知收到屏幕捕获请求。 |
 
@@ -5167,7 +5192,7 @@ onOverScroll(callback: Callback\<OnOverScrollEvent\>)
 
 **参数：**
 
-| 参数名     | 参数类型   | 参数描述                |
+| 参数名     | 类型   | 说明                |
 | ------- | ------ | ------------------- |
 | callback | Callback\<[OnOverScrollEvent](#onoverscrollevent12)\> | 网页过度滚动时触发。 |
 
@@ -6209,7 +6234,7 @@ insertText(text: string): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述              |
+| 参数名 | 类型 | 必填 | 默认值 | 说明              |
 | ------ | -------- | ---- | ------ | --------------------- |
 | text   | string   | 是   | -      | 向Web输入框插入字符。 |
 
@@ -6221,7 +6246,7 @@ deleteForward(length: number): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| 参数名 | 类型 | 必填 | 默认值 | 说明                 |
 | ------ | -------- | ---- | ------ | ------------------------ |
 | length | number   | 是   | -      | 从后往前删除字符的长度。 |
 
@@ -6233,7 +6258,7 @@ deleteBackward(length: number): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| 参数名 | 类型 | 必填 | 默认值 | 说明                 |
 | ------ | -------- | ---- | ------ | ------------------------ |
 | length | number   | 是   | -      | 从前往后删除字符的长度。 |
 
@@ -6245,7 +6270,7 @@ sendFunctionKey(key: number): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                                   |
+| 参数名 | 类型 | 必填 | 默认值 | 说明                                   |
 | ------ | -------- | ---- | ------ | ------------------------------------------ |
 | key    | number   | 是   | -      | 向Web输入框传递功能键，目前仅支持enter键。 |
 
@@ -6371,7 +6396,7 @@ handlePromptConfirm(result: string): void
 
 **参数：**
 
-| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述        |
+| 参数名    | 类型   | 必填   | 默认值  | 说明        |
 | ------ | ------ | ---- | ---- | ----------- |
 | result | string | 是    | -    | 用户输入的对话框内容。 |
 
@@ -6401,7 +6426,7 @@ setWebController(controller: WebviewController): void
 
 **参数：**
 
-| 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+| 参数名        | 类型                                     | 必填   | 默认值  | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | controller | [WebviewController](js-apis-webview.md#webviewcontroller) | 是    | -    | 新建Web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
 
@@ -6513,7 +6538,7 @@ getRequestMethod(): string
 
 Web组件返回的请求/响应头对象。
 
-| 名称          | 类型     | 描述            |
+| 名称          | 类型     | 说明            |
 | ----------- | ------ | ------------- |
 | headerKey   | string | 请求/响应头的key。   |
 | headerValue | string | 请求/响应头的value。 |
@@ -6630,7 +6655,7 @@ setResponseData(data: string \| number \| Resource \| ArrayBuffer): void
 
 **参数：**
 
-| 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+| 参数名  | 类型                                     | 必填   | 默认值  | 说明                                     |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | 是    | -    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。 ArrayBuffer表示资源的原始二进制数据。 |
 
@@ -6642,7 +6667,7 @@ setResponseEncoding(encoding: string): void
 
 **参数：**
 
-| 参数名      | 参数类型   | 必填   | 默认值  | 参数描述         |
+| 参数名      | 类型   | 必填   | 默认值  | 说明         |
 | -------- | ------ | ---- | ---- | ------------ |
 | encoding | string | 是    | -    | 要设置的资源响应的编码。 |
 
@@ -6654,7 +6679,7 @@ setResponseMimeType(mimeType: string): void
 
 **参数：**
 
-| 参数名      | 参数类型   | 必填   | 默认值  | 参数描述                 |
+| 参数名      | 类型   | 必填   | 默认值  | 说明                 |
 | -------- | ------ | ---- | ---- | -------------------- |
 | mimeType | string | 是    | -    | 要设置的资源响应的媒体（MIME）类型。 |
 
@@ -6666,7 +6691,7 @@ setReasonMessage(reason: string): void
 
 **参数：**
 
-| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述            |
+| 参数名    | 类型   | 必填   | 默认值  | 说明            |
 | ------ | ------ | ---- | ---- | --------------- |
 | reason | string | 是    | -    | 要设置的资源响应的状态码描述。 |
 
@@ -6678,7 +6703,7 @@ setResponseHeader(header: Array\<Header\>): void
 
 **参数：**
 
-| 参数名    | 参数类型                       | 必填   | 默认值  | 参数描述       |
+| 参数名    | 类型                       | 必填   | 默认值  | 说明       |
 | ------ | -------------------------- | ---- | ---- | ---------- |
 | header | Array\<[Header](#header)\> | 是    | -    | 要设置的资源响应头。 |
 
@@ -6690,7 +6715,7 @@ setResponseCode(code: number): void
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述          |
+| 参数名  | 类型   | 必填   | 默认值  | 说明          |
 | ---- | ------ | ---- | ---- | ------------- |
 | code | number | 是    | -    | 要设置的资源响应的状态码。 |
 
@@ -6702,7 +6727,7 @@ setResponseIsReady(IsReady: boolean): void
 
 **参数：**
 
-| 参数名     | 参数类型    | 必填   | 默认值  | 参数描述          |
+| 参数名     | 类型    | 必填   | 默认值  | 说明          |
 | ------- | ------- | ---- | ---- | ------------- |
 | IsReady | boolean | 是    | true | 资源响应数据是否已经就绪。 |
 
@@ -6718,7 +6743,7 @@ handleFileList(fileList: Array\<string\>): void
 
 **参数：**
 
-| 参数名      | 参数类型            | 必填   | 默认值  | 参数描述         |
+| 参数名      | 类型            | 必填   | 默认值  | 说明         |
 | -------- | --------------- | ---- | ---- | ------------ |
 | fileList | Array\<string\> | 是    | -    | 需要进行操作的文件列表。 |
 
@@ -6792,7 +6817,7 @@ confirm(userName: string, password: string): boolean
 
 **参数：**
 
-| 参数名      | 参数类型   | 必填   | 默认值  | 参数描述       |
+| 参数名      | 类型   | 必填   | 默认值  | 说明       |
 | -------- | ------ | ---- | ---- | ---------- |
 | userName | string | 是    | -    | HTTP认证用户名。 |
 | password      | string | 是    | -    | HTTP认证密码。  |
@@ -6843,7 +6868,7 @@ confirm(priKeyFile : string, certChainFile : string): void
 
 **参数：**
 
-| 参数名           | 参数类型   | 必填   | 参数描述               |
+| 参数名           | 类型   | 必填   | 说明               |
 | ------------- | ------ | ---- | ------------------ |
 | priKeyFile    | string | 是    | 存放私钥的文件，包含路径和文件名。  |
 | certChainFile | string | 是    | 存放证书链的文件，包含路径和文件名。 |
@@ -6858,7 +6883,7 @@ confirm(authUri : string): void
 
 **参数：**
 
-| 参数名     | 参数类型   | 必填   | 参数描述    |
+| 参数名     | 类型   | 必填   | 说明    |
 | ------- | ------ | ---- | ------- |
 | authUri | string | 是    | 凭据的关键值。 |
 
@@ -6916,7 +6941,7 @@ grant(resources: Array\<string\>): void
 
 **参数：**
 
-| 参数名       | 参数类型            | 必填   | 默认值  | 参数描述            |
+| 参数名       | 类型            | 必填   | 默认值  | 说明            |
 | --------- | --------------- | ---- | ---- | --------------- |
 | resources | Array\<string\> | 是    | -    | 授予网页请求的权限的资源列表。 |
 
@@ -6952,7 +6977,7 @@ grant(config: ScreenCaptureConfig): void
 
 **参数：**
 
-| 参数名    | 参数类型                                     | 必填   | 默认值  | 参数描述    |
+| 参数名    | 类型                                     | 必填   | 默认值  | 说明    |
 | ------ | ---------------------------------------- | ---- | ---- | ------- |
 | config | [ScreenCaptureConfig](#screencaptureconfig10) | 是    | -    | 屏幕捕获配置。 |
 
@@ -6966,7 +6991,7 @@ setGestureEventResult(result: boolean): void
 
 **参数：**
 
-| 参数名     | 参数类型   | 必填   | 参数描述    |
+| 参数名     | 类型   | 必填   | 说明    |
 | ------- | ------ | ---- | ------- |
 | result | boolean | 是    | 是否消费该手势事件。 |
 
@@ -6976,7 +7001,7 @@ setGestureEventResult(result: boolean): void
 
 ## ContextMenuSourceType<sup>9+</sup>枚举说明
 
-| 名称       | 值 | 描述         |
+| 名称       | 值 | 说明         |
 | --------- | -- |------------ |
 | None      | 0 | 其他事件来源。 |
 | Mouse     | 1 | 鼠标事件。   |
@@ -6984,14 +7009,14 @@ setGestureEventResult(result: boolean): void
 
 ## ContextMenuMediaType<sup>9+</sup>枚举说明
 
-| 名称    | 值 | 描述            |
+| 名称    | 值 | 说明            |
 | ----- | -- | ------------- |
 | None  | 0 | 非特殊媒体或其他媒体类型。 |
 | Image | 1 | 图片。           |
 
 ## ContextMenuInputFieldType<sup>9+</sup>枚举说明
 
-| 名称        | 值 | 描述                          |
+| 名称        | 值 | 说明                          |
 | --------- | -- | --------------------------- |
 | None      | 0 | 非输入框。                       |
 | PlainText | 1 | 纯文本类型，包括text、search、email等。 |
@@ -7004,7 +7029,7 @@ setGestureEventResult(result: boolean): void
 
 支持以按位或的方式使用此枚举。例如，如果需要同时支持CAN_CUT、CAN_COPY和CAN_SELECT_ALL，可使用CAN_CUT | CAN_COPY | CAN_SELECT_ALL或11。
 
-| 名称            | 值 | 描述     |
+| 名称            | 值 | 说明     |
 | -------------- | -- | -------- |
 | NONE           | 0 | 不可编辑。 |
 | CAN_CUT        | 1 | 支持剪切。 |
@@ -7216,7 +7241,7 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 
 **参数：**
 
-| 参数名    | 参数类型    | 必填   | 默认值  | 参数描述                                     |
+| 参数名    | 类型    | 必填   | 默认值  | 说明                                     |
 | ------ | ------- | ---- | ---- | ---------------------------------------- |
 | origin | string  | 是    | -    | 指定源的字符串索引。                               |
 | allow  | boolean | 是    | -    | 设置的地理位置权限状态。                             |
@@ -7224,7 +7249,7 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 
 ## MessageLevel枚举说明
 
-| 名称    | 值 | 描述    |
+| 名称    | 值 | 说明    |
 | ----- | -- | ---- |
 | Debug | 1 | 调试级别。 |
 | Error | 4 | 错误级别。 |
@@ -7236,7 +7261,7 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 
 onRenderExited接口返回的渲染进程退出的具体原因。
 
-| 名称                         | 值 | 描述                |
+| 名称                         | 值 | 说明                |
 | -------------------------- | -- | ----------------- |
 | ProcessAbnormalTermination | 0 | 渲染进程异常退出。         |
 | ProcessWasKilled           | 1 | 收到SIGKILL，或被手动终止。 |
@@ -7246,7 +7271,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 ## MixedMode枚举说明
 
-| 名称        | 值 | 描述                                 |
+| 名称        | 值 | 说明                                 |
 | ---------- | -- | ---------------------------------- |
 | All        | 0 | 允许加载HTTP和HTTPS混合内容。所有不安全的内容都可以被加载。 |
 | Compatible | 1 | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
@@ -7254,7 +7279,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 ## CacheMode<sup>9+</sup>枚举说明
 
-| 名称      | 值 | 描述                                   |
+| 名称      | 值 | 说明                                   |
 | ------- | -- | ------------------------------------ |
 | Default | 0 | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
 | None    | 1 | 加载资源使用cache，如果cache中无该资源则从网络中获取。     |
@@ -7263,7 +7288,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 ## FileSelectorMode<sup>9+</sup>枚举说明
 
-| 名称                   | 值 | 描述         |
+| 名称                   | 值 | 说明         |
 | -------------------- | -- | ---------- |
 | FileOpenMode         | 0 | 打开上传单个文件。  |
 | FileOpenMultipleMode | 1 | 打开上传多个文件。  |
@@ -7272,7 +7297,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
  ## HitTestType枚举说明
 
-| 名称            | 值 | 描述                       |
+| 名称            | 值 | 说明                       |
 | ------------- | -- | ------------------------ |
 | EditText      | 0 | 可编辑的区域。                  |
 | Email         | 1 | 电子邮件地址。                  |
@@ -7285,7 +7310,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
  ## OverScrollMode<sup>11+</sup>枚举说明
 
-| 名称     | 值 | 描述          |
+| 名称     | 值 | 说明          |
 | ------ | -- | ----------- |
 | NEVER  | 0 | Web过滚动模式关闭。 |
 | ALWAYS | 1 | Web过滚动模式开启。 |
@@ -7298,7 +7323,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
-| 名称           | 值 | 描述          |
+| 名称           | 值 | 说明          |
 | ------------ | -- | ----------- |
 | Invalid      | 0 | 一般错误。       |
 | HostMismatch | 1 | 主机名不匹配。     |
@@ -7307,7 +7332,7 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
 ## ProtectedResourceType<sup>9+</sup>枚举说明
 
-| 名称                          | 值 | 描述            | 备注                         |
+| 名称                          | 值 | 说明            | 备注                         |
 | --------------------------- | --------------- | ------------- | -------------------------- |
 | MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
 | VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |                            |
@@ -7316,7 +7341,7 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 
-| 名称   | 值 | 描述           |
+| 名称   | 值 | 说明           |
 | ---- | -- | ------------ |
 | Off  | 0 | Web深色模式关闭。   |
 | On   | 1 | Web深色模式开启。   |
@@ -7324,7 +7349,7 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
 ## WebCaptureMode<sup>10+</sup>枚举说明
 
-| 名称          | 值 | 描述      |
+| 名称          | 值 | 说明      |
 | ----------- | -- | ------- |
 | HOME_SCREEN | 0 | 主屏捕获模式。 |
 
@@ -7347,23 +7372,23 @@ Web屏幕捕获的配置。
 
 ## WebLayoutMode<sup>11+</sup>枚举说明
 
-| 名称          | 值 | 描述                 |
+| 名称          | 值 | 说明                 |
 | ----------- | -- | ------------------ |
 | NONE        | 0 | Web布局跟随系统。         |
 | FIT_CONTENT | 1 | Web基于页面大小的自适应网页布局。 |
 
 ## NestedScrollOptions<sup>11+</sup>对象说明
 
-| 名称             | 类型               | 描述                   |
+| 名称             | 类型               | 说明                   |
 | -------------- | ---------------- | -------------------- |
 | scrollForward  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
 | scrollBackward | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
 
-## NestedScrollOptionsExt<sup>13+</sup>对象说明
+## NestedScrollOptionsExt<sup>14+</sup>对象说明
 
 通过NestedScrollOptionsExt可以设置上下左右四个方向的嵌套滚动规则。
 
-| 名称             | 类型               | 描述                   |
+| 名称             | 类型               | 说明                   |
 | -------------- | ---------------- | -------------------- |
 | scrollUp  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往上滚动时的嵌套滚动选项。 |
 | scrollDown | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往下滚动时的嵌套滚动选项。 |
@@ -7372,7 +7397,7 @@ Web屏幕捕获的配置。
 
 ## NestedScrollMode<sup>11+</sup>枚举说明
 
-| 名称           | 值 | 描述                                       |
+| 名称           | 值 | 说明                                       |
 | ------------ | -- | ---------------------------------------- |
 | SELF_ONLY    | 0 | 只自身滚动，不与父组件联动。                           |
 | SELF_FIRST   | 1 | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。 |
@@ -7599,7 +7624,7 @@ accessStep(step: number): boolean
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                  |
+| 参数名  | 类型   | 必填   | 默认值  | 说明                  |
 | ---- | ------ | ---- | ---- | --------------------- |
 | step | number | 是    | -    | 要跳转的步数，正数代表前进，负数代表后退。 |
 
@@ -7700,7 +7725,7 @@ deleteJavaScriptRegister(name: string)
 
 **参数：**
 
-| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| 参数名  | 类型   | 必填   | 默认值  | 说明                                     |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | name | string | 是    | -    | 注册对象的名称，可在网页侧JavaScript中通过此名称调用应用侧JavaScript对象。 |
 
@@ -7776,7 +7801,7 @@ baseUrl为空时，通过”data“协议加载指定的一段字符串。
 
 **参数：**
 
-| 参数名        | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| 参数名        | 类型   | 必填   | 默认值  | 说明                                     |
 | ---------- | ------ | ---- | ---- | ---------------------------------------- |
 | data       | string | 是    | -    | 按照”Base64“或者”URL"编码后的一段字符串。              |
 | mimeType   | string | 是    | -    | 媒体类型（MIME）。                              |
@@ -7823,7 +7848,7 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
 
 **参数：**
 
-| 参数名     | 参数类型                       | 必填   | 默认值  | 参数描述           |
+| 参数名     | 类型                       | 必填   | 默认值  | 说明           |
 | ------- | -------------------------- | ---- | ---- | -------------- |
 | url     | string \| Resource                     | 是    | -    | 需要加载的 URL。     |
 | headers | Array\<[Header](#header)\> | 否    | []   | URL的附加HTTP请求头。 |
@@ -7916,7 +7941,7 @@ zoom(factor: number): void
 
 **参数：**
 
-| 参数名    | 参数类型   | 必填   | 参数描述                           |
+| 参数名    | 类型   | 必填   | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
 | factor | number | 是    | 基于当前网页所需调整的相对缩放比例，正值为放大，负值为缩小。 |
 
@@ -7981,7 +8006,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 
 **参数：**
 
-| 参数名        | 参数类型            | 必填   | 默认值  | 参数描述                                     |
+| 参数名        | 类型            | 必填   | 默认值  | 说明                                     |
 | ---------- | --------------- | ---- | ---- | ---------------------------------------- |
 | object     | object          | 是    | -    | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。其中方法的参数和返回类型只能为string，number，boolean |
 | name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
@@ -8056,7 +8081,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
 
 **参数：**
 
-| 参数名      | 参数类型                     | 必填   | 默认值  | 参数描述                                     |
+| 参数名      | 类型                     | 必填   | 默认值  | 说明                                     |
 | -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
 | script   | string                   | 是    | -    | JavaScript脚本。                            |
 | callback | (result: string) => void | 否    | -    | 回调执行JavaScript脚本结果。JavaScript脚本若执行失败或无返回值时，返回null。 |
@@ -8190,7 +8215,7 @@ saveCookie()
 
 通过[javaScriptOnDocumentStart](#javascriptondocumentstart11)属性注入到Web组件的ScriptItem对象。
 
-| 名称          | 类型             | 必填   | 描述                    |
+| 名称          | 类型             | 必填   | 说明                    |
 | ----------- | -------------- | ---- | --------------------- |
 | script      | string         | 是    | 需要注入、执行的JavaScript脚本。 |
 | scriptRules | Array\<string> | 是   | 一组允许来源的匹配规则。<br>1.如果需要允许所有来源的网址，使用通配符“ * ”。<br>2.如果需要精确匹配，则描述网站地址，如"https:\//www\.example.com"。<br>3.如果模糊匹配网址，可以使用“ * ”通配符替代，如"https://*.example.com"。不允许使用"x. * .y.com"、" * foobar.com"等。<br>4.如果来源是ip地址，则使用规则2。<br>5.对于http/https以外的协议(自定义协议)，不支持使用精确匹配和模糊匹配，且必须以"://"结尾，例如"resource://"。<br>6.一组scriptRule中，如果其中一条不满足以上规则，则整组scriptRule都不生效。 |
@@ -8199,7 +8224,7 @@ saveCookie()
 
 定义navigation类型。
 
-| 名称                           | 值 | 描述           |
+| 名称                           | 值 | 说明           |
 | ----------------------------- | -- | ------------ |
 | UNKNOWN                       | 0 | 未知类型。   |
 | MAIN_FRAME_NEW_ENTRY          | 1 | 主文档上产生的新的历史节点跳转。   |
@@ -8211,7 +8236,7 @@ saveCookie()
 
 提供已提交跳转的网页的详细信息。
 
-| 名称             | 类型                                  | 必填   | 描述                    |
+| 名称             | 类型                                  | 必填   | 说明                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | isMainFrame     | boolean                              | 是    | 是否是主文档。 |
 | isSameDocument  | boolean                              | 是    | 是否在不更改文档的情况下进行的网页跳转。在同文档跳转的示例：1.参考片段跳转；2.pushState或replaceState触发的跳转；3.同一页面历史跳转。  |
@@ -8223,7 +8248,7 @@ saveCookie()
 
 定义网站风险类型。
 
-| 名称             | 值 | 描述                   |
+| 名称             | 值 | 说明                   |
 | ---------------- | -- | ----------------------|
 | THREAT_ILLEGAL  | 0 | 非法网站。              |
 | THREAT_FRAUD    | 1 | 欺诈网站。              |
@@ -8236,7 +8261,7 @@ type OnNavigationEntryCommittedCallback = (loadCommittedDetails: [LoadCommittedD
 
 导航条目提交时触发的回调。
 
-| 参数名                | 参数类型                                           | 参数描述                |
+| 参数名                | 类型                                           | 说明                |
 | -------------------- | ------------------------------------------------ | ------------------- |
 | loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | 提供已提交跳转的网页的详细信息。 |
 
@@ -8246,7 +8271,7 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 
 网站安全风险检查触发的回调。
 
-| 参数名      | 参数类型                      | 参数描述              |
+| 参数名      | 类型                      | 说明              |
 | ---------- | ---------------------------- | ------------------- |
 | threatType | [ThreatType](#threattype11)  | 定义网站threat类型。  |
 
@@ -8254,7 +8279,7 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 
 Web组件进入全屏回调事件的详情。
 
-| 名称             | 类型                                  | 必填   | 描述                    |
+| 名称             | 类型                                  | 必填   | 说明                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | handler     | [FullScreenExitHandler](#fullscreenexithandler9) | 是    | 用于退出全屏模式的函数句柄。 |
 | videoWidth  | number | 否    | 视频的宽度，单位：px。如果进入全屏的是 `<video>` 元素，表示其宽度；如果进入全屏的子元素中包含 `<video>` 元素，表示第一个子视频元素的宽度；其他情况下，为0。 |
@@ -8266,7 +8291,7 @@ type OnFullScreenEnterCallback = (event: FullScreenEnterEvent) => void
 
 Web组件进入全屏时触发的回调。
 
-| 参数名      | 参数类型                      | 参数描述              |
+| 参数名      | 类型                      | 说明              |
 | ---------- | ---------------------------- | ------------------- |
 | event | [FullScreenEnterEvent](#fullscreenenterevent12)  | Web组件进入全屏的回调事件详情。 |
 
@@ -8274,7 +8299,7 @@ Web组件进入全屏时触发的回调。
 
 用户加载资源时发生SSL错误时触发的回调详情。
 
-| 参数名     | 参数类型                                 | 参数描述           |
+| 参数名     | 类型                                 | 说明           |
 | ------- | ------------------------------------ | -------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)           | 错误码。           |
@@ -8291,7 +8316,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 用户加载资源时发生SSL错误时触发的回调。
 
-| 参数名      | 参数类型                      | 参数描述              |
+| 参数名      | 类型                      | 说明              |
 | ---------- | ---------------------------- | ------------------- |
 | sslErrorEvent | [SslErrorEvent](#sslerrorevent12)  | 用户加载资源时发生SSL错误时触发的回调详情。 |
 
@@ -8299,7 +8324,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 定义同层标签生命周期，当加载页面中有同层标签会触发CREATE，同层标签移动或者放大会出发UPDATE，退出页面会触发DESTROY。
 
-| 名称                           | 值 | 描述           |
+| 名称                           | 值 | 说明           |
 | ----------------------------- | -- | ------------ |
 | CREATE                        | 0 | 同层标签创建。   |
 | UPDATE                        | 1 | 同层标签更新。   |
@@ -8311,7 +8336,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 提供同层标签的详细信息。
 
-| 名称                | 类型                                  | 必填   | 描述                        |
+| 名称                | 类型                                  | 必填   | 说明                        |
 |-------------------| ------------------------------------ | ---- |---------------------------|
 | id                | string             | 否    | 同层标签的id信息。             |
 | type              | string                              | 否    | 同层标签的type信息，统一为小写字符。   |
@@ -8327,7 +8352,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 提供同层标签生命周期变化的详细信息。
 
-| 名称             | 类型                                  | 必填   | 描述                    |
+| 名称             | 类型                                  | 必填   | 说明                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | status     | [NativeEmbedStatus](#nativeembedstatus11)             | 否    | 同层标签生命周期状态。 |
 | surfaceId  | string                              | 否    | NativeImage的psurfaceid。  |
@@ -8337,7 +8362,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 提供手指触摸到同层标签的详细信息。
 
-| 名称             | 类型                                  | 必填   | 描述                    |
+| 名称             | 类型                                  | 必填   | 说明                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | embedId     | string   | 否    | 同层标签的唯一id。 |
 | touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否    | 手指触摸动作信息。 |
@@ -8347,7 +8372,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 提供网页绘制页面主要内容的详细信息。
 
-| 名称                     | 类型   | 必填 | 描述                                   |
+| 名称                     | 类型   | 必填 | 说明                                   |
 | ------------------------ | ------ | ---- | -------------------------------------- |
 | navigationStartTime      | number | 否  | 导航条加载时间，单位以微秒表示。       |
 | firstMeaningfulPaintTime | number | 否   | 绘制页面主要内容时间，单位以毫秒表示。 |
@@ -8358,7 +8383,7 @@ type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPai
 
 网页绘制页面最大内容度量信息的回调。
 
-| 参数名               | 参数类型                                        | 参数描述                         |
+| 参数名               | 类型                                        | 说明                         |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
 | firstMeaningfulPaint | [FirstMeaningfulPaint](#firstmeaningfulpaint12) | 绘制页面主要内容度量的详细信息。 |
 
@@ -8366,7 +8391,7 @@ type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPai
 
 提供网页绘制页面主要内容的详细信息。
 
-| 名称                      | 类型   | 必填 | 描述                                     |
+| 名称                      | 类型   | 必填 | 说明                                     |
 | ------------------------- | ------ | ---- | ---------------------------------------- |
 | navigationStartTime       | number | 否   | 导航条加载时间，单位以微秒表示。         |
 | largestImagePaintTime     | number | 否   | 最大图片加载的时间，单位是以毫秒表示。   |
@@ -8382,7 +8407,7 @@ type OnLargestContentfulPaintCallback = (largestContentfulPaint: [LargestContent
 
 网页绘制页面最大内容度量信息的回调。
 
-| 参数名                 | 参数类型                                            | 参数描述                             |
+| 参数名                 | 类型                                            | 说明                             |
 | ---------------------- | --------------------------------------------------- | ------------------------------------ |
 | largestContentfulPaint | [LargestContentfulPaint](#largestcontentfulpaint12) | 网页绘制页面最大内容度量的详细信息。 |
 
@@ -8390,7 +8415,7 @@ type OnLargestContentfulPaintCallback = (largestContentfulPaint: [LargestContent
 
 提供智能防跟踪拦截的详细信息。
 
-| 名称           | 类型                                | 必填   | 描述         |
+| 名称           | 类型                                | 必填   | 说明         |
 | ------------- | ------------------------------------| ----- | ------------ |
 | host          | string                              | 是     | 网站域名。    |
 | trackerHost   | string                              | 是     | 追踪者域名。  |
@@ -8401,7 +8426,7 @@ type OnIntelligentTrackingPreventionCallback = (details: IntelligentTrackingPrev
 
 当跟踪者cookie被拦截时触发的回调。
 
-| 参数名   | 参数类型                                                                          | 参数描述                    |
+| 参数名   | 类型                                                                          | 说明                    |
 | ------- | -------------------------------------------------------------------------------- | ------------------------- |
 | details | [IntelligentTrackingPreventionDetails](#intelligenttrackingpreventiondetails12)  | 提供智能防跟踪拦截的详细信息。 |
 
@@ -8413,7 +8438,7 @@ onOverrideUrlLoading的回调。
 
 **参数：**
 
-| 参数名                | 参数类型                                           | 参数描述                |
+| 参数名                | 类型                                           | 说明                |
 | -------------------- | ------------------------------------------------ | ------------------- |
 | webResourceRequest | [WebResourceRequest](#webresourcerequest)  | url请求的相关信息。 |
 
@@ -8427,7 +8452,7 @@ onOverrideUrlLoading的回调。
 
 定义Web组件的渲染方式。
 
-| 名称                           | 值 | 描述           |
+| 名称                           | 值 | 说明           |
 | ----------------------------- | -- | ------------ |
 | ASYNC_RENDER                        | 0 | Web组件自渲染模式。   |
 | SYNC_RENDER                        | 1 | Web组件统一渲染模式。   |
@@ -8449,7 +8474,7 @@ type NativeMediaPlayerConfig = { enable: boolean, shouldOverlay: boolean }
 
 触发渲染进程无响应回调的原因。
 
-| 名称                           | 值 | 描述           |
+| 名称                           | 值 | 说明           |
 | ----------------------------- | -- | ------------ |
 | INPUT_TIMEOUT                  | 0 | 发送给渲染进程的input事件响应超时。   |
 | NAVIGATION_COMMIT_TIMEOUT      | 1 | 新的网页加载导航响应超时。   |
@@ -8458,7 +8483,7 @@ type NativeMediaPlayerConfig = { enable: boolean, shouldOverlay: boolean }
 
 提供渲染进程无响应的详细信息。
 
-| 名称                     | 类型   | 必填 | 描述                                   |
+| 名称                     | 类型   | 必填 | 说明                                   |
 | ------------------------ | ------ | ---- | -------------------------------------- |
 | jsStack      | string | 是  | 网页的javaScript调用栈信息。       |
 | pid | number | 是   | 网页的进程id。 |
@@ -8470,7 +8495,7 @@ type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingDa
 
 渲染进程无响应时触发的回调。
 
-| 参数名               | 参数类型                                        | 参数描述                         |
+| 参数名               | 类型                                        | 说明                         |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
 | data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | 渲染进程无响应的详细信息。 |
 
@@ -8484,7 +8509,7 @@ type OnRenderProcessRespondingCallback = () => void
 
 网页meta中viewport-fit配置的视口类型。
 
-| 名称                           | 值 | 描述           |
+| 名称                           | 值 | 说明           |
 | ----------------------------- | -- | ------------ |
 | AUTO                  | 0 | 默认值，整个网页可见。   |
 | CONTAINS      | 1 | 初始布局视口和视觉视口为适应设备显示屏的最大矩形内。   |
@@ -8496,7 +8521,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 网页meta中viewport-fit配置项更改时触发的回调。
 
-| 参数名               | 参数类型                                        | 参数描述                         |
+| 参数名               | 类型                                        | 说明                         |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
 | viewportFit | [ViewportFit](#viewportfit12) | 网页meta中viewport-fit配置的视口类型。 |
 
@@ -8504,7 +8529,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 自定义菜单扩展项。
 
-| 名称           | 类型                                             | 必填    | 描述             |
+| 名称           | 类型                                             | 必填    | 说明             |
 | ---------- | -----------------------------------------------------| ------ | ---------------- |
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 是     | 显示内容。     |
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
@@ -8514,7 +8539,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 软键盘避让的模式。
 
-| 名称               | 值 | 描述           |
+| 名称               | 值 | 说明           |
 | ------------------ | -- | ------------ |
 | RESIZE_VISUAL      | 0 | 软键盘避让时，仅调整可视视口大小，不调整布局视口大小。   |
 | RESIZE_CONTENT     | 1 | 默认值，软键盘避让时，同时调整可视视口和布局视口的大小。 |
@@ -8860,7 +8885,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 
 发生广告拦截时，广告资源信息。
 
-| 名称 | 类型                                                                          | 描述                    |
+| 名称 | 类型                                                                          | 说明                    |
 | ------- | -------------------------------------------------------------------------------- | ------------------------- |
 | url | string  | 发生广告过滤的页面url。 |
 | adsBlocked | Array\<string\>  | 被过滤的资源的url或dompath标识，被过滤的多个对象url相同则可能出现重复元素。 |
@@ -8872,7 +8897,7 @@ type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
 当页面发生广告过滤时触发此回调。
 **参数：**
 
-| 参数名               | 参数类型                                        | 参数描述                         |
+| 参数名               | 类型                                        | 说明                         |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
 | details | [AdsBlockedDetails](#adsblockeddetails12) | 发生广告拦截时，广告资源信息。 |
 
@@ -8880,7 +8905,7 @@ type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
 
 提供同层标签的可见性信息。
 
-| 名称           | 类型                                | 必填   | 描述              |
+| 名称           | 类型                                | 必填   | 说明              |
 | -------------  | ------------------------------------| ----- | ------------------ |
 | visibility     | boolean                             | 否     | 可见性。         |
 | embedId        | string                              | 否     | 同层标签的唯一id。  |
@@ -8891,6 +8916,6 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 
 当同层标签可见性变化时触发该回调。
 
-| 参数名   | 参数类型                                                                          | 参数描述                    |
+| 参数名   | 类型                                                                          | 说明                    |
 | ------- | -------------------------------------------------------------------------------- | ------------------------- |
 | nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](#nativeembedvisibilityinfo12)  | 提供同层标签的可见性信息。 |

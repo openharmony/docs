@@ -30,7 +30,7 @@
 
 4. 获取数字格式化选项，查看对象的设置信息。
    ```ts
-   let options: intl.NumberOptions = formattedNumber.resolvedOptions();
+   let options: intl.NumberOptions = numberFormat.resolvedOptions();
    ```
 
 **数字格式化选项**

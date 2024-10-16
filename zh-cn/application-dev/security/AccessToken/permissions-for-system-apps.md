@@ -85,6 +85,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_LEARN_MORE_DIALOG
+
+允许系统应用拉起“进一步了解”的展示弹窗，获取更多详细信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ### ohos.permission.MANAGE_SETTINGS
 
 允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
@@ -3912,6 +3924,32 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+允许系统应用订阅备份框架开始恢复的事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
+### ohos.permission.READ_WRITE_USB_DEV
+
+允许应用连接设备，并通过USB调试读写该设备。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
 
 ## system_grant，不允许ACL跨级申请
 

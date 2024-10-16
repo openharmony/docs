@@ -41,7 +41,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 | 参数名      | 类型                                      | 必填 | 说明                                                         |
 | ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
-| type        | [XComponentType](ts-appendix-enums.md#xcomponenttype10枚举说明)   | 是   | 用于指定XComponent组件类型。                                 |
+| type        | [XComponentType](ts-appendix-enums.md#xcomponenttype10)   | 是   | 用于指定XComponent组件类型。                                 |
 | libraryname | string                                        | 否   | 用Native层编译输出动态库名称（对应的动态库不支持跨模块加载），仅类型为SURFACE或TEXTURE时有效。 |
 | controller  | [XComponentController](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 
@@ -74,7 +74,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10枚举说明)         | 是   | 用于指定XComponent组件类型。 |
+| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 是   | 用于指定XComponent组件类型。 |
 | controller | [XComponentController](#xcomponentcontroller) | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 | imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
@@ -101,11 +101,33 @@ enableAnalyzer(enable: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| enable | boolean | 是 | 是否启用图像分析功能 |
+| enable | boolean | 是 | 是否启用图像分析功能。 |
 
   > **说明：**
   >
   > 仅type为SURFACE和TEXTURE时该功能有效。
+
+### enableSecure<sup>13+</sup>
+
+enableSecure(isSecure: boolean)
+
+防止组件内自绘制内容被截屏、录屏。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                   |
+| -------- | ------- | ---- | ---------------------- |
+| isSecure | boolean | 是   | 是否开启隐私图层模式。 |
+
+  > **说明：**
+  >
+  > 仅type为SURFACE时有效。
+  >
+  > 不支持[ArkUI NDK接口](../../../ui/ndk-build-ui-overview.md)创建的XComponent组件。
 
 ## 事件
 

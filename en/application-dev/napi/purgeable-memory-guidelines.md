@@ -85,16 +85,16 @@ The following walks you through on how to use the native purgeable memory APIs t
     class ReqObj;
 
     // Begin a read operation on the object.
-    OH_PurgeableMemory_BeginRead(pPurgmem);
+    if(OH_PurgeableMemory_BeginRead(pPurgmem)) {
+        // Obtain the object size.
+        size_t size = OH_PurgeableMemory_ContentSize(pPurgmem);
 
-    // Obtain the object size.
-    size_t size = OH_PurgeableMemory_ContentSize(pPurgmem);
+        // Obtain the object content.
+        ReqObj* pReqObj = (ReqObj*) OH_PurgeableMemory_GetContent(pPurgmem);
 
-    // Obtain the object content.
-    ReqObj* pReqObj = (ReqObj*) OH_PurgeableMemory_GetContent(pPurgmem);
-
-    // End the read operation on the object.
-    OH_PurgeableMemory_EndRead(pPurgmem);
+        // End the read operation on the object.
+        OH_PurgeableMemory_EndRead(pPurgmem);
+    }
     ```
 
 4. Perform a write operation on the **PurgeableMemory** object.
@@ -103,19 +103,19 @@ The following walks you through on how to use the native purgeable memory APIs t
     class ReqObj;
 
     // Begin a write operation on the object.
-    OH_PurgeableMemory_BeginWrite(pPurgmem);
+    if(OH_PurgeableMemory_BeginWrite(pPurgmem)) {
+        // Obtain the object data.
+        ReqObj* pReqObj = (ReqObj*) OH_PurgeableMemory_GetContent(pPurgmem);
 
-    // Obtain the object data.
-    ReqObj* pReqObj = (ReqObj*) OH_PurgeableMemory_GetContent(pPurgmem);
+        // Declare the parameters of the extended constructor.
+        struct AppendParaData apdata = {1};
 
-    // Declare the parameters of the extended constructor.
-    struct AppendParaData apdata = {1};
+        // Update the rules for recreating the object.
+        OH_PurgeableMemory_AppendModify(pPurgmem, AddFunc, &apdata);
 
-    // Update the rules for recreating the object.
-    OH_PurgeableMemory_AppendModify(pPurgmem, AddFunc, &apdata);
-
-    // Stop writing data to the object.
-    OH_PurgeableMemory_EndWrite(pPurgmem);
+        // Stop writing data to the object.
+        OH_PurgeableMemory_EndWrite(pPurgmem);
+    }
     ```
 
 5. Destroy the **PurgeableMemory** object.

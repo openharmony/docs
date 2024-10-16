@@ -1,15 +1,15 @@
 # Color Effect
 
 
-## APIs
+## Color
 
 You can use the color gradient APIs to apply a background color gradient effect to a component.
 
 | API| Description|
 | -------- | -------- |
-| [linearGradient](../reference/arkui-ts/ts-universal-attributes-gradient-color.md) | Applies a linear gradient to the component.|
-| [sweepGradient](../reference/arkui-ts/ts-universal-attributes-gradient-color.md) | Applies a sweep gradient effect to the component.|
-| [radialGradient](../reference/arkui-ts/ts-universal-attributes-gradient-color.md) | Applies a radial gradient effect to the component.|
+| [linearGradient](../reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient) | Applies a linear gradient to the component.|
+| [sweepGradient](../reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md#sweepgradient) | Applies a sweep gradient effect to the component.|
+| [radialGradient](../reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient) | Applies a radial gradient effect to the component.|
 
 
 ## Applying Linear Gradient Effect

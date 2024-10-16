@@ -26,7 +26,10 @@
 - 和\@Styles不同，\@Extend仅支持在全局定义，不支持在组件内部定义。
 
 > **说明：**
+>
 > 只能在当前文件内使用，不支持export
+>
+> 如果想实现export功能，推荐使用[AttributeModifier](../ui/arkts-user-defined-extension-attributeModifier.md)
 
 - 和\@Styles不同，\@Extend支持封装指定组件的私有属性、私有事件和自身定义的全局方法。
 

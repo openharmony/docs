@@ -54,15 +54,15 @@
     channels: audio.AudioChannel.CHANNEL_2, // 通道
     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
-  }
+  };
   let audioRendererInfo: audio.AudioRendererInfo = {
     usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型
     rendererFlags: 0 // 音频渲染器标志
-  }
+  };
   let audioRendererOptions: audio.AudioRendererOptions = {
     streamInfo: audioStreamInfo,
     rendererInfo: audioRendererInfo
-  }
+  };
   
   // 创建AudioRenderer实例
   audio.createAudioRenderer(audioRendererOptions).then((data) => {

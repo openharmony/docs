@@ -64,7 +64,7 @@ enableDec(value: boolean)
 
 ### onInc
 
-onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onInc(event:&nbsp;VoidCallback)
 
 监听数值增加事件。
 
@@ -74,9 +74,15 @@ onInc(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | Counter数值增加的回调函数。        |
+
 ### onDec
 
-onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onDec(event:&nbsp;VoidCallback)
 
 监听数值减少事件。
 
@@ -85,6 +91,12 @@ onDec(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | Counter数值减少的回调函数。        |
 
 
 ## 示例

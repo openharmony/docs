@@ -14,7 +14,7 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 ## Size
 
-用于返回组件布局大小的宽和高。
+用于返回组件布局大小的宽和高。默认单位为vp，不同的接口使用Size类型时会再定义单位，以接口定义的单位为准。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

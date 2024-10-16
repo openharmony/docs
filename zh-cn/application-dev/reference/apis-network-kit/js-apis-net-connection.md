@@ -1050,7 +1050,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     // 当前无默认网络时，获取的netHandler的netid为0，属于异常场景，此处可以实际情况自行添加一些处理机制。
     return;
   }
-  netHandle = connection.getDefaultNetSync();
+
   getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
   console.info("Succeeded to get net capabilities sync: " + JSON.stringify(getNetCapabilitiesSync));
 });

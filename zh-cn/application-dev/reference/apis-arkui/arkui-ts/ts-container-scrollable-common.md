@@ -293,8 +293,8 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 | 名称   | 类型  | 必填 | 描述              |
 | ----- | ------ | ------ | ----------------- |
-| scrollForward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10枚举说明) | 是 | 滚动组件往末尾端滚动时的嵌套滚动选项。 |
-| scrollBackward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10枚举说明) | 是 | 滚动组件往起始端滚动时的嵌套滚动选项。 |
+| scrollForward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10) | 是 | 滚动组件往末尾端滚动时的嵌套滚动选项。 |
+| scrollBackward | [NestedScrollMode](ts-appendix-enums.md#nestedscrollmode10) | 是 | 滚动组件往起始端滚动时的嵌套滚动选项。 |
 
 ## EdgeEffectOptions<sup>11+</sup>对象说明
 
@@ -332,7 +332,7 @@ type OnWillScrollCallback = (scrollOffset: number, scrollState: ScrollState, scr
 | ------ | ------ | ------ | ------|
 | scrollOffset | number | 是 | 每帧滑动的偏移量，滚动组件的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
 | scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
-| scrollSource | [ScrollSource](ts-appendix-enums.md#scrollsource12枚举说明) | 是 | 当前滑动操作的来源。 |
+| scrollSource | [ScrollSource](ts-appendix-enums.md#scrollsource12) | 是 | 当前滑动操作的来源。 |
 
 **返回值：** 
 

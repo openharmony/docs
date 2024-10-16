@@ -2275,6 +2275,18 @@ Allows a system application to be hidden on the Privacy & Security page.
 
 **Valid since**: 13
 
+### ohos.permission.ACCESS_LEARN_MORE_DIALOG
+
+Allows a system application to display the Learn more dialog for detailed information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ### ohos.permission.GET_SUPER_PRIVACY
 
 Allows a system application to obtain the status of the super privacy mode.
@@ -3888,6 +3900,32 @@ Allow a system service to access and read files in the /data/log/faultlog/faultl
 **Enable via ACL**：true
 
 **Valid since**：12
+
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+Allows a system application to subscribe to the restore start event.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：13
+
+### ohos.permission.START_RESTORE_NOTIFICATION
+
+Allows an application to connect to a device and read and write the device data via USB for debugging purposes.
+
+This permission is available only for applications running on 2-in-1 devices.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：13
 
 ## system_grant Permissions (Unavailable via ACL)
 

@@ -23,6 +23,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 - 不支持跨HAP使用Worker线程文件。
 - 创建Worker对象时仅允许加载本模块下存在的Worker线程文件，不支持加载其他模块的Worker线程文件。若依赖其他模块提供的Worker功能，需要将Worker实现的整套逻辑封装到方法中，将方法导出后供其他模块使用。
 - 引用HAR/HSP前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)。
+- 不支持在Worker工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
 
 
 ### 创建Worker的注意事项

@@ -2,15 +2,11 @@
 
 ## 概述
 
-XComponent组件作为一种渲染组件，通常用于满足开发者较为复杂的自定义渲染需求，例如相机预览流的显示和游戏画面的渲染。其可通过指定其type字段来实现不同的功能，主要有两个“surface”和“component”字段可供选择。对于“surface”类型，开发者可将相关数据传入XComponent单独拥有的“[NativeWindow](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/graphics/native-window-guidelines.md)”来渲染画面。对于“component”类型，通常用于在XComponent内部执行非UI逻辑以实现动态加载显示内容的目的。
+XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据写入，通过使用XComponent独有的“[NativeWindow](../graphics/native-window-guidelines.md)”来渲染画面，通常用于满足开发者较为复杂的自定义渲染需求，例如相机预览流的显示和游戏画面的渲染。其可通过指定type字段来实现不同的渲染方式，分别为[XComponentType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#xcomponenttype10).SURFACE和XComponentType.TEXTURE。对于SURFACE类型，开发者将定制的绘制内容单独展示到屏幕上。对于TEXTURE类型，开发者将定制的绘制内容和XComponent组件的内容合成后展示到屏幕上。
 
-XComponent设置为“surface“类型时，其可以和其他组件一起进行布局和渲染，同时XComponent又拥有单独的“NativeWindow“，可以为开发者在native侧提供NativeWindow用来创建EGL/OpenGLES环境，进而使用标准的OpenGL ES开发。除此之外，媒体相关应用（视频、相机等）也可以将相关数据写入XComponent所提供的NativeWindow，从而呈现相应画面。
+目前XComponent组件主要有两个应用场景。一个是Native XComponent场景，在native层获取Native XComponent实例，在native侧注册XComponent的生命周期回调，以及触摸、鼠标、按键等事件回调。另一个是ArkTS XComponent场景，在ArkTS侧获取SurfaceId，生命周期回调、触摸、鼠标、按键等事件回调等均在ArkTS侧触发。
 
-目前XComponent组件在type设置为“surface”时主要有两个应用场景。一个是Native XComponent场景，是在native层获取Native XComponent实例，在native侧注册XComponent的生命周期回调，以及触摸、鼠标、按键等事件回调。另一个是ArkTS XComponent场景，是在ArkTS侧获取SurfaceId，生命周期回调、触摸、鼠标、按键等事件回调等均在ArkTS侧触发。
-
-## surface类型
-
-### Native XComponent场景
+## Native XComponent场景
 在XComponent组件构造函数的libraryname中定义需要加载的动态库，而后应用就可以在Native层获取Native XComponent实例，其是XComponent组件提供在Native层的实例，可作为ArkTS层和Native层XComponent绑定的桥梁。XComponent所提供的NDK接口都依赖于该实例。接口能力包括获取NativeWindow实例、获取XComponent的布局/事件信息、注册XComponent的生命周期回调、注册XComponent的触摸、鼠标、按键等事件回调。针对Native XComponent，主要的开发场景如下：
 
 - 利用Native XComponent提供的接口注册XComponent的生命周期和事件回调。
@@ -49,7 +45,7 @@ XComponent设置为“surface“类型时，其可以和其他组件一起进行
 
 **开发步骤**
 
-以下步骤描述了如何使用`XComponent组件`调用`Node-API`接口来创建`EGL/GLES`环境，实现在主页面绘制图形，并可以改变图形的颜色。
+以下步骤以SURFACE类型为例，描述了如何使用`XComponent组件`调用`Node-API`接口来创建`EGL/GLES`环境，实现在主页面绘制图形，并可以改变图形的颜色。
 
 1. 在界面中定义XComponent。
 
@@ -910,7 +906,7 @@ XComponent设置为“surface“类型时，其可以和其他组件一起进行
         ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib})
     ```
 
-### ArkTS XComponent场景
+## ArkTS XComponent场景
 
 与Native XComponent不同，ArkTS XComponent不再需要libraryname参数。通过在ArkTS侧获取SurfaceId，布局信息、生命周期回调、触摸、鼠标、按键等事件回调等均在ArkTS侧触发，按需传递到Native侧进行处理。主要开发场景如下：
 - 基于ArkTS侧获取的SurfaceId，在Native侧调用OH_NativeWindow_CreateNativeWindowFromSurfaceId接口创建出NativeWindow实例。
@@ -937,20 +933,20 @@ Native侧
 
 **开发步骤**
 
-以下步骤描述了如何使用`XComponent组件`在ArkTS侧传入Surfaceid，在native侧创建NativeWindow实例，然后创建`EGL/GLES`环境，实现在主页面绘制图形，并可以改变图形的颜色。
+以下步骤以SURFACE类型为例，描述了如何使用`XComponent组件`在ArkTS侧传入Surfaceid，在native侧创建NativeWindow实例，然后创建`EGL/GLES`环境，实现在主页面绘制图形，并可以改变图形的颜色。
 
 1. 在界面中定义XComponent。
    
     ```typescript
     import nativeRender from 'libnativerender.so'
     //重写XComponentController
-    class MyXComponentController extends XComponentController{
+    class MyXComponentController extends XComponentController {
         onSurfaceCreated(surfaceId: string): void {
         console.log(`onSurfaceCreated surfaceId: ${surfaceId}`)
         nativeRender.SetSurfaceId(BigInt(surfaceId));
         }
         onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
-        console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${ArkTSON.stringify(rect)}}`)
+        console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`)
         nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight)
         }
         onSurfaceDestroyed(surfaceId: string): void {
@@ -1301,64 +1297,6 @@ Native侧
     target_link_libraries(nativerender PUBLIC
         ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
     ```
-
-
-
-## component类型
-
-XComponent设置为component类型时通常用于在XComponent内部执行非UI逻辑以实现动态加载显示内容的目的。
-
->**说明：**
->
-> type为"component"时，XComponent作为容器，子组件沿垂直方向布局：
->
-> - 垂直方向上对齐格式：[FlexAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#flexalign).Start
->
-> - 水平方向上对齐格式：[FlexAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#flexalign).Center
->
-> 不支持所有的事件响应。
->
-> 布局方式更改和事件响应均可通过挂载子组件来设置。
->
-> 内部所写的非UI逻辑需要封装在一个或多个函数内。
-
-
-```ts
-@Builder
-function addText(label: string): void {
-  Text(label)
-    .fontSize(40)
-}
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello XComponent'
-  @State messageCommon: string = 'Hello World'
-  build() {
-    Row() {
-      Column() {
-        XComponent({ id: 'xcomponentId-container', type: 'component' }) {
-          addText(this.message)
-          Divider()
-            .margin(4)
-            .strokeWidth(2)
-            .color('#F1F3F5')
-            .width("80%")
-          Column() {
-            Text(this.messageCommon)
-              .fontSize(30)
-          }
-        }
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-![zh-cn_image_0000001511900428](figures/zh-cn_image_0000001511900428.png)
 
 
 ## 生命周期说明

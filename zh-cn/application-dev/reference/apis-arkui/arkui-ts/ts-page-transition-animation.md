@@ -209,7 +209,7 @@ type PageTransitionCallback = (type: RouteType, progress: number) => void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 
-| 名称 | 描述                                                         |
+| 名称 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
 | Pop  | 重定向指定页面。从PageB回退到之前的页面PageA。对于PageB，指定RouteType为None或者Pop的PageTransitionExit组件样式生效，对于PageA，指定RouteType为None或者Pop的PageTransitionEnter组件样式生效。 |
 | Push | 跳转到下一页面。PageA跳转到下一个新的界面PageB。对于PageA，指定RouteType为None或者Push的PageTransitionExit组件样式生效，对于PageB，指定RouteType为None或者Push的PageTransitionEnter组件样式生效。 |
@@ -221,7 +221,7 @@ type PageTransitionCallback = (type: RouteType, progress: number) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 描述                                                         |
+| 名称                | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
 | Left                | 设置到入场时表示从左边滑入，出场时表示滑出到左边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Right               | 设置到入场时表示从右边滑入，出场时表示滑出到右边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |

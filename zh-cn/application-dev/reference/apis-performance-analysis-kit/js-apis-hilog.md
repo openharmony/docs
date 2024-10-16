@@ -27,7 +27,7 @@ isLoggable(domain: number, tag: string, level: LogLevel) : boolean
 | 参数名 | 类型                  | 必填 | 说明                                                         |
 | ------ | --------------------- | ---- | ------------------------------------------------------------ |
 | domain | number                | 是   | 日志对应的领域标识，范围是0x0~0xFFFF。<br/>建议开发者在应用内根据需要自定义划分。 |
-| tag    | string                | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 |
+| tag    | string                | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 |
 | level  | [LogLevel](#loglevel) | 是   | 日志级别。                                                   |
 
 **返回值：**
@@ -75,7 +75,7 @@ DEBUG级别的日志在正式发布版本中默认不被打印，只有在调试
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | domain | number | 是   | 日志对应的领域标识，范围是0x0~0xFFFF。<br/>建议开发者在应用内根据需要自定义划分。 |
-| tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 |
+| tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 |
 | format | string | 是   | 格式字符串，用于日志的格式化输出。格式字符串中可以设置多个参数，参数需要包含参数类型、隐私标识。<br>隐私标识分为{public}和{private}，缺省为{private}。标识{public}的内容明文输出，标识{private}的内容以\<private>过滤回显。 |
 | args   | any[]  | 否   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
@@ -90,7 +90,7 @@ hilog.debug(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 字符串`"hello"`填入`%{public}s`，整型数`3`填入`%{private}d`，输出日志：
 
 ```
-08-05 12:21:47.579  2695-2703/com.example.myapplication D 00001/testTag: hello World <private>
+08-05 12:21:47.579  2695 2703 D A00001/testTag: hello World <private>
 ```
 
 ## hilog.info
@@ -108,7 +108,7 @@ info(domain: number, tag: string, format: string, ...args: any[]) : void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | domain | number | 是   | 日志对应的领域标识，范围是0x0~0xFFFF。<br/>建议开发者在应用内根据需要自定义划分。  |
-| tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 |
+| tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 |
 | format | string | 是   | 格式字符串，用于日志的格式化输出。格式字符串中可以设置多个参数，参数需要包含参数类型、隐私标识。<br/>隐私标识分为{public}和{private}，缺省为{private}。标识{public}的内容明文输出，标识{private}的内容以\<private>过滤回显。 |
 | args   | any[]  | 否   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
@@ -123,7 +123,7 @@ hilog.info(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 字符串`"hello"`填入`%{public}s`，整型数`3`填入`%{private}d`，输出日志：
 
 ```
-08-05 12:21:47.579  2695-2703/com.example.myapplication I 00001/testTag: hello World <private>
+08-05 12:21:47.579  2695 2703 I A00001/testTag: hello World <private>
 ```
 
 ## hilog.warn
@@ -141,7 +141,7 @@ warn(domain: number, tag: string, format: string, ...args: any[]) : void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | domain | number | 是   | 日志对应的领域标识，范围是0x0~0xFFFF。<br/>建议开发者在应用内根据需要自定义划分。  |
-| tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 |
+| tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 |
 | format | string | 是   | 格式字符串，用于日志的格式化输出。格式字符串中可以设置多个参数，参数需要包含参数类型、隐私标识。<br/>隐私标识分为{public}和{private}，缺省为{private}。标识{public}的内容明文输出，标识{private}的内容以\<private>过滤回显。 |
 | args   | any[]  | 否   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
@@ -156,7 +156,7 @@ hilog.warn(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 字符串`"hello"`填入`%{public}s`，整型数`3`填入`%{private}d`，输出日志：
 
 ```
-08-05 12:21:47.579  2695-2703/com.example.myapplication W 00001/testTag: hello World <private>
+08-05 12:21:47.579  2695 2703 W A00001/testTag: hello World <private>
 ```
 
 ## hilog.error
@@ -174,7 +174,7 @@ error(domain: number, tag: string, format: string, ...args: any[]) : void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | domain | number | 是   | 日志对应的领域标识，范围是0x0~0xFFFF。<br/>建议开发者在应用内根据需要自定义划分。  |
-| tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 |
+| tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。|
 | format | string | 是   | 格式字符串，用于日志的格式化输出。格式字符串中可以设置多个参数，参数需要包含参数类型、隐私标识。<br/>隐私标识分为{public}和{private}，缺省为{private}。标识{public}的内容明文输出，标识{private}的内容以\<private>过滤回显。 |
 | args   | any[]  | 否   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
@@ -189,7 +189,7 @@ hilog.error(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 字符串`"hello"`填入`%{public}s`，整型数`3`填入`%{private}d`，输出日志：
 
 ```
-08-05 12:21:47.579  2695-2703/com.example.myapplication E 00001/testTag: hello World <private>
+08-05 12:21:47.579  2695 2703 E A00001/testTag: hello World <private>
 ```
 
 ## hilog.fatal
@@ -207,7 +207,7 @@ fatal(domain: number, tag: string, format: string, ...args: any[]) : void
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | domain | number | 是   | 日志对应的领域标识，范围是0x0~0xFFFF。<br/>建议开发者在应用内根据需要自定义划分。  |
-| tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。 |
+| tag    | string | 是   | 指定日志标识，可以为任意字符串，建议用于标识调用所在的类或者业务行为。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 |
 | format | string | 是   | 格式字符串，用于日志的格式化输出。格式字符串中可以设置多个参数，参数需要包含参数类型、隐私标识。<br/>隐私标识分为{public}和{private}，缺省为{private}。标识{public}的内容明文输出，标识{private}的内容以\<private>过滤回显。 |
 | args   | any[]  | 否   | 与格式字符串format对应的可变长度参数列表。参数数目、参数类型必须与格式字符串中的标识一一对应。 |
 
@@ -222,7 +222,7 @@ hilog.fatal(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 字符串`"hello"`填入`%{public}s`，整型数`3`填入`%{private}d`，输出日志：
 
 ```
-08-05 12:21:47.579  2695-2703/com.example.myapplication F 00001/testTag: hello World <private>
+08-05 12:21:47.579  2695 2703 F A00001/testTag: hello World <private>
 ```
 
 ## 参数格式符

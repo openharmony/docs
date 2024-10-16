@@ -57,7 +57,7 @@
 | int [OH_Preferences_SetBool](#oh_preferences_setbool) ([OH_Preferences](#oh_preferences) \*preference, const char \*key, bool value) | 根据Key设置Preferences实例对象中的布尔值。 | 
 | int [OH_Preferences_SetString](#oh_preferences_setstring) ([OH_Preferences](#oh_preferences) \*preference, const char \*key, const char \*value) | 根据Key设置Preferences实例对象中的字符串。 | 
 | int [OH_Preferences_Delete](#oh_preferences_delete) ([OH_Preferences](#oh_preferences) \*preference, const char \*key) | 在Preferences实例对象中删除Key对应的KV数据。 | 
-| int [OH_Preferences_RegisterDataObserver](#oh_preferences_registerdataobserver) ([OH_Preferences](#oh_preferences) \*preference, void \*context, [OH_PreferencesDataObserver](#oh_preferencesdataobserver) observer, const char \*keys[], uint32_t keyCount) | 对选取的Key注册数据变更订阅。 | 
+| int [OH_Preferences_RegisterDataObserver](#oh_preferences_registerdataobserver) ([OH_Preferences](#oh_preferences) \*preference, void \*context, [OH_PreferencesDataObserver](#oh_preferencesdataobserver) observer, const char \*keys[], uint32_t keyCount) | 对选取的Key注册数据变更订阅。订阅的Key的值发生变更后，在调用OH_Preferences_Close()后触发回调。 | 
 | int [OH_Preferences_UnregisterDataObserver](#oh_preferences_unregisterdataobserver) ([OH_Preferences](#oh_preferences) \*preference, void \*context, [OH_PreferencesDataObserver](#oh_preferencesdataobserver) observer, const char \*keys[], uint32_t keyCount) | 取消注册选取Key的数据变更订阅。 | 
 | [OH_PreferencesOption](#oh_preferencesoption) \* [OH_PreferencesOption_Create](#oh_preferencesoption_create) (void) | 创建一个Preferences配置选项的[OH_PreferencesOption](#oh_preferencesoption)实例对象以及指向它的指针。 当不再需要使用指针时，请使用[OH_PreferencesOption_Destroy](#oh_preferencesoption_destroy)销毁实例对象，否则会导致内存泄漏。 | 
 | int [OH_PreferencesOption_SetFileName](#oh_preferencesoption_setfilename) ([OH_PreferencesOption](#oh_preferencesoption) \*option, const char \*fileName) | 设置Preferences配置选项[OH_PreferencesOption](#oh_preferencesoption)实例对象的文件名称。 | 
@@ -247,7 +247,6 @@ int OH_Preferences_Close (OH_Preferences *preference)
 | 名称 | 描述 | 
 | -------- | -------- |
 | preference | 指向需要关闭的[OH_Preferences](#oh_preferences)实例对象的指针。 | 
-| option | 指向PreferencesOption[OH_PreferencesOption](#oh_preferencesoption)的指针。 | 
 
 **返回：**
 
@@ -264,8 +263,6 @@ int OH_Preferences_Close (OH_Preferences *preference)
 **参见：**
 
 [OH_Preferences](#oh_preferences)
-
-[OH_PreferencesOption](#oh_preferencesoption)
 
 [OH_Preferences_ErrCode](#oh_preferences_errcode)
 
@@ -495,7 +492,7 @@ int OH_Preferences_RegisterDataObserver (OH_Preferences *preference, void *conte
 
 **描述**
 
-对选取的Key注册数据变更订阅。
+对选取的Key注册数据变更订阅。订阅的Key的值发生变更后，在调用OH_Preferences_Close()后触发回调。
 
 **起始版本：** 13
 

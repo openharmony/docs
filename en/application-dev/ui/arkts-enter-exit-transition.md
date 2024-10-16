@@ -6,18 +6,18 @@ You can use [transition](../reference/apis-arkui/arkui-ts/ts-transition-animatio
 
   **Table 1** Transition effect APIs
 
-| API | Description | Animation |
+| API| Description| Animation|
 | -------- | -------- | -------- |
-| IDENTITY | Disables the transition effect. | None. |
-| OPACITY | Applies the default opacity transition effect. | The component enters by changing the opacity from 0 to 1 and exits by changing the opacity from 1 to 0. |
-| SLIDE | Applies a sliding transition effect. | The component enters by sliding in from the left edge of the window and exits by sliding out from the right edge of the window. |
-| translate | Applies a translation transition effect. | The component enters by moving from the position set by the **translate** API to the default position (value **0**), and exits by moving from the default position (value **0**) to the position set by the **translate** API. |
-| rotate | Applies a rotation transition effect. | The component enters by rotating from the position set by the **rotate** API to the default position (value **0**), and exits by rotating from the default position (value **0**) to the position set by the **rotate** API. |
-| opacity | Applies an opacity transition effect. | The component enters by changing the opacity from the set value to **1** (default value) and exits by changing the opacity from **1** to the set value. |
-| move | Applies a transition effect by specifying which edge the component slides in and out of through [TransitionEdge](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitionedge10). | The component enters by sliding in from the edge specified by **TransitionEdge** and exits by sliding out of the same edge. |
-| asymmetric | Applies an asymmetric transition effect.<br>- **appear**: enter transition effect.<br>- **disappear**: exit transition effect. | The component enters by applying the transition effect specified by **appear** and exits by applying the transition effect specified by **disappear**. |
-| combine | Combines with other transition effects. | The component enters and exits by combing with other transition effects. |
-| animation | Defines the animation settings for the transition effect.<br>- If animation settings are not specified here, the animation settings of **animateTo** will be used.<br>- Animation settings cannot be configured through the **animation** API of the component.<br>- The **onFinish** callback of the **animation** parameter in **TransitionEffect** does not take effect. | The API call sequence is from top to bottom. This means that the **animation** settings of **TransitionEffect** at the upper level also take effect on **TransitionEffect** at the lower level . |
+| IDENTITY | Disables the transition effect.| None.|
+| OPACITY | Applies the default opacity transition effect.| The component enters by changing the opacity from 0 to 1 and exits by changing the opacity from 1 to 0.|
+| SLIDE | Applies a sliding transition effect.| The component enters by sliding in from the left edge of the window and exits by sliding out from the right edge of the window.|
+| translate | Applies a translation transition effect.| The component enters by moving from the position set by the **translate** API to the default position (value **0**), and exits by moving from the default position (value **0**) to the position set by the **translate** API.|
+| rotate | Applies a rotation transition effect.| The component enters by rotating from the position set by the **rotate** API to the default position (value **0**), and exits by rotating from the default position (value **0**) to the position set by the **rotate** API.|
+| opacity | Applies an opacity transition effect.| The component enters by changing the opacity from the set value to **1** (default value) and exits by changing the opacity from **1** to the set value.|
+| move | Applies a transition effect by specifying which edge the component slides in and out of through [TransitionEdge](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md#transitionedge10).| The component enters by sliding in from the edge specified by **TransitionEdge** and exits by sliding out of the same edge.|
+| asymmetric | Applies an asymmetric transition effect.<br>- **appear**: enter transition effect.<br>- **disappear**: exit transition effect.| The component enters by applying the transition effect specified by **appear** and exits by applying the transition effect specified by **disappear**.|
+| combine | Combines with other transition effects.| The component enters and exits by combing with other transition effects.|
+| animation | Defines the animation settings for the transition effect.<br>- If animation settings are not specified here, the animation settings of **animateTo** will be used.<br>- Animation settings cannot be configured through the **animation** API of the component.<br>- The **onFinish** callback of the **animation** parameter in **TransitionEffect** does not take effect.| The API call sequence is from top to bottom. This means that the **animation** settings of **TransitionEffect** at the upper level also take effect on **TransitionEffect** at the lower level .|
 
 
 1. Create a **TransitionEffect** object.
@@ -43,7 +43,7 @@ You can use [transition](../reference/apis-arkui/arkui-ts/ts-transition-animatio
   
    ```ts
    Text('test')
-     .transition(effect)
+     .transition(this.effect)
    ```
 
 3. Add or delete the component to trigger transition.
@@ -53,7 +53,7 @@ You can use [transition](../reference/apis-arkui/arkui-ts/ts-transition-animatio
    ...
    if (this.isPresent) {
      Text('test')
-       .transition(effect)
+       .transition(this.effect)
    }
    ...
    // Control the addition or deletion of the component.
@@ -174,7 +174,7 @@ struct Index1 {
                 .animation({ duration: DURATION, curve: Curve.Friction, delay: INTERVAL * index }))
               .borderRadius(10)
             }
-            // When the grid cells exit, if the transition effect is not added to the parent component, the exit transition effect does not take effect.
+            // When the grid cells exit, the exit transition effect does not take effect if the transition effect is not added to the parent component.
             // Here the parent component of the grid cells is configured to always display with a 0.99 opacity when the cells exit. In this way, the transition effect of grid cells is not affected.
             .transition(TransitionEffect.opacity(0.99))
           }, (item: number) => item.toString())
@@ -183,7 +183,7 @@ struct Index1 {
         .rowsGap(15)
         .columnsGap(15)
         .size({ width: 180, height: 180 })
-        // When the grid cells exit, if the transition effect is not added to the parent component, the exit transition effect does not take effect.
+        // When the grid cells exit, the exit transition effect does not take effect if the transition effect is not added to the parent component.
         // Here the parent component of the grid cells is configured to always display with a 0.99 opacity when the cells exit. In this way, the transition effect of grid cells is not affected.
         .transition(TransitionEffect.opacity(0.99))
       }
