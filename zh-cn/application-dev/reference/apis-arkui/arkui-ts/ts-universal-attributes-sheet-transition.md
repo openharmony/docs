@@ -69,6 +69,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | uiContext<sup>12+</sup> | [UIContext](../js-apis-arkui-UIContext.md#uicontext)   | 否 | 在UIContext实例对应的窗口中显示半模态。<br />**说明：**<br />使用[openBindSheet](../js-apis-arkui-UIContext.md#openbindsheet12)启动的半模态页面，不支持设置、更新该属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | mode<sup>12+</sup> | [SheetMode](#sheetmode12)   | 否 | 设置半模态页面的显示层级。<br/>默认值：SheetMode.OVERLAY。 <br />**说明：**<br /> 1. 半模态显示期间mode属性不支持动态切换，两种模式的显示层级完全不同，无法做到显示期间同一个半模态从一个层级变换到另一个层级。建议在使用时明确诉求固定mode值。 <br/> 2. 设置SheetMode.EMBEDDED时不支持设置UIContext属性，两者对应的半模态显示层级效果互相冲突。<br />3. 使用[openBindSheet](../js-apis-arkui-UIContext.md#openbindsheet12)启动半模态页面，若未传入有效的targetId，则不支持设置为SheetMode.EMBEDDED，默认为SheetMode.OVERLAY。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | scrollSizeMode<sup>12+</sup> | [ScrollSizeMode](#scrollsizemode12)   | 否 | 设置半模态面板滑动时，内容区域刷新时机。<br/>默认值：ScrollSizeMode.FOLLOW_DETENT 。|
+| keyboardAvoidMode<sup>13+</sup> | [SheetKeyboardAvoidMode](#sheetkeyboardavoidmode13枚举说明) | 否 | 设置半模态激活输入法时对软键盘的避让方式。<br/> **默认值：** TRANSLATE_AND_SCROLL<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## SheetSize枚举说明
 
@@ -144,6 +145,15 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | 名称              | 类型                                       | 必填   | 描述            |
 | --------------- | ---------------------------------------- | ---- | ------------- |
 | springBack | function | 是    | 半模态页面关闭前控制回弹函数，开发者需要半模态回弹时调用。  |
+
+## SheetKeyboardAvoidMode<sup>13+</sup>枚举说明
+
+| 名称           | 值   | 描述                         |
+| ------------------------- | ---- | -------------------------------- |
+| NONE | 0    | 设置半模态不避让软键盘。   |
+| TRANSLATE_AND_RESIZE    | 1    | 设置半模态先上抬面板避让软键盘；<br/>当上抬至最大高度仍不足以避让软键盘时，则通过压缩整体内容完成避让。|
+| RESIZE_ONLY    | 2    | 设置半模态通过压缩整体内容避让软键盘。|
+| TRANSLATE_AND_SCROLL    | 3    | 设置半模态先上抬面板避让软键盘；<br/>当上抬至最大高度仍不足以避让软键盘时，则通过滚动内容完成避让。|
 
 ## 示例
 ### 示例1
@@ -427,3 +437,127 @@ struct Index {
 跟手触发档位切换时，跟手时期就会触发面板内容高度刷新
 
 ![zh-cn_sheet](figures/zh-cn_sheet5_rtl.gif)
+
+### 示例6
+```ts
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+//xxx.ets
+//在resizeOnly模式下，监测键盘高度变化并根据高度变化做滚动组件的滚动
+@Entry
+@Component
+struct ListenKeyboardHeightChange {
+  @State isShow: boolean = false;
+  @State avoidMode: SheetKeyboardAvoidMode = SheetKeyboardAvoidMode.RESIZE_ONLY;
+  scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6];
+  @State scrollHeight: number = 0;
+  @State keyBoardChange: boolean = false;
+  
+  windowClass: window.Window | undefined = undefined;
+  
+  aboutToAppear() : void {
+    try {
+      window.getLastWindow(getContext(this), (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to obtain the top window, Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        this.windowClass = data;
+        try {
+          if (this.windowClass !== undefined) {
+            console.log('success in listen height change');
+            //注册键盘高度变化监听回调
+            this.windowClass.on('keyboardHeightChange', this.callback);
+          }
+        } catch (exception) {
+          console.error(`Failed to enable the listener for keyboard height changes, Cause code: ${exception.code}, message: ${exception.message}`);
+        }
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch (exception) {
+      console.error(`Failed to obtain the top window, Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+
+  //当键盘高度变化时，设置相应标志位
+  callback = (height: number) => {
+    this.scrollHeight = height;
+    console.log('height change: ' + this.scrollHeight);
+    if (height !== 0) {
+      this.keyBoardChange = true;
+    }
+  }
+
+  //当滚动组件高度变化时，根据标志位触发滚动
+  sizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => {
+    if (this.keyBoardChange) {
+      this.scroller.scrollBy(0, this.scrollHeight);
+      this.keyBoardChange = false;
+    }
+  }
+
+  @Builder myBuilder() {
+    Scroll(this.scroller) {
+      Column() {
+        ForEach(this.arr, (item: number) => {
+          Row() {
+            Text(item.toString())
+              .width('80%')
+              .height(60)
+              .backgroundColor('#3366CC')
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 5 })
+          }
+        }, (item:number) => item.toString())
+
+        TextInput().height('100')
+
+        Flex({alignItems: ItemAlign.End}) {
+          Row() {
+            Button("click")
+              .margin(10)
+              .fontSize(20)
+              .width('45%')
+
+            Button("cancle")
+              .margin(10)
+              .fontSize(20)
+              .width('45%')
+          }.width('100%')
+        }.height('100%')
+      }.margin({ right: 15 })
+    }
+    .scrollBar(BarState.On)
+    .scrollable(ScrollDirection.Vertical)
+    .onSizeChange(this.sizeChangeCallback)
+  }
+
+  build() {
+    Column() {
+      Button("transition modal 1")
+        .onClick(() => {
+          this.isShow = true
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindSheet($$this.isShow, this.myBuilder(),{
+          detents:[SheetSize.MEDIUM,SheetSize.LARGE,200],
+          backgroundColor:Color.Gray,
+          blurStyle:BlurStyle.Thick,
+          showClose:true,
+          title:{title:"title", subtitle:"subtitle"},
+          keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY;
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .width('100%')
+    .height('100%')
+  }
+}
+
+```
