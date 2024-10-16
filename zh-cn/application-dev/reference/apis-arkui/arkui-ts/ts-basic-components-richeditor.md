@@ -594,8 +594,6 @@ onCopy(callback: Callback\<CopyEvent\>)
 
 插入文本信息。
 
-
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 类型     | 必填   | 说明         |
@@ -629,8 +627,8 @@ onCopy(callback: Callback\<CopyEvent\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 描述    |
-| -------- | ----- |
+| 名称     | 说明       |
+| -------- | ---------- |
 | BACKWARD | 向后删除。 |
 | FORWARD  | 向前删除。 |
 
@@ -674,7 +672,7 @@ Span类型信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 值     | 描述           |
+| 名称    | 值     | 说明         |
 | ----- | ---- | ------------ |
 | TEXT  | 0 | Span为文字类型。   |
 | IMAGE | 1 | Span为图像类型。   |
@@ -687,7 +685,9 @@ Span类型信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 名称         | 描述            |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 说明          |
 | ---------- | ------------- |
 | LONG_PRESS  | 通过长按触发菜单弹出。   |
 | RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
@@ -1505,8 +1505,26 @@ onContentChanged(listener: StyledStringChangedListener): void
 | selection | [number, number]                         | 是    | 选中范围。   |
 | spans     | Array<[RichEditorTextSpanResult](#richeditortextspanresult)\| [RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | span信息。 |
 
+## RichEditorRange
 
-## RichEditorUpdateTextSpanStyleOptions
+定义RichEditor的范围。
+
+继承自[RichEditorRange](#richeditorrange)。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型   | 必填 | 说明                                                         |
+| ----- | ------ | ---- | ------------------------------------------------------------ |
+| start | number | 否   | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。  |
+| end   | number | 否   | 需要更新样式的文本结束位置，省略或者超出文本范围时表示无穷大。 |
+
+>  **说明：**
+>
+>  当start大于end时为异常情况，此时start为0，end为无穷大。
+
+## RichEditorSpanStyleOptions
 
 文本样式选项。
 
@@ -1516,15 +1534,25 @@ onContentChanged(listener: StyledStringChangedListener): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称        | 类型                                       | 必填   | 说明                              |
-| --------- | ---------------------------------------- | ---- | ------------------------------- |
-| textStyle | [RichEditorTextStyle](#richeditortextstyle) | 是    | 文本样式。                           |
+## RichEditorUpdateTextSpanStyleOptions
+
+文本样式选项。
+
+继承自[RichEditorSpanStyleOptions](#richeditorspanstyleoptions)。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型                                        | 必填 | 说明       |
+| --------- | ------------------------------------------- | ---- | ---------- |
+| textStyle | [RichEditorTextStyle](#richeditortextstyle) | 是   | 文本样式。 |
 
 ## RichEditorUpdateImageSpanStyleOptions
 
 图片样式选项。
 
-继承自[RichEditorRange](#richeditorrange)。
+继承自[RichEditorSpanStyleOptions](#richeditorspanstyleoptions)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1538,21 +1566,21 @@ onContentChanged(listener: StyledStringChangedListener): void
 
 SymbolSpan样式选项。
 
-继承自[RichEditorRange](#richeditorrange)。
+继承自[RichEditorSpanStyleOptions](#richeditorspanstyleoptions)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型                                       | 必填   | 说明                              |
-| ----------- | ---------------------------------------- | ---- | ------------------------------- |
-| symbolStyle | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 是    | 组件样式。                           |
+| 名称        | 类型                                                      | 必填 | 说明       |
+| ----------- | --------------------------------------------------------- | ---- | ---------- |
+| symbolStyle | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 是   | 组件样式。 |
 
 ## RichEditorParagraphStyleOptions<sup>11+</sup>
 
 段落样式选项。
 
-继承自[RichEditorRange](#richeditorrange)。
+继承自[RichEditorSpanStyleOptions](#richeditorspanstyleoptions)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1732,36 +1760,17 @@ RichEditor span信息。
 | [RichEditorImageSpanResult](#richeditorimagespanresult) | 后端返回的图片信息。 |
 | [RichEditorTextSpanResult](#richeditortextspanresult) | 后端返回的文本样式信息。 |
 
-## RichEditorRange
-
-范围信息。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 类型     | 必填   | 说明                     |
-| ----- | ------ | ---- | ---------------------- |
-| start | number | 否    | 起始位置，省略或者设置负值时表示从0开始。  |
-| end   | number | 否    | 结束位置，省略或者超出所有内容范围时表示无穷大。 |
-
->  **说明：**
->
->  当start大于end时为异常情况，此时start为0，end为无穷大。
-
 ## SelectionMenuOptions<sup>10+</sup>
 
 菜单的选项。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
-| onAppear    | [MenuOnAppearCallback<sup></sup>](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。 |
-| onDisappear | Callback\<void\>  | 否    | 自定义选择菜单关闭时回调。 |
-| menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。 |
+| onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| onDisappear | Callback\<void\>  | 否    | 自定义选择菜单关闭时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1834,10 +1843,12 @@ type SubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                                             | 必填 | 说明                                                     |
-| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
-| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明)         | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。         |
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。         |
 
 ## MenuOnAppearCallback<sup>12+</sup>
 
@@ -1849,7 +1860,9 @@ type MenuOnAppearCallback = (start: number, end: number) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                                             | 必填 | 说明                                                     |
+**参数：** 
+
+| 参数名  | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | start | number | 是   | 选中内容的起始位置。 |
 | end    | number         | 是   | 选中内容的终止位置。         |
@@ -1858,9 +1871,13 @@ type MenuOnAppearCallback = (start: number, end: number) => void
 
 type PasteEventCallback = (event?: PasteEvent) => void
 
-完成粘贴前，触发回调。<br/>
+完成粘贴前，触发回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |

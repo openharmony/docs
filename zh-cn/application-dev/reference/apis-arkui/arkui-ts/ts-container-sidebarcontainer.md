@@ -303,7 +303,7 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 描述 |
+| 名称 | 说明 |
 | -------- | -------- |
 | Start | 侧边栏位于容器左侧。 |
 | End | 侧边栏位于容器右侧。 |
