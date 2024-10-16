@@ -2594,8 +2594,6 @@ on(type: 'p2pDeviceChange', callback: Callback&lt;WifiP2pDevice&gt;): void
 
 **需要权限：**
 
-API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
-
 API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
@@ -2623,12 +2621,6 @@ API 10起：ohos.permission.GET_WIFI_INFO
 off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 取消注册P2P设备状态改变事件。
-
-**需要权限：**
-
-API 9：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
-
-API 10起：无
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
@@ -2673,8 +2665,6 @@ on(type: 'p2pPeerDeviceChange', callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
 **需要权限：**
 
-API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
-
 API 10起：ohos.permission.GET_WIFI_INFO
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
@@ -2702,12 +2692,6 @@ API 10起：ohos.permission.GET_WIFI_INFO
 off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;): void
 
 取消注册P2P对端设备状态改变事件。
-
-**需要权限：**
-
-API 9：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
-
-API 10起：无
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
