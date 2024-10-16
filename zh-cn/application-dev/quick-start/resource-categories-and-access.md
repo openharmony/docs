@@ -337,7 +337,7 @@ string资源配置attr属性示例如下：
 - 通过```"$r"```或```"$rawfile"```访问资源。具体操作如下：
 
   1.在entry的oh-package.json5文件中添加依赖。如```"dependencies": {"library":"file":../library}```
-  ![Alt text](image.png)
+  ![Alt text](figures/add_dependencies.png)
 
   2.这里是列表文本[hsp].type.name获取资源。其中，hsp为hsp模块名，type为资源类型，name为资源名称，示例如下：
   
