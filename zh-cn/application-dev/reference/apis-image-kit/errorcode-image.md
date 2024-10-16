@@ -588,7 +588,7 @@ Configuration error.
 
 **错误信息**
 
-fail set name.
+Memory format not supported.
 
 **可能原因**
 
