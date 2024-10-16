@@ -3024,7 +3024,7 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 | ------- | --------------------------------------------|
 | 62980111 | The image source data is incomplete. |
 | 62980115 | Invalid input parameter.              |
-| 62980178 | Failed to create the PixelMap|
+| 62980178 | Failed to create the pixelmap. |
 | 62980274 | The conversion failed |
 | 62980276 | The type to be converted is an unsupported target pixel format|
 
