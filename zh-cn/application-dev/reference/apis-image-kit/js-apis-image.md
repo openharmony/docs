@@ -331,7 +331,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](#region7)  | 是   | 裁剪的尺寸                         |
+| region                 | [Region](#region8)  | 是   | 裁剪的尺寸                         |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -376,7 +376,7 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](#region7)  | 是   | 裁剪的尺寸                         |
+| region                 | [Region](#region8)  | 是   | 裁剪的尺寸                         |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -2830,7 +2830,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](#region7)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](#region8)   | 是   | 裁剪的尺寸。                  |
 | callback | AsyncCallback\<void> | 是   |  回调函数。当对图片进行裁剪成功，err为undefined，否则为错误对象。|
 
 **示例：**
@@ -2869,7 +2869,7 @@ crop(region: Region): Promise\<void>
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](#region7) | 是   | 裁剪的尺寸。|
+| region | [Region](#region8) | 是   | 裁剪的尺寸。|
 
 **返回值：**
 
@@ -2909,7 +2909,7 @@ cropSync(region: Region): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](#region7)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](#region8)   | 是   | 裁剪的尺寸。                  |
 
 **错误码：**
 
@@ -7154,7 +7154,7 @@ creator.release().then(() => {
 
 | 名称     | 类型               | 可读 | 可写 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
-| clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
+| clipRect | [Region](#region8) | 是   | 是   | 要裁剪的图像区域。                                 |
 | size     | [Size](#size)      | 是   | 否   | 图像大小。如果image对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的size中的宽高分别对应YUV图像的宽高； 如果image对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的文件，size中的宽等于JPEG文件大小，高等于1。image对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。                                |
 | format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
 | timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。时间戳以纳秒为单位，通常是单调递增的。时间戳的具体含义和基准取决于图像的生产者，在相机预览/拍照场景，生产者就是相机。来自不同生产者的图像的时间戳可能有不同的含义和基准，因此可能无法进行比较。如果要获取某张照片的生成时间，可以通过[getImageProperty](#getimageproperty11)接口读取相关的EXIF信息。|
@@ -7297,7 +7297,7 @@ img.release().then(() => {
 | pixels | ArrayBuffer        | 否 |   否   | 像素。                                                       |
 | offset | number             | 否 |   否  |  偏移量。                                                     |
 | stride | number             | 否 |   否  | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4。                   |
-| region | [Region](#region7) | 否 |   否  |区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
+| region | [Region](#region8) | 否 |   否  |区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
 ## ImageInfo
 
@@ -7466,7 +7466,7 @@ PixelMap的初始化选项。
 | rotate             | number                             | 否   | 是   | 旋转角度。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
 | editable           | boolean                            | 否   | 是   | 是否可编辑。默认值为false。当取值为false时，图片不可二次编辑，如writepixels操作将失败。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
 | desiredSize        | [Size](#size)                      | 否   | 是   | 期望输出大小。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| desiredRegion      | [Region](#region7)                 | 否   | 是   | 解码区域。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| desiredRegion      | [Region](#region8)                 | 否   | 是   | 解码区域。默认值为空。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | index              | number                             | 否   | 是   | 解码图片序号。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度，单位为ppi。默认值为0。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
@@ -7483,7 +7483,7 @@ PixelMap的初始化选项。
 | ------------------------ | ------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | desiredAuxiliaryPictures | Array\<[AuxiliaryPictureType](#auxiliarypicturetype13)> | 否   | 否   | 设置AuxiliaryPicture类型，默认解码所有AuxiliaryPicture类型。 |
 
-## Region<sup>7+</sup>
+## Region<sup>8+</sup>
 
 表示区域信息。
 
