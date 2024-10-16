@@ -269,7 +269,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').the
 });
 ```
 
-## setting.setValue<sup>11+</sup>
+## settings.setValue<sup>11+</sup>
 
 setValue(context: Context, name: string, value: string, domainName: string): Promise\<boolean>
 
@@ -308,7 +308,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', set
 });
 ```
 
-## setting.getValue<sup>10+</sup>
+## settings.getValue<sup>10+</sup>
 
 getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
@@ -340,7 +340,7 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, valu
 });
 ```
 
-## setting.getValue<sup>10+</sup>
+## settings.getValue<sup>10+</sup>
 
 getValue(context: Context, name: string): Promise\<string>
 
@@ -763,7 +763,7 @@ getUriSync(name: string): string
 let uriVar:string = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
-## setting.getURI<sup>(deprecated)</sup>
+## settings.getURI<sup>(deprecated)</sup>
 
 getURI(name: string, callback: AsyncCallback\<object>): void
 
@@ -790,7 +790,7 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri:string) => {
 })
 ```
 
-## setting.getURI<sup>(deprecated)</sup>
+## settings.getURI<sup>(deprecated)</sup>
 
 getURI(name: string): Promise\<object>
 
@@ -824,7 +824,7 @@ settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri:string) => 
 
 
 
-## setting.getValue<sup>(deprecated)</sup>
+## settings.getValue<sup>(deprecated)</sup>
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback\<object>): void
 
@@ -862,7 +862,7 @@ settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err:Error,
 });
 ```
 
-## setting.getValue<sup>(deprecated)</sup>
+## settings.getValue<sup>(deprecated)</sup>
 
 getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 
