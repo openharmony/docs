@@ -2622,10 +2622,6 @@ off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 取消注册P2P设备状态改变事件。
 
-**需要权限：**
-
-API 10起：无
-
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
@@ -2696,10 +2692,6 @@ API 10起：ohos.permission.GET_WIFI_INFO
 off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;): void
 
 取消注册P2P对端设备状态改变事件。
-
-**需要权限：**
-
-API 10起：无
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
