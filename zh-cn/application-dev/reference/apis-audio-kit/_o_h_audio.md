@@ -3101,6 +3101,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuild
 | builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。  | 
 | audioCapturer | 指向输入音频流实例的指针，将被用来接收函数创建的结果。  | 
 
+**需要权限：**
+
+ohos.permission.MICROPHONE
+
 **返回：**
 
 函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
