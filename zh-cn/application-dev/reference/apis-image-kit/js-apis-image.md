@@ -5807,7 +5807,7 @@ packToFile(picture: Picture, fd: number, options: PackingOption): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function PackToFile() {
   const context = getContext();
@@ -5824,7 +5824,7 @@ async function PackToFile() {
   if (imagePackerApi != null) {
     const context: Context = getContext();
     const filePath: string = context.filesDir + "/test.jpg";
-    let file = fileIo.openSync(filePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     let packOpts: image.PackingOption = {
       format: "image/jpeg",
       quality: 98,

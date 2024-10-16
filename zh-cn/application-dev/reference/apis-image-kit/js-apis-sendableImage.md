@@ -1776,11 +1776,11 @@ createImageSource(fd: number): ImageSource
 **示例：**
 
 ```ts
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
 const context: Context = getContext(this);
 const path: string = context.cacheDir + "/test.jpg";
-let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(file.fd);
 ```
 
