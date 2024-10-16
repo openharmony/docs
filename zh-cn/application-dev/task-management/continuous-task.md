@@ -149,7 +149,7 @@
           wants: [
             {
               bundleName: "com.example.myapplication",
-              abilityName: "com.example.myapplication.MainAbility"
+              abilityName: "MainAbility"
             }
           ],
           // 指定点击通知栏消息后的动作是拉起ability
