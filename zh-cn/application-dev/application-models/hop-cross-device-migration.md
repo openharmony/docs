@@ -167,34 +167,34 @@
       }
     
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-          hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
-          // 1.若已配置快速拉起功能，首次触发迁移
-          if (launchParam.launchReason === AbilityConstant.LaunchReason.PREPARE_CONTINUATION) {
-          	//处理应用自定义跳转、时序等问题
-          	// ...
+        hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+        // 1.若已配置快速拉起功能，首次触发迁移
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.PREPARE_CONTINUATION) {
+          //处理应用自定义跳转、时序等问题
+          // ...
           
-          	// 将上述保存的数据从want.parameters中取出恢复
-          	let continueInput = '';
-         	if (want.parameters !== undefined) {
-            	continueInput = JSON.stringify(want.parameters.data);
-            	hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
-          	}
-          	// 触发页面恢复
-          	this.context.restoreWindowStage(this.storage);
+          // 将上述保存的数据从want.parameters中取出恢复
+          let continueInput = '';
+          if (want.parameters !== undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
           }
-          
-          // 2.非首次触发接续
-          if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-            // 将上述保存的数据从want.parameters中取出恢复
-            let continueInput = '';
-            if (want.parameters !== undefined) {
-              continueInput = JSON.stringify(want.parameters.data);
-              hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
-            }
-            // 触发页面恢复
-            this.context.restoreWindowStage(this.storage);
-          }
+          // 触发页面恢复
+          this.context.restoreWindowStage(this.storage);
         }
+          
+        // 2.非首次触发接续
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+          // 将上述保存的数据从want.parameters中取出恢复
+          let continueInput = '';
+          if (want.parameters !== undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
+          }
+          // 触发页面恢复
+          this.context.restoreWindowStage(this.storage);
+        }
+      }
     }
     ```
 
