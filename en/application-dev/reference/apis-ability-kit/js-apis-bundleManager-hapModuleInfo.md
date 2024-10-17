@@ -10,7 +10,7 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                             | Type                                                        | Readable| Writable| Description                |
+| Name                             | Type                                                        | Read-Only| Optional| Description                |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | -------------------- |
 | name                              | string                                                       | Yes  | No  | Module name.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | icon                              | string                                                       | Yes  | No  | Module icon.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -42,7 +42,7 @@ Describes the preloaded module information in the atomic service.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 |moduleName | string         | Yes  | No  | Name of the module automatically preloaded by the system.|
 
@@ -54,7 +54,7 @@ Describes the information about the dynamic shared library on which the module d
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name       | Type  | Readable| Writable| Description                  |
+| Name       | Type  | Read-Only| Optional| Description                  |
 | ----------- | ------ | ---- | ---- | ---------------------- |
 | bundleName<sup>10+</sup>  | string | Yes  | No  | Name of the shared bundle on which the current module depends.      |
 | moduleName  | string | Yes  | No  | Module name of the shared bundle on which the current module depends.|
@@ -68,7 +68,7 @@ Describes the router table configuration of the module.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name          | Type  | Readable| Writable| Description                  |
+| Name          | Type  | Read-Only| Optional| Description                  |
 | ------------- | ------ | ---- | ---- | ---------------------- |
 | name          | string | Yes  | No  | Name of the page to be redirected to.      |
 | pageSourceFile| string | Yes  | No  | Path of the page in the module.  |
@@ -84,7 +84,7 @@ Describes the user-defined data in the routing table configuration of the module
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name         | Type   | Readable| Writable| Description                  |
+| Name         | Type   | Read-Only| Optional| Description                  |
 | ------------- | ------ | ---- | ---- | ---------------------- |
 | key           | string | Yes  | No  | Key of the user-defined data.      |
 | value         | string | Yes  | No  | Value of the user-defined data.|

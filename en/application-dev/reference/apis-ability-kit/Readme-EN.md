@@ -86,6 +86,7 @@
     - [@ohos.bundle.overlay (overlay)](js-apis-overlay.md)
     <!--Del-->
     - [@ohos.bundle.appControl (appControl Module) (System Interface)](js-apis-appControl-sys.md)
+    - [@ohos.bundle.appDomainVerify (Application Domain Name Verification) (System API)](js-apis-appDomainVerify-sys.md)
     - [@ohos.bundle.bundleManager (bundleManager) (System API)](js-apis-bundleManager-sys.md)
     - [@ohos.bundle.bundleMonitor (bundleMonitor) (System API)](js-apis-bundleMonitor-sys.md)
     - [@ohos.bundle.bundleResourceManager (bundleResourceManager) (System API)](js-apis-bundleResourceManager-sys.md)
@@ -237,6 +238,7 @@
       - [elementName](js-apis-bundle-ElementName.md)
       - [hapModuleInfo](js-apis-bundle-HapModuleInfo.md)
       - [moduleInfo](js-apis-bundle-ModuleInfo.md)
+      - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
       <!--Del-->
       - [bundleInstaller (System API)](js-apis-bundle-BundleInstaller-sys.md)
       - [bundleStatusCallback (System API)](js-apis-Bundle-BundleStatusCallback-sys.md)
@@ -248,18 +250,23 @@
 - C APIs
   - Modules
     - [AbilityAccessControl](_ability_access_control.md)
+    - [AbilityRuntime](_ability_runtime.md)
     - [Bundle](_bundle.md)
     - [ChildProcess](c-apis-ability-childprocess.md)
   - Header Files
     - [ability_access_control.h](ability__access__control_8h.md)
+    - [ability_runtime_common.h](ability__runtime__common_8h.md)
+    - [application_context.h](application__context_8h.md)
+    - [context_constant.h](context__constant_8h.md)
     - [native_interface_bundle.h](native__interface__bundle.md)
     - [native_child_process.h](native__child__process_8h.md)
   - Structs
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
     - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
-- Result Codes
+- Error Codes
   - [Ability Error Codes](errorcode-ability.md)
   - [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md)
   - [Bundle Error Codes](errorcode-bundle.md)
   - [Access Control Error Codes](errorcode-access-token.md)
   - [ohos.screenLockFileManager Error Codes](errorcode-screenLockFileManager.md)
+  - [Application Domain Name Verification Error Codes](errorcode-appDomainVerify.md)
