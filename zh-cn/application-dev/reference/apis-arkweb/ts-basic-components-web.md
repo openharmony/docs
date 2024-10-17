@@ -16,7 +16,7 @@
 
 ## 接口
 
-Web(options: { src: ResourceStr, controller: WebviewController | WebController, renderMode? : RenderMode, incognitoMode? : boolean})
+Web(options: WebOptions)
 
 > **说明：**
 >
@@ -28,11 +28,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 | 参数名        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
-| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
-| renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
-| incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
-| sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token, 多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""  |
+| options        | [WebOptions](#weboptions11)   | 是    | 定义Web选项。 |
 
 **示例：**
 
@@ -232,6 +228,17 @@ Web组件指定共享渲染进程。
        </body>
    </html>
    ```
+
+## WebOptions<sup>11+</sup>
+
+通过[接口](#接口)定义Web选项。
+
+| 参数名        | 类型                                     | 必填   | 说明                                     |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
+| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
+| incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 
 ## 属性
 
@@ -650,7 +657,7 @@ geolocationAccess(geolocationAccess: boolean)
   }
   ```
 
-### mediaPlayGestureAccess
+### mediaPlayGestureAccess<sup>9+</sup>
 
 mediaPlayGestureAccess(access: boolean)
 
@@ -879,7 +886,7 @@ cacheMode(cacheMode: CacheMode)
 
 | 参数名       | 类型                        | 必填   | 默认值               | 说明      |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| cacheMode | [CacheMode](#cachemode9枚举说明) | 是    | CacheMode.Default | 要设置的缓存模式。 |
+| cacheMode | [CacheMode](#cachemode枚举说明) | 是    | CacheMode.Default | 要设置的缓存模式。 |
 
 **示例：**
 
@@ -1885,7 +1892,7 @@ nestedScroll(value: NestedScrollOptions)
 >
 > - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
 > - 支持设置不同的向前向后两个方向上的嵌套滚动模式。
-> - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
+> - 默认scrollForward和scrollBackward模式为[NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10)。
 > - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 > - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
@@ -1894,7 +1901,7 @@ nestedScroll(value: NestedScrollOptions)
 
 | 参数名   | 类型                                     | 必填   | 说明             |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| value | [NestedScrollOptions](#nestedscrolloptions11对象说明) | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
+| value | [NestedScrollOptions](../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10对象说明) | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
 
 **示例：**
 
@@ -2033,7 +2040,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 ```
 ### metaViewport<sup>12+</sup>
 
-metaViewport(enable: boolean)
+metaViewport(enabled: boolean)
 
 设置meta标签的viewport属性是否可用。
 
@@ -2048,7 +2055,7 @@ metaViewport(enable: boolean)
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明                         |
 | ------ | -------- | ---- | ------ | -------------------------------- |
-| enable | boolean  | 是   | true   | 是否支持meta标签的viewport属性。 |
+| enabled | boolean  | 是   | true   | 是否支持meta标签的viewport属性。 |
 
 **示例：**
 
@@ -4140,7 +4147,7 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 ### onScroll<sup>9+</sup>
 
-onScroll(callback: Callback\<OnScrollEvent\>): WebAttribute;
+onScroll(callback: Callback\<OnScrollEvent\>)
 
 通知网页滚动条滚动位置。
 
@@ -5173,7 +5180,7 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
 
 ### onNativeEmbedLifecycleChange<sup>11+</sup>
 
-onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
+onNativeEmbedLifecycleChange(callback: (event: NativeEmbedDataInfo) => void)
 
 当同层标签生命周期变化时触发该回调。
 
@@ -5181,7 +5188,7 @@ onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
 
 | 参数名          | 类型                                                                         | 说明                    |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedDataInfo](#nativeembeddatainfo11) | 同层标签生命周期变化时触发该回调。 |
+| callback       | (event: [NativeEmbedDataInfo](#nativeembeddatainfo11) => void) | 同层标签生命周期变化时触发该回调。 |
 
 **示例：**
 
@@ -5347,7 +5354,7 @@ export default class EntryAbility extends UIAbility {
 
 ### onNativeEmbedGestureEvent<sup>11+</sup>
 
-onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
+onNativeEmbedGestureEvent(callback: (event: NativeEmbedTouchInfo) => void)
 
 当手指触摸到同层标签时触发该回调。
 
@@ -5355,7 +5362,7 @@ onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
 
 | 参数名          | 类型                                                                         | 说明                    |
 | -------------- | --------------------------------------------------------------------------- | ---------------------- |
-| event       | [NativeEmbedTouchInfo](#nativeembedtouchinfo11) | 手指触摸到同层标签时触发该回调。 |
+| callback       | (event: [NativeEmbedTouchInfo](#nativeembedtouchinfo11) => void) | 手指触摸到同层标签时触发该回调。 |
 
 **示例：**
 
@@ -6644,9 +6651,11 @@ confirm(priKeyFile : string, certChainFile : string): void
 
 confirm(authUri : string): void
 
-**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
-
 通知Web组件使用指定的凭据(从证书管理模块获得)。
+
+> **说明：**
+>
+> 需要配置权限：ohos.permission.ACCESS_CERT_MANAGER。
 
 **参数：**
 
@@ -6738,9 +6747,11 @@ getOrigin(): string
 
 grant(config: ScreenCaptureConfig): void
 
-**需要权限：** ohos.permission.MICROPHONE
-
 对网页访问的屏幕捕获操作进行授权。
+
+> **说明：**
+>
+> 需要配置权限：ohos.permission.MICROPHONE。
 
 **参数：**
 
@@ -7044,11 +7055,11 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Compatible | 1 | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 2 | 不允许加载HTTP和HTTPS混合内容。               |
 
-## CacheMode<sup>9+</sup>枚举说明
+## CacheMode枚举说明
 
 | 名称      | 值 | 说明                                   |
 | ------- | -- | ------------------------------------ |
-| Default | 0 | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
+| Default<sup>9+</sup> | 0 | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
 | None    | 1 | 加载资源使用cache，如果cache中无该资源则从网络中获取。     |
 | Online  | 2 | 加载资源不使用cache，全部从网络中获取。               |
 | Only    | 3 | 只从cache中加载资源。                        |
@@ -7143,22 +7154,6 @@ Web屏幕捕获的配置。
 | ----------- | -- | ------------------ |
 | NONE        | 0 | Web布局跟随系统。         |
 | FIT_CONTENT | 1 | Web基于页面大小的自适应网页布局。 |
-
-## NestedScrollOptions<sup>11+</sup>对象说明
-
-| 名称             | 类型               | 说明                   |
-| -------------- | ---------------- | -------------------- |
-| scrollForward  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
-| scrollBackward | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
-
-## NestedScrollMode<sup>11+</sup>枚举说明
-
-| 名称           | 值 | 说明                                       |
-| ------------ | -- | ---------------------------------------- |
-| SELF_ONLY    | 0 | 只自身滚动，不与父组件联动。                           |
-| SELF_FIRST   | 1 | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。 |
-| PARENT_FIRST | 2 | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
-| PARALLEL     | 3 | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。 |
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -7415,7 +7410,7 @@ accessStep(step: number): boolean
 
 ### backward<sup>(deprecated)</sup>
 
-backward(): void
+backward()
 
 按照历史栈，后退一个页面。一般结合accessBackward一起使用。
 
@@ -7444,7 +7439,7 @@ backward(): void
 
 ### forward<sup>(deprecated)</sup>
 
-forward(): void
+forward()
 
 按照历史栈，前进一个页面。一般结合accessForward一起使用。
 
@@ -8215,8 +8210,6 @@ onOverrideUrlLoading的回调。
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
-type NativeMediaPlayerConfig = { enable: boolean, shouldOverlay: boolean }
-
 用于[开启应用接管网页媒体播放功能](#enablenativemediaplayer12)的配置信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -8350,6 +8343,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url | string | 是 | 当前显示弹窗所在网页的URL。                       |
 | message | string | 是 | 弹窗中显示的信息。                       |
+| value | string | 是 | 提示对话框的信息。                       |
 | result | [JsResult](#jsresult) | 是 | 通知Web组件用户操作行为。                       |
 
 ## OnBeforeUnloadEvent<sup>12+</sup>
@@ -8382,7 +8376,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | message | string | 是 | 弹窗中显示的信息。                       |
 | result | [JsResult](#jsresult) | 是 | 通知Web组件用户操作行为。                       |
 
-## onConsoleEvent<sup>12+</sup>
+## OnConsoleEvent<sup>12+</sup>
 
 定义通知宿主应用JavaScript console消息。
 
@@ -8446,7 +8440,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | result       | [FileSelectorResult](#fileselectorresult9) | 是 | 用于通知Web组件文件选择的结果。 |
 | fileSelector | [FileSelectorParam](#fileselectorparam9) | 是 | 文件选择器的相关信息。       |
 
-## onResourceLoadEvent<sup>12+</sup>
+## OnResourceLoadEvent<sup>12+</sup>
 
 定义加载url时触发。
 
@@ -8454,7 +8448,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url  | string | 是 | 所加载的资源文件url信息。 |
 
-## onScaleChangeEvent<sup>12+</sup>
+## OnScaleChangeEvent<sup>12+</sup>
 
 定义当前页面显示比例的变化时触发。
 
@@ -8481,7 +8475,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | request | [WebResourceRequest](#webresourcerequest) | 是 | url请求的相关信息。 |
 
-## onPermissionRequestEvent<sup>12+</sup>
+## OnPermissionRequestEvent<sup>12+</sup>
 
 定义通知收到获取权限请求。
 
@@ -8489,7 +8483,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | request | [PermissionRequest](#permissionrequest9) | 是 | 通知Web组件用户操作行为。 |
 
-## onScreenCaptureRequestEvent<sup>12+</sup>
+## OnScreenCaptureRequestEvent<sup>12+</sup>
 
 定义通知收到屏幕捕获请求。
 
@@ -8497,7 +8491,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [ScreenCaptureHandler](#screencapturehandler10) | 是 | 通知Web组件用户操作行为。 |
 
-## onContextMenuShowEvent<sup>12+</sup>
+## OnContextMenuShowEvent<sup>12+</sup>
 
 定义调用时触发的回调，以允许自定义显示上下文菜单。
 
@@ -8506,7 +8500,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | param  | [WebContextMenuParam](#webcontextmenuparam9) | 是 | 菜单相关参数。     |
 | result | [WebContextMenuResult](#webcontextmenuresult9) | 是 | 菜单相应事件传入内核。 |
 
-## onSearchResultReceiveEvent<sup>12+</sup>
+## OnSearchResultReceiveEvent<sup>12+</sup>
 
 定义通知调用方网页页内查找的结果。
 
@@ -8516,7 +8510,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | numberOfMatches    | number  | 是 | 所有匹配到的关键词的个数。                            |
 | isDoneCounting     | boolean | 是 | 当次页内查找操作是否结束。该方法可能会回调多次，直到isDoneCounting为true为止。 |
 
-## onScrollEvent<sup>12+</sup>
+## OnScrollEvent<sup>12+</sup>
 
 定义滚动条滑动到指定位置时触发。
 
@@ -8534,7 +8528,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | handler | [SslErrorHandler](#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)           | 是 | 错误码。           |
 
-## onClientAuthenticationRequestEvent<sup>12+</sup>
+## OnClientAuthenticationRequestEvent<sup>12+</sup>
 
 定义当需要用户提供SSL客户端证书时触发回调。
 
@@ -8557,7 +8551,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | targetUrl     | string                                   | 是 | 目标url。                        |
 | handler       | [ControllerHandler](#controllerhandler9) | 是 | 用于设置新建窗口的WebviewController实例。 |
 
-## onTouchIconUrlReceivedEvent<sup>12+</sup>
+## OnTouchIconUrlReceivedEvent<sup>12+</sup>
 
 定义设置接收到apple-touch-icon url地址时的回调函数。
 
@@ -8566,7 +8560,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | url         | string  | 是 | 接收到的apple-touch-icon url地址。 |
 | precomposed | boolean | 是 | 对应apple-touch-icon是否为预合成。   |
 
-## onFaviconReceivedEvent<sup>12+</sup>
+## OnFaviconReceivedEvent<sup>12+</sup>
 
 定义应用为当前页面接收到新的favicon时的回调函数。
 
@@ -8574,7 +8568,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 接收到的favicon图标的PixelMap对象。 |
 
-## onPageVisibleEvent<sup>12+</sup>
+## OnPageVisibleEvent<sup>12+</sup>
 
 定义旧页面不再呈现，新页面即将可见时触发的回调函数。
 
@@ -8582,7 +8576,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | url  | string | 是 | 旧页面不再呈现，新页面即将可见时新页面的url地址。 |
 
-## onDataResubmittedEvent<sup>12+</sup>
+## OnDataResubmittedEvent<sup>12+</sup>
 
 定义网页表单可以重新提交时触发的回调函数。
 
@@ -8590,7 +8584,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [DataResubmissionHandler](#dataresubmissionhandler9) | 是 | 表单数据重新提交句柄。 |
 
-## onAudioStateChangedEvent<sup>12+</sup>
+## OnAudioStateChangedEvent<sup>12+</sup>
 
 定义网页上的音频播放状态发生改变时的回调函数。
 
@@ -8598,7 +8592,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | playing | boolean | 是 | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
 
-## onFirstContentfulPaintEvent<sup>12+</sup>
+## OnFirstContentfulPaintEvent<sup>12+</sup>
 
 定义网页首次内容绘制回调函数。
 
@@ -8607,7 +8601,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | navigationStartTick    | number | 是 | navigation开始的时间，单位以微秒表示。          |
 | firstContentfulPaintMs | number | 是 | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。 |
 
-## onLoadInterceptEvent<sup>12+</sup>
+## OnLoadInterceptEvent<sup>12+</sup>
 
 定义截获资源加载时触发的回调。
 
@@ -8615,7 +8609,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | data | [WebResourceRequest](#webresourcerequest) | 是 | url请求的相关信息。 |
 
-## onOverScrollEvent<sup>12+</sup>
+## OnOverScrollEvent<sup>12+</sup>
 
 定义网页过度滚动时触发的回调。
 
