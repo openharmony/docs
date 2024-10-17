@@ -150,18 +150,18 @@
       }
     
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-          hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
-          if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-            // 将上述保存的数据从want.parameters中取出恢复
-            let continueInput = '';
-            if (want.parameters !== undefined) {
-              continueInput = JSON.stringify(want.parameters.data);
-              hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
-            }
-            // 触发页面恢复
-            this.context.restoreWindowStage(this.storage);
+        hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+          // 将上述保存的数据从want.parameters中取出恢复
+          let continueInput = '';
+          if (want.parameters !== undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
           }
+          // 触发页面恢复
+          this.context.restoreWindowStage(this.storage);
         }
+      }
     }
     ```
 
