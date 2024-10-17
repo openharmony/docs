@@ -5305,7 +5305,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  @State customUserAgent: string = 'test';
+  @State customUserAgent: string = ' DemoApp';
 
   build() {
     Column() {

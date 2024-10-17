@@ -1080,7 +1080,7 @@ userAgent(userAgent: string)
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
+    @State userAgent:string = 'Mozilla/5.0 (Phone; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 ArkWeb/4.1.6.1 Mobile DemoApp';
 
     build() {
       Column() {
