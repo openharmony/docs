@@ -68,9 +68,7 @@ API 10和API 11
 
 3.deleteAlbums需注意删除相册会将相册内资产一并删除到回收站。
 
-4.setAlbumName和commitModify需要注意相册改名是将原相册删除再新建一个新的改名相册。后续若想继续操作相册，应操作新建的相册。
-接口行为变更后，在调用setAlbumName和commitModify修改相册名后，需使用getAlbums()获取新命名的相册进行后续操作。
-具体参考https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getalbums-2
+4. 调用setAlbumName和commitModify修改相册名称，会将原相册删除再新建一个新的改名相册。后续若想继续操作相册，应操作新建的相册。接口行为变更后，在调用setAlbumName和commitModify修改相册名后，需使用[getAlbums](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getalbums-2)获取新命名的相册进行后续操作。
 
 5.registerChange需注意，在调用addAssets接口时会收到复制体资产添加的新增通知，在调用removeAssets和deleteAlbums时会收到
 相册内资产的删除通知，在调用setAlbumName和commitModify时，会收到相册更新通知。
