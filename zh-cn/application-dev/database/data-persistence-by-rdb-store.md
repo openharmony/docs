@@ -53,6 +53,9 @@
 
 ## 开发步骤
 因Stage模型、FA模型的差异，个别示例代码提供了在两种模型下的对应示例；示例代码未区分模型或没有对应注释说明时默认在两种模型下均适用。
+
+关系库数据库操作或者存储过程中，有可能会因为各种原因发生非预期的数据库损坏（抛出14800011）异常情况，此时需要对数据库进行重建并恢复数据，以保障正常的应用开发，具体可见[关系型数据库损坏重建](data-backup-and-restore.md#关系型数据库损坏重建)。
+
 1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore，其中包括建库、建表、升降级等操作。示例代码如下所示：
 
    Stage模型示例：
@@ -62,7 +65,6 @@
    import { UIAbility } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { window } from '@kit.ArkUI';
-   import { fileIo } from '@kit.CoreFileKit';
 
    // 此处示例在Ability中实现，使用者也可以在其他合理场景中使用
    class EntryAbility extends UIAbility {
@@ -313,30 +315,9 @@
    >
    > 当应用完成查询数据操作，不再使用结果集（ResultSet）时，请及时调用close方法关闭结果集，释放系统为其分配的内存。
 
-5. 备份数据库。备份场景及示例代码如下所示：
+5. 在同路径下备份数据库。关系型数据库支持两种手动备份和自动备份（仅系统应用可用）两种方式，具体可见[关系型数据库备份](data-backup-and-restore.md#关系型数据库备份)。
 
-   5.1 备份场景一：自动(实时)备份
-
-   ```ts
-   // 新增StoreConfig配置，配置haMode参数为MAIN_REPLICA。
-   const AUTO_BACKUP_CONFIG :relationalStore.StoreConfig = {
-     name: "BackupResotreTest.db",
-     securityLevel: relationalStore.SecurityLevel.S3,
-     haMode: relationalStore.HAMode.MAIN_REPLICA, // 配置为双写备份
-     allowRebuild: true
-   }
-
-   // 使用getRdbStore()方法创建关系型数据库。
-   relationalStore.getRdbStore(this.context, AUTO_BACKUP_CONFIG, (err, store) => {
-     if (err) {
-       console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
-       return;
-     }
-     console.info('Succeeded in getting RdbStore.');
-   })
-   ```   
-
-   5.2 备份场景二：手动(周期)备份
+   此处以手动备份为例：
 
    ```ts
    if (store !== undefined) {
@@ -351,7 +332,9 @@
    }
    ```
 
-6. 从备份数据库中恢复数据。示例代码如下所示：
+6. 从备份数据库中恢复数据。关系型数据库支持两种方式：恢复手动备份数据和恢复自动备份数据（仅系统应用可用），具体可见[关系型数据库数据恢复](data-backup-and-restore.md#关系型数据库数据恢复)。
+
+   此处以调用[restore](../reference/apis-arkdata/js-apis-data-relationalStore.md#restore)接口恢复手动备份数据为例：
 
    ```ts
    if (store !== undefined) {
@@ -365,209 +348,7 @@
    }
    ```
 
-7. 若数据库文件损坏，需要恢复数据库。恢复场景如下：
-
-   在数据库的增删改时，抛出14800011时需要恢复；
-
-   在创建数据库时，抛出14800011时进行恢复；
-
-   在数据库的查询时，ResultSet的接口抛出14800011时需要恢复；
-
-   静默代理损坏时需要恢复。
-
-   恢复方式分以下两种，自动备份恢复和手动备份恢复：
-
-   7.1 恢复自动(实时)备份数据
-
-   适用场景： 配置为双写备份的数据库抛出14800011错误码。
-
-   示例代码如下：
-
-   ```ts
-   if (store !== undefined) {
-     try {
-       // 增删改查
-     } catch (err) {
-         if (err.code == 14800011) {
-           // 获取所有打开着的结果集
-           let resultSets: Array<relationalStore.ResultSet> = [];
-           // 使用resultSet.close()方法关闭所有打开着的结果集
-           for (let resultSet in resultSets) {
-             try {
-               resultSet.close();
-             } catch (e) {
-                 if (e.code !== 14800014) {
-                   console.log(`Code:${err.code}, message:${err.message}`);
-                 }
-             }
-           }
-   
-           (store as relationalStore.RdbStore).restore("Backup.db", (err: BusinessError) => {
-             if (err) {
-               console.error(`Failed to restore RdbStore. Code:${err.code}, message:${err.message}`);
-               return;
-             }
-             console.info(`Succeeded in restoring RdbStore.`);
-           })
-         }
-         console.log(`Code:${err.code}, message:${err.message}`);
-     }
-   }
-   ```
-
-   7.2 从手动(周期)备份恢复数据：
-
-   使用场景： 应用增删改操作ResultSet时，抛出14800011错误码。
-
-   示例代码如下：
-
-   步骤一：抛出损坏异常
-
-   ```ts
-   let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-   if (store != undefined) {
-     (store as relationalStore.RdbStore).query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]).then((result: relationalStore.ResultSet) => {
-       let resultSet = result;
-       try {
-         /* ...
-            业务的增删改逻辑
-            ...
-         */
-         // 抛出异常
-         if (resultSet?.rowCount == -1) {
-           resultSet ?.isColumnNull(0);
-         }
-         // todo resultSet.goToFirstRow(), resultSet.count等其它接口也会抛异常
-         while (resultSet.goToNextRow()) {
-           console.log(JSON.stringify(resultSet.getRow()))
-         }
-         resultSet.close();
-       } catch (err) {
-           if (err.code === 14800011) {
-             // todo 步骤二、三，关闭结果集后恢复数据
-           }
-           console.log(TAG + JSON.stringify(err));
-       }
-     })
-   }
-   ```
-
-   步骤二：关闭所有打开着的结果集
-
-   ```ts
-   // 获取所有打开着的结果集
-   let resultSets: Array<relationalStore.ResultSet> = [];
-   // 使用resultSet.close()方法关闭所有打开着的结果集
-   for (let resultSet of resultSets) {
-     try {
-       resultSet.close();
-     } catch (e) {
-         if (e.code !== 14800014) {
-           console.log(`Code:${e.code}, message:${e.message}`);
-         }
-     }
-   }
-   ```
-
-   步骤三：恢复数据
-
-   ```ts
-   try {
-     let context = getContext();
-     // "Backup.db"为备份数据库文件名，默认在RdbStore同路径下备份。也可指定路径：customDir + "backup.db"
-     let backup = context.databaseDir + '/backup/test_backup.db';
-     if(!fileIo.access(backup)) {
-       console.log("no backup file");
-       try {
-         (store as relationalStore.RdbStore).close;
-         store = undefined;
-       } catch (e) {
-           if (e.code != 14800014) {
-             console.log(JSON.stringify(e));
-           }
-       }
-       let storeConfig: relationalStore.StoreConfig = {
-         name: "BackupResotreTest.db",
-         securityLevel: relationalStore.SecurityLevel.S3,
-         allowRebuild: true
-       }
-       // todo 开库建表
-       // todo 自行生成数据
-       return
-     }
-     // 调用restore接口恢复数据
-     (store as relationalStore.RdbStore).restore(backup);
-   } catch (e) {
-       console.log(`Code:${e.code}, message:${e.message}`);
-   }
-   ```
-
-   若损坏前未配置allowRebuild参数，示例代码如下：
-
-   ```ts
-   let storeConfig: relationalStore.StoreConfig = {
-     name: "BackupResotreTest.db",
-     securityLevel: relationalStore.SecurityLevel.S3
-   }
-   try {
-     // 以普通方式开库
-     store = await relationalStore.getRdbStore(this.context, storeConfig)
-   } catch (err) {
-       if (err.code === 14800011) {
-         try {
-           // 以损坏重建的方式开库
-           storeConfig.allowRebuild= true;
-           store = await relationalStore.getRdbStore(this.context, storeConfig)
-           if (store.rebuilt === relationalStore.RebuildType.REBUILT || store.version === 0 ) {
-             let backup = this.context.databaseDir + '/backup/test_backup.db';
-             if (!fileIo.access(backup)) {
-               console.log("no backup file");
-               // todo 创表
-               // todo 自行生成数据
-               return
-             }
-             // 调用restore接口恢复数据
-             await store.restore(backup)
-           }
-         } catch (e) {
-             console.log(JSON.stringify(e));
-         }
-       }
-       console.log(JSON.stringify(err));
-   }
-   ```
-
-   若损坏前已配置allowRebuild参数为true，示例代码如下：
-
-   ```ts
-   let storeConfig: relationalStore.StoreConfig = {
-     name: "BackupResotreTest.db",
-     securityLevel: relationalStore.SecurityLevel.S3,
-     allowRebuild: true
-   }
-   try {
-     // 以损坏重建的方式开库
-     store = await relationalStore.getRdbStore(this.context, storeConfig)
-     if (store.rebuilt === relationalStore.RebuildType.REBUILT || store.version === 0 ) {
-       let backup = this.context.databaseDir + `/backup/test_backup.db`;
-       if (!fileIo.access(backup)) {
-         console.log("no backup file");
-         // todo 创表
-         // todo 自行生成数据
-         return
-       }
-       // 调用restore接口恢复数据
-       await store.restore(backup)
-     }
-   } catch (e) {
-       console.log(JSON.stringify(e));
-       if (e.code === 14800011) {
-         // todo 删库重建
-       }
-   }
-   ```
-
-8. 删除数据库。
+7. 删除数据库。
 
    调用deleteRdbStore()方法，删除数据库及数据库相关文件。示例代码如下：
 
