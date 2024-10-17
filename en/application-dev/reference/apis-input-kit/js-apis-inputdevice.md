@@ -653,6 +653,28 @@ try {
 }
 ```
 
+## inputDevice.getIntervalSinceLastInput<sup>13+</sup>
+
+getIntervalSinceLastInput(): Promise&lt;number&gt;
+
+Obtains the interval since the last system input event. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Return value**
+
+| Parameters                                         | Description                           |
+| --------------------------------------------- | ------------------------------- |
+| Promise&lt;number&gt; | Promise used tothe interval since the last system input event, in μs.|
+
+**Example**
+
+```js
+  inputDevice.getIntervalSinceLastInput().then((timeInterval: number) => {
+    console.log(`Interval since last input: ${JSON.stringify(number)}`);
+  });
+```
+
 ## DeviceListener<sup>9+</sup>
 
 Defines the listener for hot swap events of an input device.

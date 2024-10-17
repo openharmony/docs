@@ -54,7 +54,7 @@ TreeView({ treeController: TreeController })
 ### addNode
 
 
-addNode(nodeParam?: NodeParam): void
+addNode(nodeParam?: NodeParam): TreeController
 
 点击某个节点后，调用该方法可以触发新增孩子节点。
 
@@ -67,6 +67,11 @@ addNode(nodeParam?: NodeParam): void
 | -------- | -------- | -------- | -------- |
 | nodeParam | [NodeParam](#nodeparam) | 否 | 节点信息。 |
 
+**返回值：** 
+
+| 类型                              | 说明                 |
+| --------------------------------- | -------------------- |
+| [TreeController](#treecontroller) | 树视图组件的控制器。 |
 
 ### removeNode
 

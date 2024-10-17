@@ -5,9 +5,9 @@
 
 The Unified Data Management Framework (UDMF) defines standards for data management across applications, devices, and platforms, and provides a unified OpenHarmony data language and standard data access channels.
 
-**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
-
 **Since**: 12
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 
 ## Summary
@@ -15,7 +15,7 @@ The Unified Data Management Framework (UDMF) defines standards for data manageme
 
 ### Files
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
 | [udmf.h](udmf_8h.md) | Defines the APIs, data structs, and enums for accessing the UDMF.<br>File to include: &lt;database/udmf/udmf.h&gt; |
 | [udmf_err_code.h](udmf__err__code_8h.md) | Declares the error codes used in the UDMF.<br>File to include: &lt;database/udmf/udmf_err_code.h&gt; |
@@ -26,260 +26,298 @@ The Unified Data Management Framework (UDMF) defines standards for data manageme
 
 ### Macros
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| [UDMF_KEY_BUFFER_LEN](#udmf_key_buffer_len)   (512) | Minimum length of the buffer that holds the key (unique identifier) of a uniform data object. |
-| [UDMF_META_ENTITY](#udmf_meta_entity)   "general.entity" | Generic type that represents all physical storage types. It is used to define physical properties of a type.<br>This type is uncategorized. |
-| [UDMF_META_OBJECT](#udmf_meta_object)   "general.object" | Generic type that represents all logical content types. It is used to define physical properties of a type.<br>This type is uncategorized. |
-| [UDMF_META_COMPOSITE_OBJECT](#udmf_meta_composite_object)   "general.composite-object" | Generic composite content type. For example, a PDF file that contains text and image.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_TEXT](#udmf_meta_text)   "general.text" | Generic text type.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_PLAIN_TEXT](#udmf_meta_plain_text)   "general.plain-text" | Text without specific encoding or identifier.<br>This type belongs to **TEXT**. |
-| [UDMF_META_HTML](#udmf_meta_html)   "general.html" | HTML.<br>This type belongs to **TEXT**. |
-| [UDMF_META_HYPERLINK](#udmf_meta_hyperlink)   "general.hyperlink" | Hyperlink.<br>This type belongs to **TEXT**. |
-| [UDMF_META_XML](#udmf_meta_xml)   "general.xml" | XML.<br>This type belongs to **TEXT**. |
-| [UDMF_META_SOURCE_CODE](#udmf_meta_source_code)   "general.source-code" | Generic source code type.<br>This type belongs to **PLAIN_TEXT**. |
-| [UDMF_META_SCRIPT](#udmf_meta_script)   "general.script" | Source code in any scripting language.<br>This type belongs to **SOURCE_CODE**. |
-| [UDMF_META_SHELL_SCRIPT](#udmf_meta_shell_script)   "general.shell-script" | Shell script.<br>This type belongs to **SCRIPT**. |
-| [UDMF_META_CSH_SCRIPT](#udmf_meta_csh_script)   "general.csh-script" | C shell script.<br>This type belongs to **SHELL_SCRIPT**. |
-| [UDMF_META_PERL_SCRIPT](#udmf_meta_perl_script)   "general.perl-script" | Perl script.<br>This type belongs to **SHELL_SCRIPT**. |
-| [UDMF_META_PHP_SCRIPT](#udmf_meta_php_script)   "general.php-script" | PHP script.<br>This type belongs to **SHELL_SCRIPT**. |
-| [UDMF_META_PYTHON_SCRIPT](#udmf_meta_python_script)   "general.python-script" | Python script.<br>This type belongs to **SHELL_SCRIPT**. |
-| [UDMF_META_RUBY_SCRIPT](#udmf_meta_ruby_script)   "general.ruby-script" | Ruby script.<br>This type belongs to **SHELL_SCRIPT**. |
-| [UDMF_META_TYPE_SCRIPT](#udmf_meta_type_script)   "general.type-script" | TypeScript source code.<br>This type belongs to **SCRIPT**. |
-| [UDMF_META_JAVA_SCRIPT](#udmf_meta_java_script)   "general.java-script" | JavaScript source code.<br>This type belongs to **SCRIPT**. |
-| [UDMF_META_C_HEADER](#udmf_meta_c_header)   "general.c-header" | Header file in C.<br>This type belongs to **SOURCE_CODE**. |
-| [UDMF_META_C_SOURCE](#udmf_meta_c_source)   "general.c-source" | Source code in C.<br>This type belongs to **SOURCE_CODE**. |
-| [UDMF_META_C_PLUS_PLUS_HEADER](#udmf_meta_c_plus_plus_header)   "general.c-plus-plus-header" | Header file in C++.<br>This type belongs to **SOURCE_CODE**. |
-| [UDMF_META_C_PLUS_PLUS_SOURCE](#udmf_meta_c_plus_plus_source)   "general.c-plus-plus-source" | Source code in C++.<br>This type belongs to **SOURCE_CODE**. |
-| [UDMF_META_JAVA_SOURCE](#udmf_meta_java_source)   "general.java-source" | Source code in Java.<br>This type belongs to **SOURCE_CODE**. |
-| [UDMF_META_EBOOK](#udmf_meta_ebook)   "general.ebook" | Generic eBook file format type.<br>This type belongs to **COMPOSITE_OBJECT**. |
-| [UDMF_META_EPUB](#udmf_meta_epub)   "general.epub" | Electronic publication (EPUB).<br>This type belongs to **EBOOK**. |
-| [UDMF_META_AZW](#udmf_meta_azw)   "com.amazon.azw" | AZW.<br>This type belongs to **EBOOK**. |
-| [UDMF_META_AZW3](#udmf_meta_azw3)   "com.amazon.azw3" | AZW3.<br>This type belongs to **EBOOK**. |
-| [UDMF_META_KFX](#udmf_meta_kfx)   "com.amazon.kfx" | KFX.<br>This type belongs to **EBOOK**. |
-| [UDMF_META_MOBI](#udmf_meta_mobi)   "com.amazon.mobi" | MOBI.<br>This type belongs to **EBOOK**. |
-| [UDMF_META_MEDIA](#udmf_meta_media)   "general.media" | Generic media type.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_IMAGE](#udmf_meta_image)   "general.image" | Image.<br>This type belongs to **MEDIA**. |
-| [UDMF_META_JPEG](#udmf_meta_jpeg)   "general.jpeg" | JPEG.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_PNG](#udmf_meta_png)   "general.png" | PNG.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_RAW_IMAGE](#udmf_meta_raw_image)   "general.raw-image" | Raw image.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_TIFF](#udmf_meta_tiff)   "general.tiff" | TIFF.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_BMP](#udmf_meta_bmp)   "com.microsoft.bmp" | BMP.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_ICO](#udmf_meta_ico)   "com.microsoft.ico" | Windows icon.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_PHOTOSHOP_IMAGE](#udmf_meta_photoshop_image)   "com.adobe.photoshop-image" | Adobe Photoshop image.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_AI_IMAGE](#udmf_meta_ai_image)   "com.adobe.illustrator.ai-image" | Adobe Illustrator image (.ai).<br>This type belongs to **IMAGE**. |
-| [UDMF_META_WORD_DOC](#udmf_meta_word_doc)   "com.microsoft.word.doc" | Microsoft Word.<br>This type belongs to **COMPOSITE_OBJECT**. |
-| [UDMF_META_EXCEL](#udmf_meta_excel)   "com.microsoft.excel.xls" | Microsoft Excel.<br>This type belongs to **COMPOSITE_OBJECT**. |
-| [UDMF_META_PPT](#udmf_meta_ppt)   "com.microsoft.powerpoint.ppt" | Microsoft PowerPoint presentation format.<br>This type belongs to **COMPOSITE_OBJECT**. |
-| [UDMF_META_PDF](#udmf_meta_pdf)   "com.adobe.pdf" | PDF.<br>This type belongs to **COMPOSITE_OBJECT**. |
-| [UDMF_META_POSTSCRIPT](#udmf_meta_postscript)   "com.adobe.postscript" | PostScript.<br>This type belongs to **COMPOSITE_OBJECT**. |
-| [UDMF_META_ENCAPSULATED_POSTSCRIPT](#udmf_meta_encapsulated_postscript)   "com.adobe.encapsulated-postscript" | Encapsulated PostScript.<br>This type belongs to **POSTSCRIPT**. |
-| [UDMF_META_VIDEO](#udmf_meta_video)   "general.video" | Generic video type.<br>This type belongs to **MEDIA**. |
-| [UDMF_META_AVI](#udmf_meta_avi)   "general.avi" | AVI.<br>This type belongs to **VIDEO**. |
-| [UDMF_META_MPEG](#udmf_meta_mpeg)   "general.mpeg" | MPGE-1 or MPGE-2.<br>This type belongs to **VIDEO**. |
-| [UDMF_META_MPEG4](#udmf_meta_mpeg4)   "general.mpeg-4" | MPGE-4.<br>This type belongs to **VIDEO**. |
-| [UDMF_META_VIDEO_3GPP](#udmf_meta_video_3gpp)   "general.3gpp" | 3GP (3GPP file format).<br>This type belongs to **VIDEO**. |
-| [UDMF_META_VIDEO_3GPP2](#udmf_meta_video_3gpp2)   "general.3gpp2" | 3G2 (3GPP2 file format).<br>This type belongs to **VIDEO**. |
-| [UDMF_META_WINDOWS_MEDIA_WM](#udmf_meta_windows_media_wm)   "com.microsoft.windows-media-wm" | Windows WM format.<br>This type belongs to **VIDEO**. |
-| [UDMF_META_WINDOWS_MEDIA_WMV](#udmf_meta_windows_media_wmv)   "com.microsoft.windows-media-wmv" | Windows WMV format.<br>This type belongs to **VIDEO**. |
-| [UDMF_META_WINDOWS_MEDIA_WMP](#udmf_meta_windows_media_wmp)   "com.microsoft.windows-media-wmp" | Windows WMP format.<br>This type belongs to **VIDEO**. |
-| [UDMF_META_AUDIO](#udmf_meta_audio)   "general.audio" | Generic audio type.<br>This type belongs to **MEDIA**. |
-| [UDMF_META_AAC](#udmf_meta_aac)   "general.aac" | AAC.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_AIFF](#udmf_meta_aiff)   "general.aiff" | AIFF.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_ALAC](#udmf_meta_alac)   "general.alac" | ALAC.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_FLAC](#udmf_meta_flac)   "general.flac" | FLAC.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_MP3](#udmf_meta_mp3)   "general.mp3" | MP3.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_OGG](#udmf_meta_ogg)   "general.ogg" | OGG.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_PCM](#udmf_meta_pcm)   "general.pcm" | PCM.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_WINDOWS_MEDIA_WMA](#udmf_meta_windows_media_wma)   "com.microsoft.windows-media-wma" | Windows WMA.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_WAVEFORM_AUDIO](#udmf_meta_waveform_audio)   "com.microsoft.waveform-audio" | Windows Waveform.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_WINDOWS_MEDIA_WMX](#udmf_meta_windows_media_wmx)   "com.microsoft.windows-media-wmx" | Windows WMX format.<br>This type belongs to **VIDEO**. |
-| [UDMF_META_WINDOWS_MEDIA_WVX](#udmf_meta_windows_media_wvx)   "com.microsoft.windows-media-wvx" | Windows WVX format.<br>This type belongs to **VIDEO**. |
-| [UDMF_META_WINDOWS_MEDIA_WAX](#udmf_meta_windows_media_wax)   "com.microsoft.windows-media-wax" | Windows WAX.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_GENERAL_FILE](#udmf_meta_general_file)   "general.file" | Generic file type.<br>This type belongs to **ENTITY**. |
-| [UDMF_META_DIRECTORY](#udmf_meta_directory)   "general.directory" | Generic directory type.<br>This type belongs to **ENTITY**. |
-| [UDMF_META_FOLDER](#udmf_meta_folder)   "general.folder" | Generic folder type.<br>This type belongs to **DIRECTORY**. |
-| [UDMF_META_SYMLINK](#udmf_meta_symlink)   "general.symlink" | Generic symbolic type.<br>This type belongs to **ENTITY**. |
-| [UDMF_META_ARCHIVE](#udmf_meta_archive)   "general.archive" | Generic archive file type.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_BZ2_ARCHIVE](#udmf_meta_bz2_archive)   "general.bz2-archive" | BZ2.<br>This type belongs to **ARCHIVE**. |
-| [UDMF_META_DISK_IMAGE](#udmf_meta_disk_image)   "general.disk-image" | Generic type of any file that can be mounted as a volume.<br>This type belongs to **ARCHIVE**. |
-| [UDMF_META_TAR_ARCHIVE](#udmf_meta_tar_archive)   "general.tar-archive" | TAR.<br>This type belongs to ARCHIVE. |
-| [UDMF_META_ZIP_ARCHIVE](#udmf_meta_zip_archive)   "general.zip-archive" | ZIP.<br>This type belongs to **ARCHIVE**. |
-| [UDMF_META_JAVA_ARCHIVE](#udmf_meta_java_archive)   "com.sun.java-archive" | JAR (Java archive).<br>This type belongs to **ARCHIVE** and **EXECUTABLE**. |
-| [UDMF_META_GNU_TAR_ARCHIVE](#udmf_meta_gnu_tar_archive)   "org.gnu.gnu-tar-archive" | GUN archive.<br>This type belongs to **ARCHIVE**. |
-| [UDMF_META_GNU_ZIP_ARCHIVE](#udmf_meta_gnu_zip_archive)   "org.gnu.gnu-zip-archive" | GZIP archive.<br>This type belongs to **ARCHIVE**. |
-| [UDMF_META_GNU_ZIP_TAR_ARCHIVE](#udmf_meta_gnu_zip_tar_archive)   "org.gnu.gnu-zip-tar-archive" | GZIP TAR.<br>This type belongs to **ARCHIVE**. |
-| [UDMF_META_CALENDAR](#udmf_meta_calendar)   "general.calendar" | Generic calendar type.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_CONTACT](#udmf_meta_contact)   "general.contact" | Generic contact type.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_DATABASE](#udmf_meta_database)   "general.database" | Generic database file type.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_MESSAGE](#udmf_meta_message)   "general.message" | Generic message type.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_VCARD](#udmf_meta_vcard)   "general.vcard" | Generic electronic business card type.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_NAVIGATION](#udmf_meta_navigation)   "general.navigation" | Generic navigation data type.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_LOCATION](#udmf_meta_location)   "general.location" | Location data.<br>This type belongs to **NAVIGATION**. |
-| [UDMF_META_OPENHARMONY_FORM](#udmf_meta_openharmony_form)   "openharmony.form" | Widget defined for the system.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_OPENHARMONY_APP_ITEM](#udmf_meta_openharmony_app_item)   "openharmony.app-item" | Home screen icon defined for the system.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_OPENHARMONY_PIXEL_MAP](#udmf_meta_openharmony_pixel_map)   "openharmony.pixel-map" | Pixel map defined for the system.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_OPENHARMONY_ATOMIC_SERVICE](#udmf_meta_openharmony_atomic_service)   "openharmony.atomic-service" | Atomic service type defined for the system.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_OPENHARMONY_PACKAGE](#udmf_meta_openharmony_package)   "openharmony.package" | Package (compressed folder) defined for the system.<br>This type belongs to **DIRECTORY**. |
-| [UDMF_META_OPENHARMONY_HAP](#udmf_meta_openharmony_hap)   "openharmony.hap" | Ability package defined for the system.<br>This type belongs to **OPENHARMONY_PACKAGE**. |
-| [UDMF_META_SMIL](#udmf_meta_smil)   "com.real.smil" | Synchronized Multimedia Integration Language (SMIL).<br>This type belongs to **XML**. |
-| [UDMF_META_MARKDOWN](#udmf_meta_markdown)   "general.markdown" | Markdown.<br>This type belongs to **PLAIN_TEXT**. |
-| [UDMF_META_FAX](#udmf_meta_fax)   "general.fax" | Generic type of the fax.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_JFX_FAX](#udmf_meta_jfx_fax)   "com.j2.jfx-fax" | J2 jConnect fax file format.<br>This type belongs to **FAX**. |
-| [UDMF_META_EFX_FAX](#udmf_meta_efx_fax)   "com.js.efx-fax" | EFX file format.<br>This type belongs to **FAX**. |
-| [UDMF_META_XBITMAP_IMAGE](#udmf_meta_xbitmap_image)   "general.xbitmap-image" | X BitMAP (XBM) used in the X Window system (X11).<br>This type belongs to **IMAGE**. |
-| [UDMF_META_TGA_IMAGE](#udmf_meta_tga_image)   "com.truevision.tga-image" | Tagged Graphics (TGA) format.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_SGI_IMAGE](#udmf_meta_sgi_image)   "com.sgi.sgi-image" | Silicon Graphics image (SGI) format.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_OPENEXR_IMAGE](#udmf_meta_openexr_image)   "com.ilm.openexr-image" | OpenXR image format.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_FLASHPIX_IMAGE](#udmf_meta_flashpix_image)   "com.kodak.flashpix.image" | FlashPix image format.<br>This type belongs to **IMAGE**. |
-| [UDMF_META_REALMEDIA](#udmf_meta_realmedia)   "com.real.realmedia" | RealMedia format.<br>This type belongs to **VIDEO**. |
-| [UDMF_META_AU_AUDIO](#udmf_meta_au_audio)   "general.au-audio" | AU format.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_AIFC_AUDIO](#udmf_meta_aifc_audio)   "general.aifc-audio" | AIFC.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_SD2_AUDIO](#udmf_meta_sd2_audio)   "com.digidesign.sd2-audio" | Digidesign Sound Designer II (SDII).<br>This type belongs to **AUDIO**. |
-| [UDMF_META_REALAUDIO](#udmf_meta_realaudio)   "com.real.realaudio" | RealAudio.<br>This type belongs to **AUDIO**. |
-| [UDMF_META_OPENXML](#udmf_meta_openxml)   "org.openxmlformats.openxml" | OpenXML base type.<br>This type belongs to **ARCHIVE**. |
-| [UDMF_META_WORDPROCESSINGML_DOCUMENT](#udmf_meta_wordprocessingml_document)   "org.openxmlformats.wordprocessingml.document" | WordProcessingML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**. |
-| [UDMF_META_SPREADSHEETML_SHEET](#udmf_meta_spreadsheetml_sheet)   "org.openxmlformats.spreadsheetml.sheet" | SpreadsheetML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**. |
-| [UDMF_META_PRESENTATIONML_PRESENTATION](#udmf_meta_presentationml_presentation)   "org.openxmlformats.presentationml.presentation" | PresentationML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**. |
-| [UDMF_META_OPENDOCUMENT](#udmf_meta_opendocument)   "org.oasis.opendocument" | OpenDocument format for Office applications.<br>This type belongs to **ARCHIVE**. |
-| [UDMF_META_OPENDOCUMENT_TEXT](#udmf_meta_opendocument_text)   "org.oasis.opendocument.text" | OpenDocument format for word processing (text) documents.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**. |
-| [UDMF_META_OPENDOCUMENT_SPREADSHEET](#udmf_meta_opendocument_spreadsheet)   "org.oasis.opendocument.spreadsheet" | OpenDocument format for spreadsheets.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**. |
-| [UDMF_META_OPENDOCUMENT_PRESENTATION](#udmf_meta_opendocument_presentation)   "org.oasis.opendocument.presentation" | OpenDocument format for presentations.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**. |
-| [UDMF_META_OPENDOCUMENT_GRAPHICS](#udmf_meta_opendocument_graphics)   "org.oasis.opendocument.graphics" | OpenDocument format for graphics.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**. |
-| [UDMF_META_OPENDOCUMENT_FORMULA](#udmf_meta_opendocument_formula)   "org.oasis.opendocument.formula" | OpenDocument format for formula.<br>This type belongs to **OPENDOCUMENT**. |
-| [UDMF_META_STUFFIT_ARCHIVE](#udmf_meta_stuffit_archive)   "com.allume.stuffit-archive" | Stuffit compression format (stuffit archive).<br>This type belongs to **ARCHIVE**. |
-| [UDMF_META_VCS](#udmf_meta_vcs)   "general.vcs" | VCalendar (VCS) format.<br>This type belongs to **CALENDAR** and **TEXT**. |
-| [UDMF_META_ICS](#udmf_meta_ics)   "general.ics" | Internet Calendaring and Scheduling (ICS) format.<br>This type belongs to **CALENDAR** and **TEXT**. |
-| [UDMF_META_EXECUTABLE](#udmf_meta_executable)   "general.executable" | Generic type of all executable files.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_PORTABLE_EXECUTABLE](#udmf_meta_portable_executable)   "com.microsoft.portable-executable" | Microsoft Windows portable executable format.<br>This type belongs to **EXECUTABLE**. |
-| [UDMF_META_SUN_JAVA_CLASS](#udmf_meta_sun_java_class)   "com.sun.java-class" | Java class file format.<br>This type belongs to **EXECUTABLE**. |
-| [UDMF_META_FONT](#udmf_meta_font)   "general.font" | Basic type of fonts.<br>This type belongs to **OBJECT**. |
-| [UDMF_META_TRUETYPE_FONT](#udmf_meta_truetype_font)   "general.truetype-font" | TrueType font format.<br>This type belongs to **FONT**. |
-| [UDMF_META_TRUETYPE_COLLECTION_FONT](#udmf_meta_truetype_collection_font)   "general.truetype-collection-font" | TrueType Collection font format.<br>This type belongs to **FONT**. |
-| [UDMF_META_OPENTYPE_FONT](#udmf_meta_opentype_font)   "general.opentype-font" | OpenType font format.<br>This type belongs to **FONT**. |
-| [UDMF_META_POSTSCRIPT_FONT](#udmf_meta_postscript_font)   "com.adobe.postscript-font" | PostScript font format.<br>This type belongs to **FONT**. |
-| [UDMF_META_POSTSCRIPT_PFB_FONT](#udmf_meta_postscript_pfb_font)   "com.adobe.postscript-pfb-font" | PostScript Font Binary font format.<br>This type belongs to **FONT**. |
-| [UDMF_META_POSTSCRIPT_PFA_FONT](#udmf_meta_postscript_pfa_font)   "com.adobe.postscript-pfa-font" | Adobe Type 1 font format.<br>This type belongs to **FONT**. |
-| [UDMF_META_OPENHARMONY_HDOC](#udmf_meta_openharmony_hdoc)   "openharmony.hdoc" | Memo format defined for the system.<br>This type belongs to **COMPOSITE_OBJECT**. |
-| [UDMF_META_OPENHARMONY_HINOTE](#udmf_meta_openharmony_hinote)   "openharmony.hinote" | Note format defined for the system.<br>This type belongs to **COMPOSITE_OBJECT**. |
-| [UDMF_META_OPENHARMONY_STYLED_STRING](#udmf_meta_openharmony_styled_string)   "openharmony.styled-string" | Style string type defined for the system.<br>This type belongs to **COMPOSITE_OBJECT**. |
-| [UDMF_META_OPENHARMONY_WANT](#udmf_meta_openharmony_want)   "openharmony.want" | Want defined for the system.<br>This type belongs to **OBJECT**. |
+| [UDMF_KEY_BUFFER_LEN](#udmf_key_buffer_len)   (512) | Minimum length of the buffer that holds the key (unique identifier) of a uniform data object.|
+| [UDMF_META_ENTITY](#udmf_meta_entity)   "general.entity" | Generic type that represents all physical storage types. It is used to define physical properties of a type.<br>This type is uncategorized.|
+| [UDMF_META_OBJECT](#udmf_meta_object)   "general.object" | Generic type that represents all logical content types. It is used to define physical properties of a type.<br>This type is uncategorized.|
+| [UDMF_META_COMPOSITE_OBJECT](#udmf_meta_composite_object)   "general.composite-object" | Generic composite content type. For example, a PDF file that contains text and image.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_TEXT](#udmf_meta_text)   "general.text" | Generic text type.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_PLAIN_TEXT](#udmf_meta_plain_text)   "general.plain-text" | Text without specific encoding or identifier.<br>This type belongs to **TEXT**.|
+| [UDMF_META_HTML](#udmf_meta_html)   "general.html" | HTML.<br>This type belongs to **TEXT**.|
+| [UDMF_META_HYPERLINK](#udmf_meta_hyperlink)   "general.hyperlink" | Hyperlink.<br>This type belongs to **TEXT**.|
+| [UDMF_META_XML](#udmf_meta_xml)   "general.xml" | XML.<br>This type belongs to **TEXT**.|
+| [UDMF_META_SOURCE_CODE](#udmf_meta_source_code)   "general.source-code" | Generic source code type.<br>This type belongs to **PLAIN_TEXT**.|
+| [UDMF_META_SCRIPT](#udmf_meta_script)   "general.script" | Source code in any scripting language.<br>This type belongs to **SOURCE_CODE**.|
+| [UDMF_META_SHELL_SCRIPT](#udmf_meta_shell_script)   "general.shell-script" | Shell script.<br>This type belongs to **SCRIPT**.|
+| [UDMF_META_CSH_SCRIPT](#udmf_meta_csh_script)   "general.csh-script" | C shell script.<br>This type belongs to **SHELL_SCRIPT**.|
+| [UDMF_META_PERL_SCRIPT](#udmf_meta_perl_script)   "general.perl-script" | Perl script.<br>This type belongs to **SHELL_SCRIPT**.|
+| [UDMF_META_PHP_SCRIPT](#udmf_meta_php_script)   "general.php-script" | PHP script.<br>This type belongs to **SHELL_SCRIPT**.|
+| [UDMF_META_PYTHON_SCRIPT](#udmf_meta_python_script)   "general.python-script" | Python script.<br>This type belongs to **SHELL_SCRIPT**.|
+| [UDMF_META_RUBY_SCRIPT](#udmf_meta_ruby_script)   "general.ruby-script" | Ruby script.<br>This type belongs to **SHELL_SCRIPT**.|
+| [UDMF_META_TYPE_SCRIPT](#udmf_meta_type_script)   "general.type-script" | TypeScript source code.<br>This type belongs to **SCRIPT**.|
+| [UDMF_META_JAVA_SCRIPT](#udmf_meta_java_script)   "general.java-script" | JavaScript source code.<br>This type belongs to **SCRIPT**.|
+| [UDMF_META_C_HEADER](#udmf_meta_c_header)   "general.c-header" | Header file in C.<br>This type belongs to **SOURCE_CODE**.|
+| [UDMF_META_C_SOURCE](#udmf_meta_c_source)   "general.c-source" | Source code in C.<br>This type belongs to **SOURCE_CODE**.|
+| [UDMF_META_C_PLUS_PLUS_HEADER](#udmf_meta_c_plus_plus_header)   "general.c-plus-plus-header" | Header file in C++.<br>This type belongs to **SOURCE_CODE**.|
+| [UDMF_META_C_PLUS_PLUS_SOURCE](#udmf_meta_c_plus_plus_source)   "general.c-plus-plus-source" | Source code in C++.<br>This type belongs to **SOURCE_CODE**.|
+| [UDMF_META_JAVA_SOURCE](#udmf_meta_java_source)   "general.java-source" | Source code in Java.<br>This type belongs to **SOURCE_CODE**.|
+| [UDMF_META_EBOOK](#udmf_meta_ebook)   "general.ebook" | Generic eBook file format type.<br>This type belongs to **COMPOSITE_OBJECT**.|
+| [UDMF_META_EPUB](#udmf_meta_epub)   "general.epub" | Electronic publication (EPUB).<br>This type belongs to **EBOOK**.|
+| [UDMF_META_AZW](#udmf_meta_azw)   "com.amazon.azw" | AZW.<br>This type belongs to **EBOOK**.|
+| [UDMF_META_AZW3](#udmf_meta_azw3)   "com.amazon.azw3" | AZW3.<br>This type belongs to **EBOOK**.|
+| [UDMF_META_KFX](#udmf_meta_kfx)   "com.amazon.kfx" | KFX.<br>This type belongs to **EBOOK**.|
+| [UDMF_META_MOBI](#udmf_meta_mobi)   "com.amazon.mobi" | MOBI.<br>This type belongs to **EBOOK**.|
+| [UDMF_META_MEDIA](#udmf_meta_media)   "general.media" | Generic media type.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_IMAGE](#udmf_meta_image)   "general.image" | Image.<br>This type belongs to **MEDIA**.|
+| [UDMF_META_JPEG](#udmf_meta_jpeg)   "general.jpeg" | JPEG.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_PNG](#udmf_meta_png)   "general.png" | PNG.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_RAW_IMAGE](#udmf_meta_raw_image)   "general.raw-image" | Raw image.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_TIFF](#udmf_meta_tiff)   "general.tiff" | TIFF.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_BMP](#udmf_meta_bmp)   "com.microsoft.bmp" | BMP.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_ICO](#udmf_meta_ico)   "com.microsoft.ico" | Windows icon.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_PHOTOSHOP_IMAGE](#udmf_meta_photoshop_image)   "com.adobe.photoshop-image" | Adobe Photoshop image.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_AI_IMAGE](#udmf_meta_ai_image)   "com.adobe.illustrator.ai-image" | Adobe Illustrator image (.ai).<br>This type belongs to **IMAGE**.|
+| [UDMF_META_WORD_DOC](#udmf_meta_word_doc)   "com.microsoft.word.doc" | Microsoft Word.<br>This type belongs to **COMPOSITE_OBJECT**.|
+| [UDMF_META_EXCEL](#udmf_meta_excel)   "com.microsoft.excel.xls" | Microsoft Excel.<br>This type belongs to **COMPOSITE_OBJECT**.|
+| [UDMF_META_PPT](#udmf_meta_ppt)   "com.microsoft.powerpoint.ppt" | Microsoft PowerPoint presentation format.<br>This type belongs to **COMPOSITE_OBJECT**.|
+| [UDMF_META_PDF](#udmf_meta_pdf)   "com.adobe.pdf" | PDF.<br>This type belongs to **COMPOSITE_OBJECT**.|
+| [UDMF_META_POSTSCRIPT](#udmf_meta_postscript)   "com.adobe.postscript" | PostScript.<br>This type belongs to **COMPOSITE_OBJECT**.|
+| [UDMF_META_ENCAPSULATED_POSTSCRIPT](#udmf_meta_encapsulated_postscript)   "com.adobe.encapsulated-postscript" | Encapsulated PostScript.<br>This type belongs to **POSTSCRIPT**.|
+| [UDMF_META_VIDEO](#udmf_meta_video)   "general.video" | Generic video type.<br>This type belongs to **MEDIA**.|
+| [UDMF_META_AVI](#udmf_meta_avi)   "general.avi" | AVI.<br>This type belongs to **VIDEO**.|
+| [UDMF_META_MPEG](#udmf_meta_mpeg)   "general.mpeg" | MPGE-1 or MPGE-2.<br>This type belongs to **VIDEO**.|
+| [UDMF_META_MPEG4](#udmf_meta_mpeg4)   "general.mpeg-4" | MPGE-4.<br>This type belongs to **VIDEO**.|
+| [UDMF_META_VIDEO_3GPP](#udmf_meta_video_3gpp)   "general.3gpp" | 3GP (3GPP file format).<br>This type belongs to **VIDEO**.|
+| [UDMF_META_VIDEO_3GPP2](#udmf_meta_video_3gpp2)   "general.3gpp2" | 3G2 (3GPP2 file format).<br>This type belongs to **VIDEO**.|
+| [UDMF_META_WINDOWS_MEDIA_WM](#udmf_meta_windows_media_wm)   "com.microsoft.windows-media-wm" | Windows WM format.<br>This type belongs to **VIDEO**.|
+| [UDMF_META_WINDOWS_MEDIA_WMV](#udmf_meta_windows_media_wmv)   "com.microsoft.windows-media-wmv" | Windows WMV format.<br>This type belongs to **VIDEO**.|
+| [UDMF_META_WINDOWS_MEDIA_WMP](#udmf_meta_windows_media_wmp)   "com.microsoft.windows-media-wmp" | Windows WMP format.<br>This type belongs to **VIDEO**.|
+| [UDMF_META_AUDIO](#udmf_meta_audio)   "general.audio" | Generic audio type.<br>This type belongs to **MEDIA**.|
+| [UDMF_META_AAC](#udmf_meta_aac)   "general.aac" | AAC.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_AIFF](#udmf_meta_aiff)   "general.aiff" | AIFF.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_ALAC](#udmf_meta_alac)   "general.alac" | ALAC.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_FLAC](#udmf_meta_flac)   "general.flac" | FLAC.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_MP3](#udmf_meta_mp3)   "general.mp3" | MP3.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_OGG](#udmf_meta_ogg)   "general.ogg" | OGG.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_PCM](#udmf_meta_pcm)   "general.pcm" | PCM.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_WINDOWS_MEDIA_WMA](#udmf_meta_windows_media_wma)   "com.microsoft.windows-media-wma" | Windows WMA.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_WAVEFORM_AUDIO](#udmf_meta_waveform_audio)   "com.microsoft.waveform-audio" | Windows Waveform.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_WINDOWS_MEDIA_WMX](#udmf_meta_windows_media_wmx)   "com.microsoft.windows-media-wmx" | Windows WMX format.<br>This type belongs to **VIDEO**.|
+| [UDMF_META_WINDOWS_MEDIA_WVX](#udmf_meta_windows_media_wvx)   "com.microsoft.windows-media-wvx" | Windows WVX format.<br>This type belongs to **VIDEO**.|
+| [UDMF_META_WINDOWS_MEDIA_WAX](#udmf_meta_windows_media_wax)   "com.microsoft.windows-media-wax" | Windows WAX.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_GENERAL_FILE](#udmf_meta_general_file)   "general.file" | Generic file type.<br>This type belongs to **ENTITY**.|
+| [UDMF_META_DIRECTORY](#udmf_meta_directory)   "general.directory" | Generic directory type.<br>This type belongs to **ENTITY**.|
+| [UDMF_META_FOLDER](#udmf_meta_folder)   "general.folder" | Generic folder type.<br>This type belongs to **DIRECTORY**.|
+| [UDMF_META_SYMLINK](#udmf_meta_symlink)   "general.symlink" | Generic symbolic type.<br>This type belongs to **ENTITY**.|
+| [UDMF_META_ARCHIVE](#udmf_meta_archive)   "general.archive" | Generic archive file type.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_BZ2_ARCHIVE](#udmf_meta_bz2_archive)   "general.bz2-archive" | BZ2.<br>This type belongs to **ARCHIVE**.|
+| [UDMF_META_DISK_IMAGE](#udmf_meta_disk_image)   "general.disk-image" | Generic type of any file that can be mounted as a volume.<br>This type belongs to **ARCHIVE**.|
+| [UDMF_META_TAR_ARCHIVE](#udmf_meta_tar_archive)   "general.tar-archive" | TAR.<br>This type belongs to ARCHIVE.|
+| [UDMF_META_ZIP_ARCHIVE](#udmf_meta_zip_archive)   "general.zip-archive" | ZIP.<br>This type belongs to **ARCHIVE**.|
+| [UDMF_META_JAVA_ARCHIVE](#udmf_meta_java_archive)   "com.sun.java-archive" | JAR (Java archive).<br>This type belongs to **ARCHIVE** and **EXECUTABLE**.|
+| [UDMF_META_GNU_TAR_ARCHIVE](#udmf_meta_gnu_tar_archive)   "org.gnu.gnu-tar-archive" | GUN archive.<br>This type belongs to **ARCHIVE**.|
+| [UDMF_META_GNU_ZIP_ARCHIVE](#udmf_meta_gnu_zip_archive)   "org.gnu.gnu-zip-archive" | GZIP archive.<br>This type belongs to **ARCHIVE**.|
+| [UDMF_META_GNU_ZIP_TAR_ARCHIVE](#udmf_meta_gnu_zip_tar_archive)   "org.gnu.gnu-zip-tar-archive" | GZIP TAR.<br>This type belongs to **ARCHIVE**.|
+| [UDMF_META_CALENDAR](#udmf_meta_calendar)   "general.calendar" | Generic calendar type.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_CONTACT](#udmf_meta_contact)   "general.contact" | Generic contact type.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_DATABASE](#udmf_meta_database)   "general.database" | Generic database file type.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_MESSAGE](#udmf_meta_message)   "general.message" | Generic message type.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_VCARD](#udmf_meta_vcard)   "general.vcard" | Generic electronic business card type.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_NAVIGATION](#udmf_meta_navigation)   "general.navigation" | Generic navigation data type.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_LOCATION](#udmf_meta_location)   "general.location" | Location data.<br>This type belongs to **NAVIGATION**.|
+| [UDMF_META_OPENHARMONY_FORM](#udmf_meta_openharmony_form)   "openharmony.form" | Widget defined for the system.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_OPENHARMONY_APP_ITEM](#udmf_meta_openharmony_app_item)   "openharmony.app-item" | Home screen icon defined for the system.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_OPENHARMONY_PIXEL_MAP](#udmf_meta_openharmony_pixel_map)   "openharmony.pixel-map" | Pixel map defined for the system.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_OPENHARMONY_ATOMIC_SERVICE](#udmf_meta_openharmony_atomic_service)   "openharmony.atomic-service" | Atomic service type defined for the system.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_OPENHARMONY_PACKAGE](#udmf_meta_openharmony_package)   "openharmony.package" | Package (compressed folder) defined for the system.<br>This type belongs to **DIRECTORY**.|
+| [UDMF_META_OPENHARMONY_HAP](#udmf_meta_openharmony_hap)   "openharmony.hap" | Ability package defined for the system.<br>This type belongs to **OPENHARMONY_PACKAGE**.|
+| [UDMF_META_SMIL](#udmf_meta_smil)   "com.real.smil" | Synchronized Multimedia Integration Language (SMIL).<br>This type belongs to **XML**.|
+| [UDMF_META_MARKDOWN](#udmf_meta_markdown)   "general.markdown" | Markdown.<br>This type belongs to **PLAIN_TEXT**.|
+| [UDMF_META_FAX](#udmf_meta_fax)   "general.fax" | Generic type of the fax.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_JFX_FAX](#udmf_meta_jfx_fax)   "com.j2.jfx-fax" | J2 jConnect fax file format.<br>This type belongs to **FAX**.|
+| [UDMF_META_EFX_FAX](#udmf_meta_efx_fax)   "com.js.efx-fax" | EFX file format.<br>This type belongs to **FAX**.|
+| [UDMF_META_XBITMAP_IMAGE](#udmf_meta_xbitmap_image)   "general.xbitmap-image" | X BitMAP (XBM) used in the X Window system (X11).<br>This type belongs to **IMAGE**.|
+| [UDMF_META_TGA_IMAGE](#udmf_meta_tga_image)   "com.truevision.tga-image" | Tagged Graphics (TGA) format.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_SGI_IMAGE](#udmf_meta_sgi_image)   "com.sgi.sgi-image" | Silicon Graphics image (SGI) format.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_OPENEXR_IMAGE](#udmf_meta_openexr_image)   "com.ilm.openexr-image" | OpenXR image format.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_FLASHPIX_IMAGE](#udmf_meta_flashpix_image)   "com.kodak.flashpix.image" | FlashPix image format.<br>This type belongs to **IMAGE**.|
+| [UDMF_META_REALMEDIA](#udmf_meta_realmedia)   "com.real.realmedia" | RealMedia format.<br>This type belongs to **VIDEO**.|
+| [UDMF_META_AU_AUDIO](#udmf_meta_au_audio)   "general.au-audio" | AU format.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_AIFC_AUDIO](#udmf_meta_aifc_audio)   "general.aifc-audio" | AIFC.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_SD2_AUDIO](#udmf_meta_sd2_audio)   "com.digidesign.sd2-audio" | Digidesign Sound Designer II (SDII).<br>This type belongs to **AUDIO**.|
+| [UDMF_META_REALAUDIO](#udmf_meta_realaudio)   "com.real.realaudio" | RealAudio.<br>This type belongs to **AUDIO**.|
+| [UDMF_META_OPENXML](#udmf_meta_openxml)   "org.openxmlformats.openxml" | OpenXML base type.<br>This type belongs to **ARCHIVE**.|
+| [UDMF_META_WORDPROCESSINGML_DOCUMENT](#udmf_meta_wordprocessingml_document)   "org.openxmlformats.wordprocessingml.document" | WordProcessingML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.|
+| [UDMF_META_SPREADSHEETML_SHEET](#udmf_meta_spreadsheetml_sheet)   "org.openxmlformats.spreadsheetml.sheet" | SpreadsheetML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.|
+| [UDMF_META_PRESENTATIONML_PRESENTATION](#udmf_meta_presentationml_presentation)   "org.openxmlformats.presentationml.presentation" | PresentationML format.<br>This type belongs to **OPENXML** and **COMPOSITE_OBJECT**.|
+| [UDMF_META_OPENDOCUMENT](#udmf_meta_opendocument)   "org.oasis.opendocument" | OpenDocument format for Office applications.<br>This type belongs to **ARCHIVE**.|
+| [UDMF_META_OPENDOCUMENT_TEXT](#udmf_meta_opendocument_text)   "org.oasis.opendocument.text" | OpenDocument format for word processing (text) documents.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.|
+| [UDMF_META_OPENDOCUMENT_SPREADSHEET](#udmf_meta_opendocument_spreadsheet)   "org.oasis.opendocument.spreadsheet" | OpenDocument format for spreadsheets.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.|
+| [UDMF_META_OPENDOCUMENT_PRESENTATION](#udmf_meta_opendocument_presentation)   "org.oasis.opendocument.presentation" | OpenDocument format for presentations.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.|
+| [UDMF_META_OPENDOCUMENT_GRAPHICS](#udmf_meta_opendocument_graphics)   "org.oasis.opendocument.graphics" | OpenDocument format for graphics.<br>This type belongs to **OPENDOCUMENT** and **COMPOSITE_OBJECT**.|
+| [UDMF_META_OPENDOCUMENT_FORMULA](#udmf_meta_opendocument_formula)   "org.oasis.opendocument.formula" | OpenDocument format for formula.<br>This type belongs to **OPENDOCUMENT**.|
+| [UDMF_META_STUFFIT_ARCHIVE](#udmf_meta_stuffit_archive)   "com.allume.stuffit-archive" | Stuffit compression format (stuffit archive).<br>This type belongs to **ARCHIVE**.|
+| [UDMF_META_VCS](#udmf_meta_vcs)   "general.vcs" | VCalendar (VCS) format.<br>This type belongs to **CALENDAR** and **TEXT**.|
+| [UDMF_META_ICS](#udmf_meta_ics)   "general.ics" | Internet Calendaring and Scheduling (ICS) format.<br>This type belongs to **CALENDAR** and **TEXT**.|
+| [UDMF_META_EXECUTABLE](#udmf_meta_executable)   "general.executable" | Generic type of all executable files.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_PORTABLE_EXECUTABLE](#udmf_meta_portable_executable)   "com.microsoft.portable-executable" | Microsoft Windows portable executable format.<br>This type belongs to **EXECUTABLE**.|
+| [UDMF_META_SUN_JAVA_CLASS](#udmf_meta_sun_java_class)   "com.sun.java-class" | Java class file format.<br>This type belongs to **EXECUTABLE**.|
+| [UDMF_META_FONT](#udmf_meta_font)   "general.font" | Basic type of fonts.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_TRUETYPE_FONT](#udmf_meta_truetype_font)   "general.truetype-font" | TrueType font format.<br>This type belongs to **FONT**.|
+| [UDMF_META_TRUETYPE_COLLECTION_FONT](#udmf_meta_truetype_collection_font)   "general.truetype-collection-font" | TrueType Collection font format.<br>This type belongs to **FONT**.|
+| [UDMF_META_OPENTYPE_FONT](#udmf_meta_opentype_font)   "general.opentype-font" | OpenType font format.<br>This type belongs to **FONT**.|
+| [UDMF_META_POSTSCRIPT_FONT](#udmf_meta_postscript_font)   "com.adobe.postscript-font" | PostScript font format.<br>This type belongs to **FONT**.|
+| [UDMF_META_POSTSCRIPT_PFB_FONT](#udmf_meta_postscript_pfb_font)   "com.adobe.postscript-pfb-font" | PostScript Font Binary font format.<br>This type belongs to **FONT**.|
+| [UDMF_META_POSTSCRIPT_PFA_FONT](#udmf_meta_postscript_pfa_font)   "com.adobe.postscript-pfa-font" | Adobe Type 1 font format.<br>This type belongs to **FONT**.|
+| [UDMF_META_OPENHARMONY_HDOC](#udmf_meta_openharmony_hdoc)   "openharmony.hdoc" | Memo format defined for the system.<br>This type belongs to **COMPOSITE_OBJECT**.|
+| [UDMF_META_OPENHARMONY_HINOTE](#udmf_meta_openharmony_hinote)   "openharmony.hinote" | Note format defined for the system.<br>This type belongs to **COMPOSITE_OBJECT**.|
+| [UDMF_META_OPENHARMONY_STYLED_STRING](#udmf_meta_openharmony_styled_string)   "openharmony.styled-string" | Style string type defined for the system.<br>This type belongs to **COMPOSITE_OBJECT**.|
+| [UDMF_META_OPENHARMONY_WANT](#udmf_meta_openharmony_want)   "openharmony.want" | Want defined for the system.<br>This type belongs to **OBJECT**.|
+| [UDMF_META_GENERAL_FILE_URI](#udmf_meta_general_file_uri)   "general.file-uri" | File address type.<br>This type belongs to **TEXT**.|
 
 
 ### Types
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| typedef enum [Udmf_Intention](#udmf_intention) [Udmf_Intention](#udmf_intention) | Defines an enum for unified data channels defined in the UDMF. |
-| typedef enum [Udmf_ShareOption](#udmf_shareoption) [Udmf_ShareOption](#udmf_shareoption) | Defines an enum for the options for using the uniform data in a device. |
-| typedef struct [OH_UdmfData](#oh_udmfdata) [OH_UdmfData](#oh_udmfdata) | Defines a struct for a uniform data object. |
-| typedef struct [OH_UdmfRecord](#oh_udmfrecord) [OH_UdmfRecord](#oh_udmfrecord) | Defines a struct for a data record in a uniform data object. |
-| typedef struct [OH_UdmfProperty](#oh_udmfproperty) [OH_UdmfProperty](#oh_udmfproperty) | Defines a struct for a data record property in a uniform data object. |
-| typedef enum [Udmf_ErrCode](#udmf_errcode) [Udmf_ErrCode](#udmf_errcode) | Defines an enum for error codes. |
-| typedef struct [OH_UdsPlainText](#oh_udsplaintext) [OH_UdsPlainText](#oh_udsplaintext) | Defines a struct for the uniform data of the plain text type. |
-| typedef struct [OH_UdsHyperlink](#oh_udshyperlink) [OH_UdsHyperlink](#oh_udshyperlink) | Defines a struct for the uniform data of the hyperlink type. |
-| typedef struct [OH_UdsHtml](#oh_udshtml) [OH_UdsHtml](#oh_udshtml) | Defines a struct for the uniform data of the Hypertext Markup Language (HTML) type. |
-| typedef struct [OH_UdsAppItem](#oh_udsappitem) [OH_UdsAppItem](#oh_udsappitem) | Defines a struct for the uniform data of the home screen icon type. |
-| typedef struct [OH_Utd](#oh_utd) [OH_Utd](#oh_utd) | Defines a struct for a Uniform Type Descriptor (UTD). |
+| typedef enum [Udmf_Intention](#udmf_intention) [Udmf_Intention](#udmf_intention) | Defines an enum for UDMF data channels.|
+| typedef enum [Udmf_ShareOption](#udmf_shareoption) [Udmf_ShareOption](#udmf_shareoption) | Defines an enum for the scopes of the uniform data to be used on a device.|
+| typedef struct [OH_UdmfData](#oh_udmfdata) [OH_UdmfData](#oh_udmfdata) | Defines a struct for a uniform data object.|
+| typedef struct [OH_UdmfRecord](#oh_udmfrecord) [OH_UdmfRecord](#oh_udmfrecord) | Defines a struct for a data record in a uniform data object.|
+| typedef struct [OH_UdmfRecordProvider](#oh_udmfrecordprovider) [OH_UdmfRecordProvider](#oh_udmfrecordprovider) | Defines a struct for the data record provider in a uniform data object.|
+| typedef struct [OH_UdmfProperty](#oh_udmfproperty) [OH_UdmfProperty](#oh_udmfproperty) | Defines a struct for a data record property in a uniform data object.|
+| typedef void(\* [UdmfData_Finalize](#udmfdata_finalize)) (void \*context) | Defines a callback function used to release the context. This callback is invoked when the **OH_UdmfRecordProvider** instance is destroyed.|
+| typedef void \*(\* [OH_UdmfRecordProvider_GetData](#oh_udmfrecordprovider_getdata)) (void \*context, const char \*type) | Defines a callback function used to obtain data by type. This callback will be invoked to return the data obtained from **OH_UdmfRecord**.|
+| typedef enum [Udmf_ErrCode](#udmf_errcode) [Udmf_ErrCode](#udmf_errcode) | Defines an enum for error codes.|
+| typedef struct [OH_UdsPlainText](#oh_udsplaintext) [OH_UdsPlainText](#oh_udsplaintext) | Defines a struct for the uniform data of the plain text type.|
+| typedef struct [OH_UdsHyperlink](#oh_udshyperlink) [OH_UdsHyperlink](#oh_udshyperlink) | Defines a struct for the uniform data of the hyperlink type.|
+| typedef struct [OH_UdsHtml](#oh_udshtml) [OH_UdsHtml](#oh_udshtml) | Defines a struct for the uniform data of the Hypertext Markup Language (HTML) type.|
+| typedef struct [OH_UdsAppItem](#oh_udsappitem) [OH_UdsAppItem](#oh_udsappitem) | Defines a struct for the uniform data of the home screen icon type.|
+| typedef struct [OH_UdsFileUri](#oh_udsfileuri) [OH_UdsFileUri](#oh_udsfileuri) | Defines a struct for the file URI type.|
+| typedef struct [OH_UdsPixelMap](#oh_udspixelmap) [OH_UdsPixelMap](#oh_udspixelmap) | Defines a struct for the pixel map type.|
+| typedef struct [OH_UdsArrayBuffer](#oh_udsarraybuffer) [OH_UdsArrayBuffer](#oh_udsarraybuffer) | Defines a struct for the ArrayBuffer type.|
+| typedef struct [OH_Utd](#oh_utd) [OH_Utd](#oh_utd) | Defines a struct for a Uniform Type Descriptor (UTD).|
 
 
 ### Enums
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
 | [Udmf_Intention](#udmf_intention) { UDMF_INTENTION_DRAG, UDMF_INTENTION_PASTEBOARD } | Enumerates the UDMF data channel types. |
-| [Udmf_ShareOption](#udmf_shareoption) { SHARE_OPTIONS_INVALID, SHARE_OPTIONS_IN_APP, SHARE_OPTIONS_CROSS_APP } | Enumerates the options for using the uniform data in a device. |
-| [Udmf_ErrCode](#udmf_errcode) { UDMF_E_OK = 0, UDMF_ERR = 20400000, UDMF_E_INVALID_PARAM = (UDMF_ERR + 1) } | Enumerates the error codes. |
+| [Udmf_ShareOption](#udmf_shareoption-1) { SHARE_OPTIONS_INVALID, SHARE_OPTIONS_IN_APP, SHARE_OPTIONS_CROSS_APP } | Enumerates the scopes of the uniform data to be used on a device. |
+| [Udmf_ErrCode](#udmf_errcode-1) { UDMF_E_OK = 0, UDMF_ERR = 20400000, UDMF_E_INVALID_PARAM = (UDMF_ERR + 1) } | Enumerates the error codes.|
 
 
 ### Functions
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| [OH_UdmfData](#oh_udmfdata) \* [OH_UdmfData_Create](#oh_udmfdata_create) () | Creates an [OH_UdmfData](#oh_udmfdata) instance and a pointer to it. |
-| void [OH_UdmfData_Destroy](#oh_udmfdata_destroy) ([OH_UdmfData](#oh_udmfdata) \*pThis) | Destroys an [OH_UdmfData](#oh_udmfdata) instance. |
-| int [OH_UdmfData_AddRecord](#oh_udmfdata_addrecord) ([OH_UdmfData](#oh_udmfdata) \*pThis, [OH_UdmfRecord](#oh_udmfrecord) \*record) | Adds an [OH_UdmfRecord](#oh_udmfrecord) to an [OH_UdmfData](#oh_udmfdata) instance. |
-| bool [OH_UdmfData_HasType](#oh_udmfdata_hastype) ([OH_UdmfData](#oh_udmfdata) \*pThis, const char \*type) | Checks whether the specified type exists in an [OH_UdmfData](#oh_udmfdata) instance. |
-| char \*\* [OH_UdmfData_GetTypes](#oh_udmfdata_gettypes) ([OH_UdmfData](#oh_udmfdata) \*pThis, unsigned int \*count) | Obtains all data types in an [OH_UdmfData](#oh_udmfdata) instance. |
-| [OH_UdmfRecord](#oh_udmfrecord) \*\* [OH_UdmfData_GetRecords](#oh_udmfdata_getrecords) ([OH_UdmfData](#oh_udmfdata) \*pThis, unsigned int \*count) | Obtains all records contained in an [OH_UdmfData](#oh_udmfdata) instance. |
-| [OH_UdmfRecord](#oh_udmfrecord) \* [OH_UdmfRecord_Create](#oh_udmfrecord_create) () | Creates an [OH_UdmfRecord](#oh_udmfrecord) instance and a pointer to it. |
-| void [OH_UdmfRecord_Destroy](#oh_udmfrecord_destroy) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis) | Destroys an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| int [OH_UdmfRecord_AddGeneralEntry](#oh_udmfrecord_addgeneralentry) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*typeId, unsigned char \*entry, unsigned int count) | Adds customized uniform data to an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| int [OH_UdmfRecord_AddPlainText](#oh_udmfrecord_addplaintext) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | Adds data of the [OH_UdsPlainText](#oh_udsplaintext) type to an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| int [OH_UdmfRecord_AddHyperlink](#oh_udmfrecord_addhyperlink) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHyperlink](#oh_udshyperlink) \*hyperlink) | Adds data of the hyperlink type [OH_UdsHyperlink](#oh_udshyperlink) type to an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| int [OH_UdmfRecord_AddHtml](#oh_udmfrecord_addhtml) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHtml](#oh_udshtml) \*html) | Adds data of the [OH_UdsHtml](#oh_udshtml) type to an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| int [OH_UdmfRecord_AddAppItem](#oh_udmfrecord_addappitem) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsAppItem](#oh_udsappitem) \*appItem) | Adds data of the [OH_UdsAppItem](#oh_udsappitem) type to an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| char \*\* [OH_UdmfRecord_GetTypes](#oh_udmfrecord_gettypes) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, unsigned int \*count) | Obtains all data types in an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| int [OH_UdmfRecord_GetGeneralEntry](#oh_udmfrecord_getgeneralentry) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*typeId, unsigned char \*\*entry, unsigned int \*count) | Obtains the data of the specified type in an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| int [OH_UdmfRecord_GetPlainText](#oh_udmfrecord_getplaintext) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | Obtains [OH_UdsPlainText](#oh_udsplaintext) data from an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| int [OH_UdmfRecord_GetHyperlink](#oh_udmfrecord_gethyperlink) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHyperlink](#oh_udshyperlink) \*hyperlink) | Obtains [OH_UdsHyperlink](#oh_udshyperlink) data from an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| int [OH_UdmfRecord_GetHtml](#oh_udmfrecord_gethtml) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHtml](#oh_udshtml) \*html) | Obtains [OH_UdsHtml](#oh_udshtml) data from an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| int [OH_UdmfRecord_GetAppItem](#oh_udmfrecord_getappitem) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsAppItem](#oh_udsappitem) \*appItem) | Obtains {@link OH_UdsAppItem} data from an [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| [OH_UdmfProperty](#oh_udmfproperty) \* [OH_UdmfProperty_Create](#oh_udmfproperty_create) ([OH_UdmfData](#oh_udmfdata) \*unifiedData) | Creates an [OH_UdmfProperty](#oh_udmfproperty) instance and a pointer to it. |
-| void [OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | Destroys an [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| const char \* [OH_UdmfProperty_GetTag](#oh_udmfproperty_gettag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | Obtains the custom tag value from an [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| int64_t [OH_UdmfProperty_GetTimestamp](#oh_udmfproperty_gettimestamp) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | Obtains the timestamp from an [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| [Udmf_ShareOption](#udmf_shareoption)[OH_UdmfProperty_GetShareOption](#oh_udmfproperty_getshareoption) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | Obtains the share option from an [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| int [OH_UdmfProperty_GetExtrasIntParam](#oh_udmfproperty_getextrasintparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key, int defaultValue) | Obtains the customized extra integer parameter from an [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| const char \* [OH_UdmfProperty_GetExtrasStringParam](#oh_udmfproperty_getextrasstringparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key) | Obtains the customized extra string parameter from an [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| int [OH_UdmfProperty_SetTag](#oh_udmfproperty_settag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*tag) | Sets the tag value for an [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| int [OH_UdmfProperty_SetShareOption](#oh_udmfproperty_setshareoption) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, [Udmf_ShareOption](#udmf_shareoption) option) | Sets the share option for an [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| int [OH_UdmfProperty_SetExtrasIntParam](#oh_udmfproperty_setextrasintparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key, int param) | Sets the extra integer parameter for an [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| int [OH_UdmfProperty_SetExtrasStringParam](#oh_udmfproperty_setextrasstringparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key, const char \*param) | Sets the extra string parameter for an [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| int [OH_Udmf_GetUnifiedData](#oh_udmf_getunifieddata) (const char \*key, [Udmf_Intention](#udmf_intention) intention, [OH_UdmfData](#oh_udmfdata) \*unifiedData) | Obtains an [OH_UdmfData](#oh_udmfdata) instance from the UDMF database. |
-| int [OH_Udmf_SetUnifiedData](#oh_udmf_setunifieddata) ([Udmf_Intention](#udmf_intention) intention, [OH_UdmfData](#oh_udmfdata) \*unifiedData, char \*key, unsigned int keyLen) | Sets an [OH_UdmfData](#oh_udmfdata) instance in the UDMF database. |
-| [OH_UdsPlainText](#oh_udsplaintext) \* [OH_UdsPlainText_Create](#oh_udsplaintext_create) () | Creates an [OH_UdsPlainText](#oh_udsplaintext) instance and a pointer to it. |
-| void [OH_UdsPlainText_Destroy](#oh_udsplaintext_destroy) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | Destroys an [OH_UdsPlainText](#oh_udsplaintext) instance. |
-| const char \* [OH_UdsPlainText_GetType](#oh_udsplaintext_gettype) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | Obtains the type ID from an [OH_UdsPlainText](#oh_udsplaintext) instance. |
-| const char \* [OH_UdsPlainText_GetContent](#oh_udsplaintext_getcontent) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | Obtains the plaintext from an [OH_UdsPlainText](#oh_udsplaintext) instance. |
-| const char \* [OH_UdsPlainText_GetAbstract](#oh_udsplaintext_getabstract) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | Obtains the abstract from an [OH_UdsPlainText](#oh_udsplaintext) instance. |
-| int [OH_UdsPlainText_SetContent](#oh_udsplaintext_setcontent) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis, const char \*content) | Sets the plaintext for an [OH_UdsPlainText](#oh_udsplaintext) instance. |
-| int [OH_UdsPlainText_SetAbstract](#oh_udsplaintext_setabstract) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis, const char \*abstract) | Sets the abstract for an [OH_UdsPlainText](#oh_udsplaintext) instance. |
-| [OH_UdsHyperlink](#oh_udshyperlink) \* [OH_UdsHyperlink_Create](#oh_udshyperlink_create) () | Creates an [OH_UdsHyperlink](#oh_udshyperlink) instance and a pointer to it. |
-| void [OH_UdsHyperlink_Destroy](#oh_udshyperlink_destroy) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | Destroys an [OH_UdsHyperlink](#oh_udshyperlink) instance. |
-| const char \* [OH_UdsHyperlink_GetType](#oh_udshyperlink_gettype) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | Obtains the type ID from an [OH_UdsHyperlink](#oh_udshyperlink) instance. |
-| const char \* [OH_UdsHyperlink_GetUrl](#oh_udshyperlink_geturl) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | Obtains the URL from an [OH_UdsHyperlink](#oh_udshyperlink) instance. |
-| const char \* [OH_UdsHyperlink_GetDescription](#oh_udshyperlink_getdescription) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | Obtains the description from an [OH_UdsHyperlink](#oh_udshyperlink) instance. |
-| int [OH_UdsHyperlink_SetUrl](#oh_udshyperlink_seturl) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis, const char \*url) | Sets the URL for an [OH_UdsHyperlink](#oh_udshyperlink) instance. |
-| int [OH_UdsHyperlink_SetDescription](#oh_udshyperlink_setdescription) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis, const char \*description) | Sets the description for an [OH_UdsHyperlink](#oh_udshyperlink) instance. |
-| [OH_UdsHtml](#oh_udshtml) \* [OH_UdsHtml_Create](#oh_udshtml_create) () | Creates an [OH_UdsHtml](#oh_udshtml) instance and a pointer to it. |
-| void [OH_UdsHtml_Destroy](#oh_udshtml_destroy) ([OH_UdsHtml](#oh_udshtml) \*pThis) | Destroys an [OH_UdsHtml](#oh_udshtml) instance. |
-| const char \* [OH_UdsHtml_GetType](#oh_udshtml_gettype) ([OH_UdsHtml](#oh_udshtml) \*pThis) | Obtains the type ID from an [OH_UdsHtml](#oh_udshtml) instance. |
-| const char \* [OH_UdsHtml_GetContent](#oh_udshtml_getcontent) ([OH_UdsHtml](#oh_udshtml) \*pThis) | Obtains the HTML content from an [OH_UdsHtml](#oh_udshtml) instance. |
-| const char \* [OH_UdsHtml_GetPlainContent](#oh_udshtml_getplaincontent) ([OH_UdsHtml](#oh_udshtml) \*pThis) | Obtains the plaintext from an [OH_UdsHtml](#oh_udshtml) instance. |
-| int [OH_UdsHtml_SetContent](#oh_udshtml_setcontent) ([OH_UdsHtml](#oh_udshtml) \*pThis, const char \*content) | Sets the HTML content for an [OH_UdsHtml](#oh_udshtml) instance. |
-| int [OH_UdsHtml_SetPlainContent](#oh_udshtml_setplaincontent) ([OH_UdsHtml](#oh_udshtml) \*pThis, const char \*plainContent) | Sets the plaintext for an [OH_UdsHtml](#oh_udshtml) instance. |
-| [OH_UdsAppItem](#oh_udsappitem) \* [OH_UdsAppItem_Create](#oh_udsappitem_create) () | Creates an [OH_UdsAppItem](#oh_udsappitem) instance and a pointer to it. |
-| void [OH_UdsAppItem_Destroy](#oh_udsappitem_destroy) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Destroys an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| const char \* [OH_UdsAppItem_GetType](#oh_udsappitem_gettype) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the type ID from an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| const char \* [OH_UdsAppItem_GetId](#oh_udsappitem_getid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the application ID from an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| const char \* [OH_UdsAppItem_GetName](#oh_udsappitem_getname) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the application name from an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| const char \* [OH_UdsAppItem_GetIconId](#oh_udsappitem_geticonid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the application icon ID from an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| const char \* [OH_UdsAppItem_GetLabelId](#oh_udsappitem_getlabelid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the application label ID from an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| const char \* [OH_UdsAppItem_GetBundleName](#oh_udsappitem_getbundlename) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the bundle name from an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| const char \* [OH_UdsAppItem_GetAbilityName](#oh_udsappitem_getabilityname) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtain the ability name from an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| int [OH_UdsAppItem_SetId](#oh_udsappitem_setid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*appId) | Sets the application ID for an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| int [OH_UdsAppItem_SetName](#oh_udsappitem_setname) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*appName) | Sets the application name for an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| int [OH_UdsAppItem_SetIconId](#oh_udsappitem_seticonid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*appIconId) | Sets the application icon ID for an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| int [OH_UdsAppItem_SetLabelId](#oh_udsappitem_setlabelid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*appLabelId) | Sets the application label ID for an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| int [OH_UdsAppItem_SetBundleName](#oh_udsappitem_setbundlename) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*bundleName) | Sets the bundle name for an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| int [OH_UdsAppItem_SetAbilityName](#oh_udsappitem_setabilityname) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*abilityName) | Sets the ability name for an [OH_UdsAppItem](#oh_udsappitem) instance. |
-| [OH_Utd](#oh_utd) \* [OH_Utd_Create](#oh_utd_create) (const char \*typeId) | Creates an [OH_Utd](#oh_utd) instance and a pointer to it. |
-| void [OH_Utd_Destroy](#oh_utd_destroy) ([OH_Utd](#oh_utd) \*pThis) | Destroys an [OH_Utd](#oh_utd) instance. |
-| const char \* [OH_Utd_GetTypeId](#oh_utd_gettypeid) ([OH_Utd](#oh_utd) \*pThis) | Obtains the type ID from an [OH_Utd](#oh_utd) instance. |
-| const char \* [OH_Utd_GetDescription](#oh_utd_getdescription) ([OH_Utd](#oh_utd) \*pThis) | Obtains the description from an [OH_Utd](#oh_utd) instance. |
-| const char \* [OH_Utd_GetReferenceUrl](#oh_utd_getreferenceurl) ([OH_Utd](#oh_utd) \*pThis) | Obtains the URL from an [OH_Utd](#oh_utd) instance. |
-| const char \* [OH_Utd_GetIconFile](#oh_utd_geticonfile) ([OH_Utd](#oh_utd) \*pThis) | Obtains the path of the default icon file from an [OH_Utd](#oh_utd) instance. |
-| const char \*\* [OH_Utd_GetBelongingToTypes](#oh_utd_getbelongingtotypes) ([OH_Utd](#oh_utd) \*pThis, unsigned int \*count) | Obtains the relationships between the data in an [OH_Utd](#oh_utd) instance. |
-| const char \*\* [OH_Utd_GetFilenameExtensions](#oh_utd_getfilenameextensions) ([OH_Utd](#oh_utd) \*pThis, unsigned int \*count) | Obtains the file name extensions associated with an [OH_Utd](#oh_utd) instance. |
-| const char \*\* [OH_Utd_GetMimeTypes](#oh_utd_getmimetypes) ([OH_Utd](#oh_utd) \*pThis, unsigned int \*count) | Obtains the MIME types associated with an [OH_Utd](#oh_utd) instance. |
-| const char \*\* [OH_Utd_GetTypesByFilenameExtension](#oh_utd_gettypesbyfilenameextension) (const char \*extension, unsigned int \*count) | Obtains the uniform data types based on the file name extensions. |
-| const char \*\* [OH_Utd_GetTypesByMimeType](#oh_utd_gettypesbymimetype) (const char \*mimeType, unsigned int \*count) | Obtains the uniform data types based on the MIME types. |
-| bool [OH_Utd_BelongsTo](#oh_utd_belongsto) (const char \*srcTypeId, const char \*destTypeId) | Checks whether a UTD belongs to the target UTD. |
-| bool [OH_Utd_IsLower](#oh_utd_islower) (const char \*srcTypeId, const char \*destTypeId) | Checks whether a UTD is a lower-level type of the target UTD. For example, **TYPE_SCRIPT** is a lower-level type of **SOURCE_CODE**, and **TYPE_SCRIPT** and **SOURCE_CODE** are lower-level types of **PLAIN_TEXT**. |
-| bool [OH_Utd_IsHigher](#oh_utd_ishigher) (const char \*srcTypeId, const char \*destTypeId) | Checks whether a UTD is a higher-level type of the target UTD. For example, **SOURCE_CODE** is a higher-level type of **TYPE_SCRIPT**, and **PLAIN_TEXT** is a higher-level type of **SOURCE_CODE** and **TYPE_SCRIPT**. |
-| bool [OH_Utd_Equals](#oh_utd_equals) ([OH_Utd](#oh_utd) \*utd1, [OH_Utd](#oh_utd) \*utd2) | Checks whether two UTDs are the same. |
-| void [OH_Utd_DestroyStringList](#oh_utd_destroystringlist) (const char \*\*list, unsigned int count) | Destroys a UTD string list. |
+| [OH_UdmfData](#oh_udmfdata) \* [OH_UdmfData_Create](#oh_udmfdata_create) () | Creates an [OH_UdmfData](#oh_udmfdata) instance and a pointer to it. If this pointer is no longer required, use [OH_UdmfData_Destroy](#oh_udmfdata_destroy) to destroy it. Otherwise, memory leaks may occur.|
+| void [OH_UdmfData_Destroy](#oh_udmfdata_destroy) ([OH_UdmfData](#oh_udmfdata) \*pThis) | Destroys an [OH_UdmfData](#oh_udmfdata) instance.|
+| int [OH_UdmfData_AddRecord](#oh_udmfdata_addrecord) ([OH_UdmfData](#oh_udmfdata) \*pThis, [OH_UdmfRecord](#oh_udmfrecord) \*record) | Adds an [OH_UdmfRecord](#oh_udmfrecord) to an [OH_UdmfData](#oh_udmfdata) instance.|
+| bool [OH_UdmfData_HasType](#oh_udmfdata_hastype) ([OH_UdmfData](#oh_udmfdata) \*pThis, const char \*type) | Checks whether the specified type exists in an [OH_UdmfData](#oh_udmfdata) instance.|
+| char \*\* [OH_UdmfData_GetTypes](#oh_udmfdata_gettypes) ([OH_UdmfData](#oh_udmfdata) \*pThis, unsigned int \*count) | Obtains all data types in an [OH_UdmfData](#oh_udmfdata) instance.|
+| [OH_UdmfRecord](#oh_udmfrecord) \*\* [OH_UdmfData_GetRecords](#oh_udmfdata_getrecords) ([OH_UdmfData](#oh_udmfdata) \*pThis, unsigned int \*count) | Obtains all records contained in an [OH_UdmfData](#oh_udmfdata) instance.|
+| [OH_UdmfRecordProvider](#oh_udmfrecordprovider) \* [OH_UdmfRecordProvider_Create](#oh_udmfrecordprovider_create) () | Creates an [OH_UdmfRecordProvider](#oh_udmfrecordprovider) instance and a pointer to it. If this pointer is no longer required, use [OH_UdmfRecordProvider_Destroy](#oh_udmfrecordprovider_destroy) to destroy it. Otherwise, memory leaks may occur.|
+| int [OH_UdmfRecordProvider_Destroy](#oh_udmfrecordprovider_destroy) ([OH_UdmfRecordProvider](#oh_udmfrecordprovider) \*provider) | Destroys an [OH_UdmfRecordProvider](#oh_udmfrecordprovider) instance.|
+| int [OH_UdmfRecordProvider_SetData](#oh_udmfrecordprovider_setdata) ([OH_UdmfRecordProvider](#oh_udmfrecordprovider) \*provider, void \*context, const [OH_UdmfRecordProvider_GetData](#oh_udmfrecordprovider_getdata) callback, const [UdmfData_Finalize](#udmfdata_finalize) finalize) | Sets a callback for an **OH_UdmfRecordProvider** instance to provide data.|
+| [OH_UdmfRecord](#oh_udmfrecord) \* [OH_UdmfRecord_Create](#oh_udmfrecord_create) () | Creates an [OH_UdmfRecord](#oh_udmfrecord) instance and a pointer to it. If this pointer is no longer required, use [OH_UdmfRecord_Destroy](#oh_udmfrecord_destroy) to destroy it. Otherwise, memory leaks may occur.|
+| void [OH_UdmfRecord_Destroy](#oh_udmfrecord_destroy) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis) | Destroys an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_AddGeneralEntry](#oh_udmfrecord_addgeneralentry) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*typeId, unsigned char \*entry, unsigned int count) | Adds customized uniform data to an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_AddPlainText](#oh_udmfrecord_addplaintext) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | Adds data of the [OH_UdsPlainText](#oh_udsplaintext) type to an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_AddHyperlink](#oh_udmfrecord_addhyperlink) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHyperlink](#oh_udshyperlink) \*hyperlink) | Adds data of the hyperlink type [OH_UdsHyperlink](#oh_udshyperlink) type to an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_AddHtml](#oh_udmfrecord_addhtml) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHtml](#oh_udshtml) \*html) | Adds data of the [OH_UdsHtml](#oh_udshtml) type to an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_AddAppItem](#oh_udmfrecord_addappitem) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsAppItem](#oh_udsappitem) \*appItem) | Adds data of the [OH_UdsAppItem](#oh_udsappitem) type to an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_AddFileUri](#oh_udmfrecord_addfileuri) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsFileUri](#oh_udsfileuri) \*fileUri) | Adds a data record of the [OH_UdsFileUri](#oh_udsfileuri) type to an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_AddPixelMap](#oh_udmfrecord_addpixelmap) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPixelMap](#oh_udspixelmap) \*pixelMap) | Adds a data record of the [OH_UdsPixelMap](#oh_udspixelmap) type to an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_AddArrayBuffer](#oh_udmfrecord_addarraybuffer) ([OH_UdmfRecord](#oh_udmfrecord) \*record, const char \*type, [OH_UdsArrayBuffer](#oh_udsarraybuffer) \*buffer) | Adds a data record of the [OH_UdsArrayBuffer](#oh_udsarraybuffer) type to an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| char \*\* [OH_UdmfRecord_GetTypes](#oh_udmfrecord_gettypes) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, unsigned int \*count) | Obtains all data types in an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_GetGeneralEntry](#oh_udmfrecord_getgeneralentry) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*typeId, unsigned char \*\*entry, unsigned int \*count) | Obtains the data of the specified type in an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_GetPlainText](#oh_udmfrecord_getplaintext) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | Obtains [OH_UdsPlainText](#oh_udsplaintext) data from an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_GetHyperlink](#oh_udmfrecord_gethyperlink) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHyperlink](#oh_udshyperlink) \*hyperlink) | Obtains [OH_UdsHyperlink](#oh_udshyperlink) data from an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_GetHtml](#oh_udmfrecord_gethtml) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHtml](#oh_udshtml) \*html) | Obtains [OH_UdsHtml](#oh_udshtml) data from an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_GetAppItem](#oh_udmfrecord_getappitem) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsAppItem](#oh_udsappitem) \*appItem) | Obtains [OH_UdsAppItem](#oh_udsappitem) data from an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_SetProvider](#oh_udmfrecord_setprovider) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*const \*types, unsigned int count, [OH_UdmfRecordProvider](#oh_udmfrecordprovider) \*provider) | Sets the [OH_UdmfRecordProvider](#oh_udmfrecordprovider) in an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_GetFileUri](#oh_udmfrecord_getfileuri) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsFileUri](#oh_udsfileuri) \*fileUri) | Obtains the [OH_UdsFileUri](#oh_udsfileuri) data from an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_GetPixelMap](#oh_udmfrecord_getpixelmap) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPixelMap](#oh_udspixelmap) \*pixelMap) | Obtains the [OH_UdsPixelMap](#oh_udspixelmap) data from an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfRecord_GetArrayBuffer](#oh_udmfrecord_getarraybuffer) ([OH_UdmfRecord](#oh_udmfrecord) \*record, const char \*type, [OH_UdsArrayBuffer](#oh_udsarraybuffer) \*buffer) | Obtains the [OH_UdsArrayBuffer](#oh_udsarraybuffer) data from an [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| int [OH_UdmfData_GetPrimaryPlainText](#oh_udmfdata_getprimaryplaintext) ([OH_UdmfData](#oh_udmfdata) \*data, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | Obtains the first [OH_UdsPlainText](#oh_udsplaintext) data from an [OH_UdmfData](#oh_udmfdata) instance.|
+| int [OH_UdmfData_GetPrimaryHtml](#oh_udmfdata_getprimaryhtml) ([OH_UdmfData](#oh_udmfdata) \*data, [OH_UdsHtml](#oh_udshtml) \*html) | Obtains the first [OH_UdsHtml](#oh_udshtml) data from an [OH_UdmfData](#oh_udmfdata) instance.|
+| int [OH_UdmfData_GetRecordCount](#oh_udmfdata_getrecordcount) ([OH_UdmfData](#oh_udmfdata) \*data) | Obtains the number of data records contained in an [OH_UdmfData](#oh_udmfdata) instance.|
+| [OH_UdmfRecord](#oh_udmfrecord) \* [OH_UdmfData_GetRecord](#oh_udmfdata_getrecord) ([OH_UdmfData](#oh_udmfdata) \*data, unsigned int index) | Obtains the specified data record from an [OH_UdmfData](#oh_udmfdata) instance. |
+| bool [OH_UdmfData_IsLocal](#oh_udmfdata_islocal) ([OH_UdmfData](#oh_udmfdata) \*data) | Checks whether an [OH_UdmfData](#oh_udmfdata) instance is from the local device.|
+| [OH_UdmfProperty](#oh_udmfproperty) \* [OH_UdmfProperty_Create](#oh_udmfproperty_create) ([OH_UdmfData](#oh_udmfdata) \*unifiedData) | Creates an [OH_UdmfProperty](#oh_udmfproperty) instance and a pointer to it. If this pointer is no longer required, use [OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy) to destroy it. Otherwise, memory leaks may occur.|
+| void [OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | Destroys an [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| const char \* [OH_UdmfProperty_GetTag](#oh_udmfproperty_gettag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | Obtains the custom tag value from an [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| int64_t [OH_UdmfProperty_GetTimestamp](#oh_udmfproperty_gettimestamp) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | Obtains the timestamp from an [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| [Udmf_ShareOption](#udmf_shareoption)[OH_UdmfProperty_GetShareOption](#oh_udmfproperty_getshareoption) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | Obtains the share option from an [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| int [OH_UdmfProperty_GetExtrasIntParam](#oh_udmfproperty_getextrasintparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key, int defaultValue) | Obtains the customized extra integer parameter from an [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| const char \* [OH_UdmfProperty_GetExtrasStringParam](#oh_udmfproperty_getextrasstringparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key) | Obtains the customized extra string parameter from an [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| int [OH_UdmfProperty_SetTag](#oh_udmfproperty_settag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*tag) | Sets the tag value for an [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| int [OH_UdmfProperty_SetShareOption](#oh_udmfproperty_setshareoption) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, [Udmf_ShareOption](#udmf_shareoption) option) | Sets the share option for an [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| int [OH_UdmfProperty_SetExtrasIntParam](#oh_udmfproperty_setextrasintparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key, int param) | Sets the extra integer parameter for an [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| int [OH_UdmfProperty_SetExtrasStringParam](#oh_udmfproperty_setextrasstringparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key, const char \*param) | Sets the extra string parameter for an [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| int [OH_Udmf_GetUnifiedData](#oh_udmf_getunifieddata) (const char \*key, [Udmf_Intention](#udmf_intention) intention, [OH_UdmfData](#oh_udmfdata) \*unifiedData) | Obtains an [OH_UdmfData](#oh_udmfdata) instance from the UDMF database.|
+| int [OH_Udmf_SetUnifiedData](#oh_udmf_setunifieddata) ([Udmf_Intention](#udmf_intention) intention, [OH_UdmfData](#oh_udmfdata) \*unifiedData, char \*key, unsigned int keyLen) | Sets an [OH_UdmfData](#oh_udmfdata) instance in the UDMF database.|
+| [OH_UdsPlainText](#oh_udsplaintext) \* [OH_UdsPlainText_Create](#oh_udsplaintext_create) () | Creates an [OH_UdsPlainText](#oh_udsplaintext) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsPlainText_Destroy](#oh_udsplaintext_destroy) to destroy it. Otherwise, memory leaks may occur.|
+| void [OH_UdsPlainText_Destroy](#oh_udsplaintext_destroy) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | Destroys an [OH_UdsPlainText](#oh_udsplaintext) instance.|
+| const char \* [OH_UdsPlainText_GetType](#oh_udsplaintext_gettype) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | Obtains the type ID from an [OH_UdsPlainText](#oh_udsplaintext) instance.|
+| const char \* [OH_UdsPlainText_GetContent](#oh_udsplaintext_getcontent) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | Obtains the plaintext from an [OH_UdsPlainText](#oh_udsplaintext) instance.|
+| const char \* [OH_UdsPlainText_GetAbstract](#oh_udsplaintext_getabstract) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | Obtains the abstract from an [OH_UdsPlainText](#oh_udsplaintext) instance.|
+| int [OH_UdsPlainText_SetContent](#oh_udsplaintext_setcontent) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis, const char \*content) | Sets the plaintext for an [OH_UdsPlainText](#oh_udsplaintext) instance.|
+| int [OH_UdsPlainText_SetAbstract](#oh_udsplaintext_setabstract) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis, const char \*abstract) | Sets the abstract for an [OH_UdsPlainText](#oh_udsplaintext) instance.|
+| [OH_UdsHyperlink](#oh_udshyperlink) \* [OH_UdsHyperlink_Create](#oh_udshyperlink_create) () | Creates an [OH_UdsHyperlink](#oh_udshyperlink) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsHyperlink_Destroy](#oh_udshyperlink_destroy) to destroy it. Otherwise, memory leaks may occur.|
+| void [OH_UdsHyperlink_Destroy](#oh_udshyperlink_destroy) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | Destroys an [OH_UdsHyperlink](#oh_udshyperlink) instance.|
+| const char \* [OH_UdsHyperlink_GetType](#oh_udshyperlink_gettype) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | Obtains the type ID from an [OH_UdsHyperlink](#oh_udshyperlink) instance.|
+| const char \* [OH_UdsHyperlink_GetUrl](#oh_udshyperlink_geturl) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | Obtains the URL from an [OH_UdsHyperlink](#oh_udshyperlink) instance.|
+| const char \* [OH_UdsHyperlink_GetDescription](#oh_udshyperlink_getdescription) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | Obtains the description from an [OH_UdsHyperlink](#oh_udshyperlink) instance.|
+| int [OH_UdsHyperlink_SetUrl](#oh_udshyperlink_seturl) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis, const char \*url) | Sets the URL for an [OH_UdsHyperlink](#oh_udshyperlink) instance.|
+| int [OH_UdsHyperlink_SetDescription](#oh_udshyperlink_setdescription) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis, const char \*description) | Sets the description for an [OH_UdsHyperlink](#oh_udshyperlink) instance.|
+| [OH_UdsHtml](#oh_udshtml) \* [OH_UdsHtml_Create](#oh_udshtml_create) () | Creates an [OH_UdsHtml](#oh_udshtml) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsHtml_Destroy](#oh_udshtml_destroy) to destroy it. Otherwise, memory leaks may occur.|
+| void [OH_UdsHtml_Destroy](#oh_udshtml_destroy) ([OH_UdsHtml](#oh_udshtml) \*pThis) | Destroys an [OH_UdsHtml](#oh_udshtml) instance.|
+| const char \* [OH_UdsHtml_GetType](#oh_udshtml_gettype) ([OH_UdsHtml](#oh_udshtml) \*pThis) | Obtains the type ID from an [OH_UdsHtml](#oh_udshtml) instance.|
+| const char \* [OH_UdsHtml_GetContent](#oh_udshtml_getcontent) ([OH_UdsHtml](#oh_udshtml) \*pThis) | Obtains the HTML content from an [OH_UdsHtml](#oh_udshtml) instance.|
+| const char \* [OH_UdsHtml_GetPlainContent](#oh_udshtml_getplaincontent) ([OH_UdsHtml](#oh_udshtml) \*pThis) | Obtains the plaintext from an [OH_UdsHtml](#oh_udshtml) instance.|
+| int [OH_UdsHtml_SetContent](#oh_udshtml_setcontent) ([OH_UdsHtml](#oh_udshtml) \*pThis, const char \*content) | Sets the HTML content for an [OH_UdsHtml](#oh_udshtml) instance.|
+| int [OH_UdsHtml_SetPlainContent](#oh_udshtml_setplaincontent) ([OH_UdsHtml](#oh_udshtml) \*pThis, const char \*plainContent) | Sets the plaintext for an [OH_UdsHtml](#oh_udshtml) instance.|
+| [OH_UdsAppItem](#oh_udsappitem) \* [OH_UdsAppItem_Create](#oh_udsappitem_create) () | Creates an [OH_UdsAppItem](#oh_udsappitem) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsAppItem_Destroy](#oh_udsappitem_destroy) to destroy it. Otherwise, memory leaks may occur.|
+| void [OH_UdsAppItem_Destroy](#oh_udsappitem_destroy) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Destroys an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| const char \* [OH_UdsAppItem_GetType](#oh_udsappitem_gettype) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the type ID from an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| const char \* [OH_UdsAppItem_GetId](#oh_udsappitem_getid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the application ID from an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| const char \* [OH_UdsAppItem_GetName](#oh_udsappitem_getname) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the application name from an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| const char \* [OH_UdsAppItem_GetIconId](#oh_udsappitem_geticonid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the application icon ID from an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| const char \* [OH_UdsAppItem_GetLabelId](#oh_udsappitem_getlabelid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the application label ID from an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| const char \* [OH_UdsAppItem_GetBundleName](#oh_udsappitem_getbundlename) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the bundle name from an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| const char \* [OH_UdsAppItem_GetAbilityName](#oh_udsappitem_getabilityname) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | Obtains the ability name from an [OH_UdsAppItem](#oh_udsappitem) instance. |
+| int [OH_UdsAppItem_SetId](#oh_udsappitem_setid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*appId) | Sets the application ID for an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| int [OH_UdsAppItem_SetName](#oh_udsappitem_setname) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*appName) | Sets the application name for an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| int [OH_UdsAppItem_SetIconId](#oh_udsappitem_seticonid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*appIconId) | Sets the application icon ID for an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| int [OH_UdsAppItem_SetLabelId](#oh_udsappitem_setlabelid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*appLabelId) | Sets the application label ID for an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| int [OH_UdsAppItem_SetBundleName](#oh_udsappitem_setbundlename) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*bundleName) | Sets the bundle name for an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| int [OH_UdsAppItem_SetAbilityName](#oh_udsappitem_setabilityname) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*abilityName) | Sets the ability name for an [OH_UdsAppItem](#oh_udsappitem) instance.|
+| [OH_UdsFileUri](#oh_udsfileuri) \* [OH_UdsFileUri_Create](#oh_udsfileuri_create) () | Creates an [OH_UdsFileUri](#oh_udsfileuri) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsFileUri_Destroy](#oh_udsfileuri_destroy) to destroy it. Otherwise, memory leaks may occur.|
+| void [OH_UdsFileUri_Destroy](#oh_udsfileuri_destroy) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis) | Destroys an [OH_UdsFileUri](#oh_udsfileuri) instance.|
+| const char \* [OH_UdsFileUri_GetType](#oh_udsfileuri_gettype) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis) | Obtains the type ID from an [OH_UdsFileUri](#oh_udsfileuri) instance.|
+| const char \* [OH_UdsFileUri_GetFileUri](#oh_udsfileuri_getfileuri) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis) | Obtains the file URI from an [OH_UdsFileUri](#oh_udsfileuri) instance.|
+| const char \* [OH_UdsFileUri_GetFileType](#oh_udsfileuri_getfiletype) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis) | Obtains the file type from an [OH_UdsFileUri](#oh_udsfileuri) instance.|
+| int [OH_UdsFileUri_SetFileUri](#oh_udsfileuri_setfileuri) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis, const char \*fileUri) | Sets the URI information for an [OH_UdsFileUri](#oh_udsfileuri) instance.|
+| int [OH_UdsFileUri_SetFileType](#oh_udsfileuri_setfiletype) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis, const char \*fileType) | Sets the file type for an [OH_UdsFileUri](#oh_udsfileuri) instance.|
+| [OH_UdsPixelMap](#oh_udspixelmap) \* [OH_UdsPixelMap_Create](#oh_udspixelmap_create) () | Creates an [OH_UdsPixelMap](#oh_udspixelmap) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsPixelMap_Destroy](#oh_udspixelmap_destroy) to destroy it. Otherwise, memory leaks may occur.|
+| void [OH_UdsPixelMap_Destroy](#oh_udspixelmap_destroy) ([OH_UdsPixelMap](#oh_udspixelmap) \*pThis) | Destroys an [OH_UdsPixelMap](#oh_udspixelmap) instance.|
+| const char \* [OH_UdsPixelMap_GetType](#oh_udspixelmap_gettype) ([OH_UdsPixelMap](#oh_udspixelmap) \*pThis) | Obtains the type ID from an [OH_UdsPixelMap](#oh_udspixelmap) instance.|
+| void [OH_UdsPixelMap_GetPixelMap](#oh_udspixelmap_getpixelmap) ([OH_UdsPixelMap](#oh_udspixelmap) \*pThis, OH_PixelmapNative \*pixelmapNative) | Obtains the pointer to the **OH_PixelmapNative** instance from an [OH_UdsPixelMap](#oh_udspixelmap) instance.|
+| int [OH_UdsPixelMap_SetPixelMap](#oh_udspixelmap_setpixelmap) ([OH_UdsPixelMap](#oh_udspixelmap) \*pThis, OH_PixelmapNative \*pixelmapNative) | Sets the pixel map content for an [OH_UdsPixelMap](#oh_udspixelmap) instance.|
+| [OH_UdsArrayBuffer](#oh_udsarraybuffer) \* [OH_UdsArrayBuffer_Create](#oh_udsarraybuffer_create) () | Creates an [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsArrayBuffer_Destroy](#oh_udsarraybuffer_destroy) to destroy it. Otherwise, memory leaks may occur.|
+| int [OH_UdsArrayBuffer_Destroy](#oh_udsarraybuffer_destroy) ([OH_UdsArrayBuffer](#oh_udsarraybuffer) \*buffer) | Destroys an [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance.|
+| int [OH_UdsArrayBuffer_SetData](#oh_udsarraybuffer_setdata) ([OH_UdsArrayBuffer](#oh_udsarraybuffer) \*buffer, unsigned char \*data, unsigned int len) | Sets an [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance.|
+| int [OH_UdsArrayBuffer_GetData](#oh_udsarraybuffer_getdata) ([OH_UdsArrayBuffer](#oh_udsarraybuffer) \*buffer, unsigned char \*\*data, unsigned int \*len) | Obtains the custom ArrayBuffer data from an [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance.|
+| [OH_Utd](#oh_utd) \* [OH_Utd_Create](#oh_utd_create) (const char \*typeId) | Creates an [OH_Utd](#oh_utd) instance and a pointer to it.|
+| void [OH_Utd_Destroy](#oh_utd_destroy) ([OH_Utd](#oh_utd) \*pThis) | Destroys an [OH_Utd](#oh_utd) instance.|
+| const char \* [OH_Utd_GetTypeId](#oh_utd_gettypeid) ([OH_Utd](#oh_utd) \*pThis) | Obtains the type ID from an [OH_Utd](#oh_utd) instance.|
+| const char \* [OH_Utd_GetDescription](#oh_utd_getdescription) ([OH_Utd](#oh_utd) \*pThis) | Obtains the description from an [OH_Utd](#oh_utd) instance.|
+| const char \* [OH_Utd_GetReferenceUrl](#oh_utd_getreferenceurl) ([OH_Utd](#oh_utd) \*pThis) | Obtains the URL from an [OH_Utd](#oh_utd) instance.|
+| const char \* [OH_Utd_GetIconFile](#oh_utd_geticonfile) ([OH_Utd](#oh_utd) \*pThis) | Obtains the path of the default icon file from an [OH_Utd](#oh_utd) instance.|
+| const char \*\* [OH_Utd_GetBelongingToTypes](#oh_utd_getbelongingtotypes) ([OH_Utd](#oh_utd) \*pThis, unsigned int \*count) | Obtains the relationships between the data in an [OH_Utd](#oh_utd) instance.|
+| const char \*\* [OH_Utd_GetFilenameExtensions](#oh_utd_getfilenameextensions) ([OH_Utd](#oh_utd) \*pThis, unsigned int \*count) | Obtains the file name extensions associated with an [OH_Utd](#oh_utd) instance.|
+| const char \*\* [OH_Utd_GetMimeTypes](#oh_utd_getmimetypes) ([OH_Utd](#oh_utd) \*pThis, unsigned int \*count) | Obtains the MIME types associated with an [OH_Utd](#oh_utd) instance.|
+| const char \*\* [OH_Utd_GetTypesByFilenameExtension](#oh_utd_gettypesbyfilenameextension) (const char \*extension, unsigned int \*count) | Obtains the uniform data types based on the file name extensions.|
+| const char \*\* [OH_Utd_GetTypesByMimeType](#oh_utd_gettypesbymimetype) (const char \*mimeType, unsigned int \*count) | Obtains the uniform data types based on the MIME types.|
+| bool [OH_Utd_BelongsTo](#oh_utd_belongsto) (const char \*srcTypeId, const char \*destTypeId) | Checks whether a UTD belongs to the target UTD.|
+| bool [OH_Utd_IsLower](#oh_utd_islower) (const char \*srcTypeId, const char \*destTypeId) | Checks whether a UTD is a lower-level type of the target UTD. For example, **TYPE_SCRIPT** is a lower-level type of **SOURCE_CODE**, and **TYPE_SCRIPT** and **SOURCE_CODE** are lower-level types of **PLAIN_TEXT**.|
+| bool [OH_Utd_IsHigher](#oh_utd_ishigher) (const char \*srcTypeId, const char \*destTypeId) | Checks whether a UTD is a higher-level type of the target UTD. For example, **SOURCE_CODE** is a higher-level type of **TYPE_SCRIPT**, and **PLAIN_TEXT** is a higher-level type of **SOURCE_CODE** and **TYPE_SCRIPT**.|
+| bool [OH_Utd_Equals](#oh_utd_equals) ([OH_Utd](#oh_utd) \*utd1, [OH_Utd](#oh_utd) \*utd2) | Checks whether two UTDs are the same.|
+| void [OH_Utd_DestroyStringList](#oh_utd_destroystringlist) (const char \*\*list, unsigned int count) | Destroys a UTD string list.|
 
 
 ## Macro Description
@@ -777,6 +815,19 @@ Indicates the generic font type, which belongs to **OBJECT**.
 Indicates the generic file type, which belongs to **ENTITY**.
 
 **Since**: 12
+
+
+### UDMF_META_GENERAL_FILE_URI
+
+```
+#define UDMF_META_GENERAL_FILE_URI   "general.file-uri"
+```
+
+**Description**
+
+Indicates the file address type, which belongs to **TEXT**.
+
+**Since**: 13
 
 
 ### UDMF_META_GNU_TAR_ARCHIVE
@@ -2095,6 +2146,43 @@ Defines a struct for a data record in a uniform data object.
 **Since**: 12
 
 
+### OH_UdmfRecordProvider
+
+```
+typedef struct OH_UdmfRecordProvider OH_UdmfRecordProvider
+```
+
+**Description**
+
+Represents the data record provider in a uniform data object.
+
+**Since**: 13
+
+
+### OH_UdmfRecordProvider_GetData
+
+```
+typedef void*(* OH_UdmfRecordProvider_GetData) (void *context, const char *type)
+```
+
+**Description**
+
+Defines a callback function used to obtain data by type. This callback will be invoked to return the data obtained from **OH_UdmfRecord**.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| context | Pointer to the context set by [OH_UdmfRecordProvider_SetData](#oh_udmfrecordprovider_setdata).|
+| type | Pointer to the type of the data to obtain. For details, see [udmf_meta.h](udmf__meta_8h.md).|
+
+**Returns**
+
+Uniform data obtained.
+
+
 ### OH_UdsAppItem
 
 ```
@@ -2106,6 +2194,32 @@ typedef struct OH_UdsAppItem OH_UdsAppItem
 Defines a struct for the uniform data of the home screen icon type.
 
 **Since**: 12
+
+
+### OH_UdsArrayBuffer
+
+```
+typedef struct OH_UdsArrayBuffer OH_UdsArrayBuffer
+```
+
+**Description**
+
+Defines a struct for the ArrayBuffer type.
+
+**Since**: 13
+
+
+### OH_UdsFileUri
+
+```
+typedef struct OH_UdsFileUri OH_UdsFileUri
+```
+
+**Description**
+
+Defines a struct for the file URI type.
+
+**Since**: 13
 
 
 ### OH_UdsHtml
@@ -2132,6 +2246,19 @@ typedef struct OH_UdsHyperlink OH_UdsHyperlink
 Defines a struct for the uniform data of the hyperlink type.
 
 **Since**: 12
+
+
+### OH_UdsPixelMap
+
+```
+typedef struct OH_UdsPixelMap OH_UdsPixelMap
+```
+
+**Description**
+
+Defines a struct for the pixel map type.
+
+**Since**: 13
 
 
 ### OH_UdsPlainText
@@ -2194,9 +2321,28 @@ typedef enum Udmf_ShareOption Udmf_ShareOption
 
 **Description**
 
-Define an enum for the options for using **UnifiedData** in a device.
+Defines an enum for the scopes of the uniform data to be used on a device.
 
 **Since**: 12
+
+
+### UdmfData_Finalize
+
+```
+typedef void(* UdmfData_Finalize) (void *context)
+```
+
+**Description**
+
+Defines a callback function used to release the context. This callback is invoked when the **OH_UdmfRecordProvider** instance is destroyed.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| context | Pointer to the context to release.|
 
 
 ## Enum Description
@@ -2214,11 +2360,11 @@ Enumerates the error codes.
 
 **Since**: 12
 
-| Value | Description |
+| Value| Description|
 | -------- | -------- |
-| UDMF_E_OK | The operation is successful. |
-| UDMF_ERR | Common error. |
-| UDMF_E_INVALID_PARAM | Invalid parameter. |
+| UDMF_E_OK | The operation is successful.|
+| UDMF_ERR | Common error.|
+| UDMF_E_INVALID_PARAM | Invalid parameter.|
 
 
 ### Udmf_Intention
@@ -2233,10 +2379,10 @@ Enumerates the UDMF data channel types.
 
 **Since**: 12
 
-| Value | Description |
+| Value| Description|
 | -------- | -------- |
-| UDMF_INTENTION_DRAG | Channel for dragging data. |
-| UDMF_INTENTION_PASTEBOARD | Channel for clipboard data. |
+| UDMF_INTENTION_DRAG | Channel for dragging data.|
+| UDMF_INTENTION_PASTEBOARD | Channel for clipboard data.|
 
 
 ### Udmf_ShareOption
@@ -2247,15 +2393,15 @@ enum Udmf_ShareOption
 
 **Description**
 
-Enumerates the options for using the uniform data in a device.
+Enumerates the scopes of the uniform data to be used on a device.
 
 **Since**: 12
 
-| Value | Description |
+| Value| Description|
 | -------- | -------- |
-| SHARE_OPTIONS_INVALID | Invalid use. |
-| SHARE_OPTIONS_IN_APP | Use the uniform data only in the same application of a device. |
-| SHARE_OPTIONS_CROSS_APP | Use the uniform data across applications of a device. |
+| SHARE_OPTIONS_INVALID | Invalid use.|
+| SHARE_OPTIONS_IN_APP | Use the uniform data only in the same application of a device.|
+| SHARE_OPTIONS_CROSS_APP | Use the uniform data across applications of a device.|
 
 
 ## Function Description
@@ -2264,7 +2410,7 @@ Enumerates the options for using the uniform data in a device.
 ### OH_Udmf_GetUnifiedData()
 
 ```
-int OH_Udmf_GetUnifiedData (const char * key, Udmf_Intention intention, OH_UdmfData * unifiedData )
+int OH_Udmf_GetUnifiedData (const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData )
 ```
 
 **Description**
@@ -2275,19 +2421,19 @@ Obtains an [OH_UdmfData](#oh_udmfdata) instance from the UDMF database.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| key | Pointer to the identifier of the data in the database. |
-| intention | Type of the data channel. For details, see [Udmf_Intent](#udmf_intention). |
-| unifiedData | Pointer to the [OH_UdmfData](#oh_udmfdata) obtained. |
+| key | Pointer to the identifier of the data in the database.|
+| intention | Type of the data channel. For details, see [Udmf_Intent]( #udmf_intention).|
+| unifiedData | Pointer to the [OH_UdmfData](#oh_udmfdata) obtained.|
 
 **Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
 
 Returns **UDMF_E_OK** if the operation is successful. 
 
 Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
 
 **See**
 
@@ -2301,7 +2447,7 @@ Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errc
 ### OH_Udmf_SetUnifiedData()
 
 ```
-int OH_Udmf_SetUnifiedData (Udmf_Intention intention, OH_UdmfData * unifiedData, char * key, unsigned int keyLen )
+int OH_Udmf_SetUnifiedData (Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen )
 ```
 
 **Description**
@@ -2312,20 +2458,20 @@ Sets an [OH_UdmfData](#oh_udmfdata) instance in the UDMF database.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| intention | Type of the data channel. For details, see [Udmf_Intent](#udmf_intention). |
-| unifiedData | Pointer to the [OH_UdmfData](#oh_udmfdata) data to set. |
-| Pointer to the key that uniquely identifies the data in the database. |  |
-| keyLen | Length of the key. The memory size must be greater than or equal to 512 bytes. |
+| intention | Type of the data channel. For details, see [Udmf_Intent]( #udmf_intention).|
+| unifiedData | Pointer to the [OH_UdmfData](#oh_udmfdata) data to set.|
+| key | Pointer to the key that uniquely identifies the data in the database.|
+| keyLen | Length of the key. The memory size must be greater than or equal to 512 bytes.|
 
 **Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
 
 Returns **UDMF_E_OK** if the operation is successful. 
 
 Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
 
 **See**
 
@@ -2339,7 +2485,7 @@ Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errc
 ### OH_UdmfData_AddRecord()
 
 ```
-int OH_UdmfData_AddRecord (OH_UdmfData * pThis, OH_UdmfRecord * record )
+int OH_UdmfData_AddRecord (OH_UdmfData* pThis, OH_UdmfRecord* record )
 ```
 
 **Description**
@@ -2350,18 +2496,18 @@ Adds an [OH_UdmfRecord](#oh_udmfrecord) to an [OH_UdmfData](#oh_udmfdata) instan
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfData](#oh_udmfdata) instance. |
-| record | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
+| pThis | Pointer to the [OH_UdmfData](#oh_udmfdata) instance.|
+| record | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2378,13 +2524,13 @@ OH_UdmfData* OH_UdmfData_Create ()
 
 **Description**
 
-Creates an [OH_UdmfData](#oh_udmfdata) instance and a pointer to it.
+Creates an [OH_UdmfData](#oh_udmfdata) instance and a pointer to it. If this pointer is no longer required, use [OH_UdmfData_Destroy](#oh_udmfdata_destroy) to destroy it. Otherwise, memory leaks may occur.
 
 **Since**: 12
 
 **Returns**
 
-Returns a pointer to the [OH_UdmfData](#oh_udmfdata) instance created if the operation is successful; returns **nullptr** otherwise. If this pointer is no longer required, use [OH_UdmfData_Destroy](#oh_udmfdata_destroy) to destroy it. Otherwise, memory leaks may occur.
+Returns a pointer to the [OH_UdmfData](#oh_udmfdata) instance created if the operation is successful; returns **nullptr** otherwise.
 
 **See**
 
@@ -2405,13 +2551,130 @@ Destroys an [OH_UdmfData](#oh_udmfdata) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfData](#oh_udmfdata) instance to destroy. |
+| pThis | Pointer to the [OH_UdmfData](#oh_udmfdata) instance to destroy.|
 
 **See**
 
 [OH_UdmfData](#oh_udmfdata)
+
+
+### OH_UdmfData_GetPrimaryHtml()
+
+```
+int OH_UdmfData_GetPrimaryHtml (OH_UdmfData* data, OH_UdsHtml* html )
+```
+
+**Description**
+
+Obtains the first [OH_UdsHtml](#oh_udshtml) data from an [OH_UdmfData](#oh_udmfdata) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| data | Pointer to the [OH_UdmfData](#oh_udmfdata) instance.|
+| html | Pointer to the [OH_UdsHtml](#oh_udshtml) data obtained.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
+Returns **UDMF_E_OK** if the operation is successful. 
+
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdmfData](#oh_udmfdata)
+
+[OH_UdsHtml](#oh_udshtml)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfData_GetPrimaryPlainText()
+
+```
+int OH_UdmfData_GetPrimaryPlainText (OH_UdmfData* data, OH_UdsPlainText* plainText )
+```
+
+**Description**
+
+Obtains the first [OH_UdsPlainText](#oh_udsplaintext) data from an [OH_UdmfData](#oh_udmfdata) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| data | Pointer to the [OH_UdmfData](#oh_udmfdata) instance.|
+| plainText | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) data obtained.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
+Returns **UDMF_E_OK** if the operation is successful. 
+
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdmfData](#oh_udmfdata)
+
+[OH_UdsPlainText](#oh_udsplaintext)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfData_GetRecord()
+
+```
+OH_UdmfRecord* OH_UdmfData_GetRecord (OH_UdmfData* data, unsigned int index )
+```
+
+**Description**
+
+Obtains the specified data record from an [OH_UdmfData](#oh_udmfdata) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| data | Pointer to the [OH_UdmfData](#oh_udmfdata) instance.|
+| index | Index of the [OH_UdmfRecord]( #oh_udmfrecord) in the OH_UdmfData]( #oh_udmfdata) instance.|
+
+**Returns**
+
+Returns a pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance obtained if the operation is successful; returns **nullptr** otherwise.
+
+**See**
+
+[OH_UdmfData](#oh_udmfdata)
+
+
+### OH_UdmfData_GetRecordCount()
+
+```
+int OH_UdmfData_GetRecordCount (OH_UdmfData* data)
+```
+
+**Description**
+
+Obtains the number of data records contained in an [OH_UdmfData](#oh_udmfdata) instance.
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| data | Pointer to the target [OH_UdmfData](#oh_udmfdata) instance. |
 
 
 ### OH_UdmfData_GetRecords()
@@ -2428,10 +2691,10 @@ Obtains all records contained in an [OH_UdmfData](#oh_udmfdata) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfData](#oh_udmfdata) instance. |
-| count | Pointer to the number of records obtained. |
+| pThis | Pointer to the target [OH_UdmfData](#oh_udmfdata) instance.|
+| count | Pointer to the number of records obtained.|
 
 **Returns**
 
@@ -2458,10 +2721,10 @@ Obtains all data types in an [OH_UdmfData](#oh_udmfdata) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfData](#oh_udmfdata) instance. |
-| count | Pointer to the number of data types obtained. |
+| pThis | Pointer to the target [OH_UdmfData](#oh_udmfdata) instance.|
+| count | Pointer to the number of data types obtained.|
 
 **Returns**
 
@@ -2486,14 +2749,41 @@ Checks whether the specified type exists in an [OH_UdmfData](#oh_udmfdata) insta
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfData](#oh_udmfdata) instance. |
-| type | Pointer to the type to check. |
+| pThis | Pointer to the target [OH_UdmfData](#oh_udmfdata) instance.|
+| type | Pointer to the type to check.|
 
 **Returns**
 
 Returns **true** if the data type exists; returns **false** otherwise.
+
+**See**
+
+[OH_UdmfData](#oh_udmfdata)
+
+
+### OH_UdmfData_IsLocal()
+
+```
+bool OH_UdmfData_IsLocal (OH_UdmfData* data)
+```
+
+**Description**
+
+Checks whether an [OH_UdmfData](#oh_udmfdata) instance is from the local device.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| data | Pointer to the [OH_UdmfData](#oh_udmfdata) instance.|
+
+**Returns**
+
+Returns **true** if the data is from the local device; returns **false** otherwise.
 
 **See**
 
@@ -2508,19 +2798,19 @@ OH_UdmfProperty* OH_UdmfProperty_Create (OH_UdmfData* unifiedData)
 
 **Description**
 
-Creates an [OH_UdmfProperty](#oh_udmfproperty) instance and a pointer to it.
+Creates an [OH_UdmfProperty](#oh_udmfproperty) instance and a pointer to it. If this pointer is no longer required, use [OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy) to destroy it. Otherwise, memory leaks may occur.
 
 **Since**: 12
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| unifiedData | Pointer to the [OH_UdmfData](#oh_udmfdata) instance. |
+| unifiedData | Pointer to the [OH_UdmfData](#oh_udmfdata) instance.|
 
 **Returns**
 
-Returns a pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance created if the operation is successful; returns **nullptr** otherwise. If this pointer is no longer required, use [OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy) to destroy it. Otherwise, memory leaks may occur.
+Returns a pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance created if the operation is successful; returns **nullptr** otherwise.
 
 **See**
 
@@ -2543,9 +2833,9 @@ Destroys an [OH_UdmfProperty](#oh_udmfproperty) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance to destroy. |
+| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance to destroy.|
 
 **See**
 
@@ -2566,11 +2856,11 @@ Obtains the customized extra integer parameter from an [OH_UdmfProperty](#oh_udm
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| key | Pointer to the key of the parameter to obtain. |
-| defaultValue | Default value to be returned if the parameter fails to be obtained. |
+| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| key | Pointer to the key of the parameter to obtain.|
+| defaultValue | Default value to be returned if the parameter fails to be obtained.|
 
 **Returns**
 
@@ -2595,10 +2885,10 @@ Obtains the customized extra string parameter from an [OH_UdmfProperty](#oh_udmf
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| key | Pointer to the key of the parameter to obtain. |
+| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| key | Pointer to the key of the parameter to obtain.|
 
 **Returns**
 
@@ -2623,9 +2913,9 @@ Obtains the share option from an [OH_UdmfProperty](#oh_udmfproperty) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance. |
+| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance.|
 
 **Returns**
 
@@ -2652,9 +2942,9 @@ Obtains the custom tag value from an [OH_UdmfProperty](#oh_udmfproperty) instanc
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance. |
+| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance.|
 
 **Returns**
 
@@ -2679,9 +2969,9 @@ Obtains the timestamp from an [OH_UdmfProperty](#oh_udmfproperty) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance. |
+| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance.|
 
 **Returns**
 
@@ -2706,19 +2996,19 @@ Sets the extra integer parameter for an [OH_UdmfProperty](#oh_udmfproperty) inst
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| key | Pointer to the key of the parameter to set. |
-| param | Parameter value to set. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| key | Pointer to the key of the parameter to set.|
+| param | Parameter value to set.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2741,19 +3031,19 @@ Sets the extra string parameter for an [OH_UdmfProperty](#oh_udmfproperty) insta
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| key | Pointer to the key of the parameter to set. |
-| param | Parameter value to set. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| key | Pointer to the key of the parameter to set.|
+| param | Parameter value to set.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2776,18 +3066,18 @@ Sets the share option for an [OH_UdmfProperty](#oh_udmfproperty) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| option | [Udmf_ShareOption](#udmf_shareoption) to set. |
+| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| option | [Udmf_ShareOption](#udmf_shareoption) to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
+Returns **UDMF_E_OK** if the operation is successful.
 
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2812,18 +3102,18 @@ Sets the tag value for an [OH_UdmfProperty](#oh_udmfproperty) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance. |
-| tag | Pointer to the tag value to set. |
+| pThis | Pointer to the [OH_UdmfProperty](#oh_udmfproperty) instance.|
+| tag | Pointer to the tag value to set.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2846,24 +3136,97 @@ Adds data of the [OH_UdsAppItem](#oh_udsappitem) type to an [OH_UdmfRecord](#oh_
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| appItem | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance to add. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| appItem | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance to add.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
 [OH_UdmfRecord](#oh_udmfrecord)
 
 [OH_UdsAppItem](#oh_udsappitem)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecord_AddArrayBuffer()
+
+```
+int OH_UdmfRecord_AddArrayBuffer (OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer )
+```
+
+**Description**
+
+Adds a data record of the [OH_UdsArrayBuffer](#oh_udsarraybuffer) type to an [OH_UdmfRecord](#oh_udmfrecord) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| record | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| type | Pointer to the ArrayBuffer type ID, which must be unique.|
+| buffer | Pointer to the [OH_UdsArrayBuffer]( #oh_udsarraybuffer) instance.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
+Returns **UDMF_E_OK** if the operation is successful. 
+
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecord_AddFileUri()
+
+```
+int OH_UdmfRecord_AddFileUri (OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri )
+```
+
+**Description**
+
+Adds a data record of the [OH_UdsFileUri](#oh_udsfileuri) type to an [OH_UdmfRecord](#oh_udmfrecord) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| fileUri | Pointer to the [OH_UdsFileUri]( #oh_udsfileuri) instance.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
+Returns **UDMF_E_OK** if the operation is successful. 
+
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsFileUri](#oh_udsfileuri)
 
 [Udmf_ErrCode](#udmf_errcode)
 
@@ -2882,20 +3245,20 @@ Adds customized uniform data to an [OH_UdmfRecord](#oh_udmfrecord) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| typeId | Pointer to the data type ID. |
-| entry | Pointer to the customized data to add. |
-| count | Size of customized data to add. The data size cannot exceed 4 KB. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| typeId | Pointer to the data type ID.|
+| entry | Pointer to the customized data to add.|
+| count | Size of customized data to add. The data size cannot exceed 4 KB.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2918,18 +3281,18 @@ Adds data of the [OH_UdsHtml](#oh_udshtml) type to an [OH_UdmfRecord](#oh_udmfre
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| html | Pointer to the [OH_UdsHtml](#oh_udshtml) instance to add. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| html | Pointer to the [OH_UdsHtml](#oh_udshtml) instance to add.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -2954,24 +3317,60 @@ Adds data of the hyperlink type [OH_UdsHyperlink](#oh_udshyperlink) type to an [
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| hyperlink | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance to add. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| hyperlink | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance to add.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
 [OH_UdmfRecord](#oh_udmfrecord)
 
 [OH_UdsHyperlink](#oh_udshyperlink)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecord_AddPixelMap()
+
+```
+int OH_UdmfRecord_AddPixelMap (OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap )
+```
+
+**Description**
+
+Adds a data record of the [OH_UdsPixelMap](#oh_udspixelmap) type to an [OH_UdmfRecord](#oh_udmfrecord) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| pixelMap | Pointer to the [OH_UdsPixelMap]( #oh_udspixelmap) instance.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
+Returns **UDMF_E_OK** if the operation is successful. 
+
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsPixelMap](#oh_udspixelmap)
 
 [Udmf_ErrCode](#udmf_errcode)
 
@@ -2990,18 +3389,18 @@ Adds data of the [OH_UdsPlainText](#oh_udsplaintext) type to an [OH_UdmfRecord](
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| plainText | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance to add. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| plainText | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance to add.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3020,13 +3419,13 @@ OH_UdmfRecord* OH_UdmfRecord_Create ()
 
 **Description**
 
-Creates an [OH_UdmfRecord](#oh_udmfrecord) instance and a pointer to it.
+Creates an [OH_UdmfRecord](#oh_udmfrecord) instance and a pointer to it. If this pointer is no longer required, use [OH_UdmfRecord_Destroy](#oh_udmfrecord_destroy) to destroy it. Otherwise, memory leaks may occur.
 
 **Since**: 12
 
 **Returns**
 
-Returns a pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance created if the operation is successful; returns **nullptr** otherwise. If this pointer is no longer required, use [OH_UdmfRecord_Destroy](#oh_udmfrecord_destroy) to destroy it. Otherwise, memory leaks may occur.
+Returns a pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance created if the operation is successful; returns **nullptr** otherwise.
 
 **See**
 
@@ -3047,9 +3446,9 @@ Destroys an [OH_UdmfRecord](#oh_udmfrecord) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance to destroy. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance to destroy.|
 
 **See**
 
@@ -3064,30 +3463,103 @@ int OH_UdmfRecord_GetAppItem (OH_UdmfRecord* pThis, OH_UdsAppItem* appItem )
 
 **Description**
 
-Obtains {@link OH_UdsAppItem} data from an [OH_UdmfRecord](#oh_udmfrecord) instance.
+Obtains [OH_UdsAppItem](#oh_udsappitem) data from an [OH_UdmfRecord](#oh_udmfrecord) instance.
 
 **Since**: 12
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| appItem | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance obtained. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| appItem | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance obtained.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
 [OH_UdmfRecord](#oh_udmfrecord)
 
 [OH_UdsAppItem](#oh_udsappitem)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecord_GetArrayBuffer()
+
+```
+int OH_UdmfRecord_GetArrayBuffer (OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer )
+```
+
+**Description**
+
+Obtains the [OH_UdsArrayBuffer](#oh_udsarraybuffer) data from an [OH_UdmfRecord](#oh_udmfrecord) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| record | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| type | Pointer to the data type ID of the ArrayBuffer data to obtain.|
+| buffer | Pointer to the [OH_UdsArrayBuffer]( #oh_udsarraybuffer) data obtained.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
+Returns **UDMF_E_OK** if the operation is successful. 
+
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecord_GetFileUri()
+
+```
+int OH_UdmfRecord_GetFileUri (OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri )
+```
+
+**Description**
+
+Obtains the [OH_UdsFileUri](#oh_udsfileuri) data from an [OH_UdmfRecord](#oh_udmfrecord) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| fileUri | Pointer to the [OH_UdsFileUri]( #oh_udsfileuri) data obtained.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
+Returns **UDMF_E_OK** if the operation is successful. 
+
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsFileUri](#oh_udsfileuri)
 
 [Udmf_ErrCode](#udmf_errcode)
 
@@ -3106,20 +3578,20 @@ Obtains the data of the specified type in an [OH_UdmfRecord](#oh_udmfrecord) ins
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| typeId | Pointer to the data type ID. |
-| entry | Double pointer to the data obtained. |
-| count | Length of the data obtained. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| typeId | Pointer to the data type ID.|
+| entry | Double pointer to the data obtained.|
+| count | Length of the data obtained.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3142,18 +3614,18 @@ Obtains [OH_UdsHtml](#oh_udshtml) data from an [OH_UdmfRecord](#oh_udmfrecord) i
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| html | Pointer to the [OH_UdsHtml](#oh_udshtml) data obtained. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| html | Pointer to the [OH_UdsHtml](#oh_udshtml) data obtained.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3178,24 +3650,60 @@ Obtains [OH_UdsHyperlink](#oh_udshyperlink) data from an [OH_UdmfRecord](#oh_udm
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| hyperlink | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) data obtained. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| hyperlink | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) data obtained.|
 
 **Returns**
 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
 Returns **UDMF_E_OK** if the operation is successful. 
 
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
 [OH_UdmfRecord](#oh_udmfrecord)
 
 [OH_UdsHyperlink](#oh_udshyperlink)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecord_GetPixelMap()
+
+```
+int OH_UdmfRecord_GetPixelMap (OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap )
+```
+
+**Description**
+
+Obtains the [OH_UdsPixelMap](#oh_udspixelmap) data from an [OH_UdmfRecord](#oh_udmfrecord) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| pixelMap | Pointer to the [OH_UdsPixelMap]( #oh_udspixelmap) data obtained.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode). 
+
+Returns **UDMF_E_OK** if the operation is successful. 
+
+Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsPixelMap](#oh_udspixelmap)
 
 [Udmf_ErrCode](#udmf_errcode)
 
@@ -3214,18 +3722,14 @@ Obtains [OH_UdsPlainText](#oh_udsplaintext) data from an [OH_UdmfRecord](#oh_udm
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| plainText | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) data obtained. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| plainText | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) data obtained.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3250,10 +3754,10 @@ Obtains all data types in an [OH_UdmfRecord](#oh_udmfrecord) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance. |
-| count | Pointer to the number of data types obtained. |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| count | Pointer to the number of data types obtained.|
 
 **Returns**
 
@@ -3264,6 +3768,124 @@ Returns a list of data types obtained if the operation is successful; returns **
 [OH_UdmfRecord](#oh_udmfrecord)
 
 
+### OH_UdmfRecord_SetProvider()
+
+```
+int OH_UdmfRecord_SetProvider (OH_UdmfRecord* pThis, const char* const* types, unsigned int count, OH_UdmfRecordProvider* provider )
+```
+
+**Description**
+
+Sets the [OH_UdmfRecordProvider](#oh_udmfrecordprovider) in an [OH_UdmfRecord](#oh_udmfrecord) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the [OH_UdmfRecord](#oh_udmfrecord) instance.|
+| types | Pointer to the data types to be provided.|
+| count | Number of the data types.|
+| provider | Pointer to the [OH_UdmfRecordProvider]( #oh_udmfrecordprovider) instance to set.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdmfRecordProvider](#oh_udmfrecordprovider)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecordProvider_Create()
+
+```
+OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create ()
+```
+
+**Description**
+
+Creates an [OH_UdmfRecordProvider](#oh_udmfrecordprovider) instance and a pointer to it. If this pointer is no longer required, use [OH_UdmfRecordProvider_Destroy](#oh_udmfrecordprovider_destroy) to destroy it. Otherwise, memory leaks may occur.
+
+**Since**: 13
+
+**Returns**
+
+Returns a pointer to the [OH_UdmfRecordProvider](#oh_udmfrecordprovider) instance created if the operation is successful; returns **nullptr** otherwise.
+
+**See**
+
+[OH_UdmfRecordProvider](#oh_udmfrecordprovider)
+
+
+### OH_UdmfRecordProvider_Destroy()
+
+```
+int OH_UdmfRecordProvider_Destroy (OH_UdmfRecordProvider* provider)
+```
+
+**Description**
+
+Destroys an [OH_UdmfRecordProvider](#oh_udmfrecordprovider) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| provider | Pointer to the [OH_UdmfRecordProvider](#oh_udmfrecordprovider) instance to destroy.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdmfRecordProvider](#oh_udmfrecordprovider)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecordProvider_SetData()
+
+```
+int OH_UdmfRecordProvider_SetData (OH_UdmfRecordProvider* provider, void* context, const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize )
+```
+
+**Description**
+
+Sets a callback for an **OH_UdmfRecordProvider** instance to provide data.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| provider | Pointer to the target [OH_UdmfRecordProvider](#oh_udmfrecordprovider) instance.|
+| context | Pointer to the context, which is passed as the first parameter to [OH_UdmfRecordProvider_GetData](#oh_udmfrecordprovider_getdata).|
+| callback | Callback used to obtain data. For details, see [OH_UdmfRecordProvider_GetData](#oh_udmfrecordprovider_getdata).|
+| finalize | Optional callback used to release the context data when the **OH_UdmfRecordProvider** instance is destroyed. For details, see [UdmfData_Finalize](#udmfdata_finalize).|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdmfRecordProvider](#oh_udmfrecordprovider)
+
+[OH_UdmfRecordProvider_GetData](#oh_udmfrecordprovider_getdata)
+
+[UdmfData_Finalize](#udmfdata_finalize)[Udmf_ErrCode](#udmf_errcode)
+
+
 ### OH_UdsAppItem_Create()
 
 ```
@@ -3272,13 +3894,13 @@ OH_UdsAppItem* OH_UdsAppItem_Create ()
 
 **Description**
 
-Creates an [OH_UdsAppItem](#oh_udsappitem) instance and a pointer to it.
+Creates an [OH_UdsAppItem](#oh_udsappitem) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsAppItem_Destroy](#oh_udsappitem_destroy) to destroy it. Otherwise, memory leaks may occur.
 
 **Since**: 12
 
 **Returns**
 
-Returns a pointer to the [OH_UdsAppItem](#oh_udsappitem) data obtained; returns **nullptr** otherwise. If this pointer is no longer required, use [OH_UdsAppItem_Destroy](#oh_udsappitem_destroy) to destroy it. Otherwise, memory leaks may occur.
+Returns a pointer to the [OH_UdsAppItem](#oh_udsappitem) data obtained; returns **nullptr** otherwise.
 
 **See**
 
@@ -3299,9 +3921,9 @@ Destroys an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance to destroy. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance to destroy.|
 
 **See**
 
@@ -3316,15 +3938,15 @@ const char* OH_UdsAppItem_GetAbilityName (OH_UdsAppItem* pThis)
 
 **Description**
 
-Obtain the ability name from an [OH_UdsAppItem](#oh_udsappitem) instance.
+Obtains the ability name from an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Since**: 12
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
 
 **Returns**
 
@@ -3349,9 +3971,9 @@ Obtains the bundle name from an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
 
 **Returns**
 
@@ -3376,9 +3998,9 @@ Obtains the application icon ID from an [OH_UdsAppItem](#oh_udsappitem) instance
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
 
 **Returns**
 
@@ -3399,15 +4021,22 @@ const char* OH_UdsAppItem_GetId (OH_UdsAppItem* pThis)
 
 Obtains the application ID from an [OH_UdsAppItem](#oh_udsappitem) instance.
 
+**Since**: 12
+
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
 
 **Returns**
 
-Returns a pointer to the application ID obtained if the operation is successful; returns **nullptr** otherwise. 
+Returns a pointer to the application ID obtained if the operation is successful; returns **nullptr** otherwise.
+
+**See**
+
+[OH_UdsAppItem](#oh_udsappitem)
+
 
 ### OH_UdsAppItem_GetLabelId()
 
@@ -3423,9 +4052,9 @@ Obtains the application label ID from an [OH_UdsAppItem](#oh_udsappitem) instanc
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
 
 **Returns**
 
@@ -3450,9 +4079,9 @@ Obtains the application name from an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
 
 **Returns**
 
@@ -3477,9 +4106,9 @@ Obtains the type ID from an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
 
 **Returns**
 
@@ -3504,18 +4133,14 @@ Sets the ability name for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
-| abilityName | Pointer to the ability name to set. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
+| abilityName | Pointer to the ability name to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode).
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3536,18 +4161,14 @@ Sets the bundle name for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
-| bundleName | Pointer to the bundle name to set. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
+| bundleName | Pointer to the bundle name to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3568,18 +4189,14 @@ Sets the application icon ID for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
-| appIconId | Pointer to the application icon ID to set. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
+| appIconId | Pointer to the application icon ID to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3600,18 +4217,14 @@ Sets the application ID for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
-| appId | Pointer to the application ID to set. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
+| appId | Pointer to the application ID to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3632,18 +4245,14 @@ Sets the application label ID for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
-| appLabelId | Pointer to the application label ID to set. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
+| appLabelId | Pointer to the application label ID to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3664,22 +4273,315 @@ Sets the application name for an [OH_UdsAppItem](#oh_udsappitem) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance. |
-| appName | Pointer to the application name to set. |
+| pThis | Pointer to the [OH_UdsAppItem](#oh_udsappitem) instance.|
+| appName | Pointer to the application name to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
 [OH_UdsAppItem](#oh_udsappitem)
+
+
+### OH_UdsArrayBuffer_Create()
+
+```
+OH_UdsArrayBuffer* OH_UdsArrayBuffer_Create ()
+```
+
+**Description**
+
+Creates an [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsArrayBuffer_Destroy](#oh_udsarraybuffer_destroy) to destroy it. Otherwise, memory leaks may occur.
+
+**Since**: 13
+
+**Returns**
+
+Returns a pointer to the [OH_UdsArrayBuffer]( #oh_udsarraybuffer) instance created if the operation is successful; returns **nullptr** otherwise.
+
+**See**
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+
+### OH_UdsArrayBuffer_Destroy()
+
+```
+int OH_UdsArrayBuffer_Destroy (OH_UdsArrayBuffer* buffer)
+```
+
+**Description**
+
+Destroys an [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| buffer | Pointer to the [OH_UdsArrayBuffer]( #oh_udsarraybuffer) instance to destroy.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsArrayBuffer_GetData()
+
+```
+int OH_UdsArrayBuffer_GetData (OH_UdsArrayBuffer* buffer, unsigned char** data, unsigned int* len )
+```
+
+**Description**
+
+Obtains the custom ArrayBuffer data from an [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| buffer | Pointer to the target [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance.|
+| data | Double pointer to the ArrayBuffer data obtained.|
+| len | Pointer to the length of the ArrayBuffer data obtained.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsArrayBuffer_SetData()
+
+```
+int OH_UdsArrayBuffer_SetData (OH_UdsArrayBuffer* buffer, unsigned char* data, unsigned int len )
+```
+
+**Description**
+
+Sets an [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| buffer | Pointer to the target [OH_UdsArrayBuffer](#oh_udsarraybuffer) instance.|
+| data | Pointer to the ArrayBuffer data to set.|
+| len | Length of the ArrayBuffer data to set.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsFileUri_Create()
+
+```
+OH_UdsFileUri* OH_UdsFileUri_Create ()
+```
+
+**Description**
+
+Creates an [OH_UdsFileUri](#oh_udsfileuri) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsFileUri_Destroy](#oh_udsfileuri_destroy) to destroy it. Otherwise, memory leaks may occur.
+
+**Since**: 13
+
+**Returns**
+
+Returns a pointer to the [OH_UdsFileUri](#oh_udsfileuri) instance created if the operation is successful; returns **nullptr** otherwise.
+
+**See**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+
+### OH_UdsFileUri_Destroy()
+
+```
+void OH_UdsFileUri_Destroy (OH_UdsFileUri* pThis)
+```
+
+**Description**
+
+Destroys an [OH_UdsFileUri](#oh_udsfileuri) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the [OH_UdsFileUri]( #oh_udsfileuri) instance to destroy.|
+
+**See**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+
+### OH_UdsFileUri_GetFileType()
+
+```
+const char* OH_UdsFileUri_GetFileType (OH_UdsFileUri* pThis)
+```
+
+**Description**
+
+Obtains the file type from an [OH_UdsFileUri](#oh_udsfileuri) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the target [OH_UdsFileUri]( #oh_udsfileuri) instance.|
+
+**Returns**
+
+Returns a pointer to the file type obtained if the operation is successful; returns **nullptr** otherwise.
+
+**See**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+
+### OH_UdsFileUri_GetFileUri()
+
+```
+const char* OH_UdsFileUri_GetFileUri (OH_UdsFileUri* pThis)
+```
+
+**Description**
+
+Obtains the file URI from an [OH_UdsFileUri](#oh_udsfileuri) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the target [OH_UdsFileUri]( #oh_udsfileuri) instance.|
+
+**Returns**
+
+Returns a pointer to the file URI obtained if the operation is successful; returns **nullptr** otherwise.
+
+**See**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+
+### OH_UdsFileUri_GetType()
+
+```
+const char* OH_UdsFileUri_GetType (OH_UdsFileUri* pThis)
+```
+
+**Description**
+
+Obtains the type ID from an [OH_UdsFileUri](#oh_udsfileuri) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the target [OH_UdsFileUri]( #oh_udsfileuri) instance.|
+
+**Returns**
+
+Returns a pointer to the type ID obtained if the operation is successful; returns **nullptr** otherwise.
+
+**See**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+
+### OH_UdsFileUri_SetFileType()
+
+```
+int OH_UdsFileUri_SetFileType (OH_UdsFileUri* pThis, const char* fileType )
+```
+
+**Description**
+
+Sets the file type for an [OH_UdsFileUri](#oh_udsfileuri) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the target [OH_UdsFileUri]( #oh_udsfileuri) instance.|
+| fileType | Pointer to the file type to set.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsFileUri_SetFileUri()
+
+```
+int OH_UdsFileUri_SetFileUri (OH_UdsFileUri* pThis, const char* fileUri )
+```
+
+**Description**
+
+Sets the URI information for an [OH_UdsFileUri](#oh_udsfileuri) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the target [OH_UdsFileUri]( #oh_udsfileuri) instance.|
+| fileUri | Pointer to the file URI to set.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+[Udmf_ErrCode](#udmf_errcode)
 
 
 ### OH_UdsHtml_Create()
@@ -3690,13 +4592,13 @@ OH_UdsHtml* OH_UdsHtml_Create ()
 
 **Description**
 
-Creates an [OH_UdsHtml](#oh_udshtml) instance and a pointer to it.
+Creates an [OH_UdsHtml](#oh_udshtml) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsHtml_Destroy](#oh_udshtml_destroy) to destroy it. Otherwise, memory leaks may occur.
 
 **Since**: 12
 
 **Returns**
 
-Returns a pointer to the [OH_UdsHtml](#oh_udshtml) instance created if the operation is successful; returns **nullptr** otherwise. If this pointer is no longer required, use [OH_UdsHtml_Destroy](#oh_udshtml_destroy) to destroy it. Otherwise, memory leaks may occur.
+Returns a pointer to the [OH_UdsHtml](#oh_udshtml) instance created if the operation is successful; returns **nullptr** otherwise.
 
 **See**
 
@@ -3717,9 +4619,9 @@ Destroys an [OH_UdsHtml](#oh_udshtml) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance to destroy. |
+| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance to destroy.|
 
 **See**
 
@@ -3740,9 +4642,9 @@ Obtains the HTML content from an [OH_UdsHtml](#oh_udshtml) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance. |
+| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance.|
 
 **Returns**
 
@@ -3767,9 +4669,9 @@ Obtains the plaintext from an [OH_UdsHtml](#oh_udshtml) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance. |
+| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance.|
 
 **Returns**
 
@@ -3794,9 +4696,9 @@ Obtains the type ID from an [OH_UdsHtml](#oh_udshtml) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance. |
+| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance.|
 
 **Returns**
 
@@ -3821,18 +4723,14 @@ Sets the HTML content for an [OH_UdsHtml](#oh_udshtml) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance. |
-| content | Pointer to the content in HTML format to set. |
+| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance.|
+| content | Pointer to the content in HTML format to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3853,18 +4751,14 @@ Sets the plaintext for an [OH_UdsHtml](#oh_udshtml) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance. |
-| plainContent | Pointer to the plain text content to set. |
+| pThis | Pointer to the [OH_UdsHtml](#oh_udshtml) instance.|
+| plainContent | Pointer to the plain text content to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -3879,13 +4773,13 @@ OH_UdsHyperlink* OH_UdsHyperlink_Create ()
 
 **Description**
 
-Creates an [OH_UdsHyperlink](#oh_udshyperlink) instance and a pointer to it.
+Creates an [OH_UdsHyperlink](#oh_udshyperlink) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsHyperlink_Destroy](#oh_udshyperlink_destroy) to destroy it. Otherwise, memory leaks may occur.
 
 **Since**: 12
 
 **Returns**
 
-Returns a pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance created if the operation is successful; returns **nullptr** otherwise. If this pointer is no longer required, use [OH_UdsHyperlink_Destroy](#oh_udshyperlink_destroy) to destroy it. Otherwise, memory leaks may occur.
+Returns a pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance created if the operation is successful; returns **nullptr** otherwise.
 
 **See**
 
@@ -3906,9 +4800,9 @@ Destroys an [OH_UdsHyperlink](#oh_udshyperlink) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance to destroy. |
+| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance to destroy.|
 
 **See**
 
@@ -3929,9 +4823,9 @@ Obtains the description from an [OH_UdsHyperlink](#oh_udshyperlink) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance. |
+| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance.|
 
 **Returns**
 
@@ -3956,9 +4850,9 @@ Obtains the type ID from an [OH_UdsHyperlink](#oh_udshyperlink) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance. |
+| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance.|
 
 **Returns**
 
@@ -3983,9 +4877,9 @@ Obtains the URL from an [OH_UdsHyperlink](#oh_udshyperlink) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance. |
+| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance.|
 
 **Returns**
 
@@ -4010,18 +4904,14 @@ Sets the description for an [OH_UdsHyperlink](#oh_udshyperlink) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance. |
-| description | Pointer to the description to set. |
+| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance.|
+| description | Pointer to the description to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4042,22 +4932,147 @@ Sets the URL for an [OH_UdsHyperlink](#oh_udshyperlink) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance. |
-| url | Pointer to the URL to set. |
+| pThis | Pointer to the [OH_UdsHyperlink](#oh_udshyperlink) instance.|
+| url | Pointer to the URL to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
 [OH_UdsHyperlink](#oh_udshyperlink)
+
+
+### OH_UdsPixelMap_Create()
+
+```
+OH_UdsPixelMap* OH_UdsPixelMap_Create ()
+```
+
+**Description**
+
+Creates an [OH_UdsPixelMap](#oh_udspixelmap) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsPixelMap_Destroy](#oh_udspixelmap_destroy) to destroy it. Otherwise, memory leaks may occur.
+
+**Since**: 13
+
+**Returns**
+
+Returns a pointer to the [OH_UdsPixelMap](#oh_udspixelmap) instance created if the operation is successful; returns **nullptr** otherwise.
+
+**See**
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+
+### OH_UdsPixelMap_Destroy()
+
+```
+void OH_UdsPixelMap_Destroy (OH_UdsPixelMap* pThis)
+```
+
+**Description**
+
+Destroys an [OH_UdsPixelMap](#oh_udspixelmap) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the [OH_UdsPixelMap]( #oh_udspixelmap) instance to destroy.|
+
+**See**
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+
+### OH_UdsPixelMap_GetPixelMap()
+
+```
+void OH_UdsPixelMap_GetPixelMap (OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative )
+```
+
+**Description**
+
+Obtains the pointer to the **OH_PixelmapNative** instance from an [OH_UdsPixelMap](#oh_udspixelmap) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the target [OH_UdsPixelMap]( #oh_udspixelmap) instance.|
+| pixelmapNative | Pointer to the **OH_PixelmapNative** instance obtained.|
+
+**See**
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+OH_PixelmapNative
+
+
+### OH_UdsPixelMap_GetType()
+
+```
+const char* OH_UdsPixelMap_GetType (OH_UdsPixelMap* pThis)
+```
+
+**Description**
+
+Obtains the type ID from an [OH_UdsPixelMap](#oh_udspixelmap) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the target [OH_UdsPixelMap]( #oh_udspixelmap) instance.|
+
+**Returns**
+
+Returns a pointer to the type ID obtained if the operation is successful; returns **nullptr** otherwise.
+
+**See**
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+
+### OH_UdsPixelMap_SetPixelMap()
+
+```
+int OH_UdsPixelMap_SetPixelMap (OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative )
+```
+
+**Description**
+
+Sets the pixel map content for an [OH_UdsPixelMap](#oh_udspixelmap) instance.
+
+**Since**: 13
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pThis | Pointer to the target [OH_UdsPixelMap]( #oh_udspixelmap) instance.|
+| pixelmapNative | Pointer to the **OH_PixelmapNative** instance.|
+
+**Returns**
+
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
+
+**See**
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+OH_PixelmapNative
+
+[Udmf_ErrCode](#udmf_errcode)
 
 
 ### OH_UdsPlainText_Create()
@@ -4068,13 +5083,13 @@ OH_UdsPlainText* OH_UdsPlainText_Create ()
 
 **Description**
 
-Creates an [OH_UdsPlainText](#oh_udsplaintext) instance and a pointer to it.
+Creates an [OH_UdsPlainText](#oh_udsplaintext) instance and a pointer to it. If this pointer is no longer required, use [OH_UdsPlainText_Destroy](#oh_udsplaintext_destroy) to destroy it. Otherwise, memory leaks may occur.
 
 **Since**: 12
 
 **Returns**
 
-Returns a pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance created if the operation is successful; returns **nullptr** otherwise. If this pointer is no longer required, use [OH_UdsPlainText_Destroy](#oh_udsplaintext_destroy) to destroy it. Otherwise, memory leaks may occur.
+Returns a pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance created if the operation is successful; returns **nullptr** otherwise.
 
 **See**
 
@@ -4095,9 +5110,9 @@ Destroys an [OH_UdsPlainText](#oh_udsplaintext) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance to destroy. |
+| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance to destroy.|
 
 **See**
 
@@ -4118,9 +5133,9 @@ Obtains the abstract from an [OH_UdsPlainText](#oh_udsplaintext) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance. |
+| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance.|
 
 **Returns**
 
@@ -4145,9 +5160,9 @@ Obtains the plaintext from an [OH_UdsPlainText](#oh_udsplaintext) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance. |
+| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance.|
 
 **Returns**
 
@@ -4172,9 +5187,9 @@ Obtains the type ID from an [OH_UdsPlainText](#oh_udsplaintext) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance. |
+| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance.|
 
 **Returns**
 
@@ -4199,18 +5214,14 @@ Sets the abstract for an [OH_UdsPlainText](#oh_udsplaintext) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance. |
-| abstract | Pointer to the abstract to set. |
+| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance.|
+| abstract | Pointer to the abstract to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4231,18 +5242,14 @@ Sets the plaintext content for an [OH_UdsPlainText](#oh_udsplaintext) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance. |
-| content | Pointer to the plaintext content to set. |
+| pThis | Pointer to the [OH_UdsPlainText](#oh_udsplaintext) instance.|
+| content | Pointer to the plaintext content to set.|
 
 **Returns**
 
-Returns **UDMF_E_OK** if the operation is successful. 
-
-Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in. 
-
-Returns an error code in other cases. For details, see [Udmf_ErrCode](#udmf_errcode). 
+Returns an error code. For details, see [Udmf_ErrCode](#udmf_errcode).<br>Returns **UDMF_E_OK** if the operation is successful.<br>Returns **UDMF_E_INVALID_PARAM** if an invalid parameter is passed in.
 
 **See**
 
@@ -4263,10 +5270,10 @@ Checks whether a UTD belongs to the target UTD.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| srcTypeId | Pointer to the UTD to check.  |
-| destTypeId | Pointer to the target UTD. |
+| srcTypeId | Pointer to the UTD to check. |
+| destTypeId | Pointer to the target UTD.|
 
 **Returns**
 
@@ -4287,9 +5294,9 @@ Creates an [OH_Utd](#oh_utd) instance and a pointer to it.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| typeId | Pointer to the type ID of the instance to create. |
+| typeId | Pointer to the type ID of the instance to create.|
 
 **Returns**
 
@@ -4314,9 +5321,9 @@ Destroys an [OH_Utd](#oh_utd) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_Utd](#oh_utd) instance to destroy. |
+| pThis | Pointer to the [OH_Utd](#oh_utd) instance to destroy.|
 
 **See**
 
@@ -4337,10 +5344,10 @@ Destroys a UTD list.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| list | Double pointer to the UTD list to destroy. |
-| count | Length of the UTD list. |
+| list | Double pointer to the UTD list to destroy.|
+| count | Length of the UTD list.|
 
 
 ### OH_Utd_Equals()
@@ -4357,10 +5364,10 @@ Checks whether two UTDs are the same.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| desc1 | Pointer to one [OH_Utd](#oh_utd) instance to compare. |
-| desc2 | Pointer to the other [OH_Utd](#oh_utd) instance to compare. |
+| desc1 | Pointer to one [OH_Utd](#oh_utd) instance to compare.|
+| desc2 | Pointer to the other [OH_Utd](#oh_utd) instance to compare.|
 
 **Returns**
 
@@ -4381,10 +5388,10 @@ Obtains the relationships between the data in an [OH_Utd](#oh_utd) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_Utd](#oh_utd) instance. |
-| count | Pointer to the number of data types obtained. |
+| pThis | Pointer to the [OH_Utd](#oh_utd) instance.|
+| count | Pointer to the number of data types obtained.|
 
 **Returns**
 
@@ -4409,9 +5416,9 @@ Obtains the description from an [OH_Utd](#oh_utd) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_Utd](#oh_utd) instance. |
+| pThis | Pointer to the [OH_Utd](#oh_utd) instance.|
 
 **Returns**
 
@@ -4436,10 +5443,10 @@ Obtains the file name extensions associated with an [OH_Utd](#oh_utd) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_Utd](#oh_utd) instance. |
-| count | Pointer to the number of file name extensions obtained. |
+| pThis | Pointer to the [OH_Utd](#oh_utd) instance.|
+| count | Pointer to the number of file name extensions obtained.|
 
 **Returns**
 
@@ -4464,9 +5471,9 @@ Obtains the path of the default icon file from an [OH_Utd](#oh_utd) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_Utd](#oh_utd) instance. |
+| pThis | Pointer to the [OH_Utd](#oh_utd) instance.|
 
 **Returns**
 
@@ -4491,10 +5498,10 @@ Obtains the MIME types associated with an [OH_Utd](#oh_utd) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_Utd](#oh_utd) instance. |
-| count | Pointer to the number of MIME types obtained. |
+| pThis | Pointer to the [OH_Utd](#oh_utd) instance.|
+| count | Pointer to the number of MIME types obtained.|
 
 **Returns**
 
@@ -4519,9 +5526,9 @@ Obtains the URL from an [OH_Utd](#oh_utd) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_Utd](#oh_utd) instance. |
+| pThis | Pointer to the [OH_Utd](#oh_utd) instance.|
 
 **Returns**
 
@@ -4546,9 +5553,9 @@ Obtains the type ID from an [OH_Utd](#oh_utd) instance.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| pThis | Pointer to the [OH_Utd](#oh_utd) instance. |
+| pThis | Pointer to the [OH_Utd](#oh_utd) instance.|
 
 **Returns**
 
@@ -4573,10 +5580,10 @@ Obtains the uniform data types based on the file name extensions.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| extension | Pointer to the file name extensions. |
-| count | Pointer to the number of uniform data types obtained. |
+| extension | Pointer to the file name extensions.|
+| count | Pointer to the number of data types obtained.|
 
 **Returns**
 
@@ -4597,10 +5604,10 @@ Obtains the uniform data types based on the MIME types.
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| mimeType | Pointer to the MIME types. |
-| count | Pointer to the number of uniform data types obtained. |
+| mimeType | Pointer to the MIME types.|
+| count | Pointer to the number of data types obtained.|
 
 **Returns**
 
@@ -4621,10 +5628,10 @@ Checks whether a UTD is a higher-level type of the target UTD. For example, **SO
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| srcTypeId | Pointer to the UTD to check.  |
-| destTypeId | Pointer to the target UTD. |
+| srcTypeId | Pointer to the UTD to check. |
+| destTypeId | Pointer to the target UTD.|
 
 **Returns**
 
@@ -4645,10 +5652,10 @@ Checks whether a UTD is a lower-level type of the target UTD. For example, **TYP
 
 **Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| srcTypeId | Pointer to the UTD to check.  |
-| destTypeId | Pointer to the target UTD. |
+| srcTypeId | Pointer to the UTD to check. |
+| destTypeId | Pointer to the target UTD.|
 
 **Returns**
 

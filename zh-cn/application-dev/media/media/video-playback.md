@@ -86,6 +86,11 @@ export class AVPlayerDemo {
   private isSeek: boolean = true; // 用于区分模式是否支持seek操作
   private fileSize: number = -1;
   private fd: number = 0;
+
+  constructor(surfaceID: string) {
+    this.surfaceID = surfaceID;
+  }
+
   // 注册avplayer回调函数
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // startRenderFrame首帧渲染回调函数

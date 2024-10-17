@@ -60,7 +60,8 @@
 ### 图库（媒体库）
 [Media Library Kit](../media/medialibrary/photoAccessHelper-overview.md)提供了照片Picker（PhotoViewPicker），用于访问、保存公共目录的图片或视频文件。详见[选择媒体库资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md) 、[创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
-
+<!--RP3-->
+<!--RP3End-->
 
 
 

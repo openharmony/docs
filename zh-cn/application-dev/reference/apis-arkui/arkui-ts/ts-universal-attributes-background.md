@@ -226,9 +226,8 @@ backgroundImageResizable(value: ResizableOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| policy<sup>13+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：FOLLOWS_WINDOW_ACTIVE_STATE |
-| inactiveColor<sup>13+</sup>  | ResourceColor | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
-| type<sup>13+</sup>  | [BlurType](ts-appendix-enums.md#blurtype13) | 否    | 模糊类型。<br/> 默认值：WITHIN_WINDOW |
+| policy<sup>13+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy13) | 否    | 模糊激活策略。<br/> 默认值：ALWAYS_ACTIVE |
+| inactiveColor<sup>13+</sup>  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
 
 
 ## backgroundBrightness<sup>12+</sup> 

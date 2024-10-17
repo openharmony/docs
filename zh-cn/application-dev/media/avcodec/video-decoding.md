@@ -979,3 +979,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽高、跨距、像素格式。
 
 后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤14-17。
+
+<!--RP5-->
+<!--RP5End-->

@@ -485,6 +485,38 @@ selection(selectionStart: number, selectionEnd: number)
 | selectionStart | number | 是   | 所选文本的起始位置。<br />默认值：-1 |
 | selectionEnd   | number | 是   | 所选文本的结束位置。<br />默认值：-1 |
 
+### caretColor<sup>14+</sup>
+
+caretColor(value: ResourceColor)
+
+设置文本框选中区域手柄颜色。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                   |
+| ------ | ------------------------------------------ | ---- | -------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标颜色。<br/>默认值：'#007DFF' |
+
+### selectedBackgroundColor<sup>14+</sup>
+
+selectedBackgroundColor(value: ResourceColor)
+
+设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明                                       |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
+
 ### ellipsisMode<sup>11+</sup>
 
 ellipsisMode(value: EllipsisMode)
@@ -795,7 +827,7 @@ fontWeight(weight: number | FontWeight | string, options?: FontSettingOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| weight | [FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是  | 设置文本字重。 |
+| weight | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 是  | 设置文本字重。 |
 | options | [FontSettingOptions](ts-text-common.md#fontsettingoptions12对象说明) | 否  | 设置字体配置项。 |
 
 ### enableHapticFeedback<sup>13+</sup>
@@ -834,7 +866,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 描述            |
+| 名称         | 说明          |
 | ---------- | ------------- |
 | RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
 | LONG_PRESS  | 通过长按触发菜单弹出。   |
