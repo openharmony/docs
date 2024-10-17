@@ -1,6 +1,8 @@
 # @ohos.web.netErrorList (ArkWeb网络协议栈错误列表)
 
-ArkWeb的网络协议栈错误列表
+ArkWeb的网络协议栈错误列表。
+
+ArkWeb网络协议栈错误码直接映射Chromium错误码net_error_list.h。
 
 > **说明：**
 > 

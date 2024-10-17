@@ -4,7 +4,7 @@
 
 ## 开启前进后退缓存
 
-可以通过[enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12)来开启web组件使用前进后退缓存的功能。
+可以通过[enableBackForwardCache()](../reference/apis-arkweb/js-apis-webview.md#enablebackforwardcache12)来开启Web组件使用前进后退缓存的功能。
 
 需要在[initializeWebEngine()](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)初始化内核之前调用。
 
@@ -29,9 +29,9 @@ export default class EntryAbility extends UIAbility {
 
 ## 设置缓存的页面数量和页面留存的时间
 
-可以通过[setBackForwardCacheOptions()](../reference/apis-arkweb/js-apis-webview.md#setbackforwardcacheoptions12)来设置每一个web示例前进后退缓存的策略。
+可以通过[setBackForwardCacheOptions()](../reference/apis-arkweb/js-apis-webview.md#setbackforwardcacheoptions12)来设置每一个Web示例前进后退缓存的策略。
 
-在下面的示例中，设置web组件可以缓存的最大数量为10，每个页面在缓存中停留300s。
+在下面的示例中，设置Web组件可以缓存的最大数量为10，每个页面在缓存中停留300s。
   
 ```ts
 // xxx.ts
