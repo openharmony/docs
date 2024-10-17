@@ -563,6 +563,7 @@ enableHapticFeedback(isEnabled: boolean)
 | --------- | ------------------------------------------ | ---- | ---------------- |
 | fontSize  | [Length](ts-types.md#length)               | 否   | 文本按钮字体大小，不支持百分比。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文本按钮字体颜色。 |
+| autoDisable<sup>14+</sup>  | boolean                   | 否  | Search无文本内容时按钮置灰且不可点击。|
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
