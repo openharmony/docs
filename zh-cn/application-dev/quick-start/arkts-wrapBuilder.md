@@ -1,12 +1,30 @@
 # wrapBuilder：封装全局@Builder
 
-
- 全局\@Builder作为wrapBuilder的参数返回WrappedBuilder对象，实现[全局\@Builder](arkts-builder.md#全局自定义构建函数)可以进行赋值和传递。 
+  当开发者在一个struct内使用了多个全局@Builder函数，来实现UI的不同效果时，多个全局@Builder函数会使代码维护起来非常困难，并且页面不整洁。此时，开发者可以使用wrapBuilder来封装全局@Builder。 
 
 
 > **说明：**
 >
 > 从API version 11开始使用。
+
+当@Builder方法赋值给变量或者数组后，赋值的变量或者数组在UI方法中无法使用。
+
+```ts
+@Builder
+function builderElement() {}
+
+let builderArr: Function[] = [builderElement];
+@Builder
+function testBuilder() {
+  ForEach(builderArr, (item: Function) => {
+    item();
+  })
+}
+```
+
+在上述代码中，builderArr是一个@Builder方法组成的数组， 在ForEach中取每一项@Builder方法时会出现@Builder方法在UI方法中无法使用的错误。
+
+ 为了解决这一问题，引入wrapBuilder作为全局@Builder封装函数。wrapBuilder的参数返回WrappedBuilder对象，实现[全局\@Builder](arkts-builder.md#全局自定义构建函数)可以进行赋值和传递。 
 
 ## 接口说明
 
@@ -45,9 +63,9 @@ wrapBuilder方法返回的WrappedBuilder对象的builder属性方法只能在str
 
 
 
-## 使用场景1
+## @Builder方法赋值给变量
 
-将wrapBuilder赋值给globalBuilder，且把MyBuilder作为wrapBuilder参数，用来替代MyBuilder不能直接赋值给globalBuilder。
+把@Builder装饰器装饰的方法MyBuilder作为wrapBuilder的参数，再将wrapBuilder赋值给变量globalBuilder，用来解决@Builder方法赋值给变量后无法被使用的问题。 
 
 ```ts
 @Builder
@@ -75,7 +93,7 @@ struct Index {
 }
 ```
 
-## 使用场景2
+##  @Builder方法赋值给变量在UI语法中使用
 
 自定义组件Index使用ForEach来进行不同\@Builder函数的渲染，可以使用builderArr声明的wrapBuilder数组进行不同\@Builder函数效果体现。整体代码会较整洁。
 
@@ -119,7 +137,7 @@ struct Index {
 }
 ```
 
-## 使用场景3
+## 引用传递
 
 通过按引用传递的方式传入参数，会触发UI的刷新。
 
