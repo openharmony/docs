@@ -1,9 +1,9 @@
 # Web组件嵌套滚动
 
 Web组件嵌套滚动的典型应用场景为，在一个页面中，有多个独立的区域需要进行滚动，当用户滚动Web区域内容时，可带动其他滚动区域进行滚动，以达到上下滑动页面的用户体验。
-内嵌在可滚动容器（[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)...）中的Web组件，接收到滑动手势事件，需要对接ArkUI框架的[NestedScrollMode](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrollmode11枚举说明)枚举类型，使得Web组件可以嵌套ArkUI可滚动容器，进行嵌套滚动。开发者可以在Web组件创建时，使用[nestedScroll](../reference/apis-arkweb/ts-basic-components-web.md#nestedscroll11)属性接口指定默认的嵌套滚动模式，也允许在过程中动态改变嵌套滚动的模式。
+内嵌在可滚动容器（[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)...）中的Web组件，接收到滑动手势事件，需要对接ArkUI框架的[NestedScrollMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10枚举说明)枚举类型，使得Web组件可以嵌套ArkUI可滚动容器，进行嵌套滚动。开发者可以在Web组件创建时，使用[nestedScroll](../reference/apis-arkweb/ts-basic-components-web.md#nestedscroll11)属性接口指定默认的嵌套滚动模式，也允许在过程中动态改变嵌套滚动的模式。
 
-nestedScroll入参为一个[NestedScrollOptions](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrolloptions11对象说明)对象，该对象具有两个属性，分别为scrollForward和scrollBackward，每一个属性都为一个[NestedScrollMode](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrollmode11枚举说明)枚举类型。
+nestedScroll入参为一个[NestedScrollOptions](../reference/apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10对象说明)对象，该对象具有两个属性，分别为scrollForward和scrollBackward，每一个属性都为一个[NestedScrollMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10枚举说明)枚举类型。
 
 当Web组件被多个可滚动容器组件嵌套时，未被Web组件消费的与父组件方向一致的偏移量、速度值将被传递给距Web组件最近且方向一致的父组件，使得父组件可以继续滚动。一次手势滑动只能沿X轴或Y轴一个方向嵌套滚动，当手势斜向滑动时，滚动方向为偏移量或速度在X轴、Y轴绝对值较大的方向；当偏移量或速度绝对值在X轴、Y轴绝对值相同时，滚动方向为距Web组件最近的可滚动组件的方向。
 
