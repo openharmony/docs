@@ -258,7 +258,7 @@ struct ScreenTest {
 ## window 和 display之间的时序问题(API 10)
 旋转涉及window和display两个服务，处于不同进程。由于旋转完后display的更新时间早于window的更新时间(display旋转时直接宽高互换，提前可预知；window要等arkui布局完成才知道窗口大小，耗时长)，故在display触发变化时获取窗口信息会存在时序问题（窗口信息还未更新完成）。
 
-**1. 旋转监听window.on('windowSizeChange')未收到回调**
+**1. 监听窗口大小变化window.on('windowSizeChange')未收到回调**
 
 因为在window侧如果窗口大小没发生变化，此监听不会被触发。如直接旋转180度的情况下，窗口大小并没有改变，此时不会通知回调。
 
@@ -313,7 +313,7 @@ try {
 }
 ```
 
-2. 可以通过监听window.on('avoidAreaChange')事件同时获取屏幕方向orientation和avoidAreaChange信息。
+2. 可以通过监听windowClass.on('avoidAreaChange')事件同时获取屏幕方向orientation和avoidAreaChange信息。
 ```ts
 try {
     windowClass.on('avoidAreaChange', async (data) => {
@@ -328,5 +328,9 @@ try {
     console.error('Failed to enable the listener for display changes. Cause: ' + JSON.stringify(exception));
 }
 ```
+
+**参考链接**
+[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+[windowClass.on('avoidAreaChange')](../reference/apis-arkui/js-apis-window.md#onavoidareachange9)
 
 <!--no_check-->
