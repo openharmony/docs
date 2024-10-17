@@ -43,6 +43,10 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 | hidesBackButton | boolean                                                                     | 否 | - | 是否隐藏左侧的返回箭头。<br>默认值：false。true：隐藏，false：显示。|
 | onSelected | (index:&nbsp;number)&nbsp;=&gt;&nbsp;void                                   | 否 | - | 下拉菜单项目选中触发的回调函数，传入选中项的索引。 |
 
+> **说明：**
+> 
+> 入参对象不可为undefined，即`EditableTitleBar(undefined)`。
+
 ## SelectTitleBarMenuItem
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
