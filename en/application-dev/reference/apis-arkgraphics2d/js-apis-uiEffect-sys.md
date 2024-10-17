@@ -204,6 +204,20 @@ let blender : uiEffect.BrightnessBlender =
 visualEffect.backgroundColorBlender(blender)
 ```
 
+## Blender<sup>13+</sup>
+
+type Blender = BrightnessBlender
+
+Defines the blender type, which is used to describe blending effects.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**System API**: This is a system API.
+
+| Type                         | Description                                              |
+| ----------------------------- | ------------------------------------------------- |
+| [BrightnessBlender](#brightnessblender) | Blender with a brightening effect.|
+
 ## BrightnessBlender
 A blender that can apply the brightness effect to a component. Before calling any API in **BrightnessBlender**, you must use [createBrightnessBlender](#uieffectcreatebrightnessblender) to create a **BrightnessBlender** instance.
 
