@@ -2459,15 +2459,11 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     let enabled = true;
     try {
-      this.context.setRestoreEnabled(enabled).then((data) => {
-        console.log('setRestoreEnabled success.');
-      }).catch((err: BusinessError) => {
-        console.error(`setRestoreEnabled fail, err: ${JSON.stringify(err)}`);
-      });
+      this.context.setRestoreEnabled(enabled);
     } catch (paramError) {
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      console.error(`[UIAbilityContext] error: ${code}, ${message}`);
+      console.error(`setRestoreEnabled failed, err code: ${code}, err msg: ${message}`);
     }
   }
 }
