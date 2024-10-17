@@ -408,7 +408,20 @@ export default class MigrationAbility extends UIAbility {
 
 ![hop-cross-device-migration](figures/continue_quick_start.png)
 
-配置快速拉起功能后对应的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口具体实现，示例代码如下：
+配置了快速拉起的应用，触发迁移时会收到两次启动请求，区别如下：
+
+| 场景           | 生命周期函数                                | launchParam.launchReason                          |
+| -------------- | ------------------------------------------- | ------------------------------------------------- |
+| 第一次启动请求 | onCreate (冷启动)<br />或onNewWant (热启动) | AbilityConstant.LaunchReason.PREPARE_CONTINUATION |
+| 第二次启动请求 | onNewWant                                   | AbilityConstant.LaunchReason.CONTINUATION         |
+
+如果没有配置快速拉起，则触发迁移时会收到一次启动请求：
+
+| 场景         | 生命周期函数                                | launchParam.launchReason                  |
+| ------------ | ------------------------------------------- | ----------------------------------------- |
+| 一次启动请求 | onCreate (冷启动)<br />或onNewWant (热启动) | AbilityConstant.LaunchReason.CONTINUATION |
+
+配置快速拉起功能后，对应的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口具体实现，示例代码如下：
 
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -423,7 +436,7 @@ export default class MigrationAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
 
-    // 1.已配置快速拉起功能，首次触发迁移
+    // 1.已配置快速拉起功能，第一次启动请求
     if (launchParam.launchReason === AbilityConstant.LaunchReason.PREPARE_CONTINUATION) {
       //若应用迁移数据较大，可在此处添加加载页面(页面中显示loading等)
       //可处理应用自定义跳转、时序等问题
@@ -434,14 +447,14 @@ export default class MigrationAbility extends UIAbility {
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
       
-    // 1.已配置快速拉起功能，首次触发迁移
+    // 1.已配置快速拉起功能，第一次启动请求
     if (launchParam.launchReason === AbilityConstant.LaunchReason.PREPARE_CONTINUATION) {
       //若应用迁移数据较大，可在此处添加加载页面(页面中显示loading等)
       //可处理应用自定义跳转、时序等问题
       // ...
     }
       
-    // 2.非首次触发接续
+    // 2.第二次启动请求
     if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       // 将上述保存的数据从want.parameters中取出恢复
       let continueInput = '';
