@@ -255,7 +255,7 @@ struct ScreenTest {
 [设置窗口的显示方向属性](../reference/apis-arkui/js-apis-window.md#setpreferredorientation9)  
 [开启显示设备变化的监听](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
 
-## window 和 display之间的时序问题(API 10)
+## window和display之间的时序问题(API 10)
 旋转涉及window和display两个服务，处于不同进程。由于旋转完后display的更新时间早于window的更新时间(display旋转时直接宽高互换，提前可预知；window要等arkui布局完成才知道窗口大小，耗时长)，故在display触发变化时获取窗口信息会存在时序问题（窗口信息还未更新完成）。
 
 **1. 监听窗口大小变化window.on('windowSizeChange')未收到回调**
