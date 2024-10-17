@@ -238,6 +238,7 @@
     - [文本组件公共接口](arkui-ts/ts-text-common.md)
     <!--Del-->
     - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
+    - [属性字符串 (系统接口)](arkui-ts/ts-universal-styled-string-sys.md)
     <!--DelEnd-->
   - 图片与视频
     - [Image](arkui-ts/ts-basic-components-image.md)
