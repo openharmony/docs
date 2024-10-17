@@ -436,7 +436,7 @@ export default class MigrationAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
 
-    // 1.已配置快速拉起功能，第一次启动请求
+    // 1.已配置快速拉起功能，应用立即启动时触发应用生命周期回调
     if (launchParam.launchReason === AbilityConstant.LaunchReason.PREPARE_CONTINUATION) {
       //若应用迁移数据较大，可在此处添加加载页面(页面中显示loading等)
       //可处理应用自定义跳转、时序等问题
@@ -447,14 +447,14 @@ export default class MigrationAbility extends UIAbility {
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
       
-    // 1.已配置快速拉起功能，第一次启动请求
+    // 1.已配置快速拉起功能，应用立即启动时触发应用生命周期回调
     if (launchParam.launchReason === AbilityConstant.LaunchReason.PREPARE_CONTINUATION) {
       //若应用迁移数据较大，可在此处添加加载页面(页面中显示loading等)
       //可处理应用自定义跳转、时序等问题
       // ...
     }
       
-    // 2.第二次启动请求
+    // 2.迁移数据恢复时触发应用生命周期回调
     if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       // 将上述保存的数据从want.parameters中取出恢复
       let continueInput = '';
