@@ -14,7 +14,7 @@
   webTag: string = 'ArkWeb1';
   controller: webview.WebviewController = new webview.WebviewController();
   ...
-  // aboutToAppear中将webTag通过NAPI接口传入C++侧，作为C++侧ArkWeb组件的唯一标识
+  // aboutToAppear中将webTag通过Node-API接口传入C++侧，作为C++侧ArkWeb组件的唯一标识
   aboutToAppear() {
     console.info("aboutToAppear")
     //初始化web ndk
@@ -418,7 +418,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   }
   ```
 
-* NAPI侧暴露ArkTS接口
+* Node-API侧暴露ArkTS接口
 
   ```javascript
   // entry/src/main/cpp/types/libentry/index.d.ts
@@ -435,7 +435,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   export const postMessageThread: (webName: string) => void;
   ```
 
-* NAPI侧编译配置
+* Node-API侧编译配置
 
   ```c++
   # entry/src/main/cpp/CMakeLists.txt
@@ -465,7 +465,7 @@ ArkWeb native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb
   target_link_libraries(entry PUBLIC libace_napi.z.so ${hilog-lib} libohweb.so)
   ```
 
-* NAPI层代码
+* Node-API层代码
 
   ```c++
   // entry/src/main/cpp/hello.cpp
