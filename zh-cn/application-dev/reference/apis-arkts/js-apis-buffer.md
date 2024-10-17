@@ -346,7 +346,7 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回一个共享内存的Buffer对象。 |
+| Buffer | 返回一个Buffer对象，与入参对象保持内存共享。 |
 
 **错误码：**
 
@@ -370,7 +370,8 @@ let buf = buffer.from(ab, 0, 2);
 
 from(buffer: Buffer | Uint8Array): Buffer
 
-创建并复制`buffer`数据到新的Buffer对象并返回。
+当入参为Buffer对象时，创建并复制入参Buffer对象数据到新的Buffer对象并返回。</br>
+当入参为Uint8Array对象时，创建的Buffer对象持有Uint8Array对象的内存并返回，保持数据的内存关联。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -401,8 +402,15 @@ from(buffer: Buffer | Uint8Array): Buffer
 ```ts
 import { buffer } from '@kit.ArkTS';
 
+// 以Buffer对象类型进行创建新的Buffer对象
 let buf1 = buffer.from('buffer');
 let buf2 = buffer.from(buf1);
+
+// 以Uint8Array对象类型进行创建Buffer对象，保持对象间内存共享
+let uint8Array = new Uint8Array(10);
+let buf3 = buffer.from(uint8Array);
+buf3.fill(1)
+console.info("uint8Array:", uint8Array)
 ```
 
 ## buffer.from
