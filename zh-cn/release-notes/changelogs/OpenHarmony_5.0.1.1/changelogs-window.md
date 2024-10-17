@@ -29,7 +29,8 @@ API 12
 从OpenHarmony 5.0.1.1 版本开始。
 
 **变更的接口/组件**
-customUIController尺寸表现。
+
+使用PiPConfiguration中customUIController在画中画内容之上添加自定义控件场景。
 
 **适配指导**
 
