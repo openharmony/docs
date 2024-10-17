@@ -6255,7 +6255,7 @@ async function Release() {
 
 ## Metadata<sup>13+</sup>
 
-图像元数据类，用于存储图像的元数据。
+图像元数据类，用于存储图像的元数据。目前支持的元数据类型可参考[MetadataType](#metadatatype13)。
 
 ### 属性
 
@@ -6265,7 +6265,7 @@ async function Release() {
 
 getProperties(key: Array\<string>): Promise\<Record\<string, string | null>>
 
-获取图像中属性的值，此方法使用promise返回记录数组中的属性值。
+获取图像中属性的值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](#propertykey7)和[FragmentMapPropertyKey](#fragmentmappropertykey13)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -6324,7 +6324,7 @@ async function GetProperties() {
 
 setProperties(records: Record\<string, string | null>): Promise\<void>
 
-批量设置图片元数据中的指定属性的值，用Promise形式不返回结果。
+批量设置图片元数据中的指定属性的值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](#propertykey7)和[FragmentMapPropertyKey](#fragmentmappropertykey13)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -6387,7 +6387,7 @@ async function SetProperties() {
 
 getAllProperties(): Promise\<Record<string, string | null>>
 
-获取图片中所有元数据的属性和值，用Promise形式返回结果。
+获取图片中所有元数据的属性和值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](#propertykey7)和[FragmentMapPropertyKey](#fragmentmappropertykey13)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -7399,7 +7399,7 @@ img.release().then(() => {
 | 名称              | 值   | 说明               |
 | ----------------- | ---- | ------------------ |
 | EXIF_METADATA     | 1    | exif数据。         |
-| FRAGMENT_METADATA | 2    | 水印裁切图元数据。 |
+| FRAGMENT_METADATA | 2    | 水印裁剪图元数据。 |
 
 ## ScaleMode<sup>9+</sup>
 
@@ -7721,6 +7721,19 @@ PixelMap的初始化选项。
 | XMAGE_BOTTOM <sup>12+</sup> | "HwMnoteXmageBottom" | **读写能力：** 可读写<br>水印区域Y2坐标。 |
 | CLOUD_ENHANCEMENT_MODE <sup>12+</sup> | "HwMnoteCloudEnhancementMode" | **读写能力：** 可读写<br>云增强模式。 |
 | WIND_SNAPSHOT_MODE <sup>12+</sup> | "HwMnoteWindSnapshotMode" | **读写能力：** 只读<br>运动快拍模式。 |
+
+## FragmentMapPropertyKey<sup>13+</sup>
+
+枚举，水印裁剪图图片信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称                        | 值                    | 说明                                |
+| --------------------------- | --------------------- | ----------------------------------- |
+| X_IN_ORIGINAL<sup>13+</sup> | "XInOriginal"         | 水印裁剪图左上角在原始图中的X坐标。 |
+| Y_IN_ORIGINAL<sup>13+</sup> | "YInOriginal"         | 水印裁剪图左上角在原始图中的Y坐标。 |
+| WIDTH<sup>13+</sup>         | "FragmentImageWidth"  | 水印裁剪图的宽。                    |
+| HEIGHT<sup>13+</sup>        | "FragmentImageHeight" | 水印裁剪图的高。                    |
 
 ## ImageFormat<sup>9+</sup>
 
