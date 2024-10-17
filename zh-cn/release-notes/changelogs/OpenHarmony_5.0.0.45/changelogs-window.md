@@ -9,6 +9,7 @@
 **变更原因**
 
 应用调用getWindowProperties可以获取窗口属性，返回的结构体中表示可绘制区域的字段为drawableRect，如果在on('windowSizeChange')回调中调用getWindowproperties，可能获得未更新的drawableRect。
+通过本次变更，在on('windowSizeChange')回调中同步更新windowRect和drawableRect，应用可基于此进行更加灵活的自绘制布局。
 
 **变更影响**
 
@@ -16,7 +17,7 @@
 
 变更前：on('windowSizeChange')回调中调用getWindowProperties获取drawableRect，可能获得未更新的drawableRect。
 
-变更后：on('windowSizeChange')回调中调用getWindowProperties获取drawableRect，可以拿到正确的drawableRect。
+变更后：on('windowSizeChange')回调中调用getWindowProperties获取drawableRect，可以获得正确的drawableRect。
 
 **起始 API Level**
 
@@ -39,7 +40,7 @@
 drawableRect字段从API 11开始提供
 
 本次变更在API 13开始生效，应用如果依赖drawableRect，可以通过api版本信息来保持兼容，实例如下：
-```
+```ts
 try {
   let properties = windowClass.getWindowProperties();
   if (deviceInfo.sdkApiVersion >= 13) {
