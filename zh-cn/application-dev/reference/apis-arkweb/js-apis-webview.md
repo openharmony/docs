@@ -69,6 +69,14 @@ struct WebComponent {
 
 通过WebMessagePort可以进行消息的发送以及接收。
 
+### 属性
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 类型   | 可读 | 可写 | 说明                                              |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------|
+| isExtentionType<sup>10+</sup> | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
+
 ### postMessageEvent
 
 postMessageEvent(message: WebMessage): void
@@ -187,14 +195,6 @@ struct WebComponent {
   }
 }
 ```
-
-### isExtentionType<sup>10+</sup>
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称         | 类型   | 可读 | 可写 | 说明                                              |
-| ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
 
 ### postMessageEventExt<sup>10+</sup>
 
@@ -3641,7 +3641,7 @@ struct WebComponent {
 
 ### scrollTo
 
-scrollTo(x:number, y:number, duration?:number): void
+scrollTo(x:number, y:number): void
 
 在指定时间内，将页面滚动到指定的绝对位置。
 
@@ -3653,7 +3653,6 @@ scrollTo(x:number, y:number, duration?:number): void
 | ------ | -------- | ---- | ---------------------- |
 | x   | number   | 是   | 绝对位置的水平坐标，当传入数值为负数时，按照传入0处理。单位：vp。 |
 | y   | number   | 是   | 绝对位置的垂直坐标，当传入数值为负数时，按照传入0处理。单位：vp。|
-| duration<sup>13+</sup> | number | 否 | 滚动动画时间。<br>单位：ms。<br>不传入为无动画，当传入数值为负数或传入0时，按照不传入处理。 |
 
 **错误码：**
 
