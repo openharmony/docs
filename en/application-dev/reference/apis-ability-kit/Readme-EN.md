@@ -243,15 +243,20 @@
 - C APIs
   - Modules
     - [AbilityAccessControl](_ability_access_control.md)
+    - [AbilityRuntime](_ability_runtime.md)
     - [Bundle](_bundle.md)
     - [ChildProcess](c-apis-ability-childprocess.md)
   - Header Files
     - [ability_access_control.h](ability__access__control_8h.md)
+    - [ability_runtime_common.h](ability__runtime__common_8h.md)
+    - [application_context.h](application__context_8h.md)
+    - [context_constant.h](context__constant_8h.md)
     - [native_interface_bundle.h](native__interface__bundle.md)
     - [native_child_process.h](native__child__process_8h.md)
   - Structs
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
-- Result Codes
+    - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
+- Error Codes
   - [Ability Error Codes](errorcode-ability.md)
   - [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md)
   - [Bundle Error Codes](errorcode-bundle.md)

@@ -11,9 +11,9 @@ import { PhotoEditorExtensionAbility } from '@kit.AbilityKit';
 ```
 ## Properties
 **System capability**: SystemCapability.Ability.AppExtension.PhotoEditorExtension
-|  Name|Type  |Read Only  |Mandatory  |Description  |
+|  Name|Type  |Read Only  |Optional  |Description  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | No | No | Context. |
+|  context | [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md)  | No | Yes | Context. |
 
 ## PhotoEditorExtensionAbility.onCreate
 onCreate(): void
@@ -76,7 +76,7 @@ Called when this PhotoEditorExtensionAbility is switched from the background to 
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Ability.AppExtension.PhotoEditorExtension
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
 
@@ -99,7 +99,7 @@ Called when this PhotoEditorExtensionAbility is switched from the foreground to 
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Ability.AppExtension.PhotoEditorExtension
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
 

@@ -953,6 +953,7 @@ The **uninstallUpdates** API can only be used to uninstall the updates of a pres
 
 Check whether the specified application is a preset application.
 
+
 ## 17700059 Specified Developer ID Does Not Exist
 
 **Error Message**
@@ -1027,25 +1028,6 @@ The ability specified by **want** in the **ShortcutInfo** struct does not exist,
 
 Check the validity of **want** in the **ShortcutInfo** struct.
 
-## 17700068  Maximum Number of Application Clones Is Reduced During an Update 
-
-**Error Message**
-
-Failed to install the HAP because the maximum count of clone app cannot be reduced.
-
-**Description**
-
-If the multi-app mode is **appClone**, the value of **maxCount** cannot be decreased during an update.
-
-**Possible Causes**
-
- The maximum number of application clones is reduced during the update of an application.
-
-**Solution**
-
-1. Check whether the application to update supports clones.
-2. Check whether the maximum number of clones supported by the application is reduced after the update.
-
 ## 17700069 AppClone Instance Cannot Be Created For an Application in Multi-app Mode Not Set To appClone
 
 **Error Message**
@@ -1095,6 +1077,26 @@ It is not allowed to install enterprise applications through a specific installa
 **Possible Causes**
 
 Due to policy control, enterprise applications cannot be installed through the specific API.
+
+**Solution**
+
+## 17700072 Launch Want Does Not Exist
+
+**Error Message**
+
+The launch want is not found.
+
+**Description**
+
+The launch want does not exist.
+
+**Possible Causes**
+
+The application does not have an ability, or does not have an ability for which **entities** is set to **entity.system.home** and **actions** is set to **action.system.home**.
+
+**Solution**
+
+Configure an ability with **entities** set to **entity.system.home** and **actions** set to **action.system.home** for the application.
 
 ## 17700201 .abc File Verification Failure
 

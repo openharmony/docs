@@ -5,6 +5,7 @@
 
 The ChildProcess module provides APIs to manage child processes. You can call the APIs to create a native child process and establish an IPC channel between the parent and child processes to implement multi-process application development.
 
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Since**: 12
@@ -154,3 +155,4 @@ The processing logic sequence is shown in the following pseudocode:
 **Returns**
 
 Returns **NCP_NO_ERROR** if the operation is successful; returns an error code defined in [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) otherwise.
+
