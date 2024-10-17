@@ -7,7 +7,7 @@
 
 **变更原因**
 
-加密方式变更属于核心配置变更，不应该返回损坏错误码。
+加密方式变更不是数据库损坏，不应该返回损坏错误码。
 
 **变更影响**
 
@@ -17,7 +17,7 @@
 关系型数据管理[@ohos.data.relationalStore.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.data.relationalStore.d.ts)中getRdbStore接口如果发生加密方式变更（从加密变非加密或者相反），会返回14800011。
 
 变更后：
-关系型数据管理[@ohos.data.relationalStore.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.data.relationalStore.d.ts)中getRdbStore接口如果发生加密方式变更（从加密变非加密或者相反），会返回14800017。
+关系型数据管理[@ohos.data.relationalStore.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.data.relationalStore.d.ts)中getRdbStore接口如果发生加密方式变更（从加密变非加密或者相反），会按实际加密方式打开。
 
 
 **起始API Level**
@@ -38,4 +38,4 @@ API 12
 
 **适配指导**
 
-如果在getRdbStore中返回14800017，业务需要判断是否加密方式是否正确
+无需适配
