@@ -330,7 +330,9 @@ try {
 ```
 
 **参考链接**
+
 [display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
 [windowClass.on('avoidAreaChange')](../reference/apis-arkui/js-apis-window.md#onavoidareachange9)
 
 <!--no_check-->
