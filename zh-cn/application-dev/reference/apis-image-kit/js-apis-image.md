@@ -639,7 +639,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，通过回调函数返回。
+读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，使用callback形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -718,8 +718,8 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。使用 Promise 形式返回。
+读取PixelMap指定区域内的图像像素数据，并写入area.pixels缓冲区中，该区域由area.region指定。
+当像素格式为RGBA类型时，固定按照BGRA_8888格式从PixelMap读取。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -787,8 +787,8 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。使用 callback 形式返回。
+读取PixelMap指定区域内的图像像素数据，并写入area.pixels缓冲区中，该区域由area.region指定。
+当像素格式为RGBA 类型时，固定按照BGRA_8888格式从PixelMap读取。使用callback形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -857,8 +857,8 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-以同步方式读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。
+以同步方式读取PixelMap指定区域内的图像像素数据，并写入area.pixels缓冲区中，该区域由area.region指定。
+当像素格式为RGBA类型时，固定按照BGRA_8888格式从PixelMap读取。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -901,8 +901,8 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。使用 Promise 形式返回。
+读取area.pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由area.region指定。
+当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -978,8 +978,8 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。使用 callback 形式返回。
+读取area.pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由area.region指定。
+当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。使用callback形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1054,8 +1054,8 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-以同步方式读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。
+以同步方式读取area.pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由area.region指定。
+当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2717,15 +2717,15 @@ import taskpool from '@ohos.taskpool';
 @Concurrent
 // 子线程方法
 async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
-  // 创建 imageSource
+  // 创建imageSource。
   const imageSource = image.createImageSource(rawFileDescriptor);
-  // 创建 pixelMap
+  // 创建pixelMap。
   const pixelMap = imageSource.createPixelMapSync();
-  // 释放 imageSource
+  // 释放imageSource。
   imageSource.release();
-  // 使 pixelMap 在跨线程传输完成后，断开原线程的引用。
+  // 使pixelMap在跨线程传输完成后，断开原线程的引用。
   pixelMap.setTransferDetached(true);
-  // 返回 pixelMap 给主线程
+  // 返回pixelMap给主线程。
   return pixelMap;
 }
 
@@ -2736,13 +2736,13 @@ struct Demo {
   // 主线程方法
   private loadImageFromThread(): void {
     const resourceMgr = getContext(this).resourceManager;
-    // 此处‘example.jpg’ 仅作示例，请开发者自行替换，否则 imageSource 创建失败会导致后续无法正常执行。
+    // 此处‘example.jpg’仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
     resourceMgr.getRawFd('example.jpg').then(rawFileDescriptor => {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
         if (pixelMap) {
           this.pixelMap = pixelMap as PixelMap;
           console.log('Succeeded in creating pixelMap.');
-          // 主线程释放 pixelMap。由于子线程返回 pixelMap 时已调用 setTransferDetached，所以此处能够立即释放 pixelMap。
+          // 主线程释放pixelMap。由于子线程返回pixelMap时已调用setTransferDetached，所以此处能够立即释放pixelMap。
           this.pixelMap.release();
         } else {
           console.error('Failed to create pixelMap.');
@@ -3034,7 +3034,7 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (pixelMap != undefined) {
-  let targetPixelFormat = image.PixelFormat.NV12  
+  let targetPixelFormat = image.PixelMapFormat.NV12
   pixelMap.convertPixelFormat(targetPixelFormat).then(() => {
     console.info('PixelMapFormat convert Succeeded'); //符合条件则进入
   }).catch((error: BusinessError) => {
