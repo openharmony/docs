@@ -12,7 +12,7 @@
 
 **变更影响**
 
-该变更为非兼容变更。
+该变更为不兼容变更。
 
 变更前：on('windowSizeChange')回调中调用getWindowProperties获取drawableRect，可能获得未更新的drawableRect。
 
