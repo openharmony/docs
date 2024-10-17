@@ -232,6 +232,7 @@
       - [elementName](js-apis-bundle-ElementName.md)
       - [hapModuleInfo](js-apis-bundle-HapModuleInfo.md)
       - [moduleInfo](js-apis-bundle-ModuleInfo.md)
+      - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
       <!--Del-->
       - [bundleInstaller (System API)](js-apis-bundle-BundleInstaller-sys.md)
       - [bundleStatusCallback (System API)](js-apis-Bundle-BundleStatusCallback-sys.md)
@@ -251,7 +252,7 @@
     - [native_child_process.h](native__child__process_8h.md)
   - Structs
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
-- Result Codes
+- Error Codes
   - [Ability Error Codes](errorcode-ability.md)
   - [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md)
   - [Bundle Error Codes](errorcode-bundle.md)

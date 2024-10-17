@@ -213,7 +213,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **Example**
 
@@ -303,7 +302,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **Example**
 
@@ -397,7 +395,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 | 17700066 | Failed to install the HAP because installing the native package failed. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **Example**
 
@@ -1111,7 +1108,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **Example**
 
@@ -1189,7 +1185,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **Example**
 
@@ -1269,7 +1264,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
-| 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
 
 **Example**
 
@@ -1587,7 +1581,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process. |
+| userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process.|
 | installFlag                    | number                         | No                       | Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
 | isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall. The default value is **false**.|
 | hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters. By default, no value is passed.        |

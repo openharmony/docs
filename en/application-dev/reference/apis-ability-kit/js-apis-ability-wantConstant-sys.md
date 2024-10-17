@@ -14,7 +14,7 @@ The **wantConstant** module provides the actions, entities, and flags used in **
 import wantConstant from '@ohos.ability.wantConstant';
 ```
 
-## wantConstant.Flags
+## Flags
 
  Enumerates the flags that specify how the Want will be handled.
 

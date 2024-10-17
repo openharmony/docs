@@ -12,7 +12,7 @@ The **ExtensionAbilityInfo** module defines the ExtensionAbility information. A 
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                | Type                                                        | Readable| Writable| Description                                                |
+| Name                | Type                                                        | Read-Only| Optional| Description                                                |
 | -------------------- | ------------------------------------------------------------ | ---- | ---- | ---------------------------------------------------- |
 | bundleName           | string                                                       | Yes  | No  | Bundle name.                                    |
 | moduleName           | string                                                       | Yes  | No  | Name of the HAP file to which the ExtensionAbility belongs.                   |
