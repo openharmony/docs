@@ -757,20 +757,21 @@ struct TabsExample {
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
   @State currentIndex: number = 0
+  @State selectedIndex: number = 0
   private controller: TabsController = new TabsController()
 
   @Builder tabBuilder(index: number, name: string) {
     Column() {
       Text(name)
-        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
         .fontSize(16)
-        .fontWeight(this.currentIndex === index ? 500 : 400)
+        .fontWeight(this.selectedIndex === index ? 500 : 400)
         .lineHeight(22)
         .margin({ top: 17, bottom: 7 })
       Divider()
         .strokeWidth(2)
         .color('#007DFF')
-        .opacity(this.currentIndex === index ? 1 : 0)
+        .opacity(this.selectedIndex === index ? 1 : 0)
     }.width('100%')
   }
 
@@ -799,7 +800,15 @@ struct TabsExample {
       .barHeight(56)
       .animationDuration(400)
       .onChange((index: number) => {
+        // currentIndex控制TabContent显示页签
         this.currentIndex = index
+      })
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        if (index === targetIndex) {
+          return
+        }
+        // selectedIndex控制自定义TabBar内Image和Text颜色切换
+        this.selectedIndex = targetIndex
       })
       .width(360)
       .height(296)
