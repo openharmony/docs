@@ -12,6 +12,39 @@
 import { vpnExtension } from '@kit.NetworkKit';
 ```
 
+## LinkAddress<sup>11+</sup>
+type LinkAddress = connection.LinkAddress
+
+获取网络链接信息。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| [connection.LinkAddress](./js-apis-net-connection.md#linkaddress) | 网络链路信息 |
+
+## RouteInfo<sup>11+</sup>
+type RouteInfo = connection.RouteInfo
+
+获取网络路由信息。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| [connection.RouteInfo](./js-apis-net-connection.md#routeinfo) | 网络路由信息 |
+
+## VpnExtensionContext<sup>11+</sup>
+type VpnExtensionContext = _VpnExtensionContext
+
+vpn扩展的上下文。它允许访问serviceExtension特定资源。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| [_VpnExtensionContext](./js-apis-inner-application-VpnExtensionContext.md) | vpn扩展的上下文 |
+
 ## vpnExtension.startVpnExtensionAbility
 
 startVpnExtensionAbility(want: Want): Promise\<void>
@@ -155,7 +188,6 @@ struct Index {
   }
 }
 ```
-
 
 ## vpnExtension.createVpnConnection
 
