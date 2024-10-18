@@ -1303,7 +1303,7 @@ async function Demo() {
 readPixels(area: PositionArea): Promise\<void>
 
 读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](#positionarea7).pixels缓冲区中，该区域由[PositionArea](#positionarea7).region指定。
-当像素格式为RGBA类型时，固定按照BGRA_8888格式从PixelMap读取。使用Promise形式返回。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式从PixelMap读取。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1442,7 +1442,7 @@ async function Demo() {
 readPixelsSync(area: PositionArea): void
 
 以同步方式读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](#positionarea7).pixels缓冲区中，该区域由[PositionArea](#positionarea7).region指定。
-当像素格式为RGBA类型时，固定按照BGRA_8888格式从PixelMap读取。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式从PixelMap读取。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1486,7 +1486,7 @@ async function Demo() {
 writePixels(area: PositionArea): Promise\<void>
 
 读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
-当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。使用Promise形式返回。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式写入PixelMap。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1563,7 +1563,7 @@ async function Demo() {
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
-当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。使用callback形式返回。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式写入PixelMap。使用callback形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1639,7 +1639,7 @@ async function Demo() {
 writePixelsSync(area: PositionArea): void
 
 以同步方式读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
-当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。
+当PixelMap的像素格式为RGB类型时，固定按照BGRA_8888格式写入PixelMap。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -3584,7 +3584,7 @@ async function Demo() {
 
 convertPixelFormat(targetPixelFormat: PixelMapFormat): Promise\<void>
 
-YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转。
+YUV和RGB类型互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -3592,7 +3592,7 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 
 | 参数名   | 类型                 | 必填 | 说明               |
 | -------- | -------------------- | ---- | ------------------ |
-| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 目标像素格式，用于YUV和RGB格式互转。目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。 |
+| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 目标像素格式，用于YUV和RGB类型互转。目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。 |
 
 **返回值：**
 
