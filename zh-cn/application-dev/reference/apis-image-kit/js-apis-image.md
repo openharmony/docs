@@ -26,7 +26,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                        |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -63,8 +63,8 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
-| colors   | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。  |
-| options  | [InitializationOptions](#initializationoptions8) | 是   | 属性。                     |
+| colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
+| options  | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 | callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调函数，当创建PixelMap成功，err为undefined，data为获取到的PixelMap对象；否则为错误对象。 |
 
 **示例：**
@@ -280,7 +280,7 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                        |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。 |
 | options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
@@ -639,7 +639,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，通过回调函数返回。
+读取图像像素数据，并按照PixelMap的像素格式写入缓冲区中，使用callback形式返回。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -718,8 +718,8 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。使用 Promise 形式返回。
+读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](#positionarea7).pixels缓冲区中，该区域由[PositionArea](#positionarea7).region指定。
+当像素格式为RGBA类型时，固定按照BGRA_8888格式从PixelMap读取。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -787,8 +787,8 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。使用 callback 形式返回。
+读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](#positionarea7).pixels缓冲区中，该区域由[PositionArea](#positionarea7).region指定。
+当像素格式为RGBA 类型时，固定按照BGRA_8888格式从PixelMap读取。使用callback形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -857,8 +857,8 @@ async function Demo() {
 
 readPixelsSync(area: PositionArea): void
 
-以同步方式读取 PixelMap 指定区域内的图像像素数据，并写入 area.pixels 缓冲区中，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式从 PixelMap 读取。
+以同步方式读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](#positionarea7).pixels缓冲区中，该区域由[PositionArea](#positionarea7).region指定。
+当像素格式为RGBA类型时，固定按照BGRA_8888格式从PixelMap读取。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -901,8 +901,8 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。使用 Promise 形式返回。
+读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
+当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。使用Promise形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -978,8 +978,8 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。使用 callback 形式返回。
+读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
+当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。使用callback形式返回。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -1054,8 +1054,8 @@ async function Demo() {
 
 writePixelsSync(area: PositionArea): void
 
-以同步方式读取 area.pixels 缓冲区中的图像像素数据，并写入 PixelMap 指定区域内，该区域由 area.region 指定。
-当像素格式为 RGBA 类型时，固定按照 BGRA_8888 格式写入 PixelMap。
+以同步方式读取[PositionArea](#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](#positionarea7).region指定。
+当像素格式为RGBA类型时，固定按照BGRA_8888格式写入PixelMap。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2717,15 +2717,15 @@ import taskpool from '@ohos.taskpool';
 @Concurrent
 // 子线程方法
 async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap> {
-  // 创建 imageSource
+  // 创建imageSource。
   const imageSource = image.createImageSource(rawFileDescriptor);
-  // 创建 pixelMap
+  // 创建pixelMap。
   const pixelMap = imageSource.createPixelMapSync();
-  // 释放 imageSource
+  // 释放imageSource。
   imageSource.release();
-  // 使 pixelMap 在跨线程传输完成后，断开原线程的引用。
+  // 使pixelMap在跨线程传输完成后，断开原线程的引用。
   pixelMap.setTransferDetached(true);
-  // 返回 pixelMap 给主线程
+  // 返回pixelMap给主线程。
   return pixelMap;
 }
 
@@ -2736,13 +2736,13 @@ struct Demo {
   // 主线程方法
   private loadImageFromThread(): void {
     const resourceMgr = getContext(this).resourceManager;
-    // 此处‘example.jpg’ 仅作示例，请开发者自行替换，否则 imageSource 创建失败会导致后续无法正常执行。
+    // 此处‘example.jpg’仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
     resourceMgr.getRawFd('example.jpg').then(rawFileDescriptor => {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
         if (pixelMap) {
           this.pixelMap = pixelMap as PixelMap;
           console.log('Succeeded in creating pixelMap.');
-          // 主线程释放 pixelMap。由于子线程返回 pixelMap 时已调用 setTransferDetached，所以此处能够立即释放 pixelMap。
+          // 主线程释放pixelMap。由于子线程返回pixelMap时已调用setTransferDetached，所以此处能够立即释放pixelMap。
           this.pixelMap.release();
         } else {
           console.error('Failed to create pixelMap.');
@@ -3008,7 +3008,7 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 
 | 参数名   | 类型                 | 必填 | 说明               |
 | -------- | -------------------- | ---- | ------------------ |
-| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转。 |
+| targetPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 目标像素格式，用于YUV和RGB格式互转。目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA8888/RGBAF16互转，YCRCB_P010/YCBCR_P010与RGBA1010102互转。 |
 
 **返回值：**
 
@@ -3034,11 +3034,14 @@ YUV和RGB格式互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 import { BusinessError } from '@kit.BasicServicesKit';
 
 if (pixelMap != undefined) {
-  let targetPixelFormat = image.PixelFormat.NV12  
+  // 设置目标像素格式为NV12
+  let targetPixelFormat = image.PixelMapFormat.NV12;
   pixelMap.convertPixelFormat(targetPixelFormat).then(() => {
-    console.info('PixelMapFormat convert Succeeded'); //符合条件则进入
+    // pixelMap转换成NV12格式成功
+    console.info('PixelMapFormat convert Succeeded');
   }).catch((error: BusinessError) => {
-    console.error(`PixelMapFormat convert Failed. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
+    // pixelMap转换成NV12格式失败
+    console.error(`PixelMapFormat convert Failed. code is ${error.code}, message is ${error.message}`);
   })
 }
 ```
