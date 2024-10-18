@@ -947,7 +947,7 @@ Represents the HTTP proxy configuration.
 | ------  |------------------------- |
 | 'system'   |  The default network proxy is used.|
 | 'no-proxy' |  No network proxy is used.|
-| HttpProxy  | The specified network proxy is used.|
+| [HttpProxy](js-apis-net-connection.md#httpproxy10)  | The specified network proxy is used.|
 
 ## WebSocketCloseOptions
 
@@ -984,9 +984,7 @@ Enumerates the response headers sent by the server.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| [k:string]:string | The header data type is key-value pair.|
-| string[]  | The header data type is string.|
-| undefined | The header data type is **undefined**.|
+| {[k:string]:string \| string[] \| undefined} | The header data type can be key-value pair, string, or undefined.|
 
 ## Result Codes for Connection Closing
 

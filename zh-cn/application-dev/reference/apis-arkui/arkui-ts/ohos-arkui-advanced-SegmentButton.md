@@ -24,8 +24,6 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
 | 名称            | 类型                                      | 必填 | 装饰器类型  | 说明                                                         |
 | --------------- | --------------------------------------------- | ---- | ----------- | ------------------------------------------------------------ |
 | options         | [SegmentButtonOptions](#segmentbuttonoptions) | 是   | @ObjectLink | 分段按钮选项。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -49,7 +47,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
 
 | 名称                  | 类型                                                         | 必填                                                     | 说明                                                       |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| type                    | "tab" \| "capsule"                                           | 是                                        | 分段按钮的类型。                                             |
+| type                    | 'tab' \| 'capsule'                                       | 是                                        | 分段按钮的类型。                                             |
 | multiply                | boolean                                                      | 是                                                   | 是否可以多选。<br/>**说明：**<br/>页签类分段按钮只支持单选，设置`multiply`为`true`不生效。 |
 | buttons                 | [SegmentButtonItemOptionsArray](#segmentbuttonitemoptionsarray) | 是 | 按钮信息，包括图标和文本信息。                               |
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 是                | 按钮未选中态的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_secondary') |
@@ -126,6 +124,8 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 | [SegmentButtonOptions](#segmentbuttonoptions) | 分段按钮选项。 |
 
 ## DimensionNoPercentage
+
+type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 不支持百分比类型的长度的联合类型。
 
@@ -204,11 +204,15 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 ## ItemRestriction
 
+type ItemRestriction\<T> = [T, T, T?, T?, T?]
+
 用于保存按钮信息的元组。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 取值范围                                  | 说明                              |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                      | 说明                              |
 | ----------------------------------------- | --------------------------------- |
 | ItemRestriction\<T\> = [T, T, T?, T?, T?] | 表示包含2~5个相同类型元素的元组。 |
 
@@ -224,7 +228,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 取值范围                                                     | 说明                      |
+| 类型                                                         | 说明                      |
 | ------------------------------------------------------------ | ------------------------- |
 | [ItemRestriction](#itemrestriction)\<[SegmentButtonTextItem](#segmentbuttontextitem)\> | 仅文本按钮信息的元组。    |
 | [ItemRestriction](#itemrestriction)\<[SegmentButtonIconItem](#segmentbuttoniconitem)\> | 仅图标按钮信息的元组。    |
@@ -238,7 +242,7 @@ static capsule(options: CapsuleSegmentButtonConstructionOptions): SegmentButtonO
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 取值范围                                                     | 说明                      |
+| 类型                                                         | 说明                      |
 | ------------------------------------------------------------ | ------------------------- |
 | Array\<[SegmentButtonTextItem](#segmentbuttontextitem)\>     | 仅文本按钮信息的数组。    |
 | Array\<[SegmentButtonIconItem](#segmentbuttoniconitem)\>     | 仅图标按钮信息的数组。    |
@@ -260,10 +264,12 @@ constructor(elements: SegmentButtonItemTuple)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 
-| 名称     | 类型                                              | 必填 | 说明       |
+| 参数名   | 类型                                              | 必填 | 说明       |
 | -------- | ------------------------------------------------- | ---- | ---------- |
 | elements | [SegmentButtonItemTuple](#segmentbuttonitemtuple) | 是   | 按钮信息。 |
 
@@ -275,12 +281,14 @@ push(...items: SegmentButtonItemArray): number
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 
-| 名称  | 类型                                              | 必填 | 说明                   |
-| ----- | ------------------------------------------------- | ---- | ---------------------- |
-| items | [SegmentButtonItemArray](#segmentbuttonitemarray) | 是   | 被添加的按钮信息数组。 |
+| 参数名 | 类型                                              | 必填 | 说明                   |
+| ------ | ------------------------------------------------- | ---- | ---------------------- |
+| items  | [SegmentButtonItemArray](#segmentbuttonitemarray) | 是   | 被添加的按钮信息数组。 |
 
 **返回值：**
 
@@ -300,6 +308,8 @@ pop(): SegmentButtonItemOptions | undefined
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型                                                         | 说明           |
@@ -318,6 +328,8 @@ shift(): SegmentButtonItemOptions | undefined
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型                                                         | 说明           |
@@ -335,6 +347,8 @@ unshift(...items: SegmentButtonItemArray): number
 在数组开头添加新的元素，返回添加元素后数组的长度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -361,10 +375,12 @@ splice(start: number, deleteCount: number, ...items: SegmentButtonItemOptions[])
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 
-| 名称        | 类型                                                    | 必填 | 说明                 |
+| 参数名      | 类型                                                    | 必填 | 说明                 |
 | ----------- | ------------------------------------------------------- | ---- | -------------------- |
 | start       | number                                                  | 是   | 删除元素的起始位置。 |
 | deleteCount | number                                                  | 是   | 删除元素的数量。     |
@@ -388,10 +404,12 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**参数：**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 
-| 名称     | 类型                                              | 必填 | 说明       |
+| 参数名   | 类型                                              | 必填 | 说明       |
 | -------- | ------------------------------------------------- | ---- | ---------- |
 | elements | [SegmentButtonItemTuple](#segmentbuttonitemtuple) | 是   | 按钮信息。 |
 
@@ -411,7 +429,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 | 名称 | 类型  | 必填 | 说明                   |
 | ---- | ----- | ---- | ---------------------- |
-| type | "tab" | 是   | 类型为页签类分段按钮。 |
+| type | 'tab' | 是   | 类型为页签类分段按钮。 |
 
 ## CapsuleSegmentButtonOptions
 
@@ -423,7 +441,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 | 名称 | 类型      | 必填 | 描述                          |
 | ---- | --------- | ---- | ----------------------------- |
-| type | "capsule" | 是   | 类型为单选类/多选类分段按钮。 |
+| type | 'capsule' | 是   | 类型为单选类/多选类分段按钮。 |
 
 ## SegmentButtonTextItem
 
@@ -462,7 +480,9 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性         | 类型                                   | 必填 | 描述                 |
+### 属性
+
+| 名称         | 类型                                   | 必填 | 说明                 |
 | ------------ | -------------------------------------- | ---- | -------------------- |
 | icon         | [ResourceStr](ts-types.md#resourcestr) | 是   | 未选中态的按钮图标。 |
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 是   | 选中态的按钮图标。   |
@@ -482,7 +502,7 @@ static create(elements: SegmentButtonItemTuple): SegmentButtonItemOptionsArray
 
 ### 属性
 
-| 属性         | 类型                                   | 必填 | 描述                 |
+| 名称         | 类型                                   | 必填 | 说明                 |
 | ------------ | -------------------------------------- | ---- | -------------------- |
 | icon         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态的按钮图标。 |
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态的按钮图标。   |
@@ -515,7 +535,7 @@ SegmentButtonItemOptions的构造参数。
 
 ### 属性
 
-| 属性         | 类型                                   | 必填 | 描述                 |
+| 名称         | 类型                                   | 必填 | 描述                 |
 | ------------ | -------------------------------------- | ---- | -------------------- |
 | icon         | [ResourceStr](ts-types.md#resourcestr) | 否   | 未选中态的按钮图标。 |
 | selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否   | 选中态的按钮图标。   |

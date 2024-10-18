@@ -984,7 +984,7 @@ type ResponseHeaders = {[k: string]: string | string[] | undefined;}
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [k:string]:string \| string[] \| undefined | header数据类型为键值对、字符串或者undefined |
+| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined |
 
 ## close错误码说明
 

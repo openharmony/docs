@@ -4952,7 +4952,7 @@ async function example() {
 }
 ```
 
-### dismiss<sup>12+</sup>
+### dismiss<sup>13+</sup>
 
 dismiss(): void
 
@@ -5744,7 +5744,7 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 | GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | 城市相册。**系统接口**：此接口为系统接口。         |
 | SHOOTING\_MODE<sup>11+</sup>      | 4101       | 拍摄模式相册。**系统接口**：此接口为系统接口。       |
 | PORTRAIT<sup>11+</sup>            | 4102       | 人像相册。**系统接口**：此接口为系统接口。         |
-| GROUP_PHOTO<sup>12+</sup>         | 4103       | 合影相册。**系统接口**：此接口为系统接口。         |
+| GROUP_PHOTO<sup>13+</sup>         | 4103       | 合影相册。**系统接口**：此接口为系统接口。         |
 | HIGHLIGHT<sup>12+</sup>           | 4104       | 时刻相册。**系统接口**：此接口为系统接口。         |
 | HIGHLIGHT_SUGGESTIONS<sup>12+</sup> | 4105     | 时刻建议相册。**系统接口**：此接口为系统接口。         |
 | CLOUD_ENHANCEMENT<sup>13+</sup> | 1032     | AI云增强相册。**系统接口**：此接口为系统接口。         |

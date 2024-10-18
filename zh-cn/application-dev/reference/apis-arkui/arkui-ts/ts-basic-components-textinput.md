@@ -251,7 +251,7 @@ inputFilter(value: ResourceStr, error?: (value: string) => void)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制或剪切，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制、剪切和帮写，仅支持粘贴。
 
 设置CopyOptions.None时，不允许拖拽。
 
@@ -957,7 +957,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                          | 描述                                                         |
+| 名称                          | 说明                                                     |
 | ----------------------------- | ------------------------------------------------------------ |
 | Normal                        | 基本输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | Password                      | 密码输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |

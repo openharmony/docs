@@ -55,7 +55,7 @@ ChipOptions定义chip的样式及具体式样参数。
 | borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button') |
 | allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true |
 | onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。 |
-| onClicked<sup>12+</sup>       | ()=>void                                       | 否   | 操作块点击事件。                                       |
+| onClicked<sup>12+</sup>       | [VoidCallback](ts-types.md#voidcallback12) | 否   | 操作块点击事件。                                       |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto |
 
 > **说明：**
@@ -78,7 +78,7 @@ ChipSize是chip可指定的尺寸类型，如普通型Chip。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 值       | 描述               |
+| 名称   | 值       | 说明               |
 | ------ | -------- | ------------------ |
 | NORMAL | "NORMAL" | normal尺寸操作块。 |
 | SMALL  | "SMALL"  | small尺寸操作块。  |

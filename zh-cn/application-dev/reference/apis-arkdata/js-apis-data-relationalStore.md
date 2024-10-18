@@ -788,11 +788,11 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称    | 值   | 说明                                     |
-| ------- | ---- | ---------------------------------------- |
-| NONE    | 0    | 表示数据库未进行重建。                   |
-| REBUILT | 1    | 表示数据库进行了重建并且生成了空数据库。 |
-| REPAIRED | 2    | 表示数据库进行了修复，恢复了未损坏的数据，<!--RP2-->当前只有[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)具备该能力。<!--RP2End-->|
+| 名称    | 值   | 说明                                                                                                             |
+| ------- | ---- |----------------------------------------------------------------------------------------------------------------|
+| NONE    | 0    | 表示数据库未进行重建。                                                                                                    |
+| REBUILT | 1    | 表示数据库进行了重建并且生成了空数据库，需要应用重新建表和恢复数据。                                                                             |
+| REPAIRED | 2    | 表示数据库进行了修复，恢复了未损坏的数据，<!--RP2-->当前只有[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)具备该能力。<!--RP2End--> |
 
 ## ChangeType<sup>10+</sup>
 
@@ -3921,16 +3921,16 @@ if(store != undefined && deviceId != undefined) {
 
 querySql(sql: string, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定SQL语句查询数据库中的数据，使用callback异步回调。
+根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **参数：**
 
-| 参数名   | 类型                                         | 必填 | 说明                                                         |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| sql      | string                                       | 是   | 指定要执行的SQL语句。                                        |
-| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。    |
+| 参数名   | 类型                                         | 必填 | 说明                                    |
+| -------- | -------------------------------------------- | ---- |---------------------------------------|
+| sql      | string                                       | 是   | 指定要执行的SQL语句。                          |
+| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **错误码：**
 
@@ -3971,7 +3971,7 @@ if(store != undefined) {
 
 querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void
 
-根据指定SQL语句查询数据库中的数据，使用callback异步回调。
+根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4022,7 +4022,7 @@ if(store != undefined) {
 
 querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt;
 
-根据指定SQL语句查询数据库中的数据，使用Promise异步回调。
+根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4078,7 +4078,7 @@ if(store != undefined) {
 
 querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 
-根据指定SQL语句查询数据库中的数据。
+根据指定SQL语句查询数据库中的数据，语句中的各种表达式和操作符之间的关系操作符号不超过1000个。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4111,8 +4111,6 @@ querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "Rose");
 if(store != undefined) {
   try {
     let resultSet: relationalStore.ResultSet = (store as relationalStore.RdbStore).querySqlSync("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
@@ -4137,7 +4135,7 @@ if(store != undefined) {
 
 executeSql(sql: string, callback: AsyncCallback&lt;void&gt;):void
 
-执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
+执行包含指定参数但不返回值的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -4199,7 +4197,7 @@ if(store != undefined) {
 
 executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void
 
-执行包含指定参数但不返回值的SQL语句，使用callback异步回调。
+执行包含指定参数但不返回值的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用callback异步回调。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -4262,7 +4260,7 @@ if(store != undefined) {
 
 executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
-执行包含指定参数但不返回值的SQL语句，使用Promise异步回调。
+执行包含指定参数但不返回值的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -4330,7 +4328,7 @@ if(store != undefined) {
 
 execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 
-执行包含指定参数的SQL语句，返回值类型为ValueType，使用Promise异步回调。
+执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，返回值类型为ValueType，使用Promise异步回调。
 
 该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
 
@@ -4421,7 +4419,7 @@ if(store != undefined) {
 
 execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;ValueType&gt;
 
-执行包含指定参数的SQL语句，使用Promise异步回调。
+执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，使用Promise异步回调。
 
 <!--RP1-->
 该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。<!--RP1End-->
@@ -4497,7 +4495,7 @@ if(store != null) {
 
 executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 
-执行包含指定参数的SQL语句，返回值类型为ValueType。
+执行包含指定参数的SQL语句，语句中的各种表达式和操作符之间的关系操作符号不超过1000个，返回值类型为ValueType。
 
 该接口支持执行增删改操作，支持执行PRAGMA语法的sql，支持对表的操作（建表、删表、修改表）,返回结果类型由执行具体sql的结果决定。
 

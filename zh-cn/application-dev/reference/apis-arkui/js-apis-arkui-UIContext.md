@@ -1516,7 +1516,7 @@ struct Index {
 
 getWindowWidthBreakpoint(): WidthBreakpoint
 
-获取当前实例所在窗口的宽度断点枚举值。具体枚举值根据窗口宽度vp值确定，详见 [WidthBreakpoint](#widthbreakpoint13)。
+获取当前实例所在窗口的宽度断点枚举值。具体枚举值根据窗口宽度vp值确定，详见 [WidthBreakpoint](./arkui-ts/ts-appendix-enums.md#widthbreakpoint13)。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1526,7 +1526,7 @@ getWindowWidthBreakpoint(): WidthBreakpoint
 
 | 类型   | 说明                                         |
 | ------ | -------------------------------------------- |
-| [WidthBreakpoint](#widthbreakpoint13) | 当前实例所在窗口的宽度断点枚举值。若窗口宽度为 0vp，则返回WIDTH_XS。 |
+| [WidthBreakpoint](./arkui-ts/ts-appendix-enums.md#widthbreakpoint13) | 当前实例所在窗口的宽度断点枚举值。若窗口宽度为 0vp，则返回WIDTH_XS。 |
 
 **示例：**
 
@@ -1561,29 +1561,12 @@ struct Index {
   }
 }
 ```
-
-### WidthBreakpoint<sup>13+</sup>
-
-表示窗口不同宽度阈值下对应的宽度断点枚举值。通过[getWindowWidthBreakpoint](#getwindowwidthbreakpoint13)返回。
-
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 值   | 说明                   |
-| -------- | ---- | ---------------------- |
-| WIDTH_XS | 0   | 窗口宽度小于320vp。 |
-| WIDTH_SM | 1   | 窗口宽度大于等于320vp，且小于600vp。 |
-| WIDTH_MD | 2   | 窗口宽度大于等于600vp，且小于840vp。 |
-| WIDTH_LG | 3   | 窗口宽度大于等于840vp，且小于1440vp。 |
-| WIDTH_XL | 4   | 窗口宽度大于等于1440vp。 |
-
 
 ### getWindowHeightBreakpoint<sup>13+</sup>
 
 getWindowHeightBreakpoint(): HeightBreakpoint
 
-获取当前实例所在窗口的高度断点。具体枚举值根据窗口高宽比确定，详见 [HeightBreakpoint](#heightbreakpoint13)。
+获取当前实例所在窗口的高度断点。具体枚举值根据窗口高宽比确定，详见 [HeightBreakpoint](./arkui-ts/ts-appendix-enums.md#heightbreakpoint13)。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -1593,7 +1576,7 @@ getWindowHeightBreakpoint(): HeightBreakpoint
 
 | 类型   | 说明                                         |
 | ------ | -------------------------------------------- |
-| [HeightBreakpoint](#heightbreakpoint13) | 当前实例所在窗口的宽高比对应的高度断点枚举值。若窗口高宽比为0，则返回HEIGHT_SM。 |
+| [HeightBreakpoint](./arkui-ts/ts-appendix-enums.md#heightbreakpoint13) | 当前实例所在窗口的宽高比对应的高度断点枚举值。若窗口高宽比为0，则返回HEIGHT_SM。 |
 
 **示例：**
 
@@ -1628,20 +1611,6 @@ struct Index {
   }
 }
 ```
-
-### HeightBreakpoint<sup>13+</sup>
-
-表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](#getwindowheightbreakpoint13)返回
-
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 值   | 说明                   |
-| -------- | ---- | ---------------------- |
-| HEIGHT_SM | 0   | 窗口高宽比小于0.8。 |
-| HEIGHT_MD | 1   | 窗口高宽比大于等于0.8，且小于1.2。 |
-| HEIGHT_LG | 2   | 窗口高宽比大于等于1.2。 |
 
 ### postFrameCallback<sup>12+</sup>
 
@@ -6705,6 +6674,8 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 | ------ | ---- | ---------- |
 | OFFSET | 0    | 上抬模式。 |
 | RESIZE | 1    | 压缩模式。 |
+| OFFSET_WITH_CARET<sup>14+</sup>  | 2 | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
+| RESIZE_WITH_CARET<sup>14+</sup>  | 3 | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
 
 
 ## FocusController<sup>12+</sup>

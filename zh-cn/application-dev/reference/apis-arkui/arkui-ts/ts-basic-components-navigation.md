@@ -1356,9 +1356,9 @@ Navigation首页名字。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型       | 说明                                       |
-| -------- | ---------------------------------------- |
-| "navBar"   | Navigation首页。 |
+| 类型     | 说明             |
+| -------- | ---------------- |
+| 'navBar' | Navigation首页。 |
 
 ## NavigationMenuItem
 
@@ -3599,3 +3599,248 @@ export struct NavDestinationExample {
 ```
 ![titlebarPaddingAndModifier.gif](figures/titlebarPaddingAndModifier.gif)
 
+### 示例13
+
+该示例主要实现Navigation简单的自定义转场动画。
+```ts
+// Index.ets
+import { AnimateCallback, CustomTransition } from './CustomTransitionUtils'
+
+@Entry
+@Component
+struct NavigationCustomTransitionExample {
+  pageInfos: NavPathStack = new NavPathStack();
+
+  aboutToAppear() {
+    this.pageInfos.pushPath({ name: 'PageOne' }, false);
+  }
+
+  build() {
+    Navigation(this.pageInfos) {
+    }
+    .hideNavBar(true)
+    .customNavContentTransition((from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => {
+      // 首页不进行自定义动画
+      if (from.index === -1 || to.index === -1) {
+        return undefined;
+      }
+
+      let customAnimation: NavigationAnimatedTransition = {
+        timeout: 2000,
+        // 转场开始时系统调用该方法，并传入转场上下文代理对象
+        transition: (transitionProxy: NavigationTransitionProxy) => {
+          if (!from.navDestinationId || !to.navDestinationId) {
+            return;
+          }
+          // 从封装类CustomTransition中根据子页面的序列获取对应的转场动画回调
+          let fromParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(from.navDestinationId);
+          let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.navDestinationId);
+          // Push动画
+          if (operation == NavigationOperation.PUSH) {
+            if (fromParam.start && toParam.start) {
+              // 设置Push转场的两个页面的动画起点
+              fromParam.start(true, true);
+              toParam.start(true, false);
+            }
+            animateTo({
+              duration: 500, curve: Curve.Friction, onFinish: () => {
+                // 动画结束后需要手动调用finishTransition，否则在timeout时间后由系统调用
+                transitionProxy.finishTransition();
+              }
+            }, () => {
+              if (fromParam.finish && toParam.finish) {
+                // 设置Push转场的两个页面的动画终点
+                fromParam.finish(true, true);
+                toParam.finish(true, false);
+              }
+
+            })
+          } else if (operation == NavigationOperation.POP) {
+            // Pop动画
+            if (fromParam.start && toParam.start) {
+              // 设置Pop转场的两个页面的动画起点
+              fromParam.start(false, true);
+              toParam.start(false, false);
+            }
+            animateTo({
+              duration: 500, curve: Curve.Friction, onFinish: () => {
+                // 动画结束后需要手动调用finishTransition，否则在timeout时间后由系统调用
+                transitionProxy.finishTransition();
+              }
+            }, () => {
+              if (fromParam.finish && toParam.finish) {
+                // 设置Pop转场的两个页面的动画终点
+                fromParam.finish(false, true);
+                toParam.finish(false, false);
+              }
+            })
+          } else {
+            // Replace不做动画
+          }
+        }
+      };
+      return customAnimation;
+    })
+  }
+}
+
+
+// PageOne
+@Builder
+export function PageOneBuilder() {
+  PageContainer({ title: "PageOne" })
+}
+
+// PageTwo
+@Builder
+export function PageTwoBuilder() {
+  PageContainer({ title: "PageTwo" })
+}
+
+@Component
+export struct PageContainer {
+  pageInfos: NavPathStack = new NavPathStack();
+  @State translateY: string = '0';
+  pageId: string = '';
+  title: string = ''
+
+  registerCallback() {
+    CustomTransition.getInstance().registerNavParam(this.pageId,
+      // 设置转场动画起点，根据不同的转场类型分别设置
+      (isPush: boolean, isExit: boolean) => {
+        if (isPush) {
+          if (isExit) {
+            this.translateY = '0';
+          } else {
+            this.translateY = '100%';
+          }
+        } else {
+          if (isExit) {
+            this.translateY = '0';
+          } else {
+            this.translateY = '0';
+          }
+        }
+      },
+      // 设置转场动画终点，根据不同的转场类型分别设置
+      (isPush: boolean, isExit: boolean) => {
+        if (isPush) {
+          if (isExit) {
+            this.translateY = '0';
+          } else {
+            this.translateY = '0';
+          }
+        } else {
+          if (isExit) {
+            this.translateY = '100%';
+          } else {
+            this.translateY = '0';
+          }
+        }
+      });
+  }
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('push next page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.pushPath({ name: this.title == 'PageOne' ? "PageTwo" : "PageOne" })
+          })
+      }
+      .size({ width: '100%', height: '100%' })
+    }
+    .title(this.title)
+    .onDisAppear(() => {
+      // 页面销毁时解注册自定义转场动画参数
+      CustomTransition.getInstance().unRegisterNavParam(this.pageId);
+    })
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfos = context.pathStack;
+      if (context.navDestinationId) {
+        this.pageId = context.navDestinationId;
+        // 页面创建时注册自定义转场动画参数
+        this.registerCallback();
+      }
+    })
+    .translate({ y: this.translateY })
+    .backgroundColor(this.title == 'PageOne' ? '#F1F3F5' : '#ff11dee5')
+  }
+}
+```
+```ts
+// CustomNavigationUtils.ts 工具类，用来管理所有页面的自定义动画参数注册和获取等
+
+// 自定义接口，用来保存某个页面相关的转场动画回调和参数
+export interface AnimateCallback {
+  start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
+  finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined
+}
+
+const customTransitionMap: Map<string, AnimateCallback> = new Map();
+
+export class CustomTransition {
+  static delegate = new CustomTransition();
+
+  static getInstance() {
+    return CustomTransition.delegate;
+  }
+
+  /* 注册某个页面的动画回调
+   * name: 注册页面的唯一id
+   * startCallback：用来设置动画开始时页面的状态
+   * endCallback：用来设置动画结束时页面的状态
+   */
+  registerNavParam(name: string, startCallback: (isPush: boolean, isExit: boolean) => void,
+    endCallback: (isPush: boolean, isExit: boolean) => void): void {
+    if (customTransitionMap.has(name)) {
+      let param = customTransitionMap.get(name);
+      if (param != undefined) {
+        param.start = startCallback;
+        param.finish = endCallback;
+        return;
+      }
+    }
+    let params: AnimateCallback = { start: startCallback, finish: endCallback };
+    customTransitionMap.set(name, params);
+  }
+
+  unRegisterNavParam(name: string): void {
+    customTransitionMap.delete(name);
+  }
+
+  getAnimateParam(name: string): AnimateCallback {
+    let result: AnimateCallback = {
+      start: customTransitionMap.get(name)?.start,
+      finish: customTransitionMap.get(name)?.finish
+    };
+    return result;
+  }
+}
+```
+
+```json
+// 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "PageOne",
+      "pageSourceFile": "src/main/ets/pages/Index.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "PageTwo",
+      "pageSourceFile": "src/main/ets/pages/Index.ets",
+      "buildFunction": "PageTwoBuilder"
+    }
+  ]
+}
+```
+![navigationCustomTransition.gif](figures/navigationCustomTransition.gif)

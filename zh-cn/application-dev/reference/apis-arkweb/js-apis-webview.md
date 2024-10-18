@@ -69,6 +69,14 @@ struct WebComponent {
 
 通过WebMessagePort可以进行消息的发送以及接收。
 
+### 属性
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 类型   | 可读 | 可写 | 说明                                              |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------|
+| isExtentionType<sup>10+</sup> | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
+
 ### postMessageEvent
 
 postMessageEvent(message: WebMessage): void
@@ -187,14 +195,6 @@ struct WebComponent {
   }
 }
 ```
-
-### isExtentionType<sup>10+</sup>
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称         | 类型   | 可读 | 可写 | 说明                                              |
-| ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
 
 ### postMessageEventExt<sup>10+</sup>
 
@@ -5305,7 +5305,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  @State customUserAgent: string = 'test';
+  @State customUserAgent: string = ' DemoApp';
 
   build() {
     Column() {
@@ -6062,7 +6062,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。 |
+| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。|
 
 **错误码：**
 
@@ -6111,7 +6111,7 @@ static getRenderProcessMode(): RenderProcessMode
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [RenderProcessMode](#renderprocessmode12)| 渲染子进程模式类型。 |
+| [RenderProcessMode](#renderprocessmode12)| 渲染子进程模式类型。如果获取的值不在RenderProcessMode枚举值范围内，则默认为多渲染子进程模式。|
 
 
 **示例：**

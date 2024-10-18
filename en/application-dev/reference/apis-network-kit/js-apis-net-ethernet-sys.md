@@ -520,7 +520,6 @@ Obtains the names and MAC addresses of all Ethernet NICs. This API uses a promis
 | 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
 | 2200002 | Failed to connect to the service.       |
-| 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **Example**

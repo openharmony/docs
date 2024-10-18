@@ -847,7 +847,7 @@ HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory(uint32_t *value);
 
 | 名称 | 描述                              |
 | -------- |---------------------------------|
-| value | 指向用来保存接口获取到的应用显存大小（单位kB）的变量的指针。 |
+| value | 指向用来保存接口获取到的应用显存大小（单位KB）的变量的指针。 |
 
 **返回：**
 

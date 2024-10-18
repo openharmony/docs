@@ -334,7 +334,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | maxStreams | number | 是   | soundPool实例的最大播放的流数 |
-| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | 是   | 音频播放参数信息 |
+| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | 是   | 音频播放参数信息。其中audioRenderInfo中的参数usage取值为STREAM_USAGE_UNKNOWN，STREAM_USAGE_MUSIC，STREAM_USAGE_MOVIE，STREAM_USAGE_AUDIOBOOK时，SoundPool播放短音时为混音模式，不会打断其他音频播放。 |
 | callback | AsyncCallback<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | 是   | 回调函数。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
 
 **错误码：**
@@ -4424,7 +4424,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- G711-mulaw编码格式支持范围[1 - 1]。<br>- MP3编码格式支持范围[1 - 2]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3，AUDIO_G711MU。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000 - 8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br>可变比特率模式，码率仅作参考。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV封装格式，不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
@@ -6847,7 +6847,7 @@ prepare(config: AudioRecorderConfig): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
-| 201      | Permission denied     |
+| 201      | permission denied     |
 
 **示例：**
 
@@ -7923,6 +7923,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 201      | permission denied.     |
 | 5400103  | IO error. Return by ErrorCallback. |
 | 5400105  | Service died. Return by ErrorCallback. |
 

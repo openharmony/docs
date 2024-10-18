@@ -299,7 +299,7 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                    | 描述             |
+| 名称                    | 说明      |
 | ----------------------- | ---------------- |
 | LOADING  | 加载中。 |
 | PROGRESSING | 进度更新中。 |

@@ -399,6 +399,27 @@ cachedCount(value: number)
 | ------ | ------ | ---- | ---------------------------------------- |
 | value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
 
+### cachedCount<sup>14+</sup>
+
+cachedCount(value: number, show: boolean)
+
+设置预加载的FlowItem数量，并配置是否显示预加载节点。
+
+配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12)或[内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
+
+[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)超出显示和缓存范围的FlowItem会被释放。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
+| show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：

@@ -849,6 +849,29 @@ ShortcutInfo结构体中的want指定的ability不存在，ShortcutInfo结构体
 **处理步骤**<br/>
 检查ShortcutInfo结构体中的want有效性。
 
+## 17700066 安装失败，native软件包安装失败
+
+**错误信息**<br/>
+Failed to install the HAP because installing the native package failed.
+
+**错误描述**<br/>
+安装hap时，native软件包安装失败。
+
+**可能原因**<br/>native软件包配置信息有误。
+
+**处理步骤**<br/>检查native软件包的配置信息。
+
+## 17700067 卸载应用失败，native软件包卸载失败
+
+**错误信息**<br/>
+Failed to uninstall the HAP because uninstalling the native package failed.
+
+**错误描述**<br/>卸载应用时，native软件包卸载失败。
+
+**可能原因**<br/>需要卸载的native软件包被占用。
+
+**处理步骤**<br/>检查是否存在进程占用相应native软件包。
+
 ## 17700069 多开模式非分身的应用，不能创建分身实例
 
 **错误信息**<br/>

@@ -518,6 +518,8 @@
 | ------ | ---------- |
 | OFFSET | 上抬模式。 |
 | RESIZE | 压缩模式。 |
+| OFFSET_WITH_CARET<sup>14+</sup> | 上抬模式，输入框光标位置发生变化时候也会触发避让。|
+| RESIZE_WITH_CARET<sup>14+</sup> | 压缩模式，输入框光标位置发生变化时候也会触发避让。|
 
 ## LayoutSafeAreaType<sup>12+</sup>
 
