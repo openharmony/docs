@@ -259,28 +259,23 @@ struct ScreenTest {
 
 **解决措施**
 
-因为在window侧如果窗口大小没发生变化，此监听不会被触发。如直接旋转180度的情况下，窗口大小并没有改变，此时不会通知回调。应用可以通过监听display.on('change')来获取窗口的大小和方向。
-
-**参考链接**
-
-[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+在window侧如果窗口大小没发生变化，此监听不会被触发。如直接旋转180度的情况下，窗口大小并没有改变，此时不会通知回调。应用可以通过监听[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)来获取窗口的大小和方向。
 
 ## 在display.on('change')监听回调中，无法使用Window实例获取更新后的窗口大小(API 10)
 
 **解决措施**
 
-旋转涉及window和display两个服务，处于不同进程。由于旋转完后display的更新时间早于window的更新时间(display旋转时直接宽高互换，提前可预知；window要等arkui布局完成才知道窗口大小，耗时长)，故在display触发变化时获取窗口信息会存在时序问题（窗口信息还未更新完成，此时使用Window实例获取到的还是原来的宽高）。应用可以监听在display触发变化时通过display接口获取width/height/orientation信息。
+旋转涉及window和display两个Kit，处于不同进程。由于旋转完后display的更新时间早于window的更新时间(display旋转时直接宽高互换，提前可预知；window要等arkui布局完成才知道窗口大小，耗时长)，故在display触发变化时获取窗口信息会存在时序问题（窗口信息还未更新完成，此时使用Window实例获取到的还是原来的宽高）。应用可以监听在display触发变化时通过display接口获取width/height/orientation信息。
  
 **错误示例**
 
-1. display触发变化时使用Window实例无法获取更新后的window属性
 ```ts
 try {
   // display先更新
   display.on('change', async (data) => {
     let newDisplay: display.Display = display.getDefaultDisplaySync();
     console.info('Orientation: ' + newDisplay.orientation);
-    let windowClass: Window.Window = await window.getLastWindow(this.context);
+    let windowClass: window.Window = await window.getLastWindow(this.context);
     // window后更新，获取到的还是原来的宽高
     let windowProperties = windowClass.getWindowProperties();
     console.info('Width: ' + windowProperties.windowRect.width +
@@ -295,7 +290,6 @@ try {
 
 **正确示例**
 
-1. 通过监听display.on('change')事件获取width/height/orientation信息
 ```ts
 try {
   display.on('change', (data) => {
@@ -311,7 +305,12 @@ try {
 }
 ```
 
-2. 可以通过监听windowClass.on('avoidAreaChange')事件同时获取屏幕方向orientation和avoidAreaChange信息
+## 如何同时获取屏幕方向orientation和avoidAreaChange信息(API 10)
+
+**解决措施**
+
+可以通过监听windowClass.on('avoidAreaChange')事件同时获取屏幕方向orientation和avoidAreaChange信息。
+
 ```ts
 try {
   windowClass.on('avoidAreaChange', async (data) => {
@@ -319,7 +318,7 @@ try {
       JSON.stringify(data.type) + ', area ' + JSON.stringify(data.area));
     let newDisplay: display.Display = display.getDefaultDisplaySync();
     console.info('Orientation: ' + newDisplay.orientation);
-    let windowClass: Window.Window = await window.getLastWindow(this.context);
+    let windowClass: window.Window = await window.getLastWindow(this.context);
     windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
   });
 } catch (exception) {
