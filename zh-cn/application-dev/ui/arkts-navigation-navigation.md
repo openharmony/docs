@@ -78,7 +78,7 @@ Navigation组件通过mode属性设置页面的显示模式。
             .backgroundColor('#FFFFFF')
   
           List({ space: 12 }) {
-            ForEach(this.arr, (item:string) => {
+            ForEach(this.arr, (item:number) => {
               ListItem() {
                 Text("NavRouter" + item)
                   .width("100%")
@@ -92,7 +92,7 @@ Navigation组件通过mode属性设置页面的显示模式。
                     this.pageInfos.pushPath({ name: "NavDestinationTitle" + item})
                   })
               }
-            }, (item:string):string => item)
+            }, (item:number) => item.toString())
           }
           .width("90%")
           .margin({ top: 12 })
