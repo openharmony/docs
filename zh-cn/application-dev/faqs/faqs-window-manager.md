@@ -143,9 +143,9 @@ try {
 
 ## 如何监听窗口大小的变化(API 9)
 
-**解决措施**
+获取窗口实例对象后，可以通过[window.on('windowSizeChange')](../reference/apis-arkui/js-apis-window.md#onwindowsizechange7)方法实现对窗口尺寸大小变化的监听。
 
-获取窗口实例对象后，可以通过窗口的on('windowSizeChange')方法实现对窗口尺寸大小变化的监听
+需要注意的是，在window侧如果窗口大小没发生变化，此监听不会被触发。如直接旋转180度的情况下，窗口大小并没有改变，此时不会通知回调。在这种情况下，应用可以通过监听[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)事件，在callback中通过display接口来获取窗口尺寸大小。
 
 ```
 try {
@@ -156,10 +156,6 @@ try {
     console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
 }
 ```
-
-**参考链接**
-
-[window.on\("windowSizeChange"\)](../reference/apis-arkui/js-apis-window.md#onwindowsizechange7)
 
 ## 如何监听当前屏幕的横竖屏状态(API 10)
 
@@ -255,12 +251,6 @@ struct ScreenTest {
 [设置窗口的显示方向属性](../reference/apis-arkui/js-apis-window.md#setpreferredorientation9)  
 [开启显示设备变化的监听](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
 
-## 监听窗口大小变化window.on('windowSizeChange')未收到回调(API 9)
-
-**解决措施**
-
-在window侧如果窗口大小没发生变化，此监听不会被触发。如直接旋转180度的情况下，窗口大小并没有改变，此时不会通知回调。应用可以通过监听[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)来获取窗口的大小和方向。
-
 ## 在display.on('change')监听回调中，无法使用Window实例获取更新后的窗口大小(API 10)
 
 **解决措施**
@@ -301,11 +291,7 @@ display.on('change', (data) => {
 
 ## 如何同时获取屏幕方向orientation和avoidAreaChange信息(API 10)
 
-**解决措施**
-
 可以通过监听[windowClass.on('avoidAreaChange')](../reference/apis-arkui/js-apis-window.md#onavoidareachange9)事件同时获取屏幕方向orientation和avoidAreaChange信息。
-
-**代码示例** 
 
 ```ts
 windowClass.on('avoidAreaChange', async (data) => {
