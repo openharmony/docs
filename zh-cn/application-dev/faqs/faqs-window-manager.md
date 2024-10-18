@@ -305,6 +305,10 @@ try {
 }
 ```
 
+**参考链接**
+
+[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
 ## 如何同时获取屏幕方向orientation和avoidAreaChange信息(API 10)
 
 **解决措施**
