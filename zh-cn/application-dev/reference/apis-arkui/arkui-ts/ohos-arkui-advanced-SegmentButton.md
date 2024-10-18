@@ -18,7 +18,7 @@ import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptionsArray } fr
 
 ## SegmentButton
 
-SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[] })
+SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItemClicked: Callback\<number\>, maxFontScale: number \| Resource })
 
 **装饰器类型：**@Component
 
