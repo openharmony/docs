@@ -309,7 +309,9 @@ try {
 
 **解决措施**
 
-可以通过监听windowClass.on('avoidAreaChange')事件同时获取屏幕方向orientation和avoidAreaChange信息。
+可以通过监听[windowClass.on('avoidAreaChange')](../reference/apis-arkui/js-apis-window.md#onavoidareachange9)事件同时获取屏幕方向orientation和avoidAreaChange信息。
+
+**代码示例** 
 
 ```ts
 try {
@@ -326,11 +328,5 @@ try {
     JSON.stringify(exception));
 }
 ```
-
-**参考链接**
-
-[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
-
-[windowClass.on('avoidAreaChange')](../reference/apis-arkui/js-apis-window.md#onavoidareachange9)
 
 <!--no_check-->
