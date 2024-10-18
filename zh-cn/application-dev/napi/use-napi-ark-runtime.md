@@ -90,7 +90,7 @@
            return nullptr;
        }
    
-       // 3. 使用ArtTs中的logger
+       // 3. 使用ArkTS中的logger
        napi_value logger;
        ret = napi_get_named_property(env, objUtils, "Logger", &logger);
        if (ret != napi_ok) {
