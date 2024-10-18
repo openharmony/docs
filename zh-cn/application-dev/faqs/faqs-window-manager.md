@@ -270,39 +270,29 @@ struct ScreenTest {
 **错误示例**
 
 ```ts
-try {
-  // display先更新
-  display.on('change', async (data) => {
-    let newDisplay: display.Display = display.getDefaultDisplaySync();
-    console.info('Orientation: ' + newDisplay.orientation);
-    let windowClass: window.Window = await window.getLastWindow(this.context);
-    // window后更新，获取到的还是原来的宽高
-    let windowProperties = windowClass.getWindowProperties();
-    console.info('Width: ' + windowProperties.windowRect.width +
-      ', height: ' + windowProperties.windowRect.height);
-    windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
-  });
-} catch (exception) {
-  console.error('Failed to enable the listener for display changes. Cause: ' +
-    JSON.stringify(exception));
-}
+// display先更新
+display.on('change', async (data) => {
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('Orientation: ' + newDisplay.orientation);
+  let windowClass: window.Window = await window.getLastWindow(this.context);
+  // window后更新，获取到的还是原来的宽高
+  let windowProperties = windowClass.getWindowProperties();
+  console.info('Width: ' + windowProperties.windowRect.width +
+    ', height: ' + windowProperties.windowRect.height);
+  windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
+});
 ```
 
 **正确示例**
 
 ```ts
-try {
-  display.on('change', (data) => {
-    console.info('Succeeded in enabling the listener for display changes. Type: ' +
-      JSON.stringify(data.type) + ', area ' + JSON.stringify(data.area));
-    let newDisplay: display.Display = display.getDefaultDisplaySync();
-    console.info('Orientation: ' + newDisplay.orientation + 'width: ' +
-      newDisplay.width + ', height: ' + newDisplay.height);
-  });
-} catch (exception) {
-  console.error('Failed to enable the listener for display changes. Cause: ' +
-    JSON.stringify(exception));
-}
+display.on('change', (data) => {
+  console.info('Succeeded in enabling the listener for display changes. Type: ' +
+    JSON.stringify(data.type) + ', area ' + JSON.stringify(data.area));
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('Orientation: ' + newDisplay.orientation + 'width: ' +
+    newDisplay.width + ', height: ' + newDisplay.height);
+});
 ```
 
 **参考链接**
@@ -318,19 +308,14 @@ try {
 **代码示例** 
 
 ```ts
-try {
-  windowClass.on('avoidAreaChange', async (data) => {
-    console.info('Succeeded in enabling the listener for avoid area changes. Type: ' +
-      JSON.stringify(data.type) + ', area ' + JSON.stringify(data.area));
-    let newDisplay: display.Display = display.getDefaultDisplaySync();
-    console.info('Orientation: ' + newDisplay.orientation);
-    let windowClass: window.Window = await window.getLastWindow(this.context);
-    windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
-  });
-} catch (exception) {
-  console.error('Failed to enable the listener for display changes. Cause: ' +
-    JSON.stringify(exception));
-}
+windowClass.on('avoidAreaChange', async (data) => {
+  console.info('Succeeded in enabling the listener for avoid area changes. Type: ' +
+    JSON.stringify(data.type) + ', area ' + JSON.stringify(data.area));
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('Orientation: ' + newDisplay.orientation);
+  let windowClass: window.Window = await window.getLastWindow(this.context);
+  windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
+});
 ```
 
 <!--no_check-->
