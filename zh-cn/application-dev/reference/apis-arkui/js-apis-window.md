@@ -5631,15 +5631,13 @@ export default class EntryAbility extends UIAbility {
 
 ### setSubWindowModal<sup>14+</sup>
 
-setSubWindowModal(isModal: boolean, , modalityType: ModalityType): Promise&lt;void&gt;
+setSubWindowModal(isModal: boolean, modalityType: ModalityType): Promise&lt;void&gt;
 
-设置子窗的模态属性是否启用，使用Promise异步回调。
+设置子窗的模态类型，使用Promise异步回调。
 
-子窗口调用该接口时，设置子窗口模态属性是否启用。
+当子窗口模态类型为模窗口子窗时，其父级窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态类型被禁用。
 
-当启用子窗口模态属性且设置子窗口模态类型为模窗口子窗时，其父级窗口不能响应用户操作，直到子窗口关闭或者子窗口的模窗口模态类型被禁用。
-
-当启用子窗口模态属性且设置子窗口模态类型为模应用子窗时，其同进程应用窗口不能响应用户操作，直到子窗口关闭或者子窗口的模应用模态类型被禁用。
+当子窗口模态类型为模应用子窗时，其父级窗口与不同主窗的其他窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态类型被禁用。
 
 当禁用子窗口模态属性时，不允许选择模态类型，否则会报错。
 
@@ -5654,7 +5652,7 @@ setSubWindowModal(isModal: boolean, , modalityType: ModalityType): Promise&lt;vo
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
 | isModal | boolean | 是   | 设置子窗口模态属性是否启用，true为启用，false为不启用。 |
-| modalityType | [ModalityType](#modalitytype14) | 是   | 当子窗口模态属性启用时，设置子窗口模态类型，WINDOW_MODALITY表示模窗口子窗，APPLICATION_MODALITY表示模应用子窗。不设置，则默认为WINDOW_MODALITY。 |
+| modalityType | [ModalityType](#modalitytype14) | 是   | 子窗口模态类型 |
 
 **返回值：**
 
@@ -5679,6 +5677,7 @@ setSubWindowModal(isModal: boolean, , modalityType: ModalityType): Promise&lt;vo
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -5932,7 +5931,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| options  | [SubWindowOptions](#subwindowoptions11) | 是   | 子窗口参数。  |
+| options  | [SubWindowOptions](#subwindowoptions12) | 是   | 子窗口参数。  |
 
 **返回值：**
 
@@ -8383,10 +8382,10 @@ WindowStage生命周期。
 
 | 名称                 | 值      | 说明       |
 | -------------------- | ------ | ---------- |
-| WINDOW_MODALITY      | 0      | 模态子窗类型为模窗口子窗。 |
-| APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗。<br> **API适用设备：** 仅支持2in1设备。 |
+| WINDOW_MODALITY      | 0      | 模态子窗类型为模窗口子窗，当仅需要父窗不响应用户操作时，可选此参数。 |
+| APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗，除父窗外还需要同应用其他窗口不响应用户操作时，可选此参数。<br> 此接口仅支持在2in1设备下使用。 |
 
-## SubWindowOptions<sup>11+</sup>
+## SubWindowOptions<sup>12+</sup>
 
 子窗口创建参数。
 
@@ -8396,8 +8395,8 @@ WindowStage生命周期。
 
 | 名称      | 类型  | 只读 | 可选 | 说明         |
 | ---------- | ---- | ---- | ---- | ----------- |
-| title    | string | 否 | 否 | 子窗口标题。       |
-| decorEnabled | boolean | 否 | 否 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
+| title<sup>12+</sup>    | string | 否 | 否 | 子窗口标题。       |
+| decorEnabled<sup>12+</sup> | boolean | 否 | 否 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
 | isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，其父级窗口不能响应用户操作，false表示子窗口禁用模态属性，其父级窗口能响应用户操作。不设置，则默认为false。       |
 | modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | 否 | 是 | 子窗口模态类型，仅当子窗口启用模态属性时生效。WINDOW_MODALITY表示子窗口模态类型为模窗口子窗，APPLICATION_MODALITY表示子窗口模态类型为模应用子窗。不设置，则默认为WINDOW_MODALITY。       |
 
@@ -8702,7 +8701,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| options  | [SubWindowOptions](#subwindowoptions11) | 是   | 子窗口参数。  |
+| options  | [SubWindowOptions](#subwindowoptions12) | 是   | 子窗口参数。  |
 
 **返回值：**
 
