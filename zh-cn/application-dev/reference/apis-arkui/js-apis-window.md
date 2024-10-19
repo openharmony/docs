@@ -5637,9 +5637,9 @@ setSubWindowModal(isModal: boolean, modalityType: ModalityType): Promise&lt;void
 
 当子窗口模态类型为模窗口子窗时，其父级窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态类型被禁用。
 
-当子窗口模态类型为模应用子窗时，其父级窗口与不同主窗的其他窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态类型被禁用。
+当子窗口模态类型为模应用子窗时，其父级窗口与该应用其他实例的窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态类型被禁用。
 
-当禁用子窗口模态属性时，不允许选择模态类型，否则会报错。
+此接口仅支持设置子窗口模态类型，当需要禁用子窗口模态属性时，建议使用[setSubWindowModal<sup>12+</sup>](#setsubwindowmodal12)
 
 子窗口之外的窗口调用该接口时，会报错。
 
@@ -5651,7 +5651,7 @@ setSubWindowModal(isModal: boolean, modalityType: ModalityType): Promise&lt;void
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| isModal | boolean | 是   | 设置子窗口模态属性是否启用，true为启用，false为不启用。 |
+| isModal | boolean | 是   | 启用模态属性，必须为true，不允许为false。 |
 | modalityType | [ModalityType](#modalitytype14) | 是   | 子窗口模态类型 |
 
 **返回值：**
@@ -8382,8 +8382,8 @@ WindowStage生命周期。
 
 | 名称                 | 值      | 说明       |
 | -------------------- | ------ | ---------- |
-| WINDOW_MODALITY      | 0      | 模态子窗类型为模窗口子窗，当仅需要父窗不响应用户操作时，可选此参数。 |
-| APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗，除父窗外还需要同应用其他窗口不响应用户操作时，可选此参数。<br> 此接口仅支持在2in1设备下使用。 |
+| WINDOW_MODALITY      | 0      | 模态子窗类型为模窗口子窗，当仅需要其父级窗口不响应用户操作时，可选此参数。 |
+| APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗，除其父级窗口外还需要该应用其他实例的窗口不响应用户操作时，可选此参数。<br> 此接口仅支持在2in1设备下使用。 |
 
 ## SubWindowOptions<sup>12+</sup>
 
@@ -8397,7 +8397,7 @@ WindowStage生命周期。
 | ---------- | ---- | ---- | ---- | ----------- |
 | title<sup>12+</sup>    | string | 否 | 否 | 子窗口标题。       |
 | decorEnabled<sup>12+</sup> | boolean | 否 | 否 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
-| isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，其父级窗口不能响应用户操作，false表示子窗口禁用模态属性，其父级窗口能响应用户操作。不设置，则默认为false。       |
+| isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，false表示子窗口禁用模态属性。不设置，则默认为false。       |
 | modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | 否 | 是 | 子窗口模态类型，仅当子窗口启用模态属性时生效。WINDOW_MODALITY表示子窗口模态类型为模窗口子窗，APPLICATION_MODALITY表示子窗口模态类型为模应用子窗。不设置，则默认为WINDOW_MODALITY。       |
 
 ## WindowStage<sup>9+</sup>
