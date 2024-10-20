@@ -41,7 +41,11 @@ export default class EntryAbility extends UIAbility {
 **图2** WindowStageCreate和WindowStageDestroy状态  
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
 
-在onWindowStageCreate()回调中通过[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)方法设置应用要加载的页面，并根据需要调用[on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)方法订阅[WindowStage的事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
+在onWindowStageCreate()回调中通过[loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9)方法设置应用要加载的页面，并根据需要调用[on('windowStageEvent')](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)方法订阅[WindowStage的事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）。
+
+> **说明：**
+> 
+> 不同开发场景下[WindowStage事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)的时序可能存在差异。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -54,7 +58,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // 设置WindowStage的事件订阅（获焦/失焦、可见/不可见）
+    // 设置WindowStage的事件订阅（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）
     try {
       windowStage.on('windowStageEvent', (data) => {
         let stageEventType: window.WindowStageEventType = data;
@@ -70,6 +74,12 @@ export default class EntryAbility extends UIAbility {
             break;
           case window.WindowStageEventType.HIDDEN: // 切到后台
             hilog.info(DOMAIN_NUMBER, TAG, 'windowStage background.');
+            break;
+          case window.WindowStageEventType.RESUMED: // 前台可交互状态
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage resumed.');
+            break;
+          case window.WindowStageEventType.PAUSED: // 前台不可交互状态
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage paused.');
             break;
           default:
             break;
@@ -113,7 +123,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageDestroy() {
     // 释放UI资源
-    // 例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件
+    // 例如在onWindowStageDestroy()中注销WindowStage事件订阅（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）
     try {
       if (this.windowStage) {
         this.windowStage.off('windowStageEvent');
