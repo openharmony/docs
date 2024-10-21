@@ -79,7 +79,7 @@ CreateModalUIExtension和hideNonSecureWindows接口。
 
 为避免不安全窗口先隐藏再显示导致闪烁，模态UIExtension在申请ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS权限后，可以在``onSessionCreate``函数中调用``hideNonSecureWindows(false)``接口取消对不安全窗口的隐藏。此时应用需自行确保自身内容不会被遮挡，建议使用``createSubWindowWithOptions``接口创建模态置顶子窗，并将内容都加载在子窗中。
 
-## cl.arkui.3 MenuItem组件超长文本布局效果变更
+## cl.arkui.3 MenuItem组件在非2in1设备上超长文本布局由缩略显示变更为换行显示
 
 **访问级别**
 
