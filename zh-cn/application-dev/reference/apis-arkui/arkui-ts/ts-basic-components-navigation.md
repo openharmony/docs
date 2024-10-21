@@ -2212,7 +2212,7 @@ export struct PageTwo {
 }
 ```
 ```ts
-// CustomNavigationUtils.ts
+// CustomNavigationUtils.ets
 // 自定义接口，用来保存某个页面相关的转场动画回调和参数
 export interface AnimateCallback {
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
