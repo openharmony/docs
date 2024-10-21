@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager)
 
-The bundleManager module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-bundleInfo.md), [ApplicationInfo](js-apis-bundleManager-applicationInfo.md), [Ability](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md).
+The bundleManager module provides APIs for obtaining application information, including [BundleInfo](js-apis-bundleManager-bundleInfo.md), [ApplicationInfo](js-apis-bundleManager-applicationInfo.md), [AbilityInfo](js-apis-bundleManager-abilityInfo.md), and [ExtensionAbility](js-apis-bundleManager-extensionAbilityInfo.md).
 
 > **NOTE**
 >
@@ -194,7 +194,7 @@ Enumerates the types of the multi-app mode.
 | Name| Value| Description|
 |:----------------:|:---:|:---:|
 | UNSPECIFIED|  0 | Unspecified type.|
-| MULTI_INSTANCE |  1  | Multiton mode. |
+| MULTI_INSTANCE |  1  | Multiton mode. A resident process does not support this value. |
 | APP_CLONE |  2  |  App clone mode. |
 
 ## APIs
@@ -773,164 +773,6 @@ try {
 }
 ```
 
-### bundleManager.verifyAbc<sup>11+</sup>
-
-verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
-
-Verifies an .abc file. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.RUN_DYN_CODE
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name    | Type  | Mandatory| Description                      |
-| ----------- | ------ | ---- | ---------------------------- |
-| abcPaths  | Array\<string> | Yes  | Path of the .abc file.|
-| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. The value **true** means to delete the file, and **false** means the opposite.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the verification is successful, **err** is **undefined**; otherwise, **err** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
-
-| ID| Error Message                             |
-| -------- | ------------------------------------- |
-| 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | Failed to verify the abc file. |
-
-**Example**
-
-```ts
-import { bundleManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
-
-try {
-  bundleManager.verifyAbc(abcPaths, true, (err, data) => {
-    if (err) {
-      hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
-    } else {
-      hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
-    }
-  });
-} catch (err) {
-  let message = (err as BusinessError).message;
-  hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
-}
-```
-
-### bundleManager.verifyAbc<sup>11+</sup>
-
-verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
-
-Verifies an .abc file. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.RUN_DYN_CODE
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name    | Type  | Mandatory| Description                      |
-| ----------- | ------ | ---- | ---------------------------- |
-| abcPaths  | Array\<string> | Yes  | Path of the .abc file.|
-| deleteOriginalFiles | boolean | Yes  | Whether to delete the .abc file. The value **true** means to delete the file, and **false** means the opposite.      |
-
-**Return value**
-
-| Type                                                       | Description                       |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
-
-| ID| Error Message                           |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | Failed to verify the abc file. |
-
-**Example**
-
-```ts
-import { bundleManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
-
-try {
-  bundleManager.verifyAbc(abcPaths, true).then((data) => {
-    hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
-  }).catch((err: BusinessError) => {
-    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
-  });
-} catch (err) {
-  let message = (err as BusinessError).message;
-  hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
-}
-```
-
-### bundleManager.deleteAbc<sup>11+</sup>
-
-deleteAbc(abcPath: string): Promise\<void>
-
-Deletes an .abc file based on the specified file path. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.RUN_DYN_CODE
-
-**System capability**: SystemCapability.BundleManager.BundleFramework.Core
-
-**Parameters**
-
-| Name    | Type  | Mandatory| Description                      |
-| ----------- | ------ | ---- | ---------------------------- |
-| abcPath  | string | Yes  | Path of the .abc file.|
-
-**Return value**
-
-| Type                                                       | Description                       |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
-
-| ID| Error Message                           |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700202 | Failed to delete the abc file. |
-
-**Example**
-
-```ts
-import { bundleManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-let abcPath: string = '/data/storage/el2/base/a.abc';
-
-try {
-  bundleManager.deleteAbc(abcPath).then((data) => {
-    hilog.info(0x0000, 'testTag', 'deleteAbc successfully');
-  }).catch((err: BusinessError) => {
-    hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', err.message);
-  });
-} catch (err) {
-  let message = (err as BusinessError).message;
-  hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
-}
-```
-
 ### bundleManager.canOpenLink<sup>12+</sup>
 
 canOpenLink(link: string): boolean
@@ -977,5 +819,46 @@ try {
 } catch (err) {
   let message = (err as BusinessError).message;
   hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
+}
+```
+
+### bundleManager.getLaunchWant<sup>13+</sup>
+
+getLaunchWant(): Want
+
+Obtains the **Want** parameter used to start the application.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Return value**
+
+| Type                               | Description                                       |
+| ----------------------------------- | ------------------------------------------- |
+| [Want](js-apis-app-ability-want.md) | Want object that contains the bundle name and ability name.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 17700072 | The launch want is not found. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+  let want = bundleManager.getLaunchWant();
+  hilog.info(0x0000, 'testTag', 'getLaunchWant ability name: %{public}s', want.abilityName);
+  hilog.info(0x0000, 'testTag', 'getLaunchWant bundle name: %{public}s', want.bundleName);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getLaunchWant failed: %{public}s', message);
 }
 ```

@@ -195,7 +195,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../application-models/start-intent-panel.md#available-apis).<!--DelEnd-->|
+| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md#matching-rules).<!--DelEnd-->|
 | wantParam | Record<string, Object> | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the detailed error information if the startup fails.|
 | callback | AsyncCallback\<void> | Yes|Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
@@ -222,7 +222,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting the Intent Panel in a Specific Scenario Through startAbilityByType](../../application-models/start-intent-panel.md#available-apis).<!--DelEnd-->|
+| type | string | Yes| Type of the UIExtensionAbility to start.<!--Del--> For details, see [Starting an Application of the Specified Type](../../application-models/start-intent-panel.md#matching-rules).<!--DelEnd-->|
 | wantParam | Record<string, Object> | Yes| Extended parameter.|
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the detailed error information if the startup fails.|
 
@@ -303,3 +303,5 @@ struct Extension {
   }
 }
 ```
+
+ <!--no_check--> 

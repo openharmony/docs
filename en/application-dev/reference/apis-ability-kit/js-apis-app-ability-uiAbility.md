@@ -45,7 +45,7 @@ Called to initialize the service logic when a UIAbility instance in the complete
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information, including the ability name and bundle name.|
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Parameters for starting the UIAbility, and the reason for the last abnormal exit.|
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | Yes| Parameters for starting the UIAbility, and the reason for the last abnormal exit.|
 
 **Example**
 
@@ -268,7 +268,7 @@ Called to save data during the UIAbility migration preparation process.
 
 **NOTE**
 > 
-> Since API version 12, **UIAbility.onContinue** supports the return value in the form of Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)\>.
+> Since API version 12, **UIAbility.onContinue** supports the return value in the form of Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)\>.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -284,7 +284,7 @@ Called to save data during the UIAbility migration preparation process.
 
 | Type| Description|
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp;\|&nbsp;Promise&lt;[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&gt;  | Continuation result or Promise used to return the continuation result.|
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)&nbsp;\|&nbsp;Promise&lt;[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)&gt;  | Continuation result or Promise used to return the continuation result.|
 
 **Example**
 
@@ -339,7 +339,7 @@ Called when a UIAbility instance that has undergone the following states is star
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information, such as the ability name and bundle name.|
-| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Reason for the UIAbility startup and the last abnormal exit.|
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#launchparam) | Yes| Reason for the UIAbility startup and the last abnormal exit.|
 
 **Example**
 
@@ -404,14 +404,14 @@ Called when the framework automatically saves the UIAbility state in the case of
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | Yes| Reason for triggering the callback to save the UIAbility state.|
+| reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#statetype) | Yes| Reason for triggering the callback to save the UIAbility state.|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| **want** parameter.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#abilityconstantonsaveresult) | Whether the UIAbility state is saved.|
+| [AbilityConstant.OnSaveResult](js-apis-app-ability-abilityConstant.md#onsaveresult) | Whether the UIAbility state is saved.|
 
 **Example**
 
@@ -571,7 +571,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
-| 16200002 | Callee invalid. The callee does not exist. |
+| 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -659,7 +659,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
-| 16200002 | Callee invalid. The callee does not exist. |
+| 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -735,7 +735,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
-| 16200002 | Callee invalid. The callee does not exist. |
+| 16200002 | The callee does not exist. |
 
 **Example**
 
@@ -1067,7 +1067,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16200004 | Method registered. The method has registered. |
+| 16200004 | The method has been registered. |
 | 16000050 | Internal error. |
 
 **Example**
@@ -1138,7 +1138,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16200005 | Method not registered. The method has not registered. |
+| 16200005 | The method has not been registered. |
 | 16000050 | Internal error. |
 
 **Example**

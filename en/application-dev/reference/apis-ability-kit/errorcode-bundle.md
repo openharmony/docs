@@ -953,6 +953,24 @@ The **uninstallUpdates** API can only be used to uninstall the updates of a pres
 
 Check whether the specified application is a preset application.
 
+## 17700058 Specified Application Cannot Be Installed on this Device or by this User
+
+**Error Message**
+
+Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.
+
+**Description**
+
+The specified application cannot be installed on this device or by this user.
+
+**Possible Causes**
+1. The device in use has undergone a whitewashing process.
+2. The specified application is prohibited from being installed by the specified user.
+
+**Solution**
+1. Check whether the device has undergone a whitewashing process.
+2. Install the application as another user.
+
 ## 17700059 Specified Developer ID Does Not Exist
 
 **Error Message**
@@ -1076,6 +1094,26 @@ It is not allowed to install enterprise applications through a specific installa
 **Possible Causes**
 
 Due to policy control, enterprise applications cannot be installed through the specific API.
+
+**Solution**
+
+## 17700072 Launch Want Does Not Exist
+
+**Error Message**
+
+The launch want is not found.
+
+**Description**
+
+The launch want does not exist.
+
+**Possible Causes**
+
+The application does not have an ability, or does not have an ability for which **entities** is set to **entity.system.home** and **actions** is set to **action.system.home**.
+
+**Solution**
+
+Configure an ability with **entities** set to **entity.system.home** and **actions** set to **action.system.home** for the application.
 
 ## 17700201 .abc File Verification Failure
 

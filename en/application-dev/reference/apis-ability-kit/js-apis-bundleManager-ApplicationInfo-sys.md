@@ -14,9 +14,9 @@ The ApplicationInfo module defines the application information. A third-party ap
 
 **System API**: This is a system API.
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| flags<sup>12+</sup>    | number    | Yes  | No  | Status set between the current application and the current user. Each bit indicates a specific Boolean status.<br>**System API**: This property can be used in system APIs since API version 12.|
+| flags<sup>12+</sup>    | number    | Yes  | Yes  | Status set between the current application and the current user. Each bit indicates a specific Boolean status.<br>**System API**: This property can be used in system APIs since API version 12.|
 
 
 ## PreinstalledApplicationInfo<sup>12+<sup>
@@ -25,7 +25,7 @@ The ApplicationInfo module defines the application information. A third-party ap
 
 **System API**: This is a system API.
 
-| Name     | Type          | Readable| Writable| Description                       |
+| Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | bundleName | string         | Yes  | No  | Bundle name of the application.                |
 | moduleName | string         | Yes  | No  | Module name of the application. By default, the name of the entry module is returned. If the entry module does not exist, the name of the feature module is returned.           |
