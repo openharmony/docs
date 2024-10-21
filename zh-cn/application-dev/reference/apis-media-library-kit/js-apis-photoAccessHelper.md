@@ -4833,11 +4833,11 @@ title参数规格为：
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称                   | 类型                              | 可读 | 可写 | 说明                                              |
-| ---------------------- |---------------------------------| ---- |---- | ------------------------------------------------ |
-| deliveryMode           | [DeliveryMode](#deliverymode11) | 是   | 是   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
-| compatibleMode<sup>13+</sup>      | [CompatibleMode](#compatiblemode13) | 是   | 是   | 配置HDR视频转码模式，可指定配置为转码和不转码两种策略。 |
-| rediaAssetProgressHandler<sup>13+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler13) | 是   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
+| 名称                   | 类型                        | 只读 | 可选 | 说明                                         |
+| ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
+| deliveryMode           | [DeliveryMode](#deliverymode11) | 否   | 否   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
+| compatibleMode<sup>13+</sup>      | [CompatibleMode](#compatiblemode13) | 否   | 是   | 配置HDR视频转码模式，可指定配置为转码和不转码两种策略。 |
+| mediaAssetProgressHandler<sup>13+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler13) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
 
 ## MediaChangeRequest<sup>11+</sup>
 
