@@ -292,7 +292,7 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exp
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | 是     |  给组件绑定自定义手势识别器判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
-| exposeInnerGesture   | boolean         | 是    | 暴露内部手势标识。<br/>默认值：false<br/>**说明**<br/>只有ArkUi原生的组合组件支持此标志位，并且只对默认自带的组件生效<br/>当使用默认值时，功能与原接口相同 |
+| exposeInnerGesture   | boolean         | 是    | 暴露内部手势标识。<br/>默认值：false<br/>**说明**<br/>如果是组合组件，此参数设置true，则会在current参数回调出组合组件内部的手势识别器，当前支持范围：tabs，其他组件请不要设置此参数<br/>当使用默认值时，功能与原接口相同 |
 
 ## onGestureRecognizerJudgeBegin
 
@@ -339,7 +339,7 @@ type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: Ge
 | ------ | --------- |
 | [GestureJudgeResult](ts-gesture-customize-judge.md#gesturejudgeresult11) | 手势是否裁决成功的判定结果。 |
 
-## 示例
+## 示例1
 
 ```ts
 // xxx.ets
@@ -494,6 +494,91 @@ struct FatherControlChild {
           })
       )
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+## 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State currentIndex: number = 0
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  controller?: TabsController = new TabsController();
+  @Builder
+  tabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+      .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+      .fontSize(16)
+      .fontWeight(this.currentIndex === index ? 500 : 400)
+      .lineHeight(22)
+      .margin({ top: 17, bottom: 7 })
+      Divider()
+      .strokeWidth(2)
+      .color('#007DFF')
+      .opacity(this.currentIndex === index ? 1 : 0)
+    }.width('100%')
+  }
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar(this.tabBuilder(0, 'green'))
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar(this.tabBuilder(0, 'pink'))
+        TabContent() {
+          Tabs() {
+            TabContent() {
+              Column().width('100%').height('100%').backgroundColor('#007DFF')
+            }.tabBar(this.tabBuilder(4, 'blue'))
+            TabContent() {
+              Column().width('100%').height('100%').backgroundColor(Color.Black)
+            }.tabBar(this.tabBuilder(5, 'black'))
+          }
+          .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+          others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
+            console.info('ets onGestureRecognizerJudgeBegin child')
+            if (current) {
+              let target = current.getEventTargetInfo();
+              if (target && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+                console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE')
+                let swiperTaget = target as ScrollableTargetInfo
+                if (swiperTaget instanceof ScrollableTargetInfo) {
+                  console.info('ets onGestureRecognizerJudgeBegin child PAN_GESTURE isEnd: ' + swiperTaget.isEnd() + ' isBegin: ' + swiperTaget.isBegin())
+                }
+                if (swiperTaget instanceof ScrollableTargetInfo && (swiperTaget.isEnd() || swiperTaget.isBegin())) {
+                  let panEvent = event as PanGestureEvent;
+                  console.log('pan direction:' + panEvent.offsetX + ' begin:' + swiperTaget.isBegin() + ' end:' +
+                  swiperTaget.isEnd())
+                  if (panEvent && panEvent.offsetX < 0 && swiperTaget.isEnd()) {
+                    console.info('ets onGestureRecognizerJudgeBegin child reject end')
+                    return GestureJudgeResult.REJECT;
+                  }
+                  if (panEvent && panEvent.offsetX > 0 && swiperTaget.isBegin()) {
+                    console.info('ets onGestureRecognizerJudgeBegin child reject begin')
+                    return GestureJudgeResult.REJECT;
+                  }
+                }
+              }
+            }
+            return GestureJudgeResult.CONTINUE;
+          }, true)
+        }.tabBar(this.tabBuilder(1, 'blue and black'))
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Brown)
+        }.tabBar(this.tabBuilder(0, 'brown'))
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Gray)
+        }.tabBar(this.tabBuilder(0, 'gray'))
+      }
+    }
   }
 }
 ```
