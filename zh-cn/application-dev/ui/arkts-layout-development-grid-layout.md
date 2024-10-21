@@ -443,8 +443,6 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 
 以下示例中，栅格把整个空间分为12份。第一层GridRow嵌套GridCol，分为中间大区域以及“footer”区域。第二层GridRow嵌套GridCol，分为“left”和“right”区域。子组件空间按照上一层父组件的空间划分，粉色的区域是屏幕空间的12列，绿色和蓝色的区域是父组件GridCol的12列，依次进行空间的划分。
 
-
-
 ```ts
 @Entry
 @Component
@@ -470,7 +468,6 @@ struct GridRowExample {
           }.backgroundColor('#ff4168db')
         }
         .backgroundColor('#19000000')
-        .height('100%')
       }
 
       GridCol({ span: { sm: 12 } }) {
