@@ -577,12 +577,12 @@ class EntryAbility extends UIAbility {
 
 | 名称          | 类型   | 必填 | 说明                                                         |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
-| encryptionKey | Uint8Array | 是   | 指定数据库加/解密使用的密钥。<br/>使用完后用户需要将密钥内容全部置为零。 |
-| iterationCount | number | 否 | 整数类型，指定数据库PBKDF2算法的迭代次数，默认值为10000。<br/>迭代次数应当为大于零的整数。不指定此参数或指定为零时，使用默认值10000，并使用默认加密算法AES_256_GCM。 |
+| encryptionKey | Uint8Array | 是   | 指定数据库加/解密使用的密钥。<br/>如传入密钥为空，则由数据库负责生成并保存密钥，并使用生成的密钥打开数据库文件。<br/>使用完后用户需要将密钥内容全部置为零。 |
+| iterationCount | number | 否 | 整数类型，指定数据库PBKDF2算法的迭代次数，默认值为10000。<br/>迭代次数应当为大于零的整数，若非整数则向下取整。<br/>不指定此参数或指定为零时，使用默认值10000，并使用默认加密算法AES_256_GCM。 |
 | encryptionAlgo | [EncryptionAlgo](#encryptionalgo14) | 否 | 指定数据库加解密使用的加密算法。如不指定，默认值为 AES_256_GCM。 |
 | hmacAlgo | [HmacAlgo](#hmacalgo14) | 否 | 指定数据库加解密使用的HMAC算法。如不指定，默认值为SHA256。 |
 | kdfAlgo | [KdfAlgo](#kdfalgo14) | 否 | 指定数据库加解密使用的PBKDF2算法。如不指定，默认使用和HMAC算法相等的算法。 |
-| cryptoPageSize | number | 否 | 整数类型，指定数据库加解密使用的页大小。如不指定，默认值为1024字节。<br/>用户指定的页大小应为512到65536范围内的整数，并且为2<sup>n</sup>。 |
+| cryptoPageSize | number | 否 | 整数类型，指定数据库加解密使用的页大小。如不指定，默认值为1024字节。<br/>用户指定的页大小应为1024到65536范围内的整数，并且为2<sup>n</sup>。若指定值非整数，则向下取整。 |
 
 ## EncryptionAlgo<sup>14+</sup>
 
