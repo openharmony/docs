@@ -259,7 +259,7 @@ Describes a text style.
 | fontWeight    | [FontWeight](#fontweight)                            | Yes| Yes| Font weight. The default value is **W400**.                         |
 | fontStyle     | [FontStyle](#fontstyle)                              | Yes| Yes| Font style. The default value is **NORMAL**.                         |
 | baseline      | [TextBaseline](#textbaseline)                        | Yes| Yes| Text baseline type. The default value is **ALPHABETIC**.              |
-| fontFamilies  | Array\<string>                                       | Yes| Yes| Font families. The default value is the system fonts.                   |
+| fontFamilies  | Array\<string>                                       | Yes| Yes| List of font families. By default, the list corresponds to the system's default fonts.                   |
 | fontSize      | number                                               | Yes| Yes| Font size, in units of px. The value is a floating point number. The default value is **14.0**.  |
 | letterSpacing | number                                               | Yes| Yes| Letter spacing, in units of px. The value is a floating point number. The default value is **0.0**. A positive value causes characters to spread farther apart, and a negative value bring characters closer together.|
 | wordSpacing   | number                                               | Yes| Yes| Word spacing, in units of px. The value is a floating point number. The default value is **0.0**.                |
@@ -268,7 +268,7 @@ Describes a text style.
 | halfLeading   | boolean                                              | Yes| Yes| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.|
 | ellipsis      | string                                               | Yes| Yes| Ellipsis content, which will be used to replace the extra content.      |
 | ellipsisMode  | [EllipsisMode](#ellipsismode)                        | Yes| Yes| Ellipsis type. The default value is **END**, indicating that the ellipsis is at the end of a line.                       |
-| locale        | string                                               | Yes| Yes| Locale, for example, **'en'**. For details, see the ISO 639-1 specifications. The default value is a null string.|
+| locale        | string                                               | Yes| Yes| Locale. For example, **'en'** indicates English, **'zh-Hans'** indicates Simplified Chinese, and **'zh-Hant'** indicates Traditional Chinese. For details, see ISO 639-1. The default value is an empty string.|
 | baselineShift | number                                               | Yes| Yes| Shift of the baseline. The value is a floating point number. The default value is **0.0px**.                |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | Yes| Yes| Array of font features.|
 | fontVariations| Array\<[FontVariation](#fontvariation)>              | Yes| Yes| Array of font variations.|
@@ -340,7 +340,7 @@ struct Index {
 
 loadFontSync(name: string, path: string | Resource): void
 
-Loads a font. This API returns the result synchronously.
+Loads a font from a file in the specified path. This API returns the result synchronously. In this API, **name** specifies the alias of the font, and the custom font effect can be displayed only when the value of **name** is set in **fontFamilies** in **[TextStyle](#textstyle)**. The supported font file formats are .ttf and .otf.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -349,28 +349,40 @@ Loads a font. This API returns the result synchronously.
 | Name| Type              | Mandatory| Description                             |
 | ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
 | name  | string             | Yes  | Name of the font.                                               |
-| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes  | Path of the font file to import. The value must be **File://***absolute path of the font file* or **rawfile/***directory or file name*.|
+| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | Yes  | Path of the font file to import. The value must be **file://***absolute path of the font file* or **rawfile/***directory or file name*.|
 
 **Example**
 
 ```ts
 import { text } from "@kit.ArkGraphics2D"
 
-function textFunc() {
-  let fontCollection = new text.FontCollection;
-  fontCollection.loadFontSync('test', 'File://');
-}
+let fontCollection: text.FontCollection = new text.FontCollection();
 
 @Entry
 @Component
-struct Index {
-  fun: Function = textFunc;
-  build() {
-    Column() {
-      Button().onClick(() => {
-        this.fun();
-      })
+struct RenderTest {
+  LoadFontSyncTest() {
+    fontCollection.loadFontSync('Clock_01', 'file:///system/fonts/HarmonyClock_01.ttf')
+    let fontFamilies: Array<string> = ["Clock_01"]
+    let myTextStyle: text.TextStyle = {
+      fontFamilies: fontFamilies
+    };
+    let myParagraphStyle: text.ParagraphStyle = {
+      textStyle: myTextStyle,
     }
+    let paragraphBuilder: text.ParagraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+
+    let textData = "Test loadFontSync to load the font HarmonyClock_01.ttf."
+    paragraphBuilder.addText(textData);
+    let paragraph: text.Paragraph = paragraphBuilder.build();
+    paragraph.layoutSync(600);
+  }
+
+  aboutToAppear() {
+    this.LoadFontSyncTest();
+  }
+
+  build() {
   }
 }
 ```
@@ -1373,9 +1385,9 @@ Inserts a symbol into the paragraph being built.
 
 **Parameters**
 
-| Name   | Type   | Mandatory| Description                      |
-| -------- | ------- | ---- | -------------------------- |
-| symbolId | number  | Yes  | Symbol to insert, in hexadecimal format.|
+| Name   | Type   | Mandatory| Description                                                       |
+| -------- | ------- | ---- | ----------------------------------------------------------- |
+| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000–0xF0C97. For details about the configurable symbol codes and symbol names, see the **value** and **name** fields in the [JSON file](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json).|
 
 **Example**
 
