@@ -9183,7 +9183,7 @@ export default class EntryAbility extends UIAbility {
 
 on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
-开启点击主窗三键区的关闭按钮监听事件，仅在2in1设备中生效。点击主窗口的三键区域的关闭键触发该回调函数，如果注册该监听事件时，则注册的[UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonpreparetoterminate10)生命周期回调函数将不执行。
+开启点击主窗三键区的关闭按钮监听事件，仅在2in1设备中生效。点击主窗口的三键区域的关闭键时触发该回调函数，将不执行注册的[UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonpreparetoterminate10)生命周期回调函数。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
