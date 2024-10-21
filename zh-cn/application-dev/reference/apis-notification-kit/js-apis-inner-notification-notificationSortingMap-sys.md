@@ -16,5 +16,5 @@
 
 | 名称                 | 类型                  | 必填 | 说明                                       |
 | -------------------- | --------------------- | --- | ------------------------------------------ |
-| sortings              | { [key: string]: [NotificationSorting](js-apis-inner-notification-notificationSorting-sys.md) } | 是  | 通知排序信息。                                   |
-| sortedHashCode                | Array<string>                | 是  | 通知排序的HashCode。 |
+| sortings              | Record<string, [NotificationSorting](js-apis-inner-notification-notificationSorting-sys.md)\> | 是  | 通知排序信息。                                   |
+| sortedHashCode                | Array<string\>                | 是  | 通知排序的HashCode。 |
