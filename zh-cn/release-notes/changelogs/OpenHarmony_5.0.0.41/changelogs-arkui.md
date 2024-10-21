@@ -87,11 +87,11 @@ CreateModalUIExtension和hideNonSecureWindows接口。
 
 **变更原因**
 
-使用超长文本的MenuItem组件时，文本缩略显示，造成部分场景UX体验不佳。
+对于使用超长文本的MenuItem组件场景，默认布局效果优化，UX体验更佳。
 
 **变更影响**
 
-该变更为非兼容性变更。
+该变更为不兼容变更。
 
 变更前：MenuItem组件含有超长文本时，文本缩略显示。
 
