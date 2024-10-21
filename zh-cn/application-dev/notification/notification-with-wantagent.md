@@ -66,7 +66,7 @@
          parameters: {},
        }
      ],
-     operationType: wantAgent.OperationType.SEND_COMMON_EVENT,
+     actionType: wantAgent.OperationType.SEND_COMMON_EVENT,
      requestCode: 0,
      wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
    };
