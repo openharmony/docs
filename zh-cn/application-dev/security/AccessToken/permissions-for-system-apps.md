@@ -2577,7 +2577,7 @@
 
 ### ohos.permission.SET_ADVANCED_SECURITY_MODE
 
-允许应用修改高级安全模式配置。
+允许应用修改坚盾守护模式配置。
 
 权限级别: system_core
 
@@ -2675,7 +2675,7 @@
 
 ### ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
-允许系统应用打开高级安全模式配置界面。
+允许系统应用打开坚盾守护模式配置界面。
 
 **权限级别**：system_basic
 
