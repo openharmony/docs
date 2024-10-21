@@ -1047,4 +1047,37 @@ struct LocalSetSample {
 }
 ```
 
+### 自定义组件外改变状态变量
+
+```ts
+let storage = new LocalStorage();
+storage.setOrCreate('count', 47);
+
+class Model {
+  storage: LocalStorage = storage;
+
+  call(propName: string, value: number) {
+    this.storage.setOrCreate<number>(propName, value);
+  }
+}
+
+let model: Model = new Model();
+
+@Entry({ storage: storage })
+@Component
+struct Test {
+  @LocalStorageLink('count') count: number = 0;
+
+  build() {
+    Column() {
+      Text(`count值: ${this.count}`)
+      Button('change')
+        .onClick(() => {
+          model.call('count', this.count + 1);
+        })
+    }
+  }
+}
+```
+
 <!--no_check-->
