@@ -22,7 +22,7 @@ import { AtomicServiceOptions } from '@kit.AbilityKit';
 
 | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| [flags](js-apis-app-ability-wantConstant.md#wantconstantflags) | number | No|  Yes| Mode in which the system processes the startup.<br>For example, **wantConstant.Flags.FLAG_INSTALL_ON_DEMAND** indicates that the installation-free capability is used.|
+| [flags](js-apis-app-ability-wantConstant.md#flags) | number | No|  Yes| Mode in which the system processes the startup.<br>For example, **wantConstant.Flags.FLAG_INSTALL_ON_DEMAND** indicates that the installation-free capability is used.|
 | parameters | Record\<string, Object> | No|  Yes| Additional parameters. For details, see the **parameters** field in [Want](js-apis-app-ability-want.md).|
 
 **Example**

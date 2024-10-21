@@ -14,7 +14,7 @@ The **AbilityConstant** module defines the UIAbility-related enums, including th
 import { AbilityConstant } from '@kit.AbilityKit';
 ```
 
-## AbilityConstant.LaunchParam
+## LaunchParam
 
 Defines the parameters for starting an ability. The parameter values are automatically passed in by the system when the ability is started. You do not need to change the values.
 
@@ -22,11 +22,11 @@ Defines the parameters for starting an ability. The parameter values are automat
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| launchReason | [LaunchReason](#abilityconstantlaunchreason)| No| No| Ability launch reason, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| lastExitReason | [LastExitReason](#abilityconstantlastexitreason) | No| No| Reason for the last exit, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| launchReason | [LaunchReason](#launchreason)| No| No| Ability launch reason, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lastExitReason | [LastExitReason](#lastexitreason) | No| No| Reason for the last exit, which is an enumerated type.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | lastExitMessage<sup>12+</sup> | string | No| No| Reason for the last exit.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-## AbilityConstant.LaunchReason
+## LaunchReason
 
 Enumerates the initial ability launch reasons. You can use it together with the value of **launchParam.launchReason** in [onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate) of the UIAbility to complete different operations.
 
@@ -57,7 +57,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.LastExitReason
+## LastExitReason
 
 Enumerates the reasons for the last exit. You can use it together with the value of **launchParam.lastExitReason** in [onCreate(want, launchParam)](js-apis-app-ability-uiAbility.md#uiabilityoncreate) of the UIAbility to complete different operations.
 
@@ -72,7 +72,7 @@ Enumerates the reasons for the last exit. You can use it together with the value
 | JS_ERROR<sup>10+</sup>  | 4    | The ability exits due to a JS_ERROR fault triggered when an application has a JS syntax error that is not captured by developers.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | APP_FREEZE<sup>10+</sup>  | 5    | The ability exits because watchdog detects that the application is frozen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | The ability exits due to system performance problems, for example, insufficient device memory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**NOTE**: This API will be deprecated. You are advised to use **RESOURCE_CONTROL** instead.|
-| RESOURCE_CONTROL<sup>10+</sup>  | 7    | The ability exits due to improper use of system resources. The specific error cause can be obtained through [LaunchParam.lastExitMessage](#abilityconstantlaunchparam). The possible causes are as follows:<br> - **CPU Highload**: The CPU load is high.<br> - **CPU_EXT Highload**: A fast CPU load detection is carried out.<br> - **IO Manage Control**: An I/O management and control operation is carried out.<br> -** App Memory Deterioration**: The application memory usage exceeds the threshold.<br> - **Temperature Control**: The temperature is too high or too low.<br> - **Memory Pressure**: The system is low on memory, triggering ability exiting in ascending order of priority.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | The ability exits due to improper use of system resources. The specific error cause can be obtained through [LaunchParam.lastExitMessage](#launchparam). The possible causes are as follows:<br> - **CPU Highload**: The CPU load is high.<br> - **CPU_EXT Highload**: A fast CPU load detection is carried out.<br> - **IO Manage Control**: An I/O management and control operation is carried out.<br> -** App Memory Deterioration**: The application memory usage exceeds the threshold.<br> - **Temperature Control**: The temperature is too high or too low.<br> - **Memory Pressure**: The system is low on memory, triggering ability exiting in ascending order of priority.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | UPGRADE<sup>10+</sup>  | 8    | The ability exits due to an update.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 **Example**
@@ -92,7 +92,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.OnContinueResult 
+## OnContinueResult 
 
 Enumerates the ability continuation results. You can use it together with [onContinue(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncontinue) of the UIAbility to complete different operations.
 
@@ -118,7 +118,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.MemoryLevel
+## MemoryLevel
 
 Enumerates the memory levels. You can use it in [onMemoryLevel(level)](js-apis-app-ability-ability.md#abilityonmemorylevel) of the UIAbility to complete different operations.
 
@@ -146,7 +146,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.WindowMode<sup>12+</sup>
+## WindowMode<sup>12+</sup>
 
 Enumerates the window mode when the ability is started. It can be used together with [startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to specify the window mode for starting the ability.
 
@@ -184,7 +184,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.OnSaveResult
+## OnSaveResult
 
 Enumerates the result types for the operation of saving application data. You can use it in [onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the UIAbility to complete different operations.
 
@@ -213,7 +213,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.StateType
+## StateType
 
 Enumerates the scenarios for saving application data. You can use it in [onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the UIAbility to complete different operations.
 
@@ -241,7 +241,7 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## AbilityConstant.ContinueState<sup>10+</sup>
+## ContinueState<sup>10+</sup>
 
 Enumerates the mission continuation states of the application. It is used in the [setMissionContinueState](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10) API of [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md).
 
