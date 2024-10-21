@@ -499,7 +499,7 @@ struct FatherControlChild {
 ```
 
 ## 示例2
-说明：一级Tabs容器下嵌套二级Tabs，二级Tabs关联onGestureRecognizerJudgeBegin接口且exposeInnerGesture置为true，实现拒绝二级Tabs内置Swiper的滑动手势，触发一级Tabs内置Swiper滑动手势的效果。
+说明：一级Tabs容器下嵌套二级Tabs，二级Tabs关联onGestureRecognizerJudgeBegin接口且exposeInnerGesture置为true，实现能够拒绝二级Tabs内置Swiper的滑动手势，触发一级Tabs内置Swiper滑动手势的效果。
 
 ```ts
 // xxx.ets
