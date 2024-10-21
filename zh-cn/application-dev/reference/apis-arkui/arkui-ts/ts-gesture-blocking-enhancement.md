@@ -499,6 +499,7 @@ struct FatherControlChild {
 ```
 
 ## 示例2
+说明：一级Tabs容器下嵌套二级Tabs，二级Tabs关联onGestureRecognizerJudgeBegin接口且exposeInnerGesture置为true，实现拒绝二级Tabs内置Swiper的滑动手势，触发一级Tabs内置Swiper滑动手势的效果。
 
 ```ts
 // xxx.ets
@@ -528,15 +529,12 @@ struct Index {
     Column() {
       Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
         TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#00CB87')
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar(this.tabBuilder(0, 'green'))
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar(this.tabBuilder(0, 'pink'))
         TabContent() {
           Tabs() {
             TabContent() {
-              Column().width('100%').height('100%').backgroundColor('#007DFF')
+              Column().width('100%').height('100%').backgroundColor(Color.Blue)
             }.tabBar(this.tabBuilder(4, 'blue'))
             TabContent() {
               Column().width('100%').height('100%').backgroundColor(Color.Black)
@@ -574,9 +572,6 @@ struct Index {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Brown)
         }.tabBar(this.tabBuilder(0, 'brown'))
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor(Color.Gray)
-        }.tabBar(this.tabBuilder(0, 'gray'))
       }
     }
   }
