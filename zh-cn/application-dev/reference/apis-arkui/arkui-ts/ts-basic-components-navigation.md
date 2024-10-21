@@ -183,7 +183,7 @@ hideToolBar(value: boolean)
 
 ### hideToolBar<sup>14+</sup>
 
-hideToolBar(value: boolean, animated: boolean)
+hideToolBar(hide: boolean, animated: boolean)
 
 设置是否隐藏工具栏，设置是否使用动画显隐工具栏。
 
@@ -216,7 +216,7 @@ hideTitleBar(value: boolean)
 
 ### hideTitleBar<sup>14+</sup>
 
-hideTitleBar(value: boolean, animated: boolean)
+hideTitleBar(hide: boolean, animated: boolean)
 
 设置是否隐藏标题栏，设置是否使用动画显隐标题栏。
 
