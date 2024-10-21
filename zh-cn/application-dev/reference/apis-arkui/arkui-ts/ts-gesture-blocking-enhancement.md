@@ -577,3 +577,5 @@ struct Index {
   }
 }
 ```
+
+ ![example](figures/gesture_recognizer_exposeInnerGesture_true.gif)
