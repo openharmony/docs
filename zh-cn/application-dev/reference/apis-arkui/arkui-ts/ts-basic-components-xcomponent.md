@@ -30,7 +30,7 @@ XComponent(options: XComponentOptions)
 
 XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
 
-该接口不再演进，推荐使用[XComponent(options: XComponentOptions)](#xcomponent12)。
+该接口从API version 12开始不再演进，推荐使用[XComponent(options: XComponentOptions)](#xcomponent12)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
