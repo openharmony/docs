@@ -5639,7 +5639,7 @@ setSubWindowModal(isModal: boolean, modalityType: ModalityType): Promise&lt;void
 
 当子窗口模态类型为模应用子窗时，其父级窗口与该应用其他实例的窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态类型被禁用。
 
-此接口仅支持设置子窗口模态类型，当需要禁用子窗口模态属性时，建议使用[setSubWindowModal<sup>12+</sup>](#setsubwindowmodal12)
+此接口仅支持设置子窗口模态类型，当需要禁用子窗口模态属性时，建议使用[setSubWindowModal<sup>12+</sup>](#setsubwindowmodal12)。
 
 子窗口之外的窗口调用该接口时，会报错。
 
@@ -5651,8 +5651,8 @@ setSubWindowModal(isModal: boolean, modalityType: ModalityType): Promise&lt;void
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| isModal | boolean | 是   | 启用模态属性，必须为true，不允许为false。 |
-| modalityType | [ModalityType](#modalitytype14) | 是   | 子窗口模态类型 |
+| isModal | boolean | 是   | 设置子窗口模态属性是否启用，true为启用，false为不启用。当前仅支持设置为true。 |
+| modalityType | [ModalityType](#modalitytype14) | 是   | 子窗口模态类型。 |
 
 **返回值：**
 
