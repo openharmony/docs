@@ -83,7 +83,7 @@ CreateModalUIExtension和hideNonSecureWindows接口。
 
 **访问级别**
 
-系统接口
+公开接口
 
 **变更原因**
 
