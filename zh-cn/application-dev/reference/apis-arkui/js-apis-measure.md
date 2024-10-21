@@ -11,6 +11,8 @@
 > 从API version 12开始，可以通过UIContext中的getMeasureUtils方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例
 >
 > 如需更多测算文本参数，建议使用图形对应测算接口[Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)接口。
+>
+> 为保障时序正确，推荐需要测算文本的开发者自行监听字体缩放变化，保证测算结果的准确性。
 
 ## 导入模块
 
