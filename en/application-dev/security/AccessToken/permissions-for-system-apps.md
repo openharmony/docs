@@ -3965,6 +3965,20 @@ This permission is available only for applications running on 2-in-1 devices.
 
 **Valid since**：13
 
+### ohos.permission.READ_WRITE_USER_FILE
+
+Allows an application to access and modify the files in the user directory.
+
+Currently, this permission is available only for 2-in-1 device applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
