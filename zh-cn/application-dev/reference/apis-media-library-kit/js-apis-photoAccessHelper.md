@@ -1125,7 +1125,7 @@ async function example() {
   console.info('grantPhotoAssetsReadPermissionSDemo.');
 
   try {
-    // 获取进行授权的图片/视频uri
+    // 获取需要进行授权的图片/视频uri
     let srcFileUris: Array<string> = [
       'file://fileUriDemo1' // 实际场景请使用真实的uri
     ];
