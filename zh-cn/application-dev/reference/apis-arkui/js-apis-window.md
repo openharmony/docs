@@ -5629,6 +5629,84 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### setSubWindowModal<sup>14+</sup>
+
+setSubWindowModal(isModal: boolean, modalityType: ModalityType): Promise&lt;void&gt;
+
+设置子窗的模态类型，使用Promise异步回调。
+
+当子窗口模态类型为模窗口子窗时，其父级窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态类型被禁用。
+
+当子窗口模态类型为模应用子窗时，其父级窗口与该应用其他实例的窗口不能响应用户操作，直到子窗口关闭或者子窗口的模态类型被禁用。
+
+此接口仅支持设置子窗口模态类型，当需要禁用子窗口模态属性时，建议使用[setSubWindowModal<sup>12+</sup>](#setsubwindowmodal12)。
+
+子窗口之外的窗口调用该接口时，会报错。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isModal | boolean | 是   | 设置子窗口模态属性是否启用，true为启用，false为不启用。当前仅支持设置为true。 |
+| modalityType | [ModalityType](#modalitytype14) | 是   | 子窗口模态类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation.        |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // 创建子窗
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        let promise = windowClass.setSubWindowModal(true, window.ModalityType.WINDOW_MODALITY);
+        promise.then(() => {
+          console.info('Succeeded in setting subwindow modal');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set subwindow modal. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
 ### setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
@@ -5853,7 +5931,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| options  | [SubWindowOptions](#subwindowoptions11) | 是   | 子窗口参数。  |
+| options  | [SubWindowOptions](#subwindowoptions12) | 是   | 子窗口参数。  |
 
 **返回值：**
 
@@ -8382,7 +8460,20 @@ WindowStage生命周期。
 | RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如应用打开后，可以与用户交互的状态。 |
 | PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态，例如从屏幕底部上划，应用进入到多任务界面后的状态。 |
 
-## SubWindowOptions<sup>11+</sup>
+## ModalityType<sup>14+</sup>
+
+子窗口模态类型枚举。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+| 名称                 | 值      | 说明       |
+| -------------------- | ------ | ---------- |
+| WINDOW_MODALITY      | 0      | 模态子窗类型为模窗口子窗，当仅需要其父级窗口不响应用户操作时，可选此参数。 |
+| APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗，除其父级窗口外还需要该应用其他实例的窗口不响应用户操作时，可选此参数。<br> 此接口仅支持在2in1设备下使用。 |
+
+## SubWindowOptions<sup>12+</sup>
 
 子窗口创建参数。
 
@@ -8392,9 +8483,10 @@ WindowStage生命周期。
 
 | 名称      | 类型  | 只读 | 可选 | 说明         |
 | ---------- | ---- | ---- | ---- | ----------- |
-| title    | string | 否 | 否 | 子窗口标题。       |
-| decorEnabled | boolean | 否 | 否 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
-| isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，其父级窗口不能响应用户操作，false表示子窗口禁用模态属性，其父级窗口能响应用户操作。不设置，则默认为false。       |
+| title<sup>12+</sup>    | string | 否 | 否 | 子窗口标题。       |
+| decorEnabled<sup>12+</sup> | boolean | 否 | 否 | 子窗口是否显示装饰。true表示子窗口显示装饰，false表示子窗口不显示装饰。       |
+| isModal<sup>12+</sup>    | boolean | 否 | 是 | 子窗口是否启用模态属性。true表示子窗口启用模态属性，false表示子窗口禁用模态属性。不设置，则默认为false。       |
+| modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | 否 | 是 | 子窗口模态类型，仅当子窗口启用模态属性时生效。WINDOW_MODALITY表示子窗口模态类型为模窗口子窗，APPLICATION_MODALITY表示子窗口模态类型为模应用子窗。不设置，则默认为WINDOW_MODALITY。       |
 
 ## WindowStage<sup>9+</sup>
 
@@ -8697,7 +8789,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| options  | [SubWindowOptions](#subwindowoptions11) | 是   | 子窗口参数。  |
+| options  | [SubWindowOptions](#subwindowoptions12) | 是   | 子窗口参数。  |
 
 **返回值：**
 
