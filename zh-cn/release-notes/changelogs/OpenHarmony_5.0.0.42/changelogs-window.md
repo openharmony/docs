@@ -21,7 +21,7 @@
 
 | 变更前 | 变更后 |
 |---------|---------|
-| ![]() | ![]() |
+| ![](figures/pipbefore.jpg) | ![](figures/pipafter.jpg) |
 
 **起始API Level**
 
