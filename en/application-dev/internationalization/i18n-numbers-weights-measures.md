@@ -30,7 +30,7 @@ Number formatting is implemented through the [format](../reference/apis-localiza
 
 4. Obtain **NumberOptions** and view the configuration of formatting options.
    ```ts
-   let options: intl.NumberOptions = formattedNumber.resolvedOptions();
+   let options: intl.NumberOptions = numberFormat.resolvedOptions();
    ```
 
 **Number Formatting Options**
@@ -194,7 +194,7 @@ let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,92
 
 Units of measurement conversion and formatting are implemented by the [unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9) API of the [I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9) class. The development procedure is as follows:
 
-1. Import the **i18n** module.
+1. Import the **intl** module.
    ```ts
    import { i18n } from '@kit.LocalizationKit';
    ```
@@ -221,7 +221,7 @@ Assume that **fromUnit** is **cup** (US unit), **toUnit** is **liter** (SI unit)
 **Development Example**
 
 ```ts
-// Import the i18n module.
+// Import the intl module.
 import { i18n } from '@kit.LocalizationKit';
 
 // Set the fromUnit and toUnit.
@@ -234,3 +234,4 @@ let convertedUnit1 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US');
 // Display the complete unit.
 let convertedUnit2 = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US', 'long'); // convertedUnit2: 236.588 liters
 ```
+<!--no_check-->

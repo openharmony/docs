@@ -397,7 +397,7 @@ Defines the options for a **DateTimeOptions** object. Since API version 9, the *
 
 >  **NOTE**
 >
->  - For details about the display effects of **dateStyle**, **timeStyle**, **weekday**, and **year**, see Table 1 in [Date and Time Formatting](../../internationalization/i18n-time-date.md).
+>  - For details about the display effects of **dateStyle**, **timeStyle**, **weekday**, and **year**, see Table 1 in [Date and Time Formatting] (../../internationalization/i18n-time-date.md).
 >
 >  - For details about the parameter values in different scenarios, see [Date and Time Formatting](../../internationalization/i18n-time-date.md).
 
@@ -924,5 +924,3 @@ Represents the properties of a **RelativeTimeFormat** object.
 | numeric         | string | Yes   | Format of the output message. The value can be **always** or **auto**.     |
 | style           | string | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**.|
 | numberingSystem | string | Yes   | Numbering system.                                |
-
-<!--no_check-->

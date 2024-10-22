@@ -34,3 +34,7 @@ If your application needs to access the device location when running in the back
 - A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the **Settings** page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
 
 - For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md)<!--Del--> and [Continuous Task Development Example](../../performance/reasonable-running-backgroundTask.md#continuous-task)<!--DelEnd-->.
+
+
+<!--RP1-->
+<!--RP1End-->
