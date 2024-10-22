@@ -3951,6 +3951,20 @@
 
 **起始版本**：13
 
+### ohos.permission.READ_WRITE_USER_FILE
+
+允许应用访问并修改用户目录下的文件。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：13
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
