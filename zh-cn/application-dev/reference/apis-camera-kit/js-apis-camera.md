@@ -327,7 +327,7 @@ getSupportedOutputCapability(camera: CameraDevice): CameraOutputCapability
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。传参异常时，会返回错误码       |
+| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。传参异常时，会返回错误码。      |
 
 **返回值：**
 
