@@ -123,7 +123,7 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
     await this.screenCapture.init(this.captureConfig);
     ```
 
-6. Set the windows that will be skipped during screen capture, by entering the subwindow IDs and main window IDs. For details, see **Window Management Home Page**.
+6. Set the windows that will be skipped during screen capture, by entering the subwindow IDs and main window IDs. For details, see [Window API Reference](../../reference/apis-arkui/js-apis-window.md#windowproperties).
 
     ```javascript
     let windowIDs = [57, 86];
@@ -184,18 +184,18 @@ export class AVScreenCaptureDemo {
       // failed
         return;
     }
-    this.screenCapture.on('stateChange', async (infoType: media.AVScreenCaptureStateCode) => {
+    this.screenCapture?.on('stateChange', async (infoType: media.AVScreenCaptureStateCode) => {
       switch (infoType) {
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_STARTED:
           console.info("Callback invoked when screen capture starts");
           break;
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_CANCELED:
-          this.screenCapture.release();
+          this.screenCapture?.release();
           this.screenCapture = undefined;
           console.info("Screen capture is not allowed.");
           break;
         case media.AVScreenCaptureStateCode.SCREENCAPTURE_STATE_STOPPED_BY_USER:
-          this.screenCapture.release();
+          this.screenCapture?.release();
           this.screenCapture = undefined;
           console.info("Touch the button in the screen capture capsule to stop screen capture. Underlying capture will stop.");
           break;
@@ -228,16 +228,16 @@ export class AVScreenCaptureDemo {
           break;
       }
     })
-    this.screenCapture.on('error', (err) => {
+    this.screenCapture?.on('error', (err) => {
       console.info("Handle exceptions.");
     })
-    await this.screenCapture.init(this.captureConfig);
+    await this.screenCapture?.init(this.captureConfig);
     
     // Exempt privacy windows.
     let windowIDs = [57, 86];
-    await screenCapture.skipPrivacyMode(windowIDs);
+    await this.screenCapture?.skipPrivacyMode(windowIDs);
     
-    await this.screenCapture.startRecording();
+    await this.screenCapture?.startRecording();
   }
 
   // Proactively call stopRecording to stop screen capture.
@@ -246,15 +246,12 @@ export class AVScreenCaptureDemo {
       // Error
       return;
     }
-    await this.screenCapture.stopRecording();
+    await this.screenCapture?.stopRecording();
     
     // Call release() to release the instance.
-    await screenCapture.release().then(() => {
-      console.info('Succeeded in releasing screenCapture');  
-    }).catch((err: BusinessError) => {
-      console.info('Failed to release screenCapture, error:' + err.message);
-    })
+    await this.screenCapture?.release();
 
     // Call fs.close (fd); to close the FD of the created screen capture file.
   }
+}
 ```
