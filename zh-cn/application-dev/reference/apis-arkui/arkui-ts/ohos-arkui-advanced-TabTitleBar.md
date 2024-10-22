@@ -42,6 +42,10 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 | menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表，定义标题栏右侧的菜单项目。 |
 | swiperContent | ()&nbsp;=&gt;&nbsp;void | 是 | \@BuilderParam | 页签列表关联的页面内容构造器。 |
 
+> **说明：**
+> 
+> 入参对象不可为undefined，即`TabTitleBar(undefined)`。
+
 ## TabTitleBarMenuItem
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。

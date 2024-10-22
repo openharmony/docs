@@ -43,6 +43,10 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 |
 | menuItems | Array&lt;[ComposeTitleBarMenuItem](#composetitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表。 |
 
+> **说明：**
+> 
+> 入参对象不可为undefined，即`ComposeTitleBar(undefined)`。
+
 ## ComposeTitleBarMenuItem
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
