@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Create table failed.
+Failed to create the in-memory database.
 
 **错误描述**
 
