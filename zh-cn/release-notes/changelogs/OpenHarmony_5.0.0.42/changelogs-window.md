@@ -54,15 +54,15 @@ function buildText(params: Params) {
     //  .fontSize(20)
     //  .fontColor(Color.Red)
 
-    //变更后 字体大小应基于大窗真实尺寸适配，字体大小应相应变大
+    //变更后 字体大小应基于大窗真实尺寸适配，字体大小应相应调整为合适值
      Text(params.text)
-      .fontSize(40)
+      .fontSize(38)
       .fontColor(Color.Red)
   }
   .width('100%')
   .height('100%')
 }
-
+// 自定义UI控件所使用的customUIController
 class TextNodeController extends NodeController {
   private message: string;
   private textNode: BuilderNode<[Params]> | null = null;
