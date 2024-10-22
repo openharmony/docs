@@ -34,8 +34,9 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 >
 >子节点信息数组中只包含命名节点的信息，即开发者通过id属性设置了id的节点。
 
-
 ## TouchTestInfo
+
+当前按压点所在组件的坐标系、id和尺寸相关信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -54,6 +55,8 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 ## TouchResult
 
+自定义事件分发结果，开发者通过返回结果来影响事件分发。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -65,6 +68,8 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 ## TouchTestStrategy枚举说明
 
+事件派发策略。
+
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -73,9 +78,9 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 | 名称          | 描述                                       |
 | ------------| ----------------------------------------- |
-| DEFAULT     | 自定义分发不产生影响，继续走组件系统默认分发机制。 |
-| FORWARD_COMPETITION       | 定向派发到指定子节点，同时走ArkUI触摸测试流程。 |
-| FORWARD | 定向派发到指定子节点，不走ArkUI触摸测试流程。 |
+| DEFAULT     | 自定义分发不产生影响，系统按当前节点命中状态分发事件。 |
+| FORWARD_COMPETITION       | 应用指定分发事件到某个子节点，其他兄弟节点是否分发事件交由系统决定。 |
+| FORWARD | 应用指定分发事件到某个子节点，系统不再处理分发事件到其他兄弟节点。 |
 
 ## 示例
 
