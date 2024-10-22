@@ -61,7 +61,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
    > - The [playback formats and protocols](media-kit-intro.md#supported-formats-and-protocols) in use must be those supported by the system.
 
 4. Obtain and set the surface ID of the window to display the video.
-   The application obtains the surface ID from the **XComponent**. For details about the process, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+   The application obtains the surface ID from the **\<XComponent>**. For details about the process, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
 5. Call **prepare()** to switch the AVPlayer to the **prepared** state. In this state, you can obtain the duration of the media asset to play and set the scale type and volume.
 
@@ -76,7 +76,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 
 ```ts
 import { media } from '@kit.MediaKit';
-import { fileIo } from '@kit.CoreFileKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -86,6 +86,11 @@ export class AVPlayerDemo {
   private isSeek: boolean = true; // Specify whether the seek operation is supported.
   private fileSize: number = -1;
   private fd: number = 0;
+
+  constructor(surfaceID: string) {
+    this.surfaceID = surfaceID;
+  }
+  
   // Set AVPlayer callback functions.
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // startRenderFrame: callback function invoked when the first frame starts rendering.
@@ -166,7 +171,7 @@ export class AVPlayerDemo {
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
     // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
-    let file = await fileIo.open(path);
+    let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
     this.isSeek = true; // The seek operation is supported.
     avPlayer.url = fdPath;
@@ -203,7 +208,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
         }
-        num = fileIo.readSync(this.fd, buf, { offset: pos, length: length });
+        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
         if (num > 0 && (this.fileSize >= pos)) {
           return num;
         }
@@ -214,11 +219,11 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fileIo.open(path).then((file: fileIo.File) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     // Obtain the size of the file to be played.
-    this.fileSize = fileIo.statSync(path).size;
+    this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
     this.isSeek = true; // The seek operation is supported.
     avPlayer.dataSrc = src;
@@ -238,7 +243,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined) {
           return -1;
         }
-        num = fileIo.readSync(this.fd, buf);
+        num = fs.readSync(this.fd, buf);
         if (num > 0) {
           return num;
         }
@@ -248,7 +253,7 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
-    await fileIo.open(path).then((file: fileIo.File) => {
+    await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // The seek operation is not supported.
