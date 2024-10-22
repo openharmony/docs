@@ -23,6 +23,13 @@ Audio and Video Codec (AVCodec) Kit provides capabilities such as audio and vide
 - Audio and video decoding: process of converting a data format into an uncompressed original sequence of audio or video data, such as YUV and PCM.
 - Media file muxing: process of writing media data (such as audio, video, and subtitles) and description information to a file in a given format, for example, .mp4.
 - Media file demuxing: process of reading media data (such as audio, video, and subtitles) from a file and parsing the description information.
+- sample: a group of data with the same timing attributes.
+
+  In the case of audio and video, a sample typically means compressed data that has the same decoding timestamp.
+
+  In the case of subtitles, it generally includes the content that is meant to be displayed at certain time points.
+
+  At the end of all tracks, the sample is considered to be empty.
 
 ## Usage
 - Video codec
@@ -35,7 +42,7 @@ Audio and Video Codec (AVCodec) Kit provides capabilities such as audio and vide
   
   ![](figures/avcodec-vcodec-logic.png)
 
-  For details about the development guide, see [Video Decoding in Surface Ouput](video-decoding.md#surface-output) and [Video Encoding in Surface Input](video-encoding.md#surface-input).
+  For details about the development guide, see [Video Decoding in Surface Output](video-decoding.md#surface-output) and [Video Encoding in Surface Input](video-encoding.md#surface-input).
 
 - Audio codec
 
