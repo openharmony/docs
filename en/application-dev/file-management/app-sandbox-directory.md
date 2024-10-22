@@ -79,7 +79,7 @@ The following figure shows the application file directory structure. The path of
 
 The read and write operations performed on an application sandbox directory are eventually performed on the files in the physical directory after address conversion. The following table lists their mappings.
 
-In the physical paths, <USERID> has a fixed value of **100**.
+In the physical paths, \<USERID> has a fixed value of **100**.
 
 | Application Sandbox Path | Physical Path | Description |
 | -------- | -------- | -------- |
