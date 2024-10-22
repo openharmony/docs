@@ -5325,7 +5325,8 @@ export default class EntryAbility extends UIAbility {
 
 restore(): Promise&lt;void&gt;
 
-将主窗口从最小化状态，恢复到前台显示，并恢复到进入该模式之前的大小和位置。使用Promise异步回调。此接口仅在多窗层叠布局效果下生效，仅在主窗口最小化状态时Ability生命周期是Forground生效，仅2in1设备可用。
+将主窗口从最小化状态，恢复到前台显示，并恢复到进入该模式之前的大小和位置。使用Promise异步回调。  
+此接口仅在多窗层叠布局效果下生效，仅在主窗口最小化状态时UIAbility生命周期是onForeground生效，仅2in1设备可用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
