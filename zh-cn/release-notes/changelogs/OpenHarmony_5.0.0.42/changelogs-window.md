@@ -51,7 +51,7 @@ function buildText(params: Params) {
   Column() {
     // 变更前 若应用基于小窗为基准适配字体大小为20
     // Text(params.text)
-    //  .fontSize(20)/
+    //  .fontSize(20)
     //  .fontColor(Color.Red)
 
     //变更后 字体大小应基于大窗真实尺寸适配，字体大小应相应变大
