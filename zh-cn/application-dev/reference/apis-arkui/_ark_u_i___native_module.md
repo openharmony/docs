@@ -500,6 +500,7 @@
 | int32_t [OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow](#oh_arkui_nodeutils_getpositionwithtranslateinwindow) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*translateOffset) | 获取组件在窗口中的位置，包含了图形平移变化属性。  | 
 | int32_t [OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen](#oh_arkui_nodeutils_getpositionwithtranslateinscreen) ([ArkUI_NodeHandle](#arkui_nodehandle) node, [ArkUI_IntOffset](_ark_u_i___int_offset.md) \*translateOffset) | 获取组件在屏幕中的位置，包含了图形平移变化属性。  |
 | void [OH_ArkUI_NodeUtils_AddCustomProperty](#oh_arkui_nodeutils_addcustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name, const char \*value) | 设置组件的自定义属性。该接口仅在主线程生效。  | 
+| void [OH_ArkUI_NodeUtils_RemoveCustomProperty](#oh_arkui_nodeutils_removecustomproperty) ([ArkUI_NodeHandle](#arkui_nodehandle) node, const char \*name) | 移除组件已设置的自定义属性。  | 
 | int32_t [OH_ArkUI_List_CloseAllSwipeActions](#oh_arkui_list_closeallswipeactions) ([ArkUI_NodeHandle](#arkui_nodehandle) node, void \*userData, void(\*onFinish)(void \*userData)) | 收起展开状态下的ListItem。  | 
 | [ArkUI_ContextHandle](#arkui_contexthandle-12) [OH_ArkUI_GetContextByNode](#oh_arkui_getcontextbynode) ([ArkUI_NodeHandle](#arkui_nodehandle) node) | 获取当前节点所在页面的UI的上下文实例对象指针。  | 
 | int32_t [OH_ArkUI_RegisterSystemColorModeChangeEvent](#oh_arkui_registersystemcolormodechangeevent) ([ArkUI_NodeHandle](#arkui_nodehandle) node, void \*userData, void(\*onColorModeChange)([ArkUI_SystemColorMode](#arkui_systemcolormode) colorMode, void \*userData)) | 注册系统深浅色变更事件。同一组件仅能注册一个系统深浅变更回调。  | 
@@ -12096,6 +12097,24 @@ int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow (ArkUI_NodeHandle no
 **返回：**
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+### OH_ArkUI_NodeUtils_RemoveCustomProperty()
+
+```
+void OH_ArkUI_NodeUtils_RemoveCustomProperty (ArkUI_NodeHandle node, const char * name )
+```
+**描述：**
+
+移除组件已设置的自定义属性。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | ArkUI_NodeHandle指针。  | 
+| name | 自定义属性的名称。  | 
 
 
 ### OH_ArkUI_PanGesture_GetOffsetX()
