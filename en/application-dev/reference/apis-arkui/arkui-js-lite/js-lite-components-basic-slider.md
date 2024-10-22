@@ -66,10 +66,10 @@ Not supported
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <text>slider start value is {{startValue}}</text>
-  <text>slider current value is {{currentValue}}</text>
-  <text>slider end value is {{endValue}}</text>
-  <slider min="0" max="100" value="{{value}}" onchange="setvalue" style="width: 20%;height: 10%"></slider>
+    <text>slider start value is {{startValue}}</text>
+    <text>slider current value is {{currentValue}}</text>
+    <text>slider end value is {{endValue}}</text>
+    <slider min="0" max="100" value="{{value}}" onchange="setValue" style="margin-top: 10%; width: 80%;height: 1%"></slider>
 </div>
 ```
 
@@ -87,15 +87,15 @@ Not supported
 ```javascript
 // xxx.js
 export default {
-  data: {
-    value: 0,
-    startValue: 0,
-    currentValue: 0,
-    endValue: 100,
-  },
-  setvalue(e) {
-    this.currentValue = e.value;
-  }
+    data: {
+        value: 34,
+        startValue: 0,
+        currentValue: 0,
+        endValue: 100,
+    },
+    setValue(e) {
+        this.currentValue = e.value;
+    }
 }
 ```
 

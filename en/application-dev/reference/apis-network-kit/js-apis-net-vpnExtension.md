@@ -163,6 +163,10 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 Creates a **VpnConnection** object.
 
+> **NOTE**
+>
+> Before calling **createVpnConnection**, call **startVpnExtensionAbility** to enable the VPN function.
+
 **System capability**: SystemCapability.Communication.NetManager.Vpn
 
 **Model restriction**: This API can be used only in the stage model.
@@ -432,3 +436,43 @@ Defines the VPN configuration.
 | isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**.      |
 | trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
 | blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
+
+**Example**
+
+```js
+import { vpnExtension} from '@kit.NetworkKit';
+
+let vpnConfig: vpnExtension.VpnConfig = {
+  addresses: [],
+  routes: [{
+    interface: "eth0",
+    destination: {
+      address: {
+        address:'',
+        family:1,
+        port:8080
+      },
+      prefixLength:1
+    },
+    gateway: {
+      address:'',
+      family:1,
+      port:8080
+    },
+    hasGateway: true,
+    isDefaultRoute: true,
+  }],
+  mtu: 1400,
+  dnsAddresses: ["223.5.5.5", "223.6.6.6"],
+  trustedApplications: [],
+  blockedApplications: [],
+}
+let context: vpnExtension.VpnExtensionContext;
+
+function vpnCreate(){
+  let VpnConnection: vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
+  VpnConnection.create(vpnConfig).then((data) => {
+    console.info("vpn create " + JSON.stringify(data));
+  })
+}
+```
