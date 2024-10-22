@@ -502,7 +502,7 @@ struct FatherControlChild {
 
 ### 示例2
 
-说明：实现了一级Tabs容器嵌套二级Tabs的场景下，能够拒绝二级Tabs内置Swiper的滑动手势，触发一级Tabs内置Swiper滑动手势的功能。
+本示例通过将exposeInnerGesture参数设置为true，实现了一级Tabs容器嵌套二级Tabs的场景下，能够拒绝二级Tabs内置Swiper的滑动手势，触发一级Tabs内置Swiper滑动手势的功能。
 
 ```ts
 // xxx.ets
