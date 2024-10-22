@@ -1,10 +1,11 @@
 # 资源分类与访问
 
-应用开发过程中，经常需要用到颜色、字体、间距、图片等资源，在不同的设备或配置中，这些资源的值可能不同。
+应用开发过程中，经常需要用到颜色、字体、间距、图标等资源，在不同的设备或配置中，这些资源的值可能不同。
 
 - 应用资源：借助资源文件能力，开发者在应用中自定义资源，自行管理这些资源在不同的设备或配置中的表现。
 
-- 系统资源：开发者直接使用系统预置的资源定义<!--Del-->（即[分层参数](../../design/ux-design/design-resources.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）<!--DelEnd-->。
+- 系统资源：开发者可以在[应用UX设计关于资源的介绍](https://docs.openharmony.cn/pages/v4.1/zh-cn/design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的图标资源。
+
 
 ## 资源分类
 
@@ -332,7 +333,7 @@ string资源配置attr属性示例如下：
 
 #### bundle相同，跨module访问
 
-- 通过[createBundleContext(bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application-sys.md#applicationcreatebundlecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
+- 通过[createBundleContext(bundleName)](../reference/apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。
 
 - 通过```"$r"```或```"$rawfile"```访问资源。具体操作如下：
 
@@ -379,7 +380,7 @@ string资源配置attr属性示例如下：
 
 ### 系统资源
 
-开发者可以在[应用UX设计关于资源的介绍](../../design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的图标资源，获取到图标资源后可通过[SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md)进步对图标设置。
+开发者可以在[应用UX设计关于资源的介绍](https://docs.openharmony.cn/pages/v4.1/zh-cn/design/ux-design/design-resources.md)，获取支持的色彩、字体等系统资源ID及其在不同配置下的取值；在[主题图标库](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/)获取支持的图标资源，获取到图标资源后可通过[SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md)进步对图标设置。
 
 对于系统资源，可以通过```“$r('sys.type.resource_name')”```的形式访问。其中，sys表示系统资源；type为资源类型，取值包括“color”、“float”、“string”、“media”、“symbol”；resource_name为资源名称。
 
@@ -387,7 +388,7 @@ string资源配置attr属性示例如下：
 >
 > - 仅声明式开发范式支持使用系统资源。
 >
-> - 对于系统预置应用，建议使用系统资源<!--Del-->；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源<!--DelEnd-->。
+> - 对于系统预置应用，建议使用系统资源；对于三方应用，可以根据需要选择使用系统资源或自定义应用资源。
 >
 > - 界面加载的系统资源字体进行显示时，可以在配置中system/etc/fontconfig.json文件查看。默认字体为HarmonyOS Sans。
 
