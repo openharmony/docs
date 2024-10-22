@@ -1,7 +1,6 @@
 # Media Kit（媒体服务）
 
-- [Media Kit(媒体服务)](media-kit-intro.md)
-- MediaKit简介
+- [MediaKit简介](media-kit-intro.md)
 - 开发准备
 - 媒体开发者指导(ArkTS)
   - 播放
