@@ -1,4 +1,4 @@
-# Device Certificate Kit (Device Certificate Kit)
+# Device Certificate Kit
 
 - [Introduction to Device Certificate Kit](device-certificate-kit-intro.md)
 - Certificate Framework

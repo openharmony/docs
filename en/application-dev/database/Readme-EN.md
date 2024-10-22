@@ -18,7 +18,7 @@
   - [Cross-Device Sync of Distributed Data Objects](data-sync-of-distributed-data-object.md)
 - Data Reliability and Security
   - [Data Reliability and Security Overview](data-reliability-security-overview.md)
-  - [Database Backup and Restoration](data-backup-and-restore.md)
+  - [Database Backup and Restore](data-backup-and-restore.md)
   - [Database Encryption](data-encryption.md)
   - [Access Control by Device and Data Level](access-control-by-device-and-data-level.md)
   - [Using an EL5 Database](encrypted_estore_guidelines.md)
@@ -26,7 +26,7 @@
   - [Data Sharing Overview](data-share-overview.md)
   <!--Del-->
   - One-to-Many Data Sharing (for System Applications Only)
-    - [Sharing Data Using DataShareExtensionAbility](share-data-by-datashareextensionability.md)
+    - [Sharing Data via DataShareExtensionAbility](share-data-by-datashareextensionability.md)
     - [Silent Access via the DatamgrService](share-data-by-silent-access.md)
   <!--DelEnd-->
   - Many-to-Many Data Sharing
