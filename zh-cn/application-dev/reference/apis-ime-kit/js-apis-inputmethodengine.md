@@ -2323,8 +2323,8 @@ keyboardController.exitCurrentInputType().then(() => {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| start  | number | 是 | 是 | 选中文本的首字符在编辑框的索引值。|
-| end  | number | 是 | 是 | 选中文本的末字符在编辑框的索引值。|
+| start  | number | 否 | 否 | 选中文本的首字符在编辑框的索引值。|
+| end  | number | 否 | 否 | 选中文本的末字符在编辑框的索引值。|
 
 ## Movement<sup>10+</sup>
 
@@ -2334,7 +2334,7 @@ keyboardController.exitCurrentInputType().then(() => {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| direction  | [Direction](#direction10) | 是 | 是 | 选中文本时，光标的移动方向。|
+| direction  | [Direction](#direction10) | 否 | 否 | 选中文本时，光标的移动方向。|
 
 ## InputClient<sup>9+</sup>
 
@@ -4098,8 +4098,8 @@ try {
 
 | 名称      | 类型 | 只读 | 可选 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| type   	| [PanelType](#paneltype10)   | 是   | 是   | 面板的类型。 |
-| flag	    | [PanelFlag](#panelflag10)   | 是   | 是   | 面板的状态类型。 |
+| type   	| [PanelType](#paneltype10)   | 否   | 否   | 面板的类型。 |
+| flag	    | [PanelFlag](#panelflag10)   | 否   | 是   | 面板的状态类型。 |
 
 ## PanelRect<sup>12+</sup>
 
@@ -4109,8 +4109,8 @@ try {
 
 | 名称         | 类型 | 只读 | 可选 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
-| landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 是   | 是   | 横屏状态时输入法面板窗口的位置大小。 |
-| portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 是   | 是   | 竖屏状态时输入法面板窗口的位置大小。 |
+| landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 横屏状态时输入法面板窗口的位置大小。 |
+| portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 否   | 否   | 竖屏状态时输入法面板窗口的位置大小。 |
 
 ## WindowInfo<sup>12+</sup>
 
@@ -4120,8 +4120,8 @@ try {
 
 | 名称   | 类型                                                         | 只读 | 可选 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
-| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 是   | 是   | 窗口矩形区域。 |
-| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 是   | 是   | 窗口模式类型。 |
+| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 否   | 窗口矩形区域。 |
+| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 否   | 否   | 窗口模式类型。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 
