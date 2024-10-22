@@ -1,6 +1,6 @@
 # 窗口子系统Changelog
 
-## cl.pipwindow.1 customUIController行为变更
+## cl.pipwindow.1 画中画窗口默认尺寸固定为大窗真实尺寸行为变更
 
 **访问级别**
 
@@ -8,7 +8,10 @@
 
 **变更原因**
 
-画中画窗口以启动窗口时实际大小为基准，小窗和大窗基准不同，双击缩放时未修改窗口真实尺寸而是通过修改窗口缩放级别。应用在自定义UI添加的控件最终显示的大小会跟随窗口缩放，在以小窗或以大窗启动画中画时显示存在差异。例如应用基于小窗渲染自定义UI控件后，用户双击缩放至大窗后，该自定义UI控件的视觉大小和以大窗开启画中画时，自定义UI控件的视觉大小不一致。
+
+画中画窗口以启动窗口时实际大小为基准，小窗和大窗基准不同，双击缩放时未修改窗口真实尺寸而是通过修改窗口缩放级别。
+
+例如应用基于小窗渲染自定义UI控件后，用户双击缩放至大窗后，该自定义UI控件的视觉大小和以大窗开启画中画时，自定义UI控件的视觉大小不一致。因此将画中画窗口大小固定为大窗时的真实尺寸，小窗显示大小由大窗真实尺寸缩放获得。
 
 **变更影响**
 
@@ -38,5 +41,39 @@ API 12
 
 **适配指导**
 
-画中画窗口真实尺寸固定为当前状态下大窗的尺寸，小窗显示范围由大窗缩放得到。
-customUIController中渲染的控件的基于画中画窗口最大档位（真实尺寸）进行适配。其余档位中控件会跟随画中画窗口一同缩放。
+若应用此前依据小窗适配了自定义UI控件的大小，则可能出现小窗下控件比实际设置的尺寸偏小的问题。
+自定义控件需基于画中画窗口最大档位（真实尺寸）进行适配，其余档位中控件会跟随画中画窗口一同缩放。
+
+```ts
+// 变更前 若应用基于小窗为基准适配字体大小为20
+@Builder
+function buildText(params: Params) {
+  Column() {
+    // 变更前 若应用基于小窗为基准适配字体大小为20
+    // Text(params.text)
+    //  .fontSize(20)/
+    //  .fontColor(Color.Red)
+
+    //变更后 字体大小应基于大窗真实尺寸适配，字体大小应相应变大
+     Text(params.text)
+      .fontSize(40)
+      .fontColor(Color.Red)
+  }
+  .width('100%')
+  .height('100%')
+}
+
+class TextNodeController extends NodeController {
+  private message: string;
+  private textNode: BuilderNode<[Params]> | null = null;
+  constructor(message: string) {
+    super();
+    this.message = message;
+  }
+  makeNode(context: UIContext): FrameNode | null {
+    this.textNode = new BuilderNode(context);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
+    return this.textNode.getFrameNode();
+  }
+}
+```
