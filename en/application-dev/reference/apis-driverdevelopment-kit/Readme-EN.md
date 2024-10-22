@@ -1,4 +1,4 @@
-# Driver Development Kit API Reference
+# Driver Development Kit
 
 - ArkTS APIs
   - [@ohos.app.ability.DriverExtensionAbility (Driver Extension Ability)](js-apis-app-ability-driverExtensionAbility.md)

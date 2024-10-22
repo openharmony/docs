@@ -5090,6 +5090,8 @@ Defines the VoIP call information.
 | abilityName      | string     | Yes  |  Ability name of the third-party application. |
 | voipBundleName    | string     | Yes  |  Bundle name of the third-party application. |
 | showBannerForIncomingCall<sup>12+</sup>    | boolean     | No  |  Whether to display the incoming call banner. |
+| isConferenceCall<sup>12+</sup>    | boolean     | No  |  Whether the call is a conference call. |
+| isVoiceAnswerSupported<sup>12+</sup>    | boolean     | No  |  Whether call answering with voice commands is supported. |
 
 ## ConferenceState<sup>7+</sup>
 

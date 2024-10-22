@@ -97,7 +97,7 @@ You may want to learn the [restrictions on security component styles](../../../s
 
 ## Attributes
 
-This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md)
+This component can only inherit the [universal attributes of security components](ts-securitycomponent-attributes.md).
 
 ## Events
 

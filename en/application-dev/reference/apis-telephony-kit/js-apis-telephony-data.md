@@ -221,7 +221,7 @@ Checks whether the cellular data service is enabled. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -265,7 +265,7 @@ Checks whether the cellular data service is enabled. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -305,7 +305,7 @@ Checks whether the cellular data service is enabled. This API returns the result
 
 **Error codes**
 
-For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
@@ -348,7 +348,7 @@ Checks whether roaming is enabled for the cellular data service. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -398,7 +398,7 @@ Checks whether roaming is enabled for the cellular data service. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -446,7 +446,7 @@ Checks whether roaming is enabled for the cellular data service. This API return
 
 **Error codes**
 
-For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
+For details about the error codes, see[ohos.telephony (Telephony) Error Codes](errorcode-telephony.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |

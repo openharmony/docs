@@ -130,7 +130,7 @@ Defines a list of data arrays.
 
 Defines a certificate binary array in encoding format.
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -146,7 +146,7 @@ Defines a certificate binary array in encoding format.
 
 Defines the certificate chain data, which is passed in as input parameters during certificate chain verification.
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -7250,7 +7250,7 @@ try {
 Provides APIs for certificate chain validator operations.
 
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

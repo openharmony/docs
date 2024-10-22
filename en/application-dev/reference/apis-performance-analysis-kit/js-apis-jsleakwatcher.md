@@ -1,4 +1,4 @@
-# @ohos.hiviewdfx.jsLeakWatcher (JS Leak Detection)
+# @ohos.hiviewdfx.jsLeakWatcher (JSLeakWatcher)
 
 This module provides the capability of monitoring whether JS objects are leaked.
 
@@ -23,9 +23,9 @@ Enables the detection for JS object leak. This function is disabled by default.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| isEnable | boolean | Yes| Indicates whether to enable **jsLeakWatcher**.|
+| isEnable | boolean | Yes | Indicates whether to enable **jsLeakWatcher**. |
 
 **Example**
 
@@ -44,10 +44,10 @@ Registers the object to be checked.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Parameter | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| obj | object | Yes| Name of the object to be checked.|
-| msg | string | Yes| User-defined object information.|
+| obj | object | Yes | Name of the object to be checked. |
+| msg | string | Yes | User-defined object information. |
 
 **Example**
 
@@ -69,7 +69,7 @@ Obtains the list of objects that are registered using **jsLeakWatcher.watch()** 
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| string | List of objects that are suspected to leak, in JSON format.|
+| string | List of objects that are suspected to leak, in JSON format. |
 
 **Example**
 ```js
@@ -87,23 +87,15 @@ Exports the list of leaked objects and VM memory snapshot.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
+| Parameter | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| filePath | string | Yes| The path for storing exported information files.|
+| filePath | string | Yes | The path for storing exported information files. |
 
 **Return value**
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| Array&lt;string&gt; | Array of exported results. Index **0** indicates the name of the leak list file, and the file name extension is **.jsleaklist**. Index **1** indicates the name of the VM memory snapshot file, and the file name extension is **.heapsnapshort**.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | ----------------------------------------------------------------- |
-| 401 | Parameter error. The filepath is invalid.                      |
+| Array&lt;string&gt; | Array of exported results. Index **0** indicates the name of the leak list file, and the file name extension is **.jsleaklist**. Index **1** indicates the name of the VM memory snapshot file, and the file name extension is **.heapsnapshort**. |
 
 **Example**
 

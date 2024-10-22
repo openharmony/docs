@@ -5826,9 +5826,9 @@ function unregisterSmoothZoomInfo(professionalPhotoSession: camera.ProfessionalP
 }
 ```
 
-### on('isoInfo')<sup>12+</sup>
+### on('isoInfoChange')<sup>12+</sup>
 
-on(type: 'isoInfo', callback: AsyncCallback\<IsoInfo\>): void
+on(type: 'isoInfoChange', callback: AsyncCallback\<IsoInfo\>): void
 
 Subscribes to automatic ISO change events to obtain real-time ISO information. This API uses an asynchronous callback to return the result.
 
@@ -5840,7 +5840,7 @@ Subscribes to automatic ISO change events to obtain real-time ISO information. T
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfo'**.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
 | callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
 
 **Error codes**
@@ -5863,13 +5863,13 @@ function isoInfoCallback(err: BusinessError, info: camera.IsoInfo): void {
 }
 
 function registerIsoInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.on('isoInfo', isoInfoCallback);
+  professionalPhotoSession.on('isoInfoChange', isoInfoCallback);
 }
 ```
 
-### off('isoInfo')<sup>12+</sup>
+### off('isoInfoChange')<sup>12+</sup>
 
-off(type: 'isoInfo', callback?: AsyncCallback\<IsoInfo\>): void
+off(type: 'isoInfoChange', callback?: AsyncCallback\<IsoInfo\>): void
 
 Unsubscribes from automatic ISO change events.
 
@@ -5881,8 +5881,8 @@ Unsubscribes from automatic ISO change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfo'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
+| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfoChange')**.|
 
 **Error codes**
 
@@ -5894,13 +5894,13 @@ Unsubscribes from automatic ISO change events.
 
 ```ts
 function unregisterIsoInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.off('isoInfo');
+  professionalPhotoSession.off('isoInfoChange');
 }
 ```
 
-### on('exposureInfo')<sup>12+</sup>
+### on('exposureInfoChange')<sup>12+</sup>
 
-on(type: 'exposureInfo', callback: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
 
 Subscribes to exposure information change events to obtain the exposure information. This API uses an asynchronous callback to return the result.
 
@@ -5912,7 +5912,7 @@ Subscribes to exposure information change events to obtain the exposure informat
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfo'**.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
 | callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| Yes  | Callback used to return the exposure information.        |
 
 **Error codes**
@@ -5935,13 +5935,13 @@ function exposureInfoCallback(err: BusinessError, info: camera.ExposureInfo): vo
 }
 
 function registerExposureInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.on('exposureInfo', exposureInfoCallback);
+  professionalPhotoSession.on('exposureInfoChange', exposureInfoCallback);
 }
 ```
 
-### off('exposureInfo')<sup>12+</sup>
+### off('exposureInfoChange')<sup>12+</sup>
 
-off(type: 'exposureInfo', callback?: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>): void
 
 Unsubscribes from exposure information change events.
 
@@ -5953,8 +5953,8 @@ Unsubscribes from exposure information change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfo'**.        |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
+| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfoChange')**.|
 
 **Error codes**
 
@@ -5966,13 +5966,13 @@ Unsubscribes from exposure information change events.
 
 ```ts
 function unregisterExposureInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.off('exposureInfo');
+  professionalPhotoSession.off('exposureInfoChange');
 }
 ```
 
-### on('apertureInfo')<sup>12+</sup>
+### on('apertureInfoChange')<sup>12+</sup>
 
-on(type: 'apertureInfo', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+on(type: 'apertureInfoChange', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
 
 Subscribes to aperture change events to obtain the real-time aperture information. This API uses an asynchronous callback to return the result.
 
@@ -5984,7 +5984,7 @@ Subscribes to aperture change events to obtain the real-time aperture informatio
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfo'**.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
 | callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| Yes  | Callback used to return the aperture information.        |
 
 **Error codes**
@@ -6007,13 +6007,13 @@ function apertureInfoCallback(err: BusinessError, info: camera.ApertureInfo): vo
 }
 
 function registerApertureInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.on('apertureInfo', apertureInfoCallback);
+  professionalPhotoSession.on('apertureInfoChange', apertureInfoCallback);
 }
 ```
 
-### off('apertureInfo')<sup>12+</sup>
+### off('apertureInfoChange')<sup>12+</sup>
 
-off(type: 'apertureInfo', callback?: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+off(type: 'apertureInfoChange', callback?: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
 
 Unsubscribes from aperture change events.
 
@@ -6025,8 +6025,8 @@ Unsubscribes from aperture change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfo'**.        |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
+| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfoChange')**.|
 
 **Error codes**
 
@@ -6038,13 +6038,13 @@ Unsubscribes from aperture change events.
 
 ```ts
 function unregisterApertureInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.off('apertureInfo');
+  professionalPhotoSession.off('apertureInfoChange');
 }
 ```
 
-### on('luminationInfo')<sup>12+</sup>
+### on('luminationInfoChange')<sup>12+</sup>
 
-on(type: 'luminationInfo', callback: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
 
 Subscribes to illumination change events to obtain real-time illumination information. This API uses an asynchronous callback to return the result.
 
@@ -6056,7 +6056,7 @@ Subscribes to illumination change events to obtain real-time illumination inform
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfo'**.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
 | callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| Yes  | Callback used to return the illumination information.        |
 
 **Error codes**
@@ -6079,13 +6079,13 @@ function luminationInfoCallback(err: BusinessError, info: camera.LuminationInfo)
 }
 
 function registerLuminationInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.on('luminationInfo', luminationInfoCallback);
+  professionalPhotoSession.on('luminationInfoChange', luminationInfoCallback);
 }
 ```
 
-### off('luminationInfo')<sup>12+</sup>
+### off('luminationInfoChange')<sup>12+</sup>
 
-off(type: 'luminationInfo', callback?: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>): void
 
 Unsubscribes from illumination change events.
 
@@ -6097,8 +6097,8 @@ Unsubscribes from illumination change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfo'**.        |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
+| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfoChange')**.|
 
 **Error codes**
 
@@ -6110,7 +6110,7 @@ Unsubscribes from illumination change events.
 
 ```ts
 function unregisterLuminationInfoEvent(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  professionalPhotoSession.off('luminationInfo');
+  professionalPhotoSession.off('luminationInfoChange');
 }
 ```
 
@@ -6344,9 +6344,9 @@ function unregisterSmoothZoomInfo(professionalVideoSession: camera.ProfessionalV
 }
 ```
 
-### on('isoInfo')<sup>12+</sup>
+### on('isoInfoChange')<sup>12+</sup>
 
-on(type: 'isoInfo', callback: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>): void
+on(type: 'isoInfoChange', callback: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>): void
 
 Subscribes to automatic ISO change events to obtain real-time ISO information. This API uses an asynchronous callback to return the result.
 
@@ -6358,7 +6358,7 @@ Subscribes to automatic ISO change events to obtain real-time ISO information. T
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfo'**.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
 | callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| Yes  | Callback used to return the ISO information.        |
 
 **Error codes**
@@ -6381,13 +6381,13 @@ function isoInfoCallback(err: BusinessError, info: camera.IsoInfo): void {
 }
 
 function registerIsoInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.on('isoInfo', isoInfoCallback);
+  professionalVideoSession.on('isoInfoChange', isoInfoCallback);
 }
 ```
 
-### off('isoInfo')<sup>12+</sup>
+### off('isoInfoChange')<sup>12+</sup>
 
-off(type: 'isoInfo', callback?: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>): void
+off(type: 'isoInfoChange', callback?: AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>): void
 
 Unsubscribes from automatic ISO change events.
 
@@ -6399,8 +6399,8 @@ Unsubscribes from automatic ISO change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfo'**.        |
-| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'isoInfoChange'**.        |
+| callback | AsyncCallback\<[IsoInfo](js-apis-camera-sys.md#isoinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('isoInfoChange')**.|
 
 **Error codes**
 
@@ -6412,13 +6412,13 @@ Unsubscribes from automatic ISO change events.
 
 ```ts
 function unregisterIsoInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.off('isoInfo');
+  professionalVideoSession.off('isoInfoChange');
 }
 ```
 
-### on('exposureInfo')<sup>12+</sup>
+### on('exposureInfoChange')<sup>12+</sup>
 
-on(type: 'exposureInfo', callback: AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>): void
+on(type: 'exposureInfoChange', callback: AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>): void
 
 Subscribes to exposure information change events to obtain the exposure information. This API uses an asynchronous callback to return the result.
 
@@ -6430,7 +6430,7 @@ Subscribes to exposure information change events to obtain the exposure informat
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfo'**.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
 | callback | AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>| Yes  | Callback used to return the exposure information.        |
 
 **Error codes**
@@ -6453,13 +6453,13 @@ function exposureInfoCallback(err: BusinessError, info: camera.ExposureInfo): vo
 }
 
 function registerExposureInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.on('exposureInfo', exposureInfoCallback);
+  professionalVideoSession.on('exposureInfoChange', exposureInfoCallback);
 }
 ```
 
-### off('exposureInfo')<sup>12+</sup>
+### off('exposureInfoChange')<sup>12+</sup>
 
-off(type: 'exposureInfo', callback?: AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>): void
+off(type: 'exposureInfoChange', callback?: AsyncCallback\<[ExposureInfo]((js-apis-camera-sys.md#exposureinfo12))\>): void
 
 Unsubscribes from exposure information change events.
 
@@ -6471,8 +6471,8 @@ Unsubscribes from exposure information change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfo'**.        |
-| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'exposureInfoChange'**.        |
+| callback | AsyncCallback\<[ExposureInfo](js-apis-camera-sys.md#exposureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('exposureInfoChange')**.|
 
 **Error codes**
 
@@ -6484,13 +6484,13 @@ Unsubscribes from exposure information change events.
 
 ```ts
 function unregisterExposureInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.off('exposureInfo');
+  professionalVideoSession.off('exposureInfoChange');
 }
 ```
 
-### on('apertureInfo')<sup>12+</sup>
+### on('apertureInfoChange')<sup>12+</sup>
 
-on(type: 'apertureInfo', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+on(type: 'apertureInfoChange', callback: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
 
 Subscribes to aperture change events to obtain the aperture information. This API uses an asynchronous callback to return the result.
 
@@ -6502,7 +6502,7 @@ Subscribes to aperture change events to obtain the aperture information. This AP
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfo'**.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
 | callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| Yes  | Callback used to return the aperture information.        |
 
 **Error codes**
@@ -6525,13 +6525,13 @@ function apertureInfoCallback(err: BusinessError, info: camera.ApertureInfo): vo
 }
 
 function registerApertureInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.on('apertureInfo', apertureInfoCallback);
+  professionalVideoSession.on('apertureInfoChange', apertureInfoCallback);
 }
 ```
 
-### off('apertureInfo')<sup>12+</sup>
+### off('apertureInfoChange')<sup>12+</sup>
 
-off(type: 'apertureInfo', callback?: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
+off(type: 'apertureInfoChange', callback?: AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>): void
 
 Unsubscribes from aperture change events.
 
@@ -6543,8 +6543,8 @@ Unsubscribes from aperture change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfo'**.        |
-| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'apertureInfoChange'**.        |
+| callback | AsyncCallback\<[ApertureInfo](js-apis-camera-sys.md#apertureinfo12)\>| No  | Callback, which is optional and is used to match **callback** in **on('apertureInfoChange')**.|
 
 **Error codes**
 
@@ -6556,13 +6556,13 @@ Unsubscribes from aperture change events.
 
 ```ts
 function unregisterApertureInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.off('apertureInfo');
+  professionalVideoSession.off('apertureInfoChange');
 }
 ```
 
-### on('luminationInfo')<sup>12+</sup>
+### on('luminationInfoChange')<sup>12+</sup>
 
-on(type: 'luminationInfo', callback: AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>): void
+on(type: 'luminationInfoChange', callback: AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>): void
 
 Subscribes to illumination change events to obtain illumination information. This API uses an asynchronous callback to return the result.
 
@@ -6574,7 +6574,7 @@ Subscribes to illumination change events to obtain illumination information. Thi
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfo'**.        |
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
 | callback | AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>| Yes  | Callback used to return the illumination information.        |
 
 **Error codes**
@@ -6597,13 +6597,13 @@ function luminationInfoCallback(err: BusinessError, info: camera.LuminationInfo)
 }
 
 function registerLuminationInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.on('luminationInfo', luminationInfoCallback);
+  professionalVideoSession.on('luminationInfoChange', luminationInfoCallback);
 }
 ```
 
-### off('luminationInfo')<sup>12+</sup>
+### off('luminationInfoChange')<sup>12+</sup>
 
-off(type: 'luminationInfo', callback?: AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>): void
+off(type: 'luminationInfoChange', callback?: AsyncCallback\<[LuminationInfo]((js-apis-camera-sys.md#luminationinfo12))\>): void
 
 Unsubscribes from illumination change events.
 
@@ -6615,8 +6615,8 @@ Unsubscribes from illumination change events.
 
 | Name    | Type                                                     | Mandatory| Description                              |
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfo'**.        |
-| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12))\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfo')**.|
+| type     | string                                                  | Yes  | Event type. The value is fixed at **'luminationInfoChange'**.        |
+| callback | AsyncCallback\<[LuminationInfo](js-apis-camera-sys.md#luminationinfo12))\>| No  | Callback, which is optional and is used to match **callback** in **on('luminationInfoChange')**.|
 
 **Error codes**
 
@@ -6628,7 +6628,7 @@ Unsubscribes from illumination change events.
 
 ```ts
 function unregisterLuminationInfoEvent(professionalVideoSession: camera.ProfessionalVideoSession): void {
-  professionalVideoSession.off('luminationInfo');
+  professionalVideoSession.off('luminationInfoChange');
 }
 ```
 

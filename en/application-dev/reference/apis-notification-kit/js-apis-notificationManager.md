@@ -24,18 +24,18 @@ If the ID of the newly published notification is the same as that of the publish
 
 **Parameters**
 
-| Name    | Type                                       | Mandatory| Description                                       |
+| Name    | Type                                       | Mandatory | Description                                       |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
 | callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                       |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                             |
+| ID | Error Message                                             |
 | -------- | ---------------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.   | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
 | 1600003  | Failed to connect to the service.                    |
@@ -89,23 +89,23 @@ If the ID of the newly published notification is the same as that of the publish
 
 **Parameters**
 
-| Name    | Type                                       | Mandatory| Description                                       |
+| Name    | Type                                       | Mandatory | Description                                       |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish. |
 
 **Return value**
 
-| Type    | Description| 
+| Type    | Description | 
 | ------- |--|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                             |
+| ID | Error Message                                             |
 | -------- | ---------------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.   | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
 | 1600003  | Failed to connect to the service.                    |
@@ -154,19 +154,19 @@ Cancels a notification with the specified ID and label. This API uses an asynchr
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                |
+| Name    | Type                 | Mandatory | Description                |
 | -------- | --------------------- | ---- | -------------------- |
 | id       | number                | Yes  | Notification ID.              |
 | label    | string                | Yes  | Notification label.            |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -198,24 +198,24 @@ Cancels a notification with the specified ID and optional label. This API uses a
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description    |
+| Name | Type  | Mandatory | Description    |
 | ----- | ------ | ---- | -------- |
 | id    | number | Yes  | Notification ID.  |
-| label | string | No  | Notification label. This parameter is left empty by default.|
+| label | string | No  | Notification label. This parameter is left empty by default. |
 
 **Return value**
 
 | Type    | Description       | 
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -243,18 +243,18 @@ Cancels a notification with the specified ID. This API uses an asynchronous call
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                |
+| Name    | Type                 | Mandatory | Description                |
 | -------- | --------------------- | ---- | -------------------- |
 | id       | number                | Yes  | Notification ID.              |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -286,17 +286,17 @@ Cancels all notifications of this application. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                |
+| Name    | Type                 | Mandatory | Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -329,15 +329,15 @@ Cancels all notifications of this application. This API uses a promise to return
 
 | Type    | Description       | 
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -364,18 +364,18 @@ Adds a notification slot of a specified type. This API uses an asynchronous call
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                  |
+| Name    | Type                 | Mandatory | Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
-| type     | [SlotType](#slottype)              | Yes  | Type of the notification slot to add.|
+| type     | [SlotType](#slottype)              | Yes  | Type of the notification slot to add. |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -407,23 +407,23 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 
 **Parameters**
 
-| Name| Type    | Mandatory| Description                  |
+| Name | Type    | Mandatory | Description                  |
 | ---- | -------- | ---- | ---------------------- |
-| type | [SlotType](#slottype) | Yes  | Type of the notification slot to add.|
+| type | [SlotType](#slottype) | Yes  | Type of the notification slot to add. |
 
 **Return value**
 
 | Type    | Description       | 
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -451,18 +451,18 @@ Obtains a notification slot of a specified type. This API uses an asynchronous c
 
 **Parameters**
 
-| Name    | Type                             | Mandatory| Description                                                       |
+| Name    | Type                             | Mandatory | Description                                                       |
 | -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)                          | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype)                          | Yes  | Type of a notification slot, including social communication, service notification, and content consultation. |
 | callback | AsyncCallback\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Callback used to return the result.                                       |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -494,23 +494,23 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 
 **Parameters**
 
-| Name    | Type    | Mandatory| Description                                                       |
+| Name    | Type    | Mandatory | Description                                                       |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, including social communication, service notification, and content consultation. |
 
 **Return value**
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Promise used to return the result.|
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -539,18 +539,18 @@ Obtains all notification slots of this application. This API uses an asynchronou
 
 **Parameters**
 
-| Name    | Type                             | Mandatory| Description                |
+| Name    | Type                             | Mandatory | Description                |
 | -------- | --------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Yes  | Callback used to return all notification slots of the current application.|
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Yes  | Callback used to return all notification slots of the current application. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -583,15 +583,15 @@ Obtains all notification slots of this application. This API uses a promise to r
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Promise used to return all notification slots of the current application.|
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Promise used to return all notification slots of the current application. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -618,18 +618,18 @@ Removes a notification slot of a specified type for this application. This API u
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                                                       |
+| Name    | Type                 | Mandatory | Description                                                       |
 | -------- | --------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)              | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype)              | Yes  | Type of a notification slot, including social communication, service notification, and content consultation. |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                                       |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -661,23 +661,23 @@ Removes a notification slot of a specified type for this application. This API u
 
 **Parameters**
 
-| Name    | Type    | Mandatory| Description                                                       |
+| Name    | Type    | Mandatory | Description                                                       |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, including social communication, service notification, and content consultation. |
 
 **Return value**
 
 | Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -705,17 +705,17 @@ Removes all notification slots for this application. This API uses an asynchrono
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                |
+| Name    | Type                 | Mandatory | Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -747,15 +747,15 @@ Removes all notification slots for this application. This API uses a promise to 
 
 | Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -782,17 +782,17 @@ Checks whether notification is enabled for the specified application. This API u
 
 **Parameters**
 
-| Name    | Type                 | Mandatory| Description                    |
+| Name    | Type                 | Mandatory | Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the notification slot type is enabled, and **false** means the opposite.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                 |
+| ID | Error Message                                 |
 | -------- | ---------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -827,15 +827,15 @@ Checks whether notification is enabled for the specified application. This API u
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -866,13 +866,13 @@ Synchronously checks whether notification is enabled for the specified applicati
 
 | Type                                                       | Description                                                    |
 | ----------------------------------------------------------- |--------------------------------------------------------- |
-| boolean | Returned result. **true**: enabled; **false**: returned.|
+| boolean | Returned result. **true**: enabled; **false**: returned. |
 
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                                |
+| ID | Error Message                                |
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
@@ -895,23 +895,23 @@ Sets the notification badge number. This API uses a promise to return the URI of
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description      |
+| Name     | Type  | Mandatory | Description      |
 | ----------- | ------ | ---- | ---------- |
-| badgeNumber | number | Yes  | Notification badge number to set.|
+| badgeNumber | number | Yes  | Notification badge number to set. |
 
 **Return value**
 
 | Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -941,18 +941,18 @@ Sets the notification badge number. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name     | Type                 | Mandatory| Description              |
+| Name     | Type                 | Mandatory | Description              |
 | ----------- | --------------------- | ---- | ------------------ |
 | badgeNumber | number                | Yes  | Notification badge number to set.        |
-| callback    | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback    | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -965,7 +965,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let setBadgeNumberCallback = (err: BusinessError): void => {
     if (err) {
-        console.error(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
+        console.info(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setBadgeNumber success");
     }
@@ -984,17 +984,17 @@ Obtains the number of active notifications of this application. This API uses an
 
 **Parameters**
 
-| Name    | Type                  | Mandatory| Description                  |
+| Name    | Type                  | Mandatory | Description                  |
 | -------- | ---------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1027,15 +1027,15 @@ Obtains the number of active notifications of this application. This API uses a 
 
 | Type             | Description                                       |
 | ----------------- | ------------------------------------------- |
-| Promise\<number\> | Promise used to return the result.|
+| Promise\<number\> | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1062,17 +1062,17 @@ Obtains the active notifications of this application. This API uses an asynchron
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                          |
+| Name    | Type                                                        | Mandatory | Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1104,15 +1104,15 @@ Obtains the active notifications of this application. This API uses a promise to
 
 | Type                                                        | Description                                   |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | Promise used to return the result.|
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1139,18 +1139,18 @@ Cancels notifications under a notification group of this application. This API u
 
 **Parameters**
 
-| Name     | Type                 | Mandatory| Description                        |
+| Name     | Type                 | Mandatory | Description                        |
 | --------- | --------------------- | ---- | ---------------------------- |
-| groupName | string                | Yes  | Name of the notification group, which is specified through [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) when the notification is published.|
-| callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| groupName | string                | Yes  | Name of the notification group, which is specified through [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) when the notification is published. |
+| callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1183,23 +1183,23 @@ Cancels notifications under a notification group of this application. This API u
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description          |
+| Name     | Type  | Mandatory | Description          |
 | --------- | ------ | ---- | -------------- |
-| groupName | string | Yes  | Name of the notification group, which is specified through [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) when the notification is published.|
+| groupName | string | Yes  | Name of the notification group, which is specified through [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) when the notification is published. |
 
 **Return value**
 
 | Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1227,18 +1227,18 @@ Checks whether a specified template is supported. This API uses an asynchronous 
 
 **Parameters**
 
-| Name      | Type                    | Mandatory| Description                      |
+| Name      | Type                    | Mandatory | Description                      |
 | ------------ | ------------------------ | ---- | -------------------------- |
 | templateName | string                   | Yes  | Template name. Currently, only **downloadTemplate** is supported.                  |
-| callback     | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the specified template is supported, and **false** means the opposite.|
+| callback     | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the specified template is supported, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1269,23 +1269,23 @@ Checks whether a specified template is supported. This API uses a promise to ret
 
 **Parameters**
 
-| Name      | Type  | Mandatory| Description    |
+| Name      | Type  | Mandatory | Description    |
 | ------------ | ------ | ---- | -------- |
-| templateName | string | Yes  | Template name. Currently, only **downloadTemplate** is supported.|
+| templateName | string | Yes  | Template name. Currently, only **downloadTemplate** is supported. |
 
 **Return value**
 
 | Type              | Description           |
 | ------------------ | --------------- |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that the specified template is supported, and **false** means the opposite.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the specified template is supported, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1317,17 +1317,17 @@ Requests notification to be enabled for this application. This API uses an async
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                      |
+| Name  | Type                    | Mandatory | Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1365,15 +1365,15 @@ Requests notification to be enabled for this application. This API uses a promis
 
 | Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1404,18 +1404,18 @@ Requests notification to be enabled for this application in a modal. This API us
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                |
+| Name  | Type                    | Mandatory | Description                |
 | -------- | ------------------------ | ---- |--------------------|
-| context | [UIAbilityContext](../../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Yes  | Ability context bound to the notification dialog box.|
+| context | [UIAbilityContext](../../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Yes  | Ability context bound to the notification dialog box. |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1465,23 +1465,23 @@ Requests notification to be enabled for this application in a modal. This API us
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                |
+| Name  | Type                    | Mandatory | Description                |
 | -------- | ------------------------ | ---- |--------------------|
-| context | [UIAbilityContext](../../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Yes  | Ability context bound to the notification dialog box.|
+| context | [UIAbilityContext](../../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Yes  | Ability context bound to the notification dialog box. |
 
 **Return value**
 
 | Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value. | 
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1526,17 +1526,17 @@ Checks whether distributed notification is enabled on this device. This API uses
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                      |
+| Name  | Type                    | Mandatory | Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1569,15 +1569,15 @@ Checks whether distributed notification is enabled on this device. This API uses
 
 | Type              | Description                                         |
 | ------------------ | --------------------------------------------- |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID | Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.     | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1619,10 +1619,10 @@ notificationManager.isDistributedEnabled()
 | Name                             | Value         | Description              |
 | --------------------------------- | ----------- | ------------------ |
 | LEVEL_NONE                        | 0           | Notification is disabled.    |
-| LEVEL_MIN                         | 1           | Notification is enabled, but the notification icon is not displayed in the status bar, with no banner or alert tone.|
-| LEVEL_LOW                         | 2           | Notification is enabled, and the notification icon is displayed in the status bar, with no banner or alert tone.|
-| LEVEL_DEFAULT                     | 3           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone but no banner.|
-| LEVEL_HIGH                        | 4           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone and banner.|
+| LEVEL_MIN                         | 1           | Notification is enabled, but the notification icon is not displayed in the status bar, with no banner or alert tone. |
+| LEVEL_LOW                         | 2           | Notification is enabled, and the notification icon is displayed in the status bar, with no banner or alert tone. |
+| LEVEL_DEFAULT                     | 3           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone but no banner. |
+| LEVEL_HIGH                        | 4           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone and banner. |
 
 
 ## SlotType
@@ -1633,10 +1633,10 @@ notificationManager.isDistributedEnabled()
 
 | Name                | Value      | Description      |
 | -------------------- | -------- | ---------- |
-| UNKNOWN_TYPE         | 0 | Unknown type. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**.|
-| SOCIAL_COMMUNICATION | 1 | Notification slot for social communication. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_HIGH**.|
+| UNKNOWN_TYPE         | 0 | Unknown type. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**. |
+| SOCIAL_COMMUNICATION | 1 | Notification slot for social communication. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_HIGH**. |
 | SERVICE_INFORMATION  | 2 | Notification slot for service information. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**.|
-| CONTENT_INFORMATION  | 3 | Notification slot for content consultation. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**.|
-| LIVE_VIEW<sup>11+</sup>            | 4 | Live view. A third-party application cannot directly create a notification of this channel type. After the system proxy creates a system live view, the third-party application releases a notification with the same ID to update the specified content. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**.|
+| CONTENT_INFORMATION  | 3 | Notification slot for content consultation. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**. |
+| LIVE_VIEW<sup>11+</sup>            | 4 | Live view. A third-party application cannot directly create a notification of this channel type. After the system proxy creates a system live view, the third-party application releases a notification with the same ID to update the specified content. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**. |
 | CUSTOMER_SERVICE<sup>11+</sup>     | 5 | Customer service message. This type is used for messages between users and customer service providers. The messages must be initiated by users. This type corresponds to [SlotLevel](#slotlevel) set to **LEVEL_LOW**. |
-| OTHER_TYPES          | 0xFFFF | Notification slot for other purposes. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**.|
+| OTHER_TYPES          | 0xFFFF | Notification slot for other purposes. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**. |

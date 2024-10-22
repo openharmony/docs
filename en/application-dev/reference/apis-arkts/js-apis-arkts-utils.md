@@ -496,13 +496,12 @@ Enumerates the modes for processing BigInt.
 
 Enumerates the return types of the parsing result.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.Utils.Lang
 
 | Name| Value| Description           |
 | ------ | ------ | --------------- |
-| OBJECT   | 0 |Returns a sendable object.|
+| OBJECT   | 0 |Returns a **SendableObject** object.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MAP<sup>13+</sup>   | 1 |Returns a **SendableMap** object.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ### ParseOptions
 
@@ -565,6 +564,17 @@ let numberObj = ArkTSUtils.ASON.parse(numberText,undefined,options) as ISendable
 
 console.info((numberObj as object)?.["largeNumber"]);
 // Expected output: 112233445566778899
+
+let options2: ArkTSUtils.ASON.ParseOptions = {
+    bigIntMode: ArkTSUtils.ASON.BigIntMode.PARSE_AS_BIGINT,
+    parseReturnType: ArkTSUtils.ASON.ParseReturnType.MAP,
+  }
+let mapText = '{"largeNumber":112233445566778899}';
+let map  = ArkTSUtils.ASON.parse(mapText,undefined,options2);
+console.info("map is " + map);
+// Expected output: map is [object SendableMap]
+console.info("largeNumber is " + (map as collections.Map<string,bigint>).get("largeNumber"));
+// Expected output: largeNumber is 112233445566778899
 ```
 
 ### stringify

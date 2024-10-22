@@ -10,7 +10,7 @@ The **NotificationRequest** module provides APIs for defining the notification r
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name                           | Type                                                   |  Read Only| Optional| Description                                                                   |
+| Name                           | Type                                                   |  Read Only | Optional | Description                                                                   |
 |-------------------------------| -------------------------------------------------------- | ----- | --- |-----------------------------------------------------------------------|
 | content                       | [NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent)   |   No | No | Notification content.                                                                |
 | id                            | number                                                   |   No | Yes | Notification ID. The default value is **0**.                                                                |
@@ -46,15 +46,16 @@ The **NotificationRequest** module provides APIs for defining the notification r
 | notificationFlags<sup>8+</sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   Yes | Yes | Notification flags.                                                 |
 | removalWantAgent<sup>9+</sup>  | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)            |   No | Yes | **WantAgent** instance to which the notification will be redirected when it is removed. The target **WantAgent** instance must be a common event or a system service (for which the value of **OperationType** is 3 or larger).                                         |
 | badgeNumber<sup>9+</sup>       | number                                                   |   No | Yes | Number of notifications displayed on the application icon.                                                       |
-| appMessageId<sup>12+</sup> | string | No | Yes | Unique ID carried in a notification sent by an app, which is used for notification deduplication. If an app publishes notifications with the same **appMessageId** locally or on the cloud, the device displays only one message. Repeated notifications received later will be silenced and deduplicated, and will not be displayed or notified. The deduplication flag is valid only within 24 hours after the notification is published. After 24 hours or the device is restarted, the deduplication flag becomes invalid. |
-| sound<sup>12+</sup> | string | No | Yes | Customized ring tone for app notifications: <!--RP1-->This field takes effect only after a system app with the [ohos.permission.NOTIFICATION_AGENT_CONTROLLER](../../security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_agent_controller) permission calls the [notificationManager.setAdditionalConfig](./js-apis-notificationManager-sys.md#notificationmanagersetadditionalconfig12) API to configure this field.<!--RP1End-->. |
+| appMessageId<sup>12+</sup>       | string                                                   |   No | Yes | Unique ID carried in a notification sent by an app, which is used for notification deduplication. If an app publishes notifications with the same **appMessageId** locally or on the cloud, the device displays only one message. Repeated notifications received later will be silenced and deduplicated, and will not be displayed or notified. The deduplication flag is valid only within 24 hours after the notification is published. After 24 hours or the device is restarted, the deduplication flag becomes invalid. |
+| sound<sup>12+</sup>            | string                                                   |   No | Yes | Customized ring tone for app notifications: <!--RP1-->This field takes effect only after a system app with the [ohos.permission.NOTIFICATION_AGENT_CONTROLLER](../../security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_agent_controller) permission calls the [notificationManager.setAdditionalConfig](./js-apis-notificationManager-sys.md#notificationmanagersetadditionalconfig12) API to configure this field.<!--RP1End-->                                                        |
+
 ## DistributedOptions
 
 Describes distributed notification options.
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name                              | Type           | Read Only| Optional| Description                              |
+| Name                              | Type           | Read Only | Optional | Description                              |
 | ---------------------------------- | -------------- | ---- | ---- | --------------------------------- |
 | isDistributed<sup>8+</sup>          | boolean        | No  | Yes  | Whether the notification is a distributed notification.                 |
 | supportDisplayDevices<sup>8+</sup>  | Array\<string> | No  | Yes  | List of the devices to which the notification can be synchronized.          |
