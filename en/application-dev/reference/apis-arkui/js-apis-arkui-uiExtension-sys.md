@@ -1,6 +1,6 @@
 # @ohos.arkui.uiExtension (uiExtension) (System API)
 
-The **uiExtension** module provides APIs for the EmbeddedUIExtensionAbility (or UIExtensionAbility) to obtain the host application window information or the information about the corresponding **\<EmbeddedComponent>** (or **\<UIExtensionComponent>**).
+The **uiExtension** module provides APIs for the EmbeddedUIExtensionAbility (or UIExtensionAbility) to obtain the host application window information or the information about the corresponding **EmbeddedComponent** (or **UIExtensionComponent**).
 
 > **NOTE**
 >
@@ -24,7 +24,7 @@ Sets whether to hide insecure windows.
 
 > **NOTE**
 >
-> Insecure windows refer to the windows that may block the **EmbeddedComponent** (or **UIExtensionComponent**), such as global floating windows, host subwindows, and dialog box windows created by the host application, excluding the aforementioned types of windows created by system applications. When the **\<EmbeddedComponent>** (or **\<UIExtensionComponent>**) is used to present important information, you can hide insecure windows to prevent such information from being blocked. When the **\<EmbeddedComponent>** (or **\<UIExtensionComponent>**) is not displayed or is destroyed, you must unhide the insecure windows. The **UIExtensionComponent** created using the **CreateModalUIExtension** API will hide insecure windows by default, which cannot be changed manually.
+> Insecure windows refer to the windows that may block the **EmbeddedComponent** (or **UIExtensionComponent**), such as global floating windows, host subwindows, and dialog box windows created by the host application, excluding the aforementioned types of windows created by system applications. When the **EmbeddedComponent** (or **UIExtensionComponent**) is used to present important information, you can hide insecure windows to prevent such information from being blocked. When the **EmbeddedComponent** (or **UIExtensionComponent**) is not displayed or is destroyed, you must unhide the insecure windows. The **UIExtensionComponent** created using the **CreateModalUIExtension** API will hide insecure windows by default, which cannot be changed manually.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

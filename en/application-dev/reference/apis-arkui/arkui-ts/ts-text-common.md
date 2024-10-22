@@ -22,7 +22,7 @@ Implements a **LayoutManager** object.
 > After the text content is changed, you must wait for the layout to be completed before you can obtain the most up-to-date layout information.
 
 ### Objects to Import
-The following uses the **\<Text>** component as an example.
+The following uses the **Text** component as an example.
 ```
 controller: TextController = new TextController()
 let layoutManager: LayoutManager = this.controller.getLayoutManager();

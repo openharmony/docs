@@ -1,6 +1,6 @@
 # Ellipse
 
-The **\<Ellipse>** component is used to draw an ellipse.
+The **Ellipse** component is used to draw an ellipse.
 
 >  **NOTE**
 >
@@ -129,7 +129,7 @@ Sets the cap style of the stroke.
 
 strokeLineJoin(value: LineJoinStyle)
 
-Sets the join style of the stroke. This attribute does not work for the **\<Ellipse>** component, which does not have corners.
+Sets the join style of the stroke. This attribute does not work for the **Ellipse** component, which does not have corners.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -145,7 +145,7 @@ Sets the join style of the stroke. This attribute does not work for the **\<Elli
 
 strokeMiterLimit(value: number | string)
 
-Sets the limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. This attribute does not take effect for the **\<Ellipse>** component, because it does not have a miter join.
+Sets the limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. This attribute does not take effect for the **Ellipse** component, because it does not have a miter join.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

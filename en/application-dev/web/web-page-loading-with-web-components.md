@@ -154,7 +154,7 @@ struct WebComponent {
 }
 ```
 
-## Dynamically Creating a Web Component
+## Dynamically Creating Web Components
 **Web** components can be created with commands. Components created in this mode are not immediately mounted to the component tree, that is, they are not presented to users (their state is **Hidden** or **InActive**). You can dynamically mount the components as required in subsequent use. It is recommended that the number of **Web** instances started in the background be less than or equal to 200. 
 
 ```ts

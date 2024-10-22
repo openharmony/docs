@@ -1,6 +1,7 @@
 # wrapBuilder: Encapsulating Global @Builder
 
-**wrapBuilder** is a template function that accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument and returns a **WrappedBuilder** object, thereby allowing global \@Builder decorated function to be assigned a value and transferred.
+
+ **wrapBuilder** is a template function that accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument and returns a **WrappedBuilder** object, thereby allowing global \@Builder decorated function to be assigned a value and transferred.
 
 
 > **NOTE**
@@ -148,13 +149,12 @@ struct Parent{
 
 ## Incorrect Usage
 
-### wrapBuilder Accepts Only a Global Function Decorated by @Builder
-
-```ts
+```
 function MyBuilder() {
 
 }
 
+// wrapBuilder accepts only a global function decorated by @Builder.
 const globalBuilder: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
 
 @Entry
@@ -169,51 +169,6 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         globalBuilder.builder(this.message, 30)
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-### wrapBuilder Redefinition Failure
-
-After **builderObj** is initialized and defined through **wrapBuilder(MyBuilderFirst)**, if you assign a new value to **builderObj**, **wrapBuilder(MyBuilderSecond)** does not take effect. Only the first defined **wrapBuilder(MyBuilderFirst)** takes effect.
-
-```ts
-@Builder
-function MyBuilderFirst(value: string, size: number) {
-  Text('MyBuilderFirst: ' + value)
-    .fontSize(size)
-}
-
-@Builder
-function MyBuilderSecond(value: string, size: number) {
-  Text('MyBuilderSecond: ' + value)
-    .fontSize(size)
-}
-
-interface BuilderModel {
-  globalBuilder: WrappedBuilder<[string, number]>;
-}
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-  @State builderObj: BuilderModel = { globalBuilder: wrapBuilder(MyBuilderFirst) };
-
-  aboutToAppear(): void {
-    setTimeout(() => {
-      this.builderObj.globalBuilder = wrapBuilder(MyBuilderSecond);
-    },1000)
-  }
-
-  build() {
-    Row() {
-      Column() {
-        this.builderObj.globalBuilder.builder(this.message, 20)
       }
       .width('100%')
     }

@@ -22,7 +22,7 @@ Sets the aspect ratio of the component.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Aspect ratio of the component, which can be obtained using the following formula: Width/Height.<br>The default value varies by API version.<br>API version 9 and earlier: **1.0**<br><br>API version 10: none<br>**NOTE**<br>This attribute does not take effect when it is not set or is set to an invalid value.<br>For example, if a **\<Row>** component has only its width set and does not have any child component, then when **aspectRatio** is not set or is set to a negative value, the height of the **\<Row>** component is 0.|
+| value  | number | Yes  | Aspect ratio of the component, which can be obtained using the following formula: Width/Height.<br>The default value varies by API version.<br>API version 9 and earlier: **1.0**<br><br>API version 10: none<br>**NOTE**<br>This attribute does not take effect when it is not set or is set to an invalid value.<br>For example, if a **Row** component has only its width set and does not have any child component, then when **aspectRatio** is not set or is set to a negative value, the height of the **Row** component is 0.|
 
 ## displayPriority
 

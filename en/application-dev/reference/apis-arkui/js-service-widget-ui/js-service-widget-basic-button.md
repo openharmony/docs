@@ -1,7 +1,7 @@
 # button
 
 
-The **\<button>** component includes capsule, circle, and text buttons.
+The **Button** component includes capsule, circle, and text buttons.
 
 > **NOTE**
 >
@@ -39,7 +39,7 @@ In addition to the [universal styles](js-service-widget-common-styles.md), the f
 | text-color | &lt;color&gt; | - | No| Text color of the button.|
 | font-size | &lt;length&gt; | - | No| Font size of the button.|
 | font-style | string | normal | No| Font style of the button.|
-| font-weight | number \| string | normal | No| Font weight of a button. For details, see the **font-weight** style of the **[\<text>](js-service-widget-basic-text.md#styles)** component.|
+| font-weight | number \| string | normal | No| Font weight of a button. For details, see the **font-weight** style of the **[Text](js-service-widget-basic-text.md#styles)** component.|
 | font-family | &lt;string&gt; | sans-serif | No| Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-service-widget-common-customizing-font.md) is used for the text.|
 | icon-width | &lt;length&gt; | - | No| Width of the internal icon of a circle button. By default, the icon takes up the entire width of the button.<br>This style must be set when the icon uses an SVG image.|
 | icon-height | &lt;length&gt; | - | No| Height of the internal icon of a circle button. By default, the icon takes up the entire height of the button.<br>This style must be set when the icon uses an SVG image.|

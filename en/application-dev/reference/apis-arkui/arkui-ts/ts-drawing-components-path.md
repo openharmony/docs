@@ -1,6 +1,6 @@
 # Path
 
-The **<Path\>** component is used to define a closed shape.
+The **Path** component is used to define a closed shape.
 
 > **NOTE**
 >

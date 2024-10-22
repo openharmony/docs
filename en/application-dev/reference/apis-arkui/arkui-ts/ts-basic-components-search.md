@@ -1,6 +1,6 @@
 #  Search
 
-The **\<Search>** component provides an area for users to enter search queries.
+The **Search** component provides an area for users to enter search queries.
 
 > **NOTE**
 >
@@ -23,7 +23,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | No  | Text displayed when there is no input.                                    |
 | icon        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>**NOTE**<br>The icon data source can be a local or online image.<br>- The supported formats include PNG, JPG, BMP, SVG, GIF, pixelmap, and HEIF.<br>- The Base64 string is supported in the following format: data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>If this attribute and the **searchIcon** attribute are both set, the **searchIcon** attribute takes precedence.|
-| controller  | [SearchController](#searchcontroller) | No  | Controller of the **\<Search>** component.                                      |
+| controller  | [SearchController](#searchcontroller) | No  | Controller of the **Search** component.                                      |
 
 ## Attributes
 
@@ -489,29 +489,6 @@ Sets the extended options of the custom context menu on selection, including the
 | --------- | ------------------------------------------ | ---- | ---------------- |
 | fontSize  | [Length](ts-types.md#length)               | No  | Font size of the button. It cannot be set in percentage.|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Font color of the button.|
-
-## TextDecorationOptions<sup>12+</sup>
-
-| Name   | Type                                                   | Mandatory| Description                                                        |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | Yes  | Type of the text decorative line.|
-| color  |  [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the text decorative line.|
-| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | No  | Type of the text decorative line.|
-
-## InsertValue<sup>12+</sup>
-
-| Name   | Type                                                   | Mandatory| Description                                                        |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| insertOffset  | number | Yes  | Position of the inserted text.|
-| insertValue  | string | Yes  | Content of the inserted text.|
-
-## DeleteValue<sup>12+</sup>
-
-| Name   | Type                                                   | Mandatory| Description                                                        |
-| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| deleteOffset  | number | Yes  | Position of the deleted text.|
-| direction  | [TextDeleteDirection](ts-appendix-enums.md#textdeletedirection12) | Yes  | Direction for deleting the text.|
-| deleteValue  | string | Yes  | Content of the deleted text.| 
 
 ## CancelButtonStyle<sup>10+</sup>
 
@@ -1250,3 +1227,5 @@ struct Index {
 ```
 
 ![searchEditMenuOptions](figures/searchEditMenuOptions.gif)
+
+<!--no_check-->

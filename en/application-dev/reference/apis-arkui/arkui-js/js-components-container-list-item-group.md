@@ -4,12 +4,12 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-**\<list-item-group>** is a child component of [\<list>](js-components-container-list.md) and is used to group items in a list. By default, the width of **\<list-item-group>** is equal to that of **\<list>**.
+**\<list-item-group>** is a child component of [List](js-components-container-list.md) and is used to group items in a list. By default, the width of **\<list-item-group>** is equal to that of **List**.
 
 
-- To use this component, you must set the **columns** attribute of the parent component **\<list>** to **1**. Otherwise, this component is not displayed.
+- To use this component, you must set the **columns** attribute of the parent component **List** to **1**. Otherwise, this component is not displayed.
 
-- You can customize the width of each **\<list-item-group>**. However, if you retain the default value **stretch** of **align-items** for the parent component **\<list>**, the width of **\<list-item-group>** is equal to that of **\<list>**. To make the customized **\<list-item-group>** width take effect, set **align-items** to other values rather than **stretch**.
+- You can customize the width of each **\<list-item-group>**. However, if you retain the default value **stretch** of **align-items** for the parent component **List**, the width of **\<list-item-group>** is equal to that of **List**. To make the customized **\<list-item-group>** width take effect, set **align-items** to other values rather than **stretch**.
 
 ## Required Permissions
 

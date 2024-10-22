@@ -1,10 +1,10 @@
 # Holding a Video Conference with WebRTC
 
-The **\<Web>** component can start a camera and microphone by calling **navigator.mediaDevices.getUserMedia()**, a standard W3C API, in JavaScript. To call this API, you need to declare the **ohos.permission.CAMERA** and **ohos.permission.MICROPHONE** permissions.
+The **Web** component can start a camera and microphone by calling **navigator.mediaDevices.getUserMedia()**, a standard W3C API, in JavaScript. To call this API, you need to declare the **ohos.permission.CAMERA** and **ohos.permission.MICROPHONE** permissions.
 
  The **constraints** parameter in the API is a **MediaStreamConstraints** object that specifies the types of media to request. It contains two members: **video** and **audio**.
 
-In the following example, when a user clicks the button for enabling the camera on the frontend page (**index.html**), the **\<Web>** component starts the camera and microphone.
+In the following example, when a user clicks the button for enabling the camera on the frontend page (**index.html**), the **Web** component starts the camera and microphone.
 
 - Application code:
 

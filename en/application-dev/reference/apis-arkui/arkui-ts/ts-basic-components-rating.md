@@ -1,6 +1,6 @@
 # Rating
 
-The **\<Rating>** component provides a rating bar.
+The **Rating** component provides a rating bar.
 
 >  **NOTE**
 >
@@ -85,11 +85,11 @@ By default, the image is loaded in asynchronous mode. Synchronous loading is not
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | Yes  | Star style.<br>**backgroundUri**: image path for the unselected star. You can use the default system image or a custom image.<br>**foregroundUri**: image path for the selected star. You can use the default system image or a custom image.<br>**secondaryUri**: image path for the partially selected star. You can use the default system image or a custom image.<br>**NOTE**<br>If the path specified for **backgroundUri**, **foregroundUri**, or **secondaryUri** is incorrect, no image is displayed.<br>If **backgroundUri** or **foregroundUri** is set to **undefined** or an empty string, the **\<Rating>** component loads the default star image source.<br>If **secondaryUri** is set to **undefined** or an empty string or is not set, **backgroundUri** is prioritized, which is equivalent to where only **foregroundUri** and **backgroundUri** are set.|
+| value  | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | Yes  | Star style.<br>**backgroundUri**: image path for the unselected star. You can use the default system image or a custom image.<br>**foregroundUri**: image path for the selected star. You can use the default system image or a custom image.<br>**secondaryUri**: image path for the partially selected star. You can use the default system image or a custom image.<br>**NOTE**<br>If the path specified for **backgroundUri**, **foregroundUri**, or **secondaryUri** is incorrect, no image is displayed.<br>If **backgroundUri** or **foregroundUri** is set to **undefined** or an empty string, the **Rating** component loads the default star image source.<br>If **secondaryUri** is set to **undefined** or an empty string or is not set, **backgroundUri** is prioritized, which is equivalent to where only **foregroundUri** and **backgroundUri** are set.|
 
 >  **NOTE**
 >
->  The drawing area of each rating image is [width/stars, height], wherein **width** and **height** indicate the width and height of the **\<Rating>** component, respectively.
+>  The drawing area of each rating image is [width/stars, height], wherein **width** and **height** indicate the width and height of the **Rating** component, respectively.
 >
 >  To specify the drawing area as a square, you are advised to customize the width and height in this format: [height * stars, height], width = height * stars.
 

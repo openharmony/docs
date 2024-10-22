@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<image>** component is used to render and display images.
+The **Image** component is used to render and display images.
 
 
 ## Child Components
@@ -30,7 +30,7 @@ In addition to the [universal styles](js-components-common-styles.md), the follo
 | ---------------------------- | ------- | ------------ | ---- | ---------------------------------------- |
 | object-fit                   | string  | cover        | No   | Image scale type. This style is not supported for SVG images. For details about available values, see **object-fit**.|
 | match-text-direction         | boolean | false        | No   | Whether image orientation changes with the text direction. This style is not supported for SVG images.                    |
-| fit-original-size            | boolean | false        | No   | Whether the **\<image>** component adapts to the image source size when its width and height are not set. If this style is set to **true**, **object-fit** will not take effect. This style is not supported for SVG images.|
+| fit-original-size            | boolean | false        | No   | Whether the **Image** component adapts to the image source size when its width and height are not set. If this style is set to **true**, **object-fit** will not take effect. This style is not supported for SVG images.|
 | object-position<sup>7+</sup> | string  | 0px 0px | No   | Position of the image in the component.<br>The options are as follows:<br>1. Pixels, in px. For example, **15px 15px** indicates the position to move along the x-axis or y-axis.<br>2. Characters. Optional values are as follows:<br>- **left**: The image is displayed on the left of the component.<<br>- **top**: The image is displayed on the top of the component.<br>- **right**: The image is displayed on the right of the component.<br>- **bottom**: The image is displayed at the bottom of the component.|
 
 **Table 1** object-fit
@@ -47,15 +47,15 @@ In addition to the [universal styles](js-components-common-styles.md), the follo
 >
 >  When using an SVG image, note that:
 >
->  - The SVG image will not be drawn if the length or width of the **\<image>** component is infinity.
+>  - The SVG image will not be drawn if the length or width of the **Image** component is infinity.
 >
->  - If the image length and width are not specified in the SVG description, the SVG image fills the **\<image>** component area.
+>  - If the image length and width are not specified in the SVG description, the SVG image fills the **Image** component area.
 >
 >  - If the image length and width are specified in the SVG description, the following rules are adopted to decide the final display effect:
 >
->  1. If the **\<image>** component is too small to afford the SVG image, the SVG image is cropped and only its upper left part is displayed in the component.
+>  1. If the **Image** component is too small to afford the SVG image, the SVG image is cropped and only its upper left part is displayed in the component.
 >
->  2. If the **\<image>** component is big enough to afford the SVG image, this SVG image is displayed in the upper left corner of the component.
+>  2. If the **Image** component is big enough to afford the SVG image, this SVG image is displayed in the upper left corner of the component.
 >
 >  - For SVG images, only the following tags are included in the supported list: **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, **polygon**, **animate**, **animateMotion**, and **animateTransform**.
 

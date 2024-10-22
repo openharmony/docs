@@ -1,7 +1,7 @@
 # Graph Drawing
 
 
-The **&lt;svg&gt;** component can be used to draw simple shapes, such as rectangles, circles, and lines. For details about the supported shapes, see [svg](../reference/apis-arkui/arkui-js/js-components-svg.md).
+The **&lt;svg&gt;** component can be used to draw simple shapes, such as rectangles, circles, and lines. For details about the supported shapes, see &lt;svg&gt;.
 
 
 In this example, you can draw different shapes and stitch them to form a house graph.

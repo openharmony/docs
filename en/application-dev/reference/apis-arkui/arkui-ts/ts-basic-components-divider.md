@@ -1,6 +1,6 @@
 # Divider
 
-The **\<Divider>** component is used to separate content blocks and elements.
+The **Divider** component is used to separate content blocks and elements.
 
 >  **NOTE**
 >

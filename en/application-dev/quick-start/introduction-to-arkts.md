@@ -696,7 +696,7 @@ function do_action(f: trigFunc) {
 do_action(Math.sin); // pass the function as the parameter
 ```
 
-### Arrow Functions(Lambdas functions)
+### Arrow Functions (Lambdas Functions)
 
 A function can be defined as an arrow function, for example:
 
@@ -732,8 +732,6 @@ let z = f();
 z(); // output: 1
 z(); // output: 2
 ```
-
-In the sample above, the arrow function closure captures the `count` variable.
 
 ### Function Overload Signatures
 

@@ -1,6 +1,6 @@
 # Polygon
 
-The **\<Polygon>** component is used to draw a polygon.
+The **Polygon** component is used to draw a polygon.
 
 >  **NOTE**
 >

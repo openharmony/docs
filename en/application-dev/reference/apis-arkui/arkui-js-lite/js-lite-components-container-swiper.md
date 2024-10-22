@@ -1,6 +1,6 @@
 # swiper
 
-The **\<swiper>** component provides a container that allows users to switch among child components using swipe gestures.
+The **Swiper** component provides a container that allows users to switch among child components using swipe gestures.
 
 > **NOTE**
 >
@@ -9,7 +9,7 @@ The **\<swiper>** component provides a container that allows users to switch amo
 
 ## Child Components
 
-All child components except **\<list>** are supported.
+All child components except **List** are supported.
 
 
 ## Attributes

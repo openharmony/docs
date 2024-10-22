@@ -1,6 +1,6 @@
 # Gauge
 
-The **\<Gauge>** component is used to display data in a ring chart.
+The **Gauge** component is used to display data in a ring chart.
 
 
 >  **NOTE**
@@ -14,7 +14,7 @@ This component can contain only one child component.
 
 > **NOTE**
 >
-> You are advised to use the **\<Text>** component to build the current value and auxiliary text.
+> You are advised to use the **Text** component to build the current value and auxiliary text.
 >
 > If the width and height of a child component are in percentage, the reference range is the rectangle whose outer ring is used as the inscribed circle.
 
@@ -23,7 +23,7 @@ This component can contain only one child component.
 
 Gauge(options:{value: number, min?: number, max?: number})
 
-Creates a **\<Gauge>** component.
+Creates a **Gauge** component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -83,7 +83,7 @@ Sets the start angle of the gauge.
 
 endAngle(angle: number)
 
-Sets the end angle of the gauge. Ensure an appropriate difference between the start angle and end angle. If this difference is too small, the drawn chart may be abnormal. You are advised to use a monochrome ring to set the **value** attribute of the **\<Gauge>**. You can also use **setTimeout** to delay value loading.
+Sets the end angle of the gauge. Ensure an appropriate difference between the start angle and end angle. If this difference is too small, the drawn chart may be abnormal. You are advised to use a monochrome ring to set the **value** attribute of the **Gauge**. You can also use **setTimeout** to delay value loading.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

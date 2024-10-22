@@ -40,8 +40,8 @@ The following styles are supported.
 | color           | &lt;color&gt;              | \#e6000000 | No   | Font color of the option.                               |
 | font-size       | &lt;length&gt;             | 16px       | No   | Font size of the option.                               |
 | allow-scale     | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
-| font-weight     | number \| string | normal     | No   | Font weight of the option. For details, see **font-weight** of the [**\<text>**](js-components-basic-text.md#styles) component. |
-| text-decoration | string                     | none       | No   | Text modification of an option. For details, see **text-decoration** of the [**\<text>**](js-components-basic-text.md#styles) component. |
+| font-weight     | number \| string | normal     | No   | Font weight of the option. For details, see **font-weight** of the [**Text**](js-components-basic-text.md#styles) component. |
+| text-decoration | string                     | none       | No   | Text modification of an option. For details, see **text-decoration** of the [**Text**](js-components-basic-text.md#styles) component. |
 | font-family     | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 
 

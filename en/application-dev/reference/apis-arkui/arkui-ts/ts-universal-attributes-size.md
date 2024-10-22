@@ -28,9 +28,9 @@ Since API version 10, this API supports the calc calculation feature.
 
 >  **NOTE**
 >
->  - For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width.
+>  - For the **TextInput** component, the **auto** option of **width** means to adapt to the text width.
 >  
->  - For the **\<AlphabetIndexer>** component, the **auto** option of **width** means to adapt to the maximum width of index entries.
+>  - For the **AlphabetIndexer** component, the **auto** option of **width** means to adapt to the maximum width of index entries.
 
 ## height
 
@@ -54,7 +54,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 >  **NOTE**
 >
->  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components.
+>  For the **Row**, **Column**, and **RelativeContainer** components, the **auto** option of **width** and **height** means to adapt to their child components.
 
 ## size
 
@@ -114,7 +114,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 | Name| Type                                                        | Mandatory    | Description                                                        |
 | ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| value  | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) \| [LocalizedMargin](ts-types.md#localizedmargin12)<sup>12+</sup> | Yes| Margin of the component to set.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the **\<Row>**, **\<Column>**, or **\<Flex>** container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **\<Column>** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 10.|
+| value  | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) \| [LocalizedMargin](ts-types.md#localizedmargin12)<sup>12+</sup> | Yes| Margin of the component to set.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the **Row**, **Column**, or **Flex** container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **Column** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 10.|
 
 ## layoutWeight
 
@@ -132,7 +132,7 @@ Sets the weight of the component during layout.
 
 | Name  | Type                        | Mandatory     | Description                                      |
 | ----- | -------------------------- | ------- | ---------------------------------------- |
-| value | number \| string | Yes| Weight of the component during layout. When the container size is determined, the container space is allocated along the main axis among the component and sibling components based on the layout weight, and the component size setting is ignored.<br>Default value: **0**<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** layouts.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
+| value | number \| string | Yes| Weight of the component during layout. When the container size is determined, the container space is allocated along the main axis among the component and sibling components based on the layout weight, and the component size setting is ignored.<br>Default value: **0**<br>**NOTE**<br>This attribute is valid only for the **Row**, **Column**, and **Flex** layouts.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.|
 
 ## constraintSize
 
@@ -193,7 +193,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 >  **NOTE**
 >
->  For the **\<Row>**, **\<Column>**, and **\<RelativeContainer>** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **\<TextInput>** component, the **auto** option of **width** means to adapt to the text width.
+>  For the **Row**, **Column**, and **RelativeContainer** components, the **auto** option of **width** and **height** means to adapt to their child components. For the **TextInput** component, the **auto** option of **width** means to adapt to the text width.
 
 ## Example
 ### Example 1

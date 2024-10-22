@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<textarea>** component provides a text box to receive multi-line text input.
+The **TextArea** component provides a text box to receive multi-line text input.
 
 
 ## Required Permissions
@@ -53,7 +53,7 @@ In addition to the [universal styles](js-components-common-styles.md), the follo
 | font-size                | &lt;length&gt;             | 16px       | No   | Font size of the multi-line text box.                             |
 | allow-scale              | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
 | placeholder-color        | &lt;color&gt;              | \#99000000 | No   | Color of the hint text in the multi-line text box. This attribute is available when the component type is set to one of the following: text\|email\|date\|time\|number\|password.|
-| font-weight              | number \| string | normal     | No   | Font weight. For details, see **font-weight** of the [**\<text>**](js-components-basic-text.md#styles) component.|
+| font-weight              | number \| string | normal     | No   | Font weight. For details, see **font-weight** of the [**Text**](js-components-basic-text.md#styles) component.|
 | font-family              | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 | caret-color<sup>6+</sup> | &lt;color&gt;              | -          | No   | Color of the caret.                              |
 

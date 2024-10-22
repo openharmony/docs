@@ -5,7 +5,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<video>** component provides a video player.
+The **Video** component provides a video player.
 
 
 ## Child Components

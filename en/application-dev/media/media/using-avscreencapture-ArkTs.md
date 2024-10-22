@@ -123,7 +123,7 @@ After an **AVScreenCaptureRecorder** instance is created, different APIs can be 
     await this.screenCapture.init(this.captureConfig);
     ```
 
-6. Set the windows that will be skipped during screen capture, by entering the subwindow IDs and main window IDs. For details, see **Window Management Home Page**.
+6. Set the windows that will be skipped during screen capture, by entering the subwindow IDs and main window IDs. For details, see [Window Management Home Page](../../windowmanager).
 
     ```javascript
     let windowIDs = [57, 86];

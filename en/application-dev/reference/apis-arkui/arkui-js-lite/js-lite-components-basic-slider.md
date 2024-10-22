@@ -1,6 +1,6 @@
 # slider
 
-The **\<Slider>** component is used to quickly adjust settings, such as the volume and brightness.
+The **Slider** component is used to quickly adjust settings, such as the volume and brightness.
 
 > **NOTE**
 >

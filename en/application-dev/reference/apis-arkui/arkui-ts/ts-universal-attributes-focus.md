@@ -18,7 +18,7 @@ Specifies whether the current component is focusable.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the current component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as [\<Button>](ts-basic-components-button.md) and [\<TextInput>](ts-basic-components-textinput.md), are focusable by default. Other components, such as [\<Text>](ts-basic-components-text.md) and [\<Image>](ts-basic-components-image.md), are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md).|
+| value  | boolean | Yes  | Whether the current component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as [Button](ts-basic-components-button.md) and [TextInput](ts-basic-components-textinput.md), are focusable by default. Other components, such as [Text](ts-basic-components-text.md) and [Image](ts-basic-components-image.md), are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md).|
 
 ## tabIndex<sup>9+</sup>
 
@@ -100,7 +100,7 @@ Requests the focus to move to the specified component. This API can be used in g
 
 >  **NOTE**
 >
->  The following components support focus control: [\<TextInput>](ts-basic-components-textinput.md), [\<TextArea>](ts-basic-components-textarea.md), [\<Search>](ts-basic-components-search.md), [\<Button>](ts-basic-components-button.md), [\<Text>](ts-basic-components-text.md), [\<Image>](ts-basic-components-image.md), [\<List>](ts-container-list.md), and [\<Grid>](ts-container-grid.md). Currently, the running effect of the focus event can be displayed only on a real device.
+>  The following components support focus control: [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [Search](ts-basic-components-search.md), [Button](ts-basic-components-button.md), [Text](ts-basic-components-text.md), [Image](ts-basic-components-image.md), [List](ts-container-list.md), and [Grid](ts-container-grid.md). Currently, the running effect of the focus event can be displayed only on a real device.
 
 
 ## FocusController<sup>12+</sup>
@@ -262,7 +262,7 @@ struct FocusableExample {
 ```
 Diagrams:
 
-On first-time access, the focus is on the **\<TextInput>** component bound to **defaultFocus**.
+On first-time access, the focus is on the **TextInput** component bound to **defaultFocus**.
 
 ![defaultFocus](figures/defaultFocus.png)
 

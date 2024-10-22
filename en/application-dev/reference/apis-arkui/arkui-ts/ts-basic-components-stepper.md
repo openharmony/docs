@@ -1,6 +1,6 @@
 # Stepper
 
-The **\<Stepper>** component provides a step navigator.
+The **Stepper** component provides a step navigator.
 
 
 >  **NOTE**
@@ -10,7 +10,7 @@ The **\<Stepper>** component provides a step navigator.
 
 ## Child Components
 
-Only the child component **\<[StepperItem](ts-basic-components-stepperitem.md)>** is supported.
+Only the child component **[StepperItem](ts-basic-components-stepperitem.md)>** is supported.
 
 
 ## APIs
@@ -22,7 +22,7 @@ Stepper(value?: { index?: number })
 
 | Name| Type| Mandatory | Description|
 | ------| -------- | --------------- | -------- |
-| index | number   | No| Index of the **\<StepperItem>** that is currently displayed.<br>Default value: **0**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| index | number   | No| Index of the **StepperItem** that is currently displayed.<br>Default value: **0**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 
 
 ## Attributes
@@ -34,11 +34,11 @@ None
 
 | Name| Description|
 | -------- | -------- |
-| onFinish(callback: () =&gt; void) | Invoked when the **nextLabel** of the last **\<StepperItem>** in the **\<Stepper>** is clicked and the **ItemState** attribute is set to **Normal**.|
-| onSkip(callback: () =&gt; void) | Invoked when the current **\<StepperItem>** is **ItemState.Skip** and the **nextLabel** is clicked.|
-| onChange(callback: (prevIndex?: number, index?: number) =&gt; void) | Invoked when the **prevLabel** of the current **\<StepperItem>** is clicked to switch to the previous step page; or when the **nextLabel** of the current (not the last) **\<StepperItem>** is clicked to switch to the next step page and the **ItemState** attribute is set to **Normal**.<br>- **prevIndex**: index of the step page before the switching.<br>- **index**: index of the step page after the switching, that is, index of the previous or next step page.|
-| onNext(callback: (index?: number, pendingIndex?: number) =&gt; void) | Invoked when the **nextLabel** of the current (not the last) **\<StepperItem>** is clicked and the **ItemState** attribute is set to **Normal**.<br>- **index**: index of the current step page.<br>- **pendingIndex**: index of the next step page.|
-| onPrevious(callback: (index?: number, pendingIndex?: number) =&gt; void) | Invoked when the **prevLabel** of the current **\<StepperItem>** is clicked to switch to the previous step page.<br>- **index**: index of the current step page.<br>- **pendingIndex**: index of the previous step page.|
+| onFinish(callback: () =&gt; void) | Invoked when the **nextLabel** of the last **StepperItem** in the **Stepper** is clicked and the **ItemState** attribute is set to **Normal**.|
+| onSkip(callback: () =&gt; void) | Invoked when the current **StepperItem** is **ItemState.Skip** and the **nextLabel** is clicked.|
+| onChange(callback: (prevIndex?: number, index?: number) =&gt; void) | Invoked when the **prevLabel** of the current **StepperItem** is clicked to switch to the previous step page; or when the **nextLabel** of the current (not the last) **StepperItem** is clicked to switch to the next step page and the **ItemState** attribute is set to **Normal**.<br>- **prevIndex**: index of the step page before the switching.<br>- **index**: index of the step page after the switching, that is, index of the previous or next step page.|
+| onNext(callback: (index?: number, pendingIndex?: number) =&gt; void) | Invoked when the **nextLabel** of the current (not the last) **StepperItem** is clicked and the **ItemState** attribute is set to **Normal**.<br>- **index**: index of the current step page.<br>- **pendingIndex**: index of the next step page.|
+| onPrevious(callback: (index?: number, pendingIndex?: number) =&gt; void) | Invoked when the **prevLabel** of the current **StepperItem** is clicked to switch to the previous step page.<br>- **index**: index of the current step page.<br>- **pendingIndex**: index of the previous step page.|
 
 
 ## Example

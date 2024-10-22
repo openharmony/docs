@@ -1,11 +1,11 @@
 # Printing Frontend Pages
 
-With the **\<Web>** component, you can print HTML pages through W3C standards-compliant APIs or application APIs. To start off, declare the [ohos.permission.PRINT](../security/AccessToken/declare-permissions.md) permission.
+With the **Web** component, you can print HTML pages through W3C standards-compliant APIs or application APIs. To start off, declare the [ohos.permission.PRINT](../security/AccessToken/declare-permissions.md) permission.
 
 ## Initiating a Print Task Through the W3C Standards-compliant API
 The printing process with W3C is as follows: A print adapter is created, the print application is started, the current web page content is rendered, and the PDF file generated after rendering is transferred to the print framework through the file descriptor (FD). Use the **window.print()** method to print the current document or open the print dialog box. This method does not have any parameter; simply call it in JavaScript.
 
-You can use the frontend CSS styles, for example, **@media print**, to control the printed content. Then load the HTML page in the **\<Web>** component.
+You can use the frontend CSS styles, for example, **@media print**, to control the printed content. Then load the HTML page in the **Web** component.
 
 - Sample code of the **print.html** page:
 

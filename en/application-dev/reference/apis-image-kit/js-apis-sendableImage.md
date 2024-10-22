@@ -2073,7 +2073,7 @@ receiver.getReceivingSurfaceId().then((id: string) => {
 
 ### readLatestImage
 
-readLatestImage(): Promise\<Image>
+readLatestImage(): PromiseImage
 
 Reads the latest image from the **ImageReceiver** instance. This API uses a promise to return the result.
 
@@ -2104,7 +2104,7 @@ receiver.readLatestImage().then((img: image.Image) => {
 
 ### readNextImage
 
-readNextImage(): Promise\<Image>
+readNextImage(): PromiseImage
 
 Reads the next image from the **ImageReceiver** instance. This API uses a promise to return the result.
 

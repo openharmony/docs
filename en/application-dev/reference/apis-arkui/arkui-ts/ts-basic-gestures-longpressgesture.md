@@ -11,7 +11,7 @@
 
 LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number })
 
-Triggers a long press gesture. In components that support drag actions by default, such as **\<Text>**, **\<TextInput>**, **\<TextArea>**, **\<Hyperlink>**, **\<Image>**, and **\<RichEditor>**, the long press gesture may conflict with the drag action. If this occurs, they are handled as follows:
+Triggers a long press gesture. In components that support drag actions by default, such as **Text**, **TextInput**, **TextArea**, **\<Hyperlink>**, **Image**, and **RichEditor**, the long press gesture may conflict with the drag action. If this occurs, they are handled as follows:
 
 If the minimum duration of the long press gesture is less than 500 ms, the long press gesture receives a higher response priority than the drag action.
 

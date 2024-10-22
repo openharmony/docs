@@ -1,6 +1,6 @@
 # Rect
 
-The **\<Rect>** component is used to draw a rectangle.
+The **Rect** component is used to draw a rectangle.
 
 >  **NOTE**
 >

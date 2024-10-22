@@ -1,6 +1,6 @@
 # Text
 
-The **\<Text>** component is used to display a piece of textual information.
+The **Text** component is used to display a piece of textual information.
 
 >  **NOTE**
 >
@@ -9,7 +9,7 @@ The **\<Text>** component is used to display a piece of textual information.
 
 ## Child Components
 
-This component can contain the [\<Span>](ts-basic-components-span.md), [\<ImageSpan>](ts-basic-components-imagespan.md), [\<SymbolSpan>](ts-basic-components-symbolSpan.md), and [\<ContainerSpan>](ts-basic-components-containerspan.md) child components.
+This component can contain the [Span](ts-basic-components-span.md), [ImageSpan](ts-basic-components-imagespan.md), [\<SymbolSpan>](ts-basic-components-symbolSpan.md), and [\<ContainerSpan>](ts-basic-components-containerspan.md) child components.
 
 ## APIs
 
@@ -23,7 +23,7 @@ Text(content?: string | Resource , value?: TextOptions)
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | No | Text content. This parameter does not take effect if the component contains a **\<Span>** child component and does not have any [styled string](ts-universal-styled-string.md#styled-string) configured. In this case, the span content is displayed, and the style of the component does not take effect.<br>Default value: **' '** |
+| content | string \| [Resource](ts-types.md#resource) | No | Text content. This parameter does not take effect if the component contains a **Span** child component and does not have any [styled string](ts-universal-styled-string.md#styled-string) configured. In this case, the span content is displayed, and the style of the component does not take effect.<br>Default value: **' '** |
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | No | Initialization options of the component.|
 
 ## Attributes
@@ -36,7 +36,7 @@ textAlign(value: TextAlign)
 
 Sets the horizontal alignment mode of the text.
 
-The text takes up the full width of the **\<Text>** component.
+The text takes up the full width of the **Text** component.
 
 To set vertical alignment for the text, use the [align](ts-universal-attributes-location.md) attribute. The **align** attribute alone does not control the horizontal position of the text. In other words, **Alignment.TopStart**, **Alignment.Top**, and **Alignment.TopEnd** produce the same effect, top-aligning the text; **Alignment.Start**, **Alignment.Center**, and **Alignment.End** produce the same effect, centered-aligning the text vertically; **Alignment.BottomStart**, **Alignment.Bottom**, and **Alignment.BottomEnd** produce the same effect, bottom-aligning the text. Yet, it can work with the **textAlign** attribute to jointly determine the horizontal position of the text.
 
@@ -66,7 +66,7 @@ If **overflow** is set to **TextOverflow.None**, **TextOverflow.Clip**, or **Tex
 
 If **overflow** is set to **TextOverflow.MARQUEE**, the text scrolls in a line, and neither **maxLines** nor **copyOption** takes effect. The **textAlign** attribute takes effect only when the text is not scrollable. With **overflow** set to **TextOverflow.MARQUEE**, the **clip** attribute is set to **true** by default. **TextOverflow.MARQUEE** is not available for [CustomSpan](ts-universal-styled-string.md#customspan) of the styled string.
 
-Since API version 12, **TextOverflow.MARQUEE** is available for the **\<ImageSpan>** component, where the text and images are displayed in scrolling mode in a line.
+Since API version 12, **TextOverflow.MARQUEE** is available for the **ImageSpan** component, where the text and images are displayed in scrolling mode in a line.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -468,7 +468,7 @@ Sets the custom context menu on text selection.
 
 The duration required for a long-press gesture is 600 ms for **bindSelectionMenu** and 800 ms for **bindContextMenu**. When both **bindSelectionMenu** and **bindContextMenu** are set and both are configured to be triggered by a long-press gesture, **bindSelectionMenu** is triggered first.
 
-If the custom menu is too long, embed a [\<Scroll>](./ts-container-scroll.md) component to prevent the keyboard from being blocked.
+If the custom menu is too long, embed a [Scroll](./ts-container-scroll.md) component to prevent the keyboard from being blocked.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -513,11 +513,11 @@ For more information about the font features, see [Low-level font feature settin
 
 >  **NOTE**<br/>
 >
->  The **\<Text>** component cannot contain both text and the child component **\<Span>** or **\<ImageSpan>**. If both of them exist, only the content in **\<Span>** or **\<ImageSpan>** is displayed.
+>  The **Text** component cannot contain both text and the child component **Span** or **ImageSpan**. If both of them exist, only the content in **Span** or **ImageSpan** is displayed.
 >
 >  The typesetting engine rounds down the value of [width](ts-universal-attributes-size.md#width) to ensure that the value is an integer. If the typesetting engine rounds up the value instead, the right side of the text may be clipped.
 >
->  When multiple **\<Text>** components are placed in the [\<Row>](ts-container-row.md) container with no specific layout or space allocation settings configured, the components are laid out based on the maximum size of the container. To make sure the sum of the components' main axis sizes does not exceed the main axis size of the container, you can set [layoutWeight](ts-universal-attributes-size.md#layoutweight) or use the [flex layout](ts-universal-attributes-flex-layout.md).
+>  When multiple **Text** components are placed in the [Row](ts-container-row.md) container with no specific layout or space allocation settings configured, the components are laid out based on the maximum size of the container. To make sure the sum of the components' main axis sizes does not exceed the main axis size of the container, you can set [layoutWeight](ts-universal-attributes-size.md#layoutweight) or use the [flex layout](ts-universal-attributes-flex-layout.md).
 
 ### lineSpacing<sup>12+</sup>
 
@@ -645,7 +645,7 @@ Called when the text selection position changes.
 
 ## TextOptions<sup>11+</sup>
 
-Describes the initialization options of the **\<Text>** component.
+Describes the initialization options of the **Text** component.
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
@@ -653,7 +653,7 @@ Describes the initialization options of the **\<Text>** component.
 
 ## TextController<sup>11+</sup>
 
-Defines the controller of the **\<Text>** component.
+Defines the controller of the **Text** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

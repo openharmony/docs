@@ -1,6 +1,6 @@
 # Blank
 
-The **\<Blank>** component is able to automatically fill the empty spaces in the container along the main axis. It works only when the parent component is **\<Row>**, **\<Column>**, or **\<Flex>**.
+The **Blank** component is able to automatically fill the empty spaces in the container along the main axis. It works only when the parent component is **Row**, **Column**, or **Flex**.
 
 >  **NOTE**
 >
@@ -17,9 +17,9 @@ Not supported
 Blank(min?: number | string)
 
 Since API version 10:
- - On the main axis of the parent container **\<Row>**, **\<Column>**, or **\<Flex>**, if the size of the **\<Blank>** component is not set, the component will be automatically stretched or shrunk; if the size is not set or the container adapts to the size of its child component, the component will not be stretched or shrunk.
- - Relationship between **size** and **min** of the **\<Blank>** component on the main axis: max(min, size).
- - On the cross axis of the parent container, if the size of the **\<Blank>** component is set, the component will not fill up the parent container; if the size is not set, the component will fill up the parent container, following the default **alignSelf** settings **ItemAlign.Stretch**.
+ - On the main axis of the parent container **Row**, **Column**, or **Flex**, if the size of the **Blank** component is not set, the component will be automatically stretched or shrunk; if the size is not set or the container adapts to the size of its child component, the component will not be stretched or shrunk.
+ - Relationship between **size** and **min** of the **Blank** component on the main axis: max(min, size).
+ - On the cross axis of the parent container, if the size of the **Blank** component is set, the component will not fill up the parent container; if the size is not set, the component will fill up the parent container, following the default **alignSelf** settings **ItemAlign.Stretch**.
 
 This API can be used in ArkTS widgets since API version 9.
 
@@ -27,7 +27,7 @@ This API can be used in ArkTS widgets since API version 9.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| min | number \| string | No| Minimum size of the **\<Blank>** component in the container along the main axis.<br>Default value: **0**<br>**NOTE**<br>This parameter cannot be set in percentage. If the value is negative, the default value is used. If the minimum size is larger than the available space of the container, it is used as the component size, and the component extends beyond the container.|
+| min | number \| string | No| Minimum size of the **Blank** component in the container along the main axis.<br>Default value: **0**<br>**NOTE**<br>This parameter cannot be set in percentage. If the value is negative, the default value is used. If the minimum size is larger than the available space of the container, it is used as the component size, and the component extends beyond the container.|
 
 ## Attributes
 
@@ -44,7 +44,7 @@ The [universal events](ts-universal-events-click.md) are supported.
 ## Example
 
 ### Example 1
-The sample below shows how the **\<Blank>** component fills the empty spaces in the container in landscape and portrait modes.
+The sample below shows how the **Blank** component fills the empty spaces in the container in landscape and portrait modes.
 ```ts
 // xxx.ets
 @Entry
@@ -72,7 +72,7 @@ Landscape mode
 
 
 ### Example 2
-Set the **min** parameter when the width of the parent container of the **\<Blank>** component is not set.
+Set the **min** parameter when the width of the parent container of the **Blank** component is not set.
 
 ```ts
 // xxx.ets
@@ -81,7 +81,7 @@ Set the **min** parameter when the width of the parent container of the **\<Blan
 struct BlankExample {
   build() {
     Column({ space: 20 }) {
-      // If the width of the parent container is not set, the \<Blank> component becomes invalid. In this case, you can set min to specify the minimum width of the \<Blank> component.
+      // If the width of the parent container is not set, the Blank component becomes invalid. In this case, you can set min to specify the minimum width of the Blank component.
       Row() {
         Text('Bluetooth').fontSize(18)
         Blank().color(Color.Yellow)
@@ -99,6 +99,6 @@ struct BlankExample {
   }
 }
 ```
-If the width of the parent container is not set, set **min** to specify the minimum width of the **\<Blank>** component.
+If the width of the parent container is not set, set **min** to specify the minimum width of the **Blank** component.
 
 ![blankmin](figures/blankmin.png)

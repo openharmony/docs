@@ -64,7 +64,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example for Using AppStorage from Inside the UI](#example-of-using-appstorage-and-localstorage-inside-the-ui).
+- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example of Using AppStorage and LocalStorage Inside the UI](#example-of-using-appstorage-and-localstorage-inside-the-ui).
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
 
@@ -241,9 +241,9 @@ struct CompA {
 
 ### Unrecommended: Using @StorageLink to Implement Event Notification
 
-Compared with the common mechanism for event notification, the two-way synchronization mechanism of @StorageLink and AppStorage is expensive in two aspects: (1) Variables in AppStorage may be bound to components on different pages, but the event notifications may not need to be sent to all these components; (2) Any change to the @StorageLink decorated variables may cause costly UI re-rendering.
+The two-way synchronization mechanism of @StorageLink and AppStorage is not recommended. This is because the variables in AppStorage may be bound to components on different pages, but the event notifications may not be sent to all these components. In addition, any change to the @StorageLink decorated variables may trigger UI re-rendering, bringing negative impact on the performance.
 
-In the following example, any tap event in the **TapImage** component will trigger a change of the **tapIndex** attribute. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all custom components owning the **tapIndex** attribute bound to AppStorage are notified of the change. After @Watch observes the change to **tapIndex**, the state variable **tapColor** is updated, and the UI is re-rendered. (Because **tapIndex** is not directly bound to the UI, its change does not directly trigger UI re-rendering.)
+In the following example, any click event in the **TapImage** component will trigger a change of the **tapIndex** attribute. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all custom components owning the **tapIndex** attribute bound to AppStorage are notified of the change. After @Watch observes the change to **tapIndex**, the state variable **tapColor** is updated, and the UI is re-rendered. (Because **tapIndex** is not directly bound to the UI, its change does not directly trigger UI re-rendering.)
 
 To use the preceding mechanism to implement event notification, ensure that variables in AppStorage are not directly bound to the UI and the @Watch decorated function is as simple as possible. (If the @Watch decorated function takes a long time to execute, the UI re-rendering efficiency will be affected.)
 
@@ -716,4 +716,4 @@ When using AppStorage together with [PersistentStorage](arkts-persiststorage.md)
 - After an attribute is created in AppStorage, a call to **Environment.envProp()** with the same attribute name will fail. This is because environment variables will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable names in AppStorage.
 
 - Changes to the variables decorated by state decorators will cause UI re-rendering. If the changes are for message communication, rather than for UI re-rendering, the emitter mode is recommended. For the example, see <!--Del-->[<!--DelEnd-->**Unrecommended: Using @StorageLink to Implement Event Notification**<!--Del-->](#unrecommended-using-storagelink-to-implement-event-notification)<!--DelEnd-->.
-
+<!--no_check-->

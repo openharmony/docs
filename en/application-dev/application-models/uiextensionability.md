@@ -3,7 +3,7 @@
 ## Overview
 
 [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) is an ExtensionAbility component of the UI type. It is usually used in modular development scenarios where process isolation is required, for example, system dialog boxes, status bars, and capsules. There are two forms: embedded and system pop-ups.
-- The UIExtensionAbility in embedded mode must be used together with the [\<UIExtensionComponent>](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md). Specifically, with the \<UIExtensionComponent>, you can embed the UI provided by the UIExtensionAbility of another application into a UIAbility of your application. The UIExtensionAbility runs in a process independent of the UIAbility for UI layout and rendering.
+- The UIExtensionAbility in embedded mode must be used together with the [UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md). Specifically, with the UIExtensionComponent, you can embed the UI provided by the UIExtensionAbility of another application into a UIAbility of your application. The UIExtensionAbility runs in a process independent of the UIAbility for UI layout and rendering.
 - To start the UIExtensionAbility in system pop-up mode, call [requestModalUIExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextrequestmodaluiextension11) or the specified interface encapsulated in the application.
 
 ## Constraints

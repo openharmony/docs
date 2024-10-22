@@ -1,6 +1,6 @@
 # UIExtensionComponent (System API)
 
-**\<UIExtensionComponent>** is used to embed UIs provided by other applications in the local application UI. The embedded content runs in another process, and the local application does not participate in its layout and rendering.
+**UIExtensionComponent** is used to embed UIs provided by other applications in the local application UI. The embedded content runs in another process, and the local application does not participate in its layout and rendering.
 
 This component is usually used in modular development scenarios where process isolation is required.
 

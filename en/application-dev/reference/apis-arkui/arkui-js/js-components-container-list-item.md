@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-**\<list-item>** is a child component of the **[\<list>](js-components-container-list.md)** component and is used to display items in a list. You can customize the width of each **\<list-item>**. However, if you retain the default value **stretch** of **align-items** for the parent component **\<list>**, the width of **\<list-item>** is equal to that of **\<list>**. To make the customized **\<list-item>** width take effect, set **align-items** to other values rather than **stretch**.
+**\<list-item>** is a child component of the **[List](js-components-container-list.md)** component and is used to display items in a list. You can customize the width of each **\<list-item>**. However, if you retain the default value **stretch** of **align-items** for the parent component **List**, the width of **\<list-item>** is equal to that of **List**. To make the customized **\<list-item>** width take effect, set **align-items** to other values rather than **stretch**.
 
 ## Required Permissions
 

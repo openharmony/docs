@@ -35,7 +35,7 @@ The main service flow of using the Notification Kit is as follows:
 >
 > The display effect depends on the device capability and notification center UI style.
 
-Common notification styles in the Notification Kit are as below.
+Common notification styles in the Notification Kit are as follows.
 | Type| Notification Style| Description|
 | ---- | --------| ------- |
 | [Text](./text-notification.md)          | ![text_notification](figures/text_notification.png)   | A maximum of three lines can be displayed in the notification text. Excess content is truncated by an ellipsis (...).|
@@ -49,6 +49,6 @@ Common notification styles in the Notification Kit are as below.
 - The total number of notifications published by all system applications cannot exceed 10 per second, and that of notifications updated cannot exceed 20 per second.
 
 ## Relationship with Related Kits
-- Notifications created by Notification Kit are displayed in the notification panel in real time. To publish scheduled notifications when your application is in the background or is not running, you can use [BackGroundTask Kit](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md). For example, you can use it to publish a flash sale reminder for your shopping application. Currently, the notification reminder feature is available for countdown, calendar, and alarm events.
-- You can choose [Ability Kit](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md#wantagentgetwantagent) to set the behavior intent after a user opens a notification.<!--RP2-->
+- Notifications created by Notification Kit are displayed in the notification panel in real time. To publish scheduled notifications when your application is in the background or is not running, you can use [`BackGroundTask Kit`](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md). For example, you can use it to publish a flash sale reminder for your shopping application. Currently, the notification reminder feature is available for countdown, calendar, and alarm events.
+- You can choose [`Ability Kit`](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md#wantagentgetwantagent) to set the behavior intent after a user opens a notification.<!--RP2-->
 <!--RP2End-->

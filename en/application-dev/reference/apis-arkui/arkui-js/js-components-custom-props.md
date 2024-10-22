@@ -53,7 +53,7 @@ export default {
 }
 ```
 
-In this example, a **\<text>** component is added to display the title. The title content is a custom attribute, which displays the text specified by a user. If the user has not set a title, the default text will be displayed. Add the attribute when referencing the custom component.
+In this example, a **Text** component is added to display the title. The title content is a custom attribute, which displays the text specified by a user. If the user has not set a title, the default text will be displayed. Add the attribute when referencing the custom component.
 
 ```html
 <!-- xxx.hml -->

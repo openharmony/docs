@@ -15202,17 +15202,17 @@ The object contains information about media on the web page. The application may
 
 | Name| Type| Mandatory| Description|
 |------|------|------|------|
-| embedID | string | Yes| ID of **\<video>** or **\<audio>** on the web page.|
+| embedID | string | Yes| ID of **Video** or **\<audio>** on the web page.|
 | mediaType | [MediaType](#mediatype12) | Yes| Type of the media.|
 | mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | Yes| Source of the media. There may be multiple sources. The application needs to select a supported source to play.|
 | surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | Yes| Surface information used for same-layer rendering.|
-| controlsShown | boolean | Yes| Whether the **controls** attribute exists in **\<video>** or **\<audio>**.|
-| controlList | string[] | Yes| Value of the **controlslist** attribute in **\<video>** or **\<audio>**.|
+| controlsShown | boolean | Yes| Whether the **controls** attribute exists in **Video** or **\<audio>**.|
+| controlList | string[] | Yes| Value of the **controlslist** attribute in **Video** or **\<audio>**.|
 | muted | boolean | Yes| Whether to mute the player.|
 | posterUrl | string | Yes| URL of a poster.|
 | preload | [Preload](#preload12) | Yes| Whether preloading is required.|
 | headers | Record\<string, string\> | Yes| HTTP headers that need to be included in the player's request for media resources.|
-| attributes | Record\<string, string\> | Yes| Attributes in **\<video>** or **\<audio>**.|
+| attributes | Record\<string, string\> | Yes| Attributes in **Video** or **\<audio>**.|
 
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>

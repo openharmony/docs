@@ -1,6 +1,6 @@
 # Video
 
-The **\<Video>** component is used to play a video and control its playback.
+The **Video** component is used to play a video and control its playback.
 
 >  **NOTE**
 >
