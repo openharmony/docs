@@ -1,12 +1,12 @@
 # 延迟加载（lazy import）
 
-随着应用程序功能的不断扩展，冷启动所需的时间显著增长，主要是由于在启动初期加载了大量模块，其中存在大量未被实际执行的冗余文件。这种情形不仅拖延了应用的初始化过程，还造成了资源的无效占用。亟需采取措施精简加载流程，剔除非必需的文件执行，以优化冷启动性能，确保用户体验的流畅性。
+随着应用程序功能的不断扩展，冷启动所需的时间显著增长，主要是由于在启动初期加载了大量模块，其中存在大量未被实际执行的冗余文件。这种情形不仅拖延了应用的初始化过程，还造成了资源的无效占用，亟需采取措施精简加载流程，剔除非必需的文件执行，以优化冷启动性能，确保用户体验的流畅性。
 
 > **说明：**
 > 
-> 延迟加载特性在API12版本开始支持。
+> - 延迟加载特性在API12版本开始支持。
 >
-> 开发者如需在API12上使用lazy import语法，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则将无法通过编译。参考[DevEco Studio build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5#section511142752919)
+> - 开发者如需在API12上使用lazy import语法，需在工程中配置"compatibleSdkVersionStage": "beta3"，否则将无法通过编译。参考[DevEco Studio build-profile.json5配置文件说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5#section511142752919)。
 
 
 ## 功能特性
