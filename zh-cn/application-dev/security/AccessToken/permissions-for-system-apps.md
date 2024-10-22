@@ -4518,3 +4518,17 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+### ohos.permission.CUSTOM_SCREEN_CAPTURE
+
+允许应用获取屏幕图像。
+
+应用获取此权限后，可进行截屏、录屏等操作。当前仅平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：14
