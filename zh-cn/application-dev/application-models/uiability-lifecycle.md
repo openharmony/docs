@@ -64,31 +64,32 @@ export default class EntryAbility extends UIAbility {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // 切到前台
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage foreground.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage foreground.`);
             break;
           case window.WindowStageEventType.ACTIVE: // 获焦状态
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage active.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage active.`);
             break;
           case window.WindowStageEventType.INACTIVE: // 失焦状态
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage inactive.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage inactive.`);
             break;
           case window.WindowStageEventType.HIDDEN: // 切到后台
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage background.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage background.`);
             break;
           case window.WindowStageEventType.RESUMED: // 前台可交互状态
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage resumed.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage resumed.`);
             break;
           case window.WindowStageEventType.PAUSED: // 前台不可交互状态
-            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage paused.');
+            hilog.info(DOMAIN_NUMBER, TAG, `windowStage paused.`);
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      hilog.error(DOMAIN_NUMBER, TAG, 'Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
+      hilog.error(DOMAIN_NUMBER, TAG,
+        `Failed to enable the listener for window stage event changes. Cause: ${JSON.stringify(exception)}`);
     }
-    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(DOMAIN_NUMBER, TAG, `%{public}s`, `Ability onWindowStageCreate`);
     // 设置UI加载
     windowStage.loadContent('pages/Index', (err, data) => {
       // ...
