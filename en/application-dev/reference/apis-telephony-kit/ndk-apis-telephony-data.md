@@ -3,24 +3,25 @@
 
 ## Overview
 
-Provides C interface for the telephony cellular data.
+Provides C APIs for the cellular data module.
 
 **Since**: 13
+
 
 ## Summary
 
 
 ### File
 
-| Name                                      | Description                                           |
+| Name| Description|
 | -------- | -------- |
-| [telephony_data.h](telephony__data_8h.md) | Provides C interface for the telephony cellular data. |
+| [telephony_data.h](telephony__data_8h.md) | Defines C APIs for cellular data module.|
 
 ### Functions
 
-| Name                                                         | Description                                |
+| Name| Description|
 | -------- | -------- |
-| int32_t [OH_Telephony_GetDefaultCellularDataSlotId](#oh_telephony_getdefaultcellulardataslotid)(void) | Obtains the default cellular data slot id. |
+| int32_t [OH_Telephony_GetDefaultCellularDataSlotId](#oh_telephony_getdefaultcellulardataslotid)(void) | Obtains the default SIM card used for mobile data.|
 
 ## Function Description
 
@@ -33,14 +34,14 @@ int32_t OH_Telephony_GetDefaultCellularDataSlotId(void)
 
 **Description**
 
-Obtains the default cellular data slot id.
+Obtains the default SIM card used for mobile data.
 
-**System capability** :SystemCapability.Telephony.CellularData
+**System capability**: SystemCapability.Telephony.CellularData
 
 **Since**: 13
 
 **Returns**
 
-**0**: slot 1.
+**0**: card slot 1.
 
-**1**: slot 2.
+**1**: card slot 2

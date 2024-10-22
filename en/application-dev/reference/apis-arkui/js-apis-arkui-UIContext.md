@@ -4650,6 +4650,107 @@ try {
 };
 ```
 
+### openToast<sup>12+</sup>
+
+openToast(options: ShowToastOptions): Promise&lt;number&gt;
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory | Description          |
+| ------- | ------------------------------------------------------------ | ---- | -------------- |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | Yes  | Toast options. |
+
+**Return value**
+
+| Type            | Description                                |
+| ---------------- | ------------------------------------ |
+| Promise&lt;number&gt; | ID of the toast, which is required in **closeToast**. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID | Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**Example**
+
+```ts
+import { PromptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+@Entry
+@Component
+struct toastExample {
+  @State toastId: number = 0;
+  promptAction: PromptAction = this.getUIContext().getPromptAction()
+  build() {
+    Column() {
+      Button('Open Toast')
+        .height(100)
+        .onClick(() => {
+          try {
+            this.promptAction.openToast({
+              message: 'Toast Massage',
+              duration: 10000,
+            }).then((toastId: number) => {
+              this.toastId = toastId;
+            });
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`OpenToast error code is ${code}, message is ${message}`);
+          };
+        })
+      Blank().height(50);
+      Button('Close Toast')
+        .height(100)
+        .onClick(() => {
+          try {
+            this.promptAction.closeToast(this.toastId);
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`CloseToast error code is ${code}, message is ${message}`);
+          };
+        })
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+### closeToast<sup>12+</sup>
+
+closeToast(toastId: number): void
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type  | Mandatory | Description                         |
+| ------- | ------ | ---- | ----------------------------- |
+| toastId | number | Yes  | ID of the toast to close, which is returned by **openToast**. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [promptAction Error Codes](errorcode-promptAction.md).
+
+| ID | Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | Internal error.                                              |
+
+**Example**
+
+See the example of [openToaset12](#opentoast12).
+
 ### showDialog
 
 showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;promptAction.ShowDialogSuccessResponse&gt;): void

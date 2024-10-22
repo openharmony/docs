@@ -1,4 +1,4 @@
-# Calendar Kit API Reference
+# Calendar Kit
 
 - ArkTS APIs
   - [@ohos.calendarManager (Calendar Manager)](js-apis-calendarManager.md)

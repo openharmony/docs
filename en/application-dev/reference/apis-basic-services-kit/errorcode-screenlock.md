@@ -22,14 +22,16 @@ This error code is reported when the screen lock management service is not worki
 
 **Solution**
 
-1. Run the **ps -ef** command to check whether the service is running. If the service is not running, restart the system.
+Run the **ps -ef** command to check whether the service is running.
+
+1. If the service is not running, restart the system.
 2. If the service is running, close the service process and wait for automatic recovery. If the issue persists, perform step 1.
 
 ## 13200003 Invalid Use
 
 **Error Message**
 
-Invalid use.
+illegal use.
 
 **Description**
 
