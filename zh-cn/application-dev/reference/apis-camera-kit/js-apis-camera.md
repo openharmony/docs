@@ -287,7 +287,7 @@ getSupportedSceneModes(camera: CameraDevice): Array\<SceneMode\>
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。       |
+| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。传参异常时，会返回错误码。       |
 
 **返回值：**
 
@@ -327,7 +327,7 @@ getSupportedOutputCapability(camera: CameraDevice): CameraOutputCapability
 
 | 参数名         | 类型                                                            | 必填 | 说明                      |
 | ------------ |--------------------------------------------------------------- | -- | -------------------------- |
-| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。       |
+| camera | [CameraDevice](#cameradevice)                              | 是 | 相机设备，通过 [getSupportedCameras](#getsupportedcameras) 接口获取。传参异常时，会返回错误码。      |
 
 **返回值：**
 
@@ -891,7 +891,7 @@ createSession\<T extends Session\>(mode: SceneMode): T
 
 | 参数名   | 类型              | 必填 | 说明       |
 | -------- | -----------------| ---- | --------- |
-| mode     | SceneMode        | 是   | 相机支持的模式。 |
+| mode     | [SceneMode](#scenemode11)     | 是   | 相机支持的模式。传参异常（如超出范围、传入null、未定义等），实际接口不会生效。 |
 
 **返回值：**
 
@@ -1082,7 +1082,7 @@ isTorchModeSupported(mode: TorchMode): boolean
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。 |
+| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。传参为null或者undefined，作为0处理，手电筒关闭。 |
 
 **返回值：**
 
@@ -1135,7 +1135,7 @@ setTorchMode(mode: TorchMode): void
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。 |
+| mode | [TorchMode](#torchmode11) | 是 | 手电筒模式。传参为null或者undefined，作为0处理，手电筒关闭。 |
 
 **错误码：**
 
@@ -2013,8 +2013,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | 是   | 最小帧率 |
-| maxFps   | number        | 是   | 最大帧率 |
+| minFps   | number        | 是   | 最小帧率。 |
+| maxFps   | number        | 是   | 最大帧率，当传入的最小值大于最大值时，传参异常，接口不生效。|
 
 **错误码：**
 
@@ -3723,8 +3723,8 @@ setFrameRate(minFps: number, maxFps: number): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | 是   | 最小帧率 |
-| maxFps   | number        | 是   | 最大帧率 |
+| minFps   | number        | 是   | 最小帧率。 |
+| maxFps   | number        | 是   | 最大帧率。当传入的最小值大于最大值时，传参异常，接口不生效。 |
 
 **错误码：**
 
@@ -4335,7 +4335,7 @@ canAddInput(cameraInput: CameraInput): boolean
 
 | 参数名        | 类型                          | 必填 | 说明                     |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraInput | [CameraInput](#camerainput) | 是   | 需要添加的CameraInput实例。 |
+| cameraInput | [CameraInput](#camerainput) | 是   | 需要添加的CameraInput实例。传参异常（如超出范围、传入null、未定义等），实际接口不会生效。 |
 
 **返回值：**
 
@@ -4448,7 +4448,7 @@ canAddOutput(cameraOutput: CameraOutput): boolean
 
 | 参数名        | 类型                          | 必填 | 说明                     |
 | ----------- | --------------------------- | ---- | ------------------------ |
-| cameraOutput | [CameraOutput](#cameraoutput) | 是   | 需要添加的CameraOutput实例。 |
+| cameraOutput | [CameraOutput](#cameraoutput) | 是   | 需要添加的CameraOutput实例。传参异常（如超出范围、传入null、未定义等），实际接口不会生效。 |
 
 **返回值：**
 
@@ -4798,7 +4798,7 @@ setFlashMode(flashMode: FlashMode): void
 
 | 参数名       | 类型                     | 必填 | 说明                  |
 | --------- | ----------------------- | ---- | --------------------- |
-| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。       |
+| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。传参为null或者undefined，作为0处理，闪光灯关闭。       |
 
 **错误码：**
 
@@ -4920,7 +4920,7 @@ isFlashModeSupported(flashMode: FlashMode): boolean
 
 | 参数名       | 类型                     | 必填 | 说明                               |
 | --------- | ----------------------- | ---- | --------------------------------- |
-| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。                     |
+| flashMode | [FlashMode](#flashmode) | 是   | 指定闪光灯模式。传参为null或者undefined，作为0处理，闪光灯关闭。             |
 
 **返回值：**
 
@@ -5012,7 +5012,7 @@ setExposureMode(aeMode: ExposureMode): void
 
 | 参数名      | 类型                            | 必填 | 说明                    |
 | -------- | -------------------------------| ---- | ----------------------- |
-| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。                |
+| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。传参为null或者undefined，作为0处理，曝光锁定。                |
 
 **错误码：**
 
@@ -5218,7 +5218,7 @@ isExposureModeSupported(aeMode: ExposureMode): boolean
 
 | 参数名      | 类型                           | 必填  | 说明                           |
 | -------- | -------------------------------| ---- | ----------------------------- |
-| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。                      |
+| aeMode   | [ExposureMode](#exposuremode)  | 是   | 曝光模式。传参为null或者undefined，作为0处理，曝光锁定。                 |
 
 **返回值：**
 
@@ -5312,7 +5312,7 @@ setFocusMode(afMode: FocusMode): void
 
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。       |
+| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。传参为null或者undefined，作为0处理，手动对焦模式。       |
 
 **错误码：**
 
@@ -5514,7 +5514,7 @@ isFocusModeSupported(afMode: FocusMode): boolean
 
 | 参数名      | 类型                     | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | -------------------------------- |
-| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。                    |
+| afMode   | [FocusMode](#focusmode) | 是   | 指定的焦距模式。传参为null或者undefined，作为0处理，手动对焦模式。                    |
 
 **返回值：**
 
@@ -6877,7 +6877,7 @@ setExposureBias(exposureBias: number): void
 
 | 参数名     | 类型                            | 必填  | 说明                                                                                                                                                                                    |
 | -------- | -------------------------------|-----|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| exposureBias   | number                   | 是  | 曝光补偿，[getExposureBiasRange](#getexposurebiasrange11)查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。曝光补偿存在步长，如步长为0.5。则设置1.2时，获取到实际生效曝光补偿为1.0。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| exposureBias   | number                   | 是  | 曝光补偿，[getExposureBiasRange](#getexposurebiasrange11)查询支持的范围，如果设置超过支持范围的值，自动匹配到就近临界点。曝光补偿存在步长，如步长为0.5。则设置1.2时，获取到实际生效曝光补偿为1.0。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。传参为null或者undefined，作为0处理，曝光补偿设置0。 |
 
 **错误码：**
 
@@ -7275,7 +7275,7 @@ setZoomRatio(zoomRatio: number): void
 
 | 参数名       | 类型                  | 必填  | 说明                 |
 | --------- | -------------------- |-----| ------------------- |
-| zoomRatio | number               | 是  | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。 |
+| zoomRatio | number               | 是  | 可变焦距比，通过[getZoomRatioRange](#getzoomratiorange11)获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。传参为null或者undefined，作为0处理，变焦设置最小值。 |
 
 **错误码：**
 
@@ -7364,7 +7364,7 @@ isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean
 
 | 参数名      | 类型                                              | 必填 | 说明                             |
 | -------- | ------------------------------------------------- | ---- | ------------------------------ |
-| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | 是   | 视频防抖模式。                    |
+| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | 是   | 视频防抖模式。传参为null或者undefined，作为0处理，超级防抖模式关闭。              |
 
 **返回值：**
 
@@ -7456,7 +7456,7 @@ setVideoStabilizationMode(mode: VideoStabilizationMode): void
 
 | 参数名      | 类型                                              | 必填 | 说明                    |
 | -------- | ------------------------------------------------- | ---- | --------------------- |
-| mode     | [VideoStabilizationMode](#videostabilizationmode) | 是   | 需要设置的视频防抖模式。   |
+| mode     | [VideoStabilizationMode](#videostabilizationmode) | 是   | 需要设置的视频防抖模式。传参为null或者undefined，作为0处理，超级防抖模式关闭。   |
 
 **错误码：**
 
@@ -8341,7 +8341,7 @@ addSecureOutput(previewOutput: PreviewOutput): void
 
 | 参数名           | 类型                             | 必填 | 说明            |
 | ------------- | ------------------------------- | ---- |---------------|
-| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要标记成安全输出的预览流 |
+| previewOutput  | [PreviewOutput](#previewoutput)   | 是   | 需要标记成安全输出的预览流，传参异常时，会返回错误码。 |
 
 **错误码：**
 
