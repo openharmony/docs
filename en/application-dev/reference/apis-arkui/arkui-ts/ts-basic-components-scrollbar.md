@@ -1,6 +1,6 @@
 # ScrollBar
 
-The **\<ScrollBar>** is used together with scrollable components, such as **\<List>**, **\<Grid>**, and **\<Scroll>**.
+The **ScrollBar** is used together with scrollable components, such as **List**, **Grid**, and **Scroll**.
 
 >  **NOTE**
 >
@@ -32,9 +32,9 @@ ScrollBar(value: ScrollBarOptions)
 
 >  **NOTE**
 >
-> The **\<ScrollBar>** component defines the behavior style of the scrollable area, and its subnodes define the behavior style of the scrollbar.
+> The **ScrollBar** component defines the behavior style of the scrollable area, and its subnodes define the behavior style of the scrollbar.
 > 
-> This component is bound to a scrollable component through **scroller**, and can be used to scroll the scrollable component only when their directions are the same. The **\<ScrollBar>** component can be bound to only one scrollable component, and vice versa.
+> This component is bound to a scrollable component through **scroller**, and can be used to scroll the scrollable component only when their directions are the same. The **ScrollBar** component can be bound to only one scrollable component, and vice versa.
 
 ## ScrollBarDirection
 

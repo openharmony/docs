@@ -43,7 +43,7 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 | Name| Description|
 | -------- | -------- |
 | Normal | The gestures of child components are enabled and recognized based on the default gesture recognition sequence.|
-| IgnoreInternal | The gestures of child components are disabled, including the built-in gestures, such as the built-in swipe gesture for a **\<List>** component. If the areas of the parent and child components are partly overlapped, only gestures in the overlapped areas are disabled.|
+| IgnoreInternal | The gestures of child components are disabled, including the built-in gestures, such as the built-in swipe gesture for a **List** component. If the areas of the parent and child components are partly overlapped, only gestures in the overlapped areas are disabled.|
 
 ## Gesture Response Event
 

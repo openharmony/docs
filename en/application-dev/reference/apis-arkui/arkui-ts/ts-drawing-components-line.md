@@ -1,6 +1,6 @@
 # Line
 
-The **\<Line>** component is used to draw a straight line.
+The **Line** component is used to draw a straight line.
 
 >  **NOTE**
 >
@@ -64,7 +64,7 @@ Sets the coordinates (relative coordinates) of the end point of the line. An inv
 
 fill(value: ResourceColor)
 
-Sets the color of the fill area. This attribute does not take effect because the **\<Line>** component cannot be used to draw a closed shape.
+Sets the color of the fill area. This attribute does not take effect because the **Line** component cannot be used to draw a closed shape.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -80,7 +80,7 @@ Sets the color of the fill area. This attribute does not take effect because the
 
 fillOpacity(value: number | string | Resource)
 
-Sets the opacity of the fill area. This attribute does not take effect because the **\<Line>** component cannot be used to draw a closed shape.
+Sets the opacity of the fill area. This attribute does not take effect because the **Line** component cannot be used to draw a closed shape.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -160,7 +160,7 @@ Sets the cap style of the stroke.
 
 strokeLineJoin(value: LineJoinStyle)
 
-Sets the join style of the stroke. This attribute does not work for the **\<Line>** component, which does not have corners.
+Sets the join style of the stroke. This attribute does not work for the **Line** component, which does not have corners.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -176,7 +176,7 @@ Sets the join style of the stroke. This attribute does not work for the **\<Line
 
 strokeMiterLimit(value: number | string)
 
-Limit value when the sharp angle is drawn as a miter. This attribute does not take effect because the **\<Line>** component cannot be used to draw a shape with a sharp angle.
+Limit value when the sharp angle is drawn as a miter. This attribute does not take effect because the **Line** component cannot be used to draw a shape with a sharp angle.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

@@ -97,10 +97,10 @@ In addition to the [universal styles](js-components-common-styles.md), the follo
 | text-color                 | &lt;color&gt;              | -          | No   | Text color of the selector.                               |
 | font-size                  | &lt;length&gt;             | -          | No   | Font size of the selector.                               |
 | allow-scale                | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
-| letter-spacing             | &lt;length&gt;             | 0          | No   | Letter spacing of the selector. For details, see **letter-spacing** in the **[\<text>](js-components-basic-text.md#styles)** component.|
-| text-decoration            | string                     | -          | No   | Text decoration of the selector. For details, see **text-decoration** in the **[\<text>](js-components-basic-text.md#styles)** component.|
-| font-style                 | string                     | normal     | No   | Font style of the selector. For details, see **font-style** in the **[\<text>](js-components-basic-text.md#styles)** component.|
-| font-weight                | number \| string | normal     | No   | Font weight of the selector. For details, see **font-weight** in the **[\<text>](js-components-basic-text.md#styles)** component.|
+| letter-spacing             | &lt;length&gt;             | 0          | No   | Letter spacing of the selector. For details, see **letter-spacing** in the **[Text](js-components-basic-text.md#styles)** component.|
+| text-decoration            | string                     | -          | No   | Text decoration of the selector. For details, see **text-decoration** in the **[Text](js-components-basic-text.md#styles)** component.|
+| font-style                 | string                     | normal     | No   | Font style of the selector. For details, see **font-style** in the **[Text](js-components-basic-text.md#styles)** component.|
+| font-weight                | number \| string | normal     | No   | Font weight of the selector. For details, see **font-weight** in the **[Text](js-components-basic-text.md#styles)** component.|
 | font-family                | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 | line-height                | &lt;length&gt;             | 0px        | No   | Text line height of the selector.                               |
 | column-height<sup>5+</sup> | &lt;length&gt;             | -          | No   | Height of the selector option list.                            |

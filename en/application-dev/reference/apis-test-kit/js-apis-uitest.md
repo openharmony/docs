@@ -4536,7 +4536,7 @@ async function demo() {
 
 scrollSearch(by: By): Promise\<UiComponent>
 
-Scrolls on this component to search for the target component (applicable to components that support scrolling, such as **\<List>**).
+Scrolls on this component to search for the target component (applicable to components that support scrolling, such as **List**).
 
 This API is deprecated since API version 9. You are advised to use [scrollSearch<sup>9+</sup>](#scrollsearch9) instead.
 

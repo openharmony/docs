@@ -4,7 +4,7 @@ Hit test control allows you to configure hit testing for components. When proces
 
 >  **NOTE**
 >  - The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
->  - When the touch areas of nodes in the **\<Stack>** component overlap, hit testing is performed only on the node displayed at the top layer by default. To perform hit testing on the node at the lower layer, set **hitTestBehavior** to **HitTestMode.Transparent** for the upper-layer node.
+>  - When the touch areas of nodes in the **Stack** component overlap, hit testing is performed only on the node displayed at the top layer by default. To perform hit testing on the node at the lower layer, set **hitTestBehavior** to **HitTestMode.Transparent** for the upper-layer node.
 
 ## hitTestBehavior
 
@@ -32,9 +32,9 @@ Sets how the component behaves during hit testing.
 
 ## Example
 
-Set **hitTestBehavior** to **HitTestMode.Transparent** for the **\<Text>** component, which means that the inner-layer **\<Stack>** component is also considered during hit testing. Therefore, both the **\<Text>** and **\<Stack>** components respond to the **onTouch** event.
+Set **hitTestBehavior** to **HitTestMode.Transparent** for the **Text** component, which means that the inner-layer **Stack** component is also considered during hit testing. Therefore, both the **Text** and **Stack** components respond to the **onTouch** event.
 
-Set **hitTestBehavior** to **HitTestMode.Block** for the inner-layer **\<Stack>** component, which means that its child nodes and sibling node **\<Button>** are blocked from hit testing. Therefore, neither the inner-layer or out-layer **\<Button>** components respond to the **onTouch** event.
+Set **hitTestBehavior** to **HitTestMode.Block** for the inner-layer **Stack** component, which means that its child nodes and sibling node **Button** are blocked from hit testing. Therefore, neither the inner-layer or out-layer **Button** components respond to the **onTouch** event.
 
 ```ts
 // xxx.ets

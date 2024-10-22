@@ -58,7 +58,7 @@ libnative_buffer.so
 
 1. Initialize the EGL environment.
 
-   Refer to the code snippet below. For details about how to use the **\<XComponent>**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
+   Refer to the code snippet below. For details about how to use the **XComponent**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
    ```c++   
    using GetPlatformDisplayExt = PFNEGLGETPLATFORMDISPLAYEXTPROC;
    constexpr const char *EGL_EXT_PLATFORM_WAYLAND = "EGL_EXT_platform_wayland";

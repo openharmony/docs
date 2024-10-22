@@ -1,6 +1,6 @@
 # LoadingProgress
 
-The **\<LoadingProgress>** component is used to create a loading animation.
+The **LoadingProgress** component is used to create a loading animation.
 
 >  **NOTE**
 >
@@ -16,7 +16,7 @@ Not supported
 
 LoadingProgress()
 
-Creates a **\<LoadingProgress>** component.
+Creates a **LoadingProgress** component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -30,7 +30,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 color(value: ResourceColor)
 
-Sets the foreground color for the **\<LoadingProgress>** component.
+Sets the foreground color for the **LoadingProgress** component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -42,7 +42,7 @@ Sets the foreground color for the **\<LoadingProgress>** component.
 
 | Name | Type                                      | Mandatory | Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Foreground color of the **\<LoadingProgress>** component.<br>Default value:<br>API version 10 or earlier: **'#99666666'**<br>API version 11 or later: **'#ff666666'** |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Foreground color of the **LoadingProgress** component.<br>Default value:<br>API version 10 or earlier: **'#99666666'**<br>API version 11 or later: **'#ff666666'** |
 
 ### enableLoading<sup>10+</sup>
 

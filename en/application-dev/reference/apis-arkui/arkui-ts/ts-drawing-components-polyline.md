@@ -1,6 +1,6 @@
 # Polyline
 
-The **\<Polyline>** component is used to draw a polyline.
+The **Polyline** component is used to draw a polyline.
 
 >  **NOTE**
 >

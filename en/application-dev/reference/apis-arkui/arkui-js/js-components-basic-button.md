@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<button>** component includes capsule, circle, text, arc, and download buttons.
+The **Button** component includes capsule, circle, text, arc, and download buttons.
 
 
 ## Child Components
@@ -38,7 +38,7 @@ In addition to the [universal styles](js-components-common-styles.md), the follo
 | font-size   | &lt;length&gt;             | 16px      | No   | Font size of the button.                                |
 | allow-scale | boolean                    | true            | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
 | font-style  | string                     | normal          | No   | Font style of the button.                                |
-| font-weight | number \| string | normal          | No   | Font weight of the button. For details, see **font-weight** of the [**\<text>** component](js-components-basic-text.md#styles).|
+| font-weight | number \| string | normal          | No   | Font weight of the button. For details, see **font-weight** of the [**Text** component](js-components-basic-text.md#styles).|
 | font-family | &lt;string&gt;             | sans-serif      | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 | icon-width  | &lt;length&gt;             | -               | No   | Width of the internal icon of a circle button. The entire circle button is filled by default.<br>This style must be set when the icon uses the SVG image.|
 | icon-height | &lt;length&gt;             | -               | No   | Height of the internal icon of a circle button. The entire circle button is filled by default.<br>This style must be set when the icon uses the SVG image.|
@@ -55,7 +55,7 @@ In addition to the **background-color**, **opacity**, **display**, **visibility*
 | font-size   | &lt;length&gt;             | 37.5px     | No   | Font size of the arc button.                              |
 | allow-scale | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.          |
 | font-style  | string                     | normal     | No   | Font style of the arc button.                              |
-| font-weight | number \| string | normal     | No   | Font weight of the arc button. For details, see **font-weight** of the [**\<text>**](js-components-basic-text.md#styles) component. |
+| font-weight | number \| string | normal     | No   | Font weight of the arc button. For details, see **font-weight** of the [**Text**](js-components-basic-text.md#styles) component. |
 | font-family | &lt;string&gt;             | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 
 

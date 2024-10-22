@@ -1,6 +1,6 @@
 # text
 
-The **\<text>** component is used to display a piece of textual information.
+The **Text** component is used to display a piece of textual information.
 
 > **NOTE**
 >

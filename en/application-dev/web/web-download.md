@@ -2,9 +2,9 @@
 
 ## Listening for Downloads Initiated from Pages
 
-Call [setDownloadDelegate()](../reference/apis-arkweb/js-apis-webview.md#setdownloaddelegate11) to register a **DownloadDelegate** object with the **\<Web>** component to listen for downloads initiated from pages. While the **\<Web>** component downloads resources as requested, it notifies the application of the download progress through the **DownloadDelegate** object.
+Call [setDownloadDelegate()](../reference/apis-arkweb/js-apis-webview.md#setdownloaddelegate11) to register a **DownloadDelegate** object with the **Web** component to listen for downloads initiated from pages. While the **Web** component downloads resources as requested, it notifies the application of the download progress through the **DownloadDelegate** object.
 
-In the following example, the **index.html** and **download.html** files are added to the **rawfile** folder of the application. After the application is started, a **\<Web>** component is created and the **index.html** file is loaded. After **setDownloadDelegate** is clicked, a **DownloadDelegate** object is registered with the **\<Web>** component. This **DownloadDelegate** object listens for any downloads initiated by clicking the download button on the page.
+In the following example, the **index.html** and **download.html** files are added to the **rawfile** folder of the application. After the application is started, a **Web** component is created and the **index.html** file is loaded. After **setDownloadDelegate** is clicked, a **DownloadDelegate** object is registered with the **Web** component. This **DownloadDelegate** object listens for any downloads initiated by clicking the download button on the page.
 
 ```ts
 // xxx.ets
@@ -79,9 +79,9 @@ HTML file to be downloaded:
 ## Initiating a Download Task
 
 Call [startDownload()](../reference/apis-arkweb/js-apis-webview.md#startdownload11) to initiate a download task.
-For a download initiated by it, the **\<Web>** component works out the referrer based on the currently displayed URL and its own default referrer policy.
+For a download initiated by it, the **Web** component works out the referrer based on the currently displayed URL and its own default referrer policy.
 
-  In the following example, clicking **setDownloadDelegate** registers a listener class with the **\<Web>** component, and clicking **startDownload** initiates a download task.
+  In the following example, clicking **setDownloadDelegate** registers a listener class with the **Web** component, and clicking **startDownload** initiates a download task.
   The application is notified of the download task progress through the configured **DownloadDelegate** object.
 
 ```ts

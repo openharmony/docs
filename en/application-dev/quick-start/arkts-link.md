@@ -56,59 +56,59 @@ An \@Link decorated variable in a child component shares the same value with a v
 
 - When the decorated variable is of the Date type, the overall value assignment of the Date object can be observed, and the following APIs can be called to update Date attributes: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
 
-  ```ts
-  @Component
-  struct DateComponent {
-    @Link selectedDate: Date;
-  
-    build() {
-      Column() {
-        Button(`child increase the year by 1`).onClick(() => {
-          this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+```ts
+@Component
+struct DateComponent {
+  @Link selectedDate: Date;
+
+  build() {
+    Column() {
+      Button(`child increase the year by 1`).onClick(() => {
+        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+      })
+      Button('child update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.selectedDate = new Date('2023-09-09')
         })
-        Button('child update the new date')
-          .margin(10)
-          .onClick(() => {
-            this.selectedDate = new Date('2023-09-09')
-          })
-        DatePicker({
-          start: new Date('1970-1-1'),
-          end: new Date('2100-1-1'),
-          selected: this.selectedDate
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+    }
+
+  }
+}
+
+@Entry
+@Component
+struct ParentComponent {
+  @State parentSelectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      Button('parent increase the month by 1')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1)
         })
-      }
-  
+      Button('parent update the new date')
+        .margin(10)
+        .onClick(() => {
+          this.parentSelectedDate = new Date('2023-07-07')
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.parentSelectedDate
+      })
+
+      DateComponent({ selectedDate:this.parentSelectedDate })
     }
   }
-  
-  @Entry
-  @Component
-  struct ParentComponent {
-    @State parentSelectedDate: Date = new Date('2021-08-08');
-  
-    build() {
-      Column() {
-        Button('parent increase the month by 1')
-          .margin(10)
-          .onClick(() => {
-            this.parentSelectedDate.setMonth(this.parentSelectedDate.getMonth() + 1)
-          })
-        Button('parent update the new date')
-          .margin(10)
-          .onClick(() => {
-            this.parentSelectedDate = new Date('2023-07-07')
-          })
-        DatePicker({
-          start: new Date('1970-1-1'),
-          end: new Date('2100-1-1'),
-          selected: this.parentSelectedDate
-        })
-  
-        DateComponent({ selectedDate:this.parentSelectedDate })
-      }
-    }
-  }
-  ```
+}
+```
 
 - When the decorated variable is **Map**, value changes of **Map** can be observed. In addition, you can call the **set**, **clear**, and **delete** APIs of **Map** to update its value. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
 
@@ -165,10 +165,10 @@ struct GreenButton {
       .fontColor('#FFFFFF, 90%')
       .onClick(() => {
         if (this.greenButtonState.width < 700) {
-         // Update the attribute of the class. The change can be observed and synchronized back to the parent component.
+          // Update the attribute of the class. The change can be observed and synchronized back to the parent component.
           this.greenButtonState.width += 60;
         } else {
-         // Update the class. The change can be observed and synchronized back to the parent component.
+          // Update the class. The change can be observed and synchronized back to the parent component.
           this.greenButtonState = new GreenButtonState(180);
         }
       })
@@ -506,7 +506,7 @@ struct Index {
 
 When using \@Link to decorate a state variable in a child component, ensure that the variable type is the same as the source type, and the source is a state variable decorated by a decorator such as \@State.
 
-[Incorrect Example]
+[Negative example]
 
 ```ts
 @Observed
@@ -547,7 +547,7 @@ struct Parent {
 
 In the example, the type of **\@Link testNum: number** and the initialization from the parent component **LinkChild ({testNum:this.testNum.c})** are incorrect. The data source of \@Link must be a decorated state variable. The \@Link decorated variables must be of the same type as the data source, for example, \@Link: T and \@State: T. Therefore, the value should be changed to **\@Link testNum: ClassA**, and the initialization from the parent component should be **LinkChild({testNum: this.testNum})**.
 
-[Correct Example]
+[Positive example]
 
 ```ts
 @Observed

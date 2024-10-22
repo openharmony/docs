@@ -1,5 +1,5 @@
 # Component3D
-The **\<Component3D>** component is used to load 3D model resources and create custom rendering. It is typically used to present 3D animations.
+The **Component3D** component is used to load 3D model resources and create custom rendering. It is typically used to present 3D animations.
 
 >  **NOTE**
 >

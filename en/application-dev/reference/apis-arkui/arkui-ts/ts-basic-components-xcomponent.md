@@ -1,6 +1,6 @@
 # XComponent
 
-The **\<XComponent>** can accept and display the EGL/OpenGL ES and media data input.
+The **XComponent** can accept and display the EGL/OpenGL ES and media data input.
 
 > **NOTE**
 >
@@ -50,7 +50,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 
 > **NOTE**
 >
-> When **type** is set to **COMPONENT("component")**, the **\<XComponent>** functions as a container, where child components are laid out vertically.
+> When **type** is set to **COMPONENT("component")**, the **XComponent** functions as a container, where child components are laid out vertically.
 >
 > - Vertical alignment: [FlexAlign](ts-appendix-enums.md#flexalign).Start
 > - Horizontal alignment: [FlexAlign](ts-appendix-enums.md#flexalign).Center
@@ -62,7 +62,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 > The non-UI logic written internally needs to be encapsulated in one or more functions.
 
 ## Attributes
-- You can customize the content displayed in the **\<XComponent>**. Depending on the **type** settings, the support for the universal attributes [background](ts-universal-attributes-background.md), [opacity](ts-universal-attributes-opacity.md), and [image effects](ts-universal-attributes-image-effect.md) varies.
+- You can customize the content displayed in the **XComponent**. Depending on the **type** settings, the support for the universal attributes [background](ts-universal-attributes-background.md), [opacity](ts-universal-attributes-opacity.md), and [image effects](ts-universal-attributes-image-effect.md) varies.
 
 - When **type** is set to **SURFACE("surface")**, only the **shadow** attribute of [image effects](ts-universal-attributes-image-effect.md). For configuration of other attributes, you are advised to use the APIs provided by EGL/OpenGL ES instead.
 
@@ -115,7 +115,7 @@ Triggered when the plug-in is loaded.
 
 | Name  | Type  | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
-| event | object | No   | Context of the **\<XComponent>** object. The APIs contained in the context are defined at the C++ layer by developers.|
+| event | object | No   | Context of the **XComponent** object. The APIs contained in the context are defined at the C++ layer by developers.|
 
 ### onDestroy
 
@@ -125,7 +125,7 @@ Triggered when the plug-in is destroyed.
 
 ## XComponentController
 
-Defines the controller of the **\<XComponent>**. You can bind the controller to the **\<XComponent>** to invoke the methods of the component through the controller.
+Defines the controller of the **XComponent**. You can bind the controller to the **XComponent** to invoke the methods of the component through the controller.
 
 ### Creating an Object
 
@@ -137,20 +137,20 @@ xcomponentController: XComponentController = new XComponentController()
 
 getXComponentSurfaceId(): string
 
-Obtains the ID of the surface held by the **\<XComponent>**, which can then be used for @ohos APIs. For details, see [Camera Management](../../apis-camera-kit/js-apis-camera.md). This API works only when **type** of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
+Obtains the ID of the surface held by the **XComponent**, which can then be used for @ohos APIs. For details, see [Camera Management](../../apis-camera-kit/js-apis-camera.md). This API works only when **type** of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
 
 **Return value**
 
 | Type    | Description                     |
 | ------ | ----------------------- |
-| string | ID of the surface held by the **\<XComponent>**.|
+| string | ID of the surface held by the **XComponent**.|
 
 
 ### setXComponentSurfaceSize<sup>(deprecated)</sup>
 
 setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): void
 
-Sets the width and height of the surface held by the **\<XComponent>**. This API works only when **type** of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
+Sets the width and height of the surface held by the **XComponent**. This API works only when **type** of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
 
 This API is deprecated since API version 12. You are advised to use [setXComponentSurfaceRect](#setxcomponentsurfacerect12) instead.
 
@@ -158,37 +158,37 @@ This API is deprecated since API version 12. You are advised to use [setXCompone
 
 | Name          | Type  | Mandatory  | Description                     |
 | ------------- | ------ | ---- | ----------------------- |
-| surfaceWidth  | number | Yes   | Width of the surface held by the **\<XComponent>**.|
-| surfaceHeight | number | Yes   | Height of the surface held by the **\<XComponent>**.|
+| surfaceWidth  | number | Yes   | Width of the surface held by the **XComponent**.|
+| surfaceHeight | number | Yes   | Height of the surface held by the **XComponent**.|
 
 
 ### getXComponentContext
 
 getXComponentContext(): Object
 
-Obtains the context of an **\<XComponent>** object. This API works only when **type** of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
+Obtains the context of an **XComponent** object. This API works only when **type** of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
 
 **Return value**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| Object | Context of the **\<XComponent>** object. The APIs contained in the context are defined by developers. The context is passed in as the first parameter of the **onLoad** callback.|
+| Object | Context of the **XComponent** object. The APIs contained in the context are defined by developers. The context is passed in as the first parameter of the **onLoad** callback.|
 
 ### setXComponentSurfaceRect<sup>12+</sup>
 
 setXComponentSurfaceRect(rect: SurfaceRect): void
 
-Sets the rectangle for the surface held by the **\<XComponent>**. This API works only when type of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
+Sets the rectangle for the surface held by the **XComponent**. This API works only when type of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
 
 **Parameters**
 
 | Name| Type                            | Mandatory| Description                             |
 | ------ | ------------------------------------ | ---- | --------------------------------- |
-| rect   | [SurfaceRect](#surfacerect12) | Yes  | Rectangle of the surface held by the **\<XComponent>**.|
+| rect   | [SurfaceRect](#surfacerect12) | Yes  | Rectangle of the surface held by the **XComponent**.|
 
 > **NOTE**<br>
 >
-> If **offsetX** or **offsetY** in the **rect** parameter is not set, the surface rectangle is centered along the x-axis or y-axis relative to the upper left corner of the **\<XComponent>**.
+> If **offsetX** or **offsetY** in the **rect** parameter is not set, the surface rectangle is centered along the x-axis or y-axis relative to the upper left corner of the **XComponent**.
 >
 > If **surfaceWidth** and **surfaceHeight** in the **rect** parameter are set to **0** or a negative value, this API has no effect.
 >
@@ -198,71 +198,71 @@ Sets the rectangle for the surface held by the **\<XComponent>**. This API works
 
 getXComponentSurfaceRect(): SurfaceRect
 
-Obtains the rectangle of the surface held by the **\<XComponent>**. This API works only when type of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
+Obtains the rectangle of the surface held by the **XComponent**. This API works only when type of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
 
 **Return value**
 
 | Type                                | Description                                 |
 | ------------------------------------ | ------------------------------------- |
-| [SurfaceRect](#surfacerect12) | Rectangle of the surface held by the **\<XComponent>**.|
+| [SurfaceRect](#surfacerect12) | Rectangle of the surface held by the **XComponent**.|
 
 ### onSurfaceCreated<sup>12+</sup>
 
 onSurfaceCreated(surfaceId: string): void
 
-Triggered when the surface held by the **\<XComponent>** is created. This API works only when **type** of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
+Triggered when the surface held by the **XComponent** is created. This API works only when **type** of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
 
 **Parameters**
 
 | Name   | Type| Mandatory| Description                                             |
 | --------- | -------- | ---- | ------------------------------------------------- |
-| surfaceId | string   | Yes  | ID of the surface held by the **\<XComponent>**.|
+| surfaceId | string   | Yes  | ID of the surface held by the **XComponent**.|
 
 > **NOTE**<br>
 >
-> The callback is triggered only when the **libraryname** parameter is not set for the **\<XComponent>**.
+> The callback is triggered only when the **libraryname** parameter is not set for the **XComponent**.
 
 ### onSurfaceChanged<sup>12+</sup>
 
 onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void
 
-Triggered when the surface held by the **\<XComponent>** has its size changed (including the time when the **\<XComponent>** is created with the specified size). This API works only when **type** of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
+Triggered when the surface held by the **XComponent** has its size changed (including the time when the **XComponent** is created with the specified size). This API works only when **type** of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
 
 **Parameters**
 
 | Name   | Type                             | Mandatory| Description                                                   |
 | --------- | ------------------------------------- | ---- | ------------------------------------------------------- |
-| surfaceId | string                                | Yes  | ID of the surface held by the **\<XComponent>**.      |
-| rect      | [SurfaceRect](#surfacerect12) | Yes  | Rectangle for displaying the surface held by the **\<XComponent>**.|
+| surfaceId | string                                | Yes  | ID of the surface held by the **XComponent**.      |
+| rect      | [SurfaceRect](#surfacerect12) | Yes  | Rectangle for displaying the surface held by the **XComponent**.|
 
 > **NOTE**<br>
 >
-> The callback is triggered only when the **libraryname** parameter is not set for the **\<XComponent>**.
+> The callback is triggered only when the **libraryname** parameter is not set for the **XComponent**.
 
 ### onSurfaceDestroyed<sup>12+</sup>
 
 onSurfaceDestroyed(surfaceId: string): void
 
-Triggered when the surface held by the **\<XComponent>** is destroyed. This API works only when **type** of the **\<XComponent>** is set to **SURFACE("surface")** or **TEXTURE**.
+Triggered when the surface held by the **XComponent** is destroyed. This API works only when **type** of the **XComponent** is set to **SURFACE("surface")** or **TEXTURE**.
 
 **Parameters**
 
 | Name   | Type| Mandatory| Description                                             |
 | --------- | -------- | ---- | ------------------------------------------------- |
-| surfaceId | string   | Yes  | ID of the surface held by the **\<XComponent>**.|
+| surfaceId | string   | Yes  | ID of the surface held by the **XComponent**.|
 
 > **NOTE**<br>
 >
-> The callback is triggered only when the **libraryname** parameter is not set for the **\<XComponent>**.
+> The callback is triggered only when the **libraryname** parameter is not set for the **XComponent**.
 
 ### SurfaceRect<sup>12+</sup>
 
-Describes the rectangle of the surface held by the **\<XComponent>**.
+Describes the rectangle of the surface held by the **XComponent**.
 
 | Name         | Type  | Mandatory| Description                                                        |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
-| offsetX       | number | No  | X coordinate of the surface rectangle relative to the upper left corner of the **\<XComponent>**.<br>Unit: px|
-| offsetY       | number | No  | Y coordinate of the surface rectangle relative to the upper left corner of the **\<XComponent>**.<br>Unit: px|
+| offsetX       | number | No  | X coordinate of the surface rectangle relative to the upper left corner of the **XComponent**.<br>Unit: px|
+| offsetY       | number | No  | Y coordinate of the surface rectangle relative to the upper left corner of the **XComponent**.<br>Unit: px|
 | surfaceWidth  | number | Yes  | Width of the surface rectangle.<br>Unit: px                           |
 | surfaceHeight | number | Yes  | Height of the surface rectangle.<br>Unit: px                           |
 

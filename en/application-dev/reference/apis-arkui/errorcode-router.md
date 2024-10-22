@@ -84,11 +84,11 @@ This error code is reported when the builder function for creating the navigatio
 
 **Possible Causes**
 
-The builder function for creating the **\<NavDestiantion>** component is not registered at the time of navigation.
+The builder function for creating the **NavDestiantion** component is not registered at the time of navigation.
 
 **Solution**
 
-Make sure the builder function for creating the **\<NavDestiantion>** component is registered.
+Make sure the builder function for creating the **NavDestiantion** component is registered.
 
 ## 100006 NavDestination Not Found
 
@@ -98,15 +98,15 @@ NavDestination not found.
 
 **Description**
 
-This error code is reported when no **\<NavDestiantion>** component is found for the target page of navigation.
+This error code is reported when no **NavDestiantion** component is found for the target page of navigation.
 
 **Possible Causes**
 
-The **\<NavDestiantion>** component is unavailable for the target page of navigation.
+The **NavDestiantion** component is unavailable for the target page of navigation.
 
 **Solution**
 
-Make sure there is a **\<NavDestiantion>** component for the target page of navigation.
+Make sure there is a **NavDestiantion** component for the target page of navigation.
 
 ## 200002 Incorrect URI During Page Replacement
 

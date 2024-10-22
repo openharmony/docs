@@ -253,6 +253,8 @@ struct MyComponent {
 
 - The **EntryComponent** has multiple **MyComponent** instances. The internal state change of the first **MyComponent** instance does not affect the second **MyComponent** instance.
 
+
+
 ```ts
 class Model {
   public value: string;
@@ -905,81 +907,3 @@ struct ConsumerChild {
 ```
 
 In the preceding example, **getTarget** is used to obtain the original value of the corresponding state variable before value change. After comparison, if the original value is the same as the new value, re-rendering will not be triggered.
-
-### State Variables Modification in build Is Forbidden
-
-State variables cannot be changed in **build**. Otherwise, the state management framework reports error logs during runtime.
-
-The rendering process is as follows:
-
-1. Create a custom component **CompA**.
-
-2. Execute the **build** method of **CompA** as follows:
-
-    1. Create a **Column** component.
-
-    2. Create a Text component. **This.count++** is triggered when the **Text** component is created.
-
-    3. The value change of **count** triggers the re-render of the **Text** component.
-
-    4. Return value of **Text** is 2.
-
-```ts
-@Entry
-@Component
-struct CompA {
-  @State count: number = 1;
-
-  build() {
-    Column() {
-      // Avoid directly changing the value of count in the Text component.
-      Text(`${this.count++}`)
-        .width(50)
-        .height(50)
-    }
-  }
-}
-```
-
-During the first creation, the **Text** component is rendered twice. As a result, return value of the **Text** component is **2**.
-
-If the framework identifies that the state variable is changed in the **build**, an error log is generated. The error log is as follows:
-
-```ts
-FIX THIS APPLICATION ERROR: @Component 'CompA'[4]: State variable 'count' has changed during render! It's illegal to change @Component state while build (initial render or re-render) is on-going. Application error!
-```
-
-In the preceding example, this error does not cause serious consequences, for only the **Text** component is rendered one more time. Therefore, you may ignore this log.
-
-However, this behavior is a serious mistake. As the project becomes more complex, the potential risk becomes more and more serious.<br>Example:
-
-```ts
-@Entry
-@Component
-struct Index {
-  @State message: number = 20;
-
-  build() {
-    Column() {
-      Text(`${this.message++}`)
-
-      Text(`${this.message++}`)
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
-```
-The rendering process in the preceding example is as follows:
-
-1. Create the first **Text** component to trigger the change of **this.message**.
-
-2. The change of **this.message** triggers the re-render of the second **Text** component.
-
-3. The re-render of the second **Text** component triggers the change of **this.message**, which again triggers the re-render of the first **Text** component.
-
-4. Re-render is performed repeatedly.
-
-5. The system does not respond for a long time, causing an App Freeze.
-
-Therefore, you are not advised to change the state variables in **build**. When the error log **FIX THIS APPLICATION ERROR: @Component ...** **has changed during render!** **It's illegal to change @Component state while build (initial render or re-render) is on-going.** **Application error!** is reported, even if it does not bring serious consequences for now, you should pay attention to. Checking the application and modifying the corresponding error code to clear the error log are recommended.

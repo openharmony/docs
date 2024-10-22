@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<label>** component defines labels for the **\<input>**, **\<button>**, and **\<textarea>** components. When a label is clicked, the click effect of the component associated with the label will be triggered.
+The **\<label>** component defines labels for the **\<input>**, **Button**, and **TextArea** components. When a label is clicked, the click effect of the component associated with the label will be triggered.
 
 ## Required Permissions
 

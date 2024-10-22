@@ -35,7 +35,7 @@ struct WebComponent {
 In the preceding example, whether the side navigation bar is expanded on the PDF preview page is recorded based on user operations using **window.localStorage**. Therefore, you need to enable the DOM Storage API using [domStorageAccess](../reference/apis-arkweb/ts-basic-components-web.md#domstorageaccess).
 
   ```
-  Web().domStorageAccess(true)
+  Web().domStorageAccesss(true)
   ```
 
 Specify the PDF file to be loaded by default when the **Web **component is created. When the default PDF file is loaded, if you want to change the PDF file displayed on the **Web** component, you can call the [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) API to load the specified PDF file. The address of the first parameter variable *src* of [Web](../reference/apis-arkweb/ts-basic-components-web.md#web) component cannot be dynamically changed through a state variable (for example, *@State*). To change the address, reload the variable using [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl).
@@ -82,7 +82,7 @@ Currently, the following parameters are supported:
 | navpanes=1 \| 0 	| Opens or closes the side navigation pane. |
 
 
-URL example:
+URL Example 
 ```
 https://example.com/test.pdf#Chapter6  
 https://example.com/test.pdf#page=3  

@@ -1,6 +1,6 @@
 # DataPanel
 
-The **\<DataPanel>** component displays proportions in a chart.
+The **DataPanel** component displays proportions in a chart.
 
 >  **NOTE**
 >

@@ -1879,7 +1879,7 @@ Sets nested scrolling options.
 > - You can set the nested scrolling mode in both forward and backward directions to implement scrolling linkage with the parent component.
 > - You can set separate nested scrolling modes for the forward and backward directions.
 > - The default mode for **scrollForward** and **scrollBackward** is **NestedScrollMode.SELF_FIRST**.
-> - Containers that support nested scrolling: **\<Grid>**, **\<List>**, **\<Scroll>**, **\<Swiper>**, **\<Tabs>**, **\<WaterFlow>**.
+> - Containers that support nested scrolling: **Grid**, **List**, **Scroll**, **Swiper**, **Tabs**, **WaterFlow**.
 > - Input sources that support nested scrolling: gestures, mouse device, and touchpad.
 > - In nested scrolling scenarios, since the **Web** component's over-scrolling to the edge will trigger the over-scroll bounce effect first, it is recommended that you set **overScrollMode** to **OverScrollMode.NEVER** to avoid undermining the user experience.
 
@@ -5540,7 +5540,7 @@ Called when the intelligent tracking prevention feature is enabled and the track
 
 onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
-Called to enable the host application to obtain control when the URL is about to be loaded to this **Web** component. If the callback returns **true**, the **\<Web>** component stops loading the URL. If the callback returns **false**, the **Web** component continues to load the URL.
+Called to enable the host application to obtain control when the URL is about to be loaded to this **Web** component. If the callback returns **true**, the **Web** component stops loading the URL. If the callback returns **false**, the **Web** component continues to load the URL.
 
 POST requests do not trigger this callback.
 
@@ -7949,8 +7949,8 @@ Provides details about the callback event for the **Web** component to enter the
 | Name            | Type                                 | Mandatory  | Description                   |
 | -----------     | ------------------------------------ | ---- | --------------------- |
 | handler     | [FullScreenExitHandler](#fullscreenexithandler9) | Yes   | Function handle for exiting full screen mode.|
-| videoWidth  | number | No   | Video width, in px. If the element that enters fulls screen mode is a **\<video>** element, the value represents its width; if the element that enters fulls screen mode contains a **\<video>** element, the value represents the width of the first sub-video element; in other cases, the value is **0**.|
-| videoHeight  | number | No   | Video height, in px. If the element that enters fulls screen mode is a **\<video>** element, the value represents its height; if the element that enters fulls screen mode contains a **\<video>** element, the value represents the height of the first sub-video element; in other cases, the value is **0**.|
+| videoWidth  | number | No   | Video width, in px. If the element that enters fulls screen mode is a **Video** element, the value represents its width; if the element that enters fulls screen mode contains a **Video** element, the value represents the width of the first sub-video element; in other cases, the value is **0**.|
+| videoHeight  | number | No   | Video height, in px. If the element that enters fulls screen mode is a **Video** element, the value represents its height; if the element that enters fulls screen mode contains a **Video** element, the value represents the height of the first sub-video element; in other cases, the value is **0**.|
 
 ## OnFullScreenEnterCallback<sup>12+</sup>
 

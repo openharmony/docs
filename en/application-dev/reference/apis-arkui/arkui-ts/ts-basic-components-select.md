@@ -1,6 +1,6 @@
 #  Select
 
-The **<Select\>** component provides a drop-down list box that allows users to select among multiple options.
+The **Select** component provides a drop-down list box that allows users to select among multiple options.
 
 >  **NOTE**
 >
@@ -76,7 +76,7 @@ Since API version 10, this attribute supports two-way binding through [$$](../..
 
 controlSize(value: ControlSize)
 
-Sets the size of the **\<Select>** component.
+Sets the size of the **Select** component.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,7 +84,7 @@ Sets the size of the **\<Select>** component.
 
 | Name | Type                                         | Mandatory | Description                                            |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| value  | [ControlSize](ts-basic-components-button.md#controlsize11)<sup>11+</sup>  | Yes  | Size of the **\<Select>** component.<br>Default value: **ControlSize.NORMAL** |
+| value  | [ControlSize](ts-basic-components-button.md#controlsize11)<sup>11+</sup>  | Yes  | Size of the **Select** component.<br>Default value: **ControlSize.NORMAL** |
 
 The priorities of **controlSize**, **width**, and **height** are as follows:
 
@@ -364,7 +364,7 @@ Sets the background blur style of the drop-down list box.
 
 | Name | Type                                        | Mandatory | Description                                                        |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BlurStyle](ts-appendix-enums.md#blurstyle9) | Yes  | Background blur style of the drop-down list box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK** |
+| value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Background blur style of the drop-down list box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK** |
 
 ## OptionWidthMode<sup>11+</sup>
 
@@ -403,7 +403,7 @@ Sets the background blur style of the drop-down list box.
 | symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Symbol icon of the option in the drop-down list box.|
 | selected  | boolean | Yes  | Whether the option in the drop-down list box is selected.<br>Default value: **false** |
 | index  | number | Yes  | Index of the option in the drop-down list box. |
-| triggerSelect  | (index: number, value: string) => void | Yes  | Invoked when an option in the drop-down list box is selected.<br>**index**: index of the selected option.<br>**value**: text of the selected option.<br>**NOTE**<br>The value of **index** will be assigned to the **index** parameter in the [onSelect](#onselect) callback; the value of **value** will be returned to the **\<Select>** component for display and will also be assigned to the **value** parameter in the [onSelect](#onselect) callback. |
+| triggerSelect  | (index: number, value: string) => void | Yes  | Invoked when an option in the drop-down list box is selected.<br>**index**: index of the selected option.<br>**value**: text of the selected option.<br>**NOTE**<br>The value of **index** will be assigned to the **index** parameter in the [onSelect](#onselect) callback; the value of **value** will be returned to the **Select** component for display and will also be assigned to the **value** parameter in the [onSelect](#onselect) callback. |
 
 ## Events
 

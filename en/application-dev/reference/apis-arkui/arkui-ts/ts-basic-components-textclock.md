@@ -1,6 +1,6 @@
 # TextClock
 
-The **\<TextClock>** component displays the current system time in text format for different time zones. The time is accurate to seconds.
+The **TextClock** component displays the current system time in text format for different time zones. The time is accurate to seconds.
 
 >**NOTE**
 >
@@ -22,7 +22,7 @@ This API can be used in ArkTS widgets since API version 11.
 | Name           | Type     | Mandatory    | Description                                                    |
 | -------------- | -------- | ------ | --------------------------------------------------------------------------- |
 | timeZoneOffset | number   | No    | Time zone offset.<br>The value range is [-14, 12], indicating UTC+12 to UTC-12. A negative value indicates Eastern Standard Time, and a positive value indicates Western Standard Time. For example, **-8** indicates UTC+8. If the value is a floating point number within the value range, the value is rounded up, with digits after the decimal point discarded.<br>For countries or regions crossing the International Date Line, use -13 (UTC+13) and -14 (UTC+14) to ensure time consistency across the country or region. If the set value is not within the valid range, the time zone offset of the current system will be used.<br>Default value: time zone offset of the current system<br>Since API version 11, the value is not rounded when it is set to a floating point number in the { 9.5, 3.5, -3.5, -4.5, -5.5, -5.75, -6.5, -9.5, -10.5, -12.75 } set.|
-| controller     | [TextClockController](#textclockcontroller) | No     | Controller to control the status of the **<TextClock\>** component.|
+| controller     | [TextClockController](#textclockcontroller) | No     | Controller to control the status of the **TextClock** component.|
 
 ## Attributes
 
@@ -158,7 +158,7 @@ If the event is used in a widget, it is triggered when the change occurs in minu
 
 ## TextClockController
 
-Implements the controller of the **\<TextClock>** component. You can bind the controller to the component to control its start and stop. A **\<TextClock>** component can be bound to only one controller.
+Implements the controller of the **TextClock** component. You can bind the controller to the component to control its start and stop. A **TextClock** component can be bound to only one controller.
 
 This API can be used in ArkTS widgets since API version 11.
 
@@ -172,7 +172,7 @@ controller: TextClockController = new TextClockController();
 
 start()
 
-Starts the **<TextClock\>** component.
+Starts the **TextClock** component.
 
 This API can be used in ArkTS widgets since API version 11.
 
@@ -180,7 +180,7 @@ This API can be used in ArkTS widgets since API version 11.
 
 stop()
 
-Stops the **<TextClock\>** component.
+Stops the **TextClock** component.
 
 This API can be used in ArkTS widgets since API version 11.
 

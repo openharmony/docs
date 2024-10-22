@@ -1,6 +1,6 @@
 # NavRouter
 
-The **\<NavRouter>** component provides default processing logic for responding to clicks, eliminating the need for manual logic definition.
+The **NavRouter** component provides default processing logic for responding to clicks, eliminating the need for manual logic definition.
 
 > **NOTE**
 >
@@ -8,15 +8,15 @@ The **\<NavRouter>** component provides default processing logic for responding 
 
 ## Child Components
 
-This component must contain two child components, the second of which must be **[\<NavDestination>](ts-basic-components-navdestination.md)**.
+This component must contain two child components, the second of which must be **[NavDestination](ts-basic-components-navdestination.md)**.
 
 > **NOTE**
 >
 >  
-> 1. If there is only one child component, the navigation to the **\<NavDestination>** component does not work.
-> 2. If there is only the **\<NavDestination>** child component, the navigation does not work.
+> 1. If there is only one child component, the navigation to the **NavDestination** component does not work.
+> 2. If there is only the **NavDestination** child component, the navigation does not work.
 > 3. If there are more than two child components, the excess child components are not displayed.
-> 4. If the second child component is not **\<NavDestination>**, the navigation does not work.
+> 4. If the second child component is not **NavDestination**, the navigation does not work.
 
 ## APIs
 
@@ -30,7 +30,7 @@ NavRouter()
 
 NavRouter(value: RouteInfo)
 
-Provides route information so that clicking the **\<NavRouter>** component redirects the user to the specified navigation destination page.
+Provides route information so that clicking the **NavRouter** component redirects the user to the specified navigation destination page.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -48,7 +48,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 mode(mode: NavRouteMode)
 
-Sets the route mode used for redirecting the user from the **\<NavRouter>** component to the specified navigation destination page.
+Sets the route mode used for redirecting the user from the **NavRouter** component to the specified navigation destination page.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -85,7 +85,7 @@ Sets the route mode used for redirecting the user from the **\<NavRouter>** comp
 
 onStateChange(callback: (isActivated: boolean) => void)
 
-Called when the component activation status changes. **onStateChange(true)** is called when the **\<NavRouter>** component is activated and its **\<NavDestination>** child component is loaded. **onStateChange(false)** is called when the **\<NavDestination>** child component is not displayed.
+Called when the component activation status changes. **onStateChange(true)** is called when the **NavRouter** component is activated and its **NavDestination** child component is loaded. **onStateChange(false)** is called when the **NavDestination** child component is not displayed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

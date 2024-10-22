@@ -24,7 +24,7 @@ Shows an alert dialog box.
 
 | Name  | Type | Mandatory| Description|
 | ---- | --------------- | -------- | -------- |
-| value | [AlertDialogParamWithConfirm](#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](#alertdialogparamwithoptions10)<sup>10+</sup> | Yes| Defines and displays the **\<AlertDialog>** component.|
+| value | [AlertDialogParamWithConfirm](#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](#alertdialogparamwithoptions10)<sup>10+</sup> | Yes| Defines and displays the **AlertDialog** component.|
 
 ## AlertDialogParam
 

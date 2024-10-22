@@ -746,7 +746,7 @@ try {
 
 ### createPanel<sup>10+</sup>
 
-createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
+createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallbackPanel): void
 
 Creates an input method panel. This API uses an asynchronous callback to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
 
@@ -792,7 +792,7 @@ try {
 
 ### createPanel<sup>10+</sup>
 
-createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
+createPanel(ctx: BaseContext, info: PanelInfo): PromisePanel
 
 Creates an input method panel. This API uses a promise to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
 

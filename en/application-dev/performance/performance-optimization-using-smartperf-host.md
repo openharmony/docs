@@ -22,7 +22,7 @@ The FrameTimeline feature allows you to record the rendering data of each frame,
 
 #### Example
 
-In this example, the **\<Grid>** component is used to implement a grid layout. Frame freezing or frame loss occurs during swiping on the application page. Let's see how the FrameTimeline feature works in this case.
+In this example, the **Grid** component is used to implement a grid layout. Frame freezing or frame loss occurs during swiping on the application page. Let's see how the FrameTimeline feature works in this case.
 
 ```
 @Entry  
@@ -130,7 +130,7 @@ In the following figure that shows the expanded application lanes, there are two
 
 ![](./figures/smartperf-host-using-8.png) 
 
-After locating and analyzing the grid layout code segment, we can optimize the code as follows: Remove the redundant three-layer stack container, pre-convert the source data to the string type required the layout, and add the **cachedCount** parameter to the **\<Grid>** component to work with the **LazyForEach** syntax for pre-loading. Set **cachedCount** to the number of grid items that can be rendered on one screen. After the optimization, let's record data in the same way. As shown in Figure 9, no frame freezing or frame loss occurs during swiping.
+After locating and analyzing the grid layout code segment, we can optimize the code as follows: Remove the redundant three-layer stack container, pre-convert the source data to the string type required the layout, and add the **cachedCount** parameter to the **Grid** component to work with the **LazyForEach** syntax for pre-loading. Set **cachedCount** to the number of grid items that can be rendered on one screen. After the optimization, let's record data in the same way. As shown in Figure 9, no frame freezing or frame loss occurs during swiping.
 
 **Figure 9** FrameTimeline diagram after optimization
 

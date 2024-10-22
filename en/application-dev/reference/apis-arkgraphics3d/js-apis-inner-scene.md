@@ -258,7 +258,7 @@ function createShaderPromise() : Promise<Shader> {
 
 
 ### createImage
-createImage(params: SceneResourceParameters): Promise\<Image>
+createImage(params: SceneResourceParameters): PromiseImage
 
 Creates an image. This API uses a promise to return the result.
 
