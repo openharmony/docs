@@ -372,7 +372,7 @@ onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttr
 | oldAttrs | PrintAttributes | 是 | 表示旧打印参数 |
 | newAttrs | PrintAttributes | 是 | 表示新打印参数 |
 | fd | number | 是 | 表示文件描述符，三方应用可自主渲染该文件 |
-| writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | 是 | 表示更新要打印的文件完成后的回调 |
+| writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | 是 | 表示更新待打印文件完成后的回调 |
 
 **错误码：**
 
@@ -671,7 +671,7 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobName | string | 是 | 表示待打印文件名称，例如：test.pdf。打印侧会将空的pdf文件的fd传给接口调用方，由调用方渲染生成待打印文件。 |
+| jobName | string | 是 | 表示待打印文件名称，例如：test.pdf。打印侧会通过onStartLayoutWrite接口将空的pdf文件的fd传给接口调用方，由调用方渲染生成待打印文件后通知打印侧。 |
 | printAdapter | PrintDocumentAdapter | 是 | 表示三方应用实现的PrintDocumentAdapter接口实例 |
 | printAttributes | PrintAttributes | 是 | 表示打印参数 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext |
