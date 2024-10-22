@@ -1361,6 +1361,8 @@ TypedFrameNode继承自[FrameNode](#framenode)，用于声明具体类型的Fram
 
 typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础接口进行自定义的挂载，使用占位容器进行显示。
 
+使用typeNode创建Text、Image、Select、Toggle节点时，当传入的[UIContext](./js-apis-arkui-UIContext.md)对应的UI实例销毁后，调用该接口会返回一个无效的FrameNode节点，无法正常挂载和显示。
+
 **示例：**
 
 请参考[自定义具体类型节点示例](#自定义具体类型节点示例)。
