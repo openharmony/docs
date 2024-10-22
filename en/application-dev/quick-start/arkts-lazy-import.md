@@ -90,7 +90,7 @@ You can use<!--Del-->[<!--DelEnd--> Trace<!--Del-->](https://gitee.com/openharmo
         main executed
     ```
     
-    If the keyword **lazy** is deleted from **mian.ets** file, the execution sequence is as follows:
+    If the keyword **lazy** is deleted from **main.ets** file, the execution sequence is as follows:
     
     ```typescript  
         mod1 a executed
