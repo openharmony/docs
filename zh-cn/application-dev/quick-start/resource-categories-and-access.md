@@ -552,7 +552,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
   "app":{
     "bundleName": "com.example.myapplication.overlay",
     "vendor" : "example",
-    "versinCode": "1000000",
+    "versionCode": "1000000",
     "versionName": "1.0.0.1",
     "icon": "$media:app_icon",
     "label": "$string:app_name",
@@ -578,7 +578,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
   "app":{
     "bundleName": "com.example.myapplication.overlay",
     "vendor" : "example",
-    "versinCode": "1000000",
+    "versionCode": "1000000",
     "versionName": "1.0.0.1",
     "icon": "$media:app_icon",
     "label": "$string:app_name",
