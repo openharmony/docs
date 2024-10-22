@@ -3,6 +3,9 @@
 
 For details about scenarios and related concepts, see [HUKS Access Control Overview](huks-identity-authentication-overview.md).
 
+> **NOTE**
+> 
+> For symmetric encryption and decryption, only the AES/CBC, AES/GCM, and SM4/CBC modes support fine-grained access control.
 
 ## How to Develop
 

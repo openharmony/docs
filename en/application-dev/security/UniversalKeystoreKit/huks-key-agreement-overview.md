@@ -6,7 +6,6 @@ Generally, keys cannot be directly transmitted between devices. Key agreement al
 
 For the key agreement between two devices, each device generates an asymmetric key and uses the public key of the peer device and its own private key to agree on a shared key.
 
-
 ## Supported Algorithms
 
 The following table lists the supported key agreement specifications.
@@ -16,7 +15,7 @@ The key management service specifications include mandatory specifications and o
 **You are advised to use mandatory specifications in your development for compatibility purposes.**
 <!--DelEnd-->
 
-| Algorithm| Description| API Level| <!--DelCol4-->Mandatory|
+| Algorithm| Description| API Version| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
 | ECDH | The key type must be ECC.| 8+ | Yes|
 | DH | - | 8+ | Yes|
