@@ -35,7 +35,7 @@
    )
    ```
 
-3. 初始化图片接收器[ImageReceiver](../image/image-receiver-c.md)实例，获取SurfaceId。
+3. 初始化图片接收器[ImageReceiver](./image/image-receiver-c.md)实例，获取SurfaceId。
 
    通过image的OH_ImageReceiverNative_Create方法创建OH_ImageReceiverNative实例，再通过实例的OH_ImageReceiverNative_GetReceivingSurfaceId方法获取SurfaceId。
 
