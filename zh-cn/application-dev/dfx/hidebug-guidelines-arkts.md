@@ -80,3 +80,6 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
    ```Text
 	06-25 19:50:27.485 24645-24645/com.example.myapplication I A00000/testTag: getCurrentCpuUsage 0.10164512338425381 
    ```
+
+<!--RP1-->
+<!--RP1End-->
