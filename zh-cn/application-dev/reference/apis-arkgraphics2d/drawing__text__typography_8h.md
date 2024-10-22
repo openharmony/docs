@@ -201,7 +201,7 @@
 | void [OH_Drawing_TextStyleAddShadow](_drawing.md#oh_drawing_textstyleaddshadow) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, const [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \*) | 字体阴影容器中添加字体阴影元素。 | 
 | void [OH_Drawing_TextStyleClearShadows](_drawing.md#oh_drawing_textstyleclearshadows) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 清除字体阴影容器中的所有元素。 | 
 | [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \* [OH_Drawing_TextStyleGetShadowWithIndex](_drawing.md#oh_drawing_textstylegetshadowwithindex) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 根据下标获取字体阴影容器中的元素。 | 
-| void [OH_Drawing_TypographySetIndents](_drawing.md#oh_drawing_typographysetindents) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int, const float indents[]) | 设置文本的排版缩进。 | 
+| void [OH_Drawing_TypographySetIndents](_drawing.md#oh_drawing_typographysetindents) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int, const float indents[]) | 设置文本的排版缩进，不调用此接口默认文本无缩进。 | 
 | float [OH_Drawing_TypographyGetIndentsWithIndex](_drawing.md#oh_drawing_typographygetindentswithindex) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int) | 根据下标获取排版缩进容器中的元素。 | 
 | [OH_Drawing_Range](_drawing.md#oh_drawing_range) \* [OH_Drawing_TypographyGetLineTextRange](_drawing.md#oh_drawing_typographygetlinetextrange) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int, bool) | 获取行的边界。 | 
 | void [OH_Drawing_DestroyTextShadows](_drawing.md#oh_drawing_destroytextshadows) ([OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \*) | 释放由被字体阴影对象OH_Drawing_TextShadow构成的vector占据的内存。 | 
