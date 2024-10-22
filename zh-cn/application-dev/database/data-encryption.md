@@ -113,12 +113,12 @@ for (let i = 0; i < 32; i++) {
 
 // 初始化加密算法
 const CRYPTO_PARAM : relationalStore.CryptoParam = {
-    encryptionKey: key, // 必选参数，使用指定的密钥打开加密数据库。
+    encryptionKey: key, // 必选参数，使用指定的密钥打开加密数据库。为空则由数据库负责生成并保存密钥，并使用生成的密钥打开数据库文件。
     iterationCount: 25000, // 可选参数，迭代次数。迭代次数必须大于零。不指定或等于零则使用默认值10000和默认加密算法。
     encryptionAlgo: relationalStore.EncryptionAlgo.AES_256_CBC, // 可选参数，加密/解密算法。如不指定，默认算法为AES_256_GCM。
     hmacAlgo: relationalStore.HmacAlgo.SHA256, // 可选参数，HMAC算法。如不指定，默认值为SHA256。
     kdfAlgo: relationalStore.KdfAlgo.KDF_SHA512, // 可选参数，KDF算法。如不指定，默认值和HMAC算法相等。
-    cryptoPageSize: 2048 // 可选参数，加密/解密时使用的页大小。必须为512到65536范围内的整数并且为2的幂。如不指定，默认值为1024。
+    cryptoPageSize: 2048 // 可选参数，加密/解密时使用的页大小。必须为1024到65536范围内的整数并且为2的幂。如不指定，默认值为1024。
 }
 
 const STORE_CONFIG : relationalStore.StoreConfig = {
