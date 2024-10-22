@@ -61,9 +61,9 @@
    }
    ```
 
-4. 通过上一步获取到的SurfaceId创建预览流，参考[预览(C/C++)]()步骤4。
+4. 通过上一步获取到的SurfaceId创建预览流，参考[预览(C/C++)](./native-camera-preview.md)步骤4。
 
-5. 创建会话，使能会话，参考[会话管理(C/C++)]()。
+5. 创建会话，使能会话，参考[会话管理(C/C++)](./native-camera-session-management.md)。
 
 6. 注册ImageReceiver图片接收器的回调，监听获取每帧上报图像内容。
 
@@ -72,7 +72,7 @@
    uint32_t PREVIEW_WIDTH = 1080; // 创建预览流的宽
    uint32_t PREVIEW_HEIGHT = 1080; // 创建预览流的高
    
-   // 图像回调函数，解析请参考步骤7
+   // 图像回调函数，参考媒体/Image Kit（图片处理服务）
    static void OnCallback(OH_ImageReceiverNative *receiver) {
        OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
        // 注意捕获错误码处理异常及对象判空，当前示例仅展示调用流程
