@@ -2,13 +2,17 @@
 
 You can call the native APIs provided by the VideoDecoder module to decode video, that is, to decode media data into a YUV file or render it.
 
+<!--RP3--><!--RP3End-->
+
 Currently, the following decoding capabilities are supported:
 
 | Video Hardware Decoding Type      | Video Software Decoding Type  |
 | --------------------- | ---------------- |
-| AVC (H.264) and HEVC (H.265)|AVC (H.264) |
+| AVC (H.264) and HEVC (H.265)|AVC (H.264) and HEVC (H.265)|
 
 Video software decoding and hardware decoding are different. When a decoder is created based on the MIME type, only H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) is supported for software decoding, and H.264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) and H.265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC) are supported for hardware decoding.
+
+You can perform a [capability query](obtain-supported-codecs.md) to obtain the decoding capability range.
 
 <!--RP1--><!--RP1End-->
 
@@ -16,18 +20,20 @@ Through the VideoDecoder module, your application can implement the following ke
 
 |          Capability                      |             How to Configure                                                                    |
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
-| Variable resolution        | Configured in the callback function, which is set by calling **OH_VideoDecoder_RegisterCallback()**. For details, see step 3 in buffer mode.  |
-| Dynamic surface switching | Configured by calling **OH_VideoDecoder_SetSurface()**. For details, see step 7 in surface mode.    |
-| Low-latency decoding | Configured by calling **OH_VideoDecoder_Configure()**. For details, see step 6 in surface mode.    |
+| Variable resolution        | The decoder supports the change of the input stream resolution. After the resolution is changed, the callback function **OnStreamChanged()** set by **OH_VideoDecoder_RegisterCallback** is triggered. For details, see step 4 in surface mode or step 3 in buffer mode. |
+| Dynamic surface switching | Call **OH_VideoDecoder_SetSurface** to configure this capability. It is supported only in surface mode. For details, see step 7 in surface mode.   |
+| Low-latency decoding | Call **OH_VideoDecoder_Configure** to configure this capability. For details, see step 6 in surface mode or step 5 in buffer mode.     |      
 
 
 ## Restrictions
 - The buffer mode does not support 10-bit image data.
-- After **flush()**, **reset()**, or **stop()** is called, the XPS must be transferred again in the **start()** call. For details about the example, see step 14 in [Surface Output](#surface-output).
-- Due to limited hardware decoder resources, you must call **OH_VideoDecoder_Destroy()** to destroy every decoder instance when it is no longer needed.
-- The input streams for video decoding support only the Annex B format, and the supported Annex B format does not support multi-layer network slice.
+- After **flush()**, **reset()**, or **stop()** is called, the PPS/SPS must be transferred again in the **start()** call. For details about the example, see step 14 in [Surface Output](#surface-output).
+- Due to limited hardware decoder resources, you must call **OH_VideoDecoder_Destroy** to destroy every decoder instance when it is no longer needed.
+- The input streams for video decoding support only the AnnexB format, and the supported AnnexB format supports multiple slices. However, the slices of the same frame must be sent to the decoder at a time.
 - When **flush()**, **reset()**, or **stop()** is called, do not continue to operate the OH_AVBuffer obtained through the previous callback function.
 - The DRM decryption capability supports both non-secure and secure video channels in [surface mode](#surface-output), but only non-secure video channels in buffer mode (#buffer-output).
+- The buffer mode and surface mode use the same APIs. Therefore, the surface mode is described as an example.
+- In buffer mode, after obtaining the pointer to an OH_AVBuffer object through the callback function **OH_AVCodecOnNewOutputBuffer**, call **OH_VideoDecoder_FreeOutputBuffer** to notify the system that the buffer has been fully utilized. In this way, the system can write the subsequently decoded data to the corresponding location. If the OH_NativeBuffer object is obtained through **OH_AVBuffer_GetNativeBuffer** and its lifecycle extends beyond that of the OH_AVBuffer pointer object, you mut perform data duplication. In this case, you should manage the lifecycle of the newly generated OH_NativeBuffer object to ensure that the object can be correctly used and released.
 
 ## Surface Output and Buffer Output
 
@@ -37,8 +43,8 @@ Through the VideoDecoder module, your application can implement the following ke
   - Buffer output indicates that decoded data is output in shared memory mode.
 
 - The two also differ slightly in the API calling modes:
-  - In surface mode, an application can choose to call **OH_VideoDecoder_FreeOutputBuffer()** to free the output buffer (without rendering the data). In buffer mode, an application must call **OH_VideoDecoder_FreeOutputBuffer()** to free the output buffer.
-  - In surface mode, an application must call **OH_VideoDecoder_SetSurface()** to set an OHNativeWindow before the decoder is ready and call **OH_VideoDecoder_RenderOutputBuffer()** to render the decoded data after the decoder is started.
+- In surface mode, the caller can choose to call **OH_VideoDecoder_FreeOutputBuffer** to free the output buffer (without rendering the data). In buffer mode, the caller must call **OH_VideoDecoder_FreeOutputBuffer** to free the output buffer.
+- In surface mode, the caller must call **OH_VideoDecoder_SetSurface** to set an OHNativeWindow before the decoder is ready and call **OH_VideoDecoder_RenderOutputBuffer** to render the decoded data after the decoder is started.
   - In buffer mode, an application can obtain the shared memory address and data from the output buffer. In surface mode, an application can obtain the data from the output buffer.
 
 For details about the development procedure, see [Surface Output](#surface-output) and [Buffer Output](#buffer-output).
@@ -51,22 +57,22 @@ The following figure shows the interaction between states.
 
 1. A decoder enters the Initialized state in either of the following ways:
    - When a decoder instance is initially created, the decoder enters the Initialized state.
-   - When **OH_VideoDecoder_Reset()** is called in any state, the decoder goes back to the Initialized state.
+   - When **OH_VideoDecoder_Reset** is called in any state, the decoder returns to the Initialized state.
 
-2. When the decoder is in the Initialized state, you can call **OH_VideoDecoder_Configure()** to configure the decoder. After the configuration, the decoder enters the Configured state.
-3. When the decoder is in the Configured state, you can call **OH_VideoDecoder_Prepare()** to switch it to the Prepared state.
-4. When the decoder is in the Prepared state, you can call **OH_VideoDecoder_Start()** to switch it to the Executing state.
-   - When the decoder is in the Executing state, you can call **OH_VideoDecoder_Stop()** to switch it back to the Prepared state.
+2. When the decoder is in the Initialized state, you can call **OH_VideoDecoder_Configure** to configure the decoder. After the configuration, the decoder enters the Configured state.
+3. When the decoder is in the Configured state, you can call **OH_VideoDecoder_Prepare** to switch it to the Prepared state.
+4. When the decoder is in the Prepared state, you can call **OH_VideoDecoder_Start** to switch it to the Executing state.
+   - When the decoder is in the Executing state, you can call **OH_VideoDecoder_Stop** to switch it back to the Prepared state.
 
 5. In rare cases, the decoder may encounter an error and enter the Error state. If this is the case, an invalid value can be returned or an exception can be thrown through a queue operation.
-   - When the decoder is in the Error state, you can either call **OH_VideoDecoder_Reset()** to switch it to the Initialized state or call **OH_VideoDecoder_Destroy()** to switch it to the Released state.
+   - When the decoder is in the Error state, you can either call **OH_VideoDecoder_Reset** to switch it to the Initialized state or call **OH_VideoDecoder_Destroy** to switch it to the Released state.
 
 6. The Executing state has three substates: Flushed, Running, and End-of-Stream.
-   - After **OH_VideoDecoder_Start()** is called, the decoder enters the Running substate immediately.
-   - When the decoder is in the Executing state, you can call **OH_VideoDecoder_Flush()** to switch it to the Flushed substate.
+   - After **OH_VideoDecoder_Start** is called, the decoder enters the Running substate immediately.
+   - When the decoder is in the Executing state, you can call **OH_VideoDecoder_Flush** to switch it to the Flushed substate.
    - After all data to be processed is transferred to the decoder, the **AVCODEC_BUFFER_FLAGS_EOS** flag is added to the last input buffer in the input buffers queue. Once this flag is detected, the decoder transits to the End-of-Stream substate. In this state, the decoder does not accept new inputs, but continues to generate outputs until it reaches the tail frame.
 
-7. When the decoder is no longer needed, you must call **OH_VideoDecoder_Destroy()** to destroy the decoder instance. Then the decoder enters the Released state.
+7. When the decoder is no longer needed, you must call **OH_VideoDecoder_Destroy** to destroy the decoder instance. Then the decoder enters the Released state.
 
 ## How to Develop
 
@@ -74,9 +80,13 @@ Read [VideoDecoder](../../reference/apis-avcodec-kit/_video_decoder.md) for the 
 
 The figure below shows the call relationship of video decoding.
 
+- The dotted line indicates an optional operation.
+
+- The solid line indicates a mandatory operation.
+
 ![Call relationship of video decoding](figures/video-decode.png)
 
-### Linking the Dynamic Link Library in the CMake Script
+### Linking the Dynamic Link Libraries in the CMake Script
 
 ``` cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
@@ -85,7 +95,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 ```
 > **NOTE**
 >
-> The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
+> The word 'sample' in the preceding code snippet is only an example. Use the actual project directory name.
 >
 
 ### Surface Output
@@ -111,7 +121,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     int32_t width = 320; 
     // (Mandatory) Configure the video frame height.
     int32_t height = 240;
-    // (Mandatory) Configure the video pixel format.
+    // Configure the video pixel format.
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
     int32_t widthStride = 0;
     int32_t heightStride = 0;
@@ -123,11 +133,13 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     - **videoDec**: pointer to the video decoder instance.
     - **capability**: pointer to the decoder's capability.
-    - **OH_AVCODEC_MIMETYPE_VIDEO_AVC**: name of an AVC video stream.
+    - **OH_AVCODEC_MIMETYPE_VIDEO_AVC**: AVC video codec.
 
     ```c++
     // To create a decoder by name, call OH_AVCapability_GetName to obtain the codec names available and then call OH_VideoDecoder_CreateByName. If your application has special requirements, for example, expecting a decoder that supports a certain resolution, you can call OH_AVCodec_GetCapability to query the capability first.
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false);
+    // Create hardware decoder instances.
+    OH_AVCapability *capability= OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, HARDWARE);
     const char *name = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(name);
     ```
@@ -137,7 +149,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     // If multiple codecs need to be created, create hardware decoder instances first. If the hardware resources are insufficient, create software decoder instances.
     // Create an H.264 decoder for software/hardware decoding.
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
-    // Create an H.265 decoder for hardware decoding.
+    // Create an H.265 decoder for software/hardware decoding.
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
     ```
 
@@ -145,7 +157,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     Register the **OH_AVCodecCallback** struct that defines the following callback function pointers:
 
-    - **OH_AVCodecOnError**, a callback used to report a codec operation error.
+    - **OH_AVCodecOnError**, a callback used to report a codec operation error. For details about the error codes, see [OH_AVCodecOnError](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcodeconerror).
     - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, stream width or height change.
     - **OH_AVCodecOnNeedInputBuffer**, a callback used to report input data required, which means that the decoder is ready for receiving data.
     - **OH_AVCodecOnNewOutputBuffer**, a callback used to report output data generated, which means that decoding is complete. (Note: The **buffer** parameter in surface mode is null.)
@@ -158,7 +170,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     // Implement the OH_AVCodecOnError callback function.
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
-        // You need to process the error code in the callback.
+        // Process the error code in the callback.
         (void)codec;
         (void)errorCode;
         (void)userData;
@@ -169,8 +181,11 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     {
         // The changed video width, height, and stride can be obtained through format.
         (void)codec;
-        (void)format;
         (void)userData;
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, &height);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, &heightStride);
     }
 
     // Implement the OH_AVCodecOnNeedInputBuffer callback function.
@@ -213,13 +228,14 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
-    Link the dynamic link library in the CMake script.
+    Linking the Dynamic Libraries in the CMake Script
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
     ```
 
-    The following is the sample code:
+    <!--RP4-->The following is the sample code:<!--RP4End--> 
+
     ```c++
     // Create a media key system based on the media key system information. The following uses com.clearplay.drm as an example.
     MediaKeySystem *system = nullptr;
@@ -230,7 +246,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     }
 
     // Create a decryption session. If a secure video channel is used, create a MediaKeySession with the content protection level of CONTENT_PROTECTION_LEVEL_HW_CRYPTO or higher.
-    // If a non-secure video channel is used, create a MediaKeySession with the content protection level of CONTENT_PROTECTION_LEVEL_SW_CRYPTO or higher.
+    // To use a non-secure video channel, create a MediaKeySession with the content protection level of CONTENT_PROTECTION_LEVEL_SW_CRYPTO or higher.
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
     ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
@@ -271,8 +287,8 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     OH_AVFormat *format = OH_AVFormat_Create();
     // Set the format.
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, width);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height);
+    OH_AVFormat_SetIntValue (format, OH_MD_KEY_WIDTH, width); // Mandatory
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // Mandatory
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
     // (Optional) Configure low-latency decoding.
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
@@ -341,14 +357,14 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     ```c++
     #include <multimedia/player_framework/native_cencinfo.h>
     ```
-    Link the dynamic link library in the CMake script.
+    Link the dynamic library in the CMake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
     ```
 
     In the code snippet below, the following variable is used:
-    - **buffer**: parameter passed in by the callback function **OnNeedInputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
+    - **buffer**: parameter passed by the callback function **OnNeedInputBuffer**. You can obtain the virtual address of the image by calling **OH_AVBuffer_GetAddr**.
     ```c++
     uint32_t keyIdLen = DRM_KEY_ID_SIZE;
     uint8_t keyId[] = {
@@ -405,8 +421,8 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     In the code snippet below, the following variables are used:
 
-    - **buffer**: parameter passed in by the callback function **OnNeedInputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
-    - **index**: index of the data queue, which is passed in by the callback function **OnNeedInputBuffer**.
+    - **buffer**: parameter passed by the callback function **OnNeedInputBuffer**. In surface mode, you cannot obtain the virtual address of the image by calling **OH_AVBuffer_GetAddr**.
+    - **index**: parameter passed by the callback function **OnNeedInputBuffer**, which uniquely corresponds to the buffer.
     - **size**, **offset**, and **pts**: size, offset, and timestamp. For details about how to obtain the information, see [Audio and Video Demuxing](./audio-video-demuxer.md).
     - **flags**: type of the buffer flag. For details, see [OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags).
 
@@ -433,8 +449,8 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     In the code snippet below, the following variables are used:
 
-    - **index**: index of the data queue, which is passed in by the callback function **OnNewOutputBuffer**.
-    - **buffer**: parameter passed in by the callback function **OnNewOutputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
+    - **index**: parameter passed by the callback function **OnNewOutputBuffer**, which uniquely corresponds to the buffer.
+    - **buffer**: parameter passed by the callback function **OnNewOutputBuffer**. In surface mode, you cannot obtain the virtual address of the image by calling **OH_AVBuffer_GetAddr**.
 
     Add the header files.
 
@@ -474,9 +490,9 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
 14. (Optional) Call **OH_VideoDecoder_Flush()** to refresh the decoder.
 
-    After **OH_VideoDecoder_Flush()** is called, the decoder remains in the Running state, but the current queue is cleared and the buffer storing the decoded data is freed.
+    After **OH_VideoDecoder_Flush** is called, the decoder remains in the Running state, but the input and output data and parameter set (such as the H.264 PPS/SPS) buffered in the decoder are cleared.
 
-    To continue decoding, you must call **OH_VideoDecoder_Start()** again.
+    To continue decoding, you must call **OH_VideoDecoder_Start** again.
 
     ```c++
     // Refresh the decoder.
@@ -489,15 +505,8 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-    ```
-    > **NOTE**
-    >
-    > After **flush()** is called, the XPS must be transferred again in the **start()** call.
-
-    Example of XPS retransfer:
-
-    ```c++
-    // Configure the frame XPS information.
+    // Retransfer PPS/SPS.
+    // Configure the frame PPS/SPS information.
     OH_AVCodecBufferAttr info;
     info.flags = AVCODEC_BUFFER_FLAG_CODEC_DATA;
     // Write the information to the buffer.
@@ -511,10 +520,14 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
         // Exception handling.
     }
     ```
+    > **NOTE**
+    >
+    > When **OH_VideoDecoder_Start** s called again after the flush operation, the PPS/SPS must be retransferred.
+
 
 15. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
 
-    After **OH_VideoDecoder_Reset()** is called, the decoder returns to the Initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_SetSurface()**.
+    After **OH_VideoDecoder_Reset** is called, the decoder returns to the Initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure**, **OH_VideoDecoder_Prepare**, and **OH_VideoDecoder_SetSurface** in sequence.
 
     ```c++
     // Reset the decoder.
@@ -527,6 +540,11 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
+    // The decoder is ready again.
+    ret = OH_VideoDecoder_Prepare(videoDec);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
     // Reconfigure the surface in surface mode. This is not required in buffer mode.
     ret = OH_VideoDecoder_SetSurface(videoDec, window);
     if (ret != AV_ERR_OK) {
@@ -535,6 +553,8 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     ```
 
 16. (Optional) Call **OH_VideoDecoder_Stop()** to stop the decoder.
+
+    After **OH_VideoDecoder_Stop()** is called, the decoder retains the decoding instance and releases the input and output buffers. You can directly call **OH_VideoDecoder_Start** to continue decoding. The first input buffer must carry the parameter set, starting from the IDR frame.
 
     ```c++
     // Stop the decoder.
@@ -549,13 +569,15 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     > **NOTE**
     >
     > This API cannot be called in the callback function.
-    > After the call, you must set a null pointer to the decoder to prevent program errors caused by wild pointers.
+    > After the call, you must set the decoder to NULL to prevent program errors caused by wild pointers.
     >
 
     ```c++
     // Call OH_VideoDecoder_Destroy to destroy the decoder.
-    int32_t ret = OH_VideoDecoder_Destroy(videoDec);
-    videoDec = nullptr;
+    if (videoDec != NULL) {
+        int32_t ret = OH_VideoDecoder_Destroy(videoDec);
+        videoDec = NULL;
+    }
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
@@ -602,7 +624,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     Register the **OH_AVCodecCallback** struct that defines the following callback function pointers:
 
-    - **OH_AVCodecOnError**, a callback used to report a codec operation error.
+    - **OH_AVCodecOnError**, a callback used to report a codec operation error. For details about the error codes, see [OH_AVCodecOnError](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcodeconerror).
     - **OH_AVCodecOnStreamChanged**, a callback used to report a codec stream change, for example, stream width or height change.
     - **OH_AVCodecOnNeedInputBuffer**, a callback used to report input data required, which means that the decoder is ready for receiving data.
     - **OH_AVCodecOnNewOutputBuffer**, a callback used to report output data generated, which means that decoding is complete.
@@ -620,7 +642,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     // Implement the OH_AVCodecOnError callback function.
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
-        // You need to process the error code in the callback.
+        // Process the error code in the callback.
         (void)codec;
         (void)errorCode;
         (void)userData;
@@ -700,7 +722,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
-    Link the dynamic link library in the CMake script.
+    Link the dynamic library in the CMake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
@@ -754,7 +776,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     OH_AVFormat_Destroy(format);
     ```
 
-6. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.  
+6. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.
 
     ```c++
     int32_t ret = OH_VideoDecoder_Prepare(videoDec);
@@ -863,8 +885,8 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     In the code snippet below, the following variables are used:
 
-    - **index**: index of the data queue, which is passed in by the callback function **OnNewOutputBuffer**.
-    - **buffer**: parameter passed in by the callback function **OnNewOutputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
+    - **index**: parameter passed by the callback function **OnNewOutputBuffer**, which uniquely corresponds to the buffer.
+    - **buffer**: parameter passed by the callback function **OnNewOutputBuffer**. You can obtain the virtual address of the image by calling **OH_AVBuffer_GetAddr**.
 
     ```c++
     // Obtain the decoded information.
@@ -882,7 +904,14 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     }
     ```
 
-    To copy the Y, U, and V components of an NV12 or NV21 image to another buffer in sequence, perform the following steps (taking an NV12 image as an example):
+    To copy the Y, U, and V components of an NV12 or NV21 image to another buffer in sequence, perform the following steps (taking an NV12 image as an example), presenting the image layout of **width**, **height**, **wStride**, and **hStride**.
+
+    - **OH_MD_KEY_VIDEO_PIC_WIDTH** corresponds to **width**.
+    - **OH_MD_KEY_VIDEO_PIC_HEIGHT** corresponds to **height**.
+    - **OH_MD_KEY_VIDEO_STRIDE** corresponds to **wStride**.
+    - **OH_MD_KEY_VIDEO_SLICE_HEIGHT** corresponds to **hStride**.
+
+    ![copy by line](figures/copy-by-line.png)
 
     Add the header files.
 
@@ -892,19 +921,19 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     The following is the sample code:
 
     ```c++
-    struct Rect // Width and height of the source memory area.
+    struct Rect // Width and height of the source buffer. They are obtained by calling OnNewOutputBuffer.
     {
         int32_t width;
         int32_t height;
     };
 
-    struct DstRect // Width stride and height stride of the target memory area.
+    struct DstRect // Width stride and height stride of the destination buffer. They are set by the caller.
     {
         int32_t wStride;
         int32_t hStride;
     };
 
-    struct SrcRect // Width stride and height stride of the source memory area.
+    struct SrcRect // Width stride and height stride of the source buffer. They are obtained by calling OnNewOutputBuffer.
     {
         int32_t wStride;
         int32_t hStride;
@@ -945,3 +974,6 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     When processing buffer data (before releasing data) during hardware decoding, the output callback AVBuffer receives the image data after width and height alignment. Generally, copy the image width, height, stride, and pixel format to ensure correct processing of the decoded data. For details, see step 3 in [Buffer Output](#buffer-output).
 
 The subsequent processes (including refreshing, resetting, stopping, and destroying the decoder) are basically the same as those in surface mode. For details, see steps 14-17 in [Surface Output](#surface-output).
+
+<!--RP5-->
+<!--RP5End-->
