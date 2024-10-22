@@ -6,7 +6,9 @@
 - 前后置切换动效，使用预览流截图做翻转模糊动效过渡。
 - 拍照闪黑动效，使用闪黑组件覆盖预览流实现闪黑动效过渡。
 
-## 开发步骤
+## 闪黑动效
+
+使用组件覆盖的形式实现闪黑效果。
 
 1. 导入依赖，需要导入相机框架、图片、ArkUI相关领域依赖。
 
@@ -16,7 +18,81 @@
    import { curves } from '@kit.ArkUI';
    ```
 
-2. 预览流截图实现。
+2. 构建闪黑组件。
+
+   此处定义一个闪黑组件，在拍照闪黑及前后置切换时显示，用来遮挡XComponent组件。
+
+   属性定义：
+
+   ```ts
+   @State isShowBlack: boolean = false; // 是否显示闪黑组件
+   @StorageLink('frameStart') @Watch('onFrameStart') frameStartFlag: number = 0; // 动效消失入口
+   @StorageLink('captureClick') @Watch('onCaptureClick') captureClickFlag: number = 0; // 拍照闪黑动效入口
+   @State flashBlackOpacity: number = 1; // 闪黑组件透明度
+   ```
+
+   闪黑组件的实现逻辑参考：
+
+   ```ts
+   // 拍照闪黑及前后置切换时显示，用来遮挡XComponent组件
+   if (this.isShowBlack) {
+     Column()
+       .key('black')
+       .width(px2vp(1080)) // 与预览流XComponent宽高保持一致，图层在预览流之上，截图组件之下
+       .height(px2vp(1920))
+       .backgroundColor(Color.Black)
+       .opacity(this.flashBlackOpacity)
+   }
+   ```
+
+3. 实现闪黑动效。
+
+   ```ts
+   function flashBlackAnim() {
+     console.info('flashBlackAnim E');
+     this.flashBlackOpacity = 1; // 闪黑组件不透明
+     this.isShowBlack = true; // 显示闪黑组件
+     animateToImmediately({
+       curve: curves.interpolatingSpring(1, 1, 410, 38),
+       delay: 50, // 延时50ms，实现黑屏
+       onFinish: () => {
+         this.isShowBlack = false; // 闪黑组件下树
+         this.flashBlackOpacity = 1;
+         console.info('flashBlackAnim X');
+       }
+     }, () => {
+       this.flashBlackOpacity = 0; // 闪黑组件从不透明到透明
+     })
+   }
+   ```
+
+4. 触发闪黑动效。
+
+   点击或触控拍照按钮，更新StorageLink绑定CaptureClick的值，触发onCaptureClick方法，动效开始播放。
+
+   ```ts
+   onCaptureClick(): void {
+     console.info('onCaptureClick');
+       console.info('onCaptureClick');
+       this.flashBlackAnim();
+   }
+   ```
+
+
+
+## 模糊动效
+
+通过预览流截图，实现模糊动效，从而完成模式切换，或是前后置切换的动效。
+
+1. 导入依赖，需要导入相机框架、图片、ArkUI相关领域依赖。
+
+   ```ts
+   import { camera } from '@kit.CameraKit';
+   import { image } from '@kit.ImageKit';
+   import { curves } from '@kit.ArkUI';
+   ```
+
+2. 获取预览流截图。
 
    预览流截图通过图形提供的[image.createPixelMapFromSurface](../../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11)接口实现，surfaceId为当前预览流的surfaceId，size为当前预览流profile的宽高。
 
@@ -63,17 +139,17 @@
    }
    ```
 
-3. 动效组件及其属性定义。
+3. 构建截图组件。
+
+   此处定义一个截图组件，置于预览流XComponent组件之上，用来遮挡XComponent组件。
 
    属性定义：
 
    ```ts
    @State isShowBlur: boolean = false; // 是否显示截图组件
-   @State isShowBlack: boolean = false; // 是否显示闪黑组件
    @StorageLink('modeChange') @Watch('onModeChange') modeChangeFlag: number = 0; // 模式切换动效触发入口
    @StorageLink('switchCamera') @Watch('onSwitchCamera') switchCameraFlag: number = 0;// 前后置切换动效触发入口
    @StorageLink('frameStart') @Watch('onFrameStart') frameStartFlag: number = 0; // 动效消失入口
-   @StorageLink('captureClick') @Watch('onCaptureClick') captureClickFlag: number = 0; // 拍照闪黑动效入口
    @State screenshotPixelMap: image.PixelMap | undefined = undefined; // 截图组件PixelMap
    @State surfaceId: string = ''; // 当前预览流XComponent的surfaceId
    @StorageLink('curPosition') curPosition: number = 0; // 当前镜头前后置状态
@@ -81,10 +157,9 @@
    @State shotImgOpacity: number = 1; // 截图组件透明度
    @State shotImgScale: ScaleOptions = { x: 1, y: 1 }; // 截图组件比例
    @State shotImgRotation: RotateOptions = { y: 0.5, angle: 0 } // 截图组件旋转角度
-   @State flashBlackOpacity: number = 1; // 闪黑组件透明度
    ```
 
-   截图组件参考：
+   截图组件的实现参考：
 
    ```ts
    // 截图组件，置于预览流XComponent组件之上
@@ -104,21 +179,9 @@
    }
    ```
 
-   闪黑组件参考：
+4. （按实际情况选择）实现模糊出现动效。
 
-   ```ts
-   // 拍照闪黑及前后置切换时显示，用来遮挡XComponent组件
-   if (this.isShowBlack) {
-     Column()
-       .key('black')
-       .width(px2vp(1080)) // 与预览流XComponent宽高保持一致，图层在预览流之上，截图组件之下
-       .height(px2vp(1920))
-       .backgroundColor(Color.Black)
-       .opacity(this.flashBlackOpacity)
-   }
-   ```
-
-4. 模式切换动效实现，模式切换动效分两段实现，模糊出现动效和模糊消失动效。
+   模式切换动效分两段实现，模糊出现动效和模糊消失动效。
 
    模糊出现动效：用户点击或触控事件触发预览流截图，显示截图组件，截图清晰到模糊，覆盖旧预览流。
 
@@ -163,7 +226,9 @@
    }
    ```
 
-   模糊消失动效：由新模式预览流首帧回调[on('frameStart')](../../reference/apis-camera-kit/js-apis-camera.md#onframestart)触发，截图组件模糊到清晰，显示新预览流
+5. 实现模糊消失动效。
+
+   模糊消失动效：由新模式预览流首帧回调[on('frameStart')](../../reference/apis-camera-kit/js-apis-camera.md#onframestart)触发，截图组件模糊到清晰，显示新预览流。
 
    ```ts
    function hideBlurAnim(): void {
@@ -185,11 +250,13 @@
    }
    ```
 
-   
+6. （按实际情况选择）实现模糊翻转动效。
 
-5. 前后置切换动效实现，模式切换动效分两段实现，模糊翻转动效和模糊消失动效（同上）。
+   模式翻转动效分两段实现，模糊翻转动效和模糊消失动效，其中模糊消失动效同第5步。
 
    模糊翻转动效：分两段组件翻转实现，先向外翻转90°再向内翻转90°，同时还执行了模糊度、透明度、比例缩放等动效。
+
+   为保证预览流在翻转时不露出，需要构建一个闪黑组件用于遮挡XComponent组件，构建方式参考[闪黑动效](#闪黑动效)-步骤2。
 
    ```ts
    /**
@@ -325,30 +392,7 @@
    }
    ```
 
-   模糊消失动效：同模式切换模糊消失动效。
-
-6. 闪黑动效实现。
-
-   ```ts
-   function flashBlackAnim() {
-     console.info('flashBlackAnim E');
-     this.flashBlackOpacity = 1; // 闪黑组件不透明
-     this.isShowBlack = true; // 显示闪黑组件
-     animateToImmediately({
-       curve: curves.interpolatingSpring(1, 1, 410, 38),
-       delay: 50, // 延时50ms，实现黑屏
-       onFinish: () => {
-         this.isShowBlack = false; // 闪黑组件下树
-         this.flashBlackOpacity = 1;
-         console.info('flashBlackAnim X');
-       }
-     }, () => {
-       this.flashBlackOpacity = 0; // 闪黑组件从不透明到透明
-     })
-   }
-   ```
-
-7. 动效触发实现参考。
+7. 按需触发动效。
 
    模式切换动效触发：点击或触控模式按钮立即执行doSurfaceShot截图方法，更新StorageLink绑定modeChange的值，触发onModeChange方法，开始动效。
 
@@ -377,15 +421,3 @@
      this.hideBlurAnim();
    }
    ```
-
-   闪黑动效触发：点击或触控拍照按钮，更新StorageLink绑定CaptureClick的值，触发onCaptureClick方法，开始动效。
-
-   ```ts
-   onCaptureClick(): void {
-     console.info('onCaptureClick');
-       console.info('onCaptureClick');
-       this.flashBlackAnim();
-   }
-   ```
-
-   
