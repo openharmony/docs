@@ -1,19 +1,32 @@
 # Media Kit（媒体服务）
 
-- [Media Kit简介](media-kit-intro.md)
-- 音频播放和录制
-  - [使用AVPlayer开发音频播放功能(ArkTS)](using-avplayer-for-playback.md)
-  - [使用AVPlayer开发音频播放功能(C/C++)](using-ndk-avplayer-for-playerback.md)
-  - [使用SoundPool开发音频播放功能](using-soundpool-for-playback.md)
-  - [使用AVRecorder开发音频录制功能](using-avrecorder-for-recording.md)
-  - [获取音视频元数据](avmetadataextractor.md)
-- 视频播放和录制
-  - [视频播放](video-playback.md)
-  - [添加视频外挂字幕](video-subtitle.md)
-  - [视频录制](video-recording.md)
-  - [使用AVScreenCaptureRecorder录屏保存到文件(ArkTS)](using-avscreencapture-ArkTs.md)
-  - [使用AVScreenCapture录屏取原始码流(C/C++)](using-avscreencapture-for-buffer.md)
-  - [使用AVScreenCapture录屏保存到文件(C/C++)](using-avscreencapture-for-file.md)
-  - [获取视频缩略图](avimagegenerator.md)
-- 视频转码
-  - [使用AVTranscoder开发视频转码功能](using-avtranscoder-for-transcodering.md)
+- [MediaKit简介](media-kit-intro.md)
+- 开发准备
+- 媒体开发者指导(ArkTS)
+  - 播放
+    - [使用AVPlayer接口播放音频(ArkTS)](using-avplayer-for-playback.md)
+    - [使用AVPlayer接口播放视频(ArkTS)]( )
+  - 录制
+    - [使用AVRecorder接口录制音频(ArkTS)](using-avrecorder-for-recording.md)
+    - [使用AVRecorder接口录制视频(ArkTS)](video-recording.md)
+  - 媒体信息查询
+    - [使用AVMetadataExtractor提取音视频元数据信息(ArkTS)]( )
+    - [使用AVImageGenerator提取视频指定时间图像(ArkTS)]( )
+  - 录屏
+    - [使用AVScreenCaptureRecorder接口录屏写文件(ArkTS)](using-avscreencapture-ArkTs.md)
+  - 音频池
+    - [使用SoundPool接口播放短音频(ArkTS)]( )
+  - 视频转码
+    - [使用AVTranscoder接口转码(ArkTS)](using-avtranscoder-for-transcodering.md)
+- 媒体最佳实践(ArkTS)
+  - [短视频滑动播放开发指导(ArkTS)]( )
+
+- 媒体开发者指导(C/C++)
+  - 播放
+    - [使用AVPlayer接口播放音频(C/C++)](using-avplayer-for-playback.md)
+    - [使用AVPlayer接口播放视频(C/C++)](video-playerback.md)
+  - 录屏
+    - [使用AVScreenCapture接口录屏取码流(C/C++)](using-avscreencapture-for-buffer.md)
+    - [使用AVScreenCapture接口录屏写文件(C/C++)](using-avscreencapture-for-file.md)
+- 媒体最佳实践(C/C++)
+  - [ ]( )
