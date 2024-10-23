@@ -7494,6 +7494,8 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 
 创建流媒体预下载媒体来源实例方法。
 
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 **参数：**
