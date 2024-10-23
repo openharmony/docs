@@ -548,6 +548,12 @@ ohos.permission.ACCESS_DDK_HID
 成功返回0，否则返回负数。
 
 
+- [HID_DDK_SUCCESS](#hid_ddkerrcode)：表示调用接口成功。
+- [HID_DDK_NO_PERM](#hid_ddkerrcode)：表示权限校验失败。
+- [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode)：表示连接hid_ddk服务失败或者调用方不是设备的创建者。
+- [HID_DDK_FAILURE](#hid_ddkerrcode)：表示对应设备不存在。
+
+
 ### OH_Hid_EmitEvent()
 
 ```
@@ -572,7 +578,12 @@ ohos.permission.ACCESS_DDK_HID
 
 **返回：**
 
-成功返回0，否则返回负数。
+- [HID_DDK_SUCCESS](#hid_ddkerrcode)：表示调用接口成功。
+- [HID_DDK_NO_PERM](#hid_ddkerrcode)：表示权限校验失败。
+- [HID_DDK_INVALID_OPERATION](#hid_ddkerrcode)：表示连接hid_ddk服务失败或者调用方不是设备的创建者。
+- [HID_DDK_INVALID_PARAMETER](#hid_ddkerrcode)：表示参数校验失败。可能原因包括：1. 设备ID小于0；2. 入参length长度超过7；3. 入参items为空指针。
+- [HID_DDK_NULL_PTR](#hid_ddkerrcode)：表示对应设备的注入为空。
+- [HID_DDK_FAILURE](#hid_ddkerrcode)：表示对应设备不存在。
 
 
 ## 变量说明
