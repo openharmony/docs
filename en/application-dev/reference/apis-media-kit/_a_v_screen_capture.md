@@ -812,10 +812,10 @@ Enumerates the screen capture states.
 | OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER  | Screen capture is interrupted by another screen capture.  | 
 | OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL  | Screen capture is interrupted by a call.  | 
 | OH_SCREEN_CAPTURE_STATE_MIC_UNAVAILABLE  | The microphone is unavailable.  | 
-| OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER  | The microphone is muted. This value is not supported yet.  | 
-| OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER  | The microphone is unmuted. This value is not supported yet.  | 
-| OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE  | The system enters a privacy dialog box. This value is not supported yet.  | 
-| OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE  | The system exits a privacy dialog box. This value is not supported yet.  | 
+| OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER  | The microphone is muted.  | 
+| OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER  | The microphone is unmuted.   | 
+| OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE  | The system enters a privacy dialog box.   | 
+| OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE  | The system exits a privacy dialog box.   | 
 | OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES   | Screen capture is interrupted by system user switching.| 
 
 
