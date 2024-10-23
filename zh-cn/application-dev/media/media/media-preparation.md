@@ -1,5 +1,22 @@
 # 开发准备
 
+媒体应用开发的主要流程包含开发准备、音视频播放、音视频录制、元数据信息提取、录屏等。
+
+在开发媒体应用时，需要先申请媒体相关权限，确保应用拥有访问媒体文件及其他功能的权限，需要的权限如下表。在申请权限前，请保证符合[权限使用的基本原则](../../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。
+
+
+| 权限名 | 说明 | 授权方式 | 
+| -------- | -------- | -------- |
+| ohos.permission.CAMERA | 允许应用使用相机录制视频。 | user_grant | 
+| ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。<br/>如需同时录制音频，需要申请该权限。 | user_grant | 
+| ohos.permission.WRITE_MEDIA | 允许应用读写用户外部存储中的媒体文件信息（可选）。 | user_grant | 
+| ohos.permission.READ_MEDIA | 允许应用读取用户外部存储中的媒体文件信息（可选）。 | user_grant | 
+
+
+以上权限的授权方式均为user_grant（用户授权），即开发者在module.json5文件中配置对应的权限后，需要使用接口[abilityAccessCtrl.requestPermissionsFromUser](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)去校验当前用户是否已授权。如果是，应用可以直接访问/操作目标对象；否则需要弹框向用户申请授权。
+
+
+具体申请方式及校验方式，请参考[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
 ## 开发指导
 
