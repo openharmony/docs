@@ -359,7 +359,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttributes, fd: number, writeResultCallback: (jobId: string, writeResult: PrintFileCreationState) => void): void
 
-实现这个接口来更新要打印文件，使用writeResultCallback回调。
+打印服务会通过本接口将一个空的pdf文件的文件描述符传给三方应用，由三方应用使用新的打印参数更新待打印文件，更新文件完成后通过本接口的回调方法writeResultCallback通知打印服务。 
 
 **需要权限：** ohos.permission.PRINT
 
@@ -371,8 +371,8 @@ onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttr
 | jobId | string | 是 | 表示打印任务ID |
 | oldAttrs | PrintAttributes | 是 | 表示旧打印参数 |
 | newAttrs | PrintAttributes | 是 | 表示新打印参数 |
-| fd | number | 是 | 表示文件描述符，三方应用可自主渲染该文件 |
-| writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | 是 | 表示更新待打印文件完成后的回调 |
+| fd | number | 是 | 表示打印文件传给接口调用方的pdf文件的文件描述符。 |
+| writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | 是 | 表示三方应用使用新的打印参数更新待打印文件完成后的回调 |
 
 **错误码：**
 
@@ -671,8 +671,8 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobName | string | 是 | 表示待打印文件名称，例如：test.pdf。打印侧会通过[onStartLayoutWrite](#onstartlayoutwrite)接口将空的pdf文件的fd传给接口调用方，由调用方渲染生成待打印文件后通知打印侧。 |
-| printAdapter | PrintDocumentAdapter | 是 | 表示三方应用实现的PrintDocumentAdapter接口实例 |
+| jobName | string | 是 | 表示待打印文件名称，例如：test.pdf。打印侧会通过[onStartLayoutWrite](#onstartlayoutwrite)接口将空的pdf文件的fd传给接口调用方，由调用方使用新的打印参数更新待打印文件。 |
+| printAdapter | PrintDocumentAdapter | 是 | 表示三方应用实现的[PrintDocumentAdapter](#printdocumentadapter11)接口实例 |
 | printAttributes | PrintAttributes | 是 | 表示打印参数 |
 | context | Context | 是 | 用于拉起系统打印界面的UIAbilityContext |
 
