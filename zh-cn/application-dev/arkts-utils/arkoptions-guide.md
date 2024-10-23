@@ -1,5 +1,4 @@
-# arkOptions配置项
-
+# 在build-profile.json5中配置arkOptions
 
 ## 配置文件标签
 

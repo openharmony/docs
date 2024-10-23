@@ -1,4 +1,4 @@
-# 代码混淆
+# ArkGuard源码混淆工具
 
 ## 代码混淆简介
 
@@ -292,24 +292,24 @@ lastName
 ```
 var obj = {x0: 0, x1: 0, x2: 0};
 for (var i = 0; i <= 2; i++) {
-    console.log(obj['x' + i]);  // x0, x1, x2 应该被保留
+    console.info(obj['x' + i]);  // x0, x1, x2 应该被保留
 }
 
 Object.defineProperty(obj, 'y', {});  // y 应该被保留
-console.log(obj.y);
+console.info(obj.y);
 
 obj.s = 0;
 let key = 's';
-console.log(obj[key]);        // s 应该被保留
+console.info(obj[key]);        // s 应该被保留
 
 obj.u = 0;
-console.log(obj.u);           // u 可以被正确地混淆
+console.info(obj.u);           // u 可以被正确地混淆
 
 obj.t = 0;
-console.log(obj['t']);        // 在开启字符串字面量属性名混淆时t和't'会被正确地混淆，但是建议保留
+console.info(obj['t']);        // 在开启字符串字面量属性名混淆时t和't'会被正确地混淆，但是建议保留
 
 obj['v'] = 0;
-console.log(obj['v']);        // 在开启字符串字面量属性名混淆时'v'会被正确地混淆，但是建议保留
+console.info(obj['v']);        // 在开启字符串字面量属性名混淆时'v'会被正确地混淆，但是建议保留
 ```
 
 对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`name`和`age`, 如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
@@ -388,13 +388,13 @@ export namespace Ns {
 
 ```
 var a = 0;
-console.log(globalThis.a);  // a 应该被保留
+console.info(globalThis.a);  // a 应该被保留
 
 function foo(){}
 globalThis.foo();           // foo 应该被保留
 
 var c = 0;
-console.log(c);             // c 可以被正确地混淆
+console.info(c);             // c 可以被正确地混淆
 
 function bar(){}
 bar();                      // bar 可以被正确地混淆
