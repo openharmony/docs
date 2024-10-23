@@ -186,3 +186,69 @@ export struct ChipGroupExample2 {
   }
 }
 ```
+
+## cl.arkui.2 ImageAttributeModifier支持new方式创建ColorFilter对象传入colorFilter接口变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+ImageAttributeModifier不支持new方式创建ColorFilter对象传入colorFilter接口，修复后即可增加colorFilter接口的支持范围，并且ColorFilter在业务代码中传递更加便捷。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：ImageAttributeModifier不支持new方式创建ColorFilter对象传入colorFilter接口。
+
+变更后：ImageAttributeModifier支持new方式创建ColorFilter对象传入colorFilter接口。
+
+**起始API Level**
+
+API 14
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.51开始。
+
+**变更的接口/组件**
+
+ImageAttributeModifier的colorFilter接口。
+
+**适配指导**
+
+使用ImageAttributeModifier的colorFilter接口时，已经支持new方式创建ColorFilter对象传入接口中。示例如下:
+
+```ts
+class ColorFilterModifier implements AttributeModifier<ImageAttribute> {
+  private colorFilter: ColorFilter | undefined = undefined
+
+  constructor(colorFilter: ColorFilter) {
+    this.colorFilter = colorFilter
+  }
+
+  applyNormalAttribute(instance: ImageAttribute): void {
+    instance.colorFilter(this.colorFilter)
+  }
+}
+
+
+@Entry
+@Component
+struct ColorFilters {
+  @State modifier: ColorFilterModifier = new ColorFilterModifier(new ColorFilter([0.1, 0.1, 0.1, 0.1, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.8, 0,]))
+
+  build() {
+    Column() {
+      Image($r('app.media.startIcon'))
+        .width(100)
+        .height(100)
+        .attributeModifier(this.modifier)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
