@@ -44,6 +44,9 @@
 
   不限制共享模块的引用和被引用场景。
 
+**注意：**  
+napi_load_module、napi_load_module_with_info以及动态加载不支持加载共享模块。
+
 ## 使用示例
 
 1. 共享模块内导出sendable对象。
