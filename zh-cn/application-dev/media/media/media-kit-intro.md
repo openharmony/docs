@@ -1,6 +1,6 @@
 # Media Kit简介
 
-Media Kit（媒体服务）提供了[AVPlayer](#avplayer)、[AVRecorder](#avrecorder)和[AVScreenCapture](#AVScreenCapture)用于播放、录制音视频。
+Media Kit（媒体服务）提供了[AVPlayer](#avplayer)、[AVRecorder](#avrecorder)和[AVScreenCapture](#AVScreenCapture)、[AVMetadataExtractor](#AVMetadataExtractor)和[AVImageGenerator](#AVImageGenerator)用于播放、录制音视频、获取音视频元数据和视频缩略图。
 
 在Media Kit的开发指导中，将介绍各种涉及音频、视频播放或录制功能场景的开发方式，指导开发者如何使用系统提供的音视频API实现对应功能。比如使用SoundPool实现简单的提示音，当设备接收到新消息时，会发出短促的“滴滴”声；使用AVPlayer实现音乐播放器，循环播放一首音乐。
 
@@ -230,3 +230,17 @@ AVScreenCapture主要工作是捕获音频信号、视频信号，并通过音�
 | -------- | -------- |
 | mp4 | 视频的容器格式，MP4。 | 
 | m4a | 纯音频的容器格式，M4A。 | 
+
+## AVMetadataExtractor
+AVMetadataExtractor 主要用于获取音视频元数据。通过使用 AVMetadataExtractor，开发者可以从原始媒体资源中提取出丰富的元数据信息。以音频资源为例，我们可以获取到关于该音频的标题、艺术家、专辑名称、时长等详细信息。视频资源的元数据获取流程与音频类似，由于视频没有专辑封面，所以无法获取视频资源的专辑封面。
+
+- 获取音频资源的元数据的全流程包含：创建AVMetadataExtractor，设置资源，获取元数据，获取专辑封面（可选），销毁资源。
+
+### 支持的格式
+支持的音视频源参考[媒体数据解析](../avcodec/audio-video-demuxer.md)
+
+## AVImageGenerator
+AVImageGenerator 主要用于获取视频缩略图。通过使用 AVImageGenerator，开发者可以实现从原始媒体资源中获取视频指定时间的视频帧。
+
+### 支持的格式
+支持的视频源参考[视频解码](../avcodec/video-decoding.md)
