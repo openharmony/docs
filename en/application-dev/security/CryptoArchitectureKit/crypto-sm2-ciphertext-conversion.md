@@ -53,3 +53,5 @@ function testGetCipherTextSpec() {
   console.info('getCipherTextSpec success');
 }
 ```
+<!--RP1-->
+<!--RP1End-->
