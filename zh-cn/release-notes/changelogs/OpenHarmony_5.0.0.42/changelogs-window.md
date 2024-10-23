@@ -45,7 +45,6 @@ API 12
 自定义控件需基于画中画窗口最大档位（真实尺寸）进行适配，其余档位中控件会跟随画中画窗口一同缩放。
 
 ```ts
-// 变更前 若应用基于小窗为基准适配字体大小为20
 @Builder
 function buildText(params: Params) {
   Column() {
