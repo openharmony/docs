@@ -311,7 +311,7 @@ NavPathStack通过Push相关的接口去实现页面跳转的功能，主要分�
 
     ```ts
     this.pageStack.pushPathByName('PageOne', "PageOne Param", (popInfo) => {
-    console.log('Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result))
+      console.log('Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result))
     });
     ```
 
@@ -320,9 +320,9 @@ NavPathStack通过Push相关的接口去实现页面跳转的功能，主要分�
     ```ts
     this.pageStack.pushDestinationByName('PageOne', "PageOne Param")
     .catch((error: BusinessError) => {
-        console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+      console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
     }).then(() => {
-    console.info('Push destination succeed.');
+      console.info('Push destination succeed.');
     });
     ```
 
@@ -635,7 +635,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
         .margin(20)
         .onClick(() => {
             this.getUIContext()?.animateTo({ duration: 1000 }, () => {
-            this.pageStack.pushPath({ name: 'ToPage' }, false)
+              this.pageStack.pushPath({ name: 'ToPage' }, false)
             })
         })
     }
