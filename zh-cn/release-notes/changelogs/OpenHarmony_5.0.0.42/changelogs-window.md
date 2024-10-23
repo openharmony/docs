@@ -53,7 +53,7 @@ function buildText(params: Params) {
     //  .fontSize(20)
     //  .fontColor(Color.Red)
 
-    //变更后 字体大小应基于大窗真实尺寸适配，字体大小应相应调整为合适值
+    // 变更后 字体大小应基于大窗真实尺寸适配，字体大小应相应调整为合适值
      Text(params.text)
       .fontSize(38)
       .fontColor(Color.Red)
