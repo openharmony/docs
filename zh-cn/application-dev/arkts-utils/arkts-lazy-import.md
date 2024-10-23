@@ -32,18 +32,18 @@
         
         // ...
         
-        console.log("main executed");
+        console.info("main executed");
         while (false) {
             let xx = a;
         }
         
         // mod1.ets
         export let a = "mod1 executed"
-        console.log(a);
+        console.info(a);
         
         // mod2.ets
         export let c = "mod2 executed"
-        console.log(c);
+        console.info(c);
 
     ```
     
@@ -64,21 +64,21 @@
         
         // ...
         
-        console.log("main executed");
+        console.info("main executed");
         while (false) {
             let xx = a;
         }
         
         // mod1.ets
         export let a = "mod1 a executed"
-        console.log(a);
+        console.info(a);
         
         export let b = "mod1 b executed"
-        console.log(b);
+        console.info(b);
         
         // mod2.ets
         export let c = "mod2 c executed"
-        console.log(c);
+        console.info(c);
 
     ```
 
@@ -159,7 +159,7 @@
     ```typescript
         // A.ets
         import { c } from "./B";
-        console.log(c);
+        console.info(c);
 
         // B.ets
         import lazy { c } from "./C";    // 从"mod1"内获取a对象，标记为延迟加载
@@ -178,7 +178,7 @@
     ```typescript
         // A_ns.ets
         import * as ns from "./B";
-        console.log(ns.c);
+        console.info(ns.c);
 
         // B.ets
         import lazy { c } from "./C";    // 从"mod1"内获取a对象，标记为延迟加载
