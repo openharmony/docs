@@ -1,9 +1,9 @@
-# 动态import
+# 动态加载
 
 动态import支持条件延迟加载，支持部分反射功能，可以提升页面的加载速度；动态import支持加载HSP模块/HAR模块/OHPM包/Native库等，并且HAR模块间只有变量动态import时还可以进行模块解耦。
 
 ## 技术适用场景介绍
-应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态导入代替[静态导入](introduction-to-arkts.md#静态导入)。下面是可能会需要动态导入的场景：
+应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态导入代替[静态导入](../quick-start/introduction-to-arkts.md#静态导入)。下面是可能会需要动态导入的场景：
 
 * 当静态导入的模块很明显的降低了代码的加载速度且被使用的可能性很低，或者并不需要马上使用它。
 * 当静态导入的模块很明显的占用了大量的系统内存且被使用的可能性很低。
@@ -18,20 +18,20 @@
 export class Calc {
   public static staticAdd(a:number, b:number):number {
     let c = a + b;
-    console.log('DynamicImport I am harlibrary in staticAdd, %d + %d = %d', a, b, c);
+    console.info('DynamicImport I am harlibrary in staticAdd, %d + %d = %d', a, b, c);
     return c;
   }
 
   public instanceAdd(a:number, b:number):number {
     let c = a + b;
-    console.log('DynamicImport I am harlibrary in instanceAdd, %d + %d = %d', a, b, c);
+    console.info('DynamicImport I am harlibrary in instanceAdd, %d + %d = %d', a, b, c);
     return c;
   }
 }
 
 export function addHarlibrary(a:number, b:number):number {
   let c = a + b;
-  console.log('DynamicImport I am harlibrary in addHarlibrary, %d + %d = %d', a, b, c);
+  console.info('DynamicImport I am harlibrary in addHarlibrary, %d + %d = %d', a, b, c);
   return c;
 }
 ```
@@ -106,7 +106,7 @@ import('harlibrary').then((ns:ESObject) => {
   // HAR's Index.ets
   export function add(a:number, b:number):number {
     let c = a + b;
-    console.log('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
+    console.info('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
     return c;
   }
   ```
@@ -114,7 +114,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('myHar').then((ns:ESObject) => {
-    console.log(ns.add(3, 5));
+    console.info(ns.add(3, 5));
   });
   ```
 
@@ -131,7 +131,7 @@ import('harlibrary').then((ns:ESObject) => {
   // HAR's Index.ets
   export function add(a:number, b:number):number {
     let c = a + b;
-    console.log('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
+    console.info('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
     return c;
   }
   ```
@@ -139,7 +139,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('myHar/Index').then((ns:ESObject) => {
-    console.log(ns.add(3, 5));
+    console.info(ns.add(3, 5));
   });
   ```
 
@@ -156,7 +156,7 @@ import('harlibrary').then((ns:ESObject) => {
   // HSP's Index.ets
   export function add(a:number, b:number):number {
     let c = a + b;
-    console.log('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
+    console.info('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
     return c;
   }
   ```
@@ -164,7 +164,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('myHsp').then((ns:ESObject) => {
-    console.log(ns.add(3, 5));
+    console.info(ns.add(3, 5));
   });
   ```
 
@@ -181,7 +181,7 @@ import('harlibrary').then((ns:ESObject) => {
   // HSP's Index.ets
   export function add(a:number, b:number):number {
     let c = a + b;
-    console.log('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
+    console.info('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
     return c;
   }
   ```
@@ -189,7 +189,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('myHsp/Index').then((ns:ESObject) => {
-    console.log(ns.add(3, 5));
+    console.info(ns.add(3, 5));
   });
   ```
 
@@ -205,7 +205,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('@ohos/crypto-js').then((ns:ESObject) => {
-    console.log('DynamicImport @ohos/crypto-js: ' + ns.CryptoJS.MD5(123456));
+    console.info('DynamicImport @ohos/crypto-js: ' + ns.CryptoJS.MD5(123456));
   });
   ```
 
@@ -221,7 +221,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('json5').then((ns:ESObject) => {
-    console.log('DynamicImport json5');
+    console.info('DynamicImport json5');
   });
   ```
 
@@ -238,7 +238,7 @@ import('harlibrary').then((ns:ESObject) => {
   // HAP's src/main/ets/Calc.ets
   export function add(a:number, b:number):number {
     let c = a + b;
-    console.log('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
+    console.info('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
     return c;
   }
   ```
@@ -246,7 +246,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('../Calc').then((ns:ESObject) => {
-    console.log(ns.add(3, 5));
+    console.info(ns.add(3, 5));
   });
   ```
 
@@ -260,7 +260,7 @@ import('harlibrary').then((ns:ESObject) => {
   ```typescript
   // HAP's src/main/ets/pages/Index.ets
   import('libnativeapi.so').then((ns:ESObject) => {
-    console.log('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
+    console.info('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
   });
   ```
 
@@ -326,7 +326,7 @@ import(filePath).then(……);
   // HAR's Index.ets
   export function add(a:number, b:number):number {
     let c = a + b;
-    console.log('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
+    console.info('DynamicImport I am a HAR, %d + %d = %d', a, b, c);
     return c;
   }
   ```
@@ -334,7 +334,7 @@ import(filePath).then(……);
   // HAP's src/main/ets/pages/Index.ets
   let packageName = 'myHar';
   import(packageName).then((ns:ESObject) => {
-    console.log(ns.add(3, 5));
+    console.info(ns.add(3, 5));
   });
   ```
   ```json5
@@ -362,7 +362,7 @@ import(filePath).then(……);
   // HSP's Index.ets
   export function add(a:number, b:number):number {
     let c = a + b;
-    console.log('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
+    console.info('DynamicImport I am a HSP, %d + %d = %d', a, b, c);
     return c;
   }
   ```
@@ -370,7 +370,7 @@ import(filePath).then(……);
   // HAP's src/main/ets/pages/Index.ets
   let packageName = 'myHsp';
   import(packageName).then((ns:ESObject) => {
-    console.log(ns.add(3, 5));
+    console.info(ns.add(3, 5));
   });
   ```
   ```json5
@@ -398,7 +398,7 @@ import(filePath).then(……);
   // HAP's src/main/ets/pages/Index.ets
   let packageName = '@ohos/crypto-js';
   import(packageName).then((ns:ESObject) => {
-    console.log('DynamicImport @ohos/crypto-js: ' + ns.CryptoJS.MD5(123456));
+    console.info('DynamicImport @ohos/crypto-js: ' + ns.CryptoJS.MD5(123456));
   });
   ```
   ```json5
@@ -426,7 +426,7 @@ import(filePath).then(……);
   // HAP's src/main/ets/pages/Index.ets
   let packageName = 'json5';
   import(packageName).then((ns:ESObject) => {
-    console.log('DynamicImport json5');
+    console.info('DynamicImport json5');
   });
   ```
   ```json5
@@ -454,7 +454,7 @@ import(filePath).then(……);
   // HAP's src/main/ets/Calc.ets
   export function add(a:number, b:number):number {
     let c = a + b;
-    console.log('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
+    console.info('DynamicImport I am a HAP, %d + %d = %d', a, b, c);
     return c;
   }
   ```
@@ -462,7 +462,7 @@ import(filePath).then(……);
   // HAP's src/main/ets/pages/Index.ets
   let filePath = '../Calc';
   import(filePath).then((ns:ESObject) => {
-    console.log(ns.add(3, 5));
+    console.info(ns.add(3, 5));
   });
   ```
   ```json5
@@ -488,7 +488,7 @@ import(filePath).then(……);
   // HAP's src/main/ets/pages/Index.ets
   let soName = 'libnativeapi.so';
   import(soName).then((ns:ESObject) => {
-    console.log('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
+    console.info('DynamicImport libnativeapi.so: ' + ns.default.add(2, 3));
   });
   ```
   ```json5
@@ -573,7 +573,7 @@ HAR之间依赖关系转移到HAP/HSP后：
 // HAP's src/main/ets/pages/Index.ets
 let harName = 'har1';
 import(harName).then((ns:ESObject) => {
-  console.log('DynamicImport addHar1 4 + 5 = ' + ns.addHar1(4, 5));
+  console.info('DynamicImport addHar1 4 + 5 = ' + ns.addHar1(4, 5));
 });
 ```
 ```json5
@@ -602,11 +602,11 @@ export { addHar1 } from './src/main/ets/utils/Calc'
 // har1's src/main/ets/utils/Calc.ets
 export function addHar1(a:number, b:number):number {
   let c = a + b;
-  console.log('DynamicImport I am har1, %d + %d = %d', a, b, c);
+  console.info('DynamicImport I am har1, %d + %d = %d', a, b, c);
 
   let harName = 'har2';
   import(harName).then((ns:ESObject) => {
-    console.log('DynamicImport addHar2 4 + 5 = ' + ns.addHar2(4, 5));
+    console.info('DynamicImport addHar2 4 + 5 = ' + ns.addHar2(4, 5));
   });
   return c;
 }
@@ -619,7 +619,7 @@ export { addHar2 } from './src/main/ets/utils/Calc'
 // har2's src/main/ets/utils/Calc.ets
 export function addHar2(a:number, b:number):number {
   let c = a + b;
-  console.log('DynamicImport I am har2, %d + %d = %d', a, b, c);
+  console.info('DynamicImport I am har2, %d + %d = %d', a, b, c);
   return c;
 }
 ```
@@ -650,7 +650,7 @@ har1对har2的依赖dependencies和runtimeOnly配置转移到HAP中，har1不需
 // HAP's src/main/ets/pages/Index.ets
 let harName = 'har1';
 import(harName).then((ns:ESObject) => {
-  console.log('DynamicImport addHar1 4 + 5 = ' + ns.addHar1(4, 5));
+  console.info('DynamicImport addHar1 4 + 5 = ' + ns.addHar1(4, 5));
 });
 ```
 ```typescript
@@ -661,11 +661,11 @@ export { addHar1 } from './src/main/ets/utils/Calc'
 // har1's src/main/ets/utils/Calc.ets
 export function addHar1(a:number, b:number):number {
   let c = a + b;
-  console.log('DynamicImport I am har1, %d + %d = %d', a, b, c);
+  console.info('DynamicImport I am har1, %d + %d = %d', a, b, c);
 
   let harName = 'har2';
   import(harName).then((ns:ESObject) => {
-    console.log('DynamicImport addHar2 4 + 5 = ' + ns.addHar2(4, 5));
+    console.info('DynamicImport addHar2 4 + 5 = ' + ns.addHar2(4, 5));
   });
   return c;
 }
@@ -678,7 +678,7 @@ export { addHar2 } from './src/main/ets/utils/Calc'
 // har2's src/main/ets/utils/Calc.ets
 export function addHar2(a:number, b:number):number {
   let c = a + b;
-  console.log('DynamicImport I am har2, %d + %d = %d', a, b, c);
+  console.info('DynamicImport I am har2, %d + %d = %d', a, b, c);
   return c;
 }
 ```
