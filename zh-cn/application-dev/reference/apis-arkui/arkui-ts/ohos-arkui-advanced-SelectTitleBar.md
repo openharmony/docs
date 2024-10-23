@@ -35,7 +35,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| selected | number | 是 | \@Prop | 当前选中项目的索引。<br>第一项的索引为0。如果不设置该属性，则默认值为-1。 |
+| selected | number | 是 | \@Prop | 当前选中项目的索引。<br>第一项的索引为0。如果不设置该属性，则默认值为0。 |
 | options | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption对象说明)&gt; | 是 | - | 下拉菜单中的项目。 |
 | menuItems | Array&lt;[SelectTitleBarMenuItem](#selecttitlebarmenuitem)&gt;              | 否 | - | 右侧菜单项目列表，定义标题栏右侧的菜单项目。 |
 | subtitle | [ResourceStr](ts-types.md#resourcestr)                                      | 否 | - | 子标题。 |
