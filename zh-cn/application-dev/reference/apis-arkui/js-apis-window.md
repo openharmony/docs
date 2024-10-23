@@ -9485,7 +9485,9 @@ export default class EntryAbility extends UIAbility {
 
 getGlobalRect(): Rect
 
-获取窗口矩形区域四元组{x,y,w,h}，x、y为主窗坐标加子窗相对主窗缩放距离，w、h为缩放宽高，同步接口。
+获取窗口在屏幕上的真实现实区域，同步接口。
+
+在某些设备上，窗口显示时可能经过了缩放，此接口可以获取缩放后窗口在屏幕上的真实位置和大小。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -9495,7 +9497,7 @@ getGlobalRect(): Rect
 
 | 类型 | 说明 |
 | ------------------- | ------------------------ |
-| Rect | 四元组{w,y,w,h}分别表示相对与屏幕的x坐标，相对于屏幕的y坐标，缩放窗口宽和缩放窗口高。 |
+| Rect | 四元组{w,y,w,h}分别表示距离屏幕左上角的x坐标，距离屏幕左上角的y坐标，缩放后的窗口宽度和缩放后窗口高度。 |
 
 **错误码：**
 
