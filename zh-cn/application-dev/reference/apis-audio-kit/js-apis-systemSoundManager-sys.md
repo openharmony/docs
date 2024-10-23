@@ -348,7 +348,7 @@ createCustomizedToneAttrs(): ToneAttrs
 ```ts
 let toneAttrs: systemSoundManager.ToneAttrs = systemSoundManager.createCustomizedToneAttrs();
 ```
-## ToneHapticsFeature<sup>12+</sup>
+## ToneHapticsFeature<sup>13+</sup>
 
 枚举，系统振动风格定义。
 
