@@ -133,7 +133,7 @@
       <!--Del-->
       - [AbilityFirstFrameStateData(系统接口)](js-apis-inner-application-abilityFirstFrameStateData-sys.md)
       - [AbilityFirstFrameStateObserver(系统接口)](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
-      - [AbilityForegroundStateObserver(系统接口)](js-apis-inner-application-abilityForegroundStateObserver-sys)
+      - [AbilityForegroundStateObserver(系统接口)](js-apis-inner-application-abilityForegroundStateObserver-sys.md)
       - [AbilityRunningInfo(系统接口)](js-apis-inner-application-abilityRunningInfo-sys.md)
       - [AbilityStateData(系统接口)](js-apis-inner-application-abilityStateData-sys.md)
       - [AppForegroundStateObserver(系统接口)](js-apis-inner-application-appForegroundStateObserver-sys.md)
