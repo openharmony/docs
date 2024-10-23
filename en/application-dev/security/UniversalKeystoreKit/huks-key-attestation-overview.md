@@ -10,9 +10,11 @@ HUKS issues a certificate for the public key of an asymmetric key pair stored in
 | Application| {appId:"xxx", bundleName:"xxx"} | **bundleName** indicates the bundle name of the application.|
 | System service| {processName:"xxx", APL:"system_basic \| system_core"} | The APL of the application must be **system_basic** or **system_core**.|
 
-> **NOTE**<br>
+> **NOTE**
+>
 > - Key attestation is not supported if the caller is a system service with APL of **normal**. In this case, **processName** and **APL** are left empty.
 > - Key attestation is not supported in Emulator scenarios.
+> - The mini-system devices do not support key attestation.
 
 
 The key attestation process is as follows:
@@ -43,7 +45,7 @@ The key management service specifications include mandatory specifications and o
 **Anonymous key attestation**
 <!--DelEnd-->
 
-| Algorithm| Description| API Level| <!--DelCol4-->Mandatory|
+| Algorithm| Description| API Version| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
 | RSA | The padding mode can be PSS or PKCS1_V1_5.| 11+ | Yes|
 | ECC | - | 11+ | Yes|
@@ -52,7 +54,7 @@ The key management service specifications include mandatory specifications and o
 <!--Del-->
 **Non-anonymous key attestation**
 
-| Algorithm| Description| API Level| Mandatory|
+| Algorithm| Description| API Version| Mandatory|
 | -------- | -------- | -------- | -------- |
 | RSA | The padding mode can be PSS or PKCS1_V1_5.| 8+ | Yes|
 | ECC | - | 8+ | Yes|

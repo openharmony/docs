@@ -1,6 +1,6 @@
 # Non-anonymous Key Attestation (C/C++)
 
-The caller must have the ohos.permission.ATTEST_KEY permission. You need to request the permission based on the APL of your permission. For details, see [Workflow for Using Permissions](../AccessToken/determine-application-mode.md).
+The caller must have the [ohos.permission.ATTEST_KEY](../AccessToken/permissions-for-system-apps.md#ohospermissionattest_key) permission. You need to request the permission based on the APL of your permission. For details, see [Workflow for Using Permissions](../AccessToken/determine-application-mode.md).
 
 ## Add the dynamic library in the CMake script.
 ```txt
