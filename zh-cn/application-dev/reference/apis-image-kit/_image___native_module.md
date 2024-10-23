@@ -1850,7 +1850,7 @@ Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image, uint32_t co
 Image_ErrorCode OH_ImageNative_GetRowStride(OH_ImageNative *image, uint32_t componentType, int32_t *rowStride)
 ```
 **描述**
-获取Native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的像素行宽。
+获取Native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的像素行宽。读取相机预览流数据时，需要考虑按stride进行读取，具体用法见[C/C++预览流二次处理示例](../../media/camera/native-camera-preview-imageReceiver.md)。
 
 **起始版本：** 12
 
