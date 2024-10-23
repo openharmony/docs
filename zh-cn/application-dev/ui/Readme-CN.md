@@ -114,6 +114,7 @@
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
     - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
+  - [Stage模型下ArkUI全局接口开发指导](arkts-global-interface.md)
 - UI开发 (兼容JS的类Web开发范式)
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明
