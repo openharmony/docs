@@ -2919,8 +2919,6 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 通过key-value方式获取播放信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称          | 类型   | 必填 | 说明                                                         |
