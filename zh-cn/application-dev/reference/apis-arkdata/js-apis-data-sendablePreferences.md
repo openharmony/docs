@@ -769,6 +769,30 @@ promise.then(() => {
 })
 ```
 
+### flushSync<sup>14+</sup>
+
+flushSync(): void
+
+将缓存的Preferences实例中的数据存储到共享用户首选项的持久化文件中。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
+**示例：**
+
+```ts
+preferences.flushSync();
+```
+
 ### clear
 
 clear(): Promise&lt;void&gt;
