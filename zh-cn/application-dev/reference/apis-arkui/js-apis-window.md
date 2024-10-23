@@ -9481,6 +9481,45 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+### getGlobalRect<sup>13+</sup>
+
+getGlobalRect(): Rect
+
+获取窗口矩形区域四元组{x,y,w,h}，x、y为主窗坐标加子窗相对主窗缩放距离，w、h为缩放宽高，同步接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Rect | 四元组{w,y,w,h}分别表示相对与屏幕的x坐标，相对于屏幕的y坐标，缩放窗口宽和缩放窗口高。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let rect = windowClass.getGlobalRect();
+  console.info(`Get window rect: ` + JSON.stringify(rect));
+} catch (exception) {
+  console.error(`Failed to getGlobalRect. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### on('windowStageClose')<sup>14+</sup>
 
 on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
