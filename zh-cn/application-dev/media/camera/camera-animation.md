@@ -13,8 +13,6 @@
 1. 导入依赖，需要导入相机框架、图片、ArkUI相关领域依赖。
 
    ```ts
-   import { camera } from '@kit.CameraKit';
-   import { image } from '@kit.ImageKit';
    import { curves } from '@kit.ArkUI';
    ```
 
@@ -26,7 +24,6 @@
 
    ```ts
    @State isShowBlack: boolean = false; // 是否显示闪黑组件
-   @StorageLink('frameStart') @Watch('onFrameStart') frameStartFlag: number = 0; // 动效消失入口
    @StorageLink('captureClick') @Watch('onCaptureClick') captureClickFlag: number = 0; // 拍照闪黑动效入口
    @State flashBlackOpacity: number = 1; // 闪黑组件透明度
    ```
@@ -94,7 +91,7 @@
 
 2. 获取预览流截图。
 
-   预览流截图通过图形提供的[image.createPixelMapFromSurface](../../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11)接口实现，surfaceId为当前预览流的surfaceId，size为当前预览流profile的宽高。
+   预览流截图通过图形提供的[image.createPixelMapFromSurface](../../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11)接口实现，surfaceId为当前预览流的surfaceId，size为当前预览流profile的宽高。创建截图工具类(ts文件)，导入依赖，导出获取截图方法供页面使用，截图工具类实现参考：
 
    ```ts
    import { image } from '@kit.ImageKit';
