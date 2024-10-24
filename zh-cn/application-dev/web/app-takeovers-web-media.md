@@ -47,7 +47,7 @@ Web组件提供了应用接管网页中的媒体播放的能力，用来支持�
 
 ### 开启接管网页媒体播放
 
-如果要使用接管网页媒体播放，需要先通过[enableNativeMediaPlayer](../reference/apis-arkweb/ts-basic-components-web.md#enablenativemediaplayer12)开启该功能。
+需要先通过[enableNativeMediaPlayer](../reference/apis-arkweb/ts-basic-components-web.md#enablenativemediaplayer12)接口，开启接管网页媒体播放的功能。
 
   ```ts
   // xxx.ets
@@ -78,7 +78,7 @@ Web组件提供了应用接管网页中的媒体播放的能力，用来支持�
   * 如果应用不接管当前的为网页媒体资源， 需要在回调函数里返回 `null` 。
   * 如果应用接管当前的为网页媒体资源， 需要在回调函数里返回一个本地播放器实例。
 
-本地播放器需要实现 [NativeMediaPlayerBridge](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerbridge12)以便ArkWeb内核对本地播放器进行播控操作。
+本地播放器需要实现[NativeMediaPlayerBridge](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerbridge12)接口，以便ArkWeb内核对本地播放器进行播控操作。
 
   ```ts
   // xxx.ets
