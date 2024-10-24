@@ -73,7 +73,7 @@ Web(options: WebOptions)
   }
   ```
 
-Web组件统一渲染模式。
+Web组件同步渲染模式。
 
   ```ts
   // xxx.ets
@@ -3344,6 +3344,8 @@ onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object
 onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 应用渲染进程异常退出时触发该回调。
+
+应用中的一个页面执行了onRenderExited之后所有Web组件都会退出。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8871,14 +8873,16 @@ onOverrideUrlLoading的回调。
 
 ## RenderMode<sup>12+</sup>枚举说明
 
-定义Web组件的渲染方式。
+定义Web组件的渲染方式，默认为异步渲染模式。
+
+建议使用异步渲染模式，异步渲染模式有更好的性能和更低的功耗。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称                           | 值 | 说明           |
 | ----------------------------- | -- | ------------ |
-| ASYNC_RENDER                        | 0 | Web组件自渲染模式。   |
-| SYNC_RENDER                        | 1 | Web组件统一渲染模式。   |
+| ASYNC_RENDER                        | 0 | Web组件异步渲染模式，ArkWeb组件作为图形surface节点，独立送显，Web组件的宽度最大规格不超过7,680 px（物理像素）。   |
+| SYNC_RENDER                        | 1 |Web组件同步渲染模式，ArkWeb组件作为图形canvas节点，跟随系统组件一起送显，可以渲染更长的Web组件内容，Web组件的宽度最大规格不超过500,000 px（物理像素）。   |
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
