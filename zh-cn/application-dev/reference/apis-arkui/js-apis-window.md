@@ -6118,9 +6118,9 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### getGestureBackEnabled<sup>14+<sup>
+### isGestureBackEnabled<sup>14+<sup>
 
-getGestureBackEnabled(): boolean
+isGestureBackEnabled(): boolean
 
 获取当前窗口是否禁用返回手势功能，仅主窗全屏模式下生效，2in1设备不生效。
 
@@ -6168,7 +6168,7 @@ export default class EntryAbility extends UIAbility {
       
       // 获取当前窗口是否禁用返回手势功能
       try {
-        let gestureBackEnabled: boolean = windowClass.getGestureBackEnabled();
+        let gestureBackEnabled: boolean = windowClass.isGestureBackEnabled();
         console.info(`Succeeded in obtaining gesture back enabled status: ${gestureBackEnabled}`);
       } catch (exception) {
         console.error(`Failed to get gesture back enabled status. Cause code: ${exception.code}, message: ${exception.message}`);
