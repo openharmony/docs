@@ -44,7 +44,7 @@ struct StackExample {
 
 ## 对齐方式
 
-Stack组件通过[alignContent参数](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#alignment)实现位置的相对移动。如图2所示，支持九种对齐方式。
+Stack组件通过[alignContent参数](../reference/apis-arkui/arkui-ts/ts-container-stack.md#aligncontent)实现位置的相对移动。如图2所示，支持九种对齐方式。
 
   **图2** Stack容器内元素的对齐方式  
 
@@ -154,3 +154,4 @@ struct StackSample {
 
 
 ![zh-cn_image_0000001511421368](figures/zh-cn_image_0000001511421368.png)
+<!--RP1--><!--RP1End-->

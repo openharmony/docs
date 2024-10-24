@@ -153,9 +153,7 @@ templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| totalCount | number | 否   | 数据源的总长度，可以大于已加载数据项的数量<br/>令arr.length表示数据源长度，以下为totalCount的判断规则：<br/>1) totalCount不设置 \|\| totalCount不是整数 \|\| totalCount <= 0 \|\| totalCount == arr.length时，totalCount为数据源长度，列表正常滚动<br/>2) 0 < totalCount < arr.length时，界面中只渲染“totalCount”个数据<br/>3) totalCount > arr.length时，滚动条样式正常，无数据项的位置显示空白，当滚动动画停止时，滚动条停留在最后一个数据项的位置。这样用户可以不同步请求所有数据，也能实现正确的滚动条样式。 |
-
-> **注意：** 当totalCount < arr.length时，totalCount建议设置能铺满父组件容器，否则会有父组件容器留空的体验问题。
+| totalCount | number | 否   | 数据源的总长度，可以大于已加载数据项的数量 |
 
 ## RepeatItemBuilder
 
@@ -185,7 +183,7 @@ type RepeatItemBuilder\<T\> = (repeatItem: RepeatItem\<T\>) => void
 
 | 参数名      | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| cachedCount | number | 否   | 当前模板在Repeat的缓存池中可缓存子节点的最大数量，仅在开启virtualScroll后生效。<br/>将cachedCount设置为当前模板的节点在屏上可能出现的最大数量时，Repeat可以做到尽可能多的复用。但后果是当屏上没有当前模板的节点时，缓存池也不会释放，应用内存会增大。需要开发者依据具体情况自行把控。 <br/>如果开发者未指定cachedCount，框架会分别对不同template，根据屏幕上的可见+预渲染的节点个数来计算cachedCount。当屏幕上的可见+预渲染的节点个数变多时，cachedCount也会对应增长。需要注意cachedCount数量不会减少。 <br/> 如果开发者要显式指定cachedCount，推荐设置成和屏幕上节点个数一致。需要注意，不推荐设置cachedCount小于2，因为这会导致在快速滑动场景下创建新的节点，从而导致性能劣化。 |
+| cachedCount | number | 否   | 当前模板在Repeat的缓存池中可缓存子节点的最大数量，仅在开启virtualScroll后生效。 |
 
 ## TemplateTypedFunc
 

@@ -128,7 +128,7 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
 });
 ```
 
-## appManager.on
+## appManager.on('applicationState')
 
 on(type: 'applicationState', observer: ApplicationStateObserver): number
 
@@ -204,7 +204,7 @@ try {
 }
 ```
 
-## appManager.on
+## appManager.on('applicationState')
 
 on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number
 
@@ -283,7 +283,7 @@ try {
 }
 ```
 
-## appManager.on<sup>11+</sup>
+## appManager.on('appForegroundState')<sup>11+</sup>
 
 on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
 
@@ -334,7 +334,7 @@ try {
 }
 ```
 
-## appManager.on<sup>12+</sup>
+## appManager.on('abilityFirstFrameState')<sup>12+</sup>
 
 on(type: 'abilityFirstFrameState', observer: AbilityFirstFrameStateObserver, bundleName?: string): void
 
@@ -386,7 +386,7 @@ try {
 }
 ```
 
-## appManager.off
+## appManager.off('applicationState')
 
 off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void
 
@@ -477,7 +477,7 @@ try {
 }
 ```
 
-## appManager.off
+## appManager.off('applicationState')
 
 off(type: 'applicationState', observerId: number): Promise\<void>
 
@@ -569,7 +569,7 @@ try {
 }
 ```
 
-## appManager.off<sup>11+</sup>
+## appManager.off('appForegroundState')<sup>11+</sup>
 
 off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
 
@@ -633,7 +633,7 @@ try {
 }
 ```
 
-## appManager.off<sup>12+</sup>
+## appManager.off('abilityFirstFrameState')<sup>12+</sup>
 
 off(type: 'abilityFirstFrameState', observer?: AbilityFirstFrameStateObserver): void
 
@@ -901,7 +901,7 @@ let isClearPageStack = false;
 let appIndex = 1;
 
 try {
-  appManager.killProcessWithAccount(bundleName, accountId，isClearPageStack, appIndex).then(() => {
+  appManager.killProcessWithAccount(bundleName, accountId, isClearPageStack, appIndex).then(() => {
     console.log('killProcessWithAccount success');
   }).catch((err: BusinessError) => {
     console.error(`killProcessWithAccount fail, err: ${JSON.stringify(err)}`);
@@ -1842,6 +1842,7 @@ getRunningMultiAppInfo(bundleName: string): Promise\<RunningMultiAppInfo>
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000072 | App clone or multi-instance is not supported. |
+| 18500001 | The bundle does not exist or no patch has been applied. |
 
 **示例：**
 

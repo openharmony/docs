@@ -18,6 +18,7 @@
   - 头文件
     - [native_audio_common.h](native__audio__common_8h.md)
     - [native_audio_device_base.h](native__audio__device__base_8h.md)
+    - [native_audio_manager.h](native__audio__manager_8h.md)
     - [native_audio_routing_manager.h](native__audio__routing__manager_8h.md)
     - [native_audio_session_manager.h](native__audio__session__manager_8h.md)
     - [native_audiocapturer.h](native__audiocapturer_8h.md)

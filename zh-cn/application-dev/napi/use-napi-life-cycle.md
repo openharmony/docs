@@ -44,7 +44,7 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 需要注意的是合理使用napi_open_handle_scope和napi_close_handle_scope管理napi_value的生命周期，做到生命周期最小化，避免发生内存泄漏问题。
 
 代码部分也可参考下面链接：
-[生命周期管理](napi-guidelines.md)
+[生命周期管理](napi-guidelines.md#生命周期管理)
 
 cpp部分代码
 
@@ -180,9 +180,9 @@ try {
 
 获取与reference相关联的ArkTS Object。
 
-### napi_add_finalize
+### napi_add_finalizer
 
-当ArkTS Object中的对象被垃圾回收时调用注册的napi_finalize回调。
+当ArkTS Object中的对象被垃圾回收时调用注册的napi_add_finalizer回调。
 
 cpp部分代码
 

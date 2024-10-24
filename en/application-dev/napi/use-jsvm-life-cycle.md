@@ -2,14 +2,14 @@
 
 ## Introduction
 
-In JSVM-API, **JSVM_Value** is an abstract data type that represents a JavaScript (JS) value of the basic type (such as number, string, or Boolean) or composite type (such as array, function, or object).
-The **JSVM_Value** lifecycle is closely related to the lifecycle of the JS value. When a JS value is garbage collected, the **JSVM_Value** associated with it is no longer valid. Avoid using **JSVM_Value** when its JS value no longer exists.
+In JSVM-API, **JSVM_Value** is an abstract data type that represents a JavaScript (JS) value of any type, which includes the basic type (such as number, string, or Boolean) and the composite type (such as array, function, or object).
+The **JSVM_Value** lifecycle is closely related to the lifecycle of the JS value. When a JS value is garbage-collected, the **JSVM_Value** associated with it is no longer valid. Avoid using the **JSVM_Value** when the JS value no longer exists.
 
-The scope of the framework layer is usually used to manage the **JSVM_Value** lifecycle. You can use **OH_JSVM_OpenHandleScope** to create a scope and use **OH_JSVM_CloseHandleScope** to destroy a scope. By creating **JSVM_Value** in the scope, you can ensure that **JSVM_Value** is automatically released when the scope ends, avoiding memory leaks.
+Scope is used to manage the **JSVM_Value** lifecycle in the framework layer. You can use **OH_JSVM_OpenHandleScope** to create a scope and use **OH_JSVM_CloseHandleScope** to destroy a scope. By creating a **JSVM_Value** in a scope, you can ensure that the **JSVM_Value** is automatically released when the scope ends. This helps prevent memory leaks.
 
-**JSVM_Ref** is a JSVM-API data type used to manage the **JSVM_Value** lifecycle. **JSVM_Ref** allows reference to a **JSVM_Value** during its lifecycle, even if it is beyond its original context. The reference allows objects to be used and shared in different contexts and helps effective track of the object lifecycle.
+**JSVM_Ref** is a JSVM-API data type used to manage the **JSVM_Value** lifecycle. It allows reference to a **JSVM_Value** during its lifecycle, even if the value is beyond its original context. The reference allows a **JSVM_Value** to be shared in different contexts and released in a timely manner.
 
-Properly use **OH_JSVM_OpenHandleScope** and **OH_JSVM_CloseHandleScope** to minimize the lifecycle of **JSVM_Value** and avoid memory leaks.
+Properly using **OH_JSVM_OpenHandleScope** and **OH_JSVM_CloseHandleScope** can minimize the **JSVM_Value** lifecycle and prevent memory leaks.
 
 Each **JSVM_Value** belongs to a specific **HandleScope** instance, which is created by **OH_JSVM_OpenHandleScope** and closed by **OH_JSVM_CloseHandleScope**. After a **HandleScope** instance is closed, the corresponding **JSVM_Value** will be automatically released.
 
@@ -17,10 +17,10 @@ Each **JSVM_Value** belongs to a specific **HandleScope** instance, which is cre
 
 JSVM-API provides APIs for creating and manipulating JS objects, managing references to and lifecycle of the JS objects, and registering garbage collection (GC) callbacks in C/C++. Before you get started, you need to understand the following concepts:
 
-- Scope: A scope is used to ensure that the objects created within a certain scope remain active and are properly cleared when no longer required. JSVM-API provides APIs for creating and closing normal and escapeable scopes.
+- Scope: used to ensure that the objects created within a certain scope remain active and are properly cleared when no longer required. JSVM-API provides APIs for creating and closing normal and escapeable scopes.
 - Reference management: JSVM-API provides APIs for creating, deleting, and managing object references to extend the object lifecycle and prevent memory leaks when objects are used.
-- Escapeable scope: An escapeable scope is used to return values created within the scope of **escapable_handle_scope** to a parent scope. It is created by **OH_JSVM_OpenEscapableHandleScope** and closed by **OH_JSVM_CloseEscapableHandleScope**.
-- GC callback: You can register a GC callback to perform specific cleanup operations when a JS object is garbage collected.
+- Escapeable scope: used to return the values created within the **escapable_handle_scope** to a parent scope. It is created by **OH_JSVM_OpenEscapableHandleScope** and closed by **OH_JSVM_CloseEscapableHandleScope**.
+- GC callback: You can register GC callbacks to perform specific cleanup operations when JS objects are garbage-collected.
 
 Understanding these concepts helps you securely and effectively manipulate JS objects in C/C++ and perform object lifecycle management.
 
@@ -28,25 +28,25 @@ Understanding these concepts helps you securely and effectively manipulate JS ob
 
 | API                      | Description                      |
 |----------------------------|--------------------------------|
-| OH_JSVM_OpenHandleScope     | Opens a handle scope. **JSVM_Value** within the scope will not be garbage-collected. |
-| OH_JSVM_CloseHandleScope    | Closes a handle scope. |
-| OH_JSVM_OpenEscapableHandleScope     | Opens an escapable handle scope. Before this scope is closed, the object created within the scope has the same lifecycle as its parent scope. |
-| OH_JSVM_CloseEscapableHandleScope    | Closes an escapable handle scope. |
-| OH_JSVM_EscapeHandle         | Promotes a handle to a JS object so that it is valid for the lifetime of the outer scope. |
-| OH_JSVM_CreateReference      | Creates a reference with the specified reference count to the value passed in. The reference allows objects to be used and shared in different contexts and helps effective track of the object lifecycle. |
-| OH_JSVM_DeleteReference      | Releases the reference created by **OH_JSVM_CreateReference**. This allows objects to be correctly released and reclaimed when they are no longer required, avoiding memory leaks. |
-| OH_JSVM_ReferenceRef         | Increments the reference count of the reference created by **OH_JSVM_CreateReference** so that the object referenced will not be released. |
+| OH_JSVM_OpenHandleScope     | Opens a handle scope. **JSVM_Value** within the scope will not be garbage-collected.|
+| OH_JSVM_CloseHandleScope    | Closes a handle scope.|
+| OH_JSVM_OpenEscapableHandleScope     | Opens an escapable handle scope. Before this scope is closed, the object created within the scope has the same lifecycle as its parent scope.|
+| OH_JSVM_CloseEscapableHandleScope    | Closes an escapable handle scope.|
+| OH_JSVM_EscapeHandle         | Promotes a handle to a JS object so that it is valid for the lifetime of the outer scope.|
+| OH_JSVM_CreateReference      | Creates a reference with the specified reference count to the value passed in. The reference allows objects to be used and shared in different contexts and helps effective track of the object lifecycle.|
+| OH_JSVM_DeleteReference      | Releases the reference created by **OH_JSVM_CreateReference**. This allows objects to be correctly released and reclaimed when they are no longer required, avoiding memory leaks.|
+| OH_JSVM_ReferenceRef         | Increments the reference count of the reference created by **OH_JSVM_CreateReference** so that the object referenced will not be released.|
 | OH_JSVM_ReferenceUnref       | Decrements the reference count of the reference created by **OH_JSVM_CreateReference** so that the object can be correctly released and reclaimed when it is not referenced.|
 | OH_JSVM_GetReferenceValue   | Obtains the object referenced by **OH_JSVM_CreateReference**. |
 | OH_JSVM_AddFinalizer          | Adds a **JSVM_Finalize** callback to a JS object. The callback will be invoked to release the native object when the JS object is garbage-collected.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to lifecycle management.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to lifecycle management APIs.
 
-### OH_JSVM_OpenHandleScope and OH_JSVM_CloseHandleScope
+### OH_JSVM_OpenHandleScope, OH_JSVM_CloseHandleScope
 
-Use **OH_JSVM_OpenHandleScope** to open a handle scope, and use **OH_JSVM_CloseHandleScope** to close a handle scope. Properly managing JS handle scopes can prevent GC problems.
+Use **OH_JSVM_OpenHandleScope** to open a handle scope. Use **OH_JSVM_CloseHandleScope** to close a handle scope. Properly managing JS handle scopes can prevent GC problems.
 
 CPP code:
 
@@ -191,11 +191,10 @@ try {
 }
 ```
 
-### OH_JSVM_OpenEscapableHandleScope, OH_JSVM_CloseEscapableHandleScope, and OH_JSVM_EscapeHandle
+### OH_JSVM_OpenEscapableHandleScope, OH_JSVM_CloseEscapableHandleScope, OH_JSVM_EscapeHandle
 
 Use **OH_JSVM_OpenEscapableHandleScope** to create an escapeable handle scope, which allows the declared values in the scope to be returned to the parent scope. Use **OH_JSVM_CloseEscapableHandleScope** to close an escapeable handle scope. Use **OH_JSVM_EscapeHandle** to promote the lifecycle of a JS object so that it is valid for the lifetime of the outer scope.
-
-These APIs are helpful to manage JS objects more flexibly in C/C++, especially to pass cross-scope values.
+These APIs are helpful for managing ArkTS objects more flexibly in C/C++, especially when passing cross-scope values.
 
 CPP code:
 
@@ -230,7 +229,7 @@ static JSVM_Value EscapableHandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value value = nullptr;
     OH_JSVM_CreateStringUtf8(env, "Test jsvm_escapable_handle_scope", JSVM_AUTO_LENGTH, &value);
     OH_JSVM_SetNamedProperty(env, obj, "name", value);
-    // Call OH_JSVM_EscapeHandle to promote the JS object handle to make it valid for the lifetime of the outer scope.
+    // Call OH_JSVM_EscapeHandle to promote the JS object handle to make it valid with the lifetime of the outer scope.
     JSVM_Value escapedObj = nullptr;
     OH_JSVM_EscapeHandle(env, scope, obj, &escapedObj);
     // Close the escapeable handle scope to clear resources.
@@ -269,11 +268,11 @@ try {
 }
 ```
 
-### OH_JSVM_CreateReference and OH_JSVM_DeleteReference
+### OH_JSVM_CreateReference, OH_JSVM_DeleteReference
 
 Use **OH_JSVM_CreateReference** to create a reference for an object to extend its lifespan. The caller needs to manage the reference lifespan. Use **OH_JSVM_DeleteReference** to delete a reference.
 
-### OH_JSVM_ReferenceRef and OH_JSVM_ReferenceUnref
+### OH_JSVM_ReferenceRef, OH_JSVM_ReferenceUnref
 
 Use **OH_JSVM_ReferenceRef** to increment the reference count of a reference and use **OH_JSVM_ReferenceUnref** to decrement the reference count of a reference, and return the new count value.
 

@@ -8,14 +8,14 @@ For details about how to use the APIs (such as parameter usage constraints and v
 
 | API                                             | Description                                        |
 | --------------------------------------------------- | -------------------------------------------- |
-| setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt; | Sets custom event parameters. |
+| setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt; | Sets custom event parameters.|
 
 **Subscription APIs**
 
 | API                                             | Description                                        |
 | --------------------------------------------------- | -------------------------------------------- |
-| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to listen for application events. |
-| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events. |
+| addWatcher(watcher: Watcher): AppEventPackageHolder | Adds a watcher to listen for application events.|
+| removeWatcher(watcher: Watcher): void               | Removes a watcher to unsubscribe from application events.|
 
 ## How to Develop
 
@@ -134,7 +134,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
    HiAppEvent eventInfo.params.process_name=com.example.myapplication
    HiAppEvent eventInfo.params.pid=3197
    HiAppEvent eventInfo.params.uid=20010043
-   HiAppEvent eventInfo.params.uuid=...
+   HiAppEvent eventInfo.params.uuid=27fac7098da46efe1cae9904946ec06c5acc91689c365efeefb7a23a0c37df77
    HiAppEvent eventInfo.params.exception={"message":"App main thread is not response!","name":"THREAD_BLOCK_6S"}
    HiAppEvent eventInfo.params.hilog.size=77
    HiAppEvent eventInfo.params.event_handler.size=6

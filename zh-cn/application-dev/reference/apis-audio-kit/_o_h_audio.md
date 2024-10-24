@@ -19,6 +19,7 @@
 | -------- | -------- |
 | [native_audio_common.h](native__audio__common_8h.md) | 声明音频公共基础数据结构。  | 
 | [native_audio_device_base.h](native__audio__device__base_8h.md) | 定义音频设备参数的类型以及获取每个设备参数的接口。  | 
+| [native_audio_manager.h](native__audio__manager_8h.md) | 声明音频管理相关的接口。  | 
 | [native_audio_routing_manager.h](native__audio__routing__manager_8h.md) | 声明与音频路由管理器相关的接口。  | 
 | [native_audio_session_manager.h](native__audio__session__manager_8h.md) | 声明音频会话管理相关的接口。  | 
 | [native_audiocapturer.h](native__audiocapturer_8h.md) | 声明输入类型的音频流相关接口。  | 
@@ -44,6 +45,7 @@
 | -------- | -------- |
 | typedef struct [OH_AudioDeviceDescriptor](#oh_audiodevicedescriptor) [OH_AudioDeviceDescriptor](#oh_audiodevicedescriptor) | 声明音频设备描述符。 该实例用于获取更多音频设备详细信息属性。  | 
 | typedef struct [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) [OH_AudioDeviceDescriptorArray](#oh_audiodevicedescriptorarray) | 声明音频设备描述符数组。  | 
+| typedef struct [OH_AudioManager](#oh_audiomanager) [OH_AudioManager](#oh_audiomanager) | 声明音频管理器。  | 
 | typedef struct [OH_AudioRoutingManager](#oh_audioroutingmanager) [OH_AudioRoutingManager](#oh_audioroutingmanager) | 声明音频路由管理器，用于路由和设备相关功能的音频路由管理器的句柄。  | 
 | typedef int32_t(\* [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback))([OH_AudioDevice_ChangeType](#oh_audiodevice_changetype) type, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | 此函数指针将指向用于返回更改的音频设备描述符的回调函数，可能返回多个音频设备描述符。  | 
 | typedef struct [OH_AudioSessionManager](#oh_audiosessionmanager) [OH_AudioSessionManager](#oh_audiosessionmanager) | 声明音频会话管理器。  | 
@@ -66,17 +68,19 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_AudioCommon_Result](#oh_audiocommon_result) {<br/>AUDIOCOMMON_RESULT_SUCCESS = 0,<br/>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101,<br/>AUDIOCOMMON_RESULT_ERROR_NO_MEMORY = 6800102,<br/>AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE = 6800103,<br/>AUDIOCOMMON_RESULT_ERROR_UNSUPPORTED = 6800104,<br/>AUDIOCOMMON_RESULT_ERROR_TIMEOUT = 6800105,<br/>AUDIOCOMMON_RESULT_ERROR_STREAM_LIMIT = 6800201,<br/>AUDIOCOMMON_RESULT_ERROR_SYSTEM = 6800301<br/>} | 音频错误码。 | 
+| [OH_AudioScene](#oh_audioscene) { <br/>AUDIO_SCENE_DEFAULT = 0, <br/>AUDIO_SCENE_RINGING = 1, <br/>AUDIO_SCENE_PHONE_CALL = 2, <br/>AUDIO_SCENE_VOICE_CHAT = 3 } | 定义音频场景。  | 
 | [OH_AudioDevice_ChangeType](#oh_audiodevice_changetype) {<br/>AUDIO_DEVICE_CHANGE_TYPE_CONNECT = 0,<br/>AUDIO_DEVICE_CHANGE_TYPE_DISCONNECT = 1<br/>} | 定义音频设备更改类型。 | 
 | [OH_AudioDevice_Role](#oh_audiodevice_role) {<br/>AUDIO_DEVICE_ROLE_INPUT = 1,<br/>AUDIO_DEVICE_ROLE_OUTPUT = 2<br/>} | 定义音频设备角色。 | 
 | [OH_AudioDevice_Type](#oh_audiodevice_type) {<br/>AUDIO_DEVICE_TYPE_INVALID = 0,<br/>AUDIO_DEVICE_TYPE_EARPIECE = 1,<br/>AUDIO_DEVICE_TYPE_SPEAKER = 2,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADSET = 3,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADPHONES = 4,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_SCO = 7,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_A2DP = 8,<br/>AUDIO_DEVICE_TYPE_MIC = 15,<br/>AUDIO_DEVICE_TYPE_USB_HEADSET = 22,<br/>AUDIO_DEVICE_TYPE_DISPLAY_PORT = 23,<br/>AUDIO_DEVICE_TYPE_REMOTE_CAST = 24,<br/>AUDIO_DEVICE_TYPE_DEFAULT = 1000<br/>} | 定义音频设备类型。 | 
 | [OH_AudioDevice_Flag](#oh_audiodevice_flag) {<br/>AUDIO_DEVICE_FLAG_NONE = 0,<br/>AUDIO_DEVICE_FLAG_OUTPUT = 1,<br/>AUDIO_DEVICE_FLAG_INPUT = 2,<br/>AUDIO_DEVICE_FLAG_ALL = 3<br/>} | 定义音频设备标志。 | 
+| [OH_AudioDevice_Usage](#oh_audiodevice_usage) {<br/>AUDIO_DEVICE_USAGE_MEDIA_OUTPUT = 1, <br/>AUDIO_DEVICE_USAGE_MEDIA_INPUT = 2, <br/>AUDIO_DEVICE_USAGE_MEDIA_ALL = 3, <br/>AUDIO_DEVICE_USAGE_CALL_OUTPUT = 4,<br/>AUDIO_DEVICE_USAGE_CALL_INPUT = 8, <br/>AUDIO_DEVICE_USAGE_CALL_ALL = 12<br/>} | 定义可获取的设备种类。  | 
 | [OH_AudioSession_ConcurrencyMode](#oh_audiosession_concurrencymode) { <br/>CONCURRENCY_DEFAULT = 0, <br/>CONCURRENCY_MIX_WITH_OTHERS = 1, <br/>CONCURRENCY_DUCK_OTHERS = 2, <br/>CONCURRENCY_PAUSE_OTHERS = 3 } | 音频并发模式。  | 
 | [OH_AudioSession_DeactivatedReason](#oh_audiosession_deactivatedreason) { <br/>DEACTIVATED_LOWER_PRIORITY = 0, <br/>DEACTIVATED_TIMEOUT = 1 } | 音频会话停用原因。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) {<br/>AUDIOSTREAM_SUCCESS = 0,<br/>AUDIOSTREAM_ERROR_INVALID_PARAM = 1,<br/>AUDIOSTREAM_ERROR_ILLEGAL_STATE = 2,<br/>AUDIOSTREAM_ERROR_SYSTEM = 3<br/>} | 音频错误码。 | 
 | [OH_AudioStream_Type](#oh_audiostream_type) {<br/>AUDIOSTREAM_TYPE_RENDERER = 1,<br/>AUDIOSTREAM_TYPE_CAPTURER = 2<br/>} | 音频流类型。 | 
 | [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) {<br/>AUDIOSTREAM_SAMPLE_U8 = 0,<br/>AUDIOSTREAM_SAMPLE_S16LE = 1,<br/>AUDIOSTREAM_SAMPLE_S24LE = 2,<br/>AUDIOSTREAM_SAMPLE_S32LE = 3<br/>} | 定义音频流采样格式。 | 
 | [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { <br/>AUDIOSTREAM_ENCODING_TYPE_RAW = 0, <br/>AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID = 1 <br/>} | 定义音频流编码类型。  | 
-| [OH_AudioStream_Usage](#oh_audiostream_usage) {<br/>AUDIOSTREAM_USAGE_UNKNOWN = 0,<br/>AUDIOSTREAM_USAGE_MUSIC = 1,<br/>AUDIOSTREAM_USAGE_COMMUNICATION = 2,<br/>AUDIOSTREAM_USAGE_VOICE_ASSISTANT = 3,<br/>AUDIOSTREAM_USAGE_ALARM = 4,<br/>AUDIOSTREAM_USAGE_VOICE_MESSAGE = 5,<br/>AUDIOSTREAM_USAGE_RINGTONE = 6,<br/>AUDIOSTREAM_USAGE_NOTIFICATION = 7,<br/>AUDIOSTREAM_USAGE_ACCESSIBILITY = 8,<br/>AUDIOSTREAM_USAGE_MOVIE = 10,<br/>AUDIOSTREAM_USAGE_GAME = 11,<br/>AUDIOSTREAM_USAGE_AUDIOBOOK = 12,<br/>AUDIOSTREAM_USAGE_NAVIGATION = 13,<br/>AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION = 17<br/>} | 定义音频流使用场景。 | 
+| [OH_AudioStream_Usage](#oh_audiostream_usage) {<br/>AUDIOSTREAM_USAGE_UNKNOWN = 0,<br/>AUDIOSTREAM_USAGE_MUSIC = 1,<br/>AUDIOSTREAM_USAGE_VOICE_COMMUNICATION = 2,<br/>AUDIOSTREAM_USAGE_VOICE_ASSISTANT = 3,<br/>AUDIOSTREAM_USAGE_ALARM = 4,<br/>AUDIOSTREAM_USAGE_VOICE_MESSAGE = 5,<br/>AUDIOSTREAM_USAGE_RINGTONE = 6,<br/>AUDIOSTREAM_USAGE_NOTIFICATION = 7,<br/>AUDIOSTREAM_USAGE_ACCESSIBILITY = 8,<br/>AUDIOSTREAM_USAGE_MOVIE = 10,<br/>AUDIOSTREAM_USAGE_GAME = 11,<br/>AUDIOSTREAM_USAGE_AUDIOBOOK = 12,<br/>AUDIOSTREAM_USAGE_NAVIGATION = 13,<br/>AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION = 17<br/>} | 定义音频流使用场景。 | 
 | [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) {<br/>AUDIOSTREAM_LATENCY_MODE_NORMAL = 0,<br/>AUDIOSTREAM_LATENCY_MODE_FAST = 1<br/>} | 定义音频时延模式。 | 
 | [OH_AudioStream_State](#oh_audiostream_state) {<br/>AUDIOSTREAM_STATE_INVALID = -1,<br/>AUDIOSTREAM_STATE_NEW = 0,<br/>AUDIOSTREAM_STATE_PREPARED = 1,<br/>AUDIOSTREAM_STATE_RUNNING = 2,<br/>AUDIOSTREAM_STATE_STOPPED = 3,<br/>AUDIOSTREAM_STATE_RELEASED = 4,<br/>AUDIOSTREAM_STATE_PAUSED = 5<br/>} | 定义音频流的状态。 | 
 | [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) {<br/>AUDIOSTREAM_SOURCE_TYPE_INVALID = -1,<br/>AUDIOSTREAM_SOURCE_TYPE_MIC = 0,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1,<br/>AUDIOSTREAM_SOURCE_TYPE_PLAYBACK_CAPTURE = 2,<br/>AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7<br/>} | 定义音频流使用场景。 | 
@@ -103,8 +107,13 @@
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioDeviceDescriptor_GetDeviceChannelCounts](#oh_audiodevicedescriptor_getdevicechannelcounts)([OH_AudioDeviceDescriptor](#oh_audiodevicedescriptor) \*audioDeviceDescriptor, uint32_t \*\*channelCounts, uint32_t \*size) | 查询目标音频设备描述符的设备通道计数数组。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioDeviceDescriptor_GetDeviceDisplayName](#oh_audiodevicedescriptor_getdevicedisplayname)([OH_AudioDeviceDescriptor](#oh_audiodevicedescriptor) \*audioDeviceDescriptor, char \*\*displayName) | 查询目标音频设备描述符的显示名称。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioDeviceDescriptor_GetDeviceEncodingTypes](#oh_audiodevicedescriptor_getdeviceencodingtypes)([OH_AudioDeviceDescriptor](#oh_audiodevicedescriptor) \*audioDeviceDescriptor, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*\*encodingTypes, uint32_t \*size) | 查询目标音频设备描述符的编码类型数组。  | 
+| [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_GetAudioManager](#oh_getaudiomanager)([OH_AudioManager](#oh_audiomanager) \*\*audioManager) | 获取音频管理器。  | 
+| [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_GetAudioScene](#oh_getaudioscene)([OH_AudioManager](#oh_audiomanager) \*manager, [OH_AudioScene](#oh_audioscene) \*scene) | 获取音频场景模式。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*\*audioRoutingManager) | 查询音频路由管理器句柄，该句柄应设置为路由相关函数中的第一个参数。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_GetDevices](#oh_audioroutingmanager_getdevices)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioDevice_Flag](#oh_audiodevice_flag) deviceFlag, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*\*audioDeviceDescriptorArray) | 根据输入的deviceFlag查询可用的设备。  | 
+| [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_GetAvailableDevices](#oh_audioroutingmanager_getavailabledevices)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioDevice_Usage](#oh_audiodevice_usage) deviceUsage, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*\*audioDeviceDescriptorArray) | 获取音频可选设备列表。  | 
+| [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_GetPreferredOutputDevice](#oh_audioroutingmanager_getpreferredoutputdevice)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioStream_Usage](#oh_audiostream_usage) streamUsage, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*\*audioDeviceDescriptorArray) | 根据音频输出流的使用场景，获取优先级最高的输出设备。  | 
+| [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_GetPreferredInputDevice](#oh_audioroutingmanager_getpreferredinputdevice)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) sourceType, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*\*audioDeviceDescriptorArray) | 根据音频输入流的使用场景，获取优先级最高的输入设备。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_RegisterDeviceChangeCallback](#oh_audioroutingmanager_registerdevicechangecallback)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioDevice_Flag](#oh_audiodevice_flag) deviceFlag, [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback) callback) | 注册音频路由管理器的设备更改回调。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_UnregisterDeviceChangeCallback](#oh_audioroutingmanager_unregisterdevicechangecallback)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback) callback) | 取消注册音频路由管理器的设备更改回调。  | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | 释放音频设备描述符数组对象。  | 
@@ -161,6 +170,7 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetRendererPrivacy](#oh_audiorenderer_getrendererprivacy)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_PrivacyType](#oh_audiostream_privacytype) \*privacy) | 查询当前播放音频流是否会被其它应用录制。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetSilentModeAndMixWithOthers](#oh_audiorenderer_setsilentmodeandmixwithothers)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, bool on) | 设置静音并发播放模式。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetSilentModeAndMixWithOthers](#oh_audiorenderer_getsilentmodeandmixwithothers)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, bool \*on) | 查询当前音频流是否开启静音并发播放。  | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetDefaultOutputDevice](#oh_audiorenderer_setdefaultoutputdevice)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioDevice_Type](#oh_audiodevice_type) deviceType) | 设置默认本机内置发声设备。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_Create](#oh_audiostreambuilder_create)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*\*builder, [OH_AudioStream_Type](#oh_audiostream_type) type) | 创建一个输入或者输出类型的音频流构造器。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_Destroy](#oh_audiostreambuilder_destroy)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder) | 销毁一个音频流构造器。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetSamplingRate](#oh_audiostreambuilder_setsamplingrate)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, int32_t rate) | 设置音频流的采样率属性。  | 
@@ -234,6 +244,19 @@ typedef struct OH_AudioDeviceDescriptorArray OH_AudioDeviceDescriptorArray
 ```
 **描述**
 声明音频设备描述符数组。
+
+**起始版本：** 12
+
+
+### OH_AudioManager
+
+```
+typedef struct OH_AudioManager OH_AudioManager
+```
+**描述**
+声明音频管理器。
+
+用于管理音频管理相关功能。
 
 **起始版本：** 12
 
@@ -582,6 +605,26 @@ enum OH_AudioDevice_Type
 | AUDIO_DEVICE_TYPE_DEFAULT | 默认设备类型。 | 
 
 
+### OH_AudioDevice_Usage
+
+```
+enum OH_AudioDevice_Usage
+```
+**描述**
+定义可获取的设备种类。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AUDIO_DEVICE_USAGE_MEDIA_OUTPUT  | 媒体输出设备。 | 
+| AUDIO_DEVICE_USAGE_MEDIA_INPUT  | 媒体输入设备。 | 
+| AUDIO_DEVICE_USAGE_MEDIA_ALL  | 所有媒体设备。 | 
+| AUDIO_DEVICE_USAGE_CALL_OUTPUT  | 通话输出设备。 | 
+| AUDIO_DEVICE_USAGE_CALL_INPUT  | 通话输入设备。 | 
+| AUDIO_DEVICE_USAGE_CALL_ALL  | 所有通话设备。 | 
+
+
 ### OH_AudioInterrupt_ForceType
 
 ```
@@ -648,6 +691,24 @@ enum OH_AudioInterrupt_Mode
 | -------- | -------- |
 | AUDIOSTREAM_INTERRUPT_MODE_SHARE  | 共享模式。  | 
 | AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT  | 独立模式。 | 
+
+
+### OH_AudioScene
+
+```
+enum OH_AudioScene
+```
+**描述**
+定义音频场景。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AUDIO_SCENE_DEFAULT  | 默认音频场景。 | 
+| AUDIO_SCENE_RINGING  | 响铃场景。 | 
+| AUDIO_SCENE_PHONE_CALL  | 电话场景。 | 
+| AUDIO_SCENE_VOICE_CHAT  | 语音聊天场景。 | 
 
 
 ### OH_AudioSession_ConcurrencyMode
@@ -917,7 +978,7 @@ enum OH_AudioStream_Usage
 | -------- | -------- |
 | AUDIOSTREAM_USAGE_UNKNOWN  | 未知类型。   | 
 | AUDIOSTREAM_USAGE_MUSIC  | 音乐。   | 
-| AUDIOSTREAM_USAGE_COMMUNICATION  | VoIP语音通话。   | 
+| AUDIOSTREAM_USAGE_VOICE_COMMUNICATION  | VoIP语音通话。   | 
 | AUDIOSTREAM_USAGE_VOICE_ASSISTANT  | 语音播报。   | 
 | AUDIOSTREAM_USAGE_ALARM  | 闹钟。   | 
 | AUDIOSTREAM_USAGE_VOICE_MESSAGE  | 语音消息。   | 
@@ -1279,6 +1340,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer *capturer, 
 **描述**
 获取输入音频流时间戳和位置信息。
 
+该接口可以获取到音频通道实际录制位置（framePosition）以及录制到该位置时候的时间戳（timestamp），时间戳单位为纳秒。
+
 **起始版本：** 10
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
@@ -1632,7 +1695,7 @@ OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType (OH_AudioDeviceDesc
 | 名称 | 描述 | 
 | -------- | -------- |
 | audioDeviceDescriptor | 音频设备描述符。通过 [OH_AudioRoutingManager_GetDevices](#oh_audioroutingmanager_getdevices) 或者 [OH_AudioRouterManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback)获取。 | 
-| deviceType | 设备类型指针[OH_AudioDevice_DeviceType](#oh_audiodevice_type) 。将设置设备类型值的变量。 | 
+| deviceType | 设备类型指针。 [OH_AudioDevice_Type](#oh_audiodevice_type) 将设置设备类型值的变量。  | 
 
 **返回：**
 
@@ -2172,6 +2235,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer *renderer, 
 **描述**
 获取输出音频流时间戳和位置信息。
 
+该接口可以获取到音频通道实际播放位置（framePosition）以及播放到该位置时的时间戳（timestamp），时间戳单位为纳秒。
+
+该接口一般用来实现音画同步，建议频率不要太频繁，可以每分钟一次，最好不要低200ms一次。频繁调用可能会带来功耗问题，因此在能保证音画同步效果的情况下，不需要频繁的查询时间戳。
+
 **起始版本：** 10
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
@@ -2315,6 +2382,47 @@ AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
+
+
+### OH_AudioRenderer_SetDefaultOutputDevice()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice (OH_AudioRenderer* renderer, OH_AudioDevice_Type deviceType)
+```
+**描述**
+设置默认本机内置发声设备。
+
+本接口仅适用于音频流类型[OH_AudioStream_Usage](#oh_audiostream_usage)为语音消息、VoIP语音通话或者VoIP视频通话的场景使用，以及可选的设备类型为听筒、扬声器和系统默认设备。
+
+本接口允许在AudioRenderer创建以后的任何时间被调用，系统会记录应用设置的默认本机内置发声设备。在应用启动播放时，若有外接设备如蓝牙耳机/有线耳机接入，系统优先从外接设备发声；否则系统遵循应用设置的默认本机内置发声设备发声。
+
+**起始版本：** 12
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。  | 
+| deviceType | 指向[OH_AudioDevice_Type](#oh_audiodevice_type)用于设置发声设备类型。<br>可设置的设备类型包括: <br>AUDIO_DEVICE_TYPE_EARPIECE: 听筒 <br>AUDIO_DEVICE_TYPE_SPEAKER: 扬声器 <br>AUDIO_DEVICE_TYPE_DEFAULT: 系统默认设备  | 
+
+**返回：**
+
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM:
+
+1. 参数renderer为nullptr;
+2. 参数deviceType无效。 
+ 
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。 
+
+AUDIOSTREAM_ERROR_SYSTEM：出现系统错误。 
 
 
 ### OH_AudioRenderer_SetEffectMode()
@@ -2567,6 +2675,38 @@ AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
+### OH_AudioRoutingManager_GetAvailableDevices()
+
+```
+OH_AudioCommon_Result OH_AudioRoutingManager_GetAvailableDevices (OH_AudioRoutingManager *audioRoutingManager, OH_AudioDevice_Usage deviceUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
+```
+**描述**
+获取音频可选设备列表。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| audioRoutingManager | 指向[OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager)创建的音频路由管理器实例： [OH_AudioRoutingManager](#oh_audioroutingmanager)。  | 
+| deviceUsage | 指向[OH_AudioDevice_Usage](#oh_audiodevice_usage)用于设置要获取的设备种类。  | 
+| audioDeviceDescriptorArray | 音频设备描述符数组。[OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) 设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针， 而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。| 
+
+**返回：**
+
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+1. 参数audioRoutingManager为nullptr；
+2. 参数deviceUsage无效; 
+3. 参数audioDeviceDescriptorArray为nullptr。
+ 
+AUDIOCOMMON_RESULT_ERROR_NO_MEMORY：内存不足。
+
+
 ### OH_AudioRoutingManager_GetDevices()
 
 ```
@@ -2598,6 +2738,72 @@ AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
   3. 参数audioDeviceDescriptorArray为nullptr。
 
 AUDIOCOMMON_RESULT_ERROR_NO_MEMORY：内存不足。
+
+### OH_AudioRoutingManager_GetPreferredInputDevice()
+
+```
+OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredInputDevice (OH_AudioRoutingManager *audioRoutingManager, OH_AudioStream_SourceType sourceType, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray )
+```
+**描述**
+根据音频输入流的使用场景，获取优先级最高的输入设备。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| audioRoutingManager | 指向[OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager)创建的音频路由管理器实例： [OH_AudioRoutingManager](#oh_audioroutingmanager)。  | 
+| sourceType | 指向[OH_AudioStream_SourceType](#oh_audiostream_sourcetype)用于设置音频输入流的使用场景。  | 
+| audioDeviceDescriptorArray | 音频设备描述符数组。[OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) 设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针， 而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。| 
+
+**返回：**
+
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+1. 参数audioRoutingManager为nullptr; 
+2. 参数sourceType无效; 
+3. 参数audioDeviceDescriptorArray为nullptr。 
+
+AUDIOCOMMON_RESULT_ERROR_NO_MEMORY：内存不足。
+
+
+### OH_AudioRoutingManager_GetPreferredOutputDevice()
+
+```
+OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredOutputDevice (OH_AudioRoutingManager *audioRoutingManager, OH_AudioStream_Usage streamUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray )
+```
+**描述**
+根据音频输出流的使用场景，获取优先级最高的输出设备。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| audioRoutingManager | 指向[OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager)创建的音频路由管理器实例： [OH_AudioRoutingManager](#oh_audioroutingmanager)。  | 
+| streamUsage | 指向[OH_AudioStream_Usage](#oh_audiostream_usage)用于设置音频输出流的使用场景。  | 
+| audioDeviceDescriptorArray | 音频设备描述符数组。[OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) 设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针， 而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。| 
+
+**返回：**
+
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+1. 参数audioRoutingManager为nullptr; 
+2. 参数streamUsage无效; 
+3. 参数audioDeviceDescriptorArray为nullptr。 
+
+AUDIOCOMMON_RESULT_ERROR_NO_MEMORY：内存不足。
+
 
 ### OH_AudioRoutingManager_RegisterDeviceChangeCallback()
 
@@ -2900,6 +3106,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuild
 | -------- | -------- |
 | builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。  | 
 | audioCapturer | 指向输入音频流实例的指针，将被用来接收函数创建的结果。  | 
+
+**需要权限：**
+
+ohos.permission.MICROPHONE
 
 **返回：**
 
@@ -3435,3 +3645,59 @@ AUDIOSTREAM_ERROR_INVALID_PARAM：
 
   1. 参数builder为nullptr；
   2. StreamType无效。
+
+
+### OH_GetAudioManager()
+
+```
+OH_AudioCommon_Result OH_GetAudioManager (OH_AudioManager ** audioManager)
+```
+**描述**
+获取音频管理器。
+
+使用音频管理器相关功能，首先需要获取音频管理器实例。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| audioManager | 指向[OH_AudioManager](#oh_audiomanager)用于接收创建的音频管理器实例。  | 
+
+**返回：**
+
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数audioManager为nullptr。
+
+
+### OH_GetAudioScene()
+
+```
+OH_AudioCommon_Result OH_GetAudioScene (OH_AudioManager * manager, OH_AudioScene * scene )
+```
+**描述**
+获取音频场景模式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| audioManager | 指向[OH_GetAudioManager](#oh_getaudiomanager)创建的音频管理器实例：[OH_AudioManager](#oh_audiomanager)。  | 
+| scene | 指向[OH_AudioScene](#oh_audioscene)用于接收返回的音频场景模式。  | 
+
+**返回：**
+
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。 
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+1. 参数audioManager为nullptr; 
+2. 参数scene为nullptr。

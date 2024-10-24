@@ -1,0 +1,25 @@
+# NFC HDI 参考
+
+- 模块
+    - [HdiConnectedNfcTag](_hdi_connected_nfc_tag.md)
+    - [HdiNfc (V1_1)](_hdi_nfc_v11.md)
+    - [HdiNfc (V1_0)](_hdi_nfc_v10.md)
+- 头文件
+    - HdiConnectedNfcTag
+        - [IConnectedNfcTag.idl](_i_connected_nfc_tag_8idl.md)
+    - HdiNfc (V1_1)
+        - [INfcInterface.idl](_i_nfc_interface_8idl_v11.md)
+        - [NfcTypes.idl](_nfc_types_8idl_v11.md)
+    - HdiNfc (V1_0)
+        - [INfcCallback.idl](_i_nfc_callback_8idl_v10.md)
+        - [INfcInterface.idl](_i_nfc_interface_8idl_v10.md)
+        - [NfcTypes.idl](_nfc_types_8idl_v10.md)
+- 结构体
+    - HdiConnectedNfcTag
+        - [IConnectedNfcTag](interface_i_connected_nfc_tag.md)
+    - HdiNfc (V1_1)
+        - [INfcInterface](interface_i_nfc_interface_v11.md)
+        - [NfcVendorConfig](_nfc_vendor_config_v11.md)
+    - HdiNfc (V1_0)
+        - [INfcCallback](interface_i_nfc_callback_v10.md)
+        - [INfcInterface](interface_i_nfc_interface_v10.md)

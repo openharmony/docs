@@ -699,7 +699,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID  | Error Message                                     |
 | --------   | -------------------------------------------- |
-| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
+| 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 
 ## Example
 

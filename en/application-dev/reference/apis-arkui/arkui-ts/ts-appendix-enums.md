@@ -857,6 +857,8 @@ Defines the menu display policy.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name   | Value  | Description                              |
 | ------- | ---- | ---------------------------------- |
 | DEFAULT | 0    | Whether the menu is displayed depends on the underlying default logic.|

@@ -1,8 +1,6 @@
 # Loading a Module Using Node-API
 
-You can use **napi_load_module_with_info** to load modules. After a module is loaded, you can use **napi_get_property** to obtain the variables exported by the module or use **napi_get_named_property** to obtain the functions exported by the module. 
-
-The **napi_load_module_with_info** API can be used in a [newly created ArkTS runtime environment](use-napi-ark-runtime.md).
+You can use **napi_load_module_with_info** to load modules. After a module is loaded, you can use **napi_get_property** to obtain the variables exported by the module or use **napi_get_named_property** to obtain the functions exported by the module. The **napi_load_module_with_info** API can be used in a [newly created ArkTS runtime environment](use-napi-ark-runtime.md).
 
 ## Function Description
 
@@ -35,7 +33,7 @@ napi_status napi_load_module_with_info(napi_env env,
 | Remote HAR module        | Load a remote HAR module to a HAP.       | -                            |
 | Remote ohpm module        | Load an ohpm package to a HAP.           | -                            |
 | API        |    Load @ohos. or @system. to a HAP.         | -                            |
-| Native library module  | Load **libNativeLibrary.so** to a HAP. | -                            |
+| Native library module  | Load **libNativeLibrary.so** to a HAP.| -                            |
 
 > **NOTE**
 >
@@ -75,6 +73,10 @@ export {value, test};
 ```
 
 2. Use **napi_load_module_with_info** to load the **Test.ets** file, call the **test()** function, and obtain the variable values.
+
+> **NOTE**
+>
+> If **seNormalizedOHMUrl** is enabled (the **useNormalizedOHMUrl** field of **strictMode** in the application's **build-profile.json5** file at the same level as **entry** in the project directory is set to **true**), **bundleName** does not affect the loading logic when a HAP module is loaded. The corresponding HAP in the process is intelligently indexed based on the module name. For example, the module can be successfully loaded if **bundleName** is set to **com.example.application1** while the actual bundle name of the project is **com.example.application**.
 
 ```cpp
 static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -416,3 +418,4 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
     return result;
 }
 ```
+<!--no_check-->

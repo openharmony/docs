@@ -1,4 +1,4 @@
-# Audio Output Device Management
+# Managing Global Audio Output Devices
 
 If a device is connected to multiple audio output devices, you can use **AudioRoutingManager** to specify an audio output device to play audio. For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
 
@@ -18,15 +18,15 @@ let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of Au
 
 The table below lists the supported audio output devices.
 
-| Name | Value | Description | 
+| Name| Value| Description| 
 | -------- | -------- | -------- |
-| EARPIECE | 1 | Earpiece. | 
-| SPEAKER | 2 | Speaker. | 
-| WIRED_HEADSET | 3 | Wired headset with a microphone. | 
-| WIRED_HEADPHONES | 4 | Wired headset without microphone. | 
-| BLUETOOTH_SCO | 7 | Bluetooth device using Synchronous Connection Oriented (SCO) links. | 
-| BLUETOOTH_A2DP | 8 | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links. | 
-| USB_HEADSET | 22 | USB Type-C headset. | 
+| EARPIECE | 1 | Earpiece.| 
+| SPEAKER | 2 | Speaker.| 
+| WIRED_HEADSET | 3 | Wired headset with a microphone.| 
+| WIRED_HEADPHONES | 4 | Wired headset without microphone.| 
+| BLUETOOTH_SCO | 7 | Bluetooth device using Synchronous Connection Oriented (SCO) links.| 
+| BLUETOOTH_A2DP | 8 | Bluetooth device using Advanced Audio Distribution Profile (A2DP) links.| 
+| USB_HEADSET | 22 | USB Type-C headset.| 
 
 ## Obtaining Output Device Information
 

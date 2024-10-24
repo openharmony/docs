@@ -28,9 +28,9 @@ import { Stack } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes | No | Number of elements in a stack (called container later). |
+| length | number | Yes| No| Number of elements in a stack (called container later).|
 
 
 ### constructor
@@ -47,7 +47,7 @@ A constructor used to create a **Stack** instance.
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200012 | The Stack's constructor cannot be directly invoked. |
 
@@ -70,21 +70,21 @@ Adds an element at the top of this container.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| item | T | Yes | Target element. |
+| item | T | Yes| Target element.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Element added. |
+| T | Element added.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The push method cannot be bound. |
 
@@ -98,7 +98,7 @@ class C1 {
 let stack : Stack<number | string | C1> = new Stack();
 let result = stack.push("a");
 let result1 = stack.push(1);
-let c : C1  = {name : "Dylon", age : "13"};
+let c : C1  = {name : "Dylan", age : "13"};
 let result2 = stack.push(c);
 ```
 
@@ -114,15 +114,15 @@ Removes the top element from this container.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Element removed. If the container is empty, **undefined** is returned. |
+| T | Element removed. If the container is empty, **undefined** is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The pop method cannot be bound. |
 
@@ -150,15 +150,15 @@ Obtains the top element of this container.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Element obtained. |
+| T | Element obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The peek method cannot be bound. |
 
@@ -185,21 +185,21 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| element | T | Yes | Target element. |
+| element | T | Yes| Target element.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| number | Index of the first occurrence of the specified element. If the element does not exist, **-1** is returned. |
+| number | Index of the first occurrence of the specified element. If the element does not exist, **-1** is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The locate method cannot be bound. |
 
@@ -227,24 +227,24 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes | Callback invoked to traverse the elements in the container. |
-| thisArg | Object | No | Value of **this** to use when **callbackFn** is invoked. The default value is this instance. |
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes | Value of the element that is currently traversed. |
-| index | number | No | Position index of the element that is currently traversed. The default value is **0**. |
-| stack | Stack&lt;T&gt; | No | Instance that calls the **forEach** API. The default value is this instance. |
+| value | T | Yes| Value of the element that is currently traversed.|
+| index | number | No| Position index of the element that is currently traversed. The default value is **0**.|
+| stack | Stack&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
@@ -274,15 +274,15 @@ Checks whether this container is empty (contains no elements).
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise. |
+| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The isEmpty method cannot be bound. |
 
@@ -313,15 +313,15 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| IterableIterator&lt;T&gt; | Iterator obtained. |
+| IterableIterator&lt;T&gt; | Iterator obtained.|
 
 **Error codes**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 10200011 | The Symbol.iterator method cannot be bound. |
 

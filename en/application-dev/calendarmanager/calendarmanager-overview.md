@@ -2,7 +2,7 @@
 
 ## Key Concepts
 
-Calendar: a tool used to record events, holidays, and tasks.
+Calendar: a tool used to record dates, holidays, and important events.
 
 ## Introduction
 
@@ -17,5 +17,3 @@ Calendar Kit provides a set of APIs for obtaining calendar accounts and writing 
 - Calendar Kit requires manual authorization from the user for the permissions to read and write calendar events.
 
 - Calendar Kit is only available in the stage model.
-
-- Calendar Kit is supported since API version 11.

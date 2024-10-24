@@ -8,7 +8,7 @@
 
 应用可以通过启动和连接两种形式使用[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)。
 - 通过[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)、[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)调用[startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability13)方法启动[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)。
-- 通过[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability13)方法连接[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)，支持三方应用调用该类型[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)。
+- 通过[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability13)方法连接[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)。
 
 此处有如下细节需要注意：
 
@@ -39,23 +39,24 @@
 
 - **onWindowWillCreate**
 
-  创建窗口之前回调，开发者传递窗口参数给系统。
+  创建窗口之前回调，开发者传递窗口参数给系统。设置config.windowAttribute属性值为window.ExtensionWindowAttribute.SUB_WINDOW，此时创建的是子窗; 设置config.windowAttribute属性值为window.ExtensionWindowAttribute.SYSTEM_WINDOW，此时创建的是系统窗;
+  目前[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)和[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)拉起[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)创建的窗口支持子窗和系统窗，其他context（[ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)）拉起[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)创建的窗口只支持系统窗。一个UIServiceExtension只能创建一个窗口。
 
 - **onWindowDidCreate**
 
-  创建窗口回调接口，开发者通过[WindowStage](../windowmanager/application-window-stage.md)对象操作窗口。
+  创建窗口回调接口，开发者通过[Window](../reference/apis-arkui/js-apis-window-sys.md#window)对象操作窗口。通过[window.on('windowVisibilityChange')](../reference/apis-arkui/js-apis-window.md#onwindowvisibilitychange11))方法绑定窗口事件，处理各种窗口事件，如窗口显示、窗口隐藏、窗口销毁等。
 
 - **onConnect**
 
-  当另一个组件调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability13)方法与该服务连接时，触发该回调。此方法中，接收一个调用方远端代理对象（[UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)），服务端拿到这个对象后可以通过这个对象与客户端进行通信。每次连接都会触发[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)。
+  当另一个组件调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability13)方法与该服务连接时，触发该回调。此方法中，接收一个调用方远端代理对象（[UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)），服务端拿到这个对象后可以通过这个对象与客户端进行通信。同一个客户端，want里面的(DeviceId, BundleName,ModuleName,AbilityName)以及callback对象相同情况下去连接，只会在第一次收到[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)，其他情况每次连接都会收到[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)。
 
 - **onData**
 
-  数据接收回调。接收调用方通过UIServiceProxy发送的数据。
+  数据接收回调。接收调用方通过[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)发送的数据。
 
 - **onDisconnect**
 
-  当最后一个连接断开时，将触发该回调。客户端死亡或者调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectuiserviceextensionability13)法可以使连接断开。
+  当连接断开时，将触发该回调。客户端死亡或者调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectuiserviceextensionability13)方法可以使连接断开。
 
 - **onDestroy**
   
@@ -112,12 +113,29 @@
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDisconnect');
       }
       // 窗口即将创建
-      onWindowWillCreate(config: window.ExtensionWindowConfig) {
-        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowWillCreate');
+      onWindowWillCreate(config: window.ExtensionWindowConfig): void {
+        hilog.info(0x0000, TestTag, '%{public}s', 'Ability onWindowWillCreate');
+        let rect: window.Rect = {
+          left: 100, top: 100, width: 500, height: 500
+        };
+        config.windowRect = rect;
+        // 创建子窗
+        config.windowName = 'sub_window'
+        config.windowAttribute = window.ExtensionWindowAttribute.SUB_WINDOW;
+        config.windowRect = rect;
+        config.subWindowOptions = {
+          title: 'sub_window_title',
+          decorEnabled: true,
+          // 是否模态窗口
+          isModal: false
+        }
+        hilog.info(0x0000, TestTag, '%{public}s', 'Ability onWindowWillCreate end');
       }
       // 窗口创建完成
       onWindowDidCreate(window: window.Window) {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowDidCreate');
+        window.setUIContent('uiservice/page/WindowPage')
+        window.showWindow()
       }
       // 接收数据
       onData(proxy: common.UIServiceHostProxy, data: Record<string, Object>) {
@@ -126,6 +144,26 @@
       // 销毁
       onDestroy() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+      }
+    }
+    ```
+
+4. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册UIServiceExtensionAbility，type标签需要设置为“uiService”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
+
+    ```json
+    {
+      "module": {
+        // ...
+        "extensionAbilities": [
+          {
+            "name": "UIServiceExtAbility",
+            "icon": "$media:icon",
+            "description": "uiService",
+            "type": "uiService",
+            "exported": true,
+            "srcEntry": "./ets/UIServiceExtAbility/UIServiceExtAbility.ets"
+          }
+        ]
       }
     }
     ```
@@ -175,9 +213,9 @@ struct Index {
 
 ### 连接UIServiceExtension
 
-应用可以通过[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability13)连接一个服务（在[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象中指定启动的目标服务），服务的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象，从而建立长连接。
+应用可以通过[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability13)连接一个服务（在[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象中指定启动的目标服务），服务的[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonconnect)就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象，从而建立连接。
 
-客户端在[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability13)中接收服务端的[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)对象，该对象可以用于向服务端发送数据。客户端需要通过传入[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)对象来调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectuiserviceextensionability13)断开连接。
+客户端调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability13)连接服务端时，会接收并保存服务端返回的[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)对象，该proxy对象可以用于向服务端发送数据。客户端需要通过保存的[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)对象来调用[disconnectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectuiserviceextensionability13)断开与服务端的连接。
 
 - 使用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectuiserviceextensionability13)建立与[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)的连接。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
     ```ts
@@ -256,17 +294,18 @@ struct Index {
 
 ## 客户端与服务端双向通信
 
-UIServiceExtension启动时，有如下操作：
+[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)启动时，有如下操作：
 
-1. 客户端通过调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability13), 返回[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)。通过这个proxy往[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)发送数据。
-2. [UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)收到onConect, 保存[UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)。通过这个proxy往客户端发送数据。
+1. 客户端通过调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability13), 返回[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)对象。使用该proxy对象往[UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)服务端发送数据。
+2. [UIServiceExtension](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)通过[onConnect()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonconnect)回调，获得[UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)对象。通过这个proxy往客户端发送数据。
 
 ![UIServiceExtensionAbility-bidirectionalcommunication](figures/UIServiceExtension-bidirectionalcommunication.png)
 
 
 ### 客户端与服务端通信
 - 客户端收发数据
-​  客户端通过[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability13)连接服务端，获得[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)对象。通过它的[sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md#uiserviceproxysenddata)方法发送数据给服务端。服务端通过[onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondata)生命周期回调接收数据。
+
+  客户端通过[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability13)连接服务端，获得[UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md)对象。通过它的[sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md#uiserviceproxysenddata)方法发送数据给服务端。服务端通过[onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondata)回调接收数据。
     ```ts
     import { common, Want} from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -314,16 +353,16 @@ UIServiceExtension启动时，有如下操作：
                 } catch(err) {
                   console.log("connectUIServiceExtensionAbility failed", JSON.stringify(err));
                 }
-          })
+              })
           }
+        }
       }
-    }
     }
     ```
 
-- 服务器收发数据
+- 服务端收发数据
 
-  服务器通过[onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondata)接收客户端传递的数据，并通过[UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)对象中将服务器端数据发送给客户端。
+  服务端通过[onData()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityondata)接收客户端传递的数据，使用保存的客户端连接服务端时传递过来的[UIServiceHostProxy](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)对象，调用[sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md#uiservicehostproxysenddata)将服务端数据发送给客户端。
     ```ts
     import { common, Want, UIServiceExtensionAbility} from '@kit.AbilityKit';
     import { window } from '@kit.ArkUI';
@@ -331,25 +370,30 @@ UIServiceExtension启动时，有如下操作：
     export default class MyServiceExtAbility extends UIServiceExtensionAbility {
       comProxy : common.UIServiceHostProxy | null = null;
       // 创建
-      onCreate(want: Want) {
+      onCreate(want: Want) {        
+        console.log('UIServiceExtensionAbility onCreate');
       }
       
       // 请求处理
       onRequest(want: Want, startId: number) {
+        console.log('UIServiceExtensionAbility onRequest');
       }
       
       // 连接
       onConnect(want: Want, proxy: common.UIServiceHostProxy) {
+        console.log('UIServiceExtensionAbility onConnect');
         this.comProxy = proxy;
       }
       
       // 断开连接
       onDisconnect(want: Want, proxy: common.UIServiceHostProxy) {
+        console.log('UIServiceExtensionAbility onDisconnect');
         this.comProxy = null;
       }
       
       // 接收数据
       onData(proxy: common.UIServiceHostProxy, data: Record<string, Object>) {
+        console.log('UIServiceExtensionAbility onData');
         try {
           let formData: Record<string, string> = {
             'Data' : 'reply message'
@@ -362,12 +406,15 @@ UIServiceExtension启动时，有如下操作：
       }
     
       onWindowWillCreate(extensionWindowConfig: window.ExtensionWindowConfig) {
+        console.log('UIServiceExtensionAbility onWindowWillCreate');
       }
       
       onWindowDidCreate(window: window.Window) {
+        console.log('UIServiceExtensionAbility onWindowDidCreate');
       }
-    
+
       onDestroy() {
+        console.log('UIServiceExtensionAbility onDestroy');
       }
     }
     ```

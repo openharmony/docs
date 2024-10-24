@@ -5,19 +5,19 @@ OpenHarmony is prebuilt with the **FileManager** application. You can also devel
 ## How to Develop
 For details about the APIs used to develop a file manager, see [User File Access and Management](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md).
 
-1. Apply for permissions required.<br>
-   Apply for the ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permissions. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
-
-   > **NOTE**
+1. Apply for permissions required.<br>Apply for the ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permissions. For details, see [Requesting Permissions for System_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+   
+> **NOTE**
    >
-   > - **ohos.permission.FILE_ACCESS_MANAGER** allows your application to use the user file access framework APIs.
-   >- **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** allows your application to obtain information about file management server applications supported by the system.
+   > - The ohos.permission.FILE_ACCESS_MANAGER permission allows your application to use the user file access framework APIs.
+   >
+   > - The ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permission allows your application to obtain information about file management server applications supported by the system.
    
 2. Import dependent modules.
 
    ```ts
-   import fileAccess from '@ohos.file.fileAccess';
-   import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
+   import { fileAccess } from '@kit.CoreFileKit';
+   import { fileExtensionInfo } from '@kit.CoreFileKit';
    ```
 
    The **fileAccess** module provides APIs for basic file operations, and the **fileExtensionInfo** module provides key structs for application development.
@@ -28,9 +28,9 @@ For details about the APIs used to develop a file manager, see [User File Access
    In the user file access framework, **RootInfo** indicates the attribute information of a device. For example, obtain **RootInfo** of all devices.
 
    ```ts
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
-   import { Filter } from '@ohos.file.fs';
+   import { common } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { Filter } from '@kit.CoreFileKit';
 
    // Obtain the application context.
    let context = getContext(this) as common.UIAbilityContext;
@@ -78,22 +78,24 @@ For details about the APIs used to develop a file manager, see [User File Access
    Currently, **listfile()** and **scanfile()** can be called by the **RootInfo** object to traverse the next-level files or filter the entire directory tree. In addition, **listfile()** and **scanfile()** can be called by the **FileInfo** object to traverse the next-level files or filter the specified directories.
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import { Filter } from '@ohos.file.fs';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { Filter } from '@kit.CoreFileKit';
 
    // Start from the root directory.
-   let rootInfo: Array<fileAccess.RootInfo> = rootInfos[0];
+   let rootInfos = [];
+   // Obtain rootInfos by using getRoots().
+   let rootInfo: fileAccess.RootInfo = rootInfos[0];
    let fileInfos: Array<fileAccess.FileInfo> = [];
    let isDone: boolean = false;
    let filter: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // Set the filter.
    try {  
-     let fileIterator: string = rootInfo.listFile();          // Traverse the root directory of rootinfos[0] and return a FileIterator object.
+     let fileIterator = rootInfo.listFile();          // Traverse the root directory of rootinfos[0] and return a FileIterator object.
      // let fileIterator = rootInfo.scanFile(filter); // Filter device rootinfos[0] files that meet the specified conditions and return a FileIterator object.
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
      }
      while (!isDone) {
-       let result: boolean = fileIterator.next();
+       let result = fileIterator.next();
        console.info("next result = " + JSON.stringify(result));
        isDone = result.done;
        if (!isDone)
@@ -105,18 +107,18 @@ For details about the APIs used to develop a file manager, see [User File Access
    }
    
    // Start from the specified directory.
-   let fileInfoDir: Array<fileAccess.FileInfo> = fileInfos[0]; // fileInfoDir indicates the information about a directory.
+   let fileInfoDir: fileAccess.FileInfo = fileInfos[0]; // fileInfoDir indicates the information about a directory.
    let subFileInfos: Array<fileAccess.FileInfo> = [];
    let isDone02: boolean = false;
    let filter02: Filter = {suffix : [".txt", ".jpg", ".xlsx"]}; // Set the filter.
    try {
-     let fileIterator: string = fileInfoDir.listFile(); // Traverse files in the specified directory and return a FileIterator object.
+     let fileIterator = fileInfoDir.listFile(); // Traverse files in the specified directory and return a FileIterator object.
      // let fileIterator = rootInfo.scanFile(filter02); // Filter the files in the specified directory and return a FileIterator object.
      if (!fileIterator) {
        console.error("listFile interface returns an undefined object");
      }
      while (!isDone02) {
-       let result: boolean = fileIterator.next();
+       let result = fileIterator.next();
        console.info("next result = " + JSON.stringify(result));
        isDone02 = result.done;
        if (!isDone02)
@@ -132,7 +134,7 @@ For details about the APIs used to develop a file manager, see [User File Access
    You can integrate APIs of the user file access framework to implement user behaviors, such as deleting, renaming, creating, and moving a file or folder. The following example shows how to create a file. For details about other APIs, see [User File Access and Management](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md).
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    // The local device is used as an example.
    // Create a file.
@@ -169,14 +171,14 @@ The **notify** interface can be used to observe not only the changes of director
 
    > **NOTE**
    >
-   > - **ohos.permission.FILE_ACCESS_MANAGER** allows your application to use the user file access framework APIs.
-   >- **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** allows your application to obtain information about file management server applications supported by the system.
+   > - The ohos.permission.FILE_ACCESS_MANAGER permission allows your application to use the user file access framework APIs.
+   >- The ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permission allows your application to obtain information about file management server applications supported by the system.
    
 2. Import dependent modules.
 
    ```ts
-   import fileAccess from '@ohos.file.fileAccess';
-   import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
+   import { fileAccess } from '@kit.CoreFileKit';
+   import { fileExtensionInfo } from '@kit.CoreFileKit';
    ```
    
    The **fileAccess** module provides APIs for basic file operations, and the **fileExtensionInfo** module provides key structs for application development.
@@ -197,8 +199,8 @@ The **notify** interface can be used to observe not only the changes of director
 
      Pass in the constant [DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#constant) to the **registerObserver** method to listen for the device online/offline status.
 
-   ```ts
-    import { BusinessError } from '@ohos.base';
+      ```ts
+      import { BusinessError } from '@kit.BasicServicesKit';
       async function UnregisterObserver03() {
         try {
           // Listen for the device online/offline status.
@@ -208,21 +210,19 @@ The **notify** interface can be used to observe not only the changes of director
           console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
         }
       }
-   ```
-
-     
+      ```
 
 5. Unsubscribe from the device online/offline status.
 
    Pass in the constant [DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#constant) to the **unregisterObserver** method to unsubscribe from the device online/offline status.
 
-   ```ts
-   import { BusinessError } from '@ohos.base';
-     try {
-       // Unsubscribe from the device online/offline status.
-       fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI, callbackDir1);
-     } catch (err) {
-       let error: BusinessError = err as BusinessError;
-       console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
-     }
-   ```
+      ```ts
+      import { BusinessError } from '@kit.BasicServicesKit';
+        try {
+          // Unsubscribe from the device online/offline status.
+          fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI, callbackDir1);
+        } catch (err) {
+          let error: BusinessError = err as BusinessError;
+          console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+        }
+      ```

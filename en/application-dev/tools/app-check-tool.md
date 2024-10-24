@@ -8,7 +8,6 @@ The app check tool is used to analyze and detect application installation packag
 - Collects statistics on the size and proportion of each type of file.
 
 By default, the tool generates detection reports in JSON and HTML format.
-
 The **app_check_tool.jar** package of the tool is stored in the **toolchains** directory of the SDK.
 
 ![App check tool architecture](figures/app-check-tool-construct.png)

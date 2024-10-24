@@ -35,3 +35,6 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 
 （2）长时任务申请可参考：[长时任务介绍](../../task-management/continuous-task.md)<!--Del-->，[长时任务开发示例](../../performance/reasonable-running-backgroundTask.md#长时任务)<!--DelEnd-->。
 
+
+<!--RP1-->
+<!--RP1End-->

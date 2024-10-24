@@ -1,6 +1,6 @@
-# GC介绍
+# GC垃圾回收
 
-GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC就是找到内存中的垃圾，释放和回收内存空间。当前主流编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。ArkTS运行时中就是基于分代模型和混合算法来实现不同场景下内存回收的高性能表现。
+GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC就是找到内存中的垃圾，释放和回收内存空间。当前主流编程语言实现的GC算法主要分为两大类：引用计数和对象追踪（即Tracing GC）。ArkTS运行时基于分代模型（年轻代/老年代），混合使用引用计数和对象追踪算法，并行并发化执行GC任务，从而实现不同场景下的高性能内存回收表现。
 
 在ArkTS中，数据类型分为两类，简单类型和引用类型。简单类型内容直接保存在栈（Stack）中，由操作系统自动分配和释放。引用类型保存在堆（heap）中，需要引擎进行手动释放。GC就是针对堆空间的内存自动回收的管理机制。
 
@@ -213,7 +213,7 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 - 应用点击页面跳转
 - 超长帧
 
-除应用冷启动是默认支持，其他敏感场景均为调用dfxjsnapi接口进行设置且无本质区别。
+当前该特性使能由系统侧进行管控，三方应用暂无接口直接调用。
 
 日志关键词: “SmartGC”
 
@@ -222,37 +222,6 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 ![image](./figures/gc-smart-feature.png)
 
 标记性能敏感场景，在进入和退出性能敏感场景时，在堆上标记，避免不必要的GC，维持高性能表现。
-
-### IDLE GC
-
-利用系统绘帧过程中存在的线程idletime，高效利用计算资源分段完成完整的GC工作，减少后续累积内存占用触发长GC造成的卡顿。
-
-#### **Incremental Mark**
-
-完成old gc通常需要消耗较多时间，一次idle time很难完成此项任务，因此将mark过程分布在多次idle time中完成。
-
-![image](./figures/gc-incremental-mark-feature.png)
-
-在线性空间扩容时尝试进行Incremental Mark，满足以下条件则触发增量标记：
-
-- 在ArkProperties里打开ENABLE_IDLE_GC且收到了元能力发送的idleTime开关回调函数；
-- 当前无idleTask且未触发ConcurrentMark；
-- 增量标记完成时，堆大小距到达水线小于256K；
-- 增量标记期间分配对象大小小于100_KB
-
-注：Incremental Mark与Full ConcurrentMark互斥。线性空间主要指的是semiSpace。
-
-#### **Idle YoungGC**
-
-![image](./figures/gc-idle-feature.png)
-
-在线性空间扩容时尝试进行Idle Collection，满足以下条件则设置相应的IdleTask：
-
-- 在ArkProperties里打开ENABLE_IDLE_GC且收到了元能力发送的idleTime开关回调函数；
-- 当前无idleTask且未触发ConcurrentMark；
-- 堆大小小于触发YoungGC ConcurrentMark水线256K以内；
-
-注：Idle YoungGC可与ConcurrentMark共存（防止还未接收到IdleTime就达到GC水线），可先触发ConcurrentMark，后开始Idle YoungGC.
 
 ## 日志解释
 

@@ -12,11 +12,15 @@ The figure below shows the state changes of the AudioCapturer. After an **AudioC
 
 ![AudioCapturer state change](figures/audiocapturer-status-change.png)
 
-You can call **on('stateChange')** to listen for state changes. For details about each state, see [AudioState](../../reference/apis-audio-kit/js-apis-audio.md#audiostate8).
+You can call **on('stateChange')** to listen for state changes of the AudioCapturer. For details about each state, see [AudioState](../../reference/apis-audio-kit/js-apis-audio.md#audiostate8).
 
 ### How to Develop
 
 1. Set audio recording parameters and create an **AudioCapturer** instance. For details about the parameters, see [AudioCapturerOptions](../../reference/apis-audio-kit/js-apis-audio.md#audiocaptureroptions8).
+   
+   > **NOTE**
+   >
+   > In the case of the microphone audio source (when **SourceType** is set to **SOURCE_TYPE_MIC**), you must request the **ohos.permission.MICROPHONE** permission. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
      
    ```ts
     import { audio } from '@kit.AudioKit';

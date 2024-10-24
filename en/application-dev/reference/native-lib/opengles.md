@@ -9,8 +9,36 @@ OpenGL ES 3.2
 ## Symbols Exported from the Standard Library
 
 [OpenGL ES 3.2 Symbols Exported](openglesv3-symbol.md)
+
+## Introducing OpenGL
+
+To use OpenGL capabilities, you must add related dynamic link libraries (DLLs) and header files.
+
+**Adding Dynamic Link Libraries**
+
+Add the following libraries to **CMakeLists.txt**.
+
+```txt
+libace_ndk.z.so
+libace_napi.z.so
+libGLESv3.so
+libEGL.so
+```
+
+**Including Header Files**
+
+```c++
+#include <ace/xcomponent/native_interface_xcomponent.h>
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
+#include <EGL/eglplatform.h>
+#include <GLES3/gl3.h>
+```
+
 ## References
+
 To use the OpenGL ES API in your application development, familiarize yourself with the NDK development process and the **\<XComponent>** usage, which are described in the following topics:
+
 - [Getting Started with the NDK](../../napi/ndk-development-overview.md)
 
 - [Node-API](./napi.md)
@@ -24,37 +52,37 @@ To use the OpenGL ES API in your application development, familiarize yourself w
 - To obtain the official reference document for OpenGL ES extensions, visit [Khronos OpenGL ES Registry](https://registry.khronos.org/OpenGL/index_es.php).
 - You can call **glGetString** to query the extensions supported by the chip. Before calling **glGetString**, you must initialize the context. The following is an example:
 
-  ```c++
-  EGLDisplay display;
-  EGLConfig config;
-  EGLContext context;
-  EGLSurface surface;
-  EGLint majorVersion;
-  EGLint minorVersion;
-  EGLNativeWindowType win;
-  display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
-  eglInitialize(display, &majorVersion, &minorVersion);
-  display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
-  eglInitialize(display, &majorVersion, &minorVersion);
-  EGLint attribs[] = {
-      EGL_RENDERABLE_TYPE,
-      EGL_OPENGL_ES2_BIT,
-      EGL_BLUE_SIZE, 8,
-      EGL_GREEN_SIZE, 8,
-      EGL_RED_SIZE, 8,
-      EGL_NONE
-  };
-  eglChooseConfig(display, attribs, &config, 1, &numConfigs);
-  context = eglCreateContext(display, config, EGL_NO_CONTEXT, NULL);
-  surface = eglCreatePbufferSurface(display, config, NULL);
-  eglMakeCurrent(display, surface, surface, context);
-  
-  char *strTest = new char[1024];
-  strTest = (char *)glGetString(GL_EXTENSIONS); // The return value of strTest lists all extensions supported, separated by spaces.
-  bool isHave = strTest.find("GL_OES_matrix_palette") != -1 ?
-      true :
-      false; // Check whether an extension exists. If yes, the value of isHave is true. If no, the value of isHave is false.
-  ```
+```c++
+EGLDisplay display;
+EGLConfig config;
+EGLContext context;
+EGLSurface surface;
+EGLint majorVersion;
+EGLint minorVersion;
+EGLNativeWindowType win;
+display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+eglInitialize(display, &majorVersion, &minorVersion);
+display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+eglInitialize(display, &majorVersion, &minorVersion);
+EGLint attribs[] = {
+    EGL_RENDERABLE_TYPE,
+    EGL_OPENGL_ES2_BIT,
+    EGL_BLUE_SIZE, 8,
+    EGL_GREEN_SIZE, 8,
+    EGL_RED_SIZE, 8,
+    EGL_NONE
+};
+eglChooseConfig(display, attribs, &config, 1, &numConfigs);
+context = eglCreateContext(display, config, EGL_NO_CONTEXT, NULL);
+surface = eglCreatePbufferSurface(display, config, NULL);
+eglMakeCurrent(display, surface, surface, context);
+
+char *strTest = new char[1024];
+strTest = (char *)glGetString(GL_EXTENSIONS); // The return value of strTest lists all extensions supported, separated by spaces.
+bool isHave = strTest.find("GL_OES_matrix_palette") != -1 ?
+    true :
+    false; // Check whether an extension exists. If yes, the value of isHave is true. If no, the value of isHave is false.
+```
 
 ## Example
 
@@ -223,8 +251,7 @@ If the initialization is successful, **EGL_TRUE** is returned. Otherwise, **EGL_
 ### Using eglChooseConfig to Determine the Rendering Configuration
 After the EGL display connection is initialized, determine the type and configuration of the available surface in either of the following ways:
 - Specify a set of required configurations and use **eglChooseConfig** to enable EGL to recommend the optimal configuration.
-
-  Generally, you can use this method because it is easier to obtain the optimal configuration.
+Generally, you can use this method because it is easier to obtain the optimal configuration.
 
     ```cpp
     EGLBoolean eglChooseConfig(EGLDisplay dpy, // Handle to the EGL display connection for which configurations are selected.
@@ -243,84 +270,83 @@ After the EGL display connection is initialized, determine the type and configur
                         EGL_NONE};
     eglChooseConfig(display, attribs, &config, 1, &numConfigs);
     ```
-  In this example, the number of bits in the blue buffer is 6. To use six bits to represent the blue value 200 in the case of 8-bit RGB (ranging from 0 to 255), use the following formula for calculation: 64 x 200/256, where 64 is the maximum value that can be represented by six bits (2^6 = 64). After **eglChooseConfig** is called, the configurations that match the attributes are returned and stored in the **config** array. In the sample code, **config_size** is set to **1**, indicating that the size of the **config** array is 1. Only one set of configurations can be stored, but that's enough. **numconfigs** specifies the number of configurations that match the attributes. In this way, the desired **config** array is obtained.
+    In this example, the number of bits in the blue buffer is 6. To use six bits to represent the blue value 200 in the case of 8-bit RGB (ranging from 0 to 255), use the following formula for calculation: 64 x 200/256, where 64 is the maximum value that can be represented by six bits (2^6 = 64). After **eglChooseConfig** is called, the configurations that match the attributes are returned and stored in the **config** array. In the sample code, **config_size** is set to **1**, indicating that the size of the **config** array is 1. Only one set of configurations can be stored, but that's enough. **numconfigs** specifies the number of configurations that match the attributes. In this way, the desired **config** array is obtained.
 
 - Use **eglGetConfigs** to query all supported configurations and use **eglGetConfigAttrib** to filter the desired ones.
-  
   The following describes how to use this method to obtain the desired configurations.
+
+  ```cpp
+  #include <EGL/egl.h>
+  #include <iostream>
+  #include <vector>
+  int main() {
+      // Initialize EGL.
+      EGLDisplay display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+      eglInitialize(display, nullptr, nullptr);
   
-    ```cpp
-    #include <EGL/egl.h>
-    #include <iostream>
-    #include <vector>
-    int main() {
-        // Initialize EGL.
-        EGLDisplay display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
-        eglInitialize(display, nullptr, nullptr);
-    
-        // Obtain all the configurations.
-        EGLint numConfigs;
-        eglGetConfigs(display, nullptr, 0, &numConfigs);
-        std::vector<EGLConfig> configs(numConfigs);
-        eglGetConfigs(display, configs.data(), numConfigs, &numConfigs);
-    
-        // Select a proper configuration.
-        EGLConfig chosenConfig = nullptr;
-        for (const auto& config : configs) {
-            EGLint redSize, greenSize, blueSize;
-            eglGetConfigAttrib(display, config, EGL_RED_SIZE, &redSize);
-            eglGetConfigAttrib(display, config, EGL_GREEN_SIZE, &greenSize);
-            eglGetConfigAttrib(display, config, EGL_BLUE_SIZE, &blueSize);
-            if (redSize == 8 && greenSize == 8 && blueSize == 6) {
-                chosenConfig = config;
-                break;
-            }
-        }
-    
-        // If no configuration is selected, print the error information and exit.
-        if (!chosenConfig) {
-            std::cerr << "Failed to find a suitable EGL configuration." << std::endl;
-            return 1;
-        }
-        return 0;
-    }
-    ```
+      // Obtain all the configurations.
+      EGLint numConfigs;
+      eglGetConfigs(display, nullptr, 0, &numConfigs);
+      std::vector<EGLConfig> configs(numConfigs);
+      eglGetConfigs(display, configs.data(), numConfigs, &numConfigs);
   
-    ```cpp
-    EGLBoolean eglGetConfigs(EGLDisplay display, // Handle to the EGL display connection for which configurations are selected.
-                             EGLConfig *configs, // Array for storing the obtained configurations.
-                             EGLint config_size, // Size of the configs array.
-                             EGLint *num_config); // Number of available configurations.
-    ```
+      // Select a proper configuration.
+      EGLConfig chosenConfig = nullptr;
+      for (const auto& config : configs) {
+          EGLint redSize, greenSize, blueSize;
+          eglGetConfigAttrib(display, config, EGL_RED_SIZE, &redSize);
+          eglGetConfigAttrib(display, config, EGL_GREEN_SIZE, &greenSize);
+          eglGetConfigAttrib(display, config, EGL_BLUE_SIZE, &blueSize);
+          if (redSize == 8 && greenSize == 8 && blueSize == 6) {
+              chosenConfig = config;
+              break;
+          }
+      }
   
-    The **eglGetConfigs** function can be used in either of the following ways:
+      // If no configuration is selected, print the error information and exit.
+      if (!chosenConfig) {
+          std::cerr << "Failed to find a suitable EGL configuration." << std::endl;
+          return 1;
+      }
+      return 0;
+  }
+  ```
+
+  ```cpp
+  EGLBoolean eglGetConfigs(EGLDisplay display, // Handle to the EGL display connection for which configurations are selected.
+                           EGLConfig *configs, // Array for storing the obtained configurations.
+                           EGLint config_size, // Size of the configs array.
+                           EGLint *num_config); // Number of available configurations.
+  ```
   
-    - If a null pointer is passed in to **configs**, **EGL_TRUE** is returned and the number of available configurations obtained is saved in **num_config**. In this case, **configs** can be initialized based on the number to store the configurations. For details, see the preceding code.
-    - If **configs** is configured to accept all configurations, all configurations obtained are saved in **configs**. You can filter them as required and store the desired ones.
+   The **eglGetConfigs** function can be used in either of the following ways:
   
-    ```cpp
-    // Select a proper configuration.
-       EGLConfig chosenConfig = nullptr;
-           for (const auto& config : configs) {
-               EGLint redSize, greenSize, blueSize;
-               eglGetConfigAttrib(display, config, EGL_RED_SIZE, &redSize);
-               eglGetConfigAttrib(display, config, EGL_GREEN_SIZE, &greenSize);
-               eglGetConfigAttrib(display, config, EGL_BLUE_SIZE, &blueSize);
-               if (redSize == 8 && greenSize == 8 && blueSize == 6) {
-                   chosenConfig = config;
-                   break;
-               }
-           }
-    ```
+  - If a null pointer is passed in to **configs**, **EGL_TRUE** is returned and the number of available configurations obtained is saved in **num_config**. In this case, **configs** can be initialized based on the number to store the configurations. For details, see the preceding code.
+  - If **configs** is configured to accept all configurations, all configurations obtained are saved in **configs**. You can filter them as required and store the desired ones.
+  
+  ```cpp
+  // Select a proper configuration.
+     EGLConfig chosenConfig = nullptr;
+         for (const auto& config : configs) {
+             EGLint redSize, greenSize, blueSize;
+             eglGetConfigAttrib(display, config, EGL_RED_SIZE, &redSize);
+             eglGetConfigAttrib(display, config, EGL_GREEN_SIZE, &greenSize);
+             eglGetConfigAttrib(display, config, EGL_BLUE_SIZE, &blueSize);
+             if (redSize == 8 && greenSize == 8 && blueSize == 6) {
+                 chosenConfig = config;
+                 break;
+             }
+         }
+  ```
   
   The preceding code snippet traverses each configuration in **configs** and uses **eglGetConfigAttrib** to query the value of a specific attribute in the configuration, save the value in the fourth parameter, check whether the configuration is the desired one, and if yes, save the configuration. If the call is successful, **EGL_TRUE** is returned. Otherwise, **EGL_FALSE** is returned. In the latter case, you can use **eglGetError** to obtain the failure cause. If **EGL_BAD ATTRIBUTE** is returned, the attribute is invalid.
   
-    ```cpp
-    EGLBoolean eglGetConfigAttrib(EGLDisplay display, // Handle to the EGL display connection for which configurations are selected.
-                                       EGLConfig config, // EGL configuration to query.
-                                       EGLint attribute, // Attribute identifier of the EGLint type, indicating the attribute to query.
-                                       EGLint *value); // Pointer to the variable of the EGLint type, which is used to store the attribute value obtained.
-    ```
+  ```cpp
+  EGLBoolean eglGetConfigAttrib(EGLDisplay display, // Handle to the EGL display connection for which configurations are selected.
+                                     EGLConfig config, // EGL configuration to query.
+                                     EGLint attribute, // Attribute identifier of the EGLint type, indicating the attribute to query.
+                                     EGLint *value); // Pointer to the variable of the EGLint type, which is used to store the attribute value obtained.
+  ```
 
 
 ### Using eglCreateWindowSurface to Create a Window Surface
@@ -349,6 +375,8 @@ The possible causes of a failure to call **eglCreateWindowSurface** are as follo
 - **EGL_BAD_NATIVE_WINDOW**: The native window handle is invalid.
 
 - **EGL_BAD_ALLOC**: Resources cannot be created for a new EGL window or there is already an EGL configuration associated with the native window.
+
+
 
 ```cpp
 EGLint attribList[] = { EGL_RENDER_BUFFER, EGL_BACK_BUFFER, EGL_NONE };
@@ -484,9 +512,8 @@ Once the **glBufferData** function is called, the data is copied to the OpenGL b
         }
     )";
 ```
-Fragment is an element generated by rasterization. It represents a potential screen pixel, including all information related to the pixel, such as the color, depth, and stencil value. Each fragment is processed by a fragment shader, which also determines whether to write the fragment to the frame buffer.
-
-A fragment shader runs on each fragment. In this example, it is used to calculate the final color value of the fragment. It can access the interpolated vertex data and perform complex operations such as lighting calculation and texture sampling.
+- Fragment is an element generated by rasterization. It represents a potential screen pixel, including all information related to the pixel, such as the color, depth, and stencil value. Each fragment is processed by a fragment shader, which also determines whether to write the fragment to the frame buffer.
+- A fragment shader runs on each fragment. In this example, it is used to calculate the final color value of the fragment. It can access the interpolated vertex data and perform complex operations such as lighting calculation and texture sampling.
 
 ```cpp
 
@@ -506,11 +533,13 @@ const char* fragmentShaderSource = R"(
 
 ```
 In the OpenGL ES rendering pipeline, the following steps describe the entire process from vertex data to pixel output:
+
 1. Vertex shader processing
 
    The vertex data in the buffer is passed into the vertex shader program and undergone the following processing:
    
    - Matrix transformation: uses the model view (MV) matrix and projection matrix to transform the vertex position.
+
    - Lighting calculation: calculates the color or other attributes of vertices based on the lighting formula.
    
 2. Primitive assembly
@@ -526,53 +555,64 @@ In the OpenGL ES rendering pipeline, the following steps describe the entire pro
    The fragment data output by rasterization is used as the input variable of the fragment shader. The following operations are carried out in the fragment shader:
 
    - Lighting calculation: calculates the lighting effect of a fragment.
-     - Texture sampling: obtains color data from textures.
-     - Color mixing: generates new colors, depths, and screen coordinates based on lighting and texture data.
+
+   - Texture sampling: obtains color data from textures.
+
+   - Color mixing: generates new colors, depths, and screen coordinates based on lighting and texture data.
 
 5. Fragment-by-fragment processing
 
    The output of the fragment shader is then undergone fragment-by-fragment processing as follows:
 
    - Pixel ownership test: determines whether the fragment belongs to the current pixel area to draw.
-     - Scissor test: determines whether the fragment is in the visible area.
-     - Stencil test: uses the stencil buffer for test.
-     - Depth-buffer test: compares the depth values of the fragment to determine whether it visible.
-     - Blending: combines the newly calculated color with the existing color in the frame buffer.
-     - Dithering: reduces color quantization errors by applying small, random, or ordered noise to the original image to distribute these quantization errors.
+
+   - Scissor test: determines whether the fragment is in the visible area.
+
+   - Stencil test: uses the stencil buffer for test.
+
+   - Depth-buffer test: compares the depth values of the fragment to determine whether it visible.
+
+   - Blending: combines the newly calculated color with the existing color in the frame buffer.
+
+   - Dithering: reduces color quantization errors by applying small, random, or ordered noise to the original image to distribute these quantization errors.
 
 6. Writing the frame to the buffer
 
    After all the preceding tests and processing, the final fragment data is written into the frame buffer and displayed as an image on the screen.
 
 ### Creating and Using a Shader Program
+
 ```cpp
-   GLuint vertexShader, fragmentShader, shaderProgram;
-    // Create a vertex shader.
-    vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
-    glCompileShader(vertexShader);
+GLuint vertexShader, fragmentShader, shaderProgram;
+// Create a vertex shader.
+vertexShader = glCreateShader(GL_VERTEX_SHADER);
+glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
+glCompileShader(vertexShader);
 
-    // Create a fragment shader.
-    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
-    glCompileShader(fragmentShader);
+// Create a fragment shader.
+fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
+glCompileShader(fragmentShader);
 
-    // Create a shader program.
-    shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
+// Create a shader program.
+shaderProgram = glCreateProgram();
+glAttachShader(shaderProgram, vertexShader);
+glAttachShader(shaderProgram, fragmentShader);
+glLinkProgram(shaderProgram);
 
-    // Use the shader program.
-    glUseProgram(shaderProgram);
+// Use the shader program.
+glUseProgram(shaderProgram);
 ```
+
 ```cpp
 GLuint glCreateShader(GLenum shaderType);
 ```
 The **glCreateShader** function is used to create a shader object of a specified type and return a handle to the object. The **shaderType** parameter specifies the type of shader to create, which can be **GL_VERTEX_SHADER** (vertex shader) or **GL_FRAGMENT_SHADER** (fragment shader).
+
 ```cpp
-void glShaderSource(GLuint shader, GLsizei count, const GLchar **string, const GLint *length);
+void glShaderSource(GLuint shader, GLsizei count, const GLchar \**string, const GLint *length);
 ```
+
 The **glShaderSource** function is used to set the source code of the shader object. The following parameters are available in the function:
 
 - **shader**: identifier of the shader object for which the source code is set.
@@ -583,18 +623,25 @@ The **glShaderSource** function is used to set the source code of the shader obj
 ```cpp
 void glCompileShader(GLuint shader);
 ```
+
 The **glCompileShader** function is used to compile a shader object, where the **shader** parameter is the identifier of the target shader object.
+
 ```cpp
 GLuint glCreateProgram(void);
 ```
+
 The **glCreateProgram** function is used to create a shader program object and return the object identifier.
+
 ```cpp
 void glAttachShader(GLuint program, GLuint shader);
 ```
+
 The **glAttachShader** function is used to attach a shader object to a shader program object. The **program** parameter is the identifier of the target shader program object, and the **shader** parameter is the identifier of the target shader object.
+
 ```cpp
 void glLinkProgram(GLuint program);
 ```
+
 The **glLinkProgram** function is used to link a shader program object, that is, to link the shader attached to the program object to an executable rendering pipeline. The **program** parameter is the identifier of the target shader program object. 
 
 After the shader program is linked, OpenGL merges the code in each individual shader object into an executable rendering pipeline, performs connector optimization to optimize the performance of the rendering pipeline, and binds the **Uniform** variable to the information about the Uniform block.
@@ -638,7 +685,9 @@ if (!compiled)
     return 0;
 }
 ```
+
 You can use the following code to check whether the call of **glLinkProgram** is normal:
+
 ```cpp
 // Link the program object.
 glLinkProgram(programObject);
@@ -671,6 +720,7 @@ if (!linked)
     return FALSE;
 }
 ```
+
 ### Determining the Configuration of the Vertex Attribute Array
 
 Determine the layout and format of the vertex attributes in the buffer.
@@ -687,6 +737,7 @@ void glVertexAttribPointer(GLuint index, // Start index of the vertex array. The
 ```cpp
 void glEnableVertexAttribArray(GLuint index);
 ```
+
 The **glEnableVertexAttribArray** function is used to enable an array of vertex attributes with a specified index. For example, call **glEnableVertexAttribArray(0)** to enable an array of vertex attributes with index 0. This array is associated with layout (location = 0) in vec3 aPos in the vertex shader program.
 
 In the sample code, the first parameter **index** of **glVertexAttribPointer** corresponds to **aPos** in the vertex shader, that is, position 0. The other parameters set the format of the vertex attribute, telling OpenGL that the attribute contains three components (x, y, and z), the data type is GL_FLOAT, and the first attribute of each vertex starts from offset 0.
@@ -695,15 +746,19 @@ The **glBindBuffer** function binds the current VBO, **glBufferData** transfers 
 
 
 ### Drawing and Displaying Graphics
+
 ```cpp
 void glDrawArrays(GLenum mode, // Type of the graphic to draw. For example, GL_TRIANGLES indicates that a triangle will be drawn.
                   GLint first, // Start index of the vertex array to draw.
                   GLsizei count // Number of vertices to draw.
                   );
 ```
+
 The **glDrawArrays** function is used to draw graphics based on the currently bound vertex array, vertex attributes, and other settings.
+
 ```cpp
 EGLBoolean eglSwapBuffers(EGLDisplay dpy, // EGL display connection.
                           EGLSurface surface); // EGL surface whose buffers are to be swapped.
 ```
+
 The **eglSwapBuffers** function is used to swap the front and back buffers and display the rendering result on the screen.

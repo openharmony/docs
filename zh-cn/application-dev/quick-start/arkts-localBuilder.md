@@ -174,7 +174,7 @@ struct Parent {
 
 ## @LocalBuilder和@Builder区别说明
 
-函数componentBuilder被@Builder修饰时，显示效果是 “Child”，函数componentBuilder被@LocalBuild修饰时，显示效果是“Parent”。
+函数componentBuilder被@Builder修饰时，显示效果是 “Child”，函数componentBuilder被@LocalBuilder修饰时，显示效果是“Parent”。
 
 说明：
 
@@ -283,7 +283,7 @@ struct ParentPage {
         .width('100%')
         .height(10)
         .backgroundColor('#000000').margin(10)
-      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text1
+      Text(`info2: ${this.info2.name}  ${this.info2.age}`) // Text2
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
       this.privateBuilderSecond() // 调用局部@Builder

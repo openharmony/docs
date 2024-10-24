@@ -2,7 +2,10 @@
 
 - [Introduction to Media Library Kit](photoAccessHelper-overview.md)
 - [Selecting Media Assets Using Picker](photoAccessHelper-photoviewpicker.md)
-- [Creating a Media Asset Using \<SaveButton>](photoAccessHelper-savebutton.md)
+- [Creating a Media Asset Using SaveButton](photoAccessHelper-savebutton.md)
+- Moving Photos
+  - [Accessing and Managing Moving Photo Assets](photoAccessHelper-movingphoto.md)
+  - [Playing Moving Photos with MovingPhotoView](movingphotoview-guidelines.md)
 - Restricted Open Capabilities
   - [Before You Start](photoAccessHelper-preparation.md)
   - [Managing Media Assets](photoAccessHelper-resource-guidelines.md)

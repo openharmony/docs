@@ -21,7 +21,7 @@ The **native_audiorenderer.h** file declares the functions related to an audio r
 
 ### Functions
 
-| Name | Description | 
+| Name| Description| 
 | -------- | -------- |
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_Release](_o_h_audio.md#oh_audiorenderer_release)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer) | Releases an audio renderer. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_Start](_o_h_audio.md#oh_audiorenderer_start)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer) | Starts an audio renderer. | 
@@ -53,3 +53,4 @@ The **native_audiorenderer.h** file declares the functions related to an audio r
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_GetRendererPrivacy](_o_h_audio.md#oh_audiorenderer_getrendererprivacy)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, [OH_AudioStream_PrivacyType](_o_h_audio.md#oh_audiostream_privacytype) \*privacy) | Checks whether the audio stream being played can be recorded by other applications. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_SetSilentModeAndMixWithOthers](_o_h_audio.md#oh_audiorenderer_setsilentmodeandmixwithothers)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, bool on) | Sets the silent mode in concurrent playback for an audio stream. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_GetSilentModeAndMixWithOthers](_o_h_audio.md#oh_audiorenderer_getsilentmodeandmixwithothers)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, bool \*on) | Checks whether the silent mode in concurrent playback is enabled for an audio stream. | 
+| [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioRenderer_SetDefaultOutputDevice](_o_h_audio.md#oh_audiorenderer_setdefaultoutputdevice)([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, [OH_AudioDevice_Type](_o_h_audio.md#oh_audiodevice_type) deviceType) | Sets the default built-in audio output device. | 

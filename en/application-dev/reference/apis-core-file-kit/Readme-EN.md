@@ -14,9 +14,10 @@
   - [@ohos.fileshare (File Sharing)](js-apis-fileShare.md)
   - [@ohos.file.BackupExtensionContext (Backup and Restore Extension Capability](js-apis-file-backupextensioncontext.md)
   <!--Del-->
+  - [@ohos.application.BackupExtensionAbility (Backup and Restore Extension Capability) (System API)](js-apis-application-backupExtensionAbility-sys.md)
   - [@ohos.file.backup (Backup and Restore) (System API)](js-apis-file-backup-sys.md)
-  - [@ohos.file.cloudSync (Device-Cloud Sync)(System API)](js-apis-file-cloudsync-sys.md)
-  - [@ohos.file.cloudSyncManager (Device-Cloud Sync Management)(System API)](js-apis-file-cloudsyncmanager-sys.md)
+  - [@ohos.file.cloudSync (Device-Cloud Sync) (System API)](js-apis-file-cloudsync-sys.md)
+  - [@ohos.file.cloudSyncManager (Device-Cloud Sync Management) (System API)](js-apis-file-cloudsyncmanager-sys.md)
   - [@ohos.file.environment (Directory Environment Capability) (System API)](js-apis-file-environment-sys.md)
   - [@ohos.file.fileAccess (User File Access and Management) (System API)](js-apis-fileAccess-sys.md)
   - [@ohos.file.fileExtensionInfo (User File Extension Information) (System API)](js-apis-fileExtensionInfo-sys.md)

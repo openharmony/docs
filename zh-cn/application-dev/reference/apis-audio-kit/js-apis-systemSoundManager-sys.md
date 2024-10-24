@@ -188,7 +188,7 @@ setFileName(name: string): void
 
 ```ts
 let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
-let fileName = 'textFileName'; 
+let fileName = 'textFileName';
 toneAttrs.setFileName(fileName);
 ```
 
@@ -348,7 +348,7 @@ createCustomizedToneAttrs(): ToneAttrs
 ```ts
 let toneAttrs: systemSoundManager.ToneAttrs = systemSoundManager.createCustomizedToneAttrs();
 ```
-## ToneHapticsFeature<sup>12+</sup>
+## ToneHapticsFeature<sup>13+</sup>
 
 枚举，系统振动风格定义。
 
@@ -360,6 +360,148 @@ let toneAttrs: systemSoundManager.ToneAttrs = systemSoundManager.createCustomize
 | ----------------------------- | -- | -------------------- |
 | STANDARD| 0  | 标准振动风格。 |
 | GENTLE   | 1  | 轻柔振动风格。 |
+
+## ToneHapticsType<sup>13+</sup>
+
+type ToneHapticsType = RingtoneType | SystemToneType
+
+联合枚举，系统铃音的振动类型。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 名称                                 | 说明         |
+| ------------------------------------|------------|
+| [RingtoneType](#ringtonetype)       | 通话铃音类型。 |
+| [SystemToneType](#systemtonetype11) | 系统短音类型。 |
+
+## ToneHapticsMode<sup>13+</sup>
+
+枚举，系统铃音场景的振动模式。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 名称                          | 值 | 说明                 |
+| ----------------------------- | -- | -------------------- |
+| NONE        | 0  | 无振动模式。 |
+| SYNC        | 1  | 与铃音同步模式。 |
+| NON_SYNC    | 2  | 非同步模式。 |
+
+## ToneHapticsSettings<sup>13+</sup>
+
+系统铃音的振动设置。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 名称          | 类型 | 只读 | 可选 | 说明                 |
+| ------------ | -- | -- | -- | -------------------- |
+| mode | [ToneHapticsMode](#tonehapticsmode13) | 否 | 否 | 系统铃音的振动模式。 |
+| hapticsUri | string                          | 否 | 是 | 系统铃音的振动路径，当振动模式不是非同步振动应该被忽略，振动的路径可通过[getToneHapticsList](#gettonehapticslist13)获取。 |
+
+## ToneHapticsAttrs<sup>13+</sup>
+
+系统铃音的振动属性。在调用ToneHapticsAttrs<sup>13+</sup>的接口前，需要先通过[getToneHapticsList](#gettonehapticslist13)或[getHapticsAttrsSyncedWithTone](#gethapticsattrssyncedwithtone13)方法获取实例。
+
+### getUri<sup>13+</sup>
+
+getUri(): string
+
+获取振动资源路径。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+| 类型    | 说明  |
+|--------|-----|
+| string | uri（如：'/data/storage/el2/base/haptics/synchronized/alarms/test.json'）。 |
+
+**错误码：**
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+**示例：**
+
+```ts
+toneHapticsAttrs.getUri();
+```
+
+### getTitle<sup>13+</sup>
+
+getTitle(): string
+
+获取振动标题。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+| 类型    | 说明  |
+|--------|-----|
+| string | 标题。 |
+
+**错误码：**
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+**示例：**
+
+```ts
+toneHapticsAttrs.getTitle();
+```
+
+### getFileName<sup>13+</sup>
+
+getFileName(): string
+
+获取振动文件名。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+| 类型    | 说明  |
+|--------|-----|
+| string | 文件名。 |
+
+**错误码：**
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+**示例：**
+
+```ts
+toneHapticsAttrs.getFileName();
+```
+
+## ToneHapticsAttrsArray<sup>13+</sup>
+
+type ToneHapticsAttrsArray = Array&lt;ToneHapticsAttrs&gt;
+
+系统铃音的振动属性数组。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 类型                                     | 说明      |
+|----------------------------------------|---------|
+| Array&lt;[ToneHapticsAttrs](#tonehapticsattrs13)&gt; | 系统铃音的振动属性数组。 |
 
 ## systemSoundManager.getSystemSoundManager
 
@@ -1600,6 +1742,268 @@ systemSoundManagerInstance.removeCustomizedTone(context, uri).then(() => {
   console.info(`Promise returned to indicate that the customized tone has been deleted.`);
 }).catch ((err: BusinessError) => {
   console.error(`Failed to delete customized tone ${err}`);
+});
+```
+
+### getToneHapticsSettings<sup>13+</sup>
+
+getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;ToneHapticsSettings&gt;
+
+获取系统铃音的振动设置，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                                          |
+|-----|-----------| ---- |----------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。   |
+| type  | [ToneHapticsType](#tonehapticstype13)    | 是   | 待获取系统铃音的振动类型。 |
+
+**返回值：**
+
+| 类型                  | 说明                    |
+|---------------------|-----------------------|
+| Promise&lt;[ToneHapticsSettings](#tonehapticssettings13)&gt; | Promise回调返回铃声的振动设置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+| 401     | The parameters check failed. |
+| 5400103 | I/O error. |
+| 20700003 | Unsupported operation. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+let context: common.BaseContext = getContext(this);
+let type: systemSoundManager.ToneHapticsType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.getToneHapticsSettings(context, type).then((value: systemSoundManager.ToneHapticsSettings) => {
+  console.info(`Promise returned to indicate that the value of the tone haptics settings is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the tone haptics settings ${err}`);
+});
+```
+
+### setToneHapticsSettings<sup>13+</sup>
+
+setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: ToneHapticsSettings): Promise&lt;void&gt;
+
+设置系统铃音的振动，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                                          |
+|-----|-----------| ---- |----------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。   |
+| type  | [ToneHapticsType](#tonehapticstype13)    | 是   | 被设置的系统铃音的振动类型。 |
+| settings  | [ToneHapticsSettings](#tonehapticssettings13)    | 是   | 被设置的系统铃音的振动设置。 |
+
+**返回值：**
+
+| 类型                  | 说明                    |
+|---------------------|-----------------------|
+| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+| 401     | The parameters check failed. |
+| 5400102 | Operation is not allowed, e.g. ringtone to add is not customized. |
+| 5400103 | I/O error. |
+| 20700003 | Unsupported operation. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+let context: common.BaseContext = getContext(this);
+let type: systemSoundManager.ToneHapticsType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+let toneHapticsSettings: systemSoundManager.ToneHapticsSettings = {
+  mode: systemSoundManager.ToneHapticsMode.NON_SYNC,
+  hapticsUri: '/data/storage/el2/base/haptics/synchronized/alarms/test.json', // 需更改为通过getToneHapticsList获取的Uri
+}
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.setToneHapticsSettings(context, type, toneHapticsSettings).then(() => {
+  console.info(`Promise returned to indicate a successful setting of the tone haptics.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to set the tone haptics settings ${err}`);
+});
+```
+
+### getToneHapticsList<sup>13+</sup>
+
+getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapticsAttrsArray&gt;
+
+获取同步或者非同步的系统铃音的振动属性列表，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                                          |
+|-----|-----------| ---- |----------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。   |
+| isSynced  | boolean    | 是   | 待获取的振动是否与某个铃音同步。 |
+
+**返回值：**
+
+| 类型                  | 说明                    |
+|---------------------|-----------------------|
+| Promise&lt;[ToneHapticsAttrsArray](#tonehapticsattrsarray13)&gt; | Promise回调返回同步或者非同步的系统铃音的振动属性列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+| 401     | The parameters check failed. |
+| 5400103 | I/O error. |
+| 20700003 | Unsupported operation. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+let context: common.BaseContext = getContext(this);
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.getToneHapticsList(context, false).then((value: systemSoundManager.ToneHapticsAttrsArray) => {
+  console.info(`Promise returned to indicate that the value of the attribute list of tone haptics is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the attribute list of tone haptics ${err}`);
+});
+```
+
+### getHapticsAttrsSyncedWithTone<sup>13+</sup>
+
+getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt;ToneHapticsAttrs&gt;
+
+获取与指定铃音同步的振动属性，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                                                          |
+|-----|-----------| ---- |----------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。   |
+| toneUri  | string    | 是   | 待获取同步振动的系统铃声Uri,可通过[getRingtoneAttrList](#getringtoneattrlist12)或[getSystemToneAttrList](#getsystemtoneattrlist12)等获取。 |
+
+**返回值：**
+
+| 类型                  | 说明                    |
+|---------------------|-----------------------|
+| Promise&lt;[ToneHapticsAttrs](#tonehapticsattrs13)&gt; | Promise回调返回与指定铃音同步的振动属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+| 401     | The parameters check failed. |
+| 5400102 | Operation is not allowed, e.g. ringtone to add is not customized. |
+| 5400103 | I/O error. |
+| 20700003 | Unsupported operation. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+let context: common.BaseContext = getContext(this);
+let toneUri: string = '/data/storage/el2/base/RingTone/alarms/test.ogg'; // 需更改为实际铃音uri
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.getHapticsAttrsSyncedWithTone(context, toneUri).then((value: systemSoundManager.ToneHapticsAttrs) => {
+  console.info(`Promise returned to indicate that the value of the attribute of tone haptics is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the attribute of tone haptics ${err}`);
+});
+```
+
+### openToneHaptics<sup>13+</sup>
+
+openToneHaptics(context: Context, hapticsUri: string): Promise&lt;number&gt;
+
+打开系统铃音的振动，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型       | 必填 | 说明                                                                                  |
+| -------- | ---------| ---- |-------------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。           |
+| hapticsUri      | string   | 是   | 待打开系统铃音的振动的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
+
+**返回值：**
+
+| 类型                    | 说明             |
+|-----------------------|----------------|
+| Promise&lt;number&gt; | Promise回调返回fd。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | The parameters check failed. |
+| 5400102 | Operation is not allowed, e.g. ringtone to add is not customized. |
+| 5400103 | I/O error. |
+| 20700003 | Unsupported operation. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+let context: Context = getContext(this);
+let hapticsUri = '/data/storage/el2/base/haptics/synchronized/alarms/test.json'; // 需更改为目标统铃音的振动的uri
+
+let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
+systemSoundManagerInstance.openToneHaptics(context, hapticsUri).then((value: number) => {
+  console.info(`Promise returned to indicate the value of fd.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to open haptics ${err}`);
 });
 ```
 

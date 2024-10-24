@@ -48,6 +48,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
 
    ```c++
+   #include "napi/native_api.h"
    #include "json/json.h"
    #include "hilog/log.h"
    #include "hiappevent/hiappevent.h"
@@ -56,7 +57,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #define LOG_TAG "testTag"
    ```
 
-4. 订阅应用事件：
+4. 订阅系统事件：
 
     - onReceive类型观察者：
 
@@ -88,7 +89,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                           auto bundleVersion = params["bundle_version"].asString();
                           auto beginTime = params["begin_time"].asInt64();
                           auto endTime = params["end_time"].asInt64();
-                          auto externalLogSize = params["external_log"].size();
+                          auto externalLog = writer.write(params["external_log"]);
                           auto logOverLimit = params["logOverLimit"].asBool();
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
@@ -99,8 +100,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                                       bundleVersion.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.begin_time=%{public}lld", beginTime);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.end_time=%{public}lld", endTime);
-                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}d",
-                                      externalLogSize);
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d",
                                       logOverLimit);
                       }
@@ -113,18 +113,18 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent RegisterWatcher");
           // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
           systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-          // 设置订阅的事件类型为EVENT_MAIN_THREAD_JANK。
+          // 设置订阅的事件为EVENT_MAIN_THREAD_JANK。
           const char *names[] = {EVENT_MAIN_THREAD_JANK};
-          // 开发者订阅感兴趣的应用事件，此处订阅了系统事件。
+          // 开发者订阅感兴趣的事件，此处订阅了系统事件。
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
           // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive回调。
           OH_HiAppEvent_SetWatcherOnReceive(systemEventWatcher, OnReceive);
           // 使观察者开始监听订阅的事件。
           OH_HiAppEvent_AddWatcher(systemEventWatcher);
           return {};
-      }	  
+      }
       ```
-    
+
 5. 将RegisterWatcher注册为ArkTS接口：
 
    编辑"napi_init.cpp"文件，将RegisterWatcher注册为ArkTS接口：
@@ -158,15 +158,14 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    ```
 
 7. 编辑工程中的“entry > src > main > ets > pages> Index.ets”文件，添加一个Button控件onClick中实现主线程超时代码，示例代码如下：
+
    ```typescript
       Button("timeOut350")
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .onClick(() => {
           let t = Date.now();
-          while (Date.now() - t <= 350){
-          
-          }
+          while (Date.now() - t <= 350) {}
       })
    ```
 
@@ -187,14 +186,14 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
       HiAppEvent eventInfo.params.bundle_version=1.0.0
       HiAppEvent eventInfo.params.begin_time=1717597063225
       HiAppEvent eventInfo.params.end_time=1717597063727
-      HiAppEvent eventInfo.params.external_log=1
+      HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_20240613221239_45572.txt"]
       HiAppEvent eventInfo.params.log_over_limit=0
     ```
 
     > **说明：**
     > 主线程超时事件具体规格可参考：[主线程超时事件时间规格](./hiappevent-watcher-mainthreadjank-events-arkts.md#主线程超时事件时间规格) 和 [主线程超时事件规格](./hiappevent-watcher-mainthreadjank-events-arkts.md#主线程超时事件规格)
 
-11. 移除应用事件观察者：
+11. 移除事件观察者：
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -204,7 +203,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-12. 销毁应用事件观察者：
+12. 销毁事件观察者：
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

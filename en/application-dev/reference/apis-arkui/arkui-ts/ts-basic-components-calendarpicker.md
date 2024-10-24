@@ -1,6 +1,6 @@
 # CalendarPicker
 
-The **\<CalendarPicker>** component provides a drop-down calendar for users to select a date.
+The **CalendarPicker** component provides a drop-down calendar for users to select a date.
 
 >  **NOTE**
 >
@@ -17,6 +17,8 @@ CalendarPicker(options?: CalendarOptions)
 
 Creates a calendar picker.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -29,19 +31,64 @@ Creates a calendar picker.
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name         | Type          | Description                               |
-| ----------- | ----------- | --------------------------------- |
-| edgeAlign | alignType: [CalendarAlign](#calendaralign), offset?: [Offset](ts-types.md#offset) | How the picker is aligned with the entry component.<br>- **alignType**: alignment type.<br>Default value: **CalendarAlign.END**<br>- **offset**: offset of the picker relative to the entry component after alignment based on the specified alignment type.<br>Default value: **{dx: 0, dy: 0}.**|
-| textStyle | [PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10) | Font color, font size, and font width in the entry area.                      |
+### edgeAlign
+
+edgeAlign(alignType: CalendarAlign, offset?: Offset)
+
+How the picker is aligned with the entry component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                   | Mandatory| Description                                                        |
+| --------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| alignType | [CalendarAlign](#calendaralign) | Yes  | Alignment type.<br>Default value: **CalendarAlign.END**               |
+| offset    | [Offset](ts-types.md#offset)            | No  | Offset of the picker relative to the entry component after alignment based on the specified alignment type.<br>Default value: **{dx: 0, dy: 0}**|
+
+### textStyle
+
+textStyle(value: PickerTextStyle)
+
+Sets the font color, font size, and font weight in the entry area.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10) | Yes  | Font color, font size, and font weight in the entry area.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
+
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                     | Description              |
-| ----------------------------------------- | ---------------------- |
-| onChange(callback: (value: Date) => void) | Triggered when a date is selected.<br>**value**: selected date value|
+### onChange
+
+onChange(callback: (value: Date) => void)
+
+Triggered when a date is selected.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description          |
+| ------ | ---- | ---- | -------------- |
+| value  | Date | Yes  | Selected date value|
 
 ##  CalendarOptions
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Type      | Mandatory       | Description                           |
 | ----------- | ---------- | ------| --------------------------------- |
@@ -50,7 +97,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ## CalendarAlign
 
-This API can be used in ArkTS widgets since API version 9.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name  | Description                    |
 | ------ | ------------------------ |
@@ -65,7 +112,8 @@ This API can be used in ArkTS widgets since API version 9.
 @Entry
 @Component
 struct CalendarPickerExample {
-  private selectedDate: Date = new Date()
+  private selectedDate: Date = new Date('2024-03-05')
+
   build() {
     Column() {
       Text('Calendar date picker').fontSize(30)
@@ -78,7 +126,7 @@ struct CalendarPickerExample {
             console.info("CalendarPicker onChange:" + JSON.stringify(value))
           })
       }.alignItems(HorizontalAlign.End).width("100%")
-    }.width('100%').margin({top:350})
+    }.width('100%').margin({ top: 350 })
   }
 }
 ```

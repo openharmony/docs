@@ -27,7 +27,7 @@ The **params** parameter in the freeze event information is described as follows
 | peer_binder | string[] | Binder call information.|
 | threads | object[] | Full thread call stack. For details, see **thread**.|
 | memory | object | Memory information. For details, see **memory**.|
-| external_log<sup>12+</sup> | string[] | Path of the error log file.|
+| external_log<sup>12+</sup> | string[] | Path of the error log file. If the directory files exceed the threshold (for details, see **log_over_limit**), new log files may fail to be written. Therefore, delete the log files immediately after they are processed.|
 | log_over_limit<sup>12+</sup> | boolean | Whether the size of generated log files and existing log files exceeds the upper limit (5 MB). The value **true** indicates that the upper limit is exceeded and logs fail to be written. The value **false** indicates that the upper limit is not exceeded.|
 
 **exception**

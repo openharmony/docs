@@ -119,7 +119,7 @@ function readWriteFile(): void {
 
 ### 以流的形式读写文件
 
-以下示例代码演示了如何使用流接口进行文件读写：
+以下示例代码演示了如何使用流接口进行文件读写。
 
 ```ts
 // pages/xxx.ets
@@ -163,7 +163,7 @@ async function readWriteFileWithStream(): Promise<void> {
 
 ### 查看文件列表
 
-以下示例代码演示了如何查看文件列表：
+以下示例代码演示了如何查看文件列表。
 
 ```ts
 import { fileIo as fs, Filter, ListFileOptions } from '@kit.CoreFileKit';
@@ -194,7 +194,7 @@ function getListFile(): void {
 
 ### 使用文件流
 
-以下实例代码演示了如何使用文件可读流，文件可写流
+以下示例代码演示了如何使用文件可读流，文件可写流。
 
 ```ts
 // pages/xxx.ets
@@ -237,7 +237,7 @@ function copyFileWithData(): void {
 
 ```
 
-以下代码演示了如何使用文件哈希流
+以下代码演示了如何使用文件哈希流。
 
 ```ts
 // pages/xxx.ets

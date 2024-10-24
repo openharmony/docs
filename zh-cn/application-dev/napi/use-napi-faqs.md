@@ -195,7 +195,7 @@ napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
         delete myContext;
         return nullptr;
     };
-    char *data0 = "Im call in ArkTs Thread";
+    char *data0 = new char[]{"Im call in ArkTS Thread"};
     if (!myContext->Call(data0)) {
         OH_LOG_INFO(LOG_APP, "call tsfn failed");
     };
@@ -207,7 +207,7 @@ napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
                 OH_LOG_ERROR(LOG_APP, "acquire tsfn faild");
                 return;
             };
-            char *data1 = "Im call in std::thread";
+            char *data1 = new char[]{"Im call in std::thread"};
             // 非必要操作, 仅用于异步流程tsfn仍有效
             if (!myCtx->Call(data1)) {
                 OH_LOG_ERROR(LOG_APP, "call tsfn failed");
@@ -215,15 +215,16 @@ napi_value MyTsfnDemo(napi_env env, napi_callback_info info) {
             // 休眠 5s, 模拟耗时场景, env退出后, 异步任务仍未执行完成
             sleep(5);
             // 此时异步任务已执行完成, 但tsfn已被释放并置为 nullptr
-            char *data2 = "Im call after work";
+            char *data2 = new char[]{"Im call after work"};
             if (!myCtx->Call(data2) && !myCtx->Release()) {
                 OH_LOG_ERROR(LOG_APP, "call and release tsfn failed");
                 delete myCtx;
             }
-        }, myContext).detach();
+        },
+        myContext)
+        .detach();
     return nullptr;
 };
-
 ```
 
 以下内容为主线程逻辑，主要用作创建worker线程和通知worker执行任务

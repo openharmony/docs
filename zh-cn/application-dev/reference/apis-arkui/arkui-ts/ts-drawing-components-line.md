@@ -19,12 +19,13 @@ Line(value?: {width?: string | number, height?: string | number})
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
-| height | string \| number | 否 | 高度。<br/>值为异常值或缺省时按照自身内容需要的高度处理。 |
+| value | {width?: string \| number, height?: string \| number} | 否 | width：宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>height：高度。<br/>值为异常值或缺省时按照自身内容需要的高度处理。 |
 
 ## 属性
 

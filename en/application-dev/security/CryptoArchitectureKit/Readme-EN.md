@@ -1,4 +1,4 @@
-# Crypto Architecture Kit (Crypto Architecture Kit)
+# Crypto Architecture Kit
 
 - [Introduction to Crypto Architecture Kit](crypto-architecture-kit-intro.md)
 - Key Generation and Conversion
@@ -30,6 +30,8 @@
   - Encryption and Decryption Development
     - [Encryption and Decryption with an AES Symmetric Key (GCM Mode) (ArkTS)](crypto-aes-sym-encrypt-decrypt-gcm.md)
     - [Encryption and Decryption with an AES Symmetric Key (GCM Mode) (C/C++)](crypto-aes-sym-encrypt-decrypt-gcm-ndk.md)
+    - [Encryption and Decryption with an AES Symmetric Key (CCM Mode) (ArkTS)](crypto-aes-sym-encrypt-decrypt-ccm.md)
+    - [Encryption and Decryption with an AES Symmetric Key (CCM Mode) (C/C++)](crypto-aes-sym-encrypt-decrypt-ccm-ndk.md)
     - [Encryption and Decryption with an AES Symmetric Key (CBC Mode) (ArkTS)](crypto-aes-sym-encrypt-decrypt-cbc.md)
     - [Encryption and Decryption with an AES Symmetric Key (CBC Mode) (C/C++)](crypto-aes-sym-encrypt-decrypt-cbc-ndk.md)
     - [Encryption and Decryption with an AES Symmetric Key (ECB Mode) (ArkTS)](crypto-aes-sym-encrypt-decrypt-ecb.md)

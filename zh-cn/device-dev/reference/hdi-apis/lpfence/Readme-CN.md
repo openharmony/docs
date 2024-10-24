@@ -1,0 +1,56 @@
+# Ipfence HDI 参考
+
+- 模块
+    - [HdiLpfenceCellbatching](_hdi_lpfence_cellbatching.md)
+    - [HdiLpfenceCellfence](_hdi_lpfence_cellfence.md)
+    - [HdiLpfenceGeofence](_hdi_lpfence_geofence.md)
+    - [HdiLpfenceWififence](_hdi_lpfence_wififence.md)
+- 头文件
+    - HdiLpfenceCellbatching
+        - [CellbatchingTypes.idl](_cellbatching_types_8idl.md)
+        - [ICellbatchingCallback.idl](_i_cellbatching_callback_8idl.md)
+        - [ICellbatchingInterface.idl](_i_cellbatching_interface_8idl.md)
+    - HdiLpfenceCellfence
+        - [CellfenceTypes.idl](_cellfence_types_8idl.md)
+        - [ICellfenceCallback.idl](_i_cellfence_callback_8idl.md)
+        - [ICellfenceInterface.idl](_i_cellfence_interface_8idl.md)
+    - HdiLpfenceGeofence
+        - [GeofenceTypes.idl](lpfence_geofence_types_8idl.md)
+        - [IGeofenceCallback.idl](lpfence_i_geofence_callback_8idl.md)
+        - [IGeofenceIntf.idl](lpfence_i_geofence_intf_8idl.md)
+    - HdiLpfenceWififence
+        - [IWififenceCallback.idl](_i_wififence_callback_8idl.md)
+        - [IWififenceInterface.idl](_i_wififence_interface_8idl.md)
+        - [WififenceTypes.idl](_wififence_types_8idl.md)
+- 结构体
+    - HdiLpfenceCellbatching
+        - [CellbatchingRequest](_cellbatching_request.md)
+        - [CellTrajectoryData](_cell_trajectory_data.md)
+        - [ICellbatchingCallback](interface_i_cellbatching_callback.md)
+        - [ICellbatchingInterface](interface_i_cellbatching_interface.md)
+    - HdiLpfenceCellfence
+        - [CellfenceInfo](_cellfence_info.md)
+        - [CellfenceRequest](_cellfence_request.md)
+        - [CellfenceSize](_cellfence_size.md)
+        - [CellfenceStatus](_cellfence_status.md)
+        - [ICellfenceCallback](interface_i_cellfence_callback.md)
+        - [ICellfenceInterface](interface_i_cellfence_interface.md)
+    - HdiLpfenceGeofence
+        - [CurrentCell](lpfence_current_cell.md)
+        - [GeofenceCellInfo](lpfence_geofence_cell_info.md)
+        - [GeofenceCircleRequest](lpfence_geofence_circle_request.md)
+        - [GeofencePolygonRequest](lpfence_geofence_polygon_request.md)
+        - [GeofenceResult](lpfence_geofence_result.md)
+        - [GeofenceSize](lpfence_geofence_size.md)
+        - [GeoLocationInfo](lpfence_geo_location_info.md)
+        - [IGeofenceCallback](lpfence_interface_i_geofence_callback.md)
+        - [IGeofenceInterface](lpfence_interface_i_geofence_interface.md)
+        - [NeighborCell](lpfence_neighbor_cell.md)
+        - [OfflineDb](lpfence_offline_db.md)
+        - [Point](lpfence_point.md)
+        - [RequestCellDb](lpfence_request_cell_db.md)
+    - HdiLpfenceWififence
+        - [IWififenceCallback](interface_i_wififence_callback.md)
+        - [IWififenceInterface](interface_i_wififence_interface.md)
+        - [WififenceRequest](_wififence_request.md)
+        - [WififenceSize](_wififence_size.md)

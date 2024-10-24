@@ -47,11 +47,9 @@ struct WebComponent {
 
 ## 加载本地页面
 
-将本地页面文件放在应用的rawfile目录下，开发者可以在Web组件创建的时候指定默认加载的本地页面 ，并且加载完成后可通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口变更当前Web组件的页面。
-
-
 在下面的示例中展示加载本地页面文件的方法：
 
+将本地页面文件放在应用的rawfile目录下，开发者可以在Web组件创建的时候指定默认加载的本地页面 ，并且加载完成后可通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口变更当前Web组件的页面。
 
 - 将资源文件放置在应用的resources/rawfile目录下。
 
@@ -114,6 +112,86 @@ struct WebComponent {
     </body>
   </html>
   ```
+
+加载沙箱路径下的本地页面文件。
+
+1. 通过构造的单例对象GlobalContext获取沙箱路径。
+
+   ```ts
+   // GlobalContext.ets
+   export class GlobalContext {
+     private constructor() {}
+     private static instance: GlobalContext;
+     private _objects = new Map<string, Object>();
+
+     public static getContext(): GlobalContext {
+       if (!GlobalContext.instance) {
+         GlobalContext.instance = new GlobalContext();
+       }
+       return GlobalContext.instance;
+     }
+
+     getObject(value: string): Object | undefined {
+       return this._objects.get(value);
+     }
+
+     setObject(key: string, objectClass: Object): void {
+       this._objects.set(key, objectClass);
+     }
+   }
+   ```
+
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
+
+   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html';
+
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController();
+
+     build() {
+       Column() {
+         // 加载沙箱路径文件。
+         Web({ src: url, controller: this.controller })
+       }
+     }
+   }
+   ```
+
+2. 修改EntryAbility.ets。
+
+   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。
+
+   ```ts
+   // xxx.ets
+   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
+
+   export default class EntryAbility extends UIAbility {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+       // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+       GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+       console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"));
+     }
+   }
+   ```
+
+   加载的html文件。
+
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html>
+       <body>
+           <p>Hello World</p>
+       </body>
+   </html>
+   ```
 
 
 ## 加载HTML格式的文本数据
@@ -280,6 +358,34 @@ struct Index {
 }
 
 ```
+**常见白屏问题排查:**
+1. 排查应用上网权限配置。
+
+   检查是否已在module.json5中添加网络权限，添加方法请参考在[配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
+   ```ts
+   "requestPermissions":[
+       {
+         "name" : "ohos.permission.INTERNET"
+       }
+     ]
+   ```
+2. 排查NodeContainer与节点绑定的逻辑。
+
+   检查节点是否已上组件树，建议在已有的Web组件上方加上Text（请参考以下例子），如果白屏的时候没有出现Text，建议检查NodeContainer与节点的绑定
+   ```ts
+   @Builder
+   function WebBuilder(data:Data) {
+     Column() {
+       Text('test')
+       Web({ src: data.url, controller: data.controller })
+         .width("100%")
+         .height("100%")
+     }
+   }
+   ```
+3. 排查Web可见性状态。
+
+   如果整个节点已上树，可通过日志[WebPattern::OnVisibleAreaChange](../reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange) 查看Web组件可见性状态是否正确，不可见的Web组件可能会造成白屏
 ## 相关实例
 
 针对Web组件开发，有以下相关实例可供参考：

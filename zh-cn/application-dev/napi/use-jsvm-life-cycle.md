@@ -238,7 +238,7 @@ static JSVM_Value EscapableHandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CloseEscapableHandleScope: failed");
         return nullptr;
     }
-    // 在作用域外继续使用escapedObj 此时的escapedObj已逃逸，可以设置成功，在ArkTs侧可以取到东西
+    // 在作用域外继续使用escapedObj 此时的escapedObj已逃逸，可以设置成功，在ArkTS侧可以取到东西
     OH_JSVM_CreateStringUtf8(env, "001", JSVM_AUTO_LENGTH, &value);
     OH_JSVM_SetNamedProperty(env, obj, "id", value);
     bool result = false;

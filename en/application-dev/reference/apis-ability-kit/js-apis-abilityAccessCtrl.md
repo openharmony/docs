@@ -405,8 +405,8 @@ Before calling this API, the application must have called [requestPermissionsFro
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | [Context](js-apis-inner-application-context.md) | Yes| Context of the UIAbility/UIExtensionAbility that requests the permissions. |
-| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Application Permission Groups](../../security/AccessToken/app-permission-group-list.md). |
+| context | [Context](js-apis-inner-application-context.md) | Yes| Context of the UIAbility/UIExtensionAbility that requests the permissions.|
+| permissionList | Array&lt;Permissions&gt; | Yes| Permissions to request. For details about the permissions, see [Application Permission Groups](../../security/AccessToken/app-permission-group-list.md).|
 
 **Return value**
 
@@ -421,7 +421,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 | ID| Error Message|
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | Invalid parameter. Possible causes: 1. The context is invalid when it does not belong to the application itself; 2. The permission list contains the permission that is not declared in the module.json file; 3. The permission list is invalid because the permissions in it do not belong to the same permission group. |
+| 12100001 | Invalid parameter. Possible causes: 1. The context is invalid because it does not belong to the application itself; 2. The permission list contains the permission that is not declared in the module.json file; 3. The permission list is invalid because the permissions in it do not belong to the same permission group. |
 | 12100010 | The request already exists. |
 | 12100011 | All permissions in the permission list have been granted. |
 | 12100012 | The permission list contains the permission that has not been revoked by the user. |
@@ -465,7 +465,7 @@ When the features such as recording and photographing are disabled, the applicat
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | context | [Context](js-apis-inner-application-context.md) | Yes| Context of the UIAbility/UIExtensionAbility.|
-| type | [SwitchType](#switchtype) | Yes| Type of the global switch.|
+| type | [SwitchType](#switchtype12) | Yes| Type of the global switch.|
 
 **Return value**
 
@@ -500,7 +500,7 @@ atManager.requestGlobalSwitch(context, abilityAccessCtrl.SwitchType.CAMERA).then
 });
 ```
 
-### SwitchType
+### SwitchType<sup>12+</sup>
 
 Enumerates the global switch types.
 

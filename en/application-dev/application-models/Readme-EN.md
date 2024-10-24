@@ -12,11 +12,12 @@
       - [UIAbility Launch Type](uiability-launch-type.md)
       - [UIAbility Usage](uiability-usage.md)
       - [Data Synchronization Between UIAbility and UI Page](uiability-data-sync-with-ui.md)
-      - [Intra-Device Interaction Between UIAbility Components](uiability-intra-device-interaction.md)
+      - [Starting UIAbility in the Same Application](uiability-intra-device-interaction.md)
     - [ExtensionAbility Component](extensionability-overview.md)
       <!--Del-->
       - [ServiceExtensionAbility (for System Applications Only)](serviceextensionability.md)
       - [UIExtensionAbility (for System Applications Only)](uiextensionability.md)
+      - [AutoFillExtensionAbility (for System Applications Only)](autofillextensionablility-guide.md)
       <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage Component Container](abilitystage.md)
@@ -26,7 +27,7 @@
       - [Matching Rules of Explicit Want and Implicit Want](explicit-implicit-want-mappings.md)
       - [Using Explicit Want to Start an Application Component](ability-startup-with-explicit-want.md)
     - [Component Startup Rules (Stage Model)](component-startup-rules.md)
-    - [AppStartup Framework](app-startup.md)
+    - [AppStartup](app-startup.md)
     <!--Del-->
     - Inter-Device Application Component Interaction (Hopping)
       - [Hopping Overview](inter-device-interaction-hop-overview.md)
@@ -36,16 +37,20 @@
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
   - Inter-Application Redirection
     - [Overview of Application Redirection](link-between-apps-overview.md)
-    - Directional Redirection
+    - Starting a Specified Application
       - [(Optional) Using canOpenLink to Check Application Accessibility](canopenlink.md)
       - [Using Deep Linking for Application Redirection](deep-linking-startup.md)
       <!--Del-->
       - [Using App Linking for Application Redirection](app-linking-startup.md)
       <!--DelEnd-->
       - [Switching from Explicit Want Redirection to Linking Redirection](uiability-startup-adjust.md)
-    - Common Intent Redirection
-      - [Using startAbilityByType to Start Vertical Applications](start-intent-panel.md)
-      - [Using startAbility to Start a File Application](file-processing-apps-startup.md)
+      - [Application URI Description](app-uri-config.md)
+    - [Starting an Application of the Specified Type](start-intent-panel.md)
+      - [Starting a Navigation Application](start-navigation-apps.md)
+      - [Starting an Email Application](start-email-apps.md)
+      - [Starting a Financial Application](start-finance-apps.md)
+      - [Starting an Image Editing Application](photoEditorExtensionAbility.md)
+      - [Starting a File Application](file-processing-apps-startup.md)
     - [Starting a System Application](system-app-startup.md)
   - [Process Model (Stage Model)](process-model-stage.md)
   - [Thread Model (Stage Model)](thread-model-stage.md)
@@ -133,4 +138,4 @@
     - [window Switching](window-switch.md)
     - [Storage Switching](storage-switch.md)
 <!--DelEnd-->
-- [Ability Access Control](../security/AccessToken/Readme-EN.md)
+- [Native Child Process Development (C/C++)](capi_nativechildprocess_development_guideline.md)

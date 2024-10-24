@@ -14,7 +14,7 @@ A Harmony Archive (HAR) is a static shared package that can contain code, C++ li
 - A HAR can depend on other HARs, but does not support cyclic dependency or dependency transfer.
 
 ## Creating a HAR
-Create an HAR module through DevEco Studio. For details, see <!--RP1-->[Creating a HAR Module] (https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/creating_har_api9-0000001518082393-V2#section143510369612)<!--RP1End-->.
+Create an HAR module through DevEco Studio. For details, see <!--RP1-->[Creating a HAR Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/creating_har_api9-0000001518082393-V2#section143510369612)<!--RP1End-->.
 
 
 ## Developing a HAR
@@ -365,4 +365,4 @@ After the arkts file in the HAR module is built, the default product is a JS fil
 
 ## Publishing a HAR
 
-For details, see <!--RP3-->[Publishing a HAR] (https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/creating_har_api9-0000001518082393-V2#section1213451811512)<!--RP3End-->.
+For details, see <!--RP3-->[Publishing a HAR](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V2/creating_har_api9-0000001518082393-V2#section1213451811512)<!--RP3End-->.

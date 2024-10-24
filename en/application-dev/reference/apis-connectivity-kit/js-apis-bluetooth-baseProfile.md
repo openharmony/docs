@@ -24,7 +24,7 @@ Represents the profile state change parameters.
 | Name    | Type                          | Readable| Writable| Description                           |
 | -------- | ----------------------------- | ---- | ---- | ------------------------------- |
 | deviceId | string                        | Yes  | No  | Address of the Bluetooth device.  |
-| state    | ProfileConnectionState        | Yes  | No  | Profile connection state of the device.|
+| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | Yes  | No  | Profile connection state of the device.|
 | cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | Yes| No| Cause of the disconnection.|
 
 

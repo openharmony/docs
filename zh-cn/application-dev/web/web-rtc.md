@@ -1,6 +1,6 @@
 # 使用WebRTC进行Web视频会议
 
-Web组件可以通过W3C标准协议接口拉起摄像头和麦克风。开发者在使用该功能时，需配置"ohos.permission.CAMERA"、"ohos.permission.MICROPHONE"权限。
+Web组件可以通过W3C标准协议接口拉起摄像头和麦克风。开发者在使用该功能时，需配置[ohos.permission.CAMERA](../security/AccessToken/declare-permissions.md)、[ohos.permission.MICROPHONE](../security/AccessToken/declare-permissions.md)权限。
 
 通过在JavaScript中调用W3C标准协议接口navigator.mediaDevices.getUserMedia()，该接口用于拉起摄像头和麦克风。constraints参数是一个包含了video和audio两个成员的MediaStreamConstraints对象，用于说明请求的媒体类型。
 

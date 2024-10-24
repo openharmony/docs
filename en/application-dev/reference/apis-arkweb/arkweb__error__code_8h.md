@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **arkweb_error_code.h** file declares the error code of the ArkWeb NDK APIs.
+Declares the error code of the ArkWeb NDK APIs.
 
 **Library**: libohweb.so
 
@@ -28,4 +28,4 @@ The **arkweb_error_code.h** file declares the error code of the ArkWeb NDK APIs.
 
 | Name| Description| 
 | -------- | -------- |
-| [ArkWeb_ErrorCode](_web.md#arkweb_errorcode) { [ARKWEB_ERROR_UNKNOWN](_web.md) = 17100100, [ARKWEB_INVALID_PARAM](_web.md) = 17100101, [ARKWEB_SCHEME_REGISTER_FAILED](_web.md) = 17100102 } | Enumerates the error codes of ArkWeb NDK APIs. | 
+| [ArkWeb_ErrorCode](_web.md#arkweb_errorcode) {<br>[ARKWEB_SUCCESS](_web.md) = 0, [ARKWEB_INIT_ERROR](_web.md) = 17100001, [ARKWEB_ERROR_UNKNOWN](_web.md) = 17100100, [ARKWEB_INVALID_PARAM](_web.md) = 17100101,<br>[ARKWEB_SCHEME_REGISTER_FAILED](_web.md) = 17100102, [ARKWEB_INVALID_URL](_web.md) = 17100103, [ARKWEB_INVALID_COOKIE_VALUE](_web.md) = 17100104<br>} | Enumerates the error codes of ArkWeb NDK APIs. | 

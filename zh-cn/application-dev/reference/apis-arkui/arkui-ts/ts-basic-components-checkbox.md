@@ -26,7 +26,7 @@ Checkbox(options?: CheckboxOptions)
 
 **参数：** 
 
-| 参数名  | 类型                                        | 必填 | 描述               |
+| 参数名  | 类型                                        | 必填 | 说明               |
 | ------- | ------------------------------------------- | ---- | ------------------ |
 | options | [CheckboxOptions](#checkboxoptions对象说明) | 否   | 配置复选框的参数。 |
 
@@ -112,7 +112,7 @@ mark(value: MarkStyle)
 
 | 参数名 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。 |
+| value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。<br/>默认值：{<br/>strokeColor : `$r('sys.color.ohos_id_color_foreground_contrary')`,<br/>strokeWidth: `$r('sys.float.ohos_id_checkbox_stroke_width')`,<br/>size: '20vp'<br/>} |
 
 ### shape<sup>11+</sup>
 
@@ -154,7 +154,7 @@ contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
 ### onChange
 
-onChange(callback: (value: boolean) => void)
+onChange(callback: OnCheckboxChangeCallback)
 
 当选中状态发生变化时，触发该回调。
 
@@ -166,7 +166,25 @@ onChange(callback: (value: boolean) => void)
 
 **参数：** 
 
-| 参数名 | 类型    | 必填 | 描述                                              |
+| 参数名   | 类型                                                    | 必填 | 说明             |
+| -------- | ------------------------------------------------------- | ---- | ---------------- |
+| callback | [OnCheckboxChangeCallback](#oncheckboxchangecallback13) | 是   | 返回选中的状态。 |
+
+## OnCheckboxChangeCallback<sup>13+</sup>
+
+type OnCheckboxChangeCallback  = (value: boolean) => void
+
+选中的状态。
+
+**卡片能力：** 从API version 13开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                              |
 | ------ | ------- | ---- | ------------------------------------------------- |
 | value  | boolean | 是   | 返回true时，表示已选中。返回false时，表示未选中。 |
 

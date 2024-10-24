@@ -31,13 +31,13 @@ When **virtualScroll** is enabled, **Repeat** iterates data from the provided da
 
 ### non-virtualScroll
 
-![Repeat-Slide](./figures/Repeat-NonVirtualScroll-Key.PNG)
+![Repeat-Slide](./figures/Repeat-NonVirtualScroll-Key.png)
 
 ### virtualScroll
 
 **virtualScroll** has a key generation rule similar to that of **non-virtualScroll.** However, it does not automatically handle the duplicate keys, so you need to ensure that the keys are unique.
 
-![Repeat-Slide](./figures/Repeat-VirtualScroll-Key.PNG)
+![Repeat-Slide](./figures/Repeat-VirtualScroll-Key.png)
 
 ## Component Generation and Reuse Rules
 
@@ -59,33 +59,33 @@ At the first time when **Repeat** renders child components, only the required co
 
 The following figure describes the node state before sliding.
 
-![Repeat-Start](./figures/Repeat-Start.PNG)
+![Repeat-Start](./figures/Repeat-Start.png)
 
 Currently, the **Repeat** component has two types of templateId. **templateId a** sets three as its maximum cache value for the corresponding cache pool. **templateId b** sets four as its maximum cache value and preloads one note for its parent components by default. Now swipe right on the screen, and **Repeat** will reuse the nodes in the cache pool.
 
-![Repeat-Slide](./figures/Repeat-Slide.PNG)
+![Repeat-Slide](./figures/Repeat-Slide.png)
 
 The data of **index=18** enters the screen and the preloading range of the parent component, coming up with a result of **templateId b**. In this case, **Repeat** obtains a node from the **type=b** cache pool for reuse and updates its key, index, and data. Other grandchildren notes that use the data and index in the child node are updated based on the state management V2 rules.
 
 The **index=10** note slides out of the screen and the preloading range of the parent component. When the UI main thread is idle, it checks whether the **type=a** cache pool has sufficient space. In this case, there are four nodes in the cache pool, which exceeds the rated three, so **Repeat** will release the last node.
 
-![Repeat-Slide-Done](./figures/Repeat-Slide-Done.PNG)
+![Repeat-Slide-Done](./figures/Repeat-Slide-Done.png)
 
 #### Data Update Scenarios
 
-![Repeat-Start](./figures/Repeat-Start.PNG)
+![Repeat-Start](./figures/Repeat-Start.png)
 
 In this case, delete the **index=12** node, update the data of the **index=13** node, change the **templateId b** to **templateId a** of the **index=14** node, and update the key of the **index=15** node.
 
-![Repeat-Update1](./figures/Repeat-Update1.PNG)
+![Repeat-Update1](./figures/Repeat-Update1.png)
 
 Now, **Repeat** notifies the parent component to re-lay out the nodes and compares the keys one by one. If the template ID of the node is the same as that of the original one, the note is reused to update the **key**, **index** and **data**. Otherwise, the node in the cache pool with the same template ID is reused to update the **key**, **index**, and **data**.
 
-![Repeat-Update2](./figures/Repeat-Update2.PNG)
+![Repeat-Update2](./figures/Repeat-Update2.png)
 
 As shown in the preceding figure, node13 updates **data** and **index**; node14 updates the template ID and **index** and reuses a node from the cache pool; node15 reuses its own node and updates the **key**, **index**, and **data** synchronously because of the changed **key** and the unchanged template ID; node 16 and node 17 only update the **index**. The **index=17** node is new and reused from the cache pool.
 
-![Repeat-Update-Done](./figures/Repeat-Update-Done.PNG)
+![Repeat-Update-Done](./figures/Repeat-Update-Done.png)
 
 ## cachedCount Rules
 
@@ -741,8 +741,6 @@ struct entryCompSucc {
 }
 ```
 
-Checking the Running Result
+The figure below shows the effect.
 
 ![Repeat-Case2-Succ](./figures/Repeat-Case2-Succ.gif)
-
-<!--no_check-->

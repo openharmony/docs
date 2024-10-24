@@ -16,7 +16,7 @@
    ![WidgetProjectCreate1](figures/WidgetProjectCreate1.png)
 >**说明：** 
 >
->在API 10及以上 Stage模型的工程中，在**Service Widget**菜单可直接选择创建动态或静态服务卡片。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过**isDynamic**参数修改卡片类型：isDynamic置空或赋值为"true"，则该卡片为动态卡片；isDynamic赋值为"false"，则该卡片为静态卡片。
+>在API 10及以上 Stage模型的工程中，在Service Widget菜单可直接选择创建动态或静态服务卡片。创建服务卡片后，也可以在卡片的[form_config.json配置文件](arkts-ui-widget-configuration.md)中，通过isDynamic参数修改卡片类型：isDynamic置空或赋值为"true"，则该卡片为动态卡片；isDynamic赋值为"false"，则该卡片为静态卡片。
    
 2. 根据实际业务场景，选择一个卡片模板。  
    ![WidgetProjectCreate2](figures/WidgetProjectCreate2.png)

@@ -35,6 +35,9 @@ restoreDefault(): void
 
 ## 示例
 
+> **说明：**
+> 
+> 直接使用cursorControl可能导致实例不明确的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getCursorController](../js-apis-arkui-UIContext.md#getcursorcontroller12)获取绑定实例的cursorControl。
 
 ```ts
 // xxx.ets
@@ -51,16 +54,20 @@ struct CursorControlExample {
       Row().height(200).width(200).backgroundColor(Color.Green).position({x: 150 ,y:70})
         .onHover((flag) => {
           if (flag) {
+            // 建议使用this.getUIContext().getCursorController().setCursor()
             cursorControl.setCursor(pointer.PointerStyle.EAST)
           } else {
+            // 建议使用this.getUIContext().getCursorController().restoreDefault()
             cursorControl.restoreDefault()
           }
         })
       Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 220 ,y:120})
         .onHover((flag) => {
           if (flag) {
+            // 建议使用this.getUIContext().getCursorController().setCursor()
             cursorControl.setCursor(pointer.PointerStyle.WEST)
           } else {
+            // 建议使用this.getUIContext().getCursorController().restoreDefault()
             cursorControl.restoreDefault()
           }
         })

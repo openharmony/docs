@@ -22,7 +22,7 @@ import { StartOptions } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-app-ability-abilityConstant-sys.md#abilityconstantwindowmode) | number | 否 | 是 | 窗口模式。<br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
+| [windowMode](js-apis-app-ability-abilityConstant-sys.md#windowmode) | number | 否 | 是 | 窗口模式。<br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
 | windowFocused<sup>12+</sup> | boolean | 否 | 是 | 窗口是否获焦。默认是true，表示窗口获焦。<br>**约束：**<br>1.仅在平板与2in1设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。 |
 
 **示例：**

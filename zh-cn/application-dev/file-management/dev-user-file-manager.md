@@ -190,40 +190,62 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
    ```ts
    const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
      if (NotifyMessageDir != undefined) {
-       console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+       console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
      } else {
       console.error("NotifyMessageDir is undefined");
      }
    }
    ```
 
-4. 注册监听设备
+4. 注册监听设备和取消设备监听
 
-  开发者可以根据提供的[DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#常量),传入方法中，就能监听设备上线，下线状态。
+  开发者可以根据提供的[DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#常量)，传入方法registerObserver()中，就能监听设备上下线状态。传入方法unregisterObserver()中，就能就能取消设备上线，下线状态。
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
+
+   //提供监听回调方法
+   const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
+     if (NotifyMessageDir != undefined) {
+       console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+     } else {
+      console.error("NotifyMessageDir is undefined");
+     }
+   }
+
+   let context = getContext(this) as common.UIAbilityContext;
+   // 创建连接系统内所有文件管理服务端的helper对象
+   let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
+   function createFileAccessHelper(): void {
+     try {    // this.context是EntryAbility传过来的Context
+       fileAccessHelperAllServer = fileAccess.createFileAccessHelper(context);
+       if (!fileAccessHelperAllServer) {
+         console.error("createFileAccessHelper interface returns an undefined object");
+       }
+     } catch (err) {
+         let error: BusinessError = err as BusinessError;
+         console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
+     }
+   }
+   //注册监听设备,开发者可以根据提供的DEVICES_URI传入registerObserver()方法中，就能监听设备上线，下线状态。
    async function UnregisterObserver03() {
      try {
        // 监听设备的上下线
-       fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
+       fileAccessHelperAllServer.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
      } catch (err) {
        let error: BusinessError = err as BusinessError;
        console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
      }
    }
-   ```
-5. 取消设备监听
-
-  开发者可以根据提供的[DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#常量),传入方法中，就能取消设备上线，下线状态。
-
-   ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
+   //取消设备监听,开发者可以根据提供的DEVICES_URI传入unregisterObserver()方法中，就能取消设备上线，下线状态。
+   async function UnregisterObserver04() {
      try {
        // 取消监听设备的上下线
-       fileAccessHelper.unregisterObserver(fileAccess.DEVICES_URI, callbackDir1);
+       fileAccessHelperAllServer.unregisterObserver(fileAccess.DEVICES_URI, callbackDir1);
      } catch (err) {
        let error: BusinessError = err as BusinessError;
        console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
      }
+   }
    ```

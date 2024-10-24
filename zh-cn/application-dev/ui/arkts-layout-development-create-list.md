@@ -567,7 +567,7 @@ struct ContactsList {
 
 ![zh-cn_image_0000001563060773](figures/zh-cn_image_0000001563060773.gif)
 
-ListItem的[swipeAction属性](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#属性)可用于实现列表项的左右滑动功能。swipeAction属性方法初始化时有必填参数SwipeActionOptions，其中，start参数表示设置列表项右滑时起始端滑出的组件，end参数表示设置列表项左滑时尾端滑出的组件。
+ListItem的[swipeAction属性](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#swipeaction9)可用于实现列表项的左右滑动功能。swipeAction属性方法初始化时有必填参数SwipeActionOptions，其中，start参数表示设置列表项右滑时起始端滑出的组件，end参数表示设置列表项左滑时尾端滑出的组件。
 
 在消息列表中，end参数表示设置ListItem左滑时尾端划出自定义组件，即删除按钮。在初始化end方法时，将滑动列表项的索引传入删除按钮组件，当用户点击删除按钮时，可以根据索引值来删除列表项对应的数据，从而实现侧滑删除功能。
 
@@ -753,7 +753,7 @@ ListItem() {
              Blank()
              Text('+') //提供新增列表项入口，即给新增按钮添加点击事件
                .onClick(() => {
-                 TextPickerDialog.show({
+                 this.getUIContext().showTextPickerDialog({
                    range: this.availableThings,
                    onAccept: (value: TextPickerResult) => {
                      let arr = Array.isArray(value.index) ? value.index : [value.index];
@@ -942,6 +942,77 @@ List() {
 2. 构造列表结构。
 
     ```ts
+    @State routes: ItemGroupInfo[] = [
+      {
+        index: 0,
+        name: 'basicInfo',
+        label: '个人基本资料',
+        children: [
+          {
+            index: 0,
+            name: '昵称',
+            label: 'xxxx',
+            type: 'Text'
+          },
+          {
+            index: 1,
+            name: '头像',
+            label: $r('sys.media.ohos_user_auth_icon_face'),
+            type: 'Image'
+          },
+          {
+            index: 2,
+            name: '年龄',
+            label: 'xxxx',
+            type: 'Text'
+          },
+          {
+            index: 3,
+            name: '生日',
+            label: 'xxxxxxxxx',
+            type: 'Text'
+          },
+          {
+            index: 4,
+            name: '性别',
+            label: 'xxxxxxxx',
+            type: 'Text'
+          },
+        ]
+      },
+      {
+        index: 1,
+        name: 'equipInfo',
+        label: '设备信息',
+        children: []
+      },
+      {
+        index: 2,
+        name: 'appInfo',
+        label: '应用使用信息',
+        children: []
+      },
+      {
+        index: 3,
+        name: 'uploadInfo',
+        label: '您主动上传的数据',
+        children: []
+      },
+      {
+        index: 4,
+        name: 'tradeInfo',
+        label: '交易与资产信息',
+        children: []
+      },
+      {
+        index: 5,
+        name: 'otherInfo',
+        label: '其他资料',
+        children: []
+      },
+    ];
+    @State expandedItems: boolean[] = Array(this.routes.length).fill(false);
+    @State selection: string | null = null;
     build() {
       Column() {
         // ...
@@ -1006,13 +1077,11 @@ List() {
       .width("100%")
       .padding(10)
       .animation({ curve: curves.interpolatingSpring(0, 1, 528, 39) })
-      .onTouch((event) => {
-        if (event.type === TouchType.Up) {
-          if (itemGroup.children.length) {
-            animateTo({ curve: curves.interpolatingSpring(0, 1, 528, 39) }, () => {
-              this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index]
-            })
-          }
+      .onClick(() => {
+        if (itemGroup.children.length) {
+          this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 528, 39) }, () => {
+            this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index]
+          })
         }
       })
     }
@@ -1035,3 +1104,5 @@ List() {
 - [List组件的使用之设置项（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/List_HDC)
 
 - [PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)
+
+<!--RP2--><!--RP2End-->

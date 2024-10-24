@@ -212,7 +212,7 @@ typedef enum {
 | -------- | -------- |
 | napi_qos_background | 低等级，用户不可见任务，例如数据同步、备份。 |
 | napi_qos_utility | 中低等级，不需要立即看到响应效果的任务，例如下载或导入数据。 |
-| napi_qos_default | 默认 |
+| napi_qos_default | 默认。 |
 | napi_qos_user_initiated | 高等级，用户触发并且可见进展，例如打开文档。 |
 
 ### 事件循环模式
@@ -344,16 +344,18 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | -------- | -------- |
 | napi_create_array | 创建并获取一个JS Array。 |
 | napi_create_array_with_length | 创建并获取一个指定长度的JS Array。 |
-| napi_create_typedarray | 通过现有的ArrayBuffer创建一个JS TypeArray。 |
-| napi_create_dataview | 通过现有的ArrayBuffer创建一个JS DataView。 |
 | napi_get_array_length | 获取array的length。 |
-| napi_get_typedarray_info | 获取给定TypedArray的各种属性。 |
-| napi_get_dataview_info | 获取给定DataView的各种属性。 |
 | napi_is_array | 判断给定JS value是否为array。 |
 | napi_set_element | 在给定Object的指定索引处，设置元素。 |
 | napi_get_element | 获取给定Object指定索引处的元素。 |
 | napi_has_element | 若给定Object的指定索引处拥有属性，获取该元素。 |
 | napi_delete_element | 尝试删除给定Object的指定索引处的元素。 |
+| napi_create_typedarray | 通过现有的ArrayBuffer创建一个JS TypeArray。 |
+| napi_is_typedarray | 判断给定JS value是否为TypeArray。|
+| napi_get_typedarray_info | 获取给定TypedArray的各种属性。 |
+| napi_create_dataview | 通过现有的ArrayBuffer创建一个JS DataView。 |
+| napi_is_dataview | 判断给定JS value是否为DataView。|
+| napi_get_dataview_info | 获取给定DataView的各种属性。|
 
 ### primitive相关
 
@@ -372,9 +374,12 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 | 接口 | 功能说明 |
 | -------- | -------- |
+| napi_new_instance | 通过给定的构造函数，构建一个实例。 |
 | napi_get_new_target | 获取构造函数调用的new.target。 |
 | napi_define_class | 定义与C++类相对应的JavaScript类。 |
-| napi_new_instance | 通过给定的构造函数，构建一个实例。 |
+| napi_wrap | 在ArkTS对象上绑定一个Node-API模块对象实例。这个函数通常在将Node-API模块对象与ArkTS对象进行绑定时使用，以便在ArkTS中使用本地对象的方法和属性。 |
+| napi_unwrap | 从ArkTS对象上获取之前绑定的Node-API模块对象实例。 |
+| napi_remove_wrap | 从ArkTS对象上获取之前绑定的Node-API模块对象实例，并解除绑定。 |
 
 ### object相关
 
@@ -405,6 +410,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | 接口 | 功能说明 |
 | -------- | -------- |
 | napi_throw | 抛出一个JS value。 |
+| napi_throw_error | 用于抛出一个带文本信息的ArkTS Error。|
 | napi_throw_type_error | 抛出一个带文本信息的JS TypeError。 |
 | napi_throw_range_error | 抛出一个带文本信息的JS RangeError。 |
 | napi_is_error | 判断napi_value是否表示为一个error对象。 |
@@ -473,23 +479,25 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 ### 扩展能力
 
-[组件扩展的符号列表](../reference/native-lib/napi.md)
+[Node-API组件扩展的符号列表](../reference/native-lib/napi.md#node-api组件扩展的符号列表)
 
 | 接口 | 功能说明 |
 | -------- | -------- |
 | napi_queue_async_work_with_qos | 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。 |
 | napi_run_script_path | 运行指定abc文件。 |
 | napi_load_module | 将abc文件作为模块加载，返回模块的命名空间。 |
-| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间, 可在新创建的ArkTs基础运行时环境中使用。 |
+| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间, 可在新创建的ArkTS基础运行时环境中使用。 |
 | napi_create_object_with_properties | 使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为 string，且不可转为number。 |
 | napi_create_object_with_named_properties | 使用给定的napi_value和键名创建js Object。键名必须为 string，且不可转为number。 |
 | napi_coerce_to_native_binding_object | 强制将js Object和Native对象绑定。 |
+| napi_create_ark_runtime|创建基础运行时环境。|
+| napi_destroy_ark_runtime|销毁基础运行时环境。|
 | napi_run_event_loop | 触发底层的事件循环。|
 | napi_stop_event_loop | 停止底层的事件循环。|
 | napi_serialize | 将ArkTS对象转换为native数据。|
 | napi_deserialize | 将native数据转为ArkTS对象。|
 | napi_delete_serialization_data | 删除序列化数据。|
-| napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS线程。|
+| napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS主线程。|
 | napi_is_sendable|判断给定JS value是否是Sendable的。|
 | napi_define_sendable_class|创建一个sendable类。|
 | napi_create_sendable_object_with_properties | 使用给定的napi_property_descriptor创建一个sendable对象。|
@@ -709,7 +717,7 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 | napi_add_async_cleanup_hook | 注册清理异步钩子函数。 |
 | napi_remove_async_cleanup_hook | 取消清理异步钩子函数。|
 
-### ArkTs基础运行时环境
+### ArkTS基础运行时环境
 
 | 接口 | 功能说明 |
 | -------- | -------- |

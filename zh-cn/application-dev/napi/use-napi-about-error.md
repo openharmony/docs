@@ -590,15 +590,6 @@ try {
 }
 ```
 
-以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
-
-```text
-// CMakeLists.txt
-add_definitions( "-DLOG_DOMAIN=0xd0d0" )
-add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
-```
-
 ### napi_fatal_exception
 在主线程的上下文环境中调用napi_fatal_exception函数后，抛出一个致命异常，导致应用程序终止，同时会生成相应的crash日志。因此应该慎重使用，避免在正常操作中频繁调用该函数。
 

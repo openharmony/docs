@@ -59,6 +59,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 
 ## 应用自定义数据类型
+
 由于预置标准数据类型无法穷举所有数据类型，在业务跨应用、跨设备交互过程中，会涉及到一些应用独有的数据类型，因此支持应用声明自定义数据类型。
 
 应用自定义的数据类型可继承已有的标准类型，例如业务自定义的图片类型可以使用“com.company.x-image”作为自定义数据类型的标识。
@@ -77,8 +78,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 + **TypeId：** 定义标准化数据类型的ID，该ID具有唯一性，由应用bundleName + 具体类型名组成，不可缺省，允许包含数字、大小写字母、-和.。
 
-+ **BelongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，所属类型可以为多个，但是必须为已存在的数据
-  类型（标准化数据类型预置类型或其他新增自定义数据类型），不能为应用自定义类型本身，不能为空，且与现有标准化数据类型、其他新增自定义数据类型不能形成环行依赖结构。
++ **BelongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，所属类型可以为多个，但是必须为已存在的数据类型（标准化数据类型预置类型或其他新增自定义数据类型），不能为应用自定义类型本身，不能为空，且与现有标准化数据类型、其他新增自定义数据类型不能形成环形依赖结构。
 
 + **FilenameExtensions：** 应用自定义标准化数据类型所关联的文件后缀。可以缺省；可以为多个，每个后缀为以.开头且长度不超过127的字符串。
 
@@ -173,8 +173,10 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 | belongsTo(type: string): boolean                             | 判断当前标准化数据类型是否归属于指定的标准化数据类型。       |
 | isLowerLevelType(type: string): boolean                      | 判断当前标准化数据类型是否是指定标准化数据类型的低层级类型。 |
 | isHigherLevelType(type: string): boolean                     | 判断当前标准化数据类型是否是指定标准化数据类型的高层级类型。 |
-| getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string | 根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型的ID。 |
-| getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string | 根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型的ID。 |
+| getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: string): string | 根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型ID，若有多个符合条件的标准化数据类型ID，则返回第一个。 |
+| getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string | 根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型ID，若有多个符合条件的标准化数据类型ID，则返回第一个。 |
+| getUniformDataTypesByFilenameExtension(filenameExtension: string, belongsTo?: string): Array\<string> | 根据给定的文件后缀名和所归属的标准化数据类型查询标准化数据类型ID列表。 |
+| getUniformDataTypesByMIMEType(mimeType: string, belongsTo?: string): Array\<string> | 根据给定的MIME类型和所归属的标准化数据类型查询标准化数据类型ID列表。 |
 
 ## 如何查询媒体类文件归属类型
 
@@ -235,46 +237,50 @@ try {
 
 ## 如何通过文件后缀获取对应的MIMEType列表
 
-下面以通过“.mp3”文件后缀获取对应的MIMEType列表为例，说明如何通过文件后缀获取对应的MIMEType列表。
+下面以通过“.ts”文件后缀获取对应的MIMEType列表为例，说明如何通过文件后缀获取对应的MIMEType列表。
 
 1. 导入uniformTypeDescriptor模块。
-2. 可根据 “.mp3” 文件后缀查询对应UTD数据类型。
+2. 可根据 “.ts” 文件后缀查询对应UTD数据类型。
 3. 根据UTD数据类型查询对应的MIMEType列表。
 
 ```ts
 // 1.导入模块
 import { uniformTypeDescriptor } from '@kit.ArkData';
 try {
-  // 2.可根据 “.mp3” 文件后缀查询对应UTD数据类型。
-  let fileExtention = '.mp3';
-  let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension(fileExtention);
-  // 3.根据UTD数据类型查询对应的MIMEType列表。
-  let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
-  let mimeTypes = typeObj.mimeTypes;
-  console.info('mimeTypes:' + mimeTypes);
+  // 2.可根据 “.ts” 文件后缀查询对应UTD数据类型。
+  let fileExtention = '.ts';
+  let typeIds = uniformTypeDescriptor.getUniformDataTypesByFilenameExtension(fileExtention);
+  for (let typeId of typeIds) {
+    // 3.根据UTD数据类型查询对应的MIMEType列表。
+    let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
+    let mimeTypes = typeObj.mimeTypes;
+    console.info('mimeTypes:' + mimeTypes);
+  }
 } catch (err) {
   console.error('err message:' + err.message + ', err code:' + err.code);
 }
 ```
 ## 如何通过MIMEType获取对应的后缀列表
 
-下面以通过“audio/mp3”MIMEType获取对应文件后缀列表为例，说明如何通过MIMEType获取对应的后缀列表。
+下面以通过“text/plain”MIMEType获取对应文件后缀列表为例，说明如何通过MIMEType获取对应的后缀列表。
 
 1. 导入uniformTypeDescriptor模块。
-2. 可根据 “audio/mp3” MIMEType查询对应UTD数据类型。
+2. 可根据 “text/plain” MIMEType查询对应UTD数据类型。
 3. 根据UTD数据类型查询对应的MIMEType列表。
 
 ```ts
 // 1.导入模块
 import { uniformTypeDescriptor } from '@kit.ArkData';
 try {
-  // 2.可根据 “audio/mp3” MIMEType查询对应UTD数据类型。
-  let mineType = 'audio/mp3';
-  let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType(mineType);
-  // 3. 根据UTD数据类型查询对应的MIMEType列表
-  let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
-  let filenameExtensions = typeObj.filenameExtensions;
-  console.info('filenameExtensions:' + filenameExtensions);
+  // 2.可根据 “text/plain” MIMEType查询对应UTD数据类型。
+  let mineType = 'text/plain';
+  let typeIds = uniformTypeDescriptor.getUniformDataTypesByMIMEType(mineType);
+  for (let typeId of typeIds) {
+    // 3. 根据UTD数据类型查询对应的MIMEType列表
+    let typeObj = uniformTypeDescriptor.getTypeDescriptor(typeId);
+    let filenameExtensions = typeObj.filenameExtensions;
+    console.info('filenameExtensions:' + filenameExtensions);
+  }
 } catch (err) {
   console.error('err message:' + err.message + ', err code:' + err.code);
 }

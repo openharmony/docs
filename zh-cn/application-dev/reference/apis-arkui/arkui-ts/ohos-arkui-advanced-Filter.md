@@ -36,7 +36,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 **参数：**
 
 
-| 名称 | 参数类型 | 必填  | 装饰器类型 | 说明 |
+| 名称 | 类型 | 必填  | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | multiFilters | Array&lt;[FilterParams](#filterparams)&gt; | 是   | \@Prop | 多条件筛选列表。 |
 | additionFilters | [FilterParams](#filterparams) | 否   | \@Prop | 附加快捷筛选项。 |
@@ -48,6 +48,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。 |
@@ -57,6 +59,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | MULTI_LINE_FILTER | 0 | 多行可折叠类型筛选器。 |
@@ -65,6 +69,8 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters: FilterParams
 ## FilterResult
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

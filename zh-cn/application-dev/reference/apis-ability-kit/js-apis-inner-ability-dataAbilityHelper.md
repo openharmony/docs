@@ -4,7 +4,8 @@
 
 > **说明：**
 > 
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
 > 除了[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)，本模块接口仅可在FA模型下使用。
 
 ## 导入模块
@@ -98,7 +99,7 @@ DAHelper.openFile('dataability:///com.example.DataAbility', mode).then((data) =>
 });
 ```
 
-## DataAbilityHelper.on
+## DataAbilityHelper.on('dataChange')
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
@@ -136,7 +137,7 @@ DAHelper.on(
 );
 ```
 
-## DataAbilityHelper.off
+## DataAbilityHelper.off('dataChange')
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 

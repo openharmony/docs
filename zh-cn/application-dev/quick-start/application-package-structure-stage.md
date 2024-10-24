@@ -1,6 +1,6 @@
 # Stage模型应用程序包结构
 
-为了让开发者能对应用程序包在不同阶段的形态更有清晰的认知，分别对开发态、编译态、发布态的应用程序结构展开介绍。
+为了让开发者能对应用程序包在不同阶段的形态有更加清晰的认知，分别对开发态、编译态、发布态的应用程序结构展开介绍。
 
 ## 开发态包结构
 在DevEco Studio上创建一个项目工程，并尝试创建多个不同类型的Module。根据实际工程中的目录对照本章节进行学习，可以有助于理解开发态的应用程序结构。
@@ -70,7 +70,8 @@ HAP、HSP、HAR支持的规格对比如下，其中“√”表示是，“×”
 
 | 规格| HAP | HAR | HSP |
 | -------- | ---------- |----------- |----------- |
-| 支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件与[ExtensionAbility](../application-models/extensionability-overview.md)组件  |  √  |  ×   |  ×   |
+| 支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件|  √  |  √   |  √   |
+| 支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件  | √ | × | × |
 | 支持在配置文件中声明[pages](./module-configuration-file.md#pages标签)页面| √  |× |√ |
 | 支持包含资源文件与.so文件 | √  |√ |√|
 | 支持依赖其他HAR文件 | √ |√  |√  |

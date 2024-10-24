@@ -6,7 +6,7 @@ ArkTS容器在多个并发实例间传递时，其默认行为是引用传递，
 
 ArkTS容器并不是线程安全的，内部使用了fail-fast（快速失败）机制：当检测多个并发实例同时对容器进行结构性改变时，会触发异常。因此，在修改场景下，容器使用方需要使用ArkTS提供的异步锁机制保证ArkTS容器的安全访问。
 
-当前ArkTS容器集主要包含以下几种容器：[Array](#collectionsarray)、[Map](#collectionsmap)、[Set](#collectionsset)、[TypedArray](#collectionstypedarray)。
+当前ArkTS容器集主要包含以下几种容器：[Array](#collectionsarray)、[Map](#collectionsmap)、[Set](#collectionsset)、[TypedArray](#collectionstypedarray)、[ArrayBuffer](#collectionsarraybuffer)、[BitVector](#collectionsbitvector)、[ConcatArray](#collectionsconcatarray)。
 
 > **说明：**
 >
@@ -3945,7 +3945,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待判断的bit值，0表示0，其余值表示1。 |
 | fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
-| toIndex   | number | 是   | 范围终止索引，不包含本索引值。       |
+| toIndex   | number | 是   | 范围终止索引，包含本索引值。       |
 
 **返回值：**
 

@@ -2,11 +2,11 @@
 
 The system provides the facial authentication icon and fingerprint authentication icon to simplify the user authentication process.
 
-1. The icons for facial authentication and fingerprint authentication can be easily integrated into your applications.
+- The icons for facial authentication and fingerprint authentication can be easily integrated into your applications.
 
-2. The color and size of the icons can be customized, but the icon style cannot be changed.
+- The color and size of the icons can be customized, but the icon style cannot be changed.
 
-3. After you click the control icon, the face and fingerprint authentication controls are displayed in a pop-up window.
+- After you click the control icon, the face and fingerprint authentication controls are displayed in a pop-up window.
 
 > **NOTE**
 >
@@ -42,11 +42,13 @@ UserAuthIcon({
 
 **Decorator**: @Component
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 **Parameters**
 
-| Name          | Type                                                        | Mandatory | Description                                                        |
+| Name          | Type                                                        | Mandatory| Description                                                        |
 | -------------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | authParam      | [AuthParam](js-apis-useriam-userauth.md#authparam10)        | Yes  | User authentication parameters.                                            |
 | widgetParam    | [WidgetParam](js-apis-useriam-userauth.md#widgetparam10)    | Yes  | Parameters on the user authentication page.                                     |

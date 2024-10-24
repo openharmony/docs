@@ -1,4 +1,4 @@
-# @ohos.atomicservice.AtomicServiceWeb（Web高阶组件）
+# AtomicServiceWeb
 
 为开发者提供满足定制化诉求的Web高阶组件，屏蔽原生Web组件中无需关注的接口，并提供JS扩展能力。
 
@@ -27,6 +27,7 @@ import { AtomicServiceWeb } from '@kit.ArkUI';
 
 ## AtomicServiceWeb
 
+```
 AtomicServiceWeb({
   src: ResourceStr,
   controller: AtomicServiceWebController,
@@ -34,15 +35,16 @@ AtomicServiceWeb({
   mixedMode?: MixedMode,
   darkMode?: WebDarkMode,
   forceDarkAccess?: boolean,
-  onMessage?: Callback\<OnMessageEvent\>,
-  onErrorReceive?: Callback\<OnErrorReceiveEvent\>,
-  onHttpErrorReceive?: Callback\<OnHttpErrorReceiveEvent\>,
-  onPageBegin?: Callback\<OnPageBeginEvent\>,
-  onPageEnd?: Callback\<OnPageEndEvent\>,
-  onControllerAttached?: Callback\<void\>,
-  onLoadIntercept?: Callback\<OnLoadInterceptEvent, boolean\>,
-  onProgressChange?: Callback\<OnProgressChangeEvent\>
+  onMessage?: Callback<OnMessageEvent>,
+  onErrorReceive?: Callback<OnErrorReceiveEvent>,
+  onHttpErrorReceive?: Callback<OnHttpErrorReceiveEvent>,
+  onPageBegin?: Callback<OnPageBeginEvent>,
+  onPageEnd?: Callback<OnPageEndEvent>,
+  onControllerAttached?: Callback<void>,
+  onLoadIntercept?: Callback<OnLoadInterceptEvent, boolean>,
+  onProgressChange?: Callback<OnProgressChangeEvent>
 })
+```
 
 **装饰器类型：**@Component
 

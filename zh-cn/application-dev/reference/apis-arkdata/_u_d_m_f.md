@@ -5,9 +5,9 @@
 
 统一数据管理框架旨在定义数据跨应用、跨设备以及跨平台过程中的各项标准， 提供统一的OpenHarmony数据语言和标准化的数据接入与读取通路。
 
-**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
-
 **起始版本：** 12
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 
 ## 汇总
@@ -17,11 +17,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [udmf.h](udmf_8h.md) | 提供访问统一数据管理框架数据的接口、数据结构、枚举类型。<br/>引用文件：&lt;database/udmf/udmf.h&gt; | 
-| [udmf_err_code.h](udmf__err__code_8h.md) | 声明统一数据管理框架错误码信息。<br/>引用文件：&lt;database/udmf/udmf_err_code.h&gt; | 
-| [udmf_meta.h](udmf__meta_8h.md) | 声明统一类型数据信息。<br/>引用文件：&lt;database/udmf/udmf_meta.h&gt; | 
-| [uds.h](uds_8h.md) | 提供标准化数据结构相关接口函数、结构体定义。<br/>引用文件：&lt;database/udmf/uds.h&gt; | 
-| [utd.h](utd_8h.md) | 提供标准化数据类型描述相关接口和数据结构。<br/>引用文件：&lt;database/udmf/utd.h&gt; | 
+| [udmf.h](udmf_8h.md) | 提供访问统一数据管理框架数据的接口、数据结构、枚举类型。 引用文件：&lt;database/udmf/udmf.h&gt; | 
+| [udmf_err_code.h](udmf__err__code_8h.md) | 声明统一数据管理框架错误码信息。 引用文件：&lt;database/udmf/udmf_err_code.h&gt; | 
+| [udmf_meta.h](udmf__meta_8h.md) | 声明统一类型数据信息。 引用文件：&lt;database/udmf/udmf_meta.h&gt; | 
+| [uds.h](uds_8h.md) | 提供标准化数据结构相关接口函数、结构体定义。 引用文件：&lt;database/udmf/uds.h&gt; | 
+| [utd.h](utd_8h.md) | 提供标准化数据类型描述相关接口和数据结构。 引用文件：&lt;database/udmf/utd.h&gt; | 
 
 
 ### 宏定义
@@ -164,6 +164,7 @@
 | [UDMF_META_OPENHARMONY_HINOTE](#udmf_meta_openharmony_hinote)   "openharmony.hinote" | 系统定义的笔记数据类型，归属类型为COMPOSITE_OBJECT。 | 
 | [UDMF_META_OPENHARMONY_STYLED_STRING](#udmf_meta_openharmony_styled_string)   "openharmony.styled-string" | 系统定义的样式字符串类型，归属类型为COMPOSITE_OBJECT。 | 
 | [UDMF_META_OPENHARMONY_WANT](#udmf_meta_openharmony_want)   "openharmony.want" | 系统定义的Want类型，归属类型为OBJECT。 | 
+| [UDMF_META_GENERAL_FILE_URI](#udmf_meta_general_file_uri)   "general.file-uri" | 文件地址类型，归属类型为TEXT。 | 
 
 
 ### 类型定义
@@ -174,12 +175,18 @@
 | typedef enum [Udmf_ShareOption](#udmf_shareoption) [Udmf_ShareOption](#udmf_shareoption) | UDMF支持的设备内使用范围类型枚举。 | 
 | typedef struct [OH_UdmfData](#oh_udmfdata) [OH_UdmfData](#oh_udmfdata) | 定义统一数据对象数据结构。 | 
 | typedef struct [OH_UdmfRecord](#oh_udmfrecord) [OH_UdmfRecord](#oh_udmfrecord) | 定义统一数据对象中记录数据的数据结构，称为数据记录。 | 
+| typedef struct [OH_UdmfRecordProvider](#oh_udmfrecordprovider) [OH_UdmfRecordProvider](#oh_udmfrecordprovider) | 定义统一数据对象中的数据提供者。 | 
 | typedef struct [OH_UdmfProperty](#oh_udmfproperty) [OH_UdmfProperty](#oh_udmfproperty) | 定义统一数据对象中数据记录的属性结构。 | 
+| typedef void(\* [UdmfData_Finalize](#udmfdata_finalize)) (void \*context) | 定义用于释放上下文的回调函数，统一数据提供者对象销毁时触发。 | 
+| typedef void \*(\* [OH_UdmfRecordProvider_GetData](#oh_udmfrecordprovider_getdata)) (void \*context, const char \*type) | 定义用于按类型获取数据的回调函数。 当从OH_UdmfRecord中获取数据时，会触发此回调函数，得到的数据就是这个回调函数返回的数据。 | 
 | typedef enum [Udmf_ErrCode](#udmf_errcode) [Udmf_ErrCode](#udmf_errcode) | 错误码信息。 | 
 | typedef struct [OH_UdsPlainText](#oh_udsplaintext) [OH_UdsPlainText](#oh_udsplaintext) | 描述纯文本类型数据的统一数据结构。 | 
 | typedef struct [OH_UdsHyperlink](#oh_udshyperlink) [OH_UdsHyperlink](#oh_udshyperlink) | 描述超链接类型的统一数据结构。 | 
 | typedef struct [OH_UdsHtml](#oh_udshtml) [OH_UdsHtml](#oh_udshtml) | 描述超文本标记语言类型的统一数据结构。 | 
 | typedef struct [OH_UdsAppItem](#oh_udsappitem) [OH_UdsAppItem](#oh_udsappitem) | 描述桌面图标类型的统一数据结构。 | 
+| typedef struct [OH_UdsFileUri](#oh_udsfileuri) [OH_UdsFileUri](#oh_udsfileuri) | 描述文件Uri类型的统一数据结构。 | 
+| typedef struct [OH_UdsPixelMap](#oh_udspixelmap) [OH_UdsPixelMap](#oh_udspixelmap) | 描述像素图片类型的统一数据结构。 | 
+| typedef struct [OH_UdsArrayBuffer](#oh_udsarraybuffer) [OH_UdsArrayBuffer](#oh_udsarraybuffer) | 描述ArrayBuffer类型的统一数据结构。 | 
 | typedef struct [OH_Utd](#oh_utd) [OH_Utd](#oh_utd) | 统一数据类型描述符。 | 
 
 
@@ -187,35 +194,50 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Udmf_Intention](#udmf_intention) { UDMF_INTENTION_DRAG, UDMF_INTENTION_PASTEBOARD } | 描述UDMF数据通路枚举类型。 | 
-| [Udmf_ShareOption](#udmf_shareoption) { SHARE_OPTIONS_INVALID, SHARE_OPTIONS_IN_APP, SHARE_OPTIONS_CROSS_APP } | UDMF支持的设备内使用范围类型枚举。 | 
-| [Udmf_ErrCode](#udmf_errcode) { UDMF_E_OK = 0, UDMF_ERR = 20400000, UDMF_E_INVALID_PARAM = (UDMF_ERR + 1) } | 错误码信息。 | 
+| [Udmf_Intention](#udmf_intention-1) { UDMF_INTENTION_DRAG, UDMF_INTENTION_PASTEBOARD } | 描述UDMF数据通路枚举类型。 | 
+| [Udmf_ShareOption](#udmf_shareoption-1) { SHARE_OPTIONS_INVALID, SHARE_OPTIONS_IN_APP, SHARE_OPTIONS_CROSS_APP } | UDMF支持的设备内使用范围类型枚举。 | 
+| [Udmf_ErrCode](#udmf_errcode-1) { UDMF_E_OK = 0, UDMF_ERR = 20400000, UDMF_E_INVALID_PARAM = (UDMF_ERR + 1) } | 错误码信息。 | 
 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_UdmfData](#oh_udmfdata) \* [OH_UdmfData_Create](#oh_udmfdata_create) () | 创建统一数据对象[OH_UdmfData](#oh_udmfdata)指针及实例对象。 | 
+| [OH_UdmfData](#oh_udmfdata) \* [OH_UdmfData_Create](#oh_udmfdata_create) () | 创建统一数据对象[OH_UdmfData](#oh_udmfdata)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdmfData_Destroy](#oh_udmfdata_destroy)销毁实例对象，否则会导致内存泄漏。 | 
 | void [OH_UdmfData_Destroy](#oh_udmfdata_destroy) ([OH_UdmfData](#oh_udmfdata) \*pThis) | 销毁统一数据对象[OH_UdmfData](#oh_udmfdata)指针指向的实例对象。 | 
 | int [OH_UdmfData_AddRecord](#oh_udmfdata_addrecord) ([OH_UdmfData](#oh_udmfdata) \*pThis, [OH_UdmfRecord](#oh_udmfrecord) \*record) | 添加一个数据记录[OH_UdmfRecord](#oh_udmfrecord)到统一数据对象[OH_UdmfData](#oh_udmfdata)中。 | 
 | bool [OH_UdmfData_HasType](#oh_udmfdata_hastype) ([OH_UdmfData](#oh_udmfdata) \*pThis, const char \*type) | 检查统一数据对象[OH_UdmfData](#oh_udmfdata)中是否存在指定类型。 | 
 | char \*\* [OH_UdmfData_GetTypes](#oh_udmfdata_gettypes) ([OH_UdmfData](#oh_udmfdata) \*pThis, unsigned int \*count) | 获取统一数据对象[OH_UdmfData](#oh_udmfdata)中包含的所有类型结果集。 | 
 | [OH_UdmfRecord](#oh_udmfrecord) \*\* [OH_UdmfData_GetRecords](#oh_udmfdata_getrecords) ([OH_UdmfData](#oh_udmfdata) \*pThis, unsigned int \*count) | 获取统一数据对象[OH_UdmfData](#oh_udmfdata)中包含的所有记录结果集。 | 
-| [OH_UdmfRecord](#oh_udmfrecord) \* [OH_UdmfRecord_Create](#oh_udmfrecord_create) () | 创建统一数据记录[OH_UdmfRecord](#oh_udmfrecord)指针及实例对象。 | 
+| [OH_UdmfRecordProvider](#oh_udmfrecordprovider) \* [OH_UdmfRecordProvider_Create](#oh_udmfrecordprovider_create) () | 创建一个统一数据提供者[OH_UdmfRecordProvider](#oh_udmfrecordprovider)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdmfRecordProvider_Destroy](#oh_udmfrecordprovider_destroy)销毁实例对象，否则会导致内存泄漏。 | 
+| int [OH_UdmfRecordProvider_Destroy](#oh_udmfrecordprovider_destroy) ([OH_UdmfRecordProvider](#oh_udmfrecordprovider) \*provider) | 销毁统一数据提供者[OH_UdmfRecordProvider](#oh_udmfrecordprovider)指针指向的实例对象。 | 
+| int [OH_UdmfRecordProvider_SetData](#oh_udmfrecordprovider_setdata) ([OH_UdmfRecordProvider](#oh_udmfrecordprovider) \*provider, void \*context, const [OH_UdmfRecordProvider_GetData](#oh_udmfrecordprovider_getdata) callback, const [UdmfData_Finalize](#udmfdata_finalize) finalize) | 设置统一数据提供者的数据提供回调函数。 | 
+| [OH_UdmfRecord](#oh_udmfrecord) \* [OH_UdmfRecord_Create](#oh_udmfrecord_create) () | 创建统一数据记录[OH_UdmfRecord](#oh_udmfrecord)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdmfRecord_Destroy](#oh_udmfrecord_destroy)销毁实例对象，否则会导致内存泄漏。 | 
 | void [OH_UdmfRecord_Destroy](#oh_udmfrecord_destroy) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis) | 销毁统一数据记录[OH_UdmfRecord](#oh_udmfrecord)指针指向的实例对象。 | 
 | int [OH_UdmfRecord_AddGeneralEntry](#oh_udmfrecord_addgeneralentry) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*typeId, unsigned char \*entry, unsigned int count) | 添加用户自定义的通用数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
 | int [OH_UdmfRecord_AddPlainText](#oh_udmfrecord_addplaintext) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | 增加纯文本类型[OH_UdsPlainText](#oh_udsplaintext)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
 | int [OH_UdmfRecord_AddHyperlink](#oh_udmfrecord_addhyperlink) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHyperlink](#oh_udshyperlink) \*hyperlink) | 增加超链接类型[OH_UdsHyperlink](#oh_udshyperlink)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
 | int [OH_UdmfRecord_AddHtml](#oh_udmfrecord_addhtml) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHtml](#oh_udshtml) \*html) | 增加超文本标记语言类型[OH_UdsHtml](#oh_udshtml)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
 | int [OH_UdmfRecord_AddAppItem](#oh_udmfrecord_addappitem) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsAppItem](#oh_udsappitem) \*appItem) | 增加桌面图标类型[OH_UdsAppItem](#oh_udsappitem)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
+| int [OH_UdmfRecord_AddFileUri](#oh_udmfrecord_addfileuri) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsFileUri](#oh_udsfileuri) \*fileUri) | 增加文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
+| int [OH_UdmfRecord_AddPixelMap](#oh_udmfrecord_addpixelmap) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPixelMap](#oh_udspixelmap) \*pixelMap) | 增加像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
+| int [OH_UdmfRecord_AddArrayBuffer](#oh_udmfrecord_addarraybuffer) ([OH_UdmfRecord](#oh_udmfrecord) \*record, const char \*type, [OH_UdsArrayBuffer](#oh_udsarraybuffer) \*buffer) | 增加一个ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)的数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
 | char \*\* [OH_UdmfRecord_GetTypes](#oh_udmfrecord_gettypes) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, unsigned int \*count) | 获取统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中所有类型的结果集。 | 
 | int [OH_UdmfRecord_GetGeneralEntry](#oh_udmfrecord_getgeneralentry) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*typeId, unsigned char \*\*entry, unsigned int \*count) | 获取统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中的特定类型的数据结果集。 | 
 | int [OH_UdmfRecord_GetPlainText](#oh_udmfrecord_getplaintext) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取纯文本类型[OH_UdsPlainText](#oh_udsplaintext)数据。 | 
 | int [OH_UdmfRecord_GetHyperlink](#oh_udmfrecord_gethyperlink) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHyperlink](#oh_udshyperlink) \*hyperlink) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取超链接类型[OH_UdsHyperlink](#oh_udshyperlink)数据。 | 
 | int [OH_UdmfRecord_GetHtml](#oh_udmfrecord_gethtml) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsHtml](#oh_udshtml) \*html) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取超文本标记语言类型[OH_UdsHtml](#oh_udshtml)数据。 | 
-| int [OH_UdmfRecord_GetAppItem](#oh_udmfrecord_getappitem) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsAppItem](#oh_udsappitem) \*appItem) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型{OH_UdsAppItem}数据。 | 
-| [OH_UdmfProperty](#oh_udmfproperty) \* [OH_UdmfProperty_Create](#oh_udmfproperty_create) ([OH_UdmfData](#oh_udmfdata) \*unifiedData) | 创建统一数据对象中数据记录属性[OH_UdmfProperty](#oh_udmfproperty)指针及实例对象。 | 
+| int [OH_UdmfRecord_GetAppItem](#oh_udmfrecord_getappitem) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsAppItem](#oh_udsappitem) \*appItem) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型[OH_UdsAppItem](#oh_udsappitem)数据。 | 
+| int [OH_UdmfRecord_SetProvider](#oh_udmfrecord_setprovider) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, const char \*const \*types, unsigned int count, [OH_UdmfRecordProvider](#oh_udmfrecordprovider) \*provider) | 将指定类型的统一数据提供者[OH_UdmfRecordProvider](#oh_udmfrecordprovider)设置至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。 | 
+| int [OH_UdmfRecord_GetFileUri](#oh_udmfrecord_getfileuri) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsFileUri](#oh_udsfileuri) \*fileUri) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)数据。 | 
+| int [OH_UdmfRecord_GetPixelMap](#oh_udmfrecord_getpixelmap) ([OH_UdmfRecord](#oh_udmfrecord) \*pThis, [OH_UdsPixelMap](#oh_udspixelmap) \*pixelMap) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)数据。 | 
+| int [OH_UdmfRecord_GetArrayBuffer](#oh_udmfrecord_getarraybuffer) ([OH_UdmfRecord](#oh_udmfrecord) \*record, const char \*type, [OH_UdsArrayBuffer](#oh_udsarraybuffer) \*buffer) | 从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)数据。 | 
+| int [OH_UdmfData_GetPrimaryPlainText](#oh_udmfdata_getprimaryplaintext) ([OH_UdmfData](#oh_udmfdata) \*data, [OH_UdsPlainText](#oh_udsplaintext) \*plainText) | 从统一数据对象[OH_UdmfData](#oh_udmfdata)中获取第一个纯文本类型[OH_UdsPlainText](#oh_udsplaintext)数据。 | 
+| int [OH_UdmfData_GetPrimaryHtml](#oh_udmfdata_getprimaryhtml) ([OH_UdmfData](#oh_udmfdata) \*data, [OH_UdsHtml](#oh_udshtml) \*html) | 从统一数据对象[OH_UdmfData](#oh_udmfdata)中获取第一个超文本标记语言类型[OH_UdsHtml](#oh_udshtml)数据。 | 
+| int [OH_UdmfData_GetRecordCount](#oh_udmfdata_getrecordcount) ([OH_UdmfData](#oh_udmfdata) \*data) | 获取统一数据对象[OH_UdmfData](#oh_udmfdata)中包含的所有记录数量。 | 
+| [OH_UdmfRecord](#oh_udmfrecord) \* [OH_UdmfData_GetRecord](#oh_udmfdata_getrecord) ([OH_UdmfData](#oh_udmfdata) \*data, unsigned int index) | 获取统一数据对象[OH_UdmfData](#oh_udmfdata)中指定位置的数据记录。 | 
+| bool [OH_UdmfData_IsLocal](#oh_udmfdata_islocal) ([OH_UdmfData](#oh_udmfdata) \*data) | 检查统一数据对象[OH_UdmfData](#oh_udmfdata)是否是来自本端设备的数据。 | 
+| [OH_UdmfProperty](#oh_udmfproperty) \* [OH_UdmfProperty_Create](#oh_udmfproperty_create) ([OH_UdmfData](#oh_udmfdata) \*unifiedData) | 创建统一数据对象中数据记录属性[OH_UdmfProperty](#oh_udmfproperty)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy)销毁实例对象，否则会导致内存泄漏。 | 
 | void [OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 销毁数据属性[OH_UdmfProperty](#oh_udmfproperty)指针指向的实例对象。 | 
 | const char \* [OH_UdmfProperty_GetTag](#oh_udmfproperty_gettag) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取用户自定义标签值。 | 
 | int64_t [OH_UdmfProperty_GetTimestamp](#oh_udmfproperty_gettimestamp) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis) | 从数据属性[OH_UdmfProperty](#oh_udmfproperty)中获取时间戳。 | 
@@ -228,28 +250,28 @@
 | int [OH_UdmfProperty_SetExtrasStringParam](#oh_udmfproperty_setextrasstringparam) ([OH_UdmfProperty](#oh_udmfproperty) \*pThis, const char \*key, const char \*param) | 设置数据属性[OH_UdmfProperty](#oh_udmfproperty)的附加字符串参数。 | 
 | int [OH_Udmf_GetUnifiedData](#oh_udmf_getunifieddata) (const char \*key, [Udmf_Intention](#udmf_intention) intention, [OH_UdmfData](#oh_udmfdata) \*unifiedData) | 从统一数据管理框架数据库中获取统一数据对象[OH_UdmfData](#oh_udmfdata)数据。 | 
 | int [OH_Udmf_SetUnifiedData](#oh_udmf_setunifieddata) ([Udmf_Intention](#udmf_intention) intention, [OH_UdmfData](#oh_udmfdata) \*unifiedData, char \*key, unsigned int keyLen) | 从统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](#oh_udmfdata)数据。 | 
-| [OH_UdsPlainText](#oh_udsplaintext) \* [OH_UdsPlainText_Create](#oh_udsplaintext_create) () | 创建纯文本类型[OH_UdsPlainText](#oh_udsplaintext)指针及实例对象。 | 
+| [OH_UdsPlainText](#oh_udsplaintext) \* [OH_UdsPlainText_Create](#oh_udsplaintext_create) () | 创建纯文本类型[OH_UdsPlainText](#oh_udsplaintext)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdsPlainText_Destroy](#oh_udsplaintext_destroy)销毁实例对象，否则会导致内存泄漏。 | 
 | void [OH_UdsPlainText_Destroy](#oh_udsplaintext_destroy) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | 销毁纯文本类型数据[OH_UdsPlainText](#oh_udsplaintext)指针指向的实例对象。 | 
 | const char \* [OH_UdsPlainText_GetType](#oh_udsplaintext_gettype) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | 从纯文本类型[OH_UdsPlainText](#oh_udsplaintext)中获取类型ID。 | 
 | const char \* [OH_UdsPlainText_GetContent](#oh_udsplaintext_getcontent) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | 从纯文本类型[OH_UdsPlainText](#oh_udsplaintext)中获取纯文本内容信息。 | 
 | const char \* [OH_UdsPlainText_GetAbstract](#oh_udsplaintext_getabstract) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis) | 从纯文本类型[OH_UdsPlainText](#oh_udsplaintext)中获取纯文本摘要信息。 | 
 | int [OH_UdsPlainText_SetContent](#oh_udsplaintext_setcontent) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis, const char \*content) | 设置纯文本类型[OH_UdsPlainText](#oh_udsplaintext)中的纯文本内容参数。 | 
 | int [OH_UdsPlainText_SetAbstract](#oh_udsplaintext_setabstract) ([OH_UdsPlainText](#oh_udsplaintext) \*pThis, const char \*abstract) | 设置纯文本类型[OH_UdsPlainText](#oh_udsplaintext)中的纯文本摘要参数。 | 
-| [OH_UdsHyperlink](#oh_udshyperlink) \* [OH_UdsHyperlink_Create](#oh_udshyperlink_create) () | 创建超链接类型[OH_UdsHyperlink](#oh_udshyperlink)指针及实例对象。 | 
+| [OH_UdsHyperlink](#oh_udshyperlink) \* [OH_UdsHyperlink_Create](#oh_udshyperlink_create) () | 创建超链接类型[OH_UdsHyperlink](#oh_udshyperlink)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdsHyperlink_Destroy](#oh_udshyperlink_destroy)销毁实例对象，否则会导致内存泄漏。 | 
 | void [OH_UdsHyperlink_Destroy](#oh_udshyperlink_destroy) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | 销毁超链接类型[OH_UdsHyperlink](#oh_udshyperlink)指针指向的实例对象。 | 
 | const char \* [OH_UdsHyperlink_GetType](#oh_udshyperlink_gettype) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | 从超链接类型[OH_UdsHyperlink](#oh_udshyperlink)中获取类型ID。 | 
 | const char \* [OH_UdsHyperlink_GetUrl](#oh_udshyperlink_geturl) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | 从超链接类型[OH_UdsHyperlink](#oh_udshyperlink)中获取URL参数。 | 
 | const char \* [OH_UdsHyperlink_GetDescription](#oh_udshyperlink_getdescription) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis) | 从超链接类型[OH_UdsHyperlink](#oh_udshyperlink)中获取描述参数。 | 
 | int [OH_UdsHyperlink_SetUrl](#oh_udshyperlink_seturl) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis, const char \*url) | 设置超链接类型[OH_UdsHyperlink](#oh_udshyperlink)实例中URL参数。 | 
 | int [OH_UdsHyperlink_SetDescription](#oh_udshyperlink_setdescription) ([OH_UdsHyperlink](#oh_udshyperlink) \*pThis, const char \*description) | 设置超链接类型[OH_UdsHyperlink](#oh_udshyperlink)实例中描述参数。 | 
-| [OH_UdsHtml](#oh_udshtml) \* [OH_UdsHtml_Create](#oh_udshtml_create) () | 创建超文本标记语言类型[OH_UdsHtml](#oh_udshtml)指针及实例对象。 | 
+| [OH_UdsHtml](#oh_udshtml) \* [OH_UdsHtml_Create](#oh_udshtml_create) () | 创建超文本标记语言类型[OH_UdsHtml](#oh_udshtml)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdsHtml_Destroy](#oh_udshtml_destroy)销毁实例对象，否则会导致内存泄漏。 | 
 | void [OH_UdsHtml_Destroy](#oh_udshtml_destroy) ([OH_UdsHtml](#oh_udshtml) \*pThis) | 销毁超文本标记语言类型[OH_UdsHtml](#oh_udshtml)指针指向的实例对象。 | 
 | const char \* [OH_UdsHtml_GetType](#oh_udshtml_gettype) ([OH_UdsHtml](#oh_udshtml) \*pThis) | 获取超文本标记语言类型[OH_UdsHtml](#oh_udshtml)对象中类型ID。 | 
 | const char \* [OH_UdsHtml_GetContent](#oh_udshtml_getcontent) ([OH_UdsHtml](#oh_udshtml) \*pThis) | 获取超文本标记语言类型[OH_UdsHtml](#oh_udshtml)对象中HTML格式内容参数。 | 
 | const char \* [OH_UdsHtml_GetPlainContent](#oh_udshtml_getplaincontent) ([OH_UdsHtml](#oh_udshtml) \*pThis) | 获取超文本标记语言类型[OH_UdsHtml](#oh_udshtml)对象中的纯文本内容参数。 | 
 | int [OH_UdsHtml_SetContent](#oh_udshtml_setcontent) ([OH_UdsHtml](#oh_udshtml) \*pThis, const char \*content) | 设置超文本标记语言类型[OH_UdsHtml](#oh_udshtml)中的HTML格式内容参数。 | 
 | int [OH_UdsHtml_SetPlainContent](#oh_udshtml_setplaincontent) ([OH_UdsHtml](#oh_udshtml) \*pThis, const char \*plainContent) | 设置超文本标记语言类型[OH_UdsHtml](#oh_udshtml)中的纯文本内容参数。 | 
-| [OH_UdsAppItem](#oh_udsappitem) \* [OH_UdsAppItem_Create](#oh_udsappitem_create) () | 创建桌面图标类型[OH_UdsAppItem](#oh_udsappitem)指针及实例对象。 | 
+| [OH_UdsAppItem](#oh_udsappitem) \* [OH_UdsAppItem_Create](#oh_udsappitem_create) () | 创建桌面图标类型[OH_UdsAppItem](#oh_udsappitem)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdsAppItem_Destroy](#oh_udsappitem_destroy)销毁实例对象，否则会导致内存泄漏。 | 
 | void [OH_UdsAppItem_Destroy](#oh_udsappitem_destroy) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | 销毁桌面图标类型[OH_UdsAppItem](#oh_udsappitem)指针指向的实例对象。 | 
 | const char \* [OH_UdsAppItem_GetType](#oh_udsappitem_gettype) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | 从桌面图标类型[OH_UdsAppItem](#oh_udsappitem)实例获取类型ID。 | 
 | const char \* [OH_UdsAppItem_GetId](#oh_udsappitem_getid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis) | 从桌面图标类型[OH_UdsAppItem](#oh_udsappitem)实例中获取应用ID。 | 
@@ -264,6 +286,22 @@
 | int [OH_UdsAppItem_SetLabelId](#oh_udsappitem_setlabelid) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*appLabelId) | 设置桌面图标类型[OH_UdsAppItem](#oh_udsappitem)对象的标签ID。 | 
 | int [OH_UdsAppItem_SetBundleName](#oh_udsappitem_setbundlename) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*bundleName) | 设置桌面图标类型[OH_UdsAppItem](#oh_udsappitem)对象的bundle名称。 | 
 | int [OH_UdsAppItem_SetAbilityName](#oh_udsappitem_setabilityname) ([OH_UdsAppItem](#oh_udsappitem) \*pThis, const char \*abilityName) | 设置桌面图标类型[OH_UdsAppItem](#oh_udsappitem)对象的ability名称。 | 
+| [OH_UdsFileUri](#oh_udsfileuri) \* [OH_UdsFileUri_Create](#oh_udsfileuri_create) () | 创建文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)的实例对象以及指向它的指针。 当不再需要使用指针时，请使用[OH_UdsFileUri_Destroy](#oh_udsfileuri_destroy)销毁实例对象，否则会导致内存泄漏。 | 
+| void [OH_UdsFileUri_Destroy](#oh_udsfileuri_destroy) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis) | 销毁文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)的实例对象。 | 
+| const char \* [OH_UdsFileUri_GetType](#oh_udsfileuri_gettype) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis) | 从文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例中获取类型ID。 | 
+| const char \* [OH_UdsFileUri_GetFileUri](#oh_udsfileuri_getfileuri) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis) | 从文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例中获取文件Uri。 | 
+| const char \* [OH_UdsFileUri_GetFileType](#oh_udsfileuri_getfiletype) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis) | 从文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例中获取文件类型。 | 
+| int [OH_UdsFileUri_SetFileUri](#oh_udsfileuri_setfileuri) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis, const char \*fileUri) | 设置文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)对象的Uri信息。 | 
+| int [OH_UdsFileUri_SetFileType](#oh_udsfileuri_setfiletype) ([OH_UdsFileUri](#oh_udsfileuri) \*pThis, const char \*fileType) | 设置文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)对象的文件类型。 | 
+| [OH_UdsPixelMap](#oh_udspixelmap) \* [OH_UdsPixelMap_Create](#oh_udspixelmap_create) () | 创建像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)的实例对象以及指向它的指针。 当不再需要使用指针时，请使用[OH_UdsPixelMap_Destroy](#oh_udspixelmap_destroy)销毁实例对象，否则会导致内存泄漏。 | 
+| void [OH_UdsPixelMap_Destroy](#oh_udspixelmap_destroy) ([OH_UdsPixelMap](#oh_udspixelmap) \*pThis) | 销毁像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)的实例对象。 | 
+| const char \* [OH_UdsPixelMap_GetType](#oh_udspixelmap_gettype) ([OH_UdsPixelMap](#oh_udspixelmap) \*pThis) | 从像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)实例中获取类型ID。 | 
+| void [OH_UdsPixelMap_GetPixelMap](#oh_udspixelmap_getpixelmap) ([OH_UdsPixelMap](#oh_udspixelmap) \*pThis, OH_PixelmapNative \*pixelmapNative) | 从像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)实例中获取像素图片**OH_PixelmapNative**实例的指针。 | 
+| int [OH_UdsPixelMap_SetPixelMap](#oh_udspixelmap_setpixelmap) ([OH_UdsPixelMap](#oh_udspixelmap) \*pThis, OH_PixelmapNative \*pixelmapNative) | 设置像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)对象的像素图片内容。 | 
+| [OH_UdsArrayBuffer](#oh_udsarraybuffer) \* [OH_UdsArrayBuffer_Create](#oh_udsarraybuffer_create) () | 创建ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)的实例对象以及指向它的指针。 当不再需要使用指针时，请使用[OH_UdsArrayBuffer_Destroy](#oh_udsarraybuffer_destroy)销毁实例对象，否则会导致内存泄漏。 | 
+| int [OH_UdsArrayBuffer_Destroy](#oh_udsarraybuffer_destroy) ([OH_UdsArrayBuffer](#oh_udsarraybuffer) \*buffer) | 销毁ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)的实例对象。 | 
+| int [OH_UdsArrayBuffer_SetData](#oh_udsarraybuffer_setdata) ([OH_UdsArrayBuffer](#oh_udsarraybuffer) \*buffer, unsigned char \*data, unsigned int len) | 设置ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)对象的数据内容。 | 
+| int [OH_UdsArrayBuffer_GetData](#oh_udsarraybuffer_getdata) ([OH_UdsArrayBuffer](#oh_udsarraybuffer) \*buffer, unsigned char \*\*data, unsigned int \*len) | 从ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)实例中获取用户自定义的ArrayBuffer数据内容。 | 
 | [OH_Utd](#oh_utd) \* [OH_Utd_Create](#oh_utd_create) (const char \*typeId) | 创建统一数据类型[OH_Utd](#oh_utd)指针及实例对象。 | 
 | void [OH_Utd_Destroy](#oh_utd_destroy) ([OH_Utd](#oh_utd) \*pThis) | 销毁统一数据类型[OH_Utd](#oh_utd)指针指向的实例对象。 | 
 | const char \* [OH_Utd_GetTypeId](#oh_utd_gettypeid) ([OH_Utd](#oh_utd) \*pThis) | 获取统一数据类型[OH_Utd](#oh_utd)中的类型ID。 | 
@@ -777,6 +815,19 @@ FlashPix图像文件类型，归属类型为IMAGE。
 所有文件的基类型，归属类型为ENTITY。
 
 **起始版本：** 12
+
+
+### UDMF_META_GENERAL_FILE_URI
+
+```
+#define UDMF_META_GENERAL_FILE_URI   "general.file-uri"
+```
+
+**描述**
+
+文件地址类型，归属类型为TEXT。
+
+**起始版本：** 13
 
 
 ### UDMF_META_GNU_TAR_ARCHIVE
@@ -2095,6 +2146,43 @@ typedef struct OH_UdmfRecord OH_UdmfRecord
 **起始版本：** 12
 
 
+### OH_UdmfRecordProvider
+
+```
+typedef struct OH_UdmfRecordProvider OH_UdmfRecordProvider
+```
+
+**描述**
+
+定义统一数据对象中的数据提供者。
+
+**起始版本：** 13
+
+
+### OH_UdmfRecordProvider_GetData
+
+```
+typedef void*(* OH_UdmfRecordProvider_GetData) (void *context, const char *type)
+```
+
+**描述**
+
+定义用于按类型获取数据的回调函数。 当从OH_UdmfRecord中获取数据时，会触发此回调函数，得到的数据就是这个回调函数返回的数据。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| context | 用[OH_UdmfRecordProvider_SetData](#oh_udmfrecordprovider_setdata)设置的上下文指针。 | 
+| type | 要获取的数据类型。详细类型信息见[udmf_meta.h](udmf__meta_8h.md)。 | 
+
+**返回：**
+
+需要返回一个标准化数据。
+
+
 ### OH_UdsAppItem
 
 ```
@@ -2106,6 +2194,32 @@ typedef struct OH_UdsAppItem OH_UdsAppItem
 描述桌面图标类型的统一数据结构。
 
 **起始版本：** 12
+
+
+### OH_UdsArrayBuffer
+
+```
+typedef struct OH_UdsArrayBuffer OH_UdsArrayBuffer
+```
+
+**描述**
+
+描述ArrayBuffer类型的统一数据结构。
+
+**起始版本：** 13
+
+
+### OH_UdsFileUri
+
+```
+typedef struct OH_UdsFileUri OH_UdsFileUri
+```
+
+**描述**
+
+描述文件Uri类型的统一数据结构。
+
+**起始版本：** 13
 
 
 ### OH_UdsHtml
@@ -2132,6 +2246,19 @@ typedef struct OH_UdsHyperlink OH_UdsHyperlink
 描述超链接类型的统一数据结构。
 
 **起始版本：** 12
+
+
+### OH_UdsPixelMap
+
+```
+typedef struct OH_UdsPixelMap OH_UdsPixelMap
+```
+
+**描述**
+
+描述像素图片类型的统一数据结构。
+
+**起始版本：** 13
 
 
 ### OH_UdsPlainText
@@ -2199,6 +2326,25 @@ UDMF支持的设备内使用范围类型枚举。
 **起始版本：** 12
 
 
+### UdmfData_Finalize
+
+```
+typedef void(* UdmfData_Finalize) (void *context)
+```
+
+**描述**
+
+定义用于释放上下文的回调函数，统一数据提供者对象销毁时触发。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| context | 要释放的上下文指针。 | 
+
+
 ## 枚举类型说明
 
 
@@ -2264,7 +2410,7 @@ UDMF支持的设备内使用范围类型枚举。
 ### OH_Udmf_GetUnifiedData()
 
 ```
-int OH_Udmf_GetUnifiedData (const char * key, Udmf_Intention intention, OH_UdmfData * unifiedData )
+int OH_Udmf_GetUnifiedData (const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData )
 ```
 
 **描述**
@@ -2297,7 +2443,7 @@ int OH_Udmf_GetUnifiedData (const char * key, Udmf_Intention intention, OH_UdmfD
 ### OH_Udmf_SetUnifiedData()
 
 ```
-int OH_Udmf_SetUnifiedData (Udmf_Intention intention, OH_UdmfData * unifiedData, char * key, unsigned int keyLen )
+int OH_Udmf_SetUnifiedData (Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen )
 ```
 
 **描述**
@@ -2312,7 +2458,7 @@ int OH_Udmf_SetUnifiedData (Udmf_Intention intention, OH_UdmfData * unifiedData,
 | -------- | -------- |
 | intention | 表示数据通路类型[Udmf_Intention](#udmf_intention)。 | 
 | unifiedData | 表示统一数据对象[OH_UdmfData](#oh_udmfdata)数据。 | 
-| key表示成功将数据设置到数据库后对应数据的唯一标识符。 |  | 
+| key | 表示成功将数据设置到数据库后对应数据的唯一标识符。 | 
 | keyLen | 表示唯一标识符参数的空间大小，内存大小不小于512字节。 | 
 
 **返回：**
@@ -2331,7 +2477,7 @@ int OH_Udmf_SetUnifiedData (Udmf_Intention intention, OH_UdmfData * unifiedData,
 ### OH_UdmfData_AddRecord()
 
 ```
-int OH_UdmfData_AddRecord (OH_UdmfData * pThis, OH_UdmfRecord * record )
+int OH_UdmfData_AddRecord (OH_UdmfData* pThis, OH_UdmfRecord* record )
 ```
 
 **描述**
@@ -2366,13 +2512,13 @@ OH_UdmfData* OH_UdmfData_Create ()
 
 **描述**
 
-创建统一数据对象[OH_UdmfData](#oh_udmfdata)指针及实例对象。
+创建统一数据对象[OH_UdmfData](#oh_udmfdata)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdmfData_Destroy](#oh_udmfdata_destroy)销毁实例对象，否则会导致内存泄漏。
 
 **起始版本：** 12
 
 **返回：**
 
-执行成功则返回一个指向统一数据对象[OH_UdmfData](#oh_udmfdata)实例对象的指针，否则返回nullptr。 当不再需要使用指针时，请使用[OH_UdmfData_Destroy](#oh_udmfdata_destroy)销毁实例对象，否则会导致内存泄漏。
+执行成功则返回一个指向统一数据对象[OH_UdmfData](#oh_udmfdata)实例对象的指针，否则返回nullptr。
 
 **参见：**
 
@@ -2400,6 +2546,115 @@ void OH_UdmfData_Destroy (OH_UdmfData* pThis)
 **参见：**
 
 [OH_UdmfData](#oh_udmfdata)
+
+
+### OH_UdmfData_GetPrimaryHtml()
+
+```
+int OH_UdmfData_GetPrimaryHtml (OH_UdmfData* data, OH_UdsHtml* html )
+```
+
+**描述**
+
+从统一数据对象[OH_UdmfData](#oh_udmfdata)中获取第一个超文本标记语言类型[OH_UdsHtml](#oh_udshtml)数据。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| data | 表示指向统一数据对象[OH_UdmfData](#oh_udmfdata)实例的指针。 | 
+| html | 该参数是输出参数，表示指向超文本标记语言类型[OH_UdsHtml](#oh_udshtml)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfData](#oh_udmfdata)
+
+[OH_UdsHtml](#oh_udshtml)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfData_GetPrimaryPlainText()
+
+```
+int OH_UdmfData_GetPrimaryPlainText (OH_UdmfData* data, OH_UdsPlainText* plainText )
+```
+
+**描述**
+
+从统一数据对象[OH_UdmfData](#oh_udmfdata)中获取第一个纯文本类型[OH_UdsPlainText](#oh_udsplaintext)数据。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| data | 表示指向统一数据对象[OH_UdmfData](#oh_udmfdata)实例的指针。 | 
+| plainText | 该参数是输出参数，表示指向纯文本类型[OH_UdsPlainText](#oh_udsplaintext)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfData](#oh_udmfdata)
+
+[OH_UdsPlainText](#oh_udsplaintext)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfData_GetRecord()
+
+```
+OH_UdmfRecord* OH_UdmfData_GetRecord (OH_UdmfData* data, unsigned int index )
+```
+
+**描述**
+
+获取统一数据对象[OH_UdmfData](#oh_udmfdata)中指定位置的数据记录。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| data | 表示指向统一数据对象[OH_UdmfData](#oh_udmfdata)实例的指针。 | 
+| index | 表示要获取的统一数据记录[OH_UdmfRecord](#oh_udmfrecord)在统一数据对象[OH_UdmfData](#oh_udmfdata)中的下标。 | 
+
+**返回：**
+
+执行成功时返回统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例对象的指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdmfData](#oh_udmfdata)
+
+
+### OH_UdmfData_GetRecordCount()
+
+```
+int OH_UdmfData_GetRecordCount (OH_UdmfData* data)
+```
+
+**描述**
+
+获取统一数据对象[OH_UdmfData](#oh_udmfdata)中包含的所有记录数量。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| 表示指向统一数据对象{ |  | 
 
 
 ### OH_UdmfData_GetRecords()
@@ -2488,6 +2743,33 @@ bool OH_UdmfData_HasType (OH_UdmfData* pThis, const char* type )
 [OH_UdmfData](#oh_udmfdata)
 
 
+### OH_UdmfData_IsLocal()
+
+```
+bool OH_UdmfData_IsLocal (OH_UdmfData* data)
+```
+
+**描述**
+
+检查统一数据对象[OH_UdmfData](#oh_udmfdata)是否是来自本端设备的数据。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| data | 表示指向统一数据对象[OH_UdmfData](#oh_udmfdata)实例的指针。 | 
+
+**返回：**
+
+返回数据是否是来自本端设备。返回true表示来自本端设备，返回false表示来自远端设备。
+
+**参见：**
+
+[OH_UdmfData](#oh_udmfdata)
+
+
 ### OH_UdmfProperty_Create()
 
 ```
@@ -2496,7 +2778,7 @@ OH_UdmfProperty* OH_UdmfProperty_Create (OH_UdmfData* unifiedData)
 
 **描述**
 
-创建统一数据对象中数据记录属性[OH_UdmfProperty](#oh_udmfproperty)指针及实例对象。
+创建统一数据对象中数据记录属性[OH_UdmfProperty](#oh_udmfproperty)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy)销毁实例对象，否则会导致内存泄漏。
 
 **起始版本：** 12
 
@@ -2508,7 +2790,7 @@ OH_UdmfProperty* OH_UdmfProperty_Create (OH_UdmfData* unifiedData)
 
 **返回：**
 
-执行成功则返回一个指向属性[OH_UdmfProperty](#oh_udmfproperty)实例对象的指针，否则返回nullptr。 当不再需要使用指针时，请使用[OH_UdmfProperty_Destroy](#oh_udmfproperty_destroy)销毁实例对象，否则会导致内存泄漏。
+执行成功则返回一个指向属性[OH_UdmfProperty](#oh_udmfproperty)实例对象的指针，否则返回nullptr。
 
 **参见：**
 
@@ -2836,6 +3118,71 @@ int OH_UdmfRecord_AddAppItem (OH_UdmfRecord* pThis, OH_UdsAppItem* appItem )
 [Udmf_ErrCode](#udmf_errcode)
 
 
+### OH_UdmfRecord_AddArrayBuffer()
+
+```
+int OH_UdmfRecord_AddArrayBuffer (OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer )
+```
+
+**描述**
+
+增加一个ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)的数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| record | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
+| type | 表示自定义的ArrayBuffer数据的数据类型标识，不可与已有的数据类型标识重复。 | 
+| buffer | 表示指向ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecord_AddFileUri()
+
+```
+int OH_UdmfRecord_AddFileUri (OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri )
+```
+
+**描述**
+
+增加文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
+| fileUri | 表示指向文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
 ### OH_UdmfRecord_AddGeneralEntry()
 
 ```
@@ -2932,6 +3279,38 @@ int OH_UdmfRecord_AddHyperlink (OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink
 [Udmf_ErrCode](#udmf_errcode)
 
 
+### OH_UdmfRecord_AddPixelMap()
+
+```
+int OH_UdmfRecord_AddPixelMap (OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap )
+```
+
+**描述**
+
+增加像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)数据至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
+| pixelMap | 表示指向像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
 ### OH_UdmfRecord_AddPlainText()
 
 ```
@@ -2972,13 +3351,13 @@ OH_UdmfRecord* OH_UdmfRecord_Create ()
 
 **描述**
 
-创建统一数据记录[OH_UdmfRecord](#oh_udmfrecord)指针及实例对象。
+创建统一数据记录[OH_UdmfRecord](#oh_udmfrecord)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdmfRecord_Destroy](#oh_udmfrecord_destroy)销毁实例对象，否则会导致内存泄漏。
 
 **起始版本：** 12
 
 **返回：**
 
-执行成功则返回一个指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例对象的指针，否则返回nullptr。 当不再需要使用指针时，请使用[OH_UdmfRecord_Destroy](#oh_udmfrecord_destroy)销毁实例对象，否则会导致内存泄漏。
+执行成功则返回一个指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例对象的指针，否则返回nullptr。
 
 **参见：**
 
@@ -3016,7 +3395,7 @@ int OH_UdmfRecord_GetAppItem (OH_UdmfRecord* pThis, OH_UdsAppItem* appItem )
 
 **描述**
 
-从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型{OH_UdsAppItem}数据。
+从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取桌面图标类型[OH_UdsAppItem](#oh_udsappitem)数据。
 
 **起始版本：** 12
 
@@ -3036,6 +3415,71 @@ int OH_UdmfRecord_GetAppItem (OH_UdmfRecord* pThis, OH_UdsAppItem* appItem )
 [OH_UdmfRecord](#oh_udmfrecord)
 
 [OH_UdsAppItem](#oh_udsappitem)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecord_GetArrayBuffer()
+
+```
+int OH_UdmfRecord_GetArrayBuffer (OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer )
+```
+
+**描述**
+
+从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)数据。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| record | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
+| type | 表示要获取的ArrayBuffer类型数据的数据类型标识。 | 
+| buffer | 该参数是输出参数，表示指向ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecord_GetFileUri()
+
+```
+int OH_UdmfRecord_GetFileUri (OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri )
+```
+
+**描述**
+
+从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)数据。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
+| fileUri | 该参数是输出参数，表示指向文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsFileUri](#oh_udsfileuri)
 
 [Udmf_ErrCode](#udmf_errcode)
 
@@ -3136,6 +3580,38 @@ int OH_UdmfRecord_GetHyperlink (OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink
 [Udmf_ErrCode](#udmf_errcode)
 
 
+### OH_UdmfRecord_GetPixelMap()
+
+```
+int OH_UdmfRecord_GetPixelMap (OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap )
+```
+
+**描述**
+
+从统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中获取像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)数据。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
+| pixelMap | 该参数是输出参数，表示指向像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
 ### OH_UdmfRecord_GetPlainText()
 
 ```
@@ -3196,6 +3672,124 @@ char** OH_UdmfRecord_GetTypes (OH_UdmfRecord* pThis, unsigned int* count )
 [OH_UdmfRecord](#oh_udmfrecord)
 
 
+### OH_UdmfRecord_SetProvider()
+
+```
+int OH_UdmfRecord_SetProvider (OH_UdmfRecord* pThis, const char* const* types, unsigned int count, OH_UdmfRecordProvider* provider )
+```
+
+**描述**
+
+将指定类型的统一数据提供者[OH_UdmfRecordProvider](#oh_udmfrecordprovider)设置至统一数据记录[OH_UdmfRecord](#oh_udmfrecord)中。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向统一数据记录[OH_UdmfRecord](#oh_udmfrecord)实例的指针。 | 
+| types | 表示一组指定的要提供的数据类型。 | 
+| count | 表示指定的数据类型的数量。 | 
+| provider | 表示指向统一数据提供者对象[OH_UdmfRecordProvider](#oh_udmfrecordprovider)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfRecord](#oh_udmfrecord)
+
+[OH_UdmfRecordProvider](#oh_udmfrecordprovider)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecordProvider_Create()
+
+```
+OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create ()
+```
+
+**描述**
+
+创建一个统一数据提供者[OH_UdmfRecordProvider](#oh_udmfrecordprovider)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdmfRecordProvider_Destroy](#oh_udmfrecordprovider_destroy)销毁实例对象，否则会导致内存泄漏。
+
+**起始版本：** 13
+
+**返回：**
+
+执行成功时返回一个指向统一数据提供者[OH_UdmfRecordProvider](#oh_udmfrecordprovider)实例对象的指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdmfRecordProvider](#oh_udmfrecordprovider)
+
+
+### OH_UdmfRecordProvider_Destroy()
+
+```
+int OH_UdmfRecordProvider_Destroy (OH_UdmfRecordProvider* provider)
+```
+
+**描述**
+
+销毁统一数据提供者[OH_UdmfRecordProvider](#oh_udmfrecordprovider)指针指向的实例对象。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| provider | 表示指向统一数据提供者对象[OH_UdmfRecordProvider](#oh_udmfrecordprovider)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfRecordProvider](#oh_udmfrecordprovider)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdmfRecordProvider_SetData()
+
+```
+int OH_UdmfRecordProvider_SetData (OH_UdmfRecordProvider* provider, void* context, const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize )
+```
+
+**描述**
+
+设置统一数据提供者的数据提供回调函数。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| provider | 指向统一数据提供者[OH_UdmfRecordProvider](#oh_udmfrecordprovider)实例对象的指针。 | 
+| context | 上下文指针，将作为第一个参数传入[OH_UdmfRecordProvider_GetData](#oh_udmfrecordprovider_getdata)。 | 
+| callback | 获取数据的回调函数。详见：[OH_UdmfRecordProvider_GetData](#oh_udmfrecordprovider_getdata)。 | 
+| finalize | 可选的回调函数，可以用于统一数据提供者销毁时释放上下文数据。详见：[UdmfData_Finalize](#udmfdata_finalize)。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdmfRecordProvider](#oh_udmfrecordprovider)
+
+[OH_UdmfRecordProvider_GetData](#oh_udmfrecordprovider_getdata)
+
+[UdmfData_Finalize](#udmfdata_finalize)[Udmf_ErrCode](#udmf_errcode)
+
+
 ### OH_UdsAppItem_Create()
 
 ```
@@ -3204,13 +3798,13 @@ OH_UdsAppItem* OH_UdsAppItem_Create ()
 
 **描述**
 
-创建桌面图标类型[OH_UdsAppItem](#oh_udsappitem)指针及实例对象。
+创建桌面图标类型[OH_UdsAppItem](#oh_udsappitem)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdsAppItem_Destroy](#oh_udsappitem_destroy)销毁实例对象，否则会导致内存泄漏。
 
 **起始版本：** 12
 
 **返回：**
 
-执行成功返则回一个指向桌面图标类型[OH_UdsAppItem](#oh_udsappitem)实例对象的指针，否则返回nullptr。 当不再需要使用指针时，请使用[OH_UdsAppItem_Destroy](#oh_udsappitem_destroy)销毁实例对象，否则会导致内存泄漏。
+执行成功返则回一个指向桌面图标类型[OH_UdsAppItem](#oh_udsappitem)实例对象的指针，否则返回nullptr。
 
 **参见：**
 
@@ -3331,11 +3925,21 @@ const char* OH_UdsAppItem_GetId (OH_UdsAppItem* pThis)
 
 从桌面图标类型[OH_UdsAppItem](#oh_udsappitem)实例中获取应用ID。
 
+**起始版本：** 12
+
 **参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| pThis | 表示一个指向{桌面图标类型[}对象的指针。 输入有效入参时返回应用ID的字符串指针，否则返回nullptr。 OH_UdsAppItem 12](#oh_udsappitem) | 
+| pThis | 表示一个指向桌面图标类型[OH_UdsAppItem](#oh_udsappitem)对象的指针。 | 
+
+**返回：**
+
+输入有效入参时返回应用ID的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsAppItem](#oh_udsappitem)
 
 
 ### OH_UdsAppItem_GetLabelId()
@@ -3587,6 +4191,303 @@ int OH_UdsAppItem_SetName (OH_UdsAppItem* pThis, const char* appName )
 [OH_UdsAppItem](#oh_udsappitem)
 
 
+### OH_UdsArrayBuffer_Create()
+
+```
+OH_UdsArrayBuffer* OH_UdsArrayBuffer_Create ()
+```
+
+**描述**
+
+创建ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)的实例对象以及指向它的指针。 当不再需要使用指针时，请使用[OH_UdsArrayBuffer_Destroy](#oh_udsarraybuffer_destroy)销毁实例对象，否则会导致内存泄漏。
+
+**起始版本：** 13
+
+**返回：**
+
+执行成功则返回一个指向ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)实例对象的指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+
+### OH_UdsArrayBuffer_Destroy()
+
+```
+int OH_UdsArrayBuffer_Destroy (OH_UdsArrayBuffer* buffer)
+```
+
+**描述**
+
+销毁ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)的实例对象。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| buffer | 表示指向ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)实例的指针。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsArrayBuffer_GetData()
+
+```
+int OH_UdsArrayBuffer_GetData (OH_UdsArrayBuffer* buffer, unsigned char** data, unsigned int* len )
+```
+
+**描述**
+
+从ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)实例中获取用户自定义的ArrayBuffer数据内容。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| buffer | 表示指向ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)实例的指针。 | 
+| data | 该参数是输出参数，表示用户自定义的ArrayBuffer数据。 | 
+| len | 该参数是输出参数，表示用户自定义的ArrayBuffer数据的大小。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsArrayBuffer_SetData()
+
+```
+int OH_UdsArrayBuffer_SetData (OH_UdsArrayBuffer* buffer, unsigned char* data, unsigned int len )
+```
+
+**描述**
+
+设置ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)对象的数据内容。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| buffer | 表示指向ArrayBuffer类型[OH_UdsArrayBuffer](#oh_udsarraybuffer)实例的指针。 | 
+| data | 表示用户自定义的ArrayBuffer数据。 | 
+| len | 表示用户自定义的ArrayBuffer数据的大小。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdsArrayBuffer](#oh_udsarraybuffer)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsFileUri_Create()
+
+```
+OH_UdsFileUri* OH_UdsFileUri_Create ()
+```
+
+**描述**
+
+创建文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)的实例对象以及指向它的指针。 当不再需要使用指针时，请使用[OH_UdsFileUri_Destroy](#oh_udsfileuri_destroy)销毁实例对象，否则会导致内存泄漏。
+
+**起始版本：** 13
+
+**返回：**
+
+执行成功则返回一个指向文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例对象的指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+
+### OH_UdsFileUri_Destroy()
+
+```
+void OH_UdsFileUri_Destroy (OH_UdsFileUri* pThis)
+```
+
+**描述**
+
+销毁文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)的实例对象。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例的指针。 | 
+
+**参见：**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+
+### OH_UdsFileUri_GetFileType()
+
+```
+const char* OH_UdsFileUri_GetFileType (OH_UdsFileUri* pThis)
+```
+
+**描述**
+
+从文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例中获取文件类型。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例的指针。 | 
+
+**返回：**
+
+输入有效入参时返回文件类型的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+
+### OH_UdsFileUri_GetFileUri()
+
+```
+const char* OH_UdsFileUri_GetFileUri (OH_UdsFileUri* pThis)
+```
+
+**描述**
+
+从文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例中获取文件Uri。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例的指针。 | 
+
+**返回：**
+
+输入有效入参时返回文件Uri的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+
+### OH_UdsFileUri_GetType()
+
+```
+const char* OH_UdsFileUri_GetType (OH_UdsFileUri* pThis)
+```
+
+**描述**
+
+从文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例中获取类型ID。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例的指针。 | 
+
+**返回：**
+
+输入有效入参时返回类型ID的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+
+### OH_UdsFileUri_SetFileType()
+
+```
+int OH_UdsFileUri_SetFileType (OH_UdsFileUri* pThis, const char* fileType )
+```
+
+**描述**
+
+设置文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)对象的文件类型。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例的指针。 | 
+| fileType | 表示文件类型。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
+### OH_UdsFileUri_SetFileUri()
+
+```
+int OH_UdsFileUri_SetFileUri (OH_UdsFileUri* pThis, const char* fileUri )
+```
+
+**描述**
+
+设置文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)对象的Uri信息。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向文件Uri类型[OH_UdsFileUri](#oh_udsfileuri)实例的指针。 | 
+| fileUri | 表示文件Uri。 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdsFileUri](#oh_udsfileuri)
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
 ### OH_UdsHtml_Create()
 
 ```
@@ -3595,13 +4496,13 @@ OH_UdsHtml* OH_UdsHtml_Create ()
 
 **描述**
 
-创建超文本标记语言类型[OH_UdsHtml](#oh_udshtml)指针及实例对象。
+创建超文本标记语言类型[OH_UdsHtml](#oh_udshtml)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdsHtml_Destroy](#oh_udshtml_destroy)销毁实例对象，否则会导致内存泄漏。
 
 **起始版本：** 12
 
 **返回：**
 
-执行成功则返回一个指向超文本标记语言类型[OH_UdsHtml](#oh_udshtml)实例对象的指针，否则返回nullptr。 当不再需要使用指针时，请使用[OH_UdsHtml_Destroy](#oh_udshtml_destroy)销毁实例对象，否则会导致内存泄漏。
+执行成功则返回一个指向超文本标记语言类型[OH_UdsHtml](#oh_udshtml)实例对象的指针，否则返回nullptr。
 
 **参见：**
 
@@ -3776,13 +4677,13 @@ OH_UdsHyperlink* OH_UdsHyperlink_Create ()
 
 **描述**
 
-创建超链接类型[OH_UdsHyperlink](#oh_udshyperlink)指针及实例对象。
+创建超链接类型[OH_UdsHyperlink](#oh_udshyperlink)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdsHyperlink_Destroy](#oh_udshyperlink_destroy)销毁实例对象，否则会导致内存泄漏。
 
 **起始版本：** 12
 
 **返回：**
 
-执行则成功返回一个指向超链接类型[OH_UdsHyperlink](#oh_udshyperlink)实例对象的指针，否则返回nullptr。 当不再需要使用指针时，请使用[OH_UdsHyperlink_Destroy](#oh_udshyperlink_destroy)销毁实例对象，否则会导致内存泄漏。
+执行则成功返回一个指向超链接类型[OH_UdsHyperlink](#oh_udshyperlink)实例对象的指针，否则返回nullptr。
 
 **参见：**
 
@@ -3949,6 +4850,135 @@ int OH_UdsHyperlink_SetUrl (OH_UdsHyperlink* pThis, const char* url )
 [OH_UdsHyperlink](#oh_udshyperlink)
 
 
+### OH_UdsPixelMap_Create()
+
+```
+OH_UdsPixelMap* OH_UdsPixelMap_Create ()
+```
+
+**描述**
+
+创建像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)的实例对象以及指向它的指针。 当不再需要使用指针时，请使用[OH_UdsPixelMap_Destroy](#oh_udspixelmap_destroy)销毁实例对象，否则会导致内存泄漏。
+
+**起始版本：** 13
+
+**返回：**
+
+执行成功则返回一个指向像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)实例对象的指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+
+### OH_UdsPixelMap_Destroy()
+
+```
+void OH_UdsPixelMap_Destroy (OH_UdsPixelMap* pThis)
+```
+
+**描述**
+
+销毁像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)的实例对象。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)实例的指针。 | 
+
+**参见：**
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+
+### OH_UdsPixelMap_GetPixelMap()
+
+```
+void OH_UdsPixelMap_GetPixelMap (OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative )
+```
+
+**描述**
+
+从像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)实例中获取像素图片OH_PixelmapNative实例的指针。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)实例的指针。 | 
+| pixelmapNative | 该参数是输出参数，表示指向像素图片**OH_PixelmapNative**实例的指针。 | 
+
+**参见：**
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+OH_PixelmapNative
+
+
+### OH_UdsPixelMap_GetType()
+
+```
+const char* OH_UdsPixelMap_GetType (OH_UdsPixelMap* pThis)
+```
+
+**描述**
+
+从像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)实例中获取类型ID。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)实例的指针。 | 
+
+**返回：**
+
+输入有效入参时返回类型ID的字符串指针，否则返回nullptr。
+
+**参见：**
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+
+### OH_UdsPixelMap_SetPixelMap()
+
+```
+int OH_UdsPixelMap_SetPixelMap (OH_UdsPixelMap* pThis, OH_PixelmapNative* pixelmapNative )
+```
+
+**描述**
+
+设置像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)对象的像素图片内容。
+
+**起始版本：** 13
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pThis | 表示指向像素图片类型[OH_UdsPixelMap](#oh_udspixelmap)实例的指针。 | 
+| pixelmapNative | 表示指向像素图片OH_PixelmapNative实例的指针 | 
+
+**返回：**
+
+返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](#udmf_errcode)。 若返回UDMF_E_OK，表示执行成功。 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。
+
+**参见：**
+
+[OH_UdsPixelMap](#oh_udspixelmap)
+
+OH_PixelmapNative
+
+[Udmf_ErrCode](#udmf_errcode)
+
+
 ### OH_UdsPlainText_Create()
 
 ```
@@ -3957,13 +4987,13 @@ OH_UdsPlainText* OH_UdsPlainText_Create ()
 
 **描述**
 
-创建纯文本类型[OH_UdsPlainText](#oh_udsplaintext)指针及实例对象。
+创建纯文本类型[OH_UdsPlainText](#oh_udsplaintext)指针及实例对象。 当不再需要使用指针时，请使用[OH_UdsPlainText_Destroy](#oh_udsplaintext_destroy)销毁实例对象，否则会导致内存泄漏。
 
 **起始版本：** 12
 
 **返回：**
 
-执行成功则返回一个指向纯文本类型[OH_UdsPlainText](#oh_udsplaintext)实例对象的指针，否则返回nullptr。 当不再需要使用指针时，请使用[OH_UdsPlainText_Destroy](#oh_udsplaintext_destroy)销毁实例对象，否则会导致内存泄漏。
+执行成功则返回一个指向纯文本类型[OH_UdsPlainText](#oh_udsplaintext)实例对象的指针，否则返回nullptr。
 
 **参见：**
 

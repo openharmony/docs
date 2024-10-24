@@ -25,7 +25,7 @@ The figure below demonstrates the main functions of SmartPerf Device. Set data c
 
 2. Device-daemon must be connected to a hardware device<!--Del-->, and Device-hap can only be used on devices with a screen<!--DelEnd-->.
 
-3. Before using the Device-Daemon, configure the [HDC environment] (https://gitee.com/openharmony/developtools_hdc).
+3. Before using the Device-Daemon, configure the [HDC environment](https://gitee.com/openharmony/developtools_hdc).
 
 ## Performing Performance Testing
 

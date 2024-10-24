@@ -688,7 +688,7 @@ tcp.on('connect', () => {
 });
 
 // 绑定本地IP地址和端口。
-let ipAddress : socket.NetAddress = {} as socket.NetAddress;
+let ipAddress: socket.NetAddress = {} as socket.NetAddress;
 ipAddress.address = "192.168.xxx.xxx";
 ipAddress.port = 1234;
 tcp.bind(ipAddress, (err: BusinessError) => {
@@ -702,71 +702,72 @@ tcp.bind(ipAddress, (err: BusinessError) => {
   ipAddress.address = "192.168.xxx.xxx";
   ipAddress.port = 443;
 
-  let tcpConnect : socket.TCPConnectOptions = {} as socket.TCPConnectOptions;
+  let tcpConnect: socket.TCPConnectOptions = {} as socket.TCPConnectOptions;
   tcpConnect.address = ipAddress;
   tcpConnect.timeout = 6000;
 
   tcp.connect(tcpConnect, (err: BusinessError) => {
-  if (err) {
-    console.log('connect fail');
-    return;
-  }
-  console.log('connect success');
-
-  // 确保TCPSocket已连接后，将其升级为TLSSocket连接。
-  let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
-  // 订阅TLSSocket相关的订阅事件。
-  tlsTwoWay.on('message', (value: SocketInfo) => {
-    console.log("tls on message");
-    let buffer = value.message;
-    let dataView = new DataView(buffer);
-    let str = "";
-    for (let i = 0; i < dataView.byteLength; ++i) {
-      str += String.fromCharCode(dataView.getUint8(i));
+    if (err) {
+      console.log('connect fail');
+      return;
     }
-    console.log("tls on connect received:" + str);
-  });
-  tlsTwoWay.on('connect', () => {
-    console.log("tls on connect");
-  });
-  tlsTwoWay.on('close', () => {
-    console.log("tls on close");
-  });
+    console.log('connect success');
 
-  // 配置TLSSocket目的地址、证书等信息。
-  ipAddress.address = "192.168.xxx.xxx";
-  ipAddress.port = 1234;
-
-  let tlsSecureOption : socket.TLSSecureOptions = {} as socket.TLSSecureOptions;
-  tlsSecureOption.key = "xxxx";
-  tlsSecureOption.cert = "xxxx";
-  tlsSecureOption.ca = ["xxxx"];
-  tlsSecureOption.password = "xxxx";
-  tlsSecureOption.protocols = [socket.Protocol.TLSv12];
-  tlsSecureOption.useRemoteCipherPrefer = true;
-  tlsSecureOption.signatureAlgorithms = "rsa_pss_rsae_sha256:ECDSA+SHA256";
-  tlsSecureOption.cipherSuite = "AES256-SHA256";
-
-  let tlsTwoWayConnectOption : socket.TLSConnectOptions = {} as socket.TLSConnectOptions;
-  tlsSecureOption.key = "xxxx";
-  tlsTwoWayConnectOption.address = ipAddress;
-  tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
-  tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
-
-  // 建立TLSSocket连接
-  tlsTwoWay.connect(tlsTwoWayConnectOption, () => {
-    console.log("tls connect success");
-
-    // 连接使用完毕后，主动关闭。取消相关事件的订阅。
-    tlsTwoWay.close((err: BusinessError) => {
-      if (err) {
-        console.log("tls close callback error = " + err);
-      } else {
-        console.log("tls close success");
+    // 确保TCPSocket已连接后，将其升级为TLSSocket连接。
+    let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
+    // 订阅TLSSocket相关的订阅事件。
+    tlsTwoWay.on('message', (value: SocketInfo) => {
+      console.log("tls on message");
+      let buffer = value.message;
+      let dataView = new DataView(buffer);
+      let str = "";
+      for (let i = 0; i < dataView.byteLength; ++i) {
+        str += String.fromCharCode(dataView.getUint8(i));
       }
-      tlsTwoWay.off('message');
-      tlsTwoWay.off('connect');
-      tlsTwoWay.off('close');
+      console.log("tls on connect received:" + str);
+    });
+    tlsTwoWay.on('connect', () => {
+      console.log("tls on connect");
+    });
+    tlsTwoWay.on('close', () => {
+      console.log("tls on close");
+    });
+
+    // 配置TLSSocket目的地址、证书等信息。
+    ipAddress.address = "192.168.xxx.xxx";
+    ipAddress.port = 1234;
+
+    let tlsSecureOption: socket.TLSSecureOptions = {} as socket.TLSSecureOptions;
+    tlsSecureOption.key = "xxxx";
+    tlsSecureOption.cert = "xxxx";
+    tlsSecureOption.ca = ["xxxx"];
+    tlsSecureOption.password = "xxxx";
+    tlsSecureOption.protocols = [socket.Protocol.TLSv12];
+    tlsSecureOption.useRemoteCipherPrefer = true;
+    tlsSecureOption.signatureAlgorithms = "rsa_pss_rsae_sha256:ECDSA+SHA256";
+    tlsSecureOption.cipherSuite = "AES256-SHA256";
+
+    let tlsTwoWayConnectOption: socket.TLSConnectOptions = {} as socket.TLSConnectOptions;
+    tlsSecureOption.key = "xxxx";
+    tlsTwoWayConnectOption.address = ipAddress;
+    tlsTwoWayConnectOption.secureOptions = tlsSecureOption;
+    tlsTwoWayConnectOption.ALPNProtocols = ["spdy/1", "http/1.1"];
+
+    // 建立TLSSocket连接
+    tlsTwoWay.connect(tlsTwoWayConnectOption, () => {
+      console.log("tls connect success");
+
+      // 连接使用完毕后，主动关闭。取消相关事件的订阅。
+      tlsTwoWay.close((err: BusinessError) => {
+        if (err) {
+          console.log("tls close callback error = " + err);
+        } else {
+          console.log("tls close success");
+        }
+        tlsTwoWay.off('message');
+        tlsTwoWay.off('connect');
+        tlsTwoWay.off('close');
+      });
     });
   });
 });

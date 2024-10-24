@@ -1,6 +1,6 @@
 # 使用ImageSource完成图片解码
 
-图片解码指将所支持格式的存档图片解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的存档图片格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG。
+图片解码指将所支持格式的存档图片解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的存档图片格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG、HEIF(不同硬件设备支持情况不同)。
 
 ## 开发步骤
 
@@ -33,16 +33,16 @@
       该方法需要先导入\@kit.CoreFileKit模块。
 
       ```ts
-      import { fileIo } from '@kit.CoreFileKit';
+      import { fileIo as fs } from '@kit.CoreFileKit';
       ```
 
-      然后调用fileIo.openSync()获取文件描述符。
+      然后调用fs.openSync()获取文件描述符。
   
       ```ts
       // Stage模型参考如下代码
       const context = getContext(this);
       const filePath = context.cacheDir + '/test.jpg';
-      const file : fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
+      const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
       ```
 
@@ -254,3 +254,6 @@
 - [图片编辑（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEdit)
 
 - [图片编辑（JS）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)
+
+<!--RP1-->
+<!--RP1End-->

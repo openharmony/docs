@@ -21,7 +21,9 @@ Publishes a reminder. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> This API can be called only after the [Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8) permission is obtained.
+> This API can be called only after the [NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10) permission is obtained.
+>
+> <!--RP1--><!--RP1End-->
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -29,17 +31,18 @@ Publishes a reminder. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-  | Name | Type | Mandatory | Description |
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | Yes | Request used for publishing the reminder. |
-  | callback | AsyncCallback\<number> | Yes | Callback used to return the published reminder's ID. |
+  | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Request used for publishing the reminder.|
+  | callback | AsyncCallback\<number> | Yes| Callback used to return the published reminder's ID.|
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
@@ -69,28 +72,31 @@ Publishes a reminder. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API can be called only after the [Notification.requestEnableNotification](../apis-notification-kit/js-apis-notification.md#notificationrequestenablenotification8) permission is obtained.
+> This API can be called only after the [NotificationManager.requestEnableNotification](../apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10) permission is obtained.
+>
+> <!--RP1--><!--RP1End-->
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 **Parameters**
-  | Name | Type | Mandatory | Description |
+  | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | reminderReq | [ReminderRequest](#reminderrequest) | Yes | Request used for publishing the reminder. |
+  | reminderReq | [ReminderRequest](#reminderrequest) | Yes| Request used for publishing the reminder.|
 
 **Return value**
-  | Type | Description |
+  | Type| Description|
   | -------- | -------- |
-  | Promise\<number> | Promise used to return the published reminder ID. |
+  | Promise\<number> | Promise used to return the published reminder ID.|
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
 
@@ -121,17 +127,18 @@ Cancels a reminder published. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reminderId | number | Yes | ID of the reminder to cancel. |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the result. If the reminder is canceled, **err** is **undefined**. Otherwise, **err** is an error object. |
+| reminderId | number | Yes| ID of the reminder to cancel.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the reminder is canceled, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700003    | The reminder does not exist. |
 | 1700004    | The bundle name does not exist. |
 
@@ -160,22 +167,23 @@ Cancels a reminder published. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reminderId | number | Yes | ID of the reminder to cancel. |
+| reminderId | number | Yes| ID of the reminder to cancel.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700003    | The reminder does not exist. |
 | 1700004    | The bundle name does not exist. |
 
@@ -208,16 +216,17 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | Yes | Callback used to return all the valid reminders. |
+| callback | AsyncCallback\<Array\<[ReminderRequest](#reminderrequest)>> | Yes| Callback used to return all the valid reminders.|
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **Example**
@@ -272,16 +281,17 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise used to return all the valid reminders. |
+| Promise\<Array\<[ReminderRequest](#reminderrequest)>> | Promise used to return all the valid reminders.|
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **Example**
@@ -328,16 +338,17 @@ Cancels all reminders set by the current application. This API uses an asynchron
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the result. If all the reminders are canceled, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If all the reminders are canceled, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **Example**
@@ -364,16 +375,17 @@ Cancels all reminders set by the current application. This API uses a promise to
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md).
 
-| ID  | Error Message |
+| ID  | Error Message|
 | --------- | ------- |
+| 401 | If the input parameter is not valid parameter. |
 | 1700004    | The bundle name does not exist. |
 
 **Example**
@@ -399,16 +411,16 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes | notificationManager\.slot instance. Only **notificationType** can be set. |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the result. If the notification slot is added, **err** is **undefined**. Otherwise, **err** is an error object. |
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notificationManager\.slot instance. Only **notificationType** can be set.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the notification slot is added, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 401      | If the input parameter is not valid parameter. |
 
@@ -442,21 +454,21 @@ Adds a notification slot. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes | notificationManager\.slot instance. Only **notificationType** can be set. |
+| slot | [NotificationSlot](../apis-notification-kit/js-apis-inner-notification-notificationSlot.md#notificationslot) | Yes| notificationManager\.slot instance. Only **notificationType** can be set.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 401      | If the input parameter is not valid parameter. |
 
@@ -487,16 +499,16 @@ Removes a notification slot. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes | Type of the notification slot to remove. |
-| callback | AsyncCallback\<void> | Yes | Callback used to return the result. If the notification slot is removed, **err** is **undefined**. Otherwise, **err** is an error object. |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes| Type of the notification slot to remove.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the notification slot is removed, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 401      | If the input parameter is not valid parameter. |
 
@@ -527,21 +539,21 @@ Removes a notification slot. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes | Type of the notification slot to remove. |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | Yes| Type of the notification slot to remove.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 401      | If the input parameter is not valid parameter. |
 
@@ -576,13 +588,13 @@ Obtains all valid (not yet expired) reminders set by the current application. Th
 
 | Type                                             | Description                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise used to return all the valid reminders. |
+| Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise used to return all the valid reminders.|
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 201      | Permission denied. |
 
@@ -630,22 +642,22 @@ Adds a date to be excluded for a duplicate calendar event with the specified ID.
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                            |
+| Name    | Type  | Mandatory| Description                            |
 | ---------- | ------ | ---- | -------------------------------- |
-| reminderId | number | Yes  | ID of the duplicate calendar event. |
+| reminderId | number | Yes  | ID of the duplicate calendar event.|
 | date       | Date   | Yes  | Date to be excluded.                  |
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                                      |
+| ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
 | 201      | Permission denied.                             |
 | 401      | If the input parameter is not valid parameter. |
@@ -675,21 +687,21 @@ Deletes all excluded dates set for a duplicate calendar event with the specified
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                            |
+| Name    | Type  | Mandatory| Description                            |
 | ---------- | ------ | ---- | -------------------------------- |
-| reminderId | number | Yes  | ID of the duplicate calendar event. |
+| reminderId | number | Yes  | ID of the duplicate calendar event.|
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | ---------------------------- |
 | 201      | Permission denied.           |
 | 1700003  | The reminder does not exist. |
@@ -717,21 +729,21 @@ Obtains all excluded dates set for a duplicate calendar event with the specified
 
 **Parameters**
 
-| Name    | Type  | Mandatory | Description                            |
+| Name    | Type  | Mandatory| Description                            |
 | ---------- | ------ | ---- | -------------------------------- |
-| reminderId | number | Yes  | ID of the duplicate calendar event. |
+| reminderId | number | Yes  | ID of the duplicate calendar event.|
 
 **Return value**
 
 | Type                  | Description                             |
 | ---------------------- | --------------------------------- |
-| Promise\<Array\<Date>> | Promise used to return all the excluded dates. |
+| Promise\<Array\<Date>> | Promise used to return all the excluded dates.|
 
 **Error codes**
 
 For details about the error codes, see [reminderAgentManager Error Codes](errorcode-reminderAgentManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                    |
+| ID| Error Message                    |
 | -------- | ---------------------------- |
 | 201      | Permission denied.           |
 | 1700003  | The reminder does not exist. |
@@ -758,10 +770,10 @@ Enumerates the button types.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name | Value | Description |
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| ACTION_BUTTON_TYPE_CLOSE | 0 | Button for closing the reminder. |
-| ACTION_BUTTON_TYPE_SNOOZE | 1 | Button for snoozing the reminder. |
+| ACTION_BUTTON_TYPE_CLOSE | 0 | Button for closing the reminder.|
+| ACTION_BUTTON_TYPE_SNOOZE | 1 | Button for snoozing the reminder.|
 
 ## ReminderType
 
@@ -769,11 +781,11 @@ Enumerates the reminder types.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name | Value | Description |
+| Name| Value| Description|
 | -------- | -------- | -------- |
-| REMINDER_TYPE_TIMER | 0 | Countdown reminder. |
-| REMINDER_TYPE_CALENDAR | 1 | Calendar reminder. |
-| REMINDER_TYPE_ALARM | 2 | Alarm reminder. |
+| REMINDER_TYPE_TIMER | 0 | Countdown reminder.|
+| REMINDER_TYPE_CALENDAR | 1 | Calendar reminder.|
+| REMINDER_TYPE_ALARM | 2 | Alarm reminder.|
 
 
 ## ActionButton
@@ -782,11 +794,11 @@ Defines the button on the reminder displayed.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| title | string | Yes | Text on the button. |
-| titleResource<sup>11+</sup> | string | No | Resource ID of the title. This parameter is used to read the title information after the system language is switched. |
-| type | [ActionButtonType](#actionbuttontype) | Yes | Button type. |
+| title | string | Yes| Text on the button.|
+| titleResource<sup>11+</sup> | string | No| Resource ID of the title. This parameter is used to read the title information after the system language is switched.|
+| type | [ActionButtonType](#actionbuttontype) | Yes| Button type.|
 
 
 ## WantAgent
@@ -796,12 +808,12 @@ Defines the information about the redirected-to ability.
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pkgName | string | Yes | Name of the target package. |
-| abilityName | string | Yes | Name of the target ability. |
-| parameters<sup>12+</sup> | Record\<string, Object> | No | Parameters to be transferred to the target. |
-| uri<sup>12+</sup> | string | No | URI of the target ability. |
+| pkgName | string | Yes| Name of the target package.|
+| abilityName | string | Yes| Name of the target ability.|
+| parameters<sup>12+</sup> | Record\<string, Object> | No| Parameters to be transferred to the target.|
+| uri<sup>12+</sup> | string | No| URI of the target ability.|
 
 
 ## MaxScreenWantAgent
@@ -810,10 +822,10 @@ Provides the information about the ability that is started automatically and dis
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pkgName | string | Yes | Name of the target package. (If the device is in use, only a notification banner is displayed.) |
-| abilityName | string | Yes | Name of the target ability. (If the device is in use, only a notification banner is displayed.) |
+| pkgName | string | Yes| Name of the target package. (If the device is in use, only a notification banner is displayed.)|
+| abilityName | string | Yes| Name of the target ability. (If the device is in use, only a notification banner is displayed.)|
 
 
 ## ReminderRequest
@@ -822,26 +834,26 @@ Defines the request for publishing a reminder.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| reminderType | [ReminderType](#remindertype) | Yes | Type of the reminder. |
-| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | No | Buttons displayed for the reminder notification.<br>- For common applications, a maximum of two buttons are supported.<br>- For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions. |
-| wantAgent | [WantAgent](#wantagent) | No | Information about the ability that is redirected to when the reminder is clicked. |
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No | Information about the ability that is started automatically and displayed in full-screen mode when the reminder arrives. If the device is in use, only a notification banner is displayed.<br> This API is reserved.|
-| ringDuration | number | No | Ringing duration, in seconds. The default value is **1**. |
-| snoozeTimes | number | No | Number of reminder snooze times. The default value is **0**. (It is not applicable to countdown reminders.) |
-| timeInterval | number | No | Reminder snooze interval, in seconds. The minimum value is 5 minutes. (It is not applicable to countdown reminders.) |
-| title | string | No | Reminder title. |
-| content | string | No | Reminder content. |
-| expiredContent | string | No | Content to be displayed after the reminder expires. |
-| snoozeContent | string | No | Content to be displayed when the reminder is snoozing. (It is not applicable to countdown reminders.) |
-| notificationId | number | No | Notification ID used by the reminder. You must pass in a notification ID. If there are reminders with the same notification ID, the later one will overwrite the earlier one. |
-| groupId<sup>11+</sup> | string | No | Group ID used for the reminder. If "Don't ask again" or similar information is selected for the reminder, other reminders with the same group ID are also canceled. |
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No | Type of the slot used by the reminder. |
-| tapDismissed<sup>10+</sup> | boolean | No | Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). |
-| autoDeletedTime<sup>10+</sup> | number | No | Time when the reminder is automatically cleared. For details, see [NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). |
-| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No | Type of the slot used by the reminder. (It is not applicable to countdown reminders.) |
-| customRingUri<sup>11+</sup> | string | No | URI of the custom prompt tone. |
+| reminderType | [ReminderType](#remindertype) | Yes| Type of the reminder.|
+| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | No| Buttons displayed for the reminder notification.<br>- For common applications, a maximum of two buttons are supported.<br>- For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
+| wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the reminder is clicked.|
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is started automatically and displayed in full-screen mode when the reminder arrives. If the device is in use, only a notification banner is displayed.<br> This API is reserved.|
+| ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|
+| snoozeTimes | number | No| Number of reminder snooze times. The default value is **0**. (It is not applicable to countdown reminders.)|
+| timeInterval | number | No| Reminder snooze interval, in seconds. The minimum value is 5 minutes. (It is not applicable to countdown reminders.)|
+| title | string | No| Reminder title.|
+| content | string | No| Reminder content.|
+| expiredContent | string | No| Content to be displayed after the reminder expires.|
+| snoozeContent | string | No| Content to be displayed when the reminder is snoozing. (It is not applicable to countdown reminders.)|
+| notificationId | number | No| Notification ID used by the reminder. You must pass in a notification ID. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
+| groupId<sup>11+</sup> | string | No| Group ID used for the reminder. If "Don't ask again" or similar information is selected for the reminder, other reminders with the same group ID are also canceled.|
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder.|
+| tapDismissed<sup>10+</sup> | boolean | No| Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). |
+| autoDeletedTime<sup>10+</sup> | number | No| Time when the reminder is automatically cleared. For details, see [NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest).|
+| snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder. (It is not applicable to countdown reminders.)|
+| customRingUri<sup>11+</sup> | string | No| URI of the custom prompt tone.|
 
 ## ReminderRequestCalendar
 
@@ -851,13 +863,13 @@ Defines a reminder for a calendar event.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| dateTime | [LocalDateTime](#localdatetime) | Yes | Reminder time. |
-| repeatMonths | Array\<number> | No | Month in which the reminder repeats. |
-| repeatDays | Array\<number> | No | Date on which the reminder repeats. |
-| daysOfWeek<sup>11+</sup> | Array\<number> | No | Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday. |
-| endDateTime<sup>12+</sup> | [LocalDateTime](#localdatetime) | No | End time of the reminder. |
+| dateTime | [LocalDateTime](#localdatetime) | Yes| Reminder time.|
+| repeatMonths | Array\<number> | No| Month in which the reminder repeats.|
+| repeatDays | Array\<number> | No| Date on which the reminder repeats.|
+| daysOfWeek<sup>11+</sup> | Array\<number> | No| Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday.|
+| endDateTime<sup>12+</sup> | [LocalDateTime](#localdatetime) | No| End time of the reminder.|
 
 
 ## ReminderRequestAlarm
@@ -868,11 +880,11 @@ Defines a reminder for an alarm.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| hour | number | Yes | Hour portion of the reminder time. |
-| minute | number | Yes | Minute portion of the reminder time. |
-| daysOfWeek | Array\<number> | No | Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday. |
+| hour | number | Yes| Hour portion of the reminder time.|
+| minute | number | Yes| Minute portion of the reminder time.|
+| daysOfWeek | Array\<number> | No| Days of a week when the reminder repeats. The value ranges from 1 to 7, corresponding to the data from Monday to Sunday.|
 
 
 ## ReminderRequestTimer
@@ -883,9 +895,9 @@ Defines a reminder for a scheduled timer.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| triggerTimeInSeconds | number | Yes | Number of seconds in the countdown timer. |
+| triggerTimeInSeconds | number | Yes| Number of seconds in the countdown timer.|
 
 
 ## LocalDateTime
@@ -894,14 +906,14 @@ Defines the time information for a calendar reminder.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| year | number | Yes | Year. |
-| month | number | Yes | Month. The value ranges from 1 to 12. |
-| day | number | Yes | Day. The value ranges from 1 to 31. |
-| hour | number | Yes | Hour. The value ranges from 0 to 23. |
-| minute | number | Yes | Minute. The value ranges from 0 to 59. |
-| second | number | No | Second. The value ranges from 0 to 59. |
+| year | number | Yes| Year.|
+| month | number | Yes| Month. The value ranges from 1 to 12.|
+| day | number | Yes| Day. The value ranges from 1 to 31.|
+| hour | number | Yes| Hour. The value ranges from 0 to 23.|
+| minute | number | Yes| Minute. The value ranges from 0 to 59.|
+| second | number | No| Second. The value ranges from 0 to 59.|
 
 ## ReminderInfo<sup>12+</sup>
 
@@ -909,7 +921,7 @@ Defines the reminder information.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
-| Name       | Type                               | Read Only | Optional | Description                 |
+| Name       | Type                               | Read Only| Optional| Description                 |
 | ----------- | ----------------------------------- | ---- | ---- | --------------------- |
-| reminderId  | number                              | No  | No  | ID of the reminder. |
+| reminderId  | number                              | No  | No  | ID of the reminder.|
 | reminderReq | [ReminderRequest](#reminderrequest) | No  | No  | Request used for publishing the reminder.       |

@@ -54,7 +54,7 @@ acquireAccess(): AccessStatus
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 801 | Capability not supported. |
+| 801 | The specified SystemCapability name was not found. |
 | 29300002 | The system ability work abnormally. |
 | 29300003 | The application is not enabled the data protection under lock screen. |
 | 29300004 | File access is denied. |
@@ -98,7 +98,7 @@ releaseAccess(): ReleaseStatus
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 801      | Capability not supported.                                    |
+| 801      | The specified SystemCapability name was not found.           |
 | 29300002 | The system ability work abnormally.                          |
 | 29300003 | The application is not enabled the data protection under lock screen. |
 | 29300005 | File access was not acquired. |

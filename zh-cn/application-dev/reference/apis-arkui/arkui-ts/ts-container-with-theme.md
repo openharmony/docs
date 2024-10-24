@@ -38,7 +38,19 @@ WithTheme(options: WithThemeOptions)
 | 参数名                    | 参数类型                                                    | 必填 | 参数描述                                                             |
 |------------------------|---------------------------------------------------------| ---- |------------------------------------------------------------------|
 | theme     | [CustomTheme](../js-apis-arkui-theme.md#customtheme)    | 否   | 用于自定义WithTheme作用域内组件缺省配色。 </br> 默认值：undefined，缺省样式跟随系统token默认样式。<br/> |
-| colorMode | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否   | 用于指定WithTheme作用域内组件深浅色模式。<br/>默认值：ThemeColorMode.System。<br/>    |
+| colorMode | [ThemeColorMode](#themecolormode10枚举说明) | 否   | 用于指定WithTheme作用域内组件配色深浅色模式。<br/>默认值：ThemeColorMode.System。<br/>       |
+
+## ThemeColorMode<sup>10+</sup>枚举说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 描述         |
+| ------ | ---------- |
+| SYSTEM | 跟随系统深浅色模式。 |
+| LIGHT  | 固定使用浅色模式。  |
+| DARK   | 固定使用深色模式。  |
 
 ## 示例
 

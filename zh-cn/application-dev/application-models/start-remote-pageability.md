@@ -177,7 +177,7 @@ struct PagePageAbilitySecond {
       want: wantValue
     }).then((data) => {
       promptAction.showToast({
-        message: $r('app.string.start_remote_success_toast')
+        message: 'start_remote_success_toast'
       });
       hilog.info(domain, TAG, 'onStartRemoteAbility finished, ' + JSON.stringify(data));
     }).catch((error: BusinessError) => {

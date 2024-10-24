@@ -29,11 +29,14 @@ Declares the UI input event capabilities provided by ArkUI on the native side.
 
 | Name| Description| 
 | -------- | -------- |
-| [ArkUI_UIInputEvent_Type](#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2 } | Enumerates the UI input event types. | 
-| { UI_TOUCH_EVENT_ACTION_CANCEL = 0, UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3 } | Enumerates the action codes of the input event. | 
+| [ArkUI_UIInputEvent_Type](#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2, ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 } | Enumerates the UI input event types. | 
+| {<br>OH_NATIVEXCOMPONENT_RESULT_SUCCESS = 0, OH_NATIVEXCOMPONENT_RESULT_FAILED = -1, OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER = -2, UI_TOUCH_EVENT_ACTION_CANCEL = 0,<br>UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3<br>} | Enumerates the action codes of the input event. | 
 | {<br>UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_TOOL_TYPE_FINGER = 1, UI_INPUT_EVENT_TOOL_TYPE_PEN = 2, UI_INPUT_EVENT_TOOL_TYPE_MOUSE = 3,<br>UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD = 4, UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK = 5<br>} | Enumerates the tool types of the input event. | 
 | { UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN = 0, UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE = 1, UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN = 2 } | Enumerates the source types of the input event. | 
 | [HitTestMode](#hittestmode) { HTMDEFAULT = 0, HTMBLOCK, HTMTRANSPARENT, HTMNONE } | Enumerates the hit test modes. | 
+| { UI_MOUSE_EVENT_ACTION_UNKNOWN = 0, UI_MOUSE_EVENT_ACTION_PRESS = 1, UI_MOUSE_EVENT_ACTION_RELEASE = 2, UI_MOUSE_EVENT_ACTION_MOVE = 3 } | Enumerates the action codes of the mouse event. | 
+| {<br>UI_MOUSE_EVENT_BUTTON_NONE = 0, UI_MOUSE_EVENT_BUTTON_LEFT = 1, UI_MOUSE_EVENT_BUTTON_RIGHT = 2, UI_MOUSE_EVENT_BUTTON_MIDDLE = 3,<br>UI_MOUSE_EVENT_BUTTON_BACK = 4, UI_MOUSE_EVENT_BUTTON_FORWARD = 5<br>} | Enumerates the button types of the mouse event. | 
+| [ArkUI_ModifierKeyName](#arkui_modifierkeyname) { ARKUI_MODIFIER_KEY_CTRL = 1 &lt;&lt; 0, ARKUI_MODIFIER_KEY_SHIFT = 1 &lt;&lt; 1, ARKUI_MODIFIER_KEY_ALT = 1 &lt;&lt; 2, ARKUI_MODIFIER_KEY_FN = 1 &lt;&lt; 3 } | Enumerates the modifier keys. | 
 
 
 ### Functions
@@ -85,6 +88,7 @@ Declares the UI input event capabilities provided by ArkUI on the native side.
 | int32_t [OH_ArkUI_PointerEvent_SetInterceptHitTestMode](#oh_arkui_pointerevent_setintercepthittestmode) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, [HitTestMode](#hittestmode) mode) | Sets how the component behaves during hit testing. | 
 | int32_t [OH_ArkUI_MouseEvent_GetMouseButton](#oh_arkui_mouseevent_getmousebutton) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | Obtains the button type of a mouse event. | 
 | int32_t [OH_ArkUI_MouseEvent_GetMouseAction](#oh_arkui_mouseevent_getmouseaction) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | Obtains the action type of a mouse event. | 
+| int32_t [OH_ArkUI_PointerEvent_SetStopPropagation](#oh_arkui_pointerevent_setstoppropagation) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool stopPropagation) | Sets whether to stop event propagation. | 
 
 
 ## Type Description
@@ -118,10 +122,13 @@ Enumerates the action codes of the input event.
 
 | Value| Description| 
 | -------- | -------- |
-| UI_TOUCH_EVENT_ACTION_CANCEL  | Cancellation of touch.&nbsp;&nbsp; | 
-| UI_TOUCH_EVENT_ACTION_DOWN  | Pressing of touch.&nbsp;&nbsp; | 
-| UI_TOUCH_EVENT_ACTION_MOVE  | Moving of touch.&nbsp;&nbsp; | 
-| UI_TOUCH_EVENT_ACTION_UP  | Lifting of touch.&nbsp;&nbsp; | 
+| OH_NATIVEXCOMPONENT_RESULT_SUCCESS  | Success. | 
+| OH_NATIVEXCOMPONENT_RESULT_FAILED  | Failure. | 
+| OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER  | Invalid parameter. | 
+| UI_TOUCH_EVENT_ACTION_CANCEL  | Cancellation of touch. | 
+| UI_TOUCH_EVENT_ACTION_DOWN  | Pressing of touch. | 
+| UI_TOUCH_EVENT_ACTION_MOVE  | Moving of touch. | 
+| UI_TOUCH_EVENT_ACTION_UP  | Lifting of touch. | 
 
 
 ### anonymous enum
@@ -137,12 +144,12 @@ Enumerates the tool types of the input event.
 
 | Value| Description| 
 | -------- | -------- |
-| UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN  | Unknown tool type.&nbsp;&nbsp; | 
-| UI_INPUT_EVENT_TOOL_TYPE_FINGER  | Finger.&nbsp;&nbsp; | 
-| UI_INPUT_EVENT_TOOL_TYPE_PEN  | Stylus.&nbsp;&nbsp; | 
-| UI_INPUT_EVENT_TOOL_TYPE_MOUSE  | Mouse.&nbsp;&nbsp; | 
-| UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD  | Touchpad.&nbsp;&nbsp; | 
-| UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK  | Joystick.&nbsp;&nbsp; | 
+| UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN  | Unknown tool type. | 
+| UI_INPUT_EVENT_TOOL_TYPE_FINGER  | Finger. | 
+| UI_INPUT_EVENT_TOOL_TYPE_PEN  | Stylus. | 
+| UI_INPUT_EVENT_TOOL_TYPE_MOUSE  | Mouse. | 
+| UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD  | Touchpad. | 
+| UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK  | Joystick. | 
 
 
 ### anonymous enum
@@ -158,9 +165,68 @@ Enumerates the source types of the input event.
 
 | Value| Description| 
 | -------- | -------- |
-| UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN  | Unknown source type.&nbsp;&nbsp; | 
-| UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE  | Mouse.&nbsp;&nbsp; | 
-| UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN  | Touchscreen.&nbsp;&nbsp; | 
+| UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN  | Unknown source type. | 
+| UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE  | Mouse. | 
+| UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN  | Touchscreen. | 
+
+
+### anonymous enum
+
+```
+anonymous enum
+```
+**Description**
+
+Enumerates the action codes of the mouse event.
+
+**Since**: 12
+
+| Value| Description| 
+| -------- | -------- |
+| UI_MOUSE_EVENT_ACTION_UNKNOWN  | Unknown action. | 
+| UI_MOUSE_EVENT_ACTION_PRESS  | The mouse button is pressed. | 
+| UI_MOUSE_EVENT_ACTION_RELEASE  | The mouse button is released. | 
+| UI_MOUSE_EVENT_ACTION_MOVE  | The mouse cursor moves. | 
+
+
+### anonymous enum
+
+```
+anonymous enum
+```
+**Description**
+
+Enumerates the button types of the mouse event.
+
+**Since**: 12
+
+| Value| Description| 
+| -------- | -------- |
+| UI_MOUSE_EVENT_BUTTON_NONE  | No button. | 
+| UI_MOUSE_EVENT_BUTTON_LEFT  | Left button on the mouse. | 
+| UI_MOUSE_EVENT_BUTTON_RIGHT  | Right button on the mouse. | 
+| UI_MOUSE_EVENT_BUTTON_MIDDLE  | Middle button on the mouse. | 
+| UI_MOUSE_EVENT_BUTTON_BACK  | Back button on the left of the mouse. | 
+| UI_MOUSE_EVENT_BUTTON_FORWARD  | Forward button on the left of the mouse. | 
+
+
+### ArkUI_ModifierKeyName
+
+```
+enum ArkUI_ModifierKeyName
+```
+**Description**
+
+Enumerates the modifier keys.
+
+**Since**: 12
+
+| Value| Description| 
+| -------- | -------- |
+| ARKUI_MODIFIER_KEY_CTRL  | Ctrl.  | 
+| ARKUI_MODIFIER_KEY_SHIFT  | Shift.  | 
+| ARKUI_MODIFIER_KEY_ALT  | Alt.  | 
+| ARKUI_MODIFIER_KEY_FN  | Fn.  | 
 
 
 ### ArkUI_UIInputEvent_Type
@@ -188,10 +254,10 @@ Enumerates the hit test modes.
 
 | Value| Description| 
 | -------- | -------- |
-| HTMDEFAULT  | Both the node and its child node respond to the hit test of a touch event, but its sibling node is blocked from the hit test.&nbsp;&nbsp; | 
-| HTMBLOCK  | The node responds to the hit test of a touch event, but its child node and sibling node are blocked from the hit test.&nbsp;&nbsp; | 
-| HTMTRANSPARENT  | Both the node and its child node respond to the hit test of a touch event, and its sibling node is also considered during the hit test.&nbsp;&nbsp; | 
-| HTMNONE  | The node does not respond to the hit test of a touch event, but its child node and sibling node are considered during the hit test.&nbsp;&nbsp; | 
+| HTMDEFAULT  | Both the node and its child node respond to the hit test of a touch event, but its sibling node is blocked from the hit test. | 
+| HTMBLOCK  | The node responds to the hit test of a touch event, but its child node and sibling node are blocked from the hit test. | 
+| HTMTRANSPARENT  | Both the node and its child node respond to the hit test of a touch event, and its sibling node is also considered during the hit test. | 
+| HTMNONE  | The node does not respond to the hit test of a touch event, but its child node and sibling node are considered during the hit test. | 
 
 
 ## Function Description
@@ -304,7 +370,7 @@ Obtains the button type of a mouse event.
 
 **Returns**
 
-Returns the mouse button type. The value **1** indicates the left button, **2** indicates the right button, **3** indicates the middle button, **4** indicates the back button, and **5** indicates the forward button.
+* @return Returns the mouse button type. The value **1** indicates the left button, **2** indicates the right button, **3** indicates the middle button, **4** indicates the back button, and **5** indicates the forward button.
 
 
 ### OH_ArkUI_PointerEvent_GetDisplayX()
@@ -350,7 +416,6 @@ Obtains the X-coordinate of a specific touch point relative to the upper left co
 **Returns**
 
 Returns the X-coordinate relative to the upper left corner of the current screen; returns **0.0f** if any parameter error occurs.
-
 
 ### OH_ArkUI_PointerEvent_GetDisplayY()
 
@@ -1116,6 +1181,29 @@ Sets how the component behaves during hit testing.
 Returns the status code of the execution.
 
 
+### OH_ArkUI_PointerEvent_SetStopPropagation()
+
+```
+int32_t OH_ArkUI_PointerEvent_SetStopPropagation (const ArkUI_UIInputEvent * event, bool stopPropagation )
+```
+**Description**
+
+Sets whether to stop event propagation.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| event | Pointer to the UI input event. | 
+| stopPropagation | Whether to stop event propagation. | 
+
+**Returns**
+
+Returns the status code of the execution. Returns **0** if the operation is successful; returns **401** if the operation fails, possibly because a parameter error, for example, null pointer for the **event** parameter, occurs.
+
+
 ### OH_ArkUI_UIInputEvent_GetAction()
 
 ```
@@ -1224,4 +1312,3 @@ Obtains the type of a UI input event.
 **Returns**
 
 Returns the type of the UI input event; returns **0** if any parameter error occurs.
-<!--no_check-->

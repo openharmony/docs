@@ -1,6 +1,6 @@
-# Backup and Restoration Triggered by System Applications
+# Backup and Restore Triggered by System Applications
 
-The backup and restoration framework provides a complete data backup and restoration solution for application data, user data, and system services on devices. You can follow the procedure below to enable an application to trigger data backup or restoration:
+The backup and restore framework provides a solution for backing up and restoring data of applications and services on a device. You can follow the procedure below to enable an application to trigger data backup or restoration:
 
 - [Obtain capability files](#obtaining-capability-files): Obtain capability files of all applications of the user in the system. The capability files are indispensable for data backup and restoration.
 
@@ -28,7 +28,7 @@ Obtain capability files of all applications of the current user. The capability 
 
 The capability file of an application contains the device type, device version, and basic application information, such as the application name, application size, application version, whether to allow backup and restoration, and whether to install the application during restoration.
 
-Use **backup.getLocalCapabilities()** to obtain capability files.
+Call [backup.getLocalCapabilities()](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#backupgetlocalcapabilities) to obtain the capability file.
 
 ```ts
 import backup from '@ohos.file.backup';
@@ -150,12 +150,13 @@ You can save the file to a local directory as required.
       onBackupServiceDied: () => {
         console.info('onBackupServiceDied');
       },
-      onResultReport: (err: BusinessError, result: string) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('onResultReport success, result: ' + result);
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport  bundleName: ' + bundleName);
+        console.info('onResultReport  result: ' + result);
+      },
+      onProcess:(bundleName: string, process: string) => { 
+        console.info('onPross bundleName: ' + JSON.stringify(bundleName));
+        console.info('onPross result: ' + JSON.stringify(process));
       }
     }
     let sessionBackup = new backup.SessionBackup(generalCallbacks);
@@ -244,12 +245,13 @@ When all the data of the application is ready, the service starts to restore the
       onBackupServiceDied: () => {
         console.info('service died');
       },
-      onResultReport: (err: BusinessError, result: string) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('onResultReport success, result: ' + result);
+      onResultReport: (bundleName: string, result: string) => {
+        console.info('onResultReport  bundleName: ' + bundleName);
+        console.info('onResultReport  result: ' + result);
+      },
+      onProcess:(bundleName: string, process: string) => { 
+        console.info('onPross bundleName: ' + JSON.stringify(bundleName));
+        console.info('onPross result: ' + JSON.stringify(process));
       }
     }
     let sessionRestore = new backup.SessionRestore(generalCallbacks);

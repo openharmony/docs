@@ -6,7 +6,8 @@
 1. 新建代理配置文件。
      
    ```
-   mkdir ~/.pipvim ~/.pip/pip.conf
+   mkdir ~/.pip
+   vim ~/.pip/pip.conf
    ```
 
 2. 在文件中写入如下代理信息并保存退出。

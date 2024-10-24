@@ -1,6 +1,6 @@
 # User File Overview
 
-User files are the private images, video and audio clips, and documents of the user who has logged in to the device.
+User files are the private [images, videos](../media/medialibrary/photoAccessHelper-overview.md), audio clips, and documents of the user who has logged in to the device.
 
 - User files are stored in a directory, whose owner is the user who has logged in to the device.
 

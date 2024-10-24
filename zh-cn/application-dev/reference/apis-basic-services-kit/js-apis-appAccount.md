@@ -4758,7 +4758,6 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | -------------------- | -------------- | ----- | ---------------- |
 | authType             | string         | 是    | 令牌的鉴权类型。   |
 | token                | string         | 是    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的账号信息，默认为空。|
 
 ## AuthenticatorInfo<sup>8+</sup>
 
@@ -4952,7 +4951,7 @@ onRequestRedirected: (request: Want) =&gt; void
 
 | 参数名     | 类型   | 必填   | 说明         |
 | ------- | ---- | ---- | ---------- |
-| request | Want | 是    | 用于跳转的请求信息。 |
+| request | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 用于跳转的请求信息。 |
 
 **示例：**
 
@@ -5064,7 +5063,7 @@ onRequestRedirected: (request: Want) =&gt; void
 
 | 参数名     | 类型   | 必填   | 说明         |
 | ------- | ---- | ---- | ---------- |
-| request | Want | 是    | 用于跳转的请求信息。 |
+| request | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 用于跳转的请求信息。 |
 
 **示例：**
 

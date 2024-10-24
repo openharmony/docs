@@ -73,7 +73,7 @@ EXTERN_C_END
          .height('100%')
       }
    }
-   ```
+    ```
 
 ### Calling the Native APIs
 
@@ -85,6 +85,8 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
 
    ```c++
       // Include the image framework, raw file, raw file management, and log print header files.
+      #include <cstdlib>
+      #include <cstring>
       #include <multimedia/image_framework/image_source_mdk.h>
       #include <multimedia/image_framework/image_pixel_map_mdk.h>
       #include <rawfile/raw_file.h>
@@ -173,6 +175,8 @@ The image framework supports incremental decoding. The method is as follows:
 
    ```c++
       // Include the image framework, raw file, raw file management, and log print header files.
+      #include <cstdlib>
+      #include <cstring>
       #include <multimedia/image_framework/image_source_mdk.h>
       #include <multimedia/image_framework/image_pixel_map_mdk.h>
       #include <rawfile/raw_file.h>

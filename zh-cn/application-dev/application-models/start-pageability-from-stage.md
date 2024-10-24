@@ -58,7 +58,7 @@ struct Page_StartFAModel {
 
 startAbilityForResult和startAbility的区别是当PageAbility销毁的时候会返回执行结果。
 
-UIAbility通过startAbilityForResult启动PageABility和UIAbility通过startAbilityForResult启动UIAbility的代码一样，没有任何区别。
+UIAbility通过startAbilityForResult启动PageAbility与UIAbility的代码一样，没有任何区别。
 
 
 ```ts

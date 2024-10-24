@@ -25,7 +25,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 
    (3) Create a **kvStore** instance.
 
-   
+     
    ```ts
    import { distributedKVStore } from '@kit.ArkData';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -47,7 +47,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
          backup: false,
          autoSync: false,
          kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-         securityLevel: distributedKVStore.SecurityLevel.S1
+         securityLevel: distributedKVStore.SecurityLevel.S3
        };
        kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
          if (err) {
@@ -74,7 +74,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    ```
 
 2. Use **put()** to insert data to the KV store.
-   
+     
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
    const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
@@ -93,7 +93,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    ```
 
 3. Use **backup()** to back up the KV store.
-   
+     
    ```ts
    let backupFile = 'BK001';
    try {
@@ -111,7 +111,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    ```
 
 4. Use **delete()** to delete data to simulate unexpected deletion or data tampering.
-   
+     
    ```ts
    try {
      kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
@@ -128,7 +128,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    ```
 
 5. Use **restore()** to restore the KV store.
-   
+     
    ```ts
    let backupFile = 'BK001';
    try {
@@ -146,7 +146,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    ```
 
 6. Use **deleteBackup()** to delete the backup file to release storage space.
-   
+     
    ```ts
    let files = ['BK001'];
    try {
@@ -167,7 +167,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 You can use **backup()** to back up an RDB store, and use **restore()** to restore an RDB store. For details about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
 1. Use **getRdbStore()** to create an RDB store.
-   
+     
    ```ts
    import { relationalStore } from '@kit.ArkData';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -178,7 +178,7 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
 
    const STORE_CONFIG: relationalStore.StoreConfig = {
      name: 'RdbTest.db',
-     securityLevel: relationalStore.SecurityLevel.S1
+     securityLevel: relationalStore.SecurityLevel.S3
    };
    relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
      store = rdbStore;
@@ -193,7 +193,7 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
    ```
 
 2. Use **insert()** to insert data to the RDB store.
-   
+     
    ```ts
    import { ValuesBucket } from '@kit.ArkData';
 
@@ -234,7 +234,7 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
    ```
 
 3. Use **backup()** to back up the RDB store.
-   
+     
    ```ts
    if(store != undefined) {
      (store as relationalStore.RdbStore).backup('dbBackup.db', (err) => {
@@ -248,7 +248,7 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
    ```
 
 4. Use **delete()** to delete data to simulate unexpected deletion or data tampering.
-   
+     
    ```ts
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Lisa');
@@ -262,7 +262,7 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
    ```
 
 5. Use **restore()** to restore the RDB store.
-   
+     
    ```ts
    if(store != undefined) {
      (store as relationalStore.RdbStore).restore('dbBackup.db', (err) => {

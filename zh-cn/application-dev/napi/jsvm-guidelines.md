@@ -10,6 +10,25 @@
 
 1. JSVM_Value必须在HandleScope打开后才可创建(Node-API无该限制)，否则会造成应用崩溃；
 2. JSVM_Value不能在其对应的HandleScope关闭后使用，如需持久化持有，需调用`OH_JSVM_CreateReference`转化为`JSVM_Ref`；
+3. Scope(包括JSVM_VMScope、JSVM_EnvScope、JSVM_HandleScope)需逆序关闭，最先打开的Scope需最后关闭，否则可能造成应用崩溃；
+
+**Scope关闭错误示例**
+```
+// 未逆序关闭JSVM_VMScope，可能造成应用崩溃
+JSVM_VM vm;
+JSVM_CreateVMOptions options;
+OH_JSVM_CreateVM(&options, &vm);
+
+JSVM_VMScope vmScope1, vmScope2;
+OH_JSVM_OpenVMScope(vm, &vmScope1);
+OH_JSVM_OpenVMScope(vm, &vmScope2);
+
+// 正确顺序为先关闭vmScope2，再关闭vmScope1
+OH_JSVM_CloseVMScope(vm, vmScope1);
+OH_JSVM_CloseVMScope(vm, vmScope2);
+OH_JSVM_DestroyVM(vm);
+```
+
 
 **C++使用封装**
 

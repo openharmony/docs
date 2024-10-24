@@ -5,13 +5,16 @@ HUKS provides attestation for the public keys of asymmetric key pairs.
 
 
 HUKS issues a certificate for the public key of an asymmetric key pair stored in HUKS using the public key infrastructure (PKI) certificate chain technology. The certificate can prove the validity of the public key. The service can use the root CA certificate provided by the system to verify the key certificates issued by HUKS level by level to ensure that the public key and private key in the certificates are from a trusted hardware device and stored in HUKS. In addition, the output key certificate contains the key owner information in the following format:
-| Key Owner | Format | Description | 
+| Key Owner| Format| Description|
 | -------- | -------- | -------- |
-| Application| {appId:"xxx", bundleName:"xxx"} | **bundleName** indicates the bundle name of the application. | 
-| System service| {processName:"xxx", APL:"system_basic \| system_core"} | The APL of the application must be **system_basic** or **system_core**. |
+| Application| {appId:"xxx", bundleName:"xxx"} | **bundleName** indicates the bundle name of the application.|
+| System service| {processName:"xxx", APL:"system_basic \| system_core"} | The APL of the application must be **system_basic** or **system_core**.|
 
->**NOTE**<br>
-Key attestation is not supported if the caller is a system service with APL of **normal**. In this case, **processName** and **APL** are left empty.
+> **NOTE**
+>
+> - Key attestation is not supported if the caller is a system service with APL of **normal**. In this case, **processName** and **APL** are left empty.
+> - Key attestation is not supported in Emulator scenarios.
+> - The mini-system devices do not support key attestation.
 
 
 The key attestation process is as follows:
@@ -42,19 +45,19 @@ The key management service specifications include mandatory specifications and o
 **Anonymous key attestation**
 <!--DelEnd-->
 
-| Algorithm | Description | API Level | <!--DelCol4-->Mandatory |
+| Algorithm| Description| API Version| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
-| RSA | The padding mode can be PSS or PKCS1_V1_5. | 11+ | Yes |
-| ECC | - | 11+ | Yes |
-| SM2 | - | 11+ | Yes |
+| RSA | The padding mode can be PSS or PKCS1_V1_5.| 11+ | Yes|
+| ECC | - | 11+ | Yes|
+| SM2 | - | 11+ | Yes|
 
 <!--Del-->
 **Non-anonymous key attestation**
 
-| Algorithm | Description | API Level | Mandatory |
+| Algorithm| Description| API Version| Mandatory|
 | -------- | -------- | -------- | -------- |
-| RSA | The padding mode can be PSS or PKCS1_V1_5. | 8+ | Yes |
-| ECC | - | 8+ | Yes |
-| X25519 | - | 8+ | Yes |
-| SM2 | - | 8+ | Yes |
+| RSA | The padding mode can be PSS or PKCS1_V1_5.| 8+ | Yes|
+| ECC | - | 8+ | Yes|
+| X25519 | - | 8+ | Yes|
+| SM2 | - | 8+ | Yes|
 <!--DelEnd-->

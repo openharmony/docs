@@ -6,11 +6,11 @@
 
 ## 下载NDK开发包
 <!--RP1-->
-1. 推荐使用OpenHarmony正式发布的SDK包。下载链接请从OpenHarmony正式发布版本的 **版本说明** 中获取
+1. 推荐使用OpenHarmony正式发布的SDK包。下载链接请从OpenHarmony正式发布版本的 **版本说明** 中获取。
 
 在Release Notes 对应正式版本的“从镜像站点获取” 章节下载。 
 
-根据系统的操作类型，下载对应的 SDK 包
+根据系统的操作类型，下载对应的 SDK 包。
 
 
 2. 从DevEco Studio的OpenHarmony SDK Manager中下载。
@@ -18,13 +18,13 @@
 
 ## 解压NDK开发包
 
-下载完成后，将压缩包放入创建好的文件夹下解压，解压完成效果如下图所示
+下载完成后，将压缩包放入创建好的文件夹下解压。
 
 windows/linux 使用 SDK 包解压完成效果如下图所示：
 
 ![zh-cn_image_0000001726080989](figures/zh-cn_image_0000001726080989.png)
 
-mac系统下使用 SDK 包解压
+mac使用 SDK 包解压完成效果如下图所示：
 
 ![zh-cn_image_20-24-01-16-14-35](figures/zh-cn_image_20-24-01-16-14-35.png)
 
@@ -33,39 +33,36 @@ mac系统下使用 SDK 包解压
 1. 将NDK自带的CMake编译工具添加到环境变量中。
 + 配置 linux 系统下环境变量
 
+  ```
+  # 打开.bashrc文件
+  vim ~/.bashrc
+  # 在文件最后添加cmake路径，该路径是自己的放置文件的路径，之后保存退出
+  export PATH=${实际SDK路径}/native/build-tools/cmake/bin:$PATH
+  # 在命令行执行source ~/.bashrc使环境变量生效
+  source ~/.bashrc
+  ```
 
-        #打开.bashrc文件
-        vim ~/.bashrc
-        #在文件最后添加CMake路径，具体路径用实际放置SDK路径代替
-        export PATH=~/ohos-sdk/ohos-sdk/linux/native/build-tools/cmake/bin:$PATH
-        #在命令行执行source ~/.bashrc使环境变量生效
-        source ~/.bashrc
-            
 + 配置 mac 系统下环境变量
 
-     
-        # 在当前用户目录下
-        # 打开 .bash_profile 文件
-        # 文件如果不存在，创建即可
-        vim ~/.bash_profile
-        # 在文件最后添加 cmake 路径，该路径是自己的放置文件的路径，之后保存退出
-        export PATH=~/Ndk/mac-sdk-full/sdk/packages/ohos-sdk/darwin/native/build-tools/cmake/bin:$PATH
-        # 在命令行执行 source ~/.bash_profile 使环境变量生效
-        source ~/.bash_profile
-            
+  ```
+  #在当前用户目录下，打开 .bash_profile 文件，文件如果不存在，创建即可
+  vim ~/.bash_profile
+  #在文件最后添加 cmake 路径，该路径是自己的放置文件的路径，之后保存退出
+  export PATH=${实际SDK路径}/native/build-tools/cmake/bin:$PATH
+  #在命令行执行 source ~/.bash_profile 使环境变量生效
+  source ~/.bash_profile
+  ```
+
 + 配置 windows 下的环境变量
 
   右键点击我的电脑，在下拉框中选择我的电脑，点击高级系统设置，点击环境变量，点击Path后点编辑，点击新建，将路径添加进去，之后保存退出，打开cmd（若下一步不能够实现，请重启电脑尝试）。
   
   ![zh-cn_image_20-24-01-16-14-38](figures/zh-cn_image_20-24-01-16-14-38.png)
   
-  验证是否添加成功
-
-  打开命令框，输入F:\windows\native\build-tools\cmake\bin\cmake.exe -version，该路径为cmake的路径，依据自己实际安装路径
+  打开命令框，输入{cmake实际安装路径}\cmake.exe -version，命令行正确回显cmake的版本号，说明环境变量配置完成。
 
   ![zh-cn_image_20-24-01-16-14-41](figures/zh-cn_image_20-24-01-16-14-41.png)
-  
-  这样就添加成功了
+
 
 2. 查看CMake默认路径。
    + linux 和 mac 系统环境下
@@ -195,39 +192,35 @@ int sum(int a, int b)
     >cmake --build .
    ```
 
-   命令中，OHOS_ARCH与OHOS_PLATFORM两个变量最终会生成clang++的--target命令参数，
+   命令中，OHOS_ARCH与OHOS_PLATFORM两个变量最终会生成clang++的--target命令参数，在此例子中就是--target=arm-linux-ohos --march=armv7a两个参数。
    
-   在此例子中就是--target=arm-linux-ohos --march=armv7a两个参数；
+   CMAKE_TOOLCHAIN_FILE指定了toolchain文件，在此文件中默认给clang++设置了--sysroot={ndk_sysroot目录}，告诉编译器查找系统头文件的根目录。
 
-   CMAKE_TOOLCHAIN_FILE指定了toolchain文件，
-
-   在此文件中默认给clang++设置了--sysroot={ndk_sysroot目录}，告诉编译器查找系统头文件的根目录。
 #### windows系统环境下
 
 在windows下使用cmake进行编译，与linux下不同的是，使用cmake要加入参数 -G 选择使用的生成器，直接回车会列出下面的生成器。
 
 ![zh-cn_image_20-24-01-16-14-56](figures/zh-cn_image_20-24-01-16-14-56.png)
 
-这里使用的是cmake .. -G "Ninja" 引号里面跟的参数就是上图查看的环境所支持的生成器，这里ndk中自带的生成器是Ninja
+这里使用的是cmake .. -G "Ninja" 引号里面跟的参数就是上图查看的环境所支持的生成器，这里ndk中自带的生成器是Ninja。
 
 ![zh-cn_image_20-24-01-16-14-57](figures/zh-cn_image_20-24-01-16-14-57.png)
 
-Step 1. 同样在工程目录下创建 build 文件夹并执行以下指令
+Step 1. 同样在工程目录下创建 build 文件夹并执行以下指令：
 ```
  F:\windows\native\build-tools\cmake\bin\cmake.exe -G "Ninja" -D OHOS_STL=c++_shared -D OHOS_ARCH=armeabi-v7a -D OHOS_PLATFORM=OHOS -D CMAKE_TOOLCHAIN_FILE=F:\windows\native\build\cmake\ohos.toolchain.cmake ..
 ```
-注：如需debug调试，增加参数 -D CMAKE_BUILD_TYPE=normal
-cmake路径和编译工具链ohos.toolchain.cmake路径都是下载好的ndk路径
-执行结果如下图
+注：如需debug调试，增加参数 -D CMAKE_BUILD_TYPE=normal；cmake路径和编译工具链ohos.toolchain.cmake路径都是下载好的ndk路径。
+执行结果如下图：
 
 ![zh-cn_image_20-24-01-16-14-58](figures/zh-cn_image_20-24-01-16-14-58.png)
 
-这里生成的build.ninja文件就是我们需要的
+这里生成的build.ninja文件就是我们需要的 。
 
 Step 2. 让我们用ninja指令来编译生成目标文件，其位置如下图所示：
 
 ![zh-cn_image_20-24-01-16-14-59](figures/zh-cn_image_20-24-01-16-14-59.png)
 
-ninja -f build.ninja 或者用 cmake --build .   执行结果如下
+ninja -f build.ninja 或者用 cmake --build .   执行结果如下：
 
 ![zh-cn_image_20-24-01-16-14-60](figures/zh-cn_image_20-24-01-16-14-60.png)

@@ -4,7 +4,7 @@ Ensure network connection during the operation.
 
 ## How to Develop
 
-1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes.
+1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
 
 2. Initializes a parameter set.
 

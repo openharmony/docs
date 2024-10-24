@@ -71,7 +71,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
+| 16000004 | Failed to start the invisible ability. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -165,7 +165,7 @@ class UIEntryAbility extends UIServiceExtensionAbility {
 startAbilityByType(type: string, wantParam: Record&lt;string, Object&gt;,
     abilityStartCallback: AbilityStartCallback): Promise&lt;void&gt;
 
-按目标ability的类型启动[UIAbility](js-apis-app-ability-uiAbility.md)或[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。
+按目标ability的类型启动[UIAbility](js-apis-app-ability-uiAbility.md)或[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。仅支持处于前台的应用调用。
 
 
 > **说明：**
@@ -291,7 +291,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001  | The specified ability does not exist.         |
 | 16000002   | Incorrect ability type.         |
-| 16000004   | Can not start invisible component.         |
+| 16000004   | Failed to start the invisible ability.         |
 | 16000005   | The specified process does not have the permission.         |
 | 16000006   | Cross-user operations are not allowed.         |
 | 16000008   | The crowdtesting application expires.        |
@@ -378,7 +378,7 @@ struct Page_UIServiceExtensionAbility {
 
 ## UIServiceExtensionContext.disconnectServiceExtensionAbility<sup>13+<sup>
 
-disconnectServiceExtensionAbility(connectionId: number): Promise<void>
+disconnectServiceExtensionAbility(connectionId: number): Promise&lt;void&gt;
 
 断开与[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的连接, 与[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability13)功能相反。
 

@@ -78,18 +78,18 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 3. 更新上一步骤插入的统一数据对象。
 
    ```ts
-   let plainText = new unifiedDataChannel.PlainText();
-   plainText.textContent = 'How are you!';
-   let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
+   let plainTextUpdate = new unifiedDataChannel.PlainText();
+   plainTextUpdate.textContent = 'How are you!';
+   let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(plainTextUpdate);
    
    // 指定要更新的统一数据对象的URI
-   let options: unifiedDataChannel.Options = {
+   let optionsUpdate: unifiedDataChannel.Options = {
      // 此处的key值仅为示例，不可直接使用，其值与insertData接口回调函数中key保持一致
      key: 'udmf://DataHub/com.ohos.test/0123456789'
    };
    
    try {
-     unifiedDataChannel.updateData(options, unifiedData, (err) => {
+     unifiedDataChannel.updateData(optionsUpdate, unifiedDataUpdate, (err) => {
        if (err === undefined) {
          console.info('Succeeded in updating data.');
        } else {
@@ -105,12 +105,12 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 
    ```ts
    // 指定要删除数据的数据通路枚举类型
-   let options: unifiedDataChannel.Options = {
+   let optionsDelete: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
    };
 
    try {
-     unifiedDataChannel.deleteData(options, (err, data) => {
+     unifiedDataChannel.deleteData(optionsDelete, (err, data) => {
        if (err === undefined) {
          console.info(`Succeeded in deleting data. size = ${data.length}`);
          for (let i = 0; i < data.length; i++) {

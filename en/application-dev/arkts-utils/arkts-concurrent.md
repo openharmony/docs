@@ -5,11 +5,11 @@ To pass function verification, the concurrent functions executed in a [TaskPool]
 
 > **NOTE**
 >
-> Since API version 9, this decorator is supported in ArkTS widgets.
+> Since API version 9, the @Concurrent decorator can be used to declare and verify concurrent functions.
 
 
 ## Decorator Description
-| \@Concurrent Decorator | Description                                                                                      |
+| \@Concurrent Decorator| Description                                                                                      |
 | --------------------- | ------------------------------------------------------------------------------------------ |
 | Decorator parameters            | None.                                                                                      |
 | Application scenarios              | This decorator can be used only in projects of the stage model. It can be used only in .ets files.                                       |

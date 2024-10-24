@@ -495,6 +495,46 @@ import { ethernet } from '@kit.NetworkKit';
 ethernet.off('interfaceStateChange');
 ```
 
+## ethernet.getMacAddress<sup>13+</sup>
+
+getMacAddress(): Promise\<Array\<MacAddressInfo>>
+
+Obtains the names and MAC addresses of all Ethernet NICs. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_ETHERNET_LOCAL_MAC
+
+**System capability**: SystemCapability.Communication.NetManager.Ethernet
+
+**Return value**
+
+| Type                             | Description                              |
+| --------------------------------- | ---------------------------------- |
+| Promise\<Array[\<MacAddressInfo>](#macaddressinfo13)>   | Promise used to return the result.       |
+
+**Error codes**
+
+| ID| Error Message                                |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
+| 2200002 | Failed to connect to the service.       |
+| 2201005 | Device information does not exist.  |
+
+**Example**
+
+```ts
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+ethernet.getMacAddress().then((data: Array<ethernet.MacAddressInfo>) => {
+  console.info("getMacAddress promise data = " + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+  console.error("getMacAddress promise error = " + JSON.stringify(error));
+});
+```
+
 ## InterfaceConfiguration<sup>9+</sup>
 
 Defines the network configuration for the Ethernet connection.
@@ -540,3 +580,16 @@ Defines the configuration mode of the Ethernet connection.
 | DHCP                  | 1    | Dynamic network configuration for an Ethernet connection.|
 | LAN_STATIC<sup>11+</sup>| 2    | Static network configuration for a LAN connection.   |
 | LAN_DHCP<sup>11+</sup>  | 3    | Dynamic network configuration for a LAN connection.   |
+
+## MacAddressInfo<sup>13+</sup>
+
+Defines the name and MAC address of an Ethernet NIC.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Ethernet
+
+| Name        | Type                   | Mandatory| Description                                                |
+| ------------ | ----------------------- | --- | ---------------------------------------------------- |
+| iface        | string                  |  Yes| Name of the Ethernet NIC.                                       |
+| macAddr       | string                |  Yes| MAC address of the Ethernet NIC.|

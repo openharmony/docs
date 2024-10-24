@@ -12,7 +12,7 @@ ConfigurationConstant模块提供配置信息枚举值定义的能力。
 import { ConfigurationConstant } from '@kit.AbilityKit';
 ```
 
-## ConfigurationConstant.ColorMode
+## ColorMode
 
 表示颜色模式的枚举。
 
@@ -27,7 +27,7 @@ import { ConfigurationConstant } from '@kit.AbilityKit';
 | COLOR_MODE_LIGHT | 1 | 浅色模式。 | 
 
 
-## ConfigurationConstant.Direction
+## Direction
 
 表示屏幕方向的枚举。
 
@@ -42,7 +42,7 @@ import { ConfigurationConstant } from '@kit.AbilityKit';
 | DIRECTION_HORIZONTAL | 1 | 水平方向。 | 
 
 
-## ConfigurationConstant.ScreenDensity
+## ScreenDensity
 
 表示屏幕像素的枚举。
 

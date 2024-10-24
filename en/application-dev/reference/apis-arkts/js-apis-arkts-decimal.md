@@ -254,7 +254,7 @@ console.info("test Decimal trunc:" + a.toString()); // '2'
 
 ### clamp
 
-clamp(n: Value, min: Value, max: Value): Decimal
+clamp(min: Value, max: Value): Decimal
 
 Returns a new **Decimal** object representing the value clamped to the inclusive range of **min** and **max**.
 
@@ -266,7 +266,6 @@ Returns a new **Decimal** object representing the value clamped to the inclusive
 
 | Name| Type           | Mandatory| Description                    |
 | ------ | --------------- | ---- | ------------------------ |
-| n      | [Value](#value) | Yes  | Value to be clamped.          |
 | min    | [Value](#value) | Yes  | Lower bound of the range. This value is inclusive.|
 | max    | [Value](#value) | Yes  | Upper bound of the range. This value is inclusive.|
 
@@ -288,7 +287,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let a: Decimal = Decimal.clamp(10.1, 0, 10);
+let a: Decimal = new Decimal(10.1).clamp(0, 10);
 console.info("test Decimal clamp:" + a.toString()); // '10'
 ```
 
@@ -1381,8 +1380,8 @@ Returns whether this decimal is zero or minus zero.
 
 **Return value**
 
-| Type   | Description                                   |
-| ------- | --------------------------------------- |
+| Type   | Description                                         |
+| ------- | --------------------------------------------- |
 | boolean | **true**: The decimal is zero or minus zero.<br>**false**: The decimal is not zero.|
 
 **Example**
@@ -1821,7 +1820,7 @@ You can use [DecimalConfig.rounding](#decimalconfig) to set the rounding mode.
 
 | Name       | Type  | Mandatory| Description                                                    |
 | ------------- | ------ | ---- | -------------------------------------------------------- |
-| decimalPlaces | number | Yes  | Number of decimal places to reserve. The value is an integer in the range of [1, 1e9].|
+| decimalPlaces | number | Yes  | Number of decimal places to reserve. The value is an integer in the range of [0, 1e9].|
 
 **Return value**
 
@@ -1859,7 +1858,7 @@ Truncates this decimal to a given number of decimal places, with the rounding mo
 
 | Name       | Type                 | Mandatory| Description                                                     |
 | ------------- | --------------------- | ---- | --------------------------------------------------------- |
-| decimalPlaces | number                | Yes  | Number of decimal places to reserve. The value is an integer in the range of [1, 1e9]. |
+| decimalPlaces | number                | Yes  | Number of decimal places to reserve. The value is an integer in the range of [0, 1e9]. |
 | rounding      | [Rounding](#rounding) | Yes  | Rounding mode. For details, see [Rounding](#rounding).|
 
 **Return value**
@@ -1925,7 +1924,7 @@ You can use [DecimalConfig.rounding](#decimalconfig) to set the rounding mode.
 
 | Name       | Type  | Mandatory| Description                                                    |
 | ------------- | ------ | ---- | -------------------------------------------------------- |
-| decimalPlaces | number | Yes  | Number of decimal places to reserve. The value is an integer in the range of [1, 1e9].|
+| decimalPlaces | number | Yes  | Number of decimal places to reserve. The value is an integer in the range of [0, 1e9].|
 
 **Return value**
 
@@ -1965,7 +1964,7 @@ Converts this decimal to a string expressed in exponential notation, with the nu
 
 | Name       | Type                 | Mandatory| Description                                                     |
 | ------------- | --------------------- | ---- | --------------------------------------------------------- |
-| decimalPlaces | number                | Yes  | Number of decimal places to reserve. The value is an integer in the range of [1, 1e9]. |
+| decimalPlaces | number                | Yes  | Number of decimal places to reserve. The value is an integer in the range of [0, 1e9]. |
 | rounding      | [Rounding](#rounding) | Yes  | Rounding mode. For details, see [Rounding](#rounding).|
 
 **Return value**
@@ -2030,7 +2029,7 @@ You can use [DecimalConfig.rounding](#decimalconfig) to set the rounding mode.
 
 | Name       | Type  | Mandatory| Description                                                    |
 | ------------- | ------ | ---- | -------------------------------------------------------- |
-| decimalPlaces | number | Yes  | Number of decimal places to reserve. The value is an integer in the range of [1, 1e9].|
+| decimalPlaces | number | Yes  | Number of decimal places to reserve. The value is an integer in the range of [0, 1e9].|
 
 **Return value**
 
@@ -2070,7 +2069,7 @@ Converts this decimal to a string expressed in decimal fixed-point mode, with th
 
 | Name       | Type                 | Mandatory| Description                                                     |
 | ------------- | --------------------- | ---- | --------------------------------------------------------- |
-| decimalPlaces | number                | Yes  | Number of decimal places to reserve. The value is an integer in the range of [1, 1e9]. |
+| decimalPlaces | number                | Yes  | Number of decimal places to reserve. The value is an integer in the range of [0, 1e9]. |
 | rounding      | [Rounding](#rounding) | Yes  | Rounding mode. For details, see [Rounding](#rounding).|
 
 **Return value**
@@ -3218,8 +3217,8 @@ You can use [DecimalConfig.precision](#decimalconfig) to specify the precision a
 
 | Name| Type           | Mandatory| Description            |
 | ------ | --------------- | ---- | ---------------- |
-| n      | [Value](#value) | Yes  | Base of the logarithmic operation.  |
-| base   | [Value](#value) | Yes  | Real number of the logarithmic operation.|
+| n      | [Value](#value) | Yes  | Real number of the logarithmic operation.|
+| base   | [Value](#value) | Yes  | Base of the logarithmic operation.  |
 
 **Return value**
 
@@ -4033,9 +4032,9 @@ Returns a **Decimal** object representing a random number in the range [0, 1), w
 
 **Parameters**
 
-| Name           | Type  | Mandatory| Description              |
-| ----------------- | ------ | ---- | ------------------ |
-| significantDigits | number | Yes  | Number of decimal places in the random value.|
+| Name           | Type  | Mandatory| Description                  |
+| ----------------- | ------ | ---- | ---------------------- |
+| significantDigits | number | Yes  | Number of significant digits reserved for the random number.|
 
 **Return value**
 

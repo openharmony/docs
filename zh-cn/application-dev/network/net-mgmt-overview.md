@@ -1,6 +1,6 @@
-# 网络管理开发概述
+# Network Kit简介
 
-网络管理模块主要提供以下功能：
+Network Kit（网络服务）主要提供以下功能：
 
 - [HTTP数据请求](http-request.md)：通过HTTP发起一个数据请求。
 - [WebSocket连接](websocket-connection.md)：使用WebSocket建立服务器与客户端的双向连接。

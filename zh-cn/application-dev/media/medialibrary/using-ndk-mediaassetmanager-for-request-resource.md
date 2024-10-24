@@ -16,10 +16,10 @@ target_link_libraries(sample PUBLIC libmedia_asset_manager.so)
 详细的API说明请参考[MediaAssetManager API](../../reference/apis-media-library-kit/_media_asset_manager.md)。
 
 > **说明：**
-> 开发前，需要参考[开发准备](photoAccessHelper-preparation.md)，申请`ohos.permission.READ_IMAGEVIDEO `权限。
+> 开发前，需要参考[开发准备](photoAccessHelper-preparation.md)，申请`ohos.permission.READ_IMAGEVIDEO`权限。
 
 1. 创建实例：OH_MediaAssetManager_Create()。
-2. 设置资源：设置资源请求回调、设置资源请求策略、设置源图片Uri和目标Uri，
+2. 设置资源：设置资源请求回调、设置资源请求策略、设置源图片Uri和目标Uri。
 3. 请求图片资源：调用OH_MediaAssetManager_RequestImageForPath()请求图片资源到目标Uri。
 4. 取消请求：调用OH_MediaAssetManager_CancelRequest()。(可选)
 

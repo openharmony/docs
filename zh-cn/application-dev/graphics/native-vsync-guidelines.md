@@ -31,7 +31,7 @@ libnative_vsync.so
 #include <native_vsync/native_vsync.h>
 ```
 
-1. **首先需要准备一个VSync回调函数**
+1. **首先需要准备一个VSync回调函数**。
     ```c++
     #include <iostream>
 

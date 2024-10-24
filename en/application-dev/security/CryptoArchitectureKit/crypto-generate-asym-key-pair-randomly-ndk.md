@@ -71,7 +71,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 2. Use [OH_CryptoAsymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_generate) to randomly generate an asymmetric key object (**OH_CryptoKeyPair**).
 
-3. Use [OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode) and [PriKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the binary data of the public key and private key, respectively.
+3. Use [OH_CryptoPubKey_Encode](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptopubkey_encode) to obtain the binary data of the public key.
 
 
 ```c++

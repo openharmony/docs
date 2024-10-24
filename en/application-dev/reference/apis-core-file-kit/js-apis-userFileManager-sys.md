@@ -73,7 +73,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPhotoAssets');
@@ -130,7 +130,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPhotoAssets');
@@ -183,7 +183,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('createPhotoAssetDemo');
@@ -551,7 +551,7 @@ The album name must meet the following requirements:
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('createAlbumDemo');
@@ -586,7 +586,7 @@ Ensure that the albums to be deleted exist. Only user albums can be deleted.
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   // Delete the album named newAlbumName.
@@ -637,8 +637,8 @@ Ensure that the albums to be deleted exist. Only user albums can be deleted.
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   // Delete the album named newAlbumName.
@@ -664,7 +664,7 @@ async function example() {
 
 getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
 
-Obtain albums based on the specified options and album type. This API uses an asynchronous callback to return the result.
+Obtains albums based on the specified options and album type. This API uses an asynchronous callback to return the result.
 
 This API cannot be used to obtain hidden albums. Use [getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11) to obtain hidden albums.
 
@@ -694,7 +694,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   // Obtain the album named newAlbumName.
@@ -777,7 +777,7 @@ async function example() {
 
 getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
 
-Obtain albums based on the specified options and album type. This API uses a promise to return the result.
+Obtains albums based on the specified options and album type. This API uses a promise to return the result.
 
 This API cannot be used to obtain hidden albums. Use [getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11) to obtain hidden albums.
 
@@ -812,8 +812,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   // Obtain the album named newAlbumName.
@@ -870,7 +870,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPhotoAlbumsDemo');
@@ -933,7 +933,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPhotoAlbumsDemo');
@@ -1070,7 +1070,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAudioAssets');
@@ -1128,7 +1128,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAudioAssets');
@@ -1180,7 +1180,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('deleteAssetDemo');
@@ -1244,7 +1244,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('deleteDemo');
@@ -1430,12 +1430,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -1503,13 +1503,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -1629,7 +1629,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('onDemo');
@@ -1692,7 +1692,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('offDemo');
@@ -1828,7 +1828,7 @@ async function example() {
 
 Provides APIs for encapsulating file asset attributes.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1855,7 +1855,7 @@ Obtains the value of a **FileAsset** parameter.
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('fileAssetGetDemo');
@@ -1894,7 +1894,7 @@ Sets a **FileAsset** parameter.
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('fileAssetSetDemo');
@@ -1933,7 +1933,7 @@ Commits the modification on the file metadata to the database. This API uses an 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('commitModifyDemo');
@@ -1980,7 +1980,7 @@ Commits the modification on the file metadata to the database. This API uses a p
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('commitModifyDemo');
@@ -2107,7 +2107,7 @@ Closes a file asset. This API uses an asynchronous callback to return the result
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('closeDemo');
@@ -2157,7 +2157,7 @@ Closes a file asset. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('closeDemo');
@@ -2198,7 +2198,7 @@ Obtains the thumbnail of this file asset. This API uses an asynchronous callback
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getThumbnailDemo');
@@ -2240,8 +2240,8 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
 
 async function example() {
   console.info('getThumbnailDemo');
@@ -2289,9 +2289,9 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('getThumbnailDemo');
@@ -2332,7 +2332,7 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('favoriteDemo');
@@ -2378,8 +2378,8 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('favoriteDemo');
@@ -2429,7 +2429,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('setHiddenDemo');
@@ -2486,8 +2486,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   // Restore a file from a hidden album. Before the operation, ensure that the file exists in the hidden album.
@@ -2574,7 +2574,7 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2664,7 +2664,7 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2727,12 +2727,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2780,12 +2780,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -2832,7 +2832,7 @@ Obtains the total number of files in the result set.
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getCountDemo');
@@ -2864,7 +2864,7 @@ Checks whether the cursor is in the last row of the result set.
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2895,7 +2895,7 @@ Releases and invalidates this **FetchFileResult** instance. After this instance 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('fetchResultCloseDemo');
@@ -2931,7 +2931,7 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getFirstObjectDemo');
@@ -2968,7 +2968,7 @@ Obtains the first file asset in the result set. This API uses a promise to retur
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getFirstObjectDemo');
@@ -3001,7 +3001,7 @@ Before using this API, you must use [isAfterLast()](#isafterlast) to check wheth
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getNextObjectDemo');
@@ -3042,7 +3042,7 @@ Before using this API, you must use [isAfterLast()](#isafterlast) to check wheth
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getNextObjectDemo');
@@ -3077,7 +3077,7 @@ Obtains the last file asset in the result set. This API uses an asynchronous cal
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getLastObjectDemo');
@@ -3114,7 +3114,7 @@ Obtains the last file asset in the result set. This API uses a promise to return
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getLastObjectDemo');
@@ -3155,7 +3155,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPositionObjectDemo');
@@ -3206,7 +3206,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getPositionObjectDemo');
@@ -3238,7 +3238,7 @@ Obtains all the file assets in the result set. This API uses an asynchronous cal
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAllObjectDemo');
@@ -3275,7 +3275,7 @@ Obtains all the file assets in the result set. This API uses a promise to return
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('getAllObjectDemo');
@@ -3294,7 +3294,7 @@ async function example() {
 
 Provides APIs to manage albums.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -3335,7 +3335,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('albumGetFileAssetsDemoCallback');
@@ -3393,8 +3393,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('albumGetFileAssetsDemoPromise');
@@ -3436,7 +3436,7 @@ Commits the modification on the album attributes to the database. This API uses 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('albumCommitModifyDemo');
@@ -3476,8 +3476,8 @@ Commits the modification on the album attributes to the database. This API uses 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('albumCommitModifyDemo');
@@ -3528,7 +3528,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -3588,8 +3588,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -3642,7 +3642,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -3702,8 +3702,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -3756,7 +3756,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -3816,8 +3816,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -3872,7 +3872,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
@@ -3934,8 +3934,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   try {
@@ -3966,7 +3966,7 @@ Provides APIs for managing the system albums.
 
 This API will be discarded. Use [Album](#album) instead.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -4008,7 +4008,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('privateAlbumGetFileAssetsDemoCallback');
@@ -4066,7 +4066,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('privateAlbumGetFileAssetsDemoPromise');
@@ -4105,7 +4105,7 @@ This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10)
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('privateAlbumDeleteCallback');
@@ -4156,8 +4156,8 @@ This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10)
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('privateAlbumDeleteDemoPromise');
@@ -4201,7 +4201,7 @@ This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets1
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   console.info('privateAlbumRecoverDemoCallback');
@@ -4252,8 +4252,8 @@ This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets1
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base';
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function example() {
   console.info('privateAlbumRecoverDemoPromise');
@@ -4373,7 +4373,7 @@ Enumerate the album subtypes.
 | FAVORITE |  1025 |  Favorites.|
 | VIDEO |  1026 |  Video album.|
 | HIDDEN |  1027 |  Hidden album.|
-| TRASH |  1028 |  Recycle bin.|
+| TRASH |  1028 |  Trash.|
 | SCREENSHOT |  1029 |  Album for screenshots and screen recording files.|
 | CAMERA |  1030 |  Album for photos and videos taken by the camera.|
 | ANY |  2147483647 |  Any album.|

@@ -78,7 +78,7 @@ let GetPlainTextUnifiedData = (() => {
 })
 ```
 
-## 使用基础类型进行复制粘贴
+## 使用基础数据类型进行复制粘贴
 
 ### 接口说明
 
@@ -96,25 +96,34 @@ let GetPlainTextUnifiedData = (() => {
 
 ### 示例代码
 ```ts
-import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
-// 获取系统剪贴板对象
-let text = "test";
-// 创建一条纯文本类型的剪贴板内容对象
-let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
-// 将数据写入系统剪贴板
-let systemPasteboard = pasteboard.getSystemPasteboard();
-await systemPasteboard.setData(pasteData);
-//从系统剪贴板中读取数据
-systemPasteboard.getData().then((data) => {
-  let outputData = data;
-  // 从剪贴板数据中获取条目数量
-  let recordCount = outputData.getRecordCount();
-  // 从剪贴板数据中获取对应条目信息
-  for (let i = 0; i < recordCount; i++) {
-    let record = outputData.getRecord(i).toPlainText();
-    console.log('Get data success, record:' + record);
-  }  
-}).catch((error: BusinessError) => {
-  // 处理异常场景
-})
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
+    // 获取系统剪贴板对象
+    let text = "test";
+    // 创建一条纯文本类型的剪贴板内容对象
+    let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
+    // 将数据写入系统剪贴板
+    let systemPasteboard = pasteboard.getSystemPasteboard();
+    await systemPasteboard.setData(pasteData);
+    //从系统剪贴板中读取数据
+    systemPasteboard.getData().then((data) => {
+      let outputData = data;
+      // 从剪贴板数据中获取条目数量
+      let recordCount = outputData.getRecordCount();
+      // 从剪贴板数据中获取对应条目信息
+      for (let i = 0; i < recordCount; i++) {
+        let record = outputData.getRecord(i).toPlainText();
+        console.log('Get data success, record:' + record);
+      }
+    }).catch((error: BusinessError) => {
+      // 处理异常场景
+    })
+  }
+}
 ```                                                                                              
+
+<!--RP1-->
+<!--RP1End-->

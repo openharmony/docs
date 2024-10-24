@@ -5,9 +5,6 @@ The Common Event Manager enables you to print common event information and publi
 > **NOTE**
 >
 > Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and run the hdc shell command.
-> 
-> This tool can be used only in the **eng** edition. If it is used in the **user** edition, the message **error: user version cannot publish common events** is reported.
-
 
 ## Commands
 
@@ -40,7 +37,6 @@ The Common Event Manager enables you to print common event information and publi
   | Name        | Description                                  |
   | ------------ | ------------------------------------------ |
   | -e/--event   | Name of the common event to publish. Mandatory.                    |
-  | -s/--sticky  | Indicates that the common event to publish is sticky. Optional. By default, non-sticky events are published.|
   | -o/--ordered | Indicates that the common event to publish is ordered. Optional. By default, non-ordered events are published.  |
   | -c/--code    | Result code of the common event. Optional.                  |
   | -d/--data    | Data carried in the common event. Optional.                |
@@ -56,13 +52,17 @@ The Common Event Manager enables you to print common event information and publi
   ![cem-publish-event](figures/cem-publish-event.png)
   
   ```bash
-  # Publish a sticky, ordered common event named testevent. The result code of the event is 100 and the data carried is this is data.
-  cem publish -e "testevent" -s -o -c 100 -d "this is data"
+  # Publish an ordered common event named testevent. The result code of the event is 100 and the data carried is "this is data".
+  cem publish -e "testevent" -o -c 100 -d "this is data"
   ```
   
   ![cem-publish-all](figures/cem-publish-all.png)
 
 ### dump
+
+> **NOTE**
+> 
+> The Common Event Manager has two editions: **eng** and **user**. The **dump** command can be used only in the **eng** edition. If it is used in the **user** edition, the message **error: user version cannot use dump** is reported.
 
 * Function
 

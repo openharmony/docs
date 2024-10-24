@@ -164,7 +164,7 @@ subMenuExpandingMode(mode: SubMenuExpandingMode)
 | ------ | ---------------------------- | ---- |--------------|
 | mode  | [SubMenuExpandingMode](#submenuexpandingmode12枚举说明) | 是   | Menu子菜单展开样式。<br/>默认值：SubMenuExpandingMode.SIDE_EXPAND  |
 
-## subMenuExpandingMode<sup>12+</sup>枚举说明
+## SubMenuExpandingMode<sup>12+</sup>枚举说明
 
 Menu子菜单展开样式枚举。
 
@@ -172,7 +172,7 @@ Menu子菜单展开样式枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 描述                                       |
+| 名称            | 说明                                       |
 | --------------- | ------------------------------------------ |
 | SIDE_EXPAND     | 默认展开样式, 子菜单位于同一平面侧边展开。 |
 | EMBEDDED_EXPAND | 直接展开样式, 子菜单嵌于主菜单内展开。     |
@@ -246,7 +246,7 @@ struct Index {
 }
 ```
 
-![menu1](figures/menu1.png)
+![menu](figures/menu.png)
 
 ### 示例2
 

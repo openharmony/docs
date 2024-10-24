@@ -1,4 +1,4 @@
-# Data Protection Kit (Data Protection Service)
+# Data Protection Kit
 
 - DLP Service
   - [Introduction to the DLP Service](dlp-overview.md)
