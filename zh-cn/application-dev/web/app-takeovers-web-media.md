@@ -239,7 +239,7 @@ Web组件提供了应用接管网页中的媒体播放的能力，用来支持�
 
 ### 执行ArkWeb内核发送给本地播放器的播控指令
 
-为了方便ArkWeb内核对本地播放器进行播控操作, 应用开发者需要令本地播放器实现[NativeMediaPlayerBridge](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerbridge12)接口，并根据每个接口方法的功能对本地播放器进行相应操作。
+为了方便ArkWeb内核对本地播放器进行播控操作，应用开发者需要令本地播放器实现[NativeMediaPlayerBridge](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerbridge12)接口，并根据每个接口方法的功能对本地播放器进行相应操作。
 
   ```ts
   // xxx.ets
