@@ -1414,7 +1414,7 @@ console.info("Element at index 1: ", array[1]);
 - K：Key，键
 - V：Value，值
 
-K和V类型都需为[Sendable类型](../../arkts-utils/arkts-sendable.md)。
+K和V类型都需为[Sendable类型](../../arkts-utils/sendable-overview.md)。
 
 ### 属性
 
