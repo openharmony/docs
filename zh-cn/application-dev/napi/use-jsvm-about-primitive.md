@@ -162,7 +162,7 @@ static JSVM_Value CoerceToObject(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    JSVM_Value obj;
+    JSVM_Value obj = nullptr;
     JSVM_Status status = OH_JSVM_CoerceToObject(env, args[0], &obj);
     if (status != JSVM_OK) {
         OH_JSVM_ThrowError(env, nullptr, "JSVM OH_JSVM_CoerceToObject failed");
@@ -215,7 +215,7 @@ static JSVM_Value CoerceToString(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    JSVM_Value str;
+    JSVM_Value str = nullptr;
     JSVM_Status status = OH_JSVM_CoerceToString(env, args[0], &str);
     if (status != JSVM_OK) {
         OH_JSVM_ThrowError(env, nullptr, "JSVM OH_JSVM_CoerceToString fail");
@@ -269,20 +269,19 @@ static JSVM_Value GetBoolean(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 2;
     JSVM_Value argv[2] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
-    int32_t paramData;
+    int32_t paramData = 0;
     OH_JSVM_GetValueInt32(env, argv[0], &paramData);
-    int32_t paramValue;
+    int32_t paramValue = 0;
     OH_JSVM_GetValueInt32(env, argv[1], &paramValue);
     JSVM_Value returnValue = nullptr;
     bool type = false;
-    if (paramData == paramValue)
-        　{
-            OH_LOG_INFO(LOG_APP, "JSVM resultType equal");
-            type = true;
-        }
+    if (paramData == paramValue) {
+        OH_LOG_INFO(LOG_APP, "JSVM resultType equal");
+        type = true;
+    }
     JSVM_Status status = OH_JSVM_GetBoolean(env, type, &returnValue);
     if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CoerceToNumber fail");
+        OH_JSVM_ThrowError(env, nullptr, "JSVM OH_JSVM_CoerceToNumber fail");
     } else {
         bool result = false;
         OH_JSVM_GetValueBool(env, returnValue, &result);
@@ -345,7 +344,7 @@ static JSVM_Value GetValueBool(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    bool result;
+    bool result = false;
     JSVM_Status status = OH_JSVM_GetValueBool(env, args[0], &result);
     if (status == JSVM_BOOLEAN_EXPECTED || status != JSVM_OK) {
         // 如果OH_JSVM_GetValueBool成功会返回JSVM_OK，如果传入一个非布尔值则会返回JSVM_BOOLEAN_EXPECTED
@@ -354,7 +353,7 @@ static JSVM_Value GetValueBool(JSVM_Env env, JSVM_CallbackInfo info)
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_GetValueBool success:%{public}d", result);
     }
-    JSVM_Value boolJv;
+    JSVM_Value boolJv = nullptr;
     OH_JSVM_GetBoolean(env, result, &boolJv);
     return boolJv;
 }
@@ -418,7 +417,7 @@ static JSVM_Value GetGlobal(JSVM_Env env, JSVM_CallbackInfo info)
 {
     // 获取全局对象
     JSVM_Value value = nullptr;
-    JSVM_Value global;
+    JSVM_Value global = nullptr;
     OH_JSVM_CreateInt32(env, 1, &value);
     JSVM_Status status = OH_JSVM_GetGlobal(env, &global);
     OH_JSVM_SetNamedProperty(env, global, "Row", value);
@@ -468,7 +467,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 // OH_JSVM_GetNull的样例方法
 static JSVM_Value GetNull(JSVM_Env env, JSVM_CallbackInfo info) {
-    JSVM_Value nullValue;
+    JSVM_Value nullValue = nullptr;
     JSVM_Status status = OH_JSVM_GetNull(env, &nullValue);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_GetNull fail");
@@ -522,7 +521,7 @@ static JSVM_Value GetUndefined(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     // 创建一个undefined值
-    JSVM_Value value;
+    JSVM_Value value = nullptr;
     JSVM_Status status = OH_JSVM_GetUndefined(env, &value);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_GetUndefined failed");
