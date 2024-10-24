@@ -843,7 +843,9 @@
       - Data Protection Kit<!--data-protection-kit-->
         - DLP Service<!--dlp-->
           - [Introduction to the DLP Service](security/DataProtectionKit/dlp-overview.md)
+          <!--Del-->
           - [DLP Service Development](security/DataProtectionKit/dlp-guidelines.md)
+          <!--DelEnd-->
       - Device Certificate Kit<!--device-certificate-kit-->
         - [Introduction to Device Certificate Kit](security/DeviceCertificateKit/device-certificate-kit-intro.md)
         - Certificate Framework<!--certificate-framework-->
