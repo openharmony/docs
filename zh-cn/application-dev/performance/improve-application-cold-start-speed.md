@@ -101,7 +101,7 @@ export default class EntryAbility extends UIAbility {
 
 ### 使用延迟加载Lazy-Import减少冷启动冗余文件执行
 
-可以通过延迟加载 [lazy-import](../quick-start/arkts-lazy-import) 延缓对冷启动时暂不执行的冗余文件的加载，而在后续导出变量被真正使用时再同步加载执行文件，节省资源以提高应用冷启动性能。  
+可以通过延迟加载 [lazy-import](../arkts-utils/arkts-lazy-import) 延缓对冷启动时暂不执行的冗余文件的加载，而在后续导出变量被真正使用时再同步加载执行文件，节省资源以提高应用冷启动性能。  
 详细使用指导请参考[延迟加载lazy-import使用指导](Lazy-Import-Instructions.md)
 
 ## 3、缩短AbilityStage生命周期阶段耗时
