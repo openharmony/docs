@@ -1690,7 +1690,7 @@ async function Demo() {
 ## Size
 
 表示图片尺寸。
-继承自[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)。
+继承自[lang.ISendable](../../arkts-utils/sendable-overview.md#isendable)。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1706,7 +1706,7 @@ async function Demo() {
 ## Region
 
 表示区域信息。
-继承自[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)。
+继承自[lang.ISendable](../../arkts-utils/sendable-overview.md#isendable)。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1935,7 +1935,7 @@ sendableImageSourceApi.release().then(() => {
 ## Image
 
 提供基本的图像操作，包括获取图像信息、读写图像数据。调用[readNextImage](#readnextimage)和[readLatestImage](#readlatestimage)接口时会返回image。
-继承自[lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)。
+继承自[lang.ISendable](../../arkts-utils/sendable-overview.md#isendable)。
 
 ### 属性
 
