@@ -33,14 +33,22 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 | -------- | -------- |
 | number | 该定时器的ID，定时器ID为进程共享，是从0开始顺序增加的整数，无重复值。 |
 
-**示例：**
+**示例1：不带参数**
 
   ```ts
   setTimeout(() => {
-    console.log('delay 1s');
+    console.info('delay 1s');
   }, 1000);
   ```
 
+**示例2：带参数传递给函数**
+
+  ```ts
+  function myFunction(param1: string, param2: string) {
+    console.info(param1, param2);
+  }
+  setTimeout(myFunction, 1000, 'Hello', 'World');
+  ```
 
 ## clearTimeout
 
