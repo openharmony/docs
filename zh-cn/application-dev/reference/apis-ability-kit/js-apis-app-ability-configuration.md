@@ -26,12 +26,12 @@ import { Configuration } from '@kit.AbilityKit';
 | hasPointerDevice  | boolean | 否 | 是 | 指示指针类型设备是否已连接，如键鼠、触控板等。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | fontSizeScale<sup>12+<sup> | number | 否 | 是 | 字体大小缩放比例，取值为非负数，默认值为1。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontWeightScale<sup>12+<sup> | number | 否 | 是 | 字体粗细缩放比例，取值为非负数，默认值为1。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| mcc<sup>12+<sup> | string | 否  | 是 | 移动设备网络代码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| mnc<sup>12+<sup> | string | 否  | 是 | 移动设备国家代码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| mcc<sup>12+<sup> | string | 否  | 是 | 移动设备国家代码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| mnc<sup>12+<sup> | string | 否  | 是 | 移动设备网络代码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
-  ```ts
+```ts
 import { UIAbility, AbilityConstant, EnvironmentCallback, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -52,7 +52,7 @@ export default class EntryAbility extends UIAbility {
         let mnc = config.mnc;
       },
       onMemoryLevel(level) {
-        console.log('onMemoryLevel level: ${level}');
+        console.log(`onMemoryLevel level: ${level}`);
       }
     };
     try {
@@ -64,5 +64,5 @@ export default class EntryAbility extends UIAbility {
     }
   }
 }
-  ```
+```
 
