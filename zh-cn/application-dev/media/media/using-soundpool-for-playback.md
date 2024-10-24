@@ -65,6 +65,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
 5. 调用load方法进行音频资源加载。
     可以传入uri或fd加载资源，此处使用传入uri的方式为例，更多方法请参考[API文档](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md#load)。
+    当系统加载完毕音频资源文件的时候，会通过loadComplete回调，通知用户资源加载完成，请在收到回调之后，再进行后续的play操作。
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -86,7 +87,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     }
     ```
 
-6. 配置播放参数PlayParameters，并调用play方法播放音频。多次调用play播放同一个soundID，只会播放一次。
+6. 配置播放参数PlayParameters，并在收到loadComplete回调通知之后，调用play方法播放音频。多次调用play播放同一个soundID，只会播放一次。
   
     ```ts
     let soundID: number;
@@ -263,7 +264,7 @@ function setErrorCallback() {
   })
 }
 async function PlaySoundPool() {
-  // 开始播放,这边play也可带播放播放的参数PlayParameters
+  // 开始播放，这边play也可带播放播放的参数PlayParameters，请在音频资源加载完毕，即收到loadComplete回调之后再执行play操作
   soundPool.play(soundId, playParameters, (error, streamID: number) => {
     if (error) {
       console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
