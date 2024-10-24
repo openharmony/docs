@@ -4859,7 +4859,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 若不调用event.handler.setWebController接口，会造成render进程阻塞。
 如果不需要打开新窗口，在调用event.handler.setWebController接口时须设置成null。
 
-应用应谨慎的显示新窗口：不要简单的覆盖在原Web组件上，防止误导用户正在查看哪个网站，如果应用显示主页的URL，请确保也以相似的方式显示新窗口的URL。否则请考虑完全禁止创建新窗口。
+应用应谨慎的显示新窗口：不要简单的覆盖在原web组件上，防止误导用户正在查看哪个网站，如果应用显示主页的URL，请确保也以相似的方式显示新窗口的URL。否则请考虑完全禁止创建新窗口。
 
 注意：没有可靠的方式判断哪个页面请求了新窗口，该请求可能来自第三方iframe
 
