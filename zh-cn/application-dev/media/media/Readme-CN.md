@@ -15,7 +15,7 @@
   - 录屏
     - [使用AVScreenCaptureRecorder接口录屏写文件(ArkTS)](using-avscreencapture-ArkTs.md)
   - 音频池
-    - [使用SoundPool接口播放短音频(ArkTS)]( )
+    - [使用SoundPool接口播放短音频(ArkTS)](using-soundpool-for-playback.md)
   - 视频转码
     - [使用AVTranscoder接口转码(ArkTS)](using-avtranscoder-for-transcodering.md)
 - 媒体最佳实践(ArkTS)
