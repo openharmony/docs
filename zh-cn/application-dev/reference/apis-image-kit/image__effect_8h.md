@@ -7,7 +7,7 @@
 
 效果器提供了滤镜的添加、删除、查询等功能。开发者可以通过效果器提供的接口将多个滤镜组合串联，从而实现较为复杂的效果调节功能。
 
-同时，效果器支持多种输入类型，如Pixelmap、URI、Surface、Picture。不同的输入类型在效果器内部都会转换为内存对象，通过滤镜的效果处理， 获得处理结果。
+同时，效果器支持多种输入类型，如Pixelmap、URI、Surface。不同的输入类型在效果器内部都会转换为内存对象，通过滤镜的效果处理， 获得处理结果。
 
 **库：** libimage_effect.so
 
@@ -52,8 +52,6 @@
 | [ImageEffect_ErrorCode](_image_effect.md#imageeffect_errorcode) [OH_ImageEffect_SetOutputNativeBuffer](_image_effect.md#oh_imageeffect_setoutputnativebuffer) ([OH_ImageEffect](_image_effect.md#oh_imageeffect) \*imageEffect, OH_NativeBuffer \*nativeBuffer) | 设置输出的NativeBuffer。  | 
 | [ImageEffect_ErrorCode](_image_effect.md#imageeffect_errorcode) [OH_ImageEffect_SetInputUri](_image_effect.md#oh_imageeffect_setinputuri) ([OH_ImageEffect](_image_effect.md#oh_imageeffect) \*imageEffect, const char \*uri) | 设置输入的URI。  | 
 | [ImageEffect_ErrorCode](_image_effect.md#imageeffect_errorcode) [OH_ImageEffect_SetOutputUri](_image_effect.md#oh_imageeffect_setoutputuri) ([OH_ImageEffect](_image_effect.md#oh_imageeffect) \*imageEffect, const char \*uri) | 设置输出的URI。  | 
-| [ImageEffect_ErrorCode](_image_effect.md#imageeffect_errorcode) [OH_ImageEffect_SetInputPicture](_image_effect.md#oh_imageeffect_setinputpicture) ([OH_ImageEffect](_image_effect.md#oh_imageeffect) \*imageEffect, OH_PictureNative \*picture) | 设置输入的Picture。  | 
-| [ImageEffect_ErrorCode](_image_effect.md#imageeffect_errorcode) [OH_ImageEffect_SetOutputPicture](_image_effect.md#oh_imageeffect_setoutputpicture) ([OH_ImageEffect](_image_effect.md#oh_imageeffect) \*imageEffect, OH_PictureNative \*picture) | 设置输出的Picture。  | 
 | [ImageEffect_ErrorCode](_image_effect.md#imageeffect_errorcode) [OH_ImageEffect_Start](_image_effect.md#oh_imageeffect_start) ([OH_ImageEffect](_image_effect.md#oh_imageeffect) \*imageEffect) | 启动效果器。  | 
 | [ImageEffect_ErrorCode](_image_effect.md#imageeffect_errorcode) [OH_ImageEffect_Stop](_image_effect.md#oh_imageeffect_stop) ([OH_ImageEffect](_image_effect.md#oh_imageeffect) \*imageEffect) | 停止生效效果。  | 
 | [ImageEffect_ErrorCode](_image_effect.md#imageeffect_errorcode) [OH_ImageEffect_Release](_image_effect.md#oh_imageeffect_release) ([OH_ImageEffect](_image_effect.md#oh_imageeffect) \*imageEffect) | 释放OH_ImageEffect实例资源。  | 

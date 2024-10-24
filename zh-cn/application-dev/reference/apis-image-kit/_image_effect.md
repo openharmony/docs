@@ -102,8 +102,6 @@
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputNativeBuffer](#oh_imageeffect_setoutputnativebuffer) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_NativeBuffer \*nativeBuffer) | 设置输出的NativeBuffer。 | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetInputUri](#oh_imageeffect_setinputuri) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*uri) | 设置输入的URI。 | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputUri](#oh_imageeffect_setoutputuri) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, const char \*uri) | 设置输出的URI。 | 
-| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetInputPicture](#oh_imageeffect_setinputpicture) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_PictureNative \*picture) | 设置输入的Picture。  | 
-| [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_SetOutputPicture](#oh_imageeffect_setoutputpicture) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect, OH_PictureNative \*picture) | 设置输出的Picture。  | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_Start](#oh_imageeffect_start) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect) | 启动效果器。 | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_Stop](#oh_imageeffect_stop) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect) | 停止生效效果。 | 
 | [ImageEffect_ErrorCode](#imageeffect_errorcode) [OH_ImageEffect_Release](#oh_imageeffect_release) ([OH_ImageEffect](#oh_imageeffect) \*imageEffect) | 释放OH_ImageEffect实例资源。 | 
@@ -1829,30 +1827,6 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputNativeBuffer (OH_ImageEffect * imag
 EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
 
 
-### OH_ImageEffect_SetInputPicture()
-
-```
-ImageEffect_ErrorCode OH_ImageEffect_SetInputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture)
-```
-**描述**
-设置输入的Picture。
-
-**系统能力：** SystemCapability.Multimedia.ImageEffect.Core
-
-**起始版本：** 13
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageEffect | 效果器指针。  | 
-| picture | 指向OH_PictureNative实例的指针。  | 
-
-**返回：**
-
-EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
-
-
 ### OH_ImageEffect_SetInputPixelmap()
 
 ```
@@ -1925,30 +1899,6 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputNativeBuffer (OH_ImageEffect * ima
 | -------- | -------- |
 | imageEffect | 效果器指针。 | 
 | nativeBuffer | 指向OH_NativeBuffer实例的指针。 | 
-
-**返回：**
-
-EFFECT_SUCCESS如果方法调用成功。 EFFECT_ERROR_PARAM_INVALID如果入参为空指针。
-
-
-### OH_ImageEffect_SetOutputPicture()
-
-```
-ImageEffect_ErrorCode OH_ImageEffect_SetOutputPicture(OH_ImageEffect *imageEffect, OH_PictureNative *picture)
-```
-**描述**
-设置输出的Picture。
-
-**系统能力：** SystemCapability.Multimedia.ImageEffect.Core
-
-**起始版本：** 13
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| imageEffect | 效果器指针。  | 
-| picture | 指向OH_PictureNative实例的指针。  | 
 
 **返回：**
 
