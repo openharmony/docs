@@ -82,6 +82,7 @@ Due to the automatic authorization feature, many restrictions are imposed on sec
 If the authorization fails due to invalid component style, check the device error logs with the keyword "SecurityComponentCheckFail".
 
 > **NOTE**
+>
 > Pay attention to logs of all levels related to the keyword.
 
 Possible causes include but are not limited to the following:
