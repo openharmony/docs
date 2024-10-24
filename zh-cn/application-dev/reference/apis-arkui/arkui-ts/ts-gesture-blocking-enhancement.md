@@ -510,6 +510,7 @@ struct FatherControlChild {
 @Component
 struct Index {
   @State currentIndex: number = 0
+  @State selectedIndex: number = 0
   @State fontColor: string = '#182431'
   @State selectedFontColor: string = '#007DFF'
   controller?: TabsController = new TabsController();
@@ -517,15 +518,15 @@ struct Index {
   tabBuilder(index: number, name: string) {
     Column() {
       Text(name)
-      .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
-      .fontSize(16)
-      .fontWeight(this.currentIndex === index ? 500 : 400)
-      .lineHeight(22)
-      .margin({ top: 17, bottom: 7 })
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.selectedIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 })
       Divider()
-      .strokeWidth(2)
-      .color('#007DFF')
-      .opacity(this.currentIndex === index ? 1 : 0)
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.selectedIndex === index ? 1 : 0)
     }.width('100%')
   }
   build() {
@@ -538,13 +539,13 @@ struct Index {
           Tabs() {
             TabContent() {
               Column().width('100%').height('100%').backgroundColor(Color.Blue)
-            }.tabBar(this.tabBuilder(4, 'blue'))
+            }.tabBar(new SubTabBarStyle('blue'))
             TabContent() {
-              Column().width('100%').height('100%').backgroundColor(Color.Black)
-            }.tabBar(this.tabBuilder(5, 'black'))
+              Column().width('100%').height('100%').backgroundColor(Color.Pink)
+            }.tabBar(new SubTabBarStyle('pink'))
           }
           .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
-          others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
+            others: Array<GestureRecognizer>): GestureJudgeResult => { // 在识别器即将要成功时，根据当前组件状态，设置识别器使能状态
             console.info('ets onGestureRecognizerJudgeBegin child')
             if (current) {
               let target = current.getEventTargetInfo();
@@ -571,14 +572,18 @@ struct Index {
             }
             return GestureJudgeResult.CONTINUE;
           }, true)
-        }.tabBar(this.tabBuilder(1, 'blue and black'))
+        }.tabBar(this.tabBuilder(1, 'blue and pink'))
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Brown)
-        }.tabBar(this.tabBuilder(0, 'brown'))
+        }.tabBar(this.tabBuilder(2, 'brown'))
       }
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        // 切换动画开始时触发该回调。下划线跟着页面一起滑动，同时宽度渐变。
+        this.selectedIndex = targetIndex
+      })
     }
   }
 }
 ```
 
- ![example](figures/gesture_recognizer_exposeInnerGesture_true.gif)
+ ![example](figures/gesture_recognizer.gif)
