@@ -217,6 +217,7 @@ ECDSA（Elliptic Curve Digital Signature Algorithm，椭圆曲线数字签名算
 | ECC_BrainPoolP384t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 11+ | 
 | ECC_BrainPoolP512r1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 11+ | 
 | ECC_BrainPoolP512t1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 11+ | 
+| ECC_Secp256k1 | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 14+ | 
 | ECC | [SHA1\|SHA224\|SHA256\|SHA384\|SHA512] | 10+ | 
 
 如表中最后一行所示，为了兼容由密钥参数生成的密钥，ECDSA签名验签参数输入密钥类型时支持不指定长度和曲线，签名验签运算取决于实际输入的密钥。
