@@ -114,6 +114,7 @@ ECC（Elliptic Curve Cryptography），是一种基于椭圆曲线数学的公�
 | ECC | 384 | NID_brainpoolP384t1 | ECC_BrainPoolP384t1 | 11+ | 
 | ECC | 512 | NID_brainpoolP512r1 | ECC_BrainPoolP512r1 | 11+ | 
 | ECC | 512 | NID_brainpoolP512t1 | ECC_BrainPoolP512t1 | 11+ | 
+| ECC | 256 | NID_secp256k1 | ECC_Secp256k1 | 14+ | 
 
 > **注意：**
 >
