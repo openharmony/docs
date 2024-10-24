@@ -260,6 +260,10 @@ static napi_value ArrayBufferDemo(napi_env env, napi_callback_info info)
     void* data = nullptr;
 
     napi_create_arraybuffer(env, arrSize * sizeof(int32_t), &data, &arrBuffer);
+    // data为空指针，取消对data进行写入
+    if (data == nullptr) {
+        return arrBuffer;
+    }
     int32_t* i32Buffer = reinterpret_cast<int32_t*>(data);
     for (int i = 0; i < arrSize; i++) {
         // arrayBuffer直接对缓冲区进行修改，跳过运行时，
