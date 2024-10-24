@@ -402,7 +402,7 @@ struct Index {
 >**说明：**
 >
 >1. **上述两种优化方案默认MainPage中不存在对于SubPage中的import。**
->2. **当存在MainPage对于SubPage的直接import时，需要使用[动态import](../quick-start/arkts-dynamic-import.md)方法来进行优化。**
+>2. **当存在MainPage对于SubPage的直接import时，需要使用[动态import](../arkts-utils/arkts-dynamic-import.md)方法来进行优化。**
 >3. 开发者可自行根据优化方案的优缺点权衡选择合适的优化方案。
 
 下面对优化前后启动性能进行对比分析。阶段起点为`UI Ability Launching`的开始点，阶段终点为应用首帧即`First Frame - App Phase`的开始点。  

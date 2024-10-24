@@ -385,7 +385,7 @@ Native侧建议使用FFRT线程池，pthread暂无限制。
 
 **参考链接**
 
-1. [可共享对象](../arkts-utils/serialization-support-types.md)
+1. [可共享对象](../arkts-utils/sendable-overview.md.md)
 
 ## 在多线程并发场景中，如何实现安全访问同一块共享内存？(API 10)
 
