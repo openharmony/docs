@@ -28,6 +28,48 @@ import { appManager } from '@kit.AbilityKit';
 | ----------- | --- | --------------------------- |
 | PRESS_DOWN  | 0 | 按下应用图标时进行应用进程预加载。 |
 
+## KeepAliveAppType<sup>14+</sup>
+
+表示被保活应用的应用类型。
+
+**系统接口**: 此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称        | 值  | 说明 |
+| -------- | ---------- | -------- |
+| ALL  | 0 | 三方应用和系统应用。此选项只能作为[getKeepAliveBundles](#appmanagergetkeepalivebundles14)接口的入参被调用。  |
+| THIRD_PARTY | 1  | 三方应用。  |
+| SYSTEM | 2 | 系统应用。 |
+
+## KeepAliveSetter<sup>14+</sup>
+
+表示应用保活的设置方类型。
+
+**系统接口**: 此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称        | 值  | 说明 |
+| -------- | ---------- | -------- |
+| SYSTEM | 0 | 应用保活设置方为系统。 |
+| USER  | 1 | 应用保活设置方为用户。  |
+
+## KeepAliveBundleInfo<sup>14+</sup>
+
+定义应用保活信息，可以通过[getKeepAliveBundles](#appmanagergetkeepalivebundles14)获取当前应用的相关信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**: 此接口为系统接口。
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ------------------------- | ------ | ---- | ---- | --------- |
+| bundleName   | string | 是 | 否  | Bundle名称。 |
+| userId   | number | 是 | 否  | 用户ID。 |
+| appType       | [KeepAliveAppType](#keepaliveapptype14) | 是 | 否 | 表示被保活应用的应用类型。   |
+| setter       | [KeepAliveSetter](#keepalivesetter14) | 是 | 否 | 表示应用保活设置者类型。   |
+
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 
 isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean>
@@ -2102,5 +2144,127 @@ try {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;
   console.error(`[appManager] error: ${code}, ${message}`);
+}
+```
+
+## appManager.setKeepAliveForBundle<sup>14+</sup>
+
+setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Promise\<void>
+
+为指定用户下的应用设置或取消保活。使用Promise异步回调。本接口当前仅支持2in1设备。
+
+**需要权限**: ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+**系统能力**: SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName    | string   | 是    | 表示要设置保活的应用包名。 |
+| userId    | number   | 是    | 表示要设置保活应用所属的用户ID。 |
+| enable    | boolean   | 是    | 表示对应用保活或者取消保活。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。|
+
+**错误码**:
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+| 16300005 | The target bundle does not exist. |
+| 16300008 | The target bundle has no main ability. |
+| 16300009 | The target bundle has no status-bar ability. |
+| 16300010 | The target application is not attached to status bar. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let bundleName = "ohos.samples.keepaliveapp";
+  let userId = 100;
+  appManager.setKeepAliveForBundle(bundleName, userId, true).then(() => {
+    console.log(`setKeepAliveForBundle success`);
+  }).catch((err: BusinessError) => {
+    console.error(`setKeepAliveForBundle fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] setKeepAliveForBundle error: ${code}, ${message}`);
+}
+```
+
+## appManager.getKeepAliveBundles<sup>14+</sup>
+
+getKeepAliveBundles(type: KeepAliveAppType, userId?: number): Promise\<Array\<KeepAliveBundleInfo>>
+
+获取指定用户下指定类型的保活应用信息。该应用信息由[KeepAliveBundleInfo](#keepalivebundleinfo14)定义。
+使用Promise异步回调。本接口当前仅支持2in1设备。
+
+**需要权限**: ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+**系统能力**: SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type    | [KeepAliveAppType](#keepaliveapptype14)   | 是    | 表示要查询的保活应用类型。 |
+| userId    | number   | 否    | 表示要设置保活应用所属的用户ID。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<Array\<[KeepAliveBundleInfo](#keepalivebundleinfo14)>> | Promise对象，返回用户保活应用信息的数组。|
+
+**错误码**:
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let userId = 100;
+let type: appManager.KeepAliveAppType = appManager.KeepAliveAppType.THIRD_PARTY;
+try {
+  appManager.getKeepAliveBundles(type, userId).then((data) => {
+    console.log(`getKeepAliveBundles success, data: ${JSON.stringify(data)}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getKeepAliveBundles fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] getKeepAliveBundles error: ${code}, ${message}`);
 }
 ```
