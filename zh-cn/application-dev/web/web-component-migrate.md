@@ -25,7 +25,7 @@ import { createNWeb, defaultUrl } from '../pages/common'
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建，应用仅创建一个web组件
+      // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建，应用仅创建一个Web组件
       createNWeb(defaultUrl, windowStage.getMainWindowSync().getUIContext());
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
     });
