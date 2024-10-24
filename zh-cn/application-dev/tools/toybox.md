@@ -4,24 +4,26 @@ toybox 是一个轻量级的Linux命令行工具集合，它将常用的Linux命
 
 ## 前置条件
 
-### 使用方法1：
+### 使用方法1
 
 - 正常连接设备
 - 使用hdc shell进入命令行执行模式
 
-### 使用方法2：
+### 使用方法2
 
 - 应用沙箱内运行
 
 
 ## 命令行说明
 
-toybox的执行方式有两种
+toybox的执行方式有两种：
+
 - toybox [command] [arguments...]
+
 - 直接执行 [command] [arguments...]
 
 其中 [command] 可被替换为toybox支持的任意命令（可通过输入不带参数的toybox命令查询）。
-[arguments...] 为[command]所需要的参数
+[arguments...] 为[command]所需要的参数。
 
 <!--RP1-->
 <!--RP1End-->
