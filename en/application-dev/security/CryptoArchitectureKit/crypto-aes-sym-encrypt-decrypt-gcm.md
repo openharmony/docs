@@ -51,6 +51,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
     let generateRandSync = rand.generateRandomSync(len);
     return generateRandSync;
   }
+
   function genGcmParamsSpec() {
     let ivBlob = generateRandom(12);
     let arr = [1, 2, 3, 4, 5, 6, 7, 8]; // 8 bytes
@@ -60,7 +61,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
     let dataTag = new Uint8Array(arr);
     let tagBlob: cryptoFramework.DataBlob = {
       data: dataTag
-    }; 
+    };
     // Obtain the GCM authTag from the Cipher.doFinal result in encryption and fill it in the params parameter of Cipher.init in decryption.
     let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
       iv: ivBlob,
