@@ -84,6 +84,8 @@
 
 - Alarm类型的默认输出设备为扬声器‌。若先连接蓝牙耳机，再开始播放Alarm音频，则扬声器和蓝牙耳机会同时播放。
 
+若默认的输入/输出设备不符合使用诉求，应用也可以调用相关接口主动修改。例如，应用[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)时，可以调用[setDefaultOutputDevice](../../reference/apis-audio-kit/js-apis-audio.md#setdefaultoutputdevice12)接口，设置默认发声设备。
+
 ## 设置音频流类型
 
 应用可以使用不同的方式实现音频播放和音频录制功能，因此设置音频流类型的方法也不尽相同。
