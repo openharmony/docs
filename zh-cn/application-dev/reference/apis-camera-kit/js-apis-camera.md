@@ -2123,7 +2123,7 @@ getPreviewRotation(displayRotation: number): ImageRotation
 
 ```ts
 function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotation : camera.ImageRotation): camera.ImageRotation {
-  let previewRotation: camera.ImageRotation;
+  let previewRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     previewRotation = previewOutput.getPreviewRotation(imageRotation);
     console.log(`Preview rotation is: ${previewRotation}`);
@@ -2132,7 +2132,7 @@ function testGetPreviewRotation(previewOutput: camera.PreviewOutput, imageRotati
     let err = error as BusinessError;
     console.error(`The previewOutput.getPreviewRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return previewRotation;
 }
 ```
 ### setPreviewRotation<sup>12+</sup>
@@ -3239,7 +3239,7 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 
 ```ts
 function testGetPhotoRotation(photoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
-  let photoRotation: camera.ImageRotation;
+  let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     photoRotation = photoOutput.getPhotoRotation(deviceDegree);
     console.log(`Photo rotation is: ${photoRotation}`);
@@ -3248,7 +3248,7 @@ function testGetPhotoRotation(photoOutput: camera.PreviewOutput, deviceDegree : 
     let err = error as BusinessError;
     console.error(`The photoOutput.getPhotoRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return photoRotation;
 }
 ```
 
@@ -3770,7 +3770,7 @@ getVideoRotation(deviceDegree: number): ImageRotation
 
 ```ts
 function testGetVideoRotation(videoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
-  let videoRotation: camera.ImageRotation;
+  let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     videoRotation = videoOutput.getVideoRotation(deviceDegree);
     console.log(`Video rotation is: ${videoRotation}`);
@@ -3779,7 +3779,7 @@ function testGetVideoRotation(videoOutput: camera.PreviewOutput, deviceDegree : 
     let err = error as BusinessError;
     console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
   }
-  return;
+  return videoRotation;
 }
 ```
 
