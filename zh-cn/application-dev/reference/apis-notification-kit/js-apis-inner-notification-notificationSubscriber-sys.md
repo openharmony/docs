@@ -294,6 +294,7 @@ onDoNotDisturbDateChange?: (mode: notification.DoNotDisturbDate) => void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import Notification from '@ohos.notification';
 
 let subscribeCallback = (err: BusinessError) => {
   if (err) {
