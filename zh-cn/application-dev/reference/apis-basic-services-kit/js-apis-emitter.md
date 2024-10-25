@@ -272,7 +272,7 @@ off(eventId: number, callback: Callback\<EventData\>): void
 **示例：**
 
 ```ts
-// 取消eventID为1的事件回调处理函数 emitterCallback
+// 取消eventID为1的事件回调处理函数
 // 如果该回调处理函数没有被订阅，则不做任何处理
 emitter.off(1, () => {
   console.info('callback');
@@ -299,7 +299,7 @@ off(eventId: string, callback: Callback\<EventData\>): void
 **示例：**
 
 ```ts
-// 取消eventID为"eventId"的事件回调处理函数 emitterCallback
+// 取消eventID为"eventId"的事件回调处理函数
 // 如果该回调处理函数没有被订阅，则不做任何处理
 emitter.off("eventId", () => {
   console.info('callback');
@@ -368,7 +368,7 @@ emit(event: InnerEvent, data?: EventData): void
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };
@@ -403,7 +403,7 @@ emit(eventId: string, data?: EventData): void
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };
@@ -473,7 +473,7 @@ emit(eventId: string, options: Options, data?: EventData): void
 ```ts
 let eventData: emitter.EventData = {
     data: {
-        "content": "c",
+        "content": "content",
         "id": 1,
     }
 };

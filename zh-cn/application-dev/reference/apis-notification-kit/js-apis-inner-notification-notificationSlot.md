@@ -22,6 +22,6 @@
 | vibrationEnabled     | boolean               | 否 | 是  | 是否可振动。               |
 | sound                | string                | 否 | 是  | 通知提示音。               |
 | lightEnabled         | boolean               | 否 | 是  | 是否闪灯。                |
-| lightColor           | number                | 否 | 是  | 通知灯颜色。               |
-| vibrationValues      | Array\<number\>       | 否 | 是  | 通知振动样式。              |
-| enabled<sup>9+</sup> | boolean               | 是 | 是  | 此通知插槽中的启停状态。         |
+| lightColor           | number                | 否 | 是  | 通知灯颜色。预留能力，暂不支持。               |
+| vibrationValues      | Array\<number\>       | 否 | 是  | 通知振动样式。预留能力，暂不支持。              |
+| enabled<sup>9+</sup> | boolean               | 是 | 是  | 此通知插槽中的启停状态。true表示使能；false表示禁止。         |
