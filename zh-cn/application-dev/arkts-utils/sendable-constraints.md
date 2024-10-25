@@ -462,4 +462,4 @@ type D = C; // 编译报错
 
 ## 与UI交互的规则
 
-Sendable数据需要与[makeObserved](../quick-start/arkts-new-makeObserved.md)联用，才可以观察Sendable对象的数据变化，具体使用请参考[makeObserved和@Sendable装饰的class配合文档](quick-start/arkts-new-makeObserved.md#makeobserved和sendable装饰的class配合使用)。
+Sendable数据需要与[makeObserved](../quick-start/arkts-new-makeObserved.md)联用，才可以观察Sendable对象的数据变化，具体使用请参考[makeObserved和@Sendable装饰的class配合文档](../quick-start/arkts-new-makeObserved.md#makeobserved和sendable装饰的class配合使用)。
