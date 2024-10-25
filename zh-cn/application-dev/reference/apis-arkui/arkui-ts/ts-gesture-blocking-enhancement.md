@@ -578,7 +578,7 @@ struct Index {
         }.tabBar(this.tabBuilder(2, 'brown'))
       }
       .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
-        // 切换动画开始时触发该回调。下划线跟着页面一起滑动，同时宽度渐变。
+        // 切换动画开始时触发该回调。目标页签显示下划线。
         this.selectedIndex = targetIndex
       })
     }
