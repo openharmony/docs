@@ -76,6 +76,9 @@
      photoOutput.on('photoAssetAvailable', photoAssetAvailableCallback);
    }
 
+   let context = getContext(this);
+   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
    async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
      try {
        let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
