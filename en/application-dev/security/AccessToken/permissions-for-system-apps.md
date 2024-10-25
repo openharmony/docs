@@ -3979,6 +3979,18 @@ Currently, this permission is available only for 2-in-1 device applications.
 
 **Valid since**: 13
 
+### ohos.permission.USER_AUTH_FROM_BACKGROUND
+
+Allows an application or a service to initiate user identity authentication from the background.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 13
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
