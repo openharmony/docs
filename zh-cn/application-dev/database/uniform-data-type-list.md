@@ -20,7 +20,7 @@
 | general.symlink                     | general.entity                |                -                       |                                       -                                                | 所有符号链接的基类型                         |
 | general.composite-object            | general.object                |               -                        |                                        -                                               | 所有组合内容类型（例如PDF文件类型混合了文本和图片类数据）的基类型 |
 | general.media                       | general.object                |               -                        |                                          -                                             | 所有媒体的基类型                           |
-| general.content-form | general.object | - | - | 内容形式格式 |
+| general.content-form | general.object | - | - | 数据内容卡片类型 |
 | general.image                       | general.media                 |                  -                     |                                        -                                        | 所有图片的基类型                           |
 | general.png                         | general.image                 | .png                                   | image/png                                                                              | PNG图片类型                            |
 | general.jpeg                        | general.image                 | .jpg, .jpeg,.jpe                       | image/jpeg                                                                             | JPEG图片类型                           |
@@ -463,7 +463,7 @@
 | com.fujifilm.raf-raw-image | general.raw-image | .raf | image/x-fuji-raf | Fujifilm原始图像格式 |
 | com.panasonic.rw2-raw-image | general.raw-image | .rw2, .raw | image/x-panasonic-raw | Panasonic原始图像格式 |
 | com.pentax.pef-raw-image | general.raw-image | .pef | image/x-pentax-pef | Pentax电子原始图像格式 |
-| com.sumsung.srw-raw-image | general.raw-image | .srw | image/x-samsung-srw | samsung原始图像格式 |
+| com.sumsung.srw-raw-image | general.raw-image | .srw | image/x-samsung-srw | Samsung原始图像格式 |
 | com.epson.erf-raw-image | general.raw-image | .erf | image/x-epson-erf | Epson原始图像格式 |
 | com.olympus.orf-raw-image | general.raw-image | .orf | image/x-olympus-orf | Olympus原始图像格式 |
 
