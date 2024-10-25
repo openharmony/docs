@@ -26,7 +26,7 @@
   - [解决Web组件本地资源跨域问题](web-cross-origin.md)
   - [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)
   - [使用Web组件的广告过滤功能](web-adsblock.md)
-  - [坚盾守护模式](web-advanced-security-mode.md)
+  - [坚盾守护模式](web-secure-shield-mode.md)
 - 管理网页加载与浏览记录
   - [使用Web组件加载页面](web-page-loading-with-web-components.md)
   - [管理页面跳转及浏览记录导航](web-redirection-and-browsing-history-mgmt.md)
