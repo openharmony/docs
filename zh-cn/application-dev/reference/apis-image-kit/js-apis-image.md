@@ -185,7 +185,11 @@ async function Demo() {
 
 createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
-从Surface id创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
+根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](#region8).size指定。使用Promise形式返回。
+
+> **说明：**
+> 1. [Region](#region8).size的宽高需和[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高保持一致。
+> 2. 当开发设备为折叠屏，折叠状态切换时，需自行调整[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -194,7 +198,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](#region8)  | 是   | 裁剪的尺寸                         |
+| region                 | [Region](#region8)  | 是   | 区域信息。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -230,7 +234,11 @@ async function Demo(surfaceId: string) {
 
 createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 
-从Surface id创建一个pixelMap对象，同步返回PixelMap结果。
+以同步方式，根据Surface id和区域信息，创建一个PixelMap对象。该区域的大小由[Region](#region8).size指定。
+
+> **说明：**
+> 1. [Region](#region8).size的宽高需和[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高保持一致。
+> 2. 当开发设备为折叠屏，折叠状态切换时，需自行调整[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件的宽高。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -239,7 +247,7 @@ createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [Region](#region8)  | 是   | 裁剪的尺寸                         |
+| region                 | [Region](#region8)  | 是   | 区域信息。 |
 
 **返回值：**
 | 类型                             | 说明                  |
