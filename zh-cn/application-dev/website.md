@@ -39,6 +39,7 @@
   - 学习ArkTS语言<!--learning-arkts-->
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
     - [ArkTS语言介绍](quick-start/introduction-to-arkts.md)
+    - [ArkTS编程规范](quick-start/arkts-coding-style-guide.md)
     - 从TypeScript到ArkTS的适配指导<!--typescript-to-arkts-migration-->
       - [ArkTS语法适配背景](quick-start/arkts-migration-background.md)
       - [从TypeScript到ArkTS的适配规则](quick-start/typescript-to-arkts-migration-guide.md)
