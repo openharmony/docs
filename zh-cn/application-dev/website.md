@@ -601,7 +601,7 @@
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
         - [使用Web组件的广告过滤功能](web/web-adsblock.md)
-        - [坚盾守护模式](web/web-advanced-security-mode.md)
+        - [坚盾守护模式](web/web-secure-shield-mode.md)
       - 管理网页加载与浏览记录<!--web-manage-loading-browsing-->
         - [使用Web组件加载页面](web/web-page-loading-with-web-components.md)
         - [管理页面跳转及浏览记录导航](web/web-redirection-and-browsing-history-mgmt.md)
