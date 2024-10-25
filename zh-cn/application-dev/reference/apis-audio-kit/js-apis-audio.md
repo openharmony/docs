@@ -164,7 +164,7 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 
 **需要权限：** ohos.permission.MICROPHONE
 
-仅设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE）时需要该权限。
 
 **参数：**
 
@@ -215,7 +215,7 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
 **需要权限：** ohos.permission.MICROPHONE
 
-仅设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE）时需要该权限。
 
 **参数：**
 
@@ -1508,7 +1508,9 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data: number) => {
 
 mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定音量流静音，当该音量流可设置的最小音量不能为0时会返回false，例如：闹钟、通话，使用callback方式异步返回结果。
+设置指定音量流静音，使用callback方式异步返回结果。
+
+当该音量流可设置的最小音量不能为0时，不支持静音操作，例如：闹钟、通话。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
@@ -1541,7 +1543,9 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
 
 mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
-设置指定音量流静音，当该音量流可设置的最小音量不能为0时会返回false，例如：闹钟、通话，使用Promise方式异步返回结果。
+设置指定音量流静音，使用Promise方式异步返回结果。
+
+当该音量流可设置的最小音量不能为0时，不支持静音操作，例如：闹钟、通话。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
