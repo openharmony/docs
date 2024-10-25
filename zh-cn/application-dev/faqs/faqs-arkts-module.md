@@ -75,11 +75,17 @@ ets在模块化静态编译阶段，会预解析模块间依赖关系。ets文�
 检查应用内so是否存在报错提示的导出变量，与加载应用内so导入变量处进行比较，不一致则适配修改。
 
 
-## ArkTS加载so失败，表现行为是怎么样的
+## ArkTS/Ts/Js加载so失败，表现行为是怎么样的
 
 加载so失败后，不显式抛出加载失败的js异常。开发者可以通过导出对象是否为undefined判断so的加载状态。
 
-示例代码如下：
+**加载失败具体表现**  
+| 加载类型 | ts/js模块 | 系统库so或应用so |
+| -------- | -------- | -------- |
+| 静态加载 | 虚拟机自动抛出异常，进程退出 | 无异常抛出，加载到的对象为undefined |
+| 动态加载 | 不主动抛出异常，走到reject分支，开发者可以调用catch方法来捕获这个错误 | 不主动抛出异常，依然进入resolve分支，开发者可以在resolve分支中检查模块导出变量是否为undefined |
+
+**示例代码**  
 ```
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
@@ -89,4 +95,5 @@ if (testNapi == undeined) {
 }
 ```
 
-so加载失败可能的原因、定位方式以及解决方法参考([Node-API常见问题](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/use-napi-faqs.md))文档
+**so加载失败可能的原因、定位方式以及解决方法**  
+参考([Node-API常见问题](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/use-napi-faqs.md))文档
