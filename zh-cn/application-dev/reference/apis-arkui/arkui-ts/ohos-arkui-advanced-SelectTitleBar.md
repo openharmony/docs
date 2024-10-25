@@ -45,7 +45,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 
 > **说明：**
 > 
-> 入参对象不可为undefined，即`EditableTitleBar(undefined)`。
+> 入参对象不可为undefined，即`SelectTitleBar(undefined)`。
 
 ## SelectTitleBarMenuItem
 
