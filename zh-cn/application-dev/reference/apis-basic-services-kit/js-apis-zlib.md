@@ -1110,12 +1110,12 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 
 **参数：**
 
-| 参数名    | 类型          | 必填 | 说明                                                 |
-| --------- | ------------- | ---- | ---------------------------------------------------- |
-| dest      | ArrayBuffer   | 是   | 目标缓冲区。                                         |
-| source    | ArrayBuffer   | 是   | 源数据缓冲区。                                       |
-| level     | CompressLevel | 是   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。 |
-| sourceLen | number        | 否   | 源数据长度。                                         |
+| 参数名    | 类型          | 必填 | 说明                                          |
+| --------- | ------------- | ---- | --------------------------------------------- |
+| dest      | ArrayBuffer   | 是   | 目标缓冲区。                                  |
+| source    | ArrayBuffer   | 是   | 源数据缓冲区。                                |
+| level     | CompressLevel | 是   | 参考[CompressLevel枚举定义](#compresslevel)。 |
+| sourceLen | number        | 否   | 源数据长度。                                  |
 
 **返回值：**
 
@@ -1349,9 +1349,9 @@ inflateValidate(strm: ZStream, check: number): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1408,9 +1408,9 @@ inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1467,9 +1467,9 @@ inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1559,9 +1559,9 @@ inflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1619,9 +1619,9 @@ inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1717,9 +1717,9 @@ inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1776,9 +1776,9 @@ inflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1837,9 +1837,9 @@ inflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -1955,9 +1955,9 @@ inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2010,9 +2010,9 @@ inflateInit(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2065,9 +2065,9 @@ inflateGetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2184,9 +2184,9 @@ inflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2248,9 +2248,9 @@ inflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2367,9 +2367,9 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2400,9 +2400,9 @@ inflateBackInit()函数分配的所有内存都被释放，使用Promise异步�
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2455,9 +2455,9 @@ InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) 
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2617,16 +2617,16 @@ inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 **参数：**
 
-| 参数名 | 类型              | 必填 | 说明                                                   |
-| ------ | ----------------- | ---- | ------------------------------------------------------ |
-| strm   | ZStream           | 是   | 参考[ZStream定义](#zstream12)。                        |
-| flush  | CompressFlushMode | 是   | 参考[CompressFlushMode定义](#zipcompressflushmode12)。 |
+| 参数名 | 类型              | 必填 | 说明                                                |
+| ------ | ----------------- | ---- | --------------------------------------------------- |
+| strm   | ZStream           | 是   | 参考[ZStream定义](#zstream12)。                     |
+| flush  | CompressFlushMode | 是   | 参考[CompressFlushMode定义](#compressflushmode12)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2704,16 +2704,16 @@ deflateInit(strm: ZStream, level: CompressLevel): Promise&lt;ReturnStatus&gt;
 
 **参数：**
 
-| 参数名 | 类型          | 必填 | 说明                                                 |
-| ------ | ------------- | ---- | ---------------------------------------------------- |
-| strm   | ZStream       | 是   | 参考[ZStream定义](#zstream12)。                      |
-| level  | CompressLevel | 是   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。 |
+| 参数名 | 类型          | 必填 | 说明                                          |
+| ------ | ------------- | ---- | --------------------------------------------- |
+| strm   | ZStream       | 是   | 参考[ZStream定义](#zstream12)。               |
+| level  | CompressLevel | 是   | 参考[CompressLevel枚举定义](#compresslevel)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2764,20 +2764,20 @@ deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, window
 
 **参数：**
 
-| 参数名     | 类型             | 必填 | 说明                                                       |
-| ---------- | ---------------- | ---- | ---------------------------------------------------------- |
-| strm       | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                            |
-| level      | CompressLevel    | 是   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。       |
-| method     | CompressMethod   | 是   | 参考[zip.CompressMethod枚举定义](#zipcompressmethod12)。   |
-| windowBits | number           | 是   | 最大窗口大小的以2为底的对数。                              |
-| memLevel   | MemLevel         | 是   | 参考[zip.MemLevel枚举定义](#zipmemlevel)。                 |
-| strategy   | CompressStrategy | 是   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
+| 参数名     | 类型             | 必填 | 说明                                                |
+| ---------- | ---------------- | ---- | --------------------------------------------------- |
+| strm       | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                     |
+| level      | CompressLevel    | 是   | 参考[CompressLevel枚举定义](#compresslevel)。       |
+| method     | CompressMethod   | 是   | 参考[CompressMethod枚举定义](#compressmethod12)。   |
+| windowBits | number           | 是   | 最大窗口大小的以2为底的对数。                       |
+| memLevel   | MemLevel         | 是   | 参考[MemLevel枚举定义](#memlevel)。                 |
+| strategy   | CompressStrategy | 是   | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2829,16 +2829,16 @@ deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 **参数：**
 
-| 参数名 | 类型              | 必填 | 说明                                                   |
-| ------ | ----------------- | ---- | ------------------------------------------------------ |
-| strm   | ZStream           | 是   | 参考[ZStream定义](#zstream12)。                        |
-| flush  | CompressFlushMode | 是   | 参考[CompressFlushMode定义](#zipcompressflushmode12)。 |
+| 参数名 | 类型              | 必填 | 说明                                                |
+| ------ | ----------------- | ---- | --------------------------------------------------- |
+| strm   | ZStream           | 是   | 参考[ZStream定义](#zstream12)。                     |
+| flush  | CompressFlushMode | 是   | 参考[CompressFlushMode定义](#compressflushmode12)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -2901,9 +2901,9 @@ deflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3035,9 +3035,9 @@ deflateSetHeader(strm: ZStream, head: GzHeader): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3100,9 +3100,9 @@ deflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3165,9 +3165,9 @@ deflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3303,9 +3303,9 @@ deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: numb
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3367,9 +3367,9 @@ deflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3431,9 +3431,9 @@ deflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3553,17 +3553,17 @@ deflateParams(strm: ZStream, level: CompressLevel, strategy: CompressStrategy): 
 
 **参数：**
 
-| 参数名   | 类型             | 必填 | 说明                                                       |
-| -------- | ---------------- | ---- | ---------------------------------------------------------- |
-| strm     | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                            |
-| level    | CompressLevel    | 是   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。       |
-| strategy | CompressStrategy | 是   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
+| 参数名   | 类型             | 必填 | 说明                                                |
+| -------- | ---------------- | ---- | --------------------------------------------------- |
+| strm     | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                     |
+| level    | CompressLevel    | 是   | 参考[CompressLevel枚举定义](#compresslevel)。       |
+| strategy | CompressStrategy | 是   | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3627,9 +3627,9 @@ deflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象。返回结果状态。 |
 
 **错误码：**
 
@@ -3680,12 +3680,12 @@ async function demo() {
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称     | 类型             | 可读 | 可写 | 说明                                                       |
-| -------- | ---------------- | ---- | ---- | ---------------------------------------------------------- |
-| level    | CompressLevel     | 是   | 否   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。       |
-| memLevel | MemLevel         | 是   | 否   | 参考[zip.MemLevel枚举定义](#zipmemlevel)。                 |
-| strategy | CompressStrategy | 是   | 否   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
+| -------- | ---------------- | ---- | ---------------------------------------------------------- | ---- |
+| level    | CompressLevel     | 是   | 否  | 参考[CompressLevel枚举定义](#compresslevel)。       |
+| memLevel | MemLevel         | 是   | 否  | 参考[MemLevel枚举定义](#memlevel)。                 |
+| strategy | CompressStrategy | 是   | 否  | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
-## zip.CompressLevel
+## CompressLevel
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3698,7 +3698,7 @@ async function demo() {
 | COMPRESS_LEVEL_BEST_COMPRESSION    | 9    | 最佳压缩等级。      |
 | COMPRESS_LEVEL_DEFAULT_COMPRESSION | -1   | 默认压缩等级。      |
 
-## zip.MemLevel
+## MemLevel
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3706,11 +3706,11 @@ async function demo() {
 
 | 名称              | 值   | 说明                             |
 | ----------------- | ---- | -------------------------------- |
-| MEM_LEVEL_MIN     | 1    | zip 接口在压缩过程中最小使用内存。 |
-| MEM_LEVEL_MAX     | 9    | zip 接口在压缩过程中最大使用内存。 |
-| MEM_LEVEL_DEFAULT | 8    | zip 接口在压缩过程中默认使用内存。 |
+| MEM_LEVEL_MIN     | 1    | zlib接口在压缩过程中最小使用内存。 |
+| MEM_LEVEL_MAX     | 9    | zlib接口在压缩过程中最大使用内存。 |
+| MEM_LEVEL_DEFAULT | 8    | zlib接口在压缩过程中默认使用内存。 |
 
-## zip.CompressStrategy
+## CompressStrategy
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3724,7 +3724,7 @@ async function demo() {
 | COMPRESS_STRATEGY_RLE              | 3    | 游标编码压缩策略。         |
 | COMPRESS_STRATEGY_FIXED            | 4    | 固定的压缩策略。           |
 
-## zip.ErrorCode
+## ErrorCode
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -3733,7 +3733,7 @@ async function demo() {
 | ERROR_CODE_OK    | 0    | 函数调用成功。 |
 | ERROR_CODE_ERRNO | -1   | 函数调用失败。 |
 
-## zip.CompressFlushMode<sup>12+</sup>
+## CompressFlushMode<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3749,7 +3749,7 @@ async function demo() {
 | BLOCK         | 5    | 允许更精确的控制。                           |
 | TREES         | 6    | 实施过程中有特殊目的。                       |
 
-## zip.CompressMethod<sup>12+</sup>
+## CompressMethod<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3759,7 +3759,7 @@ async function demo() {
 | -------- | ---- | ---------- |
 | DEFLATED | 8    | 压缩方法。 |
 
-## zip.ReturnStatus<sup>12+</sup>
+## ReturnStatus<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3794,10 +3794,10 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称    | 类型         | 可读 | 可写 | 说明                                                  |
-| ------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status  | ReturnStatus | 是   | 否   | 参考[zlib.ReturnStatus枚举定义](#zipreturnstatus12)。 |
-| destLen | number       | 是   | 否   | 目标缓冲区的总长度。                                  |
+| 名称    | 类型         | 可读 | 可写 | 说明                                          |
+| ------- | ------------ | ---- | ---- | --------------------------------------------- |
+| status  | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| destLen | number       | 是   | 否   | 目标缓冲区的总长度。                          |
 
 ## DictionaryOutputInfo<sup>12+</sup>
 
@@ -3805,10 +3805,10 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称             | 类型         | 可读 | 可写 | 说明                                                  |
-| ---------------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status           | ReturnStatus | 是   | 否   | 参考[zlib.ReturnStatus枚举定义](#zipreturnstatus12)。 |
-| dictionaryLength | number       | 是   | 否   | 字典的长度。                                          |
+| 名称             | 类型         | 可读 | 可写 | 说明                                          |
+| ---------------- | ------------ | ---- | ---- | --------------------------------------------- |
+| status           | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| dictionaryLength | number       | 是   | 否   | 字典的长度。                                  |
 
 ## DecompressionOutputInfo<sup>12+</sup>
 
@@ -3816,11 +3816,11 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称             | 类型         | 可读 | 可写 | 说明                                                  |
-| ---------------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status           | ReturnStatus | 是   | 否   | 参考[zlib.ReturnStatus枚举定义](#zipreturnstatus12)。 |
-| destLength       | number       | 是   | 否   | 目标缓冲区的长度。                                     |
-| sourceLength     | number       | 是   | 否   | 源缓冲区的长度。                                       |
+| 名称         | 类型         | 可读 | 可写 | 说明                                          |
+| ------------ | ------------ | ---- | ---- | --------------------------------------------- |
+| status       | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| destLength   | number       | 是   | 否   | 目标缓冲区的长度。                            |
+| sourceLength | number       | 是   | 否   | 源缓冲区的长度。                              |
 
 ## DeflatePendingOutputInfo<sup>12+</sup>
 
@@ -3828,11 +3828,11 @@ async function demo() {
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称    | 类型         | 可读 | 可写 | 说明                                                  |
-| ------- | ------------ | ---- | ---- | ----------------------------------------------------- |
-| status  | ReturnStatus | 是   | 否   | 参考[zlib.ReturnStatus枚举定义](#zipreturnstatus12)。 |
-| pending | number       | 是   | 否   | 已生成的输出字节数。                                  |
-| bits    | number       | 是   | 否   | 已生成的输出位数。                                    |
+| 名称    | 类型         | 可读 | 可写 | 说明                                          |
+| ------- | ------------ | ---- | ---- | --------------------------------------------- |
+| status  | ReturnStatus | 是   | 否   | 参考[ReturnStatus枚举定义](#returnstatus12)。 |
+| pending | number       | 是   | 否   | 已生成的输出字节数。                          |
+| bits    | number       | 是   | 否   | 已生成的输出位数。                            |
 
 ## GzHeader<sup>12+</sup>
 
@@ -4247,9 +4247,9 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -4375,9 +4375,9 @@ gzerror(): Promise&lt;GzErrorOutputInfo&gt;
 
 **返回值：**
 
-| 类型                                                        | 说明                                                      |
-| ----------------------------------------------------------- | --------------------------------------------------------- |
-| Promise&lt;[GzErrorOutputInfo](#zipgzerroroutputinfo12)&gt; | Promise对象，返回结果状态和出现的最后一个状态的状态消息。 |
+| 类型                                                     | 说明                                                      |
+| -------------------------------------------------------- | --------------------------------------------------------- |
+| Promise&lt;[GzErrorOutputInfo](#gzerroroutputinfo12)&gt; | Promise对象，返回结果状态和出现的最后一个状态的状态消息。 |
 
 **错误码：**
 
@@ -4516,13 +4516,13 @@ gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 | 参数名 | 类型              | 必填 | 说明                                                         |
 | ------ | ----------------- | ---- | ------------------------------------------------------------ |
-| flush  | CompressFlushMode | 是   | 控制刷新操作的行为，参考[CompressFlushMode枚举](#zipcompressflushmode12)的定义。 |
+| flush  | CompressFlushMode | 是   | 控制刷新操作的行为，参考[CompressFlushMode枚举](#compressflushmode12)的定义。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -4739,9 +4739,9 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -4801,9 +4801,9 @@ gzcloser(): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -5071,14 +5071,14 @@ gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;Return
 
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| level    | CompressLevel    | 是   | 压缩级别，参考[zip.CompressLevel枚举定义](#zipcompresslevel)。 |
-| strategy | CompressStrategy | 是   | 压缩策略，参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
+| level    | CompressLevel    | 是   | 压缩级别，参考[CompressLevel枚举定义](#compresslevel)。      |
+| strategy | CompressStrategy | 是   | 压缩策略，参考[CompressStrategy枚举定义](#compressstrategy)。 |
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -5143,7 +5143,7 @@ gzseek(offset: number, whence: OffsetReferencePoint): Promise&lt;number&gt;
 | 参数名 | 类型                 | 必填 | 说明                                                         |
 | ------ | -------------------- | ---- | ------------------------------------------------------------ |
 | offset | number               | 是   | 目标偏移位置。                                               |
-| whence | OffsetReferencePoint | 是   | 定义偏移的参考点，参考[zip.OffsetReferencePoint枚举定义](#zipoffsetreferencepoint12)。 |
+| whence | OffsetReferencePoint | 是   | 定义偏移的参考点，参考[OffsetReferencePoint枚举定义](#offsetreferencepoint12)。 |
 
 **返回值：**
 
@@ -5210,9 +5210,9 @@ gzrewind(): Promise&lt;ReturnStatus&gt;
 
 **返回值：**
 
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#returnstatus12)&gt; | Promise对象，返回结果状态。 |
 
 **错误码：**
 
@@ -5684,18 +5684,18 @@ struct Index {
 }
 ```
 
-## zip.GzErrorOutputInfo<sup>12+</sup>
+## GzErrorOutputInfo<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
-| 名称      | 类型         | 可读 | 可写 | 说明                                             |
-| --------- | ------------ | ---- | ---- | ------------------------------------------------ |
-| status    | ReturnStatus | 是   | 否   | 返回zlib文件状态码，参考zip.ReturnStatus的定义。 |
-| statusMsg | string       | 是   | 否   | zlib文件上发生的最后一个状态的状态消息。         |
+| 名称      | 类型         | 可读 | 可写 | 说明                                         |
+| --------- | ------------ | ---- | ---- | -------------------------------------------- |
+| status    | ReturnStatus | 是   | 否   | 返回zlib文件状态码，参考ReturnStatus的定义。 |
+| statusMsg | string       | 是   | 否   | zlib文件上发生的最后一个状态的状态消息。     |
 
-## zip.OffsetReferencePoint<sup>12+</sup>
+## OffsetReferencePoint<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
