@@ -104,9 +104,9 @@
    async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
      let requestOptions: photoAccessHelper.RequestOptions = {
        // 按照业务需求配置回图模式
-       // FAST_MODE：仅回调一阶段低质量图
-       // HIGH_QUALIITY_MODE：仅回调二阶段全质量图回调
-       // BALANCE_MODE：回调一阶段及二阶段图片
+       // FAST_MODE：仅接收一阶段低质量图回调
+       // HIGH_QUALIITY_MODE：仅接收二阶段全质量图回调
+       // BALANCE_MODE：接收一阶段及二阶段图片回调
        deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
      }
      const handler = new MediaDataHandler();
