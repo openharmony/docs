@@ -6,7 +6,7 @@
 
 在应用启动播放或录制之前，需要首先[申请音频焦点](#如何申请和释放音频焦点)；在播放或录制完成后，需要[释放音频焦点](#如何申请和释放音频焦点)。在播放或录制的过程中，可能会因为其他音频流打断而失去焦点，此时需要应用[根据焦点变化做出相应的处理](#如何处理音频焦点变化)。
 
-系统预设了默认的[音频焦点策略](#音频焦点策略)，会对所有音频流（包含播放和录制）进行统一的焦点管理。同时，应用可以调用音频会话（AudioSession）相关的接口，主动管理自身音频流的音频焦点表现。
+系统预设了默认的[音频焦点策略](#音频焦点策略)，会根据各个音频流的类型及启动先后顺序，对所有音频流（包含播放和录制）进行统一的焦点管理。同时，应用可以调用音频会话（AudioSession）相关的接口，主动管理自身音频流的音频焦点表现。
 
 对应用而言，为确保带给用户良好的音频焦点体验，需要注意：
  - 应用在启动播放或录制之前，需要根据音频的用途，[使用合适的音频流类型](./using-right-streamusage-and-sourcetype.md)，即正确指定[StreamUsage](../../reference/apis-audio-kit/js-apis-audio.md#streamusage)或[SourceType](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8)；
@@ -95,7 +95,7 @@
 
 ## 如何处理音频焦点变化
 
-在应用播放或录制音频的过程中，若有其他音频流申请焦点，系统会根据[音频焦点策略](#音频焦点策略)进行焦点处理。若判定本音频流的焦点有变化，需要执行暂停、继续、降低音量、恢复音量等操作，则系统会自动执行一些必要的操作，并通过[音频焦点事件（InterruptEvent）](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)通知应用。
+在应用播放或录制音频的过程中，若有其他音频流申请焦点，系统会根据[焦点策略](#音频焦点策略)进行焦点处理。若判定本音频流的焦点有变化，需要执行暂停、继续、降低音量、恢复音量等操作，则系统会自动执行一些必要的操作，并通过[音频焦点事件（InterruptEvent）](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)通知应用。
 
 因此，为了维持应用和系统的状态一致性，保证良好的用户体验，推荐应用[监听音频焦点事件](#监听音频焦点事件的方法)，并在焦点发生变化时，根据[InterruptEvent](../../reference/apis-audio-kit/js-apis-audio.md#interruptevent9)做出必要的响应。
 
@@ -227,7 +227,7 @@ async function onAudioInterrupt(): Promise<void> {
 
   典型场景：应用播放短视频时，会打断后台音乐，应用希望自身的音频流停止后，后台的音乐可以自动恢复。
 
-- 音频会话（AudioSession）处于激活状态下，本应用的音频流全部停止时，不会立刻释放音频焦点，系统会保持音频焦点，直到音频会话停用时再释放音频焦点，或是直到该应用有新的音频流申请焦
+- 音频会话（AudioSession）处于激活状态下，本应用的音频流全部停止时，不会立刻释放音频焦点，系统会保持音频焦点，直到音频会话停用时再释放音频焦点，或是直到该应用有新的音频流申请焦点。
 
   典型场景：应用连续播放多个音频时，在多个音频衔接的间隙，不希望后台被影响的其他音频自动恢复，希望整个播放过程保持音频焦点的连贯性。
 
@@ -238,9 +238,9 @@ AudioSession流程示意图：
 
 1、音频业务开始之前，[获取AudioSessionManager](#获取audiosessionmanager)，[激活AudioSession](#激活audiosession)，指定[AudioSessionStrategy](#音频会话策略audiosessionstrategy)。
 
-2、应用正常执行播放、录制等音频业务。此时，本应用的所有音频流在参与焦点处理时，会优先使用AudioSession保存的策略。
+2、应用正常开始播放、录制等音频业务。系统会在音频流开始时，申请音频焦点。本应用的所有音频流在参与焦点处理时，会优先使用AudioSession指定的策略。
 
-3、音频业务结束之后，[停用AudioSession](#停用audiosession)，释放音频焦点。
+3、音频业务结束之后，[停用AudioSession](#停用audiosession)。系统会在音频流停止且AudioSession停用时，释放音频焦点。
 
 在使用AudioSession的过程中，推荐应用[监听AudioSession停用事件](#监听audiosession停用事件)，当AudioSession被停用时，应用可以及时收到[AudioSession停用事件](../../reference/apis-audio-kit/js-apis-audio.md#audiosessiondeactivatedevent12)。
 
@@ -272,7 +272,7 @@ AudioSession处于激活状态时，有以下特性：
 
 具体方法可参考[音频会话管理(ArkTS)](./audio-session-management.md)或[音频会话管理(C/C++)](./using-ohaudio-for-session.md)。
 
-应用在停用AudioSession时，如果该应用的所有音频流已全部停止（即处于保持焦点的静默等待状态），则会立刻释放音频焦点；如果该应用仍有音频流在运行，则它的音频流仍然会持有焦点。
+应用在停用AudioSession时，如果该应用的所有音频流已全部停止（即处于保持焦点的静默等待状态），则会立刻释放音频焦点；如果该应用仍有音频流在运行，则它的音频流仍然会持有焦点，直到音频流停止时才释放。
 
 ### 音频会话策略（AudioSessionStrategy）
 
