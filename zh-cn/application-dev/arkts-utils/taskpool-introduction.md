@@ -34,7 +34,7 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 ## \@Concurrent装饰器
 
-在使用[TaskPool](zh-cn_topic_0000001936203798.xml)时，执行的并发函数需要使用该装饰器修饰，否则无法通过相关校验。
+在使用[TaskPool](../reference/apis-arkts/js-apis-taskpool.md)时，执行的并发函数需要使用该装饰器修饰，否则无法通过相关校验。
 
 > **说明：**
 >
