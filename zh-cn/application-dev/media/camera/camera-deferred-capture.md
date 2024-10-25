@@ -67,17 +67,54 @@
      console.info('photoOutPutCallBack photoAssetAvailable');
      // 开发者可通过photoAsset调用媒体库相关接口，自定义处理图片
      // 处理方式一：调用媒体库落盘接口保存一阶段图，二阶段图就绪后媒体库会主动帮应用替换落盘图片
+     mediaLibSavePhoto(photoAsset);
      // 处理方式二：调用媒体库接口请求图片并注册一阶段图或二阶段图buffer回调，自定义使用
+     mediaLibRequestBuffer(photoAsset);
    }
-   
+
    function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
      photoOutput.on('photoAssetAvailable', photoAssetAvailableCallback);
    }
+
+   async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
+     try {
+       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+       assetChangeRequest.saveCameraPhoto();
+       await phAccessHelper.applyChanges(assetChangeRequest);
+       console.info('apply saveCameraPhoto successfully');
+     } catch (err) {
+       console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
+     }
+   }
+
+   class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
+     onDataPrepared(data: ArrayBuffer) {
+       if (data === undefined) {
+         console.error('Error occurred when preparing data');
+         return;
+       }
+       // 应用获取到图片buffer后可自定义处理
+       console.info('on image data prepared');
+     }
+   }
+
+   async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
+     let requestOptions: photoAccessHelper.RequestOptions = {
+       // 按照业务需求配置回图模式
+       // FAST_MODE：仅回调一阶段低质量图
+       // HIGH_QUALIITY_MODE：仅回调二阶段全质量图回调
+       // BALANCE_MODE：回调一阶段及二阶段图片
+       deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
+     }
+     const handler = new MediaDataHandler();
+     await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
+     console.info('requestImageData successfully');
+   }
    ```
 
-   媒体库落盘图片参考：[saveCameraPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#savecameraphoto12)
+   落盘图片参考媒体库接口：[saveCameraPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#savecameraphoto12)
 
-   媒体库请求图片参考：[requestimagedata](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestimagedata11) 和 [ondataprepare](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#ondataprepared11)
+   请求图片参考媒体库接口：[requestImageData](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestimagedata11) 和 [onDataPrepared](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#ondataprepared11)
 
 4. 拍照时的会话配置及触发拍照的方式，与普通拍照相同，请参考[拍照](camera-shooting.md)的步骤4-5。
 
