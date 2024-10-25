@@ -8575,7 +8575,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 ## NativeEmbedStatus<sup>11+</sup>
 
-定义同层标签生命周期，当加载页面中有同层标签会触发CREATE，同层标签移动或者放大会出发UPDATE，退出页面会触发DESTROY。
+定义同层标签生命周期，当加载页面中有同层标签会触发CREATE，同层标签移动或者放大会触发UPDATE，退出页面会触发DESTROY。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
