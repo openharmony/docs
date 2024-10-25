@@ -2,7 +2,7 @@
 
 资源管理导入sendableResourceManager模块，通过调用[resourceToSendableResource](#sendableresourcemanagerresourcetosendableresource)和[sendableResourceToResource](#sendableresourcemanagersendableresourcetoresource)方法可以将[Resource](#resource)对象和[SendableResource](#sendableresource)对象进行互转。
 
-Resource对象通过转换为SendableResource对象后，可以被[Sendable类](../../arkts-utils/arkts-sendable.md)持有。Sendable类在跨线程传输后，取出持有的SendableResource对象转为Resource对象，作为参数获取资源。
+Resource对象通过转换为SendableResource对象后，可以被[Sendable类](../../arkts-utils/sendable-overview.md)持有。Sendable类在跨线程传输后，取出持有的SendableResource对象转为Resource对象，作为参数获取资源。
 
 > **说明：**
 >
