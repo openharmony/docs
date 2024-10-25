@@ -100,9 +100,8 @@ Naitve实现两个线程的序列化反序列化Sendable的逻辑
 #include "napi/native_api.h"
 #include <thread>
 
-static void* serializationData = nullptr;
-static void *CreateEnvAndSendSendable(void *)
-{
+static void *serializationData = nullptr;
+static void *CreateEnvAndSendSendable(void *) {
     // 1. 创建基础运行环境
     napi_env env = nullptr;
     napi_status ret = napi_create_ark_runtime(&env);
@@ -111,7 +110,8 @@ static void *CreateEnvAndSendSendable(void *)
     }
     // 2. 加载自定义模块，假定SendableObjTest中提供创建sendable对象的方法newSendable
     napi_value test = nullptr;
-    ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/SendableObjTest", "com.example.myapplication/entry", &test);
+    ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/SendableObjTest", "com.example.myapplication/entry",
+                                     &test);
     if (ret != napi_ok) {
         std::abort();
     }
@@ -136,13 +136,13 @@ static void *CreateEnvAndSendSendable(void *)
     napi_value undefined;
     napi_get_undefined(env, &undefined);
     ret = napi_serialize(env, result, undefined, undefined, &serializationData);
-        if (ret != napi_ok) {
+    if (ret != napi_ok) {
         std::abort();
     }
     return nullptr;
 }
-static void *CreateEnvAndReceiveSendable(void *)
-{
+
+static void *CreateEnvAndReceiveSendable(void *) {
     // 1. 创建基础运行环境
     napi_env env = nullptr;
     napi_status ret = napi_create_ark_runtime(&env);
@@ -172,20 +172,19 @@ static void *CreateEnvAndReceiveSendable(void *)
     }
     return nullptr;
 }
-static napi_value TestSendSendable([[maybe_unused]] napi_env env, [[maybe_unused]] napi_callback_info info)
-{
+
+static napi_value TestSendSendable([[maybe_unused]] napi_env env, [[maybe_unused]] napi_callback_info info) {
     std::thread t1(CreateEnvAndSendSendable, nullptr);
     t1.join();
     std::thread t2(CreateEnvAndReceiveSendable, nullptr);
     t2.join();
     return nullptr;
 }
+
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
+static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
-        { "testSendSendable", nullptr, TestSendSendable, nullptr, nullptr, nullptr, napi_default, nullptr }
-    };
+        {"testSendSendable", nullptr, TestSendSendable, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
@@ -197,12 +196,12 @@ static napi_module demoModule = {
     .nm_filename = nullptr,
     .nm_register_func = Init,
     .nm_modname = "entry",
-    .nm_priv = ((void*)0),
-    .reserved = { 0 },
+    .nm_priv = ((void *)0),
+    .reserved = {0},
 };
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
-{
-    napi_module_register(&demoModule);
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { 
+    napi_module_register(&demoModule); 
 }
 ```
 
