@@ -151,7 +151,7 @@
 
 ### makeObserved和@Sendable装饰的class配合使用
 
-[@Sendable](../arkts-utils/arkts-sendable.md)主要是为了处理应用场景中的并发任务。将makeObserved和@Sendable配合使用是为了满足一般应用开发中，在子线程做大数据处理，在UI线程做ViewModel的显示和观察数据的需求。@Sendable具体内容可参考[并发任务文档](../arkts-utils/multi-thread-concurrency-overview.md)。
+[@Sendable](../arkts-utils/sendable-overview.md)主要是为了处理应用场景中的并发任务。将makeObserved和@Sendable配合使用是为了满足一般应用开发中，在子线程做大数据处理，在UI线程做ViewModel的显示和观察数据的需求。@Sendable具体内容可参考[并发任务文档](../arkts-utils/multi-thread-concurrency-overview.md)。
 
 本章节将说明下面的场景：
 - makeObserved在传入@Sendable类型的数据后有观察能力，且其变化可以触发UI刷新。
