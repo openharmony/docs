@@ -12,6 +12,10 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
 在应用开发过程中，开发者应通过监听方法检查当前播放状态并按照一定顺序调用接口，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
+> **说明：**
+> 
+> 使用SoundPool播放短音频时，涉及音频焦点管控策略的问题，请参考[音频焦点指南](../audio/audio-playback-concurrency.md)。
+
 ## 开发步骤及注意事项
 
 1. 调用createSoundPool方法创建SoundPool实例。
@@ -22,6 +26,8 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     import { BusinessError } from '@kit.BasicServicesKit';
 
     let soundPool: media.SoundPool;
+    // audioRenderInfo中的参数usage取值为STREAM_USAGE_UNKNOWN，STREAM_USAGE_MUSIC，STREAM_USAGE_MOVIE，
+    // STREAM_USAGE_AUDIOBOOK时，SoundPool播放短音时为混音模式，不会打断其他音频播放。
     let audioRendererInfo: audio.AudioRendererInfo = {
       usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
       rendererFlags : 0
@@ -219,6 +225,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let soundPool: media.SoundPool;
 let streamId: number = 0;
 let soundId: number = 0;
+// audioRenderInfo中的参数usage取值为STREAM_USAGE_UNKNOWN，STREAM_USAGE_MUSIC，STREAM_USAGE_MOVIE，
+// STREAM_USAGE_AUDIOBOOK时，SoundPool播放短音时为混音模式，不会打断其他音频播放。
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
