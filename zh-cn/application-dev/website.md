@@ -766,7 +766,7 @@
           - [语言测试](internationalization/linguistic-testing.md)
   - 系统<!--system-->
     - 安全<!--system-security-->
-      - 程序访问控制<!--access-control-->
+      - 访问控制<!--access-control-->
         - [访问控制概述](security/AccessToken/access-token-overview.md)
         - 应用权限管控<!--app-permission-mgmt-->
           - [应用权限管控概述](security/AccessToken/app-permission-mgmt-overview.md)
@@ -1087,10 +1087,11 @@
           - [示例服务器开发指导](basic-services/update/sample-server-guidelines.md)
         <!--DelEnd-->
         - 剪贴板服务<!--pasteboard-->
+          - [申请访问剪贴板权限](basic-services/pasteboard/get-pastedata-permission-guidelines.md)
           - [使用剪贴板进行复制粘贴](basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md)
           - [使用剪贴板进行复制粘贴（C/C++）](basic-services/pasteboard/native-use-pasteboard.md)
-          - [使用剪贴板的延迟复制粘贴功能](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
-          - [申请访问剪贴板权限](basic-services/pasteboard/get-pastedata-permission-guidelines.md)
+          - [使用剪贴板进行延迟复制粘贴](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
+
         - 上传下载<!--upload-download-->
           - [应用文件上传下载](basic-services/request/app-file-upload-download.md)
       - Function Flow Runtime Kit（任务并发调度服务）<!--ffrt-kit-->
@@ -1347,17 +1348,21 @@
       - [Image Kit简介](media/image/image-overview.md)
       - 图片开发指导(ArkTS)<!--image-arkts-dev-->
         - [使用ImageSource完成图片解码](media/image/image-decoding.md)
+        - [使用ImageSource完成多图对象解码](media/image/image-picture-decoding.md)
         - [使用PixelMap完成图像变换](media/image/image-transformation.md)
         - [使用PixelMap完成位图操作](media/image/image-pixelmap-operation.md)
         - [使用ImagePacker完成图片编码](media/image/image-encoding.md)
+        - [使用ImagePacker完成多图对象编码](media/image/image-picture-encoding.md)
         - [编辑图片EXIF信息](media/image/image-tool.md)
       - 图片开发指导(C/C++)<!--image-native-->
         - [介绍Image_NativeModule结构体信息](media/image/image-structure-c.md)
         - [使用Image_NativeModule完成图片解码](media/image/image-source-c.md)
+        - [使用Image_NativeModule完成多图对象解码](media/image/image-source-picture-c.md)
         - [使用Image_NativeModule完成图片接收器](media/image/image-receiver-c.md)
         - [使用Image_NativeModule完成位图操作](media/image/pixelmap-c.md)
         - [使用Image_NativeModule处理图像信息](media/image/image-info-c.md)
         - [使用Image_NativeModule完成图片编码](media/image/image-packer-c.md)
+        - [使用Image_NativeModule完成多图对象编码](media/image/image-packer-picture-c.md)
         - [使用ImageEffect编辑图片](media/image/image-effect-guidelines.md)
       - 图片开发指导(依赖JS对象)(C/C++)<!--image-native-js-objects-->
         - [使用Image完成图片解码](media/image/image-decoding-native.md)
@@ -3763,6 +3768,7 @@
           - [image_packer_native.h](reference/apis-image-kit/image__packer__native_8h.md)
           - [image_receiver_native.h](reference/apis-image-kit/image__receiver__native_8h.md)
           - [image_source_native.h](reference/apis-image-kit/image__source__native_8h.md)
+          - [picture_native.h](reference/apis-image-kit/picture__native_8h.md)
           - [pixelmap_native.h](reference/apis-image-kit/pixelmap__native_8h.md)
           - [image_effect.h](reference/apis-image-kit/image__effect_8h.md)
           - [image_effect_errors.h](reference/apis-image-kit/image__effect__errors_8h.md)
