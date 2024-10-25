@@ -603,6 +603,7 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 ```js
 import settings from '@ohos.settings';
 
+const context: Context =  getContext(this);
 settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, val) => {
   if (err) {
     console.error(`Failed to get the setting. ${err.message} `);
