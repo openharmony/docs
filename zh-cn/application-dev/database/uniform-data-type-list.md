@@ -51,7 +51,7 @@
 | general.mpeg                        | general.video                 | .mpg, .mpeg, .m75, .m15,.mpe           | video/mpg, video/mpeg, video/x-mpg, video/x-mpeg                                       | MPEG-1或MPEG-2视频类型                  |
 | general.mpeg-4                      | general.video                 | .mp4, .mpeg4                           | video/mp4, video/mp4v                                                                  | MPEG-4视频类型                         |
 | general.3gpp                        | general.video                 | .3gp, .3gpp                            | video/3gpp                                                                             | 3GPP视频类型                           |
-| general.3gpp2                       | general.video                 | .3g2 , .3gp2,.3gpp2                   | video/3gpp2                                                                            | 3GPP2视频类型                          |
+| general.3gpp2                       | general.video                 | .3g2, .3gp2, .3gpp2                   | video/3gpp2                                                                            | 3GPP2视频类型                          |
 | general.vob                         | general.video                 | .vob                                   | video/mpeg, video/x-ms-vob                                                             | DVD视频类媒体的容器类型                      |
 | general.dif-video                   | general.video                 | .dif                                   | video/dv                                                                               | 原始数字视频类型                           |
 | general.dv-video                    | general.video                 | .dv                                    | video/dv                                                                               | DV视频类型                             |
@@ -466,8 +466,3 @@
 | com.sumsung.srw-raw-image | general.raw-image | .srw | image/x-samsung-srw | Samsung原始图像格式 |
 | com.epson.erf-raw-image | general.raw-image | .erf | image/x-epson-erf | Epson原始图像格式 |
 | com.olympus.orf-raw-image | general.raw-image | .orf | image/x-olympus-orf | Olympus原始图像格式 |
-
-
-
-
-
