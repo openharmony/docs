@@ -3579,6 +3579,50 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 }
 ```
 
+### saveCameraPhoto<sup>13+</sup>
+
+saveCameraPhoto(imageFileType: ImageFileType): void
+
+保存相机拍摄的照片。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| imageFileType | [ImageFileType](#imagefiletype13)  | 是   | 需要保存的类型。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.         |
+
+**示例：**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { image } from '@kit.ImageKit';
+
+async function example(asset: photoAccessHelper.PhotoAsset) {
+  console.info('saveCameraPhotoDemo');
+  try {
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.saveCameraPhoto(photoAccessHelper.ImageFileType.JPEG);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply saveCameraPhoto successfully');
+  } catch (err) {
+    console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ### discardCameraPhoto<sup>12+</sup>
 
 discardCameraPhoto(): void
@@ -4294,6 +4338,81 @@ async function example() {
 
 ```
 
+### quickRequestImage<sup>13+</sup>
+
+static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: QuickImageDataHandler&lt;image.Picture&gt;): Promise&lt;string&gt;
+
+根据不同的策略模式，快速请求图片资源。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求图片资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+
+**参数：**
+
+| 参数名            | 类型                                                                                                        | 必填 | 说明                      |
+|----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
+| context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的Context。 |
+| asset         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
+| requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|
+| dataHandler    | [QuickImageDataHandler](#quickimagedatahandler13)&lt;[image.Picture](../apis-image-kit/js-apis-image.md#picture13)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](#cancelrequest12)取消请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { image } from '@kit.ImageKit';
+
+class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
+  onDataPrepared(data: image.Picture) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
+    console.info('on image data prepared');
+  }
+}
+
+async function example() {
+  console.info('quickRequestImage');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+  }
+  const handler = new MediaHandler();
+  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
+      console.info('fetchResult success');
+      let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+      await photoAccessHelper.MediaAssetManager.quickRequestImage(context, photoAsset, requestOptions, handler);
+      console.info('quickRequestImage successfully');
+  });
+}
+```
+
 ## MediaAssetDataHandler<sup>11+</sup>
 
 媒体资源处理器，应用在onDataPrepared方法中可自定义媒体资源处理逻辑。
@@ -4354,6 +4473,50 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
       return;
     }
     // 自定义对MovingPhoto的处理逻辑
+    console.info('on image data prepared, photo quality is ' + map['quality']);
+  }
+}
+```
+
+## QuickImageDataHandler<sup>13+</sup>
+
+媒体资源处理器，应用在onDataPrepared方法中可自定义媒体资源处理逻辑。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### onDataPrepared<sup>13+</sup>
+
+onDataPrepared(data: T, imageSource: image.ImageSource, map: Map<string, string>): void
+
+媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。
+T支持Picture数据类型。
+
+map支持返回的信息：
+| map键名  | 值说明 |
+|----------|-------|
+| 'quality'  | 图片质量。高质量为'high'，低质量为'low'。 |
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明                                                                            |
+|------|---| ---- |-------------------------------------------------------------------------------|
+| data | T | 是   | 已就绪的图片资源数据。泛型，支持[Picture](../apis-image-kit/js-apis-image.md#picture13)数据类型。 |
+| imageSource | image.ImageSource | 是   | 已就绪的图片资源数据。 |
+| map<sup>13+</sup> | Map<string, string> | 否   | 用于获取图片资源的额外信息，如图片质量。 |
+
+**示例**
+```ts
+import { image } from '@kit.ImageKit';
+
+class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
+  onDataPrepared(data: image.Picture, imageSource: image.ImageSource, map: Map<string, string>) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
+    // 自定义对ImageSource的处理逻辑
     console.info('on image data prepared, photo quality is ' + map['quality']);
   }
 }
@@ -4859,6 +5022,17 @@ title参数规格为：
 | ----- |  ---- |  ---- |
 | IMAGE_RESOURCE |  1 |  表示图片资源。 |
 | VIDEO_RESOURCE |  2 |  表示视频资源。 |
+
+## ImageFileType<sup>13+</sup>
+
+枚举，图片保存类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| JPEG  |  1 |  表示jpeg图片类型。 |
+| HEIF  |  2 |  表示heif图片类型。 |
 
 ## ChangeData
 
