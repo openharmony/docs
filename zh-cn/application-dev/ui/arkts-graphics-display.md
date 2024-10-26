@@ -307,9 +307,9 @@ struct MyComponent {
             .width(200)
             .height(150)
             .border({ width: 1 })
+              // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
             .objectFit(ImageFit.Cover)
             .margin(15)
-              // 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。
             .overlay('Cover', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
           Image($r('app.media.img_2'))
             .width(200)
